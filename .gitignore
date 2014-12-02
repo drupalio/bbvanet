@@ -5,3 +5,16 @@ target/
 .factorypath
 .springBeans
 target/surefire
+webservices/src/main/java/co/com/bbva/services/transactions/common/schema/GeneralErrorResponseType.java
+webservices/src/main/java/co/com/bbva/services/transactions/globalposition/schema/Account.java
+webservices/src/main/java/co/com/bbva/services/transactions/globalposition/schema/CreditCard.java
+webservices/src/main/java/co/com/bbva/services/transactions/globalposition/schema/Deposit.java
+webservices/src/main/java/co/com/bbva/services/transactions/globalposition/schema/Fund.java
+webservices/src/main/java/co/com/bbva/services/transactions/globalposition/schema/GlobalProducts.java
+webservices/src/main/java/co/com/bbva/services/transactions/globalposition/schema/Leasing.java
+webservices/src/main/java/co/com/bbva/services/transactions/globalposition/schema/Loan.java
+webservices/src/main/java/co/com/bbva/services/transactions/globalposition/schema/ObjectFactory.java
+webservices/src/main/java/co/com/bbva/services/transactions/globalposition/schema/Product.java
+webservices/src/main/java/co/com/bbva/services/transactions/globalposition/schema/Quota.java
+webservices/src/main/java/co/com/bbva/services/transactions/globalposition/schema/RotatingAccount.java
+
