@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:bbvaMenu="http://java.sun.com/jsf/composite/bbva/menu"
+	xmlns:bbvaHeader="http://java.sun.com/jsf/composite/bbva/header"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>BBVA :: Colombia :: Posición Global</title>
+	<h:outputScript library="primefaces" name="jquery/jquery.js"/>
+	<f:metadata>
+	</f:metadata>
+	<!--  
+	<script type="text/javascript">
+		function handleMessage(facesmessage) {
+
+			var chatContent = $(PrimeFaces
+					.escapeClientId('forma:numberMessages'));
+			chatContent.text(facesmessage.summary);
+		}
+	</script>
+	-->
+</h:head>
+
+<h:body>
+
+	<!--mobile header -->
+	<bbvaHeader:mobileHeader/>
+	
+	<div class="container container-header">
+		<div class="row main-header logged">
+
+			<bbvaHeader:headerRight />
+			<bbvaHeader:logo/>
+			<bbvaMenu:menuButtonMobile/>
+			<bbvaHeader:particulares />
+			<bbvaHeader:executive />
+
+		</div>
+
+		<bbvaMenu:menu>
+
+			<bbvaMenu:itemMenuActive href="./global.html" value="Posición global"
+				title="Ir a Posición global" icon="posicionglobal" 
+				liclass="posicion-global active"/>
+
+			<bbvaMenu:itemMenu href="./accounts.html" value="Cuentas"
+				title="Ir a Cuentas" icon="account-icon" />
+
+			<bbvaMenu:itemMenu href="./cards.html" value="Tarjetas"
+				title="Ir a Tarjetas" icon="card-icon" />
+
+			<bbvaMenu:itemMenu href="./prestamos.html" value="Préstamos"
+				title="Ir a Préstamos" icon="credit-icon" />
+
+			<bbvaMenu:itemMenu href="./right_spaced.html" value="Ahorros e inversión"
+				title="Ir a ahorros e inversión" icon="investment-icon" 
+				liclass="more-width"/>
+
+			<bbvaMenu:itemMenu href="#" value="Seguros" title="Ir a Seguros"
+				icon="insurance-icon" />
+				
+			<bbvaMenu:itemSearch/>
+
+		</bbvaMenu:menu>
+		<bbvaMenu:menuMobile />
+
+	</div>
+
+</h:body>
+</html>

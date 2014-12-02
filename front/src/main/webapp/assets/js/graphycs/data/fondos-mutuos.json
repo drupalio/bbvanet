@@ -1,0 +1,52 @@
+{	"title": {
+		"text": null
+	},
+	"tooltip": {
+		"pointFormat": "{point.key}<br/><b>$ {point.y}</b> ({point.percentage:.1f}%)",
+		"backgroundColor": "#FFFFFF"
+    },
+	"chart": {
+		"height": 400
+	},
+	"legend" : {
+		"align": "center",
+		"verticalAlign": "top",
+		"floating": false,
+		"borderColor" : "none"
+	},
+	"series" : [ {
+		"type" : "pie",
+		"name" : "Saldo",
+		"data" : [
+			{
+				"porcentaje" :35,
+				"name": "Garantizado selección consumo",
+				"name2": "Saldo",
+				"y": 35,
+				"sliced": false,
+				"selected": true,
+				"color": {
+				    "radialGradient": { "cx": "0.5", "cy": "0.5", "r": "0.5" },
+				    "stops": [
+				       [0, "#A5DC51"],
+				       [1, "#7FBD2C"]
+				    ]
+				}
+			}, {
+				"porcentaje" :65,
+				"name": "Valor plus",
+				"name2": "Saldo",
+				"y": 65,
+				"sliced": false,
+				"selected": false,
+				"color": {
+				    "radialGradient": { "cx": "0.5", "cy": "0.5", "r": "0.5" },
+				    "stops": [
+				       [0, "#2181C9"],
+				       [1, "#0065B3"]
+				    ]
+				}
+			}
+		]
+	} ]
+}

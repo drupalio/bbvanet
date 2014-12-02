@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns="http://wadl.dev.java.net/2009/02"  
+	targetNamespace="http://www.bbva.com.co/services/transactions/globalpositions" 
+	xmlns:ns="http://www.bbva.com.co/services/transactions/globalposition/schema"
+	xmlns:cmns="http://www.bbva.com.co/services/transactions/common/schema"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<!-- 
+	WADL para el servicio de GlobalPosition 
+	author: Sebastian Gamba - Entelgy Colombia
+	since: 20/11/2014
+	-->
+ <grammars>
+	<!-- Inclusión de los tipos de datos especificos para el servicio globalPosition -->
+	<include href="GlobalPositionTypes.xsd" />
+	<include href="Commons.xsd" />
+ </grammars>
+	
+ 
+<!-- Server para despliegue del servicio posicion global --> 
+ <resources base="http://localhost:8099/GlobalPosition/V01">
+ 
+	<!-- SMC: getGlobalProducts -->
+   <resource path="/customers/{customerId}" id="com.bbva.net.webservices.globalposition.GlobalPositionService">
+     <param name="customerId" style="template" type="xs:string"/>
+     <method name="GET">
+      <response status="200">
+       <representation mediaType="application/json" element="ns:globalProducts"/>
+      </response>
+	  <response status="400">
+       <representation mediaType="application/json" element="cmns:generalErrorResponseType"/>
+      </response>
+	  <response status="409">
+       <representation mediaType="application/json" element="cmns:generalErrorResponseType"/>
+      </response>
+	  <response status="500">
+       <representation mediaType="application/json" element="cmns:generalErrorResponseType"/>
+      </response> 
+    </method>
+   </resource> 
+   
+ </resources> 
+</application>

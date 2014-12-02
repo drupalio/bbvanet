@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<composite:interface>
+	<composite:attribute name="listLeasing" type="java.util.List"  />
+</composite:interface>
+
+<composite:implementation>
+
+	<div class="item-hidden" style="display: block;">
+		<p:dataTable var="icuenta" value="#{cc.attrs.listLeasing.subList(11,(cc.attrs.listAccounts.size()-1 > 11) ? cc.attrs.listAccounts.size()-1 : 11 )}">
+		
+			<p:column class="head" styleClass="head col-xs-6 col-md-4" 
+				style="font-size: 0.7em;color: #434A58;border-style: solid none;
+					font-family: Arial;background: none;border-radius: 4px;border: 2px solid #DBDCDF;
+					background-color: #F3F5F7;margin-bottom: 14px;">
+				
+				<p class="title-label" style="font-size: 1.1em">#{icuenta.loan.product.alias}</p>
+				<p style="font-size: 1em">#{icuenta.loan.product.productId}</p>
+				<p class="sublabel" style="font-size: 1em">#{icuenta.loan.product.productName}</p>
+				
+			</p:column>
+			
+			<p:column class="head" styleClass="head col-xs-6 col-md-4"
+				style="font-size: 0.7em;color: #434A58;border-style: solid none;
+					font-family: Arial;background: none;border-radius: 4px;border: 2px solid #DBDCDF;
+					background-color: #F3F5F7;margin-bottom: 14px;">
+				
+				<p class="balance" style="font-size: 1.5em">#{icuenta.loan.totalDebt}</p>
+				<p class="sublabel"></p>
+				
+			</p:column>
+			
+			<p:column class="head" styleClass="head col-xs-6 col-md-4"
+				style="font-size: 0.7em;color: #434A58;border-style: solid none;
+					font-family: Arial;background: none;border-radius: 4px;border: 2px solid #DBDCDF;
+					background-color: #F3F5F7;margin-bottom: 14px;">
+				
+				<p class="balance" style="font-size: 1.5em">#{icuenta.loan.totalDue}</p>
+				<p class="sublabel"></p>
+				
+			</p:column>
+			
+		</p:dataTable>
+	</div>
+
+</composite:implementation>
+
+</html>

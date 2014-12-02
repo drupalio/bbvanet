@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<composite:interface>
+
+</composite:interface>
+
+<composite:implementation>
+
+	<div class="mobile-menu-container">
+		<nav style=""
+			class="mobile-menu hidden-md hidden-lg logged collapse in">
+			<div class="log-menu header-buttons">
+				<ul class="logged main-items">
+					<li class="logged-search">
+						<div>
+							<ul>
+								<li>
+									<form action="#" method="POST" class="form form-search"
+										role="form">
+										<input name="search" class="form-control" type="text" /> <span
+											class="search-icon"></span>
+									</form>
+								</li>
+							</ul>
+						</div>
+					</li>
+					<li><a class="home" href="./global.html "
+						title="Ir a Posición Global"> <span
+							class="icon-menu-global-position-blue-light"></span> Posición
+							Global
+					</a></li>
+					<li class="item"><a href="./accounts.html"
+						title="Ir a Cuentas"> <span
+							class="icon-menu-accounts-blue-light"></span> Cuentas
+					</a></li>
+					<li class="item"><a href="./cards.html" title="Ir a Tarjetas">
+							<span class="icon-menu-cards-blue-light"></span> Tarjetas
+					</a></li>
+					<li class="item"><a href="./prestamos.html"
+						title="Ir a Préstamos"> <span
+							class="icon-menu-loans-blue-light"></span> Préstamos
+					</a></li>
+					<li class="item"><a href="./right_spaced.html"
+						title="Ir a Ahorros e inversión"> <span
+							class="icon-menu-investments-blue-light"> </span> Ahorro e
+							Inversiones
+					</a></li>
+					<li class="item"><a href="#" title="Ir a Seguros"> <span
+							class="icon-menu-insurance-blue-light"></span> Seguros
+					</a></li>
+					<li class="item"><a href="#" title="Ir a Editar perfil"> <span
+							class="icon-menu-user-blue-light"></span> Editar perfil
+					</a></li>
+					<li class="disconnect"><a href="index.html"> <span
+							class="icon-24 red g09-logout"></span> Desconectar
+					</a></li>
+				</ul>
+			</div>
+		</nav>
+	</div>
+
+</composite:implementation>
+
+</html>

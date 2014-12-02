@@ -1,0 +1,103 @@
+{
+	"tooltip": {
+		"pointFormat": "<b>$ {point.y}</b> ({point.percentage:.1f}%)"
+    },
+	"title" : {
+		"text" : "Pesos ($)"
+	},
+	"legend" : {
+		"verticalAlign" : "bottom",
+		"borderWidth" : 0
+	},
+	"series" : [ {
+		"type" : "pie",
+		"name" : "Pesos", 
+		"data" : [
+			{	
+				"porcentaje" :25,
+				"name": "Ventas por canales",
+				"name2":"Pesos",
+				"y": 25,
+				"sliced": false,
+				"selected": false,
+				"color": {
+				    "radialGradient": { "cx": "0.5", "cy": "0.5", "r": "0.5" },
+				    "stops": [
+				       [0, "#2181C9"],
+				       [1, "#006EC1"]
+				    ]
+				}
+			}, {	
+				"porcentaje" :20,
+				"name": "Ropa, calzado y personal",
+				"name2":"Pesos",
+				"y": 5,
+				"sliced": false,
+				"selected": false,
+				"color": {
+				    "radialGradient": { "cx": "0.5", "cy": "0.5", "r": "0.5" },
+				    "stops": [
+				       [0, "#005DA5"],
+				       [1, "#005DA5"]
+				    ]
+				}
+			}, {	
+				"porcentaje" :5,
+				"name": "Varios",
+				"name2":"Pesos",
+				"y": 20,
+				"sliced": false,
+				"selected": false,
+				"color": {
+				    "radialGradient": { "cx": "0.5", "cy": "0.5", "r": "0.5" },
+				    "stops": [
+				       [0, "#A5DC51"],
+				       [1, "#7FBD2C"]
+				    ]
+				}
+			}, {	
+				"porcentaje" :5,
+				"name": "Ocio",
+				"name2":"Pesos",
+				"y": 5,
+				"sliced": false,
+				"selected": false,
+				"color": {
+				    "radialGradient": { "cx": "0.5", "cy": "0.5", "r": "0.5" },
+				    "stops": [
+				       [0, "#73AB28"],
+				       [1, "#73AB28"]
+				    ]
+				}
+			}, {	
+				"porcentaje" :20,
+				"name": "Regalos, libros, discos",
+				"name2":"Pesos",
+				"y": 20,
+				"sliced": false,
+				"selected": false,
+				"color": {
+				    "radialGradient": { "cx": "0.5", "cy": "0.5", "r": "0.5" },
+				    "stops": [
+				       [0, "#FED67C"],
+				       [1, "#FDBD2C"]
+				    ]
+				}
+			}, {	
+				"porcentaje" :25,
+				"name": "Comercio básico",
+				"name2":"Pesos",
+				"y": 25,
+				"sliced": false,
+				"selected": false,
+				"color": {
+				    "radialGradient": { "cx": "0.5", "cy": "0.5", "r": "0.5" },
+				    "stops": [
+				       [0, "#F7A645"],
+				       [1, "#F6891E"]
+				    ]
+				}
+			}
+		]
+	} ]
+}

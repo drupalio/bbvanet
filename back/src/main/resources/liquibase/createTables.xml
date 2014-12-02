@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+     xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
+     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+	<changeSet author="bbva" id="1" runAlways="true">
+
+		<createTable tableName="PRUEBA">
+		
+			<column name="ID" type="NUMBER">
+				<constraints nullable="false" primaryKey="true" />
+			</column>
+			<column name="NOMBRE" type="VARCHAR(40)"></column>
+			
+		</createTable>
+		
+		
+		<insert tableName="PRUEBA" >
+			<column name="id">1</column>
+			<column name="NOMBRE">HOOOOOLA JUAN</column>
+		</insert>
+		
+
+	</changeSet>
+	
+</databaseChangeLog>

@@ -1,0 +1,68 @@
+{
+        "chart": {
+            "defaultSeriesType": "line"
+        },
+        "title": {
+            "text": "Febrero"
+        },
+        "exporting": {
+            "enabled": false
+        },
+        "legend": {
+            "enabled": false
+        },
+        "xAxis": {
+            "allowDecimals": false,
+            "categories": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28"]
+        },
+        "yAxis": {
+        	"min": 1450,
+        	"max": 2000,
+        	"tickInterval": 50,
+            "align": "high",
+            "offset": 0,
+            "rotation": 0,
+            "y": "-10",
+            "title": {
+                "text": "$ (miles)",
+                "style": {
+                    "color": "#434A58",
+                    "fontSize": "11px",
+                    "fontFamily": "Arial"
+                }
+            }
+        },
+        "plotOptions": {
+            "series": {
+                "marker": {
+                    "enabled": false,
+                    "states": {
+                        "hover": {
+                            "enabled": true
+                        }
+                    }
+                }
+            }
+        },
+        "colors": [
+            "#489715"
+        ],
+        "series": [{
+	        "name": "Saldo",
+	        "data": [
+	        	[0, null],
+				[2, 1460],
+                [14, 1550],
+                [18, null],
+                [22, 1750],
+                [27, 1950]
+			],
+	        "color": {
+			    "radialGradient": { "cx": "0.5", "cy": "0.5", "r": "0.5" },
+			    "stops": [
+			       [0, "#087BD3"],
+			       [1, "#1E91E6"]
+			    ]
+			}
+        }]
+}

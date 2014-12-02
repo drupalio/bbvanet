@@ -1,0 +1,88 @@
+{
+	"tooltip": {
+		"pointFormat": "{point.key}<br/><b>$ {point.y}</b> ({point.percentage:.1f}%)",
+		"backgroundColor": "#FFFFFF"
+	},
+	"chart": {
+		"height": 357,
+		"width": 296
+	},
+	"title": {
+		"text": "COP 999.999.999"
+	},
+	"series": [{
+		"type": "pie",
+		"size": "80%",
+		"name": "Financiación",
+		"data": [{
+			"name": "Cartera de valores 25,77 €",
+			"y": 10,
+			"color": {
+				"radialGradient": {
+					"cx": "0.5",
+					"cy": "0.5",
+					"r": "0.5"
+				},
+				"stops": [[0,
+				"#2296EA"],
+				[1,
+				"#0C80D7"]]
+			}
+		},
+		{
+			"name": "Depósitos 4.828,28 €",
+			"y": 35,
+			"color": {
+				"radialGradient": {
+					"cx": "0.5",
+					"cy": "0.5",
+					"r": "0.5"
+				},
+				"stops": [[0,
+				"#0B6CB8"],
+				[1,
+				"#005DA5"]]
+			}
+		},
+		{
+			"name": "Planes de pensiones 20,76 €",
+			"y": 10,
+			"color": {
+				"radialGradient": {
+					"cx": "0.5",
+					"cy": "0.5",
+					"r": "0.5"
+				},
+				"stops": [[0,
+				"#FFCC33"],
+				[1,
+				"#FFCC00"]]
+			}
+		},
+		{
+			"name": "Cartera Asesorada 15.661,08 €",
+			"y": 60,
+			"color": {
+				"radialGradient": {
+					"cx": "0.5",
+					"cy": "0.5",
+					"r": "0.5"
+				},
+				"stops": [[0,
+				"#557E1E"],
+				[1,
+				"#6E9C32"]]
+			}
+		}]
+	}],
+	"legend": {
+		"align": "center",
+		"verticalAlign": "bottom",
+		"floating": false,
+		"borderColor": "none",
+		"width": "100%",
+		"itemWidth": "100%",
+		"itemMarginTop": 10,
+		"x": "50%"
+	}
+}

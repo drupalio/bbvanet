@@ -1,0 +1,33 @@
+{
+        "legend": {
+            "enabled": false
+        },
+
+        "yAxis": {
+            "tickPixelInterval": 15,
+
+            "labels": {
+                "enabled": false
+            },
+            "title": {
+                "text": null
+            }
+        },
+
+        "xAxis": {
+            "tickWidth": 0,
+            "labels": {
+                "enabled": false
+            }
+        },
+
+        "series": [{
+
+            "data": [5.0, 12.0, 23.0, 5.0, 3.4, 5.0],
+            "color": "#7CB5EC",
+            "marker": {
+                "fillColor": "#44A718",
+                    "lineColor":  "#44A718"
+                }
+        }]
+    }

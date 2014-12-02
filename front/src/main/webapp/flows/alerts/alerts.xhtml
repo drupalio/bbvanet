@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="../../templates/defaultLayout.xhtml">
+
+	<ui:define name="content">
+
+		<h:form>
+			<p:spacer height="25" />
+			<p:tabView>
+				<p:tab title="#{msg['text.advise']}">
+					<h1 class="title-aux">#{msg['text.listing']}</h1>
+					<br></br>
+					<hr></hr>
+
+					<p:panelGrid columns="6">
+
+						<p:outputLabel value="#{msg['text.filter.by.type']}" />
+						<p:selectOneMenu>
+							<f:selectItem itemLabel="#{msg['text.select.type.avise']}"
+								itemValue="" />
+							<f:selectItem itemLabel="Option 1" itemValue="Option 1" />
+							<f:selectItem itemLabel="Option 2" itemValue="Option 2" />
+							<f:selectItem itemLabel="Option 3" itemValue="Option 3" />
+						</p:selectOneMenu>
+						<p:column colspan="2" />
+						<p:commandButton value="#{msg['button.mark.not.read']}" />
+						<p:commandButton value="#{msg['button.mark.read']}" />
+						<p:commandButton value="#{msg['button.eliminate']}" />
+					</p:panelGrid>
+
+					<br></br>
+
+					<div class="table-wrapper">
+						<p:dataTable emptyMessage="#{msg['text.empty.result']}"
+							styleClass="detail-table-body sortable">
+							<p:column>
+								<f:facet name="header">
+								</f:facet>
+								<p:selectBooleanCheckbox />
+							</p:column>
+
+							<p:column>
+								<f:facet name="header">
+									<h:outputText value="#{msg['text.date']}" />
+								</f:facet>
+								<p:selectBooleanCheckbox />
+							</p:column>
+
+							<p:column>
+								<f:facet name="header">
+									<h:outputText value="#{msg['text.type']}" />
+								</f:facet>
+								<p:selectBooleanCheckbox />
+							</p:column>
+
+							<p:column>
+								<f:facet name="header">
+									<h:outputText value="#{msg['text.description']}" />
+								</f:facet>
+								<p:selectBooleanCheckbox />
+							</p:column>
+
+						</p:dataTable>
+					</div>
+
+				</p:tab>
+
+				<p:tab title="#{msg['text.not.read']}">
+				</p:tab>
+
+			</p:tabView>
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+</html>

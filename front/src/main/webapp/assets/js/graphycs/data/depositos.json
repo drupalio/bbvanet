@@ -1,0 +1,74 @@
+{
+        "chart": {
+            "defaultSeriesType": "line",
+            "spacingLeft": 20,
+            "spacingRight": 30
+        },
+        "title": {
+            "text": "Enero"
+        },
+        "exporting": {
+            "enabled": false
+        },
+        "legend": {
+            "enabled": false
+        },
+        "xAxis": {
+            "allowDecimals": false,
+            "ordinal": false,
+            "showEmpty": false,
+            "categories": ["1", "2", "4", "6", "8", "10", "12", "14", "16", "18", "20", "22", "24", "26", "28", "30", "31" ]
+        },
+        "yAxis": {
+        	"min": 1450,
+        	"max": 2000,
+        	"tickInterval": 50,
+            "align": "high",
+            "offset": 0,
+            "rotation": 0,
+            "y": "-10",
+            "title": {
+                "text": "$ (miles)",
+                "style": {
+                    "color": "#434A58",
+                    "fontSize": "11px",
+                    "fontFamily": "Arial"
+                }
+            }
+        },
+        "plotOptions": {
+            "series": {
+                "marker": {
+                    "enabled": true,
+                    "states": {
+                        "hover": {
+                            "enabled": true
+                        }
+                    }
+                }
+            }
+        },
+        "colors": [
+            "#489715"
+        ],
+        "series": [{
+	        "name": "Saldo",
+	        "data": [
+	        	[2, null],
+				[4, 1460],
+                [6, 1550],
+                [8, null],
+                [10, null],
+				[12, 1860],
+                [14, 1899],
+                [16, null]
+			],
+	        "color": {
+			    "radialGradient": { "cx": "0.5", "cy": "0.5", "r": "0.5" },
+			    "stops": [
+			       [0, "#087BD3"],
+			       [1, "#1E91E6"]
+			    ]
+			}
+        }]
+}

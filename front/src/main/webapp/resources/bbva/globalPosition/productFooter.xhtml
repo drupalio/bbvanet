@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile">
+
+<composite:interface>
+	<composite:attribute name="listProduct" type="java.util.List" />
+
+</composite:interface>
+
+<composite:implementation>
+
+
+	<div class="col-xs-12 col-md-6 show-trigger">
+		<a href="#" title="Mostrar ocultos">Tienes <span>#{(cc.attrs.listProduct.size()-1 > 11) ? cc.attrs.listProduct.size()-12 : 0 }</span>
+			producto oculto: <span class="action">Mostrar</span></a>
+
+	</div>
+
+
+</composite:implementation>
+
+</html>

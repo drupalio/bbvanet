@@ -1,0 +1,6 @@
+// BBVArqSpring log opened at 2014-11-14 17:16:52
+arqspring crearAplicacion --nombreAplicacion kqco --modulos front,back,webservices --paqueteBase com.bbva.net 
+// BBVArqSpring log opened at 2014-11-15 12:02:40
+arqspring generarEAR 
+exit
+// BBVArqSpring log closed at 2014-11-15 12:03:37

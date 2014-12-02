@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile">
+
+<composite:interface>
+	<composite:attribute name="href" type="String" />
+	<composite:attribute name="title" type="String" />
+	<composite:attribute name="value" type="String" />
+	<composite:attribute name="icon" type="String" />
+	<composite:attribute name="liclass" type="String"/>
+	<composite:attribute name="spanclass" type="String"/>
+</composite:interface>
+
+<composite:implementation>
+
+	<li class="#{cc.attrs.liclass}">
+		<a href="#{cc.attrs.href}" title="#{cc.attrs.title}"> 
+			<span class="nav-icon icon-hide #{cc.attrs.spanclass} #{cc.attrs.icon}"></span>
+			<span class="icon-text">#{cc.attrs.value}</span>
+		</a>
+	</li>
+
+</composite:implementation>
+
+</html>

@@ -1,0 +1,61 @@
+{
+	"tooltip": {
+		"pointFormat": "{point.key}<br/><b>$ {point.y}</b> ({point.percentage:.1f}%)",
+		"backgroundColor": "#FFFFFF"
+	},
+	"chart": {
+		"height": 300
+	},
+	"title": {
+		"text": null
+	},
+	"subtitle": {
+		"text": null
+	},
+	"series": [{
+		"type": "pie",
+		"size": "80%",
+		"name": "Tu situación",
+		"data": [{
+			"name": "Activos",
+			"y": 865,
+			"color": {
+				"radialGradient": {
+					"cx": "0.2",
+					"cy": "0.8",
+					"r": "0.5"
+				},
+				"stops": [[0,
+				"#F7A645"],
+				[1,
+				"#F6891E"]]
+			}
+		},
+		{
+			"name": "Financiación",
+			"y": 1203,
+			"color": {
+				"radialGradient": {
+					"cx": "0.5",
+					"cy": "0.5",
+					"r": "0.5"
+				},
+				"stops": [[0,
+				"#2181C9"],
+				[1,
+				"#0065B3"]]
+			}
+		}]
+	}],
+	"legend": {
+		"align": "center",
+		"verticalAlign": "bottom",
+		"layout": "vertical",
+		"floating": false,
+		"borderColor": "none",
+		"width": "100%",
+		"itemWidth": "100%",
+		"itemMarginTop": 10,
+		"x": "50%"
+	}
+}

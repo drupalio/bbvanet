@@ -1,0 +1,69 @@
+{
+	"chart": {
+            },
+    "title": {
+                "text": ""
+            },
+    "legend": {
+                "align": "center",
+                "verticalAlign": "top",
+                "floating": false,
+                "borderColor" : "none",
+                "margin": 50
+            },
+    "plotOptions": {
+                "column": {
+                	"borderWidth": 17,
+	                "borderColor": "none",
+                	"grouping": false,
+                	"shadow": false
+                }
+            },
+	"xAxis" : {
+		"categories" : ["Ene.","Feb.","Mar.","Abr.","May.","Jun.","Jul.","Ago.","Sep.","Oct.","Nov.","Dic.","Ene."]
+	},
+	"yAxis" : {
+		"max": "125",
+        "min": "-100",
+        "tickInterval": 25,
+        "title": {
+        	"text": ""
+        }
+	},
+	"tooltip": {
+		"valuePrefix": " $"	
+    },
+	"series": [{
+                "type": "column",
+                "name": "Abonos",
+                "data": [27.31, 51.93, 65.90, 46.84, 67.06, 29.04, 37.75, 62.98, 47.30, 70.98, 93.68, 54.73, 28.70],
+                "color": {
+				    "radialGradient": { "cx": "0.5", "cy": "0.5", "r": "0.5" },
+				    "stops": [
+				       [0, "#1d84c5"],
+				       [1, "#006ec1"]
+				    ]
+			}
+            }, {
+                "type": "column",
+                "name": "Cargos",
+                "data": [-66.91, -60.12, -27.35, -31.16, -83.56, -82.41, -23.52, -92.10, -92.50, -57.51, -90.13, -29.39, -99.32],
+                "color": {
+				    "radialGradient": { "cx": "0.5", "cy": "0.5", "r": "0.5" },
+				    "stops": [
+				       [0, "#045089"],
+				       [1, "#045089"]
+				    ]
+				}
+            }, {
+                "type": "line",
+                "name": "Saldo",
+                "data": [53.11, 50.56, 63.34, 78.28, 83.63, 49.94, 101.61, 19.67, 29.84, 46.43, 62.39, 98.26, 49],
+                "color": "green",
+                "marker": {
+                	"lineWidth": 2,
+                	"lineColor": "white",
+                	"fillColor": "#9797a6"
+                }
+            }]
+}

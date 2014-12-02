@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.bbva.com.co/services/transactions/common/schema" 
+	xmlns:tns="http://www.bbva.com.co/services/transactions/common/schema"
+	elementFormDefault="unqualified"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://www.w3.org/2001/XMLSchema">
+	
+	<!-- 
+	Entidades de comunes de los servicios de NuevaNet 
+	author: Sebastian Gamba - Entelgy Colombia
+	since: 21/11/2014
+	-->
+	
+	<!-- Entidad que contiene la informacion estandar de un error -->
+	<xs:complexType name="GeneralErrorResponseType">
+        <xs:sequence>
+			<xs:element name="code" type="string" />
+			<xs:element name="description" type="string"  />
+        </xs:sequence>
+    </xs:complexType>
+    
+	<xs:element name="generalErrorResponseType" type="tns:GeneralErrorResponseType"/>
+</schema>

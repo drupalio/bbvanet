@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<composite:interface>
+	<composite:attribute name="listFund" type="java.util.List"  />
+
+</composite:interface>
+
+<composite:implementation>
+
+	<p:dataTable var="icuenta" value="#{cc.attrs.listFund.subList(0, (cc.attrs.listFund.size()-1) >= 10 ? 10 : cc.attrs.listFund.size()-1)}">
+		<p:column class="head" headerText="N° FONDO" styleClass="head col-xs-6 col-md-8" 
+			style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">				
+
+			<p class="title-label" style="font-size: 1.1em">#{icuenta.product.alias}</p>
+			<p style="font-size: 1em">#{icuenta.product.productId}</p>
+			<p class="sublabel" style="font-size: 1em">#{icuenta.product.productName}</p>
+		</p:column>
+		<p:column class="head" headerText="SALDO" styleClass="head col-xs-6 col-md-8" 
+			style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
+		
+			<p class="balance" style="font-size: 1.5em">#{icuenta.product.totalCash}</p>
+			<p style="font-size: 1em">Saldo disponible $#{icuenta.product.cashAvailable}</p>
+			<p class="sublabel"></p>
+		</p:column>
+	</p:dataTable>							
+
+</composite:implementation>
+
+</html>

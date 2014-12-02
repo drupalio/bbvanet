@@ -1,0 +1,14 @@
+{	"tooltip": {
+		"valuePrefix": "$"	
+    },
+	"xAxis" : {
+		"categories" : ["Cenco sud","iansa","copec"]
+	},
+	"series" : [
+		{	
+			"name": "Saldo",		
+			"data": [1000, 1200, 900]
+		}
+	],
+	"legend": false
+}

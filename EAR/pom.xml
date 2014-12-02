@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.bbva.net</groupId>
+		<artifactId>pom-padre_kqco</artifactId>
+		<version>01</version>
+	</parent>
+	<groupId>com.bbva.net</groupId>
+	<artifactId>kqco_mult_web</artifactId>
+	<packaging>ear</packaging>
+	<version>01</version>
+	<name>kqco_mult_web</name>
+	<url>http://maven.apache.org</url>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ear-plugin</artifactId>
+				<version>2.5</version>
+				<configuration>
+					<displayName>kqco_mult_web</displayName>
+					<generateApplicationXml>true</generateApplicationXml>
+					<modules />
+				</configuration>
+			</plugin>
+		</plugins>
+		<finalName>kqco_mult_web</finalName>
+	</build>
+	<dependencies />
+</project>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile">
+
+<composite:interface>
+
+</composite:interface>
+
+<composite:implementation>
+
+		<nav id="person-submenu"
+			class="submenu navbar navbar-default hidden-xs hidden-sm"
+			role="navigation">
+			<div class="collapse navbar-collapse" id="submenu">
+				<ul class="nav navbar-nav logged-user">
+					<composite:insertChildren />
+				</ul>
+			</div>
+		</nav>
+		
+</composite:implementation>
+
+</html>

@@ -1,0 +1,94 @@
+{
+	"tooltip": {
+		"pointFormat": "{point.key}<br/><b>$ {point.y}</b> ({point.percentage:.1f}%)",
+		"backgroundColor": "#FFFFFF"
+	},
+	"chart": {
+		"height": 357,
+		"width": 296
+	},
+	"title": {
+		"text": "Activos",
+		"floating": true,
+		"align": "left",
+		"x": 10,
+		"y": 20,
+		"style": {
+			"font-size": "14px"
+		}
+	},
+	"subtitle": {
+		"text": "COP 999.999.999",
+		"floating": true,
+		"align": "center",
+		"x": 50,
+		"y": 20,
+		"style": {
+			"font-size": "18px",
+			"font-family": "Arial",
+			"fill": "#0073c9",
+			"color": "#0073c9"
+		}
+	},
+	"series": [{
+		"type": "pie",
+		"size": "63%",
+		"name": "Activos",
+		"y": 10,
+		"data": [{
+			"name": "Depósitos 2800$",
+			"y": 31.25,
+			"color": {
+				"radialGradient": {
+					"cx": "0.5",
+					"cy": "0.5",
+					"r": "0.5"
+				},
+				"stops": [[0,
+				"#F7A645"],
+				[1,
+				"#F6891E"]]
+			}
+		},
+		{
+			"name": "Planes de pensiones 1000$",
+			"y": 12.5,
+			"color": {
+				"radialGradient": {
+					"cx": "0.5",
+					"cy": "0.5",
+					"r": "0.5"
+				},
+				"stops": [[0,
+				"#ASDCS1"],
+				[1,
+				"#7FBD2C"]]
+			}
+		},
+		{
+			"name": "Cartera de valores 1000$",
+			"y": 56.25,
+			"color": {
+				"radialGradient": {
+					"cx": "0.5",
+					"cy": "0.5",
+					"r": "0.5"
+				},
+				"stops": [[0,
+				"#2181C9"],
+				[1,
+				"#0065B3"]]
+			}
+		}]
+	}],
+	"legend": {
+		"align": "center",
+		"verticalAlign": "bottom",
+		"floating": false,
+		"borderColor": "none",
+		"width": "100%",
+		"itemWidth": "100%",
+		"itemMarginTop": 10,
+		"x": "50%"
+	}
+}

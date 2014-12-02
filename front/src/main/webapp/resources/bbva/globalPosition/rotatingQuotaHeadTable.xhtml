@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<composite:interface>
+	<composite:attribute name="listQuota" type="java.util.List" />
+</composite:interface>
+
+<composite:implementation>
+
+		<p:dataTable var="icuenta" value="#{cc.attrs.listQuota.subList(0, (cc.attrs.listQuota.size()-1) >= 10 ? 10 : cc.attrs.listQuota.size()-1)}">
+		
+			<p:column class="head" headerText="CUPO" styleClass="head col-xs-6 col-md-4" 
+				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
+				
+				<p class="title-label" style="font-size: 1.1em">#{icuenta.loan.product.alias}</p>
+				<p style="font-size: 1em">#{icuenta.loan.product.productId}</p>
+				<p class="sublabel" style="font-size: 1em">#{icuenta.loan.product.productName}</p>
+				
+			</p:column>
+			
+			<p:column class="head" headerText="CUPO TOTAL" styleClass="head col-xs-6 col-md-4"
+				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
+				
+				<p class="balance" style="font-size: 1.5em">#{icuenta.quota.totalQuotaDebt}</p>
+				<p class="sublabel"></p>
+				
+			</p:column>
+			
+			<p:column class="head" headerText="CUPO DISPONIBLE"	styleClass="head col-xs-6 col-md-4"
+				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
+				
+				<p class="balance" style="font-size: 1.5em">#{icuenta.quota.availableQuota}</p>
+				<p class="sublabel"></p>
+				
+			</p:column>
+			
+		</p:dataTable>
+
+</composite:implementation>
+
+</html>

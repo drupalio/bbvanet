@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:cc="http://jsflive.at/taglib">
+
+<composite:interface>
+	<composite:attribute name="title" type="String" />
+</composite:interface>
+
+<composite:implementation>
+
+	<header class="col-xs-12 section-title">
+	
+		<h1>#{cc.attrs.title}</h1>
+		<div class="utility-icons">
+			<a href="#" title="Guardar" class="icon-folder"></a> 
+			<a href="#"	title="Imprimir" class="icon-16 gray n01-imprimir"></a>
+		</div>
+		<hr></hr>
+	</header>
+
+</composite:implementation>
+
+</html>

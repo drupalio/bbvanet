@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema
+	targetNamespace="http://www.bbva.com.co/services/transactions/globalposition/schema"
+	xmlns:tns="http://www.bbva.com.co/services/transactions/globalposition/schema"
+	elementFormDefault="unqualified" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://www.w3.org/2001/XMLSchema" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+	xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+	jaxb:extensionBindingPrefixes="xjc" jaxb:version="1.0">
+	
+	<!-- 
+	Entidades de respuesta del servicio GlobalPosition 
+	author: Sebastian Gamba - Entelgy Colombia
+	since: 20/11/2014
+	-->
+	
+
+		
+	<!-- 
+	Entidades de respuesta del servicio GlobalPosition 
+	author: Sebastian Gamba - Entelgy Colombia
+	since: 20/11/2014
+	-->
+	
+	<annotation>
+		<appinfo>
+			<jaxb:globalBindings generateIsSetMethod="true">
+				<xjc:serializable uid="1" />
+			</jaxb:globalBindings>
+		</appinfo>
+	</annotation>
+
+
+	<!-- Entidades de respuesta del servicio GlobalPosition author: Sebastian 
+		Gamba - Entelgy Colombia since: 20/11/2014 -->
+
+
+	<!-- Entidad para los datos comunes de los servicios -->
+	<xs:complexType name="product">
+		<xs:sequence>
+			<xs:element name="productId" type="xs:string" />
+			<xs:element name="productName" type="xs:string" />
+			<xs:element name="productNumber" type="xs:string" />
+			<xs:element name="asset" type="xs:boolean" />
+			<xs:element name="alias" type="xs:string" />
+			<xs:element name="totalCash" type="xs:decimal" />
+			<xs:element name="cashAvailable" type="xs:decimal" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- Entidad para los datos comunes de los cupos -->
+	<xs:complexType name="quota">
+		<xs:sequence>
+			<xs:element name="availableQuota" type="xs:decimal" />
+			<xs:element name="totalQuotaDebt" type="xs:decimal" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- Entidad especifica para una cuenta -->
+	<xs:complexType name="account">
+		<xs:sequence>
+			<xs:element name="product" type="tns:product" />
+			<xs:element name="overDraft" type="xs:decimal" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- Entidad especifica para un prestamo -->
+	<xs:complexType name="loan">
+		<xs:sequence>
+			<xs:element name="product" type="tns:product" />
+			<xs:element name="totalDebt" type="xs:decimal" />
+			<xs:element name="totalDue" type="xs:decimal" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- Entidad especifica para un deposito -->
+	<xs:complexType name="deposit">
+		<xs:sequence>
+			<xs:element name="product" type="tns:product" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- Entidad especifica para un fondo de inversion -->
+	<xs:complexType name="fund">
+		<xs:sequence>
+			<xs:element name="product" type="tns:product" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- Entidad especifica para una tarjeta de crédito -->
+	<xs:complexType name="creditCard">
+		<xs:sequence>
+			<xs:element name="product" type="tns:product" />
+			<xs:element name="bin" type="xs:decimal" />
+			<xs:element name="quota" type="tns:quota" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- Entidad especifica para un leasing -->
+	<xs:complexType name="leasing">
+		<xs:sequence>
+			<xs:element name="loan" type="tns:loan" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- Entidad especifica para un cupo rotativo -->
+	<xs:complexType name="rotatingAccount">
+		<xs:sequence>
+			<xs:element name="loan" type="tns:loan" />
+			<xs:element name="quota" type="tns:quota" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- Entidad que agrupa los productos de la posicion global de un cliente -->
+	<xs:complexType name="globalProducts">
+		<xs:sequence>
+			<xs:element name="accounts" type="tns:account" minOccurs="0"
+				maxOccurs="unbounded" />
+			<xs:element name="rotatingAccounts" type="tns:rotatingAccount"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="leasings" type="tns:leasing" minOccurs="0"
+				maxOccurs="unbounded" />
+			<xs:element name="funds" type="tns:fund" minOccurs="0"
+				maxOccurs="unbounded" />
+			<xs:element name="creditCards" type="tns:creditCard"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="electronicDeposits" type="tns:deposit"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:element name="globalProducts" type="tns:globalProducts" />
+	<xs:element name="viewEnabledResponse" type="xs:string" />
+	<xs:element name="operationEnabledResponse" type="xs:string" />
+</schema>
