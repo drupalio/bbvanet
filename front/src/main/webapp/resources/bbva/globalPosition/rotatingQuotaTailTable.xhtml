@@ -16,7 +16,7 @@
 
 	<div class="item-hidden" style="display: block;">
 
-		<p:dataTable var="icuenta" value="#{cc.attrs.listQuota.subList(11,(cc.attrs.listQuota.size()-1 > 11) ? cc.attrs.listQuota.size()-1 : 11 )}">
+		<p:dataTable var="icuenta" value="#{cc.attrs.listQuota.subList((cc.attrs.listQuota.size() >= 11) ? 10 : 0,(cc.attrs.listQuota.size() >= 11) ? cc.attrs.listQuota.size() : 0)}">
 		
 			<p:column class="head" styleClass="head col-xs-6 col-md-4" 
 				style="font-size: 0.7em;color: #434A58;border-style: solid none;

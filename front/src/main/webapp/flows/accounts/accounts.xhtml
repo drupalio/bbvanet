@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:bbvaAcc="http://java.sun.com/jsf/composite/bbva/accounts"
+	xmlns:bbvaGP="http://java.sun.com/jsf/composite/bbva/globalPosition"
+	xmlns:bbvaAlert="http://java.sun.com/jsf/composite/bbva/alert"
+	xmlns:bbvaBody="http://java.sun.com/jsf/composite/bbva/body"
+	xmlns:bbvaContainer="http://java.sun.com/jsf/composite/bbva/container"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+
+<ui:composition template="../../templates/defaultLayout.xhtml">
+
+	<ui:define name="bodyTitle">
+		<bbvaBody:title title="Cuentas Personales" >
+			<bbvaBody:titleOptionProduct optionButttonLeft= "Mis productos" optionButttonRight ="Catálogo de productos"/>
+		</bbvaBody:title>
+	</ui:define>
+
+	<ui:define name="contentLeft">
+
+		<bbvaContainer:productPanel title="Cuentas Personales">
+			<div class="table-tabs">
+				<bbvaGP:accountSearch listAccounts="#{customerAccounts.accounts}" />
+				<bbvaAcc:accountHeadTable listAccounts="#{customerAccounts.accounts}" />
+				<bbvaAcc:accountAdquirenciaTable listAccounts="#{customerAccounts.accounts}" />
+				<bbvaAcc:accountTailTable listAccounts="#{customerAccounts.accounts}"/>
+				
+			</div>
+			<div class="row afterTable">
+				<bbvaGP:productFooter listProduct="#{customerAccounts.accounts}" />
+				<bbvaGP:totalBalance />
+			</div>
+		</bbvaContainer:productPanel>
+
+	</ui:define>
+
+	<ui:define name="contentRight">
+
+		<bbvaAlert:alertsPanel header="Alertas y Novedades" numAlerts="8" />
+		<h:form>
+
+			<h:selectOneMenu id="console" 
+				style="width:125px">
+				<f:selectItem itemLabel="Select One" itemValue="" />
+				<f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
+				<f:selectItem itemLabel="PS4" itemValue="PS4" />
+				<f:selectItem itemLabel="Wii U" itemValue="Wii U" />
+				<p:ajax listener="#{customerAccountsPage.onComboChange}"  />
+			</h:selectOneMenu>
+			
+			<p:inputText>
+				 <p:ajax event="keyup" listener="#{customerAccountsPage.onKeyUp}" /> 
+			</p:inputText>
+
+			<h:outputLabel value="#{prueba.name}"></h:outputLabel>
+			<button jsf:action="refresh">
+				ACCIÓN
+				<f:ajax execute="@form" render="@form" />
+			</button>
+		</h:form>
+	</ui:define>
+ 
+</ui:composition>
+
+</html>

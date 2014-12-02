@@ -10,24 +10,17 @@
 	xmlns:cc="http://jsflive.at/taglib">
 
 <composite:interface>
-	<composite:attribute name="title" type="String" />
 	<composite:attribute name="optionButttonLeft" type="String" />
 	<composite:attribute name="optionButttonRight" type="String" />
 </composite:interface>
 
 <composite:implementation>
 
-	<header class="col-xs-12 section-title">
-	
-		<div class="utility-icons">
-			<a href="#" title="Guardar" class="icon-folder"></a> 
-			<a href="#"	title="Imprimir" class="icon-16 gray n01-imprimir"></a>
-		</div>
-		<h1 class="title-aux">#{cc.attrs.title}</h1>
-		<composite:insertChildren />
-		<hr class="separador"/>
-	</header>
-
+	<ul class="nav nav-tabs hidden-xs hidden-sm" role="tablist">
+		<li class="active"><a href="#products" role="tab"
+			data-toggle="tab">#{cc.attrs.optionButttonLeft}</a></li>
+		<li><a href="#catalogo" role="tab" data-toggle="tab">#{cc.attrs.optionButttonRight}</a></li>
+	</ul>
 </composite:implementation>
 
 </html>

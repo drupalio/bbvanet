@@ -15,7 +15,7 @@
 <composite:implementation>
 
 	
-		<p:dataTable var="icuenta" value="#{cc.attrs.listDeposit.subList(0, (cc.attrs.listDeposit.size()-1) >= 10 ? 10 : cc.attrs.listDeposit.size()-1)}">
+		<p:dataTable var="icuenta" value="#{cc.attrs.listDeposit.subList(0, (cc.attrs.listDeposit.size()) >= 10 ? 10 : cc.attrs.listDeposit.size())}">
 		
 			<p:column class="head" headerText="N° D&#201;POSITO" styleClass="head col-xs-6 col-md-4" 
 				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">

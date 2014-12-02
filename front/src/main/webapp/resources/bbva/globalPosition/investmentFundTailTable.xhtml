@@ -17,7 +17,7 @@
 
 
 	<div class="item-hidden" style="display: block;">
-		<p:dataTable var="icuenta" value="#{cc.attrs.listFund.subList(11,(cc.attrs.listFund.size()-1 > 11) ? cc.attrs.listFund.size()-1 : 11 )}">
+		<p:dataTable var="icuenta" value="#{cc.attrs.listFund.subList((cc.attrs.listFund.size() >= 11) ? 10 : 0,(cc.attrs.listFund.size() >= 11) ? cc.attrs.listFund.size() : 0)}">
 			<p:column class="head" styleClass="head col-xs-6 col-md-8"
 				style="font-size: 0.7em;color: #434A58;border-style: solid none;
 					font-family: Arial;background: none;border-radius: 4px;border: 2px solid #DBDCDF;

@@ -14,7 +14,7 @@
 
 <composite:implementation>
 		<div class="item-hidden" style="display: block;">
-		<p:dataTable var="icuenta" value="#{cc.attrs.listCards.subList(11,(cc.attrs.listCards.size()-1 > 11) ? cc.attrs.listCards.size()-1 : 11 )}">
+		<p:dataTable var="icuenta" value="#{cc.attrs.listCards.subList((cc.attrs.listCards.size() >= 11) ? 10 : 0,(cc.attrs.listCards.size() >= 11) ? cc.attrs.listCards.size() : 0)}">
 			<p:column class="head" styleClass="col-xs-6 col-md-4" 
 				style="font-size: 0.7em;color: #434A58;border-style: solid none;
 					font-family: Arial;background: none;border-radius: 4px;border: 2px solid #DBDCDF;
