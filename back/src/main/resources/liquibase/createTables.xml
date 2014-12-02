@@ -53,17 +53,17 @@
 		<!-- Insert table MULTVALUEGROUP -->
 		<insert tableName="MULTVALUEGROUP">
 			<column name="ID" autoIncrement="true" />
-			<column name="VALUE">Ver saldos y movimientos</column>
+			<column name="VALUE">text.combo.likes.seemovs</column>
 			<column name="TYPE_ID">1</column>
 		</insert>
 		<insert tableName="MULTVALUEGROUP">
 			<column name="ID" autoIncrement="true" />
-			<column name="VALUE">Gestionar transferencias</column>
+			<column name="VALUE">text.combo.likes.managed.transfer</column>
 			<column name="TYPE_ID">1</column>
 		</insert>
 		<insert tableName="MULTVALUEGROUP">
 			<column name="ID" autoIncrement="true" />
-			<column name="VALUE">Realizar transferencias</column>
+			<column name="VALUE">text.combo.likes.do.transfers</column>
 			<column name="TYPE_ID">1</column>
 		</insert>
 
