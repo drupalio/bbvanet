@@ -4,18 +4,15 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 
-import org.apache.commons.beanutils.PropertyUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.bbva.net.back.core.pattern.VisitorCommand;
 
 /**
  * 
  * @author Entelgy
  *
  */
-public class CollectionBbvaUtils {
+public final class CollectionBbvaUtils {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(CollectionBbvaUtils.class);
 
@@ -23,24 +20,26 @@ public class CollectionBbvaUtils {
 	public static <T extends Serializable> BigDecimal calculateTotal(
 			List<T> list, final String expressionLenguage){
 		
-		final BigDecimal total = BigDecimal.ZERO;
+		double totalValue = 0d;
 		
-		new VisitorCommand<T>(list) {
+		// list.forEach((player) -> System.out.print(player.toString()));
+		
+		
 
-			@Override
-			protected void exceute(T object) {
-				
-				try {
-					//total = total+  BigDecimal.valueOf(((Number) PropertyUtils.getProperty(object, expressionLenguage)).doubleValue());
-				} catch (final Exception exception) {
-					LOG.debug(exception.getMessage());
-				}
-					
-			}
-		}; 
+//		new VisitorCommand<T>(list) {
+//
+//			@Override
+//			protected void exceute(T object) {
+//				
+//				try {
+//					totalValue = totalValue + ((Number) PropertyUtils.getProperty(object, expressionLenguage)).doubleValue();
+//				} catch (final Exception exception) {
+//					LOG.debug(exception.getMessage());
+//				}	
+//			}
+//		}; 
 			
-	
-		return total;
+		return BigDecimal.valueOf(totalValue);
 	}
 	
 	
