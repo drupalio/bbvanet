@@ -4,13 +4,11 @@
 package com.bbva.net.back.entity;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 /**
  * @author User
@@ -26,11 +24,10 @@ public class MultiValueType implements Serializable {
 	@Column(name = "ID")
 	private Long id;
 
-	@Column(name = "TYPE")
+	@Column(name = "TYPE_NAME")
 	private String type;
 
-	@OneToMany(mappedBy = "multiValueType")
-	private List<MultiValueGroup> multiValueGroup;
+	
 
 	/**
 	 * @return the id
@@ -60,17 +57,4 @@ public class MultiValueType implements Serializable {
 		this.type = type;
 	}
 
-	/**
-	 * @return the multiValueGroup
-	 */
-	public List<MultiValueGroup> getMultiValueGroup() {
-		return multiValueGroup;
-	}
-
-	/**
-	 * @param multiValueGroup the multiValueGroup to set
-	 */
-	public void setMultiValueGroup(List<MultiValueGroup> multiValueGroup) {
-		this.multiValueGroup = multiValueGroup;
-	}	
 }
