@@ -34,4 +34,8 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController
 		this.globalPositionFacade = globalPositionFacade;
 	}
 
+	public void ButtonMenuState() {
+
+	}
+
 }
