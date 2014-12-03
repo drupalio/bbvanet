@@ -9,8 +9,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 /**
  * @author User
@@ -31,9 +29,9 @@ public class MultiValueGroup implements Serializable {
 	@Column(name="VALUE")
 	private String value;
 		
-	@ManyToOne
-    @JoinColumn(name="ID", insertable=false, updatable=false )
-    private MultiValueType multiValueType;
+	
+	@Column(name="TYPE_ID")
+    private Long typeId;
 
 	/**
 	 * @return the id
@@ -64,16 +62,17 @@ public class MultiValueGroup implements Serializable {
 	}
 
 	/**
-	 * @return the multiValueType
+	 * @return the typeId
 	 */
-	public MultiValueType getMultiValueType() {
-		return multiValueType;
+	public Long getTypeId() {
+		return typeId;
 	}
 
 	/**
-	 * @param multiValueType the multiValueType to set
+	 * @param typeId the typeId to set
 	 */
-	public void setMultiValueType(MultiValueType multiValueType) {
-		this.multiValueType = multiValueType;
+	public void setTypeId(Long typeId) {
+		this.typeId = typeId;
 	}
+
 }

@@ -26,12 +26,12 @@
 				<constraints nullable="false" primaryKey="true"
 					primaryKeyName="mulValueName_pk" />
 			</column>
-			<column name="TYPE" type="VARCHAR(40)"></column>
+			<column name="TYPE_NAME" type="VARCHAR(40)"></column>
 		</createTable>
 		<!-- Insert table MULTVALUETYPE -->
 		<insert tableName="MULTVALUETYPE">
 			<column name="ID">1</column>
-			<column name="TYPE">QUIEROS</column>
+			<column name="TYPE_NAME">QUIEROS</column>
 		</insert>
 
 		<!-- Table MULTVALUEGROUP -->
