@@ -5,14 +5,13 @@
     http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
 
 
-	<var name="pruebaController" class="com.bbva.net.front.controller.impl.GlobalPositionControllerImpl" />
+	<var name="customerLoanPage" class="com.bbva.net.front.controller.impl.LoanControllerImpl" />
 
 	<on-start>
-		<evaluate expression="pruebaController.getCustomerProducts()" result="flowScope.customerProducts" />
+		<evaluate expression="customerLoanPage.getCustomerLoan()" result="flowScope.customerLoans" />
 	</on-start>
 
-	<view-state id="globalPosition">
-
+	<view-state id="loan">
 	</view-state>
-	  
+	
 </flow>

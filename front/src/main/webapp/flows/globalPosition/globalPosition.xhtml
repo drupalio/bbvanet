@@ -22,7 +22,7 @@
 
 	<ui:define name="contentLeft">
 
-		<bbvaContainer:productPanel title="Cuentas Personales">
+		<bbvaContainer:productPanelGraphic title="Cuentas Personales">
 			<div class="table-tabs">
 				<bbvaGP:accountSearch listAccounts="#{customerProducts.accounts}" />
 				<bbvaGP:accountHeadTable listAccounts="#{customerProducts.accounts}" />
@@ -32,9 +32,9 @@
 				<bbvaGP:productFooter listProduct="#{customerProducts.accounts}" />
 				<bbvaGP:totalBalance />
 			</div>
-		</bbvaContainer:productPanel>
+		</bbvaContainer:productPanelGraphic>
 
-		<bbvaContainer:productPanel title="Tarjetas">
+		<bbvaContainer:productPanelGraphic title="Tarjetas">
 			<div class="table-tabs">
 				<bbvaGP:cardHeadTable listCards="#{customerProducts.creditCards}"/>
 				<bbvaGP:cardTailTable listCards="#{customerProducts.creditCards}"/>
@@ -46,7 +46,7 @@
 				<bbvaGP:productFooter listProduct="#{customerProducts.creditCards}"/>
 				<bbvaGP:totalBalance />
 			</div>
-		</bbvaContainer:productPanel>
+		</bbvaContainer:productPanelGraphic>
 
 		<bbvaContainer:productPanel title="Cupo Rotativo">
 			<div class="table-tabs">
@@ -86,7 +86,7 @@
 			</div>
 		</bbvaContainer:productPanel>
 
-		<bbvaContainer:productPanel
+		<bbvaContainer:productPanelGraphic
 			title="Dep&#243;sito de dinero electr&#243;nico">
 			<div class="table-tabs">
 
@@ -99,9 +99,9 @@
 				<bbvaGP:productFooter listProduct="#{customerProducts.electronicDeposits}"/>
 				<bbvaGP:totalBalance />
 			</div>
-		</bbvaContainer:productPanel>
+		</bbvaContainer:productPanelGraphic>
 
-		<bbvaContainer:productPanel title="Fondos de inversi&#243;n">
+		<bbvaContainer:productPanelGraphic title="Fondos de inversi&#243;n">
 			<div class="table-tabs">
 
 				<bbvaGP:investmentFundHeadTable listFund="#{customerProducts.funds}"/>
@@ -112,7 +112,7 @@
 				<bbvaGP:productFooter listProduct="#{customerProducts.funds}"/>
 				<bbvaGP:totalBalance />
 			</div>
-		</bbvaContainer:productPanel>
+		</bbvaContainer:productPanelGraphic>
 
 	</ui:define>
 
