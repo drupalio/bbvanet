@@ -79,13 +79,13 @@
 				data : {
 					
 					size: { height: 5, width: 5 },
-					columns : [ [ 'Depósitos', 30, 20 ], [ 'Planes de Pensiones', 120 ],  [ 'Cartera de Valores', 240 ]],
+					columns : [ [ 'Depósitos', 30 ], [ 'Planes de Pensiones', 120 ],  [ 'Cartera de Valores', 240 ]],
 					type : 'pie',
 					onclick : function(d, i) {
 						console.log("onclick", d, i);
 					},
 					onmouseover : function(d, i) {
-						console.log("onmouseover", d);
+						console.log("onmouseover", d, i);
 					},
 					onmouseout : function(d, i) {
 						console.log("onmouseout", d, i);

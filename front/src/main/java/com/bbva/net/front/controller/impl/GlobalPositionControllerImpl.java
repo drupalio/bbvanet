@@ -10,16 +10,13 @@ import com.bbva.net.back.facade.GlobalPositionFacade;
 import com.bbva.net.front.controller.GlobalPositionController;
 import com.bbva.net.front.core.AbstractBbvaController;
 import com.bbva.net.front.delegate.GraphicPieDelegate;
+import com.bbva.net.front.ui.GraphicPieUI;
 
 @Controller
 public class GlobalPositionControllerImpl extends AbstractBbvaController
 		implements GlobalPositionController {
 
 	private static final long serialVersionUID = 5726824668267606699L;
-
-	private boolean situation = true;
-	private boolean assets = false;
-	private boolean financiation = false;
 
 	private static final String DEFAULT_USER = "123";
 	// private GraphicUI graphicUI;
@@ -30,38 +27,40 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController
 	@Resource(name = "graphicPieDelegate")
 	private transient GraphicPieDelegate graphicPieDelegate;
 
+	private GraphicPieUI graphicPieUI;
+
+	private ActivePanelType activePanel;
+
+	private enum ActivePanelType {
+
+		SITUATION, ASSET, FINANCIATION
+	}
+
 	public GlobalProducts getCustomerProducts() {
 
-		graphicPieDelegate
-				.getGraphicPieUiByGlobalProducts(this.globalPositionFacade
-						.getGlobalProductsByUser(DEFAULT_USER));
+		final GlobalProducts globalProductos = this.globalPositionFacade
+				.getGlobalProductsByUser(DEFAULT_USER);
 
-		return this.globalPositionFacade.getGlobalProductsByUser(DEFAULT_USER);
+		graphicPieUI = graphicPieDelegate
+				.getGraphicPieUiByGlobalProducts(globalProductos);
+
+		return globalProductos;
 		// this.graphicPieDelegate.convertToUI(glopalProducts)
 	}
 
 	public void renderPieSituation() {
 
-		situation = true;
-		assets = false;
-		financiation = false;
-
+		this.activePanel = ActivePanelType.SITUATION;
 	}
 
 	public void renderPieAssets() {
 
-		situation = false;
-		assets = true;
-		financiation = false;
-
+		this.activePanel = ActivePanelType.ASSET;
 	}
 
 	public void renderPieFinanciation() {
 
-		situation = false;
-		assets = false;
-		financiation = true;
-
+		this.activePanel = ActivePanelType.FINANCIATION;
 	}
 
 	public void setGlobalPositionFacade(
@@ -69,36 +68,16 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController
 		this.globalPositionFacade = globalPositionFacade;
 	}
 
-	public GraphicPieDelegate getGraphicPieDelegate() {
-		return graphicPieDelegate;
-	}
-
 	public void setGraphicPieDelegate(GraphicPieDelegate graphicPieDelegate) {
 		this.graphicPieDelegate = graphicPieDelegate;
 	}
 
-	public boolean getSituation() {
-		return situation;
+	public String getActivePanel() {
+		return this.activePanel.name();
 	}
 
-	public void setSituation(boolean situation) {
-		this.situation = situation;
-	}
-
-	public boolean getAssets() {
-		return assets;
-	}
-
-	public void setAssets(boolean assets) {
-		this.assets = assets;
-	}
-
-	public boolean getFinanciation() {
-		return financiation;
-	}
-
-	public void setFinanciation(boolean financiation) {
-		this.financiation = financiation;
+	public GraphicPieUI getGraphicPieUI() {
+		return graphicPieUI;
 	}
 
 }

@@ -15,19 +15,19 @@
 
 <composite:implementation>
 	
-	<div id="userSituationPanel" jsf:rendered="#{pruebaController.situation}">
+	<div id="userSituationPanel" jsf:rendered="#{pruebaController.activePanel=='SITUATION'}">
 		<bbvaSituation:header />
 		<bbvaSituation:pieSituationGraphic />
 		<bbvaSituation:footer />
 	</div>
 
-	<div id="assets" class="second-tab" jsf:rendered="#{pruebaController.assets}">
+	<div id="assets" class="second-tab" jsf:rendered="#{pruebaController.activePanel =='ASSET'}">
 		<bbvaSituation:headerLink />
 		<bbvaSituation:assetsGPrueba />
 		<!-- <bbvaSituation:assetsGraphic /> -->
 	</div>
 
-	<div id="financiation" class="first-tab" jsf:rendered="#{pruebaController.financiation}">
+	<div id="financiation" class="first-tab" jsf:rendered="#{pruebaController.activePanel == 'FINANCIATION'}">
 		<bbvaSituation:headerLink />
 		<bbvaSituation:financiationGraphic  />
 	</div>
