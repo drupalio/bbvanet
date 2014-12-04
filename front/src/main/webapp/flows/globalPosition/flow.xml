@@ -10,7 +10,7 @@
 	<on-start>
 		<evaluate expression="pruebaController.getCustomerProducts()" result="flowScope.customerProducts" />
 	</on-start>
-
+	
 	<view-state id="globalPosition">
 
 	</view-state>

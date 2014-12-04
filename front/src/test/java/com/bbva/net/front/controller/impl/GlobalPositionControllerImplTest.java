@@ -1,6 +1,5 @@
 package com.bbva.net.front.controller.impl;
 
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,6 +9,7 @@ import org.springframework.web.client.RestClientException;
 import co.com.bbva.services.transactions.globalposition.schema.GlobalProducts;
 
 import com.bbva.net.back.facade.GlobalPositionFacade;
+import com.bbva.net.front.delegate.GraphicPieDelegate;
 
 /**
  * 
@@ -17,57 +17,101 @@ import com.bbva.net.back.facade.GlobalPositionFacade;
  *
  */
 public class GlobalPositionControllerImplTest {
-	
-	
-	private static final String DEFAULT_USER="123";
+
+	private static final String DEFAULT_USER = "123";
 
 	private GlobalPositionControllerImpl globalPositionController;
-	private GlobalPositionFacade globalPositionFacade;
 
-	
+	// Mocks
+	private GlobalPositionFacade globalPositionFacade;
+	private GraphicPieDelegate graphicPieDelegate;
+
 	@Before
-	public void init(){
-	
+	public void init() {
+
 		this.globalPositionController = new GlobalPositionControllerImpl();
-		
+
 		globalPositionFacade = Mockito.mock(GlobalPositionFacade.class);
+		graphicPieDelegate = Mockito.mock(GraphicPieDelegate.class);
+
 		globalPositionController.setGlobalPositionFacade(globalPositionFacade);
-		
+		globalPositionController.setGraphicPieDelegate(graphicPieDelegate);
+
+		// graphicPieUI = Mockito.mock(GraphicPieUI.class);
 
 	}
-	
-
 
 	/**
 	 * 
 	 * @throws RestClientException
 	 */
 	@Test
-	public void checkGetCustomerProducts_OK() {
+	public void checkGetCustomerProducts_OK() throws RestClientException {
 
-		//prepara el test
-		Mockito.when(globalPositionFacade.getGlobalProductsByUser(DEFAULT_USER)).thenReturn(new GlobalProducts());
-		
-		//invoca metodo a probar
-		final GlobalProducts globalProducts = this.globalPositionController.getCustomerProducts();
-		
-		//Comprobar resultados
+		// prepara el test
+		Mockito.when(globalPositionFacade.getGlobalProductsByUser(DEFAULT_USER))
+				.thenReturn(new GlobalProducts());
+
+		// invoca metodo a probar
+		final GlobalProducts globalProducts = this.globalPositionController
+				.getCustomerProducts();
+
+		// Comprobar resultados
 		Assert.assertNotNull(globalProducts);
-		Mockito.verify(this.globalPositionFacade, Mockito.atLeastOnce()).getGlobalProductsByUser(DEFAULT_USER);
-		
+		Mockito.verify(this.globalPositionFacade, Mockito.atLeastOnce())
+				.getGlobalProductsByUser(DEFAULT_USER);
+
 	}
-	
+
+	@Test
+	public void checkRenderPaiSituation() {
+
+		this.globalPositionController.renderPieSituation();
+
+		Assert.assertEquals(this.globalPositionController.getActivePanel(),
+				"SITUATION");
+	}
+
+	@Test
+	public void checkRenderPaiAsset() {
+
+		this.globalPositionController.renderPieAssets();
+
+		Assert.assertEquals(this.globalPositionController.getActivePanel(),
+				"ASSET");
+	}
+
+	@Test
+	public void checkRenderPaiFinanciation() {
+
+		this.globalPositionController.renderPieFinanciation();
+
+		Assert.assertEquals(this.globalPositionController.getActivePanel(),
+				"FINANCIATION");
+	}
+
+	@Test
+	public void checkGraphicPaiUI() {
+
+		GlobalProducts globalProducts = Mockito.mock(GlobalProducts.class);
+		this.globalPositionController.getGraphicPieUI();
+
+		Assert.assertEquals(this.globalPositionController.getGraphicPieUI(),
+				this.graphicPieDelegate
+						.getGraphicPieUiByGlobalProducts(globalProducts));
+	}
+
 	/**
 	 * 
 	 * @throws RestClientException
 	 */
-	@Test (expected=RestClientException.class)
+	@Test(expected = RestClientException.class)
 	public void checkGetCustomerProducts_NO_OK() {
 
-		
-		Mockito.when(globalPositionFacade.getGlobalProductsByUser(DEFAULT_USER)).thenThrow(new RestClientException(""));
+		Mockito.when(globalPositionFacade.getGlobalProductsByUser(DEFAULT_USER))
+				.thenThrow(new RestClientException(""));
 		this.globalPositionController.getCustomerProducts();
-		
+
 	}
-	
+
 }

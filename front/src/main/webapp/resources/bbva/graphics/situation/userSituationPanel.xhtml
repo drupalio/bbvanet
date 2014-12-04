@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:bbvaSituation="http://java.sun.com/jsf/composite/bbva/graphics/situation">
+
+<composite:interface>
+	
+</composite:interface>
+
+<composite:implementation>
+	
+	<div id="userSituationPanel" jsf:rendered="#{pruebaController.activePanel=='SITUATION'}">
+		<bbvaSituation:header />
+		<bbvaSituation:pieSituationGraphic />
+		<bbvaSituation:footer />
+	</div>
+
+	<div id="assets" class="second-tab" jsf:rendered="#{pruebaController.activePanel =='ASSET'}">
+		<bbvaSituation:headerLink />
+		<bbvaSituation:assetsGPrueba />
+		<!-- <bbvaSituation:assetsGraphic /> -->
+	</div>
+
+	<div id="financiation" class="first-tab" jsf:rendered="#{pruebaController.activePanel == 'FINANCIATION'}">
+		<bbvaSituation:headerLink />
+		<bbvaSituation:financiationGraphic  />
+	</div>
+
+</composite:implementation>
+
+
+</html>
