@@ -20,13 +20,13 @@
 
 	<div class="tables-footer">
 		<ul>
-			<li class="button-table activos"><a jsf:action="#{pruebaController.renderPieAssets}" class="icon-active">Activos
+			<li class="button-table activos"><a jsf:action="#{globalPositionController.renderPieAssets}" class="icon-active">Activos
 			<f:ajax execute="@form" render="@form :globalPanel" />
 			</a>
 				<span data-original-title="Mensaje de ayuda" title=""
 				data-toggle="tooltip" class="icon-info-blue"></span><span
 				class="importe-situacion">$ 15.000.000,00</span></li>
-			<li class="button-table financiacion"><a jsf:action="#{pruebaController.renderPieFinanciation}" class="icon-financing">Financiación
+			<li class="button-table financiacion"><a jsf:action="#{globalPositionController.renderPieFinanciation}" class="icon-financing">Financiación
 			<f:ajax execute="@form" render="@form :globalPanel" />
 			</a>
 				<span data-original-title="Mensaje de ayuda" title=""
