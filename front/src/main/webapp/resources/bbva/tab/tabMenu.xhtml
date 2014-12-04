@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:cc="http://jsflive.at/taglib"
+	xmlns:bbvaDetAcc="http://java.sun.com/jsf/composite/bbva/tab"
+	xmlns:bbvaGP="http://java.sun.com/jsf/composite/bbva/globalPosition">
+
+
+<composite:interface>
+
+</composite:interface>
+
+<composite:implementation>
+	<aside class="product-detail product-detail-desktop ">
+		<div class="operation-tabs">
+			<ul class="nav nav-pills nav-quiero holder hidden-md hidden-lg">
+				<li class="activePhone open" style="display: block;"><a
+					class="want">Quiero</a></li>
+				<li class="inactivePhone" style="display: none;"><a
+					class="return">Volver</a></li>
+			</ul>
+			<ul class="nav nav-pills nav-operation-options"
+				style="display: block;">
+				<composite:insertChildren></composite:insertChildren>
+			</ul>
+		</div>
+	</aside>
+</composite:implementation>
+
+</html>
