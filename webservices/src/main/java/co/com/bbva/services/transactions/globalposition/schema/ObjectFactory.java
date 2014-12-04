@@ -24,9 +24,9 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _GlobalProducts_QNAME = new QName("http://www.bbva.com.co/services/transactions/globalposition/schema", "globalProducts");
     private final static QName _OperationEnabledResponse_QNAME = new QName("http://www.bbva.com.co/services/transactions/globalposition/schema", "operationEnabledResponse");
     private final static QName _ViewEnabledResponse_QNAME = new QName("http://www.bbva.com.co/services/transactions/globalposition/schema", "viewEnabledResponse");
-    private final static QName _GlobalProducts_QNAME = new QName("http://www.bbva.com.co/services/transactions/globalposition/schema", "globalProducts");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: co.com.bbva.services.transactions.globalposition.schema
@@ -52,6 +52,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link CreditCard }
+     * 
+     */
+    public CreditCard createCreditCard() {
+        return new CreditCard();
+    }
+
+    /**
      * Create an instance of {@link Product }
      * 
      */
@@ -60,19 +68,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Loan }
+     * Create an instance of {@link RotatingAccount }
      * 
      */
-    public Loan createLoan() {
-        return new Loan();
-    }
-
-    /**
-     * Create an instance of {@link Fund }
-     * 
-     */
-    public Fund createFund() {
-        return new Fund();
+    public RotatingAccount createRotatingAccount() {
+        return new RotatingAccount();
     }
 
     /**
@@ -92,14 +92,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link CreditCard }
-     * 
-     */
-    public CreditCard createCreditCard() {
-        return new CreditCard();
-    }
-
-    /**
      * Create an instance of {@link Account }
      * 
      */
@@ -108,11 +100,28 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link RotatingAccount }
+     * Create an instance of {@link Fund }
      * 
      */
-    public RotatingAccount createRotatingAccount() {
-        return new RotatingAccount();
+    public Fund createFund() {
+        return new Fund();
+    }
+
+    /**
+     * Create an instance of {@link Loan }
+     * 
+     */
+    public Loan createLoan() {
+        return new Loan();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GlobalProducts }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://www.bbva.com.co/services/transactions/globalposition/schema", name = "globalProducts")
+    public JAXBElement<GlobalProducts> createGlobalProducts(GlobalProducts value) {
+        return new JAXBElement<GlobalProducts>(_GlobalProducts_QNAME, GlobalProducts.class, null, value);
     }
 
     /**
@@ -131,15 +140,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://www.bbva.com.co/services/transactions/globalposition/schema", name = "viewEnabledResponse")
     public JAXBElement<String> createViewEnabledResponse(String value) {
         return new JAXBElement<String>(_ViewEnabledResponse_QNAME, String.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GlobalProducts }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://www.bbva.com.co/services/transactions/globalposition/schema", name = "globalProducts")
-    public JAXBElement<GlobalProducts> createGlobalProducts(GlobalProducts value) {
-        return new JAXBElement<GlobalProducts>(_GlobalProducts_QNAME, GlobalProducts.class, null, value);
     }
 
 }
