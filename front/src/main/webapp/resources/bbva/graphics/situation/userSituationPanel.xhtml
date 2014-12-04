@@ -14,23 +14,23 @@
 </composite:interface>
 
 <composite:implementation>
-	
-	<div id="userSituationPanel" jsf:rendered="#{pruebaController.activePanel=='SITUATION'}">
+	 
+	<div id="userSituationPanel" jsf:rendered="#{globalPositionController.activePanel == 'SITUATION'}">
 		<bbvaSituation:header />
 		<bbvaSituation:pieSituationGraphic />
 		<bbvaSituation:footer />
 	</div>
 
-	<div id="assets" class="second-tab" jsf:rendered="#{pruebaController.activePanel =='ASSET'}">
+	<div id="assets" class="second-tab" jsf:rendered="#{globalPositionController.activePanel == 'ASSET'}">
 		<bbvaSituation:headerLink />
 		<bbvaSituation:assetsGPrueba />
-		<!-- <bbvaSituation:assetsGraphic /> -->
 	</div>
 
-	<div id="financiation" class="first-tab" jsf:rendered="#{pruebaController.activePanel == 'FINANCIATION'}">
+	<div id="financiation" class="first-tab" jsf:rendered="#{globalPositionController.activePanel == 'FINANCIATION'}">
 		<bbvaSituation:headerLink />
 		<bbvaSituation:financiationGraphic  />
 	</div>
+	 
 
 </composite:implementation>
 

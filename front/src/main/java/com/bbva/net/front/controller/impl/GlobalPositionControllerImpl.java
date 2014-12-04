@@ -29,7 +29,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController
 
 	private GraphicPieUI graphicPieUI;
 
-	private ActivePanelType activePanel;
+	private ActivePanelType activePanel = ActivePanelType.SITUATION;
 
 	private enum ActivePanelType {
 
