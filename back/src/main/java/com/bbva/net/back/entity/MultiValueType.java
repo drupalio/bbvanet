@@ -14,7 +14,7 @@ import javax.persistence.Id;
  * @author User
  *
  */
-@Entity(name = "MULTVALUETYPE")
+@Entity(name = "MULTIVALUETYPE")
 public class MultiValueType implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -25,9 +25,7 @@ public class MultiValueType implements Serializable {
 	private Long id;
 
 	@Column(name = "TYPE_NAME")
-	private String type;
-
-	
+	private String typeName;
 
 	/**
 	 * @return the id
@@ -37,24 +35,26 @@ public class MultiValueType implements Serializable {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(Long id) {
 		this.id = id;
 	}
 
 	/**
-	 * @return the type
+	 * @return the typeName
 	 */
-	public String getType() {
-		return type;
+	public String getTypeName() {
+		return typeName;
 	}
 
 	/**
-	 * @param type the type to set
+	 * @param typeName
+	 *            the typeName to set
 	 */
-	public void setType(String type) {
-		this.type = type;
+	public void setTypeName(String typeName) {
+		this.typeName = typeName;
 	}
 
 }
