@@ -17,25 +17,29 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController
 	private static final long serialVersionUID = 5726824668267506699L;
 
 	private static final String DEFAULT_USER = "123";
-	// private GraphicUI graphicUI;
+
+	private boolean globalPositionb = true;
 
 	@Resource(name = "globalPositionFacade")
 	private transient GlobalPositionFacade globalPositionFacade;
 
+	public boolean isGlobalPositionb() {
+		return globalPositionb;
+	}
+
+	public void setGlobalPositionb(boolean globalPositionb) {
+		this.globalPositionb = globalPositionb;
+	}
+
 	@Override
 	public GlobalProducts getCustomerProducts() {
-
 		return this.globalPositionFacade.getGlobalProductsByUser(DEFAULT_USER);
-		// this.graphicPieDelegate.convertToUI(glopalProducts)
+
 	}
 
 	public void setGlobalPositionFacade(
 			final GlobalPositionFacade globalPositionFacade) {
 		this.globalPositionFacade = globalPositionFacade;
-	}
-
-	public void ButtonMenuState() {
-
 	}
 
 }

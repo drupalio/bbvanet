@@ -46,23 +46,34 @@
 
 			<bbvaMenu:itemMenuActive href="./globalPosition" value="Posición global"
 				title="Ir a Posición global" icon="posicionglobal" 
-				liclass="posicion-global active"/>
+				liclass="active" rendered="#{pruebaController.globalPositionb}"/>
 
+			<bbvaMenu:itemMenu href="./globalPosition" value="Posición global"
+				title="Ir a Posición global" icon="posicionglobal" rendered="#{!pruebaController.globalPositionb}"/>
+			
 			<bbvaMenu:itemMenu href="./accounts" value="Cuentas"
-				title="Ir a Cuentas" icon="account-icon" />
+				title="Ir a Cuentas" icon="account-icon" 
+				liclass="active" rendered="#{customerAccountsPage.stateAccounts}"/>
+				
+			<bbvaMenu:itemMenu href="./accounts" value="Cuentas"
+				title="Ir a Cuentas" icon="account-icon" rendered="#{!customerAccountsPage.stateAccounts}"/>
 
 			<bbvaMenu:itemMenu href="./cards.html" value="Tarjetas"
 				title="Ir a Tarjetas" icon="card-icon" />
 
 			<bbvaMenu:itemMenu href="./loan" value="Préstamos"
-				title="Ir a Préstamos" icon="credit-icon" />
+				title="Ir a Préstamos" icon="credit-icon" 
+				liclass="active" rendered="#{customerLoanPage.stateLoans}"/>
+				
+			<bbvaMenu:itemMenu href="./loan" value="Préstamos"
+				title="Ir a Préstamos" icon="credit-icon" rendered="#{!customerLoanPage.stateLoans}"/>
 
 			<bbvaMenu:itemMenu href="./right_spaced.html" value="Ahorros e inversión"
-				title="Ir a ahorros e inversión" icon="investment-icon" 
-				liclass="more-width"/>
+				title="Ir a ahorros e inversión" icon="investment-icon" liclass="more-width"
+				/>
 
 			<bbvaMenu:itemMenu href="#" value="Seguros" title="Ir a Seguros"
-				icon="insurance-icon" />
+				icon="insurance-icon"/>
 				
 			<bbvaMenu:itemSearch/>
 
