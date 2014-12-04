@@ -11,7 +11,8 @@
 	xmlns:bbvaBody="http://java.sun.com/jsf/composite/bbva/body"
 	xmlns:bbvaContainer="http://java.sun.com/jsf/composite/bbva/container"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-	xmlns:jsf="http://xmlns.jcp.org/jsf">
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:bbvaInput="http://java.sun.com/jsf/composite/bbva/input">
 
 
 <ui:composition template="../../templates/defaultLayout.xhtml">
@@ -110,14 +111,7 @@
 		<bbvaAlert:alertsPanel header="Alertas y Novedades" numAlerts="8" />
 		<h:form>
 
-			<h:selectOneMenu id="console" 
-				style="width:125px">
-				<f:selectItem itemLabel="Select One" itemValue="" />
-				<f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
-				<f:selectItem itemLabel="PS4" itemValue="PS4" />
-				<f:selectItem itemLabel="Wii U" itemValue="Wii U" />
-				<p:ajax listener="#{pruebaController.onComboChange}"  />
-			</h:selectOneMenu>
+			<bbvaInput:selectOneMenuWants  name="qwe" valueList="asd"/>
 			
 			<p:inputText>
 				 <p:ajax event="keyup" listener="#{pruebaController.onKeyUp}" /> 
