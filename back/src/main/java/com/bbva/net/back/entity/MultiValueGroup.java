@@ -14,24 +14,21 @@ import javax.persistence.Id;
  * @author User
  *
  */
-@Entity(name="MULTVALUEGROUP")
+@Entity(name = "MULTIVALUEGROUP")
 public class MultiValueGroup implements Serializable {
 
-	
 	private static final long serialVersionUID = 1L;
 
-	
 	@Id
 	@GeneratedValue
-	@Column(name="ID")
+	@Column(name = "ID")
 	private Long id;
 
-	@Column(name="VALUE")
+	@Column(name = "VALUE")
 	private String value;
-		
-	
-	@Column(name="TYPE_ID")
-    private Long typeId;
+
+	@Column(name = "TYPE_ID")
+	private Integer typeId;
 
 	/**
 	 * @return the id
@@ -41,7 +38,8 @@ public class MultiValueGroup implements Serializable {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(Long id) {
 		this.id = id;
@@ -55,7 +53,8 @@ public class MultiValueGroup implements Serializable {
 	}
 
 	/**
-	 * @param value the value to set
+	 * @param value
+	 *            the value to set
 	 */
 	public void setValue(String value) {
 		this.value = value;
@@ -64,14 +63,15 @@ public class MultiValueGroup implements Serializable {
 	/**
 	 * @return the typeId
 	 */
-	public Long getTypeId() {
+	public Integer getTypeId() {
 		return typeId;
 	}
 
 	/**
-	 * @param typeId the typeId to set
+	 * @param typeId
+	 *            the typeId to set
 	 */
-	public void setTypeId(Long typeId) {
+	public void setTypeId(Integer typeId) {
 		this.typeId = typeId;
 	}
 

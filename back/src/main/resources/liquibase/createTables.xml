@@ -21,7 +21,7 @@
 		</insert>
 		
 		<!-- Table MULTVALUETYPE -->
-		<createTable tableName="MULTVALUETYPE">
+		<createTable tableName="MULTIVALUETYPE">
 			<column name="ID" type="BIGINT" autoIncrement="true">
 				<constraints nullable="false" primaryKey="true"
 					primaryKeyName="mulValueName_pk" />
@@ -29,41 +29,39 @@
 			<column name="TYPE_NAME" type="VARCHAR(40)"></column>
 		</createTable>
 		<!-- Insert table MULTVALUETYPE -->
-		<insert tableName="MULTVALUETYPE">
+		<insert tableName="MULTIVALUETYPE">
 			<column name="ID">1</column>
 			<column name="TYPE_NAME">QUIEROS</column>
 		</insert>
 
 		<!-- Table MULTVALUEGROUP -->
-		<createTable tableName="MULTVALUEGROUP">
+		<createTable tableName="MULTIVALUEGROUP">
 			<column name="ID" type="BIGINT" autoIncrement="true">
 				<constraints nullable="false" primaryKey="true"
 					primaryKeyName="mulValue_pk" />
 			</column>
 			<column name="VALUE" type="VARCHAR(40)"></column>
-			<column name="TYPE_ID" type="BIGINT">
-				<constraints nullable="false" />
-			</column>
+			<column name="TYPE_ID" type="BIGINT"/>
 		</createTable>
 
 		<addForeignKeyConstraint baseColumnNames="TYPE_ID"
-			baseTableName="MULTVALUEGROUP" constraintName="fk_mulValueTypeID"
-			 referencedTableName="MULTVALUETYPE" referencedColumnNames="ID"  />
+			baseTableName="MULTIVALUEGROUP" constraintName="fk_mulValueTypeID"
+			referencedTableName="MULTIVALUETYPE" referencedColumnNames="ID"  />
 
 		<!-- Insert table MULTVALUEGROUP -->
-		<insert tableName="MULTVALUEGROUP">
+		<insert tableName="MULTIVALUEGROUP">
 			<column name="ID" autoIncrement="true" />
-			<column name="VALUE">Ver saldos y movimientos</column>
+			<column name="VALUE">text.combo.likes.seemovs</column>
 			<column name="TYPE_ID">1</column>
 		</insert>
-		<insert tableName="MULTVALUEGROUP">
+		<insert tableName="MULTIVALUEGROUP">
 			<column name="ID" autoIncrement="true" />
-			<column name="VALUE">Gestionar transferencias</column>
+			<column name="VALUE">text.combo.likes.managed.transfer</column>
 			<column name="TYPE_ID">1</column>
 		</insert>
-		<insert tableName="MULTVALUEGROUP">
+		<insert tableName="MULTIVALUEGROUP">
 			<column name="ID" autoIncrement="true" />
-			<column name="VALUE">Realizar transferencias</column>
+			<column name="VALUE">text.combo.likes.do.transfers</column>
 			<column name="TYPE_ID">1</column>
 		</insert>
 

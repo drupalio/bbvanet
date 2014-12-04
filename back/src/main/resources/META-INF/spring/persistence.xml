@@ -65,8 +65,7 @@
 			<property name="defaultSchema" value="bbva" />
 			<property name="changeLog" value="classpath:/liquiBase/changeLogs.xml" />
 		</bean>
-
-
+		
 	</beans>
 
 </beans>

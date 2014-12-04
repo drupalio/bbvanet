@@ -19,22 +19,22 @@ import com.bbva.net.back.entity.MultiValueGroup;
 public class MultiValueGroupDAOImpl extends AbstractBbvaDao<MultiValueGroup>
 		implements MultiValueGroupDAO {
 
+	private static final String TYPE_ID = "typeId";
+
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<MultiValueGroup> getTypes(Integer typeId) throws Exception {
-		
-		 List<MultiValueGroup> listMultiValueGroup = new ArrayList<MultiValueGroup>();
-		try {
-			if (typeId != null) {
+	public List<MultiValueGroup> getTypes(final Integer typeId) {
 
-				Criteria criteria = getSession().createCriteria(MultiValueGroup.class).add(Restrictions.eq("TYPE_ID", typeId));
-				listMultiValueGroup = criteria.list();				
-			}
-			
-		} catch (Exception e) {
-				throw new Exception(e.getMessage());
+		if (typeId == null) {
+
+			return new ArrayList<MultiValueGroup>();
 		}
-		return listMultiValueGroup;		
+
+		final Criteria criteria = getSession().createCriteria(
+				MultiValueGroup.class).add(Restrictions.eq(TYPE_ID, typeId));
+
+		return criteria.list();
+
 	}
 
 }
