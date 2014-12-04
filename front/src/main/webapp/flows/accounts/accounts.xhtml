@@ -25,7 +25,7 @@
 
 	<ui:define name="contentLeft">
 
-		<bbvaContainer:productPanel title="Cuentas Personales">
+		<bbvaContainer:productPanelGraphic title="Cuentas Personales">
 			<div class="table-tabs">
 				<bbvaGP:accountSearch listAccounts="#{customerAccounts.accounts}" />
 				<bbvaAcc:accountHeadTable listAccounts="#{customerAccounts.accounts}" />
@@ -37,7 +37,7 @@
 				<bbvaGP:productFooter listProduct="#{customerAccounts.accounts}" />
 				<bbvaGP:totalBalance />
 			</div>
-		</bbvaContainer:productPanel>
+		</bbvaContainer:productPanelGraphic>
 
 	</ui:define>
 
