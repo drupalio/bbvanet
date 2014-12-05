@@ -42,18 +42,6 @@ public class GlobalPositionControllerImplTest {
 	public void checkGetCustomerProducts_OK() {
 
 		globalPositionController.setGraphicPieDelegate(graphicPieDelegate);
-
-		// graphicPieUI = Mockito.mock(GraphicPieUI.class);
-
-	}
-
-	/**
-	 * 
-	 * @throws RestClientException
-	 */
-	@Test
-	public void checkGetCustomerProducts_OK1() {
-
 		// prepara el test
 		Mockito.when(globalPositionFacade.getGlobalProductsByUser(DEFAULT_USER))
 				.thenReturn(new GlobalProducts());
