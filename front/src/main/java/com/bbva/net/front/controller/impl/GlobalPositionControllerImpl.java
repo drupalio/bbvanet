@@ -9,12 +9,14 @@ import co.com.bbva.services.transactions.globalposition.schema.GlobalProducts;
 import com.bbva.net.back.facade.GlobalPositionFacade;
 import com.bbva.net.front.controller.GlobalPositionController;
 import com.bbva.net.front.core.AbstractBbvaController;
+import com.bbva.net.front.delegate.GraphicPieDelegate;
+import com.bbva.net.front.ui.GraphicPieUI;
 
 @Controller
 public class GlobalPositionControllerImpl extends AbstractBbvaController
 		implements GlobalPositionController {
 
-	private static final long serialVersionUID = 5726824668267506699L;
+	private static final long serialVersionUID = 5726824668267606699L;
 
 	private static final String DEFAULT_USER = "123";
 
@@ -27,19 +29,62 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController
 		return globalPositionb;
 	}
 
-	public void setGlobalPositionb(boolean globalPositionb) {
-		this.globalPositionb = globalPositionb;
+	@Resource(name = "graphicPieDelegate")
+	private transient GraphicPieDelegate graphicPieDelegate;
+
+	private GraphicPieUI graphicPieUI;
+
+	private ActivePanelType activePanel = ActivePanelType.SITUATION;
+
+	private enum ActivePanelType {
+
+		SITUATION, ASSET, FINANCIATION
+
 	}
 
 	@Override
 	public GlobalProducts getCustomerProducts() {
-		return this.globalPositionFacade.getGlobalProductsByUser(DEFAULT_USER);
 
+		final GlobalProducts globalProductos = this.globalPositionFacade
+				.getGlobalProductsByUser(DEFAULT_USER);
+
+		graphicPieUI = graphicPieDelegate
+				.getGraphicPieUiByGlobalProducts(globalProductos);
+
+		return globalProductos;
+
+	}
+
+	public void renderPieSituation() {
+
+		this.activePanel = ActivePanelType.SITUATION;
+	}
+
+	public void renderPieAssets() {
+
+		this.activePanel = ActivePanelType.ASSET;
+	}
+
+	public void renderPieFinanciation() {
+
+		this.activePanel = ActivePanelType.FINANCIATION;
 	}
 
 	public void setGlobalPositionFacade(
 			final GlobalPositionFacade globalPositionFacade) {
 		this.globalPositionFacade = globalPositionFacade;
+	}
+
+	public void setGraphicPieDelegate(GraphicPieDelegate graphicPieDelegate) {
+		this.graphicPieDelegate = graphicPieDelegate;
+	}
+
+	public String getActivePanel() {
+		return this.activePanel.name();
+	}
+
+	public GraphicPieUI getGraphicPieUI() {
+		return graphicPieUI;
 	}
 
 }

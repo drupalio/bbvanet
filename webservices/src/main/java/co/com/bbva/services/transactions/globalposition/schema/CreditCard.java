@@ -10,9 +10,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para creditCard complex type.
+ * <p>Java class for creditCard complex type.
  * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="creditCard">
@@ -49,7 +49,7 @@ public class CreditCard
     protected Quota quota;
 
     /**
-     * Obtiene el valor de la propiedad product.
+     * Gets the value of the product property.
      * 
      * @return
      *     possible object is
@@ -61,7 +61,7 @@ public class CreditCard
     }
 
     /**
-     * Define el valor de la propiedad product.
+     * Sets the value of the product property.
      * 
      * @param value
      *     allowed object is
@@ -77,7 +77,7 @@ public class CreditCard
     }
 
     /**
-     * Obtiene el valor de la propiedad bin.
+     * Gets the value of the bin property.
      * 
      * @return
      *     possible object is
@@ -89,7 +89,7 @@ public class CreditCard
     }
 
     /**
-     * Define el valor de la propiedad bin.
+     * Sets the value of the bin property.
      * 
      * @param value
      *     allowed object is
@@ -105,7 +105,7 @@ public class CreditCard
     }
 
     /**
-     * Obtiene el valor de la propiedad quota.
+     * Gets the value of the quota property.
      * 
      * @return
      *     possible object is
@@ -117,7 +117,7 @@ public class CreditCard
     }
 
     /**
-     * Define el valor de la propiedad quota.
+     * Sets the value of the quota property.
      * 
      * @param value
      *     allowed object is

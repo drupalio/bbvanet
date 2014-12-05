@@ -7,11 +7,13 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:bbvaGP="http://java.sun.com/jsf/composite/bbva/globalPosition"
+	xmlns:bbvaSituation="http://java.sun.com/jsf/composite/bbva/graphics/situation"
 	xmlns:bbvaAlert="http://java.sun.com/jsf/composite/bbva/alert"
 	xmlns:bbvaBody="http://java.sun.com/jsf/composite/bbva/body"
 	xmlns:bbvaContainer="http://java.sun.com/jsf/composite/bbva/container"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-	xmlns:jsf="http://xmlns.jcp.org/jsf">
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:bbvaInput="http://java.sun.com/jsf/composite/bbva/input">
 
 
 <ui:composition template="../../templates/defaultLayout.xhtml">
@@ -105,30 +107,10 @@
 	</ui:define>
 
 
-	<ui:define name="contentRight">
-
-		<bbvaAlert:alertsPanel header="Alertas y Novedades" numAlerts="8" />
-		<h:form>
-
-			<h:selectOneMenu id="console" 
-				style="width:125px">
-				<f:selectItem itemLabel="Select One" itemValue="" />
-				<f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
-				<f:selectItem itemLabel="PS4" itemValue="PS4" />
-				<f:selectItem itemLabel="Wii U" itemValue="Wii U" />
-				<p:ajax listener="#{pruebaController.onComboChange}"  />
-			</h:selectOneMenu>
-			
-			<p:inputText>
-				 <p:ajax event="keyup" listener="#{pruebaController.onKeyUp}" /> 
-			</p:inputText>
-
-			<h:outputLabel value="#{prueba.name}"></h:outputLabel>
-			<button jsf:action="refresh">
-				ACCIÓN
-				<f:ajax execute="@form" render="@form" />
-			</button>
-		</h:form>
+	<ui:define name="contentRight" >
+		
+		<bbvaSituation:globalSituationPanel/>
+		
 	</ui:define>
 
 </ui:composition>

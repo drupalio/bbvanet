@@ -10,9 +10,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para quota complex type.
+ * <p>Java class for quota complex type.
  * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="quota">
@@ -45,7 +45,7 @@ public class Quota
     protected BigDecimal totalQuotaDebt;
 
     /**
-     * Obtiene el valor de la propiedad availableQuota.
+     * Gets the value of the availableQuota property.
      * 
      * @return
      *     possible object is
@@ -57,7 +57,7 @@ public class Quota
     }
 
     /**
-     * Define el valor de la propiedad availableQuota.
+     * Sets the value of the availableQuota property.
      * 
      * @param value
      *     allowed object is
@@ -73,7 +73,7 @@ public class Quota
     }
 
     /**
-     * Obtiene el valor de la propiedad totalQuotaDebt.
+     * Gets the value of the totalQuotaDebt property.
      * 
      * @return
      *     possible object is
@@ -85,7 +85,7 @@ public class Quota
     }
 
     /**
-     * Define el valor de la propiedad totalQuotaDebt.
+     * Sets the value of the totalQuotaDebt property.
      * 
      * @param value
      *     allowed object is

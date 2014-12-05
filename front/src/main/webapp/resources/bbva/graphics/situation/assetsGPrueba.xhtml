@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:bbvaSituation="http://java.sun.com/jsf/composite/bbva/graphics/situation">
+
+
+<composite:interface>
+
+</composite:interface>
+
+<composite:implementation>
+	<h:head>
+		<meta charset="utf-8"></meta>
+		<title>BBVA :: Colombia :: Posición Global</title>
+
+		<script type="text/javascript" src="../assets/js/c3/d3.js"></script>
+		<script type="text/javascript" src="../assets/js/c3/c3.js"></script>
+		<link href="../assets/stylesheets/c3/c3.css" rel="stylesheet"
+			type="text/css"></link>
+		<link rel="shortcut icon" href="../assets/images/favicon.ico" />
+		<script type="text/javascript" src="../assets/js/vendor.js"></script>
+		<script type="text/javascript"
+			src="../assets/js/jvalidate/jvalidate_es.js"></script>
+		<script type="text/javascript" src="../assets/js/graphycs/config.js"></script>
+		<script type="text/javascript"
+			src="../assets/js/components/wizzard/progressbar-plugin.js"></script>
+		<script type="text/javascript"
+			src="../assets/js/components/wizzard/steps-plugin.js"></script>
+		<script type="text/javascript"
+			src="../assets/js/components/wizzard/controllersteps-plugin.js"></script>
+		<script type="text/javascript"
+			src="../assets/js/components/switchtab/switchtab-plugin.js"></script>
+		<script type="text/javascript"
+			src="../assets/js/components/selectquiero/selectQuiero-plugin.js"></script>
+		<script type="text/javascript"
+			src="../assets/js/components/slider/slider-button-close.js"></script>
+		<script type="text/javascript"
+			src="../assets/js/components/chart/chart-table.js"></script>
+		<script type="text/javascript"
+			src="../assets/js/components/validate/remove-validate.js"></script>
+		<script type="text/javascript"
+			src="../assets/js/visibilityactions/visibility.dropdown.mobile.js"></script>
+		<script type="text/javascript"
+			src="../assets/js/visibilityactions/visibility.dropup.mobile.js"></script>
+		<script type="text/javascript"
+			src="../assets/js/visibilityactions/visibility.data.js"></script>
+		<script type="text/javascript"
+			src="../assets/js/visibilityactions/visibility.dropdown.clientsaccess.js"></script>
+		<script type="text/javascript"
+			src="../assets/js/visibilityactions/visibility.dropdown.logged.js"></script>
+
+		<script type="text/javascript"
+			src="../assets/js/jvalidate/validate.login.js"></script>
+		<script type="text/javascript"
+			src="../assets/js/jvalidate/validate.netsecure.js"></script>
+		<script type="text/javascript"
+			src="../assets/js/jvalidate/validate.token.js"></script>
+		<script type="text/javascript"
+			src="../assets/js/progressbar/wizzard.recoverykey.js"></script>
+		<script type="text/javascript"
+			src="../assets/js/progressbar/wizzard.recoveryuser.js"></script>
+		<script type="text/javascript"
+			src="../assets/js/progressbar/wizzard.registerclient.js"></script>
+		<script type="text/javascript"
+			src="../assets/js/resizedactions/resized.menu.js"></script>
+
+		<link rel='stylesheet' type="text/css"
+			href='../assets/stylesheets/app.css' />
+
+		<!-- You need an element with an id called "chart" to set a place where your chart will render-->
+
+		<script>
+			var chart = c3.generate({
+				data : {
+					
+					size: { height: 5, width: 5 },
+					columns : [ [ 'Depósitos', 30 ], [ 'Planes de Pensiones', 120 ],  [ 'Cartera de Valores', 240 ]],
+					type : 'pie',
+					onclick : function(d, i) {
+						console.log("onclick", d, i);
+					},
+					onmouseover : function(d, i) {
+						console.log("onmouseover", d, i);
+					},
+					onmouseout : function(d, i) {
+						console.log("onmouseout", d, i);
+					}
+				}
+			});
+			
+			
+
+			setTimeout(function() {
+				chart.load({
+					ids : 'Depósitos'
+				});
+				chart.load({
+					ids : 'Planes de Pensiones'
+				});
+				chart.load({
+					ids : 'Cartera de Valores'
+				});
+			}, 100);
+		</script>
+
+	</h:head>
+	<h:form>
+
+		<div class="chart-cheese" id="tu-situacion-grafico"
+			data-highcharts-chart="3">
+			<div id="chart"></div>
+		</div>
+
+	</h:form>
+
+</composite:implementation>
+</html>
