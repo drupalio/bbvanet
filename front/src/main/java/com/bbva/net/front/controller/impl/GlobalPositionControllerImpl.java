@@ -1,5 +1,9 @@
 package com.bbva.net.front.controller.impl;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
@@ -10,7 +14,9 @@ import com.bbva.net.back.facade.GlobalPositionFacade;
 import com.bbva.net.front.controller.GlobalPositionController;
 import com.bbva.net.front.core.AbstractBbvaController;
 import com.bbva.net.front.delegate.GraphicPieDelegate;
-import com.bbva.net.front.ui.GraphicPieUI;
+import com.bbva.net.front.ui.PieItemUI;
+import com.bbva.net.front.ui.SituationPiesConfigUI;
+import com.bbva.net.front.ui.SituationPiesUI;
 
 @Controller
 public class GlobalPositionControllerImpl extends AbstractBbvaController
@@ -27,7 +33,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController
 	@Resource(name = "graphicPieDelegate")
 	private transient GraphicPieDelegate graphicPieDelegate;
 
-	private GraphicPieUI graphicPieUI;
+	private SituationPiesUI situationGraphicPieUI;
 
 	private ActivePanelType activePanel = ActivePanelType.SITUATION;
 
@@ -36,14 +42,18 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController
 		SITUATION, ASSET, FINANCIATION
 	}
 
+	public GlobalPositionControllerImpl() {
+		this.situationGraphicPieUI = getSitiationPiesUI();
+	}
+
 	@Override
 	public GlobalProducts getCustomerProducts() {
 
 		final GlobalProducts globalProductos = this.globalPositionFacade
 				.getGlobalProductsByUser(DEFAULT_USER);
 
-		graphicPieUI = graphicPieDelegate
-				.getGraphicPieUiByGlobalProducts(globalProductos);
+		situationGraphicPieUI = graphicPieDelegate
+				.getSituationGlobalProducts(globalProductos);
 
 		return globalProductos;
 		// this.graphicPieDelegate.convertToUI(glopalProducts)
@@ -77,8 +87,45 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController
 		return this.activePanel.name();
 	}
 
-	public GraphicPieUI getGraphicPieUI() {
-		return graphicPieUI;
+	public SituationPiesUI getSituationGraphicPieUI() {
+		return situationGraphicPieUI;
+	}
+
+	public SituationPiesUI getSitiationPiesUI() {
+
+		SituationPiesConfigUI sitationPiesConfigUI = new SituationPiesConfigUI();
+		SituationPiesUI situationPiesUI = new SituationPiesUI();
+
+		sitationPiesConfigUI.setHeader("Activos");
+		sitationPiesConfigUI.setVisible(true);
+		sitationPiesConfigUI.setPieItemUIList(gePieItemUIList());
+
+		situationPiesUI.setAssets(sitationPiesConfigUI);
+		situationPiesUI.setTotalAssets(new BigDecimal(300000));
+		situationPiesUI.setTotalFinancing(new BigDecimal(500000));
+		return situationPiesUI;
+	}
+
+	private List<PieItemUI> gePieItemUIList() {
+		List<PieItemUI> pieItemUIList = new ArrayList<PieItemUI>();
+		List<String> legendList = new ArrayList<String>();
+		legendList.add("Depósitos");
+		legendList.add("Planes de pensión");
+		legendList.add("Cartera de valores");
+
+		for (String s : legendList) {
+
+			PieItemUI pieItemUI = new PieItemUI();
+			pieItemUI.setColor("orange");
+			pieItemUI.setCurrency('$');
+			pieItemUI.setPercentage("%");
+			pieItemUI.setTextLengend(s);
+			pieItemUI.setValue(new BigDecimal(2000).multiply(new BigDecimal(
+					0.25F)));
+			pieItemUIList.add(pieItemUI);
+		}
+		return pieItemUIList;
+
 	}
 
 }

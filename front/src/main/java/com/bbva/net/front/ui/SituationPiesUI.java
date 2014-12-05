@@ -2,35 +2,35 @@ package com.bbva.net.front.ui;
 
 import java.math.BigDecimal;
 
-public class GraphicPieUI {
+public class SituationPiesUI {
 
-	private PieConfigUI situation;
-	private PieConfigUI assets;
-	private PieConfigUI financing;
+	private SituationPiesConfigUI situation;
+	private SituationPiesConfigUI assets;
+	private SituationPiesConfigUI financing;
 	private BigDecimal totalAssets;
 	private BigDecimal totalFinancing;
 
-	public PieConfigUI getSituation() {
+	public SituationPiesConfigUI getSituation() {
 		return situation;
 	}
 
-	public void setSituation(PieConfigUI situation) {
+	public void setSituation(SituationPiesConfigUI situation) {
 		this.situation = situation;
 	}
 
-	public PieConfigUI getAssets() {
+	public SituationPiesConfigUI getAssets() {
 		return assets;
 	}
 
-	public void setAssets(PieConfigUI assets) {
+	public void setAssets(SituationPiesConfigUI assets) {
 		this.assets = assets;
 	}
 
-	public PieConfigUI getFinancing() {
+	public SituationPiesConfigUI getFinancing() {
 		return financing;
 	}
 
-	public void setFinancing(PieConfigUI financing) {
+	public void setFinancing(SituationPiesConfigUI financing) {
 		this.financing = financing;
 	}
 

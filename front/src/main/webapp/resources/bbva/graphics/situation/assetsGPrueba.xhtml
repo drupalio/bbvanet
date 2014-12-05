@@ -11,6 +11,9 @@
 
 <composite:interface>
 
+	<composite:attribute name="situationPies"
+		type="com.bbva.net.front.ui.SituationPiesUI" required="true" />
+
 </composite:interface>
 
 <composite:implementation>
@@ -77,9 +80,15 @@
 		<script>
 			var chart = c3.generate({
 				data : {
-					
-					size: { height: 5, width: 5 },
-					columns : [ [ 'Depósitos', 30 ], [ 'Planes de Pensiones', 120 ],  [ 'Cartera de Valores', 240 ]],
+
+					size : {
+						height : 5,
+						width : 5
+					},
+					colors: { data1: 'hotred', data2: 'blue' }
+					columns : [ [ 'Depósitos', 30 ],
+							[ 'Planes de Pensiones', 120 ],
+							[ 'Cartera de Valores', 240 ] ],
 					type : 'pie',
 					onclick : function(d, i) {
 						console.log("onclick", d, i);
@@ -92,8 +101,6 @@
 					}
 				}
 			});
-			
-			
 
 			setTimeout(function() {
 				chart.load({
