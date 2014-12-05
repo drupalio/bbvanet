@@ -18,8 +18,18 @@ public class AccountsControllerImpl extends AbstractBbvaController implements
 
 	private static final long serialVersionUID = 5726824668267606699L;
 
+	private boolean stateAccounts = true;
+
 	@Resource(name = "accountsFacade")
 	private transient AccountsFacade accountsFacade;
+
+	public boolean isStateAccounts() {
+		return stateAccounts;
+	}
+
+	public void setStateAccounts(boolean stateAccounts) {
+		this.stateAccounts = stateAccounts;
+	}
 
 	@Override
 	public GlobalProducts getCustomerAccounts() {
