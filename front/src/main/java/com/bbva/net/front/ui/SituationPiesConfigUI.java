@@ -1,16 +1,18 @@
 package com.bbva.net.front.ui;
 
-public class PieConfigUI {
+import java.util.List;
 
-	private PieItemUI pieItemUIList;
+public class SituationPiesConfigUI {
+
+	private List<PieItemUI> pieItemUIList;
 	private String header;
 	private boolean isVisible;
 
-	public PieItemUI getPieItemUIList() {
+	public List<PieItemUI> getPieItemUIList() {
 		return pieItemUIList;
 	}
 
-	public void setPieItemUIList(PieItemUI pieItemUIList) {
+	public void setPieItemUIList(List<PieItemUI> pieItemUIList) {
 		this.pieItemUIList = pieItemUIList;
 	}
 

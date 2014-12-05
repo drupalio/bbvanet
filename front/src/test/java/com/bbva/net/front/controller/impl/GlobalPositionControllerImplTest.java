@@ -86,16 +86,16 @@ public class GlobalPositionControllerImplTest {
 				"FINANCIATION");
 	}
 
-	@Test
-	public void checkGraphicPaiUI() {
-
-		GlobalProducts globalProducts = Mockito.mock(GlobalProducts.class);
-		this.globalPositionController.getGraphicPieUI();
-
-		Assert.assertEquals(this.globalPositionController.getGraphicPieUI(),
-				this.graphicPieDelegate
-						.getGraphicPieUiByGlobalProducts(globalProducts));
-	}
+	/*
+	 * @Test public void checkGraphicPaiUI() {
+	 * 
+	 * GlobalProducts globalProducts = Mockito.mock(GlobalProducts.class);
+	 * this.globalPositionController.getSituationGraphicPieUI();
+	 * 
+	 * Assert.assertEquals(this.globalPositionController
+	 * .getSituationGraphicPieUI(), this.graphicPieDelegate
+	 * .getSituationGlobalProducts(globalProducts)); }
+	 */
 
 	/**
 	 * 
