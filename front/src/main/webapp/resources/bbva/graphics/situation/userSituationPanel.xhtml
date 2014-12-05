@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:composite="http://java.sun.com/jsf/composite"
@@ -23,7 +22,7 @@
 
 	<div id="assets" class="second-tab" jsf:rendered="#{globalPositionController.activePanel == 'ASSET'}">
 		<bbvaSituation:headerLink />
-		<bbvaSituation:assetsGPrueba situationPies="jsf:value=#{globalPositionController.situationGraphicPieUI}" />
+		<bbvaSituation:assetsGPrueba situationPies="#{globalPositionController.situationGraphicPieUI}" />
 	</div>
 
 	<div id="financiation" class="first-tab" jsf:rendered="#{globalPositionController.activePanel == 'FINANCIATION'}">
