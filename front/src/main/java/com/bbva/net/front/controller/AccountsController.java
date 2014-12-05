@@ -1,12 +1,14 @@
 package com.bbva.net.front.controller;
 
-import co.com.bbva.services.transactions.globalposition.schema.GlobalProducts;
+import java.util.List;
+
+import co.com.bbva.services.transactions.globalposition.schema.Account;
 
 import com.bbva.net.back.facade.AccountsFacade;
 
 public interface AccountsController {
 
-	GlobalProducts getCustomerAccounts();
+	public List<Account> getCustomerAccounts();
 
 	void setAccountsFacade(AccountsFacade accountsFacade);
 

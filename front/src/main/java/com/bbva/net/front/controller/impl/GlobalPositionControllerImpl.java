@@ -20,14 +20,18 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController
 
 	private static final String DEFAULT_USER = "123";
 
-	private boolean globalPositionb = true;
+	private boolean stateGlobalPosition = true;
+
+	public boolean isStateGlobalPosition() {
+		return stateGlobalPosition;
+	}
+
+	public void setStateGlobalPosition(boolean stateGlobalPosition) {
+		this.stateGlobalPosition = stateGlobalPosition;
+	}
 
 	@Resource(name = "globalPositionFacade")
 	private transient GlobalPositionFacade globalPositionFacade;
-
-	public boolean isGlobalPositionb() {
-		return globalPositionb;
-	}
 
 	@Resource(name = "graphicPieDelegate")
 	private transient GraphicPieDelegate graphicPieDelegate;

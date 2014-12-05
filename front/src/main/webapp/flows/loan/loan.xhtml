@@ -28,12 +28,12 @@
 		<bbvaContainer:productPanel title="Cupo Rotativo">
 			<div class="table-tabs">
 
-				<bbvaGP:rotatingQuotaHeadTable listQuota="#{customerLoans.rotatingAccounts}"/>
-				<bbvaGP:rotatingQuotaTailTable listQuota="#{customerLoans.rotatingAccounts}"/>
+				<bbvaGP:rotatingQuotaHeadTable listQuota="#{customerRotatingAccount}"/>
+				<bbvaGP:rotatingQuotaTailTable listQuota="#{customerRotatingAccount}"/>
 
 			</div>
 			<div class="row afterTable">
-				<bbvaGP:productFooter listProduct="#{customerLoans.rotatingAccounts}"/>
+				<bbvaGP:productFooter listProduct="#{customerRotatingAccount}"/>
 				<bbvaGP:totalBalance />
 			</div>
 		</bbvaContainer:productPanel>
@@ -41,13 +41,13 @@
 		<bbvaContainer:productPanel title="Leasing">
 			<div class="table-tabs">
 
-				<bbvaGP:leasingHeadTable listLeasing="#{customerLoans.leasings}"/>
-				<bbvaGP:leasingTailTable listLeasing="#{customerLoans.leasings}"/>
+				<bbvaGP:leasingHeadTable listLeasing="#{customerLeasing}"/>
+				<bbvaGP:leasingTailTable listLeasing="#{customerLeasing}"/>
 
 
 			</div>
 			<div class="row afterTable">
-				<bbvaGP:productFooter listProduct="#{customerLoans.leasings}"/>
+				<bbvaGP:productFooter listProduct="#{customerLeasing}"/>
 				<bbvaGP:totalBalance />
 			</div>
 		</bbvaContainer:productPanel>
@@ -58,7 +58,7 @@
 				<bbvaGP:loanTailTable />
 			</div>
 			<div class="row afterTable">
-				<bbvaGP:productFooter/>
+				<bbvaGP:productFooter />
 				<bbvaGP:totalBalance />
 			</div>
 		</bbvaContainer:productPanel>
