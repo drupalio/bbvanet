@@ -55,6 +55,7 @@ public class GlobalPositionControllerImplTest {
 		Assert.assertNotNull(globalProducts);
 		Mockito.verify(this.globalPositionFacade, Mockito.atLeastOnce())
 				.getGlobalProductsByUser(DEFAULT_USER);
+		// graphicPieUI = Mockito.mock(GraphicPieUI.class);
 
 	}
 

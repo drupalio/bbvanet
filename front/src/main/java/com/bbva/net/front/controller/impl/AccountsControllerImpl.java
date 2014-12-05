@@ -1,10 +1,12 @@
 package com.bbva.net.front.controller.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 
-import co.com.bbva.services.transactions.globalposition.schema.GlobalProducts;
+import co.com.bbva.services.transactions.globalposition.schema.Account;
 
 import com.bbva.net.back.facade.AccountsFacade;
 import com.bbva.net.front.controller.AccountsController;
@@ -32,13 +34,13 @@ public class AccountsControllerImpl extends AbstractBbvaController implements
 	}
 
 	@Override
-	public GlobalProducts getCustomerAccounts() {
-		return this.accountsFacade.getAccountsByUser(DEFAULT_USER);
+	public void setAccountsFacade(final AccountsFacade accountsFacade) {
+		this.accountsFacade = accountsFacade;
 	}
 
 	@Override
-	public void setAccountsFacade(final AccountsFacade accountsFacade) {
-		this.accountsFacade = accountsFacade;
+	public List<Account> getCustomerAccounts() {
+		return this.accountsFacade.getAccountsByUser(DEFAULT_USER);
 	}
 
 }
