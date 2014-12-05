@@ -2,6 +2,8 @@ package com.bbva.net.back.facade.impl;
 
 import javax.annotation.Resource;
 
+import org.springframework.web.client.RestClientException;
+
 import co.com.bbva.services.transactions.globalposition.schema.GlobalProducts;
 
 import com.bbva.net.back.core.stereotype.Facade;
@@ -13,17 +15,18 @@ public class GlobalPositionFacadeImpl implements GlobalPositionFacade {
 
 	@Resource(name = "globalPositionService")
 	private GlobalPositionService globalPositionService;
-	
+
 	@Override
-	public GlobalProducts getGlobalProductsByUser(String user){
+	public GlobalProducts getGlobalProductsByUser(String user)
+			throws RestClientException {
 		return this.globalPositionService.get(user);
 	}
 
-	public void setGlobalPositionService(GlobalPositionService globalPositionService) {
+	public void setGlobalPositionService(
+			GlobalPositionService globalPositionService) {
 
 		this.globalPositionService = globalPositionService;
-		
-	}
 
+	}
 
 }

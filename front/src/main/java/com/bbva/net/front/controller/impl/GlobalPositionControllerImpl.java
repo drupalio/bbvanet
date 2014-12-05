@@ -25,10 +25,15 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController
 	private static final long serialVersionUID = 5726824668267606699L;
 
 	private static final String DEFAULT_USER = "123";
-	// private GraphicUI graphicUI;
+
+	private boolean globalPositionb = true;
 
 	@Resource(name = "globalPositionFacade")
 	private transient GlobalPositionFacade globalPositionFacade;
+
+	public boolean isGlobalPositionb() {
+		return globalPositionb;
+	}
 
 	@Resource(name = "graphicPieDelegate")
 	private transient GraphicPieDelegate graphicPieDelegate;
@@ -40,6 +45,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController
 	private enum ActivePanelType {
 
 		SITUATION, ASSET, FINANCIATION
+
 	}
 
 	public GlobalPositionControllerImpl() {
@@ -56,7 +62,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController
 				.getSituationGlobalProducts(globalProductos);
 
 		return globalProductos;
-		// this.graphicPieDelegate.convertToUI(glopalProducts)
+
 	}
 
 	public void renderPieSituation() {
