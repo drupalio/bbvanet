@@ -15,6 +15,7 @@
     <name>pom-padre_kqco</name>
     <url>http://maven.apache.org</url>
     <modules>
+	<module>core</module>
         <module>webservices</module>
         <module>back</module>
         <module>front</module>

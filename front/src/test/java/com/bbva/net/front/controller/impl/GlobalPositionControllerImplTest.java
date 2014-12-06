@@ -46,7 +46,7 @@ public class GlobalPositionControllerImplTest {
 	 * @throws RestClientException
 	 */
 	@Test
-	public void checkGetCustomerProducts_OK() throws RestClientException {
+	public void checkGetCustomerProducts_OK() {
 
 		// prepara el test
 		Mockito.when(globalPositionFacade.getGlobalProductsByUser(DEFAULT_USER))

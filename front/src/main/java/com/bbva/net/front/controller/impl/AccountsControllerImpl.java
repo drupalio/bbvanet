@@ -26,7 +26,6 @@ public class AccountsControllerImpl extends AbstractBbvaController implements
 		return this.accountsFacade.getAccountsByUser(DEFAULT_USER);
 	}
 
-	@Override
 	public void setAccountsFacade(final AccountsFacade accountsFacade) {
 		this.accountsFacade = accountsFacade;
 	}

@@ -7,10 +7,10 @@
 		<artifactId>pom-padre_kqco</artifactId>
 		<version>01</version>
 	</parent>
-	<groupId>com.bbva.net.back</groupId>
-	<artifactId>kqco_mult_web_back</artifactId>
+	<groupId>com.bbva.net.core</groupId>
+	<artifactId>kqco_mult_web_core</artifactId>
 	<packaging>jar</packaging>
-	<name>kqco_mult_web_back</name>
+	<name>kqco_mult_web_core</name>
 	<properties>
 		<roo.version>1.1.5.RELEASE</roo.version>
 		<spring.version>4.1.2.RELEASE</spring.version>
@@ -18,57 +18,41 @@
 		<slf4j.version>1.7.7</slf4j.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-	<repositories />
 	<pluginRepositories />
 	<dependencies>
+
 		<!-- General dependencies for standard applications <dependency> <groupId>com.bbva.jee.arq.spring.core</groupId> 
 			<artifactId>arq-spring-core</artifactId> <version>${arq-spring-core.version}</version> 
 			</dependency> -->
-		<dependency>
-			<groupId>com.bbva.net.webservices</groupId>
-			<artifactId>kqco_mult_web_webservices</artifactId>
-			<version>01</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>com.bbva.net.core</groupId>
-			<artifactId>kqco_mult_web_core</artifactId>
-			<version>01</version>
-		</dependency>
 
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.11</version>
-			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-all</artifactId>
 			<version>1.9.5</version>
-			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>com.sun.xml.bind</groupId>
 			<artifactId>jaxb-core</artifactId>
 			<version>2.2.11</version>
-			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>com.sun.xml.bind</groupId>
 			<artifactId>jaxb-impl</artifactId>
 			<version>2.2.11</version>
-			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.fluttercode.datafactory</groupId>
 			<artifactId>datafactory</artifactId>
 			<version>0.8</version>
-			<scope>test</scope>
 		</dependency>
 
 		<dependency>
@@ -76,6 +60,19 @@
 			<artifactId>log4j</artifactId>
 			<version>1.2.17</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>1.9.2</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+			<version>3.2.1</version>
+		</dependency>
+		
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
@@ -88,8 +85,25 @@
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
+			<artifactId>jul-to-slf4j</artifactId>
+			<version>1.7.7</version>
+		</dependency>
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
+			<version>3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>${slf4j.version}</version>
+
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-log4j12</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.aspectj</groupId>
@@ -101,21 +115,23 @@
 			<artifactId>aspectjweaver</artifactId>
 			<version>${aspectj.version}</version>
 		</dependency>
-
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
-			<version>3.0.1</version>
+			<version>3.1.0</version>
 			<scope>provided</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>net.sf.flexjson</groupId>
 			<artifactId>flexjson</artifactId>
 			<version>3.3</version>
 		</dependency>
-
-	
 		<!-- ROO dependencies <dependency> <groupId>org.springframework.roo</groupId> 
 			<artifactId>org.springframework.roo.annotations</artifactId> <version>${roo.version}</version> 
 			<scope>provided</scope> </dependency> -->
@@ -131,7 +147,6 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
@@ -144,10 +159,29 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
 
@@ -159,7 +193,7 @@
 
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-web</artifactId>
+			<artifactId>spring-context-support</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
 
@@ -170,100 +204,107 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>3.2.5.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>3.2.5.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>3.2.5.RELEASE</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.6</version>
+		</dependency>
+
+		<dependency>
 			<groupId>commons-collections</groupId>
 			<artifactId>commons-collections</artifactId>
 			<version>3.2.1</version>
 		</dependency>
 
 		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-tx</artifactId>
-			<version>${spring.version}</version>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.2</version>
 		</dependency>
 
+		
+
+		<!-- Logging -->
 		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-core</artifactId>
-			<version>4.3.7.Final</version>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<version>${slf4j.version}</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.hibernate.javax.persistence</groupId>
-			<artifactId>hibernate-jpa-2.0-api</artifactId>
-			<version>1.0.1.Final</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-entitymanager</artifactId>
-			<version>4.3.7.Final</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-envers</artifactId>
-			<version>4.3.7.Final</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-jdbc</artifactId>
-			<version>4.1.2.RELEASE</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-beans</artifactId>
-			<version>4.1.2.RELEASE</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-orm</artifactId>
-			<version>4.1.2.RELEASE</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-hibernate</artifactId>
-			<version>1.2.9</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.liquibase</groupId>
-			<artifactId>liquibase-core</artifactId>
-			<version>3.3.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<version>1.4.182</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.hsqldb</groupId>
-			<artifactId>hsqldb</artifactId>
-			<version>2.2.9</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-ehcache</artifactId>
-			<version>4.3.7.Final</version>
-		</dependency>
-
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.6</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-			<version>3.3.2</version>
-		</dependency>
-
+		<!-- Themes -->
+		
 	</dependencies>
+
+	<repositories>
+		<repository>
+			<id>prime-repo</id>
+			<name>PrimeFaces Maven Repository</name>
+			<url>http://repository.primefaces.org</url>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>apache-snapshots</id>
+			<name>apache-snapshots</name>
+			<url>http://repository.apache.org/snapshots/</url>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>jvnet-nexus-releases</id>
+			<name>jvnet-nexus-releases</name>
+			<url>https://maven.java.net/content/repositories/releases/</url>
+		</repository>
+		<repository>
+			<id>repository.jboss.org</id>
+			<name>JBoss Repository for Maven</name>
+			<url>http://repository.jboss.org/nexus/content/groups/public-jboss/</url>
+		</repository>
+	</repositories>
+
+	<distributionManagement>
+		<repository>
+			<id>prime-repo</id>
+			<name>PrimeFaces Maven Repository</name>
+			<url>sftp://primefaces.org/var/www/repository</url>
+		</repository>
+	</distributionManagement>
 
 	<build>
 		<plugins>
@@ -275,7 +316,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.2</version>
 				<configuration>
 					<source>1.6</source>
 					<target>1.6</target>
@@ -292,7 +332,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.18</version>
 				<configuration>
 					<printSummary>false</printSummary>
 					<redirectTestOutputToFile>true</redirectTestOutputToFile>
@@ -304,7 +343,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-assembly-plugin</artifactId>
-				<version>2.5.1</version>
 				<configuration>
 					<descriptorRefs>
 						<descriptorRef>jar-with-dependencies</descriptorRef>
@@ -314,43 +352,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-deploy-plugin</artifactId>
-				<version>2.8.2</version>
-			</plugin>
-			<!-- IDE -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-eclipse-plugin</artifactId>
-				<version>2.9</version>  <!-- Note 2.8 does not work with AspectJ aspect path -->
-				<configuration>
-					<downloadSources>true</downloadSources>
-					<downloadJavadocs>false</downloadJavadocs>
-					<wtpversion>2.0</wtpversion>
-					<additionalBuildcommands>
-						<buildCommand>
-							<name>org.eclipse.ajdt.core.ajbuilder</name>
-							<arguments>
-								<aspectPath>org.springframework.aspects</aspectPath>
-							</arguments>
-						</buildCommand>
-						<buildCommand>
-							<name>org.springframework.ide.eclipse.core.springbuilder</name>
-						</buildCommand>
-					</additionalBuildcommands>
-					<additionalProjectnatures>
-						<projectnature>org.eclipse.ajdt.ui.ajnature</projectnature>
-						<projectnature>com.springsource.sts.roo.core.nature</projectnature>
-						<projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
-					</additionalProjectnatures>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-idea-plugin</artifactId>
-				<version>2.2</version>
-				<configuration>
-					<downloadSources>true</downloadSources>
-					<dependenciesAsLibraries>true</dependenciesAsLibraries>
-				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
@@ -365,15 +366,6 @@
 					<webAppConfig>
 						<contextPath>/${project.name}</contextPath>
 					</webAppConfig>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.liquibase</groupId>
-				<artifactId>liquibase-maven-plugin</artifactId>
-				<version>2.0.5</version>
-				<configuration>
-					<promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
-					<propertyFile>db/liquibase.properties</propertyFile>
 				</configuration>
 			</plugin>
 		</plugins>
@@ -394,6 +386,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.2</version>
 					<configuration>
 						<source>1.6</source>
 						<target>1.6</target>
@@ -411,6 +404,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-surefire-plugin</artifactId>
+					<version>2.18</version>
 					<configuration>
 						<printSummary>false</printSummary>
 						<redirectTestOutputToFile>true</redirectTestOutputToFile>
@@ -422,6 +416,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-assembly-plugin</artifactId>
+					<version>2.5.1</version>
 					<configuration>
 						<descriptorRefs>
 							<descriptorRef>jar-with-dependencies</descriptorRef>
@@ -431,11 +426,13 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-deploy-plugin</artifactId>
+					<version>2.8.2</version>
 				</plugin>
 				<!-- IDE -->
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-eclipse-plugin</artifactId>
+					<version>2.9</version>
 					<!-- Note 2.8 does not work with AspectJ aspect path -->
 					<configuration>
 						<downloadSources>true</downloadSources>
@@ -462,46 +459,58 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-idea-plugin</artifactId>
+					<version>2.2</version>
 					<configuration>
 						<downloadSources>true</downloadSources>
 						<dependenciesAsLibraries>true</dependenciesAsLibraries>
 					</configuration>
 				</plugin>
 				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>tomcat-maven-plugin</artifactId>
-				</plugin>
-				<plugin>
-					<groupId>org.mortbay.jetty</groupId>
+					<groupId>org.eclipse.jetty</groupId>
 					<artifactId>jetty-maven-plugin</artifactId>
-					<configuration>
-						<webAppConfig>
-							<contextPath>/${project.name}</contextPath>
-						</webAppConfig>
-					</configuration>
+					<version>9.2.5.v20141112</version>
+					<!-- <configuration> <jettyXml>jetty.xml,jetty-ssl.xml,jetty-https.xml</jettyXml> 
+						</configuration> -->
 				</plugin>
 				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-enforcer-plugin</artifactId>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>aspectj-maven-plugin</artifactId>
+					<version>1.7</version>
+					<configuration>
+						<outxml>true</outxml>
+						<aspectLibraries>
+							<aspectLibrary>
+								<groupId>org.springframework</groupId>
+								<artifactId>spring-aspects</artifactId>
+							</aspectLibrary>
+							<!-- <aspectLibrary> <groupId>com.bbva.jee.arq.spring.core</groupId> 
+								<artifactId>arq-spring-core</artifactId> </aspectLibrary> -->
+						</aspectLibraries>
+						<source>1.6</source>
+						<target>1.6</target>
+					</configuration>
 					<executions>
 						<execution>
-							<id>enforce-java</id>
-							<phase>compile</phase>
 							<goals>
-								<goal>enforce</goal>
+								<goal>compile</goal>
+								<goal>test-compile</goal>
 							</goals>
-							<configuration>
-								<rules>
-									<requireJavaVersion>
-										<version>1.6</version>
-									</requireJavaVersion>
-								</rules>
-							</configuration>
 						</execution>
 					</executions>
+					<dependencies>
+						<dependency>
+							<groupId>org.aspectj</groupId>
+							<artifactId>aspectjrt</artifactId>
+							<version>${aspectj.version}</version>
+						</dependency>
+						<dependency>
+							<groupId>org.aspectj</groupId>
+							<artifactId>aspectjtools</artifactId>
+							<version>${aspectj.version}</version>
+						</dependency>
+					</dependencies>
 				</plugin>
 			</plugins>
-		</pluginManagement>
-		<finalName>kqco_mult_web_back</finalName>
+		</pluginManagement> 
 	</build>
 </project>

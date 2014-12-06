@@ -14,16 +14,15 @@ public class LoanFacadeImpl implements LoanFacade {
 	@Resource(name = "globalPositionService")
 	private GlobalPositionService globalPositionService;
 
-	public void setGlobalPositionService(
-			GlobalPositionService globalPositionService) {
-
-		this.globalPositionService = globalPositionService;
-
-	}
-
+	
 	@Override
 	public GlobalProducts getLoansByUser(String user) {
 		return this.globalPositionService.get(user);
+	}
+	
+	public void setGlobalPositionService(
+			GlobalPositionService globalPositionService) {
+		this.globalPositionService = globalPositionService;
 	}
 
 }

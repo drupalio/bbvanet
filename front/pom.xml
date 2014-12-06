@@ -30,6 +30,12 @@
 			<artifactId>kqco_mult_web_back</artifactId>
 			<version>01</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>com.bbva.net.core</groupId>
+			<artifactId>kqco_mult_web_core</artifactId>
+			<version>01</version>
+		</dependency>
 
 		<dependency>
 			<groupId>javax.validation</groupId>
@@ -704,7 +710,6 @@
 					</dependencies>
 				</plugin>
 			</plugins>
-		</pluginManagement>
-		<finalName>kqco_mult_web_front</finalName>
+		</pluginManagement> 
 	</build>
 </project>
