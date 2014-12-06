@@ -1,8 +1,12 @@
 package com.bbva.net.front.controller.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import co.com.bbva.services.transactions.globalposition.schema.GlobalProducts;
+import co.com.bbva.services.transactions.globalposition.schema.Leasing;
+import co.com.bbva.services.transactions.globalposition.schema.RotatingAccount;
 
 import com.bbva.net.back.facade.LoanFacade;
 import com.bbva.net.front.controller.LoanController;
@@ -14,6 +18,16 @@ public class LoanControllerImpl extends AbstractBbvaController implements
 
 	private static final String DEFAULT_USER = "123";
 	// private GraphicUI graphicUI;
+
+	private boolean stateLoans = true;
+
+	public boolean isStateLoans() {
+		return stateLoans;
+	}
+
+	public void setStateLoans(boolean stateLoans) {
+		this.stateLoans = stateLoans;
+	}
 
 	@Resource(name = "loanFacade")
 	private transient LoanFacade loanFacade;
@@ -27,6 +41,16 @@ public class LoanControllerImpl extends AbstractBbvaController implements
 
 	public void setLoanFacade(final LoanFacade loanFacade) {
 		this.loanFacade = loanFacade;
+	}
+
+	@Override
+	public List<RotatingAccount> getCustomerRotatingAccount() {
+		return this.loanFacade.getRotatingAccountByUser(DEFAULT_USER);
+	}
+
+	@Override
+	public List<Leasing> getCustomerLeasing() {
+		return this.loanFacade.getLeasingByUser(DEFAULT_USER);
 	}
 
 }

@@ -5,7 +5,8 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:pm="http://primefaces.org/mobile">
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
 
 <composite:interface>
 	<composite:attribute name="href"      type="String" />
@@ -19,9 +20,11 @@
 <composite:implementation>
 
 	<li class="item item-menu #{cc.attrs.liclass}">
-		<a href="#{cc.attrs.href}" title="#{cc.attrs.title}"> 
-		<span class="nav-icon icon-hide #{cc.attrs.spanclass} #{cc.attrs.icon}"></span>#{cc.attrs.value}
+		<a href="#{cc.attrs.href}" title="#{cc.attrs.title}">
+			<span class="nav-icon icon-hide #{cc.attrs.spanclass} #{cc.attrs.icon}"></span >
+			#{cc.attrs.value}
 		</a>
+		
 	</li>
 
 </composite:implementation>

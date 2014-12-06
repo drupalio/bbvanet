@@ -28,12 +28,12 @@
 		<bbvaContainer:productPanel title="Cupo Rotativo">
 			<div class="table-tabs">
 
-				<bbvaGP:rotatingQuotaHeadTable listQuota="#{customerLoans.rotatingAccounts}"/>
-				<bbvaGP:rotatingQuotaTailTable listQuota="#{customerLoans.rotatingAccounts}"/>
+				<bbvaGP:rotatingQuotaHeadTable listQuota="#{customerRotatingAccount}"/>
+				<bbvaGP:rotatingQuotaTailTable listQuota="#{customerRotatingAccount}"/>
 
 			</div>
 			<div class="row afterTable">
-				<bbvaGP:productFooter listProduct="#{customerLoans.rotatingAccounts}"/>
+				<bbvaGP:productFooter listProduct="#{customerRotatingAccount}"/>
 				<bbvaGP:totalBalance />
 			</div>
 		</bbvaContainer:productPanel>
@@ -41,13 +41,13 @@
 		<bbvaContainer:productPanel title="Leasing">
 			<div class="table-tabs">
 
-				<bbvaGP:leasingHeadTable listLeasing="#{customerLoans.leasings}"/>
-				<bbvaGP:leasingTailTable listLeasing="#{customerLoans.leasings}"/>
+				<bbvaGP:leasingHeadTable listLeasing="#{customerLeasing}"/>
+				<bbvaGP:leasingTailTable listLeasing="#{customerLeasing}"/>
 
 
 			</div>
 			<div class="row afterTable">
-				<bbvaGP:productFooter listProduct="#{customerLoans.leasings}"/>
+				<bbvaGP:productFooter listProduct="#{customerLeasing}"/>
 				<bbvaGP:totalBalance />
 			</div>
 		</bbvaContainer:productPanel>
@@ -58,7 +58,7 @@
 				<bbvaGP:loanTailTable />
 			</div>
 			<div class="row afterTable">
-				<bbvaGP:productFooter/>
+				<bbvaGP:productFooter />
 				<bbvaGP:totalBalance />
 			</div>
 		</bbvaContainer:productPanel>
@@ -67,28 +67,7 @@
 
 	<ui:define name="contentRight">
 
-		<bbvaAlert:alertsPanel header="Alertas y Novedades" numAlerts="8" />
-		<h:form>
-
-			<h:selectOneMenu id="console" 
-				style="width:125px">
-				<f:selectItem itemLabel="Select One" itemValue="" />
-				<f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
-				<f:selectItem itemLabel="PS4" itemValue="PS4" />
-				<f:selectItem itemLabel="Wii U" itemValue="Wii U" />
-				<p:ajax listener="#{customerAccountsPage.onComboChange}"  />
-			</h:selectOneMenu>
-			
-			<p:inputText>
-				 <p:ajax event="keyup" listener="#{customerAccountsPage.onKeyUp}" /> 
-			</p:inputText>
-
-			<h:outputLabel value="#{prueba.name}"></h:outputLabel>
-			<button jsf:action="refresh">
-				ACCIÓN
-				<f:ajax execute="@form" render="@form" />
-			</button>
-		</h:form>
+		
 	</ui:define>
  
 </ui:composition>

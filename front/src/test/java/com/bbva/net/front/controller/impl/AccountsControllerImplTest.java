@@ -1,12 +1,15 @@
 package com.bbva.net.front.controller.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.springframework.web.client.RestClientException;
 
-import co.com.bbva.services.transactions.globalposition.schema.GlobalProducts;
+import co.com.bbva.services.transactions.globalposition.schema.Account;
 
 import com.bbva.net.back.facade.AccountsFacade;
 
@@ -40,15 +43,16 @@ public class AccountsControllerImplTest {
 	public void checkGetCustomerAccounts_OK() {
 
 		// prepara el test
+		List<Account> h = new ArrayList<Account>();
 		Mockito.when(accountsFacade.getAccountsByUser(DEFAULT_USER))
-				.thenReturn(new GlobalProducts());
+				.thenReturn(h);
 
 		// invoca metodo a probar
-		final GlobalProducts globalProducts = this.accountsController
+		final List<Account> customerAccounts = this.accountsController
 				.getCustomerAccounts();
 
 		// Comprobar resultados
-		Assert.assertNotNull(globalProducts);
+		Assert.assertNotNull(customerAccounts);
 		Mockito.verify(this.accountsFacade, Mockito.atLeastOnce())
 				.getAccountsByUser(DEFAULT_USER);
 
