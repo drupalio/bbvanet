@@ -1,13 +1,20 @@
 package com.bbva.net.front.ui;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class PieItemUI {
+public class PieItemUI implements Serializable {
+
+	private static final long serialVersionUID = -8134690092474719123L;
 
 	private String color;
+
 	private BigDecimal value;
+
 	private String textLengend;
+
 	private String percentage;
+
 	private char currency;
 
 	public String getColor() {

@@ -13,10 +13,7 @@ import com.bbva.net.front.controller.AccountsController;
 import com.bbva.net.front.core.AbstractBbvaController;
 
 @Controller
-public class AccountsControllerImpl extends AbstractBbvaController implements
-		AccountsController {
-
-	private static final String DEFAULT_USER = "123";
+public class AccountsControllerImpl extends AbstractBbvaController implements AccountsController {
 
 	private static final long serialVersionUID = 5726824668267606699L;
 
@@ -39,7 +36,7 @@ public class AccountsControllerImpl extends AbstractBbvaController implements
 
 	@Override
 	public List<Account> getCustomerAccounts() {
-		return this.accountsFacade.getAccountsByUser(DEFAULT_USER);
+		return this.accountsFacade.getAccountsByUser(getCurrentUser());
 	}
 
 }

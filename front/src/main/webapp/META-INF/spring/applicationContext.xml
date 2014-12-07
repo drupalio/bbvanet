@@ -18,17 +18,8 @@
 
 	
 	<context:component-scan base-package="com.bbva.net.front" />
+	<context:property-placeholder location="#{contextParameters.propertiesLocation}"/>
 	
-	<bean id="placeholderConfig"
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="locations">
-			<list>
-				<value>classpath:rest.properties</value>
-			</list>
-		</property>
-	</bean>
-	
-
 	<bean class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter" />
 
 

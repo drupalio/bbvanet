@@ -16,8 +16,8 @@
 
 
 	<tx:annotation-driven transaction-manager="transactionManager" />
-
-
+	<context:property-placeholder location="classpath*:*.properties"/>
+	
 	<jdbc:embedded-database id="dataSource" type="HSQL">
 		<jdbc:script location="classpath:liquibase/createSchema.sql" />
 	</jdbc:embedded-database>

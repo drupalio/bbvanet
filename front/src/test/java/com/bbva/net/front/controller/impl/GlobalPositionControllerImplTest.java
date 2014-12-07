@@ -79,14 +79,8 @@ public class GlobalPositionControllerImplTest {
 		Assert.assertEquals(this.globalPositionController.getActivePanel(), "FINANCIATION");
 	}
 
-	/*
-	 * @Test public void checkGraphicPaiUI() { GlobalProducts globalProducts = Mockito.mock(GlobalProducts.class);
-	 * this.globalPositionController.getSituationGraphicPieUI(); Assert.assertEquals(this.globalPositionController
-	 * .getSituationGraphicPieUI(), this.graphicPieDelegate .getSituationGlobalProducts(globalProducts)); }
-	 */
-
 	/**
-	 * @throws RestClientException
+	 * 
 	 */
 	@Test(expected = RestClientException.class)
 	public void checkGetCustomerProducts_NO_OK() {

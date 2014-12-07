@@ -11,7 +11,7 @@ import com.bbva.net.webservices.globalposition.GlobalPositionService;
 @RestService(value = "globalPositionService")
 public class GlobalPositionServiceImpl extends AbstractBbvaRestService implements GlobalPositionService {
 
-	@Value(value = "${rest.globalPosition.url}")
+	@Value("${rest.globalPosition.url}")
 	private String URL_GLOBAL_POSITION;
 
 	@Override

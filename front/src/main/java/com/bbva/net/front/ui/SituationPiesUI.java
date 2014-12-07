@@ -1,13 +1,20 @@
 package com.bbva.net.front.ui;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class SituationPiesUI {
+public class SituationPiesUI implements Serializable {
+
+	private static final long serialVersionUID = 1809032824789493531L;
 
 	private SituationPiesConfigUI situation;
+
 	private SituationPiesConfigUI assets;
+
 	private SituationPiesConfigUI financing;
+
 	private BigDecimal totalAssets;
+
 	private BigDecimal totalFinancing;
 
 	public SituationPiesConfigUI getSituation() {
