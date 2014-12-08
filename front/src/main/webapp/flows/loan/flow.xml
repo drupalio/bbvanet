@@ -8,7 +8,6 @@
 	<var name="customerLoanPage" class="com.bbva.net.front.controller.impl.LoanControllerImpl" />
 
 	<on-start>
-		<evaluate expression="customerLoanPage.getCustomerLoan()" result="flowScope.customerLoans" />
 		<evaluate expression="customerLoanPage.getCustomerRotatingAccount()" result="flowScope.customerRotatingAccount" />
 		<evaluate expression="customerLoanPage.getCustomerLeasing()" result="flowScope.customerLeasing" />
 	</on-start>

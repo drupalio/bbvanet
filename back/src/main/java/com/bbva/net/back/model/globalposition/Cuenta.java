@@ -20,10 +20,6 @@ public class Cuenta implements Serializable {
 
 	private String tradeBalance;
 
-	public Cuenta() {
-		super();
-	}
-
 	public String getAlias() {
 		return alias;
 	}

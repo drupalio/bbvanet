@@ -10,7 +10,7 @@ import org.apache.commons.beanutils.PropertyUtils;
 /**
  * @author Entelgy
  */
-public final class CollectionBbvaUtils {
+public abstract class CollectionBbvaUtils {
 
 	/**
 	 * @param list

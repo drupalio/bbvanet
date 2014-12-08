@@ -1,4 +1,4 @@
-package com.bbva.net.test.utils;
+package com.bbva.net.core.test;
 
 public final class TestUtils {
 

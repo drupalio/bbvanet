@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import co.com.bbva.services.transactions.globalposition.schema.GlobalProducts;
 import co.com.bbva.services.transactions.globalposition.schema.Leasing;
 import co.com.bbva.services.transactions.globalposition.schema.RotatingAccount;
 
@@ -28,13 +27,6 @@ public class LoanControllerImpl extends AbstractBbvaController implements LoanCo
 
 	@Resource(name = "loanFacade")
 	private transient LoanFacade loanFacade;
-
-	@Override
-	public GlobalProducts getCustomerLoan() {
-
-		return this.loanFacade.getLoansByUser(getCurrentUser());
-		// this.graphicPieDelegate.convertToUI(glopalProducts)
-	}
 
 	public void setLoanFacade(final LoanFacade loanFacade) {
 		this.loanFacade = loanFacade;

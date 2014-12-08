@@ -1,24 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"> 
-<modelVersion>4.0.0</modelVersion>
-	<!-- 
-    <parent>
-        <groupId>com.bbva.arq.front.spring</groupId>
-        <artifactId>pom-padre-frontend</artifactId>
-	<version>2.0.1</version>
-    </parent>
-     -->
-    <groupId>com.bbva.net</groupId>
-    <artifactId>pom-padre_kqco</artifactId>
-    <version>01</version>
-    <packaging>pom</packaging>
-    <name>pom-padre_kqco</name>
-    <url>http://maven.apache.org</url>
-    <modules>
-	<module>core</module>
-        <module>webservices</module>
-        <module>back</module>
-        <module>front</module>
-        <module>EAR</module>
-    </modules>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<!-- <parent> <groupId>com.bbva.arq.front.spring</groupId> <artifactId>pom-padre-frontend</artifactId> 
+		<version>2.0.1</version> </parent> -->
+	<groupId>com.bbva.net</groupId>
+	<artifactId>pom-padre_kqco</artifactId>
+	<version>01</version>
+	<packaging>pom</packaging>
+	<name>pom-padre_kqco</name>
+	<url>http://maven.apache.org</url>
+	<modules>
+		<module>core</module>
+		<module>webservices</module>
+		<module>back</module>
+		<module>front</module>
+		<module>EAR</module>
+	</modules>
 </project>

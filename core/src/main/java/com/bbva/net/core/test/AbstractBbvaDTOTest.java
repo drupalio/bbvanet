@@ -10,10 +10,10 @@ import org.apache.commons.collections.CollectionUtils;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.beans.BeanUtils;
 
 import com.bbva.net.core.collection.BbvaPredicate;
 import com.bbva.net.core.pattern.VisitorCommand;
+import com.bbva.net.core.utils.BeanBbvaUtils;
 import com.bbva.net.core.utils.ReflectionBbvaUtils;
 
 /**
@@ -28,6 +28,9 @@ public abstract class AbstractBbvaDTOTest<T extends Serializable> {
 
 	private List<Method> getterMethodsList;
 
+	/**
+	 * @return
+	 */
 	protected abstract T getInstance();
 
 	@SuppressWarnings("unchecked")
@@ -102,7 +105,7 @@ public abstract class AbstractBbvaDTOTest<T extends Serializable> {
 			protected void exceute(final Method method) {
 
 				final Class<?> parameterClass = method.getParameterTypes()[0];
-				final Object value = BeanUtils.instantiateClass(parameterClass);
+				final Object value = BeanBbvaUtils.instantiateClass(parameterClass);
 				ReflectionBbvaUtils.invokeMethod(method, dto, value);
 			}
 		};
