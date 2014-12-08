@@ -1,7 +1,13 @@
 package com.bbva.net.core.test;
 
-public final class TestUtils {
+/**
+ * @author Entelgy
+ */
+public abstract class TestUtils {
 
+	/**
+	 * @param enumClass
+	 */
 	public static void superficialEnumCodeCoverage(Class<? extends Enum<?>> enumClass) {
 
 		try {

@@ -1,5 +1,6 @@
 package com.bbva.net.front.controller.impl;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
@@ -40,6 +41,12 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	private enum ActivePanelType {
 
 		SITUATION, ASSET, FINANCIATION
+	}
+
+	@PostConstruct
+	public void init() {
+
+		LOGGER.info("STARTING BBVA NET .................");
 	}
 
 	@Override

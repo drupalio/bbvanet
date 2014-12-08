@@ -1,4 +1,4 @@
-package com.bbva.net.back.model;
+package com.bbva.net.back.model.globalposition;
 
 import com.bbva.net.back.model.globalposition.Cuenta;
 import com.bbva.net.core.test.AbstractBbvaDTOTest;

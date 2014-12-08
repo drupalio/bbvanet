@@ -13,8 +13,8 @@ import org.junit.Test;
 
 import com.bbva.net.core.collection.BbvaPredicate;
 import com.bbva.net.core.pattern.VisitorCommand;
-import com.bbva.net.core.utils.BeanBbvaUtils;
-import com.bbva.net.core.utils.ReflectionBbvaUtils;
+import com.bbva.net.core.reflection.BeanBbvaUtils;
+import com.bbva.net.core.reflection.ReflectionBbvaUtils;
 
 /**
  * @author Entelgy

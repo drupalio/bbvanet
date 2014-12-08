@@ -1,17 +1,11 @@
-package com.bbva.net.back.model;
+package com.bbva.net.back.model.globalposition;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.math.BigDecimal;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
-
-import com.bbva.net.back.model.globalposition.BalanceDTO;
 
 public class BalanceDTOTest {
 
