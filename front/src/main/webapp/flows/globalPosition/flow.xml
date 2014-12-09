@@ -10,7 +10,6 @@
 	<on-start>
 		<evaluate expression="globalPositionController.getCustomerProducts()" result="flowScope.customerProducts" />
 		<evaluate expression="globalPositionController.getListMultiValueLikes()" result="flowScope.likes" />
-
 	</on-start>
 	
 	<view-state id="globalPosition">
