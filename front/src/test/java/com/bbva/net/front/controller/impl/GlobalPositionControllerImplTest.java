@@ -1,5 +1,8 @@
 package com.bbva.net.front.controller.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -8,13 +11,13 @@ import org.springframework.web.client.RestClientException;
 
 import co.com.bbva.services.transactions.globalposition.schema.GlobalProducts;
 
+import com.bbva.net.back.entity.MultiValueGroup;
 import com.bbva.net.back.facade.GlobalPositionFacade;
+import com.bbva.net.back.facade.MultiValueGroupFacade;
 import com.bbva.net.front.delegate.GraphicPieDelegate;
 
 /**
- * 
  * @author Entelgy
- *
  */
 public class GlobalPositionControllerImplTest {
 
@@ -24,6 +27,9 @@ public class GlobalPositionControllerImplTest {
 
 	// Mocks
 	private GlobalPositionFacade globalPositionFacade;
+
+	private MultiValueGroupFacade multiValueGroupFacade;
+
 	private GraphicPieDelegate graphicPieDelegate;
 
 	@Before
@@ -33,8 +39,11 @@ public class GlobalPositionControllerImplTest {
 
 		globalPositionFacade = Mockito.mock(GlobalPositionFacade.class);
 		graphicPieDelegate = Mockito.mock(GraphicPieDelegate.class);
+		multiValueGroupFacade = Mockito.mock(MultiValueGroupFacade.class);
 
 		globalPositionController.setGlobalPositionFacade(globalPositionFacade);
+		globalPositionController.setGraphicPieDelegate(graphicPieDelegate);
+		globalPositionController.setMultiValueGroupFacade(multiValueGroupFacade);
 
 	}
 
@@ -43,29 +52,16 @@ public class GlobalPositionControllerImplTest {
 
 		globalPositionController.setGraphicPieDelegate(graphicPieDelegate);
 
-		// graphicPieUI = Mockito.mock(GraphicPieUI.class);
-
-	}
-
-	/**
-	 * 
-	 * @throws RestClientException
-	 */
-	@Test
-	public void checkGetCustomerProducts_OK1() {
-
 		// prepara el test
-		Mockito.when(globalPositionFacade.getGlobalProductsByUser(DEFAULT_USER))
-				.thenReturn(new GlobalProducts());
+		Mockito.when(globalPositionFacade.getGlobalProductsByUser(DEFAULT_USER)).thenReturn(new GlobalProducts());
 
 		// invoca metodo a probar
-		final GlobalProducts globalProducts = this.globalPositionController
-				.getCustomerProducts();
+		final GlobalProducts globalProducts = this.globalPositionController.getCustomerProducts();
 
 		// Comprobar resultados
 		Assert.assertNotNull(globalProducts);
-		Mockito.verify(this.globalPositionFacade, Mockito.atLeastOnce())
-				.getGlobalProductsByUser(DEFAULT_USER);
+		Mockito.verify(this.globalPositionFacade, Mockito.atLeastOnce()).getGlobalProductsByUser(DEFAULT_USER);
+		// graphicPieUI = Mockito.mock(GraphicPieUI.class);
 
 	}
 
@@ -74,8 +70,7 @@ public class GlobalPositionControllerImplTest {
 
 		this.globalPositionController.renderPieSituation();
 
-		Assert.assertEquals(this.globalPositionController.getActivePanel(),
-				"SITUATION");
+		Assert.assertEquals(this.globalPositionController.getActivePanel(), "SITUATION");
 	}
 
 	@Test
@@ -83,8 +78,7 @@ public class GlobalPositionControllerImplTest {
 
 		this.globalPositionController.renderPieAssets();
 
-		Assert.assertEquals(this.globalPositionController.getActivePanel(),
-				"ASSET");
+		Assert.assertEquals(this.globalPositionController.getActivePanel(), "ASSET");
 	}
 
 	@Test
@@ -92,31 +86,34 @@ public class GlobalPositionControllerImplTest {
 
 		this.globalPositionController.renderPieFinanciation();
 
-		Assert.assertEquals(this.globalPositionController.getActivePanel(),
-				"FINANCIATION");
-	}
+		Assert.assertEquals(this.globalPositionController.getActivePanel(), "FINANCIATION");
 
-	@Test
-	public void checkGraphicPaiUI() {
+		multiValueGroupFacade = Mockito.mock(MultiValueGroupFacade.class);
+		globalPositionController.setMultiValueGroupFacade(multiValueGroupFacade);
 
-		GlobalProducts globalProducts = Mockito.mock(GlobalProducts.class);
-		this.globalPositionController.getGraphicPieUI();
-
-		Assert.assertEquals(this.globalPositionController.getGraphicPieUI(),
-				this.graphicPieDelegate
-						.getGraphicPieUiByGlobalProducts(globalProducts));
 	}
 
 	/**
 	 * 
-	 * @throws RestClientException
 	 */
 	@Test(expected = RestClientException.class)
 	public void checkGetCustomerProducts_NO_OK() {
-
-		Mockito.when(globalPositionFacade.getGlobalProductsByUser(DEFAULT_USER))
-				.thenThrow(new RestClientException(""));
+		Mockito.when(globalPositionFacade.getGlobalProductsByUser(DEFAULT_USER)).thenThrow(new RestClientException(""));
 		this.globalPositionController.getCustomerProducts();
+
+	}
+
+	@Test
+	public void getMultiValue() {
+
+		Mockito.when(multiValueGroupFacade.getMultiValueTypes(1)).thenReturn(new ArrayList<MultiValueGroup>());
+
+		final List<MultiValueGroup> list = this.globalPositionController.getListMultiValueLikes();
+
+		Assert.assertNotNull(list);
+		Mockito.verify(multiValueGroupFacade, Mockito.atLeastOnce()).getMultiValueTypes(1);
+
+		Mockito.verify(multiValueGroupFacade, Mockito.never()).getMultiValueTypes(null);
 
 	}
 

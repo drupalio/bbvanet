@@ -1,13 +1,17 @@
 package com.bbva.net.front.controller;
 
-import co.com.bbva.services.transactions.globalposition.schema.GlobalProducts;
+import java.util.List;
 
-import com.bbva.net.back.facade.AccountsFacade;
+import co.com.bbva.services.transactions.globalposition.schema.Account;
 
+/**
+ * @author Entelgy
+ */
 public interface AccountsController {
 
-	GlobalProducts getCustomerAccounts();
-
-	void setAccountsFacade(AccountsFacade accountsFacade);
+	/**
+	 * @return accountList for user logged
+	 */
+	List<Account> getCustomerAccounts();
 
 }

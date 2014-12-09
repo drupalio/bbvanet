@@ -27,14 +27,14 @@
 
 		<bbvaContainer:productPanelGraphic title="Cuentas Personales">
 			<div class="table-tabs">
-				<bbvaGP:accountSearch listAccounts="#{customerAccounts.accounts}" />
-				<bbvaAcc:accountHeadTable listAccounts="#{customerAccounts.accounts}" />
-				<bbvaAcc:accountAdquirenciaTable listAccounts="#{customerAccounts.accounts}" />
-				<bbvaAcc:accountTailTable listAccounts="#{customerAccounts.accounts}"/>
+				<bbvaGP:accountSearch listAccounts="#{customerAccounts}" />
+				<bbvaAcc:accountHeadTable listAccounts="#{customerAccounts}" />
+				<bbvaAcc:accountAdquirenciaTable listAccounts="#{customerAccounts}" />
+				<bbvaAcc:accountTailTable listAccounts="#{customerAccounts}"/>
 				
 			</div>
 			<div class="row afterTable">
-				<bbvaGP:productFooter listProduct="#{customerAccounts.accounts}" />
+				<bbvaGP:productFooter listProduct="#{customerAccounts}" />
 				<bbvaGP:totalBalance />
 			</div>
 		</bbvaContainer:productPanelGraphic>

@@ -1,7 +1,23 @@
 package com.bbva.net.front.controller;
 
-import co.com.bbva.services.transactions.globalposition.schema.GlobalProducts;
+import java.util.List;
 
+import co.com.bbva.services.transactions.globalposition.schema.Leasing;
+import co.com.bbva.services.transactions.globalposition.schema.RotatingAccount;
+
+/**
+ * @author Entelgy
+ */
 public interface LoanController {
-	public GlobalProducts getCustomerLoan();
+
+	/**
+	 * @return
+	 */
+	public List<RotatingAccount> getCustomerRotatingAccount();
+
+	/**
+	 * @return
+	 */
+	public List<Leasing> getCustomerLeasing();
+
 }

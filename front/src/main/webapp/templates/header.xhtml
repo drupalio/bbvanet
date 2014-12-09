@@ -44,12 +44,12 @@
 
 		<bbvaMenu:menu>
 
-			<bbvaMenu:itemMenuActive href="./globalPosition" value="Posición global"
+			<bbvaMenu:itemMenu href="./globalPosition" value="Posición global"
 				title="Ir a Posición global" icon="posicionglobal" 
-				liclass="active" rendered="#{pruebaController.globalPositionb}"/>
+				liclass="active" rendered="#{globalPositionController.stateGlobalPosition}"/>
 
 			<bbvaMenu:itemMenu href="./globalPosition" value="Posición global"
-				title="Ir a Posición global" icon="posicionglobal" rendered="#{!pruebaController.globalPositionb}"/>
+				title="Ir a Posición global" icon="posicionglobal" rendered="#{!globalPositionController.stateGlobalPosition}"/>
 			
 			<bbvaMenu:itemMenu href="./accounts" value="Cuentas"
 				title="Ir a Cuentas" icon="account-icon" 

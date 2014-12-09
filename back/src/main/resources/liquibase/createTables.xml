@@ -6,20 +6,6 @@
 
 	<changeSet author="bbva" id="1" runAlways="true">
 
-		<createTable tableName="PRUEBA">
-
-			<column name="ID" type="NUMBER">
-				<constraints nullable="false" primaryKey="true" />
-			</column>
-			<column name="NOMBRE" type="VARCHAR(40)"></column>
-
-		</createTable>
-
-		<insert tableName="PRUEBA">
-			<column name="id">1</column>
-			<column name="NOMBRE">HOOOOOLA JUAN</column>
-		</insert>
-		
 		<!-- Table MULTVALUETYPE -->
 		<createTable tableName="MULTIVALUETYPE">
 			<column name="ID" type="BIGINT" autoIncrement="true">

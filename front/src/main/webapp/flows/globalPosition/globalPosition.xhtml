@@ -32,7 +32,8 @@
 		<bbvaContainer:productPanelGraphic title="Cuentas Personales">
 			<div class="table-tabs">
 				<bbvaGP:accountSearch listAccounts="#{customerProducts.accounts}" />
-				<bbvaGP:accountHeadTable listAccounts="#{customerProducts.accounts}" />
+				<bbvaGP:accountHeadTable listAccounts="#{customerProducts.accounts}"
+					listValueLikes="#{globalPositionController.listMultiValueLikes}" />
 				<bbvaGP:accountTailTable listAccounts="#{customerProducts.accounts}" />
 			</div>
 			<div class="row afterTable">
@@ -126,7 +127,8 @@
 
 		<h:form>
 
-			<bbvaInput:selectOneMenuWants name="qwe" valueList="asd" />
+			<bbvaInput:selectOneMenuWants name="qwe"
+				valueList="#{globalPositionController.listMultiValueLikes}" />
 
 			<p:inputText>
 				<p:ajax event="keyup" listener="#{globalPositionController.onKeyUp}" />
@@ -137,7 +139,9 @@
 				ACCIÓN
 				<f:ajax execute="@form" render="@form" />
 			</button>
+
 		</h:form>
+
 	</ui:define>
 
 </ui:composition>

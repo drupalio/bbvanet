@@ -7,7 +7,7 @@ import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
-import com.bbva.net.back.core.pattern.AbstractBbvaDao;
+import com.bbva.net.back.core.pattern.dao.AbstractBbvaDao;
 import com.bbva.net.back.dao.MultiValueGroupDAO;
 import com.bbva.net.back.entity.MultiValueGroup;
 

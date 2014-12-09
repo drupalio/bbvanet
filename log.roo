@@ -4,3 +4,7 @@ arqspring crearAplicacion --nombreAplicacion kqco --modulos front,back,webservic
 arqspring generarEAR 
 exit
 // BBVArqSpring log closed at 2014-11-15 12:03:37
+// BBVArqSpring log opened at 2014-12-05 17:01:40
+arqspring addModulos --modulos test
+quit
+// BBVArqSpring log closed at 2014-12-05 17:02:33

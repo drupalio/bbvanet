@@ -12,18 +12,15 @@ import com.bbva.net.front.controller.NewsAlertsController;
 import com.bbva.net.front.core.AbstractBbvaController;
 
 /**
- * 
- * 
  * @author Entelgy
- *
  */
 @Controller
-public class NewsAlertsControllerImpl extends AbstractBbvaController implements
-		NewsAlertsController {
+public class NewsAlertsControllerImpl extends AbstractBbvaController implements NewsAlertsController {
 
 	private static final long serialVersionUID = 7099605458774926871L;
 
 	private NewsAlertsFacade newsAlertFacade;
+
 	private List<NewsAlertsDTO> newsAlertSelectedList;
 
 	@Override
@@ -36,16 +33,15 @@ public class NewsAlertsControllerImpl extends AbstractBbvaController implements
 	public void changeNoViewedState(ActionEvent actionEvent) {
 		this.newsAlertFacade.changeNoViewedState(newsAlertSelectedList);
 	}
-	
+
 	@Override
 	public void changeViewedState(ActionEvent actionEvent) {
 		this.newsAlertFacade.changeViewedState(newsAlertSelectedList);
-		
+
 	}
-	
 
 	@Override
-	public List<NewsAlertsDTO> getNewsAlertsList() {	
+	public List<NewsAlertsDTO> getNewsAlertsList() {
 		return this.newsAlertFacade.getNewsAlertsList();
 	}
 
@@ -57,8 +53,7 @@ public class NewsAlertsControllerImpl extends AbstractBbvaController implements
 	}
 
 	/**
-	 * @param newsAlertFacade
-	 *            the newsAlertFacade to set
+	 * @param newsAlertFacade the newsAlertFacade to set
 	 */
 	public void setNewsAlertFacade(NewsAlertsFacade newsAlertFacade) {
 		this.newsAlertFacade = newsAlertFacade;
@@ -72,13 +67,10 @@ public class NewsAlertsControllerImpl extends AbstractBbvaController implements
 	}
 
 	/**
-	 * @param newsAlertSelectedList
-	 *            the newsAlertSelectedList to set
+	 * @param newsAlertSelectedList the newsAlertSelectedList to set
 	 */
 	public void setNewsAlertSelectedList(List<NewsAlertsDTO> newsAlertSelectedList) {
 		this.newsAlertSelectedList = newsAlertSelectedList;
 	}
-
-
 
 }

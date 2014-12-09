@@ -33,7 +33,6 @@ public class MultiValueGroupDAOImplTest extends
 		/**
 		 * Invoke test method with data
 		 */
-
 		Assert.assertTrue(this.multiValueGroupDAO.getTypes(1).size() > 0);
 
 		/**
@@ -46,11 +45,14 @@ public class MultiValueGroupDAOImplTest extends
 	public void getTypesWithNull() {
 
 		/**
-		 * Invoke test method without data
+		 * Invoke test method with Null
 		 */
 		final List<MultiValueGroup> result = this.multiValueGroupDAO
 				.getTypes(null);
 
+		/**
+		 * Asserts
+		 */
 		Assert.assertNotNull(result);
 		Assert.assertTrue(result.size() == 0);
 

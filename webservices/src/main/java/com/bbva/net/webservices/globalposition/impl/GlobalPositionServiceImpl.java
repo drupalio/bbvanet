@@ -9,24 +9,22 @@ import com.bbva.net.webservices.core.stereotype.RestService;
 import com.bbva.net.webservices.globalposition.GlobalPositionService;
 
 @RestService(value = "globalPositionService")
-public class GlobalPositionServiceImpl 
-				extends AbstractBbvaRestService implements GlobalPositionService {
+public class GlobalPositionServiceImpl extends AbstractBbvaRestService implements GlobalPositionService {
 
-	@Value(value="${rest.globalPosition.url}")
+	@Value("${rest.globalPosition.url}")
 	private String URL_GLOBAL_POSITION;
-	
-	@Value("${rest.base.url}")
-	private String URL_BASE;
 
 	@Override
 	public GlobalProducts get(String customerId) {
-		
-		final GlobalProducts result = restTemplate.getForObject(
-				"http://localhost:8099/GlobalPosition/V01/customers/" +customerId, GlobalProducts.class);
 
+		final GlobalProducts result = restTemplate.getForObject(URL_BASE + URL_GLOBAL_POSITION + customerId,
+				GlobalProducts.class);
 
 		return result;
 	}
 
+	public void setURL_GLOBAL_POSITION(String uRL_GLOBAL_POSITION) {
+		URL_GLOBAL_POSITION = uRL_GLOBAL_POSITION;
+	}
 
 }
