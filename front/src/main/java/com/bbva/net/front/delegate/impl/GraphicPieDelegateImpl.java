@@ -16,8 +16,7 @@ import com.bbva.net.front.ui.SituationPiesUI;
 public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 
 	@Override
-	public SituationPiesUI getSituationGlobalProducts(
-			GlobalProducts globalProducts) {
+	public SituationPiesUI getSituationGlobalProducts(GlobalProducts globalProducts) {
 
 		return getSitiationPiesUI();
 	}
@@ -40,7 +39,7 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 	private List<PieItemUI> gePieItemUIList() {
 		List<PieItemUI> pieItemUIList = new ArrayList<PieItemUI>();
 		List<String> legendList = new ArrayList<String>();
-		legendList.add("Depósitos");
+		legendList.add("Depositos");
 		legendList.add("Planes de pensión");
 		legendList.add("Cartera de valores");
 
@@ -51,8 +50,7 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 			pieItemUI.setCurrency('$');
 			pieItemUI.setPercentage("%");
 			pieItemUI.setTextLengend(s);
-			pieItemUI.setValue(new BigDecimal(2000).multiply(new BigDecimal(
-					0.25F)));
+			pieItemUI.setValue(new BigDecimal(2000).multiply(new BigDecimal(0.25F)));
 			pieItemUIList.add(pieItemUI);
 		}
 		return pieItemUIList;
