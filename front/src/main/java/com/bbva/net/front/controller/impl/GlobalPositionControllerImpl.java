@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
+import javax.faces.event.ActionEvent;
 
 import org.springframework.stereotype.Controller;
 
@@ -22,24 +23,11 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	private static final long serialVersionUID = 5726824668267606699L;
 
-<<<<<<< HEAD
-=======
-	private boolean stateGlobalPosition = true;
-
-	public boolean isStateGlobalPosition() {
-		return stateGlobalPosition;
-	}
-
-	public void setStateGlobalPosition(boolean stateGlobalPosition) {
-		this.stateGlobalPosition = stateGlobalPosition;
-	}
-
 	private static final String DEFAULT_USER = "123";
 
 	// private GraphicUI graphicUI;
 	private Integer LISTA_QUIEROS = 1;
 
->>>>>>> ce9a51cc2f8849681e351ef9d7a01f845f2df538
 	@Resource(name = "globalPositionFacade")
 	private transient GlobalPositionFacade globalPositionFacade;
 
@@ -132,6 +120,14 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	 */
 	public void setMultiValueGroupFacade(MultiValueGroupFacade multiValueGroupFacade) {
 		this.multiValueGroupFacade = multiValueGroupFacade;
+	}
+
+	public String goAccounts() {
+		return "accounts";
+	}
+
+	public void hola(ActionEvent action) {
+		System.out.println("hola!!");
 	}
 
 }
