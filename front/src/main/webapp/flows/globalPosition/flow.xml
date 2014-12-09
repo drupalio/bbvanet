@@ -5,10 +5,12 @@
     http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
 
 
-	<var name="pruebaController" class="com.bbva.net.front.controller.impl.GlobalPositionControllerImpl" />
+	<var name="globalPositionController" class="com.bbva.net.front.controller.impl.GlobalPositionControllerImpl" />
+	
 
 	<on-start>
-		<evaluate expression="pruebaController.getCustomerProducts()" result="flowScope.customerProducts" />
+		<evaluate expression="globalPositionController.getCustomerProducts()" result="flowScope.customerProducts" />
+		<evaluate expression="globalPositionController.getListMultiValueLikes()" result="flowScope.likes" />
 	</on-start>
 
 	<view-state id="globalPosition">
