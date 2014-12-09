@@ -1,5 +1,7 @@
 package com.bbva.net.front.controller.impl;
 
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
@@ -7,7 +9,9 @@ import org.springframework.stereotype.Controller;
 
 import co.com.bbva.services.transactions.globalposition.schema.GlobalProducts;
 
+import com.bbva.net.back.entity.MultiValueGroup;
 import com.bbva.net.back.facade.GlobalPositionFacade;
+import com.bbva.net.back.facade.MultiValueGroupFacade;
 import com.bbva.net.front.controller.GlobalPositionController;
 import com.bbva.net.front.core.AbstractBbvaController;
 import com.bbva.net.front.delegate.GraphicPieDelegate;
@@ -18,8 +22,29 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	private static final long serialVersionUID = 5726824668267606699L;
 
+<<<<<<< HEAD
+=======
+	private boolean stateGlobalPosition = true;
+
+	public boolean isStateGlobalPosition() {
+		return stateGlobalPosition;
+	}
+
+	public void setStateGlobalPosition(boolean stateGlobalPosition) {
+		this.stateGlobalPosition = stateGlobalPosition;
+	}
+
+	private static final String DEFAULT_USER = "123";
+
+	// private GraphicUI graphicUI;
+	private Integer LISTA_QUIEROS = 1;
+
+>>>>>>> ce9a51cc2f8849681e351ef9d7a01f845f2df538
 	@Resource(name = "globalPositionFacade")
 	private transient GlobalPositionFacade globalPositionFacade;
+
+	@Resource(name = "multiValueGroupFacade")
+	private transient MultiValueGroupFacade multiValueGroupFacade;
 
 	@Resource(name = "graphicPieDelegate")
 	private transient GraphicPieDelegate graphicPieDelegate;
@@ -47,6 +72,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	public void init() {
 
 		LOGGER.info("STARTING BBVA NET .................");
+
 	}
 
 	@Override
@@ -85,6 +111,27 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	public SituationPiesUI getSituationGraphicPieUI() {
 		return situationGraphicPieUI;
+	}
+
+	/**
+	 * @return the listMultiValueLikes
+	 */
+	public List<MultiValueGroup> getListMultiValueLikes() {
+		return this.multiValueGroupFacade.getMultiValueTypes(LISTA_QUIEROS);
+	}
+
+	/**
+	 * @return the multiValueGroupFacade
+	 */
+	public MultiValueGroupFacade getMultiValueGroupFacade() {
+		return multiValueGroupFacade;
+	}
+
+	/**
+	 * @param multiValueGroupFacade the multiValueGroupFacade to set
+	 */
+	public void setMultiValueGroupFacade(MultiValueGroupFacade multiValueGroupFacade) {
+		this.multiValueGroupFacade = multiValueGroupFacade;
 	}
 
 }

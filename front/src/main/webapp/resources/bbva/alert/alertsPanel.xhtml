@@ -24,8 +24,7 @@
 		emptyMessage="#{msg['text.empty.result']}" id="article">
 
 		<f:facet name="header">
-			<span style="background: none">#{msg['title.alertsAndNews']}
-			</span>
+			<span style="background: none">#{msg['title.alertsAndNews']} </span>
 			<span class="badge-red pull-right"> <span
 				style="color: #FFFFFF; font-size: 0.75em; font-family: Arial;">2</span>
 			</span>
@@ -42,56 +41,11 @@
 
 		</p:column>
 
-
 		<f:facet name="footer">
 			<button class="btn small" type="button">#{msg['button.see.All']}</button>
 		</f:facet>
 	</p:dataList>
 
-
-	<h:form id="algunFormulario">
-
-	
-
-		<h:panelGrid id="registro">
-
-			<div class="form-group">
-			
-				<bbvaInput:inputLabel label="Usuario" value="" required="true" id="usuInput">
-					<f:validateLength maximum="8" minimum="4" for="input" />
-					<span aria-required="true"
-						data-original-title="La clave a incluir es la utilizada en Cajeros Automáticos. En caso de introducir la clave de manera errónea más de tres veces, el sistema bloqueará de manera automática la tarjeta. Para desbloquearla deberá acudir a la oficina dónde registró los productos."
-						class="required" data-toggle="tooltip" title="" />
-				</bbvaInput:inputLabel>
-
-				<bbvaInput:inputLabel label="Pass" value="" required="true" id="passInput"
-					onclick="showMessage()">
-					<f:validateLength maximum="8" minimum="4" for="input" />
-					<span aria-required="true"
-						data-original-title="La clave a incluir es la utilizada en Cajeros Automáticos. En caso de introducir la clave de manera errónea más de tres veces, el sistema bloqueará de manera automática la tarjeta. Para desbloquearla deberá acudir a la oficina dónde registró los productos."
-						class="required" data-toggle="tooltip" title="" />
-				</bbvaInput:inputLabel>
-				
-				
-				
-				<bbvaInput:inputLabel label="Email" value="" required="true" id="mailInput"
-					onclick="showMessage()">
-					<f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" for="input" />
-					<f:validateLength maximum="8" minimum="4" for="input" />
-					<span aria-required="true"
-						data-original-title="La clave a incluir es la utilizada en Cajeros Automáticos. En caso de introducir la clave de manera errónea más de tres veces, el sistema bloqueará de manera automática la tarjeta. Para desbloquearla deberá acudir a la oficina dónde registró los productos."
-						class="required" data-toggle="tooltip" title="" />
-				</bbvaInput:inputLabel>
-
-			</div>
-			
-			<div class="modal-footer registerModal">
-				<p:commandButton value="Next" styleClass="btn btn-form next"
-					type="submit" update="registro" />
-			</div>
-		</h:panelGrid>
-
-	</h:form>
 
 </composite:implementation>
 
