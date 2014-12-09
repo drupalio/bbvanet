@@ -10,9 +10,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for loan complex type.
+ * <p>Clase Java para loan complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="loan">
@@ -49,7 +49,7 @@ public class Loan
     protected BigDecimal totalDue;
 
     /**
-     * Gets the value of the product property.
+     * Obtiene el valor de la propiedad product.
      * 
      * @return
      *     possible object is
@@ -61,7 +61,7 @@ public class Loan
     }
 
     /**
-     * Sets the value of the product property.
+     * Define el valor de la propiedad product.
      * 
      * @param value
      *     allowed object is
@@ -77,7 +77,7 @@ public class Loan
     }
 
     /**
-     * Gets the value of the totalDebt property.
+     * Obtiene el valor de la propiedad totalDebt.
      * 
      * @return
      *     possible object is
@@ -89,7 +89,7 @@ public class Loan
     }
 
     /**
-     * Sets the value of the totalDebt property.
+     * Define el valor de la propiedad totalDebt.
      * 
      * @param value
      *     allowed object is
@@ -105,7 +105,7 @@ public class Loan
     }
 
     /**
-     * Gets the value of the totalDue property.
+     * Obtiene el valor de la propiedad totalDue.
      * 
      * @return
      *     possible object is
@@ -117,7 +117,7 @@ public class Loan
     }
 
     /**
-     * Sets the value of the totalDue property.
+     * Define el valor de la propiedad totalDue.
      * 
      * @param value
      *     allowed object is

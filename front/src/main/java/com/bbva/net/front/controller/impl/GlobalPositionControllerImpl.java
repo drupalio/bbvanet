@@ -18,16 +18,6 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	private static final long serialVersionUID = 5726824668267606699L;
 
-	private boolean stateGlobalPosition = true;
-
-	public boolean isStateGlobalPosition() {
-		return stateGlobalPosition;
-	}
-
-	public void setStateGlobalPosition(boolean stateGlobalPosition) {
-		this.stateGlobalPosition = stateGlobalPosition;
-	}
-
 	@Resource(name = "globalPositionFacade")
 	private transient GlobalPositionFacade globalPositionFacade;
 
@@ -37,6 +27,16 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	private SituationPiesUI situationGraphicPieUI;
 
 	private ActivePanelType activePanel = ActivePanelType.SITUATION;
+
+	private transient boolean stateGlobalPosition = true;
+
+	public boolean isStateGlobalPosition() {
+		return stateGlobalPosition;
+	}
+
+	public void setStateGlobalPosition(boolean stateGlobalPosition) {
+		this.stateGlobalPosition = stateGlobalPosition;
+	}
 
 	private enum ActivePanelType {
 
