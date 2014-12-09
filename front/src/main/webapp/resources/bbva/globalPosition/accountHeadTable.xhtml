@@ -5,10 +5,12 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:pm="http://primefaces.org/mobile">
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:bbvaInput="http://java.sun.com/jsf/composite/bbva/input">
 
 <composite:interface>
 	<composite:attribute name="listAccounts" type="java.util.List"/>
+	<composite:attribute name="listValueLikes" />
 
 </composite:interface>
 
@@ -17,10 +19,12 @@
 	<p:dataTable var="icuenta" value="#{cc.attrs.listAccounts.subList(0, (cc.attrs.listAccounts.size()) >= 10 ? 10 : cc.attrs.listAccounts.size())}" >
 		<p:column class="head" headerText="N° CUENTA" styleClass="col-xs-6 col-md-8" 
 			style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">				
-
+				
 			<p class="title-label" style="font-size: 1.1em">#{icuenta.product.alias}</p>
 			<p style="font-size: 1em">#{icuenta.product.productId}</p>
 			<p class="sublabel" style="font-size: 1em">#{icuenta.product.productName}</p>
+			<bbvaInput:selectOneMenuWants  name="qwe" valueList="#{cc.attrs.listValueLikes}"/>
+				
 		</p:column>
 		<p:column class="head" headerText="SALDO" styleClass="col-xs-6 col-md-4" 
 			style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">

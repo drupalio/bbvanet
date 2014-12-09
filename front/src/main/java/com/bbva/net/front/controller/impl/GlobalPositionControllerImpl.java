@@ -1,5 +1,7 @@
 package com.bbva.net.front.controller.impl;
 
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
@@ -7,7 +9,9 @@ import org.springframework.stereotype.Controller;
 
 import co.com.bbva.services.transactions.globalposition.schema.GlobalProducts;
 
+import com.bbva.net.back.entity.MultiValueGroup;
 import com.bbva.net.back.facade.GlobalPositionFacade;
+import com.bbva.net.back.facade.MultiValueGroupFacade;
 import com.bbva.net.front.controller.GlobalPositionController;
 import com.bbva.net.front.core.AbstractBbvaController;
 import com.bbva.net.front.delegate.GraphicPieDelegate;
@@ -28,8 +32,16 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		this.stateGlobalPosition = stateGlobalPosition;
 	}
 
+	private static final String DEFAULT_USER = "123";
+
+	// private GraphicUI graphicUI;
+	private Integer LISTA_QUIEROS = 1;
+
 	@Resource(name = "globalPositionFacade")
 	private transient GlobalPositionFacade globalPositionFacade;
+
+	@Resource(name = "multiValueGroupFacade")
+	private transient MultiValueGroupFacade multiValueGroupFacade;
 
 	@Resource(name = "graphicPieDelegate")
 	private transient GraphicPieDelegate graphicPieDelegate;
@@ -47,6 +59,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	public void init() {
 
 		LOGGER.info("STARTING BBVA NET .................");
+
 	}
 
 	@Override
@@ -85,6 +98,27 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	public SituationPiesUI getSituationGraphicPieUI() {
 		return situationGraphicPieUI;
+	}
+
+	/**
+	 * @return the listMultiValueLikes
+	 */
+	public List<MultiValueGroup> getListMultiValueLikes() {
+		return this.multiValueGroupFacade.getMultiValueTypes(LISTA_QUIEROS);
+	}
+
+	/**
+	 * @return the multiValueGroupFacade
+	 */
+	public MultiValueGroupFacade getMultiValueGroupFacade() {
+		return multiValueGroupFacade;
+	}
+
+	/**
+	 * @param multiValueGroupFacade the multiValueGroupFacade to set
+	 */
+	public void setMultiValueGroupFacade(MultiValueGroupFacade multiValueGroupFacade) {
+		this.multiValueGroupFacade = multiValueGroupFacade;
 	}
 
 }
