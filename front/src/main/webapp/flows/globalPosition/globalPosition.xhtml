@@ -13,22 +13,28 @@
 	xmlns:bbvaContainer="http://java.sun.com/jsf/composite/bbva/container"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:bbvaBoton="http://java.sun.com/jsf/composite/bbva/boton"
 	xmlns:bbvaInput="http://java.sun.com/jsf/composite/bbva/input">
 
 
 <ui:composition template="../../templates/defaultLayout.xhtml">
 
+
 	<ui:define name="bodyTitle">
+		<h:form>
+			<bbvaBoton:iconButton value="Editar" icon="document-view-icon"
+				actionlistener="#{globalPositionController.hola}" />
+		</h:form>
 		<bbvaBody:title title="Posición global" />
 	</ui:define>
 
 	<ui:define name="contentLeft">
-
 		<bbvaContainer:productPanelGraphic title="Cuentas Personales">
 			<div class="table-tabs">
-				<bbvaGP:accountSearch listAccounts="#{customerProducts.accounts}"  />
-				<bbvaGP:accountHeadTable listAccounts="#{customerProducts.accounts}" listValueLikes="#{globalPositionController.listMultiValueLikes}" />
-				<bbvaGP:accountTailTable listAccounts="#{customerProducts.accounts}"/>
+				<bbvaGP:accountSearch listAccounts="#{customerProducts.accounts}" />
+				<bbvaGP:accountHeadTable listAccounts="#{customerProducts.accounts}"
+					listValueLikes="#{globalPositionController.listMultiValueLikes}" />
+				<bbvaGP:accountTailTable listAccounts="#{customerProducts.accounts}" />
 			</div>
 			<div class="row afterTable">
 				<bbvaGP:productFooter listProduct="#{customerProducts.accounts}" />
@@ -38,11 +44,11 @@
 
 		<bbvaContainer:productPanelGraphic title="Tarjetas">
 			<div class="table-tabs">
-				<bbvaGP:cardHeadTable listCards="#{customerProducts.creditCards}"/>
-				<bbvaGP:cardTailTable listCards="#{customerProducts.creditCards}"/>
+				<bbvaGP:cardHeadTable listCards="#{customerProducts.creditCards}" />
+				<bbvaGP:cardTailTable listCards="#{customerProducts.creditCards}" />
 			</div>
 			<div class="row afterTable">
-				<bbvaGP:productFooter listProduct="#{customerProducts.creditCards}"/>
+				<bbvaGP:productFooter listProduct="#{customerProducts.creditCards}" />
 				<bbvaGP:totalBalance />
 			</div>
 		</bbvaContainer:productPanelGraphic>
@@ -50,23 +56,26 @@
 		<bbvaContainer:productPanel title="Cupo Rotativo">
 			<div class="table-tabs">
 
-				<bbvaGP:rotatingQuotaHeadTable listQuota="#{customerProducts.rotatingAccounts}"/>
-				<bbvaGP:rotatingQuotaTailTable listQuota="#{customerProducts.rotatingAccounts}"/>
+				<bbvaGP:rotatingQuotaHeadTable
+					listQuota="#{customerProducts.rotatingAccounts}" />
+				<bbvaGP:rotatingQuotaTailTable
+					listQuota="#{customerProducts.rotatingAccounts}" />
 
 			</div>
 			<div class="row afterTable">
-				<bbvaGP:productFooter listProduct="#{customerProducts.rotatingAccounts}"/>
+				<bbvaGP:productFooter
+					listProduct="#{customerProducts.rotatingAccounts}" />
 				<bbvaGP:totalBalance />
 			</div>
 		</bbvaContainer:productPanel>
 
 		<bbvaContainer:productPanel title="Leasing">
 			<div class="table-tabs">
-				<bbvaGP:leasingHeadTable listLeasing="#{customerProducts.leasings}"/>
-				<bbvaGP:leasingTailTable listLeasing="#{customerProducts.leasings}"/>
+				<bbvaGP:leasingHeadTable listLeasing="#{customerProducts.leasings}" />
+				<bbvaGP:leasingTailTable listLeasing="#{customerProducts.leasings}" />
 			</div>
 			<div class="row afterTable">
-				<bbvaGP:productFooter listProduct="#{customerProducts.leasings}"/>
+				<bbvaGP:productFooter listProduct="#{customerProducts.leasings}" />
 				<bbvaGP:totalBalance />
 			</div>
 		</bbvaContainer:productPanel>
@@ -77,7 +86,7 @@
 				<bbvaGP:loanTailTable />
 			</div>
 			<div class="row afterTable">
-				<bbvaGP:productFooter/>
+				<bbvaGP:productFooter />
 				<bbvaGP:totalBalance />
 			</div>
 		</bbvaContainer:productPanel>
@@ -85,39 +94,44 @@
 		<bbvaContainer:productPanelGraphic
 			title="Dep&#243;sito de dinero electr&#243;nico">
 			<div class="table-tabs">
-				<bbvaGP:depositHeadTable listDeposit="#{customerProducts.electronicDeposits}"/>
-				<bbvaGP:depositTailTable listDeposit="#{customerProducts.electronicDeposits}"/>
+				<bbvaGP:depositHeadTable
+					listDeposit="#{customerProducts.electronicDeposits}" />
+				<bbvaGP:depositTailTable
+					listDeposit="#{customerProducts.electronicDeposits}" />
 			</div>
 			<div class="row afterTable">
-				<bbvaGP:productFooter listProduct="#{customerProducts.electronicDeposits}"/>
+				<bbvaGP:productFooter
+					listProduct="#{customerProducts.electronicDeposits}" />
 				<bbvaGP:totalBalance />
 			</div>
 		</bbvaContainer:productPanelGraphic>
 
 		<bbvaContainer:productPanelGraphic title="Fondos de inversi&#243;n">
 			<div class="table-tabs">
-				<bbvaGP:investmentFundHeadTable listFund="#{customerProducts.funds}"/>
-				<bbvaGP:investmentFundTailTable listFund="#{customerProducts.funds}"/>
+				<bbvaGP:investmentFundHeadTable listFund="#{customerProducts.funds}" />
+				<bbvaGP:investmentFundTailTable listFund="#{customerProducts.funds}" />
 			</div>
 			<div class="row afterTable">
-				<bbvaGP:productFooter listProduct="#{customerProducts.funds}"/>
+				<bbvaGP:productFooter listProduct="#{customerProducts.funds}" />
 				<bbvaGP:totalBalance />
 			</div>
 		</bbvaContainer:productPanelGraphic>
 	</ui:define>
 
 
-	<ui:define name="contentRight" >
-		
-		<bbvaSituation:globalSituationPanel/>
-		
+	<ui:define name="contentRight">
+
+		<bbvaSituation:globalSituationPanel />
+
 		<bbvaAlert:alertsPanel header="Alertas y Novedades" numAlerts="8" />
+
 		<h:form>
 
-			<bbvaInput:selectOneMenuWants  name="qwe" valueList="#{globalPositionController.listMultiValueLikes}"/>
-			
+			<bbvaInput:selectOneMenuWants name="qwe"
+				valueList="#{globalPositionController.listMultiValueLikes}" />
+
 			<p:inputText>
-				 <p:ajax event="keyup" listener="#{globalPositionController.onKeyUp}" /> 
+				<p:ajax event="keyup" listener="#{globalPositionController.onKeyUp}" />
 			</p:inputText>
 
 			<h:outputLabel value="#{prueba.name}"></h:outputLabel>
@@ -125,9 +139,9 @@
 				ACCIÓN
 				<f:ajax execute="@form" render="@form" />
 			</button>
-			
+
 		</h:form>
-		
+
 	</ui:define>
 
 </ui:composition>

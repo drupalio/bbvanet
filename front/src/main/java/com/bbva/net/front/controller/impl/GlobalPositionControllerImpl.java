@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
+import javax.faces.event.ActionEvent;
 
 import org.springframework.stereotype.Controller;
 
@@ -119,6 +120,14 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	 */
 	public void setMultiValueGroupFacade(MultiValueGroupFacade multiValueGroupFacade) {
 		this.multiValueGroupFacade = multiValueGroupFacade;
+	}
+
+	public String goAccounts() {
+		return "accounts";
+	}
+	
+	public void hola(ActionEvent action){
+		System.out.println("hola!!");
 	}
 
 }
