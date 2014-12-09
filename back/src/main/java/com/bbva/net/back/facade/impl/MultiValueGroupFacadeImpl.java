@@ -8,7 +8,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import com.bbva.net.back.core.pattern.AbstractBbvaFacade;
+import com.bbva.net.back.core.pattern.facade.AbstractBbvaFacade;
 import com.bbva.net.back.core.stereotype.Facade;
 import com.bbva.net.back.dao.MultiValueGroupDAO;
 import com.bbva.net.back.entity.MultiValueGroup;
@@ -16,13 +16,12 @@ import com.bbva.net.back.facade.MultiValueGroupFacade;
 
 /**
  * @author User
- *
  */
 @Facade(value = "multiValueGroupFacade")
-public class MultiValueGroupFacadeImpl extends AbstractBbvaFacade implements
-		MultiValueGroupFacade {
+public class MultiValueGroupFacadeImpl extends AbstractBbvaFacade implements MultiValueGroupFacade {
 
 	private static final long serialVersionUID = -3576143862712353581L;
+
 	@Resource(name = "multiValueGroupDao")
 	private transient MultiValueGroupDAO multiValueDao;
 
