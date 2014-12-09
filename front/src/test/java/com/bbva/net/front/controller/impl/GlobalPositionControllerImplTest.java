@@ -39,8 +39,11 @@ public class GlobalPositionControllerImplTest {
 
 		globalPositionFacade = Mockito.mock(GlobalPositionFacade.class);
 		graphicPieDelegate = Mockito.mock(GraphicPieDelegate.class);
+		multiValueGroupFacade = Mockito.mock(MultiValueGroupFacade.class);
 
 		globalPositionController.setGlobalPositionFacade(globalPositionFacade);
+		globalPositionController.setGraphicPieDelegate(graphicPieDelegate);
+		globalPositionController.setMultiValueGroupFacade(multiValueGroupFacade);
 
 	}
 
