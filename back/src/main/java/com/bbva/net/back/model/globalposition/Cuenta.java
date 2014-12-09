@@ -1,11 +1,11 @@
 package com.bbva.net.back.model.globalposition;
 
-import java.io.Serializable;
-
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class Cuenta implements Serializable {
+import com.bbva.net.back.core.pattern.dto.Dto;
+
+public class Cuenta implements Dto {
 
 	/**
 	 * 

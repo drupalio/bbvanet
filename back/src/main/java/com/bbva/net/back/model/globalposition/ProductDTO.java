@@ -3,15 +3,15 @@
  */
 package com.bbva.net.back.model.globalposition;
 
-import java.io.Serializable;
-
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+
+import com.bbva.net.back.core.pattern.dto.Dto;
 
 /**
  * @author Entelgy
  */
-public class ProductDTO implements Serializable {
+public class ProductDTO implements Dto {
 
 	/**
 	 * 

@@ -1,4 +1,4 @@
-package com.bbva.net.back.core.pattern;
+package com.bbva.net.back.core.pattern.exception;
 
 /**
  * 

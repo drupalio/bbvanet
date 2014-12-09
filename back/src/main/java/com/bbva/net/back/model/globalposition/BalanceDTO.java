@@ -3,21 +3,22 @@
  */
 package com.bbva.net.back.model.globalposition;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 
+import com.bbva.net.back.core.pattern.dto.Dto;
 
 /**
  * @author Entelgy
- *
  */
-public class BalanceDTO implements Serializable {
+public class BalanceDTO implements Dto {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 5948513162074389414L;
+
 	private BigDecimal availableBalance;
+
 	private BigDecimal totalBalance;
 
 	public BigDecimal getAvailableBalance() {

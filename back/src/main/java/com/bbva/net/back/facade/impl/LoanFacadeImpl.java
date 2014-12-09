@@ -8,7 +8,7 @@ import co.com.bbva.services.transactions.globalposition.schema.GlobalProducts;
 import co.com.bbva.services.transactions.globalposition.schema.Leasing;
 import co.com.bbva.services.transactions.globalposition.schema.RotatingAccount;
 
-import com.bbva.net.back.core.pattern.AbstractBbvaFacade;
+import com.bbva.net.back.core.pattern.facade.AbstractBbvaFacade;
 import com.bbva.net.back.core.stereotype.Facade;
 import com.bbva.net.back.facade.LoanFacade;
 import com.bbva.net.webservices.globalposition.GlobalPositionService;

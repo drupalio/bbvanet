@@ -1,22 +1,23 @@
 package com.bbva.net.back.model.newsAlerts;
 
-import java.io.Serializable;
 import java.util.Date;
 
-public class NewsAlertsDTO implements Serializable {
+import com.bbva.net.back.core.pattern.dto.Dto;
+
+public class NewsAlertsDTO implements Dto {
 
 	private static final long serialVersionUID = 1L;
+
 	private String idNewsAlerts;
+
 	private Date alertDate;
+
 	private String type;
+
 	private String title;
+
 	private String description;
 
-		
-	public NewsAlertsDTO() {
-		super();
-	}		
-	
 	/**
 	 * @param idNewsAlerts
 	 * @param alertDate
@@ -24,8 +25,7 @@ public class NewsAlertsDTO implements Serializable {
 	 * @param title
 	 * @param description
 	 */
-	public NewsAlertsDTO(String idNewsAlerts, Date alertDate, String type,
-			String title, String description) {
+	public NewsAlertsDTO(String idNewsAlerts, Date alertDate, String type, String title, String description) {
 		super();
 		this.idNewsAlerts = idNewsAlerts;
 		this.alertDate = alertDate;
@@ -45,14 +45,12 @@ public class NewsAlertsDTO implements Serializable {
 		return idNewsAlerts;
 	}
 
-
 	/**
 	 * @param idNewsAlerts the idNewsAlerts to set
 	 */
 	public void setIdNewsAlerts(String idNewsAlerts) {
 		this.idNewsAlerts = idNewsAlerts;
 	}
-
 
 	/**
 	 * @return the alertDate
@@ -61,14 +59,12 @@ public class NewsAlertsDTO implements Serializable {
 		return alertDate;
 	}
 
-
 	/**
 	 * @param alertDate the alertDate to set
 	 */
 	public void setAlertDate(Date alertDate) {
 		this.alertDate = alertDate;
 	}
-
 
 	/**
 	 * @return the type
@@ -77,14 +73,12 @@ public class NewsAlertsDTO implements Serializable {
 		return type;
 	}
 
-
 	/**
 	 * @param type the type to set
 	 */
 	public void setType(String type) {
 		this.type = type;
 	}
-
 
 	/**
 	 * @return the title
@@ -93,7 +87,6 @@ public class NewsAlertsDTO implements Serializable {
 		return title;
 	}
 
-
 	/**
 	 * @param title the title to set
 	 */
@@ -101,14 +94,12 @@ public class NewsAlertsDTO implements Serializable {
 		this.title = title;
 	}
 
-
 	/**
 	 * @return the description
 	 */
 	public String getDescription() {
 		return description;
 	}
-
 
 	/**
 	 * @param description the description to set

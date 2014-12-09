@@ -6,7 +6,7 @@ import javax.annotation.Resource;
 
 import co.com.bbva.services.transactions.globalposition.schema.Account;
 
-import com.bbva.net.back.core.pattern.AbstractBbvaFacade;
+import com.bbva.net.back.core.pattern.facade.AbstractBbvaFacade;
 import com.bbva.net.back.core.stereotype.Facade;
 import com.bbva.net.back.facade.AccountsFacade;
 import com.bbva.net.webservices.globalposition.GlobalPositionService;
