@@ -7,14 +7,15 @@
 	xmlns:bbvaScript="http://java.sun.com/jsf/composite/bbva/script"
 	xmlns:bbvaContainer="http://java.sun.com/jsf/composite/bbva/container"
 	xmlns:p="http://primefaces.org/ui">
-	
+
 <h:head>
-	<title><ui:insert name="title">	BBVA :: Colombia :: Posición Global</ui:insert></title>	
-	<bbvaScript:assetScripts/>
+	<title><ui:insert name="title">	BBVA :: Colombia :: Posición Global</ui:insert></title>
+	<bbvaScript:assetScripts />
+
 </h:head>
 
 <h:body>
-	
+
 	<div id="header">
 		<ui:insert name="header">
 			<ui:include src="header.xhtml" />
@@ -23,15 +24,14 @@
 
 	<div id="content">
 		<div class="container">
-			<section class="row global-content"> 
-				<ui:insert name="bodyTitle"></ui:insert>
-				<div class="section-content col-xs-12 col-md-8">
-					<ui:insert name="contentLeft"></ui:insert>
-				</div>
-				<bbvaContainer:rightBodyPanel>
-					<ui:insert name="contentRight"></ui:insert>
-				</bbvaContainer:rightBodyPanel>
-			</section>
+			<section class="row global-content"> <ui:insert
+				name="bodyTitle"></ui:insert>
+			<div class="section-content col-xs-12 col-md-8">
+				<ui:insert name="contentLeft"></ui:insert>
+			</div>
+			<bbvaContainer:rightBodyPanel>
+				<ui:insert name="contentRight"></ui:insert>
+			</bbvaContainer:rightBodyPanel> </section>
 		</div>
 	</div>
 

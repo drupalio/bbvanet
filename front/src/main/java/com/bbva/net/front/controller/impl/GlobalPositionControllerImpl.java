@@ -1,6 +1,7 @@
 package com.bbva.net.front.controller.impl;
 
 import javax.annotation.Resource;
+import javax.faces.event.ActionEvent;
 
 import org.springframework.stereotype.Controller;
 
@@ -85,6 +86,14 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController
 
 	public GraphicPieUI getGraphicPieUI() {
 		return graphicPieUI;
+	}
+
+	public String goAccounts() {
+		return "accounts";
+	}
+	
+	public void hola(ActionEvent action){
+		System.out.println("hola!!");
 	}
 
 }

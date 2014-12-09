@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+
+
+<composite:interface>
+	<composite:attribute name="id" />
+	<composite:attribute name="value" />
+	<composite:attribute name="onclick" required="false" />
+	<composite:attribute name="action" required="false"
+		method-signature="java.lang.String action()" />
+	<composite:attribute name="actionlistener" required="false" 
+		method-signature="void actionListener(javax.faces.event.ActionEvent)" /> 
+	<composite:attribute name="icon" required="false" />
+</composite:interface>
+
+<composite:implementation>
+
+	<button class="btn btn-default hidden-xs hidden-sm"
+		style="padding: 5px 11px; margin-right: 5px; font-size: 0.85em;"
+		jsf:id="#{cc.attrs.id}" jsf:onclick="#{cc.attrs.onclick}"
+		jsf:action="#{cc.attrs.action}"
+		jsf:actionListener="#{cc.attrs.actionlistener}">		
+		<span class="#{cc.attrs.icon}" /> #{cc.attrs.value}
+	</button>
+
+
+</composite:implementation>
+
+</html>
