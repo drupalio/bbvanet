@@ -4,9 +4,14 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
+import org.primefaces.event.SelectEvent;
+import org.primefaces.event.UnselectEvent;
 import org.springframework.stereotype.Controller;
 
+import co.com.bbva.services.transactions.globalposition.schema.Account;
 import co.com.bbva.services.transactions.globalposition.schema.GlobalProducts;
 
 import com.bbva.net.back.entity.MultiValueGroup;
@@ -47,6 +52,8 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	private transient GraphicPieDelegate graphicPieDelegate;
 
 	private SituationPiesUI situationGraphicPieUI;
+
+	private Account selectedProduct;
 
 	private ActivePanelType activePanel = ActivePanelType.SITUATION;
 
@@ -119,6 +126,35 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	 */
 	public void setMultiValueGroupFacade(MultiValueGroupFacade multiValueGroupFacade) {
 		this.multiValueGroupFacade = multiValueGroupFacade;
+	}
+
+	/**
+	 * @return the selectedProduct
+	 */
+	public Account getSelectedProduct() {
+		return selectedProduct;
+	}
+
+	/**
+	 * @param selectedProduct the selectedProduct to set
+	 */
+	public void setSelectedProduct(Account selectedProduct) {
+		this.selectedProduct = selectedProduct;
+	}
+
+	public void onRowSelect(SelectEvent event) {
+		System.out.println("LLego selected");
+		System.out.println("Product Selected" + ((Account)event.getObject()).getProduct().getProductId());
+		FacesMessage msg = new FacesMessage("Product Selected", ((Account)event.getObject()).getProduct()
+				.getProductId());
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+
+	public void onRowUnselect(UnselectEvent event) {
+		System.out.println("LLego iunselected");
+		FacesMessage msg = new FacesMessage("Product Unselected", ((Account)event.getObject()).getProduct()
+				.getProductId());
+		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 
 }
