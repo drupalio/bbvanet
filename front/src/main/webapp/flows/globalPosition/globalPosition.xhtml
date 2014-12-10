@@ -13,7 +13,7 @@
 	xmlns:bbvaContainer="http://java.sun.com/jsf/composite/bbva/container"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:jsf="http://xmlns.jcp.org/jsf"
-	xmlns:bbvaBoton="http://java.sun.com/jsf/composite/bbva/boton"
+	xmlns:bbvaButton="http://java.sun.com/jsf/composite/bbva/button"
 	xmlns:bbvaInput="http://java.sun.com/jsf/composite/bbva/input">
 
 
@@ -21,19 +21,16 @@
 
 
 	<ui:define name="bodyTitle">
-		<h:form>
-			<bbvaBoton:iconButton value="Editar" icon="document-view-icon"
-				actionlistener="#{globalPositionController.hola}" />
-		</h:form>
 		<bbvaBody:title title="Posición global" />
 	</ui:define>
 
 	<ui:define name="contentLeft">
+
 		<bbvaContainer:productPanelGraphic title="Cuentas Personales">
 			<div class="table-tabs">
 				<bbvaGP:accountSearch listAccounts="#{customerProducts.accounts}" />
 				<bbvaGP:accountHeadTable listAccounts="#{customerProducts.accounts}"
-					listValueLikes="#{globalPositionController.listMultiValueLikes}" />
+					listValueLikes="#{likes}" />
 				<bbvaGP:accountTailTable listAccounts="#{customerProducts.accounts}" />
 			</div>
 			<div class="row afterTable">
@@ -116,7 +113,7 @@
 				<bbvaGP:totalBalance />
 			</div>
 		</bbvaContainer:productPanelGraphic>
-		
+
 	</ui:define>
 
 
@@ -140,18 +137,13 @@
 				ACCIÓN
 				<f:ajax execute="@form" render="@form" />
 			</button>
-<<<<<<< HEAD
 			<p:outputLabel>Selector</p:outputLabel>
-			
-			<bbvaInput:comboSelected width="col-md-6"/>
-		</h:form>
-		
-		
-=======
+
+			<bbvaInput:comboSelected width="col-md-6" />
+
 
 		</h:form>
 
->>>>>>> 51bd21c5c372a48dc79be6a3f80466de4bf5519d
 	</ui:define>
 
 </ui:composition>

@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import javax.faces.context.FacesContext;
 import javax.faces.event.ComponentSystemEvent;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.primefaces.context.RequestContext;
@@ -43,6 +44,17 @@ public abstract class AbstractBbvaController implements Serializable {
 	protected HttpSession getSession() {
 		final FacesContext fCtx = FlowFacesContext.getCurrentInstance();
 		return (HttpSession)fCtx.getExternalContext().getSession(true);
+	}
+
+	/**
+	 * @param parameter
+	 * @return
+	 */
+	protected String getParameter(final String parameter) {
+
+		HttpServletRequest request = (HttpServletRequest)FlowFacesContext.getCurrentInstance().getExternalContext()
+				.getRequest();
+		return request.getParameter(parameter);
 	}
 
 	/**

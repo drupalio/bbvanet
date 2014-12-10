@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
-import javax.faces.event.ActionEvent;
 
 import org.springframework.stereotype.Controller;
 
@@ -22,8 +21,6 @@ import com.bbva.net.front.ui.SituationPiesUI;
 public class GlobalPositionControllerImpl extends AbstractBbvaController implements GlobalPositionController {
 
 	private static final long serialVersionUID = 5726824668267606699L;
-
-	private static final String DEFAULT_USER = "123";
 
 	// private GraphicUI graphicUI;
 	private Integer LISTA_QUIEROS = 1;
@@ -120,14 +117,6 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	 */
 	public void setMultiValueGroupFacade(MultiValueGroupFacade multiValueGroupFacade) {
 		this.multiValueGroupFacade = multiValueGroupFacade;
-	}
-
-	public String goAccounts() {
-		return "accounts";
-	}
-
-	public void hola(ActionEvent action) {
-		System.out.println("hola!!");
 	}
 
 }
