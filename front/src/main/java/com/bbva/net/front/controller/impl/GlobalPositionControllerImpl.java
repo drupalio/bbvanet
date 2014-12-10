@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
+import javax.swing.JOptionPane;
 
 import org.springframework.stereotype.Controller;
 
@@ -127,7 +128,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	}
 	
 	public void hola(ActionEvent action){
-		System.out.println("hola!!");
+		JOptionPane.showMessageDialog(null,"hola!!");
 	}
 
 }

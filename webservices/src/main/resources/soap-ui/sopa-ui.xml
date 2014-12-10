@@ -1720,4 +1720,4 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 			"cashAvailable": 690154
 		}
 	}]
-}</con:responseContent></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
+}</con:responseContent></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>
