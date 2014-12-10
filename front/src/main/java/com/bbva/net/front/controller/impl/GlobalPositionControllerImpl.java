@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.faces.event.ValueChangeEvent;
 
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
@@ -25,7 +26,8 @@ import com.bbva.net.front.delegate.GraphicPieDelegate;
 import com.bbva.net.front.ui.SituationPiesUI;
 
 @Controller(value = "globalPositionController")
-public class GlobalPositionControllerImpl extends AbstractBbvaController implements GlobalPositionController {
+public class GlobalPositionControllerImpl extends AbstractBbvaController
+		implements GlobalPositionController {
 
 	private static final long serialVersionUID = 5726824668267606699L;
 
@@ -52,6 +54,10 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	private ActivePanelType activePanel = ActivePanelType.SITUATION;
 
 	private transient boolean stateGlobalPosition = true;
+
+	private List exam;
+	
+	private String valor;
 
 	public boolean isStateGlobalPosition() {
 		return stateGlobalPosition;
@@ -80,12 +86,35 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	@Override
 	public GlobalProducts getCustomerProducts() {
+		exam = new ArrayList();
+		exam.add("1");
+		exam.add("2");
+		exam.add("3");
+		exam.add("4");
+		exam.add("5");
+		final GlobalProducts globalProductos = this.globalPositionFacade
+				.getGlobalProductsByUser(getCurrentUser());
 
-		final GlobalProducts globalProductos = this.globalPositionFacade.getGlobalProductsByUser(getCurrentUser());
-
-		situationGraphicPieUI = graphicPieDelegate.getSituationGlobalProducts(globalProductos);
+		situationGraphicPieUI = graphicPieDelegate
+				.getSituationGlobalProducts(globalProductos);
 
 		return globalProductos;
+	}
+
+	public List getExam() {
+		return exam;
+	}
+
+	public void setExam(List exam) {
+		this.exam = exam;
+	}
+
+	public String getValor() {
+		return valor;
+	}
+
+	public void setValor(String valor) {
+		this.valor = valor;
 	}
 
 	public void renderPieSituation() {
@@ -100,7 +129,8 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		this.activePanel = ActivePanelType.FINANCIATION;
 	}
 
-	public void setGlobalPositionFacade(final GlobalPositionFacade globalPositionFacade) {
+	public void setGlobalPositionFacade(
+			final GlobalPositionFacade globalPositionFacade) {
 		this.globalPositionFacade = globalPositionFacade;
 	}
 
@@ -131,9 +161,11 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	}
 
 	/**
-	 * @param multiValueGroupFacade the multiValueGroupFacade to set
+	 * @param multiValueGroupFacade
+	 *            the multiValueGroupFacade to set
 	 */
-	public void setMultiValueGroupFacade(MultiValueGroupFacade multiValueGroupFacade) {
+	public void setMultiValueGroupFacade(
+			MultiValueGroupFacade multiValueGroupFacade) {
 		this.multiValueGroupFacade = multiValueGroupFacade;
 	}
 
@@ -145,7 +177,8 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	}
 
 	/**
-	 * @param selectedProduct the selectedProduct to set
+	 * @param selectedProduct
+	 *            the selectedProduct to set
 	 */
 	public void setSelectedProduct(Account selectedProduct) {
 		this.selectedProduct = selectedProduct;
@@ -159,7 +192,8 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	}
 
 	/**
-	 * @param selectedLike the selectedLike to set
+	 * @param selectedLike
+	 *            the selectedLike to set
 	 */
 	public void setSelectedLike(String selectedLike) {
 		this.selectedLike = selectedLike;
@@ -173,7 +207,8 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	}
 
 	/**
-	 * @param listPrb the listPrb to set
+	 * @param listPrb
+	 *            the listPrb to set
 	 */
 	public void setListPrb(List<String> listPrb) {
 		this.listPrb = listPrb;
@@ -181,16 +216,17 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	public void onRowSelect(SelectEvent event) {
 		System.out.println("LLego selected");
-		System.out.println("Product Selected" + ((Account)event.getObject()).getProduct().getProductId());
-		FacesMessage msg = new FacesMessage("Product Selected", ((Account)event.getObject()).getProduct()
-				.getProductId());
+		System.out.println("Product Selected"
+				+ ((Account) event.getObject()).getProduct().getProductId());
+		FacesMessage msg = new FacesMessage("Product Selected",
+				((Account) event.getObject()).getProduct().getProductId());
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 
 	public void onRowUnselect(UnselectEvent event) {
 		System.out.println("LLego iunselected");
-		FacesMessage msg = new FacesMessage("Product Unselected", ((Account)event.getObject()).getProduct()
-				.getProductId());
+		FacesMessage msg = new FacesMessage("Product Unselected",
+				((Account) event.getObject()).getProduct().getProductId());
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 
@@ -211,4 +247,8 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		System.out.println("Test validate" + getSelectedLike());
 	}
 
+	public void seleccionC(ValueChangeEvent event) {
+		System.out.print("Nuevo dato: " + event.getNewValue()
+				+ ", Viejo dato: " + event.getOldValue());
+	}
 }
