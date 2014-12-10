@@ -125,9 +125,9 @@
 
 		<h:form>
 
-			<bbvaInput:selectOneMenuWants name="qwe"
+			<bbvaInput:selectOneMenuLikes label="qwe"
 				value="#{globalPositionController.selectedLike}"
-				valueList="#{globalPositionController.listMultiValueLikes}" />
+				valueList="#{globalPositionController.listMultiValueLikes}"/>
 
 			<p:inputText>
 				<p:ajax event="keyup" listener="#{globalPositionController.onKeyUp}" />

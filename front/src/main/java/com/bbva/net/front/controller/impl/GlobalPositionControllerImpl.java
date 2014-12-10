@@ -1,5 +1,6 @@
 package com.bbva.net.front.controller.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -7,7 +8,6 @@ import javax.annotation.Resource;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
-import javax.faces.event.ValueChangeEvent;
 
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
@@ -33,6 +33,8 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	private Integer LISTA_QUIEROS = 1;
 
 	private String selectedLike;
+
+	private List<String> listPrb;
 
 	@Resource(name = "globalPositionFacade")
 	private transient GlobalPositionFacade globalPositionFacade;
@@ -66,6 +68,11 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	@PostConstruct
 	public void init() {
+
+		listPrb = new ArrayList<String>();
+		listPrb.add("hola 0");
+		listPrb.add("holaa 1");
+		listPrb.add("hoolaa 2");
 
 		LOGGER.info("STARTING BBVA NET .................");
 
@@ -158,6 +165,20 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		this.selectedLike = selectedLike;
 	}
 
+	/**
+	 * @return the listPrb
+	 */
+	public List<String> getListPrb() {
+		return listPrb;
+	}
+
+	/**
+	 * @param listPrb the listPrb to set
+	 */
+	public void setListPrb(List<String> listPrb) {
+		this.listPrb = listPrb;
+	}
+
 	public void onRowSelect(SelectEvent event) {
 		System.out.println("LLego selected");
 		System.out.println("Product Selected" + ((Account)event.getObject()).getProduct().getProductId());
@@ -182,8 +203,8 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	}
 
-	public void selectedValue(ValueChangeEvent vhe) {
-		System.out.println("Selected Like" + vhe.getNewValue());
+	public void selectedValue() {
+		System.out.println("Selected Like" + getSelectedLike());
 	}
 
 	public void testValidate() {
