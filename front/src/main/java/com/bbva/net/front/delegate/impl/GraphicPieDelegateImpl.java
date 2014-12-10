@@ -39,7 +39,9 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 	private List<PieItemUI> gePieItemUIList() {
 		List<PieItemUI> pieItemUIList = new ArrayList<PieItemUI>();
 		List<String> legendList = new ArrayList<String>();
+
 		legendList.add("Depósitos");
+
 		legendList.add("Planes de pensión");
 		legendList.add("Cartera de valores");
 

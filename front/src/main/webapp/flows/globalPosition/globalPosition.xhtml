@@ -13,7 +13,7 @@
 	xmlns:bbvaContainer="http://java.sun.com/jsf/composite/bbva/container"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:jsf="http://xmlns.jcp.org/jsf"
-	xmlns:bbvaBoton="http://java.sun.com/jsf/composite/bbva/boton"
+	xmlns:bbvaButton="http://java.sun.com/jsf/composite/bbva/button"
 	xmlns:bbvaInput="http://java.sun.com/jsf/composite/bbva/input">
 
 
@@ -24,11 +24,12 @@
 	</ui:define>
 
 	<ui:define name="contentLeft">
+
 		<bbvaContainer:productPanelGraphic title="Cuentas Personales">
 			<div class="table-tabs">
 				<bbvaGP:accountSearch listAccounts="#{customerProducts.accounts}" />
 				<bbvaGP:accountHeadTable listAccounts="#{customerProducts.accounts}"
-					listValueLikes="#{globalPositionController.listMultiValueLikes}" />
+					listValueLikes="#{likes}" />
 				<bbvaGP:accountTailTable listAccounts="#{customerProducts.accounts}" />
 			</div>
 			<div class="row afterTable">
@@ -111,6 +112,7 @@
 				<bbvaGP:totalBalance />
 			</div>
 		</bbvaContainer:productPanelGraphic>
+
 	</ui:define>
 
 
@@ -122,8 +124,9 @@
 
 		<h:form>
 
-			<bbvaInput:selectOneMenuWants name="qwe"
-				valueList="#{globalPositionController.listMultiValueLikes}" />
+			<bbvaInput:selectOneMenuLikes label="qwe"
+				value="#{globalPositionController.selectedLike}"
+				valueList="#{globalPositionController.listMultiValueLikes}"/>
 
 			<p:inputText>
 				<p:ajax event="keyup" listener="#{globalPositionController.onKeyUp}" />
@@ -134,6 +137,10 @@
 				ACCIÓN
 				<f:ajax execute="@form" render="@form" />
 			</button>
+			<p:outputLabel>Selector</p:outputLabel>
+
+			<bbvaInput:comboSelected width="col-md-6" />
+
 
 		</h:form>
 
