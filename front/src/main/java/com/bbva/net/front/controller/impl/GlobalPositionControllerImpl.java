@@ -198,24 +198,14 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	public String goAccounts() {
 		return "accounts";
 	}
-<<<<<<< HEAD
 	
-	public void hola(ActionEvent action){
-		JOptionPane.showMessageDialog(null,"hola!!");
-=======
-
-	public void hola(ActionEvent action) {
-		System.out.println("hola!!");
-
-	}
-
+	
 	public void selectedValue() {
 		System.out.println("Selected Like" + getSelectedLike());
 	}
 
 	public void testValidate() {
 		System.out.println("Test validate" + getSelectedLike());
->>>>>>> 1de9a653e2d361ea7a22ffb58144ebb9d229b5a5
 	}
 
 }
