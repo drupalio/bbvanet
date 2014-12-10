@@ -13,20 +13,32 @@
 
 <composite:interface>
 	<composite:attribute name="title" type="String" />
-	<composite:attribute name="classLi" type="String" />
-	<composite:attribute name="type" type="Integer" />
-	<composite:attribute name="icon" type="String" />
+
 </composite:interface>
 
 <composite:implementation>
-	<li class="#{cc.attrs.classLi}"><a class="tab-head">#{cc.attrs.title}
-			<c:if test="#{cc.attrs.type>=1}">
-				<span class="#{cc.attrs.icon} font-white hidden-md hidden-lg"></span>
-			</c:if> <c:if test="#{cc.attrs.type==2}">
-				<span class="#{cc.attrs.icon} c08-consultarextracto hidden-xs hidden-sm"></span>
-			</c:if>
-	</a></li>
-	
+
+		<div class="tab-mobile tab-pane consultas active" id="tab-consultas">
+			<div class="panel-tab-body">
+				<div class="filters custom-search">
+					<ul class="accordion">
+						<li class="date-filter customSearch"><a href="#"
+							class="header"> <span class="arrow-left-smaller">
+									#{cc.attrs.title} <span class="filter"></span>
+							</span>
+						</a>
+							<div class="date-filter-content">
+
+								<composite:insertChildren></composite:insertChildren>
+
+
+							</div></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+
 </composite:implementation>
 
 </html>
