@@ -6,6 +6,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
@@ -155,6 +156,15 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		FacesMessage msg = new FacesMessage("Product Unselected", ((Account)event.getObject()).getProduct()
 				.getProductId());
 		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+
+	public String goAccounts() {
+		return "accounts";
+	}
+
+	public void hola(ActionEvent action) {
+		System.out.println("hola!!");
+
 	}
 
 }

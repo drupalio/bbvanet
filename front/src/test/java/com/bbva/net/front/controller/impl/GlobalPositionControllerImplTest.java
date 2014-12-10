@@ -39,8 +39,12 @@ public class GlobalPositionControllerImplTest {
 
 		globalPositionFacade = Mockito.mock(GlobalPositionFacade.class);
 		graphicPieDelegate = Mockito.mock(GraphicPieDelegate.class);
+		multiValueGroupFacade = Mockito.mock(MultiValueGroupFacade.class);
 
 		globalPositionController.setGlobalPositionFacade(globalPositionFacade);
+		globalPositionController.setGraphicPieDelegate(graphicPieDelegate);
+
+		globalPositionController.setMultiValueGroupFacade(multiValueGroupFacade);
 
 	}
 
@@ -87,6 +91,17 @@ public class GlobalPositionControllerImplTest {
 
 		multiValueGroupFacade = Mockito.mock(MultiValueGroupFacade.class);
 		globalPositionController.setMultiValueGroupFacade(multiValueGroupFacade);
+
+	}
+
+	@Test
+	public void checkGraphicPaiUI() {
+
+		GlobalProducts globalProducts = Mockito.mock(GlobalProducts.class);
+		this.globalPositionController.getSituationGraphicPieUI();
+
+		Assert.assertEquals(this.globalPositionController.getSituationGraphicPieUI(),
+				this.graphicPieDelegate.getSituationGlobalProducts(globalProducts));
 
 	}
 

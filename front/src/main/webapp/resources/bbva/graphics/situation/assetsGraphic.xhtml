@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:composite="http://java.sun.com/jsf/composite"
@@ -6,282 +5,135 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pm="http://primefaces.org/mobile"
-	xmlns:bbvaSituation="http://java.sun.com/jsf/composite/bbva/graphics/situation">
+	xmlns:bbvaSituation="http://java.sun.com/jsf/composite/bbva/graphics/situation"
+	xmlns:c="http://java.sun.com/jstl/core">
+
 
 <composite:interface>
+
+	<composite:attribute name="situationPies"
+		type="com.bbva.net.front.ui.SituationPiesUI" required="true" />
 
 </composite:interface>
 
 <composite:implementation>
+	<h:head>
+		<meta charset="utf-8"></meta>
+		<title>BBVA :: Colombia :: Posición Global</title>
 
-	<!-- Load c3.css -->
-	<link href="../assets/stylesheets/c3/c3.css" rel="stylesheet"
-		type="text/css" />
-	<!-- <script src="../assets/js/c3/d3.v3.min.js" charset="utf-8"></script> -->
-	<script src="../assets/js/c3/c3.min.js"></script>
-	<script src="../assets/js/c3/c3.js"></script>
+		<script type="text/javascript" src="../assets/js/c3/d3.js"></script>
+		<script type="text/javascript" src="../assets/js/c3/c3.js"></script>
+		<link href="../assets/stylesheets/c3/c3.css" rel="stylesheet"
+			type="text/css"></link>
+		<link rel="shortcut icon" href="../assets/images/favicon.ico" />
+		<script type="text/javascript" src="../assets/js/vendor.js"></script>
+		<script type="text/javascript"
+			src="../assets/js/jvalidate/jvalidate_es.js"></script>
+		<script type="text/javascript" src="../assets/js/graphycs/config.js"></script>
+		<script type="text/javascript"
+			src="../assets/js/components/wizzard/progressbar-plugin.js"></script>
+		<script type="text/javascript"
+			src="../assets/js/components/wizzard/steps-plugin.js"></script>
+		<script type="text/javascript"
+			src="../assets/js/components/wizzard/controllersteps-plugin.js"></script>
+		<script type="text/javascript"
+			src="../assets/js/components/switchtab/switchtab-plugin.js"></script>
+		<script type="text/javascript"
+			src="../assets/js/components/selectquiero/selectQuiero-plugin.js"></script>
+		<script type="text/javascript"
+			src="../assets/js/components/slider/slider-button-close.js"></script>
+		<script type="text/javascript"
+			src="../assets/js/components/chart/chart-table.js"></script>
+		<script type="text/javascript"
+			src="../assets/js/components/validate/remove-validate.js"></script>
+		<script type="text/javascript"
+			src="../assets/js/visibilityactions/visibility.dropdown.mobile.js"></script>
+		<script type="text/javascript"
+			src="../assets/js/visibilityactions/visibility.dropup.mobile.js"></script>
+		<script type="text/javascript"
+			src="../assets/js/visibilityactions/visibility.data.js"></script>
+		<script type="text/javascript"
+			src="../assets/js/visibilityactions/visibility.dropdown.clientsaccess.js"></script>
+		<script type="text/javascript"
+			src="../assets/js/visibilityactions/visibility.dropdown.logged.js"></script>
 
-	<link rel="shortcut icon" href="../assets/images/favicon.ico" />
-	<script type="text/javascript" src="../assets/js/vendor.js"></script>
-	<script type="text/javascript"
-		src="../assets/js/jvalidate/jvalidate_es.js"></script>
-	<script type="text/javascript" src="../assets/js/graphycs/config.js"></script>
+		<script type="text/javascript"
+			src="../assets/js/jvalidate/validate.login.js"></script>
+		<script type="text/javascript"
+			src="../assets/js/jvalidate/validate.netsecure.js"></script>
+		<script type="text/javascript"
+			src="../assets/js/jvalidate/validate.token.js"></script>
+		<script type="text/javascript"
+			src="../assets/js/progressbar/wizzard.recoverykey.js"></script>
+		<script type="text/javascript"
+			src="../assets/js/progressbar/wizzard.recoveryuser.js"></script>
+		<script type="text/javascript"
+			src="../assets/js/progressbar/wizzard.registerclient.js"></script>
+		<script type="text/javascript"
+			src="../assets/js/resizedactions/resized.menu.js"></script>
 
-	<script type="text/javascript"
-		src="../assets/js/components/wizzard/progressbar-plugin.js"></script>
-	<script type="text/javascript"
-		src="../assets/js/components/wizzard/steps-plugin.js"></script>
-	<script type="text/javascript"
-		src="../assets/js/components/wizzard/controllersteps-plugin.js"></script>
-	<script type="text/javascript"
-		src="../assets/js/components/switchtab/switchtab-plugin.js"></script>
-	<script type="text/javascript"
-		src="../assets/js/components/selectquiero/selectQuiero-plugin.js"></script>
-	<script type="text/javascript"
-		src="../assets/js/components/slider/slider-button-close.js"></script>
-	<script type="text/javascript"
-		src="../assets/js/components/chart/chart-table.js"></script>
-	<script type="text/javascript"
-		src="../assets/js/components/validate/remove-validate.js"></script>
+		<link rel='stylesheet' type="text/css"
+			href='../assets/stylesheets/app.css' />
 
-	<script type="text/javascript"
-		src="../assets/js/visibilityactions/visibility.dropdown.mobile.js"></script>
-	<script type="text/javascript"
-		src="../assets/js/visibilityactions/visibility.dropup.mobile.js"></script>
-	<script type="text/javascript"
-		src="../assets/js/visibilityactions/visibility.data.js"></script>
-	<script type="text/javascript"
-		src="../assets/js/visibilityactions/visibility.dropdown.clientsaccess.js"></script>
-	<script type="text/javascript"
-		src="../assets/js/visibilityactions/visibility.dropdown.logged.js"></script>
+		
+		<!-- <c:forEach items="${cc.attrs.situationPies.assets.pieItemUIList}"
+			var="pieItemUI" begin="1">
 
-	<script type="text/javascript"
-		src="../assets/js/jvalidate/validate.login.js"></script>
-	<script type="text/javascript"
-		src="../assets/js/jvalidate/validate.netsecure.js"></script>
-	<script type="text/javascript"
-		src="../assets/js/jvalidate/validate.token.js"></script>
-	<script type="text/javascript"
-		src="../assets/js/progressbar/wizzard.recoverykey.js"></script>
-	<script type="text/javascript"
-		src="../assets/js/progressbar/wizzard.recoveryuser.js"></script>
-	<script type="text/javascript"
-		src="../assets/js/progressbar/wizzard.registerclient.js"></script>
-	<script type="text/javascript"
-		src="../assets/js/resizedactions/resized.menu.js"></script>
+			<input id="valor" type="hidden"
+				value="${pieItemUI.value}" />
+		</c:forEach>
 
-	<!--<link rel='stylesheet' type="text/css" href='../assets/stylesheets/screen.css' />-->
-	<link rel='stylesheet' type="text/css"
-		href='../assets/stylesheets/app.css' />
-	<!--<link rel='stylesheet' type="text/css" href='./assets/stylesheets/bootstrap-select/bootstrap-select.min.css'/>-->
-	<!--<link rel='stylesheet' type="text/css" href='./assets/stylesheets/print.css' />-->
-	<!--[if lt IE 9]>
-                <link rel='stylesheet' href='assets/stylesheets/ie8.css' />
+		<input id="head" type="hidden"
+			value="#{cc.attrs.situationPies.assets.pieItemUIList}" /> -->
+	
+		<script>
+		
+			var totalColums = [];
+			var label;
+			var str;
+			var values;
+			<c:forEach var="pieItemUI" items="${cc.attrs.situationPies.assets.pieItemUIList}">
+			label = ("${pieItemUI.textLengend}");
+			values = ("${pieItemUI.value}");
+			str = [[label], [values]];
+			totalColums.push(str);
+			</c:forEach>
+			var chart = c3.generate({
 
-                <script src="./assets/js/vendor/html5shiv/html5shiv.min.js"></script>
-                <script src="./assets/js/vendor/html5shiv/html5shiv-printshiv.min.js"></script>
+				data : {
 
-                <script src="./assets/js/vendor/respond/respond.min.js"></script>
-                <script src="./assets/js/vendor/respond/respond.matchmedia.addListener.min.js"></script>
-            <![endif]-->
-	<!--[if gt IE 7]>
-                <link rel='stylesheet' href='assets/stylesheets/ie.css' />
-            <![endif]-->
-
-	<title>BBVA :: Colombia :: Posición Global</title>
-
-	<!-- <script type="text/javascript" src="./chartjs/Chart.js"></script> -->
-
-
-	<script type="text/javascript">
-		function initChar() {
-
-			var ctx = document.getElementById("myChart").getContext("2d");
-
-			var data = [ {
-				value : 300,
-				color : "#F7464A",
-				highlight : "#FF5A5E",
-				label : "Red"
-			}, {
-				value : 50,
-				color : "#46BFBD",
-				highlight : "#5AD3D1",
-				label : "Green"
-			}, {
-				value : 100,
-				color : "#FDB45C",
-				highlight : "#FFC870",
-				label : "Yellow"
-			}, {
-				value : 40,
-				color : "#949FB1",
-				highlight : "#A8B3C5",
-				label : "Grey"
-			}, {
-				value : 120,
-				color : "#4D5360",
-				highlight : "#616774",
-				label : "Dark Grey"
-			}
-
-			];
-
-			new Chart(ctx).PolarArea(data, {
-				segmentStrokeColor : "#000000",
-				responsive : true,
-				maintainAspectRatio : false,
-				animation : true,
+					size : {
+						height : 5,
+						width : 5
+					},
+					
+					columns : totalColums,
+					
+					type : 'pie',
+					onclick : function(d, i) {
+						console.log("onclick", d, i);
+					},
+					onmouseover : function(d, i) {
+						console.log("onmouseover", d, i);
+					},
+					onmouseout : function(d, i) {
+						console.log("onmouseout", d, i);
+					}
+				}
 			});
-		};
-	</script>
 
-	<div class="tab-group">
-		<div class="tab-head">
-			<span>#{cc.attrs.assetsGraphic.title}</span>
-			<div class="buttons-group">
-				<button data-tabletab="tab-lines"
-					class="btn btn-first lines-global active"></button>
-				<button id="charButton" data-tabletab="tab-bars"
-					class="btn char-global" onclick="initChar();" onfocus="click();"></button>
-				<button data-tabletab="tab-hide" class="btn btn-last arrow-global"></button>
-			</div>
+
+		</script>
+
+	</h:head>
+	<h:form>
+
+		<div class="chart-cheese" id="tu-situacion-grafico"
+			data-highcharts-chart="3">
+			<div id="chart"></div>
 		</div>
 
-		<div class="tab tab-lines no-border">
-			<div class="table-tabs">
-				<h2>CUALQUIER COSA QUE QUERAMOS AQUÍ</h2>
-				<div class="item-hidden" style="display: none;"></div>
-			</div>
-		</div>
-		<div class="tab tab-bars chart">
-			<div>
-				<h3>GRAFICA DEL CHOLO SIMEONE</h3>
-				<canvas id="myChart"
-					style="min-height: #{cc.attrs.assetsGraphic.size}"></canvas>
-			</div>
-		</div>
-		<div class="row afterTable"></div>
-	</div>
-	<!-- <div class="chart">
-		<div class="chart-cheese"
-			data-json="../assets/js/graphycs/data/activos.json"
-			id="tu-situacion-activos" data-highcharts-chart="9">
-			<div class="highcharts-container" id="highcharts-77"
-				style="position: relative; overflow: hidden; width: auto; height: 357px; text-align: left; line-height: normal; z-index: 0; left: 0.633301px; top: 0.28334px;">
-				<svg version="1.1"
-					style="font-family: &amp; amp; amp; quot; Lucida Grande&amp;amp; amp; quot; , &amp; amp; amp; quot; Lucida Sans Unicode&amp;amp; amp; quot; , Verdana , Arial, Helvetica, sans-serif; font-size: 12px;"
-					xmlns="http://www.w3.org/2000/svg" width="296" height="357">
-					<desc>Created with Highcharts 3.0.10</desc>
-					<defs>
-					<radialGradient cx="0.5" cy="0.5" r="0.5" id="highcharts-78">
-					<stop offset="0" stop-color="#F7A645" stop-opacity="1" />
-					<stop offset="1" stop-color="#F6891E" stop-opacity="1" /></radialGradient>
-					<radialGradient cx="0.5" cy="0.5" r="0.5" id="highcharts-79">
-					<stop offset="0" stop-color="#ASDCS1" stop-opacity="1" />
-					<stop offset="1" stop-color="#7FBD2C" stop-opacity="1" /></radialGradient>
-					<radialGradient cx="0.5" cy="0.5" r="0.5" id="highcharts-80">
-					<stop offset="0" stop-color="#2181C9" stop-opacity="1" />
-					<stop offset="1" stop-color="#0065B3" stop-opacity="1" /></radialGradient>
-					<clipPath id="highcharts-81">
-					<rect x="0" y="0" width="276" height="239" /></clipPath>
-					<radialGradient cx="138" cy="119.5" r="72.685" id="highcharts-82"
-						gradientUnits="userSpaceOnUse">
-					<stop offset="0" stop-color="#F7A645" stop-opacity="1" />
-					<stop offset="1" stop-color="#F6891E" stop-opacity="1" /></radialGradient>
-					<radialGradient cx="138" cy="119.5" r="72.685" id="highcharts-83"
-						gradientUnits="userSpaceOnUse">
-					<stop offset="0" stop-color="#ASDCS1" stop-opacity="1" />
-					<stop offset="1" stop-color="#7FBD2C" stop-opacity="1" /></radialGradient>
-					<radialGradient cx="138" cy="119.5" r="72.685" id="highcharts-84"
-						gradientUnits="userSpaceOnUse">
-					<stop offset="0" stop-color="#2181C9" stop-opacity="1" />
-					<stop offset="1" stop-color="#0065B3" stop-opacity="1" /></radialGradient></defs>
-					<rect x="0" y="0" width="296" height="357" rx="5" ry="5"
-						fill="#FFFFFF" class=" highcharts-background" />
-					<g class="highcharts-series-group" zIndex="3">
-					<g class="highcharts-series highcharts-tracker"
-						visibility="visible" zIndex="0.1"
-						transform="translate(10,10) scale(1 1)" style="cursor:pointer;">
-					<path fill="url(#highcharts-82)"
-						d="M 137.9851960131894 46.81500150758772 A 72.685 72.685 0 0 1 205.17161260868244 147.26839362565096 L 138 119.5 A 0 0 0 0 0 138 119.5 Z"
-						stroke="#FFFFFF" stroke-width="1" stroke-linejoin="round"
-						transform="translate(0,0)" visibility="inherit" />
-					<path fill="url(#highcharts-83)"
-						d="M 205.14381063388134 147.3355513428687 A 72.685 72.685 0 0 1 165.8890109269697 186.62162315167419 L 138 119.5 A 0 0 0 0 0 138 119.5 Z"
-						stroke="#FFFFFF" stroke-width="1" stroke-linejoin="round"
-						transform="translate(0,0)" visibility="inherit" />
-					<path fill="url(#highcharts-84)"
-						d="M 165.82187537050066 186.6494785971442 A 72.685 72.685 0 1 1 137.89904199320128 46.81507011435683 L 138 119.5 A 0 0 0 1 0 138 119.5 Z"
-						stroke="#FFFFFF" stroke-width="1" stroke-linejoin="round"
-						transform="translate(0,0)" visibility="inherit" /></g>
-					<g class="highcharts-markers" visibility="visible" zIndex="0.1"
-						transform="translate(10,10) scale(1 1)" /></g>
-					<text x="20" y="30" text-anchor="start" class="highcharts-title"
-						zIndex="4"
-						style="color:#274b6d;font-size:16px;font:bold 16px Trebuchet MS, Arial, sans-serif;font-size:14px;fill:#274b6d;width:232px;">
-					<tspan x="20">Activos</tspan></text>
-					<text x="198" y="30" text-anchor="middle"
-						class="highcharts-subtitle" zIndex="4"
-						style="color:#0073c9;font:bold 12px Trebuchet MS, Arial, sans-serif;font-size:18px;font-family:Arial;fill:#0073c9;width:232px;">
-					<tspan x="198">COP 999.999.999</tspan></text>
-					<g class="highcharts-legend" zIndex="7"
-						transform="translate(0,259)">
-					<rect x="0.5" y="0.5" width="0" height="82" rx="5" ry="5"
-						stroke="none" stroke-width="1" fill="none" visibility="visible" />
-					<g zIndex="1">
-					<g>
-					<g class="highcharts-legend-item" zIndex="1"
-						transform="translate(8,3)">
-					<text x="21" y="25"
-						style="color:#274b6d;font-size:12px;cursor:pointer;font:11px Trebuchet MS, Arial, sans-serif;fill:#274b6d;"
-						text-anchor="start" zIndex="2">
-					<tspan x="21">Depósitos 2800$</tspan></text>
-					<rect x="0" y="14" width="16" height="12" rx="2" ry="2" zIndex="3"
-						fill="url(#highcharts-78)" /></g>
-					<g class="highcharts-legend-item" zIndex="1"
-						transform="translate(8,27)">
-					<text x="21" y="25"
-						style="color:#274b6d;font-size:12px;cursor:pointer;font:11px Trebuchet MS, Arial, sans-serif;fill:#274b6d;"
-						text-anchor="start" zIndex="2">
-					<tspan x="21">Planes de pensiones 1000$</tspan></text>
-					<rect x="0" y="14" width="16" height="12" rx="2" ry="2" zIndex="3"
-						fill="url(#highcharts-79)" /></g>
-					<g class="highcharts-legend-item" zIndex="1"
-						transform="translate(8,51)">
-					<text x="21" y="25"
-						style="color:#274b6d;font-size:12px;cursor:pointer;font:11px Trebuchet MS, Arial, sans-serif;fill:#274b6d;"
-						text-anchor="start" zIndex="2">
-					<tspan x="21">Cartera de valores 1000$</tspan></text>
-					<rect x="0" y="14" width="16" height="12" rx="2" ry="2" zIndex="3"
-						fill="url(#highcharts-80)" /></g></g></g></g>
-					<g class="highcharts-tooltip" zIndex="8"
-						style="cursor:default;padding:0;white-space:nowrap;"
-						transform="translate(0,-9999)">
-					<rect x="0.5" y="0.5" width="16" height="16" fill="none" rx="3"
-						ry="3" isShadow="true" stroke="black"
-						stroke-opacity="0.049999999999999996" stroke-width="5"
-						transform="translate(1, 1)" />
-					<rect x="0.5" y="0.5" width="16" height="16" fill="none" rx="3"
-						ry="3" isShadow="true" stroke="black"
-						stroke-opacity="0.09999999999999999" stroke-width="3"
-						transform="translate(1, 1)" />
-					<rect x="0.5" y="0.5" width="16" height="16" fill="none" rx="3"
-						ry="3" isShadow="true" stroke="black" stroke-opacity="0.15"
-						stroke-width="1" transform="translate(1, 1)" />
-					<rect x="0.5" y="0.5" width="16" height="16" fill="#FFFFFF" rx="3"
-						ry="3" />
-					<text x="8" y="21" zIndex="1"
-						style="font-size:12px;color:#333333;fill:#333333;" /></g>
-					<text x="286" y="352" text-anchor="end" zIndex="8"
-						style="cursor:pointer;color:#909090;font-size:9px;fill:#909090;">
-					<tspan x="286">Highcharts.com</tspan></text></svg>
-			</div>
-		</div>
-	</div> -->
-
-
-
+	</h:form>
 
 </composite:implementation>
 </html>

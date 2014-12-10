@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:bbvaToolTip="http://java.sun.com/jsf/composite/bbva/toolTip">
+
+<composite:interface>
+	<composite:attribute name="id" />
+	<composite:attribute name="data-max" />
+	<composite:attribute name="data-min" />
+	<composite:attribute name="name" />
+	<composite:attribute name="maxlength" />
+	<composite:attribute name="autocomplete" />
+	<composite:attribute name="data-filter" />
+
+</composite:interface>
+
+<composite:implementation>
+
+	<input jsf:id="#{cc.attrs.id}" jsf:value="#{cc.attrs.value}"
+		type="text" class="form-control"
+		style="background-image: url('../../assets/img/icons/dollar-blue.png'); background-repeat: no-repeat; background-position: right 3% center;"
+		maxlength="#{cc.attrs.maxlength}" name="#{cc.attrs.name}"
+		data-min="#{cc.attrs.data-min}" data-max="#{cc.attrs.data-max}"
+		autocomplete="#{cc.attrs.autocomplete}"
+		data-filter="#{cc.attrs.data-filter}" />
+		
+</composite:implementation>
+
+</html>
