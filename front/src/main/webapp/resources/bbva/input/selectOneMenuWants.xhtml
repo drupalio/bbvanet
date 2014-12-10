@@ -18,12 +18,12 @@
 <composite:implementation>
 	<div class="select-tab-quiero btn-group bootstrap-select hidden-xs hidden-sm open" >
 
-		<h:selectOneMenu id="console" value="#{cc.attrs.value}">
+		<h:selectOneMenu id="selectLikes" value="#{cc.attrs.value}">
 			<div class="dropdown-menu open">
-				<f:selectItem itemLabel="#{msg['text.combo.want']}"
-					noSelectionOption="false" />
+				<f:selectItem itemLabel="#{msg['text.combo.want']}"/>
 				<f:selectItems value="#{cc.attrs.valueList}" var="multiValue"
-					itemValue="#{multiValue}" itemLabel="#{msg[multiValue.value]}" />										
+					itemValue="#{multiValue}" itemLabel="#{msg[multiValue.value]}" />
+					 <p:ajax event="change" execute="@this"  listener="#{globalPositionController.selectedValue}" />  										
 			</div>
 		</h:selectOneMenu>
 	</div>

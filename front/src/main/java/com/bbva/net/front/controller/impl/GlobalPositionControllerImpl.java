@@ -43,6 +43,8 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	// private GraphicUI graphicUI;
 	private Integer LISTA_QUIEROS = 1;
 
+	private String selectedLike;
+
 	@Resource(name = "globalPositionFacade")
 	private transient GlobalPositionFacade globalPositionFacade;
 
@@ -143,6 +145,20 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		this.selectedProduct = selectedProduct;
 	}
 
+	/**
+	 * @return the selectedLike
+	 */
+	public String getSelectedLike() {
+		return selectedLike;
+	}
+
+	/**
+	 * @param selectedLike the selectedLike to set
+	 */
+	public void setSelectedLike(String selectedLike) {
+		this.selectedLike = selectedLike;
+	}
+
 	public void onRowSelect(SelectEvent event) {
 		System.out.println("LLego selected");
 		System.out.println("Product Selected" + ((Account)event.getObject()).getProduct().getProductId());
@@ -165,6 +181,10 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	public void hola(ActionEvent action) {
 		System.out.println("hola!!");
 
+	}
+
+	public void selectedValue() {
+		System.out.println("Selected Like" + getSelectedLike());
 	}
 
 }
