@@ -13,7 +13,7 @@
 	xmlns:bbvaContainer="http://java.sun.com/jsf/composite/bbva/container"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:jsf="http://xmlns.jcp.org/jsf"
-	xmlns:bbvaBoton="http://java.sun.com/jsf/composite/bbva/boton"
+	xmlns:bbvaButton="http://java.sun.com/jsf/composite/bbva/button"
 	xmlns:bbvaInput="http://java.sun.com/jsf/composite/bbva/input">
 
 
@@ -21,21 +21,17 @@
 
 
 	<ui:define name="bodyTitle">
-		<h:form>
-			<bbvaBoton:iconButton value="Editar" icon="document-view-icon"
-				actionlistener="#{globalPositionController.hola}" />
-		</h:form>
 		<bbvaBody:title title="Posición global" />
 	</ui:define>
 
 	<ui:define name="contentLeft">
+
 		<bbvaContainer:productPanelGraphic title="Cuentas Personales">
 			<div class="table-tabs">
-
-				<bbvaGP:accountSearch listAccounts="#{customerProducts.accounts}"  />
-				<bbvaGP:accountHeadTable listAccounts="#{customerProducts.accounts}" listValueLikes="#{likes}" />
-				<bbvaGP:accountTailTable listAccounts="#{customerProducts.accounts}"/>
-
+				<bbvaGP:accountSearch listAccounts="#{customerProducts.accounts}" />
+				<bbvaGP:accountHeadTable listAccounts="#{customerProducts.accounts}"
+					listValueLikes="#{likes}" />
+				<bbvaGP:accountTailTable listAccounts="#{customerProducts.accounts}" />
 			</div>
 			<div class="row afterTable">
 				<bbvaGP:productFooter listProduct="#{customerProducts.accounts}" />
@@ -117,6 +113,7 @@
 				<bbvaGP:totalBalance />
 			</div>
 		</bbvaContainer:productPanelGraphic>
+
 	</ui:define>
 
 
@@ -128,7 +125,8 @@
 
 		<h:form>
 
-			<bbvaInput:selectOneMenuWants name="qwe" value="#{globalPositionController.selectedLike}"
+			<bbvaInput:selectOneMenuWants name="qwe"
+				value="#{globalPositionController.selectedLike}"
 				valueList="#{globalPositionController.listMultiValueLikes}" />
 
 			<p:inputText>
@@ -140,6 +138,10 @@
 				ACCIÓN
 				<f:ajax execute="@form" render="@form" />
 			</button>
+			<p:outputLabel>Selector</p:outputLabel>
+
+			<bbvaInput:comboSelected width="col-md-6" />
+
 
 		</h:form>
 

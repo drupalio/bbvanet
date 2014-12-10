@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.faces.event.ValueChangeEvent;
 
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
@@ -28,18 +29,6 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	private static final long serialVersionUID = 5726824668267606699L;
 
-	private boolean stateGlobalPosition = true;
-
-	public boolean isStateGlobalPosition() {
-		return stateGlobalPosition;
-	}
-
-	public void setStateGlobalPosition(boolean stateGlobalPosition) {
-		this.stateGlobalPosition = stateGlobalPosition;
-	}
-
-	private static final String DEFAULT_USER = "123";
-
 	// private GraphicUI graphicUI;
 	private Integer LISTA_QUIEROS = 1;
 
@@ -59,6 +48,16 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	private Account selectedProduct;
 
 	private ActivePanelType activePanel = ActivePanelType.SITUATION;
+
+	private transient boolean stateGlobalPosition = true;
+
+	public boolean isStateGlobalPosition() {
+		return stateGlobalPosition;
+	}
+
+	public void setStateGlobalPosition(boolean stateGlobalPosition) {
+		this.stateGlobalPosition = stateGlobalPosition;
+	}
 
 	private enum ActivePanelType {
 
@@ -183,8 +182,12 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	}
 
-	public void selectedValue() {
-		System.out.println("Selected Like" + getSelectedLike());
+	public void selectedValue(ValueChangeEvent vhe) {
+		System.out.println("Selected Like" + vhe.getNewValue());
+	}
+
+	public void testValidate() {
+		System.out.println("Test validate" + getSelectedLike());
 	}
 
 }

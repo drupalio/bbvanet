@@ -5,53 +5,53 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:pm="http://primefaces.org/mobile"
-	xmlns:bbvaToolTip="http://java.sun.com/jsf/composite/bbva/toolTip">
+	xmlns:pm="http://primefaces.org/mobile">
 
 <composite:interface>
 
-	
- <composite:attribute name="label" />
-    <composite:attribute name="value" />
-    <composite:attribute name="required" />
-    <composite:attribute name="requiredMessage" required="false" default="An input is required"/>
-    <composite:attribute name="validatorMessage" required="false" default="Invalid input"/>
-     <composite:attribute name="onclick" required="false" default=""/>  
-    <composite:editableValueHolder name="input" targets="input"/>
-    
+
+	<composite:attribute name="label" />
+	<composite:attribute name="value" />
+	<composite:attribute name="required" />
+	<composite:attribute name="requiredMessage" required="false"
+		default="An input is required" />
+	<composite:attribute name="validatorMessage" required="false"
+		default="Invalid input" />
+	<composite:attribute name="onclick" required="false" default="" />
+	<composite:editableValueHolder name="input" targets="input" />
+
 </composite:interface>
- 
+
 <composite:implementation>
 
 	<script>
-		function checkFilled(inputId) {	
-			inputId.className = "form-control";	
+		function checkFilled(inputId) {
+			inputId.className = "form-control";
 		}
 	</script>
-		
+
 	<div id="registerUser-error" class="arrow_box_container">
 		<div class="arrow_box error-tooltip">
-			<h3>Alerta!</h3><p>Este campo es obligatorio.</p>
+			<h3>Alerta!</h3>
+			<p>Este campo es obligatorio.</p>
 		</div>
 	</div>
-						
-    <div class="input-control">
-        <h:outputLabel id="label" value="#{cc.attrs.label}" for="input"/>
- 
-        <p:inputText id="input"
-                     value="#{cc.attrs.value}"
-                     required="#{cc.attrs.required}"
-                     requiredMessage="#{cc.attrs.requiredMessage}"
-                     validatorMessage="#{cc.attrs.validatorMessage}" 
-                     title="#{component.valid?'':'Este campo es obligatorio.'}"
-                     onclick="checkFilled(this)"
-                     styleClass="#{component.valid?'form-control':'form-control  has-error'}" 
-                     >
-                                        
-                     </p:inputText>
-        
-    </div>
- 
+
+	<div class="input-control">
+		<h:outputLabel id="label" value="#{cc.attrs.label}" for="input" />
+
+		<p:inputText id="input" value="#{cc.attrs.value}"
+			required="#{cc.attrs.required}"
+			requiredMessage="#{cc.attrs.requiredMessage}"
+			validatorMessage="#{cc.attrs.validatorMessage}"
+			title="#{component.valid?'':'Este campo es obligatorio.'}"
+			onclick="checkFilled(this)"
+			styleClass="#{component.valid?'form-control':'form-control  has-error'}">
+
+		</p:inputText>
+
+	</div>
+
 </composite:implementation>
 
 </html>

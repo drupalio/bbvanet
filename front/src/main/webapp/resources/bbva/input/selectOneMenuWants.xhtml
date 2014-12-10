@@ -10,7 +10,7 @@
 <composite:interface>
 
 	<composite:attribute name="label" />
-	<composite:attribute name="value" />
+	<composite:attribute name="value" type="String" />
 	<composite:attribute name="valueList" />	
 
 </composite:interface>
@@ -18,12 +18,14 @@
 <composite:implementation>
 	<div class="select-tab-quiero btn-group bootstrap-select hidden-xs hidden-sm open" >
 
-		<h:selectOneMenu id="selectLikes" value="#{cc.attrs.value}">
+		<h:selectOneMenu id="selectLikes" value="#{globalPositionController.selectedLike}" valueChangeListener="#{globalPositionController.selectedValue}">
+		   	
 			<div class="dropdown-menu open">
 				<f:selectItem itemLabel="#{msg['text.combo.want']}"/>
 				<f:selectItems value="#{cc.attrs.valueList}" var="multiValue"
 					itemValue="#{multiValue}" itemLabel="#{msg[multiValue.value]}" />
-					 <p:ajax event="change" execute="@this"  listener="#{globalPositionController.selectedValue}" />  										
+					<f:ajax event="valueChange" immediate="true"  />
+														
 			</div>
 		</h:selectOneMenu>
 	</div>
