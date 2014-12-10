@@ -5,22 +5,18 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pm="http://primefaces.org/mobile"
-	xmlns:bbvaSituation="http://java.sun.com/jsf/composite/bbva/graphics/situation"
 	xmlns:c="http://java.sun.com/jstl/core">
 
 
 <composite:interface>
 
-	<composite:attribute name="situationPies"
-		type="com.bbva.net.front.ui.SituationPiesUI" required="true" />
+	<composite:attribute name="piesItemUIList" type="java.util.List" />
 
 </composite:interface>
 
 <composite:implementation>
 	<h:head>
 		<meta charset="utf-8"></meta>
-		<title>BBVA :: Colombia :: Posición Global</title>
-
 		<script type="text/javascript" src="../assets/js/c3/d3.js"></script>
 		<script type="text/javascript" src="../assets/js/c3/c3.js"></script>
 		<link href="../assets/stylesheets/c3/c3.css" rel="stylesheet"
@@ -75,7 +71,7 @@
 		<link rel='stylesheet' type="text/css"
 			href='../assets/stylesheets/app.css' />
 
-		
+
 		<!-- <c:forEach items="${cc.attrs.situationPies.assets.pieItemUIList}"
 			var="pieItemUI" begin="1">
 
@@ -85,19 +81,19 @@
 
 		<input id="head" type="hidden"
 			value="#{cc.attrs.situationPies.assets.pieItemUIList}" /> -->
-	
+
 		<script>
-		
 			var totalColums = [];
 			var label;
-			var str;
+			var colums;
 			var values;
-			<c:forEach var="pieItemUI" items="${cc.attrs.situationPies.assets.pieItemUIList}">
+			<c:forEach var="pieItemUI" items="${cc.attrs.piesItemUIList}">
 			label = ("${pieItemUI.textLengend}");
 			values = ("${pieItemUI.value}");
-			str = [[label], [values]];
-			totalColums.push(str);
+			colums = [ [ label ], [ values ] ];
+			totalColums.push(colums);
 			</c:forEach>
+			
 			var chart = c3.generate({
 
 				data : {
@@ -108,7 +104,7 @@
 					},
 					
 					columns : totalColums,
-					
+
 					type : 'pie',
 					onclick : function(d, i) {
 						console.log("onclick", d, i);
@@ -121,8 +117,6 @@
 					}
 				}
 			});
-
-
 		</script>
 
 	</h:head>
