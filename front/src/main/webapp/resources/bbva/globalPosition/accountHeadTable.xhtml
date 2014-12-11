@@ -15,20 +15,17 @@
 </composite:interface>
 
 <composite:implementation>
+	
 	<h:form>
-		
-
-
 		<p:dataTable id="table" var="icuenta"
-			value="#{cc.attrs.listAccounts.subList(0, (cc.attrs.listAccounts.size()) >= 10 ? 10 : cc.attrs.listAccounts.size())}"
-			selectionMode="single"
-			selection="#{globalPositionController.selectedProduct}"
-			rowKey="#{icuenta.product.productId}">
+			value="#{cc.attrs.listAccounts.subList(0, (cc.attrs.listAccounts.size()) >= 10 ? 10 : cc.attrs.listAccounts.size())}">
 
+			<!-- 
 			<p:ajax event="rowSelect"
 				listener="#{globalPositionController.onRowSelect}" update="table" />
 			<p:ajax event="rowUnselect"
 				listener="#{globalPositionController.onRowUnselect}" update="table" />
+			 -->
 
 			<p:column class="head" headerText="N° CUENTA"
 				styleClass="col-xs-6 col-md-8"

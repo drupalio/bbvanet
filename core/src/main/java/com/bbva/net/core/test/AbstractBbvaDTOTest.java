@@ -17,6 +17,8 @@ import com.bbva.net.core.reflection.BeanBbvaUtils;
 import com.bbva.net.core.reflection.ReflectionBbvaUtils;
 
 /**
+ * Abstract Test Class Utility to coverage a Dto Serializable
+ * 
  * @author Entelgy
  * @param <T>
  */
@@ -33,6 +35,9 @@ public abstract class AbstractBbvaDTOTest<T extends Serializable> {
 	 */
 	protected abstract T getInstance();
 
+	/**
+	 * 
+	 */
 	@SuppressWarnings("unchecked")
 	@Before
 	public void init() {

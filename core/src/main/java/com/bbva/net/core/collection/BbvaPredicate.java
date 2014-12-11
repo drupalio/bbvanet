@@ -3,6 +3,8 @@ package com.bbva.net.core.collection;
 import org.apache.commons.collections.Predicate;
 
 /**
+ * Predicate to avoid casting in evaluate Predicate methods
+ * 
  * @author Entelgy
  * @param <T>
  */

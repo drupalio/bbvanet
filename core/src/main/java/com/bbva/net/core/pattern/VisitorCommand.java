@@ -11,6 +11,8 @@ import org.apache.commons.collections.CollectionUtils;
 public abstract class VisitorCommand<T> {
 
 	/**
+	 * Constructor and applies this pattern
+	 * 
 	 * @param list
 	 */
 	public VisitorCommand(final List<T> list) {
@@ -24,5 +26,10 @@ public abstract class VisitorCommand<T> {
 		}
 	}
 
+	/**
+	 * This pattern executes executes this method for each element in List<T>
+	 * 
+	 * @param object
+	 */
 	protected abstract void exceute(T object);
 }

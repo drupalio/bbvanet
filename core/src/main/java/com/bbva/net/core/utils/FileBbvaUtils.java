@@ -18,7 +18,10 @@ import com.google.gson.Gson;
 /**
  * @author Entelgy Gson guide: https://sites.google.com/site/gson/gson-user-guide
  */
-public abstract class FileBbvaUtils {
+public final class FileBbvaUtils {
+
+	private FileBbvaUtils() {
+	}
 
 	protected static final Logger LOGGER = LoggerFactory.getLogger(FileBbvaUtils.class);
 

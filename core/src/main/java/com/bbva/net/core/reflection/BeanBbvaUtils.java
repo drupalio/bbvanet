@@ -6,7 +6,10 @@ import org.fluttercode.datafactory.impl.DataFactory;
 import org.springframework.beans.BeanInstantiationException;
 import org.springframework.beans.BeanUtils;
 
-public abstract class BeanBbvaUtils {
+public final class BeanBbvaUtils {
+
+	private BeanBbvaUtils() {
+	}
 
 	/**
 	 * @param clazz

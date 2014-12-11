@@ -7,8 +7,6 @@ import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
-import javax.swing.JOptionPane;
 
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
@@ -198,8 +196,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	public String goAccounts() {
 		return "accounts";
 	}
-	
-	
+
 	public void selectedValue() {
 		System.out.println("Selected Like" + getSelectedLike());
 	}

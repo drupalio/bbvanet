@@ -14,15 +14,14 @@ import co.com.bbva.services.transactions.globalposition.schema.Account;
 import com.bbva.net.back.facade.AccountsFacade;
 
 /**
- * 
  * @author Entelgy
- *
  */
 public class AccountsControllerImplTest {
 
 	private static final String DEFAULT_USER = "123";
 
 	private AccountsControllerImpl accountsController;
+
 	private AccountsFacade accountsFacade;
 
 	@Before
@@ -36,7 +35,6 @@ public class AccountsControllerImplTest {
 	}
 
 	/**
-	 * 
 	 * @throws RestClientException
 	 */
 	@Test
@@ -44,29 +42,27 @@ public class AccountsControllerImplTest {
 
 		// prepara el test
 		List<Account> h = new ArrayList<Account>();
-		Mockito.when(accountsFacade.getAccountsByUser(DEFAULT_USER))
-				.thenReturn(h);
+		Mockito.when(accountsFacade.getAccountsByUser(DEFAULT_USER)).thenReturn(h);
 
 		// invoca metodo a probar
-		final List<Account> customerAccounts = this.accountsController
-				.getCustomerAccounts();
+		final List<Account> customerAccounts = this.accountsController.getCustomerAccounts();
 
 		// Comprobar resultados
 		Assert.assertNotNull(customerAccounts);
-		Mockito.verify(this.accountsFacade, Mockito.atLeastOnce())
-				.getAccountsByUser(DEFAULT_USER);
+		Mockito.verify(this.accountsFacade, Mockito.atLeastOnce()).getAccountsByUser(DEFAULT_USER);
 
 	}
 
 	/**
-	 * 
 	 * @throws RestClientException
 	 */
 	@Test(expected = RestClientException.class)
 	public void checkGetCustomerAccounts_NO_OK() {
 
-		Mockito.when(accountsFacade.getAccountsByUser(DEFAULT_USER)).thenThrow(
-				new RestClientException(""));
+		// Creación del mock
+		Mockito.when(accountsFacade.getAccountsByUser(DEFAULT_USER)).thenThrow(new RestClientException(""));
+
+		// Invocación al método
 		this.accountsController.getCustomerAccounts();
 
 	}

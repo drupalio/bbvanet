@@ -15,7 +15,8 @@
 <composite:implementation>
 
 	<div class="item-hidden" style="display: block;">
-		<p:dataTable var="icuenta" value="#{cc.attrs.listAccounts.subList((cc.attrs.listAccounts.size() >= 11) ? 10 : 0,(cc.attrs.listAccounts.size() >= 11) ? cc.attrs.listAccounts.size() : 0)}" emptyMessage="#{'No hay cuentas ocultas'}">
+		<p:dataTable var="icuenta" 
+			value="#{cc.attrs.listAccounts.subList((cc.attrs.listAccounts.size() >= 11) ? 10 : 0,(cc.attrs.listAccounts.size() >= 11) ? cc.attrs.listAccounts.size() : 0)}" emptyMessage="#{'No hay cuentas ocultas'}">
 			<p:column class="head" styleClass="col-xs-6 col-md-8"
 				style="font-size: 0.7em;color: #434A58;border-style: solid none;
 					font-family: Arial;background: none;border-radius: 4px;border: 2px solid #DBDCDF;

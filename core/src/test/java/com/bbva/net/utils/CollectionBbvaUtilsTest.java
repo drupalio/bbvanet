@@ -1,5 +1,6 @@
 package com.bbva.net.utils;
 
+import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +19,7 @@ public class CollectionBbvaUtilsTest {
 
 	@Before
 	public void init() {
+
 		this.foos = new ArrayList<Foo>();
 		this.foos.add(new Foo(5L, 3, "Valor 1"));
 		this.foos.add(new Foo(8L, 9, "Valor 1"));
@@ -26,8 +28,16 @@ public class CollectionBbvaUtilsTest {
 	}
 
 	@Test
-	public void checkClass() {
-		TestUtils.superficialAbstractCodeCoverage(CollectionBbvaUtils.class);
+	public void checkClass() throws SecurityException, IllegalArgumentException, NoSuchMethodException,
+			InstantiationException, IllegalAccessException, InvocationTargetException {
+
+		TestUtils.utilClassCodeCoverage(CollectionBbvaUtils.class);
+	}
+
+	@Test
+	public void testConstructorIsPrivate() throws NoSuchMethodException, IllegalAccessException,
+			InvocationTargetException, InstantiationException {
+
 	}
 
 	@Test

@@ -10,12 +10,15 @@ import org.apache.commons.beanutils.PropertyUtils;
 /**
  * @author Entelgy
  */
-public abstract class CollectionBbvaUtils {
+public final class CollectionBbvaUtils {
+
+	private CollectionBbvaUtils() {
+	}
 
 	/**
-	 * @param list
-	 * @param expressionLenguage
-	 * @return
+	 * @param list (to calculate total)
+	 * @param expressionLenguage (field to invoke get Method and calculate total)
+	 * @return Total of sum every element of list
 	 * @throws NoSuchMethodException
 	 */
 	public static <T extends Serializable> BigDecimal calculateTotal(List<T> list, final String expressionLenguage) {

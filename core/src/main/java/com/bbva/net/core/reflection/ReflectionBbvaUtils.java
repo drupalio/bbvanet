@@ -5,9 +5,12 @@ import java.lang.reflect.Method;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public abstract class ReflectionBbvaUtils {
+public final class ReflectionBbvaUtils {
 
-	protected static final Logger LOGGER = LoggerFactory.getLogger(ReflectionBbvaUtils.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ReflectionBbvaUtils.class);
+
+	private ReflectionBbvaUtils() {
+	}
 
 	/**
 	 * @param method
