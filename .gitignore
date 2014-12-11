@@ -5,6 +5,8 @@ target/
 .factorypath
 .springBeans
 target/surefire
+.metadata/
+.metadata/.plugins/
 webservices/src/main/java/co/com/bbva/services/transactions/common/schema/GeneralErrorResponseType.java
 webservices/src/main/java/co/com/bbva/services/transactions/globalposition/schema/Account.java
 webservices/src/main/java/co/com/bbva/services/transactions/globalposition/schema/CreditCard.java

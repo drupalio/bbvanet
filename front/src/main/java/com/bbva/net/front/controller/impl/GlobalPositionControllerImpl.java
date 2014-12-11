@@ -7,6 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ValueChangeEvent;
 
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
@@ -52,6 +53,10 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	private transient boolean stateGlobalPosition = true;
 
+	private List exam;
+
+	private String valor;
+
 	public boolean isStateGlobalPosition() {
 		return stateGlobalPosition;
 	}
@@ -79,12 +84,33 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	@Override
 	public GlobalProducts getCustomerProducts() {
-
+		exam = new ArrayList();
+		exam.add("1");
+		exam.add("2");
+		exam.add("3");
+		exam.add("4");
+		exam.add("5");
 		final GlobalProducts globalProductos = this.globalPositionFacade.getGlobalProductsByUser(getCurrentUser());
 
 		situationGraphicPieUI = graphicPieDelegate.getSituationGlobalProducts(globalProductos);
 
 		return globalProductos;
+	}
+
+	public List getExam() {
+		return exam;
+	}
+
+	public void setExam(List exam) {
+		this.exam = exam;
+	}
+
+	public String getValor() {
+		return valor;
+	}
+
+	public void setValor(String valor) {
+		this.valor = valor;
 	}
 
 	public void renderPieSituation() {
@@ -205,4 +231,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		System.out.println("Test validate" + getSelectedLike());
 	}
 
+	public void seleccionC(ValueChangeEvent event) {
+		System.out.print("Nuevo dato: " + event.getNewValue() + ", Viejo dato: " + event.getOldValue());
+	}
 }
