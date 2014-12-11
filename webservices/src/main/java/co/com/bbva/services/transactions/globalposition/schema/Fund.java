@@ -9,9 +9,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para fund complex type.
+ * <p>Java class for fund complex type.
  * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="fund">
@@ -40,7 +40,7 @@ public class Fund
     protected Product product;
 
     /**
-     * Obtiene el valor de la propiedad product.
+     * Gets the value of the product property.
      * 
      * @return
      *     possible object is
@@ -52,7 +52,7 @@ public class Fund
     }
 
     /**
-     * Define el valor de la propiedad product.
+     * Sets the value of the product property.
      * 
      * @param value
      *     allowed object is

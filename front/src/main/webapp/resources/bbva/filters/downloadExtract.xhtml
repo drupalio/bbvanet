@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:bbvaAcc="http://java.sun.com/jsf/composite/bbva/accounts"
+	xmlns:bbvaAlert="http://java.sun.com/jsf/composite/bbva/alert"
+	xmlns:bbvaBody="http://java.sun.com/jsf/composite/bbva/body"
+	xmlns:bbvaContainer="http://java.sun.com/jsf/composite/bbva/container"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:bbvaDetAcc="http://java.sun.com/jsf/composite/bbva/tab"
+	xmlns:bbvaCalendar="http://java.sun.com/jsf/composite/bbva/calendar"
+	xmlns:bbvaSearch="http://java.sun.com/jsf/composite/bbva/filters"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+<composite:interface>
+	<composite:attribute name="title" type="String" />
+</composite:interface>
+
+<composite:implementation>
+ <div class="filters consultas descarga hidden-xs hidden-sm ">
+        <div class="download-extract container">
+            <form  method="post">
+                <h1>Descargar extracto electrónico</h1>
+                <small>Selecciona el año y el mes del extracto que quieres consultar</small>
+                <div class="row filteroptions">
+                    <div class="col-md-3">
+                        <select class="selectpicker" style="display: none;">
+                            <option selected="">2014</option>
+                            <option>2015</option>
+                            <option>2016</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="selectpicker" style="display: none;">
+                            <option selected="">Enero</option>
+                            <option>Febrero</option>
+                            <option>Marzo</option>
+                            <option>Abril</option>
+                            <option>Mayo</option>
+                            <option>Junio</option>
+                            <option>Julio</option>
+                            <option>Agosto</option>
+                            <option>Septiembre</option>
+                            <option>Octubre</option>
+                            <option>Noviembre</option>
+                            <option>Diciembre</option>
+                        </select>
+                    </div>
+                    <div class="col-md-5">
+                        <button class="btn primary">
+                            <span class="icon-16 blue l01-pdf"></span><i>(245kb)</i> -- Descargar extracto
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</composite:implementation>
+</html>
