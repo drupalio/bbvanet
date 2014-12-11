@@ -71,4 +71,8 @@ public class MultiValueGroup implements Serializable {
 		this.typeId = typeId;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		return (obj instanceof MultiValueGroup) && this.getId().equals(((MultiValueGroup)obj).getId());
+	}
 }

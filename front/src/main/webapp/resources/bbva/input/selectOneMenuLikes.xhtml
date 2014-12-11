@@ -23,8 +23,8 @@
 			<div class="dropdown-menu open">
 				<f:selectItem itemLabel="#{msg['text.combo.want']}" noSelectionOption="true"/>
 				<f:selectItems value="#{cc.attrs.valueList}" var="multiValue"
-					itemValue="#{multiValue}" itemLabel="#{msg[multiValue.value]}" />
-					<f:ajax execute="@this" event="valueChange"  listener="#{globalPositionController.selectedValue}"/>														
+					itemValue="#{multiValue}"  />
+					<f:ajax execute="@this" event="valueChange"  listener="#{globalPositionController.selectedValue}" />														
 			</div>
 		</h:selectOneMenu>
 	</div>
