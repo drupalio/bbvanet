@@ -15,6 +15,8 @@ import com.bbva.net.front.ui.SituationPiesUI;
 @Delegate(value = "graphicPieDelegate")
 public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 
+	SituationPiesUI situationPiesUI = new SituationPiesUI();
+
 	@Override
 	public SituationPiesUI getSituationGlobalProducts(GlobalProducts globalProducts) {
 
@@ -23,20 +25,43 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 
 	public SituationPiesUI getSitiationPiesUI() {
 
-		SituationPiesConfigUI sitationPiesConfigUI = new SituationPiesConfigUI();
-		SituationPiesUI situationPiesUI = new SituationPiesUI();
+		situationPiesUI.setSituation(getSituationPieConfig());
+		situationPiesUI.setAssets(getAssetPieConfig());
+		situationPiesUI.setFinancing(getFinanciationPieConfig());
 
-		sitationPiesConfigUI.setHeader("Activos");
-		sitationPiesConfigUI.setVisible(true);
-		sitationPiesConfigUI.setPieItemUIList(gePieItemUIList());
-
-		situationPiesUI.setAssets(sitationPiesConfigUI);
 		situationPiesUI.setTotalAssets(new BigDecimal(300000));
 		situationPiesUI.setTotalFinancing(new BigDecimal(500000));
+
 		return situationPiesUI;
 	}
 
-	private List<PieItemUI> gePieItemUIList() {
+	public SituationPiesConfigUI getAssetPieConfig() {
+		SituationPiesConfigUI asset = new SituationPiesConfigUI();
+		asset.setHeader("Activos");
+		asset.setPieItemUIList(gePieAssetItemUIList());
+
+		return asset;
+
+	}
+
+	public SituationPiesConfigUI getSituationPieConfig() {
+		SituationPiesConfigUI situation = new SituationPiesConfigUI();
+		situation.setHeader("Tu Situación");
+		situation.setPieItemUIList(gePieSituationItemUIList());
+
+		return situation;
+
+	}
+
+	public SituationPiesConfigUI getFinanciationPieConfig() {
+		SituationPiesConfigUI financiation = new SituationPiesConfigUI();
+		financiation.setHeader("Financiación");
+		financiation.setPieItemUIList(gePieFinanciationItemUIList());
+		return financiation;
+
+	}
+
+	private List<PieItemUI> gePieAssetItemUIList() {
 		List<PieItemUI> pieItemUIList = new ArrayList<PieItemUI>();
 		List<String> legendList = new ArrayList<String>();
 
@@ -48,7 +73,49 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 		for (String s : legendList) {
 
 			PieItemUI pieItemUI = new PieItemUI();
-			pieItemUI.setColor("orange");
+			pieItemUI.setColor("green");
+			pieItemUI.setCurrency('$');
+			pieItemUI.setPercentage("%");
+			pieItemUI.setTextLengend(s);
+			pieItemUI.setValue(new BigDecimal(2000).multiply(new BigDecimal(0.25F)));
+			pieItemUIList.add(pieItemUI);
+		}
+		return pieItemUIList;
+
+	}
+
+	private List<PieItemUI> gePieFinanciationItemUIList() {
+		List<PieItemUI> pieItemUIList = new ArrayList<PieItemUI>();
+		List<String> legendList = new ArrayList<String>();
+		legendList.add("Cartera de Valores");
+		legendList.add("Depositos");
+		legendList.add("Planes de pensiones");
+		legendList.add("Cartera Asesorada");
+
+		for (String s : legendList) {
+
+			PieItemUI pieItemUI = new PieItemUI();
+			pieItemUI.setColor("blue");
+			pieItemUI.setCurrency('$');
+			pieItemUI.setPercentage("%");
+			pieItemUI.setTextLengend(s);
+			pieItemUI.setValue(new BigDecimal(2000).multiply(new BigDecimal(0.25F)));
+			pieItemUIList.add(pieItemUI);
+		}
+		return pieItemUIList;
+
+	}
+
+	private List<PieItemUI> gePieSituationItemUIList() {
+		List<PieItemUI> pieItemUIList = new ArrayList<PieItemUI>();
+		List<String> legendList = new ArrayList<String>();
+		legendList.add("Activos");
+		legendList.add("Financiación");
+
+		for (String s : legendList) {
+
+			PieItemUI pieItemUI = new PieItemUI();
+			pieItemUI.setColor("red");
 			pieItemUI.setCurrency('$');
 			pieItemUI.setPercentage("%");
 			pieItemUI.setTextLengend(s);
