@@ -19,4 +19,16 @@ public abstract class TestUtils {
 		}
 	}
 
+	/**
+	 * @param enumClass
+	 */
+	public static void superficialAbstractCodeCoverage(Class<?> abstractClass) {
+
+		try {
+			abstractClass.newInstance();
+		} catch (Throwable e) {
+			throw new RuntimeException(e);
+		}
+	}
+
 }

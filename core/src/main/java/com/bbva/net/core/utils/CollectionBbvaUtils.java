@@ -18,8 +18,7 @@ public abstract class CollectionBbvaUtils {
 	 * @return
 	 * @throws NoSuchMethodException
 	 */
-	public static <T extends Serializable> BigDecimal calculateTotal(List<T> list, final String expressionLenguage)
-			throws NoSuchMethodException {
+	public static <T extends Serializable> BigDecimal calculateTotal(List<T> list, final String expressionLenguage) {
 
 		double totalValue = 0d;
 
@@ -37,15 +36,13 @@ public abstract class CollectionBbvaUtils {
 	 * @return
 	 * @throws NoSuchMethodException
 	 */
-	public static double getValueByEL(final Serializable object, final String expressionLenguage)
-			throws NoSuchMethodException {
+	public static double getValueByEL(final Serializable object, final String expressionLenguage) {
 
 		try {
 			return ((Number)PropertyUtils.getProperty(object, expressionLenguage)).doubleValue();
 		} catch (final Exception exception) {
-			throw new NoSuchMethodException(exception.getMessage());
+			return 0;
 		}
-
 	}
 
 }
