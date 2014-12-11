@@ -19,7 +19,6 @@
 
 <ui:composition template="../../templates/defaultLayout.xhtml">
 
-
 	<ui:define name="bodyTitle">
 		<bbvaBody:title title="Posición global" />
 	</ui:define>
@@ -125,8 +124,9 @@
 
 		<h:form>
 
-			<bbvaInput:selectOneMenuWants name="qwe"
-				valueList="#{globalPositionController.listMultiValueLikes}" />
+			<bbvaInput:selectOneMenuLikes label="qwe"
+				value="#{globalPositionController.selectedLike}"
+				valueList="#{globalPositionController.listMultiValueLikes}"/>
 
 			<p:inputText>
 				<p:ajax event="keyup" listener="#{globalPositionController.onKeyUp}" />

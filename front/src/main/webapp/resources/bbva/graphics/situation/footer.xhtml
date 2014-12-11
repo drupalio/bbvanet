@@ -4,15 +4,13 @@
 	xmlns:composite="http://java.sun.com/jsf/composite"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui" 
-	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:p="http://primefaces.org/ui" xmlns:jsf="http://xmlns.jcp.org/jsf"
 	xmlns:pm="http://primefaces.org/mobile">
 
 <composite:interface>
-	<composite:attribute name="label" type="String"  />
-	<composite:attribute name="value" type="String" />
-	<composite:attribute name="currency" type="String" />
-	<!-- 	<composite:attribute name="icon" type="String" required="true" /> -->
+
+	<composite:attribute name="footerInfo"
+		type="com.bbva.net.front.ui.SituationPiesUI" />
 
 </composite:interface>
 
@@ -20,18 +18,20 @@
 
 	<div class="tables-footer">
 		<ul>
-			<li class="button-table activos"><a jsf:action="#{globalPositionController.renderPieAssets}" class="icon-active">Activos
-			<f:ajax execute="@form" render="@form :globalPanel" />
-			</a>
-				<span data-original-title="Mensaje de ayuda" title=""
+			<li class="button-table activos"><a
+				jsf:action="#{globalPositionController.renderPieAssets}"
+				class="icon-active">Activos <f:ajax execute="@form"
+						render="@form :globalPanel" />
+			</a> <span data-original-title="Mensaje de ayuda" title=""
 				data-toggle="tooltip" class="icon-info-blue"></span><span
-				class="importe-situacion">$ 15.000.000,00</span></li>
-			<li class="button-table financiacion"><a jsf:action="#{globalPositionController.renderPieFinanciation}" class="icon-financing">Financiación
-			<f:ajax execute="@form" render="@form :globalPanel" />
-			</a>
-				<span data-original-title="Mensaje de ayuda" title=""
+				class="importe-situacion">#{cc.attrs.footerInfo.totalAssets}</span></li>
+			<li class="button-table financiacion"><a
+				jsf:action="#{globalPositionController.renderPieFinanciation}"
+				class="icon-financing">Financiación <f:ajax execute="@form"
+						render="@form :globalPanel" />
+			</a> <span data-original-title="Mensaje de ayuda" title=""
 				data-toggle="tooltip" class="icon-info-blue"></span><span
-				class="importe-situacion">$ 21.000.000,00</span></li>
+				class="importe-situacion">#{cc.attrs.footerInfo.totalFinancing}</span></li>
 		</ul>
 	</div>
 

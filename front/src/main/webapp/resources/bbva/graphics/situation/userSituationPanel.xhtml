@@ -6,30 +6,39 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pm="http://primefaces.org/mobile"
 	xmlns:jsf="http://xmlns.jcp.org/jsf"
-	xmlns:bbvaSituation="http://java.sun.com/jsf/composite/bbva/graphics/situation">
+	xmlns:bbvaSituation="http://java.sun.com/jsf/composite/bbva/graphics/situation"
+	xmlns:bbvaPieGraphic="http://java.sun.com/jsf/composite/bbva/graphics">
 
 <composite:interface>
-	
+
+	<composite:attribute name="youSituation"
+		type="com.bbva.net.front.ui.SituationPiesUI" />
+
 </composite:interface>
 
 <composite:implementation>
-	 
-	<div id="userSituationPanel" jsf:rendered="#{globalPositionController.activePanel == 'SITUATION'}">
+
+
+
+	<div id="userSituationPanel"
+		jsf:rendered="#{globalPositionController.activePanel == 'SITUATION'}">
 		<bbvaSituation:header />
-		<bbvaSituation:pieSituationGraphic />
-		<bbvaSituation:footer />
+		<bbvaPieGraphic:pieGraphic piesItemUIList="#{cc.attrs.youSituation.situation.pieItemUIList}" />
+		<bbvaSituation:footer footerInfo="#{cc.attrs.youSituation}" />
 	</div>
 
-	<div id="assets" class="second-tab" jsf:rendered="#{globalPositionController.activePanel == 'ASSET'}">
+	<div id="assets" class="second-tab"
+		jsf:rendered="#{globalPositionController.activePanel == 'ASSET'}">
 		<bbvaSituation:headerLink />
-		<bbvaSituation:assetsGraphic situationPies="#{globalPositionController.situationGraphicPieUI}" />
+		<bbvaPieGraphic:pieGraphic piesItemUIList="#{cc.attrs.youSituation.assets.pieItemUIList}" />
 	</div>
 
-	<div id="financiation" class="first-tab" jsf:rendered="#{globalPositionController.activePanel == 'FINANCIATION'}">
+	<div id="financiation" class="first-tab"
+		jsf:rendered="#{globalPositionController.activePanel == 'FINANCIATION'}">
 		<bbvaSituation:headerLink />
-		<bbvaSituation:financiationGraphic  />
+		<bbvaPieGraphic:pieGraphic piesItemUIList="#{cc.attrs.youSituation.financing.pieItemUIList}" />
 	</div>
-	 
+
 
 </composite:implementation>
 

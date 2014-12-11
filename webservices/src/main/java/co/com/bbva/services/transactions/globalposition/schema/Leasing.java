@@ -9,9 +9,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para leasing complex type.
+ * <p>Java class for leasing complex type.
  * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="leasing">
@@ -40,7 +40,7 @@ public class Leasing
     protected Loan loan;
 
     /**
-     * Obtiene el valor de la propiedad loan.
+     * Gets the value of the loan property.
      * 
      * @return
      *     possible object is
@@ -52,7 +52,7 @@ public class Leasing
     }
 
     /**
-     * Define el valor de la propiedad loan.
+     * Sets the value of the loan property.
      * 
      * @param value
      *     allowed object is

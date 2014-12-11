@@ -1,12 +1,20 @@
 package com.bbva.net.front.controller.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
+import javax.swing.JOptionPane;
 
+import org.primefaces.event.SelectEvent;
+import org.primefaces.event.UnselectEvent;
 import org.springframework.stereotype.Controller;
 
+import co.com.bbva.services.transactions.globalposition.schema.Account;
 import co.com.bbva.services.transactions.globalposition.schema.GlobalProducts;
 
 import com.bbva.net.back.entity.MultiValueGroup;
@@ -25,6 +33,10 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	// private GraphicUI graphicUI;
 	private Integer LISTA_QUIEROS = 1;
 
+	private String selectedLike;
+
+	private List<String> listPrb;
+
 	@Resource(name = "globalPositionFacade")
 	private transient GlobalPositionFacade globalPositionFacade;
 
@@ -35,6 +47,8 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	private transient GraphicPieDelegate graphicPieDelegate;
 
 	private SituationPiesUI situationGraphicPieUI;
+
+	private Account selectedProduct;
 
 	private ActivePanelType activePanel = ActivePanelType.SITUATION;
 
@@ -55,6 +69,11 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	@PostConstruct
 	public void init() {
+
+		listPrb = new ArrayList<String>();
+		listPrb.add("hola 0");
+		listPrb.add("holaa 1");
+		listPrb.add("hoolaa 2");
 
 		LOGGER.info("STARTING BBVA NET .................");
 
@@ -117,6 +136,76 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	 */
 	public void setMultiValueGroupFacade(MultiValueGroupFacade multiValueGroupFacade) {
 		this.multiValueGroupFacade = multiValueGroupFacade;
+	}
+
+	/**
+	 * @return the selectedProduct
+	 */
+	public Account getSelectedProduct() {
+		return selectedProduct;
+	}
+
+	/**
+	 * @param selectedProduct the selectedProduct to set
+	 */
+	public void setSelectedProduct(Account selectedProduct) {
+		this.selectedProduct = selectedProduct;
+	}
+
+	/**
+	 * @return the selectedLike
+	 */
+	public String getSelectedLike() {
+		return selectedLike;
+	}
+
+	/**
+	 * @param selectedLike the selectedLike to set
+	 */
+	public void setSelectedLike(String selectedLike) {
+		this.selectedLike = selectedLike;
+	}
+
+	/**
+	 * @return the listPrb
+	 */
+	public List<String> getListPrb() {
+		return listPrb;
+	}
+
+	/**
+	 * @param listPrb the listPrb to set
+	 */
+	public void setListPrb(List<String> listPrb) {
+		this.listPrb = listPrb;
+	}
+
+	public void onRowSelect(SelectEvent event) {
+		System.out.println("LLego selected");
+		System.out.println("Product Selected" + ((Account)event.getObject()).getProduct().getProductId());
+		FacesMessage msg = new FacesMessage("Product Selected", ((Account)event.getObject()).getProduct()
+				.getProductId());
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+
+	public void onRowUnselect(UnselectEvent event) {
+		System.out.println("LLego iunselected");
+		FacesMessage msg = new FacesMessage("Product Unselected", ((Account)event.getObject()).getProduct()
+				.getProductId());
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+
+	public String goAccounts() {
+		return "accounts";
+	}
+	
+	
+	public void selectedValue() {
+		System.out.println("Selected Like" + getSelectedLike());
+	}
+
+	public void testValidate() {
+		System.out.println("Test validate" + getSelectedLike());
 	}
 
 }
