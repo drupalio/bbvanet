@@ -1,0 +1,86 @@
+@CHARSET "ISO-8859-1";
+
+.leftDiv {
+	float: left !important;
+	box-sizing: border-box !important;
+	color: #333 !important;
+	floatleftfont-family: "Helvetica Neue", Helvetica, Arial, sans-seri
+		!important;
+	font-size: 14px !important;
+	height: 65px !important;
+	line-height: 20px !important;
+	min-height: 1px !important;
+	padding-left: 15px !important;
+	padding-right: 15px !important;
+	position: relative !important;
+	width: 25% !important;
+	box-sizing: border-box !important;
+}
+
+.leftLabel {
+	color: #0078D2 !important;
+	floatleftfont-family: "BBVA Web Light", Arial, sans-serif !important;
+	font-size: 19.25px !important;
+	font-weight: 100 !important;
+	line-height: 21.1833px !important;
+	margin-bottom: 10px !important;
+	margin-top: 0px !important;
+}
+
+.rigthDiv {
+	box-sizing: border-box !important;
+	color: #333 !important;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 14px !important;
+	height: 65px !important;
+	line-height: 20px !important;
+	min-height: 1px !important;
+	padding-left: 15px !important;
+	padding-right: 15px !important;
+	position: relative !important;
+	width: 75% !important;
+	float: left !important;
+}
+
+.rigthInput {
+	float: left !important;
+	width: 315px !important;
+	margin-right: 15px !important;
+}
+
+.ui-state-active {
+	max-width: 157px !important;
+	width: 100% !important;
+	height: 40px !important;
+	text-align: center !important;
+	padding: 12px 14px !important;
+	z-index: 2 !important;
+	background: linear-gradient(to bottom, #FFF 40%, #D2E5EB 200%) repeat
+		scroll 0% 0% transparent !important;
+	border-color: #D2E5EB !important;
+	color: #0078D2 !important;
+	font-size: 0.95em !important;
+	overflow: hidden !important;
+}
+
+div.ui-corner-all {
+	border-radius: 34px !important;
+}
+
+.ui-selectonebutton {
+	display: block !important;
+}
+
+div.ui-button {
+	display: inherit !important;
+}
+
+div.ui-state-default {
+	background: -moz-linear-gradient(center top, rgba(255, 255, 255, 0),
+		rgba(255, 255, 255, 0.4)) repeat scroll 0% 0% #F7F9FB !important;
+	max-width: 157px !important;
+	width: 100% !important;
+	height: 40px !important;
+	text-align: center !important;
+	padding: 12px 14px !important;
+}

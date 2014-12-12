@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:composite="http://java.sun.com/jsf/composite"
@@ -6,64 +7,24 @@
 	xmlns:p="http://primefaces.org/ui" xmlns:jsf="http://xmlns.jcp.org/jsf"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
-<style type="text/css">
-input[type=radio]+label {
-	display: inline-block;
-	margin: -2px;
-	padding: 4px 12px;
-	background-color: #e7e7e7;
-	border-color: #ddd;
-} /* Change
-background color for label next to checked radio button to make it look
-like highlighted button */
-input[type=radio]:checked+label {
-	background-image: none;
-	background-color: #d0d0d0;
-}
-</style>
 
 <composite:interface>
-	<composite:attribute name="id" type="String"/>
-	<!-- 	<composite:attribute name="id" required="false"/> -->
-	<!-- 	<composite:attribute name="value" /> -->
-	<!-- 	<composite:attribute name="itemLabel" /> -->
-	<!-- 	<composite:attribute name="itemValue" required="false" /> -->
-	<composite:attribute name="idleft" required="false" />
-	<composite:attribute name="idrigth" required="false" />
-	<composite:attribute name="labelleft" required="false" />
-	<composite:attribute name="labelrigth" required="false" />
+
+	<composite:attribute name="id" type="String" />
 	<composite:attribute name="value" />
+	<composite:attribute name="itemLabel" />
+	<composite:attribute name="itemValue" required="false" />
+
+
 </composite:interface>
 
 <composite:implementation>
 
-	<p:selectOneButton value="#{cc.attrs.value}">
-		<f:selectItem itemLabel="Activar" itemValue="Acti"
-			style="	background-color: white !important;" />
+	<p:selectOneButton id="#{cc.attrs.id}" value="#{cc.attrs.value}">
+		<f:selectItem itemLabel="Activar" itemValue="Acti" />
 		<f:selectItem itemLabel="Desactivar" itemValue="Desac" />
 	</p:selectOneButton>
 
-	<div class="tab-mobile tab-pane personalizar active"
-		id="tab-personalizar">
-		<div class="panel-tab-body container">
-			<div class="filters personalizar-block row">
-				<div class="customize-virtual">
-					<div class="col-xs-8 col-sm-9">
-						<div class="buttons">
-							<span class="btn-group"> <label for="virtual-yes"
-								class="btn large primary yes"><strong>#{cc.attrs.labelleft}</strong><input
-									type="radio" jsf:value="#{cc.attrs.value}" name="primary"
-									jsf:id="#{cc.attrs.idleft}" class="active-buttons" checked="checked" /></label> <label
-								for="virtual-no" class="btn large primary no"><strong>#{cc.attrs.labelrigth}</strong><input
-									type="radio" jsf:value="#{cc.attrs.value}" name="primary"
-									jsf:id="#{cc.attrs.idrigth}" class="active-buttons" /></label>
-							</span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 </composite:implementation>
 
 </html>

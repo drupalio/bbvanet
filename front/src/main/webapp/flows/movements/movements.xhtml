@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:bbvaAcc="http://java.sun.com/jsf/composite/bbva/accounts"
+	xmlns:bbvaGP="http://java.sun.com/jsf/composite/bbva/globalPosition"
+	xmlns:bbvaAlert="http://java.sun.com/jsf/composite/bbva/alert"
+	xmlns:bbvaBody="http://java.sun.com/jsf/composite/bbva/body"
+	xmlns:bbvaContainer="http://java.sun.com/jsf/composite/bbva/container"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+
+<ui:composition template="../../templates/defaultLayout.xhtml">
+
+	<ui:define name="bodyTitle">
+		<bbvaBody:title title="Cuentas Personales">
+			<bbvaBody:titleOptionProduct optionButttonLeft="Mis productos"
+				optionButttonRight="Catálogo de productos" />
+		</bbvaBody:title>
+	</ui:define>
+
+	<ui:define name="contentLeft">
+
+		<bbvaContainer:productPanelGraphic title="Cuentas Personales">
+			<div class="table-tabs">
+				<bbvaGP:accountSearch listAccounts="#{customerAccounts}" />
+				<bbvaAcc:accountHeadTable listAccounts="#{customerAccounts}" />
+				<bbvaAcc:accountAdquirenciaTable listAccounts="#{customerAccounts}" />
+				<bbvaAcc:accountTailTable listAccounts="#{customerAccounts}" />
+
+			</div>
+			<div class="row afterTable">
+				<bbvaGP:productFooter listProduct="#{customerAccounts}" />
+				<bbvaGP:totalBalance />
+			</div>
+		</bbvaContainer:productPanelGraphic>
+
+	</ui:define>
+
+	<ui:define name="contentRight">
+
+
+	</ui:define>
+
+</ui:composition>
+
+</html>

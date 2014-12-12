@@ -10,9 +10,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para product complex type.
+ * <p>Java class for product complex type.
  * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="product">
@@ -64,7 +64,7 @@ public class Product
     protected BigDecimal cashAvailable;
 
     /**
-     * Obtiene el valor de la propiedad productId.
+     * Gets the value of the productId property.
      * 
      * @return
      *     possible object is
@@ -76,7 +76,7 @@ public class Product
     }
 
     /**
-     * Define el valor de la propiedad productId.
+     * Sets the value of the productId property.
      * 
      * @param value
      *     allowed object is
@@ -92,7 +92,7 @@ public class Product
     }
 
     /**
-     * Obtiene el valor de la propiedad productName.
+     * Gets the value of the productName property.
      * 
      * @return
      *     possible object is
@@ -104,7 +104,7 @@ public class Product
     }
 
     /**
-     * Define el valor de la propiedad productName.
+     * Sets the value of the productName property.
      * 
      * @param value
      *     allowed object is
@@ -120,7 +120,7 @@ public class Product
     }
 
     /**
-     * Obtiene el valor de la propiedad productNumber.
+     * Gets the value of the productNumber property.
      * 
      * @return
      *     possible object is
@@ -132,7 +132,7 @@ public class Product
     }
 
     /**
-     * Define el valor de la propiedad productNumber.
+     * Sets the value of the productNumber property.
      * 
      * @param value
      *     allowed object is
@@ -148,7 +148,7 @@ public class Product
     }
 
     /**
-     * Obtiene el valor de la propiedad asset.
+     * Gets the value of the asset property.
      * 
      */
     public boolean isAsset() {
@@ -156,7 +156,7 @@ public class Product
     }
 
     /**
-     * Define el valor de la propiedad asset.
+     * Sets the value of the asset property.
      * 
      */
     public void setAsset(boolean value) {
@@ -168,7 +168,7 @@ public class Product
     }
 
     /**
-     * Obtiene el valor de la propiedad alias.
+     * Gets the value of the alias property.
      * 
      * @return
      *     possible object is
@@ -180,7 +180,7 @@ public class Product
     }
 
     /**
-     * Define el valor de la propiedad alias.
+     * Sets the value of the alias property.
      * 
      * @param value
      *     allowed object is
@@ -196,7 +196,7 @@ public class Product
     }
 
     /**
-     * Obtiene el valor de la propiedad totalCash.
+     * Gets the value of the totalCash property.
      * 
      * @return
      *     possible object is
@@ -208,7 +208,7 @@ public class Product
     }
 
     /**
-     * Define el valor de la propiedad totalCash.
+     * Sets the value of the totalCash property.
      * 
      * @param value
      *     allowed object is
@@ -224,7 +224,7 @@ public class Product
     }
 
     /**
-     * Obtiene el valor de la propiedad cashAvailable.
+     * Gets the value of the cashAvailable property.
      * 
      * @return
      *     possible object is
@@ -236,7 +236,7 @@ public class Product
     }
 
     /**
-     * Define el valor de la propiedad cashAvailable.
+     * Sets the value of the cashAvailable property.
      * 
      * @param value
      *     allowed object is
