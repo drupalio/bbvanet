@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:cc="http://jsflive.at/taglib"
+	xmlns:bbvaCalendar="http://java.sun.com/jsf/composite/bbva/calendar">
+
+<composite:interface>
+
+</composite:interface>
+
+<composite:implementation>
+
+
+
+
+	<div class="balance-filter-content">
+		<form novalidate="novalidate">
+			<div>
+				<div class="col-xs-12 col-md-6">
+					<div class="form-group">
+						<div class="col-xs-2 col-md-12">
+							<label for="inputNumberFrom">Desde:</label>
+						</div>
+						<div class="col-xs-10 col-md-12 balanceFrom">
+							<input type="text" class="form-control dollar"
+								name="inputNumberFrom" maxlength="12" data-min="0"
+								data-max="999999999999" autocomplete="off" data-filter="Desde: "
+								aria-required="true" />
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12 col-md-6">
+					<div class="form-group">
+						<div class="col-xs-2 col-md-12">
+							<label for="inputNumberTo">Hasta:</label>
+						</div>
+						<div class="col-xs-10 col-md-12 balanceTo">
+							<input type="text" class="form-control dollar"
+								name="inputNumberTo" maxlength="12" data-min="1"
+								data-max="999999999999" autocomplete="off" data-filter="Hasta: "
+								aria-required="true" />
+						</div>
+					</div>
+				</div>
+			</div>
+			<small class="muted filter-description"></small>
+			<button type="submit" class="btn small hidden-xs hidden-sm"
+				disabled="">Confirmar</button>
+		</form>
+	</div>
+	
+
+</composite:implementation>
+
+</html>
