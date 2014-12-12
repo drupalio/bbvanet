@@ -24,7 +24,7 @@
 	</ui:define>
 
 	<ui:define name="contentLeft">
-
+		
 		<bbvaContainer:productPanelGraphic title="Cuentas Personales">
 			<div class="table-tabs">
 				<bbvaGP:accountSearch listAccounts="#{customerProducts.accounts}" />
@@ -119,7 +119,6 @@
 	<ui:define name="contentRight">
 
 		<bbvaSituation:globalSituationPanel />
-
 		<bbvaAlert:alertsPanel header="Alertas y Novedades" numAlerts="8" />
 
 		<h:form>
@@ -138,10 +137,6 @@
 				<f:ajax execute="@form" render="@form" />
 			</button>
 			<p:outputLabel>Selector</p:outputLabel>
-
-			
-<bbvaInput:comboSelected list="#{globalPositionController.exam}" width="col-md-6"/>
-
 
 		</h:form>
 

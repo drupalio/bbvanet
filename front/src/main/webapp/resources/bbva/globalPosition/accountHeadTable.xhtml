@@ -15,38 +15,49 @@
 </composite:interface>
 
 <composite:implementation>
-	
+
 	<h:form>
-		<p:dataTable id="table" var="icuenta"
+		<p:dataTable id="table" widgetVar="tableAccounts" rowIndexVar="findex"
+			var="icuenta" selectionMode="single"
+			selection="#{globalPositionController.selectAccount}"
+			rowKey="#{icuenta.product.productId}"
 			value="#{cc.attrs.listAccounts.subList(0, (cc.attrs.listAccounts.size()) >= 10 ? 10 : cc.attrs.listAccounts.size())}">
 
-			<!-- 
-			<p:ajax event="rowSelect"
-				listener="#{globalPositionController.onRowSelect}" update="table" />
-			<p:ajax event="rowUnselect"
-				listener="#{globalPositionController.onRowUnselect}" update="table" />
-			 -->
+			<p:ajax event="rowSelect" listener="#{globalPositionController.onAccountSelected}" 
+					oncomplete="document.getElementById('showPepe').click()"/>
+			<p:ajax event="rowUnselect" />
 
 			<p:column class="head" headerText="N° CUENTA"
 				styleClass="col-xs-6 col-md-8"
 				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
+				<p:panelGrid>
 
-				<p class="title-label" style="font-size: 1.1em">#{icuenta.product.alias}</p>
-				<p style="font-size: 1em">#{icuenta.product.productId}</p>
-				<p class="sublabel" style="font-size: 1em">#{icuenta.product.productName}</p>
-				
+					<h:outputText styleClass="title-label" style="font-size: 1.1em"
+								  value="#{icuenta.product.alias}"/>
+					<h:outputText style="font-size: 1em" value="#{icuenta.product.productId}"></h:outputText>
+					<h:outputText styleClass="sublabel" style="font-size: 1em"
+								  value="#{icuenta.product.productName}"/>
+								  
+				</p:panelGrid>
 
 			</p:column>
-			<p:column class="head" headerText="SALDO"
+
+			<p:column class="head" headerText="SALDO" 
 				styleClass="col-xs-6 col-md-4"
 				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
-
-				<p class="balance" style="font-size: 1.5em">#{icuenta.product.totalCash}</p>
-				<p style="font-size: 1em">Saldo disponible
-					$#{icuenta.product.cashAvailable}</p>
-				<p class="sublabel"></p>
+				 
+					<h:outputText style="font-size: 1.5em; font-weight:bold" styleClass="balance" 
+								   value="#{icuenta.product.totalCash}"/>
+					<h:outputText styleClass="ui-datatable-selectable" style="font-size:1em" escape="false"
+						value="&lt;br /&gt; Saldo disponible $ #{icuenta.product.cashAvailable}">
+					</h:outputText>
+					<p class="sublabel"></p>
+					
 			</p:column>
+
 		</p:dataTable>
+		
+		<h:commandButton id="showPepe" value="Show Pepe" action="showPepe" rendered="false" ></h:commandButton>
 	</h:form>
 
 </composite:implementation>

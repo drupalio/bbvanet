@@ -1,16 +1,11 @@
 package com.bbva.net.front.controller.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-import javax.faces.event.ValueChangeEvent;
 
 import org.primefaces.event.SelectEvent;
-import org.primefaces.event.UnselectEvent;
 import org.springframework.stereotype.Controller;
 
 import co.com.bbva.services.transactions.globalposition.schema.Account;
@@ -34,8 +29,6 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	private String selectedLike;
 
-	private List<String> listPrb;
-
 	@Resource(name = "globalPositionFacade")
 	private transient GlobalPositionFacade globalPositionFacade;
 
@@ -47,23 +40,11 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	private SituationPiesUI situationGraphicPieUI;
 
-	private Account selectedProduct;
+	private Account selectedAccount;
 
 	private ActivePanelType activePanel = ActivePanelType.SITUATION;
 
 	private transient boolean stateGlobalPosition = true;
-
-	private List exam;
-
-	private String valor;
-
-	public boolean isStateGlobalPosition() {
-		return stateGlobalPosition;
-	}
-
-	public void setStateGlobalPosition(boolean stateGlobalPosition) {
-		this.stateGlobalPosition = stateGlobalPosition;
-	}
 
 	private enum ActivePanelType {
 
@@ -72,45 +53,23 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	@PostConstruct
 	public void init() {
-
-		listPrb = new ArrayList<String>();
-		listPrb.add("hola 0");
-		listPrb.add("holaa 1");
-		listPrb.add("hoolaa 2");
-
 		LOGGER.info("STARTING BBVA NET .................");
-
 	}
 
 	@Override
 	public GlobalProducts getCustomerProducts() {
-		exam = new ArrayList();
-		exam.add("1");
-		exam.add("2");
-		exam.add("3");
-		exam.add("4");
-		exam.add("5");
+
 		final GlobalProducts globalProductos = this.globalPositionFacade.getGlobalProductsByUser(getCurrentUser());
-
 		situationGraphicPieUI = graphicPieDelegate.getSituationGlobalProducts(globalProductos);
-
 		return globalProductos;
 	}
 
-	public List getExam() {
-		return exam;
+	public boolean isStateGlobalPosition() {
+		return stateGlobalPosition;
 	}
 
-	public void setExam(List exam) {
-		this.exam = exam;
-	}
-
-	public String getValor() {
-		return valor;
-	}
-
-	public void setValor(String valor) {
-		this.valor = valor;
+	public void setStateGlobalPosition(boolean stateGlobalPosition) {
+		this.stateGlobalPosition = stateGlobalPosition;
 	}
 
 	public void renderPieSituation() {
@@ -123,6 +82,10 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	public void renderPieFinanciation() {
 		this.activePanel = ActivePanelType.FINANCIATION;
+	}
+
+	public void onAccountSelected(final SelectEvent selectEvent) {
+		sendAction("showPepe");
 	}
 
 	public void setGlobalPositionFacade(final GlobalPositionFacade globalPositionFacade) {
@@ -163,20 +126,6 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	}
 
 	/**
-	 * @return the selectedProduct
-	 */
-	public Account getSelectedProduct() {
-		return selectedProduct;
-	}
-
-	/**
-	 * @param selectedProduct the selectedProduct to set
-	 */
-	public void setSelectedProduct(Account selectedProduct) {
-		this.selectedProduct = selectedProduct;
-	}
-
-	/**
 	 * @return the selectedLike
 	 */
 	public String getSelectedLike() {
@@ -190,48 +139,12 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		this.selectedLike = selectedLike;
 	}
 
-	/**
-	 * @return the listPrb
-	 */
-	public List<String> getListPrb() {
-		return listPrb;
+	public void setSelectAccount(final Account account) {
+		this.selectedAccount = account;
 	}
 
-	/**
-	 * @param listPrb the listPrb to set
-	 */
-	public void setListPrb(List<String> listPrb) {
-		this.listPrb = listPrb;
+	public Account getSelectAccount() {
+		return this.selectedAccount;
 	}
 
-	public void onRowSelect(SelectEvent event) {
-		System.out.println("LLego selected");
-		System.out.println("Product Selected" + ((Account)event.getObject()).getProduct().getProductId());
-		FacesMessage msg = new FacesMessage("Product Selected", ((Account)event.getObject()).getProduct()
-				.getProductId());
-		FacesContext.getCurrentInstance().addMessage(null, msg);
-	}
-
-	public void onRowUnselect(UnselectEvent event) {
-		System.out.println("LLego iunselected");
-		FacesMessage msg = new FacesMessage("Product Unselected", ((Account)event.getObject()).getProduct()
-				.getProductId());
-		FacesContext.getCurrentInstance().addMessage(null, msg);
-	}
-
-	public String goAccounts() {
-		return "accounts";
-	}
-
-	public void selectedValue() {
-		System.out.println("Selected Like" + getSelectedLike());
-	}
-
-	public void testValidate() {
-		System.out.println("Test validate" + getSelectedLike());
-	}
-
-	public void seleccionC(ValueChangeEvent event) {
-		System.out.print("Nuevo dato: " + event.getNewValue() + ", Viejo dato: " + event.getOldValue());
-	}
 }

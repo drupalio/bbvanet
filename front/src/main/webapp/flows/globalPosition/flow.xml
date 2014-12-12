@@ -12,7 +12,11 @@
 	</on-start>
 	
 	<view-state id="globalPosition">
+		<transition on="showPepe" to="pepe"></transition>
 	</view-state>
 	
+	
+	<view-state id="pepe">
+	</view-state>
 
 </flow>
