@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pm="http://primefaces.org/mobile">
+
+<composite:interface>
+
+	<composite:attribute id="tableBody" name="bodyContent" />
+
+</composite:interface>
+
+<composite:implementation>
+	<div class="table-content">
+		<div class="title-container">
+			<button class="close-icon hidden-md hidden-lg close-button"
+				type="button"></button>
+			<h3>Información del movimiento</h3>
+		</div>
+		<div class="definitions">
+			<dl>
+				<dd>Nº de movimiento</dd>
+				<dt>47</dt>
+			</dl>
+			<dl>
+				<dd>Fecha de operación</dd>
+				<dt>18/06/2014</dt>
+			</dl>
+			<dl>
+				<dd>Fecha valor</dd>
+				<dt>18/06/2014</dt>
+			</dl>
+			<dl>
+				<dd>Hora Operación</dd>
+				<dt>9.35 hrs.</dt>
+			</dl>
+			<dl>
+				<dd>Valor</dd>
+				<dt>$ 390.00</dt>
+			</dl>
+			<dl>
+				<dd>Saldo después de movimiento</dd>
+				<dt>$ 12,943,536.35</dt>
+			</dl>
+			<dl>
+				<dd>Código de operación</dd>
+				<dt>056</dt>
+			</dl>
+			<dl>
+				<dd>Descripción de la operación</dd>
+				<dt>TRANSFERENCIA</dt>
+			</dl>
+			<dl>
+				<dd>Observaciones</dd>
+				<dt>Lorem ipsum dolor sir amet, consectetur</dt>
+			</dl>
+			<dl>
+				<dd>Centro origen del movimiento</dd>
+				<dt>0136 CHAPINERO</dt>
+			</dl>
+			<dl>
+				<dd class="border-desktop">Plaza</dd>
+				<dt class="border-desktop">BOGOTA(CUNDIMARCA)</dt>
+			</dl>
+			<dl>
+				<dd class="border-desktop border-mobile">Estado</dd>
+				<dt class="border-desktop border-mobile">Enviada</dt>
+			</dl>
+		</div>
+	</div>
+
+</composite:implementation>
+</html>
