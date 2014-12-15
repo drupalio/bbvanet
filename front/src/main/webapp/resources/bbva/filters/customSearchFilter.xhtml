@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:cc="http://jsflive.at/taglib"
+	xmlns:bbvaCalendar="http://java.sun.com/jsf/composite/bbva/calendar">
+
+<composite:interface>
+	<composite:attribute name="title" type="String" />
+</composite:interface>
+
+<composite:implementation>
+
+
+
+	<div class="date-filter-content">
+		<form action="#" novalidate="novalidate">
+			<div class="form-horizontal">
+				<div class="row">
+
+					<div class="col-xs-6">
+						<input name="sample-radio-date" id="customSearch-filter-today"
+							value="Hoy" type="radio" data-filter="Hoy" aria-required="true" />
+						<label for="customSearch-filter-today">Hoy</label>
+					</div>
+					<div class="col-xs-6">
+						<input name="sample-radio-date" id="customSearch-filter-yesterday"
+							value="Ayer" type="radio" data-filter="Ayer" /> <label
+							for="customSearch-filter-yesterday">Ayer</label>
+					</div>
+					<div class="col-xs-6">
+						<input name="sample-radio-date" id="customSearch-filter-week"
+							value="Última semana" type="radio" data-filter="Última semana" />
+						<label for="customSearch-filter-week">Última semana</label>
+					</div>
+					<div class="col-xs-6">
+						<input name="sample-radio-date" id="customSearch-filter-two-week"
+							value="Últimas dos semanas" type="radio"
+							data-filter="Últimas dos semanas" /> <label
+							for="customSearch-filter-two-week">Últimas dos semanas</label>
+					</div>
+					<div class="col-xs-6">
+						<input name="sample-radio-date" id="customSearch-filter-month"
+							value="Último mes" type="radio" data-filter="Último mes" /> <label
+							for="customSearch-filter-month">Último mes</label>
+					</div>
+					<div class="col-xs-6">
+						<input name="sample-radio-date" id="customSearch-filter-two-month"
+							value="Últimos dos meses" type="radio"
+							data-filter="Últimos dos meses" /> <label
+							for="customSearch-filter-two-month">Últimos dos meses</label>
+					</div>
+				</div>
+			</div>
+
+			<div class="date-period radio-group">
+				<div class="form-horizontal date-specific">
+					<input name="sample-radio-date" id="customSearch-filter-datePeriod"
+						value="Fecha concreta" type="radio" data-filter="Fecha concreta"
+						class="filter-period" /> <label
+						for="customSearch-filter-datePeriod">Fecha concreta</label>
+				</div>
+				<div>
+					<div class="col-xs-12 col-md-6">
+						<div class="form-group">
+							<div class="col-xs-2 col-md-12">
+								<label for="customSearch-dateFieldFrom">Desde:</label>
+							</div>
+							<div>
+								<bbvaCalendar:calendarItem />
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-12 col-md-6">
+						<div class="form-group">
+							<div class="col-xs-2 col-md-12">
+								<label for="customSearch-dateFieldTo">Hasta:</label>
+							</div>
+							<div class="col-xs-10 col-md-12 input-control">
+								<input type="text" maxlength="10"
+									class="datepicker form-control dateFieldTo hasDatepicker calendar"
+									id="customSearch-dateFieldTo" name="dateFieldTo"
+									placeholder="__/__/____" autocomplete="off"
+									data-date-format="dd/mm/yyyy" data-provide="datepicker-inline"
+									data-filter="Hasta: " disabled="" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<button type="submit" class="btn small hidden-xs hidden-sm"
+				disabled="">Confirmar</button>
+		</form>
+	</div>
+	
+</composite:implementation>
+
+</html>
