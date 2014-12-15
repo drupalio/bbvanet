@@ -5,8 +5,22 @@
     http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
 
 	<var name="calendar" class="com.bbva.net.front.controller.impl.MoveAccountsControllerImpl" />
+	<var name="customerAccountsPage"
+		class="com.bbva.net.front.controller.impl.AccountsControllerImpl" />
+	<on-start>
+		<evaluate expression="customerAccountsPage.getCustomerAccounts()"
+			result="flowScope.customerAccounts" />
+		
+	</on-start>
 	
 	<view-state id="detailAccounts">
+		<on-render>
+			<evaluate expression="customerAccountsPage.getCustomerAccounts()"
+				result="viewScope.customerAccountsM" result-type="dataModel" />
+		</on-render>
+		<transition on="next">
+			<evaluate expression="calendar.nextPage()" />
+		</transition>
 	</view-state>
-	
+
 </flow>

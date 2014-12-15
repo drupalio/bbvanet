@@ -8,7 +8,7 @@
 	xmlns:pm="http://primefaces.org/mobile">
 
 <composite:interface>
-
+	<composite:attribute name="id" type="String"/>
 	<composite:attribute name="list" type="java.util.List" />
 	<composite:attribute name="width" type="String" />
 </composite:interface>
@@ -16,16 +16,15 @@
 <composite:implementation>
 
 	<div class="#{cc.attrs.width}">
-		<h:selectOneMenu id="select" valueChangeListener="#{globalPositionController.seleccionC}">
+		<h:selectOneMenu id="#{cc.attrs.id}" value="#{calendar.valor}" valueChangeListener="#{calendar.seleccionC}">
 			<f:selectItem itemLabel="Select One" itemValue=""   />
 			<f:selectItems value="#{cc.attrs.list}" var="ilist"
 				itemLabel="#{ilist}" itemValue="#{ilist}" />
-				<f:ajax event="valueChange"/>
+				<f:ajax event="valueChange" immediate="true" />
 				
 		</h:selectOneMenu>
 
 	</div>
-
 
 </composite:implementation>
 

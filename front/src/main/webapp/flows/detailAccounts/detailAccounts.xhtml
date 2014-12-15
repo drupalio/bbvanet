@@ -14,7 +14,8 @@
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:bbvaDetAcc="http://java.sun.com/jsf/composite/bbva/tab"
 	xmlns:bbvaCalendar="http://java.sun.com/jsf/composite/bbva/calendar"
-	xmlns:jsf="http://xmlns.jcp.org/jsf">
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:bbvaInput="http://java.sun.com/jsf/composite/bbva/input">
 
 
 
@@ -28,6 +29,7 @@
 	</ui:define>
 
 	<ui:define name="contentLeft">
+
 		<bbvaDetAcc:tabMenu>
 
 			<bbvaDetAcc:itemTabMenu title="Consultas" icon="iconFont-611"
@@ -43,6 +45,10 @@
 
 
 		</bbvaDetAcc:tabMenu>
+
+		<div class="table-tabs">
+			<bbvaAcc:MovePaginatorTable id="detailAccounts" listAccounts="#{customerAccounts}" />
+		</div>
 
 		<bbvaDetAcc:tapDropDown title="Fecha">
 			<bbvaCalendar:calendarItem />
@@ -75,7 +81,10 @@
 				ACCIÓN
 				<f:ajax execute="@form" render="@form" />
 			</button>
+			<bbvaInput:comboSelected id="selected" list="#{calendar.exam}"
+				width="col-md-6" />
 		</h:form>
+
 	</ui:define>
 
 </ui:composition>
