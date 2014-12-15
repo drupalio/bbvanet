@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<composite:interface>
+
+	<composite:attribute name="idButton" />
+	<composite:attribute name="text" />
+	<composite:attribute name="styleButton" />
+	<composite:attribute name="action"
+		method-signature="java.lang.String action()" />
+	<composite:attribute name="actionListener"
+		method-signature="void actionlistener(javax.faces.event.ActionEvent)" />
+	<composite:attribute name="icon" />
+	<composite:attribute name="disabled" type="java.lang.String" />
+	<composite:attribute name="typeButton" type="java.lang.String" />
+
+	<composite:attribute name="idInput" />
+	<composite:attribute name="classInput" />
+	<composite:attribute name="value" />
+	<composite:attribute name="typeInput" type="java.lang.String" />
+	<composite:attribute name="styleInput" />
+	<composite:attribute name="required" />
+	<composite:attribute name="maxlength" type="java.lang.Integer" />
+	<composite:attribute name="requiredMessage" required="false"
+		default="An input is required" />
+	<composite:attribute name="validatorMessage" required="false"
+		default="Invalid input" />
+	<composite:attribute name="onclick" required="false" default="" />
+
+</composite:interface>
+
+<composite:implementation>
+
+	<script>
+		function checkFilled(inputId) {
+			inputId.className = "form-control ";
+		}
+
+		function enableDisable(inputId) {
+
+			var button = document.getElementById('#{cc.attrs.idButton}').id;
+			var valor = inputId.value;
+			if (valor.length !== 0) {
+				document.getElementById(button).disabled = false;
+			} else {
+				document.getElementById(button).disabled = true;
+			}
+
+		}
+	</script>
+
+	<fieldset class="input">
+		<p:inputText id="#{cc.attrs.idInput}" type="#{cc.attrs.typeInput}"
+			value="#{cc.attrs.value}" maxlength="#{cc.attrs.maxlength}"
+			required="#{cc.attrs.required}"
+			requiredMessage="#{cc.attrs.requiredMessage}"
+			onkeyup="enableDisable(this)"
+			validatorMessage="#{cc.attrs.validatorMessage}"
+			onclick="checkFilled(this)" style="#{cc.attrs.styleInput}"
+			styleClass="form-control" />
+	</fieldset>
+
+	<button class="btn btn-default" disabled="#{cc.attrs.disabled}"
+		type="#{cc.attrs.typeButton}" jsf:style="#{cc.attrs.styleButton}"
+		id="#{cc.attrs.idButton}" jsf:action="#{cc.attrs.action}"
+		jsf:actionListener="#{cc.attrs.actionListener}">
+		<span class="#{cc.attrs.icon}" /> #{cc.attrs.text}
+		<f:ajax execute="@form" render="@form" />
+	</button>
+
+</composite:implementation>
+
+</html>

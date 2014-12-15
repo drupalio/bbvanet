@@ -12,16 +12,14 @@
 
 	<composite:attribute name="id" type="String" />
 	<composite:attribute name="value" />
-	<composite:attribute name="itemLabel" />
-	<composite:attribute name="itemValue" required="false" />
 
 </composite:interface>
 
 <composite:implementation>
 
-	<p:selectOneButton id="#{cc.attrs.id}" value="#{cc.attrs.value}">
-		<f:selectItem itemLabel="Activar" itemValue="Acti" />
-		<f:selectItem itemLabel="Desactivar" itemValue="Desac" />
+	<p:selectOneButton id="#{cc.attrs.id}" value="#{controlador}">
+		<f:selectItem itemLabel="Activar" itemValue="true" />
+		<f:selectItem itemLabel="Desactivar" itemValue="false" />
 	</p:selectOneButton>
 
 </composite:implementation>

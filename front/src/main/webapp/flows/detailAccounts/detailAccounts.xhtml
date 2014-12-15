@@ -48,7 +48,91 @@
 			<bbvaCalendar:calendarItem />
 		</bbvaDetAcc:tapDropDown>
 		<bbvaDetAcc:tapDropDown title="Saldo" />
+
+		<div class="operation-tabs">
+			<div class="tab-content">
+				<div class="tab-mobile tab-pane personalizar active"
+					id="tab-personalizar">
+					<div class="panel-tab-head">
+						<button type="button"
+							class="close-icon hidden-xs hidden-sm  close-button" />
+
+					</div>
+					<div class="panel-tab-body container">
+						<div class="filters personalizar-block row">
+							<form id="nombre-producto-form" method="post" action="#">
+								<div class="customize-product-name">
+
+									<h:outputLabel class="leftDiv leftLabel"
+										value="Nombre del producto" />
+
+									<div class="personalizar-input">
+										<div class="rigthDiv">
+
+											<bbvaInput:inputButton idInput="input" typeInput="text"
+												maxlength="25" style="max-width:315px;" idButton="data"
+												disabled="true" text="Guardar" value="" typeButton="submit" />
+										</div>
+									</div>
+								</div>
+							
+							</form>
+							<span class="separator"></span>
+							<form id="customform-virtual" method="post" action="#">
+								<div class="customize-virtual">
+
+									<p:outputLabel class="leftDiv leftLabel"
+										value="Correspondecia virtual" />
+
+									<div class="rigthDiv">
+										<div class="smallCombo">
+											<bbvaButton:comboButtons />
+										</div>
+										<bbvaButton:iconButton id="buttonTwo"
+											style="margin-top:6px !important" text="Guardar"
+											type="submit" />
+									</div>
+								</div>
+								<div class="col-xs-12 operation-message" render=""></div>
+							</form>
+							<span class="separator"></span>
+							<form id="customform-online" method="post" action="#">
+								<div class="customize-online">
+
+									<p:outputLabel class="leftDiv leftLabel" value="Consultar">
+										<span class="icon-info-blue">online</span>
+									</p:outputLabel>
+
+									<div class="rigthDiv">
+										<div class="bigCombo">
+											<bbvaButton:comboButtons />
+										</div>
+									</div>
+									<div style="float: left !important">
+										<p:outputLabel class="leftDiv leftLabel" value="Operar">
+											<span class="icon-info-blue">online</span>
+										</p:outputLabel>
+
+										<div class="rigthDiv">
+											<div class="bigCombo">
+												<bbvaButton:comboButtons />
+											</div>
+										</div>
+									</div>
+									<bbvaButton:iconButton id="buttonThree"
+										style="margin-top:6px !important; float: right !important"
+										text="Guardar" type="submit" />
+								</div>
+								
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
 	</ui:define>
+
 
 	<!-- <div class="datepicker datepicker-dropdown dropdown-menu datepicker-orient-left datepicker-orient-bottom" style="display: block; top: 529.167px; left: 516.5px;"><div class="datepicker-days" style="display: block;"><table class=" table-condensed"><thead><tr><th class="prev" style="visibility: visible;"></th><th class="datepicker-switch" colspan="4">Diciembre 2014</th><th class="today"></th><th class="next" style="visibility: hidden;"></th></tr><tr><th class="dow">Dom</th><th class="dow">Lun</th><th class="dow">Mar</th><th class="dow">Mié</th><th class="dow">Jue</th><th class="dow">Vie</th><th class="dow">Sáb</th></tr></thead><tbody><tr><td class="old day">30</td><td class="day">1</td><td class="day">2</td><td class="day">3</td><td class="day">4</td><td class="day">5</td><td class="day">6</td></tr><tr><td class="day">7</td><td class="day">8</td><td class="day">9</td><td class="day">10</td><td class="disabled day">11</td><td class="disabled day">12</td><td class="disabled day">13</td></tr><tr><td class="disabled day">14</td><td class="disabled day">15</td><td class="disabled day">16</td><td class="disabled day">17</td><td class="disabled day">18</td><td class="disabled day">19</td><td class="disabled day">20</td></tr><tr><td class="disabled day">21</td><td class="disabled day">22</td><td class="disabled day">23</td><td class="disabled day">24</td><td class="disabled day">25</td><td class="disabled day">26</td><td class="disabled day">27</td></tr><tr><td class="disabled day">28</td><td class="disabled day">29</td><td class="disabled day">30</td><td class="disabled day">31</td><td class="new disabled day">1</td><td class="new disabled day">2</td><td class="new disabled day">3</td></tr><tr><td class="new disabled day">4</td><td class="new disabled day">5</td><td class="new disabled day">6</td><td class="new disabled day">7</td><td class="new disabled day">8</td><td class="new disabled day">9</td><td class="new disabled day">10</td></tr></tbody><tfoot><tr><th class="today" colspan="7" style="display: none;">Hoy</th></tr><tr><th class="clear" colspan="7" style="display: none;">Clear</th></tr></tfoot></table></div><div class="datepicker-months" style="display: none;"><table class="table-condensed"><thead><tr><th class="prev" style="visibility: visible;"></th><th class="datepicker-switch" colspan="4">2014</th><th class="today"></th><th class="next" style="visibility: hidden;"></th></tr></thead><tbody><tr><td colspan="7"><span class="month">Ene</span><span class="month">Feb</span><span class="month">Mar</span><span class="month">Abr</span><span class="month">May</span><span class="month">Jun</span><span class="month">Jul</span><span class="month">Ago</span><span class="month">Sep</span><span class="month">Oct</span><span class="month">Nov</span><span class="month">Dic</span></td></tr></tbody><tfoot><tr><th class="today" colspan="7" style="display: none;">Hoy</th></tr><tr><th class="clear" colspan="7" style="display: none;">Clear</th></tr></tfoot></table></div><div class="datepicker-years" style="display: none;"><table class="table-condensed"><thead><tr><th class="prev" style="visibility: visible;"></th><th class="datepicker-switch" colspan="4">2010-2019</th><th class="today"></th><th class="next" style="visibility: hidden;"></th></tr></thead><tbody><tr><td colspan="7"><span class="year old">2009</span><span class="year">2010</span><span class="year">2011</span><span class="year">2012</span><span class="year">2013</span><span class="year">2014</span><span class="year disabled">2015</span><span class="year disabled">2016</span><span class="year disabled">2017</span><span class="year disabled">2018</span><span class="year disabled">2019</span><span class="year new disabled">2020</span></td></tr></tbody><tfoot><tr><th class="today" colspan="7" style="display: none;">Hoy</th></tr><tr><th class="clear" colspan="7" style="display: none;">Clear</th></tr></tfoot></table></div></div> -->
 
