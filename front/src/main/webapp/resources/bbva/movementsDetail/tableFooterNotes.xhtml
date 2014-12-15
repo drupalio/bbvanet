@@ -10,16 +10,19 @@
 
 <composite:interface>
 
-	<composite:attribute id="motionDetail" name="motion" />
+	<composite:attribute id="footerNotes" name="notes" />
 
 </composite:interface>
 
 <composite:implementation>
+
+
 	<footer class="hidden-xs hidden-sm">
 		<h2>Notas</h2>
 		<div class="notes">
 			<p:inputText id="input" class="form-control" />
-			<p:button value="Añadir nota" class="button small" type="button" />
+			<p:commandButton value="Añadir nota" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn small"
+				type="button" />
 			<!-- <input type="text" class="form-control" placeholder="Añadir nota" /> -->
 			<!-- <button class="btn small" type="button">Añadir nota</button> -->
 		</div>
