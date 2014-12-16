@@ -27,9 +27,10 @@
 
 		<bbvaContainer:productPanelGraphic title="Cuentas Personales">
 			<div class="table-tabs">
-				<bbvaGP:accountSearch listAccounts="#{customerProducts.accounts}" />
+				<bbvaGP:accountSearch listAccounts="#{customerProducts.accounts}" listAccountsAdquirencia="#{customerProducts.accounts}" listAccountsMore="#{customerProducts.accounts}"/>
 				<bbvaGP:accountHeadTable listAccounts="#{customerProducts.accounts}"
 					listValueLikes="#{likes}" />
+				<bbvaGP:accountAdquirenciaTable listAccounts="#{customerProducts.accounts}"/>
 				<bbvaGP:accountTailTable listAccounts="#{customerProducts.accounts}" />
 			</div>
 			<div class="row afterTable">

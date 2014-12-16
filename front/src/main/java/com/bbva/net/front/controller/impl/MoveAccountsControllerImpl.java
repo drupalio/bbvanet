@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.event.ValueChangeEvent;
 
+import org.primefaces.event.SelectEvent;
 import org.springframework.stereotype.Controller;
 
 import com.bbva.net.front.core.AbstractBbvaController;
@@ -65,5 +66,7 @@ public class MoveAccountsControllerImpl extends AbstractBbvaController {
 	public void nextPage(){
 		
 	}
-	
+	public void seleccionACC(SelectEvent event) {
+		System.out.print("Nuevo dato: " + event.getSource() + ", Viejo dato: " + event.getObject());
+	}
 }

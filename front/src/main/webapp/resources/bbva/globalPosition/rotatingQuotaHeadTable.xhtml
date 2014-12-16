@@ -9,12 +9,13 @@
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <composite:interface>
+	<composite:attribute name="id" type="String" />
 	<composite:attribute name="listQuota" type="java.util.List" />
 </composite:interface>
 
 <composite:implementation>
 
-		<p:dataTable var="icuenta" value="#{cc.attrs.listQuota.subList(0, (cc.attrs.listQuota.size()) >= 10 ? 10 : cc.attrs.listQuota.size())}">
+		<p:dataTable id="#{cc.attrs.id}" var="icuenta" value="#{cc.attrs.listQuota}">
 		
 			<p:column class="head" headerText="CUPO" styleClass="head col-xs-6 col-md-4" 
 				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">

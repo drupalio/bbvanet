@@ -15,9 +15,9 @@
 
 <composite:implementation>
 
-	<p:dataTable var="icuenta" value="#{cc.attrs.listAccounts.subList(0, (cc.attrs.listAccounts.size()) >= 10 ? 10 : cc.attrs.listAccounts.size())}" >
-		<p:column class="head" headerText="N° CUENTA" styleClass="col-xs-6 col-md-8" 
-			style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none" >				
+	<p:dataTable id="#{cc.attrs.id}" var="icuenta" value="#{cc.attrs.listAccounts}" >
+		<p:column class="head" headerText="CUENTA ADQUIRIENCIA" styleClass="col-xs-6 col-md-8" 
+			style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">				
 
 			<p class="title-label" style="font-size: 1.1em">#{icuenta.product.alias}</p>
 			<p style="font-size: 1em">#{icuenta.product.productId}</p>

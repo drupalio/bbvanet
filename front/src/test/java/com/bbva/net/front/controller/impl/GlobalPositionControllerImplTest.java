@@ -65,7 +65,7 @@ public class GlobalPositionControllerImplTest {
 		// graphicPieUI = Mockito.mock(GraphicPieUI.class);
 
 	}
-
+	
 	@Test
 	public void checkRenderPaiSituation() {
 
@@ -126,6 +126,27 @@ public class GlobalPositionControllerImplTest {
 		Mockito.verify(multiValueGroupFacade, Mockito.atLeastOnce()).getMultiValueTypes(1);
 
 		Mockito.verify(multiValueGroupFacade, Mockito.never()).getMultiValueTypes(null);
+
+	}
+	@Test
+	public void checkGetCustomerProducts_Visible() {
+
+		Mockito.when(globalPositionFacade.getGlobalProductsByUserVisible(DEFAULT_USER,true)).thenReturn(new GlobalProducts());
+
+		final GlobalProducts globalProducts = this.globalPositionController.getCustomerProductsVisible();
+		
+		Assert.assertNotNull(globalProducts);
+		Mockito.verify(this.globalPositionFacade, Mockito.atLeastOnce()).getGlobalProductsByUserVisible(DEFAULT_USER,true);
+	}
+	@Test
+	public void checkGetCustomerProducts_NoVisible() {
+
+		Mockito.when(globalPositionFacade.getGlobalProductsByUserVisible(DEFAULT_USER,false)).thenReturn(new GlobalProducts());
+
+		final GlobalProducts globalProducts = this.globalPositionController.getCustomerProductsNotVisible();
+		
+		Assert.assertNotNull(globalProducts);
+		Mockito.verify(this.globalPositionFacade, Mockito.atLeastOnce()).getGlobalProductsByUserVisible(DEFAULT_USER,false);
 
 	}
 

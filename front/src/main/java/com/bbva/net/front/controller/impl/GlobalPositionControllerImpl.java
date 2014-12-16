@@ -84,7 +84,6 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		final GlobalProducts globalProductos = this.globalPositionFacade.getGlobalProductsByUser(getCurrentUser());
 
 		situationGraphicPieUI = graphicPieDelegate.getSituationGlobalProducts(globalProductos);
-
 		return globalProductos;
 	}
 
@@ -204,6 +203,19 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	public void testValidate() {
 		System.out.println("Test validate" + getSelectedLike());
+	}
+	@Override
+	public GlobalProducts getCustomerProductsVisible() {
+		final GlobalProducts globalProductos = this.globalPositionFacade.getGlobalProductsByUserVisible(getCurrentUser(),true);
+		situationGraphicPieUI = graphicPieDelegate.getSituationGlobalProducts(globalProductos);
+		return globalProductos;
+	}
+	@Override
+	public GlobalProducts getCustomerProductsNotVisible() {
+		final GlobalProducts globalProductos = this.globalPositionFacade.getGlobalProductsByUserVisible(getCurrentUser(),false);
+
+		return globalProductos;
+
 	}
 
 }

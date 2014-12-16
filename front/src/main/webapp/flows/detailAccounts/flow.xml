@@ -14,6 +14,7 @@
 	</on-start>
 	
 	<view-state id="detailAccounts">
+	
 		<on-render>
 			<evaluate expression="customerAccountsPage.getCustomerAccounts()"
 				result="viewScope.customerAccountsM" result-type="dataModel" />

@@ -26,11 +26,11 @@
 
 	<ui:define name="contentLeft">
 
-		<bbvaContainer:productPanelGraphic title="Cuentas Personales">
+		<bbvaContainer:productPanelGraphic title="#{msg['title.accountsPersonal']}">
 			<div class="table-tabs">
 				<bbvaGP:accountSearch listAccounts="#{customerAccounts}" />
 				<bbvaAcc:accountHeadTable listAccounts="#{customerAccounts}" />
-				<bbvaAcc:accountAdquirenciaTable listAccounts="#{customerAccounts}" />
+				<bbvaGP:accountAdquirenciaTable listAccounts="#{customerAccounts}" />
 				<bbvaAcc:accountTailTable listAccounts="#{customerAccounts}" />
 
 			</div>

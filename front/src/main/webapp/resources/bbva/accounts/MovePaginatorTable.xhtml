@@ -15,43 +15,56 @@
 </composite:interface>
 
 <composite:implementation>
-	<h:form>
-		<p:dataTable id="#{cc.attrs.id}" styleClass="detail-table-body sortable"
-			value="#{cc.attrs.listAccounts}" var="icuenta" selectionMode="single" selection="#{customerAccountsPage.selectedAccount}" rowKey="#{icuenta.product.alias}">
-			<p:column headerText="FECHA" 
-				styleClass="sorted w18 desc"
+	<h:form id="formd">
+		<p:dataTable id="detalAC" styleClass="detail-table-body sortable"
+			value="#{cc.attrs.listAccounts}" var="icuenta" selectionMode="single"
+			selection="#{customerAccountsPage.selectedAccount}"
+			rowKey="#{icuenta.product.alias}">
+			<p:column headerText="FECHA" styleClass="sorted w18 desc"
 				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
 
-				<h:outputText styleClass="brand" style="font-size: 1.1em"  value="#{icuenta.product.alias}"/>
+				<h:outputText styleClass="brand" style="font-size: 1.1em"
+					value="#{icuenta.product.alias}" />
 			</p:column>
-			
-			<p:column headerText="CONCEPTO" 
-				styleClass="desc w34" 
+
+			<p:column headerText="CONCEPTO" styleClass="desc w34"
 				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none;">
 
-				<h:outputText class="text" style="font-size: 12px;color: #333;text-align: left" value="#{icuenta.product.alias}"/>
-				<h:outputText class="text" style="font-size: 11px;color: #333;font-weight: normal;text-align: left" value="#{icuenta.product.alias}"/>
+				<h:outputText class="text"
+					style="font-size: 12px;color: #333;text-align: left"
+					value="#{icuenta.product.alias}" />
+				<h:outputText class="text"
+					style="font-size: 11px;color: #333;font-weight: normal;text-align: left"
+					value="#{icuenta.product.alias}" />
 			</p:column>
-			
-			<p:column class="head" headerText="VALOR" 
-				styleClass="desc w24"
+
+			<p:column class="head" headerText="VALOR" styleClass="desc w24"
 				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
 
-				<h:outputText class="currency" style="font-size: 15px;color: #333" value="#{icuenta.product.totalCash}"/>
+				<h:outputText class="currency" style="font-size: 15px;color: #333"
+					value="#{icuenta.product.totalCash}" />
 
 			</p:column>
-			<p:column class="head" headerText="SALDO" 
-				styleClass="desc w24"
+			<p:column class="head" headerText="SALDO" styleClass="desc w24"
 				style="font-size: 0.7em;color: #333;font-family: Arial;background: none;border-style: none">
 
-				<h:outputText class="currency" style="font-size: 15px;color: #333" value="#{icuenta.product.totalCash}"/>
+				<h:outputText class="currency" style="font-size: 15px;color: #333"
+					value="#{icuenta.product.totalCash}" />
 
 			</p:column>
-				</p:dataTable>
+		</p:dataTable>
 		<footer class="detail-table-footer">
-			<p:button id="nextPagepLink" styleClass="btn btn-more-results" action="next" value="More Results"></p:button>
-                <button id="nextPagebLink" class="btn btn-more-results" onclick="next" value="More Results"><span>Mostrar más</span></button>
-          </footer>
+			<p:button id="nextPagepLink"
+				styleClass="btn btn-more-results table-ui-button" action="next"
+				value="Mostrar más" style="display:-webkit-inline-box !important;">
+				<f:ajax event="click" listener="#{calendar.seleccionACC}"
+					update=":formd:detalAC" />
+			</p:button>
+			<button id="nextPagebLink" class="btn btn-more-results"
+				onclick="next" value="More Results">
+				<span>Mostrar más</span>
+			</button>
+		</footer>
 	</h:form>
 
 </composite:implementation>
