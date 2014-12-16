@@ -12,34 +12,41 @@
 	xmlns:bbvaCalendar="http://java.sun.com/jsf/composite/bbva/calendar">
 
 <composite:interface>
-
+	<composite:attribute name="value" />
 </composite:interface>
 
 <composite:implementation>
 
 	<div class="incomeAndExpenses-filter-content radio-group">
-		<form>
-			<div class="row form-horizontal">
-				<div class="col-xs-4 col-md-4">
-					<input name="sample-radio-incomeAndExpenses" id="inflow"
-						value="Entradas" type="radio" data-filter="Entradas" /><label
-						for="inflow">Entradas</label>
-				</div>
-				<div class="col-xs-4 col-md-4 all-width-mobile">
-					<input name="sample-radio-incomeAndExpenses" id="outflow"
-						value="Salidas" type="radio" data-filter="Salidas" /><label
-						for="outflow">Salidas</label>
-				</div>
-				<div class="col-xs-4 col-md-4 all-width-mobile">
-					<input name="sample-radio-incomeAndExpenses" id="bothflow"
-						value="Entradas/Salidas" data-filter="Entradas/Salidas"
-						type="radio" /><label for="bothflow">Entradas/Salidas</label>
-				</div>
+		<h:form id="formIncomeAndExpenses">
+<!-- btn small hidden-xs hidden-sm -->
+			<div >
+
+				<h:panelGrid columns="4" style="margin-bottom:18px"
+					columnClasses="col-xs-4 col-md-4">
+
+					<h:selectOneRadio value="#{cc.attrs.value}">
+						<div class="col-xs-4 col-md-4">
+							<f:selectItem id="inflow" itemLabel="Entradas"
+								itemValue="#{msg['select.radio.in']}" />
+						</div>
+						<div class="col-xs-4 col-md-4">
+							<f:selectItem id="outflow" itemLabel="Salidas"
+								itemValue="#{msg['select.radio.out']}" />
+						</div>
+						<div class="col-xs-4 col-md-4">
+							<f:selectItem id="bothflow" itemLabel="Entradas/Salidas"
+								itemValue="#{msg['select.radio.in.out']}" />
+						</div>
+					</h:selectOneRadio>
+
+				</h:panelGrid>
+
 			</div>
-			<button type="submit" class="btn small hidden-xs hidden-sm">Confirmar</button>
-		</form>
+			<p:commandButton styleClass="btn small hidden-xs hidden-sm"
+				actionListener="#{movementsCriteriaController.searchMovementByFilter}"
+				value="#{msg['button.confirm']}" />
+		</h:form>
 	</div>
-
 </composite:implementation>
-
 </html>

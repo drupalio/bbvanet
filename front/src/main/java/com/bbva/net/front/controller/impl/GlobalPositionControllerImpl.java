@@ -1,24 +1,16 @@
 package com.bbva.net.front.controller.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-import javax.faces.event.ValueChangeEvent;
+import javax.faces.event.ComponentSystemEvent;
 
 import org.primefaces.event.SelectEvent;
-import org.primefaces.event.UnselectEvent;
 import org.springframework.stereotype.Controller;
 
 import co.com.bbva.services.transactions.globalposition.schema.Account;
 import co.com.bbva.services.transactions.globalposition.schema.GlobalProducts;
 
-import com.bbva.net.back.entity.MultiValueGroup;
 import com.bbva.net.back.facade.GlobalPositionFacade;
-import com.bbva.net.back.facade.MultiValueGroupFacade;
 import com.bbva.net.front.controller.GlobalPositionController;
 import com.bbva.net.front.core.AbstractBbvaController;
 import com.bbva.net.front.delegate.GraphicPieDelegate;
@@ -29,25 +21,17 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	private static final long serialVersionUID = 5726824668267606699L;
 
-	// private GraphicUI graphicUI;
-	private Integer LISTA_QUIEROS = 1;
-
 	private String selectedLike;
-
-	private List<String> listPrb;
 
 	@Resource(name = "globalPositionFacade")
 	private transient GlobalPositionFacade globalPositionFacade;
-
-	@Resource(name = "multiValueGroupFacade")
-	private transient MultiValueGroupFacade multiValueGroupFacade;
 
 	@Resource(name = "graphicPieDelegate")
 	private transient GraphicPieDelegate graphicPieDelegate;
 
 	private SituationPiesUI situationGraphicPieUI;
 
-	private Account selectedProduct;
+	private Account selectedAccount;
 
 	private ActivePanelType activePanel = ActivePanelType.SITUATION;
 
@@ -68,35 +52,40 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	@PostConstruct
 	public void init() {
-
-		listPrb = new ArrayList<String>();
-		listPrb.add("hola 0");
-		listPrb.add("holaa 1");
-		listPrb.add("hoolaa 2");
-
 		LOGGER.info("STARTING BBVA NET .................");
+	}
 
+	@Override
+	public void preRender(ComponentSystemEvent event) {
+		this.selectedAccount = null;
 	}
 
 	@Override
 	public GlobalProducts getCustomerProducts() {
-		
-		final GlobalProducts globalProductos = this.globalPositionFacade.getGlobalProductsByUser(getCurrentUser());
 
+		final GlobalProducts globalProductos = this.globalPositionFacade.getGlobalProductsByUser(getCurrentUser());
 		situationGraphicPieUI = graphicPieDelegate.getSituationGlobalProducts(globalProductos);
 		return globalProductos;
 	}
 
+
 	public void renderPieSituation() {
 		this.activePanel = ActivePanelType.SITUATION;
+		executeScript("initChart();");
 	}
 
 	public void renderPieAssets() {
 		this.activePanel = ActivePanelType.ASSET;
+		executeScript("initChart();");
 	}
 
 	public void renderPieFinanciation() {
 		this.activePanel = ActivePanelType.FINANCIATION;
+		executeScript("initChart();");
+	}
+
+	public void onAccountSelected(final SelectEvent selectEvent) {
+		// TODO webFlow init detail account
 	}
 
 	public void setGlobalPositionFacade(final GlobalPositionFacade globalPositionFacade) {
@@ -116,41 +105,6 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	}
 
 	/**
-	 * @return the listMultiValueLikes
-	 */
-	public List<MultiValueGroup> getListMultiValueLikes() {
-		return this.multiValueGroupFacade.getMultiValueTypes(LISTA_QUIEROS);
-	}
-
-	/**
-	 * @return the multiValueGroupFacade
-	 */
-	public MultiValueGroupFacade getMultiValueGroupFacade() {
-		return multiValueGroupFacade;
-	}
-
-	/**
-	 * @param multiValueGroupFacade the multiValueGroupFacade to set
-	 */
-	public void setMultiValueGroupFacade(MultiValueGroupFacade multiValueGroupFacade) {
-		this.multiValueGroupFacade = multiValueGroupFacade;
-	}
-
-	/**
-	 * @return the selectedProduct
-	 */
-	public Account getSelectedProduct() {
-		return selectedProduct;
-	}
-
-	/**
-	 * @param selectedProduct the selectedProduct to set
-	 */
-	public void setSelectedProduct(Account selectedProduct) {
-		this.selectedProduct = selectedProduct;
-	}
-
-	/**
 	 * @return the selectedLike
 	 */
 	public String getSelectedLike() {
@@ -164,45 +118,12 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		this.selectedLike = selectedLike;
 	}
 
-	/**
-	 * @return the listPrb
-	 */
-	public List<String> getListPrb() {
-		return listPrb;
+	public void setSelectAccount(final Account account) {
+		this.selectedAccount = account;
 	}
 
-	/**
-	 * @param listPrb the listPrb to set
-	 */
-	public void setListPrb(List<String> listPrb) {
-		this.listPrb = listPrb;
-	}
-
-	public void onRowSelect(SelectEvent event) {
-		System.out.println("LLego selected");
-		System.out.println("Product Selected" + ((Account)event.getObject()).getProduct().getProductId());
-		FacesMessage msg = new FacesMessage("Product Selected", ((Account)event.getObject()).getProduct()
-				.getProductId());
-		FacesContext.getCurrentInstance().addMessage(null, msg);
-	}
-
-	public void onRowUnselect(UnselectEvent event) {
-		System.out.println("LLego iunselected");
-		FacesMessage msg = new FacesMessage("Product Unselected", ((Account)event.getObject()).getProduct()
-				.getProductId());
-		FacesContext.getCurrentInstance().addMessage(null, msg);
-	}
-
-	public String goAccounts() {
-		return "accounts";
-	}
-
-	public void selectedValue() {
-		System.out.println("Selected Like" + getSelectedLike());
-	}
-
-	public void testValidate() {
-		System.out.println("Test validate" + getSelectedLike());
+	public Account getSelectAccount() {
+		return this.selectedAccount;
 	}
 	@Override
 	public GlobalProducts getCustomerProductsVisible() {

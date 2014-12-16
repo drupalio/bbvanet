@@ -11,10 +11,12 @@
 		<evaluate expression="globalPositionController.getCustomerProducts()" result="flowScope.customerProducts" />
 		<evaluate expression="globalPositionController.getCustomerProductsVisible()" result="flowScope.customerProductsVisible" />		
 		<!-- <evaluate expression="globalPositionController.getCustomerProductsNotVisible()" result="flowScope.customerProductsNotVisible" /> -->		
+	
+		<evaluate expression="applicationController.getLikes()" result="flowScope.likes" />				
+
 	</on-start>
 	
 	<view-state id="globalPosition">
 	</view-state>
 	
-
 </flow>

@@ -19,6 +19,11 @@
 
 <ui:composition template="../../templates/defaultLayout.xhtml">
 
+	<f:metadata>
+		<f:event listener="#{globalPositionController.preRender}"
+			type="preRenderView" />
+	</f:metadata>
+
 	<ui:define name="bodyTitle">
 		<bbvaBody:title title="Posición global" />
 	</ui:define>
@@ -120,7 +125,7 @@
 	<ui:define name="contentRight">
 
 		<bbvaSituation:globalSituationPanel />
-
+		
 		<bbvaAlert:alertsPanel header="Alertas y Novedades" numAlerts="8" />
 
 		<h:form>
@@ -139,7 +144,9 @@
 				<f:ajax execute="@form" render="@form" />
 			</button>
 			<p:outputLabel>Selector</p:outputLabel>
-			
+
+			<bbvaInput:selectOneMenuLikes valueList="#{likes}"></bbvaInput:selectOneMenuLikes>
+
 		</h:form>
 
 	</ui:define>

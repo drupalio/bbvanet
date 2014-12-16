@@ -3,10 +3,13 @@
  */
 package com.bbva.net.back.model.globalposition;
 
+import java.util.List;
+
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import com.bbva.net.back.core.pattern.dto.Dto;
+import com.bbva.net.back.model.movements.MovementDTO;
 
 /**
  * @author Entelgy
@@ -34,6 +37,8 @@ public class ProductDTO implements Dto {
 		this.visibility = visibility;
 	}
 
+	private List<MovementDTO> movementList;
+
 	public String getAlias() {
 		return alias;
 	}
@@ -56,6 +61,14 @@ public class ProductDTO implements Dto {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public List<MovementDTO> getMovementList() {
+		return movementList;
+	}
+
+	public void setMovementList(List<MovementDTO> movementList) {
+		this.movementList = movementList;
 	}
 
 	@Override
