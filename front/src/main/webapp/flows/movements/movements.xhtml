@@ -6,28 +6,41 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
+	xmlns:bbvaAcc="http://java.sun.com/jsf/composite/bbva/accounts"
 	xmlns:bbvaGP="http://java.sun.com/jsf/composite/bbva/globalPosition"
-	xmlns:bbvaSituation="http://java.sun.com/jsf/composite/bbva/graphics/situation"
 	xmlns:bbvaAlert="http://java.sun.com/jsf/composite/bbva/alert"
 	xmlns:bbvaBody="http://java.sun.com/jsf/composite/bbva/body"
 	xmlns:bbvaContainer="http://java.sun.com/jsf/composite/bbva/container"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-	xmlns:jsf="http://xmlns.jcp.org/jsf"
-	xmlns:bbvaButton="http://java.sun.com/jsf/composite/bbva/button"
-	xmlns:bbvaInput="http://java.sun.com/jsf/composite/bbva/input">
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
 
 
 <ui:composition template="../../templates/defaultLayout.xhtml">
 
 	<ui:define name="bodyTitle">
-		<bbvaBody:title title="Pepe" />
+		<bbvaBody:title title="Cuentas Personales">
+			<bbvaBody:titleOptionProduct optionButttonLeft="Mis productos"
+				optionButttonRight="Catálogo de productos" />
+		</bbvaBody:title>
 	</ui:define>
 
 	<ui:define name="contentLeft">
 
-		
-	</ui:define>
+		<bbvaContainer:productPanelGraphic title="Cuentas Personales">
+			<div class="table-tabs">
+				<bbvaGP:accountSearch listAccounts="#{customerAccounts}" />
+				<bbvaAcc:accountHeadTable listAccounts="#{customerAccounts}" />
+				<bbvaAcc:accountAdquirenciaTable listAccounts="#{customerAccounts}" />
+				<bbvaAcc:accountTailTable listAccounts="#{customerAccounts}" />
 
+			</div>
+			<div class="row afterTable">
+				<bbvaGP:productFooter listProduct="#{customerAccounts}" />
+				<bbvaGP:totalBalance />
+			</div>
+		</bbvaContainer:productPanelGraphic>
+
+	</ui:define>
 
 	<ui:define name="contentRight">
 

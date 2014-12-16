@@ -9,9 +9,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para rotatingAccount complex type.
+ * <p>Java class for rotatingAccount complex type.
  * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="rotatingAccount">
@@ -44,7 +44,7 @@ public class RotatingAccount
     protected Quota quota;
 
     /**
-     * Obtiene el valor de la propiedad loan.
+     * Gets the value of the loan property.
      * 
      * @return
      *     possible object is
@@ -56,7 +56,7 @@ public class RotatingAccount
     }
 
     /**
-     * Define el valor de la propiedad loan.
+     * Sets the value of the loan property.
      * 
      * @param value
      *     allowed object is
@@ -72,7 +72,7 @@ public class RotatingAccount
     }
 
     /**
-     * Obtiene el valor de la propiedad quota.
+     * Gets the value of the quota property.
      * 
      * @return
      *     possible object is
@@ -84,7 +84,7 @@ public class RotatingAccount
     }
 
     /**
-     * Define el valor de la propiedad quota.
+     * Sets the value of the quota property.
      * 
      * @param value
      *     allowed object is

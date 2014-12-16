@@ -6,7 +6,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pm="http://primefaces.org/mobile"
-	xmlns:bbvaInput="http://java.sun.com/jsf/composite/bbva/input">
+	xmlns:bbvaInput="http://java.sun.com/jsf/composite/bbva/input"
+	xmlns:c="http://java.sun.com/jstl/core">
 
 <composite:interface>
 	<composite:attribute name="listAccounts" type="java.util.List" />
@@ -16,9 +17,11 @@
 
 <composite:implementation>
 
+	<c:set var="currency" value="$" />
+	
 	<h:form>
 		<p:dataTable id="table" widgetVar="tableAccounts" rowIndexVar="findex"
-			var="icuenta" selectionMode="single"
+			var="icuenta" selectionMode="single" 
 			selection="#{globalPositionController.selectAccount}"
 			rowKey="#{icuenta.product.productId}"
 			value="#{cc.attrs.listAccounts.subList(0, (cc.attrs.listAccounts.size()) >= 10 ? 10 : cc.attrs.listAccounts.size())}">
@@ -32,11 +35,12 @@
 				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
 				<p:panelGrid>
 
-					<h:outputText styleClass="title-label" style="font-size: 1.1em"
+					<h:outputText styleClass="title-label" style="font-size: 1.1em; font-weight:bold; color:#0078d2" escape="false"
 								  value="#{icuenta.product.alias}"/>
-					<h:outputText style="font-size: 1em" value="#{icuenta.product.productId}"></h:outputText>
-					<h:outputText styleClass="sublabel" style="font-size: 1em"
-								  value="#{icuenta.product.productName}"/>
+					<h:outputText style="font-size: 1em" escape="false" 
+								  value="&lt;br /&gt; #{icuenta.product.productId}"></h:outputText>
+					<h:outputText styleClass="sublabel" style="font-size: 1em" escape="false"
+								  value="&lt;br /&gt; #{icuenta.product.productName}"/>
 								  
 				</p:panelGrid>
 
@@ -49,7 +53,7 @@
 					<h:outputText style="font-size: 1.5em; font-weight:bold" styleClass="balance" 
 								   value="#{icuenta.product.totalCash}"/>
 					<h:outputText styleClass="ui-datatable-selectable" style="font-size:1em" escape="false"
-						value="&lt;br /&gt; Saldo disponible $ #{icuenta.product.cashAvailable}">
+						value="&lt;br /&gt; Saldo disponible #{currency}#{icuenta.product.cashAvailable}">
 					</h:outputText>
 					<p class="sublabel"></p>
 					
@@ -57,7 +61,6 @@
 
 		</p:dataTable>
 		
-		<h:commandButton id="showPepe" value="Show Pepe" action="showPepe" rendered="false" ></h:commandButton>
 	</h:form>
 
 </composite:implementation>

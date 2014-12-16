@@ -40,7 +40,9 @@ public abstract class AbstractBbvaController implements Serializable {
 	 * @param script
 	 */
 	protected void executeScript(final String script) {
-		RequestContext.getCurrentInstance().execute(script);
+		if (RequestContext.getCurrentInstance() != null) {
+			RequestContext.getCurrentInstance().execute(script);
+		}
 	}
 
 	/**

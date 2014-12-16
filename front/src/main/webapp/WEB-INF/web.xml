@@ -88,14 +88,13 @@
 		<param-value>classpath*:*.properties</param-value>
 	</context-param>
 
-
 	<!-- 
 	<context-param>
 		<param-name>primefaces.THEME</param-name>
-		<param-value>afterdark</param-value>
+		<param-value>redmond</param-value>
 	</context-param>
 	 -->
-
+	
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>

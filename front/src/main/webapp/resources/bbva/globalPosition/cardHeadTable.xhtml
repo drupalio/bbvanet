@@ -14,7 +14,8 @@
 
 <composite:implementation>
 
-		<p:dataTable var="icuenta" value="#{cc.attrs.listCards.subList(0, (cc.attrs.listCards.size()) >= 10 ? 10 : cc.attrs.listCards.size())}">
+		<p:dataTable var="icuenta" selection="single" 
+			value="#{cc.attrs.listCards.subList(0, (cc.attrs.listCards.size()) >= 10 ? 10 : cc.attrs.listCards.size())}">
 			<p:column class="head" headerText="TARJETAS DE CRÉDITO" styleClass="col-xs-6 col-md-4" 
 				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
 				

@@ -8,15 +8,11 @@
 	<var name="globalPositionController" class="com.bbva.net.front.controller.impl.GlobalPositionControllerImpl" />
 
 	<on-start>
-		<evaluate expression="globalPositionController.getCustomerProducts()" result="flowScope.customerProducts" />			
+		<evaluate expression="globalPositionController.getCustomerProducts()" result="flowScope.customerProducts" />		
+		<evaluate expression="applicationController.getLikes()" result="flowScope.likes" />				
 	</on-start>
 	
 	<view-state id="globalPosition">
-		<transition on="showPepe" to="pepe"></transition>
 	</view-state>
 	
-	
-	<view-state id="pepe">
-	</view-state>
-
 </flow>

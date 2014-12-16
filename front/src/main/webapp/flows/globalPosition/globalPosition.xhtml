@@ -19,12 +19,17 @@
 
 <ui:composition template="../../templates/defaultLayout.xhtml">
 
+	<f:metadata>
+		<f:event listener="#{globalPositionController.preRender}"
+			type="preRenderView" />
+	</f:metadata>
+
 	<ui:define name="bodyTitle">
 		<bbvaBody:title title="Posición global" />
 	</ui:define>
 
 	<ui:define name="contentLeft">
-		
+
 		<bbvaContainer:productPanelGraphic title="Cuentas Personales">
 			<div class="table-tabs">
 				<bbvaGP:accountSearch listAccounts="#{customerProducts.accounts}" />
@@ -119,24 +124,12 @@
 	<ui:define name="contentRight">
 
 		<bbvaSituation:globalSituationPanel />
+		
 		<bbvaAlert:alertsPanel header="Alertas y Novedades" numAlerts="8" />
 
 		<h:form>
 
-			<bbvaInput:selectOneMenuLikes label="qwe"
-				value="#{globalPositionController.selectedLike}"
-				valueList="#{globalPositionController.listMultiValueLikes}"/>
-
-			<p:inputText>
-				<p:ajax event="keyup" listener="#{globalPositionController.onKeyUp}" />
-			</p:inputText>
-
-			<h:outputLabel value="#{prueba.name}"></h:outputLabel>
-			<button jsf:action="refresh">
-				ACCIÓN
-				<f:ajax execute="@form" render="@form" />
-			</button>
-			<p:outputLabel>Selector</p:outputLabel>
+			<bbvaInput:selectOneMenuLikes valueList="#{likes}"></bbvaInput:selectOneMenuLikes>
 
 		</h:form>
 
