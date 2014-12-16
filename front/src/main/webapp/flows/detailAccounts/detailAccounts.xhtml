@@ -27,7 +27,6 @@
 	</ui:define>
 
 	<ui:define name="contentLeft">
-
 		<bbvaDetAcc:tabMenu>
 
 			<bbvaDetAcc:itemTabMenu title="Consultas" icon="iconFont-611"
@@ -43,35 +42,14 @@
 
 
 		</bbvaDetAcc:tabMenu>
-
-		<bbvaSearch:personalizedSearchContainer/>
-
+		<bbvaSearch:personalizedSearchContainer />
 
 	</ui:define>
 
 	<ui:define name="contentRight">
 
 		<bbvaAlert:alertsPanel header="Alertas y Novedades" numAlerts="8" />
-		<h:form>
 
-			<h:selectOneMenu id="console" style="width:125px">
-				<f:selectItem itemLabel="Select One" itemValue="" />
-				<f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
-				<f:selectItem itemLabel="PS4" itemValue="PS4" />
-				<f:selectItem itemLabel="Wii U" itemValue="Wii U" />
-				<p:ajax listener="#{customerAccountsPage.onComboChange}" />
-			</h:selectOneMenu>
-
-			<p:inputText>
-				<p:ajax event="keyup" listener="#{customerAccountsPage.onKeyUp}" />
-			</p:inputText>
-
-			<h:outputLabel value="#{prueba.name}"></h:outputLabel>
-			<button jsf:action="refresh">
-				ACCIÓN
-				<f:ajax execute="@form" render="@form" />
-			</button>
-		</h:form>
 	</ui:define>
 
 </ui:composition>

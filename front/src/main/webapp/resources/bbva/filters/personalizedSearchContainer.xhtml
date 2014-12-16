@@ -7,7 +7,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:composite="http://java.sun.com/jsf/composite"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:bbvaAcc="http://java.sun.com/jsf/composite/bbva/accounts"	
+	xmlns:bbvaAcc="http://java.sun.com/jsf/composite/bbva/accounts"
 	xmlns:bbvaAlert="http://java.sun.com/jsf/composite/bbva/alert"
 	xmlns:bbvaBody="http://java.sun.com/jsf/composite/bbva/body"
 	xmlns:bbvaContainer="http://java.sun.com/jsf/composite/bbva/container"
@@ -23,57 +23,67 @@
 
 <composite:implementation>
 	<div class="panel-tab-body">
-		<div class="tab-mobile tab-pane consultas active" id="tab-consultas">
-			<div class="panel-tab-body">
-				<div class="filters custom-search">
-					<h1 class="hidden-xs hidden-sm">Realizar búsqueda
-						personalizada</h1>
-					<h1 class="hidden-md hidden-lg">
-						<span class="iconFont-611 font-white hidden-md hidden-lg"></span>
-						<span>Consultas</span>
-					</h1>
-					<ul class="accordion">
-						<li class="date-filter customSearch"><a href="#"
-							class="header"> <span class="arrow-left-smaller">
-									Fecha <span class="filter"></span>
-							</span>
-						</a> <bbvaSearch:customSearchFilter title="Fecha"></bbvaSearch:customSearchFilter>
-						</li>
-						<li class="balance-filter"><a href="#" class="header"> <span
-								class="arrow-left-smaller"> Saldo<span class="filter"></span>
-							</span>
-						</a> <bbvaSearch:balanceFilter title="Saldo"></bbvaSearch:balanceFilter>
-						</li>
-						<li class="incomeAndExpenses-filter"><a href="#"
-							class="header"> <span class="arrow-left-smaller">
-									Ingresos/Gastos <span class="filter"></span>
-							</span>
-						</a> <bbvaSearch:incomeAndExpensesFilter></bbvaSearch:incomeAndExpensesFilter>
-						</li>
-						<li class="movements-filter"><a href="#" class="header">
-								<span class="arrow-left-smaller"> Movimiento <span
-									class="filter"></span>
-							</span>
-						</a> <bbvaSearch:movementsFilter></bbvaSearch:movementsFilter></li>
-						<li class="filter-buttons">
-							<div>
-								<button class="btn btn-default hidden-xs hidden-sm">
-									<span class="trash-icon"></span> Borrar filtros
-								</button>
-								<button class="btn btn-default">
-									<span class="document-view-icon"></span> Ver resultados
-								</button>
-							</div>
-						</li>
-					</ul>
-				</div>
-				
-				<bbvaSearch:checkBooksContainer/>
-				<bbvaSearch:downloadExtract/>
-				
-			</div>
-		</div>
-	</div>
+		<h:form>
+		<h:messages />
+			<div class="tab-mobile tab-pane consultas active" id="tab-consultas">
+				<div class="panel-tab-body">
+					<div class="filters custom-search">
+						<h1 class="hidden-xs hidden-sm">
+							<span>#{msg['text.title.personalized.search']}</span>
+						</h1>
+						<h1 class="hidden-md hidden-lg">
+							<span class="iconFont-611 font-white hidden-md hidden-lg"></span>
+							<span>#{msg['text.consult']}</span>
+						</h1>
+						<ul class="accordion">
+							<li class="date-filter customSearch"><a class="header">
+									<span class="arrow-left-smaller"> <span class="filter">#{msg['text.date']}</span>
+								</span>
+							</a> <bbvaSearch:customSearchFilter
+									value="#{movementsCriteriaController.selectDate}"
+									valueSince="#{movementsCriteriaController.movementCriteria.dateRange.dateSince}"
+									valueTo="#{movementsCriteriaController.movementCriteria.dateRange.dateTo}" /></li>
+							<li class="balance-filter"><a class="header"> <span
+									class="arrow-left-smaller"><span class="filter">#{msg['text.balance']}</span>
+								</span>
+							</a> <bbvaSearch:balanceFilter
+									valueSince="#{movementsCriteriaController.movementCriteria.balanceRange.balanceSince}"
+									valueTo="#{movementsCriteriaController.movementCriteria.balanceRange.balanceTo}" /></li>
+							<li class="incomeAndExpenses-filter"><a class="header">
+									<span class="arrow-left-smaller"> <span class="filter">#{msg['text.entry.expediture']}
+									</span>
+								</span>
+							</a> <bbvaSearch:incomeAndExpensesFilter
+									value="#{movementsCriteriaController.movementCriteria.incomesOrExpenses}" />
+							</li>
+							<li class="movements-filter"><a href="#" class="header">
+									<span class="arrow-left-smaller"> <span class="filter">#{msg['text.movement']}</span>
+								</span>
+							</a> <bbvaSearch:movementsFilter /></li>
+							<li class="filter-buttons">
+								<div>
+									<button class="btn btn-default hidden-xs hidden-sm">
+										#{msg['button.clean.filters']}<span class="trash-icon"></span>
+									</button>
+									<p:commandButton value="#{msg['button.clean.filters']}" />
+									<p:commandButton
+										actionListener="#{movementsCriteriaController.searchMovementByFilter}"
+										value="#{msg['button.see.result']}" />
+									<button class="btn btn-default">
+										#{msg['button.see.result']}<span class="document-view-icon"></span>
 
+									</button>
+								</div>
+							</li>
+						</ul>
+					</div>
+
+					<bbvaSearch:checkBooksContainer />
+					<bbvaSearch:downloadExtract />
+
+				</div>
+			</div>
+		</h:form>
+	</div>
 </composite:implementation>
 </html>

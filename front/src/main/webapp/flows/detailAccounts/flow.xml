@@ -5,6 +5,7 @@
     http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
 
 	<var name="calendar" class="com.bbva.net.front.controller.impl.MoveAccountsControllerImpl" />
+	<var name="movementsCriteriaController" class="com.bbva.net.front.controller.impl.MovementCriteriaControllerImpl" />
 	
 	<view-state id="detailAccounts">
 	</view-state>
