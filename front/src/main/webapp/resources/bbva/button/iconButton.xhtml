@@ -5,15 +5,15 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui" xmlns:jsf="http://xmlns.jcp.org/jsf"
-	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jstl/core">
 
 
 
 <composite:interface>
 
 	<composite:attribute name="id" />
-	<composite:attribute name="text" />
-	<composite:attribute name="onclick" />
+	<composite:attribute name="value" />
 	<composite:attribute name="style" />
 	<composite:attribute name="class" />
 	<composite:attribute name="action"
@@ -29,13 +29,42 @@
 <composite:implementation>
 
 
-	<button class="btn btn-default" disabled="#{cc.attrs.disabled}"
-		type="#{cc.attrs.type}" jsf:style="#{cc.attrs.style}"
-		jsf:id="#{cc.attrs.id}" jsf:action="#{cc.attrs.action}"
-		jsf:actionListener="#{cc.attrs.actionListener}">
-		<span class="#{cc.attrs.icon}" /> #{cc.attrs.text}
-		<f:ajax execute="@form" render="@form" />
-	</button>
+	<c:if test="#{cc.getValueExpression('actionListener') != null and cc.getValueExpression('action') != null}">
+		<button class="btn btn-default" disabled="#{cc.attrs.disabled}"
+			type="#{cc.attrs.type}" jsf:style="#{cc.attrs.style}"
+			jsf:id="#{cc.attrs.id}" jsf:action="#{cc.attrs.action}"
+			jsf:actionListener="#{cc.attrs.actionListener}">
+			<span class="#{cc.attrs.icon}" /> #{cc.attrs.value}
+			<f:ajax execute="@form" render="@form" />
+		</button>
+	</c:if>
+	
+	<c:if test="#{cc.getValueExpression('actionListener') != null and cc.getValueExpression('action') == null}">
+		<button class="btn btn-default" disabled="#{cc.attrs.disabled}"
+			type="#{cc.attrs.type}" jsf:style="#{cc.attrs.style}"
+			jsf:id="#{cc.attrs.id}"
+			jsf:actionListener="#{cc.attrs.actionListener}">
+			<span class="#{cc.attrs.icon}" /> #{cc.attrs.value}
+			<f:ajax execute="@form" render="@form" />
+		</button>
+	</c:if>
+	
+	<c:if test="#{cc.getValueExpression('actionListener') == null and cc.getValueExpression('action') != null}">
+		<button class="btn btn-default" disabled="#{cc.attrs.disabled}"
+			type="#{cc.attrs.type}" jsf:style="#{cc.attrs.style}"
+			jsf:id="#{cc.attrs.id}" jsf:action="#{cc.attrs.action}">
+			<span class="#{cc.attrs.icon}" /> #{cc.attrs.value}
+			<f:ajax execute="@form" render="@form" />
+		</button>
+	</c:if>
+	
+	<c:if test="#{cc.getValueExpression('actionListener') == null and cc.getValueExpression('action') == null}">
+		<button class="btn btn-default" disabled="#{cc.attrs.disabled}"
+			type="#{cc.attrs.type}" jsf:style="#{cc.attrs.style}"
+			jsf:id="#{cc.attrs.id}">
+			<span class="#{cc.attrs.icon}" /> #{cc.attrs.value}
+		</button>
+	</c:if>
 
 </composite:implementation>
 

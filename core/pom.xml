@@ -264,7 +264,7 @@
 		<dependency>
 			<groupId>ma.glasnost.orika</groupId>
 			<artifactId>orika-core</artifactId>
-			<version>1.4.0</version><!-- latest version -->
+			<version>1.4.5</version><!-- latest version -->
 		</dependency>
 
 	</dependencies>
