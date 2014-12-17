@@ -32,9 +32,10 @@
 
 		<bbvaContainer:productPanelGraphic title="Cuentas Personales">
 			<div class="table-tabs">
-				<bbvaGP:accountSearch listAccounts="#{customerProducts.accounts}" />
+				<bbvaGP:accountSearch listAccounts="#{customerProducts.accounts}" listAccountsAdquirencia="#{customerProducts.accounts}" listAccountsMore="#{customerProducts.accounts}"/>
 				<bbvaGP:accountHeadTable listAccounts="#{customerProducts.accounts}"
 					listValueLikes="#{likes}" />
+				<bbvaGP:accountAdquirenciaTable listAccounts="#{customerProducts.accounts}"/>
 				<bbvaGP:accountTailTable listAccounts="#{customerProducts.accounts}" />
 			</div>
 			<div class="row afterTable">
@@ -128,6 +129,21 @@
 		<bbvaAlert:alertsPanel header="Alertas y Novedades" numAlerts="8" />
 
 		<h:form>
+
+			<bbvaInput:selectOneMenuLikes label="qwe"
+				value="#{globalPositionController.selectedLike}"
+				valueList="#{globalPositionController.listMultiValueLikes}"/>
+
+			<p:inputText>
+				<p:ajax event="keyup" listener="#{globalPositionController.onKeyUp}" />
+			</p:inputText>
+
+			<h:outputLabel value="#{prueba.name}"></h:outputLabel>
+			<button jsf:action="refresh">
+				ACCIÓN
+				<f:ajax execute="@form" render="@form" />
+			</button>
+			<p:outputLabel>Selector</p:outputLabel>
 
 			<bbvaInput:selectOneMenuLikes valueList="#{likes}"></bbvaInput:selectOneMenuLikes>
 

@@ -10,22 +10,20 @@
 	xmlns:c="http://java.sun.com/jstl/core">
 
 <composite:interface>
+	<composite:attribute name="id" type="String" />
 	<composite:attribute name="listAccounts" type="java.util.List" />
-	<composite:attribute name="listValueLikes" />
+	<composite:attribute name="listValueLikes" type="java.util.List" />
 
 </composite:interface>
 
 <composite:implementation>
 
+
+	<h:form id="#{cc.attrs.id}">
+		<p:dataTable id="table" var="icuenta" value="#{cc.attrs.listAccounts}">
+
 	<c:set var="currency" value="$" />
 	
-	<h:form>
-		<p:dataTable id="table" widgetVar="tableAccounts" rowIndexVar="findex"
-			var="icuenta" selectionMode="single" 
-			selection="#{globalPositionController.selectAccount}"
-			rowKey="#{icuenta.product.productId}"
-			value="#{cc.attrs.listAccounts.subList(0, (cc.attrs.listAccounts.size()) >= 10 ? 10 : cc.attrs.listAccounts.size())}">
-
 			<p:ajax event="rowSelect" listener="#{globalPositionController.onAccountSelected}" 
 					oncomplete="document.getElementById('showPepe').click()"/>
 			<p:ajax event="rowUnselect" />
@@ -34,6 +32,10 @@
 				styleClass="col-xs-6 col-md-8"
 				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
 				<p:panelGrid>
+
+				<p class="title-label" style="font-size: 1.1em">#{icuenta.product.alias}</p>
+				<p style="font-size: 1em">#{icuenta.product.productId}</p>
+				<p class="sublabel" style="font-size: 1em">#{icuenta.product.productName}</p>
 
 					<h:outputText styleClass="title-label" style="font-size: 1.1em; font-weight:bold; color:#0078d2" escape="false"
 								  value="#{icuenta.product.alias}"/>

@@ -37,6 +37,14 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	private transient boolean stateGlobalPosition = true;
 
+	public boolean isStateGlobalPosition() {
+		return stateGlobalPosition;
+	}
+
+	public void setStateGlobalPosition(boolean stateGlobalPosition) {
+		this.stateGlobalPosition = stateGlobalPosition;
+	}
+
 	private enum ActivePanelType {
 
 		SITUATION, ASSET, FINANCIATION
@@ -60,13 +68,6 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		return globalProductos;
 	}
 
-	public boolean isStateGlobalPosition() {
-		return stateGlobalPosition;
-	}
-
-	public void setStateGlobalPosition(boolean stateGlobalPosition) {
-		this.stateGlobalPosition = stateGlobalPosition;
-	}
 
 	public void renderPieSituation() {
 		this.activePanel = ActivePanelType.SITUATION;
@@ -123,6 +124,19 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	public Account getSelectAccount() {
 		return this.selectedAccount;
+	}
+	@Override
+	public GlobalProducts getCustomerProductsVisible() {
+		final GlobalProducts globalProductos = this.globalPositionFacade.getGlobalProductsByUserVisible(getCurrentUser(),true);
+		situationGraphicPieUI = graphicPieDelegate.getSituationGlobalProducts(globalProductos);
+		return globalProductos;
+	}
+	@Override
+	public GlobalProducts getCustomerProductsNotVisible() {
+		final GlobalProducts globalProductos = this.globalPositionFacade.getGlobalProductsByUserVisible(getCurrentUser(),false);
+
+		return globalProductos;
+
 	}
 
 }

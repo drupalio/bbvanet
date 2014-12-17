@@ -26,6 +26,16 @@ public class ProductDTO implements Dto {
 	private String productID;
 
 	private String name;
+	
+	private boolean visibility;
+
+	public boolean isVisibility() {
+		return visibility;
+	}
+
+	public void setVisibility(boolean visibility) {
+		this.visibility = visibility;
+	}
 
 	private List<MovementDTO> movementList;
 

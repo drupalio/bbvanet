@@ -10,6 +10,10 @@ public interface GlobalPositionController {
 	/**
 	 * @return
 	 */
-	GlobalProducts getCustomerProducts();
-
+	public GlobalProducts getCustomerProducts();
+	
+	public GlobalProducts getCustomerProductsVisible();
+	
+	public GlobalProducts getCustomerProductsNotVisible();
+	
 }

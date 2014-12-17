@@ -1,5 +1,6 @@
 package com.bbva.net.back.facade.impl;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -31,12 +32,20 @@ public class GlobalPositionFacadeImplTest {
 		Mockito.when(this.globalPositionService.get(Mockito.anyString())).thenReturn(new GlobalProducts());
 
 		final GlobalProducts globalProducts = this.globalPositionFacade.getGlobalProductsByUser(DEFAULT_USER);
-		//invoca metodo a probar
-		//final GlobalProducts globalProducts = this.globalPositionFacade.getGlobalProductsByUser(DEFAULT_USER);
-
 		
-		//Comprobar resultados
-		//Assert.assertNotNull(globalProducts);
-		//Mockito.verify(this.globalPositionService, Mockito.atLeastOnce()).get(DEFAULT_USER);
+		Assert.assertNotNull(globalProducts);
+		Mockito.verify(this.globalPositionService, Mockito.atLeastOnce()).get(DEFAULT_USER);
+		
+	}
+
+	@Test
+	public void checkGetCustomerProducts_Visible() {
+		
+		Mockito.when(this.globalPositionService.get(Mockito.anyString())).thenReturn(new GlobalProducts());
+		
+		final GlobalProducts globalProducts = this.globalPositionFacade.getGlobalProductsByUserVisible(DEFAULT_USER, true);
+		
+		Assert.assertNotNull(globalProducts);
+		Mockito.verify(this.globalPositionService, Mockito.atLeastOnce()).get(DEFAULT_USER);
 	}
 }

@@ -23,7 +23,7 @@
 <ui:composition template="../../templates/defaultLayout.xhtml">
 
 	<ui:define name="bodyTitle">
-		<bbvaBody:title title="Cuentas Personales">
+		<bbvaBody:title title="#{msg['title.accountsPersonal']}">
 			<bbvaBody:titleOptionProduct optionButttonLeft="Mis productos"
 				optionButttonRight="Catálogo de productos" />
 		</bbvaBody:title>
@@ -46,11 +46,15 @@
 
 		</bbvaDetAcc:tabMenu>
 
+		<div class="table-tabs">
+			<bbvaAcc:MovePaginatorTable id="detailAccounts" listAccounts="#{customerAccounts}" />
+		</div>
+
 		<bbvaDetAcc:tapDropDown title="Fecha">
 			<bbvaCalendar:calendarItem />
 		</bbvaDetAcc:tapDropDown>
 		<bbvaDetAcc:tapDropDown title="Saldo" />
-
+		<bbvaSearch:personalizedSearchContainer />
 
 	</ui:define>
 
@@ -61,6 +65,7 @@
 	<ui:define name="contentRight">
 
 		<bbvaAlert:alertsPanel header="Alertas y Novedades" numAlerts="8" />
+
 		<h:form>
 
 			<h:selectOneMenu id="console" style="width:125px">
@@ -80,7 +85,9 @@
 				ACCIÓN
 				<f:ajax execute="@form" render="@form" />
 			</button>
+			
 		</h:form>
+
 	</ui:define>
 
 </ui:composition>

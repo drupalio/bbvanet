@@ -10,7 +10,8 @@
 
 <composite:interface>
 	<composite:attribute name="id" />
-	<composite:attribute name="id"/>
+	<composite:attribute name="value" />
+	<composite:attribute name="idName"/>
 	<composite:attribute name="data-max" />
 	<composite:attribute name="data-min" />
 	<composite:attribute name="maxlength" />
@@ -25,7 +26,7 @@
 		type="text" class="form-control"
 		style="background-image: url('../../assets/img/icons/dollar-blue.png'); 
 		background-repeat: no-repeat; background-position: right 3% center;"
-		maxlength="#{cc.attrs.maxlength}" name="#{cc.attrs.id}"
+		maxlength="#{cc.attrs.maxlength}" name="#{cc.attrs.idName}"
 		data-min="#{cc.attrs.data-min}" data-max="#{cc.attrs.data-max}"
 		autocomplete="#{cc.attrs.autocomplete}"
 		data-filter="#{cc.attrs.data-filter}" />

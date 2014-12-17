@@ -9,13 +9,15 @@
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <composite:interface>
+	<composite:attribute name="id" type="String" />
 	<composite:attribute name="listDeposit" type="java.util.List" />
 </composite:interface>
 
 <composite:implementation>
 
 	<div class="item-hidden" style="display: block;">
-		<p:dataTable var="icuenta" value="#{cc.attrs.listDeposit.subList((cc.attrs.listDeposit.size() >= 11) ? 10 : 0,(cc.attrs.listDeposit.size() >= 11) ? cc.attrs.listDeposit.size() : 0)}">
+		<p:dataTable id="#{cc.attrs.id}" var="icuenta" value="#{cc.attrs.listDeposit}"
+		emptyMessage="#{msg['mssg.list.empty']}">
 		
 			<p:column class="head" styleClass="head col-xs-6 col-md-4" 
 				style="font-size: 0.7em;color: #434A58;border-style: solid none;

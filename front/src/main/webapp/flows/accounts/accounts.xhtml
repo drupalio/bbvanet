@@ -18,7 +18,7 @@
 <ui:composition template="../../templates/defaultLayout.xhtml">
 
 	<ui:define name="bodyTitle">
-		<bbvaBody:title title="Cuentas Personales">
+		<bbvaBody:title title="#{msg['title.accountsPersonal']}">
 			<bbvaBody:titleOptionProduct optionButttonLeft="Mis productos"
 				optionButttonRight="Catálogo de productos" />
 		</bbvaBody:title>
@@ -26,12 +26,18 @@
 
 	<ui:define name="contentLeft">
 
-		<bbvaContainer:productPanelGraphic title="Cuentas Personales">
+		<bbvaContainer:productPanelGraphic title="#{msg['title.accountsPersonal']}">
 			<div class="table-tabs">
 				<bbvaGP:accountSearch listAccounts="#{customerAccounts}" />
+<<<<<<< HEAD
+				<bbvaAcc:accountHeadTable listAccounts="#{customerAccounts}" />
+				<bbvaGP:accountAdquirenciaTable listAccounts="#{customerAccounts}" />
+				<bbvaAcc:accountTailTable listAccounts="#{customerAccounts}" />
+=======
 				<bbvaGP:accountHeadTable listAccounts="#{customerAccounts}" />
 				<bbvaAcc:accountAdquirenciaTable listAccounts="#{customerAccounts}" />
 				<bbvaGP:accountTailTable listAccounts="#{customerAccounts}" />
+>>>>>>> 55d396bf138872101ff57b408c288bcfaa104fe2
 
 			</div>
 			<div class="row afterTable">
@@ -39,7 +45,7 @@
 				<bbvaGP:totalBalance />
 			</div>
 		</bbvaContainer:productPanelGraphic>
-
+		
 	</ui:define>
 
 	<ui:define name="contentRight">
