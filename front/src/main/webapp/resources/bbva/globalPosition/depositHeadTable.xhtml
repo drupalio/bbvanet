@@ -16,15 +16,26 @@
 <composite:implementation>
 
 	<p:dataTable var="icuenta" id="#{cc.attrs.id}"
+		rowIndexVar="findex"
+		selectionMode="single" 
+		selection="#{globalPositionController.selectAccount}"
+		rowKey="#{icuenta.product.productId}"
 		value="#{cc.attrs.listDeposit}">
+		
+		<p:ajax event="rowSelect" />
+		<p:ajax event="rowUnselect" />
 
 		<p:column class="head" headerText="N° D&#201;POSITO"
 			styleClass="head col-xs-6 col-md-4"
 			style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
 
-			<p class="title-label" style="font-size: 1.1em">#{icuenta.product.alias}</p>
-			<p style="font-size: 1em">#{icuenta.product.productId}</p>
-			<p class="sublabel" style="font-size: 1em">#{icuenta.product.productName}</p>
+			
+			<h:outputText styleClass="title-label" style="font-size: 1.1em; font-weight:bold; color:#0078d2" escape="false"
+								  value="#{icuenta.product.alias}"/>
+			<h:outputText style="font-size: 1em" escape="false" 
+								  value="&lt;br /&gt; #{icuenta.product.productId}"/>
+			<h:outputText styleClass="sublabel" style="font-size: 1em" escape="false"
+								  value="&lt;br /&gt; #{icuenta.product.productName}"/>
 
 		</p:column>
 
@@ -32,7 +43,8 @@
 			styleClass="head col-xs-6 col-md-4"
 			style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
 
-			<p class="balance" style="font-size: 1.5em">#{icuenta.product.totalCash}</p>
+			<h:outputText style="font-size: 1.5em; font-weight:bold" styleClass="balance" 
+								   value="#{icuenta.product.totalCash}"/>	
 			<p class="sublabel"></p>
 
 		</p:column>
@@ -41,7 +53,8 @@
 			styleClass="head col-xs-6 col-md-4"
 			style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
 
-			<p class="balance" style="font-size: 1.5em">#{icuenta.product.cashAvailable}</p>
+			<h:outputText style="font-size: 1.5em; font-weight:bold" styleClass="balance" 
+								   value="#{icuenta.product.cashAvailable}"/>	
 			<p class="sublabel"></p>
 
 		</p:column>

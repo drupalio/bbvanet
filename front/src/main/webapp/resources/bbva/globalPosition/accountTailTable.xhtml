@@ -15,16 +15,31 @@
 
 <composite:implementation>
 
+	<style>
+	
+	</style>	
+
 	<div class="item-hidden" style="display: block;">
-		<p:dataTable id="#{cc.attrs.id}" var="icuenta" value="#{cc.attrs.listAccounts}">
+		
+		<p:dataTable id="#{cc.attrs.id}" var="icuenta" 
+			rowIndexVar="findex"
+			selectionMode="single" 
+			selection="#{globalPositionController.selectAccount}"
+			rowKey="#{icuenta.product.productId}"
+			value="#{cc.attrs.listAccounts}">
+		
 			<p:column class="head" styleClass="col-xs-6 col-md-8"
 				style="font-size: 0.7em;color: #434A58;border-style: solid none;
 					font-family: Arial;background: none;border-radius: 4px;border: 2px solid #DBDCDF;
 					background-color: #F3F5F7;margin-bottom: 14px;">
 
-				<p class="title-label" style="font-size: 1.1em">#{icuenta.product.alias}</p>
-				<p style="font-size: 1em">#{icuenta.product.productId}</p>
-				<p class="sublabel" style="font-size: 1em">#{icuenta.product.productName}</p>
+			
+				<h:outputText styleClass="title-label" style="font-size: 1.1em; font-weight:bold; color:#0078d2" escape="false"
+								  value="#{icuenta.product.alias}"/>
+				<h:outputText style="font-size: 1em" escape="false" 
+								  value="&lt;br /&gt; #{icuenta.product.productId}"></h:outputText>
+				<h:outputText styleClass="sublabel" style="font-size: 1em" escape="false"
+								  value="&lt;br /&gt; #{icuenta.product.productName}"/>
 
 			</p:column>
 
@@ -33,9 +48,13 @@
 					font-family: Arial;background: none;border-radius: 4px;border: 2px solid #DBDCDF;
 					background-color: #F3F5F7;margin-bottom: 14px;">
 
-				<p class="balance" style="font-size: 1.5em">#{icuenta.product.totalCash}</p>
-				<p style="font-size: 1em">Saldo disponible $#{icuenta.product.cashAvailable}</p>
+				<h:outputText style="font-size: 1.5em; font-weight:bold" styleClass="balance" 
+								   value="#{icuenta.product.totalCash}"/>
+				<h:outputText styleClass="ui-datatable-selectable" style="font-size:1em" escape="false"
+						value="&lt;br /&gt; Saldo disponible #{currency}#{icuenta.product.cashAvailable}"/>
+				
 				<p class="sublabel"></p>
+				
 			</p:column>
 		</p:dataTable>
 	

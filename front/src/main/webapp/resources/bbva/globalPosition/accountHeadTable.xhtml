@@ -22,30 +22,29 @@
 	
 	<h:form ikd="#{cc.attrs.id}">
 	
-		<p:dataTable id="table" widgetVar="tableAccounts" rowIndexVar="findex"
-			var="icuenta" selectionMode="single" 
+		<p:dataTable id="table" widgetVar="tableAccounts" 
+			var="icuenta" 
+			rowIndexVar="findex"
+			selectionMode="single" 
 			selection="#{globalPositionController.selectAccount}"
 			rowKey="#{icuenta.product.productId}"
 			value="#{cc.attrs.listAccounts}">
 
-			<p:ajax event="rowSelect" listener="#{globalPositionController.onAccountSelected}" 
-					oncomplete="document.getElementById('showPepe').click()"/>
+			<p:ajax event="rowSelect" listener="#{globalPositionController.onAccountSelected}" />
 			<p:ajax event="rowUnselect" />
 
 			<p:column class="head" headerText="N° CUENTA"
 				styleClass="col-xs-6 col-md-8"
 				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
-				<p:panelGrid>
+				
 
-					<h:outputText styleClass="title-label" style="font-size: 1.1em; font-weight:bold; color:#0078d2" escape="false"
+				<h:outputText styleClass="title-label" style="font-size: 1.1em; font-weight:bold; color:#0078d2" escape="false"
 								  value="#{icuenta.product.alias}"/>
-					<h:outputText style="font-size: 1em" escape="false" 
+				<h:outputText style="font-size: 1em" escape="false" 
 								  value="&lt;br /&gt; #{icuenta.product.productId}"></h:outputText>
-					<h:outputText styleClass="sublabel" style="font-size: 1em" escape="false"
+				<h:outputText styleClass="sublabel" style="font-size: 1em" escape="false"
 								  value="&lt;br /&gt; #{icuenta.product.productName}"/>
-								  
-				</p:panelGrid>
-
+			
 			</p:column>
 
 			<p:column class="head" headerText="SALDO" 
@@ -55,8 +54,7 @@
 					<h:outputText style="font-size: 1.5em; font-weight:bold" styleClass="balance" 
 								   value="#{icuenta.product.totalCash}"/>
 					<h:outputText styleClass="ui-datatable-selectable" style="font-size:1em" escape="false"
-						value="&lt;br /&gt; Saldo disponible #{currency}#{icuenta.product.cashAvailable}">
-					</h:outputText>
+						value="&lt;br /&gt; Saldo disponible #{currency}#{icuenta.product.cashAvailable}"/>
 					<p class="sublabel"></p>
 					
 			</p:column>
