@@ -16,12 +16,11 @@ public class ProductServiceImplTest {
 	private ProductServiceImpl productServiceImpl;
 
 	@Before
-	public void init(){
-		
+	public void init() {
+
 		this.productServiceImpl = new ProductServiceImpl();
 	}
-	
-	
+
 	@Test
 	public void checkGetProductsNotEmpty() {
 		final List<Product> products = productServiceImpl.getProducts(new GlobalProducts());
@@ -32,11 +31,4 @@ public class ProductServiceImplTest {
 		Assert.assertNotNull(products);
 
 	}
-
-	@Test
-	public void isAssetProduct() {
-		productServiceImpl.isAssetProductType("");
-
-	}
-
 }

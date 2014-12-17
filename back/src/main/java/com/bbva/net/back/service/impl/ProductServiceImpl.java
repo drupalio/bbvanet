@@ -3,7 +3,6 @@
  */
 package com.bbva.net.back.service.impl;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -72,11 +71,13 @@ public class ProductServiceImpl implements ProductService {
 		return getTotalCash(productsByType);
 	}
 
-	public boolean isAssetProductType(String productType) {
-
-		String[] words = { "word1", "word2", "word3", "word4", "word5" };
-		return (Arrays.asList(words).contains(productType));
-
+	
+	public boolean hasProductByType(GlobalProducts globalProducts, final String producType){
+		
+		if(producType.equals("Cuantas")){
+			return !CollectionUtils.isEmpty(globalProducts.getAccounts());
+		}		
+		return false;		
 	}
 
 	@Override

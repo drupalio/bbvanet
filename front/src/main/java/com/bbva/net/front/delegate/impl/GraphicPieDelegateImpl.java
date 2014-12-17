@@ -1,129 +1,171 @@
 package com.bbva.net.front.delegate.impl;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 import co.com.bbva.services.transactions.globalposition.schema.GlobalProducts;
+import co.com.bbva.services.transactions.globalposition.schema.Product;
 
+import com.bbva.net.back.service.ProductService;
 import com.bbva.net.front.core.stereotype.Delegate;
 import com.bbva.net.front.delegate.GraphicPieDelegate;
 import com.bbva.net.front.ui.PieItemUI;
 import com.bbva.net.front.ui.SituationPiesConfigUI;
 import com.bbva.net.front.ui.SituationPiesUI;
 
+/**
+ * Delegate to draw UIGraphic Pies
+ * 
+ * @author Entelgy
+ */
 @Delegate(value = "graphicPieDelegate")
 public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 
 	SituationPiesUI situationPiesUI = new SituationPiesUI();
 
+	ProductService productService;
+
 	@Override
 	public SituationPiesUI getSituationGlobalProducts(GlobalProducts globalProducts) {
 
-		return getSitiationPiesUI();
+		return getSitiationPiesUI(globalProducts);
 	}
 
-	public SituationPiesUI getSitiationPiesUI() {
+	public SituationPiesUI getSitiationPiesUI(GlobalProducts globalProducts) {
+		List<Product> productList = productService.getProducts(globalProducts);
+		situationPiesUI.setSituation(getSituationPieConfig(globalProducts));
+		situationPiesUI.setAssets(getAssetPieConfig(globalProducts));
+		situationPiesUI.setFinancing(getFinanciationPieConfig(globalProducts));
 
-		situationPiesUI.setSituation(getSituationPieConfig());
-		situationPiesUI.setAssets(getAssetPieConfig());
-		situationPiesUI.setFinancing(getFinanciationPieConfig());
-
-		situationPiesUI.setTotalAssets(new BigDecimal(300000));
-		situationPiesUI.setTotalFinancing(new BigDecimal(500000));
+		situationPiesUI.setTotalAssets((productService.getTotalAssets(productList).getAmount()));
+		situationPiesUI.setTotalFinancing((productService.getTotalFinanciacion(productList).getAmount()));
 
 		return situationPiesUI;
 	}
 
-	public SituationPiesConfigUI getAssetPieConfig() {
-		SituationPiesConfigUI asset = new SituationPiesConfigUI();
-		asset.setHeader("Activos");
-		asset.setPieItemUIList(gePieAssetItemUIList());
+	public SituationPiesConfigUI getSituationPieConfig(GlobalProducts globalProducts) {
 
-		return asset;
-
-	}
-
-	public SituationPiesConfigUI getSituationPieConfig() {
 		SituationPiesConfigUI situation = new SituationPiesConfigUI();
+
+		List<Product> productList = productService.getProducts(globalProducts);
 		situation.setHeader("Tu Situación");
-		situation.setPieItemUIList(gePieSituationItemUIList());
+		situation.setPieItemUIList(getPieSituationItemUIList(productList));
 
 		return situation;
 
 	}
 
-	public SituationPiesConfigUI getFinanciationPieConfig() {
+	public SituationPiesConfigUI getAssetPieConfig(GlobalProducts globalProducts) {
+		SituationPiesConfigUI asset = new SituationPiesConfigUI();
+
+		List<Product> productList = productService.getProducts(globalProducts);
+		asset.setHeader("Activos " + productService.getTotalAssets(productList).getAmount().toString());
+		asset.setPieItemUIList(getPieAssetItemUIList(productList));
+
+		return asset;
+
+	}
+
+	public SituationPiesConfigUI getFinanciationPieConfig(GlobalProducts globalProducts) {
 		SituationPiesConfigUI financiation = new SituationPiesConfigUI();
-		financiation.setHeader("Financiación");
-		financiation.setPieItemUIList(gePieFinanciationItemUIList());
+		List<Product> productList = productService.getProducts(globalProducts);
+		financiation.setHeader("Financiación "
+				+ (productService.getTotalFinanciacion(productList).getAmount().toString()));
+		financiation.setPieItemUIList(getPieFinanciationItemUIList(productList));
 		return financiation;
-
 	}
 
-	private List<PieItemUI> gePieAssetItemUIList() {
-		List<PieItemUI> pieItemUIList = new ArrayList<PieItemUI>();
-		List<String> legendList = new ArrayList<String>();
-
-		legendList.add("Depósitos");
-
-		legendList.add("Planes de pensión");
-		legendList.add("Cartera de valores");
-
-		for (String s : legendList) {
-
-			PieItemUI pieItemUI = new PieItemUI();
-			pieItemUI.setColor("green");
-			pieItemUI.setCurrency('$');
-			pieItemUI.setPercentage("%");
-			pieItemUI.setTextLengend(s);
-			pieItemUI.setValue(new BigDecimal(2000).multiply(new BigDecimal(0.25F)));
-			pieItemUIList.add(pieItemUI);
+	/**
+	 * Method to draws a generic Pie graphic
+	 * 
+	 * @param productList
+	 * @param color
+	 * @param currency
+	 * @param textLegend
+	 * @param productType
+	 * @return PieItemUI
+	 */
+	public PieItemUI drawGraphic(List<Product> productList, String color, char currency, String textLegend,
+			String productType) {
+		PieItemUI pieItemUI = new PieItemUI();
+		pieItemUI.setColor(color);
+		pieItemUI.setCurrency(currency);
+		pieItemUI.setTextLengend(textLegend);
+		if (textLegend.equals("Activos") || textLegend.equals("Financiación")) {
+			pieItemUI.setValue(textLegend.equals("Activos") ? productService.getTotalAssets(productList).getAmount()
+					: productService.getTotalFinanciacion(productList).getAmount());
+		} else {
+			pieItemUI.setValue(productService.getTotalProductsByType(productList, productType).getAmount());
 		}
-		return pieItemUIList;
-
+		return pieItemUI;
 	}
 
-	private List<PieItemUI> gePieFinanciationItemUIList() {
+	/**
+	 * Method to draws a Situation Pie graphic
+	 * 
+	 * @param productList
+	 * @return pieItemUIList
+	 */
+	private List<PieItemUI> getPieSituationItemUIList(List<Product> productList) {
+
 		List<PieItemUI> pieItemUIList = new ArrayList<PieItemUI>();
-		List<String> legendList = new ArrayList<String>();
-		legendList.add("Cartera de Valores");
-		legendList.add("Depositos");
-		legendList.add("Planes de pensiones");
-		legendList.add("Cartera Asesorada");
 
-		for (String s : legendList) {
-
-			PieItemUI pieItemUI = new PieItemUI();
-			pieItemUI.setColor("blue");
-			pieItemUI.setCurrency('$');
-			pieItemUI.setPercentage("%");
-			pieItemUI.setTextLengend(s);
-			pieItemUI.setValue(new BigDecimal(2000).multiply(new BigDecimal(0.25F)));
-			pieItemUIList.add(pieItemUI);
-		}
-		return pieItemUIList;
-
-	}
-
-	private List<PieItemUI> gePieSituationItemUIList() {
-		List<PieItemUI> pieItemUIList = new ArrayList<PieItemUI>();
 		List<String> legendList = new ArrayList<String>();
 		legendList.add("Activos");
-		legendList.add("Financiación");
+		legendList.add("Financiación Account");
 
-		for (String s : legendList) {
-
+		for (String str : legendList) {
 			PieItemUI pieItemUI = new PieItemUI();
-			pieItemUI.setColor("red");
-			pieItemUI.setCurrency('$');
-			pieItemUI.setPercentage("%");
-			pieItemUI.setTextLengend(s);
-			pieItemUI.setValue(new BigDecimal(2000).multiply(new BigDecimal(0.25F)));
+			pieItemUI = drawGraphic(productList, "green", '$', str, str);
+			pieItemUIList.add(pieItemUI);
+		}
+
+		return pieItemUIList;
+	}
+
+	/**
+	 * Method to draws a Situation Asset Pie graphic
+	 * 
+	 * @param productList
+	 * @return pieItemUIList
+	 */
+	private List<PieItemUI> getPieAssetItemUIList(List<Product> productList) {
+		List<PieItemUI> pieItemUIList = new ArrayList<PieItemUI>();
+
+		List<String> legendList = new ArrayList<String>();
+		legendList.add("Accounts");
+		legendList.add("Rotating Account");
+		legendList.add("Deposit");
+		legendList.add("Fund");
+
+		for (String str : legendList) {
+			PieItemUI pieItemUI = new PieItemUI();
+			pieItemUI = drawGraphic(productList, "green", '$', str, str);
+			pieItemUIList.add(pieItemUI);
+		}
+		return pieItemUIList;
+	}
+
+	/**
+	 * Method to draws a Financiation Pie graphic
+	 * 
+	 * @param productList
+	 * @return pieItemUIList
+	 */
+	private List<PieItemUI> getPieFinanciationItemUIList(List<Product> productList) {
+		List<PieItemUI> pieItemUIList = new ArrayList<PieItemUI>();
+
+		List<String> legendList = new ArrayList<String>();
+		legendList.add("Credit Card");
+		legendList.add("Leasing");
+		legendList.add("Loan");
+
+		for (String str : legendList) {
+			PieItemUI pieItemUI = new PieItemUI();
+			pieItemUI = drawGraphic(productList, "green", '$', str, str);
 			pieItemUIList.add(pieItemUI);
 		}
 		return pieItemUIList;
 
 	}
-
 }

@@ -40,13 +40,6 @@ public interface ProductService {
 	Money getTotalProductsByType(List<Product> products, String type);
 
 	
-	/**
-	 * 
-	 * @param productType
-	 * @return
-	 */
-	boolean isAssetProductType(String productType);
-	
 	
 	/***
 	 * 
