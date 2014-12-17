@@ -2,8 +2,8 @@ package com.bbva.net.front.controller;
 
 import java.util.List;
 
-import co.com.bbva.services.transactions.globalposition.schema.Leasing;
-import co.com.bbva.services.transactions.globalposition.schema.RotatingAccount;
+import com.bbva.net.back.model.globalposition.LeasingDTO;
+import com.bbva.net.back.model.globalposition.RotatingAccountDTO;
 
 /**
  * @author Entelgy
@@ -13,11 +13,11 @@ public interface LoanController {
 	/**
 	 * @return
 	 */
-	public List<RotatingAccount> getCustomerRotatingAccount();
+	public List<RotatingAccountDTO> getCustomerRotatingAccount();
 
 	/**
 	 * @return
 	 */
-	public List<Leasing> getCustomerLeasing();
+	public List<LeasingDTO> getCustomerLeasing();
 
 }

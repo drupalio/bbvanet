@@ -6,9 +6,8 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 
-import co.com.bbva.services.transactions.globalposition.schema.Account;
-
 import com.bbva.net.back.facade.AccountsFacade;
+import com.bbva.net.back.model.globalposition.AccountDTO;
 import com.bbva.net.front.controller.AccountsController;
 import com.bbva.net.front.core.AbstractBbvaController;
 
@@ -35,7 +34,7 @@ public class AccountsControllerImpl extends AbstractBbvaController implements Ac
 	}
 
 	@Override
-	public List<Account> getCustomerAccounts() {
+	public List<AccountDTO> getCustomerAccounts() {
 		return this.accountsFacade.getAccountsByUser(getCurrentUser());
 	}
 

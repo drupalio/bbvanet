@@ -9,11 +9,10 @@ import org.junit.Test;
 import org.mockito.Mockito;
 import org.springframework.web.client.RestClientException;
 
-import co.com.bbva.services.transactions.globalposition.schema.GlobalProducts;
-
 import com.bbva.net.back.entity.MultiValueGroup;
 import com.bbva.net.back.facade.GlobalPositionFacade;
 import com.bbva.net.back.facade.MultiValueGroupFacade;
+import com.bbva.net.back.model.globalposition.GlobalProductsDTO;
 import com.bbva.net.front.delegate.GraphicPieDelegate;
 
 /**
@@ -54,10 +53,10 @@ public class GlobalPositionControllerImplTest {
 		globalPositionController.setGraphicPieDelegate(graphicPieDelegate);
 
 		// prepara el test
-		Mockito.when(globalPositionFacade.getGlobalProductsByUser(DEFAULT_USER)).thenReturn(new GlobalProducts());
+		Mockito.when(globalPositionFacade.getGlobalProductsByUser(DEFAULT_USER)).thenReturn(new GlobalProductsDTO());
 
 		// invoca metodo a probar
-		final GlobalProducts globalProducts = this.globalPositionController.getCustomerProducts();
+		final GlobalProductsDTO globalProducts = this.globalPositionController.getCustomerProducts();
 
 		// Comprobar resultados
 		Assert.assertNotNull(globalProducts);
@@ -97,7 +96,7 @@ public class GlobalPositionControllerImplTest {
 	@Test
 	public void checkGraphicPaiUI() {
 
-		GlobalProducts globalProducts = Mockito.mock(GlobalProducts.class);
+		GlobalProductsDTO globalProducts = Mockito.mock(GlobalProductsDTO.class);
 		this.globalPositionController.getSituationGraphicPieUI();
 
 		Assert.assertEquals(this.globalPositionController.getSituationGraphicPieUI(),

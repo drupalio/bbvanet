@@ -13,12 +13,11 @@ import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 import org.springframework.stereotype.Controller;
 
-import co.com.bbva.services.transactions.globalposition.schema.Account;
-import co.com.bbva.services.transactions.globalposition.schema.GlobalProducts;
-
 import com.bbva.net.back.entity.MultiValueGroup;
 import com.bbva.net.back.facade.GlobalPositionFacade;
 import com.bbva.net.back.facade.MultiValueGroupFacade;
+import com.bbva.net.back.model.globalposition.AccountDTO;
+import com.bbva.net.back.model.globalposition.GlobalProductsDTO;
 import com.bbva.net.front.controller.GlobalPositionController;
 import com.bbva.net.front.core.AbstractBbvaController;
 import com.bbva.net.front.delegate.GraphicPieDelegate;
@@ -47,7 +46,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	private SituationPiesUI situationGraphicPieUI;
 
-	private Account selectedProduct;
+	private AccountDTO selectedProduct;
 
 	private ActivePanelType activePanel = ActivePanelType.SITUATION;
 
@@ -83,14 +82,14 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	}
 
 	@Override
-	public GlobalProducts getCustomerProducts() {
+	public GlobalProductsDTO getCustomerProducts() {
 		exam = new ArrayList();
 		exam.add("1");
 		exam.add("2");
 		exam.add("3");
 		exam.add("4");
 		exam.add("5");
-		final GlobalProducts globalProductos = this.globalPositionFacade.getGlobalProductsByUser(getCurrentUser());
+		final GlobalProductsDTO globalProductos = this.globalPositionFacade.getGlobalProductsByUser(getCurrentUser());
 
 		situationGraphicPieUI = graphicPieDelegate.getSituationGlobalProducts(globalProductos);
 
@@ -165,14 +164,14 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	/**
 	 * @return the selectedProduct
 	 */
-	public Account getSelectedProduct() {
+	public AccountDTO getSelectedProduct() {
 		return selectedProduct;
 	}
 
 	/**
 	 * @param selectedProduct the selectedProduct to set
 	 */
-	public void setSelectedProduct(Account selectedProduct) {
+	public void setSelectedProduct(AccountDTO selectedProduct) {
 		this.selectedProduct = selectedProduct;
 	}
 
@@ -206,15 +205,15 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	public void onRowSelect(SelectEvent event) {
 		System.out.println("LLego selected");
-		System.out.println("Product Selected" + ((Account)event.getObject()).getProduct().getProductId());
-		FacesMessage msg = new FacesMessage("Product Selected", ((Account)event.getObject()).getProduct()
+		System.out.println("Product Selected" + ((AccountDTO)event.getObject()).getProduct().getProductId());
+		FacesMessage msg = new FacesMessage("Product Selected", ((AccountDTO)event.getObject()).getProduct()
 				.getProductId());
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 
 	public void onRowUnselect(UnselectEvent event) {
 		System.out.println("LLego iunselected");
-		FacesMessage msg = new FacesMessage("Product Unselected", ((Account)event.getObject()).getProduct()
+		FacesMessage msg = new FacesMessage("Product Unselected", ((AccountDTO)event.getObject()).getProduct()
 				.getProductId());
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}

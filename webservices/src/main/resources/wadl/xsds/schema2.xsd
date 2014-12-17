@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="urn:com:bbva:czic:dto:net"
+	xmlns:ns1="urn:com:bbva:jee:arq:spring:core:servicing:utils" xmlns:tns="urn:com:bbva:czic:dto:net"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+	jaxb:extensionBindingPrefixes="xjc" jaxb:version="1.0">
+
+	<annotation>
+		<appinfo>
+			<jaxb:globalBindings generateIsSetMethod="true">
+				<xjc:serializable uid="1" />
+			</jaxb:globalBindings>
+		</appinfo>
+	</annotation>
+
+	<xs:import namespace="urn:com:bbva:jee:arq:spring:core:servicing:utils"
+		schemaLocation="schema1.xsd" />
+
+	<xs:element name="contactInformation" type="tns:contactInformation" />
+
+	<xs:element name="email" type="tns:email" />
+
+	<xs:element name="enumContactSourceType" type="tns:enumContactSourceType" />
+
+	<xs:element name="enumFinancialStatusType" type="tns:enumFinancialStatusType" />
+
+	<xs:element name="enumPhoneNumberType" type="tns:enumPhoneNumberType" />
+
+	<xs:element name="enumProductType" type="tns:enumProductType" />
+
+	<xs:element name="movement" type="tns:movement" />
+
+	<xs:element name="operation" type="tns:operation" />
+
+	<xs:element name="phoneNumber" type="tns:phoneNumber" />
+
+	<xs:element name="product" type="tns:product" />
+
+	<xs:complexType name="product">
+		<xs:sequence>
+			<xs:element name="movements" type="tns:movement" nillable="true"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="contactInfo" type="tns:contactInformation"
+				minOccurs="0" />
+			<xs:element name="ownersEquity" type="ns1:money"
+				minOccurs="0" />
+			<xs:element name="liabilities" type="ns1:money" minOccurs="0" />
+			<xs:element name="assets" type="ns1:money" minOccurs="0" />
+			<xs:element name="operable" type="xs:boolean" minOccurs="0" />
+			<xs:element name="visible" type="xs:boolean" minOccurs="0" />
+			<xs:element name="financialState" type="tns:enumFinancialStatusType"
+				minOccurs="0" />
+			<xs:element name="alias" type="xs:string" minOccurs="0" />
+			<xs:element name="name" type="xs:string" minOccurs="0" />
+			<xs:element name="type" type="tns:enumProductType"
+				minOccurs="0" />
+			<xs:element name="productId" type="xs:string" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="movement">
+		<xs:sequence>
+			<xs:element name="balance" type="ns1:money" minOccurs="0" />
+			<xs:element name="value" type="ns1:money" minOccurs="0" />
+			<xs:element name="operation" type="tns:operation"
+				minOccurs="0" />
+			<xs:element name="destinationReference" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="sourceReference" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="transactionDate" type="xs:dateTime"
+				minOccurs="0" />
+			<xs:element name="concept" type="xs:string" minOccurs="0" />
+			<xs:element name="movementId" type="xs:string" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="operation">
+		<xs:sequence>
+			<xs:element name="description" type="xs:string" minOccurs="0" />
+			<xs:element name="operationCode" type="xs:string"
+				minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="contactInformation">
+		<xs:sequence>
+			<xs:element name="emails" type="tns:email" nillable="true"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="phoneNumbers" type="tns:phoneNumber"
+				nillable="true" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="email">
+		<xs:sequence>
+			<xs:element name="source" type="tns:enumContactSourceType"
+				minOccurs="0" />
+			<xs:element name="active" type="xs:boolean" minOccurs="0" />
+			<xs:element name="primary" type="xs:boolean" minOccurs="0" />
+			<xs:element name="address" type="xs:string" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="phoneNumber">
+		<xs:sequence>
+			<xs:element name="contactSource" type="tns:enumContactSourceType"
+				minOccurs="0" />
+			<xs:element name="active" type="xs:boolean" minOccurs="0" />
+			<xs:element name="primary" type="xs:boolean" minOccurs="0" />
+			<xs:element name="type" type="tns:enumPhoneNumberType"
+				minOccurs="0" />
+			<xs:element name="regionalCode" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="countryCode" type="xs:string" minOccurs="0" />
+			<xs:element name="number" type="xs:string" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name="enumContactSourceType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="MOBILE" />
+			<xs:enumeration value="WEB" />
+			<xs:enumeration value="THIRD_PARTY" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="enumPhoneNumberType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="MOBILE" />
+			<xs:enumeration value="LANDLINE" />
+			<xs:enumeration value="FAX" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="enumFinancialStatusType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="A" />
+			<xs:enumeration value="P" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="enumProductType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="AC" />
+			<xs:enumeration value="CA" />
+			<xs:enumeration value="LO" />
+			<xs:enumeration value="SI" />
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>
+

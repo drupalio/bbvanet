@@ -29,7 +29,7 @@
 			<p:column class="head" headerText="SALDO TOTAL" styleClass="head col-xs-6 col-md-4"
 				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
 				
-				<p class="balance" style="font-size: 1.5em">#{icuenta.loan.totalDebt}</p>
+				<p class="balance" style="font-size: 1.5em">#{icuenta.loan.totalDebt.amount}</p>
 				<p class="sublabel"></p>
 				
 			</p:column>
@@ -37,7 +37,7 @@
 			<p:column class="head" headerText="SALDO DISPONIBLE"	styleClass="head col-xs-6 col-md-4"
 				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
 				
-				<p class="balance" style="font-size: 1.5em">#{icuenta.loan.totalDue}</p>
+				<p class="balance" style="font-size: 1.5em">#{icuenta.loan.totalDue.amount}</p>
 				<p class="sublabel"></p>
 				
 			</p:column>

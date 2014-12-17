@@ -4,8 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import co.com.bbva.services.transactions.globalposition.schema.GlobalProducts;
-
+import com.bbva.net.back.model.globalposition.GlobalProductsDTO;
 import com.bbva.net.front.core.stereotype.Delegate;
 import com.bbva.net.front.delegate.GraphicPieDelegate;
 import com.bbva.net.front.ui.PieItemUI;
@@ -18,7 +17,7 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 	SituationPiesUI situationPiesUI = new SituationPiesUI();
 
 	@Override
-	public SituationPiesUI getSituationGlobalProducts(GlobalProducts globalProducts) {
+	public SituationPiesUI getSituationGlobalProducts(GlobalProductsDTO globalProducts) {
 
 		return getSitiationPiesUI();
 	}
