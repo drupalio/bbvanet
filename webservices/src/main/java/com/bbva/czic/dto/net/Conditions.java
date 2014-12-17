@@ -1,16 +1,15 @@
-package com.bbva.czic.dto.net;
 
-import java.io.Serializable;
+package com.bbva.czic.dto.net;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
 
+
 /**
- * <p>
- * Java class for Conditions complex type.
- * <p>
- * The following schema fragment specifies the expected content contained within this class.
+ * <p>Java class for Conditions complex type.
+ * 
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="Conditions">
@@ -28,135 +27,169 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Conditions", propOrder = { "category", "description", "openingDate", "commission", "office",
-		"mobilizationConditions" })
-public class Conditions implements Serializable {
+@XmlType(name = "Conditions", propOrder = {
+    "category",
+    "description",
+    "openingDate",
+    "commission",
+    "office",
+    "mobilizationConditions"
+})
+public class Conditions {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    protected String category;
+    protected String description;
+    protected String openingDate;
+    protected String commission;
+    protected Office office;
+    protected String mobilizationConditions;
 
-	protected String category;
+    /**
+     * Gets the value of the category property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getCategory() {
+        return category;
+    }
 
-	protected String description;
+    /**
+     * Sets the value of the category property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setCategory(String value) {
+        this.category = value;
+    }
 
-	protected String openingDate;
+    /**
+     * Gets the value of the description property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getDescription() {
+        return description;
+    }
 
-	protected String commission;
+    /**
+     * Sets the value of the description property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setDescription(String value) {
+        this.description = value;
+    }
 
-	protected Office office;
+    /**
+     * Gets the value of the openingDate property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getOpeningDate() {
+        return openingDate;
+    }
 
-	protected String mobilizationConditions;
+    /**
+     * Sets the value of the openingDate property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setOpeningDate(String value) {
+        this.openingDate = value;
+    }
 
-	/**
-	 * Gets the value of the category property.
-	 * 
-	 * @return possible object is {@link String }
-	 */
-	public String getCategory() {
-		return category;
-	}
+    /**
+     * Gets the value of the commission property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getCommission() {
+        return commission;
+    }
 
-	/**
-	 * Sets the value of the category property.
-	 * 
-	 * @param value allowed object is {@link String }
-	 */
-	public void setCategory(String value) {
-		this.category = value;
-	}
+    /**
+     * Sets the value of the commission property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setCommission(String value) {
+        this.commission = value;
+    }
 
-	/**
-	 * Gets the value of the description property.
-	 * 
-	 * @return possible object is {@link String }
-	 */
-	public String getDescription() {
-		return description;
-	}
+    /**
+     * Gets the value of the office property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Office }
+     *     
+     */
+    public Office getOffice() {
+        return office;
+    }
 
-	/**
-	 * Sets the value of the description property.
-	 * 
-	 * @param value allowed object is {@link String }
-	 */
-	public void setDescription(String value) {
-		this.description = value;
-	}
+    /**
+     * Sets the value of the office property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Office }
+     *     
+     */
+    public void setOffice(Office value) {
+        this.office = value;
+    }
 
-	/**
-	 * Gets the value of the openingDate property.
-	 * 
-	 * @return possible object is {@link String }
-	 */
-	public String getOpeningDate() {
-		return openingDate;
-	}
+    /**
+     * Gets the value of the mobilizationConditions property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getMobilizationConditions() {
+        return mobilizationConditions;
+    }
 
-	/**
-	 * Sets the value of the openingDate property.
-	 * 
-	 * @param value allowed object is {@link String }
-	 */
-	public void setOpeningDate(String value) {
-		this.openingDate = value;
-	}
-
-	/**
-	 * Gets the value of the commission property.
-	 * 
-	 * @return possible object is {@link String }
-	 */
-	public String getCommission() {
-		return commission;
-	}
-
-	/**
-	 * Sets the value of the commission property.
-	 * 
-	 * @param value allowed object is {@link String }
-	 */
-	public void setCommission(String value) {
-		this.commission = value;
-	}
-
-	/**
-	 * Gets the value of the office property.
-	 * 
-	 * @return possible object is {@link Office }
-	 */
-	public Office getOffice() {
-		return office;
-	}
-
-	/**
-	 * Sets the value of the office property.
-	 * 
-	 * @param value allowed object is {@link Office }
-	 */
-	public void setOffice(Office value) {
-		this.office = value;
-	}
-
-	/**
-	 * Gets the value of the mobilizationConditions property.
-	 * 
-	 * @return possible object is {@link String }
-	 */
-	public String getMobilizationConditions() {
-		return mobilizationConditions;
-	}
-
-	/**
-	 * Sets the value of the mobilizationConditions property.
-	 * 
-	 * @param value allowed object is {@link String }
-	 */
-	public void setMobilizationConditions(String value) {
-		this.mobilizationConditions = value;
-	}
+    /**
+     * Sets the value of the mobilizationConditions property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setMobilizationConditions(String value) {
+        this.mobilizationConditions = value;
+    }
 
 }

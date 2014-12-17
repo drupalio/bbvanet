@@ -1,16 +1,15 @@
-package com.bbva.czic.dto.net;
 
-import java.io.Serializable;
+package com.bbva.czic.dto.net;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
 
+
 /**
- * <p>
- * Java class for Operation complex type.
- * <p>
- * The following schema fragment specifies the expected content contained within this class.
+ * <p>Java class for Operation complex type.
+ * 
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="Operation">
@@ -24,54 +23,65 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Operation", propOrder = { "code", "description" })
-public class Operation implements Serializable {
+@XmlType(name = "Operation", propOrder = {
+    "code",
+    "description"
+})
+public class Operation {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    protected String code;
+    protected String description;
 
-	protected String code;
+    /**
+     * Gets the value of the code property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getCode() {
+        return code;
+    }
 
-	protected String description;
+    /**
+     * Sets the value of the code property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setCode(String value) {
+        this.code = value;
+    }
 
-	/**
-	 * Gets the value of the code property.
-	 * 
-	 * @return possible object is {@link String }
-	 */
-	public String getCode() {
-		return code;
-	}
+    /**
+     * Gets the value of the description property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getDescription() {
+        return description;
+    }
 
-	/**
-	 * Sets the value of the code property.
-	 * 
-	 * @param value allowed object is {@link String }
-	 */
-	public void setCode(String value) {
-		this.code = value;
-	}
-
-	/**
-	 * Gets the value of the description property.
-	 * 
-	 * @return possible object is {@link String }
-	 */
-	public String getDescription() {
-		return description;
-	}
-
-	/**
-	 * Sets the value of the description property.
-	 * 
-	 * @param value allowed object is {@link String }
-	 */
-	public void setDescription(String value) {
-		this.description = value;
-	}
+    /**
+     * Sets the value of the description property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setDescription(String value) {
+        this.description = value;
+    }
 
 }

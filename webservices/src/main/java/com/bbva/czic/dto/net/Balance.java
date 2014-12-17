@@ -1,18 +1,16 @@
-package com.bbva.czic.dto.net;
 
-import java.io.Serializable;
+package com.bbva.czic.dto.net;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
-
 import com.bbva.jee.arq.spring.core.servicing.utils.Money;
 
+
 /**
- * <p>
- * Java class for Balance complex type.
- * <p>
- * The following schema fragment specifies the expected content contained within this class.
+ * <p>Java class for Balance complex type.
+ * 
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="Balance">
@@ -26,54 +24,65 @@ import com.bbva.jee.arq.spring.core.servicing.utils.Money;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Balance", propOrder = { "total", "availableBalance" })
-public class Balance implements Serializable {
+@XmlType(name = "Balance", propOrder = {
+    "total",
+    "availableBalance"
+})
+public class Balance {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    protected Money total;
+    protected Money availableBalance;
 
-	protected Money total;
+    /**
+     * Gets the value of the total property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Money }
+     *     
+     */
+    public Money getTotal() {
+        return total;
+    }
 
-	protected Money availableBalance;
+    /**
+     * Sets the value of the total property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Money }
+     *     
+     */
+    public void setTotal(Money value) {
+        this.total = value;
+    }
 
-	/**
-	 * Gets the value of the total property.
-	 * 
-	 * @return possible object is {@link Money }
-	 */
-	public Money getTotal() {
-		return total;
-	}
+    /**
+     * Gets the value of the availableBalance property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Money }
+     *     
+     */
+    public Money getAvailableBalance() {
+        return availableBalance;
+    }
 
-	/**
-	 * Sets the value of the total property.
-	 * 
-	 * @param value allowed object is {@link Money }
-	 */
-	public void setTotal(Money value) {
-		this.total = value;
-	}
-
-	/**
-	 * Gets the value of the availableBalance property.
-	 * 
-	 * @return possible object is {@link Money }
-	 */
-	public Money getAvailableBalance() {
-		return availableBalance;
-	}
-
-	/**
-	 * Sets the value of the availableBalance property.
-	 * 
-	 * @param value allowed object is {@link Money }
-	 */
-	public void setAvailableBalance(Money value) {
-		this.availableBalance = value;
-	}
+    /**
+     * Sets the value of the availableBalance property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Money }
+     *     
+     */
+    public void setAvailableBalance(Money value) {
+        this.availableBalance = value;
+    }
 
 }

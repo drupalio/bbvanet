@@ -1,19 +1,18 @@
+
 package com.bbva.czic.dto.net;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+
 /**
- * <p>
- * Java class for Product complex type.
- * <p>
- * The following schema fragment specifies the expected content contained within this class.
+ * <p>Java class for Product complex type.
+ * 
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="Product">
@@ -36,240 +35,305 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Product", propOrder = { "id", "type", "name", "alias", "financialState", "visible", "operable",
-		"balance", "contactInfo", "conditions", "movement" })
-public class Product implements Serializable {
+@XmlType(name = "Product", propOrder = {
+    "id",
+    "type",
+    "name",
+    "alias",
+    "financialState",
+    "visible",
+    "operable",
+    "balance",
+    "contactInfo",
+    "conditions",
+    "movement"
+})
+public class Product {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    protected String id;
+    protected EnumProductType type;
+    protected String name;
+    protected String alias;
+    protected EnumFinancialStatusType financialState;
+    protected Boolean visible;
+    protected Boolean operable;
+    protected Balance balance;
+    protected ContactInfo contactInfo;
+    protected Conditions conditions;
+    @XmlElement(nillable = true)
+    protected List<Movement> movement;
 
-	protected String id;
+    /**
+     * Gets the value of the id property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getId() {
+        return id;
+    }
 
-	protected EnumProductType type;
+    /**
+     * Sets the value of the id property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setId(String value) {
+        this.id = value;
+    }
 
-	protected String name;
+    /**
+     * Gets the value of the type property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link EnumProductType }
+     *     
+     */
+    public EnumProductType getType() {
+        return type;
+    }
 
-	protected String alias;
+    /**
+     * Sets the value of the type property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link EnumProductType }
+     *     
+     */
+    public void setType(EnumProductType value) {
+        this.type = value;
+    }
 
-	protected EnumFinancialStatusType financialState;
+    /**
+     * Gets the value of the name property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getName() {
+        return name;
+    }
 
-	protected Boolean visible;
+    /**
+     * Sets the value of the name property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setName(String value) {
+        this.name = value;
+    }
 
-	protected Boolean operable;
+    /**
+     * Gets the value of the alias property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getAlias() {
+        return alias;
+    }
 
-	protected Balance balance;
+    /**
+     * Sets the value of the alias property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setAlias(String value) {
+        this.alias = value;
+    }
 
-	protected ContactInfo contactInfo;
+    /**
+     * Gets the value of the financialState property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link EnumFinancialStatusType }
+     *     
+     */
+    public EnumFinancialStatusType getFinancialState() {
+        return financialState;
+    }
 
-	protected Conditions conditions;
+    /**
+     * Sets the value of the financialState property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link EnumFinancialStatusType }
+     *     
+     */
+    public void setFinancialState(EnumFinancialStatusType value) {
+        this.financialState = value;
+    }
 
-	@XmlElement(nillable = true)
-	protected List<Movement> movement;
+    /**
+     * Gets the value of the visible property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public Boolean isVisible() {
+        return visible;
+    }
 
-	/**
-	 * Gets the value of the id property.
-	 * 
-	 * @return possible object is {@link String }
-	 */
-	public String getId() {
-		return id;
-	}
+    /**
+     * Sets the value of the visible property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setVisible(Boolean value) {
+        this.visible = value;
+    }
 
-	/**
-	 * Sets the value of the id property.
-	 * 
-	 * @param value allowed object is {@link String }
-	 */
-	public void setId(String value) {
-		this.id = value;
-	}
+    /**
+     * Gets the value of the operable property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public Boolean isOperable() {
+        return operable;
+    }
 
-	/**
-	 * Gets the value of the type property.
-	 * 
-	 * @return possible object is {@link EnumProductType }
-	 */
-	public EnumProductType getType() {
-		return type;
-	}
+    /**
+     * Sets the value of the operable property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setOperable(Boolean value) {
+        this.operable = value;
+    }
 
-	/**
-	 * Sets the value of the type property.
-	 * 
-	 * @param value allowed object is {@link EnumProductType }
-	 */
-	public void setType(EnumProductType value) {
-		this.type = value;
-	}
+    /**
+     * Gets the value of the balance property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Balance }
+     *     
+     */
+    public Balance getBalance() {
+        return balance;
+    }
 
-	/**
-	 * Gets the value of the name property.
-	 * 
-	 * @return possible object is {@link String }
-	 */
-	public String getName() {
-		return name;
-	}
+    /**
+     * Sets the value of the balance property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Balance }
+     *     
+     */
+    public void setBalance(Balance value) {
+        this.balance = value;
+    }
 
-	/**
-	 * Sets the value of the name property.
-	 * 
-	 * @param value allowed object is {@link String }
-	 */
-	public void setName(String value) {
-		this.name = value;
-	}
+    /**
+     * Gets the value of the contactInfo property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ContactInfo }
+     *     
+     */
+    public ContactInfo getContactInfo() {
+        return contactInfo;
+    }
 
-	/**
-	 * Gets the value of the alias property.
-	 * 
-	 * @return possible object is {@link String }
-	 */
-	public String getAlias() {
-		return alias;
-	}
+    /**
+     * Sets the value of the contactInfo property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ContactInfo }
+     *     
+     */
+    public void setContactInfo(ContactInfo value) {
+        this.contactInfo = value;
+    }
 
-	/**
-	 * Sets the value of the alias property.
-	 * 
-	 * @param value allowed object is {@link String }
-	 */
-	public void setAlias(String value) {
-		this.alias = value;
-	}
+    /**
+     * Gets the value of the conditions property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Conditions }
+     *     
+     */
+    public Conditions getConditions() {
+        return conditions;
+    }
 
-	/**
-	 * Gets the value of the financialState property.
-	 * 
-	 * @return possible object is {@link EnumFinancialStatusType }
-	 */
-	public EnumFinancialStatusType getFinancialState() {
-		return financialState;
-	}
+    /**
+     * Sets the value of the conditions property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Conditions }
+     *     
+     */
+    public void setConditions(Conditions value) {
+        this.conditions = value;
+    }
 
-	/**
-	 * Sets the value of the financialState property.
-	 * 
-	 * @param value allowed object is {@link EnumFinancialStatusType }
-	 */
-	public void setFinancialState(EnumFinancialStatusType value) {
-		this.financialState = value;
-	}
-
-	/**
-	 * Gets the value of the visible property.
-	 * 
-	 * @return possible object is {@link Boolean }
-	 */
-	public Boolean isVisible() {
-		return visible;
-	}
-
-	/**
-	 * Sets the value of the visible property.
-	 * 
-	 * @param value allowed object is {@link Boolean }
-	 */
-	public void setVisible(Boolean value) {
-		this.visible = value;
-	}
-
-	/**
-	 * Gets the value of the operable property.
-	 * 
-	 * @return possible object is {@link Boolean }
-	 */
-	public Boolean isOperable() {
-		return operable;
-	}
-
-	/**
-	 * Sets the value of the operable property.
-	 * 
-	 * @param value allowed object is {@link Boolean }
-	 */
-	public void setOperable(Boolean value) {
-		this.operable = value;
-	}
-
-	/**
-	 * Gets the value of the balance property.
-	 * 
-	 * @return possible object is {@link Balance }
-	 */
-	public Balance getBalance() {
-		return balance;
-	}
-
-	/**
-	 * Sets the value of the balance property.
-	 * 
-	 * @param value allowed object is {@link Balance }
-	 */
-	public void setBalance(Balance value) {
-		this.balance = value;
-	}
-
-	/**
-	 * Gets the value of the contactInfo property.
-	 * 
-	 * @return possible object is {@link ContactInfo }
-	 */
-	public ContactInfo getContactInfo() {
-		return contactInfo;
-	}
-
-	/**
-	 * Sets the value of the contactInfo property.
-	 * 
-	 * @param value allowed object is {@link ContactInfo }
-	 */
-	public void setContactInfo(ContactInfo value) {
-		this.contactInfo = value;
-	}
-
-	/**
-	 * Gets the value of the conditions property.
-	 * 
-	 * @return possible object is {@link Conditions }
-	 */
-	public Conditions getConditions() {
-		return conditions;
-	}
-
-	/**
-	 * Sets the value of the conditions property.
-	 * 
-	 * @param value allowed object is {@link Conditions }
-	 */
-	public void setConditions(Conditions value) {
-		this.conditions = value;
-	}
-
-	/**
-	 * Gets the value of the movement property.
-	 * <p>
-	 * This accessor method returns a reference to the live list, not a snapshot. Therefore any modification you make to the
-	 * returned list will be present inside the JAXB object. This is why there is not a <CODE>set</CODE> method for the
-	 * movement property.
-	 * <p>
-	 * For example, to add a new item, do as follows:
-	 * 
-	 * <pre>
-	 * getMovement().add(newItem);
-	 * </pre>
-	 * <p>
-	 * Objects of the following type(s) are allowed in the list {@link Movement }
-	 */
-	public List<Movement> getMovement() {
-		if (movement == null) {
-			movement = new ArrayList<Movement>();
-		}
-		return this.movement;
-	}
+    /**
+     * Gets the value of the movement property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the movement property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getMovement().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link Movement }
+     * 
+     * 
+     */
+    public List<Movement> getMovement() {
+        if (movement == null) {
+            movement = new ArrayList<Movement>();
+        }
+        return this.movement;
+    }
 
 }
