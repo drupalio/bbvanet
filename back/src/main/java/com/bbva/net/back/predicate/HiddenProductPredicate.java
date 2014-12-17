@@ -11,12 +11,6 @@ import com.bbva.net.core.collection.BbvaPredicate;
 
 public class HiddenProductPredicate extends BbvaPredicate{
 
-/*	@Override
-	protected boolean eval(ProductDTO product) {
-		
-		return product.equals(false);
-	}
-*/
 	@Override
 	protected boolean eval(Object object) {
 		
