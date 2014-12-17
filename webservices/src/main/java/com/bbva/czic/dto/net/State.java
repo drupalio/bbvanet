@@ -1,16 +1,15 @@
-package com.bbva.czic.dto.net;
 
-import java.io.Serializable;
+package com.bbva.czic.dto.net;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
 
+
 /**
- * <p>
- * Java class for State complex type.
- * <p>
- * The following schema fragment specifies the expected content contained within this class.
+ * <p>Java class for State complex type.
+ * 
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="State">
@@ -25,74 +24,91 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "State", propOrder = { "id", "name", "country" })
-public class State implements Serializable {
+@XmlType(name = "State", propOrder = {
+    "id",
+    "name",
+    "country"
+})
+public class State {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    protected String id;
+    protected String name;
+    protected Country country;
 
-	protected String id;
+    /**
+     * Gets the value of the id property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getId() {
+        return id;
+    }
 
-	protected String name;
+    /**
+     * Sets the value of the id property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setId(String value) {
+        this.id = value;
+    }
 
-	protected Country country;
+    /**
+     * Gets the value of the name property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getName() {
+        return name;
+    }
 
-	/**
-	 * Gets the value of the id property.
-	 * 
-	 * @return possible object is {@link String }
-	 */
-	public String getId() {
-		return id;
-	}
+    /**
+     * Sets the value of the name property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setName(String value) {
+        this.name = value;
+    }
 
-	/**
-	 * Sets the value of the id property.
-	 * 
-	 * @param value allowed object is {@link String }
-	 */
-	public void setId(String value) {
-		this.id = value;
-	}
+    /**
+     * Gets the value of the country property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Country }
+     *     
+     */
+    public Country getCountry() {
+        return country;
+    }
 
-	/**
-	 * Gets the value of the name property.
-	 * 
-	 * @return possible object is {@link String }
-	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * Sets the value of the name property.
-	 * 
-	 * @param value allowed object is {@link String }
-	 */
-	public void setName(String value) {
-		this.name = value;
-	}
-
-	/**
-	 * Gets the value of the country property.
-	 * 
-	 * @return possible object is {@link Country }
-	 */
-	public Country getCountry() {
-		return country;
-	}
-
-	/**
-	 * Sets the value of the country property.
-	 * 
-	 * @param value allowed object is {@link Country }
-	 */
-	public void setCountry(Country value) {
-		this.country = value;
-	}
+    /**
+     * Sets the value of the country property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Country }
+     *     
+     */
+    public void setCountry(Country value) {
+        this.country = value;
+    }
 
 }
