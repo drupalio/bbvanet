@@ -8,10 +8,15 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 /**
+ * <<<<<<< HEAD
  * <p>
  * Java class for product complex type.
  * <p>
- * The following schema fragment specifies the expected content contained within this class.
+ * The following schema fragment specifies the expected content contained within this class. =======
+ * <p>
+ * Clase Java para product complex type.
+ * <p>
+ * El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase. >>>>>>> master
  * 
  * <pre>
  * &lt;complexType name="product">

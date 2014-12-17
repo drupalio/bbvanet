@@ -9,40 +9,44 @@
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <composite:interface>
-	<composite:attribute name="listLeasing" type="java.util.List"  />
+	<composite:attribute name="id" type="String" />
+	<composite:attribute name="listLeasing" type="java.util.List" />
 </composite:interface>
 
 <composite:implementation>
 
 
-		<p:dataTable var="icuenta" value="#{cc.attrs.listLeasing.subList(0, (cc.attrs.listLeasing.size()) >= 10 ? 10 : cc.attrs.listLeasing.size())}">
-		
-			<p:column class="head" headerText="N° CUENTA" styleClass="head col-xs-6 col-md-4" 
-				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
-				
-				<p class="title-label" style="font-size: 1.1em">#{icuenta.loan.product.alias}</p>
-				<p style="font-size: 1em">#{icuenta.loan.product.productId}</p>
-				<p class="sublabel" style="font-size: 1em">#{icuenta.loan.product.productName}</p>
-				
-			</p:column>
-			
-			<p:column class="head" headerText="SALDO TOTAL" styleClass="head col-xs-6 col-md-4"
-				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
-				
-				<p class="balance" style="font-size: 1.5em">#{icuenta.loan.totalDebt}</p>
-				<p class="sublabel"></p>
-				
-			</p:column>
-			
-			<p:column class="head" headerText="SALDO DISPONIBLE"	styleClass="head col-xs-6 col-md-4"
-				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
-				
-				<p class="balance" style="font-size: 1.5em">#{icuenta.loan.totalDue}</p>
-				<p class="sublabel"></p>
-				
-			</p:column>
-			
-		</p:dataTable>
+	<p:dataTable id="#{cc.attrs.id}" var="icuenta" value="#{cc.attrs.listLeasing}">
+
+		<p:column class="head" headerText="N° CUENTA"
+			styleClass="head col-xs-6 col-md-4"
+			style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
+
+			<p class="title-label" style="font-size: 1.1em">#{icuenta.loan.product.alias}</p>
+			<p style="font-size: 1em">#{icuenta.loan.product.productId}</p>
+			<p class="sublabel" style="font-size: 1em">#{icuenta.loan.product.productName}</p>
+
+		</p:column>
+
+		<p:column class="head" headerText="SALDO TOTAL"
+			styleClass="head col-xs-6 col-md-4"
+			style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
+
+			<p class="balance" style="font-size: 1.5em">#{icuenta.loan.totalDebt}</p>
+			<p class="sublabel"></p>
+
+		</p:column>
+
+		<p:column class="head" headerText="SALDO DISPONIBLE"
+			styleClass="head col-xs-6 col-md-4"
+			style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
+
+			<p class="balance" style="font-size: 1.5em">#{icuenta.loan.totalDue}</p>
+			<p class="sublabel"></p>
+
+		</p:column>
+
+	</p:dataTable>
 
 </composite:implementation>
 

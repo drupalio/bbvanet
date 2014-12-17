@@ -18,9 +18,11 @@ public class AccountsControllerImpl extends AbstractBbvaController implements Ac
 	private static final long serialVersionUID = 5726824668267606699L;
 
 	private boolean stateAccounts = true;
-
+		
 	@Resource(name = "accountsFacade")
 	private transient AccountsFacade accountsFacade;
+	
+	private Account selectedAccount;
 
 	public boolean isStateAccounts() {
 		return stateAccounts;
@@ -37,6 +39,14 @@ public class AccountsControllerImpl extends AbstractBbvaController implements Ac
 	@Override
 	public List<Account> getCustomerAccounts() {
 		return this.accountsFacade.getAccountsByUser(getCurrentUser());
+	}
+
+	public Account getSelectedAccount() {
+		return selectedAccount;
+	}
+
+	public void setSelectedAccount(Account selectedAccount) {
+		this.selectedAccount = selectedAccount;
 	}
 
 }
