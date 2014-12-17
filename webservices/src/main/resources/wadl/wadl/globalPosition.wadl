@@ -130,14 +130,14 @@
             <xs:simpleType name="enumProductType">
                 <xs:restriction base="xs:string">
                     <xs:enumeration value="PC"/>
-                    <xs:enumeration value="CA"/>
                     <xs:enumeration value="TDC"/>
                     <xs:enumeration value="LO"/>
                     <xs:enumeration value="SI"/>
-                    <xs:enumeration value="CC"/>
+                    <xs:enumeration value="ED"/>
                     <xs:enumeration value="RQ"/>
                     <xs:enumeration value="LI"/>
                     <xs:enumeration value="AQ"/>
+                    
                 </xs:restriction>
             </xs:simpleType>
             <xs:simpleType name="enumFinancialStatusType">

@@ -12,6 +12,7 @@ import com.bbva.czic.dto.net.Product;
 import com.bbva.net.back.core.pattern.facade.AbstractBbvaFacade;
 import com.bbva.net.back.core.stereotype.Facade;
 import com.bbva.net.back.facade.GlobalPositionFacade;
+import com.bbva.net.back.model.commons.Money;
 import com.bbva.net.back.model.globalposition.AccountDTO;
 import com.bbva.net.back.model.globalposition.AdquirenceAccountDTO;
 import com.bbva.net.back.model.globalposition.CreditCardDTO;
@@ -55,13 +56,15 @@ public class GlobalPositionFacadeImpl extends AbstractBbvaFacade implements Glob
 			if (response.get(i).getType().equals(EnumProductType.PC)) {
 				ProductDTO product = new ProductDTO();
 				AccountDTO account = new AccountDTO();
+				Money money = new Money(response.get(i).getBalance().getAvailableBalance().getAmount(), response.get(i)
+						.getBalance().getAvailableBalance().getCurrency());
 
 				product.setAlias(response.get(i).getAlias());
-				product.setCashAvailable(response.get(i).getBalance().getAvailableBalance());
+				product.setCashAvailable(money);
 				product.setProductId(response.get(i).getId());
 				product.setProductName(response.get(i).getName());
 				product.setProductNumber(response.get(i).getId());
-				product.setTotalCash(response.get(i).getBalance().getTotal());
+				product.setTotalCash(money);
 				product.setTypeProd(response.get(i).getType());
 				account.setProduct(product);
 				accountList.add(account);
@@ -69,13 +72,15 @@ public class GlobalPositionFacadeImpl extends AbstractBbvaFacade implements Glob
 			if (response.get(i).getType().equals(EnumProductType.AQ)) {
 				ProductDTO product = new ProductDTO();
 				AdquirenceAccountDTO adquirenciaAccount = new AdquirenceAccountDTO();
+				Money money = new Money(response.get(i).getBalance().getAvailableBalance().getAmount(), response.get(i)
+						.getBalance().getAvailableBalance().getCurrency());
 
 				product.setAlias(response.get(i).getAlias());
-				product.setCashAvailable(response.get(i).getBalance().getAvailableBalance());
+				product.setCashAvailable(money);
 				product.setProductId(response.get(i).getId());
 				product.setProductName(response.get(i).getName());
 				product.setProductNumber(response.get(i).getId());
-				product.setTotalCash(response.get(i).getBalance().getTotal());
+				product.setTotalCash(money);
 				product.setTypeProd(response.get(i).getType());
 				adquirenciaAccount.setProduct(product);
 				adquirenciaList.add(adquirenciaAccount);
@@ -83,17 +88,19 @@ public class GlobalPositionFacadeImpl extends AbstractBbvaFacade implements Glob
 			if (response.get(i).getType().equals(EnumProductType.TDC)) {
 				ProductDTO product = new ProductDTO();
 				QuotaDTO quota = new QuotaDTO();
+				Money money = new Money(response.get(i).getBalance().getAvailableBalance().getAmount(), response.get(i)
+						.getBalance().getAvailableBalance().getCurrency());
 
 				CreditCardDTO creditCard = new CreditCardDTO();
-				quota.setAvailableQuota(response.get(i).getBalance().getAvailableBalance());
-				quota.setTotalQuotaDebt(response.get(i).getBalance().getTotal());
+				quota.setAvailableQuota(money);
+				quota.setTotalQuotaDebt(money);
 
 				product.setAlias(response.get(i).getAlias());
-				product.setCashAvailable(response.get(i).getBalance().getAvailableBalance());
+				product.setCashAvailable(money);
 				product.setProductId(response.get(i).getId());
 				product.setProductName(response.get(i).getName());
 				product.setProductNumber(response.get(i).getId());
-				product.setTotalCash(response.get(i).getBalance().getTotal());
+				product.setTotalCash(money);
 				product.setTypeProd(response.get(i).getType());
 
 				creditCard.setProduct(product);
@@ -107,21 +114,23 @@ public class GlobalPositionFacadeImpl extends AbstractBbvaFacade implements Glob
 				QuotaDTO quota = new QuotaDTO();
 				LoanDTO loan = new LoanDTO();
 				RotatingAccountDTO rotating = new RotatingAccountDTO();
+				Money money = new Money(response.get(i).getBalance().getAvailableBalance().getAmount(), response.get(i)
+						.getBalance().getAvailableBalance().getCurrency());
 
 				product.setAlias(response.get(i).getAlias());
-				product.setCashAvailable(response.get(i).getBalance().getAvailableBalance());
+				product.setCashAvailable(money);
 				product.setProductId(response.get(i).getId());
 				product.setProductName(response.get(i).getName());
 				product.setProductNumber(response.get(i).getId());
-				product.setTotalCash(response.get(i).getBalance().getTotal());
+				product.setTotalCash(money);
 				product.setTypeProd(response.get(i).getType());
 
-				quota.setAvailableQuota(response.get(i).getBalance().getAvailableBalance());
-				quota.setTotalQuotaDebt(response.get(i).getBalance().getTotal());
+				quota.setAvailableQuota(money);
+				quota.setTotalQuotaDebt(money);
 
 				loan.setProduct(product);
-				loan.setTotalDebt(response.get(i).getBalance().getAvailableBalance());
-				loan.setTotalDue(response.get(i).getBalance().getTotal());
+				loan.setTotalDebt(money);
+				loan.setTotalDue(money);
 
 				rotating.setLoan(loan);
 				rotating.setQuota(quota);
@@ -134,19 +143,21 @@ public class GlobalPositionFacadeImpl extends AbstractBbvaFacade implements Glob
 				LoanDTO loan = new LoanDTO();
 				LeasingDTO leasing = new LeasingDTO();
 				AccountDTO account = new AccountDTO();
+				Money money = new Money(response.get(i).getBalance().getAvailableBalance().getAmount(), response.get(i)
+						.getBalance().getAvailableBalance().getCurrency());
 
 				product.setAlias(response.get(i).getAlias());
-				product.setCashAvailable(response.get(i).getBalance().getAvailableBalance());
+				product.setCashAvailable(money);
 				product.setProductId(response.get(i).getId());
 				product.setProductName(response.get(i).getName());
 				product.setProductNumber(response.get(i).getId());
-				product.setTotalCash(response.get(i).getBalance().getTotal());
+				product.setTotalCash(money);
 				product.setTypeProd(response.get(i).getType());
 				account.setProduct(product);
 
 				loan.setProduct(product);
-				loan.setTotalDebt(response.get(i).getBalance().getAvailableBalance());
-				loan.setTotalDue(response.get(i).getBalance().getTotal());
+				loan.setTotalDebt(money);
+				loan.setTotalDue(money);
 
 				leasing.setLoan(loan);
 				leasingList.add(leasing);
@@ -156,17 +167,20 @@ public class GlobalPositionFacadeImpl extends AbstractBbvaFacade implements Glob
 
 				ProductDTO product = new ProductDTO();
 				LoanDTO loan = new LoanDTO();
+				Money money = new Money(response.get(i).getBalance().getAvailableBalance().getAmount(), response.get(i)
+						.getBalance().getAvailableBalance().getCurrency());
+
 				product.setAlias(response.get(i).getAlias());
-				product.setCashAvailable(response.get(i).getBalance().getAvailableBalance());
+				product.setCashAvailable(money);
 				product.setProductId(response.get(i).getId());
 				product.setProductName(response.get(i).getName());
 				product.setProductNumber(response.get(i).getId());
-				product.setTotalCash(response.get(i).getBalance().getTotal());
+				product.setTotalCash(money);
 				product.setTypeProd(response.get(i).getType());
 
 				loan.setProduct(product);
-				loan.setTotalDebt(response.get(i).getBalance().getAvailableBalance());
-				loan.setTotalDue(response.get(i).getBalance().getTotal());
+				loan.setTotalDebt(money);
+				loan.setTotalDue(money);
 
 				loanList.add(loan);
 			}
@@ -174,17 +188,36 @@ public class GlobalPositionFacadeImpl extends AbstractBbvaFacade implements Glob
 
 				ProductDTO product = new ProductDTO();
 				FundDTO fund = new FundDTO();
+				Money money = new Money(response.get(i).getBalance().getAvailableBalance().getAmount(), response.get(i)
+						.getBalance().getAvailableBalance().getCurrency());
 
 				product.setAlias(response.get(i).getAlias());
-				product.setCashAvailable(response.get(i).getBalance().getAvailableBalance());
+				product.setCashAvailable(money);
 				product.setProductId(response.get(i).getId());
 				product.setProductName(response.get(i).getName());
 				product.setProductNumber(response.get(i).getId());
-				product.setTotalCash(response.get(i).getBalance().getTotal());
+				product.setTotalCash(money);
 				product.setTypeProd(response.get(i).getType());
 
 				fund.setProduct(product);
 				fundList.add(fund);
+			}
+			if (response.get(i).getType().equals(EnumProductType.ED)) {
+				DepositDTO deposit = new DepositDTO();
+				ProductDTO product = new ProductDTO();
+
+				Money money = new Money(response.get(i).getBalance().getAvailableBalance().getAmount(), response.get(i)
+						.getBalance().getAvailableBalance().getCurrency());
+
+				product.setAlias(response.get(i).getAlias());
+				product.setCashAvailable(money);
+				product.setProductId(response.get(i).getId());
+				product.setProductName(response.get(i).getName());
+				product.setProductNumber(response.get(i).getId());
+				product.setTotalCash(money);
+				product.setTypeProd(response.get(i).getType());
+				deposit.setProduct(product);
+				depositList.add(deposit);
 			}
 
 		}

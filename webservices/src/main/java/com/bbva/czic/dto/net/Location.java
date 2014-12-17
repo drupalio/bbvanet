@@ -1,15 +1,16 @@
-
 package com.bbva.czic.dto.net;
+
+import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for Location complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * Java class for Location complex type.
+ * <p>
+ * The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="Location">
@@ -23,65 +24,54 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Location", propOrder = {
-    "city",
-    "category"
-})
-public class Location {
+@XmlType(name = "Location", propOrder = { "city", "category" })
+public class Location implements Serializable {
 
-    protected City city;
-    protected String category;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
-    /**
-     * Gets the value of the city property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link City }
-     *     
-     */
-    public City getCity() {
-        return city;
-    }
+	protected City city;
 
-    /**
-     * Sets the value of the city property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link City }
-     *     
-     */
-    public void setCity(City value) {
-        this.city = value;
-    }
+	protected String category;
 
-    /**
-     * Gets the value of the category property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getCategory() {
-        return category;
-    }
+	/**
+	 * Gets the value of the city property.
+	 * 
+	 * @return possible object is {@link City }
+	 */
+	public City getCity() {
+		return city;
+	}
 
-    /**
-     * Sets the value of the category property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setCategory(String value) {
-        this.category = value;
-    }
+	/**
+	 * Sets the value of the city property.
+	 * 
+	 * @param value allowed object is {@link City }
+	 */
+	public void setCity(City value) {
+		this.city = value;
+	}
+
+	/**
+	 * Gets the value of the category property.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getCategory() {
+		return category;
+	}
+
+	/**
+	 * Sets the value of the category property.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setCategory(String value) {
+		this.category = value;
+	}
 
 }

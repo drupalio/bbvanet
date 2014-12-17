@@ -1,16 +1,18 @@
-
 package com.bbva.czic.dto.net;
+
+import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
+
 import com.bbva.jee.arq.spring.core.servicing.utils.Money;
 
-
 /**
- * <p>Java class for movement complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * Java class for movement complex type.
+ * <p>
+ * The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="movement">
@@ -30,221 +32,175 @@ import com.bbva.jee.arq.spring.core.servicing.utils.Money;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "movement", propOrder = {
-    "id",
-    "concept",
-    "transactionDate",
-    "sourceReference",
-    "destinationReference",
-    "operation",
-    "value",
-    "balance"
-})
-public class Movement {
+@XmlType(name = "movement", propOrder = { "id", "concept", "transactionDate", "sourceReference",
+		"destinationReference", "operation", "value", "balance" })
+public class Movement implements Serializable {
 
-    protected String id;
-    protected String concept;
-    protected String transactionDate;
-    protected String sourceReference;
-    protected String destinationReference;
-    protected Operation operation;
-    protected Money value;
-    protected Money balance;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
-    /**
-     * Gets the value of the id property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getId() {
-        return id;
-    }
+	protected String id;
 
-    /**
-     * Sets the value of the id property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setId(String value) {
-        this.id = value;
-    }
+	protected String concept;
 
-    /**
-     * Gets the value of the concept property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getConcept() {
-        return concept;
-    }
+	protected String transactionDate;
 
-    /**
-     * Sets the value of the concept property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setConcept(String value) {
-        this.concept = value;
-    }
+	protected String sourceReference;
 
-    /**
-     * Gets the value of the transactionDate property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getTransactionDate() {
-        return transactionDate;
-    }
+	protected String destinationReference;
 
-    /**
-     * Sets the value of the transactionDate property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setTransactionDate(String value) {
-        this.transactionDate = value;
-    }
+	protected Operation operation;
 
-    /**
-     * Gets the value of the sourceReference property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getSourceReference() {
-        return sourceReference;
-    }
+	protected Money value;
 
-    /**
-     * Sets the value of the sourceReference property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setSourceReference(String value) {
-        this.sourceReference = value;
-    }
+	protected Money balance;
 
-    /**
-     * Gets the value of the destinationReference property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getDestinationReference() {
-        return destinationReference;
-    }
+	/**
+	 * Gets the value of the id property.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getId() {
+		return id;
+	}
 
-    /**
-     * Sets the value of the destinationReference property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setDestinationReference(String value) {
-        this.destinationReference = value;
-    }
+	/**
+	 * Sets the value of the id property.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setId(String value) {
+		this.id = value;
+	}
 
-    /**
-     * Gets the value of the operation property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Operation }
-     *     
-     */
-    public Operation getOperation() {
-        return operation;
-    }
+	/**
+	 * Gets the value of the concept property.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getConcept() {
+		return concept;
+	}
 
-    /**
-     * Sets the value of the operation property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Operation }
-     *     
-     */
-    public void setOperation(Operation value) {
-        this.operation = value;
-    }
+	/**
+	 * Sets the value of the concept property.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setConcept(String value) {
+		this.concept = value;
+	}
 
-    /**
-     * Gets the value of the value property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Money }
-     *     
-     */
-    public Money getValue() {
-        return value;
-    }
+	/**
+	 * Gets the value of the transactionDate property.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getTransactionDate() {
+		return transactionDate;
+	}
 
-    /**
-     * Sets the value of the value property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Money }
-     *     
-     */
-    public void setValue(Money value) {
-        this.value = value;
-    }
+	/**
+	 * Sets the value of the transactionDate property.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setTransactionDate(String value) {
+		this.transactionDate = value;
+	}
 
-    /**
-     * Gets the value of the balance property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Money }
-     *     
-     */
-    public Money getBalance() {
-        return balance;
-    }
+	/**
+	 * Gets the value of the sourceReference property.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getSourceReference() {
+		return sourceReference;
+	}
 
-    /**
-     * Sets the value of the balance property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Money }
-     *     
-     */
-    public void setBalance(Money value) {
-        this.balance = value;
-    }
+	/**
+	 * Sets the value of the sourceReference property.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setSourceReference(String value) {
+		this.sourceReference = value;
+	}
+
+	/**
+	 * Gets the value of the destinationReference property.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getDestinationReference() {
+		return destinationReference;
+	}
+
+	/**
+	 * Sets the value of the destinationReference property.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setDestinationReference(String value) {
+		this.destinationReference = value;
+	}
+
+	/**
+	 * Gets the value of the operation property.
+	 * 
+	 * @return possible object is {@link Operation }
+	 */
+	public Operation getOperation() {
+		return operation;
+	}
+
+	/**
+	 * Sets the value of the operation property.
+	 * 
+	 * @param value allowed object is {@link Operation }
+	 */
+	public void setOperation(Operation value) {
+		this.operation = value;
+	}
+
+	/**
+	 * Gets the value of the value property.
+	 * 
+	 * @return possible object is {@link Money }
+	 */
+	public Money getValue() {
+		return value;
+	}
+
+	/**
+	 * Sets the value of the value property.
+	 * 
+	 * @param value allowed object is {@link Money }
+	 */
+	public void setValue(Money value) {
+		this.value = value;
+	}
+
+	/**
+	 * Gets the value of the balance property.
+	 * 
+	 * @return possible object is {@link Money }
+	 */
+	public Money getBalance() {
+		return balance;
+	}
+
+	/**
+	 * Sets the value of the balance property.
+	 * 
+	 * @param value allowed object is {@link Money }
+	 */
+	public void setBalance(Money value) {
+		this.balance = value;
+	}
 
 }
