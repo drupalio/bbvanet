@@ -85,13 +85,11 @@ div.ui-state-default {
 	padding: 12px 14px !important;
 }
 
-<<<<<<< HEAD
 .table-ui-button{
     border-color: #E5E5E5 !important;
     background: none repeat scroll 0% 0% #F3F5F7 !important;
-    font: 12px/24px "BBVA Web Medium",arial,sans-serif !important;
-    
-=======
+    font: 12px/24px "BBVA Web Medium",arial,sans-serif !important;   
+}
 
 .ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight{
 	background: #e0f6fc !important;
@@ -103,5 +101,4 @@ div.ui-state-default {
 
 .ui-state-hover {
 	background: #e0f6fc !important;	
->>>>>>> 55d396bf138872101ff57b408c288bcfaa104fe2
 }

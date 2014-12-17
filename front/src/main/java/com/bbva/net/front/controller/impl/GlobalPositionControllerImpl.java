@@ -68,7 +68,6 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		return globalProductos;
 	}
 
-
 	public void renderPieSituation() {
 		this.activePanel = ActivePanelType.SITUATION;
 		executeScript("initChart();");
@@ -125,15 +124,19 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	public Account getSelectAccount() {
 		return this.selectedAccount;
 	}
+
 	@Override
 	public GlobalProducts getCustomerProductsVisible() {
-		final GlobalProducts globalProductos = this.globalPositionFacade.getGlobalProductsByUserVisible(getCurrentUser(),true);
+		final GlobalProducts globalProductos = this.globalPositionFacade.getGlobalProductsByUserVisible(
+				getCurrentUser(), true);
 		situationGraphicPieUI = graphicPieDelegate.getSituationGlobalProducts(globalProductos);
 		return globalProductos;
 	}
+
 	@Override
 	public GlobalProducts getCustomerProductsNotVisible() {
-		final GlobalProducts globalProductos = this.globalPositionFacade.getGlobalProductsByUserVisible(getCurrentUser(),false);
+		final GlobalProducts globalProductos = this.globalPositionFacade.getGlobalProductsByUserVisible(
+				getCurrentUser(), false);
 
 		return globalProductos;
 
