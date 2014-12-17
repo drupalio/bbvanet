@@ -5,8 +5,13 @@
     http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
 
 	<var name="calendar" class="com.bbva.net.front.controller.impl.MoveAccountsControllerImpl" />
-	
+	<var name="TermsController" class="com.bbva.net.front.controller.impl.TermsControllerImpl" />
+
+	<on-start>
+		<evaluate expression="TermsController.getAllConditions()" result="flowScope.allConditions" />
+	</on-start>
+
 	<view-state id="detailAccounts">
 	</view-state>
-	
+
 </flow>
