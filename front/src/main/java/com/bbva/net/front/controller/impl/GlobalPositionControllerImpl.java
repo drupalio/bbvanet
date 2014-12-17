@@ -14,7 +14,7 @@ import com.bbva.net.back.facade.GlobalPositionFacade;
 import com.bbva.net.front.controller.GlobalPositionController;
 import com.bbva.net.front.core.AbstractBbvaController;
 import com.bbva.net.front.delegate.GraphicPieDelegate;
-import com.bbva.net.front.ui.SituationPiesUI;
+import com.bbva.net.front.ui.globalposition.SituationPiesUI;
 
 @Controller(value = "globalPositionController")
 public class GlobalPositionControllerImpl extends AbstractBbvaController implements GlobalPositionController {

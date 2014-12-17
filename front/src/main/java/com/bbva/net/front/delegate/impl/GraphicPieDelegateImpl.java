@@ -3,15 +3,17 @@ package com.bbva.net.front.delegate.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import co.com.bbva.services.transactions.globalposition.schema.GlobalProducts;
 import co.com.bbva.services.transactions.globalposition.schema.Product;
 
 import com.bbva.net.back.service.ProductService;
 import com.bbva.net.front.core.stereotype.Delegate;
 import com.bbva.net.front.delegate.GraphicPieDelegate;
-import com.bbva.net.front.ui.PieItemUI;
-import com.bbva.net.front.ui.SituationPiesConfigUI;
-import com.bbva.net.front.ui.SituationPiesUI;
+import com.bbva.net.front.ui.globalposition.SituationPiesUI;
+import com.bbva.net.front.ui.pie.PieConfigUI;
+import com.bbva.net.front.ui.pie.PieItemUI;
 
 /**
  * Delegate to draw UIGraphic Pies
@@ -21,21 +23,18 @@ import com.bbva.net.front.ui.SituationPiesUI;
 @Delegate(value = "graphicPieDelegate")
 public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 
-	SituationPiesUI situationPiesUI = new SituationPiesUI();
-
-	ProductService productService;
+	@Resource(name = "productService")
+	private ProductService productService;
 
 	@Override
-	public SituationPiesUI getSituationGlobalProducts(GlobalProducts globalProducts) {
+	public SituationPiesUI getSituationGlobalProducts(final GlobalProducts globalProducts) {
 
-		return getSitiationPiesUI(globalProducts);
-	}
+		final SituationPiesUI situationPiesUI = new SituationPiesUI();
+		final List<Product> productList = productService.getProducts(globalProducts);
 
-	public SituationPiesUI getSitiationPiesUI(GlobalProducts globalProducts) {
-		List<Product> productList = productService.getProducts(globalProducts);
-		situationPiesUI.setSituation(getSituationPieConfig(globalProducts));
-		situationPiesUI.setAssets(getAssetPieConfig(globalProducts));
-		situationPiesUI.setFinancing(getFinanciationPieConfig(globalProducts));
+		situationPiesUI.setSituation(getSituationPieConfig(productList));
+		situationPiesUI.setAssets(getAssetPieConfig(productList));
+		situationPiesUI.setFinancing(getFinanciationPieConfig(productList));
 
 		situationPiesUI.setTotalAssets((productService.getTotalAssets(productList).getAmount()));
 		situationPiesUI.setTotalFinancing((productService.getTotalFinanciacion(productList).getAmount()));
@@ -43,129 +42,102 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 		return situationPiesUI;
 	}
 
-	public SituationPiesConfigUI getSituationPieConfig(GlobalProducts globalProducts) {
-
-		SituationPiesConfigUI situation = new SituationPiesConfigUI();
-
-		List<Product> productList = productService.getProducts(globalProducts);
-		situation.setHeader("Tu Situación");
-		situation.setPieItemUIList(getPieSituationItemUIList(productList));
-
-		return situation;
-
-	}
-
-	public SituationPiesConfigUI getAssetPieConfig(GlobalProducts globalProducts) {
-		SituationPiesConfigUI asset = new SituationPiesConfigUI();
-
-		List<Product> productList = productService.getProducts(globalProducts);
-		asset.setHeader("Activos " + productService.getTotalAssets(productList).getAmount().toString());
-		asset.setPieItemUIList(getPieAssetItemUIList(productList));
-
-		return asset;
-
-	}
-
-	public SituationPiesConfigUI getFinanciationPieConfig(GlobalProducts globalProducts) {
-		SituationPiesConfigUI financiation = new SituationPiesConfigUI();
-		List<Product> productList = productService.getProducts(globalProducts);
-		financiation.setHeader("Financiación "
-				+ (productService.getTotalFinanciacion(productList).getAmount().toString()));
-		financiation.setPieItemUIList(getPieFinanciationItemUIList(productList));
-		return financiation;
-	}
-
-	/**
-	 * Method to draws a generic Pie graphic
-	 * 
-	 * @param productList
-	 * @param color
-	 * @param currency
-	 * @param textLegend
-	 * @param productType
-	 * @return PieItemUI
-	 */
-	public PieItemUI drawGraphic(List<Product> productList, String color, char currency, String textLegend,
-			String productType) {
-		PieItemUI pieItemUI = new PieItemUI();
-		pieItemUI.setColor(color);
-		pieItemUI.setCurrency(currency);
-		pieItemUI.setTextLengend(textLegend);
-		if (textLegend.equals("Activos") || textLegend.equals("Financiación")) {
-			pieItemUI.setValue(textLegend.equals("Activos") ? productService.getTotalAssets(productList).getAmount()
-					: productService.getTotalFinanciacion(productList).getAmount());
-		} else {
-			pieItemUI.setValue(productService.getTotalProductsByType(productList, productType).getAmount());
-		}
-		return pieItemUI;
-	}
-
 	/**
 	 * Method to draws a Situation Pie graphic
 	 * 
-	 * @param productList
-	 * @return pieItemUIList
+	 * @param List<Product> products
+	 * @return PieConfigUI
 	 */
-	private List<PieItemUI> getPieSituationItemUIList(List<Product> productList) {
+	public PieConfigUI getSituationPieConfig(final List<Product> products) {
 
-		List<PieItemUI> pieItemUIList = new ArrayList<PieItemUI>();
+		final PieConfigUI situationPie = new PieConfigUI();
+		situationPie.setHeader("Tu Situación");
 
-		List<String> legendList = new ArrayList<String>();
-		legendList.add("Activos");
-		legendList.add("Financiación Account");
+		final List<PieItemUI> situationPieItems = new ArrayList<PieItemUI>();
 
-		for (String str : legendList) {
-			PieItemUI pieItemUI = new PieItemUI();
-			pieItemUI = drawGraphic(productList, "green", '$', str, str);
-			pieItemUIList.add(pieItemUI);
-		}
+		final PieItemUI assetPieItem = new PieItemUI("el color", "Activos", this.productService
+				.getTotalAssets(products).getAmount());
 
-		return pieItemUIList;
+		final PieItemUI financiationPieItem = new PieItemUI("el color", "Financiación", this.productService
+				.getTotalFinanciacion(products).getAmount());
+
+		situationPieItems.add(assetPieItem);
+		situationPieItems.add(financiationPieItem);
+		situationPie.setPieItemUIList(situationPieItems);
+
+		return situationPie;
+
 	}
 
 	/**
 	 * Method to draws a Situation Asset Pie graphic
 	 * 
-	 * @param productList
-	 * @return pieItemUIList
+	 * @param List<Product> products
+	 * @return PieConfigUI
 	 */
-	private List<PieItemUI> getPieAssetItemUIList(List<Product> productList) {
-		List<PieItemUI> pieItemUIList = new ArrayList<PieItemUI>();
+	public PieConfigUI getAssetPieConfig(final List<Product> products) {
 
-		List<String> legendList = new ArrayList<String>();
-		legendList.add("Accounts");
-		legendList.add("Rotating Account");
-		legendList.add("Deposit");
-		legendList.add("Fund");
+		final PieConfigUI assetPie = new PieConfigUI();
+		assetPie.setHeader("Activos " + productService.getTotalAssets(products).getAmount().toString());
 
-		for (String str : legendList) {
-			PieItemUI pieItemUI = new PieItemUI();
-			pieItemUI = drawGraphic(productList, "green", '$', str, str);
-			pieItemUIList.add(pieItemUI);
-		}
-		return pieItemUIList;
+		final List<PieItemUI> assetPieItems = new ArrayList<PieItemUI>();
+
+		final PieItemUI accountPieItem = new PieItemUI("el color", "Account", this.productService
+				.getTotalProductsByType(products, "Account").getAmount());
+
+		final PieItemUI fundPieItem = new PieItemUI("el color", "Fund", this.productService.getTotalProductsByType(
+				products, "Fund").getAmount());
+
+		final PieItemUI depositPieItem = new PieItemUI("el color", "Deposit", this.productService
+				.getTotalProductsByType(products, "Deposit").getAmount());
+
+		final PieItemUI rotatingAccountPieItem = new PieItemUI("el color", "Rotating Account", this.productService
+				.getTotalProductsByType(products, "Rotating Account").getAmount());
+
+		assetPieItems.add(accountPieItem);
+		assetPieItems.add(fundPieItem);
+		assetPieItems.add(depositPieItem);
+		assetPieItems.add(rotatingAccountPieItem);
+		assetPie.setPieItemUIList(assetPieItems);
+
+		return assetPie;
+
 	}
 
 	/**
-	 * Method to draws a Financiation Pie graphic
+	 * Method to draws a Situation Asset Pie graphic
 	 * 
-	 * @param productList
-	 * @return pieItemUIList
+	 * @param List<Product> products
+	 * @return PieConfigUI
 	 */
-	private List<PieItemUI> getPieFinanciationItemUIList(List<Product> productList) {
-		List<PieItemUI> pieItemUIList = new ArrayList<PieItemUI>();
+	public PieConfigUI getFinanciationPieConfig(final List<Product> products) {
 
-		List<String> legendList = new ArrayList<String>();
-		legendList.add("Credit Card");
-		legendList.add("Leasing");
-		legendList.add("Loan");
+		final PieConfigUI financiationPie = new PieConfigUI();
+		financiationPie.setHeader("Financiación " + productService.getTotalFinanciacion(products).getAmount().toString());
 
-		for (String str : legendList) {
-			PieItemUI pieItemUI = new PieItemUI();
-			pieItemUI = drawGraphic(productList, "green", '$', str, str);
-			pieItemUIList.add(pieItemUI);
-		}
-		return pieItemUIList;
+		final List<PieItemUI> financiationPieItems = new ArrayList<PieItemUI>();
 
+		final PieItemUI fundPieItem = new PieItemUI("el color", "Credit Card", this.productService
+				.getTotalProductsByType(products, "Credit Card").getAmount());
+
+		final PieItemUI depositPieItem = new PieItemUI("el color", "Leasing", this.productService
+				.getTotalProductsByType(products, "Leasing").getAmount());
+
+		final PieItemUI rotatingAccountPieItem = new PieItemUI("el color", "Loan", this.productService
+				.getTotalProductsByType(products, "Loan").getAmount());
+
+		financiationPieItems.add(fundPieItem);
+		financiationPieItems.add(depositPieItem);
+		financiationPieItems.add(rotatingAccountPieItem);
+		financiationPie.setPieItemUIList(financiationPieItems);
+
+		return financiationPie;
+	}
+
+	/**
+	 * @param productService the productService to set
+	 */
+	public void setProductService(final ProductService productService) {
+		this.productService = productService;
 	}
 }

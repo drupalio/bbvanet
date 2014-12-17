@@ -1,3 +1,4 @@
+
 package co.com.bbva.services.transactions.globalposition.schema;
 
 import java.io.Serializable;
@@ -7,16 +8,11 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+
 /**
- * <<<<<<< HEAD
- * <p>
- * Java class for product complex type.
- * <p>
- * The following schema fragment specifies the expected content contained within this class. =======
- * <p>
- * Clase Java para product complex type.
- * <p>
- * El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase. >>>>>>> master
+ * <p>Java class for product complex type.
+ * 
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="product">
@@ -35,184 +31,224 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "product", propOrder = { "productId", "productName", "productNumber", "asset", "alias", "totalCash",
-		"cashAvailable" })
-public class Product implements Serializable {
+@XmlType(name = "product", propOrder = {
+    "productId",
+    "productName",
+    "productNumber",
+    "asset",
+    "alias",
+    "totalCash",
+    "cashAvailable"
+})
+public class Product
+    implements Serializable
+{
 
-	private final static long serialVersionUID = 1L;
+    private final static long serialVersionUID = 1L;
+    @XmlElement(required = true)
+    protected String productId;
+    @XmlElement(required = true)
+    protected String productName;
+    @XmlElement(required = true)
+    protected String productNumber;
+    protected boolean asset;
+    @XmlElement(required = true)
+    protected String alias;
+    @XmlElement(required = true)
+    protected BigDecimal totalCash;
+    @XmlElement(required = true)
+    protected BigDecimal cashAvailable;
 
-	@XmlElement(required = true)
-	protected String productId;
+    /**
+     * Gets the value of the productId property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getProductId() {
+        return productId;
+    }
 
-	@XmlElement(required = true)
-	protected String productName;
+    /**
+     * Sets the value of the productId property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setProductId(String value) {
+        this.productId = value;
+    }
 
-	@XmlElement(required = true)
-	protected String productNumber;
+    public boolean isSetProductId() {
+        return (this.productId!= null);
+    }
 
-	protected boolean asset;
+    /**
+     * Gets the value of the productName property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getProductName() {
+        return productName;
+    }
 
-	@XmlElement(required = true)
-	protected String alias;
+    /**
+     * Sets the value of the productName property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setProductName(String value) {
+        this.productName = value;
+    }
 
-	@XmlElement(required = true)
-	protected BigDecimal totalCash;
+    public boolean isSetProductName() {
+        return (this.productName!= null);
+    }
 
-	@XmlElement(required = true)
-	protected BigDecimal cashAvailable;
+    /**
+     * Gets the value of the productNumber property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getProductNumber() {
+        return productNumber;
+    }
 
-	@XmlElement(required = true)
-	protected String financialState;
+    /**
+     * Sets the value of the productNumber property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setProductNumber(String value) {
+        this.productNumber = value;
+    }
 
-	/**
-	 * Gets the value of the productId property.
-	 * 
-	 * @return possible object is {@link String }
-	 */
-	public String getProductId() {
-		return productId;
-	}
+    public boolean isSetProductNumber() {
+        return (this.productNumber!= null);
+    }
 
-	/**
-	 * Sets the value of the productId property.
-	 * 
-	 * @param value allowed object is {@link String }
-	 */
-	public void setProductId(String value) {
-		this.productId = value;
-	}
+    /**
+     * Gets the value of the asset property.
+     * 
+     */
+    public boolean isAsset() {
+        return asset;
+    }
 
-	public boolean isSetProductId() {
-		return (this.productId != null);
-	}
+    /**
+     * Sets the value of the asset property.
+     * 
+     */
+    public void setAsset(boolean value) {
+        this.asset = value;
+    }
 
-	/**
-	 * Gets the value of the productName property.
-	 * 
-	 * @return possible object is {@link String }
-	 */
-	public String getProductName() {
-		return productName;
-	}
+    public boolean isSetAsset() {
+        return true;
+    }
 
-	/**
-	 * Sets the value of the productName property.
-	 * 
-	 * @param value allowed object is {@link String }
-	 */
-	public void setProductName(String value) {
-		this.productName = value;
-	}
+    /**
+     * Gets the value of the alias property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getAlias() {
+        return alias;
+    }
 
-	public boolean isSetProductName() {
-		return (this.productName != null);
-	}
+    /**
+     * Sets the value of the alias property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setAlias(String value) {
+        this.alias = value;
+    }
 
-	/**
-	 * Gets the value of the productNumber property.
-	 * 
-	 * @return possible object is {@link String }
-	 */
-	public String getProductNumber() {
-		return productNumber;
-	}
+    public boolean isSetAlias() {
+        return (this.alias!= null);
+    }
 
-	/**
-	 * Sets the value of the productNumber property.
-	 * 
-	 * @param value allowed object is {@link String }
-	 */
-	public void setProductNumber(String value) {
-		this.productNumber = value;
-	}
+    /**
+     * Gets the value of the totalCash property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link BigDecimal }
+     *     
+     */
+    public BigDecimal getTotalCash() {
+        return totalCash;
+    }
 
-	public boolean isSetProductNumber() {
-		return (this.productNumber != null);
-	}
+    /**
+     * Sets the value of the totalCash property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link BigDecimal }
+     *     
+     */
+    public void setTotalCash(BigDecimal value) {
+        this.totalCash = value;
+    }
 
-	/**
-	 * Gets the value of the asset property.
-	 */
-	public boolean isAsset() {
-		return asset;
-	}
+    public boolean isSetTotalCash() {
+        return (this.totalCash!= null);
+    }
 
-	/**
-	 * Sets the value of the asset property.
-	 */
-	public void setAsset(boolean value) {
-		this.asset = value;
-	}
+    /**
+     * Gets the value of the cashAvailable property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link BigDecimal }
+     *     
+     */
+    public BigDecimal getCashAvailable() {
+        return cashAvailable;
+    }
 
-	public boolean isSetAsset() {
-		return true;
-	}
+    /**
+     * Sets the value of the cashAvailable property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link BigDecimal }
+     *     
+     */
+    public void setCashAvailable(BigDecimal value) {
+        this.cashAvailable = value;
+    }
 
-	/**
-	 * Gets the value of the alias property.
-	 * 
-	 * @return possible object is {@link String }
-	 */
-	public String getAlias() {
-		return alias;
-	}
+    public boolean isSetCashAvailable() {
+        return (this.cashAvailable!= null);
+    }
 
-	/**
-	 * Sets the value of the alias property.
-	 * 
-	 * @param value allowed object is {@link String }
-	 */
-	public void setAlias(String value) {
-		this.alias = value;
-	}
-
-	public boolean isSetAlias() {
-		return (this.alias != null);
-	}
-
-	/**
-	 * Gets the value of the totalCash property.
-	 * 
-	 * @return possible object is {@link BigDecimal }
-	 */
-	public BigDecimal getTotalCash() {
-		return totalCash;
-	}
-
-	/**
-	 * Sets the value of the totalCash property.
-	 * 
-	 * @param value allowed object is {@link BigDecimal }
-	 */
-	public void setTotalCash(BigDecimal value) {
-		this.totalCash = value;
-	}
-
-	public boolean isSetTotalCash() {
-		return (this.totalCash != null);
-	}
-
-	/**
-	 * Gets the value of the cashAvailable property.
-	 * 
-	 * @return possible object is {@link BigDecimal }
-	 */
-	public BigDecimal getCashAvailable() {
-		return cashAvailable;
-	}
-
-	/**
-	 * Sets the value of the cashAvailable property.
-	 * 
-	 * @param value allowed object is {@link BigDecimal }
-	 */
-	public void setCashAvailable(BigDecimal value) {
-		this.cashAvailable = value;
-	}
-
-	public boolean isSetCashAvailable() {
-		return (this.cashAvailable != null);
-	}
 }
