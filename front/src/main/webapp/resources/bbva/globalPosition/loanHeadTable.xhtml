@@ -15,21 +15,35 @@
 
 <composite:implementation>
 
-			<p:dataTable id="#{cc.attrs.id}" var="icuenta" value="#{cc.attrs.listLoan}">
+			<p:dataTable id="#{cc.attrs.id}" var="icuenta" 
+				rowIndexVar="findex"
+				selectionMode="single" 
+				selection="#{globalPositionController.selectAccount}"
+				rowKey="#{icuenta.product.productId}"
+				value="#{cc.attrs.listLoan}">
+				
+			<p:ajax event="rowSelect"/>
+			<p:ajax event="rowUnselect" />
 		
 			<p:column class="head" headerText="N° PR&#201;STAMO" styleClass="head col-xs-6 col-md-4" 
 				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
 				
-				<p class="title-label" style="font-size: 1.1em">#{icuenta.product.alias}</p>
-				<p style="font-size: 1em">#{icuenta.product.productId}</p>
-				<p class="sublabel" style="font-size: 1em">#{icuenta.product.productName}</p>
+				<h:outputText styleClass="title-label" style="font-size: 1.1em; font-weight:bold; color:#0078d2" escape="false"
+								  value="#{icuenta.product.alias}"/>
+				<h:outputText style="font-size: 1em" escape="false" 
+								  value="&lt;br /&gt; #{icuenta.product.productId}"></h:outputText>
+				<h:outputText styleClass="sublabel" style="font-size: 1em" escape="false"
+								  value="&lt;br /&gt; #{icuenta.product.productName}"/>
 				
 			</p:column>
 			
 			<p:column class="head" headerText="TOTAL ADEUDO" styleClass="head col-xs-6 col-md-4"
 				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
 				
-				<p class="balance" style="font-size: 1.5em">#{icuenta.totalDebt}</p>
+				
+				<h:outputText style="font-size: 1.5em; font-weight:bold" styleClass="balance" 
+						  value="#{icuenta.loan.totalDebt}"/>
+				
 				<p class="sublabel"></p>
 				
 			</p:column>
@@ -37,7 +51,9 @@
 			<p:column class="head" headerText="TOTAL VENCIDO"	styleClass="head col-xs-6 col-md-4"
 				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
 				
-				<p class="balance" style="font-size: 1.5em">#{icuenta.totalDue}</p>
+				<h:outputText style="font-size: 1.5em; font-weight:bold" styleClass="balance" 
+								   value="#{icuenta.loan.totalDue}"/>
+			
 				<p class="sublabel"></p>
 				
 			</p:column>

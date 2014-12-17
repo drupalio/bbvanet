@@ -84,7 +84,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	}
 
 	public void onAccountSelected(final SelectEvent selectEvent) {
-		// TODO webFlow init detail account
+		System.out.print("hooola");
 	}
 
 	public void setGlobalPositionFacade(final GlobalPositionFacade globalPositionFacade) {
