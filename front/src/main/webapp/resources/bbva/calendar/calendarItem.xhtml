@@ -22,14 +22,13 @@
 	<h:form>
 		<div>
 			<input type="text" maxlength="10"
-				class="datepicker form-control calendar invalid"
-				id="customSearch-dateFieldFrom" name="dateFieldFrom"
+				class="datepicker form-control calendar valid"
+				jsf:id="customSearch-dateFieldFrom" name="dateFieldFrom"
 				placeholder="__/__/____" autocomplete="off"
 				data-date-format="dd/mm/yyyy" data-provide="datepicker-inline"
 				data-filter="Desde: " aria-required="true"
 				jsf:value="#{calendar.date}"/>
-			<f:ajax event="mouseover" immediate="true"
-				listener="#{calendar.capturaFecha}" />
+			<f:ajax event="mouseover" listener="#{calendar.capturaFecha}" />
 		</div>
 
 

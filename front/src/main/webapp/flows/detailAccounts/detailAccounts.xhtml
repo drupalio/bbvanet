@@ -30,24 +30,25 @@
 	</ui:define>
 
 	<ui:define name="contentLeft">
-		<bbvaDetAcc:tabMenu>
+		<h:form>
+			<bbvaDetAcc:tabMenu>
 
-			<bbvaDetAcc:itemTabMenu title="Consultas" icon="iconFont-611"
-				classLi="tab-left consultas-btn" type="2" />
-			<bbvaDetAcc:itemTabMenu title="Operaciones" icon="iconFont-015"
-				classLi="tab-left operaciones-btn" type="2" />
-			<bbvaDetAcc:itemTabMenu title="Personalizar"
-				classLi="tab-right hidden-xs hidden-sm" type="0" />
-			<bbvaDetAcc:itemTabMenu title="Condiciones" icon="iconFont-104"
-				classLi="tab-right" type="1" />
-			<bbvaDetAcc:itemTabMenu title="Personalizar" icon="iconFont-217"
-				classLi="tab-right hidden-md hidden-lg" type="1" />
+				<bbvaDetAcc:itemTabMenu title="Consultas" icon="iconFont-611"
+					classLi="tab-left consultas-btn" type="2" />
+				<bbvaDetAcc:itemTabMenu title="Operaciones" icon="iconFont-015"
+					classLi="tab-left operaciones-btn" type="2" />
+				<bbvaDetAcc:itemTabMenu title="Personalizar"
+					classLi="tab-right hidden-xs hidden-sm" type="0" />
+				<bbvaDetAcc:itemTabMenu title="Condiciones" icon="iconFont-104"
+					classLi="tab-right" type="1" />
+				<bbvaDetAcc:itemTabMenu title="Personalizar" icon="iconFont-217"
+					classLi="tab-right hidden-md hidden-lg" type="1" />
 
 
-		</bbvaDetAcc:tabMenu>
+			</bbvaDetAcc:tabMenu>
 
-		<bbvaSearch:personalizedSearchContainer />
-
+			<bbvaSearch:personalizedSearchContainer />
+		</h:form>
 	</ui:define>
 
 	<bbvaSearch:personalizedSearchContainer />
