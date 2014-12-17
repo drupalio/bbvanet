@@ -12,7 +12,7 @@
 <composite:interface>
 
 	<composite:attribute name="youSituation"
-		type="com.bbva.net.front.ui.SituationPiesUI" />
+		type="com.bbva.net.front.ui.globalposition.SituationPiesUI" />
 
 </composite:interface>
 
@@ -23,20 +23,20 @@
 	<div id="userSituationPanel"
 		jsf:rendered="#{globalPositionController.activePanel == 'SITUATION'}">
 		<bbvaSituation:header />
-		<bbvaPieGraphic:pieGraphic piesItemUIList="#{cc.attrs.youSituation.situation.pieItemUIList}" />
+		<bbvaPieGraphic:pieGraphic pieConfigUI="#{cc.attrs.youSituation.situation}" />
 		<bbvaSituation:footer footerInfo="#{cc.attrs.youSituation}" />
 	</div>
 
 	<div id="assets" class="second-tab"
 		jsf:rendered="#{globalPositionController.activePanel == 'ASSET'}">
 		<bbvaSituation:headerLink />
-		<bbvaPieGraphic:pieGraphic piesItemUIList="#{cc.attrs.youSituation.assets.pieItemUIList}" />
+		<bbvaPieGraphic:pieGraphic pieConfigUI="#{cc.attrs.youSituation.assets}" />
 	</div>
 
 	<div id="financiation" class="first-tab"
 		jsf:rendered="#{globalPositionController.activePanel == 'FINANCIATION'}">
 		<bbvaSituation:headerLink />
-		<bbvaPieGraphic:pieGraphic piesItemUIList="#{cc.attrs.youSituation.financing.pieItemUIList}" />
+		<bbvaPieGraphic:pieGraphic pieConfigUI="#{cc.attrs.youSituation.financing}" />
 	</div>
 
 

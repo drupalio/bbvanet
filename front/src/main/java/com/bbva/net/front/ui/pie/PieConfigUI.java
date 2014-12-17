@@ -1,9 +1,9 @@
-package com.bbva.net.front.ui;
+package com.bbva.net.front.ui.pie;
 
 import java.io.Serializable;
 import java.util.List;
 
-public class SituationPiesConfigUI implements Serializable {
+public class PieConfigUI implements Serializable {
 
 	private static final long serialVersionUID = 5260611486994482129L;
 
@@ -11,7 +11,7 @@ public class SituationPiesConfigUI implements Serializable {
 
 	private String header;
 
-	private boolean isVisible;
+	private boolean isVisible = true;
 
 	public List<PieItemUI> getPieItemUIList() {
 		return pieItemUIList;

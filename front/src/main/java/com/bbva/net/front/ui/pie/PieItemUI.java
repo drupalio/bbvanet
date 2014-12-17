@@ -1,4 +1,4 @@
-package com.bbva.net.front.ui;
+package com.bbva.net.front.ui.pie;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -11,11 +11,19 @@ public class PieItemUI implements Serializable {
 
 	private BigDecimal value;
 
-	private String textLengend;
+	private String textLegend;
 
 	private String percentage;
 
-	private char currency;
+	private char currency = '$';
+	
+	
+	public PieItemUI(final String color, final String textLegend, final BigDecimal value){
+		
+		this.color = color;
+		this.textLegend = textLegend;		
+		this.value=value;
+	}
 
 	public String getColor() {
 		return color;
@@ -33,12 +41,12 @@ public class PieItemUI implements Serializable {
 		this.value = value;
 	}
 
-	public String getTextLengend() {
-		return textLengend;
+	public String getTextLegend() {
+		return textLegend;
 	}
 
-	public void setTextLengend(String textLengend) {
-		this.textLengend = textLengend;
+	public void setTextLegend(String textLengend) {
+		this.textLegend = textLengend;
 	}
 
 	public String getPercentage() {

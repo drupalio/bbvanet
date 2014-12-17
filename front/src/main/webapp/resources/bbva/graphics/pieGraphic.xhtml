@@ -10,15 +10,14 @@
 
 <composite:interface>
 
-	<composite:attribute name="piesItemUIList" type="java.util.List" />
-
+	<composite:attribute name="pieConfigUI" />
 </composite:interface>
 
 <composite:implementation>
 
 
 	<h:form>
-
+		<span>#{cc.attrs.pieConfigUI.header}</span>
 		<div class="chart-cheese" id="tu-situacion-grafico"
 			data-highcharts-chart="3">
 			<div id="chart" />
@@ -36,8 +35,8 @@
 			var colums;
 			var values;
 			
-			<c:forEach var="pieItemUI" items="${cc.attrs.piesItemUIList}">
-				label = ("${pieItemUI.textLengend}");
+			<c:forEach var="pieItemUI" items="${cc.attrs.pieConfigUI.pieItemUIList}">
+				label = ("${pieItemUI.textLegend}");
 				values = ("${pieItemUI.value}");
 				colums = [ [ label ], [ values ] ];
 				totalColums.push(colums);

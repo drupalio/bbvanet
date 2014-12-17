@@ -1,43 +1,45 @@
-package com.bbva.net.front.ui;
+package com.bbva.net.front.ui.globalposition;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+
+import com.bbva.net.front.ui.pie.PieConfigUI;
 
 public class SituationPiesUI implements Serializable {
 
 	private static final long serialVersionUID = 1809032824789493531L;
 
-	private SituationPiesConfigUI situation;
+	private PieConfigUI situation;
 
-	private SituationPiesConfigUI assets;
+	private PieConfigUI assets;
 
-	private SituationPiesConfigUI financing;
+	private PieConfigUI financing;
 
 	private BigDecimal totalAssets;
 
 	private BigDecimal totalFinancing;
 
-	public SituationPiesConfigUI getSituation() {
+	public PieConfigUI getSituation() {
 		return situation;
 	}
 
-	public void setSituation(SituationPiesConfigUI situation) {
+	public void setSituation(PieConfigUI situation) {
 		this.situation = situation;
 	}
 
-	public SituationPiesConfigUI getAssets() {
+	public PieConfigUI getAssets() {
 		return assets;
 	}
 
-	public void setAssets(SituationPiesConfigUI assets) {
+	public void setAssets(PieConfigUI assets) {
 		this.assets = assets;
 	}
 
-	public SituationPiesConfigUI getFinancing() {
+	public PieConfigUI getFinancing() {
 		return financing;
 	}
 
-	public void setFinancing(SituationPiesConfigUI financing) {
+	public void setFinancing(PieConfigUI financing) {
 		this.financing = financing;
 	}
 
