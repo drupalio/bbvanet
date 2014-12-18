@@ -15,6 +15,18 @@ public class Money implements Dto {
 
 	private BigDecimal amount;
 
+	
+	
+	
+	public Money(BigDecimal amount) {		
+		this.amount = amount;
+	}
+
+	public Money(String currency, BigDecimal amount) {
+		this.currency = currency;
+		this.amount = amount;
+	}
+
 	public String getCurrency() {
 		return currency;
 	}
