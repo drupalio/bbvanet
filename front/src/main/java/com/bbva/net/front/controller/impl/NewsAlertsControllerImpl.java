@@ -7,7 +7,7 @@ import javax.faces.event.ActionEvent;
 import org.springframework.stereotype.Controller;
 
 import com.bbva.net.back.facade.NewsAlertsFacade;
-import com.bbva.net.back.model.newsAlerts.NewsAlertsDTOTest;
+import com.bbva.net.back.model.newsAlerts.NewsAlertsDTO;
 import com.bbva.net.front.controller.NewsAlertsController;
 import com.bbva.net.front.core.AbstractBbvaController;
 
@@ -21,7 +21,7 @@ public class NewsAlertsControllerImpl extends AbstractBbvaController implements 
 
 	private NewsAlertsFacade newsAlertFacade;
 
-	private List<NewsAlertsDTOTest> newsAlertSelectedList;
+	private List<NewsAlertsDTO> newsAlertSelectedList;
 
 	@Override
 	public void deleteNewsAlertsFacade(ActionEvent actionEvent) {
@@ -41,7 +41,7 @@ public class NewsAlertsControllerImpl extends AbstractBbvaController implements 
 	}
 
 	@Override
-	public List<NewsAlertsDTOTest> getNewsAlertsList() {
+	public List<NewsAlertsDTO> getNewsAlertsList() {
 		return this.newsAlertFacade.getNewsAlertsList();
 	}
 
@@ -62,14 +62,14 @@ public class NewsAlertsControllerImpl extends AbstractBbvaController implements 
 	/**
 	 * @return the newsAlertSelectedList
 	 */
-	public List<NewsAlertsDTOTest> getNewsAlertSelectedList() {
+	public List<NewsAlertsDTO> getNewsAlertSelectedList() {
 		return newsAlertSelectedList;
 	}
 
 	/**
 	 * @param newsAlertSelectedList the newsAlertSelectedList to set
 	 */
-	public void setNewsAlertSelectedList(List<NewsAlertsDTOTest> newsAlertSelectedList) {
+	public void setNewsAlertSelectedList(List<NewsAlertsDTO> newsAlertSelectedList) {
 		this.newsAlertSelectedList = newsAlertSelectedList;
 	}
 

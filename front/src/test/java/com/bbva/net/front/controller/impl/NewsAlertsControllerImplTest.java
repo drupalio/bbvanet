@@ -10,7 +10,7 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import com.bbva.net.back.facade.NewsAlertsFacade;
-import com.bbva.net.back.model.newsAlerts.NewsAlertsDTOTest;
+import com.bbva.net.back.model.newsAlerts.NewsAlertsDTO;
 
 public class NewsAlertsControllerImplTest {
 
@@ -34,35 +34,37 @@ public class NewsAlertsControllerImplTest {
 	@Test
 	public void deleteNewAlertTrue() {
 		this.newsAlertsController.deleteNewsAlertsFacade(Mockito.mock(ActionEvent.class));
-		Mockito.verify(this.newsAlertsFacade, Mockito.atLeastOnce()).deleteNewsAlertsFacade(Mockito.anyListOf(NewsAlertsDTOTest.class));
+		Mockito.verify(this.newsAlertsFacade, Mockito.atLeastOnce()).deleteNewsAlertsFacade(
+				Mockito.anyListOf(NewsAlertsDTO.class));
 	}
 
 	@Test
 	public void changeNoViewedState() {
 
 		this.newsAlertsController.changeNoViewedState(Mockito.mock(ActionEvent.class));
-		Mockito.verify(this.newsAlertsFacade, Mockito.atLeastOnce()).changeNoViewedState(Mockito.anyListOf(NewsAlertsDTOTest.class));
+		Mockito.verify(this.newsAlertsFacade, Mockito.atLeastOnce()).changeNoViewedState(
+				Mockito.anyListOf(NewsAlertsDTO.class));
 	}
 
 	@Test
 	public void changeViewedState() {
 
 		this.newsAlertsController.changeViewedState(Mockito.mock(ActionEvent.class));
-		Mockito.verify(this.newsAlertsFacade, Mockito.atLeastOnce()).changeViewedState(Mockito.anyListOf(NewsAlertsDTOTest.class));
+		Mockito.verify(this.newsAlertsFacade, Mockito.atLeastOnce()).changeViewedState(
+				Mockito.anyListOf(NewsAlertsDTO.class));
 	}
 
 	@Test
 	public void getAlertsNews() {
 
-		Mockito.when(newsAlertsFacade.getNewsAlertsList()).thenReturn(new ArrayList<NewsAlertsDTOTest>());
+		Mockito.when(newsAlertsFacade.getNewsAlertsList()).thenReturn(new ArrayList<NewsAlertsDTO>());
 		/**
 		 * Invoke test method
 		 */
 		Assert.assertNotNull(this.newsAlertsController.getNewsAlertsList());
 		Mockito.verify(this.newsAlertsFacade, Mockito.atLeastOnce()).getNewsAlertsList();
-		
+
 	}
-	
 
 	@Test
 	public void getAlertsNewsSelected() {
@@ -70,13 +72,13 @@ public class NewsAlertsControllerImplTest {
 		/**
 		 * Prepare test case
 		 */
-		newsAlertsController.setNewsAlertSelectedList(new ArrayList<NewsAlertsDTOTest>());
-		
+		newsAlertsController.setNewsAlertSelectedList(new ArrayList<NewsAlertsDTO>());
+
 		/**
 		 * Invoke test method
 		 */
 		Assert.assertNotNull(this.newsAlertsController.getNewsAlertSelectedList());
-		
+
 	}
 
 }

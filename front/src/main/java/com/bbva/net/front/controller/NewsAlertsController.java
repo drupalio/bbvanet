@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.faces.event.ActionEvent;
 
+import com.bbva.net.back.model.newsAlerts.NewsAlertsDTO;
 import com.bbva.net.back.model.newsAlerts.NewsAlertsDTOTest;
 
 /**
@@ -35,6 +36,6 @@ public interface NewsAlertsController {
 	 * 
 	 * @return
 	 */
-	List<NewsAlertsDTOTest> getNewsAlertsList();
+	List<NewsAlertsDTO> getNewsAlertsList();
 
 }

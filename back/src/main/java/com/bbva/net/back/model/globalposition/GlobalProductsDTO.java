@@ -169,17 +169,17 @@ public class GlobalProductsDTO implements Serializable {
 				.append(getLoan()).toHashCode();
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-
-		return (obj instanceof GlobalProductsDTO) && this.getAccounts().equals(((GlobalProductsDTO)obj).getAccounts())
-				&& this.getRotatingAccounts().equals(((GlobalProductsDTO)obj).getRotatingAccounts())
-				&& this.getLeasings().equals(((GlobalProductsDTO)obj).getLeasings())
-				&& this.getFunds().equals(((GlobalProductsDTO)obj).getFunds())
-				&& this.getCreditCards().equals(((GlobalProductsDTO)obj).getCreditCards())
-				&& this.getElectronicDeposits().equals(((GlobalProductsDTO)obj).getElectronicDeposits())
-				&& this.getAdquirencia().equals(((GlobalProductsDTO)obj).getAdquirencia())
-				&& this.getLoan().equals(((GlobalProductsDTO)obj).getLoan());
-	}
+	// @Override
+	// public boolean equals(Object obj) {
+	//
+	// return (obj instanceof GlobalProductsDTO) && this.getAccounts().equals(((GlobalProductsDTO)obj).getAccounts())
+	// && this.getRotatingAccounts().equals(((GlobalProductsDTO)obj).getRotatingAccounts())
+	// && this.getLeasings().equals(((GlobalProductsDTO)obj).getLeasings())
+	// && this.getFunds().equals(((GlobalProductsDTO)obj).getFunds())
+	// && this.getCreditCards().equals(((GlobalProductsDTO)obj).getCreditCards())
+	// && this.getElectronicDeposits().equals(((GlobalProductsDTO)obj).getElectronicDeposits())
+	// && this.getAdquirencia().equals(((GlobalProductsDTO)obj).getAdquirencia())
+	// && this.getLoan().equals(((GlobalProductsDTO)obj).getLoan());
+	// }
 
 }
