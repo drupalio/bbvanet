@@ -81,17 +81,17 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	public void renderPieSituation() {
 		this.activePanel = ActivePanelType.SITUATION;
-		executeScript("initChart();");
+		initChart();
 	}
 
 	public void renderPieAssets() {
 		this.activePanel = ActivePanelType.ASSET;
-		executeScript("initChart();");
+		initChart();
 	}
 
 	public void renderPieFinanciation() {
 		this.activePanel = ActivePanelType.FINANCIATION;
-		executeScript("initChart();");
+		initChart();
 	}
 
 	public void onAccountSelected(final SelectEvent selectEvent) {
@@ -150,4 +150,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		return this.selectedProduct;
 	}
 
+	public void initChart() {
+		executeScript("initChart();");
+	}
 }
