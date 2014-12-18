@@ -129,7 +129,6 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	public GlobalProducts getCustomerProductsVisible() {
 		final GlobalProducts globalProductos = this.globalPositionFacade.getGlobalProductsByUserVisible(
 				getCurrentUser(), true);
-		situationGraphicPieUI = graphicPieDelegate.getSituationGlobalProducts(globalProductos);
 		return globalProductos;
 	}
 
