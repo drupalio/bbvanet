@@ -14,8 +14,8 @@ public class BalanceMapper extends ConfigurableMapper {
 
 	@Override
 	protected void configure(MapperFactory factory) {
-		factory.classMap(BalanceDTO.class, Product.class).field("availableBalance", "alias").byDefault().register();
-		factory.classMap(BalanceDTO.class, Product.class).field("availableBalance", "alias").byDefault().register();
+		// factory.classMap(BalanceDTO.class, Product.class).field("availableBalance", "alias").byDefault().register();
+
 	}
 
 	public static void main(final String[] args) {
