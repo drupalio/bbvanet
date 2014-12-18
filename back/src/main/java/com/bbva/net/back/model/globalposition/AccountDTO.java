@@ -34,10 +34,10 @@ public class AccountDTO extends ProductDTO {
 	}
 
 	// @Override
-	@Override
-	public boolean equals(Object obj) {
-		return (obj instanceof AccountDTO) && this.getOverDraft().equals(((AccountDTO)obj).getOverDraft())
-				&& this.getProductNumber().equals(((ProductDTO)obj).getProductNumber());
-	}
+	// @Override
+	// public boolean equals(Object obj) {
+	// return (obj instanceof AccountDTO) && this.getOverDraft().equals(((AccountDTO)obj).getOverDraft())
+	// && this.getProductNumber().equals(((ProductDTO)obj).getProductNumber());
+	// }
 
 }
