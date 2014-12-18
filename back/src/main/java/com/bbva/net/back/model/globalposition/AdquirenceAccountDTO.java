@@ -1,31 +1,12 @@
 package com.bbva.net.back.model.globalposition;
 
-import java.io.Serializable;
-
 import com.bbva.net.back.model.commons.Money;
 
-public class AdquirenceAccountDTO implements Serializable {
+public class AdquirenceAccountDTO extends ProductDTO {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
-	private ProductDTO product;
-
 	private Money overDraft;
-
-	public ProductDTO getProduct() {
-		return product;
-	}
-
-	public void setProduct(ProductDTO value) {
-		this.product = value;
-	}
-
-	public boolean isSetProduct() {
-		return (this.product != null);
-	}
 
 	public Money getOverDraft() {
 		return overDraft;

@@ -16,11 +16,11 @@
 <composite:implementation>
 
 
-	<p:dataTable id="#{cc.attrs.id}" var="icuenta" 
+	<p:dataTable id="#{cc.attrs.id}" var="iproduct" 
 				rowIndexVar="findex"
 				selectionMode="single" 
 				selection="#{globalPositionController.selectAccount}"
-				rowKey="#{icuenta.loan.product.productId}"
+				rowKey="#{iproduct.productId}"
 				value="#{cc.attrs.listLeasing}">
 				
 		<p:ajax event="rowSelect"/>
@@ -31,11 +31,11 @@
 			style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
 
 			<h:outputText styleClass="title-label" style="font-size: 1.1em; font-weight:bold; color:#0078d2" escape="false"
-								  value="#{icuenta.loan.product.alias}"/>
+								  value="#{iproduct.alias}"/>
 			<h:outputText style="font-size: 1em" escape="false" 
-								  value="&lt;br /&gt; #{icuenta.loan.product.productId}"></h:outputText>
+								  value="&lt;br /&gt; #{iproduct.productId}"></h:outputText>
 			<h:outputText styleClass="sublabel" style="font-size: 1em" escape="false"
-								  value="&lt;br /&gt; #{icuenta.loan.product.productName}"/>
+								  value="&lt;br /&gt; #{iproduct.productName}"/>
 
 		</p:column>
 
@@ -44,7 +44,7 @@
 			style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
 
 			<h:outputText style="font-size: 1.5em; font-weight:bold" styleClass="balance" 
-								   value="#{icuenta.loan.totalDebt.amount}"/>
+								   value="#{iproduct.totalDebt}"/>
 			
 			<p class="sublabel"></p>
 
@@ -55,7 +55,7 @@
 			style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
 
 			<h:outputText style="font-size: 1.5em; font-weight:bold" styleClass="balance" 
-								   value="#{icuenta.loan.totalDue.amount}"/>
+								   value="#{iproduct.totalDue}"/>
 			
 			<p class="sublabel"></p>
 

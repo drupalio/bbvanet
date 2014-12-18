@@ -17,11 +17,11 @@
 
 	<div class="item-hidden" style="display: block;">
 
-		<p:dataTable id="#{cc.attrs.id}" var="icuenta" 
+		<p:dataTable id="#{cc.attrs.id}" var="iprodcut" 
 			rowIndexVar="findex"
 			selectionMode="single" 
 			selection="#{globalPositionController.selectAccount}"
-			rowKey="#{icuenta.loan.product.productId}"
+			rowKey="#{iprodcut.productId}"
 			value="#{cc.attrs.listQuota}"
 			emptyMessage="#{msg['mssg.list.empty']}">
 		
@@ -34,11 +34,11 @@
 					background-color: #F3F5F7;margin-bottom: 14px;">
 
 				<h:outputText styleClass="title-label" style="font-size: 1.1em; font-weight:bold; color:#0078d2" escape="false"
-								  value="#{icuenta.loan.product.alias}"/>
+								  value="#{iprodcut.alias}"/>
 				<h:outputText style="font-size: 1em" escape="false" 
-								  value="&lt;br /&gt; #{icuenta.loan.product.productId}"></h:outputText>
+								  value="&lt;br /&gt; #{iprodcut.productId}"></h:outputText>
 				<h:outputText styleClass="sublabel" style="font-size: 1em" escape="false"
-								  value="&lt;br /&gt; #{icuenta.loan.product.productName}"/>
+								  value="&lt;br /&gt; #{iprodcut.productName}"/>
 				
 			</p:column>
 			
@@ -48,7 +48,7 @@
 					background-color: #F3F5F7;margin-bottom: 14px;">
 
 				<h:outputText style="font-size: 1.5em; font-weight:bold" styleClass="balance" 
-						  value="#{icuenta.quota.totalQuotaDebt}"/>
+						  value="#{iprodcut.quota.totalQuotaDebt}"/>
 
 				<p class="sublabel"></p>
 				
@@ -60,7 +60,7 @@
 					background-color: #F3F5F7;margin-bottom: 14px;">
 				
 				<h:outputText style="font-size: 1.5em; font-weight:bold" styleClass="balance" 
-								   value="#{icuenta.quota.availableQuota}"/>
+								   value="#{iprodcut.quota.availableQuota}"/>
 				<p class="sublabel"></p>
 				
 			</p:column>

@@ -2,29 +2,13 @@ package com.bbva.net.back.model.globalposition;
 
 import java.math.BigDecimal;
 
-import com.bbva.net.back.core.pattern.dto.Dto;
-
-public class CreditCardDTO implements Dto {
+public class CreditCardDTO extends ProductDTO {
 
 	private final static long serialVersionUID = 1L;
-
-	private ProductDTO product;
 
 	private BigDecimal bin;
 
 	private QuotaDTO quota;
-
-	public ProductDTO getProduct() {
-		return product;
-	}
-
-	public void setProduct(ProductDTO value) {
-		this.product = value;
-	}
-
-	public boolean isSetProduct() {
-		return (this.product != null);
-	}
 
 	public BigDecimal getBin() {
 		return bin;

@@ -3,9 +3,8 @@
  */
 package com.bbva.net.back.model.globalposition;
 
-import java.math.BigDecimal;
-
 import com.bbva.net.back.core.pattern.dto.Dto;
+import com.bbva.net.back.model.commons.Money;
 
 /**
  * @author Entelgy
@@ -17,24 +16,24 @@ public class BalanceDTO implements Dto {
 	 */
 	private static final long serialVersionUID = 5948513162074389414L;
 
-	private BigDecimal availableBalance;
+	private Money available;
 
-	private BigDecimal totalBalance;
+	private Money total;
 
-	public BigDecimal getAvailableBalance() {
-		return availableBalance;
+	public Money getAvailable() {
+		return available;
 	}
 
-	public void setAvailableBalance(BigDecimal availableBalance) {
-		this.availableBalance = availableBalance;
+	public void setAvailable(Money available) {
+		this.available = available;
 	}
 
-	public BigDecimal getTotalBalance() {
-		return totalBalance;
+	public Money getTotal() {
+		return total;
 	}
 
-	public void setTotalBalance(BigDecimal totalBalance) {
-		this.totalBalance = totalBalance;
+	public void setTotal(Money total) {
+		this.total = total;
 	}
 
 }

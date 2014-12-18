@@ -16,11 +16,11 @@
 
 <composite:implementation>
 
-	<p:dataTable id="#{cc.attrs.id}" var="icuenta" 
+	<p:dataTable id="#{cc.attrs.id}" var="iproduct" 
 		rowIndexVar="findex"
 		selectionMode="single"
 		selection="#{globalPositionController.selectAccount}"
-		rowKey="#{icuenta.product.productId}" 
+		rowKey="#{iproduct.productId}" 
 		value="#{cc.attrs.listFund}">
 
 		<p:ajax event="rowSelect" />
@@ -32,11 +32,11 @@
 
 			<h:outputText styleClass="title-label"
 				style="font-size: 1.1em; font-weight:bold; color:#0078d2"
-				escape="false" value="#{icuenta.product.alias}" />
+				escape="false" value="#{iproduct.alias}" />
 			<h:outputText style="font-size: 1em" escape="false"
-				value="&lt;br /&gt; #{icuenta.product.productId}" />
+				value="&lt;br /&gt; #{iproduct.productId}" />
 			<h:outputText styleClass="sublabel" style="font-size: 1em"
-				escape="false" value="&lt;br /&gt; #{icuenta.product.productName}" />
+				escape="false" value="&lt;br /&gt; #{iproduct.productName}" />
 
 		</p:column>
 		<p:column class="head" headerText="SALDO"
@@ -44,11 +44,11 @@
 			style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
 
 			<h:outputText style="font-size: 1.5em; font-weight:bold"
-				styleClass="balance" value="#{icuenta.product.totalCash.amount}" />
+				styleClass="balance" value="#{iproduct.totalCash}" />
 				
 			<h:outputText styleClass="ui-datatable-selectable"
 				style="font-size:1em" escape="false"
-				value="&lt;br /&gt; Saldo disponible #{currency}#{icuenta.product.cashAvailable.amount}"/>
+				value="&lt;br /&gt; Saldo disponible #{currency}#{iproduct.cashAvailable.amount}"/>
 				
 
 			<p class="sublabel"></p>

@@ -82,16 +82,16 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 
 		final List<PieItemUI> assetPieItems = new ArrayList<PieItemUI>();
 
-		final PieItemUI accountPieItem = new PieItemUI("el color", "Account", this.productService
+		final PieItemUI accountPieItem = new PieItemUI("el color", "Cuentas Personales", this.productService
 				.getTotalProductsByType(products, EnumProductType.PC).getAmount());
 
-		final PieItemUI fundPieItem = new PieItemUI("el color", "Fund", this.productService.getTotalProductsByType(
-				products, EnumProductType.SI).getAmount());
+		final PieItemUI fundPieItem = new PieItemUI("el color", "Fondos de Inversión", this.productService
+				.getTotalProductsByType(products, EnumProductType.SI).getAmount());
 
-		final PieItemUI depositPieItem = new PieItemUI("el color", "Deposit", this.productService
+		final PieItemUI depositPieItem = new PieItemUI("el color", "Depósitos", this.productService
 				.getTotalProductsByType(products, EnumProductType.ED).getAmount());
 
-		final PieItemUI rotatingAccountPieItem = new PieItemUI("el color", "Rotating Account", this.productService
+		final PieItemUI rotatingAccountPieItem = new PieItemUI("el color", "Cupo Rotativo", this.productService
 				.getTotalProductsByType(products, EnumProductType.RQ).getAmount());
 
 		assetPieItems.add(accountPieItem);
@@ -118,18 +118,18 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 
 		final List<PieItemUI> financiationPieItems = new ArrayList<PieItemUI>();
 
-		final PieItemUI fundPieItem = new PieItemUI("el color", "Credit Card", this.productService
+		final PieItemUI cardsPieItem = new PieItemUI("el color", "Tarjetas de Crédito", this.productService
 				.getTotalProductsByType(products, EnumProductType.TDC).getAmount());
 
-		final PieItemUI depositPieItem = new PieItemUI("el color", "Leasing", this.productService
+		final PieItemUI leasingPieItem = new PieItemUI("el color", "Leasing", this.productService
 				.getTotalProductsByType(products, EnumProductType.LI).getAmount());
 
-		final PieItemUI rotatingAccountPieItem = new PieItemUI("el color", "Loan", this.productService
+		final PieItemUI fundsPieItem = new PieItemUI("el color", "Préstamos", this.productService
 				.getTotalProductsByType(products, EnumProductType.LO).getAmount());
 
-		financiationPieItems.add(fundPieItem);
-		financiationPieItems.add(depositPieItem);
-		financiationPieItems.add(rotatingAccountPieItem);
+		financiationPieItems.add(cardsPieItem);
+		financiationPieItems.add(leasingPieItem);
+		financiationPieItems.add(fundsPieItem);
 		financiationPie.setPieItemUIList(financiationPieItems);
 
 		return financiationPie;

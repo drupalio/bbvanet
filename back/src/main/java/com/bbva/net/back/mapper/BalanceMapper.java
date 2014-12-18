@@ -1,7 +1,5 @@
 package com.bbva.net.back.mapper;
 
-import java.math.BigDecimal;
-
 import ma.glasnost.orika.MapperFactory;
 import ma.glasnost.orika.impl.ConfigurableMapper;
 
@@ -21,7 +19,6 @@ public class BalanceMapper extends ConfigurableMapper {
 	public static void main(final String[] args) {
 
 		BalanceDTO balanceDTO = new BalanceDTO();
-		balanceDTO.setAvailableBalance(BigDecimal.ONE);
 
 		// Cuenta cuenta = new BalanceMapper().map(balanceDTO, Cuenta.class);
 

@@ -24,10 +24,19 @@ public class GlobalProductsDTO implements Serializable {
 
 	private List<LoanDTO> loan;
 
+	public GlobalProductsDTO() {
+
+		this.accounts = new ArrayList<AccountDTO>();
+		this.rotatingAccounts = new ArrayList<RotatingAccountDTO>();
+		this.leasings = new ArrayList<LeasingDTO>();
+		this.funds = new ArrayList<FundDTO>();
+		this.creditCards = new ArrayList<CreditCardDTO>();
+		this.electronicDeposits = new ArrayList<DepositDTO>();
+		this.adquirencia = new ArrayList<AdquirenceAccountDTO>();
+		this.loan = new ArrayList<LoanDTO>();
+	}
+
 	public List<AccountDTO> getAccounts() {
-		if (accounts == null) {
-			accounts = new ArrayList<AccountDTO>();
-		}
 		return this.accounts;
 	}
 
@@ -40,9 +49,6 @@ public class GlobalProductsDTO implements Serializable {
 	}
 
 	public List<RotatingAccountDTO> getRotatingAccounts() {
-		if (rotatingAccounts == null) {
-			rotatingAccounts = new ArrayList<RotatingAccountDTO>();
-		}
 		return this.rotatingAccounts;
 	}
 
@@ -55,9 +61,6 @@ public class GlobalProductsDTO implements Serializable {
 	}
 
 	public List<LeasingDTO> getLeasings() {
-		if (leasings == null) {
-			leasings = new ArrayList<LeasingDTO>();
-		}
 		return this.leasings;
 	}
 
@@ -70,9 +73,6 @@ public class GlobalProductsDTO implements Serializable {
 	}
 
 	public List<FundDTO> getFunds() {
-		if (funds == null) {
-			funds = new ArrayList<FundDTO>();
-		}
 		return this.funds;
 	}
 
@@ -85,9 +85,6 @@ public class GlobalProductsDTO implements Serializable {
 	}
 
 	public List<CreditCardDTO> getCreditCards() {
-		if (creditCards == null) {
-			creditCards = new ArrayList<CreditCardDTO>();
-		}
 		return this.creditCards;
 	}
 
@@ -100,9 +97,6 @@ public class GlobalProductsDTO implements Serializable {
 	}
 
 	public List<DepositDTO> getElectronicDeposits() {
-		if (electronicDeposits == null) {
-			electronicDeposits = new ArrayList<DepositDTO>();
-		}
 		return this.electronicDeposits;
 	}
 
