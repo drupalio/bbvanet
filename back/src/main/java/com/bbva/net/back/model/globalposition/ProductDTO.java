@@ -151,10 +151,10 @@ public class ProductDTO implements Serializable {
 		return new HashCodeBuilder().append(getProductId()).append(getProductNumber()).toHashCode();
 	}
 
-	// @Override
-	// public boolean equals(Object obj) {
-	// return (obj instanceof ProductDTO) && this.getProductId().equals(((ProductDTO)obj).getProductId())
-	// && this.getProductNumber().equals(((ProductDTO)obj).getProductNumber());
-	// }
+	@Override
+	public boolean equals(Object obj) {
+		return (obj instanceof ProductDTO) && this.getProductId().equals(((ProductDTO)obj).getProductId())
+				&& this.getProductNumber().equals(((ProductDTO)obj).getProductNumber());
+	}
 
 }
