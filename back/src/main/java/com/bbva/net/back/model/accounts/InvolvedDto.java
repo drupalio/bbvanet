@@ -4,6 +4,10 @@ import com.bbva.net.back.core.pattern.dto.Dto;
 
 public class InvolvedDto implements Dto {
 
+	public InvolvedDto() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public InvolvedDto(String titular1, String titular2, String condicionesMovilizacion) {
 		super();
 		this.titular1 = titular1;
