@@ -55,12 +55,11 @@
 		</p:dataTable>
 		<footer class="detail-table-footer">
 			<p:button id="nextPagepLink"
-				styleClass="btn btn-more-results table-ui-button" action="next"
+				 action="next" styleClass="btn btn-more-results table-ui-button"
 				value="Mostrar más" style="display:-webkit-inline-box !important;">
-				<f:ajax event="click" listener="#{calendar.seleccionACC}"
-					update=":formd:detalAC" />
+				
 			</p:button>
-			<button id="nextPagebLink" class="btn btn-more-results"
+			<button id="nextPagebLink" class="btn btn-more-results" 
 				onclick="next" value="More Results">
 				<span>Mostrar más</span>
 			</button>

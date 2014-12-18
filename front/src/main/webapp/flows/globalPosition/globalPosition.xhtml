@@ -42,7 +42,7 @@
 			</div>
 			<div class="row afterTable">
 				<bbvaGP:productFooter listProduct="#{customerProducts.accounts}" />
-				<bbvaGP:totalBalance />
+				<bbvaGP:totalBalance util="Contable" currency="$" total="1234" subtotal="567"/>
 			</div>
 		</bbvaContainer:productPanelGraphic>
 
@@ -53,7 +53,7 @@
 			</div>
 			<div class="row afterTable">
 				<bbvaGP:productFooter listProduct="#{customerProducts.creditCards}" />
-				<bbvaGP:totalBalance />
+				<bbvaGP:totalBalance util="Utilizado" currency="$" total="1234" subtotal="567"/>
 			</div>
 		</bbvaContainer:productPanelGraphic>
 
@@ -69,7 +69,7 @@
 			<div class="row afterTable">
 				<bbvaGP:productFooter
 					listProduct="#{customerProducts.rotatingAccounts}" />
-				<bbvaGP:totalBalance />
+				<bbvaGP:totalBalance total="1234"/>
 			</div>
 		</bbvaContainer:productPanel>
 
@@ -80,7 +80,7 @@
 			</div>
 			<div class="row afterTable">
 				<bbvaGP:productFooter listProduct="#{customerProducts.leasings}" />
-				<bbvaGP:totalBalance />
+				<bbvaGP:totalBalance total="1234" />
 			</div>
 		</bbvaContainer:productPanel>
 
@@ -106,7 +106,7 @@
 			<div class="row afterTable">
 				<bbvaGP:productFooter
 					listProduct="#{customerProducts.electronicDeposits}" />
-				<bbvaGP:totalBalance />
+				<bbvaGP:totalBalance util="Contable" currency="$" total="1234" subtotal="567"/>
 			</div>
 		</bbvaContainer:productPanelGraphic>
 
@@ -117,7 +117,7 @@
 			</div>
 			<div class="row afterTable">
 				<bbvaGP:productFooter listProduct="#{customerProducts.funds}" />
-				<bbvaGP:totalBalance />
+				<bbvaGP:totalBalance total="1234"/>
 			</div>
 		</bbvaContainer:productPanelGraphic>
 
@@ -131,7 +131,6 @@
 		<bbvaAlert:alertsPanel header="Alertas y Novedades" numAlerts="8" />
 
 		<h:form>
-
 			
 			<p:inputText>
 				<p:ajax event="keyup" listener="#{globalPositionController.onKeyUp}" />

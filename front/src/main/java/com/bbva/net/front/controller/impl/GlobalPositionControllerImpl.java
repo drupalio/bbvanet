@@ -2,12 +2,9 @@ package com.bbva.net.front.controller.impl;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.faces.event.ComponentSystemEvent;
 
 import org.primefaces.event.SelectEvent;
-import org.primefaces.event.UnselectEvent;
 import org.springframework.stereotype.Controller;
 
 import com.bbva.net.back.facade.GlobalPositionFacade;
@@ -140,21 +137,6 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	public AccountDTO getSelectAccount() {
 		return this.selectedProduct;
-	}
-
-	public void onRowSelect(SelectEvent event) {
-		System.out.println("LLego selected");
-		System.out.println("Product Selected" + ((AccountDTO)event.getObject()).getProduct().getProductId());
-		FacesMessage msg = new FacesMessage("Product Selected", ((AccountDTO)event.getObject()).getProduct()
-				.getProductId());
-		FacesContext.getCurrentInstance().addMessage(null, msg);
-	}
-
-	public void onRowUnselect(UnselectEvent event) {
-		System.out.println("LLego iunselected");
-		FacesMessage msg = new FacesMessage("Product Unselected", ((AccountDTO)event.getObject()).getProduct()
-				.getProductId());
-		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 
 	@Override

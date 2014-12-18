@@ -24,8 +24,9 @@ import com.bbva.net.back.model.globalposition.LoanDTO;
 import com.bbva.net.back.model.globalposition.ProductDTO;
 import com.bbva.net.back.model.globalposition.QuotaDTO;
 import com.bbva.net.back.model.globalposition.RotatingAccountDTO;
-// import com.bbva.net.webservices.globalposition.GlobalPositionService;
 import com.bbva.net.webservices.globalposition.GlobalPositionService;
+
+// import com.bbva.net.webservices.globalposition.GlobalPositionService;
 
 @Facade(value = "globalPositionFacade")
 public class GlobalPositionFacadeImpl extends AbstractBbvaFacade implements GlobalPositionFacade {
@@ -230,6 +231,7 @@ public class GlobalPositionFacadeImpl extends AbstractBbvaFacade implements Glob
 		globalProducts.setLoan(loanList);
 
 		return globalProducts;
+
 	}
 
 	public void setGlobalPositionService(GlobalPositionService globalPositionService) {
