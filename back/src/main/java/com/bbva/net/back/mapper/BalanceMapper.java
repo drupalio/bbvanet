@@ -3,6 +3,7 @@ package com.bbva.net.back.mapper;
 import ma.glasnost.orika.MapperFactory;
 import ma.glasnost.orika.impl.ConfigurableMapper;
 
+import com.bbva.czic.dto.net.Product;
 import com.bbva.net.back.core.stereotype.Mapper;
 import com.bbva.net.back.model.globalposition.AccountDTO;
 import com.bbva.net.back.model.globalposition.BalanceDTO;
@@ -21,9 +22,9 @@ public class BalanceMapper extends ConfigurableMapper {
 
 		BalanceDTO balanceDTO = new BalanceDTO();
 
-		// Cuenta cuenta = new BalanceMapper().map(balanceDTO, Cuenta.class);
+		Product producto = new BalanceMapper().map(balanceDTO, Product.class);
 
-		// System.out.print(cuenta.getAlias());
+		System.out.print(producto.getAlias());
 
 	}
 

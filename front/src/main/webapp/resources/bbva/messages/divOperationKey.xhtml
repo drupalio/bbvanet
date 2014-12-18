@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<composite:interface>
+
+	<composite:attribute name="idComfirm" />
+	<composite:attribute name="render" />
+	<composite:attribute name="idInput" />
+	<composite:attribute name="value" />
+	<composite:attribute name="onclick" />
+	<composite:attribute name="name" />
+	<composite:attribute name="idInputDiv" />
+	<composite:attribute name="actionListener"
+		method-signature="void actionlistener(javax.faces.event.ActionEvent)" />
+
+
+</composite:interface>
+
+<composite:implementation>
+
+	<h:panelGroup rendered="#{cc.attrs.render}">
+		<div class="col-xs-12 operation-message">
+			<div class="row validate-key">
+				<label class="col-xs-12 col-md-5"><span class="iconFont-218"></span>#{msg['text.operationKey']}</label>
+				<div class="col-xs-12 col-md-7 input-group">
+					<div class="col-xs-9 col-md-8 input-control"
+						id="#{cc.attrs.idInputDiv}">
+						<p:inputText id="#{cc.attrs.idInput}" styleClass="form-control"
+							type="password" value="#{cc.attrs.value}"
+							onkeyup="enableDisable(this, #{cc.attrs.name})" />
+					</div>
+					<div class="col-xs-3 col-md-4 btn-control">
+						<button class="btn btn-default btn-confirm" disabled="true"
+							jsf:id="#{cc.attrs.idComfirm}" name="#{cc.attrs.name}"
+							jsf:actionListener="#{cc.attrs.actionListener}"
+							onclick="checkFilled(this, #{cc.attrs.idDiv})">
+							#{msg['text.comfirm']}
+							<f:ajax execute="@form" render="@form" />
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</h:panelGroup>
+
+</composite:implementation>
+
+</html>
