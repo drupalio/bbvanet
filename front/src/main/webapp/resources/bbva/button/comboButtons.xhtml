@@ -5,22 +5,30 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui" xmlns:jsf="http://xmlns.jcp.org/jsf"
-	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 
 <composite:interface>
 
 	<composite:attribute name="id" type="String" />
 	<composite:attribute name="value" />
+	<composite:attribute name="test" />
+	<composite:attribute name="ajax" required="false"
+		method-signature="void listen(javax.faces.event.AjaxBehaviorEvent)" />
 
 
 </composite:interface>
 
 <composite:implementation>
 
-	<p:selectOneButton id="#{cc.attrs.id}" value="#{controlador}">
+	<p:selectOneButton id="#{cc.attrs.id}" value="#{cc.attrs.value}">
 		<f:selectItem itemLabel="Activar" itemValue="true" />
 		<f:selectItem itemLabel="Desactivar" itemValue="false" />
+
+		<c:if test="#{cc.getValueExpression('ajax') != null}">
+			<f:ajax listener="#{cc.attrs.ajax}" render="@form" execute="@form" />
+		</c:if>
 	</p:selectOneButton>
 
 </composite:implementation>

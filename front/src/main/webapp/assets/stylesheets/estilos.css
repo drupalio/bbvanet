@@ -198,10 +198,19 @@ div.ui-state-default {
 
 .smallCombo {
 	float: left !important;
-	width: 316px !important;
+	width: 75% !important;
 }
 
 .bigCombo {
 	float: left !important;
-	width: 410px !important;
+	width: 100% !important;
+}
+
+.button-text-only {
+	font-size: 13px;
+	margin-top: -5px !important;
+}
+
+button.ui-state-default {
+	box-shadow: 0px 1px 0px #0079C1 inset !important;
 }
