@@ -7,6 +7,9 @@
 	<var name="calendar"
 		class="com.bbva.net.front.controller.impl.MoveAccountsControllerImpl" />
 
+	<var name="personalizeProductAccountController"
+		class="com.bbva.net.front.controller.impl.PersonalizeProductAccountControllerImpl" />
+
 	<var name="customerAccountsPage"
 		class="com.bbva.net.front.controller.impl.AccountsControllerImpl" />
 	<var name="movementsCriteriaController"
@@ -30,6 +33,4 @@
 		</transition>
 
 	</view-state>
-
-
 </flow>
