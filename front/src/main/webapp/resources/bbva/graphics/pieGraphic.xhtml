@@ -17,7 +17,25 @@
 
 
 	<h:form>
-		<span>#{cc.attrs.pieConfigUI.header}</span>
+		<div align="center">
+			<div style="display: inline-block;">
+				<span
+					style="color: #274b6d; font-size: 16px; font: bold 16px Trebuchet MS, Arial, sans-serif; font-size: 14px; fill: #274b6d; width: 232px;">
+					#{cc.attrs.pieConfigUI.headerLeft}</span>
+			</div>
+			<div style="display: inline-block;" align="center">
+			
+			<span
+					style="color:#274b6d;font-size:16px;font:bold 16px Trebuchet MS, Arial, sans-serif;fill:#274b6d;width:232px;">
+					#{cc.attrs.pieConfigUI.headerCenter}</span>
+			
+			</div>
+			<div style="display: inline-block;">
+				<span
+					style="color: #0073c9; font: bold 12px Trebuchet MS, Arial, sans-serif; font-size: 18px; font-family: Arial; fill: #0073c9; width: 232px;">
+					#{cc.attrs.pieConfigUI.headerRight}</span>
+			</div>
+		</div>
 		<div class="chart-cheese" id="tu-situacion-grafico"
 			data-highcharts-chart="3">
 			<div id="chart" />
@@ -34,23 +52,19 @@
 			var label;
 			var colums;
 			var values;
-			
+
 			<c:forEach var="pieItemUI" items="${cc.attrs.pieConfigUI.pieItemUIList}">
-				label = ("${pieItemUI.textLegend}");
-				values = ("${pieItemUI.value}");
-				colums = [ [ label ], [ values ] ];
-				totalColums.push(colums);
+			label = ("${pieItemUI.textLegend}");
+			values = ("${pieItemUI.value}");
+			colums = [ [ label ], [ values ] ];
+			totalColums.push(colums);
 			</c:forEach>
 
 			var chart = c3.generate({
 
 				data : {
 
-					size : {
-						height : 5,
-						width : 5
-					},
-
+					size: { height: 240, width: 480 },
 					columns : totalColums,
 
 					type : 'pie',
