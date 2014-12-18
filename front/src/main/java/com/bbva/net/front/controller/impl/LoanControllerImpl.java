@@ -4,10 +4,9 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import co.com.bbva.services.transactions.globalposition.schema.Leasing;
-import co.com.bbva.services.transactions.globalposition.schema.RotatingAccount;
-
 import com.bbva.net.back.facade.LoanFacade;
+import com.bbva.net.back.model.globalposition.LeasingDTO;
+import com.bbva.net.back.model.globalposition.RotatingAccountDTO;
 import com.bbva.net.front.controller.LoanController;
 import com.bbva.net.front.core.AbstractBbvaController;
 
@@ -33,12 +32,12 @@ public class LoanControllerImpl extends AbstractBbvaController implements LoanCo
 	}
 
 	@Override
-	public List<RotatingAccount> getCustomerRotatingAccount() {
+	public List<RotatingAccountDTO> getCustomerRotatingAccount() {
 		return this.loanFacade.getRotatingAccountByUser(getCurrentUser());
 	}
 
 	@Override
-	public List<Leasing> getCustomerLeasing() {
+	public List<LeasingDTO> getCustomerLeasing() {
 		return this.loanFacade.getLeasingByUser(getCurrentUser());
 	}
 

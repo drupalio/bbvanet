@@ -2,15 +2,17 @@ package com.bbva.net.front.controller.impl;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ComponentSystemEvent;
 
 import org.primefaces.event.SelectEvent;
+import org.primefaces.event.UnselectEvent;
 import org.springframework.stereotype.Controller;
 
-import co.com.bbva.services.transactions.globalposition.schema.Account;
-import co.com.bbva.services.transactions.globalposition.schema.GlobalProducts;
-
 import com.bbva.net.back.facade.GlobalPositionFacade;
+import com.bbva.net.back.model.globalposition.AccountDTO;
+import com.bbva.net.back.model.globalposition.GlobalProductsDTO;
 import com.bbva.net.front.controller.GlobalPositionController;
 import com.bbva.net.front.core.AbstractBbvaController;
 import com.bbva.net.front.delegate.GraphicPieDelegate;
@@ -31,7 +33,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	private SituationPiesUI situationGraphicPieUI;
 
-	private Account selectedAccount;
+	private AccountDTO selectedProduct;
 
 	private ActivePanelType activePanel = ActivePanelType.SITUATION;
 
@@ -57,13 +59,14 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	@Override
 	public void preRender(ComponentSystemEvent event) {
-		this.selectedAccount = null;
+		this.selectedProduct = null;
 	}
 
 	@Override
-	public GlobalProducts getCustomerProducts() {
+	public GlobalProductsDTO getCustomerProducts() {
 
-		final GlobalProducts globalProductos = this.globalPositionFacade.getGlobalProductsByUser(getCurrentUser());
+		final GlobalProductsDTO globalProductos = this.globalPositionFacade.getGlobalProductsByUser(getCurrentUser());
+
 		situationGraphicPieUI = graphicPieDelegate.getSituationGlobalProducts(globalProductos);
 		return globalProductos;
 	}
@@ -104,6 +107,20 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	}
 
 	/**
+	 * @return the selectedProduct
+	 */
+	public AccountDTO getSelectedProduct() {
+		return selectedProduct;
+	}
+
+	/**
+	 * @param selectedProduct the selectedProduct to set
+	 */
+	public void setSelectedProduct(AccountDTO selectedProduct) {
+		this.selectedProduct = selectedProduct;
+	}
+
+	/**
 	 * @return the selectedLike
 	 */
 	public String getSelectedLike() {
@@ -117,29 +134,43 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		this.selectedLike = selectedLike;
 	}
 
-	public void setSelectAccount(final Account account) {
-		this.selectedAccount = account;
+	public void setSelectAccount(final AccountDTO account) {
+		this.selectedProduct = account;
 	}
 
-	public Account getSelectAccount() {
-		return this.selectedAccount;
+	public AccountDTO getSelectAccount() {
+		return this.selectedProduct;
+	}
+
+	public void onRowSelect(SelectEvent event) {
+		System.out.println("LLego selected");
+		System.out.println("Product Selected" + ((AccountDTO)event.getObject()).getProduct().getProductId());
+		FacesMessage msg = new FacesMessage("Product Selected", ((AccountDTO)event.getObject()).getProduct()
+				.getProductId());
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+
+	public void onRowUnselect(UnselectEvent event) {
+		System.out.println("LLego iunselected");
+		FacesMessage msg = new FacesMessage("Product Unselected", ((AccountDTO)event.getObject()).getProduct()
+				.getProductId());
+		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 
 	@Override
-	public GlobalProducts getCustomerProductsVisible() {
-		final GlobalProducts globalProductos = this.globalPositionFacade.getGlobalProductsByUserVisible(
-				getCurrentUser(), true);
-		situationGraphicPieUI = graphicPieDelegate.getSituationGlobalProducts(globalProductos);
-		return globalProductos;
-	}
-
-	@Override
-	public GlobalProducts getCustomerProductsNotVisible() {
-		final GlobalProducts globalProductos = this.globalPositionFacade.getGlobalProductsByUserVisible(
+	public GlobalProductsDTO getCustomerProductsNotVisible() {
+		final GlobalProductsDTO globalProductos = this.globalPositionFacade.getGlobalProductsByUserVisible(
 				getCurrentUser(), false);
 
 		return globalProductos;
+	}
 
+	@Override
+	public GlobalProductsDTO getCustomerProductsVisible() {
+		final GlobalProductsDTO globalProductos = this.globalPositionFacade.getGlobalProductsByUserVisible(
+				getCurrentUser(), true);
+
+		return globalProductos;
 	}
 
 }

@@ -1,14 +1,11 @@
 package com.bbva.net.back.facade;
 
-
-import co.com.bbva.services.transactions.globalposition.schema.GlobalProducts;
-
+import com.bbva.net.back.model.globalposition.GlobalProductsDTO;
 
 public interface GlobalPositionFacade {
 
-	public GlobalProducts getGlobalProductsByUser(String user);
+	GlobalProductsDTO getGlobalProductsByUserVisible(String defaultUser, boolean b);
 
-	public GlobalProducts getGlobalProductsByUserVisible(String defaultUser, boolean b);
+	GlobalProductsDTO getGlobalProductsByUser(String user);
 
-		
 }

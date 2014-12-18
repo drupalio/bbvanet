@@ -5,9 +5,9 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import co.com.bbva.services.transactions.globalposition.schema.GlobalProducts;
-import co.com.bbva.services.transactions.globalposition.schema.Product;
-
+import com.bbva.czic.dto.net.EnumProductType;
+import com.bbva.net.back.model.globalposition.GlobalProductsDTO;
+import com.bbva.net.back.model.globalposition.ProductDTO;
 import com.bbva.net.back.service.ProductService;
 import com.bbva.net.front.core.stereotype.Delegate;
 import com.bbva.net.front.delegate.GraphicPieDelegate;
@@ -27,10 +27,10 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 	private ProductService productService;
 
 	@Override
-	public SituationPiesUI getSituationGlobalProducts(final GlobalProducts globalProducts) {
+	public SituationPiesUI getSituationGlobalProducts(final GlobalProductsDTO globalProducts) {
 
 		final SituationPiesUI situationPiesUI = new SituationPiesUI();
-		final List<Product> productList = productService.getProducts(globalProducts);
+		final List<ProductDTO> productList = productService.getProducts(globalProducts);
 
 		situationPiesUI.setSituation(getSituationPieConfig(productList));
 		situationPiesUI.setAssets(getAssetPieConfig(productList));
@@ -48,7 +48,7 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 	 * @param List<Product> products
 	 * @return PieConfigUI
 	 */
-	public PieConfigUI getSituationPieConfig(final List<Product> products) {
+	public PieConfigUI getSituationPieConfig(final List<ProductDTO> products) {
 
 		final PieConfigUI situationPie = new PieConfigUI();
 		situationPie.setHeader("Tu Situación");
@@ -75,7 +75,7 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 	 * @param List<Product> products
 	 * @return PieConfigUI
 	 */
-	public PieConfigUI getAssetPieConfig(final List<Product> products) {
+	public PieConfigUI getAssetPieConfig(final List<ProductDTO> products) {
 
 		final PieConfigUI assetPie = new PieConfigUI();
 		assetPie.setHeader("Activos " + productService.getTotalAssets(products).getAmount().toString());
@@ -83,16 +83,16 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 		final List<PieItemUI> assetPieItems = new ArrayList<PieItemUI>();
 
 		final PieItemUI accountPieItem = new PieItemUI("el color", "Account", this.productService
-				.getTotalProductsByType(products, "Account").getAmount());
+				.getTotalProductsByType(products, EnumProductType.PC).getAmount());
 
 		final PieItemUI fundPieItem = new PieItemUI("el color", "Fund", this.productService.getTotalProductsByType(
-				products, "Fund").getAmount());
+				products, EnumProductType.SI).getAmount());
 
 		final PieItemUI depositPieItem = new PieItemUI("el color", "Deposit", this.productService
-				.getTotalProductsByType(products, "Deposit").getAmount());
+				.getTotalProductsByType(products, EnumProductType.ED).getAmount());
 
 		final PieItemUI rotatingAccountPieItem = new PieItemUI("el color", "Rotating Account", this.productService
-				.getTotalProductsByType(products, "Rotating Account").getAmount());
+				.getTotalProductsByType(products, EnumProductType.RQ).getAmount());
 
 		assetPieItems.add(accountPieItem);
 		assetPieItems.add(fundPieItem);
@@ -110,21 +110,22 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 	 * @param List<Product> products
 	 * @return PieConfigUI
 	 */
-	public PieConfigUI getFinanciationPieConfig(final List<Product> products) {
+	public PieConfigUI getFinanciationPieConfig(final List<ProductDTO> products) {
 
 		final PieConfigUI financiationPie = new PieConfigUI();
-		financiationPie.setHeader("Financiación " + productService.getTotalFinanciacion(products).getAmount().toString());
+		financiationPie.setHeader("Financiación "
+				+ productService.getTotalFinanciacion(products).getAmount().toString());
 
 		final List<PieItemUI> financiationPieItems = new ArrayList<PieItemUI>();
 
 		final PieItemUI fundPieItem = new PieItemUI("el color", "Credit Card", this.productService
-				.getTotalProductsByType(products, "Credit Card").getAmount());
+				.getTotalProductsByType(products, EnumProductType.TDC).getAmount());
 
 		final PieItemUI depositPieItem = new PieItemUI("el color", "Leasing", this.productService
-				.getTotalProductsByType(products, "Leasing").getAmount());
+				.getTotalProductsByType(products, EnumProductType.LI).getAmount());
 
 		final PieItemUI rotatingAccountPieItem = new PieItemUI("el color", "Loan", this.productService
-				.getTotalProductsByType(products, "Loan").getAmount());
+				.getTotalProductsByType(products, EnumProductType.LO).getAmount());
 
 		financiationPieItems.add(fundPieItem);
 		financiationPieItems.add(depositPieItem);

@@ -8,29 +8,24 @@ import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
 
-import co.com.bbva.services.transactions.globalposition.schema.Product;
-
+import com.bbva.net.back.model.globalposition.ProductDTO;
 
 /**
  * @author User
- *
  */
 public abstract class ProductVisitorCommand<T> {
-	
-	
-	private List<Product> products = new ArrayList<Product>();
-	
-	
-	/****************************** ABSTRACT METHODS  *********************************/
-	
+
+	private List<ProductDTO> products = new ArrayList<ProductDTO>();
+
+	/****************************** ABSTRACT METHODS *********************************/
+
 	/**
 	 * This pattern executes executes this method for each element in List<T>
 	 * 
 	 * @param object
 	 */
-	protected abstract Product getProduct(T object);
-	
-	
+	protected abstract ProductDTO getProduct(T object);
+
 	/**
 	 * Constructor and applies this pattern
 	 * 
@@ -47,21 +42,17 @@ public abstract class ProductVisitorCommand<T> {
 		}
 	}
 
+	public ProductVisitorCommand<T> add(ProductVisitorCommand<?> productVisitor) {
 
-	public ProductVisitorCommand<T> add(ProductVisitorCommand<?> productVisitor){
-		
 		products.addAll(productVisitor.getProducts());
 		return this;
 	}
-	
-	
+
 	/**
 	 * @return the products
 	 */
-	public List<Product> getProducts() {
+	public List<ProductDTO> getProducts() {
 		return products;
 	}
 
-	
-	
 }
