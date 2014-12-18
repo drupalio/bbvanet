@@ -18,6 +18,8 @@ import org.springframework.webflow.engine.RequestControlContext;
 import org.springframework.webflow.execution.Event;
 import org.springframework.webflow.execution.RequestContextHolder;
 
+import com.bbva.net.back.model.globalposition.ProductDTO;
+
 /**
  * @author Entelgy
  */
@@ -26,6 +28,8 @@ public abstract class AbstractBbvaController implements Serializable {
 	protected static final Logger LOGGER = LoggerFactory.getLogger(AbstractBbvaController.class);
 
 	private static final long serialVersionUID = -4820146844257478597L;
+
+	protected ProductDTO selectedProduct;
 
 	protected String DEFAULT_USER = "123";
 
@@ -120,4 +124,19 @@ public abstract class AbstractBbvaController implements Serializable {
 		final RequestControlContext requestControlContext = (RequestControlContext)requestContext;
 		return requestControlContext;
 	}
+
+	/**
+	 * @return
+	 */
+	public ProductDTO getSelectedProduct() {
+		return selectedProduct;
+	}
+
+	/**
+	 * @param selectedProduct
+	 */
+	public void setSelectedProduct(ProductDTO selectedProduct) {
+		this.selectedProduct = selectedProduct;
+	}
+
 }

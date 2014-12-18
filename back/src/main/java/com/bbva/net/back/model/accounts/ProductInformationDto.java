@@ -4,6 +4,10 @@ import com.bbva.net.back.core.pattern.dto.Dto;
 
 public class ProductInformationDto implements Dto {
 
+	public ProductInformationDto() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public ProductInformationDto(String alias, String numCuenta, String tipoCuenta) {
 		super();
 		this.alias = alias;

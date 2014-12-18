@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+<composite:interface>
+	<composite:attribute name="idValue" />
+	<composite:attribute name="render" />
+
+</composite:interface>
+
+<composite:implementation>
+	<h:panelGroup rendered="#{cc.attrs.render}">
+		<div class="show-email hidden">
+			<p:outputLabel id="nana" />
+			<span class="text-input-email"></span>
+			<div class="buttons buttons-add">
+				<button class="btn primary iconed table-button button-edit"
+					type="button">
+					<span class="icon-16 blue n04-editar" id="#{cc.attrs.idValue}">
+					</span>
+				</button>
+				<button class="btn primary iconed table-button button-delete"
+					type="button">
+					<span class="icon-16 blue n05-eliminar"></span>
+				</button>
+			</div>
+		</div>
+	</h:panelGroup>
+</composite:implementation>
+
+</html>

@@ -17,7 +17,7 @@
 
 	<p:dataTable id="#{cc.attrs.id}" widgetVar="tableAdquirenceAccounts"
 		rowIndexVar="findex" var="iproduct" selectionMode="single"
-		selection="#{globalPositionController.selectAccount}"
+		selection="#{globalPositionController.selectedProduct}"
 		rowKey="#{iproduct.productId}" value="#{cc.attrs.listAccounts}">
 
 		<p:ajax event="rowSelect"

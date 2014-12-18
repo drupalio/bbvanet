@@ -4,14 +4,16 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/webflow 
     http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
 
-	<var name="customerAccountsPage"
-		class="com.bbva.net.front.controller.impl.AccountsControllerImpl" />
+	<var name="accountsController" class="com.bbva.net.front.controller.impl.AccountsControllerImpl" />
 
 	<on-start>
-		<evaluate expression="customerAccountsPage.getCustomerAccounts()"
-			result="flowScope.customerAccounts" />
+		<evaluate expression="accountsController.getCustomerAccounts()" result="flowScope.customerAccounts" />
 	</on-start>
 
 	<view-state id="accounts">		
+		<on-entry>
+			<set name="flashScope.menuActive" value="'ACCOUNTS'" />
+			<evaluate expression="new java.lang.String()"/>
+		</on-entry>
 	</view-state>
 </flow>

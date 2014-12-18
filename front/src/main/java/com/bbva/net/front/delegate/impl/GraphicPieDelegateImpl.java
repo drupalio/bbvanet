@@ -18,7 +18,6 @@ import com.bbva.net.front.ui.pie.PieConfigUI;
 import com.bbva.net.front.ui.pie.PieItemUI;
 
 /**
- * Delegate to draw UIGraphic Pies
  * 
  * @author Entelgy
  */

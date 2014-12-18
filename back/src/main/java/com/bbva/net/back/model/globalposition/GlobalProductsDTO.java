@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
+
 public class GlobalProductsDTO implements Serializable {
 
 	private final static long serialVersionUID = 1L;
@@ -147,5 +150,36 @@ public class GlobalProductsDTO implements Serializable {
 	public void setAdquirencia(List<AdquirenceAccountDTO> adquirencia) {
 		this.adquirencia = adquirencia;
 	}
+
+	@Override
+	public String toString() {
+
+		return new ToStringBuilder(this).append("accounts", getAccounts())
+				.append("rotatingAccounts", getRotatingAccounts()).append("leasings", getLeasings())
+				.append("funds", getFunds()).append("creditCards", getCreditCards())
+				.append("electronicDeposits", getElectronicDeposits()).append("adquirencia", getAdquirencia())
+				.append("loan", getLoan()).toString();
+	}
+
+	@Override
+	public int hashCode() {
+
+		return new HashCodeBuilder().append(getAccounts()).append(getRotatingAccounts()).append(getLeasings())
+				.append(getFunds()).append(getCreditCards()).append(getElectronicDeposits()).append(getAdquirencia())
+				.append(getLoan()).toHashCode();
+	}
+
+	// @Override
+	// public boolean equals(Object obj) {
+	//
+	// return (obj instanceof GlobalProductsDTO) && this.getAccounts().equals(((GlobalProductsDTO)obj).getAccounts())
+	// && this.getRotatingAccounts().equals(((GlobalProductsDTO)obj).getRotatingAccounts())
+	// && this.getLeasings().equals(((GlobalProductsDTO)obj).getLeasings())
+	// && this.getFunds().equals(((GlobalProductsDTO)obj).getFunds())
+	// && this.getCreditCards().equals(((GlobalProductsDTO)obj).getCreditCards())
+	// && this.getElectronicDeposits().equals(((GlobalProductsDTO)obj).getElectronicDeposits())
+	// && this.getAdquirencia().equals(((GlobalProductsDTO)obj).getAdquirencia())
+	// && this.getLoan().equals(((GlobalProductsDTO)obj).getLoan());
+	// }
 
 }

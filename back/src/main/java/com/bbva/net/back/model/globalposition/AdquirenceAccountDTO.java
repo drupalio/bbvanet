@@ -1,5 +1,8 @@
 package com.bbva.net.back.model.globalposition;
 
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
+
 import com.bbva.net.back.model.commons.Money;
 
 public class AdquirenceAccountDTO extends ProductDTO {
@@ -19,5 +22,21 @@ public class AdquirenceAccountDTO extends ProductDTO {
 	public boolean isSetOverDraft() {
 		return (this.overDraft != null);
 	}
+
+	@Override
+	public String toString() {
+		return new ToStringBuilder(this).append("overDraft", getOverDraft()).toString();
+	}
+
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder().append(getOverDraft()).toHashCode();
+	}
+
+	// @Override
+	// public boolean equals(Object obj) {
+	// return (obj instanceof AdquirenceAccountDTO)
+	// && this.getOverDraft().equals(((AdquirenceAccountDTO)obj).getOverDraft());
+	// }
 
 }

@@ -1,5 +1,7 @@
 package com.bbva.net.front.controller.impl;
 
+import java.util.Map;
+
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.faces.event.ComponentSystemEvent;
@@ -7,8 +9,9 @@ import javax.faces.event.ComponentSystemEvent;
 import org.primefaces.event.SelectEvent;
 import org.springframework.stereotype.Controller;
 
+import com.bbva.czic.dto.net.EnumProductType;
 import com.bbva.net.back.facade.GlobalPositionFacade;
-import com.bbva.net.back.model.globalposition.AccountDTO;
+import com.bbva.net.back.model.commons.Money;
 import com.bbva.net.back.model.globalposition.GlobalProductsDTO;
 import com.bbva.net.front.controller.GlobalPositionController;
 import com.bbva.net.front.core.AbstractBbvaController;
@@ -32,11 +35,9 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	private SituationPiesUI situationGraphicPieUI;
 
-	private AccountDTO selectedProduct;
-
 	private ActivePanelType activePanel = ActivePanelType.SITUATION;
 
-	private transient boolean stateGlobalPosition = true;
+	private Map<EnumProductType, Money> totalsProducts;
 
 	private enum ActivePanelType {
 
@@ -54,10 +55,13 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		// Calculate situation graphics panels
 		this.situationGraphicPieUI = graphicPieDelegate.getSituationGlobalProducts(this.globalProductsDTO);
 
+		// Calculate totals
+		this.totalsProducts = this.globalPositionFacade.getTotalsByProduct(globalProductsDTO);
+
 	}
 
 	@Override
-	public void preRender(ComponentSystemEvent event) {
+	public void preRender(final ComponentSystemEvent event) {
 		this.selectedProduct = null;
 	}
 
@@ -71,39 +75,26 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		return this.globalPositionFacade.getGlobalProductsHidden(globalProductsDTO);
 	}
 
-	public boolean isStateGlobalPosition() {
-		return stateGlobalPosition;
-	}
-
-	public void setStateGlobalPosition(boolean stateGlobalPosition) {
-		this.stateGlobalPosition = stateGlobalPosition;
-	}
-
+	@Override
 	public void renderPieSituation() {
 		this.activePanel = ActivePanelType.SITUATION;
-		executeScript("initChart();");
+		initChart();
 	}
 
+	@Override
 	public void renderPieAssets() {
 		this.activePanel = ActivePanelType.ASSET;
-		executeScript("initChart();");
+		initChart();
 	}
 
+	@Override
 	public void renderPieFinanciation() {
 		this.activePanel = ActivePanelType.FINANCIATION;
-		executeScript("initChart();");
+		initChart();
 	}
 
 	public void onAccountSelected(final SelectEvent selectEvent) {
 		System.out.print("hooola");
-	}
-
-	public void setGlobalPositionFacade(final GlobalPositionFacade globalPositionFacade) {
-		this.globalPositionFacade = globalPositionFacade;
-	}
-
-	public void setGraphicPieDelegate(GraphicPieDelegate graphicPieDelegate) {
-		this.graphicPieDelegate = graphicPieDelegate;
 	}
 
 	public String getActivePanel() {
@@ -115,20 +106,6 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	}
 
 	/**
-	 * @return the selectedProduct
-	 */
-	public AccountDTO getSelectedProduct() {
-		return selectedProduct;
-	}
-
-	/**
-	 * @param selectedProduct the selectedProduct to set
-	 */
-	public void setSelectedProduct(AccountDTO selectedProduct) {
-		this.selectedProduct = selectedProduct;
-	}
-
-	/**
 	 * @return the selectedLike
 	 */
 	public String getSelectedLike() {
@@ -136,18 +113,35 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	}
 
 	/**
+	 * @return
+	 */
+	@Override
+	public Map<EnumProductType, Money> getTotalsProducts() {
+		return totalsProducts;
+	}
+
+	/**
 	 * @param selectedLike the selectedLike to set
 	 */
-	public void setSelectedLike(String selectedLike) {
+	public void setSelectedLike(final String selectedLike) {
 		this.selectedLike = selectedLike;
 	}
 
-	public void setSelectAccount(final AccountDTO account) {
-		this.selectedProduct = account;
+	/**
+	 * 
+	 */
+	public void initChart() {
+		executeScript("initChart();");
 	}
 
-	public AccountDTO getSelectAccount() {
-		return this.selectedProduct;
+	/************************************* SETTER BEANS **************************************/
+
+	public void setGlobalPositionFacade(final GlobalPositionFacade globalPositionFacade) {
+		this.globalPositionFacade = globalPositionFacade;
+	}
+
+	public void setGraphicPieDelegate(GraphicPieDelegate graphicPieDelegate) {
+		this.graphicPieDelegate = graphicPieDelegate;
 	}
 
 }

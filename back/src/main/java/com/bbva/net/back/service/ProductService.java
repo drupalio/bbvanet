@@ -21,7 +21,7 @@ public interface ProductService {
 	 * @param products
 	 * @return
 	 */
-	Money getTotalCash(List<ProductDTO> products);
+	<T extends ProductDTO> Money getTotal(final List<T> products);
 
 	/**
 	 * @param products

@@ -1,16 +1,19 @@
 package com.bbva.net.back.facade.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.springframework.web.client.RestClientException;
 
+import com.bbva.czic.dto.net.EnumProductType;
 import com.bbva.czic.dto.net.Product;
 import com.bbva.net.back.core.pattern.facade.AbstractBbvaFacade;
 import com.bbva.net.back.core.stereotype.Facade;
 import com.bbva.net.back.facade.GlobalPositionFacade;
 import com.bbva.net.back.mapper.GlobalPositionMapper;
+import com.bbva.net.back.model.commons.Money;
 import com.bbva.net.back.model.globalposition.GlobalProductsDTO;
 import com.bbva.net.back.predicate.HiddenProductPredicate;
 import com.bbva.net.back.predicate.VisibleProductPredicate;
@@ -44,12 +47,17 @@ public class GlobalPositionFacadeImpl extends AbstractBbvaFacade implements Glob
 
 	@Override
 	public GlobalProductsDTO getGlobalProductsVisibles(final GlobalProductsDTO globalProductsDTO) {
-		return productService.select(globalProductsDTO, new HiddenProductPredicate());
+		return productService.select(globalProductsDTO, new VisibleProductPredicate());
 	}
 
 	@Override
 	public GlobalProductsDTO getGlobalProductsHidden(final GlobalProductsDTO globalProductsDTO) {
-		return productService.select(globalProductsDTO, new VisibleProductPredicate());
+		return productService.select(globalProductsDTO, new HiddenProductPredicate());
+	}
+
+	@Override
+	public Map<EnumProductType, Money> getTotalsByProduct(GlobalProductsDTO globalProductsDTO) {
+		return productService.getTotals(globalProductsDTO);
 	}
 
 	/**
