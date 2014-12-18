@@ -94,9 +94,6 @@
 
 		</bbvaDetAcc:tabMenu>
 
-		<div class="table-tabs">
-			<bbvaAcc:MovePaginatorTable id="detailAccounts" listAccounts="#{customerAccounts}" />
-		</div>
 
 
 		<bbvaDetAcc:tapDropDown title="Fecha">
@@ -104,6 +101,9 @@
 		</bbvaDetAcc:tapDropDown>
 		<bbvaDetAcc:tapDropDown title="Saldo" />
 		<bbvaSearch:personalizedSearchContainer />
+		<div class="table-tabs">
+			<bbvaAcc:MovePaginatorTable id="detailAccounts" listAccounts="#{customerAccounts}" />
+		</div>
 
 	</ui:define>
 
