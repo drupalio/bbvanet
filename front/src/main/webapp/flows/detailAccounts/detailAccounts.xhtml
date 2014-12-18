@@ -125,7 +125,7 @@
 									styleI="max-width:315px;" styleClassI="form-control"
 									value="#{personalizeProductAccountController.personalizeProductAccountDto.alias}"
 									idB="button" textB="#{msg['button.save']}"
-									classB="btn btn-default" nameB="button-add" />
+									classB="btn btn-default" nameB="buttonAdd" />
 							</div>
 						</div>
 						<span class="separator"></span>
@@ -172,7 +172,7 @@
 								classB="btn btn-default" />
 						</div>
 						<bbvaMessage:divOperationKey idComfirm="buttonFour"
-							idInput="inputTwo" name="button-confirm" idInputDiv="divClass"
+							idInput="inputTwo" nameB="buttonConfirm" idInputDiv="divClass"
 							render="#{personalizeProductAccountController.menOperationKey}"
 							value="#{personalizeProductAccountController.personalizeProductAccountDto.operationKey}" />
 
@@ -188,7 +188,7 @@
 									maxlength="25" styleClassI="form-control required error"
 									valueI="#{personalizeProductAccountController.personalizeProductAccountDto.emails}"
 									styleB="margin-top: -0.5px !important; float: left !important; margin-left: 10px !important;"
-									idB="btn-add" classB="btn btn-default" nameB="button-name"
+									idB="btn-add" classB="btn btn-default" nameB="buttonName"
 									type="submit" textB="#{msg['button.add']}" />
 
 								<p:outputLabel value="Dirección de correo inválida"
@@ -203,18 +203,14 @@
 			</div>
 		</bbvaDetAcc:tabMenu>
 
-		<div class="table-tabs">
-			<bbvaAcc:MovePaginatorTable id="detailAccounts"
-				listAccounts="#{customerAccounts}" />
-		</div>
-
 		<bbvaDetAcc:tapDropDown title="Fecha">
 			<bbvaCalendar:calendarItem />
 		</bbvaDetAcc:tapDropDown>
 		<bbvaDetAcc:tapDropDown title="Saldo" />
 		<bbvaSearch:personalizedSearchContainer />
 		<div class="table-tabs">
-			<bbvaAcc:MovePaginatorTable id="detailAccounts" listAccounts="#{customerAccounts}" />
+			<bbvaAcc:MovePaginatorTable id="detailAccounts"
+				listAccounts="#{customerAccounts}" />
 		</div>
 	</ui:define>
 
