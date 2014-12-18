@@ -1,9 +1,15 @@
 package com.bbva.net.webservices.globalposition.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.ws.rs.core.Response;
+
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Value;
 
-import co.com.bbva.services.transactions.globalposition.schema.GlobalProducts;
-
+import com.bbva.czic.dto.net.Product;
+// import com.bbva.czic.dto.net.Product;
 import com.bbva.net.webservices.core.pattern.AbstractBbvaRestService;
 import com.bbva.net.webservices.core.stereotype.RestService;
 import com.bbva.net.webservices.globalposition.GlobalPositionService;
@@ -15,16 +21,20 @@ public class GlobalPositionServiceImpl extends AbstractBbvaRestService implement
 	private String URL_GLOBAL_POSITION;
 
 	@Override
-	public GlobalProducts get(String customerId) {
+	public List<Product> getExtractGlobalBalance(String customerId, String $filter, String $fields, String $expands,
+			String $sort) {
 
-		final GlobalProducts result = restTemplate.getForObject(URL_BASE + URL_GLOBAL_POSITION + customerId,
-				GlobalProducts.class);
-
-		return result;
+		final Product[] products = restTemplate.getForObject(URL_BASE + customerId + URL_GLOBAL_POSITION,
+				Product[].class);
+		final List<Product> productsResult = new ArrayList<Product>();
+		CollectionUtils.addAll(productsResult, products);
+		return productsResult;
 	}
 
-	public void setURL_GLOBAL_POSITION(String uRL_GLOBAL_POSITION) {
-		URL_GLOBAL_POSITION = uRL_GLOBAL_POSITION;
+	@Override
+	public Response update(String idProduct) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

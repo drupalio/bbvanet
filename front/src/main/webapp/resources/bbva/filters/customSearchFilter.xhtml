@@ -12,65 +12,51 @@
 	xmlns:bbvaCalendar="http://java.sun.com/jsf/composite/bbva/calendar">
 
 <composite:interface>
-	<composite:attribute name="title" type="String" />
+	<composite:attribute name="value" />
+		<composite:attribute name="valueDateSince" />
+	<composite:attribute name="valueDateTo" />
 </composite:interface>
 
 <composite:implementation>
-
-
-
 	<div class="date-filter-content">
-		<form action="#" novalidate="novalidate">
+		<h:form>
 			<div class="form-horizontal">
 				<div class="row">
 
-					<div class="col-xs-6">
-						<input name="sample-radio-date" id="customSearch-filter-today"
-							value="Hoy" type="radio" data-filter="Hoy" aria-required="true" />
-						<label for="customSearch-filter-today">Hoy</label>
-					</div>
-					<div class="col-xs-6">
-						<input name="sample-radio-date" id="customSearch-filter-yesterday"
-							value="Ayer" type="radio" data-filter="Ayer" /> <label
-							for="customSearch-filter-yesterday">Ayer</label>
-					</div>
-					<div class="col-xs-6">
-						<input name="sample-radio-date" id="customSearch-filter-week"
-							value="Última semana" type="radio" data-filter="Última semana" />
-						<label for="customSearch-filter-week">Última semana</label>
-					</div>
-					<div class="col-xs-6">
-						<input name="sample-radio-date" id="customSearch-filter-two-week"
-							value="Últimas dos semanas" type="radio"
-							data-filter="Últimas dos semanas" /> <label
-							for="customSearch-filter-two-week">Últimas dos semanas</label>
-					</div>
-					<div class="col-xs-6">
-						<input name="sample-radio-date" id="customSearch-filter-month"
-							value="Último mes" type="radio" data-filter="Último mes" /> <label
-							for="customSearch-filter-month">Último mes</label>
-					</div>
-					<div class="col-xs-6">
-						<input name="sample-radio-date" id="customSearch-filter-two-month"
-							value="Últimos dos meses" type="radio"
-							data-filter="Últimos dos meses" /> <label
-							for="customSearch-filter-two-month">Últimos dos meses</label>
-					</div>
+					<h:panelGrid columns="2" cellpadding="5">
+						<p:outputLabel for="console" value="Console:" rendered="false" />
+						<p:selectOneRadio id="console"
+							value="#{movementsCriteriaController.selectDate}" layout="grid"
+							columns="2">
+							<f:selectItem itemLabel="#{msg['select.radio.today']}"
+								itemValue="#{msg['select.radio.today']}" />
+							<f:selectItem itemLabel="#{msg['select.radio.yesterday']}"
+								itemValue="#{msg['select.radio.yesterday']}" />
+							<f:selectItem itemLabel="#{msg['select.radio.last.week']}"
+								itemValue="#{msg['select.radio.last.week']}" />
+
+							<f:selectItem itemLabel="#{msg['select.radio.last.two.weeks']}"
+								itemValue="#{msg['select.radio.last.two.weeks']}" />
+							<f:selectItem itemLabel="#{msg['select.radio.last.month']}"
+								itemValue="#{msg['select.radio.last.month']}" />
+							<f:selectItem itemLabel="#{msg['select.radio.last.two.months']}"
+								itemValue="#{msg['select.radio.last.two.months']}" />
+
+							<f:selectItem itemLabel="#{msg['select.radio.concret.date']}"
+								itemValue="#{msg['select.radio.concret.date']}" />
+							<p:ajax listener="#{movementsCriteriaController.oneSelectDate}" />
+						</p:selectOneRadio>
+					</h:panelGrid>
+					
 				</div>
 			</div>
 
 			<div class="date-period radio-group">
-				<div class="form-horizontal date-specific">
-					<input name="sample-radio-date" id="customSearch-filter-datePeriod"
-						value="Fecha concreta" type="radio" data-filter="Fecha concreta"
-						class="filter-period" /> <label
-						for="customSearch-filter-datePeriod">Fecha concreta</label>
-				</div>
 				<div>
 					<div class="col-xs-12 col-md-6">
 						<div class="form-group">
 							<div class="col-xs-2 col-md-12">
-								<label for="customSearch-dateFieldFrom">Desde:</label>
+								<label for="customSearch-dateFieldFrom">#{msg['text.since']}:</label>
 							</div>
 							<div>
 								<bbvaCalendar:calendarItem />
@@ -80,25 +66,19 @@
 					<div class="col-xs-12 col-md-6">
 						<div class="form-group">
 							<div class="col-xs-2 col-md-12">
-								<label for="customSearch-dateFieldTo">Hasta:</label>
+								<label for="customSearch-dateFieldTo">#{msg['text.to']}:</label>
 							</div>
-							<div class="col-xs-10 col-md-12 input-control">
-								<input type="text" maxlength="10"
-									class="datepicker form-control dateFieldTo hasDatepicker calendar"
-									id="customSearch-dateFieldTo" name="dateFieldTo"
-									placeholder="__/__/____" autocomplete="off"
-									data-date-format="dd/mm/yyyy" data-provide="datepicker-inline"
-									data-filter="Hasta: " disabled="" />
+							<div >
+								<bbvaCalendar:calendarItem />
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<button type="submit" class="btn small hidden-xs hidden-sm"
-				disabled="">Confirmar</button>
-		</form>
+			</div>	
+			<p:commandButton value="#{msg['button.confirm']}" styleClass="btn small hidden-xs hidden-sm"/>	
+			
+		</h:form>
 	</div>
-	
 </composite:implementation>
 
 </html>

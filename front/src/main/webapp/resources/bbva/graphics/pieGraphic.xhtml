@@ -10,90 +10,38 @@
 
 <composite:interface>
 
-	<composite:attribute name="piesItemUIList" type="java.util.List" />
-
+	<composite:attribute name="pieConfigUI" />
 </composite:interface>
 
 <composite:implementation>
-	<h:head>
-		<meta charset="utf-8"></meta>
-		<script type="text/javascript" src="../assets/js/c3/d3.js"></script>
-		<script type="text/javascript" src="../assets/js/c3/c3.js"></script>
-		<link href="../assets/stylesheets/c3/c3.css" rel="stylesheet"
-			type="text/css"></link>
-		<link rel="shortcut icon" href="../assets/images/favicon.ico" />
-		<script type="text/javascript" src="../assets/js/vendor.js"></script>
-		<script type="text/javascript"
-			src="../assets/js/jvalidate/jvalidate_es.js"></script>
-		<script type="text/javascript" src="../assets/js/graphycs/config.js"></script>
-		<script type="text/javascript"
-			src="../assets/js/components/wizzard/progressbar-plugin.js"></script>
-		<script type="text/javascript"
-			src="../assets/js/components/wizzard/steps-plugin.js"></script>
-		<script type="text/javascript"
-			src="../assets/js/components/wizzard/controllersteps-plugin.js"></script>
-		<script type="text/javascript"
-			src="../assets/js/components/switchtab/switchtab-plugin.js"></script>
-		<script type="text/javascript"
-			src="../assets/js/components/selectquiero/selectQuiero-plugin.js"></script>
-		<script type="text/javascript"
-			src="../assets/js/components/slider/slider-button-close.js"></script>
-		<script type="text/javascript"
-			src="../assets/js/components/chart/chart-table.js"></script>
-		<script type="text/javascript"
-			src="../assets/js/components/validate/remove-validate.js"></script>
-		<script type="text/javascript"
-			src="../assets/js/visibilityactions/visibility.dropdown.mobile.js"></script>
-		<script type="text/javascript"
-			src="../assets/js/visibilityactions/visibility.dropup.mobile.js"></script>
-		<script type="text/javascript"
-			src="../assets/js/visibilityactions/visibility.data.js"></script>
-		<script type="text/javascript"
-			src="../assets/js/visibilityactions/visibility.dropdown.clientsaccess.js"></script>
-		<script type="text/javascript"
-			src="../assets/js/visibilityactions/visibility.dropdown.logged.js"></script>
-
-		<script type="text/javascript"
-			src="../assets/js/jvalidate/validate.login.js"></script>
-		<script type="text/javascript"
-			src="../assets/js/jvalidate/validate.netsecure.js"></script>
-		<script type="text/javascript"
-			src="../assets/js/jvalidate/validate.token.js"></script>
-		<script type="text/javascript"
-			src="../assets/js/progressbar/wizzard.recoverykey.js"></script>
-		<script type="text/javascript"
-			src="../assets/js/progressbar/wizzard.recoveryuser.js"></script>
-		<script type="text/javascript"
-			src="../assets/js/progressbar/wizzard.registerclient.js"></script>
-		<script type="text/javascript"
-			src="../assets/js/resizedactions/resized.menu.js"></script>
-
-		<link rel='stylesheet' type="text/css"
-			href='../assets/stylesheets/app.css' />
 
 
-		<!-- <c:forEach items="${cc.attrs.situationPies.assets.pieItemUIList}"
-			var="pieItemUI" begin="1">
+	<h:form>
+		<span>#{cc.attrs.pieConfigUI.header}</span>
+		<div class="chart-cheese" id="tu-situacion-grafico"
+			data-highcharts-chart="3">
+			<div id="chart" />
+		</div>
 
-			<input id="valor" type="hidden"
-				value="${pieItemUI.value}" />
-		</c:forEach>
+	</h:form>
 
-		<input id="head" type="hidden"
-			value="#{cc.attrs.situationPies.assets.pieItemUIList}" /> -->
 
-		<script>
+
+	<script>
+		function initChart() {
+
 			var totalColums = [];
 			var label;
 			var colums;
 			var values;
-			<c:forEach var="pieItemUI" items="${cc.attrs.piesItemUIList}">
-			label = ("${pieItemUI.textLengend}");
-			values = ("${pieItemUI.value}");
-			colums = [ [ label ], [ values ] ];
-			totalColums.push(colums);
-			</c:forEach>
 			
+			<c:forEach var="pieItemUI" items="${cc.attrs.pieConfigUI.pieItemUIList}">
+				label = ("${pieItemUI.textLegend}");
+				values = ("${pieItemUI.value}");
+				colums = [ [ label ], [ values ] ];
+				totalColums.push(colums);
+			</c:forEach>
+
 			var chart = c3.generate({
 
 				data : {
@@ -102,7 +50,7 @@
 						height : 5,
 						width : 5
 					},
-					
+
 					columns : totalColums,
 
 					type : 'pie',
@@ -117,17 +65,10 @@
 					}
 				}
 			});
-		</script>
 
-	</h:head>
-	<h:form>
+		};
+	</script>
 
-		<div class="chart-cheese" id="tu-situacion-grafico"
-			data-highcharts-chart="3">
-			<div id="chart"></div>
-		</div>
-
-	</h:form>
 
 </composite:implementation>
 </html>

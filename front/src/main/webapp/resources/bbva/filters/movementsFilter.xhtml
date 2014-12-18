@@ -18,12 +18,10 @@
 <composite:implementation>
 
 	<div class="movements-filter-content">
-		<form action="#" method="POST" class="form form-search" role="form"
-			name="movements-form">
+		<h:form>
 			<button type="submit" class="search-icon"></button>
-			<input type="text" name="search" class="form-control" value=""
-				placeholder="Escribe el movimiento" data-filter=""/>
-		</form>
+			<h:inputText styleClass="form-control"  pt:placeholder="#{msg['text.placeholder.movements']}"/>						
+		</h:form>
 	</div>
 
 </composite:implementation>

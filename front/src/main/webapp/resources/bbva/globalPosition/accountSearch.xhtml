@@ -9,24 +9,28 @@
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <composite:interface>
-	<composite:attribute name="listAccounts" type="java.util.List"/>
+	<composite:attribute name="id" type="String" />
+	<composite:attribute name="listAccounts" type="java.util.List" />
+	<composite:attribute name="listAccountsAdquirencia" type="java.util.List" />
+	<composite:attribute name="listAccountsMore" type="java.util.List" />
 
 </composite:interface>
 
 <composite:implementation>
 
-	
-	<table class="table-tabs">
+
+	<table class="table-tabs" id="#{cc.attrs.id}">
 		<thead>
 			<tr>
 				<th class="search-head" colspan="2">
 					<ul>
-						<li><a href="#" title="">Cuentas <span class="count-accounts">#{cc.attrs.listAccounts.size()}</span></a></li>
+						<li><a href="#" title="">Cuentas <span
+								class="count-accounts">#{cc.attrs.listAccounts.size()+cc.attrs.listAccountsAdquirencia.size()+cc.attrs.listAccountsMore.size()}</span></a></li>
 						<li><a href="#" title="">Ver todas</a></li>
 					</ul>
 					<form action="#" method="POST" class="form form-search" role="form">
-						<span class="search-icon"></span> 
-						<input name="search" class="form-control" type="text" />
+						<span class="search-icon"></span> <input name="search"
+							class="form-control" type="text" />
 					</form>
 					<p class="icon-noresult noResults hidden">
 						La busqueda de la cuenta <span></span> no ha tenido resultado.

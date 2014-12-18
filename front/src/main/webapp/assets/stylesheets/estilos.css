@@ -213,4 +213,30 @@ div.ui-state-default {
 
 button.ui-state-default {
 	box-shadow: 0px 1px 0px #0079C1 inset !important;
+	height: 40px !important;
+	text-align: center !important;
+	padding: 12px 14px !important;
+}
+
+.table-ui-button {
+	border-color: #E5E5E5 !important;
+	background: none repeat scroll 0% 0% #F3F5F7 !important;
+	font: 12px/24px "BBVA Web Medium", arial, sans-serif !important;
+}
+
+.ui-state-highlight, .ui-widget-content .ui-state-highlight,
+	.ui-widget-header .ui-state-highlight {
+	background: #e0f6fc !important;
+}
+
+.ui-datatable-odd {
+	background: #ffffff !important;
+}
+
+.ui-state-hover {
+	background: #e0f6fc !important;
+}
+
+td.ui-datatable-subtable-header:empty {
+	display: none
 }

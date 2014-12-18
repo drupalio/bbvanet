@@ -1,11 +1,25 @@
 package com.bbva.net.back.facade;
 
+import com.bbva.net.back.model.globalposition.GlobalProductsDTO;
 
-import co.com.bbva.services.transactions.globalposition.schema.GlobalProducts;
-
-
+/**
+ * @author Entelgy
+ */
 public interface GlobalPositionFacade {
 
-	public GlobalProducts getGlobalProductsByUser(String user);
-		
+	/**
+	 * @param user
+	 * @return
+	 */
+	GlobalProductsDTO getGlobalProductsByUser(String user);
+
+	/**
+	 * @return
+	 */
+	GlobalProductsDTO getGlobalProductsVisibles(GlobalProductsDTO globalProductsDTO);
+
+	/**
+	 * @return
+	 */
+	GlobalProductsDTO getGlobalProductsHidden(GlobalProductsDTO globalProductsDTO);
 }

@@ -11,6 +11,11 @@
 			<var>msg</var>
 		</resource-bundle>
 
+		<resource-bundle>
+			<base-name>i18n</base-name>
+			<var>i18</var>
+		</resource-bundle>
+
 		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver
 		</el-resolver>
 
@@ -20,14 +25,9 @@
 			<supported-locale>es</supported-locale>
 		</locale-config>
 
-		<!-- 
-		<factory>
-			<exception-handler-factory>
-				com.common.exceptions.CustomExceptionHandlerFactory
-			</exception-handler-factory>
-		</factory>
-		 -->
-		 
+		<!-- <factory> <exception-handler-factory> com.common.exceptions.CustomExceptionHandlerFactory 
+			</exception-handler-factory> </factory> -->
+
 	</application>
 
 </faces-config>

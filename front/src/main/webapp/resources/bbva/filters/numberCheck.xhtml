@@ -17,12 +17,11 @@
 
 <composite:implementation>
 
-	<form id="checkBookSearch-filter" action="#"
-		class="radio-filter-content">
+	<h:form id="checkBookSearch-filter">
 		<div class="row">
-			<div class="form-horizontal">
+			<div >
 				<div class="col-xs-12 radio-group">
-					<div class="form-group">
+					<div>
 						<input name="sample-radio-ticket" id="checkBookSearchNum-filter"
 							value="Busca-num" type="radio" /> <label
 							for="checkBookSearchNum-filter">Búsqueda por nº de cheque</label>
@@ -48,7 +47,7 @@
 					</div>
 				</div>
 				<div class="col-xs-12 radio-group">
-					<div class="form-group group-books">
+					<div>
 						<input name="sample-radio-ticket" id="checkBookSearchState-filter"
 							value="Busca-talon" type="radio" class="talon-numbered" /> <label
 							for="checkBookSearchState-filter">Búsqueda por nº de
@@ -66,9 +65,10 @@
 					</div>
 				</div>
 			</div>
-			<button type="submit" class="btn small hidden-xs hidden-sm">Confirmar</button>
+			<p:commandButton value="Confirmar" styleClass="btn small hidden-xs hidden-sm"/>
+			
 		</div>
-	</form>
+	</h:form>
 
 </composite:implementation>
 

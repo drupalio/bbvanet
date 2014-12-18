@@ -10,7 +10,27 @@
 	<var name="personalizeProductAccountController"
 		class="com.bbva.net.front.controller.impl.PersonalizeProductAccountControllerImpl" />
 
-	<view-state id="detailAccounts">
-	</view-state>
+	<var name="customerAccountsPage"
+		class="com.bbva.net.front.controller.impl.AccountsControllerImpl" />
+	<var name="movementsCriteriaController"
+		class="com.bbva.net.front.controller.impl.MovementCriteriaControllerImpl" />
+	<var name="TermsController" class="com.bbva.net.front.controller.impl.TermsControllerImpl" />
+	<on-start>
+		<evaluate expression="customerAccountsPage.getCustomerAccounts()"
+			result="flowScope.customerAccounts" />
+		<evaluate expression="TermsController.getAllConditions()"
+			result="flowScope.allConditions" />
+	</on-start>
 
+	<view-state id="detailAccounts">
+
+		<on-render>
+			<evaluate expression="customerAccountsPage.getCustomerAccounts()"
+				result="viewScope.customerAccountsM" result-type="dataModel" />
+		</on-render>
+		<transition on="next">
+			<evaluate expression="calendar.nextPage()" />
+		</transition>
+
+	</view-state>
 </flow>

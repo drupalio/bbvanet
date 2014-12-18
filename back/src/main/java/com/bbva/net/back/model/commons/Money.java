@@ -11,9 +11,18 @@ public class Money implements Dto {
 
 	private static final long serialVersionUID = -4589862928168820463L;
 
-	private String currency;
+	private String currency = "$";
 
 	private BigDecimal amount;
+
+	public Money(BigDecimal amount) {
+		this.amount = amount;
+	}
+
+	public Money(BigDecimal money, String currency) {
+		this.currency = currency;
+		this.amount = money;
+	}
 
 	public String getCurrency() {
 		return currency;
@@ -29,6 +38,11 @@ public class Money implements Dto {
 
 	public void setAmount(BigDecimal amount) {
 		this.amount = amount;
+	}
+
+	@Override
+	public String toString() {
+		return currency + amount.toString();
 	}
 
 }

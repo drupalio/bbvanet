@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0"
+	targetNamespace="urn:com:bbva:jee:arq:spring:core:servicing:utils"
+	xmlns:tns="urn:com:bbva:jee:arq:spring:core:servicing:utils" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://www.w3.org/2001/XMLSchema" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+	xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+	jaxb:extensionBindingPrefixes="xjc" jaxb:version="1.0">
+
+	<!-- <annotation>
+		<appinfo>
+			<jaxb:globalBindings generateIsSetMethod="true">
+				<xjc:serializable uid="1" />
+			</jaxb:globalBindings>
+		</appinfo>
+	</annotation> -->
+
+
+	<xs:element name="money" type="tns:money" />
+
+	<xs:complexType name="money">
+		<xs:sequence>
+			<xs:element name="amount" type="xs:decimal" minOccurs="0" />
+			<xs:element name="currency" type="xs:string" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
+
