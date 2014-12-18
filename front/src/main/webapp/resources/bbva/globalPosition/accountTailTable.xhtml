@@ -20,7 +20,7 @@
 		<p:dataTable id="#{cc.attrs.id}" var="iproduct" 
 			rowIndexVar="findex"
 			selectionMode="single" 
-			selection="#{globalPositionController.selectAccount}"
+			selection="#{globalPositionController.selectedProduct}"
 			rowKey="#{iproduct.productId}"
 			value="#{cc.attrs.listAccounts}">
 		

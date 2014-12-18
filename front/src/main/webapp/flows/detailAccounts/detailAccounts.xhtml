@@ -122,11 +122,11 @@
 				<f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
 				<f:selectItem itemLabel="PS4" itemValue="PS4" />
 				<f:selectItem itemLabel="Wii U" itemValue="Wii U" />
-				<p:ajax listener="#{customerAccountsPage.onComboChange}" />
+				<p:ajax listener="#{accountsController.onComboChange}" />
 			</h:selectOneMenu>
 
 			<p:inputText>
-				<p:ajax event="keyup" listener="#{customerAccountsPage.onKeyUp}" />
+				<p:ajax event="keyup" listener="#{accountsController.onKeyUp}" />
 			</p:inputText>
 
 			<h:outputLabel value="#{prueba.name}"></h:outputLabel>

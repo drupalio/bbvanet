@@ -20,7 +20,7 @@
 		<p:dataTable id="#{cc.attrs.id}" var="iprodcut" 
 			rowIndexVar="findex"
 			selectionMode="single" 
-			selection="#{globalPositionController.selectAccount}"
+			selection="#{globalPositionController.selectedProduct}"
 			rowKey="#{iprodcut.productId}"
 			value="#{cc.attrs.listQuota}"
 			emptyMessage="#{msg['mssg.list.empty']}">
