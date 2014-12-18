@@ -34,21 +34,24 @@ public class NewsAlertsControllerImplTest {
 	@Test
 	public void deleteNewAlertTrue() {
 		this.newsAlertsController.deleteNewsAlertsFacade(Mockito.mock(ActionEvent.class));
-		Mockito.verify(this.newsAlertsFacade, Mockito.atLeastOnce()).deleteNewsAlertsFacade(Mockito.anyListOf(NewsAlertsDTO.class));
+		Mockito.verify(this.newsAlertsFacade, Mockito.atLeastOnce()).deleteNewsAlertsFacade(
+				Mockito.anyListOf(NewsAlertsDTO.class));
 	}
 
 	@Test
 	public void changeNoViewedState() {
 
 		this.newsAlertsController.changeNoViewedState(Mockito.mock(ActionEvent.class));
-		Mockito.verify(this.newsAlertsFacade, Mockito.atLeastOnce()).changeNoViewedState(Mockito.anyListOf(NewsAlertsDTO.class));
+		Mockito.verify(this.newsAlertsFacade, Mockito.atLeastOnce()).changeNoViewedState(
+				Mockito.anyListOf(NewsAlertsDTO.class));
 	}
 
 	@Test
 	public void changeViewedState() {
 
 		this.newsAlertsController.changeViewedState(Mockito.mock(ActionEvent.class));
-		Mockito.verify(this.newsAlertsFacade, Mockito.atLeastOnce()).changeViewedState(Mockito.anyListOf(NewsAlertsDTO.class));
+		Mockito.verify(this.newsAlertsFacade, Mockito.atLeastOnce()).changeViewedState(
+				Mockito.anyListOf(NewsAlertsDTO.class));
 	}
 
 	@Test
@@ -60,9 +63,8 @@ public class NewsAlertsControllerImplTest {
 		 */
 		Assert.assertNotNull(this.newsAlertsController.getNewsAlertsList());
 		Mockito.verify(this.newsAlertsFacade, Mockito.atLeastOnce()).getNewsAlertsList();
-		
+
 	}
-	
 
 	@Test
 	public void getAlertsNewsSelected() {
@@ -71,12 +73,12 @@ public class NewsAlertsControllerImplTest {
 		 * Prepare test case
 		 */
 		newsAlertsController.setNewsAlertSelectedList(new ArrayList<NewsAlertsDTO>());
-		
+
 		/**
 		 * Invoke test method
 		 */
 		Assert.assertNotNull(this.newsAlertsController.getNewsAlertSelectedList());
-		
+
 	}
 
 }

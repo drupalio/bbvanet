@@ -5,6 +5,9 @@ package com.bbva.net.back.model.commons;
 
 import java.util.Date;
 
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
+
 import com.bbva.net.back.core.pattern.dto.Dto;
 
 /**
@@ -54,5 +57,20 @@ public class DateRangeDto implements Dto {
 	 */
 	public void setDateTo(Date dateTo) {
 		this.dateTo = dateTo;
+	}
+
+	@Override
+	public String toString() {
+		return new ToStringBuilder(this).append("dateSince", getDateSince()).append("dateTo", getDateTo()).toString();
+	}
+
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder().append(getDateSince()).append(getDateTo()).toHashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return (obj instanceof DateRangeDto) && this.getDateSince().equals(((DateRangeDto)obj).getDateTo());
 	}
 }

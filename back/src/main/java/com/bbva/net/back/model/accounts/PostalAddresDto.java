@@ -4,6 +4,10 @@ import com.bbva.net.back.core.pattern.dto.Dto;
 
 public class PostalAddresDto implements Dto {
 
+	public PostalAddresDto() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public PostalAddresDto(String nombreOficina, String direccionPostal) {
 		super();
 		this.nombreOficina = nombreOficina;
