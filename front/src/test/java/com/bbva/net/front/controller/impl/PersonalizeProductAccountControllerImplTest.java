@@ -22,11 +22,16 @@ public class PersonalizeProductAccountControllerImplTest {
 	public void init() {
 		this.personalizeProductAccountControllerImpl = new PersonalizeProductAccountControllerImpl();
 
+		this.personalizeProductAccountControllerImpl.operKey(null);
+
+		this.personalizeProductAccountControllerImpl.offMessage(null);
+
+		this.personalizeProductAccountControllerImpl.successful(null);
+
 		this.personalizeProductAccountFacade = Mockito.mock(PersonalizeProductAccountFacade.class);
 
 		this.personalizeProductAccountControllerImpl
 				.setPersonalizeProductAccountFacade(personalizeProductAccountFacade);
-		
 
 	}
 
@@ -38,6 +43,11 @@ public class PersonalizeProductAccountControllerImplTest {
 				.thenReturn(new PersonalizeAccountDTO());
 
 		this.personalizeProductAccountControllerImpl.init();
+
+		this.personalizeProductAccountControllerImpl.isMenOperationKey();
+
+		this.personalizeProductAccountControllerImpl.isMenSuccessful();
+
 		// Invoke method
 		PersonalizeAccountDTO result = personalizeProductAccountControllerImpl.getPersonalizeProductAccountDto();
 		// Check results

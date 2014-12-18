@@ -50,22 +50,42 @@ public class PersonalizeProductAccountControllerImpl extends AbstractBbvaControl
 		return this.personalizeAccountDTO;
 	}
 
+	/**
+	 * Metodo que retona el estado de visibilidad del messageSuccessful
+	 */
+	@Override
 	public boolean isMenSuccessful() {
 		return menSuccessful;
 	}
 
+	/**
+	 * Metodo que muestra el mensaje successful
+	 */
+	@Override
 	public void successful(ActionEvent event) {
 		this.menSuccessful = true;
 	}
 
+	/**
+	 * Metodo que retona el estado de visibilidad del divOperationKey
+	 */
+	@Override
 	public boolean isMenOperationKey() {
 		return menOperationKey;
 	}
 
+	/**
+	 * Metodo que muestra el div de confirmación de contraseña (divOperationKey)
+	 */
+	@Override
 	public void operKey(ActionEvent event) {
 		this.menOperationKey = true;
 	}
 
+	/**
+	 * Metodo que esconde el mensaje "Successful" cuando se le da click a un boton del comboButton
+	 */
+	@Override
 	public void offMessage(AjaxBehaviorEvent event) {
 		this.menSuccessful = false;
 	}

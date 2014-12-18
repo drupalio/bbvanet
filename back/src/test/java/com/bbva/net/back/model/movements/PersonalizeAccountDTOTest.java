@@ -8,5 +8,4 @@ public class PersonalizeAccountDTOTest extends AbstractBbvaDTOTest<PersonalizeAc
 	protected PersonalizeAccountDTO getInstance() {
 		return new PersonalizeAccountDTO();
 	}
-
 }

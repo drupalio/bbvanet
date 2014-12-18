@@ -13,7 +13,7 @@
 
 	<composite:attribute name="id" type="String" />
 	<composite:attribute name="value" />
-	<composite:attribute name="test" />
+	<composite:attribute name="size" />
 	<composite:attribute name="ajax" required="false"
 		method-signature="void listen(javax.faces.event.AjaxBehaviorEvent)" />
 
@@ -21,15 +21,16 @@
 </composite:interface>
 
 <composite:implementation>
+	<div class="#{cc.attrs.size}">
+		<p:selectOneButton id="#{cc.attrs.id}" value="#{cc.attrs.value}">
+			<f:selectItem itemLabel="Activar" itemValue="true" />
+			<f:selectItem itemLabel="Desactivar" itemValue="false" />
 
-	<p:selectOneButton id="#{cc.attrs.id}" value="#{cc.attrs.value}">
-		<f:selectItem itemLabel="Activar" itemValue="true" />
-		<f:selectItem itemLabel="Desactivar" itemValue="false" />
-
-		<c:if test="#{cc.getValueExpression('ajax') != null}">
-			<f:ajax listener="#{cc.attrs.ajax}" render="@form" execute="@form" />
-		</c:if>
-	</p:selectOneButton>
+			<c:if test="#{cc.getValueExpression('ajax') != null}">
+				<f:ajax listener="#{cc.attrs.ajax}" render="@form" execute="@form" />
+			</c:if>
+		</p:selectOneButton>
+	</div>
 
 </composite:implementation>
 

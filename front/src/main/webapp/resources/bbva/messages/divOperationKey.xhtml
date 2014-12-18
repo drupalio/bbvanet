@@ -17,7 +17,7 @@
 	<composite:attribute name="value" />
 	<composite:attribute name="onclick" />
 	<composite:attribute name="name" />
-	<composite:attribute name="idDiv" />
+	<composite:attribute name="idInputDiv" />
 	<composite:attribute name="actionListener"
 		method-signature="void actionlistener(javax.faces.event.ActionEvent)" />
 
@@ -31,7 +31,8 @@
 			<div class="row validate-key">
 				<label class="col-xs-12 col-md-5"><span class="iconFont-218"></span>#{msg['text.operationKey']}</label>
 				<div class="col-xs-12 col-md-7 input-group">
-					<div class="col-xs-9 col-md-8 input-control" id="#{cc.attrs.idDiv}">
+					<div class="col-xs-9 col-md-8 input-control"
+						id="#{cc.attrs.idInputDiv}">
 						<p:inputText id="#{cc.attrs.idInput}" styleClass="form-control"
 							type="password" value="#{cc.attrs.value}"
 							onkeyup="enableDisable(this, #{cc.attrs.name})" />

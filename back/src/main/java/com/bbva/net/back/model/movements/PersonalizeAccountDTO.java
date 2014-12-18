@@ -24,10 +24,6 @@ public class PersonalizeAccountDTO implements Dto {
 	public PersonalizeAccountDTO() {
 	}
 
-	public PersonalizeAccountDTO(String defaultUser, String defaultAccount) {
-
-	}
-
 	public String getAlias() {
 		return alias;
 	}
