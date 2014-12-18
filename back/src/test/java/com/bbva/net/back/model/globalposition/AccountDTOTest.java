@@ -6,6 +6,7 @@ public class AccountDTOTest extends AbstractBbvaDTOTest<AccountDTO> {
 
 	@Override
 	protected AccountDTO getInstance() {
+
 		return new AccountDTO();
 	}
 
