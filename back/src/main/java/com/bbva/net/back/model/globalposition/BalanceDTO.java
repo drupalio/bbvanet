@@ -51,10 +51,10 @@ public class BalanceDTO implements Dto {
 		return new HashCodeBuilder().append(getAvailable()).append(getTotal()).hashCode();
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		return (obj instanceof BalanceDTO) && this.getAvailable().equals(((BalanceDTO)obj).getAvailable())
-				&& this.getTotal().equals(((BalanceDTO)obj).getTotal());
-	}
+	// @Override
+	// public boolean equals(Object obj) {
+	// return (obj instanceof BalanceDTO) && this.getAvailable().equals(((BalanceDTO)obj).getAvailable());
+	// // && this.getTotal().equals(((BalanceDTO)obj).getTotal());
+	// }
 
 }

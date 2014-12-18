@@ -50,10 +50,10 @@ public class QuotaDTO implements Serializable {
 		return new HashCodeBuilder().append(getAvailableQuota()).append(getTotalQuotaDebt()).toHashCode();
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		return (obj instanceof ProductDTO) && this.getAvailableQuota().equals(((QuotaDTO)obj).getAvailableQuota())
-				&& this.getTotalQuotaDebt().equals(((QuotaDTO)obj).getTotalQuotaDebt());
-	}
+	// @Override
+	// public boolean equals(Object obj) {
+	// return (obj instanceof ProductDTO) && this.getAvailableQuota().equals(((QuotaDTO)obj).getAvailableQuota())
+	// && this.getTotalQuotaDebt().equals(((QuotaDTO)obj).getTotalQuotaDebt());
+	// }
 
 }

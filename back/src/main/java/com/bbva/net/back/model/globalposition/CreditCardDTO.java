@@ -47,9 +47,9 @@ public class CreditCardDTO extends ProductDTO {
 		return new HashCodeBuilder().append(getBin()).toHashCode();
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		return (obj instanceof CreditCardDTO) && this.getBin().equals(((CreditCardDTO)obj).getBin());
-	}
+	// @Override
+	// public boolean equals(Object obj) {
+	// return (obj instanceof CreditCardDTO) && this.getBin().equals(((CreditCardDTO)obj).getBin());
+	// }
 
 }
