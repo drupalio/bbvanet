@@ -9,4 +9,11 @@ public class RotatingAccountDTOTest extends AbstractBbvaDTOTest<RotatingAccountD
 		return new RotatingAccountDTO();
 	}
 
+	/**
+	 * Invoke Equals Method
+	 */
+	@Override
+	public void checkEqualsMethod() {
+
+	}
 }
