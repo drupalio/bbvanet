@@ -102,3 +102,7 @@ div.ui-state-default {
 .ui-state-hover {
 	background: #e0f6fc !important;	
 }
+
+td.ui-datatable-subtable-header:empty {
+  display: none
+}

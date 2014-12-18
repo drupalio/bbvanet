@@ -13,7 +13,6 @@ public class AssetPredicated extends BbvaPredicate<ProductDTO> {
 
 	@Override
 	protected boolean eval(ProductDTO product) {
-
 		return product.isAsset();
 	}
 

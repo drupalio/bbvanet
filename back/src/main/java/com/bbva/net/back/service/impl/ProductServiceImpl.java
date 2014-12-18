@@ -3,26 +3,31 @@
  */
 package com.bbva.net.back.service.impl;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.PredicateUtils;
 import org.springframework.stereotype.Service;
 
 import com.bbva.czic.dto.net.EnumProductType;
-import com.bbva.net.back.command.ProductVisitorCommand;
 import com.bbva.net.back.model.commons.Money;
 import com.bbva.net.back.model.globalposition.AccountDTO;
+import com.bbva.net.back.model.globalposition.AdquirenceAccountDTO;
 import com.bbva.net.back.model.globalposition.CreditCardDTO;
 import com.bbva.net.back.model.globalposition.DepositDTO;
 import com.bbva.net.back.model.globalposition.FundDTO;
 import com.bbva.net.back.model.globalposition.GlobalProductsDTO;
 import com.bbva.net.back.model.globalposition.LeasingDTO;
+import com.bbva.net.back.model.globalposition.LoanDTO;
 import com.bbva.net.back.model.globalposition.ProductDTO;
 import com.bbva.net.back.model.globalposition.RotatingAccountDTO;
 import com.bbva.net.back.predicate.AssetPredicated;
 import com.bbva.net.back.predicate.ProductTypePredicate;
 import com.bbva.net.back.service.ProductService;
+import com.bbva.net.core.collection.BbvaPredicate;
 import com.bbva.net.core.utils.CollectionBbvaUtils;
 
 /**
@@ -62,6 +67,24 @@ public class ProductServiceImpl implements ProductService {
 
 	}
 
+	@Override
+	public Map<EnumProductType, Money> getTotals(GlobalProductsDTO globalProducts) {
+
+		final Map<EnumProductType, Money> totals = new HashMap<EnumProductType, Money>();
+
+		totals.put(EnumProductType.PC, getTotal(globalProducts.getAccounts()));
+		totals.put(EnumProductType.AQ, getTotal(globalProducts.getAdquirencia()));
+		totals.put(EnumProductType.TDC, getTotal(globalProducts.getCreditCards()));
+		totals.put(EnumProductType.RQ, getTotal(globalProducts.getRotatingAccounts()));
+		totals.put(EnumProductType.LI, getTotal(globalProducts.getLeasings()));
+		totals.put(EnumProductType.LO, getTotal(globalProducts.getLoan()));
+		totals.put(EnumProductType.SI, getTotal(globalProducts.getFunds()));
+		totals.put(EnumProductType.ED, getTotal(globalProducts.getElectronicDeposits()));
+
+		return totals;
+
+	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public Money getTotalProductsByType(final List<ProductDTO> products, final EnumProductType productType) {
@@ -72,58 +95,54 @@ public class ProductServiceImpl implements ProductService {
 		return getTotalCash(productsByType);
 	}
 
-	public boolean hasProductByType(GlobalProductsDTO globalProducts, final String producType) {
-
-		if (producType.equals("Cuantas")) {
-			return !CollectionUtils.isEmpty(globalProducts.getAccounts());
-		}
-		return false;
-	}
-
+	/**
+	 * 
+	 */
 	@Override
 	public List<ProductDTO> getProducts(GlobalProductsDTO globalProduct) {
 
-		List<ProductDTO> products = new ProductVisitorCommand<AccountDTO>(globalProduct.getAccounts()) {
+		final List<ProductDTO> products = new ArrayList<ProductDTO>();
 
-			@Override
-			protected ProductDTO getProduct(AccountDTO account) {
-				return account.getProduct();
-			}
-
-		}.add(new ProductVisitorCommand<FundDTO>(globalProduct.getFunds()) {
-
-			@Override
-			protected ProductDTO getProduct(FundDTO fund) {
-				return fund.getProduct();
-			}
-		}).add(new ProductVisitorCommand<RotatingAccountDTO>(globalProduct.getRotatingAccounts()) {
-
-			@Override
-			protected ProductDTO getProduct(RotatingAccountDTO rotatingAccount) {
-
-				return rotatingAccount.getLoan().getProduct();
-			}
-		}).add(new ProductVisitorCommand<LeasingDTO>(globalProduct.getLeasings()) {
-
-			@Override
-			protected ProductDTO getProduct(LeasingDTO leasing) {
-				return leasing.getLoan().getProduct();
-			}
-		}).add(new ProductVisitorCommand<CreditCardDTO>(globalProduct.getCreditCards()) {
-
-			@Override
-			protected ProductDTO getProduct(CreditCardDTO creditCard) {
-				return creditCard.getProduct();
-			}
-		}).add(new ProductVisitorCommand<DepositDTO>(globalProduct.getElectronicDeposits()) {
-
-			@Override
-			protected ProductDTO getProduct(DepositDTO deposit) {
-				return deposit.getProduct();
-			}
-		}).getProducts();
+		products.addAll(globalProduct.getAccounts());
+		products.addAll(globalProduct.getAdquirencia());
+		products.addAll(globalProduct.getCreditCards());
+		products.addAll(globalProduct.getElectronicDeposits());
+		products.addAll(globalProduct.getFunds());
+		products.addAll(globalProduct.getLeasings());
+		products.addAll(globalProduct.getLoan());
+		products.addAll(globalProduct.getRotatingAccounts());
 
 		return products;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public GlobalProductsDTO select(final GlobalProductsDTO globalProducts, final BbvaPredicate<ProductDTO> predicate) {
+
+		final GlobalProductsDTO result = new GlobalProductsDTO();
+
+		result.setAccounts((List<AccountDTO>)CollectionUtils.select(globalProducts.getAccounts(), predicate));
+		result.setAdquirencia((List<AdquirenceAccountDTO>)CollectionUtils.select(globalProducts.getAdquirencia(),
+				predicate));
+		result.setCreditCards((List<CreditCardDTO>)CollectionUtils.select(globalProducts.getCreditCards(), predicate));
+		result.setElectronicDeposits((List<DepositDTO>)CollectionUtils.select(globalProducts.getElectronicDeposits(),
+				predicate));
+		result.setFunds((List<FundDTO>)CollectionUtils.select(globalProducts.getFunds(), predicate));
+		result.setLeasings((List<LeasingDTO>)CollectionUtils.select(globalProducts.getLeasings(), predicate));
+		result.setLoan((List<LoanDTO>)CollectionUtils.select(globalProducts.getLoan(), predicate));
+		result.setRotatingAccounts((List<RotatingAccountDTO>)CollectionUtils.select(
+				globalProducts.getRotatingAccounts(), predicate));
+
+		return result;
+
+	}
+
+	/**
+	 * @param products
+	 * @return
+	 */
+	private <T extends ProductDTO> Money getTotal(final List<T> products) {
+		return getTotal(products);
 	}
 
 }

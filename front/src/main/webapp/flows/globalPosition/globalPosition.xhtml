@@ -14,7 +14,8 @@
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:jsf="http://xmlns.jcp.org/jsf"
 	xmlns:bbvaButton="http://java.sun.com/jsf/composite/bbva/button"
-	xmlns:bbvaInput="http://java.sun.com/jsf/composite/bbva/input">
+	xmlns:bbvaInput="http://java.sun.com/jsf/composite/bbva/input"
+	xmlns:c="http://java.sun.com/jstl/core">
 
 
 <ui:composition template="../../templates/defaultLayout.xhtml">
@@ -30,6 +31,8 @@
 
 	<ui:define name="contentLeft">
 
+		<c:set var="currency" value="$" />
+		
 		<bbvaContainer:productPanelGraphic title="Cuentas Personales">
 			<div class="table-tabs">
 				<bbvaGP:accountSearch listAccounts="#{customerProducts.accounts}" 
@@ -38,10 +41,10 @@
 				<bbvaGP:accountHeadTable listAccounts="#{customerProducts.accounts}"
 					listValueLikes="#{likes}" />
 				<bbvaGP:accountAdquirenciaTable listAccounts="#{customerProducts.accounts}"/>
-				<bbvaGP:accountTailTable listAccounts="#{customerProducts.accounts}" />
+				<bbvaGP:accountTailTable listAccounts="#{customerProductsHidden.accounts}" />
 			</div>
 			<div class="row afterTable">
-				<bbvaGP:productFooter listProduct="#{customerProducts.accounts}" />
+				<bbvaGP:productFooter listProduct="#{customerProductsHidden.accounts}" />
 				<bbvaGP:totalBalance util="Contable" currency="$" total="1234" subtotal="567"/>
 			</div>
 		</bbvaContainer:productPanelGraphic>
@@ -49,10 +52,10 @@
 		<bbvaContainer:productPanelGraphic title="Tarjetas">
 			<div class="table-tabs">
 				<bbvaGP:cardHeadTable listCards="#{customerProducts.creditCards}" />
-				<bbvaGP:cardTailTable listCards="#{customerProducts.creditCards}" />
+				<bbvaGP:cardTailTable listCards="#{customerProductsHidden.creditCards}" />
 			</div>
 			<div class="row afterTable">
-				<bbvaGP:productFooter listProduct="#{customerProducts.creditCards}" />
+				<bbvaGP:productFooter listProduct="#{customerProductsHidden.creditCards}" />
 				<bbvaGP:totalBalance util="Utilizado" currency="$" total="1234" subtotal="567"/>
 			</div>
 		</bbvaContainer:productPanelGraphic>
@@ -63,12 +66,12 @@
 				<bbvaGP:rotatingQuotaHeadTable
 					listQuota="#{customerProducts.rotatingAccounts}" />
 				<bbvaGP:rotatingQuotaTailTable
-					listQuota="#{customerProducts.rotatingAccounts}" />
+					listQuota="#{customerProductsHidden.rotatingAccounts}" />
 
 			</div>
 			<div class="row afterTable">
 				<bbvaGP:productFooter
-					listProduct="#{customerProducts.rotatingAccounts}" />
+					listProduct="#{customerProductsHidden.rotatingAccounts}" />
 				<bbvaGP:totalBalance total="1234"/>
 			</div>
 		</bbvaContainer:productPanel>
@@ -76,10 +79,10 @@
 		<bbvaContainer:productPanel title="Leasing">
 			<div class="table-tabs">
 				<bbvaGP:leasingHeadTable listLeasing="#{customerProducts.leasings}" />
-				<bbvaGP:leasingTailTable listLeasing="#{customerProducts.leasings}" />
+				<bbvaGP:leasingTailTable listLeasing="#{customerProductsHidden.leasings}" />
 			</div>
 			<div class="row afterTable">
-				<bbvaGP:productFooter listProduct="#{customerProducts.leasings}" />
+				<bbvaGP:productFooter listProduct="#{customerProductsHidden.leasings}" />
 				<bbvaGP:totalBalance total="1234" />
 			</div>
 		</bbvaContainer:productPanel>
@@ -87,7 +90,7 @@
 		<bbvaContainer:productPanel title="Pr&#233;stamos">
 			<div class="table-tabs">
 				<bbvaGP:loanHeadTable listLoan= "#{customerProducts.loan}" />
-				<bbvaGP:loanTailTable />
+				<bbvaGP:loanTailTable listLoan= "#{customerProductsHidden.loan}" />
 			</div>
 			<div class="row afterTable">
 				<bbvaGP:productFooter />
@@ -101,11 +104,11 @@
 				<bbvaGP:depositHeadTable
 					listDeposit="#{customerProducts.electronicDeposits}" />
 				<bbvaGP:depositTailTable
-					listDeposit="#{customerProducts.electronicDeposits}" />
+					listDeposit="#{customerProductsHidden.electronicDeposits}" />
 			</div>
 			<div class="row afterTable">
 				<bbvaGP:productFooter
-					listProduct="#{customerProducts.electronicDeposits}" />
+					listProduct="#{customerProductsHidden.electronicDeposits}" />
 				<bbvaGP:totalBalance util="Contable" currency="$" total="1234" subtotal="567"/>
 			</div>
 		</bbvaContainer:productPanelGraphic>
@@ -113,10 +116,10 @@
 		<bbvaContainer:productPanelGraphic title="Fondos de inversi&#243;n">
 			<div class="table-tabs">
 				<bbvaGP:investmentFundHeadTable listFund="#{customerProducts.funds}" />
-				<bbvaGP:investmentFundTailTable listFund="#{customerProducts.funds}" />
+				<bbvaGP:investmentFundTailTable listFund="#{customerProductsHidden.funds}" />
 			</div>
 			<div class="row afterTable">
-				<bbvaGP:productFooter listProduct="#{customerProducts.funds}" />
+				<bbvaGP:productFooter listProduct="#{customerProductsHidden.funds}" />
 				<bbvaGP:totalBalance total="1234"/>
 			</div>
 		</bbvaContainer:productPanelGraphic>
@@ -128,25 +131,6 @@
 
 		<bbvaSituation:globalSituationPanel />
 		
-		<bbvaAlert:alertsPanel header="Alertas y Novedades" numAlerts="8" />
-
-		<h:form>
-			
-			<p:inputText>
-				<p:ajax event="keyup" listener="#{globalPositionController.onKeyUp}" />
-			</p:inputText>
-
-			<h:outputLabel value="#{prueba.name}"></h:outputLabel>
-			<button jsf:action="refresh">
-				ACCIÓN
-				<f:ajax execute="@form" render="@form" />
-			</button>
-			<p:outputLabel>Selector</p:outputLabel>
-
-			<bbvaInput:selectOneMenuLikes valueList="#{likes}"></bbvaInput:selectOneMenuLikes>
-
-		</h:form>
-
 	</ui:define>
 
 </ui:composition>

@@ -28,6 +28,8 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	@Resource(name = "graphicPieDelegate")
 	private transient GraphicPieDelegate graphicPieDelegate;
 
+	private GlobalProductsDTO globalProductsDTO;
+
 	private SituationPiesUI situationGraphicPieUI;
 
 	private AccountDTO selectedProduct;
@@ -36,14 +38,6 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	private transient boolean stateGlobalPosition = true;
 
-	public boolean isStateGlobalPosition() {
-		return stateGlobalPosition;
-	}
-
-	public void setStateGlobalPosition(boolean stateGlobalPosition) {
-		this.stateGlobalPosition = stateGlobalPosition;
-	}
-
 	private enum ActivePanelType {
 
 		SITUATION, ASSET, FINANCIATION
@@ -51,7 +45,15 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	@PostConstruct
 	public void init() {
+
 		LOGGER.info("STARTING BBVA NET .................");
+
+		// Get GlobalProductsDTO by currentUser (visibles and hidden)
+		this.globalProductsDTO = this.globalPositionFacade.getGlobalProductsByUser(getCurrentUser());
+
+		// Calculate situation graphics panels
+		this.situationGraphicPieUI = graphicPieDelegate.getSituationGlobalProducts(this.globalProductsDTO);
+
 	}
 
 	@Override
@@ -61,11 +63,20 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	@Override
 	public GlobalProductsDTO getCustomerProducts() {
+		return this.globalPositionFacade.getGlobalProductsVisibles(globalProductsDTO);
+	}
 
-		final GlobalProductsDTO globalProductos = this.globalPositionFacade.getGlobalProductsByUser(getCurrentUser());
+	@Override
+	public GlobalProductsDTO getCustomerProductsHidden() {
+		return this.globalPositionFacade.getGlobalProductsHidden(globalProductsDTO);
+	}
 
-		situationGraphicPieUI = graphicPieDelegate.getSituationGlobalProducts(globalProductos);
-		return globalProductos;
+	public boolean isStateGlobalPosition() {
+		return stateGlobalPosition;
+	}
+
+	public void setStateGlobalPosition(boolean stateGlobalPosition) {
+		this.stateGlobalPosition = stateGlobalPosition;
 	}
 
 	public void renderPieSituation() {
@@ -137,22 +148,6 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	public AccountDTO getSelectAccount() {
 		return this.selectedProduct;
-	}
-
-	@Override
-	public GlobalProductsDTO getCustomerProductsNotVisible() {
-		final GlobalProductsDTO globalProductos = this.globalPositionFacade.getGlobalProductsByUserVisible(
-				getCurrentUser(), false);
-
-		return globalProductos;
-	}
-
-	@Override
-	public GlobalProductsDTO getCustomerProductsVisible() {
-		final GlobalProductsDTO globalProductos = this.globalPositionFacade.getGlobalProductsByUserVisible(
-				getCurrentUser(), true);
-
-		return globalProductos;
 	}
 
 }
