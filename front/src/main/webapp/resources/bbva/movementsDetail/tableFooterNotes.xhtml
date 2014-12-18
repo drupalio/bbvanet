@@ -15,13 +15,18 @@
 </composite:interface>
 
 <composite:implementation>
+	<h:head>
 
+		<h:outputStylesheet library="css" name="app.css" />
+
+	</h:head>
+	
 
 	<footer class="hidden-xs hidden-sm">
 		<h2>Notas</h2>
 		<div class="notes">
 			<p:inputText id="input" class="form-control" />
-			<p:commandButton value="Añadir nota" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn small"
+			<p:commandButton value="Añadir nota" styleClass="btn small"
 				type="button" />
 			<!-- <input type="text" class="form-control" placeholder="Añadir nota" /> -->
 			<!-- <button class="btn small" type="button">Añadir nota</button> -->

@@ -1,6 +1,6 @@
 package com.bbva.net.front.controller;
 
-import co.com.bbva.services.transactions.globalposition.schema.GlobalProducts;
+import com.bbva.net.back.model.globalposition.GlobalProductsDTO;
 
 /**
  * @author Entelgy
@@ -10,10 +10,10 @@ public interface GlobalPositionController {
 	/**
 	 * @return
 	 */
-	public GlobalProducts getCustomerProducts();
-	
-	public GlobalProducts getCustomerProductsVisible();
-	
-	public GlobalProducts getCustomerProductsNotVisible();
-	
+
+	public GlobalProductsDTO getCustomerProductsVisible();
+
+	public GlobalProductsDTO getCustomerProductsNotVisible();
+
+	GlobalProductsDTO getCustomerProducts();
 }

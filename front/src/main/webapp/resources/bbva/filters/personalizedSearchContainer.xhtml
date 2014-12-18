@@ -22,9 +22,11 @@
 </composite:interface>
 
 <composite:implementation>
-	<div class="panel-tab-body">
-		<h:form>
-		<h:messages />
+
+	<h:form>
+	<h:messages />	
+		<div class="panel-tab-body">
+			
 			<div class="tab-mobile tab-pane consultas active" id="tab-consultas">
 				<div class="panel-tab-body">
 					<div class="filters custom-search">
@@ -62,17 +64,13 @@
 							</a> <bbvaSearch:movementsFilter /></li>
 							<li class="filter-buttons">
 								<div>
-									<button class="btn btn-default hidden-xs hidden-sm">
-										#{msg['button.clean.filters']}<span class="trash-icon"></span>
-									</button>
-									<p:commandButton value="#{msg['button.clean.filters']}" />
-									<p:commandButton
-										actionListener="#{movementsCriteriaController.searchMovementByFilter}"
-										value="#{msg['button.see.result']}" />
-									<button class="btn btn-default">
-										#{msg['button.see.result']}<span class="document-view-icon"></span>
 
-									</button>
+									<p:commandButton value="#{msg['button.clean.filters']}"
+										styleClass="btn btn-default hidden-xs hidden-sm"
+										icon="trash-icon" />
+									<p:commandButton styleClass="btn btn-default"
+										actionListener="#{movementsCriteriaController.searchMovementByFilter}"
+										value="#{msg['button.see.result']}" icon="document-view-icon" />
 								</div>
 							</li>
 						</ul>
@@ -83,7 +81,7 @@
 
 				</div>
 			</div>
-		</h:form>
-	</div>
+		</div>
+	</h:form>
 </composite:implementation>
 </html>

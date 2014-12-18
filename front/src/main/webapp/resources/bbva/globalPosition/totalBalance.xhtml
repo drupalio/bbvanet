@@ -8,7 +8,9 @@
 	xmlns:pm="http://primefaces.org/mobile">
 
 <composite:interface>
+	<composite:attribute name="currency" type="String" />
 	<composite:attribute name="total" type="String" />
+	<composite:attribute name="subtotal" type="String" />
 	<composite:attribute name="util" type="String" />
 </composite:interface>
 
@@ -17,8 +19,8 @@
 	<div class="col-xs-12 col-md-6">
 		<ul class="balance-resume">
 			<li><span class="labeltx-info" style="font-size: 1.2em;">Saldo Total: </span> <span
-				class="balance">999#{cc.attrs.total}</span></li>
-			<li><span class="text-info">ghfjh#{cc.attrs.util}</span></li>
+				class="balance">#{cc.attrs.currency} #{cc.attrs.total}</span></li>
+			<li><span class="text-info">#{cc.attrs.util} #{cc.attrs.currency} #{cc.attrs.subtotal}</span></li>
 		</ul>
 	</div>
 

@@ -16,10 +16,11 @@
 	<composite:attribute name="classLi" type="String" />
 	<composite:attribute name="type" type="Integer" />
 	<composite:attribute name="icon" type="String" />
+	<composite:attribute name="role" type="String" />
 </composite:interface>
 
 <composite:implementation>
-	<li class="#{cc.attrs.classLi}"><a class="tab-head">#{cc.attrs.title}
+	<li class="#{cc.attrs.classLi}"><a class="tab-head" role-tab="#{cc.attrs.role}" >#{cc.attrs.title}
 			<c:if test="#{cc.attrs.type>=1}">
 				<span class="#{cc.attrs.icon} font-white hidden-md hidden-lg"></span>
 			</c:if> <c:if test="#{cc.attrs.type==2}">

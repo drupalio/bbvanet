@@ -1,0 +1,5400 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="globalPosition_wadl" soapui-version="5.0.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="globalPosition_wadl" type="rest" basePath="/czic/GlobalPosition" definitionUrl="file:/C:/Users/Entelgy/bbvaNet/bbvanet/webservices/src/main/resources/wadl/wadl/globalPosition_wadl.wadl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://Entelgy-107:8080/</con:endpoint><con:endpoint>http://localhost:8080</con:endpoint></con:endpoints><con:resource name="/V01" path="/V01"><con:settings/><con:parameters/><con:resource name="/customers/{customerId}/products" path="/customers/{customerId}/products"><con:settings/><con:parameters><con:parameter><con:name>customerId</con:name><con:value xsi:nil="true"/><con:style>TEMPLATE</con:style><con:default xsi:nil="true"/></con:parameter></con:parameters><con:method name="GET - getExtractGlobalBalance" method="GET"><con:settings/><con:parameters><con:parameter><con:name>$filter</con:name><con:value>(productType=={productType})</con:value><con:style>QUERY</con:style><con:default>(productType=={productType})</con:default></con:parameter><con:parameter><con:name>$fields</con:name><con:value>null</con:value><con:style>QUERY</con:style><con:default>null</con:default></con:parameter><con:parameter><con:name>$expands</con:name><con:value>null</con:value><con:style>QUERY</con:style><con:default>null</con:default></con:parameter><con:parameter><con:name>$sort</con:name><con:value>null</con:value><con:style>QUERY</con:style><con:default>null</con:default></con:parameter></con:parameters><con:representation type="RESPONSE" id=""><con:mediaType>application/json</con:mediaType><con:params/><con:element xsi:nil="true"/><con:description xsi:nil="true"/></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:9001</con:endpoint><con:request/><con:originalUri>http://localhost/czic/GlobalPosition/V01/customers//products</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource><con:resource name="/{idProduct}" path="/{idProduct}"><con:settings/><con:parameters><con:parameter><con:name>idProduct</con:name><con:value xsi:nil="true"/><con:style>TEMPLATE</con:style><con:default xsi:nil="true"/></con:parameter></con:parameters><con:method name="PUT - update" method="PUT"><con:settings/><con:parameters/><con:representation type="REQUEST" id=""><con:mediaType>application/json</con:mediaType><con:params/><con:element xsi:nil="true"/><con:description xsi:nil="true"/></con:representation><con:representation type="RESPONSE" id=""><con:mediaType>application/json</con:mediaType><con:params/><con:element xsi:nil="true"/><con:description xsi:nil="true"/></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings/><con:endpoint>http://localhost:8080</con:endpoint><con:parameters/></con:request></con:method></con:resource></con:resource></con:interface><con:restMockService port="8099" path="/" host="localhost" name="MockService_GlobalPosition" docroot=""><con:settings/><con:properties/><con:restMockAction name="/czic/GlobalPosition/V01" method="GET" resourcePath="/czic/GlobalPosition/V01"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
+	"id": "2020",
+	"type": "PC",
+	"name": "Cuenta",
+	"alias": "Mi Cuenta A0",
+	"financialState": "A",
+	"visible": true,
+	"operable": true,
+	"balance": {
+		"total": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"availableBalance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	"contactInfo": {
+		"phoneNumbers": [{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		},
+		{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		}],
+		"emails": [{
+			"source": "WEB",
+			"addres": "xxx@gmail.com",
+			"primary": true,
+			"active": true
+		},
+		{
+			"source": "WEB",
+			"addres": "yoyoyo@yahoo.com",
+			"primary": false,
+			"active": true
+		}]
+	},
+	"conditions": {
+		"category": "Some Category",
+		"description": "Some Description",
+		"openingDate": "17-12-2014",
+		"commission": "8",
+		"office": {
+			"code": "22",
+			"name": "Rosales",
+			"location": {
+				"city": {
+					"id": "01",
+					"name": "Bogota",
+					"state": {
+						"id": "Bogota DC",
+						"name": "Bogota",
+						"country": {
+							"id": "57",
+							"name": "Colombia"
+						}
+					}
+				},
+				"category": "Some Category"
+			},
+			"postalAddress": "A-345"
+		},
+		"mobilizationConditions": "Some mobilizationConditions"
+	},
+	"movement": [{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "411",
+		"concept": "Transferencia",
+		"sourceReference": "08-23",
+		"destinationReference": "559900",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	}]
+},
+{
+	"id": "2020",
+	"type": "PC",
+	"name": "Cuenta",
+	"alias": "Mi Cuenta A1",
+	"financialState": "A",
+	"visible": true,
+	"operable": true,
+	"balance": {
+		"total": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"availableBalance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	"contactInfo": {
+		"phoneNumbers": [{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		},
+		{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		}],
+		"emails": [{
+			"source": "WEB",
+			"addres": "xxx@gmail.com",
+			"primary": true,
+			"active": true
+		},
+		{
+			"source": "WEB",
+			"addres": "yoyoyo@yahoo.com",
+			"primary": false,
+			"active": true
+		}]
+	},
+	"conditions": {
+		"category": "Some Category",
+		"description": "Some Description",
+		"openingDate": "17-12-2014",
+		"commission": "8",
+		"office": {
+			"code": "22",
+			"name": "Rosales",
+			"location": {
+				"city": {
+					"id": "01",
+					"name": "Bogota",
+					"state": {
+						"id": "Bogota DC",
+						"name": "Bogota",
+						"country": {
+							"id": "57",
+							"name": "Colombia"
+						}
+					}
+				},
+				"category": "Some Category"
+			},
+			"postalAddress": "A-345"
+		},
+		"mobilizationConditions": "Some mobilizationConditions"
+	},
+	"movement": [{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "411",
+		"concept": "Transferencia",
+		"sourceReference": "08-23",
+		"destinationReference": "559900",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	}]
+},
+{
+	"id": "2020",
+	"type": "PC",
+	"name": "Cuenta",
+	"alias": "Mi Cuenta A2",
+	"financialState": "A",
+	"visible": true,
+	"operable": true,
+	"balance": {
+		"total": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"availableBalance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	"contactInfo": {
+		"phoneNumbers": [{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		},
+		{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		}],
+		"emails": [{
+			"source": "WEB",
+			"addres": "xxx@gmail.com",
+			"primary": true,
+			"active": true
+		},
+		{
+			"source": "WEB",
+			"addres": "yoyoyo@yahoo.com",
+			"primary": false,
+			"active": true
+		}]
+	},
+	"conditions": {
+		"category": "Some Category",
+		"description": "Some Description",
+		"openingDate": "17-12-2014",
+		"commission": "8",
+		"office": {
+			"code": "22",
+			"name": "Rosales",
+			"location": {
+				"city": {
+					"id": "01",
+					"name": "Bogota",
+					"state": {
+						"id": "Bogota DC",
+						"name": "Bogota",
+						"country": {
+							"id": "57",
+							"name": "Colombia"
+						}
+					}
+				},
+				"category": "Some Category"
+			},
+			"postalAddress": "A-345"
+		},
+		"mobilizationConditions": "Some mobilizationConditions"
+	},
+	"movement": [{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "411",
+		"concept": "Transferencia",
+		"sourceReference": "08-23",
+		"destinationReference": "559900",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	}]
+},
+{
+	"id": "2020",
+	"type": "PC",
+	"name": "Cuenta",
+	"alias": "Mi Cuenta A3",
+	"financialState": "A",
+	"visible": true,
+	"operable": true,
+	"balance": {
+		"total": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"availableBalance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	"contactInfo": {
+		"phoneNumbers": [{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		},
+		{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		}],
+		"emails": [{
+			"source": "WEB",
+			"addres": "xxx@gmail.com",
+			"primary": true,
+			"active": true
+		},
+		{
+			"source": "WEB",
+			"addres": "yoyoyo@yahoo.com",
+			"primary": false,
+			"active": true
+		}]
+	},
+	"conditions": {
+		"category": "Some Category",
+		"description": "Some Description",
+		"openingDate": "17-12-2014",
+		"commission": "8",
+		"office": {
+			"code": "22",
+			"name": "Rosales",
+			"location": {
+				"city": {
+					"id": "01",
+					"name": "Bogota",
+					"state": {
+						"id": "Bogota DC",
+						"name": "Bogota",
+						"country": {
+							"id": "57",
+							"name": "Colombia"
+						}
+					}
+				},
+				"category": "Some Category"
+			},
+			"postalAddress": "A-345"
+		},
+		"mobilizationConditions": "Some mobilizationConditions"
+	},
+	"movement": [{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "411",
+		"concept": "Transferencia",
+		"sourceReference": "08-23",
+		"destinationReference": "559900",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	}]
+},
+{
+	"id": "2020",
+	"type": "PC",
+	"name": "Cuenta",
+	"alias": "Mi Cuenta A4",
+	"financialState": "A",
+	"visible": true,
+	"operable": true,
+	"balance": {
+		"total": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"availableBalance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	"contactInfo": {
+		"phoneNumbers": [{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		},
+		{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		}],
+		"emails": [{
+			"source": "WEB",
+			"addres": "xxx@gmail.com",
+			"primary": true,
+			"active": true
+		},
+		{
+			"source": "WEB",
+			"addres": "yoyoyo@yahoo.com",
+			"primary": false,
+			"active": true
+		}]
+	},
+	"conditions": {
+		"category": "Some Category",
+		"description": "Some Description",
+		"openingDate": "17-12-2014",
+		"commission": "8",
+		"office": {
+			"code": "22",
+			"name": "Rosales",
+			"location": {
+				"city": {
+					"id": "01",
+					"name": "Bogota",
+					"state": {
+						"id": "Bogota DC",
+						"name": "Bogota",
+						"country": {
+							"id": "57",
+							"name": "Colombia"
+						}
+					}
+				},
+				"category": "Some Category"
+			},
+			"postalAddress": "A-345"
+		},
+		"mobilizationConditions": "Some mobilizationConditions"
+	},
+	"movement": [{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "411",
+		"concept": "Transferencia",
+		"sourceReference": "08-23",
+		"destinationReference": "559900",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	}]
+},
+{
+	"id": "2020",
+	"type": "PC",
+	"name": "Cuenta",
+	"alias": "Mi Cuenta A5",
+	"financialState": "A",
+	"visible": true,
+	"operable": true,
+	"balance": {
+		"total": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"availableBalance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	"contactInfo": {
+		"phoneNumbers": [{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		},
+		{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		}],
+		"emails": [{
+			"source": "WEB",
+			"addres": "xxx@gmail.com",
+			"primary": true,
+			"active": true
+		},
+		{
+			"source": "WEB",
+			"addres": "yoyoyo@yahoo.com",
+			"primary": false,
+			"active": true
+		}]
+	},
+	"conditions": {
+		"category": "Some Category",
+		"description": "Some Description",
+		"openingDate": "17-12-2014",
+		"commission": "8",
+		"office": {
+			"code": "22",
+			"name": "Rosales",
+			"location": {
+				"city": {
+					"id": "01",
+					"name": "Bogota",
+					"state": {
+						"id": "Bogota DC",
+						"name": "Bogota",
+						"country": {
+							"id": "57",
+							"name": "Colombia"
+						}
+					}
+				},
+				"category": "Some Category"
+			},
+			"postalAddress": "A-345"
+		},
+		"mobilizationConditions": "Some mobilizationConditions"
+	},
+	"movement": [{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "411",
+		"concept": "Transferencia",
+		"sourceReference": "08-23",
+		"destinationReference": "559900",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	}]
+},
+{
+	"id": "2020",
+	"type": "LO",
+	"name": "Cuenta",
+	"alias": "Mi Cuenta A6",
+	"financialState": "A",
+	"visible": true,
+	"operable": true,
+	"balance": {
+		"total": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"availableBalance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	"contactInfo": {
+		"phoneNumbers": [{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		},
+		{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		}],
+		"emails": [{
+			"source": "WEB",
+			"addres": "xxx@gmail.com",
+			"primary": true,
+			"active": true
+		},
+		{
+			"source": "WEB",
+			"addres": "yoyoyo@yahoo.com",
+			"primary": false,
+			"active": true
+		}]
+	},
+	"conditions": {
+		"category": "Some Category",
+		"description": "Some Description",
+		"openingDate": "17-12-2014",
+		"commission": "8",
+		"office": {
+			"code": "22",
+			"name": "Rosales",
+			"location": {
+				"city": {
+					"id": "01",
+					"name": "Bogota",
+					"state": {
+						"id": "Bogota DC",
+						"name": "Bogota",
+						"country": {
+							"id": "57",
+							"name": "Colombia"
+						}
+					}
+				},
+				"category": "Some Category"
+			},
+			"postalAddress": "A-345"
+		},
+		"mobilizationConditions": "Some mobilizationConditions"
+	},
+	"movement": [{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "411",
+		"concept": "Transferencia",
+		"sourceReference": "08-23",
+		"destinationReference": "559900",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	}]
+},
+{
+	"id": "2020",
+	"type": "PC",
+	"name": "Cuenta",
+	"alias": "Mi Cuenta A7",
+	"financialState": "A",
+	"visible": false,
+	"operable": true,
+	"balance": {
+		"total": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"availableBalance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	"contactInfo": {
+		"phoneNumbers": [{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		},
+		{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		}],
+		"emails": [{
+			"source": "WEB",
+			"addres": "xxx@gmail.com",
+			"primary": true,
+			"active": true
+		},
+		{
+			"source": "WEB",
+			"addres": "yoyoyo@yahoo.com",
+			"primary": false,
+			"active": true
+		}]
+	},
+	"conditions": {
+		"category": "Some Category",
+		"description": "Some Description",
+		"openingDate": "17-12-2014",
+		"commission": "8",
+		"office": {
+			"code": "22",
+			"name": "Rosales",
+			"location": {
+				"city": {
+					"id": "01",
+					"name": "Bogota",
+					"state": {
+						"id": "Bogota DC",
+						"name": "Bogota",
+						"country": {
+							"id": "57",
+							"name": "Colombia"
+						}
+					}
+				},
+				"category": "Some Category"
+			},
+			"postalAddress": "A-345"
+		},
+		"mobilizationConditions": "Some mobilizationConditions"
+	},
+	"movement": [{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "411",
+		"concept": "Transferencia",
+		"sourceReference": "08-23",
+		"destinationReference": "559900",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	}]
+},
+{
+	"id": "2020",
+	"type": "SI",
+	"name": "Cuenta",
+	"alias": "Mi Cuenta A8",
+	"financialState": "A",
+	"visible": false,
+	"operable": true,
+	"balance": {
+		"total": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"availableBalance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	"contactInfo": {
+		"phoneNumbers": [{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		},
+		{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		}],
+		"emails": [{
+			"source": "WEB",
+			"addres": "xxx@gmail.com",
+			"primary": true,
+			"active": true
+		},
+		{
+			"source": "WEB",
+			"addres": "yoyoyo@yahoo.com",
+			"primary": false,
+			"active": true
+		}]
+	},
+	"conditions": {
+		"category": "Some Category",
+		"description": "Some Description",
+		"openingDate": "17-12-2014",
+		"commission": "8",
+		"office": {
+			"code": "22",
+			"name": "Rosales",
+			"location": {
+				"city": {
+					"id": "01",
+					"name": "Bogota",
+					"state": {
+						"id": "Bogota DC",
+						"name": "Bogota",
+						"country": {
+							"id": "57",
+							"name": "Colombia"
+						}
+					}
+				},
+				"category": "Some Category"
+			},
+			"postalAddress": "A-345"
+		},
+		"mobilizationConditions": "Some mobilizationConditions"
+	},
+	"movement": [{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "411",
+		"concept": "Transferencia",
+		"sourceReference": "08-23",
+		"destinationReference": "559900",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	}]
+},
+{
+	"id": "2020",
+	"type": "ED",
+	"name": "Cuenta",
+	"alias": "Mi Cuenta A9",
+	"financialState": "A",
+	"visible": false,
+	"operable": true,
+	"balance": {
+		"total": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"availableBalance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	"contactInfo": {
+		"phoneNumbers": [{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		},
+		{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		}],
+		"emails": [{
+			"source": "WEB",
+			"addres": "xxx@gmail.com",
+			"primary": true,
+			"active": true
+		},
+		{
+			"source": "WEB",
+			"addres": "yoyoyo@yahoo.com",
+			"primary": false,
+			"active": true
+		}]
+	},
+	"conditions": {
+		"category": "Some Category",
+		"description": "Some Description",
+		"openingDate": "17-12-2014",
+		"commission": "8",
+		"office": {
+			"code": "22",
+			"name": "Rosales",
+			"location": {
+				"city": {
+					"id": "01",
+					"name": "Bogota",
+					"state": {
+						"id": "Bogota DC",
+						"name": "Bogota",
+						"country": {
+							"id": "57",
+							"name": "Colombia"
+						}
+					}
+				},
+				"category": "Some Category"
+			},
+			"postalAddress": "A-345"
+		},
+		"mobilizationConditions": "Some mobilizationConditions"
+	},
+	"movement": [{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "411",
+		"concept": "Transferencia",
+		"sourceReference": "08-23",
+		"destinationReference": "559900",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	}]
+},
+{
+	"id": "2020",
+	"type": "AQ",
+	"name": "Cuenta",
+	"alias": "Mi Cuenta A10",
+	"financialState": "A",
+	"visible": true,
+	"operable": true,
+	"balance": {
+		"total": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"availableBalance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	"contactInfo": {
+		"phoneNumbers": [{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		},
+		{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		}],
+		"emails": [{
+			"source": "WEB",
+			"addres": "xxx@gmail.com",
+			"primary": true,
+			"active": true
+		},
+		{
+			"source": "WEB",
+			"addres": "yoyoyo@yahoo.com",
+			"primary": false,
+			"active": true
+		}]
+	},
+	"conditions": {
+		"category": "Some Category",
+		"description": "Some Description",
+		"openingDate": "17-12-2014",
+		"commission": "8",
+		"office": {
+			"code": "22",
+			"name": "Rosales",
+			"location": {
+				"city": {
+					"id": "01",
+					"name": "Bogota",
+					"state": {
+						"id": "Bogota DC",
+						"name": "Bogota",
+						"country": {
+							"id": "57",
+							"name": "Colombia"
+						}
+					}
+				},
+				"category": "Some Category"
+			},
+			"postalAddress": "A-345"
+		},
+		"mobilizationConditions": "Some mobilizationConditions"
+	},
+	"movement": [{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "411",
+		"concept": "Transferencia",
+		"sourceReference": "08-23",
+		"destinationReference": "559900",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	}]
+},
+{
+	"id": "2020",
+	"type": "TDC",
+	"name": "Cuenta",
+	"alias": "Mi Cuenta A11",
+	"financialState": "A",
+	"visible": true,
+	"operable": true,
+	"balance": {
+		"total": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"availableBalance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	"contactInfo": {
+		"phoneNumbers": [{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		},
+		{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		}],
+		"emails": [{
+			"source": "WEB",
+			"addres": "xxx@gmail.com",
+			"primary": true,
+			"active": true
+		},
+		{
+			"source": "WEB",
+			"addres": "yoyoyo@yahoo.com",
+			"primary": false,
+			"active": true
+		}]
+	},
+	"conditions": {
+		"category": "Some Category",
+		"description": "Some Description",
+		"openingDate": "17-12-2014",
+		"commission": "8",
+		"office": {
+			"code": "22",
+			"name": "Rosales",
+			"location": {
+				"city": {
+					"id": "01",
+					"name": "Bogota",
+					"state": {
+						"id": "Bogota DC",
+						"name": "Bogota",
+						"country": {
+							"id": "57",
+							"name": "Colombia"
+						}
+					}
+				},
+				"category": "Some Category"
+			},
+			"postalAddress": "A-345"
+		},
+		"mobilizationConditions": "Some mobilizationConditions"
+	},
+	"movement": [{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "411",
+		"concept": "Transferencia",
+		"sourceReference": "08-23",
+		"destinationReference": "559900",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	}]
+},
+{
+	"id": "2020",
+	"type": "TDC",
+	"name": "Cuenta",
+	"alias": "Mi Cuenta A12",
+	"financialState": "A",
+	"visible": true,
+	"operable": true,
+	"balance": {
+		"total": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"availableBalance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	"contactInfo": {
+		"phoneNumbers": [{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		},
+		{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		}],
+		"emails": [{
+			"source": "WEB",
+			"addres": "xxx@gmail.com",
+			"primary": true,
+			"active": true
+		},
+		{
+			"source": "WEB",
+			"addres": "yoyoyo@yahoo.com",
+			"primary": false,
+			"active": true
+		}]
+	},
+	"conditions": {
+		"category": "Some Category",
+		"description": "Some Description",
+		"openingDate": "17-12-2014",
+		"commission": "8",
+		"office": {
+			"code": "22",
+			"name": "Rosales",
+			"location": {
+				"city": {
+					"id": "01",
+					"name": "Bogota",
+					"state": {
+						"id": "Bogota DC",
+						"name": "Bogota",
+						"country": {
+							"id": "57",
+							"name": "Colombia"
+						}
+					}
+				},
+				"category": "Some Category"
+			},
+			"postalAddress": "A-345"
+		},
+		"mobilizationConditions": "Some mobilizationConditions"
+	},
+	"movement": [{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "411",
+		"concept": "Transferencia",
+		"sourceReference": "08-23",
+		"destinationReference": "559900",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	}]
+},
+{
+	"id": "2020",
+	"type": "LI",
+	"name": "Cuenta",
+	"alias": "Mi Cuenta A13",
+	"financialState": "A",
+	"visible": true,
+	"operable": true,
+	"balance": {
+		"total": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"availableBalance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	"contactInfo": {
+		"phoneNumbers": [{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		},
+		{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		}],
+		"emails": [{
+			"source": "WEB",
+			"addres": "xxx@gmail.com",
+			"primary": true,
+			"active": true
+		},
+		{
+			"source": "WEB",
+			"addres": "yoyoyo@yahoo.com",
+			"primary": false,
+			"active": true
+		}]
+	},
+	"conditions": {
+		"category": "Some Category",
+		"description": "Some Description",
+		"openingDate": "17-12-2014",
+		"commission": "8",
+		"office": {
+			"code": "22",
+			"name": "Rosales",
+			"location": {
+				"city": {
+					"id": "01",
+					"name": "Bogota",
+					"state": {
+						"id": "Bogota DC",
+						"name": "Bogota",
+						"country": {
+							"id": "57",
+							"name": "Colombia"
+						}
+					}
+				},
+				"category": "Some Category"
+			},
+			"postalAddress": "A-345"
+		},
+		"mobilizationConditions": "Some mobilizationConditions"
+	},
+	"movement": [{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "411",
+		"concept": "Transferencia",
+		"sourceReference": "08-23",
+		"destinationReference": "559900",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	}]
+},
+{
+	"id": "2020",
+	"type": "TDC",
+	"name": "Cuenta",
+	"alias": "Mi Cuenta A14",
+	"financialState": "A",
+	"visible": true,
+	"operable": true,
+	"balance": {
+		"total": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"availableBalance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	"contactInfo": {
+		"phoneNumbers": [{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		},
+		{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		}],
+		"emails": [{
+			"source": "WEB",
+			"addres": "xxx@gmail.com",
+			"primary": true,
+			"active": true
+		},
+		{
+			"source": "WEB",
+			"addres": "yoyoyo@yahoo.com",
+			"primary": false,
+			"active": true
+		}]
+	},
+	"conditions": {
+		"category": "Some Category",
+		"description": "Some Description",
+		"openingDate": "17-12-2014",
+		"commission": "8",
+		"office": {
+			"code": "22",
+			"name": "Rosales",
+			"location": {
+				"city": {
+					"id": "01",
+					"name": "Bogota",
+					"state": {
+						"id": "Bogota DC",
+						"name": "Bogota",
+						"country": {
+							"id": "57",
+							"name": "Colombia"
+						}
+					}
+				},
+				"category": "Some Category"
+			},
+			"postalAddress": "A-345"
+		},
+		"mobilizationConditions": "Some mobilizationConditions"
+	},
+	"movement": [{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "411",
+		"concept": "Transferencia",
+		"sourceReference": "08-23",
+		"destinationReference": "559900",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	}]
+},
+{
+	"id": "2020",
+	"type": "LI",
+	"name": "Cuenta",
+	"alias": "Mi Cuenta A15",
+	"financialState": "A",
+	"visible": true,
+	"operable": true,
+	"balance": {
+		"total": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"availableBalance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	"contactInfo": {
+		"phoneNumbers": [{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		},
+		{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		}],
+		"emails": [{
+			"source": "WEB",
+			"addres": "xxx@gmail.com",
+			"primary": true,
+			"active": true
+		},
+		{
+			"source": "WEB",
+			"addres": "yoyoyo@yahoo.com",
+			"primary": false,
+			"active": true
+		}]
+	},
+	"conditions": {
+		"category": "Some Category",
+		"description": "Some Description",
+		"openingDate": "17-12-2014",
+		"commission": "8",
+		"office": {
+			"code": "22",
+			"name": "Rosales",
+			"location": {
+				"city": {
+					"id": "01",
+					"name": "Bogota",
+					"state": {
+						"id": "Bogota DC",
+						"name": "Bogota",
+						"country": {
+							"id": "57",
+							"name": "Colombia"
+						}
+					}
+				},
+				"category": "Some Category"
+			},
+			"postalAddress": "A-345"
+		},
+		"mobilizationConditions": "Some mobilizationConditions"
+	},
+	"movement": [{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "411",
+		"concept": "Transferencia",
+		"sourceReference": "08-23",
+		"destinationReference": "559900",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	}]
+},
+{
+	"id": "2020",
+	"type": "RQ",
+	"name": "Cuenta",
+	"alias": "Mi Cuenta A16",
+	"financialState": "A",
+	"visible": true,
+	"operable": true,
+	"balance": {
+		"total": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"availableBalance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	"contactInfo": {
+		"phoneNumbers": [{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		},
+		{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		}],
+		"emails": [{
+			"source": "WEB",
+			"addres": "xxx@gmail.com",
+			"primary": true,
+			"active": true
+		},
+		{
+			"source": "WEB",
+			"addres": "yoyoyo@yahoo.com",
+			"primary": false,
+			"active": true
+		}]
+	},
+	"conditions": {
+		"category": "Some Category",
+		"description": "Some Description",
+		"openingDate": "17-12-2014",
+		"commission": "8",
+		"office": {
+			"code": "22",
+			"name": "Rosales",
+			"location": {
+				"city": {
+					"id": "01",
+					"name": "Bogota",
+					"state": {
+						"id": "Bogota DC",
+						"name": "Bogota",
+						"country": {
+							"id": "57",
+							"name": "Colombia"
+						}
+					}
+				},
+				"category": "Some Category"
+			},
+			"postalAddress": "A-345"
+		},
+		"mobilizationConditions": "Some mobilizationConditions"
+	},
+	"movement": [{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "411",
+		"concept": "Transferencia",
+		"sourceReference": "08-23",
+		"destinationReference": "559900",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	}]
+},
+{
+	"id": "2020",
+	"type": "RQ",
+	"name": "Cuenta",
+	"alias": "Mi Cuenta A17",
+	"financialState": "A",
+	"visible": true,
+	"operable": true,
+	"balance": {
+		"total": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"availableBalance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	"contactInfo": {
+		"phoneNumbers": [{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		},
+		{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		}],
+		"emails": [{
+			"source": "WEB",
+			"addres": "xxx@gmail.com",
+			"primary": true,
+			"active": true
+		},
+		{
+			"source": "WEB",
+			"addres": "yoyoyo@yahoo.com",
+			"primary": false,
+			"active": true
+		}]
+	},
+	"conditions": {
+		"category": "Some Category",
+		"description": "Some Description",
+		"openingDate": "17-12-2014",
+		"commission": "8",
+		"office": {
+			"code": "22",
+			"name": "Rosales",
+			"location": {
+				"city": {
+					"id": "01",
+					"name": "Bogota",
+					"state": {
+						"id": "Bogota DC",
+						"name": "Bogota",
+						"country": {
+							"id": "57",
+							"name": "Colombia"
+						}
+					}
+				},
+				"category": "Some Category"
+			},
+			"postalAddress": "A-345"
+		},
+		"mobilizationConditions": "Some mobilizationConditions"
+	},
+	"movement": [{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "411",
+		"concept": "Transferencia",
+		"sourceReference": "08-23",
+		"destinationReference": "559900",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	}]
+},
+{
+	"id": "2020",
+	"type": "AQ",
+	"name": "Cuenta",
+	"alias": "Mi Cuenta A18",
+	"financialState": "A",
+	"visible": true,
+	"operable": true,
+	"balance": {
+		"total": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"availableBalance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	"contactInfo": {
+		"phoneNumbers": [{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		},
+		{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		}],
+		"emails": [{
+			"source": "WEB",
+			"addres": "xxx@gmail.com",
+			"primary": true,
+			"active": true
+		},
+		{
+			"source": "WEB",
+			"addres": "yoyoyo@yahoo.com",
+			"primary": false,
+			"active": true
+		}]
+	},
+	"conditions": {
+		"category": "Some Category",
+		"description": "Some Description",
+		"openingDate": "17-12-2014",
+		"commission": "8",
+		"office": {
+			"code": "22",
+			"name": "Rosales",
+			"location": {
+				"city": {
+					"id": "01",
+					"name": "Bogota",
+					"state": {
+						"id": "Bogota DC",
+						"name": "Bogota",
+						"country": {
+							"id": "57",
+							"name": "Colombia"
+						}
+					}
+				},
+				"category": "Some Category"
+			},
+			"postalAddress": "A-345"
+		},
+		"mobilizationConditions": "Some mobilizationConditions"
+	},
+	"movement": [{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "411",
+		"concept": "Transferencia",
+		"sourceReference": "08-23",
+		"destinationReference": "559900",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	}]
+},
+{
+	"id": "2020",
+	"type": "LI",
+	"name": "Cuenta",
+	"alias": "Mi Cuenta A19",
+	"financialState": "A",
+	"visible": true,
+	"operable": true,
+	"balance": {
+		"total": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"availableBalance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	"contactInfo": {
+		"phoneNumbers": [{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		},
+		{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		}],
+		"emails": [{
+			"source": "WEB",
+			"addres": "xxx@gmail.com",
+			"primary": true,
+			"active": true
+		},
+		{
+			"source": "WEB",
+			"addres": "yoyoyo@yahoo.com",
+			"primary": false,
+			"active": true
+		}]
+	},
+	"conditions": {
+		"category": "Some Category",
+		"description": "Some Description",
+		"openingDate": "17-12-2014",
+		"commission": "8",
+		"office": {
+			"code": "22",
+			"name": "Rosales",
+			"location": {
+				"city": {
+					"id": "01",
+					"name": "Bogota",
+					"state": {
+						"id": "Bogota DC",
+						"name": "Bogota",
+						"country": {
+							"id": "57",
+							"name": "Colombia"
+						}
+					}
+				},
+				"category": "Some Category"
+			},
+			"postalAddress": "A-345"
+		},
+		"mobilizationConditions": "Some mobilizationConditions"
+	},
+	"movement": [{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "411",
+		"concept": "Transferencia",
+		"sourceReference": "08-23",
+		"destinationReference": "559900",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	}]
+}]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/GlobalPosition/V01/customers//products" method="GET" resourcePath="/czic/GlobalPosition/V01/customers//products"><con:settings/><con:defaultResponse xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
+	"id": "2020",
+	"type": "PC",
+	"name": "Cuenta",
+	"alias": "Mi Cuenta A0",
+	"financialState": "A",
+	"visible": true,
+	"operable": true,
+	"balance": {
+		"total": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"availableBalance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	"contactInfo": {
+		"phoneNumbers": [{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		},
+		{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		}],
+		"emails": [{
+			"source": "WEB",
+			"addres": "xxx@gmail.com",
+			"primary": true,
+			"active": true
+		},
+		{
+			"source": "WEB",
+			"addres": "yoyoyo@yahoo.com",
+			"primary": false,
+			"active": true
+		}]
+	},
+	"conditions": {
+		"category": "Some Category",
+		"description": "Some Description",
+		"openingDate": "17-12-2014",
+		"commission": "8",
+		"office": {
+			"code": "22",
+			"name": "Rosales",
+			"location": {
+				"city": {
+					"id": "01",
+					"name": "Bogota",
+					"state": {
+						"id": "Bogota DC",
+						"name": "Bogota",
+						"country": {
+							"id": "57",
+							"name": "Colombia"
+						}
+					}
+				},
+				"category": "Some Category"
+			},
+			"postalAddress": "A-345"
+		},
+		"mobilizationConditions": "Some mobilizationConditions"
+	},
+	"movement": [{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "411",
+		"concept": "Transferencia",
+		"sourceReference": "08-23",
+		"destinationReference": "559900",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	}]
+},
+{
+	"id": "2020",
+	"type": "PC",
+	"name": "Cuenta",
+	"alias": "Mi Cuenta A1",
+	"financialState": "A",
+	"visible": true,
+	"operable": true,
+	"balance": {
+		"total": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"availableBalance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	"contactInfo": {
+		"phoneNumbers": [{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		},
+		{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		}],
+		"emails": [{
+			"source": "WEB",
+			"addres": "xxx@gmail.com",
+			"primary": true,
+			"active": true
+		},
+		{
+			"source": "WEB",
+			"addres": "yoyoyo@yahoo.com",
+			"primary": false,
+			"active": true
+		}]
+	},
+	"conditions": {
+		"category": "Some Category",
+		"description": "Some Description",
+		"openingDate": "17-12-2014",
+		"commission": "8",
+		"office": {
+			"code": "22",
+			"name": "Rosales",
+			"location": {
+				"city": {
+					"id": "01",
+					"name": "Bogota",
+					"state": {
+						"id": "Bogota DC",
+						"name": "Bogota",
+						"country": {
+							"id": "57",
+							"name": "Colombia"
+						}
+					}
+				},
+				"category": "Some Category"
+			},
+			"postalAddress": "A-345"
+		},
+		"mobilizationConditions": "Some mobilizationConditions"
+	},
+	"movement": [{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "411",
+		"concept": "Transferencia",
+		"sourceReference": "08-23",
+		"destinationReference": "559900",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	}]
+},
+{
+	"id": "2020",
+	"type": "PC",
+	"name": "Cuenta",
+	"alias": "Mi Cuenta A2",
+	"financialState": "A",
+	"visible": true,
+	"operable": true,
+	"balance": {
+		"total": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"availableBalance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	"contactInfo": {
+		"phoneNumbers": [{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		},
+		{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		}],
+		"emails": [{
+			"source": "WEB",
+			"addres": "xxx@gmail.com",
+			"primary": true,
+			"active": true
+		},
+		{
+			"source": "WEB",
+			"addres": "yoyoyo@yahoo.com",
+			"primary": false,
+			"active": true
+		}]
+	},
+	"conditions": {
+		"category": "Some Category",
+		"description": "Some Description",
+		"openingDate": "17-12-2014",
+		"commission": "8",
+		"office": {
+			"code": "22",
+			"name": "Rosales",
+			"location": {
+				"city": {
+					"id": "01",
+					"name": "Bogota",
+					"state": {
+						"id": "Bogota DC",
+						"name": "Bogota",
+						"country": {
+							"id": "57",
+							"name": "Colombia"
+						}
+					}
+				},
+				"category": "Some Category"
+			},
+			"postalAddress": "A-345"
+		},
+		"mobilizationConditions": "Some mobilizationConditions"
+	},
+	"movement": [{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "411",
+		"concept": "Transferencia",
+		"sourceReference": "08-23",
+		"destinationReference": "559900",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	}]
+},
+{
+	"id": "2020",
+	"type": "PC",
+	"name": "Cuenta",
+	"alias": "Mi Cuenta A3",
+	"financialState": "A",
+	"visible": true,
+	"operable": true,
+	"balance": {
+		"total": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"availableBalance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	"contactInfo": {
+		"phoneNumbers": [{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		},
+		{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		}],
+		"emails": [{
+			"source": "WEB",
+			"addres": "xxx@gmail.com",
+			"primary": true,
+			"active": true
+		},
+		{
+			"source": "WEB",
+			"addres": "yoyoyo@yahoo.com",
+			"primary": false,
+			"active": true
+		}]
+	},
+	"conditions": {
+		"category": "Some Category",
+		"description": "Some Description",
+		"openingDate": "17-12-2014",
+		"commission": "8",
+		"office": {
+			"code": "22",
+			"name": "Rosales",
+			"location": {
+				"city": {
+					"id": "01",
+					"name": "Bogota",
+					"state": {
+						"id": "Bogota DC",
+						"name": "Bogota",
+						"country": {
+							"id": "57",
+							"name": "Colombia"
+						}
+					}
+				},
+				"category": "Some Category"
+			},
+			"postalAddress": "A-345"
+		},
+		"mobilizationConditions": "Some mobilizationConditions"
+	},
+	"movement": [{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "411",
+		"concept": "Transferencia",
+		"sourceReference": "08-23",
+		"destinationReference": "559900",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	}]
+},
+{
+	"id": "2020",
+	"type": "PC",
+	"name": "Cuenta",
+	"alias": "Mi Cuenta A4",
+	"financialState": "A",
+	"visible": true,
+	"operable": true,
+	"balance": {
+		"total": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"availableBalance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	"contactInfo": {
+		"phoneNumbers": [{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		},
+		{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		}],
+		"emails": [{
+			"source": "WEB",
+			"addres": "xxx@gmail.com",
+			"primary": true,
+			"active": true
+		},
+		{
+			"source": "WEB",
+			"addres": "yoyoyo@yahoo.com",
+			"primary": false,
+			"active": true
+		}]
+	},
+	"conditions": {
+		"category": "Some Category",
+		"description": "Some Description",
+		"openingDate": "17-12-2014",
+		"commission": "8",
+		"office": {
+			"code": "22",
+			"name": "Rosales",
+			"location": {
+				"city": {
+					"id": "01",
+					"name": "Bogota",
+					"state": {
+						"id": "Bogota DC",
+						"name": "Bogota",
+						"country": {
+							"id": "57",
+							"name": "Colombia"
+						}
+					}
+				},
+				"category": "Some Category"
+			},
+			"postalAddress": "A-345"
+		},
+		"mobilizationConditions": "Some mobilizationConditions"
+	},
+	"movement": [{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "411",
+		"concept": "Transferencia",
+		"sourceReference": "08-23",
+		"destinationReference": "559900",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	}]
+},
+{
+	"id": "2020",
+	"type": "PC",
+	"name": "Cuenta",
+	"alias": "Mi Cuenta A5",
+	"financialState": "A",
+	"visible": true,
+	"operable": true,
+	"balance": {
+		"total": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"availableBalance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	"contactInfo": {
+		"phoneNumbers": [{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		},
+		{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		}],
+		"emails": [{
+			"source": "WEB",
+			"addres": "xxx@gmail.com",
+			"primary": true,
+			"active": true
+		},
+		{
+			"source": "WEB",
+			"addres": "yoyoyo@yahoo.com",
+			"primary": false,
+			"active": true
+		}]
+	},
+	"conditions": {
+		"category": "Some Category",
+		"description": "Some Description",
+		"openingDate": "17-12-2014",
+		"commission": "8",
+		"office": {
+			"code": "22",
+			"name": "Rosales",
+			"location": {
+				"city": {
+					"id": "01",
+					"name": "Bogota",
+					"state": {
+						"id": "Bogota DC",
+						"name": "Bogota",
+						"country": {
+							"id": "57",
+							"name": "Colombia"
+						}
+					}
+				},
+				"category": "Some Category"
+			},
+			"postalAddress": "A-345"
+		},
+		"mobilizationConditions": "Some mobilizationConditions"
+	},
+	"movement": [{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "411",
+		"concept": "Transferencia",
+		"sourceReference": "08-23",
+		"destinationReference": "559900",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	}]
+},
+{
+	"id": "2020",
+	"type": "LO",
+	"name": "Cuenta",
+	"alias": "Mi Cuenta A6",
+	"financialState": "A",
+	"visible": true,
+	"operable": true,
+	"balance": {
+		"total": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"availableBalance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	"contactInfo": {
+		"phoneNumbers": [{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		},
+		{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		}],
+		"emails": [{
+			"source": "WEB",
+			"addres": "xxx@gmail.com",
+			"primary": true,
+			"active": true
+		},
+		{
+			"source": "WEB",
+			"addres": "yoyoyo@yahoo.com",
+			"primary": false,
+			"active": true
+		}]
+	},
+	"conditions": {
+		"category": "Some Category",
+		"description": "Some Description",
+		"openingDate": "17-12-2014",
+		"commission": "8",
+		"office": {
+			"code": "22",
+			"name": "Rosales",
+			"location": {
+				"city": {
+					"id": "01",
+					"name": "Bogota",
+					"state": {
+						"id": "Bogota DC",
+						"name": "Bogota",
+						"country": {
+							"id": "57",
+							"name": "Colombia"
+						}
+					}
+				},
+				"category": "Some Category"
+			},
+			"postalAddress": "A-345"
+		},
+		"mobilizationConditions": "Some mobilizationConditions"
+	},
+	"movement": [{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "411",
+		"concept": "Transferencia",
+		"sourceReference": "08-23",
+		"destinationReference": "559900",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	}]
+},
+{
+	"id": "2020",
+	"type": "PC",
+	"name": "Cuenta",
+	"alias": "Mi Cuenta A7",
+	"financialState": "A",
+	"visible": false,
+	"operable": true,
+	"balance": {
+		"total": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"availableBalance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	"contactInfo": {
+		"phoneNumbers": [{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		},
+		{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		}],
+		"emails": [{
+			"source": "WEB",
+			"addres": "xxx@gmail.com",
+			"primary": true,
+			"active": true
+		},
+		{
+			"source": "WEB",
+			"addres": "yoyoyo@yahoo.com",
+			"primary": false,
+			"active": true
+		}]
+	},
+	"conditions": {
+		"category": "Some Category",
+		"description": "Some Description",
+		"openingDate": "17-12-2014",
+		"commission": "8",
+		"office": {
+			"code": "22",
+			"name": "Rosales",
+			"location": {
+				"city": {
+					"id": "01",
+					"name": "Bogota",
+					"state": {
+						"id": "Bogota DC",
+						"name": "Bogota",
+						"country": {
+							"id": "57",
+							"name": "Colombia"
+						}
+					}
+				},
+				"category": "Some Category"
+			},
+			"postalAddress": "A-345"
+		},
+		"mobilizationConditions": "Some mobilizationConditions"
+	},
+	"movement": [{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "411",
+		"concept": "Transferencia",
+		"sourceReference": "08-23",
+		"destinationReference": "559900",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	}]
+},
+{
+	"id": "2020",
+	"type": "SI",
+	"name": "Cuenta",
+	"alias": "Mi Cuenta A8",
+	"financialState": "A",
+	"visible": false,
+	"operable": true,
+	"balance": {
+		"total": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"availableBalance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	"contactInfo": {
+		"phoneNumbers": [{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		},
+		{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		}],
+		"emails": [{
+			"source": "WEB",
+			"addres": "xxx@gmail.com",
+			"primary": true,
+			"active": true
+		},
+		{
+			"source": "WEB",
+			"addres": "yoyoyo@yahoo.com",
+			"primary": false,
+			"active": true
+		}]
+	},
+	"conditions": {
+		"category": "Some Category",
+		"description": "Some Description",
+		"openingDate": "17-12-2014",
+		"commission": "8",
+		"office": {
+			"code": "22",
+			"name": "Rosales",
+			"location": {
+				"city": {
+					"id": "01",
+					"name": "Bogota",
+					"state": {
+						"id": "Bogota DC",
+						"name": "Bogota",
+						"country": {
+							"id": "57",
+							"name": "Colombia"
+						}
+					}
+				},
+				"category": "Some Category"
+			},
+			"postalAddress": "A-345"
+		},
+		"mobilizationConditions": "Some mobilizationConditions"
+	},
+	"movement": [{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "411",
+		"concept": "Transferencia",
+		"sourceReference": "08-23",
+		"destinationReference": "559900",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	}]
+},
+{
+	"id": "2020",
+	"type": "ED",
+	"name": "Cuenta",
+	"alias": "Mi Cuenta A9",
+	"financialState": "A",
+	"visible": false,
+	"operable": true,
+	"balance": {
+		"total": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"availableBalance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	"contactInfo": {
+		"phoneNumbers": [{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		},
+		{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		}],
+		"emails": [{
+			"source": "WEB",
+			"addres": "xxx@gmail.com",
+			"primary": true,
+			"active": true
+		},
+		{
+			"source": "WEB",
+			"addres": "yoyoyo@yahoo.com",
+			"primary": false,
+			"active": true
+		}]
+	},
+	"conditions": {
+		"category": "Some Category",
+		"description": "Some Description",
+		"openingDate": "17-12-2014",
+		"commission": "8",
+		"office": {
+			"code": "22",
+			"name": "Rosales",
+			"location": {
+				"city": {
+					"id": "01",
+					"name": "Bogota",
+					"state": {
+						"id": "Bogota DC",
+						"name": "Bogota",
+						"country": {
+							"id": "57",
+							"name": "Colombia"
+						}
+					}
+				},
+				"category": "Some Category"
+			},
+			"postalAddress": "A-345"
+		},
+		"mobilizationConditions": "Some mobilizationConditions"
+	},
+	"movement": [{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "411",
+		"concept": "Transferencia",
+		"sourceReference": "08-23",
+		"destinationReference": "559900",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	}]
+},
+{
+	"id": "2020",
+	"type": "AQ",
+	"name": "Cuenta",
+	"alias": "Mi Cuenta A10",
+	"financialState": "A",
+	"visible": true,
+	"operable": true,
+	"balance": {
+		"total": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"availableBalance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	"contactInfo": {
+		"phoneNumbers": [{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		},
+		{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		}],
+		"emails": [{
+			"source": "WEB",
+			"addres": "xxx@gmail.com",
+			"primary": true,
+			"active": true
+		},
+		{
+			"source": "WEB",
+			"addres": "yoyoyo@yahoo.com",
+			"primary": false,
+			"active": true
+		}]
+	},
+	"conditions": {
+		"category": "Some Category",
+		"description": "Some Description",
+		"openingDate": "17-12-2014",
+		"commission": "8",
+		"office": {
+			"code": "22",
+			"name": "Rosales",
+			"location": {
+				"city": {
+					"id": "01",
+					"name": "Bogota",
+					"state": {
+						"id": "Bogota DC",
+						"name": "Bogota",
+						"country": {
+							"id": "57",
+							"name": "Colombia"
+						}
+					}
+				},
+				"category": "Some Category"
+			},
+			"postalAddress": "A-345"
+		},
+		"mobilizationConditions": "Some mobilizationConditions"
+	},
+	"movement": [{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "411",
+		"concept": "Transferencia",
+		"sourceReference": "08-23",
+		"destinationReference": "559900",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	}]
+},
+{
+	"id": "2020",
+	"type": "TDC",
+	"name": "Cuenta",
+	"alias": "Mi Cuenta A11",
+	"financialState": "A",
+	"visible": true,
+	"operable": true,
+	"balance": {
+		"total": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"availableBalance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	"contactInfo": {
+		"phoneNumbers": [{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		},
+		{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		}],
+		"emails": [{
+			"source": "WEB",
+			"addres": "xxx@gmail.com",
+			"primary": true,
+			"active": true
+		},
+		{
+			"source": "WEB",
+			"addres": "yoyoyo@yahoo.com",
+			"primary": false,
+			"active": true
+		}]
+	},
+	"conditions": {
+		"category": "Some Category",
+		"description": "Some Description",
+		"openingDate": "17-12-2014",
+		"commission": "8",
+		"office": {
+			"code": "22",
+			"name": "Rosales",
+			"location": {
+				"city": {
+					"id": "01",
+					"name": "Bogota",
+					"state": {
+						"id": "Bogota DC",
+						"name": "Bogota",
+						"country": {
+							"id": "57",
+							"name": "Colombia"
+						}
+					}
+				},
+				"category": "Some Category"
+			},
+			"postalAddress": "A-345"
+		},
+		"mobilizationConditions": "Some mobilizationConditions"
+	},
+	"movement": [{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "411",
+		"concept": "Transferencia",
+		"sourceReference": "08-23",
+		"destinationReference": "559900",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	}]
+},
+{
+	"id": "2020",
+	"type": "TDC",
+	"name": "Cuenta",
+	"alias": "Mi Cuenta A12",
+	"financialState": "A",
+	"visible": true,
+	"operable": true,
+	"balance": {
+		"total": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"availableBalance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	"contactInfo": {
+		"phoneNumbers": [{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		},
+		{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		}],
+		"emails": [{
+			"source": "WEB",
+			"addres": "xxx@gmail.com",
+			"primary": true,
+			"active": true
+		},
+		{
+			"source": "WEB",
+			"addres": "yoyoyo@yahoo.com",
+			"primary": false,
+			"active": true
+		}]
+	},
+	"conditions": {
+		"category": "Some Category",
+		"description": "Some Description",
+		"openingDate": "17-12-2014",
+		"commission": "8",
+		"office": {
+			"code": "22",
+			"name": "Rosales",
+			"location": {
+				"city": {
+					"id": "01",
+					"name": "Bogota",
+					"state": {
+						"id": "Bogota DC",
+						"name": "Bogota",
+						"country": {
+							"id": "57",
+							"name": "Colombia"
+						}
+					}
+				},
+				"category": "Some Category"
+			},
+			"postalAddress": "A-345"
+		},
+		"mobilizationConditions": "Some mobilizationConditions"
+	},
+	"movement": [{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "411",
+		"concept": "Transferencia",
+		"sourceReference": "08-23",
+		"destinationReference": "559900",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	}]
+},
+{
+	"id": "2020",
+	"type": "LI",
+	"name": "Cuenta",
+	"alias": "Mi Cuenta A13",
+	"financialState": "A",
+	"visible": true,
+	"operable": true,
+	"balance": {
+		"total": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"availableBalance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	"contactInfo": {
+		"phoneNumbers": [{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		},
+		{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		}],
+		"emails": [{
+			"source": "WEB",
+			"addres": "xxx@gmail.com",
+			"primary": true,
+			"active": true
+		},
+		{
+			"source": "WEB",
+			"addres": "yoyoyo@yahoo.com",
+			"primary": false,
+			"active": true
+		}]
+	},
+	"conditions": {
+		"category": "Some Category",
+		"description": "Some Description",
+		"openingDate": "17-12-2014",
+		"commission": "8",
+		"office": {
+			"code": "22",
+			"name": "Rosales",
+			"location": {
+				"city": {
+					"id": "01",
+					"name": "Bogota",
+					"state": {
+						"id": "Bogota DC",
+						"name": "Bogota",
+						"country": {
+							"id": "57",
+							"name": "Colombia"
+						}
+					}
+				},
+				"category": "Some Category"
+			},
+			"postalAddress": "A-345"
+		},
+		"mobilizationConditions": "Some mobilizationConditions"
+	},
+	"movement": [{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "411",
+		"concept": "Transferencia",
+		"sourceReference": "08-23",
+		"destinationReference": "559900",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	}]
+},
+{
+	"id": "2020",
+	"type": "TDC",
+	"name": "Cuenta",
+	"alias": "Mi Cuenta A14",
+	"financialState": "A",
+	"visible": true,
+	"operable": true,
+	"balance": {
+		"total": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"availableBalance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	"contactInfo": {
+		"phoneNumbers": [{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		},
+		{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		}],
+		"emails": [{
+			"source": "WEB",
+			"addres": "xxx@gmail.com",
+			"primary": true,
+			"active": true
+		},
+		{
+			"source": "WEB",
+			"addres": "yoyoyo@yahoo.com",
+			"primary": false,
+			"active": true
+		}]
+	},
+	"conditions": {
+		"category": "Some Category",
+		"description": "Some Description",
+		"openingDate": "17-12-2014",
+		"commission": "8",
+		"office": {
+			"code": "22",
+			"name": "Rosales",
+			"location": {
+				"city": {
+					"id": "01",
+					"name": "Bogota",
+					"state": {
+						"id": "Bogota DC",
+						"name": "Bogota",
+						"country": {
+							"id": "57",
+							"name": "Colombia"
+						}
+					}
+				},
+				"category": "Some Category"
+			},
+			"postalAddress": "A-345"
+		},
+		"mobilizationConditions": "Some mobilizationConditions"
+	},
+	"movement": [{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "411",
+		"concept": "Transferencia",
+		"sourceReference": "08-23",
+		"destinationReference": "559900",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	}]
+},
+{
+	"id": "2020",
+	"type": "LI",
+	"name": "Cuenta",
+	"alias": "Mi Cuenta A15",
+	"financialState": "A",
+	"visible": true,
+	"operable": true,
+	"balance": {
+		"total": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"availableBalance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	"contactInfo": {
+		"phoneNumbers": [{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		},
+		{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		}],
+		"emails": [{
+			"source": "WEB",
+			"addres": "xxx@gmail.com",
+			"primary": true,
+			"active": true
+		},
+		{
+			"source": "WEB",
+			"addres": "yoyoyo@yahoo.com",
+			"primary": false,
+			"active": true
+		}]
+	},
+	"conditions": {
+		"category": "Some Category",
+		"description": "Some Description",
+		"openingDate": "17-12-2014",
+		"commission": "8",
+		"office": {
+			"code": "22",
+			"name": "Rosales",
+			"location": {
+				"city": {
+					"id": "01",
+					"name": "Bogota",
+					"state": {
+						"id": "Bogota DC",
+						"name": "Bogota",
+						"country": {
+							"id": "57",
+							"name": "Colombia"
+						}
+					}
+				},
+				"category": "Some Category"
+			},
+			"postalAddress": "A-345"
+		},
+		"mobilizationConditions": "Some mobilizationConditions"
+	},
+	"movement": [{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "411",
+		"concept": "Transferencia",
+		"sourceReference": "08-23",
+		"destinationReference": "559900",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	}]
+},
+{
+	"id": "2020",
+	"type": "RQ",
+	"name": "Cuenta",
+	"alias": "Mi Cuenta A16",
+	"financialState": "A",
+	"visible": true,
+	"operable": true,
+	"balance": {
+		"total": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"availableBalance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	"contactInfo": {
+		"phoneNumbers": [{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		},
+		{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		}],
+		"emails": [{
+			"source": "WEB",
+			"addres": "xxx@gmail.com",
+			"primary": true,
+			"active": true
+		},
+		{
+			"source": "WEB",
+			"addres": "yoyoyo@yahoo.com",
+			"primary": false,
+			"active": true
+		}]
+	},
+	"conditions": {
+		"category": "Some Category",
+		"description": "Some Description",
+		"openingDate": "17-12-2014",
+		"commission": "8",
+		"office": {
+			"code": "22",
+			"name": "Rosales",
+			"location": {
+				"city": {
+					"id": "01",
+					"name": "Bogota",
+					"state": {
+						"id": "Bogota DC",
+						"name": "Bogota",
+						"country": {
+							"id": "57",
+							"name": "Colombia"
+						}
+					}
+				},
+				"category": "Some Category"
+			},
+			"postalAddress": "A-345"
+		},
+		"mobilizationConditions": "Some mobilizationConditions"
+	},
+	"movement": [{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "411",
+		"concept": "Transferencia",
+		"sourceReference": "08-23",
+		"destinationReference": "559900",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	}]
+},
+{
+	"id": "2020",
+	"type": "RQ",
+	"name": "Cuenta",
+	"alias": "Mi Cuenta A17",
+	"financialState": "A",
+	"visible": true,
+	"operable": true,
+	"balance": {
+		"total": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"availableBalance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	"contactInfo": {
+		"phoneNumbers": [{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		},
+		{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		}],
+		"emails": [{
+			"source": "WEB",
+			"addres": "xxx@gmail.com",
+			"primary": true,
+			"active": true
+		},
+		{
+			"source": "WEB",
+			"addres": "yoyoyo@yahoo.com",
+			"primary": false,
+			"active": true
+		}]
+	},
+	"conditions": {
+		"category": "Some Category",
+		"description": "Some Description",
+		"openingDate": "17-12-2014",
+		"commission": "8",
+		"office": {
+			"code": "22",
+			"name": "Rosales",
+			"location": {
+				"city": {
+					"id": "01",
+					"name": "Bogota",
+					"state": {
+						"id": "Bogota DC",
+						"name": "Bogota",
+						"country": {
+							"id": "57",
+							"name": "Colombia"
+						}
+					}
+				},
+				"category": "Some Category"
+			},
+			"postalAddress": "A-345"
+		},
+		"mobilizationConditions": "Some mobilizationConditions"
+	},
+	"movement": [{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "411",
+		"concept": "Transferencia",
+		"sourceReference": "08-23",
+		"destinationReference": "559900",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	}]
+},
+{
+	"id": "2020",
+	"type": "AQ",
+	"name": "Cuenta",
+	"alias": "Mi Cuenta A18",
+	"financialState": "A",
+	"visible": true,
+	"operable": true,
+	"balance": {
+		"total": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"availableBalance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	"contactInfo": {
+		"phoneNumbers": [{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		},
+		{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		}],
+		"emails": [{
+			"source": "WEB",
+			"addres": "xxx@gmail.com",
+			"primary": true,
+			"active": true
+		},
+		{
+			"source": "WEB",
+			"addres": "yoyoyo@yahoo.com",
+			"primary": false,
+			"active": true
+		}]
+	},
+	"conditions": {
+		"category": "Some Category",
+		"description": "Some Description",
+		"openingDate": "17-12-2014",
+		"commission": "8",
+		"office": {
+			"code": "22",
+			"name": "Rosales",
+			"location": {
+				"city": {
+					"id": "01",
+					"name": "Bogota",
+					"state": {
+						"id": "Bogota DC",
+						"name": "Bogota",
+						"country": {
+							"id": "57",
+							"name": "Colombia"
+						}
+					}
+				},
+				"category": "Some Category"
+			},
+			"postalAddress": "A-345"
+		},
+		"mobilizationConditions": "Some mobilizationConditions"
+	},
+	"movement": [{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "411",
+		"concept": "Transferencia",
+		"sourceReference": "08-23",
+		"destinationReference": "559900",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	}]
+},
+{
+	"id": "2020",
+	"type": "LI",
+	"name": "Cuenta",
+	"alias": "Mi Cuenta A19",
+	"financialState": "A",
+	"visible": true,
+	"operable": true,
+	"balance": {
+		"total": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"availableBalance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	"contactInfo": {
+		"phoneNumbers": [{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		},
+		{
+			"number": "5555555",
+			"countryCode": "57",
+			"regionalCode": "1",
+			"type": "LANDLINE",
+			"primary": true,
+			"active": true,
+			"contactSource": "MOBILE"
+		}],
+		"emails": [{
+			"source": "WEB",
+			"addres": "xxx@gmail.com",
+			"primary": true,
+			"active": true
+		},
+		{
+			"source": "WEB",
+			"addres": "yoyoyo@yahoo.com",
+			"primary": false,
+			"active": true
+		}]
+	},
+	"conditions": {
+		"category": "Some Category",
+		"description": "Some Description",
+		"openingDate": "17-12-2014",
+		"commission": "8",
+		"office": {
+			"code": "22",
+			"name": "Rosales",
+			"location": {
+				"city": {
+					"id": "01",
+					"name": "Bogota",
+					"state": {
+						"id": "Bogota DC",
+						"name": "Bogota",
+						"country": {
+							"id": "57",
+							"name": "Colombia"
+						}
+					}
+				},
+				"category": "Some Category"
+			},
+			"postalAddress": "A-345"
+		},
+		"mobilizationConditions": "Some mobilizationConditions"
+	},
+	"movement": [{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "456",
+		"concept": "Pago",
+		"sourceReference": "12-23",
+		"destinationReference": "Movistar 123",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	},
+	{
+		"id": "411",
+		"concept": "Transferencia",
+		"sourceReference": "08-23",
+		"destinationReference": "559900",
+		"operation": {
+			"code": "0987",
+			"description": "Pago Movistar"
+		},
+		"value": {
+			"amount": 100000,
+			"currency": "$"
+		},
+		"balance": {
+			"amount": 100000,
+			"currency": "$"
+		}
+	}]
+}]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/GlobalPosition/V01/" method="PUT" resourcePath="/czic/GlobalPosition/V01/"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200"><con:settings/></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

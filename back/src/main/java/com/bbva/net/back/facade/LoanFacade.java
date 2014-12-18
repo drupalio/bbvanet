@@ -2,16 +2,16 @@ package com.bbva.net.back.facade;
 
 import java.util.List;
 
-import co.com.bbva.services.transactions.globalposition.schema.GlobalProducts;
-import co.com.bbva.services.transactions.globalposition.schema.Leasing;
-import co.com.bbva.services.transactions.globalposition.schema.RotatingAccount;
+import com.bbva.net.back.model.globalposition.GlobalProductsDTO;
+import com.bbva.net.back.model.globalposition.LeasingDTO;
+import com.bbva.net.back.model.globalposition.RotatingAccountDTO;
 
 public interface LoanFacade {
 
-	public List<Leasing> getLeasingByUser(String defaultUser);
+	public List<LeasingDTO> getLeasingByUser(String defaultUser);
 
-	public List<RotatingAccount> getRotatingAccountByUser(String defaultUser);
+	public List<RotatingAccountDTO> getRotatingAccountByUser(String defaultUser);
 
-	public GlobalProducts getLoansByUser(String defaultUser);
+	public GlobalProductsDTO getLoansByUser(String defaultUser);
 
 }

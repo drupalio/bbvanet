@@ -2,10 +2,10 @@ package com.bbva.net.back.facade;
 
 import java.util.List;
 
-import co.com.bbva.services.transactions.globalposition.schema.Account;
+import com.bbva.net.back.model.globalposition.AccountDTO;
 
 public interface AccountsFacade {
 
-	public List<Account> getAccountsByUser(String user);
+	public List<AccountDTO> getAccountsByUser(String user);
 
 }

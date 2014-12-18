@@ -23,7 +23,7 @@
 			<div class="form-horizontal">
 				<div class="row">
 
-					<h:panelGrid columns="2" cellpadding="5" columnClasses="col-xs-6">
+					<h:panelGrid columns="2" cellpadding="5">
 						<p:outputLabel for="console" value="Console:" rendered="false" />
 						<p:selectOneRadio id="console"
 							value="#{movementsCriteriaController.selectDate}" layout="grid"
@@ -54,7 +54,7 @@
 			<div class="date-period radio-group">
 				<div>
 					<div class="col-xs-12 col-md-6">
-						<div>
+						<div class="form-group">
 							<div class="col-xs-2 col-md-12">
 								<label for="customSearch-dateFieldFrom">#{msg['text.since']}:</label>
 							</div>
@@ -64,7 +64,7 @@
 						</div>
 					</div>
 					<div class="col-xs-12 col-md-6">
-						<div>
+						<div class="form-group">
 							<div class="col-xs-2 col-md-12">
 								<label for="customSearch-dateFieldTo">#{msg['text.to']}:</label>
 							</div>
@@ -75,7 +75,8 @@
 					</div>
 				</div>
 			</div>	
-			<p:commandButton value="#{msg['button.confirm']}" styleClass="btn small hidden-xs hidden-sm"/>				
+			<p:commandButton value="#{msg['button.confirm']}" styleClass="btn small hidden-xs hidden-sm"/>	
+			
 		</h:form>
 	</div>
 </composite:implementation>

@@ -52,11 +52,12 @@
 				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
 				 
 					<h:outputText style="font-size: 1.5em; font-weight:bold" styleClass="balance" 
-								   value="#{icuenta.product.totalCash}"/>
+								   value="#{icuenta.product.totalCash.amount}"/>
 					<h:outputText styleClass="ui-datatable-selectable" style="font-size:1em" escape="false"
-						value="&lt;br /&gt; Saldo disponible #{currency}#{icuenta.product.cashAvailable}"/>
+						value="&lt;br /&gt; Saldo disponible #{currency}#{icuenta.product.cashAvailable.amount}"/>
 					<p class="sublabel"></p>
 					
+
 			</p:column>
 
 		</p:dataTable>

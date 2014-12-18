@@ -9,9 +9,8 @@ import org.junit.Test;
 import org.mockito.Mockito;
 import org.springframework.web.client.RestClientException;
 
-import co.com.bbva.services.transactions.globalposition.schema.Account;
-
 import com.bbva.net.back.facade.AccountsFacade;
+import com.bbva.net.back.model.globalposition.AccountDTO;
 
 /**
  * @author Entelgy
@@ -41,11 +40,11 @@ public class AccountsControllerImplTest {
 	public void checkGetCustomerAccounts_OK() {
 
 		// prepara el test
-		List<Account> h = new ArrayList<Account>();
+		List<AccountDTO> h = new ArrayList<AccountDTO>();
 		Mockito.when(accountsFacade.getAccountsByUser(DEFAULT_USER)).thenReturn(h);
 
 		// invoca metodo a probar
-		final List<Account> customerAccounts = this.accountsController.getCustomerAccounts();
+		final List<AccountDTO> customerAccounts = this.accountsController.getCustomerAccounts();
 
 		// Comprobar resultados
 		Assert.assertNotNull(customerAccounts);

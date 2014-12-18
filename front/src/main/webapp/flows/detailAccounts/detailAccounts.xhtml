@@ -1,6 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
@@ -19,7 +18,6 @@
 	xmlns:jsf="http://xmlns.jcp.org/jsf">
 
 
-
 <ui:composition template="../../templates/defaultLayout.xhtml">
 
 	<ui:define name="bodyTitle">
@@ -31,17 +29,67 @@
 
 	<ui:define name="contentLeft">
 		<bbvaDetAcc:tabMenu>
+			<ul class="nav nav-pills nav-operation-options"
+				style="display: block;">
+				<bbvaDetAcc:itemTabMenu title="Consultas" icon="iconFont-611"
+					classLi="tab-left consultas-btn" type="2" />
+				<bbvaDetAcc:itemTabMenu title="Operaciones" icon="iconFont-015"
+					classLi="tab-left operaciones-btn" type="2" />
+				<bbvaDetAcc:itemTabMenu title="Personalizar"
+					classLi="tab-right hidden-xs hidden-sm" type="0" />
+				<bbvaDetAcc:itemTabMenu title="Condiciones" icon="iconFont-104"
+					classLi="tab-right" type="1" role="#tab-condiciones" />
+				<bbvaDetAcc:itemTabMenu title="Personalizar" icon="iconFont-217"
+					classLi="tab-right hidden-md hidden-lg" type="1" />
+			</ul>
+			<div class="tab-content">
 
-			<bbvaDetAcc:itemTabMenu title="Consultas" icon="iconFont-611"
-				classLi="tab-left consultas-btn" type="2" />
-			<bbvaDetAcc:itemTabMenu title="Operaciones" icon="iconFont-015"
-				classLi="tab-left operaciones-btn" type="2" />
-			<bbvaDetAcc:itemTabMenu title="Personalizar"
-				classLi="tab-right hidden-xs hidden-sm" type="0" />
-			<bbvaDetAcc:itemTabMenu title="Condiciones" icon="iconFont-104"
-				classLi="tab-right" type="1" />
-			<bbvaDetAcc:itemTabMenu title="Personalizar" icon="iconFont-217"
-				classLi="tab-right hidden-md hidden-lg" type="1" />
+				<bbvaAcc:termsAccounts>
+					<bbvaAcc:termsAccountsPanelInfo>
+						<bbvaAcc:termsAccountsPanelInfoHeader
+							title="Información del Producto" />
+						<bbvaAcc:termsAccountsPanelInfoItemTitle date="Alias:" val="4" />
+						<bbvaAcc:termsAccountsPanelInfoItemData date="#{allConditions.informacionProducto.alias}" val="7" />
+						<bbvaAcc:termsAccountsPanelInfoItemTitle date="Nº de cuenta:" val="4" />
+						<bbvaAcc:termsAccountsPanelInfoItemData date="#{allConditions.informacionProducto.numCuenta}"
+							val="7" />
+						<bbvaAcc:termsAccountsPanelInfoItemTitle date="Tipo de cuenta:" val="4" />
+						<bbvaAcc:termsAccountsPanelInfoItemData date="#{allConditions.informacionProducto.tipoCuenta}" val="7" />
+					</bbvaAcc:termsAccountsPanelInfo>
+					<bbvaAcc:termsAccountsPanelInfoItemBody title="Intervinientes">
+						<bbvaAcc:termsAccountsPanelInfoItemTitle date="Titular" val="4" />
+						<bbvaAcc:termsAccountsPanelInfoItemData
+							date="#{allConditions.intervinientes.titular1}" val="7" />
+						<bbvaAcc:termsAccountsPanelInfoItemTitle date="Titular" val="4" />
+						<bbvaAcc:termsAccountsPanelInfoItemData date="#{allConditions.intervinientes.titular2}" val="7" />
+						<bbvaAcc:termsAccountsPanelInfoItemTitle date="Condiciones de movilizacion" val="4" />
+						<bbvaAcc:termsAccountsPanelInfoItemData date="#{allConditions.intervinientes.condicionesMovilizacion}" val="7" />
+					</bbvaAcc:termsAccountsPanelInfoItemBody>
+					
+					<bbvaAcc:termsAccountsPanelInfoItemBody title="Condiciones">
+						<bbvaAcc:termsAccountsPanelInfoItemTitle date="Categoría:" val="4" />
+						<bbvaAcc:termsAccountsPanelInfoItemData
+							date="#{allConditions.detalleCondiciones.categoria}" val="7" />
+						<bbvaAcc:termsAccountsPanelInfoItemTitle date="Descripción:" val="4" />
+						<bbvaAcc:termsAccountsPanelInfoItemData date="#{allConditions.detalleCondiciones.descripcion}" val="7" />
+						<bbvaAcc:termsAccountsPanelInfoItemTitle date="Fecha de apertura:" val="4" />
+						<bbvaAcc:termsAccountsPanelInfoItemData date="#{allConditions.detalleCondiciones.fechaApertura}" val="7" />
+						<bbvaAcc:termsAccountsPanelInfoItemTitle date="Comisiones:" val="4" />
+						<bbvaAcc:termsAccountsPanelInfoItemData date="#{allConditions.detalleCondiciones.comisiones}" val="7" />
+					</bbvaAcc:termsAccountsPanelInfoItemBody>
+					
+					<bbvaAcc:termsAccountsPanelInfoItemBody title="Dirección postal">
+						<bbvaAcc:termsAccountsPanelInfoItemTitle date="Nombre oficina" val="4" />
+						<bbvaAcc:termsAccountsPanelInfoItemData
+							date="#{allConditions.direccionPostal.nombreOficina}" val="7" />
+						<bbvaAcc:termsAccountsPanelInfoItemTitle date="Dirección Postal" val="4" />
+						<bbvaAcc:termsAccountsPanelInfoItemData date="#{allConditions.direccionPostal.direccionPostal}" val="7" />
+
+					</bbvaAcc:termsAccountsPanelInfoItemBody>
+				</bbvaAcc:termsAccounts>
+
+
+			</div>
 
 
 		</bbvaDetAcc:tabMenu>
@@ -49,6 +97,7 @@
 		<div class="table-tabs">
 			<bbvaAcc:MovePaginatorTable id="detailAccounts" listAccounts="#{customerAccounts}" />
 		</div>
+
 
 		<bbvaDetAcc:tapDropDown title="Fecha">
 			<bbvaCalendar:calendarItem />
@@ -91,4 +140,5 @@
 	</ui:define>
 
 </ui:composition>
+
 </html>

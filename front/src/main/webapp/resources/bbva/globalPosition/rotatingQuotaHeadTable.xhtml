@@ -42,7 +42,7 @@
 				
 				
 				<h:outputText style="font-size: 1.5em; font-weight:bold" styleClass="balance" 
-						  value="#{icuenta.quota.totalQuotaDebt}"/>
+						  value="#{icuenta.quota.totalQuotaDebt.amount}"/>
 				
 				<p class="sublabel"></p>
 				
@@ -53,7 +53,8 @@
 				
 				
 				<h:outputText style="font-size: 1.5em; font-weight:bold" styleClass="balance" 
-								   value="#{icuenta.quota.availableQuota}"/>
+								   value="#{icuenta.quota.availableQuota.amount}"/>
+
 				<p class="sublabel"></p>
 				
 			</p:column>
