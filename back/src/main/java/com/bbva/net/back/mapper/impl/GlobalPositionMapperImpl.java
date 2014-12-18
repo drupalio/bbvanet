@@ -50,7 +50,8 @@ public class GlobalPositionMapperImpl implements GlobalPositionMapper {
 				account.setProductNumber(response.get(i).getId());
 				account.setTotalCash(money);
 				account.setTypeProd(response.get(i).getType());
-				account.setAsset(true);
+				account.setAsset(response.get(i).isVisible());
+				account.setVisible(response.get(i).isVisible());
 				accountList.add(account);
 			}
 			// 2 Cuenta de adquiriencia
@@ -67,7 +68,9 @@ public class GlobalPositionMapperImpl implements GlobalPositionMapper {
 				adquirenciaAccount.setProductNumber(response.get(i).getId());
 				adquirenciaAccount.setTotalCash(money);
 				adquirenciaAccount.setTypeProd(response.get(i).getType());
-				adquirenciaAccount.setAsset(true);
+				adquirenciaAccount.setAsset(response.get(i).isVisible());
+				adquirenciaAccount.setVisible(response.get(i).isVisible());
+				;
 				adquirenciaList.add(adquirenciaAccount);
 			}
 			// 3 Tarjetas de crédito
@@ -87,6 +90,7 @@ public class GlobalPositionMapperImpl implements GlobalPositionMapper {
 				creditCard.setProductNumber(response.get(i).getId());
 				creditCard.setTotalCash(money);
 				creditCard.setTypeProd(response.get(i).getType());
+				creditCard.setVisible(response.get(i).isVisible());
 
 				creditCard.setQuota(quota);
 
@@ -107,7 +111,8 @@ public class GlobalPositionMapperImpl implements GlobalPositionMapper {
 				rotating.setProductNumber(response.get(i).getId());
 				rotating.setTotalCash(money);
 				rotating.setTypeProd(response.get(i).getType());
-				rotating.setAsset(true);
+				rotating.setAsset(response.get(i).isVisible());
+				rotating.setVisible(response.get(i).isVisible());
 
 				quota.setAvailableQuota(money);
 				quota.setTotalQuotaDebt(money);
@@ -123,7 +128,6 @@ public class GlobalPositionMapperImpl implements GlobalPositionMapper {
 			if (response.get(i).getType().equals(EnumProductType.LI)) {
 
 				LeasingDTO leasing = new LeasingDTO();
-				AccountDTO account = new AccountDTO();
 				Money money = new Money(response.get(i).getBalance().getAvailableBalance().getAmount(), response.get(i)
 						.getBalance().getAvailableBalance().getCurrency());
 
@@ -136,6 +140,7 @@ public class GlobalPositionMapperImpl implements GlobalPositionMapper {
 				leasing.setTypeProd(response.get(i).getType());
 				leasing.setTotalDebt(money);
 				leasing.setTotalDue(money);
+				leasing.setVisible(response.get(i).isVisible());
 
 				leasingList.add(leasing);
 			}
@@ -153,6 +158,7 @@ public class GlobalPositionMapperImpl implements GlobalPositionMapper {
 				loan.setProductNumber(response.get(i).getId());
 				loan.setTotalCash(money);
 				loan.setTypeProd(response.get(i).getType());
+				loan.setVisible(response.get(i).isVisible());
 
 				loan.setTotalDebt(money);
 				loan.setTotalDue(money);
@@ -173,7 +179,8 @@ public class GlobalPositionMapperImpl implements GlobalPositionMapper {
 				fund.setProductNumber(response.get(i).getId());
 				fund.setTotalCash(money);
 				fund.setTypeProd(response.get(i).getType());
-				fund.setAsset(true);
+				fund.setAsset(response.get(i).isVisible());
+				fund.setVisible(response.get(i).isVisible());
 
 				fundList.add(fund);
 			}
@@ -191,7 +198,8 @@ public class GlobalPositionMapperImpl implements GlobalPositionMapper {
 				deposit.setProductNumber(response.get(i).getId());
 				deposit.setTotalCash(money);
 				deposit.setTypeProd(response.get(i).getType());
-				deposit.setAsset(true);
+				deposit.setAsset(response.get(i).isVisible());
+				deposit.setVisible(response.get(i).isVisible());
 				depositList.add(deposit);
 			}
 

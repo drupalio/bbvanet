@@ -44,12 +44,12 @@ public class GlobalPositionFacadeImpl extends AbstractBbvaFacade implements Glob
 
 	@Override
 	public GlobalProductsDTO getGlobalProductsVisibles(final GlobalProductsDTO globalProductsDTO) {
-		return productService.select(globalProductsDTO, new HiddenProductPredicate());
+		return productService.select(globalProductsDTO, new VisibleProductPredicate());
 	}
 
 	@Override
 	public GlobalProductsDTO getGlobalProductsHidden(final GlobalProductsDTO globalProductsDTO) {
-		return productService.select(globalProductsDTO, new VisibleProductPredicate());
+		return productService.select(globalProductsDTO, new HiddenProductPredicate());
 	}
 
 	/**

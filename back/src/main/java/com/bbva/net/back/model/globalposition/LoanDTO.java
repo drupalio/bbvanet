@@ -1,5 +1,8 @@
 package com.bbva.net.back.model.globalposition;
 
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
+
 import com.bbva.net.back.model.commons.Money;
 
 public class LoanDTO extends ProductDTO {
@@ -32,6 +35,23 @@ public class LoanDTO extends ProductDTO {
 
 	public boolean isSetTotalDue() {
 		return (this.totalDue != null);
+	}
+
+	@Override
+	public String toString() {
+		return new ToStringBuilder(this).append("totalDebt", getTotalDebt()).append("totalDue", getTotalDue())
+				.toString();
+	}
+
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder().append(getTotalDebt()).append(getTotalDue()).toHashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return (obj instanceof ProductDTO) && this.getTotalDebt().equals(((LoanDTO)obj).getTotalDebt())
+				&& this.getTotalDue().equals(((LoanDTO)obj).getTotalDue());
 	}
 
 }

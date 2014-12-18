@@ -2,6 +2,9 @@ package com.bbva.net.back.model.globalposition;
 
 import java.io.Serializable;
 
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
+
 import com.bbva.czic.dto.net.EnumProductType;
 import com.bbva.net.back.model.commons.Money;
 
@@ -135,6 +138,23 @@ public class ProductDTO implements Serializable {
 
 	public void setTypeProd(EnumProductType typeProd) {
 		this.typeProd = typeProd;
+	}
+
+	@Override
+	public String toString() {
+		return new ToStringBuilder(this).append("productId", getProductId())
+				.append("productNumber", getProductNumber()).toString();
+	}
+
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder().append(getProductId()).append(getProductNumber()).toHashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return (obj instanceof ProductDTO) && this.getProductId().equals(((ProductDTO)obj).getProductId())
+				&& this.getProductNumber().equals(((ProductDTO)obj).getProductNumber());
 	}
 
 }

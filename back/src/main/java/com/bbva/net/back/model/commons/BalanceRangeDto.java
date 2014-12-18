@@ -5,7 +5,11 @@ package com.bbva.net.back.model.commons;
 
 import java.math.BigDecimal;
 
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
+
 import com.bbva.net.back.core.pattern.dto.Dto;
+import com.bbva.net.back.model.globalposition.ProductDTO;
 
 /**
  * @author User
@@ -54,6 +58,23 @@ public class BalanceRangeDto implements Dto {
 	 */
 	public void setBalanceTo(BigDecimal balanceTo) {
 		this.balanceTo = balanceTo;
+	}
+
+	@Override
+	public String toString() {
+		return new ToStringBuilder(this).append("balanceSince", getBalanceSince()).append("balanceTo", getBalanceTo())
+				.toString();
+	}
+
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder().append(getBalanceSince()).append(getBalanceTo()).toHashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return (obj instanceof ProductDTO) && this.getBalanceSince().equals(((BalanceRangeDto)obj).getBalanceSince())
+				&& this.getBalanceTo().equals(((BalanceRangeDto)obj).getBalanceTo());
 	}
 
 }
