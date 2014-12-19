@@ -31,15 +31,15 @@
 		<bbvaDetAcc:tabMenu>
 			<ul class="nav nav-pills nav-operation-options"
 				style="display: block;">
-				<bbvaDetAcc:itemTabMenu title="Consultas" icon="iconFont-611"
+				<bbvaDetAcc:itemTabMenu title="#{msg['text.consult']}" icon="iconFont-611"
 					classLi="tab-left consultas-btn" type="2" role="#tab-consultas" />
-				<bbvaDetAcc:itemTabMenu title="Operaciones" icon="iconFont-015"
+				<bbvaDetAcc:itemTabMenu title="#{msg['text.operations']}" icon="iconFont-015"
 					classLi="tab-left operaciones-btn" type="2" />
-				<bbvaDetAcc:itemTabMenu title="Personalizar"
+				<bbvaDetAcc:itemTabMenu title="#{msg['text.personalized']}"
 					classLi="tab-right hidden-xs hidden-sm" type="0" />
-				<bbvaDetAcc:itemTabMenu title="Condiciones" icon="iconFont-104"
+				<bbvaDetAcc:itemTabMenu title="#{msg['text.conditions']}" icon="iconFont-104"
 					classLi="tab-right" type="1" role="#tab-condiciones" />
-				<bbvaDetAcc:itemTabMenu title="Personalizar" icon="iconFont-217"
+				<bbvaDetAcc:itemTabMenu title="#{msg['text.personalized']}" icon="iconFont-217"
 					classLi="tab-right hidden-md hidden-lg" type="1" />
 			</ul>
 			<div class="tab-content">
@@ -52,56 +52,56 @@
 					<bbvaAcc:termsAccountsPanelInfo>
 						<bbvaAcc:termsAccountsPanelInfoHeader
 							title="Información del Producto" />
-						<bbvaAcc:termsAccountsPanelInfoItemTitle date="Alias:" val="4" />
+						<bbvaAcc:termsAccountsPanelInfoItemTitle date="#{msg['text.alias']}:" val="4" />
 						<bbvaAcc:termsAccountsPanelInfoItemData
 							date="#{allConditions.informacionProducto.alias}" val="7" />
-						<bbvaAcc:termsAccountsPanelInfoItemTitle date="Nº de cuenta:"
+						<bbvaAcc:termsAccountsPanelInfoItemTitle date="#{msg['text.account.number']}:"
 							val="4" />
 						<bbvaAcc:termsAccountsPanelInfoItemData
 							date="#{allConditions.informacionProducto.numCuenta}" val="7" />
-						<bbvaAcc:termsAccountsPanelInfoItemTitle date="Tipo de cuenta:"
+						<bbvaAcc:termsAccountsPanelInfoItemTitle date="#{msg['text.account.type']}:"
 							val="4" />
 						<bbvaAcc:termsAccountsPanelInfoItemData
 							date="#{allConditions.informacionProducto.tipoCuenta}" val="7" />
 					</bbvaAcc:termsAccountsPanelInfo>
 					<bbvaAcc:termsAccountsPanelInfoItemBody title="Intervinientes">
-						<bbvaAcc:termsAccountsPanelInfoItemTitle date="Titular" val="4" />
+						<bbvaAcc:termsAccountsPanelInfoItemTitle date="#{msg['text.holder']}" val="4" />
 						<bbvaAcc:termsAccountsPanelInfoItemData
 							date="#{allConditions.intervinientes.titular1}" val="7" />
-						<bbvaAcc:termsAccountsPanelInfoItemTitle date="Titular" val="4" />
+						<bbvaAcc:termsAccountsPanelInfoItemTitle date="#{msg['text.holder']}" val="4" />
 						<bbvaAcc:termsAccountsPanelInfoItemData
 							date="#{allConditions.intervinientes.titular2}" val="7" />
 						<bbvaAcc:termsAccountsPanelInfoItemTitle
-							date="Condiciones de movilizacion" val="4" />
+							date="#{msg['text.conditions.mobilization']}" val="4" />
 						<bbvaAcc:termsAccountsPanelInfoItemData
 							date="#{allConditions.intervinientes.condicionesMovilizacion}"
 							val="7" />
 					</bbvaAcc:termsAccountsPanelInfoItemBody>
 
-					<bbvaAcc:termsAccountsPanelInfoItemBody title="Condiciones">
-						<bbvaAcc:termsAccountsPanelInfoItemTitle date="Categoría:" val="4" />
+					<bbvaAcc:termsAccountsPanelInfoItemBody title="#{msg['text.conditions']}">
+						<bbvaAcc:termsAccountsPanelInfoItemTitle date="#{msg['text.category']}:" val="4" />
 						<bbvaAcc:termsAccountsPanelInfoItemData
 							date="#{allConditions.detalleCondiciones.categoria}" val="7" />
-						<bbvaAcc:termsAccountsPanelInfoItemTitle date="Descripción:"
+						<bbvaAcc:termsAccountsPanelInfoItemTitle date="#{msg['text.description']}:"
 							val="4" />
 						<bbvaAcc:termsAccountsPanelInfoItemData
 							date="#{allConditions.detalleCondiciones.descripcion}" val="7" />
-						<bbvaAcc:termsAccountsPanelInfoItemTitle date="Fecha de apertura:"
+						<bbvaAcc:termsAccountsPanelInfoItemTitle date="#{msg['text.opening.date']}:"
 							val="4" />
 						<bbvaAcc:termsAccountsPanelInfoItemData
 							date="#{allConditions.detalleCondiciones.fechaApertura}" val="7" />
-						<bbvaAcc:termsAccountsPanelInfoItemTitle date="Comisiones:"
+						<bbvaAcc:termsAccountsPanelInfoItemTitle date="#{msg['text.commissions']}:"
 							val="4" />
 						<bbvaAcc:termsAccountsPanelInfoItemData
 							date="#{allConditions.detalleCondiciones.comisiones}" val="7" />
 					</bbvaAcc:termsAccountsPanelInfoItemBody>
 
-					<bbvaAcc:termsAccountsPanelInfoItemBody title="Dirección postal">
-						<bbvaAcc:termsAccountsPanelInfoItemTitle date="Nombre oficina"
+					<bbvaAcc:termsAccountsPanelInfoItemBody title="#{msg['text.postal.addres']}">
+						<bbvaAcc:termsAccountsPanelInfoItemTitle date="#{msg['text.office.name']}"
 							val="4" />
 						<bbvaAcc:termsAccountsPanelInfoItemData
 							date="#{allConditions.direccionPostal.nombreOficina}" val="7" />
-						<bbvaAcc:termsAccountsPanelInfoItemTitle date="Dirección Postal"
+						<bbvaAcc:termsAccountsPanelInfoItemTitle date="#{msg['text.postal.addres']}"
 							val="4" />
 						<bbvaAcc:termsAccountsPanelInfoItemData
 							date="#{allConditions.direccionPostal.direccionPostal}" val="7" />
