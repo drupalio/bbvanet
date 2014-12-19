@@ -33,10 +33,10 @@ public class AdquirenceAccountDTO extends ProductDTO {
 		return new HashCodeBuilder().append(getOverDraft()).toHashCode();
 	}
 
-	// @Override
-	// public boolean equals(Object obj) {
-	// return (obj instanceof AdquirenceAccountDTO)
-	// && this.getOverDraft().equals(((AdquirenceAccountDTO)obj).getOverDraft());
-	// }
+	@Override
+	public boolean equals(Object obj) {
+		return (obj instanceof AdquirenceAccountDTO)
+				&& this.getOverDraft().equals(((AdquirenceAccountDTO)obj).getOverDraft());
+	}
 
 }

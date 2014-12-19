@@ -17,6 +17,10 @@ public class Money implements Dto {
 
 	private BigDecimal amount;
 
+	public Money() {
+		super();
+	}
+
 	public Money(BigDecimal amount) {
 		this.amount = amount;
 	}

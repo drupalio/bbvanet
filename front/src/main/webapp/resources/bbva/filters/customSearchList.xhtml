@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -19,30 +18,18 @@
 	xmlns:jsf="http://xmlns.jcp.org/jsf">
 
 <composite:interface>
+	<composite:attribute name="classList" type="String" />
+	<composite:attribute name="classSpan" type="String" />
+	<composite:attribute name="classSpanFilter" type="String" />
 	<composite:attribute name="title" type="String" />
 </composite:interface>
 
 <composite:implementation>
-		<div class="filters check-books">
-			<h1 class="hidden-xs hidden-sm">Consultar talonarios</h1>
-			<ul class="accordion">
-				<li class="date-filter checkBooks"><a class="header" href="#">
-						<span class="arrow-left-smaller">Fecha <span class="filter"></span></span>
-				</a> <bbvaSearch:customSearchFilter />
-				</li>
-				<li class="check-books-ticket radio-filter mobile-hidden"><a
-					class="header" href="#"> <span class="arrow-left-smaller">Nº
-							de Cheque o Talonario <span class="filter"></span>
-					</span>
-				</a> <bbvaSearch:numberCheck /></li>
-				<li class="filter-buttons">
-					<div>
-						<button class="btn btn-default">
-							<span class="document-view-icon"></span> Ver resultados
-						</button>
-					</div>
-				</li>
-			</ul>
-		</div>	
+	<li class="#{cc.attrs.classList}"><a class="header"> <span
+			class="#{cc.attrs.classSpan}"> <span class="#{cc.attrs.classSpanFilter}">#{cc.attrs.title}</span>
+		</span>
+	</a> <composite:insertChildren></composite:insertChildren></li>
+
+
 </composite:implementation>
 </html>

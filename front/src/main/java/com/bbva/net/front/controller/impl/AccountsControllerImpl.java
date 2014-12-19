@@ -2,6 +2,7 @@ package com.bbva.net.front.controller.impl;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,11 @@ public class AccountsControllerImpl extends AbstractBbvaController implements Ac
 	private transient AccountsFacade accountsFacade;
 
 	private AccountDTO selectedAccount;
+
+	@PostConstruct
+	public void init() {
+
+	}
 
 	public boolean isStateAccounts() {
 		return stateAccounts;

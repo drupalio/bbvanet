@@ -21,38 +21,36 @@
 <composite:implementation>
 
 	<div class="balance-filter-content">
-		<h:form>
-			<div>
-				<div class="col-xs-12 col-md-6">
-					<div class="form-group">
-						<div class="col-xs-2 col-md-12">
-							<label for="inputNumberFrom">#{msg['text.since']}:</label>
-						</div>
-						<div class="col-xs-10 col-md-12 balanceFrom">
-							<bbvaInputCurrent:inputCurrent id="currencySince"
-								value="#{cc.attrs.valueSince}" idName="inputNumberFrom"
-								data-max="999999999999" data-min="0" maxlength="12"
-								autocomplete="off" data-filter="Desde: " />
-						</div>
+		<div>
+			<div class="col-xs-12 col-md-6">
+				<div class="form-group">
+					<div class="col-xs-2 col-md-12">
+						<label for="inputNumberFrom">#{msg['text.since']}:</label>
+					</div>
+					<div class="col-xs-10 col-md-12 balanceFrom">
+						<bbvaInputCurrent:inputCurrent id="currencySince"
+							value="#{cc.attrs.valueSince}" idName="inputNumberFrom"
+							data-max="999999999999" data-min="0" maxlength="12"
+							autocomplete="off" data-filter="Desde: " />
 					</div>
 				</div>
-				<div class="col-xs-12 col-md-6">
-					<div>
-						<div class="col-xs-2 col-md-12">
-							<label for="inputNumberTo">#{msg['text.to']}:</label>
-						</div>
-						<div class="col-xs-10 col-md-12 balanceTo">
-							<bbvaInputCurrent:inputCurrent id="currencyTo"
-								value="#{cc.attrs.valueTo}" idName="inputNumberTo"
-								data-max="999999999999" data-min="1" maxlength="12"
-								autocomplete="off" data-filter="Hasta: " />
-						</div>
+			</div>
+			<div class="col-xs-12 col-md-6">
+				<div>
+					<div class="col-xs-2 col-md-12">
+						<label for="inputNumberTo">#{msg['text.to']}:</label>
+					</div>
+					<div class="col-xs-10 col-md-12 balanceTo">
+						<bbvaInputCurrent:inputCurrent id="currencyTo"
+							value="#{cc.attrs.valueTo}" idName="inputNumberTo"
+							data-max="999999999999" data-min="1" maxlength="12"
+							autocomplete="off" data-filter="Hasta: " />
 					</div>
 				</div>
-			</div>						
-			<button class="btn small hidden-xs hidden-sm"
-			>#{msg['button.confirm']}</button>			
-		</h:form>
+			</div>
+		</div>
+		
+		<p:commandButton value="#{msg['button.confirm']}" styleClass="btn small hidden-xs hidden-sm" actionListener="#{movementsCriteriaController.setBalanceRange}"/>
 	</div>
 </composite:implementation>
 </html>

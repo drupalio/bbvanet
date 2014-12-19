@@ -37,7 +37,7 @@ import com.bbva.net.core.utils.CollectionBbvaUtils;
 public class ProductServiceImpl implements ProductService {
 
 	@Override
-	public Money getTotalCash(final List<ProductDTO> products) {
+	public <T extends ProductDTO> Money getTotal(final List<T> products) {
 		return new Money(CollectionBbvaUtils.calculateTotal(products, "totalCash.amount"));
 	}
 
@@ -50,7 +50,7 @@ public class ProductServiceImpl implements ProductService {
 				.select(products, new AssetPredicated());
 
 		// Calculate total cash from asset products
-		return getTotalCash(assetsProduct);
+		return getTotal(assetsProduct);
 
 	}
 
@@ -63,12 +63,12 @@ public class ProductServiceImpl implements ProductService {
 				PredicateUtils.notPredicate(new AssetPredicated()));
 
 		// Calculate total cash from asset products
-		return getTotalCash(assetsProduct);
+		return getTotal(assetsProduct);
 
 	}
 
 	@Override
-	public Map<EnumProductType, Money> getTotals(GlobalProductsDTO globalProducts) {
+	public Map<EnumProductType, Money> getTotals(final GlobalProductsDTO globalProducts) {
 
 		final Map<EnumProductType, Money> totals = new HashMap<EnumProductType, Money>();
 
@@ -92,14 +92,14 @@ public class ProductServiceImpl implements ProductService {
 		final List<ProductDTO> productsByType = (List<ProductDTO>)CollectionUtils.select(products,
 				new ProductTypePredicate(productType));
 
-		return getTotalCash(productsByType);
+		return getTotal(productsByType);
 	}
 
 	/**
 	 * 
 	 */
 	@Override
-	public List<ProductDTO> getProducts(GlobalProductsDTO globalProduct) {
+	public List<ProductDTO> getProducts(final GlobalProductsDTO globalProduct) {
 
 		final List<ProductDTO> products = new ArrayList<ProductDTO>();
 
@@ -135,14 +135,6 @@ public class ProductServiceImpl implements ProductService {
 
 		return result;
 
-	}
-
-	/**
-	 * @param products
-	 * @return
-	 */
-	private <T extends ProductDTO> Money getTotal(final List<T> products) {
-		return getTotal(products);
 	}
 
 }

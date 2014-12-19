@@ -10,26 +10,15 @@ import com.bbva.net.back.model.globalposition.RotatingAccountDTO;
 import com.bbva.net.front.controller.LoanController;
 import com.bbva.net.front.core.AbstractBbvaController;
 
+/**
+ * @author Entelgy
+ */
 public class LoanControllerImpl extends AbstractBbvaController implements LoanController {
 
 	private static final long serialVersionUID = 5726824668267606699L;
 
-	private boolean stateLoans = true;
-
-	public boolean isStateLoans() {
-		return stateLoans;
-	}
-
-	public void setStateLoans(boolean stateLoans) {
-		this.stateLoans = stateLoans;
-	}
-
 	@Resource(name = "loanFacade")
 	private transient LoanFacade loanFacade;
-
-	public void setLoanFacade(final LoanFacade loanFacade) {
-		this.loanFacade = loanFacade;
-	}
 
 	@Override
 	public List<RotatingAccountDTO> getCustomerRotatingAccount() {
@@ -39,6 +28,12 @@ public class LoanControllerImpl extends AbstractBbvaController implements LoanCo
 	@Override
 	public List<LeasingDTO> getCustomerLeasing() {
 		return this.loanFacade.getLeasingByUser(getCurrentUser());
+	}
+
+	/********************************* SETTERS BEANS ************************************/
+
+	public void setLoanFacade(final LoanFacade loanFacade) {
+		this.loanFacade = loanFacade;
 	}
 
 }

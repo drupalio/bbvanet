@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -18,31 +17,22 @@
 	xmlns:bbvaSearch="http://java.sun.com/jsf/composite/bbva/filters"
 	xmlns:jsf="http://xmlns.jcp.org/jsf">
 
-<composite:interface>
-	<composite:attribute name="title" type="String" />
+<composite:interface>	
 </composite:interface>
 
 <composite:implementation>
-		<div class="filters check-books">
-			<h1 class="hidden-xs hidden-sm">Consultar talonarios</h1>
+	<div class="panel-tab-body">
+		<div class="filters custom-search">
+			<h1 class="hidden-xs hidden-sm">
+				<span>#{msg['text.title.personalized.search']}</span>
+			</h1>
+			<h1 class="hidden-md hidden-lg">
+				<span class="iconFont-611 font-white hidden-md hidden-lg"></span> <span>#{msg['text.consult']}</span>
+			</h1>
 			<ul class="accordion">
-				<li class="date-filter checkBooks"><a class="header" href="#">
-						<span class="arrow-left-smaller">Fecha <span class="filter"></span></span>
-				</a> <bbvaSearch:customSearchFilter />
-				</li>
-				<li class="check-books-ticket radio-filter mobile-hidden"><a
-					class="header" href="#"> <span class="arrow-left-smaller">Nº
-							de Cheque o Talonario <span class="filter"></span>
-					</span>
-				</a> <bbvaSearch:numberCheck /></li>
-				<li class="filter-buttons">
-					<div>
-						<button class="btn btn-default">
-							<span class="document-view-icon"></span> Ver resultados
-						</button>
-					</div>
-				</li>
+				<composite:insertChildren></composite:insertChildren>
 			</ul>
-		</div>	
+		</div>
+	</div>
 </composite:implementation>
 </html>

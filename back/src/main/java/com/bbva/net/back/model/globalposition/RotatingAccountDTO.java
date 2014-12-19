@@ -31,9 +31,9 @@ public class RotatingAccountDTO extends LoanDTO {
 		return new HashCodeBuilder().append(getQuota()).toHashCode();
 	}
 
-	// @Override
-	// public boolean equals(Object obj) {
-	// return (obj instanceof RotatingAccountDTO) && this.getQuota().equals(((RotatingAccountDTO)obj).getQuota());
-	// }
+	@Override
+	public boolean equals(Object obj) {
+		return (obj instanceof RotatingAccountDTO) && this.getQuota().equals(((RotatingAccountDTO)obj).getQuota());
+	}
 
 }
