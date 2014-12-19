@@ -8,9 +8,9 @@ import com.bbva.jee.arq.spring.core.servicing.utils.Money;
 
 
 /**
- * <p>Java class for Balance complex type.
+ * <p>Clase Java para Balance complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="Balance">
@@ -38,7 +38,7 @@ public class Balance {
     protected Money availableBalance;
 
     /**
-     * Gets the value of the total property.
+     * Obtiene el valor de la propiedad total.
      * 
      * @return
      *     possible object is
@@ -50,7 +50,7 @@ public class Balance {
     }
 
     /**
-     * Sets the value of the total property.
+     * Define el valor de la propiedad total.
      * 
      * @param value
      *     allowed object is
@@ -62,7 +62,7 @@ public class Balance {
     }
 
     /**
-     * Gets the value of the availableBalance property.
+     * Obtiene el valor de la propiedad availableBalance.
      * 
      * @return
      *     possible object is
@@ -74,7 +74,7 @@ public class Balance {
     }
 
     /**
-     * Sets the value of the availableBalance property.
+     * Define el valor de la propiedad availableBalance.
      * 
      * @param value
      *     allowed object is
