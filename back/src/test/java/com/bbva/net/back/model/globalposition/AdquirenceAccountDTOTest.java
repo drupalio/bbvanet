@@ -9,4 +9,12 @@ public class AdquirenceAccountDTOTest extends AbstractBbvaDTOTest<AdquirenceAcco
 		return new AdquirenceAccountDTO();
 	}
 
+	/**
+	 * Invoke Equals Method
+	 */
+	@Override
+	public void checkEqualsMethod() {
+
+	}
+
 }

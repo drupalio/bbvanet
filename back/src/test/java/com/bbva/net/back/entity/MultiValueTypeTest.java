@@ -9,4 +9,12 @@ public class MultiValueTypeTest extends AbstractBbvaDTOTest<MultiValueType> {
 		return new MultiValueType();
 	}
 
+	/**
+	 * Invoke Equals Method
+	 */
+	@Override
+	public void checkEqualsMethod() {
+
+	}
+
 }

@@ -70,10 +70,11 @@ public class BalanceRangeDto implements Dto {
 		return new HashCodeBuilder().append(getBalanceSince()).append(getBalanceTo()).toHashCode();
 	}
 
-	// @Override
-	// public boolean equals(Object obj) {
-	// return (obj instanceof ProductDTO) && this.getBalanceSince().equals(((BalanceRangeDto)obj).getBalanceSince())
-	// && this.getBalanceTo().equals(((BalanceRangeDto)obj).getBalanceTo());
-	// }
+	@Override
+	public boolean equals(Object obj) {
+		return (obj instanceof BalanceRangeDto)
+				&& this.getBalanceSince().equals(((BalanceRangeDto)obj).getBalanceSince())
+				&& this.getBalanceTo().equals(((BalanceRangeDto)obj).getBalanceTo());
+	}
 
 }

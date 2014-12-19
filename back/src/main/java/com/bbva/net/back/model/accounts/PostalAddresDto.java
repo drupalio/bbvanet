@@ -1,5 +1,8 @@
 package com.bbva.net.back.model.accounts;
 
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
+
 import com.bbva.net.back.core.pattern.dto.Dto;
 
 public class PostalAddresDto implements Dto {
@@ -44,21 +47,23 @@ public class PostalAddresDto implements Dto {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
-		return super.equals(obj);
+	public String toString() {
+		return new ToStringBuilder(this).append("nombreOficina", getNombreOficina())
+				.append("direccionPostal", getDireccionPostal()).toString();
 	}
 
 	@Override
 	public int hashCode() {
-		// TODO Auto-generated method stub
-		return super.hashCode();
+		return new HashCodeBuilder().append(getNombreOficina()).append(getDireccionPostal()).toHashCode();
 	}
 
 	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return super.toString();
+	public boolean equals(Object obj) {
+
+		return (obj instanceof PostalAddresDto)
+				&& this.getNombreOficina().equals(((PostalAddresDto)obj).getNombreOficina())
+				&& this.getDireccionPostal().equals(((PostalAddresDto)obj).getDireccionPostal());
+
 	}
 
 }
