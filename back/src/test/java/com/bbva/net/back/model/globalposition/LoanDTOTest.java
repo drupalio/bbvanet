@@ -9,4 +9,12 @@ public class LoanDTOTest extends AbstractBbvaDTOTest<LoanDTO> {
 		return new LoanDTO();
 	}
 
+	/**
+	 * Invoke Equals Method
+	 */
+	@Override
+	public void checkEqualsMethod() {
+
+	}
+
 }

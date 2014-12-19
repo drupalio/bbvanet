@@ -21,14 +21,14 @@
 			value="#{cc.attrs.listAccounts}" var="icuenta" selectionMode="single"
 			selection="#{customerAccountsPage.selectedAccount}"
 			rowKey="#{icuenta.product.alias}">
-			<p:column headerText="FECHA" styleClass="sorted w18 desc"
+			<p:column headerText="#{msg['text.detailMove.date']}" styleClass="sorted w18 desc"
 				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
 
 				<h:outputText styleClass="brand" style="font-size: 1.1em"
 					value="#{icuenta.product.alias}" />
 			</p:column>
 
-			<p:column headerText="CONCEPTO" styleClass="desc w34"
+			<p:column headerText="#{msg['text.detailMove.concep']}" styleClass="desc w34"
 				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none;">
 
 				<h:outputText class="text"
@@ -39,14 +39,14 @@
 					value="#{icuenta.product.alias}" />
 			</p:column>
 
-			<p:column class="head" headerText="VALOR" styleClass="desc w24"
+			<p:column class="head" headerText="#{msg['text.detailMove.value']}" styleClass="desc w24"
 				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
 
 				<h:outputText class="currency" style="font-size: 15px;color: #333"
 					value="#{icuenta.product.totalCash}" />
 
 			</p:column>
-			<p:column class="head" headerText="SALDO" styleClass="desc w24"
+			<p:column class="head" headerText="#{msg['text.detailMove.balance']}" styleClass="desc w24"
 				style="font-size: 0.7em;color: #333;font-family: Arial;background: none;border-style: none">
 
 				<h:outputText class="currency" style="font-size: 15px;color: #333"
@@ -58,7 +58,7 @@
 
 			<button id="nextPagebLink" class="btn btn-more-results" value="More Results" jsf:action="next">
 				<f:ajax execute="@form" render="@form :detalMoves" />
-				<span>Mostrar más</span>
+				<span>#{msg['text.detailMove.footer']}</span>
 			</button>
 		</footer>
 	</h:form>

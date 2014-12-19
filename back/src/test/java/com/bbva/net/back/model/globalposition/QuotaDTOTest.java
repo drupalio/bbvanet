@@ -9,4 +9,12 @@ public class QuotaDTOTest extends AbstractBbvaDTOTest<QuotaDTO> {
 		return new QuotaDTO();
 	}
 
+	/**
+	 * Invoke Equals Method
+	 */
+	@Override
+	public void checkEqualsMethod() {
+
+	}
+
 }
