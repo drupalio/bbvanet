@@ -9,58 +9,60 @@
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <composite:interface>
-	<composite:attribute name="id" type="String"  />
-	<composite:attribute name="listLoan" type="java.util.List"  />
+	<composite:attribute name="id" type="String" />
+	<composite:attribute name="listLoan" type="java.util.List" />
 </composite:interface>
 
 <composite:implementation>
 
-			<p:dataTable id="#{cc.attrs.id}" var="iproduct" 
-				rowIndexVar="findex"
-				selectionMode="single" 
-				selection="#{globalPositionController.selectedProduct}"
-				rowKey="#{iproduct.productId}"
-				value="#{cc.attrs.listLoan}">
-				
-			<p:ajax event="rowSelect"/>
-			<p:ajax event="rowUnselect" />
-		
-			<p:column class="head" headerText="N° PR&#201;STAMO" styleClass="head col-xs-6 col-md-4" 
-				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
-				
-				<h:outputText styleClass="title-label" style="font-size: 1.1em; font-weight:bold; color:#0078d2" escape="false"
-								  value="#{iproduct.alias}"/>
-				<h:outputText style="font-size: 1em" escape="false" 
-								  value="&lt;br /&gt; #{iproduct.productId}"></h:outputText>
-				<h:outputText styleClass="sublabel" style="font-size: 1em" escape="false"
-								  value="&lt;br /&gt; #{iproduct.productName}"/>
-				
-			</p:column>
-			
-			<p:column class="head" headerText="TOTAL ADEUDO" styleClass="head col-xs-6 col-md-4"
-				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
-				
-				
-				<h:outputText style="font-size: 1.5em; font-weight:bold" styleClass="balance" 
-						  value="#{iproduct.totalDebt}"/>
-				
+	<p:dataTable id="#{cc.attrs.id}" var="iproduct" rowIndexVar="findex"
+		selectionMode="single"
+		selection="#{globalPositionController.selectedProduct}"
+		rowKey="#{iproduct.productId}" value="#{cc.attrs.listLoan}">
 
-				<p class="sublabel"></p>
-				
-			</p:column>
-			
-			<p:column class="head" headerText="TOTAL VENCIDO"	styleClass="head col-xs-6 col-md-4"
-				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
-				
-				<h:outputText style="font-size: 1.5em; font-weight:bold" styleClass="balance" 
-								   value="#{iproduct.totalDue}"/>
-			
+		<p:ajax event="rowSelect" />
+		<p:ajax event="rowUnselect" />
 
-				<p class="sublabel"></p>
-				
-			</p:column>
-			
-		</p:dataTable>
+		<p:column class="head" headerText="#{msg['text.loan']}"
+			styleClass="head col-xs-6 col-md-4"
+			style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
+
+			<h:outputText styleClass="title-label"
+				style="font-size: 1.1em; font-weight:bold; color:#0078d2"
+				escape="false" value="#{iproduct.alias}" />
+			<h:outputText style="font-size: 1em" escape="false"
+				value="&lt;br /&gt; #{iproduct.productId}"></h:outputText>
+			<h:outputText styleClass="sublabel" style="font-size: 1em"
+				escape="false" value="&lt;br /&gt; #{iproduct.productName}" />
+
+		</p:column>
+
+		<p:column class="head" headerText="#{msg['txt.owe']}"
+			styleClass="head col-xs-6 col-md-4"
+			style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
+
+
+			<h:outputText style="font-size: 1.5em; font-weight:bold"
+				styleClass="balance" value="#{iproduct.totalDebt}" />
+
+
+			<p class="sublabel"></p>
+
+		</p:column>
+
+		<p:column class="head" headerText="#{msg['text.totalExpired']}"
+			styleClass="head col-xs-6 col-md-4"
+			style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
+
+			<h:outputText style="font-size: 1.5em; font-weight:bold"
+				styleClass="balance" value="#{iproduct.totalDue}" />
+
+
+			<p class="sublabel"></p>
+
+		</p:column>
+
+	</p:dataTable>
 
 
 </composite:implementation>

@@ -15,51 +15,53 @@
 
 <composite:implementation>
 
-		<p:dataTable id="#{cc.attrs.id}" var="iproduct" 
-				rowIndexVar="findex"
-				selectionMode="single" 
-				selection="#{globalPositionController.selectedProduct}"
-				rowKey="#{iproduct.productId}"
-				value="#{cc.attrs.listQuota}">
-		
-			<p:ajax event="rowSelect"/>
-			<p:ajax event="rowUnselect" />
-		
-			<p:column class="head" headerText="CUPO" styleClass="head col-xs-6 col-md-4" 
-				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
-				
-				<h:outputText styleClass="title-label" style="font-size: 1.1em; font-weight:bold; color:#0078d2" escape="false"
-								  value="#{iproduct.alias}"/>
-				<h:outputText style="font-size: 1em" escape="false" 
-								  value="&lt;br /&gt; #{iproduct.productId}"></h:outputText>
-				<h:outputText styleClass="sublabel" style="font-size: 1em" escape="false"
-								  value="&lt;br /&gt; #{iproduct.productName}"/>
-				
-			</p:column>
-			
-			<p:column class="head" headerText="CUPO TOTAL" styleClass="head col-xs-6 col-md-4"
-				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
-				
-				
-				<h:outputText style="font-size: 1.5em; font-weight:bold" styleClass="balance" 
-						  value="#{iproduct.quota.totalQuotaDebt}"/>
-				
-				<p class="sublabel"></p>
-				
-			</p:column>
-			
-			<p:column class="head" headerText="CUPO DISPONIBLE"	styleClass="head col-xs-6 col-md-4"
-				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
-				
-				
-				<h:outputText style="font-size: 1.5em; font-weight:bold" styleClass="balance" 
-								   value="#{iproduct.quota.availableQuota}"/>
+	<p:dataTable id="#{cc.attrs.id}" var="iproduct" rowIndexVar="findex"
+		selectionMode="single"
+		selection="#{globalPositionController.selectedProduct}"
+		rowKey="#{iproduct.productId}" value="#{cc.attrs.listQuota}">
 
-				<p class="sublabel"></p>
-				
-			</p:column>
-			
-		</p:dataTable>
+		<p:ajax event="rowSelect" />
+		<p:ajax event="rowUnselect" />
+
+		<p:column class="head" headerText="#{msg['text.quota']}"
+			styleClass="head col-xs-6 col-md-4"
+			style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
+
+			<h:outputText styleClass="title-label"
+				style="font-size: 1.1em; font-weight:bold; color:#0078d2"
+				escape="false" value="#{iproduct.alias}" />
+			<h:outputText style="font-size: 1em" escape="false"
+				value="&lt;br /&gt; #{iproduct.productId}"></h:outputText>
+			<h:outputText styleClass="sublabel" style="font-size: 1em"
+				escape="false" value="&lt;br /&gt; #{iproduct.productName}" />
+
+		</p:column>
+
+		<p:column class="head" headerText="#{msg['text.quotaTotal']}"
+			styleClass="head col-xs-6 col-md-4"
+			style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
+
+
+			<h:outputText style="font-size: 1.5em; font-weight:bold"
+				styleClass="balance" value="#{iproduct.quota.totalQuotaDebt}" />
+
+			<p class="sublabel"></p>
+
+		</p:column>
+
+		<p:column class="head" headerText="#{msg['text.quotaAvailable']}"
+			styleClass="head col-xs-6 col-md-4"
+			style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
+
+
+			<h:outputText style="font-size: 1.5em; font-weight:bold"
+				styleClass="balance" value="#{iproduct.quota.availableQuota}" />
+
+			<p class="sublabel"></p>
+
+		</p:column>
+
+	</p:dataTable>
 
 </composite:implementation>
 
