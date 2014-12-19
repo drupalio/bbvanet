@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<composite:interface>
+
+	<composite:attribute name="idB" />
+	<composite:attribute name="textB" />
+	<composite:attribute name="styleB" />
+	<composite:attribute name="onclickB" />
+	<composite:attribute name="classB" />
+	<composite:attribute name="actionListener"
+		method-signature="void actionlistener(javax.faces.event.ActionEvent)" />
+	<composite:attribute name="iconB" />
+	<composite:attribute name="type" type="java.lang.String" />
+	<composite:attribute name="nameB" />
+
+	<composite:attribute name="idI" />
+	<composite:attribute name="styleClassI" />
+	<composite:attribute name="valueI" />
+	<composite:attribute name="typeI" type="java.lang.String" />
+	<composite:attribute name="styleI" />
+	<composite:attribute name="required" />
+	<composite:attribute name="maxlength" type="java.lang.Integer" />
+	<composite:attribute name="requiredMessage" required="false"
+		default="An input is required" />
+	<composite:attribute name="validatorMessage" required="false"
+		default="Invalid input" />
+	<composite:attribute name="onclickI" required="false" />
+
+</composite:interface>
+
+<composite:implementation>
+
+
+	<fieldset class="input">
+		<p:inputText id="#{cc.attrs.idI}" type="#{cc.attrs.typeI}"
+			value="#{cc.attrs.valueI}" maxlength="#{cc.attrs.maxlength}"
+			required="#{cc.attrs.required}" pt:name="#{cc.attrs.nameI}"
+			requiredMessage="#{cc.attrs.requiredMessage}"
+			onkeyup="enableDisableButton(this, #{cc.attrs.nameB})"
+			validatorMessage="#{cc.attrs.validatorMessage}"
+			style="#{cc.attrs.styleI}" styleClass="#{cc.attrs.styleClassI}">
+		</p:inputText>
+
+	</fieldset>
+
+	<button class="#{cc.attrs.classB}" disabled="true"
+		type="#{cc.attrs.type}" jsf:id="#{cc.attrs.idB}"
+		jsf:actionListener="#{cc.attrs.actionListener}"
+		name="#{cc.attrs.nameB}" jsf:style="#{cc.attrs.styleB}"
+		jsf:onclick="#{cc.attrs.onclickB}">
+		<span class="#{cc.attrs.iconB}" /> #{cc.attrs.textB}
+		<f:ajax execute="@form" render="@form" />
+	</button>
+
+</composite:implementation>
+
+</html>

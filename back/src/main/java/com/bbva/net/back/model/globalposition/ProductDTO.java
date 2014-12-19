@@ -1,14 +1,13 @@
 package com.bbva.net.back.model.globalposition;
 
-import java.io.Serializable;
-
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 import com.bbva.czic.dto.net.EnumProductType;
+import com.bbva.net.back.core.pattern.dto.Dto;
 import com.bbva.net.back.model.commons.Money;
 
-public class ProductDTO implements Serializable {
+public class ProductDTO implements Dto {
 
 	private final static long serialVersionUID = 1L;
 
@@ -151,10 +150,10 @@ public class ProductDTO implements Serializable {
 		return new HashCodeBuilder().append(getProductId()).append(getProductNumber()).toHashCode();
 	}
 
-	// @Override
-	// public boolean equals(Object obj) {
-	// return (obj instanceof ProductDTO) && this.getProductId().equals(((ProductDTO)obj).getProductId())
-	// && this.getProductNumber().equals(((ProductDTO)obj).getProductNumber());
-	// }
+	@Override
+	public boolean equals(Object obj) {
+		return (obj instanceof ProductDTO) && this.getProductId().equals(((ProductDTO)obj).getProductId())
+				&& this.getProductNumber().equals(((ProductDTO)obj).getProductNumber());
+	}
 
 }

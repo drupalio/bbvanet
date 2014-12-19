@@ -13,71 +13,70 @@
 
 <composite:interface>
 	<composite:attribute name="value" />
-		<composite:attribute name="valueDateSince" />
+	<composite:attribute name="valueDateSince" />
 	<composite:attribute name="valueDateTo" />
 </composite:interface>
 
 <composite:implementation>
 	<div class="date-filter-content">
-		<h:form>
-			<div class="form-horizontal">
-				<div class="row">
+		<div class="form-horizontal">
+			<div class="row">
 
-					<h:panelGrid columns="2" cellpadding="5">
-						<p:outputLabel for="console" value="Console:" rendered="false" />
-						<p:selectOneRadio id="console"
-							value="#{movementsCriteriaController.selectDate}" layout="grid"
-							columns="2">
-							<f:selectItem itemLabel="#{msg['select.radio.today']}"
-								itemValue="#{msg['select.radio.today']}" />
-							<f:selectItem itemLabel="#{msg['select.radio.yesterday']}"
-								itemValue="#{msg['select.radio.yesterday']}" />
-							<f:selectItem itemLabel="#{msg['select.radio.last.week']}"
-								itemValue="#{msg['select.radio.last.week']}" />
+				<h:panelGrid columns="2" cellpadding="5">
+					<p:outputLabel for="console" value="Console:" rendered="false" />
+					<p:selectOneRadio id="console"
+						value="#{movementsCriteriaController.selectDate}" layout="grid"
+						columns="2">
+						<f:selectItem itemLabel="#{msg['select.radio.today']}"
+							itemValue="#{msg['select.radio.today']}" />
+						<f:selectItem itemLabel="#{msg['select.radio.yesterday']}"
+							itemValue="#{msg['select.radio.yesterday']}" />
+						<f:selectItem itemLabel="#{msg['select.radio.last.week']}"
+							itemValue="#{msg['select.radio.last.week']}" />
 
-							<f:selectItem itemLabel="#{msg['select.radio.last.two.weeks']}"
-								itemValue="#{msg['select.radio.last.two.weeks']}" />
-							<f:selectItem itemLabel="#{msg['select.radio.last.month']}"
-								itemValue="#{msg['select.radio.last.month']}" />
-							<f:selectItem itemLabel="#{msg['select.radio.last.two.months']}"
-								itemValue="#{msg['select.radio.last.two.months']}" />
+						<f:selectItem itemLabel="#{msg['select.radio.last.two.weeks']}"
+							itemValue="#{msg['select.radio.last.two.weeks']}" />
+						<f:selectItem itemLabel="#{msg['select.radio.last.month']}"
+							itemValue="#{msg['select.radio.last.month']}" />
+						<f:selectItem itemLabel="#{msg['select.radio.last.two.months']}"
+							itemValue="#{msg['select.radio.last.two.months']}" />
 
-							<f:selectItem itemLabel="#{msg['select.radio.concret.date']}"
-								itemValue="#{msg['select.radio.concret.date']}" />
-							<p:ajax listener="#{movementsCriteriaController.oneSelectDate}" />
-						</p:selectOneRadio>
-					</h:panelGrid>
-					
+						<f:selectItem itemLabel="#{msg['select.radio.concret.date']}"
+							itemValue="#{msg['select.radio.concret.date']}" />
+						<p:ajax listener="#{movementsCriteriaController.oneSelectDate}" />
+					</p:selectOneRadio>
+				</h:panelGrid>
+
+			</div>
+		</div>
+
+		<div class="date-period radio-group">
+			<div>
+				<div class="col-xs-12 col-md-6">
+					<div class="form-group">
+						<div class="col-xs-2 col-md-12">
+							<label for="customSearch-dateFieldFrom">#{msg['text.since']}:</label>
+						</div>
+						<div>
+							<bbvaCalendar:calendarItem />
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12 col-md-6">
+					<div class="form-group">
+						<div class="col-xs-2 col-md-12">
+							<label for="customSearch-dateFieldTo">#{msg['text.to']}:</label>
+						</div>
+						<div>
+							<bbvaCalendar:calendarItem />
+						</div>
+					</div>
 				</div>
 			</div>
+		</div>
+		<p:commandButton value="#{msg['button.confirm']}"
+			styleClass="btn small hidden-xs hidden-sm" />
 
-			<div class="date-period radio-group">
-				<div>
-					<div class="col-xs-12 col-md-6">
-						<div class="form-group">
-							<div class="col-xs-2 col-md-12">
-								<label for="customSearch-dateFieldFrom">#{msg['text.since']}:</label>
-							</div>
-							<div>
-								<bbvaCalendar:calendarItem />
-							</div>
-						</div>
-					</div>
-					<div class="col-xs-12 col-md-6">
-						<div class="form-group">
-							<div class="col-xs-2 col-md-12">
-								<label for="customSearch-dateFieldTo">#{msg['text.to']}:</label>
-							</div>
-							<div >
-								<bbvaCalendar:calendarItem />
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>	
-			<p:commandButton value="#{msg['button.confirm']}" styleClass="btn small hidden-xs hidden-sm"/>	
-			
-		</h:form>
 	</div>
 </composite:implementation>
 

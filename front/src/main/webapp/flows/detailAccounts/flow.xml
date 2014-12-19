@@ -7,13 +7,15 @@
 	<var name="calendar"
 		class="com.bbva.net.front.controller.impl.MoveAccountsControllerImpl" />
 
-	<var name="customerAccountsPage"
-		class="com.bbva.net.front.controller.impl.AccountsControllerImpl" />
+	<var name="accountsController"  class="com.bbva.net.front.controller.impl.AccountsControllerImpl" />
+	<var name="personalizeProductAccountController"
+		class="com.bbva.net.front.controller.impl.PersonalizeProductAccountControllerImpl" />
+
 	<var name="movementsCriteriaController"
 		class="com.bbva.net.front.controller.impl.MovementCriteriaControllerImpl" />
 	<var name="TermsController" class="com.bbva.net.front.controller.impl.TermsControllerImpl" />
 	<on-start>
-		<evaluate expression="customerAccountsPage.getCustomerAccounts()"
+		<evaluate expression="accountsController.getCustomerAccounts()"
 			result="flowScope.customerAccounts" />
 		<evaluate expression="TermsController.getAllConditions()"
 			result="flowScope.allConditions" />
@@ -22,7 +24,7 @@
 	<view-state id="detailAccounts">
 
 		<on-render>
-			<evaluate expression="customerAccountsPage.getCustomerAccounts()"
+			<evaluate expression="accountsController.getCustomerAccounts()"
 				result="viewScope.customerAccountsM" result-type="dataModel" />
 		</on-render>
 		<transition on="next">
@@ -30,6 +32,4 @@
 		</transition>
 
 	</view-state>
-
-
 </flow>

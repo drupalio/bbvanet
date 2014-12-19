@@ -1,5 +1,9 @@
 package com.bbva.net.back.facade;
 
+import java.util.Map;
+
+import com.bbva.czic.dto.net.EnumProductType;
+import com.bbva.net.back.model.commons.Money;
 import com.bbva.net.back.model.globalposition.GlobalProductsDTO;
 
 /**
@@ -22,4 +26,10 @@ public interface GlobalPositionFacade {
 	 * @return
 	 */
 	GlobalProductsDTO getGlobalProductsHidden(GlobalProductsDTO globalProductsDTO);
+
+	/**
+	 * @param globalProductsDTO
+	 * @return
+	 */
+	Map<EnumProductType, Money> getTotalsByProduct(GlobalProductsDTO globalProductsDTO);
 }

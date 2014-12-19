@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
@@ -44,7 +45,7 @@ public class GlobalProductsDTO implements Serializable {
 	}
 
 	public boolean isSetAccounts() {
-		return ((this.accounts != null) && (!this.accounts.isEmpty()));
+		return CollectionUtils.isEmpty(this.accounts);
 	}
 
 	public void unsetAccounts() {
@@ -56,7 +57,7 @@ public class GlobalProductsDTO implements Serializable {
 	}
 
 	public boolean isSetRotatingAccounts() {
-		return ((this.rotatingAccounts != null) && (!this.rotatingAccounts.isEmpty()));
+		return CollectionUtils.isEmpty(this.rotatingAccounts);
 	}
 
 	public void unsetRotatingAccounts() {
@@ -68,7 +69,7 @@ public class GlobalProductsDTO implements Serializable {
 	}
 
 	public boolean isSetLeasings() {
-		return ((this.leasings != null) && (!this.leasings.isEmpty()));
+		return CollectionUtils.isEmpty(this.leasings);
 	}
 
 	public void unsetLeasings() {
@@ -80,7 +81,7 @@ public class GlobalProductsDTO implements Serializable {
 	}
 
 	public boolean isSetFunds() {
-		return ((this.funds != null) && (!this.funds.isEmpty()));
+		return CollectionUtils.isEmpty(this.funds);
 	}
 
 	public void unsetFunds() {
@@ -92,7 +93,7 @@ public class GlobalProductsDTO implements Serializable {
 	}
 
 	public boolean isSetCreditCards() {
-		return ((this.creditCards != null) && (!this.creditCards.isEmpty()));
+		return CollectionUtils.isEmpty(this.creditCards);
 	}
 
 	public void unsetCreditCards() {
@@ -104,7 +105,7 @@ public class GlobalProductsDTO implements Serializable {
 	}
 
 	public boolean isSetElectronicDeposits() {
-		return ((this.electronicDeposits != null) && (!this.electronicDeposits.isEmpty()));
+		return CollectionUtils.isEmpty(this.electronicDeposits);
 	}
 
 	public void unsetElectronicDeposits() {
@@ -168,18 +169,5 @@ public class GlobalProductsDTO implements Serializable {
 				.append(getFunds()).append(getCreditCards()).append(getElectronicDeposits()).append(getAdquirencia())
 				.append(getLoan()).toHashCode();
 	}
-
-	// @Override
-	// public boolean equals(Object obj) {
-	//
-	// return (obj instanceof GlobalProductsDTO) && this.getAccounts().equals(((GlobalProductsDTO)obj).getAccounts())
-	// && this.getRotatingAccounts().equals(((GlobalProductsDTO)obj).getRotatingAccounts())
-	// && this.getLeasings().equals(((GlobalProductsDTO)obj).getLeasings())
-	// && this.getFunds().equals(((GlobalProductsDTO)obj).getFunds())
-	// && this.getCreditCards().equals(((GlobalProductsDTO)obj).getCreditCards())
-	// && this.getElectronicDeposits().equals(((GlobalProductsDTO)obj).getElectronicDeposits())
-	// && this.getAdquirencia().equals(((GlobalProductsDTO)obj).getAdquirencia())
-	// && this.getLoan().equals(((GlobalProductsDTO)obj).getLoan());
-	// }
 
 }
