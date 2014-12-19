@@ -48,10 +48,10 @@ public class LoanDTO extends ProductDTO {
 		return new HashCodeBuilder().append(getTotalDebt()).append(getTotalDue()).toHashCode();
 	}
 
-	// @Override
-	// public boolean equals(Object obj) {
-	// return (obj instanceof ProductDTO) && this.getTotalDebt().equals(((LoanDTO)obj).getTotalDebt())
-	// && this.getTotalDue().equals(((LoanDTO)obj).getTotalDue());
-	// }
+	@Override
+	public boolean equals(Object obj) {
+		return (obj instanceof LoanDTO) && this.getTotalDebt().equals(((LoanDTO)obj).getTotalDebt())
+				&& this.getTotalDue().equals(((LoanDTO)obj).getTotalDue());
+	}
 
 }

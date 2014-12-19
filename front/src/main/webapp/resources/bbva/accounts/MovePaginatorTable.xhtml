@@ -6,6 +6,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
 	xmlns:bbvaGP="http://java.sun.com/jsf/composite/bbva/globalPosition">
 
 <composite:interface>
@@ -15,7 +16,7 @@
 </composite:interface>
 
 <composite:implementation>
-	<h:form id="formd">
+	<h:form id="detalMoves">
 		<p:dataTable id="detalAC" styleClass="detail-table-body sortable"
 			value="#{cc.attrs.listAccounts}" var="icuenta" selectionMode="single"
 			selection="#{customerAccountsPage.selectedAccount}"
@@ -54,13 +55,9 @@
 			</p:column>
 		</p:dataTable>
 		<footer class="detail-table-footer">
-			<p:button id="nextPagepLink"
-				 action="next" styleClass="btn btn-more-results table-ui-button"
-				value="Mostrar más" style="display:-webkit-inline-box !important;">
-				
-			</p:button>
-			<button id="nextPagebLink" class="btn btn-more-results" 
-				onclick="next" value="More Results">
+
+			<button id="nextPagebLink" class="btn btn-more-results" value="More Results" jsf:action="next">
+				<f:ajax execute="@form" render="@form :detalMoves" />
 				<span>Mostrar más</span>
 			</button>
 		</footer>

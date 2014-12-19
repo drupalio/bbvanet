@@ -1,7 +1,9 @@
 package com.bbva.net.front.delegate.impl;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import javax.annotation.Resource;
 
@@ -49,8 +51,7 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 	 */
 	public PieConfigUI getSituationPieConfig(final List<ProductDTO> products) {
 
-		final PieConfigUI situationPie = new PieConfigUI();
-		situationPie.setHeader("Tu Situación");
+		final PieConfigUI situationPie = new PieConfigUI();		
 
 		final List<PieItemUI> situationPieItems = new ArrayList<PieItemUI>();
 
@@ -77,7 +78,8 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 	public PieConfigUI getAssetPieConfig(final List<ProductDTO> products) {
 
 		final PieConfigUI assetPie = new PieConfigUI();
-		assetPie.setHeader("Activos " + productService.getTotalAssets(products).getAmount().toString());
+		assetPie.setHeaderLeft(" Activos " );
+		assetPie.setHeaderRight(productService.getTotalAssets(products).getAmount().toString());
 
 		final List<PieItemUI> assetPieItems = new ArrayList<PieItemUI>();
 
@@ -111,9 +113,11 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 	 */
 	public PieConfigUI getFinanciationPieConfig(final List<ProductDTO> products) {
 
-		final PieConfigUI financiationPie = new PieConfigUI();
-		financiationPie.setHeader("Financiación "
-				+ productService.getTotalFinanciacion(products).getAmount().toString());
+		final PieConfigUI financiationPie = new PieConfigUI();		
+		DecimalFormat myFormatter = new DecimalFormat(ResourceBundle.getBundle("i18n_es").getString("number.format.decimals"));
+		String str = myFormatter.format(productService.getTotalFinanciacion(products).getAmount());
+		System.out.println(str);
+		financiationPie.setHeaderCenter( productService.getTotalFinanciacion(products).getAmount().toString());
 
 		final List<PieItemUI> financiationPieItems = new ArrayList<PieItemUI>();
 
