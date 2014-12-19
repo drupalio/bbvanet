@@ -1,19 +1,22 @@
 package com.bbva.net.back.model.globalposition;
 
-import java.io.Serializable;
-
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
+import com.bbva.net.back.core.pattern.dto.Dto;
 import com.bbva.net.back.model.commons.Money;
 
-public class QuotaDTO implements Serializable {
+public class QuotaDTO implements Dto {
 
 	private final static long serialVersionUID = 1L;
 
 	private Money availableQuota;
 
 	private Money totalQuotaDebt;
+
+	public QuotaDTO() {
+		super();
+	}
 
 	public Money getAvailableQuota() {
 		return availableQuota;
@@ -52,7 +55,7 @@ public class QuotaDTO implements Serializable {
 
 	@Override
 	public boolean equals(Object obj) {
-		return (obj instanceof ProductDTO) && this.getAvailableQuota().equals(((QuotaDTO)obj).getAvailableQuota())
+		return (obj instanceof QuotaDTO) && this.getAvailableQuota().equals(((QuotaDTO)obj).getAvailableQuota())
 				&& this.getTotalQuotaDebt().equals(((QuotaDTO)obj).getTotalQuotaDebt());
 	}
 

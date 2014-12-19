@@ -26,7 +26,7 @@ public class NewsAlertsDTO implements Dto {
 	 * @param description
 	 */
 	public NewsAlertsDTO(String idNewsAlerts, Date alertDate, String type, String title, String description) {
-		super();
+
 		this.idNewsAlerts = idNewsAlerts;
 		this.alertDate = alertDate;
 		this.type = type;
@@ -34,7 +34,11 @@ public class NewsAlertsDTO implements Dto {
 		this.description = description;
 	}
 
-	public boolean isËmpty() {
+	public NewsAlertsDTO() {
+
+	}
+
+	public boolean isEmpty() {
 		return false;
 	}
 

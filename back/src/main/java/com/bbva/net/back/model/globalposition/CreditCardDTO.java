@@ -1,23 +1,23 @@
 package com.bbva.net.back.model.globalposition;
 
-import java.math.BigDecimal;
-
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
+
+import com.bbva.net.back.model.commons.Money;
 
 public class CreditCardDTO extends ProductDTO {
 
 	private final static long serialVersionUID = 1L;
 
-	private BigDecimal bin;
+	private Money bin;
 
 	private QuotaDTO quota;
 
-	public BigDecimal getBin() {
+	public Money getBin() {
 		return bin;
 	}
 
-	public void setBin(BigDecimal value) {
+	public void setBin(final Money value) {
 		this.bin = value;
 	}
 
@@ -29,7 +29,7 @@ public class CreditCardDTO extends ProductDTO {
 		return quota;
 	}
 
-	public void setQuota(QuotaDTO value) {
+	public void setQuota(final QuotaDTO value) {
 		this.quota = value;
 	}
 

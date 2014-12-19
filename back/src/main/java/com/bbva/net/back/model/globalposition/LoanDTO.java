@@ -50,7 +50,7 @@ public class LoanDTO extends ProductDTO {
 
 	@Override
 	public boolean equals(Object obj) {
-		return (obj instanceof ProductDTO) && this.getTotalDebt().equals(((LoanDTO)obj).getTotalDebt())
+		return (obj instanceof LoanDTO) && this.getTotalDebt().equals(((LoanDTO)obj).getTotalDebt())
 				&& this.getTotalDue().equals(((LoanDTO)obj).getTotalDue());
 	}
 

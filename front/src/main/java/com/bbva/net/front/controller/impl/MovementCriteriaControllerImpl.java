@@ -50,6 +50,11 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 		System.out.println("Since "+movementCriteria.getBalanceRange().getBalanceSince());
 		System.out.println("To "+movementCriteria.getBalanceRange().getBalanceTo());
 	}
+	
+	public void searchIncomeExpensesFilter(final ActionEvent event) {
+		System.out.println("Method searchINcome expenses filter");
+		System.out.println(movementCriteria.getIncomesOrExpenses());
+	}
 
 	/**
 	 * @return the movementCriteria

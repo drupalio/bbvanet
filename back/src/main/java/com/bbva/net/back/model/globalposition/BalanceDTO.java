@@ -56,5 +56,4 @@ public class BalanceDTO implements Dto {
 		return (obj instanceof BalanceDTO) && this.getAvailable().equals(((BalanceDTO)obj).getAvailable())
 				&& this.getTotal().equals(((BalanceDTO)obj).getTotal());
 	}
-
 }

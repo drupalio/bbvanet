@@ -9,32 +9,83 @@ public class PieConfigUI implements Serializable {
 
 	private List<PieItemUI> pieItemUIList;
 
-	private String header;
+	private String headerLeft;
+	
+	private String headerCenter;
+
+	private String headerRight;
 
 	private boolean isVisible = true;
 
+	/**
+	 * @return the pieItemUIList
+	 */
 	public List<PieItemUI> getPieItemUIList() {
 		return pieItemUIList;
 	}
 
+	/**
+	 * @param pieItemUIList the pieItemUIList to set
+	 */
 	public void setPieItemUIList(List<PieItemUI> pieItemUIList) {
 		this.pieItemUIList = pieItemUIList;
 	}
 
-	public String getHeader() {
-		return header;
+	/**
+	 * @return the headerLeft
+	 */
+	public String getHeaderLeft() {
+		return headerLeft;
 	}
 
-	public void setHeader(String header) {
-		this.header = header;
+	/**
+	 * @param headerLeft the headerLeft to set
+	 */
+	public void setHeaderLeft(String headerLeft) {
+		this.headerLeft = headerLeft;
+	}
+	
+	
+	/**
+	 * @return the headerCenter
+	 */
+	public String getHeaderCenter() {
+		return headerCenter;
 	}
 
+	
+	/**
+	 * @param headerCenter the headerCenter to set
+	 */
+	public void setHeaderCenter(String headerCenter) {
+		this.headerCenter = headerCenter;
+	}
+
+	/**
+	 * @return the headerRight
+	 */
+	public String getHeaderRight() {
+		return headerRight;
+	}
+
+	/**
+	 * @param headerRight the headerRight to set
+	 */
+	public void setHeaderRight(String headerRight) {
+		this.headerRight = headerRight;
+	}
+
+	/**
+	 * @return the isVisible
+	 */
 	public boolean isVisible() {
 		return isVisible;
 	}
 
+	/**
+	 * @param isVisible the isVisible to set
+	 */
 	public void setVisible(boolean isVisible) {
 		this.isVisible = isVisible;
 	}
-
 }
