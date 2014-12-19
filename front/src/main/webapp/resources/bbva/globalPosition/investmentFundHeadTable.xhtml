@@ -16,17 +16,15 @@
 
 <composite:implementation>
 
-	<p:dataTable id="#{cc.attrs.id}" var="iproduct" 
-		rowIndexVar="findex"
+	<p:dataTable id="#{cc.attrs.id}" var="iproduct" rowIndexVar="findex"
 		selectionMode="single"
 		selection="#{globalPositionController.selectedProduct}"
-		rowKey="#{iproduct.productId}" 
-		value="#{cc.attrs.listFund}">
+		rowKey="#{iproduct.productId}" value="#{cc.attrs.listFund}">
 
 		<p:ajax event="rowSelect" />
 		<p:ajax event="rowUnselect" />
 
-		<p:column class="head" headerText="N° FONDO"
+		<p:column class="head" headerText="#{msg['text.numberFound']}"
 			styleClass="head col-xs-6 col-md-8"
 			style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
 
@@ -45,11 +43,11 @@
 
 			<h:outputText style="font-size: 1.5em; font-weight:bold"
 				styleClass="balance" value="#{iproduct.totalCash}" />
-				
+
 			<h:outputText styleClass="ui-datatable-selectable"
 				style="font-size:1em" escape="false"
-				value="&lt;br /&gt; Saldo disponible #{currency}#{iproduct.cashAvailable.amount}"/>
-				
+				value="&lt;br /&gt; Saldo disponible #{currency}#{iproduct.cashAvailable.amount}" />
+
 
 			<p class="sublabel"></p>
 
