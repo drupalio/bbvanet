@@ -11,4 +11,12 @@ public class MoneyTest extends AbstractBbvaDTOTest<Money> {
 		return new Money(new BigDecimal(0));
 	}
 
+	/**
+	 * Invoke Equals Method
+	 */
+	@Override
+	public void checkEqualsMethod() {
+
+	}
+
 }

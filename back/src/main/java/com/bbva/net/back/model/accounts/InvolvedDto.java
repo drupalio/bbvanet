@@ -1,5 +1,8 @@
 package com.bbva.net.back.model.accounts;
 
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
+
 import com.bbva.net.back.core.pattern.dto.Dto;
 
 public class InvolvedDto implements Dto {
@@ -55,21 +58,24 @@ public class InvolvedDto implements Dto {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
-		return super.equals(obj);
+	public String toString() {
+		return new ToStringBuilder(this).append("titular1", getTitular1()).append("titular2", getTitular2())
+				.append("condicionesMovilizacion", getCondicionesMovilizacion()).toString();
 	}
 
 	@Override
 	public int hashCode() {
-		// TODO Auto-generated method stub
-		return super.hashCode();
+		return new HashCodeBuilder().append(getTitular1()).append(getTitular2()).append(getCondicionesMovilizacion())
+				.toHashCode();
 	}
 
 	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return super.toString();
+	public boolean equals(Object obj) {
+
+		return (obj instanceof InvolvedDto) && this.getTitular1().equals(((InvolvedDto)obj).getTitular1())
+				&& this.getTitular2().equals(((InvolvedDto)obj).getTitular2())
+				&& this.getCondicionesMovilizacion().equals(((InvolvedDto)obj).getCondicionesMovilizacion());
+
 	}
 
 }

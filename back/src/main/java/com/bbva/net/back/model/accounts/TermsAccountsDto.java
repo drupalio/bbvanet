@@ -1,5 +1,8 @@
 package com.bbva.net.back.model.accounts;
 
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
+
 import com.bbva.net.back.core.pattern.dto.Dto;
 
 public class TermsAccountsDto implements Dto {
@@ -54,21 +57,27 @@ public class TermsAccountsDto implements Dto {
 	}
 
 	@Override
-	public boolean equals(Object arg0) {
-		// TODO Auto-generated method stub
-		return super.equals(arg0);
+	public String toString() {
+		return new ToStringBuilder(this).append("informacionProducto", getInformacionProducto())
+				.append("intervinientes", getIntervinientes()).append("detalleCondiciones", getDetalleCondiciones())
+				.append("direccionPostal", getDireccionPostal()).toString();
 	}
 
 	@Override
 	public int hashCode() {
-		// TODO Auto-generated method stub
-		return super.hashCode();
+		return new HashCodeBuilder().append(getInformacionProducto()).append(getIntervinientes())
+				.append(getDetalleCondiciones()).append(getDireccionPostal()).toHashCode();
 	}
 
 	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return super.toString();
+	public boolean equals(Object obj) {
+
+		return (obj instanceof TermsAccountsDto)
+				&& this.getInformacionProducto().equals(((TermsAccountsDto)obj).getInformacionProducto())
+				&& this.getIntervinientes().equals(((TermsAccountsDto)obj).getIntervinientes())
+				&& this.getDetalleCondiciones().equals(((TermsAccountsDto)obj).getDetalleCondiciones())
+				&& this.getDireccionPostal().equals(((TermsAccountsDto)obj).getDireccionPostal());
+
 	}
 
 }
