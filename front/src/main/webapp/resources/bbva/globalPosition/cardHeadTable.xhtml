@@ -25,7 +25,7 @@
 			<p:ajax event="rowSelect"   />
 			<p:ajax event="rowUnselect" />
 
-			<p:column class="head" headerText="TARJETAS DE CRÉDITO" styleClass="col-xs-6 col-md-4" 
+			<p:column class="head" headerText="#{msg['text.card.name']}" styleClass="col-xs-6 col-md-4" 
 				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
 				
 				
@@ -37,7 +37,7 @@
 								  value="&lt;br /&gt; #{iproduct.productName}"/>
 				
 			</p:column>
-			<p:column class="head" headerText="CUPO TOTAL" styleClass="col-xs-6 col-md-4"
+			<p:column class="head" headerText="#{msg['text.card.balanceTotal']}" styleClass="col-xs-6 col-md-4"
 				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
 				
 				
@@ -47,7 +47,7 @@
 				<p class="sublabel"></p>
 				
 			</p:column>
-			<p:column class="head" headerText="CUPO DISPONIBLE"	styleClass="col-xs-6 col-md-4"
+			<p:column class="head" headerText="#{msg['text.card.balanceAvailable']}"	styleClass="col-xs-6 col-md-4"
 				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
 				
 				<h:outputText style="font-size: 1.5em; font-weight:bold" styleClass="balance" 

@@ -32,7 +32,7 @@
 			<p:ajax event="rowSelect" listener="#{globalPositionController.onAccountSelected}" />
 			<p:ajax event="rowUnselect" />
 
-			<p:column class="head" headerText="N° CUENTA"
+			<p:column class="head" headerText="#{msg['text.account.name']}"
 				styleClass="col-xs-6 col-md-8"
 				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
 				
@@ -46,14 +46,14 @@
 			
 			</p:column>
 
-			<p:column class="head" headerText="SALDO" 
+			<p:column class="head" headerText="#{msg['text.account.balance']}" 
 				styleClass="col-xs-6 col-md-4"
 				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
 				 
 					<h:outputText style="font-size: 1.5em; font-weight:bold" styleClass="balance" 
 								   value="#{iproduct.totalCash}"/>
 					<h:outputText styleClass="ui-datatable-selectable" style="font-size:1em" escape="false"
-						value="&lt;br /&gt; Saldo disponible #{iproduct.cashAvailable}"/>
+						value="&lt;br /&gt; #{msg['text.account.balance.label']} #{iproduct.cashAvailable}"/>
 					<p class="sublabel"></p>
 					
 
