@@ -15,7 +15,11 @@
 	xmlns:bbvaCalendar="http://java.sun.com/jsf/composite/bbva/calendar"
 	xmlns:bbvaDetailMotion="http://java.sun.com/jsf/composite/bbva/movementsDetail"
 	xmlns:bbvaSearch="http://java.sun.com/jsf/composite/bbva/filters"
-	xmlns:jsf="http://xmlns.jcp.org/jsf">
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:bbvaInput="http://java.sun.com/jsf/composite/bbva/input"
+	xmlns:bbvaMessage="http://java.sun.com/jsf/composite/bbva/messages"
+	xmlns:bbvaPersonalize="http://java.sun.com/jsf/composite/bbva/personalize"
+	xmlns:bbvaButton="http://java.sun.com/jsf/composite/bbva/button">
 
 
 <ui:composition template="../../templates/defaultLayout.xhtml">
@@ -110,11 +114,96 @@
 					</bbvaAcc:termsAccountsPanelInfoItemBody>
 				</bbvaAcc:termsAccounts>
 
+				<!-- panel personalizar -->
 
+				<bbvaPersonalize:personalizeAccount>
+					<h:form>
+						<div class="customize-product-name">
+							<h:outputLabel class="leftDiv leftLabel"
+								value="Nombre del producto" />
+							<div class="personalizar-input rigthDiv">
+								<bbvaInput:inputButton idI="input" typeI="text" maxlength="25"
+									styleI="max-width:315px;" styleClassI="form-control"
+									value="#{personalizeProductAccountController.personalizeProductAccountDto.alias}"
+									idB="button" textB="#{msg['button.save']}"
+									classB="btn btn-default" nameB="buttonAdd" />
+							</div>
+						</div>
+						<span class="separator"></span>
+						<div class="customize-virtual">
+							<p:outputLabel class="leftDiv leftLabel"
+								value="Correspondecia virtual" />
+							<div class="rigthDiv">
+								<bbvaButton:comboButtons size="smallCombo"
+									ajax="#{personalizeProductAccountController.offMessage}"
+									value="#{personalizeProductAccountController.personalizeProductAccountDto.virtualMail}" />
+								<bbvaButton:iconButton id="buttonTwo"
+									value="#{msg['button.save']}" classB="btn btn-default"
+									type="submit" style="margin-top:6px !important"
+									actionListener="#{personalizeProductAccountController.successful}">
+								</bbvaButton:iconButton>
+							</div>
+						</div>
+						<bbvaMessage:messageCheck
+							render="#{personalizeProductAccountController.menSuccessful}" />
+
+						<span class="separator"></span>
+						<div class="customize-online">
+							<p:outputLabel class="leftDiv leftLabel" value="Consultar">
+								<span class="icon-info-blue">online</span>
+							</p:outputLabel>
+
+							<div class="rigthDiv">
+								<bbvaButton:comboButtons size="bigCombo"
+									value="#{personalizeProductAccountController.personalizeProductAccountDto.searchOnline}" />
+							</div>
+						</div>
+						<div class="customize-online">
+							<p:outputLabel class="leftDiv leftLabel" value="Operar">
+								<span class="icon-info-blue">online</span>
+							</p:outputLabel>
+
+							<div class="rigthDiv">
+								<bbvaButton:comboButtons size="bigCombo"
+									value="#{personalizeProductAccountController.personalizeProductAccountDto.operationOnline}" />
+							</div>
+							<bbvaButton:iconButton id="buttonThree" type="submit"
+								actionListener="#{personalizeProductAccountController.operKey}"
+								value="#{msg['button.save']}" style="margin-top:6px !important"
+								classB="btn btn-default" />
+						</div>
+						<bbvaMessage:divOperationKey idComfirm="buttonFour"
+							idInput="inputTwo" nameB="buttonConfirm" idInputDiv="divClass"
+							render="#{personalizeProductAccountController.menOperationKey}"
+							value="#{personalizeProductAccountController.personalizeProductAccountDto.operationKey}" />
+
+						<span class="separator"></span>
+
+						<div class="customize-product-email">
+							<h:outputLabel class="leftDiv leftLabel"
+								value="Registro de correos de adquiriencia" />
+
+							<bbvaMessage:hiddenRegisterEmail idValue="hidden" />
+							<div class="rigthDiv">
+								<bbvaInput:inputButton idI="input-value" typeI="text"
+									maxlength="25" styleClassI="form-control required error"
+									valueI="#{personalizeProductAccountController.personalizeProductAccountDto.emails}"
+									styleB="margin-top: -0.5px !important; float: left !important; margin-left: 10px !important;"
+									idB="btn-add" classB="btn btn-default" nameB="buttonName"
+									type="submit" textB="#{msg['button.add']}" />
+
+								<p:outputLabel value="Dirección de correo inválida"
+									id="invalida" style="visibility: hidden;" />
+
+								<button type="submit" class="btn btn-default hidden"
+									id="btn-update">Actualizar</button>
+							</div>
+						</div>
+					</h:form>
+				</bbvaPersonalize:personalizeAccount>
 			</div>
-
-
 		</bbvaDetAcc:tabMenu>
+
 		<bbvaDetAcc:tapDropDown title="Fecha">
 			<bbvaCalendar:calendarItem />
 		</bbvaDetAcc:tapDropDown>
