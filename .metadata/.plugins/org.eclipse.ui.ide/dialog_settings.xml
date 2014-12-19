@@ -4,7 +4,7 @@
 		<item value="com.atlassian.connector.eclipse.jira:3.2.3.v20140630"/>
 		<item value="com.atlassian.connector.eclipse.monitor:3.2.3.v20140630"/>
 		<item value="com.mountainminds.eclemma.feature:2.3.2.201409141915"/>
-		<item value="net.sf.eclipsecs:6.1.0.201411141422"/>
+		<item value="net.sf.eclipsecs:6.1.1.201412161501"/>
 		<item value="org.aspectj:1.8.5.20141117171500"/>
 		<item value="org.eclipse.ajdt:2.2.4.e44x-20141118-0700"/>
 		<item value="org.eclipse.cvs:1.4.100.v20140925-0400"/>
