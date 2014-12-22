@@ -37,7 +37,9 @@
 						<p:radioButton id="opt1" for="customRadio" itemIndex="0" />
 						<h:outputLabel for="opt1" value="#{msg['text.search.by.number.check']}" />
 						<h:inputText id="inputNumberCheck" value="#{movementsCriteriaController.movementCriteria.checkNumber}"
-							disabled="#{movementsCriteriaController.renderedNumberCheck}" />
+							disabled="#{movementsCriteriaController.renderedNumberCheck}" validatorMessage="Formato Invalido">
+							<f:validateRegex pattern="[0-9]*" />
+						</h:inputText>	
 
 						<p:radioButton id="opt2" for="customRadio" itemIndex="1" />
 						<h:outputLabel for="opt2" value="#{msg['text.search.by.number.status']}" />
