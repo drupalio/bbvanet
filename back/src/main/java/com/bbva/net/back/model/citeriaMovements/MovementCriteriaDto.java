@@ -41,6 +41,55 @@ public class MovementCriteriaDto implements Dto {
 
 	private String incomesOrExpenses;
 
+	private String actionState;
+
+	private String bookNumber;
+
+	private String checkNumber;
+
+	private String checkState;
+
+	public MovementCriteriaDto() {
+	}
+
+	/**
+	 * @param dateRange
+	 * @param balanceRange
+	 * @param concreteDate
+	 * @param lastMonth
+	 * @param lasTwoMonth
+	 * @param lastTwoWeeks
+	 * @param lastWeek
+	 * @param today
+	 * @param yesterday
+	 * @param movement
+	 * @param incomesOrExpenses
+	 * @param actionState
+	 * @param bookNumber
+	 * @param checkNumber
+	 * @param checkState
+	 */
+	public MovementCriteriaDto(DateRangeDto dateRange, BalanceRangeDto balanceRange, Date concreteDate, Date lastMonth,
+			Date lasTwoMonth, Date lastTwoWeeks, Date lastWeek, Date today, Date yesterday, String movement,
+			String incomesOrExpenses, String actionState, String bookNumber, String checkNumber, String checkState) {
+		super();
+		this.dateRange = dateRange;
+		this.balanceRange = balanceRange;
+		this.concreteDate = concreteDate;
+		this.lastMonth = lastMonth;
+		this.lasTwoMonth = lasTwoMonth;
+		this.lastTwoWeeks = lastTwoWeeks;
+		this.lastWeek = lastWeek;
+		this.today = today;
+		this.yesterday = yesterday;
+		this.movement = movement;
+		this.incomesOrExpenses = incomesOrExpenses;
+		this.actionState = actionState;
+		this.bookNumber = bookNumber;
+		this.checkNumber = checkNumber;
+		this.checkState = checkState;
+	}
+
 	/**
 	 * @return the dateRange
 	 */
@@ -195,13 +244,70 @@ public class MovementCriteriaDto implements Dto {
 		this.incomesOrExpenses = incomesOrExpenses;
 	}
 
+	/**
+	 * @return the actionState
+	 */
+	public String getActionState() {
+		return actionState;
+	}
+
+	/**
+	 * @param actionState the actionState to set
+	 */
+	public void setActionState(String actionState) {
+		this.actionState = actionState;
+	}
+
+	/**
+	 * @return the bookNumber
+	 */
+	public String getBookNumber() {
+		return bookNumber;
+	}
+
+	/**
+	 * @param bookNumber the bookNumber to set
+	 */
+	public void setBookNumber(String bookNumber) {
+		this.bookNumber = bookNumber;
+	}
+
+	/**
+	 * @return the checkNumber
+	 */
+	public String getCheckNumber() {
+		return checkNumber;
+	}
+
+	/**
+	 * @param checkNumber the checkNumber to set
+	 */
+	public void setCheckNumber(String checkNumber) {
+		this.checkNumber = checkNumber;
+	}
+
+	/**
+	 * @return the checkState
+	 */
+	public String getCheckState() {
+		return checkState;
+	}
+
+	/**
+	 * @param checkState the checkState to set
+	 */
+	public void setCheckState(String checkState) {
+		this.checkState = checkState;
+	}
+
 	@Override
 	public String toString() {
 		return new ToStringBuilder(this).append("dateRange", getDateRange()).append("balanceRange", getBalanceRange())
 				.append("concreteDate", getConcreteDate()).append("lastMonth", getLastMonth())
 				.append("lasTwoMonth", getLasTwoMonth()).append("lastTwoWeeks", getLastTwoWeeks())
 				.append("lastWeek", getLastWeek()).append("today", getToday()).append("yesterday", getYesterday())
-				.append("movement", getMovement()).append("incomesOrExpenses", getIncomesOrExpenses()).toString();
+				.append("movement", getMovement()).append("incomesOrExpenses", getIncomesOrExpenses())
+				.append("actionState", getActionState()).append("bookNumber", getBookNumber()).toString();
 	}
 
 	@Override
