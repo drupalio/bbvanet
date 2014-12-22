@@ -7,7 +7,6 @@ public class InvolvedDtoTest extends AbstractBbvaDTOTest<InvolvedDto> {
 
 	@Override
 	protected InvolvedDto getInstance() {
-		// TODO Auto-generated method stub
 		return new InvolvedDto();
 	}
 }

@@ -18,22 +18,18 @@
 	xmlns:jsf="http://xmlns.jcp.org/jsf">
 
 <composite:interface>
-	<composite:attribute name="title" type="String" />	
+	<composite:attribute name="classList" type="String" />
+	<composite:attribute name="classSpan" type="String" />
+	<composite:attribute name="classSpanFilter" type="String" />
+	<composite:attribute name="title" type="String" />
 </composite:interface>
 
 <composite:implementation>
-	<div class="panel-tab-body">
-		<div class="filters custom-search">
-			<h1 class="hidden-xs hidden-sm">
-				<span>#{cc.attrs.title}</span>
-			</h1>
-			<h1 class="hidden-md hidden-lg">
-				<span class="iconFont-611 font-white hidden-md hidden-lg"></span> <span>#{msg['text.consult']}</span>
-			</h1>
-			<ul class="accordion">
-				<composite:insertChildren></composite:insertChildren>
-			</ul>
-		</div>
-	</div>
+
+	<li class="#{cc.attrs.classList}"><a class="header"> <span
+			class="#{cc.attrs.classSpan}">#{cc.attrs.title} <span
+				class="#{cc.attrs.classSpanFilter}"></span>
+		</span>
+	</a> <composite:insertChildren></composite:insertChildren></li>
 </composite:implementation>
 </html>

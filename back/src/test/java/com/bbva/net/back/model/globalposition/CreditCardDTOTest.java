@@ -9,4 +9,12 @@ public class CreditCardDTOTest extends AbstractBbvaDTOTest<CreditCardDTO> {
 		return new CreditCardDTO();
 	}
 
+	/**
+	 * Invoke Equals Method
+	 */
+	@Override
+	public void checkEqualsMethod() {
+
+	}
+
 }

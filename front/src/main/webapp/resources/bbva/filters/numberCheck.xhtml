@@ -8,8 +8,7 @@
 	xmlns:pm="http://primefaces.org/mobile"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
-	xmlns:cc="http://jsflive.at/taglib"
-	xmlns:bbvaCalendar="http://java.sun.com/jsf/composite/bbva/calendar">
+	xmlns:cc="http://jsflive.at/taglib">
 
 <composite:interface>
 
@@ -18,56 +17,44 @@
 <composite:implementation>
 
 	<div class="row">
-		<div>
+		<div class="form-horizontal">
 			<div class="col-xs-12 radio-group">
-				<div>
-					<input name="sample-radio-ticket" id="checkBookSearchNum-filter"
-						value="Busca-num" type="radio" /> <label
-						for="checkBookSearchNum-filter">Búsqueda por nº de cheque</label>
-					<div class="input-control">
-						<input type="text" name="input-num-ticket"
-							class="form-control num-cheque number required" min="0"
-							maxlength="8" id="cheque-num-input" autocomplete="off"
-							data-filter="Nº Cheque " />
-					</div>
-				</div>
-				<div class="hidden-xs hidden-sm form-group">
-					<label for="cheque-num-input">Estado</label>
-					<div class="input-control">
-						<select name="select-state" id="cheque-num-input"
-							class="selectpicker" style="display: none;"
-							data-filter="Estado: ">
-							<option selected="selected" value="">Seleccionar</option>
-							<option>Habilitados</option>
-							<option>Solicitados</option>
-							<option>Lorem</option>
-						</select>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-12 radio-group">
-				<div>
-					<input name="sample-radio-ticket" id="checkBookSearchState-filter"
-						value="Busca-talon" type="radio" class="talon-numbered" /> <label
-						for="checkBookSearchState-filter">Búsqueda por nº de
-						talonario</label>
-					<div class="input-control">
-						<select name="select-search-checkbook" id="select-search-book"
-							class="selectpicker" style="display: none;"
-							data-filter="Talonario: ">
-							<option selected="selected" value="">Seleccionar</option>
-							<option>000000000551-000000000532</option>
-							<option>001230000551-000000000532</option>
-							<option>004560000551-000000000532</option>
-						</select>
-					</div>
-				</div>
+
+				<p:outputPanel id="customPanel" style="margin-bottom:10px">
+					<p:selectOneRadio id="customRadio" layout="custom">
+						<f:selectItem itemLabel="Red" itemValue="Red" />
+						<f:selectItem itemLabel="Green" itemValue="Green" />
+						<f:selectItem itemLabel="Blue" itemValue="Blue" />
+					</p:selectOneRadio>
+
+					<h:panelGrid columns="3" cellpadding="5">
+						<p:radioButton id="opt1" for="customRadio" itemIndex="0" />
+						<h:outputLabel for="opt1" value="Búsqueda por nº de cheque" />
+						<p:inputText />
+
+						<p:radioButton id="opt2" for="customRadio" itemIndex="1" />
+						<h:outputLabel for="opt2" value="Estado" />
+						<h:selectOneMenu style="width:125px" styleClass="selectpicker">
+							<f:selectItem itemLabel="Seleccionar" itemValue="" />
+							<f:selectItem itemLabel="Habilitados" itemValue="Habilitados" />
+							<f:selectItem itemLabel="Solicitados" itemValue="Solicitados" />
+						</h:selectOneMenu>
+
+						<p:radioButton id="opt3" for="customRadio" itemIndex="2" />
+						<h:outputLabel for="opt3" value="Búsqueda por nº de talonario" />
+						<h:selectOneMenu >
+							<f:selectItem itemLabel="Seleccionar" itemValue="" />
+							<f:selectItem itemLabel="Habilitados" itemValue="Habilitados" />
+							<f:selectItem itemLabel="Solicitados" itemValue="Solicitados" />
+						</h:selectOneMenu>
+					</h:panelGrid>
+				</p:outputPanel>
+
 			</div>
 		</div>
 		<p:commandButton value="Confirmar"
 			styleClass="btn small hidden-xs hidden-sm" />
 	</div>
-
 </composite:implementation>
 
 </html>

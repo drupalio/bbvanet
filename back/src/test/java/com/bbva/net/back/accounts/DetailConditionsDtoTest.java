@@ -7,7 +7,6 @@ public class DetailConditionsDtoTest extends AbstractBbvaDTOTest<DetailCondition
 
 	@Override
 	protected DetailConditionsDto getInstance() {
-		// TODO Auto-generated method stub
 		return new DetailConditionsDto();
 	}
 

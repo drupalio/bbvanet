@@ -5,13 +5,10 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:pm="http://primefaces.org/mobile"
-	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:cc="http://jsflive.at/taglib"
-	xmlns:bbvaCalendar="http://java.sun.com/jsf/composite/bbva/calendar"
 	xmlns:bbvaInputCurrent="http://java.sun.com/jsf/composite/bbva/input"
-	xmlns:jsf="http://xmlns.jcp.org/jsf">
+	xmlns:bbvaButton="http://java.sun.com/jsf/composite/bbva/button">
 
 <composite:interface>
 	<composite:attribute name="valueSince" />
@@ -35,6 +32,7 @@
 					</div>
 				</div>
 			</div>
+
 			<div class="col-xs-12 col-md-6">
 				<div>
 					<div class="col-xs-2 col-md-12">
@@ -49,8 +47,12 @@
 				</div>
 			</div>
 		</div>
-		
-		<p:commandButton value="#{msg['button.confirm']}" styleClass="btn small hidden-xs hidden-sm" actionListener="#{movementsCriteriaController.setBalanceRange}"/>
+		<small class="muted filter-description"></small>
+		<bbvaButton:iconButton id="balnceButton"
+			class="btn small hidden-xs hidden-sm"
+			actionListener="#{movementsCriteriaController.setBalanceRange}"
+			value="#{msg['button.confirm']}" />
+
 	</div>
 </composite:implementation>
 </html>

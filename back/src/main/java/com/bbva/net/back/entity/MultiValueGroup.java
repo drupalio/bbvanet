@@ -10,6 +10,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
+
 /**
  * @author User
  */
@@ -69,6 +72,22 @@ public class MultiValueGroup implements Serializable {
 	 */
 	public void setTypeId(Integer typeId) {
 		this.typeId = typeId;
+	}
+
+	@Override
+	public String toString() {
+		return new ToStringBuilder(this).append("id", getId()).append("typeId", getTypeId()).toString();
+	}
+
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder().append(getId()).append(getTypeId()).toHashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return (obj instanceof MultiValueGroup) && this.getId().equals(((MultiValueGroup)obj).getId())
+				&& this.getTypeId().equals(((MultiValueGroup)obj).getTypeId());
 	}
 
 }

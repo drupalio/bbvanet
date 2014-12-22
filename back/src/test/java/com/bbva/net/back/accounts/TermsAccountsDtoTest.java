@@ -7,8 +7,15 @@ public class TermsAccountsDtoTest extends AbstractBbvaDTOTest<TermsAccountsDto> 
 
 	@Override
 	protected TermsAccountsDto getInstance() {
-		// TODO Auto-generated method stub
 		return new TermsAccountsDto();
+	}
+
+	/**
+	 * Invoke Equals Method
+	 */
+	@Override
+	public void checkEqualsMethod() {
+
 	}
 
 }
