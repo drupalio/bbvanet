@@ -1815,3 +1815,45 @@
 2014-12-22 08:54:51,921 [Worker-33] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 7 resources
 2014-12-22 08:54:51,965 [Worker-33] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2014-12-22 08:54:51,965 [Worker-33] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Entelgy\Documents\Proyecto\bbvaNueva\bbvanet\front\src\test\resources
+2014-12-22 09:11:22,289 [Worker-42] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-12-22 09:11:22,368 [Worker-42] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 7 resources
+2014-12-22 09:11:22,394 [Worker-42] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-12-22 09:11:22,394 [Worker-42] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Entelgy\Documents\Proyecto\bbvaNueva\bbvanet\front\src\test\resources
+2014-12-22 09:11:27,264 [Worker-29] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for com.sun.xml.bind:jaxb-core:jar:2.2.11 is invalid, transitive dependencies (if any) will not be available, enable debug logging for more details
+2014-12-22 09:11:27,290 [Worker-29] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for com.sun.xml.bind:jaxb-impl:jar:2.2.11 is invalid, transitive dependencies (if any) will not be available, enable debug logging for more details
+2014-12-22 09:11:28,918 [Worker-29] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-12-22 09:11:28,919 [Worker-29] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 6 resources
+2014-12-22 09:11:28,922 [Worker-29] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-12-22 09:11:28,923 [Worker-29] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2014-12-22 09:11:29,324 [Worker-29] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-12-22 09:11:29,328 [Worker-29] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 7 resources
+2014-12-22 09:11:29,335 [Worker-29] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-12-22 09:11:29,336 [Worker-29] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Entelgy\Documents\Proyecto\bbvaNueva\bbvanet\front\src\test\resources
+2014-12-22 09:20:47,702 [Worker-48] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-12-22 09:20:47,713 [Worker-48] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 7 resources
+2014-12-22 09:20:47,717 [Worker-48] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-12-22 09:20:47,717 [Worker-48] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Entelgy\Documents\Proyecto\bbvaNueva\bbvanet\front\src\test\resources
+2014-12-22 09:30:56,114 [Worker-53] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-12-22 09:30:56,117 [Worker-53] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 7 resources
+2014-12-22 09:30:56,121 [Worker-53] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-12-22 09:30:56,121 [Worker-53] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Entelgy\Documents\Proyecto\bbvaNueva\bbvanet\front\src\test\resources
+2014-12-22 09:37:01,884 [Worker-47] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-12-22 09:37:01,887 [Worker-47] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 6 resources
+2014-12-22 09:37:01,890 [Worker-47] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-12-22 09:37:01,890 [Worker-47] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2014-12-22 09:37:02,126 [Worker-58] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-12-22 09:37:02,129 [Worker-58] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 7 resources
+2014-12-22 09:37:02,132 [Worker-58] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-12-22 09:37:02,132 [Worker-58] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Entelgy\Documents\Proyecto\bbvaNueva\bbvanet\front\src\test\resources
+2014-12-22 09:37:09,571 [Worker-58] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-12-22 09:37:09,575 [Worker-58] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 7 resources
+2014-12-22 09:37:09,580 [Worker-58] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-12-22 09:37:09,581 [Worker-58] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Entelgy\Documents\Proyecto\bbvaNueva\bbvanet\front\src\test\resources
+2014-12-22 09:38:13,529 [Worker-60] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-12-22 09:38:13,534 [Worker-60] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 6 resources
+2014-12-22 09:38:13,538 [Worker-60] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-12-22 09:38:13,540 [Worker-60] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2014-12-22 09:38:14,231 [Worker-60] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-12-22 09:38:14,234 [Worker-60] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 7 resources
+2014-12-22 09:38:14,244 [Worker-60] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-12-22 09:38:14,244 [Worker-60] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Entelgy\Documents\Proyecto\bbvaNueva\bbvanet\front\src\test\resources
