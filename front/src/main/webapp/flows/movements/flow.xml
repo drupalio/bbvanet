@@ -6,6 +6,7 @@
 
 
 	<var name="movementsPage" class="com.bbva.net.front.controller.impl.AccountsControllerImpl" />
+	
 
 	<on-start>
 		<evaluate expression="customerAccountsPage.getCustomerAccounts()" result="flowScope.customerAccounts" />

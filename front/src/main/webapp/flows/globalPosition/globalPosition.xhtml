@@ -33,7 +33,7 @@
 
 		<c:set var="currency" value="$" />
 
-		<bbvaContainer:productPanelGraphic
+		<bbvaContainer:productPanelBarGraphic
 			title="#{msg['title.accountsPersonal']}">
 			<div class="table-tabs">
 				<bbvaGP:accountSearch listAccounts="#{customerProducts.accounts}"
@@ -55,7 +55,7 @@
 				<bbvaGP:totalBalance util="#{msg['text.accountant']}" currency="$"
 					total="1234" subtotal="567" />
 			</div>
-		</bbvaContainer:productPanelGraphic>
+		</bbvaContainer:productPanelBarGraphic>
 
 		<bbvaContainer:productPanelGraphic title="#{msg['title.cards']}">
 			<div class="table-tabs">

@@ -14,11 +14,16 @@
 	<var name="movementsCriteriaController"
 		class="com.bbva.net.front.controller.impl.MovementCriteriaControllerImpl" />
 	<var name="TermsController" class="com.bbva.net.front.controller.impl.TermsControllerImpl" />
+	
+	
+		
 	<on-start>
 		<evaluate expression="accountsController.getCustomerAccounts()"
 			result="flowScope.customerAccounts" />
 		<evaluate expression="TermsController.getAllConditions()"
 			result="flowScope.allConditions" />
+			
+			<evaluate expression="movementsCriteriaController.getListMultiValueLikes()" result="flowScope.multiValueList" />	
 	</on-start>
 
 	<view-state id="detailAccounts">
