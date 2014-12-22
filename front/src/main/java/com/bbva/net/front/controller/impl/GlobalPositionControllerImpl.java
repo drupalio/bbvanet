@@ -6,7 +6,6 @@ import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.faces.event.ComponentSystemEvent;
 
-import org.primefaces.event.SelectEvent;
 import org.springframework.stereotype.Controller;
 
 import com.bbva.czic.dto.net.EnumProductType;
@@ -91,10 +90,6 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	public void renderPieFinanciation() {
 		this.activePanel = ActivePanelType.FINANCIATION;
 		initChart();
-	}
-
-	public void onAccountSelected(final SelectEvent selectEvent) {
-		System.out.print("hooola");
 	}
 
 	public String getActivePanel() {

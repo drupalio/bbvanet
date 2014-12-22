@@ -10,9 +10,11 @@
 	xmlns:c="http://java.sun.com/jstl/core">
 
 <composite:interface>
+
 	<composite:attribute name="id" />
 	<composite:attribute name="listAccounts" type="java.util.List" />
 	<composite:attribute name="listValueLikes" />
+	<composite:attribute name="controller" type="com.bbva.net.front.core.AbstractBbvaController"/>
 
 </composite:interface>
 
@@ -21,7 +23,8 @@
 	
 	<h:form ikd="#{cc.attrs.id}">
 	
-		<p:dataTable id="table" widgetVar="tableAccounts" 
+		<p:dataTable id="tableAccounts" 
+		    widgetVar="tableAccounts" 
 			var="iproduct" 
 			rowIndexVar="findex"
 			selectionMode="single" 
@@ -29,7 +32,7 @@
 			rowKey="#{iproduct.productId}"
 			value="#{cc.attrs.listAccounts}">
 
-			<p:ajax event="rowSelect" listener="#{globalPositionController.onAccountSelected}" />
+			<p:ajax event="rowSelect" listener="#{cc.attrs.controller.onProductSelected}" />
 			<p:ajax event="rowUnselect" />
 
 			<p:column class="head" headerText="#{msg['text.account.name']}"

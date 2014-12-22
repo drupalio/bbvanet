@@ -11,6 +11,7 @@
 <composite:interface>
 	<composite:attribute name="id" type="String" />
 	<composite:attribute name="listLoan" type="java.util.List" />
+	<composite:attribute name="controller" type="com.bbva.net.front.core.AbstractBbvaController"/>
 </composite:interface>
 
 <composite:implementation>
@@ -20,11 +21,11 @@
 		<p:dataTable id="#{cc.attrs.id}" var="iproduct"
 			rowIndexVar="findex"
 			selectionMode="single" 
-			selection="#{globalPositionController.selectedProduct}"
+			selection="#{cc.attrs.controller.selectedProduct}"
 			rowKey="#{iproduct.productId}"
 			value="#{cc.attrs.listLoan}" emptyMessage="#{msg['mssg.list.empty']}">
 	
-			<p:ajax event="rowSelect"/>
+			<p:ajax event="rowSelect" listener="#{cc.attrs.controller.onProductSelected}" />
 			<p:ajax event="rowUnselect" />
 	
 			<p:column class="head" styleClass="head col-xs-6 col-md-4"

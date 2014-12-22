@@ -14,4 +14,9 @@ public interface AccountsController {
 	 */
 	List<AccountDTO> getCustomerAccounts();
 
+	/**
+	 * @return
+	 */
+	List<AccountDTO> getCustomerAccountsHidden();
+
 }
