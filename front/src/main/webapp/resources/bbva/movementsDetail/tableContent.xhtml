@@ -10,8 +10,6 @@
 
 <composite:interface>
 
-	<composite:attribute id="tableContent" name="content" />
-
 </composite:interface>
 
 <composite:implementation>
@@ -25,14 +23,14 @@
 							<div class="table-detail-border">
 
 								<!-- aki va header -->
-								<bbvaDetailMotion:tableHeader />
+ 								<bbvaDetailMotion:tableHeader />
 
 								<!-- luego va botones container -->
 								<bbvaDetailMotion:buttonContainer />
 
 
 								<!-- luego cuerpo del contenido -->
-								<bbvaDetailMotion:tableBody />
+								<bbvaDetailMotion:tableBody detailMovement="#{movementDetailController.getDetailMovementByAccount()}"/>
 
 
 								<!-- luego va footer archivos asociados -->
