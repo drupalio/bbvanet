@@ -10,9 +10,6 @@ import com.bbva.net.front.core.AbstractBbvaController;
 public class MovementDetailProductControllerImpl extends AbstractBbvaController implements
 		MovementDetailProductController {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 3042333175288504951L;
 
 	@Override
