@@ -4518,3 +4518,9 @@ Contains: Could not delete: C:\Users\Entelgy\Documents\Proyecto\bbvaNueva\bbvane
 
 !ENTRY net.sourceforge.eclipsejetty.launcher 1 0 2014-12-19 09:58:35.351
 !MESSAGE Fixed scope for dependency C:/Users/Nerly/.m2/repository/org/fluttercode/datafactory/datafactory/0.8/datafactory-0.8.jar: changed compile to test
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2014-12-22 09:11:27.272
+!MESSAGE The POM for com.sun.xml.bind:jaxb-core:jar:2.2.11 is invalid, transitive dependencies (if any) will not be available, enable debug logging for more details
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2014-12-22 09:11:27.290
+!MESSAGE The POM for com.sun.xml.bind:jaxb-impl:jar:2.2.11 is invalid, transitive dependencies (if any) will not be available, enable debug logging for more details
