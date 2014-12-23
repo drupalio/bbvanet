@@ -8,6 +8,7 @@
 	<var name="globalPositionController" class="com.bbva.net.front.controller.impl.GlobalPositionControllerImpl" />
 	<var name="personalizeProductAccountController" class="com.bbva.net.front.controller.impl.PersonalizeProductAccountControllerImpl"/>
 	
+	
 	<on-start>
 		
 		<evaluate expression="globalPositionController.getCustomerProducts()" result="flowScope.customerProducts" />
@@ -22,5 +23,5 @@
 			<evaluate expression="new java.lang.String()"/>
 		</on-entry>
 	</view-state>
-	
+
 </flow>

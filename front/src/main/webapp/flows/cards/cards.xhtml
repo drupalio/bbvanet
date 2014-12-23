@@ -25,20 +25,22 @@
 
 	<ui:define name="contentLeft">
 
-		<bbvaContainer:productPanelGraphic title="#{msg['title.cards']}">
+		<bbvaContainer:productPanelGraphics title="#{msg['title.cards']}" pieGrapihic="#{globalPositionController.graphicPieProducts}">
 			<div class="table-tabs">
 				<bbvaGP:cardHeadTable listCards="#{customerProducts.creditCards}" />
 				<bbvaGP:cardTailTable
 					listCards="#{customerProductsHidden.creditCards}" />
 			</div>
-			<div class="row afterTable col-xs-12 col-md-6">
+
+			<div class="row afterTable">
 				<bbvaGP:productFooter
 					listProduct="#{customerProductsHidden.creditCards}" />
 				<bbvaGP:totalBalance util="#{msg['text.used']}" currency="$"
 					total="1234" subtotal="567" />
 			</div>
-		</bbvaContainer:productPanelGraphic>
-		
+			
+		</bbvaContainer:productPanelGraphics>
+
 	</ui:define>
 
 	<ui:define name="contentRight">

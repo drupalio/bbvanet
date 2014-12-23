@@ -19,16 +19,15 @@
 <composite:implementation>
 
 	
-	<h:form ikd="#{cc.attrs.id}">
+	<h:form ikd="#{cc.attrs.id}" >
 	
-		<p:dataTable id="table" widgetVar="tableAccounts" 
+		<p:dataTable id="table" widgetVar="tableAccounts"
 			var="iproduct" 
-			rowIndexVar="findex"
+			rowIndexVar="findex" rendered="#{menuActive == 'ACCOUNTS'}"
 			selectionMode="single" 
 			selection="#{globalPositionController.selectedProduct}"
 			rowKey="#{iproduct.productId}"
 			value="#{cc.attrs.listAccounts}">
-
 			<p:ajax event="rowSelect" listener="#{globalPositionController.onAccountSelected}" />
 			<p:ajax event="rowUnselect" />
 

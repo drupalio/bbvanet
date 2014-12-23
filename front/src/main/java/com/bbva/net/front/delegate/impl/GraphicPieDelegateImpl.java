@@ -18,7 +18,6 @@ import com.bbva.net.front.ui.pie.PieConfigUI;
 import com.bbva.net.front.ui.pie.PieItemUI;
 
 /**
- * 
  * @author Entelgy
  */
 @Delegate(value = "graphicPieDelegate")
@@ -26,6 +25,32 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 
 	@Resource(name = "productService")
 	private ProductService productService;
+
+	public PieConfigUI getGeneralGraphicConfig(final GlobalProductsDTO globalProducts) {
+
+		final PieConfigUI assetPie = new PieConfigUI();
+		assetPie.setHeaderCenter("Pesos ($)");
+		final List<PieItemUI> assetPieItems = new ArrayList<PieItemUI>();
+		final List<ProductDTO> products = productService.getProducts(globalProducts);
+
+		final PieItemUI accountPieItem = new PieItemUI("el color", "Tarjetas", this.productService
+				.getTotalProductsByType(products, EnumProductType.PC).getAmount());
+		/*
+		 * final PieItemUI fundPieItem = new PieItemUI("el color", "Fondos de Inversión", this.productService
+		 * .getTotalProductsByType(products, EnumProductType.SI).getAmount()); final PieItemUI depositPieItem = new
+		 * PieItemUI("el color", "Depósitos", this.productService .getTotalProductsByType(products,
+		 * EnumProductType.ED).getAmount()); final PieItemUI rotatingAccountPieItem = new PieItemUI("el color",
+		 * "Cupo Rotativo", this.productService .getTotalProductsByType(products, EnumProductType.RQ).getAmount());
+		 */
+		assetPieItems.add(accountPieItem);
+		/*
+		 * assetPieItems.add(fundPieItem); assetPieItems.add(depositPieItem); assetPieItems.add(rotatingAccountPieItem);
+		 */
+		assetPie.setPieItemUIList(assetPieItems);
+
+		return assetPie;
+
+	}
 
 	@Override
 	public SituationPiesUI getSituationGlobalProducts(final GlobalProductsDTO globalProducts) {
@@ -51,7 +76,7 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 	 */
 	public PieConfigUI getSituationPieConfig(final List<ProductDTO> products) {
 
-		final PieConfigUI situationPie = new PieConfigUI();		
+		final PieConfigUI situationPie = new PieConfigUI();
 
 		final List<PieItemUI> situationPieItems = new ArrayList<PieItemUI>();
 
@@ -78,7 +103,7 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 	public PieConfigUI getAssetPieConfig(final List<ProductDTO> products) {
 
 		final PieConfigUI assetPie = new PieConfigUI();
-		assetPie.setHeaderLeft(" Activos " );
+		assetPie.setHeaderLeft(" Activos ");
 		assetPie.setHeaderRight(productService.getTotalAssets(products).getAmount().toString());
 
 		final List<PieItemUI> assetPieItems = new ArrayList<PieItemUI>();
@@ -113,11 +138,12 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 	 */
 	public PieConfigUI getFinanciationPieConfig(final List<ProductDTO> products) {
 
-		final PieConfigUI financiationPie = new PieConfigUI();		
-		DecimalFormat myFormatter = new DecimalFormat(ResourceBundle.getBundle("i18n_es").getString("number.format.decimals"));
+		final PieConfigUI financiationPie = new PieConfigUI();
+		DecimalFormat myFormatter = new DecimalFormat(ResourceBundle.getBundle("i18n_es").getString(
+				"number.format.decimals"));
 		String str = myFormatter.format(productService.getTotalFinanciacion(products).getAmount());
 		System.out.println(str);
-		financiationPie.setHeaderCenter( productService.getTotalFinanciacion(products).getAmount().toString());
+		financiationPie.setHeaderCenter(productService.getTotalFinanciacion(products).getAmount().toString());
 
 		final List<PieItemUI> financiationPieItems = new ArrayList<PieItemUI>();
 

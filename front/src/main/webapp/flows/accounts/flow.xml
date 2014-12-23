@@ -15,5 +15,7 @@
 			<set name="flashScope.menuActive" value="'ACCOUNTS'" />
 			<evaluate expression="new java.lang.String()"/>
 		</on-entry>
+		
 	</view-state>
+
 </flow>

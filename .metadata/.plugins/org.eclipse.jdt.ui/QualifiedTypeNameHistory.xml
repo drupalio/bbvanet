@@ -1,2 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="com.bbva.net.back.model.globalposition.ProductDTO"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="com.bbva.net.back.model.globalposition.CreditCardDTO"/>
+<fullyQualifiedTypeName name="com.bbva.net.front.ui.GeneralGraphics.GraphicPieUI"/>
+<fullyQualifiedTypeName name="com.bbva.net.front.ui.pie.PieConfigUI"/>
+<fullyQualifiedTypeName name="com.bbva.net.front.ui.generalGraphics.PieItemGUI"/>
+<fullyQualifiedTypeName name="com.bbva.net.front.ui.generalGraphics.PieConfigGUI"/>
+</qualifiedTypeNameHistroy>

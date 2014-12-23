@@ -13,10 +13,12 @@ import com.bbva.czic.dto.net.EnumProductType;
 import com.bbva.net.back.facade.GlobalPositionFacade;
 import com.bbva.net.back.model.commons.Money;
 import com.bbva.net.back.model.globalposition.GlobalProductsDTO;
+import com.bbva.net.back.model.globalposition.ProductDTO;
 import com.bbva.net.front.controller.GlobalPositionController;
 import com.bbva.net.front.core.AbstractBbvaController;
 import com.bbva.net.front.delegate.GraphicPieDelegate;
 import com.bbva.net.front.ui.globalposition.SituationPiesUI;
+import com.bbva.net.front.ui.pie.PieConfigUI;
 
 @Controller(value = "globalPositionController")
 public class GlobalPositionControllerImpl extends AbstractBbvaController implements GlobalPositionController {
@@ -34,6 +36,16 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	private GlobalProductsDTO globalProductsDTO;
 
 	private SituationPiesUI situationGraphicPieUI;
+
+	private PieConfigUI graphicPieProducts;
+
+	public PieConfigUI getGraphicPieProducts() {
+		return graphicPieProducts;
+	}
+
+	public void setGraphicPieProducts(PieConfigUI graphicPieProducts) {
+		this.graphicPieProducts = graphicPieProducts;
+	}
 
 	private ActivePanelType activePanel = ActivePanelType.SITUATION;
 
@@ -54,6 +66,9 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 		// Calculate situation graphics panels
 		this.situationGraphicPieUI = graphicPieDelegate.getSituationGlobalProducts(this.globalProductsDTO);
+
+		// Calculate situation graphics panels
+		this.graphicPieProducts = graphicPieDelegate.getGeneralGraphicConfig(this.globalProductsDTO);
 
 		// Calculate totals
 		this.totalsProducts = this.globalPositionFacade.getTotalsByProduct(globalProductsDTO);
@@ -94,7 +109,8 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	}
 
 	public void onAccountSelected(final SelectEvent selectEvent) {
-		System.out.print("hooola");
+		ProductDTO a = (ProductDTO)selectEvent.getObject();
+		System.out.print("hooola " + a.getProductId());
 	}
 
 	public String getActivePanel() {
