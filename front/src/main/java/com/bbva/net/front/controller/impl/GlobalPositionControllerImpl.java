@@ -14,7 +14,6 @@ import com.bbva.net.back.facade.GlobalMovementsFacade;
 import com.bbva.net.back.facade.GlobalPositionFacade;
 import com.bbva.net.back.model.commons.Money;
 import com.bbva.net.back.model.globalposition.GlobalProductsDTO;
-import com.bbva.net.back.model.movements.GlobalResumenMovementsDTO;
 import com.bbva.net.front.controller.GlobalPositionController;
 import com.bbva.net.front.core.AbstractBbvaController;
 import com.bbva.net.front.delegate.GraphicBarLineDelegate;
@@ -43,8 +42,6 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	private transient GraphicBarLineDelegate graphicBarLineDelegate;
 
 	private GlobalProductsDTO globalProductsDTO;
-
-	private GlobalResumenMovementsDTO globalMovementsDTO;
 
 	private SituationPiesUI situationGraphicPieUI;
 

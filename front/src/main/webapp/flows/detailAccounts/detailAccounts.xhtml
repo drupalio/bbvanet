@@ -137,7 +137,6 @@
 						idComboOne="comboOne" divClass="customize-virtual"
 						valueButton="#{msg['button.save']}"
 						valueLabel="#{msg['text.virtualCorresp']}" idButton="datas"
-						actionListener="#{personalizeProductAccountController.successful}"
 						ajax="#{personalizeProductAccountController.offMessage}"
 						value="#{personalizeProductAccountController.personalizeProductAccountDto.virtualMail}" />
 					<bbvaMessage:messageCheck
@@ -166,6 +165,9 @@
 						render="#{personalizeProductAccountController.menOperationKey}"
 						value="#{personalizeProductAccountController.personalizeProductAccountDto.operationKey}" />
 				</bbvaPersonalize:personalizeAccount>
+				
+			
+				
 			</div>
 		</bbvaDetAcc:tabMenu>
 

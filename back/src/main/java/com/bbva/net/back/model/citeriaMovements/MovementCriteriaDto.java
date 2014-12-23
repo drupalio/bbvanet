@@ -38,6 +38,16 @@ public class MovementCriteriaDto implements Dto {
 
 	private String incomesOrExpenses;
 
+	private String selectDate;
+
+	private String actionState;
+
+	private String checkState;
+
+	private Long checkNumber;
+
+	private Long bookNumber;
+
 	/**
 	 * @return the dateRange
 	 */
@@ -191,4 +201,45 @@ public class MovementCriteriaDto implements Dto {
 	public void setIncomesOrExpenses(String incomesOrExpenses) {
 		this.incomesOrExpenses = incomesOrExpenses;
 	}
+
+	public String getSelectDate() {
+		return selectDate;
+	}
+
+	public void setSelectDate(String selectDate) {
+		this.selectDate = selectDate;
+	}
+
+	public String getActionState() {
+		return actionState;
+	}
+
+	public void setActionState(String actionState) {
+		this.actionState = actionState;
+	}
+
+	public Long getCheckNumber() {
+		return checkNumber;
+	}
+
+	public void setCheckNumber(Long checkNumber) {
+		this.checkNumber = checkNumber;
+	}
+
+	public Long getBookNumber() {
+		return bookNumber;
+	}
+
+	public void setBookNumber(Long bookNumber) {
+		this.bookNumber = bookNumber;
+	}
+
+	public String getCheckState() {
+		return checkState;
+	}
+
+	public void setCheckState(String checkState) {
+		this.checkState = checkState;
+	}
+
 }
