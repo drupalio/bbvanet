@@ -50,19 +50,21 @@
 				<bbvaSearch:movementsFilter />
 			</bbvaSearch:customSearchList>
 
-			<bbvaSearch:searchButtonList
+			<bbvaSearch:searchButtonList show="true"
 				actionListener="#{movementsCriteriaController.searchMovementByFilter}" />
 		</bbvaSearch:personalizedSearchTabBody>
-	</h:form>
 	<h:form>
 		<bbvaSearch:personalizedSearchTabBody
-			title="#{msg['text.title.search.book']}">
+			title="#{msg['text.title.search.book']}" >
 			<bbvaSearch:checkBooksContainer />
+			
+			<bbvaSearch:searchButtonList  show="false"
+				actionListener="#{movementsCriteriaController.searchNumberCheckOrBook}" />
 		</bbvaSearch:personalizedSearchTabBody>
 	</h:form>
 	<bbvaSearch:personalizedSearchTabBody title="Ya vendra">
 		<!-- <bbvaSearch:downloadExtract /> -->
 	</bbvaSearch:personalizedSearchTabBody>
-
+</h:form>
 </composite:implementation>
 </html>

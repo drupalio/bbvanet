@@ -90,7 +90,7 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 	}
 
 	public void actionState() {
-System.out.println("method Action State");
+		System.out.println("method Action State");
 		if (movementCriteria.getActionState().equals(SEARCH_CHECK)) {
 			setRenderedNumberCheck(true);
 			setRenderedNumberBook(false);
@@ -106,10 +106,15 @@ System.out.println("method Action State");
 	/**
 	 * @param event
 	 */
-	public void searchNumberCheckOrBook(ActionEvent event) {
+	public void searchNumberCheckOrBook(final ActionEvent event) {
 		System.out.println("searchNumberCheckOrBook");
 		System.out.println("boook num" + movementCriteria.getBookNumber() + "check num"
 				+ movementCriteria.getCheckNumber() + "check State" + movementCriteria.getCheckState());
+	}
+
+	@Override
+	public void setNumberCheckOrBook(ActionEvent event) {
+		System.out.println("setNumberCheckOrBook");
 	}
 
 	@Override
@@ -221,5 +226,4 @@ System.out.println("method Action State");
 	public void setMultiValueList(List<MultiValueGroup> multiValueList) {
 		this.multiValueList = multiValueList;
 	}
-
 }

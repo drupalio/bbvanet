@@ -24,39 +24,46 @@ public interface MovementCriteriaController {
 	/***
 	 * method to select the date type is called when you click on the date oneRadio menu component
 	 */
-	public void oneSelectDate();
+	void oneSelectDate();
 	
 	
 	/**
 	 * method to set starting values of the balance
 	 * @param event
 	 */
-	public void setBalanceRange(ActionEvent event);
+	void setBalanceRange(ActionEvent event);
 	
 	/**
 	 * Method to set starting values of the income or expenses filter
 	 * @param event
 	 */
-	public void setIncomeExpensesFilter(ActionEvent event);
+	void setIncomeExpensesFilter(ActionEvent event);
 	
 	
 	/**
 	 * Method to get states from checks or books
 	 */
-	public void actionState();
+	void actionState();
+	
+	/**
+	 * Method to set a check or book, according filters given
+	 * @param event
+	 */
+	void setNumberCheckOrBook(ActionEvent event);
+	
 	
 	/**
 	 * Method to search a check or book, according filters given
 	 * @param event
 	 */
-	public void searchNumberCheckOrBook(ActionEvent event);
+	void searchNumberCheckOrBook(ActionEvent event);
 	
 	
 	/**
 	 * Method to clean filters
 	 * @param event
 	 */
-	public void cleanFilters();
+	void cleanFilters();
 	
 	/**
 	 * Method to get MultiValueGrou List, list to check status
