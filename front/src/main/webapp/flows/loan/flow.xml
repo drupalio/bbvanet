@@ -9,12 +9,16 @@
 
 	<on-start>
 		<evaluate expression="loanController.getCustomerRotatingAccount()" result="flowScope.customerRotatingAccount" />
+		<evaluate expression="loanController.getCustomerRotatingAccountHidden()" result="flowScope.customerRotatingAccountHidden" />
 		<evaluate expression="loanController.getCustomerLeasing()" result="flowScope.customerLeasing" />
+		<evaluate expression="loanController.getCustomerLeasingHidden()" result="flowScope.customerLeasingHidden" />
+		<evaluate expression="loanController.getCustomerLoan()" result="flowScope.customerLoan" />
+		<evaluate expression="loanController.getCustomerLoanHidden()" result="flowScope.customerLoanHidden" />
 	</on-start>
 
 	<view-state id="loan">
 		<on-entry>
-			<set name="flashScope.menuActive" value="'ACCOUNTS'" />
+			<set name="flowScope.menuActive" value="'LOANS'" />
 			<evaluate expression="new java.lang.String()"/>
 		</on-entry>
 	</view-state>

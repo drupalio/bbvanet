@@ -93,10 +93,6 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		initChart();
 	}
 
-	public void onAccountSelected(final SelectEvent selectEvent) {
-		System.out.print("hooola");
-	}
-
 	public String getActivePanel() {
 		return this.activePanel.name();
 	}
@@ -132,6 +128,12 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	 */
 	public void initChart() {
 		executeScript("initChart();");
+	}
+
+	@Override
+	public void onProductSelected(SelectEvent selectEvent) {
+		super.onProductSelected(selectEvent);
+		this.sendAction("accountSelected");
 	}
 
 	/************************************* SETTER BEANS **************************************/
