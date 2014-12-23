@@ -22,13 +22,18 @@
 			<div class="col-xs-12 col-md-6">
 				<div class="form-group">
 					<div class="col-xs-2 col-md-12">
-						<label for="inputNumberFrom">#{msg['text.since']}:</label>
-					</div>
-					<div class="col-xs-10 col-md-12 balanceFrom">
-						<bbvaInputCurrent:inputCurrent id="currencySince"
-							value="#{cc.attrs.valueSince}" idName="inputNumberFrom"
-							data-max="999999999999" data-min="0" maxlength="12"
-							autocomplete="off" data-filter="Desde: " />
+						<h:outputLabel value="#{msg['text.since']}:" />
+
+						<br></br>
+
+						<p:inputText id="currencySince" value="#{cc.attrs.valueSince}"
+							style="background-image: url('../../assets/img/icons/dollar-blue.png'); 
+							background-repeat: no-repeat; background-position: right 3% center;">
+							<f:validateLength maximum="12" minimum="1" />
+							<p:ajax event="keyup" update="out"
+								listener="#{movementsCriteriaController.buildMessage}" />
+						</p:inputText>
+
 					</div>
 				</div>
 			</div>
@@ -36,23 +41,31 @@
 			<div class="col-xs-12 col-md-6">
 				<div>
 					<div class="col-xs-2 col-md-12">
-						<label for="inputNumberTo">#{msg['text.to']}:</label>
-					</div>
-					<div class="col-xs-10 col-md-12 balanceTo">
-						<bbvaInputCurrent:inputCurrent id="currencyTo"
-							value="#{cc.attrs.valueTo}" idName="inputNumberTo"
-							data-max="999999999999" data-min="1" maxlength="12"
-							autocomplete="off" data-filter="Hasta: " />
+
+						<h:outputLabel value="#{msg['text.to']}:" />
+						<br></br>
+
+						<p:inputText id="currencyTo" value="#{cc.attrs.valueTo}"
+							style="background-image: url('../../assets/img/icons/dollar-blue.png'); 
+							background-repeat: no-repeat; background-position: right 3% center;">
+							<f:validateLength maximum="12" minimum="1" />
+							<p:ajax event="keyup" update="out, balanceButton"
+								listener="#{movementsCriteriaController.balanceValidator}" />
+						</p:inputText>
 					</div>
 				</div>
 			</div>
 		</div>
-		<small class="muted filter-description"></small>
-		<bbvaButton:iconButton id="balnceButton"
-			class="btn small hidden-xs hidden-sm"
+		<p:spacer />
+		<h:outputText id="out"
+			value="#{movementsCriteriaController.messageBalance}"
+			style="color: #777777;" />
+		<p:spacer />
+		<p:commandButton id="balanceButton"
+			disabled="#{movementsCriteriaController.renderedButtonBalance}"
 			actionListener="#{movementsCriteriaController.setBalanceRange}"
-			value="#{msg['button.confirm']}" />
-
+			value="#{msg['button.confirm']}"
+			styleClass="btn small hidden-xs hidden-sm" />
 	</div>
 </composite:implementation>
 </html>
