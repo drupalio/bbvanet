@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:composite="http://java.sun.com/jsf/composite"
@@ -7,15 +6,22 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pm="http://primefaces.org/mobile"
-	xmlns:jsf="http://xmlns.jcp.org/jsf"
-	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:cc="http://jsflive.at/taglib"
+	xmlns:bbvaGP="http://java.sun.com/jsf/composite/bbva/globalPosition"
+	xmlns:bbvaButton="http://java.sun.com/jsf/composite/bbva/button"
+	xmlns:bbvaInput="http://java.sun.com/jsf/composite/bbva/input">
 
 <composite:interface>
+
+	<composite:attribute name="divClass" />
+
+	<composite:attribute name="valueLabel" />
 
 	<composite:attribute name="idButton" type="java.lang.String" />
 	<composite:attribute name="valueButton" type="java.lang.String" />
 	<composite:attribute name="styleButton" />
-	<composite:attribute name="onclickButton" />
 	<composite:attribute name="classButton" />
 	<composite:attribute name="actionListener"
 		method-signature="void actionlistener(javax.faces.event.ActionEvent)" />
@@ -26,34 +32,29 @@
 	<composite:attribute name="idInput" />
 	<composite:attribute name="styleClassInput" />
 	<composite:attribute name="valueInput" />
-	<composite:attribute name="typeInput" type="java.lang.String" />
-	<composite:attribute name="styleInput" />
-	<composite:attribute name="maxlength" type="java.lang.Integer"
-		id="maxlength1" />
 	<composite:attribute name="onclickInput" />
 
 </composite:interface>
 
 <composite:implementation>
 
-
-	<fieldset class="input">
-		<p:inputText id="#{cc.attrs.idInput}" type="#{cc.attrs.typeInput}"
-			value="#{cc.attrs.valueInput}" maxlength="#{cc.attrs.maxlength}"
-			onkeyup="enableDisableButton(this, #{cc.attrs.nameButton})"
-			style="#{cc.attrs.styleInput}"
-			styleClass="#{cc.attrs.styleClassInput}">
-		</p:inputText>
-	</fieldset>
-
-	<button class="#{cc.attrs.classButton}" disabled="true"
-		type="#{cc.attrs.typeButton}" jsf:id="#{cc.attrs.idButton}"
-		jsf:actionListener="#{cc.attrs.actionListener}"
-		name="#{cc.attrs.nameButton}" jsf:style="#{cc.attrs.styleButton}"
-		jsf:onclick="#{cc.attrs.onclickButton}">
-		<span class="#{cc.attrs.iconButton}" /> #{cc.attrs.valueButton}
-		<f:ajax execute="@form" render="@form" />
-	</button>
+	<div class="#{cc.attrs.divClass}">
+		<h:outputLabel class="leftDiv leftLabel"
+			value="#{cc.attrs.valueLabel}" />
+		<div class="personalizar-input rigthDiv">
+			<bbvaInput:inputButton idInput="#{cc.attrs.idInput}" typeInput="text"
+				maxlength="25" styleInput="max-width:315px;"
+				styleClassInput="#{cc.attrs.styleClassInput}"
+				valueInput="#{cc.attrs.valueInput}" idButton="#{cc.attrs.idButton}"
+				valueButton="#{cc.attrs.valueButton}"
+				classButton="#{cc.attrs.classButton}"
+				styleButton="#{cc.attrs.styleButton}"
+				actionListener="#{cc.attrs.actionListener}"
+				iconButton="#{cc.attrs.iconButton}"
+				typeButton="#{cc.attrs.typeButton}"
+				nameButton="#{cc.attrs.nameButton}" />
+		</div>
+	</div>
 
 </composite:implementation>
 

@@ -16,6 +16,7 @@ import com.bbva.net.back.model.globalposition.GlobalProductsDTO;
 import com.bbva.net.front.controller.GlobalPositionController;
 import com.bbva.net.front.core.AbstractBbvaController;
 import com.bbva.net.front.delegate.GraphicPieDelegate;
+import com.bbva.net.front.ui.accounts.AccountsPieUI;
 import com.bbva.net.front.ui.globalposition.SituationPiesUI;
 
 @Controller(value = "globalPositionController")
@@ -34,6 +35,8 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	private GlobalProductsDTO globalProductsDTO;
 
 	private SituationPiesUI situationGraphicPieUI;
+
+	private AccountsPieUI investmentFundsPieUI;
 
 	private ActivePanelType activePanel = ActivePanelType.SITUATION;
 
@@ -54,6 +57,9 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 		// Calculate situation graphics panels
 		this.situationGraphicPieUI = graphicPieDelegate.getSituationGlobalProducts(this.globalProductsDTO);
+
+		// Calculate investmentFunds graphics panels
+		this.investmentFundsPieUI = graphicPieDelegate.getAccountsfundsProducts(this.globalProductsDTO);
 
 		// Calculate totals
 		this.totalsProducts = this.globalPositionFacade.getTotalsByProduct(globalProductsDTO);
@@ -132,6 +138,14 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	 */
 	public void initChart() {
 		executeScript("initChart();");
+	}
+
+	public AccountsPieUI getInvestmentFundsPieUI() {
+		return investmentFundsPieUI;
+	}
+
+	public void setInvestmentFundsPieUI(AccountsPieUI investmentFundsPieUI) {
+		this.investmentFundsPieUI = investmentFundsPieUI;
 	}
 
 	/************************************* SETTER BEANS **************************************/

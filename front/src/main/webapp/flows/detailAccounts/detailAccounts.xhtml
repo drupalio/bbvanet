@@ -16,7 +16,6 @@
 	xmlns:bbvaDetailMotion="http://java.sun.com/jsf/composite/bbva/movementsDetail"
 	xmlns:bbvaSearch="http://java.sun.com/jsf/composite/bbva/filters"
 	xmlns:jsf="http://xmlns.jcp.org/jsf"
-	xmlns:bbvaInput="http://java.sun.com/jsf/composite/bbva/input"
 	xmlns:bbvaMessage="http://java.sun.com/jsf/composite/bbva/messages"
 	xmlns:bbvaPersonalize="http://java.sun.com/jsf/composite/bbva/personalize"
 	xmlns:bbvaButton="http://java.sun.com/jsf/composite/bbva/button">
@@ -117,98 +116,48 @@
 				<!-- panel personalizar -->
 
 				<bbvaPersonalize:personalizeAccount>
-					<h:form>
-						<div class="customize-product-name">
-							<h:outputLabel class="leftDiv leftLabel"
-								value="Nombre del producto" />
-							<div class="personalizar-input rigthDiv">
-								<bbvaInput:inputButton idI="input" typeI="text" maxlength="25"
-									styleI="max-width:315px;" styleClassI="form-control"
-									value="#{personalizeProductAccountController.personalizeProductAccountDto.alias}"
-									idB="button" textB="#{msg['button.save']}"
-									classB="btn btn-default" nameB="buttonAdd" />
-							</div>
-						</div>
-						<span class="separator"></span>
-						<div class="customize-virtual">
-							<p:outputLabel class="leftDiv leftLabel"
-								value="Correspondecia virtual" />
-							<div class="rigthDiv">
-								<bbvaButton:comboButtons size="smallCombo"
-									ajax="#{personalizeProductAccountController.offMessage}"
-									value="#{personalizeProductAccountController.personalizeProductAccountDto.virtualMail}" />
-								<bbvaButton:iconButton id="buttonTwo"
-									value="#{msg['button.save']}" classB="btn btn-default"
-									type="submit" style="margin-top:6px !important"
-									actionListener="#{personalizeProductAccountController.successful}">
-								</bbvaButton:iconButton>
-							</div>
-						</div>
-						<bbvaMessage:messageCheck
-							render="#{personalizeProductAccountController.menSuccessful}" />
+					<bbvaPersonalize:personalizeInputClass
+						divClass="customize-product-name" nameButton="buttonAdd"
+						valueLabel="#{msg['text.nameProduct']}" idButton="cc" idInput="dd"
+						valueButton="#{msg['button.save']}" classButton="btn btn-default"
+						valueInput="#{personalizeProductAccountController.personalizeProductAccountDto.alias}" />
+					<span class="separator"></span>
 
-						<span class="separator"></span>
-						<div class="customize-online">
-							<p:outputLabel class="leftDiv leftLabel" value="Consultar">
-								<span class="icon-info-blue">online</span>
-							</p:outputLabel>
+					<bbvaPersonalize:personalizeCombo size="smallCombo"
+						idComboOne="comboOne" divClass="customize-virtual"
+						valueButton="#{msg['button.save']}"
+						valueLabel="#{msg['text.virtualCorresp']}" idButton="datas"
+						actionListener="#{personalizeProductAccountController.successful}"
+						ajax="#{personalizeProductAccountController.offMessage}"
+						value="#{personalizeProductAccountController.personalizeProductAccountDto.virtualMail}" />
+					<bbvaMessage:messageCheck
+						render="#{personalizeProductAccountController.menSuccessful}" />
+					<span class="separator"></span>
 
-							<div class="rigthDiv">
-								<bbvaButton:comboButtons size="bigCombo"
-									value="#{personalizeProductAccountController.personalizeProductAccountDto.searchOnline}" />
-							</div>
-						</div>
-						<div class="customize-online">
-							<p:outputLabel class="leftDiv leftLabel" value="Operar">
-								<span class="icon-info-blue">online</span>
-							</p:outputLabel>
+					<bbvaPersonalize:personalizeCombo size="bigCombo"
+						idComboOne="comboTwo" divClass="customize-online"
+						classIcon="icon-info-blue" valueLabel="#{msg['text.consult']}"
+						labelIcon="#{msg['text.online']}"
+						value="#{personalizeProductAccountController.personalizeProductAccountDto.searchOnline}" />
 
-							<div class="rigthDiv">
-								<bbvaButton:comboButtons size="bigCombo"
-									value="#{personalizeProductAccountController.personalizeProductAccountDto.operationOnline}" />
-							</div>
-							<bbvaButton:iconButton id="buttonThree" type="submit"
-								actionListener="#{personalizeProductAccountController.operKey}"
-								value="#{msg['button.save']}" style="margin-top:6px !important"
-								classB="btn btn-default" />
-						</div>
-						<bbvaMessage:divOperationKey idComfirm="buttonFour"
-							idInput="inputTwo" nameB="buttonConfirm" idInputDiv="divClass"
-							render="#{personalizeProductAccountController.menOperationKey}"
-							value="#{personalizeProductAccountController.personalizeProductAccountDto.operationKey}" />
+					<bbvaPersonalize:personalizeCombo size="bigCombo"
+						idComboOne="comboThree" divClass="customize-online"
+						classIcon="icon-info-blue" valueLabel="#{msg['text.work']}"
+						labelIcon="#{msg['text.online']}"
+						value="#{personalizeProductAccountController.personalizeProductAccountDto.operationOnline}" />
 
-						<span class="separator"></span>
+					<bbvaButton:iconButton id="buttonThree" type="submit"
+						actionListener="#{personalizeProductAccountController.operKey}"
+						value="#{msg['button.save']}" style="margin-top:6px !important"
+						classB="btn btn-default" />
 
-						<div class="customize-product-email">
-							<h:outputLabel class="leftDiv leftLabel"
-								value="Registro de correos de adquiriencia" />
-
-							<bbvaMessage:hiddenRegisterEmail idValue="hidden" />
-							<div class="rigthDiv">
-								<bbvaInput:inputButton idI="input-value" typeI="text"
-									maxlength="25" styleClassI="form-control required error"
-									valueI="#{personalizeProductAccountController.personalizeProductAccountDto.emails}"
-									styleB="margin-top: -0.5px !important; float: left !important; margin-left: 10px !important;"
-									idB="btn-add" classB="btn btn-default" nameB="buttonName"
-									type="submit" textB="#{msg['button.add']}" />
-
-								<p:outputLabel value="Dirección de correo inválida"
-									id="invalida" style="visibility: hidden;" />
-
-								<button type="submit" class="btn btn-default hidden"
-									id="btn-update">Actualizar</button>
-							</div>
-						</div>
-					</h:form>
+					<bbvaMessage:divOperationKey idComfirm="buttonFour"
+						idInput="inputTwo" nameB="buttonConfirm" idInputDiv="divClass"
+						render="#{personalizeProductAccountController.menOperationKey}"
+						value="#{personalizeProductAccountController.personalizeProductAccountDto.operationKey}" />
 				</bbvaPersonalize:personalizeAccount>
 			</div>
 		</bbvaDetAcc:tabMenu>
-
-		<bbvaDetAcc:tapDropDown title="Fecha">
-			<bbvaCalendar:calendarItem />
-		</bbvaDetAcc:tapDropDown>
-		<bbvaDetAcc:tapDropDown title="Saldo" />
-		<bbvaSearch:personalizedSearchContainer />
 
 		<div class="table-tabs">
 			<bbvaAcc:MovePaginatorTable id="detailAccounts"
@@ -216,35 +165,8 @@
 		</div>
 	</ui:define>
 
-
-
-	<!-- <div class="datepicker datepicker-dropdown dropdown-menu datepicker-orient-left datepicker-orient-bottom" style="display: block; top: 529.167px; left: 516.5px;"><div class="datepicker-days" style="display: block;"><table class=" table-condensed"><thead><tr><th class="prev" style="visibility: visible;"></th><th class="datepicker-switch" colspan="4">Diciembre 2014</th><th class="today"></th><th class="next" style="visibility: hidden;"></th></tr><tr><th class="dow">Dom</th><th class="dow">Lun</th><th class="dow">Mar</th><th class="dow">Mié</th><th class="dow">Jue</th><th class="dow">Vie</th><th class="dow">Sáb</th></tr></thead><tbody><tr><td class="old day">30</td><td class="day">1</td><td class="day">2</td><td class="day">3</td><td class="day">4</td><td class="day">5</td><td class="day">6</td></tr><tr><td class="day">7</td><td class="day">8</td><td class="day">9</td><td class="day">10</td><td class="disabled day">11</td><td class="disabled day">12</td><td class="disabled day">13</td></tr><tr><td class="disabled day">14</td><td class="disabled day">15</td><td class="disabled day">16</td><td class="disabled day">17</td><td class="disabled day">18</td><td class="disabled day">19</td><td class="disabled day">20</td></tr><tr><td class="disabled day">21</td><td class="disabled day">22</td><td class="disabled day">23</td><td class="disabled day">24</td><td class="disabled day">25</td><td class="disabled day">26</td><td class="disabled day">27</td></tr><tr><td class="disabled day">28</td><td class="disabled day">29</td><td class="disabled day">30</td><td class="disabled day">31</td><td class="new disabled day">1</td><td class="new disabled day">2</td><td class="new disabled day">3</td></tr><tr><td class="new disabled day">4</td><td class="new disabled day">5</td><td class="new disabled day">6</td><td class="new disabled day">7</td><td class="new disabled day">8</td><td class="new disabled day">9</td><td class="new disabled day">10</td></tr></tbody><tfoot><tr><th class="today" colspan="7" style="display: none;">Hoy</th></tr><tr><th class="clear" colspan="7" style="display: none;">Clear</th></tr></tfoot></table></div><div class="datepicker-months" style="display: none;"><table class="table-condensed"><thead><tr><th class="prev" style="visibility: visible;"></th><th class="datepicker-switch" colspan="4">2014</th><th class="today"></th><th class="next" style="visibility: hidden;"></th></tr></thead><tbody><tr><td colspan="7"><span class="month">Ene</span><span class="month">Feb</span><span class="month">Mar</span><span class="month">Abr</span><span class="month">May</span><span class="month">Jun</span><span class="month">Jul</span><span class="month">Ago</span><span class="month">Sep</span><span class="month">Oct</span><span class="month">Nov</span><span class="month">Dic</span></td></tr></tbody><tfoot><tr><th class="today" colspan="7" style="display: none;">Hoy</th></tr><tr><th class="clear" colspan="7" style="display: none;">Clear</th></tr></tfoot></table></div><div class="datepicker-years" style="display: none;"><table class="table-condensed"><thead><tr><th class="prev" style="visibility: visible;"></th><th class="datepicker-switch" colspan="4">2010-2019</th><th class="today"></th><th class="next" style="visibility: hidden;"></th></tr></thead><tbody><tr><td colspan="7"><span class="year old">2009</span><span class="year">2010</span><span class="year">2011</span><span class="year">2012</span><span class="year">2013</span><span class="year">2014</span><span class="year disabled">2015</span><span class="year disabled">2016</span><span class="year disabled">2017</span><span class="year disabled">2018</span><span class="year disabled">2019</span><span class="year new disabled">2020</span></td></tr></tbody><tfoot><tr><th class="today" colspan="7" style="display: none;">Hoy</th></tr><tr><th class="clear" colspan="7" style="display: none;">Clear</th></tr></tfoot></table></div></div> -->
-
 	<ui:define name="contentRight">
 
-		<bbvaAlert:alertsPanel header="Alertas y Novedades" numAlerts="8" />
-
-		<h:form>
-
-			<h:selectOneMenu id="console" style="width:125px">
-				<f:selectItem itemLabel="Select One" itemValue="" />
-				<f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
-				<f:selectItem itemLabel="PS4" itemValue="PS4" />
-				<f:selectItem itemLabel="Wii U" itemValue="Wii U" />
-				<p:ajax listener="#{customerAccountsPage.onComboChange}" />
-			</h:selectOneMenu>
-
-			<p:inputText>
-				<p:ajax event="keyup" listener="#{customerAccountsPage.onKeyUp}" />
-			</p:inputText>
-
-			<h:outputLabel value="#{prueba.name}"></h:outputLabel>
-			<button jsf:action="refresh">
-				ACCIÓN
-				<f:ajax execute="@form" render="@form" />
-			</button>
-
-		</h:form>
 	</ui:define>
 
 </ui:composition>

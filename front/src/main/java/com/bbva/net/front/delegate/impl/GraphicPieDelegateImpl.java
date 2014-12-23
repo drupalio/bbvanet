@@ -13,12 +13,12 @@ import com.bbva.net.back.model.globalposition.ProductDTO;
 import com.bbva.net.back.service.ProductService;
 import com.bbva.net.front.core.stereotype.Delegate;
 import com.bbva.net.front.delegate.GraphicPieDelegate;
+import com.bbva.net.front.ui.accounts.AccountsPieUI;
 import com.bbva.net.front.ui.globalposition.SituationPiesUI;
 import com.bbva.net.front.ui.pie.PieConfigUI;
 import com.bbva.net.front.ui.pie.PieItemUI;
 
 /**
- * 
  * @author Entelgy
  */
 @Delegate(value = "graphicPieDelegate")
@@ -51,7 +51,7 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 	 */
 	public PieConfigUI getSituationPieConfig(final List<ProductDTO> products) {
 
-		final PieConfigUI situationPie = new PieConfigUI();		
+		final PieConfigUI situationPie = new PieConfigUI();
 
 		final List<PieItemUI> situationPieItems = new ArrayList<PieItemUI>();
 
@@ -78,7 +78,7 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 	public PieConfigUI getAssetPieConfig(final List<ProductDTO> products) {
 
 		final PieConfigUI assetPie = new PieConfigUI();
-		assetPie.setHeaderLeft(" Activos " );
+		assetPie.setHeaderLeft(" Activos ");
 		assetPie.setHeaderRight(productService.getTotalAssets(products).getAmount().toString());
 
 		final List<PieItemUI> assetPieItems = new ArrayList<PieItemUI>();
@@ -113,11 +113,12 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 	 */
 	public PieConfigUI getFinanciationPieConfig(final List<ProductDTO> products) {
 
-		final PieConfigUI financiationPie = new PieConfigUI();		
-		DecimalFormat myFormatter = new DecimalFormat(ResourceBundle.getBundle("i18n_es").getString("number.format.decimals"));
+		final PieConfigUI financiationPie = new PieConfigUI();
+		DecimalFormat myFormatter = new DecimalFormat(ResourceBundle.getBundle("i18n_es").getString(
+				"number.format.decimals"));
 		String str = myFormatter.format(productService.getTotalFinanciacion(products).getAmount());
 		System.out.println(str);
-		financiationPie.setHeaderCenter( productService.getTotalFinanciacion(products).getAmount().toString());
+		financiationPie.setHeaderCenter(productService.getTotalFinanciacion(products).getAmount().toString());
 
 		final List<PieItemUI> financiationPieItems = new ArrayList<PieItemUI>();
 
@@ -136,6 +137,43 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 		financiationPie.setPieItemUIList(financiationPieItems);
 
 		return financiationPie;
+	}
+
+	@Override
+	public AccountsPieUI getAccountsfundsProducts(final GlobalProductsDTO globalProducts) {
+
+		final AccountsPieUI accountsPieUI = new AccountsPieUI();
+		final List<ProductDTO> productList = productService.getProducts(globalProducts);
+
+		accountsPieUI.setInvertfunds(getFundsPieConfig(productList));
+
+		return accountsPieUI;
+	}
+
+	/**
+	 * Method to draws a Funds Pie graphic
+	 * 
+	 * @param List<Product> products
+	 * @return PieConfigUI
+	 */
+	public PieConfigUI getFundsPieConfig(final List<ProductDTO> products) {
+
+		final PieConfigUI fundsPie = new PieConfigUI();
+
+		final List<PieItemUI> fundsPieItems = new ArrayList<PieItemUI>();
+
+		final PieItemUI garantPieItem = new PieItemUI("el color", "Garantizado selección Consumo", this.productService
+				.getTotalProductsByType(products, EnumProductType.SI).getAmount());
+
+		final PieItemUI valorPieItem = new PieItemUI("el color", "Valor plus", this.productService
+				.getTotalProductsByType(products, EnumProductType.SI).getAmount());
+
+		fundsPieItems.add(garantPieItem);
+		fundsPieItems.add(valorPieItem);
+		fundsPie.setPieItemUIList(fundsPieItems);
+
+		return fundsPie;
+
 	}
 
 	/**
