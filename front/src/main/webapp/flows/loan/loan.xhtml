@@ -19,7 +19,8 @@
 
 	<ui:define name="bodyTitle">
 		<bbvaBody:title title="Préstamos" >
-			<bbvaBody:titleOptionProduct optionButttonLeft= "Mis productos" optionButttonRight ="Catálogo de productos"/>
+			<bbvaBody:titleOptionProduct optionButttonLeft= "Mis productos" 
+				optionButttonRight ="Catálogo de productos"/>
 		</bbvaBody:title>
 	</ui:define>
 
@@ -28,12 +29,14 @@
 		<bbvaContainer:productPanel title="Cupo Rotativo">
 			<div class="table-tabs">
 
-				<bbvaGP:rotatingQuotaHeadTable listQuota="#{customerRotatingAccount}"/>
-				<bbvaGP:rotatingQuotaTailTable listQuota="#{customerRotatingAccount}"/>
+				<bbvaGP:rotatingQuotaHeadTable listQuota="#{customerRotatingAccount}"
+					controller="#{loanController}"/>
+				<bbvaGP:rotatingQuotaTailTable listQuota="#{customerRotatingAccountHidden}"
+					controller="#{loanController}"/>
 
 			</div>
 			<div class="row afterTable">
-				<bbvaGP:productFooter listProduct="#{customerRotatingAccount}"/>
+				<bbvaGP:productFooter listProduct="#{customerRotatingAccountHidden}"/>
 				<bbvaGP:totalBalance />
 			</div>
 		</bbvaContainer:productPanel>
@@ -41,24 +44,28 @@
 		<bbvaContainer:productPanel title="Leasing">
 			<div class="table-tabs">
 
-				<bbvaGP:leasingHeadTable listLeasing="#{customerLeasing}"/>
-				<bbvaGP:leasingTailTable listLeasing="#{customerLeasing}"/>
+				<bbvaGP:leasingHeadTable listLeasing="#{customerLeasing}"
+					controller="#{loanController}"/>
+				<bbvaGP:leasingTailTable listLeasing="#{customerLeasingHidden}"
+					controller="#{loanController}"/>
 
 
 			</div>
 			<div class="row afterTable">
-				<bbvaGP:productFooter listProduct="#{customerLeasing}"/>
+				<bbvaGP:productFooter listProduct="#{customerLeasingHidden}"/>
 				<bbvaGP:totalBalance />
 			</div>
 		</bbvaContainer:productPanel>
 		
-		<bbvaContainer:productPanel title="Pr&#233;stamos">
+		<bbvaContainer:productPanel title="#{msg['title.loans']}">
 			<div class="table-tabs">
-				<bbvaGP:loanHeadTable />
-				<bbvaGP:loanTailTable />
+				<bbvaGP:loanHeadTable listLoan="#{customerLoan}" 
+					controller="#{loanController}"/>
+				<bbvaGP:loanTailTable listLoan="#{customerLoanHidden}"
+					controller="#{loanController}" />
 			</div>
 			<div class="row afterTable">
-				<bbvaGP:productFooter />
+				<bbvaGP:productFooter listProduct="#{customerLoanHidden}" />
 				<bbvaGP:totalBalance />
 			</div>
 		</bbvaContainer:productPanel>

@@ -11,56 +11,59 @@
 <composite:interface>
 	<composite:attribute name="id" type="String" />
 	<composite:attribute name="listDeposit" type="java.util.List" />
+	<composite:attribute name="controller"
+		type="com.bbva.net.front.core.AbstractBbvaController" />
 </composite:interface>
 
 <composite:implementation>
+	<h:form id="#{cc.attrs.id}">
+		<p:dataTable var="iproduct" id="#{cc.attrs.id}" rowIndexVar="findex"
+			selectionMode="single"
+			rowKey="#{iproduct.productId}" value="#{cc.attrs.listDeposit}">
 
-	<p:dataTable var="iproduct" id="#{cc.attrs.id}"
-		rowIndexVar="findex"
-		selectionMode="single" 
-		selection="#{globalPositionController.selectedProduct}"
-		rowKey="#{iproduct.productId}"
-		value="#{cc.attrs.listDeposit}">
-		
-		<p:ajax event="rowSelect" />
-		<p:ajax event="rowUnselect" />
+			<p:ajax event="rowSelect"
+				listener="#{cc.attrs.controller.onProductSelected}" />
+			<p:ajax event="rowUnselect" />
 
-		<p:column class="head" headerText="#{msg['text.deposit.name']}"
-			styleClass="head col-xs-6 col-md-4"
-			style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
+			<p:column class="head" headerText="#{msg['text.deposit.name']}"
+				styleClass="head col-xs-6 col-md-4"
+				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
 
 
-			<h:outputText styleClass="title-label" style="font-size: 1.1em; font-weight:bold; color:#0078d2" escape="false"
-								  value="#{iproduct.alias}"/>
-			<h:outputText style="font-size: 1em" escape="false" 
-								  value="&lt;br /&gt; #{iproduct.productId}"/>
-			<h:outputText styleClass="sublabel" style="font-size: 1em" escape="false"
-								  value="&lt;br /&gt; #{iproduct.productName}"/>
+				<h:outputText styleClass="title-label"
+					style="font-size: 1.1em; font-weight:bold; color:#0078d2"
+					escape="false" value="#{iproduct.alias}" />
+				<h:outputText style="font-size: 1em" escape="false"
+					value="&lt;br /&gt; #{iproduct.productId}" />
+				<h:outputText styleClass="sublabel" style="font-size: 1em"
+					escape="false" value="&lt;br /&gt; #{iproduct.productName}" />
 
-		</p:column>
+			</p:column>
 
-		<p:column class="head" headerText="#{msg['text.deposit.balanceTotal']}"
-			styleClass="head col-xs-6 col-md-4"
-			style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
+			<p:column class="head"
+				headerText="#{msg['text.deposit.balanceTotal']}"
+				styleClass="head col-xs-6 col-md-4"
+				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
 
-			<h:outputText style="font-size: 1.5em; font-weight:bold" styleClass="balance" 
-								   value="#{iproduct.totalCash}"/>	
-			<p class="sublabel"></p>
+				<h:outputText style="font-size: 1.5em; font-weight:bold"
+					styleClass="balance" value="#{iproduct.totalCash}" />
+				<p class="sublabel"></p>
 
-		</p:column>
+			</p:column>
 
-		<p:column class="head" headerText="#{msg['text.deposit.balanceAvailable']}"
-			styleClass="head col-xs-6 col-md-4"
-			style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
+			<p:column class="head"
+				headerText="#{msg['text.deposit.balanceAvailable']}"
+				styleClass="head col-xs-6 col-md-4"
+				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
 
-			<h:outputText style="font-size: 1.5em; font-weight:bold" styleClass="balance" 
-								   value="#{iproduct.cashAvailable}"/>	
-			<p class="sublabel"></p>
+				<h:outputText style="font-size: 1.5em; font-weight:bold"
+					styleClass="balance" value="#{iproduct.cashAvailable}" />
+				<p class="sublabel"></p>
 
-		</p:column>
+			</p:column>
 
-	</p:dataTable>
-
+		</p:dataTable>
+	</h:form>
 </composite:implementation>
 
 </html>

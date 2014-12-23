@@ -28,14 +28,16 @@
 		<bbvaContainer:productPanelGraphic title="#{msg['title.accountsPersonal']}">
 			<div class="table-tabs">
 				<bbvaGP:accountSearch listAccounts="#{customerAccounts}" />
-
-				<bbvaGP:accountHeadTable listAccounts="#{customerAccounts}" />
-				<bbvaGP:accountAdquirenciaTable listAccounts="#{customerAccounts}" />
-				<bbvaGP:accountTailTable listAccounts="#{customerAccounts}" />
-
+				<bbvaGP:accountHeadTable 
+					listAccounts="#{customerAccounts}"
+					controller="#{accountsController}" />
+				<bbvaGP:accountAdquirenciaTable listAccounts="#{customerAccounts}" 
+					controller="#{accountsController}"/>
+				<bbvaGP:accountTailTable listAccounts="#{customerAccountsHidden}" 
+					controller="#{accountsController}"/>
 			</div>
 			<div class="row afterTable">
-				<bbvaGP:productFooter listProduct="#{customerAccounts}" />
+				<bbvaGP:productFooter listProduct="#{customerAccountsHidden}" />
 				<bbvaGP:totalBalance />
 			</div>
 		</bbvaContainer:productPanelGraphic>

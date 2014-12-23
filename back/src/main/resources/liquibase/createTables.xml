@@ -20,6 +20,11 @@
 			<column name="TYPE_NAME">QUIEROS</column>
 		</insert>
 
+		<insert tableName="MULTIVALUETYPE">
+			<column name="ID">2</column>
+			<column name="TYPE_NAME">CHEQUESTADO</column>
+		</insert>
+
 		<!-- Table MULTVALUEGROUP -->
 		<createTable tableName="MULTIVALUEGROUP">
 			<column name="ID" type="BIGINT" autoIncrement="true">
@@ -27,12 +32,12 @@
 					primaryKeyName="mulValue_pk" />
 			</column>
 			<column name="VALUE" type="VARCHAR(40)"></column>
-			<column name="TYPE_ID" type="BIGINT"/>
+			<column name="TYPE_ID" type="BIGINT" />
 		</createTable>
 
 		<addForeignKeyConstraint baseColumnNames="TYPE_ID"
 			baseTableName="MULTIVALUEGROUP" constraintName="fk_mulValueTypeID"
-			referencedTableName="MULTIVALUETYPE" referencedColumnNames="ID"  />
+			referencedTableName="MULTIVALUETYPE" referencedColumnNames="ID" />
 
 		<!-- Insert table MULTVALUEGROUP -->
 		<insert tableName="MULTIVALUEGROUP">
@@ -49,6 +54,18 @@
 			<column name="ID" autoIncrement="true" />
 			<column name="VALUE">text.combo.likes.do.transfers</column>
 			<column name="TYPE_ID">1</column>
+		</insert>
+
+		<insert tableName="MULTIVALUEGROUP">
+			<column name="ID" autoIncrement="true" />
+			<column name="VALUE">text.combo.cheks.enabled</column>
+			<column name="TYPE_ID">2</column>
+		</insert>
+
+		<insert tableName="MULTIVALUEGROUP">
+			<column name="ID" autoIncrement="true" />
+			<column name="VALUE">text.combo.cheks.requested</column>
+			<column name="TYPE_ID">2</column>
 		</insert>
 
 	</changeSet>

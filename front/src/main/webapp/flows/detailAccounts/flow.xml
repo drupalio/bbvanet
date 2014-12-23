@@ -21,6 +21,7 @@
 		<evaluate expression="TermsController.getAllConditions()"
 			result="flowScope.allConditions" />
 
+			<evaluate expression="movementsCriteriaController.getListMultiValueLikes()" result="flowScope.multiValueList" />	
 
 	</on-start>
 

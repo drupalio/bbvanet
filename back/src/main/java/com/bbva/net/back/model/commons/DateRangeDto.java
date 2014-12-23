@@ -22,11 +22,9 @@ public class DateRangeDto implements Dto {
 	private Date dateTo;
 
 	public DateRangeDto() {
-		super();
 	}
 
 	public DateRangeDto(Date dateSince, Date dateTo) {
-		super();
 		this.dateSince = dateSince;
 		this.dateTo = dateTo;
 	}

@@ -150,6 +150,12 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		executeScript("initChart();");
 	}
 
+	@Override
+	public void onProductSelected(SelectEvent selectEvent) {
+		super.onProductSelected(selectEvent);
+		this.sendAction("accountSelected");
+	}
+
 	/************************************* SETTER BEANS **************************************/
 
 	public void setGlobalPositionFacade(final GlobalPositionFacade globalPositionFacade) {

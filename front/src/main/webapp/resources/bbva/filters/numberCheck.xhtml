@@ -17,33 +17,44 @@
 <composite:implementation>
 
 	<div class="row">
-		<div class="form-horizontal">
-			<div class="col-xs-12 radio-group">
+		<div>
+			<div>
 
-				<p:outputPanel id="customPanel" style="margin-bottom:10px">
-					<p:selectOneRadio id="customRadio" layout="custom">
-						<f:selectItem itemLabel="Red" itemValue="Red" />
-						<f:selectItem itemLabel="Green" itemValue="Green" />
-						<f:selectItem itemLabel="Blue" itemValue="Blue" />
+				<p:outputPanel id="customPanel">
+					<p:selectOneRadio id="customRadio" layout="custom"
+						value="#{movementsCriteriaController.movementCriteria.actionState}">
+						<f:selectItem itemLabel="#{msg['text.search.by.number.check']}"
+							itemValue="#{msg['text.search.by.number.check']}" />
+						<f:selectItem itemLabel="#{msg['text.search.by.number.status']}" itemValue="#{msg['text.search.by.number.status']}" />
+						<f:selectItem itemLabel="#{msg['text.search.by.numberbook']}"
+							itemValue="#{msg['text.search.by.numberbook']}" />
+						<p:ajax process="@this"
+							listener="#{movementsCriteriaController.actionState}"
+							update="customPanel, searchButton" />
 					</p:selectOneRadio>
 
-					<h:panelGrid columns="3" cellpadding="5">
+					<h:panelGrid columns="3" cellpadding="5" id="grilla">
 						<p:radioButton id="opt1" for="customRadio" itemIndex="0" />
-						<h:outputLabel for="opt1" value="Búsqueda por nº de cheque" />
-						<p:inputText />
+						<h:outputLabel for="opt1" value="#{msg['text.search.by.number.check']}" />
+						<h:inputText id="inputNumberCheck" value="#{movementsCriteriaController.movementCriteria.checkNumber}"
+							disabled="#{movementsCriteriaController.renderedNumberCheck}" validatorMessage="Formato Invalido">
+							<f:validateRegex pattern="[0-9]*" />
+						</h:inputText>	
 
 						<p:radioButton id="opt2" for="customRadio" itemIndex="1" />
-						<h:outputLabel for="opt2" value="Estado" />
-						<h:selectOneMenu style="width:125px" styleClass="selectpicker">
-							<f:selectItem itemLabel="Seleccionar" itemValue="" />
-							<f:selectItem itemLabel="Habilitados" itemValue="Habilitados" />
-							<f:selectItem itemLabel="Solicitados" itemValue="Solicitados" />
+						<h:outputLabel for="opt2" value="#{msg['text.search.by.number.status']}" />
+						<h:selectOneMenu id="stateSelect" value="#{movementsCriteriaController.movementCriteria.checkState}"
+							disabled="#{movementsCriteriaController.renderedNumberCheck}">
+							<f:selectItem itemLabel="#{msg['text.combo.select']}" />
+							<f:selectItems value="#{multiValueList}" var="multiValue"
+								itemValue="#{multiValue}" itemLabel="#{msg[multiValue.value]}" />
 						</h:selectOneMenu>
 
 						<p:radioButton id="opt3" for="customRadio" itemIndex="2" />
-						<h:outputLabel for="opt3" value="Búsqueda por nº de talonario" />
-						<h:selectOneMenu >
-							<f:selectItem itemLabel="Seleccionar" itemValue="" />
+						<h:outputLabel for="opt3" value="#{msg['text.search.by.numberbook']}" />
+						<h:selectOneMenu id="numberBook" value="#{movementsCriteriaController.movementCriteria.bookNumber}"
+							disabled="#{movementsCriteriaController.renderedNumberBook}">
+							<f:selectItem itemLabel="#{msg['text.combo.select']}" />
 							<f:selectItem itemLabel="Habilitados" itemValue="Habilitados" />
 							<f:selectItem itemLabel="Solicitados" itemValue="Solicitados" />
 						</h:selectOneMenu>
@@ -52,8 +63,9 @@
 
 			</div>
 		</div>
-		<p:commandButton value="Confirmar"
-			styleClass="btn small hidden-xs hidden-sm" />
+		<p:commandButton id="searchButton" value="#{msg['text.comfirm']}" disabled="#{movementsCriteriaController.renderedButtonBook}" 
+		actionListener="#{movementsCriteriaController.setNumberCheckOrBook}" styleClass="btn small hidden-xs hidden-sm"
+			/>
 	</div>
 </composite:implementation>
 
