@@ -11,8 +11,10 @@
 	xmlns:jsf="http://xmlns.jcp.org/jsf">
 
 <composite:interface>
+	<composite:attribute name="show" type="boolean"/>
 	<composite:attribute name="actionListener"
 		method-signature="void actionlistener(javax.faces.event.ActionEvent)" />
+
 </composite:interface>
 
 <composite:implementation>
@@ -20,9 +22,10 @@
 
 		<div>
 			<p:commandButton value="#{msg['button.clean.filters']}"
+				rendered="#{cc.attrs.show}"
 				styleClass="btn btn-default hidden-xs hidden-sm">
 			</p:commandButton>
-			<p:commandButton styleClass="btn btn-default"
+			<p:commandButton styleClass="btn btn-default" rendered="true"
 				actionListener="#{cc.attrs.actionListener}"
 				value="#{msg['button.see.result']}" icon="document-view-icon" />
 		</div>

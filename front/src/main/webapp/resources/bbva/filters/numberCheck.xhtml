@@ -48,7 +48,6 @@
 							<f:selectItem itemLabel="#{msg['text.combo.select']}" />
 							<f:selectItems value="#{multiValueList}" var="multiValue"
 								itemValue="#{multiValue}" itemLabel="#{msg[multiValue.value]}" />
-								<p:ajax update="searchButton"/>
 						</h:selectOneMenu>
 
 						<p:radioButton id="opt3" for="customRadio" itemIndex="2" />
@@ -65,7 +64,7 @@
 			</div>
 		</div>
 		<p:commandButton id="searchButton" value="#{msg['text.comfirm']}" disabled="#{movementsCriteriaController.renderedButtonBook}" 
-		actionListener="#{movementsCriteriaController.searchNumberCheckOrBook}"
+		actionListener="#{movementsCriteriaController.setNumberCheckOrBook}" styleClass="btn small hidden-xs hidden-sm"
 			/>
 	</div>
 </composite:implementation>
