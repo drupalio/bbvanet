@@ -2,16 +2,49 @@ package com.bbva.net.back.facade;
 
 import java.util.List;
 
-import com.bbva.net.back.model.globalposition.GlobalProductsDTO;
 import com.bbva.net.back.model.globalposition.LeasingDTO;
+import com.bbva.net.back.model.globalposition.LoanDTO;
 import com.bbva.net.back.model.globalposition.RotatingAccountDTO;
 
+/**
+ * @author Entelgy
+ */
 public interface LoanFacade {
 
-	public List<LeasingDTO> getLeasingByUser(String defaultUser);
+	/**
+	 * @param user
+	 * @return
+	 */
+	List<LeasingDTO> getLeasingByUser(String user);
 
-	public List<RotatingAccountDTO> getRotatingAccountByUser(String defaultUser);
+	/**
+	 * @param user
+	 * @return
+	 */
+	List<LeasingDTO> getLeasingByUserHidden(String user);
 
-	public GlobalProductsDTO getLoansByUser(String defaultUser);
+	/**
+	 * @param user
+	 * @return
+	 */
+	List<RotatingAccountDTO> getRotatingAccountByUserHidden(String user);
+
+	/**
+	 * @param user
+	 * @return
+	 */
+	List<RotatingAccountDTO> getRotatingAccountByUser(String user);
+
+	/**
+	 * @param user
+	 * @return
+	 */
+	List<LoanDTO> getLoansByUser(String user);
+
+	/**
+	 * @param user
+	 * @return
+	 */
+	List<LoanDTO> getLoansByUserHidden(String user);
 
 }

@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import com.bbva.net.back.facade.LoanFacade;
 import com.bbva.net.back.model.globalposition.LeasingDTO;
+import com.bbva.net.back.model.globalposition.LoanDTO;
 import com.bbva.net.back.model.globalposition.RotatingAccountDTO;
 import com.bbva.net.front.controller.LoanController;
 import com.bbva.net.front.core.AbstractBbvaController;
@@ -26,8 +27,28 @@ public class LoanControllerImpl extends AbstractBbvaController implements LoanCo
 	}
 
 	@Override
+	public List<RotatingAccountDTO> getCustomerRotatingAccountHidden() {
+		return this.loanFacade.getRotatingAccountByUserHidden(getCurrentUser());
+	}
+
+	@Override
 	public List<LeasingDTO> getCustomerLeasing() {
 		return this.loanFacade.getLeasingByUser(getCurrentUser());
+	}
+
+	@Override
+	public List<LeasingDTO> getCustomerLeasingHidden() {
+		return this.loanFacade.getLeasingByUserHidden(getCurrentUser());
+	}
+
+	@Override
+	public List<LoanDTO> getCustomerLoan() {
+		return this.loanFacade.getLoansByUser(getCurrentUser());
+	}
+
+	@Override
+	public List<LoanDTO> getCustomerLoanHidden() {
+		return this.loanFacade.getLoansByUserHidden(getCurrentUser());
 	}
 
 	/********************************* SETTERS BEANS ************************************/

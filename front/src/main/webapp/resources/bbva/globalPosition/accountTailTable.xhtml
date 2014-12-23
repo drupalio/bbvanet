@@ -10,52 +10,57 @@
 <composite:interface>
 	<composite:attribute name="id" type="String" />
 	<composite:attribute name="listAccounts" type="java.util.List" />
-
+	<composite:attribute name="controller"
+		type="com.bbva.net.front.core.AbstractBbvaController" />
 </composite:interface>
 
 <composite:implementation>
-	
+
 	<div class="item-hidden" style="display: block;">
-		
-		<p:dataTable id="#{cc.attrs.id}" var="iproduct" 
-			rowIndexVar="findex"
-			selectionMode="single" 
-			selection="#{globalPositionController.selectedProduct}"
-			rowKey="#{iproduct.productId}"
-			value="#{cc.attrs.listAccounts}">
-		
-			<p:column class="head" styleClass="col-xs-6 col-md-8"
-				style="font-size: 0.7em;color: #434A58;border-style: solid none;
+		<h:form id="#{cc.attrs.id}">
+			<p:dataTable id="#{cc.attrs.id}" var="iproduct" rowIndexVar="findex"
+				selectionMode="single"
+				selection="#{cc.attrs.controller.selectedProduct}"
+				rowKey="#{iproduct.productId}" value="#{cc.attrs.listAccounts}">
+
+				<p:ajax event="rowSelect"
+					listener="#{cc.attrs.controller.onProductSelected}" />
+				<p:ajax event="rowUnselect" />
+
+				<p:column class="head" styleClass="col-xs-6 col-md-8"
+					style="font-size: 0.7em;color: #434A58;border-style: solid none;
 					font-family: Arial;background: none;border-radius: 4px;border: 2px solid #DBDCDF;
 					background-color: #F3F5F7;margin-bottom: 14px;">
 
-			
-				<h:outputText styleClass="title-label" style="font-size: 1.1em; font-weight:bold; color:#0078d2" escape="false"
-								  value="#{iproduct.alias}"/>
-				<h:outputText style="font-size: 1em" escape="false" 
-								  value="&lt;br /&gt; #{iproduct.productId}"></h:outputText>
-				<h:outputText styleClass="sublabel" style="font-size: 1em" escape="false"
-								  value="&lt;br /&gt; #{iproduct.productName}"/>
 
-			</p:column>
+					<h:outputText styleClass="title-label"
+						style="font-size: 1.1em; font-weight:bold; color:#0078d2"
+						escape="false" value="#{iproduct.alias}" />
+					<h:outputText style="font-size: 1em" escape="false"
+						value="&lt;br /&gt; #{iproduct.productId}"></h:outputText>
+					<h:outputText styleClass="sublabel" style="font-size: 1em"
+						escape="false" value="&lt;br /&gt; #{iproduct.productName}" />
 
-			<p:column class="head" styleClass="col-xs-6 col-md-4"
-				style="font-size: 0.7em;color: #434A58;border-style: solid none;
+				</p:column>
+
+				<p:column class="head" styleClass="col-xs-6 col-md-4"
+					style="font-size: 0.7em;color: #434A58;border-style: solid none;
 					font-family: Arial;background: none;border-radius: 4px;border: 2px solid #DBDCDF;
 					background-color: #F3F5F7;margin-bottom: 14px;">
 
-				<h:outputText style="font-size: 1.5em; font-weight:bold" styleClass="balance" 
-								   value="#{iproduct.totalCash}"/>
-				<h:outputText styleClass="ui-datatable-selectable" style="font-size:1em" escape="false"
-						value="&lt;br /&gt; #{msg['text.account.balance.label']} #{currency}#{iproduct.cashAvailable.amount}"/>
-				
-				<p class="sublabel"></p>
-				
-			</p:column>
-		</p:dataTable>
-	
+					<h:outputText style="font-size: 1.5em; font-weight:bold"
+						styleClass="balance" value="#{iproduct.totalCash}" />
+					<h:outputText styleClass="ui-datatable-selectable"
+						style="font-size:1em" escape="false"
+						value="&lt;br /&gt; #{msg['text.account.balance.label']} #{currency}#{iproduct.cashAvailable.amount}" />
+
+					<p class="sublabel"></p>
+
+				</p:column>
+			</p:dataTable>
+		</h:form>
 	</div>
-	
+
 </composite:implementation>
 
 </html>

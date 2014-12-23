@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.primefaces.context.RequestContext;
+import org.primefaces.event.SelectEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.faces.webflow.FlowFacesContext;
@@ -135,8 +136,15 @@ public abstract class AbstractBbvaController implements Serializable {
 	/**
 	 * @param selectedProduct
 	 */
-	public void setSelectedProduct(ProductDTO selectedProduct) {
+	public void setSelectedProduct(final ProductDTO selectedProduct) {
+		System.out.print("Product Selected\n");
 		this.selectedProduct = selectedProduct;
 	}
 
+	/**
+	 * @param selectEvent
+	 */
+	public void onProductSelected(final SelectEvent selectEvent) {
+		System.out.print("ON productSelected\n");
+	}
 }
