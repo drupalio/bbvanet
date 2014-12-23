@@ -20,7 +20,6 @@
 	<h:form id="#{cc.attrs.id}">
 		<p:dataTable id="#{cc.attrs.id}" var="iproduct" rowIndexVar="findex"
 			selectionMode="single"
-			selection="#{cc.attrs.controller.selectedProduct}"
 			rowKey="#{iproduct.productId}" value="#{cc.attrs.listQuota}">
 
 			<p:ajax event="rowSelect"

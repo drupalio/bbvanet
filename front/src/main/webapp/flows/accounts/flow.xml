@@ -4,8 +4,6 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/webflow 
     http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
 
-	<var name="accountsController" class="com.bbva.net.front.controller.impl.AccountsControllerImpl" />
-
 	<on-start>
 		<evaluate expression="accountsController.getCustomerAccounts()" result="flowScope.customerAccounts" />
 		<evaluate expression="accountsController.getCustomerAccountsHidden()" result="flowScope.customerAccountsHidden" />
