@@ -3,14 +3,13 @@ package com.bbva.czic.dto.net;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para Email complex type.
+ * <p>Java class for Email complex type.
  * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="Email">
@@ -38,14 +37,13 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class Email {
 
-    @XmlSchemaType(name = "string")
     protected EnumContactSourceType source;
     protected String addres;
     protected Boolean primary;
     protected Boolean active;
 
     /**
-     * Obtiene el valor de la propiedad source.
+     * Gets the value of the source property.
      * 
      * @return
      *     possible object is
@@ -57,7 +55,7 @@ public class Email {
     }
 
     /**
-     * Define el valor de la propiedad source.
+     * Sets the value of the source property.
      * 
      * @param value
      *     allowed object is
@@ -69,7 +67,7 @@ public class Email {
     }
 
     /**
-     * Obtiene el valor de la propiedad addres.
+     * Gets the value of the addres property.
      * 
      * @return
      *     possible object is
@@ -81,7 +79,7 @@ public class Email {
     }
 
     /**
-     * Define el valor de la propiedad addres.
+     * Sets the value of the addres property.
      * 
      * @param value
      *     allowed object is
@@ -93,7 +91,7 @@ public class Email {
     }
 
     /**
-     * Obtiene el valor de la propiedad primary.
+     * Gets the value of the primary property.
      * 
      * @return
      *     possible object is
@@ -105,7 +103,7 @@ public class Email {
     }
 
     /**
-     * Define el valor de la propiedad primary.
+     * Sets the value of the primary property.
      * 
      * @param value
      *     allowed object is
@@ -117,7 +115,7 @@ public class Email {
     }
 
     /**
-     * Obtiene el valor de la propiedad active.
+     * Gets the value of the active property.
      * 
      * @return
      *     possible object is
@@ -129,7 +127,7 @@ public class Email {
     }
 
     /**
-     * Define el valor de la propiedad active.
+     * Sets the value of the active property.
      * 
      * @param value
      *     allowed object is
