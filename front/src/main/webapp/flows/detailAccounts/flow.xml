@@ -15,8 +15,6 @@
 		class="com.bbva.net.front.controller.impl.MovementCriteriaControllerImpl" />
 	<var name="TermsController" class="com.bbva.net.front.controller.impl.TermsControllerImpl" />
 	
-	
-		
 	<on-start>
 		<evaluate expression="accountsController.getCustomerAccounts()"
 			result="flowScope.customerAccounts" />

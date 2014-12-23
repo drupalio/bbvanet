@@ -18,7 +18,7 @@
 
 	<view-state id="loan">
 		<on-entry>
-			<set name="flashScope.menuActive" value="'LOANS'" />
+			<set name="flowScope.menuActive" value="'LOANS'" />
 			<evaluate expression="new java.lang.String()"/>
 		</on-entry>
 	</view-state>

@@ -3,16 +3,12 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/webflow 
     http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
-
-
-	<var name="movementsPage" class="com.bbva.net.front.controller.impl.AccountsControllerImpl" />
 	
-
-	<on-start>
-		<evaluate expression="customerAccountsPage.getCustomerAccounts()" result="flowScope.customerAccounts" />
-	</on-start>
-
 	<view-state id="movements">
+		<on-entry>
+			<set name="flowScope.menuActive" value="'ACCOUNTS'" />
+			<evaluate expression="new java.lang.String()"/>
+		</on-entry>
 	</view-state>
 	
 </flow>
