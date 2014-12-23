@@ -18,33 +18,53 @@
 <composite:implementation>
 
 	<h:form>
-		<bbvaSearch:personalizedSearchTabBody>
+		<bbvaSearch:personalizedSearchTabBody
+			title="#{msg['text.title.personalized.search']}">
 			<bbvaSearch:customSearchList classList="date-filter customSearch"
-				classSpan="arrow-left-smaller" classSpanFilter="filter" title="#{msg['text.date']}">
+				classSpan="arrow-left-smaller" classSpanFilter="filter"
+				title="#{msg['text.date']}">
 				<bbvaSearch:customSearchFilter
 					value="#{movementsCriteriaController.selectDate}"
 					valueSince="#{movementsCriteriaController.movementCriteria.dateRange.dateSince}"
 					valueTo="#{movementsCriteriaController.movementCriteria.dateRange.dateTo}" />
 			</bbvaSearch:customSearchList>
-			
+
 			<bbvaSearch:customSearchList classList="balance-filter"
-				classSpan="arrow-left-smaller" classSpanFilter="filter" title="#{msg['text.balance']}">
+				classSpan="arrow-left-smaller" classSpanFilter="filter"
+				title="#{msg['text.balance']}">
 				<bbvaSearch:balanceFilter
-							valueSince="#{movementsCriteriaController.movementCriteria.balanceRange.balanceSince}"
-							valueTo="#{movementsCriteriaController.movementCriteria.balanceRange.balanceTo}" />
+					valueSince="#{movementsCriteriaController.movementCriteria.balanceRange.balanceSince}"
+					valueTo="#{movementsCriteriaController.movementCriteria.balanceRange.balanceTo}" />
 			</bbvaSearch:customSearchList>
-						
+
 			<bbvaSearch:customSearchList classList="incomeAndExpenses-filter"
-				classSpan="arrow-left-smaller" classSpanFilter="filter" title="#{msg['text.entry.expediture']}">
+				classSpan="arrow-left-smaller" classSpanFilter="filter"
+				title="#{msg['text.entry.expediture']}">
 				<bbvaSearch:incomeAndExpensesFilter
-							value="#{movementsCriteriaController.movementCriteria.incomesOrExpenses}" />
+					value="#{movementsCriteriaController.movementCriteria.incomesOrExpenses}" />
 			</bbvaSearch:customSearchList>
-			
+
 			<bbvaSearch:customSearchList classList="movements-filter"
-				classSpan="arrow-left-smaller" classSpanFilter="filter" title="#{msg['text.movement']}">
-				 <bbvaSearch:movementsFilter />
-			</bbvaSearch:customSearchList>		
+				classSpan="arrow-left-smaller" classSpanFilter="filter"
+				title="#{msg['text.movement']}">
+				<bbvaSearch:movementsFilter />
+			</bbvaSearch:customSearchList>
+
+			<bbvaSearch:searchButtonList show="true"
+				actionListener="#{movementsCriteriaController.searchMovementByFilter}" />
+		</bbvaSearch:personalizedSearchTabBody>
+	<h:form>
+		<bbvaSearch:personalizedSearchTabBody
+			title="#{msg['text.title.search.book']}" >
+			<bbvaSearch:checkBooksContainer />
+			
+			<bbvaSearch:searchButtonList  show="false"
+				actionListener="#{movementsCriteriaController.searchNumberCheckOrBook}" />
 		</bbvaSearch:personalizedSearchTabBody>
 	</h:form>
+	<bbvaSearch:personalizedSearchTabBody title="Ya vendra">
+		<!-- <bbvaSearch:downloadExtract /> -->
+	</bbvaSearch:personalizedSearchTabBody>
+</h:form>
 </composite:implementation>
 </html>

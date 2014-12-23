@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
+import org.primefaces.event.SelectEvent;
 import org.springframework.stereotype.Controller;
 
 import com.bbva.net.back.facade.AccountsFacade;
@@ -12,29 +13,17 @@ import com.bbva.net.back.model.globalposition.AccountDTO;
 import com.bbva.net.front.controller.AccountsController;
 import com.bbva.net.front.core.AbstractBbvaController;
 
-@Controller
+@Controller(value = "accountsController")
 public class AccountsControllerImpl extends AbstractBbvaController implements AccountsController {
 
 	private static final long serialVersionUID = 5726824668267606699L;
 
-	private boolean stateAccounts = true;
-
 	@Resource(name = "accountsFacade")
 	private transient AccountsFacade accountsFacade;
 
-	private AccountDTO selectedAccount;
-
 	@PostConstruct
 	public void init() {
-
-	}
-
-	public boolean isStateAccounts() {
-		return stateAccounts;
-	}
-
-	public void setStateAccounts(boolean stateAccounts) {
-		this.stateAccounts = stateAccounts;
+		LOGGER.info("Initialize AccountsController");
 	}
 
 	public void setAccountsFacade(final AccountsFacade accountsFacade) {
@@ -46,12 +35,15 @@ public class AccountsControllerImpl extends AbstractBbvaController implements Ac
 		return this.accountsFacade.getAccountsByUser(getCurrentUser());
 	}
 
-	public AccountDTO getSelectedAccount() {
-		return selectedAccount;
+	@Override
+	public List<AccountDTO> getCustomerAccountsHidden() {
+		return this.accountsFacade.getAccountsByUserHidden(getCurrentUser());
 	}
 
-	public void setSelectedAccount(AccountDTO selectedAccount) {
-		this.selectedAccount = selectedAccount;
+	@Override
+	public void onProductSelected(SelectEvent selectEvent) {
+		super.onProductSelected(selectEvent);
+		this.sendAction("accountSelected");
 	}
 
 }

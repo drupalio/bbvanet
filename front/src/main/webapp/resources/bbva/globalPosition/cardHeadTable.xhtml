@@ -9,55 +9,60 @@
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <composite:interface>
-	<composite:attribute name="id" type="String"  />
-	<composite:attribute name="listCards" type="java.util.List"  />
+	<composite:attribute name="id" type="String" />
+	<composite:attribute name="listCards" type="java.util.List" />
+	<composite:attribute name="controller"
+		type="com.bbva.net.front.core.AbstractBbvaController" />
 </composite:interface>
 
 <composite:implementation>
+	<h:form id="#{cc.attrs.id}">
+		<p:dataTable id="#{cc.attrs.id}" var="iproduct" rowIndexVar="findex"
+			selectionMode="single"
+			rowKey="#{iproduct.productId}" value="#{cc.attrs.listCards}">
 
-		<p:dataTable id="#{cc.attrs.id}" var="iproduct" 
-				rowIndexVar="findex"
-				selectionMode="single" 
-				selection="#{globalPositionController.selectedProduct}"
-				rowKey="#{iproduct.productId}"
-				value="#{cc.attrs.listCards}">
-				
-			<p:ajax event="rowSelect"   />
+			<p:ajax event="rowSelect"
+				listener="#{cc.attrs.controller.onProductSelected}" />
 			<p:ajax event="rowUnselect" />
 
-			<p:column class="head" headerText="TARJETAS DE CRÉDITO" styleClass="col-xs-6 col-md-4" 
+			<p:column class="head" headerText="#{msg['text.card.name']}"
+				styleClass="col-xs-6 col-md-4"
 				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
-				
-				
-				<h:outputText styleClass="title-label" style="font-size: 1.1em; font-weight:bold; color:#0078d2" escape="false"
-								  value="#{iproduct.alias}"/>
-				<h:outputText style="font-size: 1em" escape="false" 
-								  value="&lt;br /&gt; #{iproduct.productId}"/>
-				<h:outputText styleClass="sublabel" style="font-size: 1em" escape="false"
-								  value="&lt;br /&gt; #{iproduct.productName}"/>
-				
+
+
+				<h:outputText styleClass="title-label"
+					style="font-size: 1.1em; font-weight:bold; color:#0078d2"
+					escape="false" value="#{iproduct.alias}" />
+				<h:outputText style="font-size: 1em" escape="false"
+					value="&lt;br /&gt; #{iproduct.productId}" />
+				<h:outputText styleClass="sublabel" style="font-size: 1em"
+					escape="false" value="&lt;br /&gt; #{iproduct.productName}" />
+
 			</p:column>
-			<p:column class="head" headerText="CUPO TOTAL" styleClass="col-xs-6 col-md-4"
+			<p:column class="head" headerText="#{msg['text.card.balanceTotal']}"
+				styleClass="col-xs-6 col-md-4"
 				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
-				
-				
-				<h:outputText style="font-size: 1.5em; font-weight:bold" styleClass="balance" 
-								   value="#{iproduct.totalCash}"/>	
+
+
+				<h:outputText style="font-size: 1.5em; font-weight:bold"
+					styleClass="balance" value="#{iproduct.totalCash}" />
 
 				<p class="sublabel"></p>
-				
+
 			</p:column>
-			<p:column class="head" headerText="CUPO DISPONIBLE"	styleClass="col-xs-6 col-md-4"
+			<p:column class="head"
+				headerText="#{msg['text.card.balanceAvailable']}"
+				styleClass="col-xs-6 col-md-4"
 				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
-				
-				<h:outputText style="font-size: 1.5em; font-weight:bold" styleClass="balance" 
-								   value="#{iproduct.cashAvailable}"/>	
+
+				<h:outputText style="font-size: 1.5em; font-weight:bold"
+					styleClass="balance" value="#{iproduct.cashAvailable}" />
 
 				<p class="sublabel"></p>
-				
+
 			</p:column>
 		</p:dataTable>
-
+	</h:form>
 </composite:implementation>
 
 </html>

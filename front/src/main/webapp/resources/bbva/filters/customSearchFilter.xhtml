@@ -18,15 +18,15 @@
 </composite:interface>
 
 <composite:implementation>
-	<div class="date-filter-content">
-		<div class="form-horizontal">
-			<div class="row">
 
+	<div>
+		<div class="row">
+			<p:outputPanel id="panel">
 				<h:panelGrid columns="2" cellpadding="5">
 					<p:outputLabel for="console" value="Console:" rendered="false" />
 					<p:selectOneRadio id="console"
-						value="#{movementsCriteriaController.selectDate}" layout="grid"
-						columns="2">
+						value="#{movementsCriteriaController.movementCriteria.selectDate}"
+						layout="grid" columns="2">
 						<f:selectItem itemLabel="#{msg['select.radio.today']}"
 							itemValue="#{msg['select.radio.today']}" />
 						<f:selectItem itemLabel="#{msg['select.radio.yesterday']}"
@@ -43,40 +43,40 @@
 
 						<f:selectItem itemLabel="#{msg['select.radio.concret.date']}"
 							itemValue="#{msg['select.radio.concret.date']}" />
-						<p:ajax listener="#{movementsCriteriaController.oneSelectDate}" />
+						<p:ajax process="@this"
+							listener="#{movementsCriteriaController.oneSelectDate}"
+							update="panel,dateButton" />
+
 					</p:selectOneRadio>
 				</h:panelGrid>
 
-			</div>
-		</div>
 
-		<div class="date-period radio-group">
-			<div>
+
 				<div class="col-xs-12 col-md-6">
-					<div class="form-group">
+					<div>
 						<div class="col-xs-2 col-md-12">
-							<label for="customSearch-dateFieldFrom">#{msg['text.since']}:</label>
-						</div>
-						<div>
-							<bbvaCalendar:calendarItem />
+							<h:outputLabel value="#{msg['text.since']}:" />
+							<p:calendar id="dateSince" />
 						</div>
 					</div>
 				</div>
 				<div class="col-xs-12 col-md-6">
-					<div class="form-group">
+					<div>
 						<div class="col-xs-2 col-md-12">
-							<label for="customSearch-dateFieldTo">#{msg['text.to']}:</label>
-						</div>
-						<div>
-							<bbvaCalendar:calendarItem />
+							<h:outputLabel value="#{msg['text.to']}:" />
+							<p:calendar id="dateTo" />
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-		<p:commandButton value="#{msg['button.confirm']}"
-			styleClass="btn small hidden-xs hidden-sm" />
 
+
+				<p:spacer />
+				<p:commandButton id="dateButton"
+					disabled="#{movementsCriteriaController.disabledButtonDate}"
+					value="#{msg['button.confirm']}"
+					styleClass="btn small hidden-xs hidden-sm" />
+			</p:outputPanel>
+		</div>
 	</div>
 </composite:implementation>
 
