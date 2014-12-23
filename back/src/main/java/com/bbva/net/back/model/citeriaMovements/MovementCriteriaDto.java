@@ -48,6 +48,8 @@ public class MovementCriteriaDto implements Dto {
 	private String checkNumber;
 
 	private String checkState;
+	
+	private String selectDate;
 
 	public MovementCriteriaDto() {
 	}
@@ -298,6 +300,22 @@ public class MovementCriteriaDto implements Dto {
 	 */
 	public void setCheckState(String checkState) {
 		this.checkState = checkState;
+	}
+
+	
+	/**
+	 * @return the selectDate
+	 */
+	public String getSelectDate() {
+		return selectDate;
+	}
+
+	
+	/**
+	 * @param selectDate the selectDate to set
+	 */
+	public void setSelectDate(String selectDate) {
+		this.selectDate = selectDate;
 	}
 
 	@Override
