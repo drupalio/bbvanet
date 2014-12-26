@@ -56,10 +56,10 @@ public class Money implements Dto {
 		return new HashCodeBuilder().append(getCurrency()).append(getAmount()).toHashCode();
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		return (obj instanceof Money) && this.getCurrency().equals(((Money)obj).getCurrency())
-				&& this.getAmount().equals(((Money)obj).getAmount());
-	}
+	// @Override
+	// public boolean equals(Object obj) {
+	// return (obj instanceof Money) && this.getCurrency().equals(((Money)obj).getCurrency())
+	// && this.getAmount().equals(((Money)obj).getAmount());
+	// }
 
 }

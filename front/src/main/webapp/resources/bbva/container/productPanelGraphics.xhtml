@@ -16,7 +16,8 @@
 <composite:interface>
 	<composite:attribute name="id" type="String" />
 	<composite:attribute name="title" type="String" />
-	<composite:attribute name="pieGrapihic"
+	<composite:attribute name="header" type="String" />
+	<composite:attribute name="pieGraphic"
 		type="com.bbva.net.front.ui.pie.PieConfigUI" />
 </composite:interface>
 
@@ -39,10 +40,12 @@
 		</div>
 
 		<div class="tab tab-bars chart">
-			<div>
-					<bbvaPieGraphic:pieGraphicGeneral
-						pieConfigUI="#{cc.attrs.pieGrapihic}" />
-			</div>
+			<div class="tab-title">#{cc.attrs.header}</div>
+
+			<bbvaPieGraphic:pieGraphicGeneral id="#{cc.attrs.id}"
+				pieConfigUI="#{cc.attrs.pieGraphic}" />
+
+			<bbvaPieGraphic:footerPieGraphic />
 		</div>
 
 		<div class="row afterTable"></div>

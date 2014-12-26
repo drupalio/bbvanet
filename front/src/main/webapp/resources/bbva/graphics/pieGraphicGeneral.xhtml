@@ -9,14 +9,14 @@
 
 
 <composite:interface>
-
+	<composite:attribute name="id" type="String" />
 	<composite:attribute name="pieConfigGUI" />
 </composite:interface>
 
 <composite:implementation>
 
 
-	<h:form>
+	<h:form id="pieGe">
 		<div align="center">
 			<div style="display: inline-block;">
 				<span
@@ -36,9 +36,9 @@
 					#{cc.attrs.pieConfigUI.headerRight}</span>
 			</div>
 		</div>
-		<div class="chart-cheese" id="tu-situacion-grafico"
+		<div class="chart-cheese" id="1234"
 			data-highcharts-chart="3">
-			<div id="chart" />
+			<div id="chart2_2"></div>
 		</div>
 
 	</h:form>
@@ -60,10 +60,10 @@
 			totalColums.push(colums);
 			</c:forEach>
 
-			var chart = c3.generate({
-
+			var chart2_2 = c3.generate({
+				bindto: '#chart2_2',
 				data : {
-
+					
 					size: { height: 240, width: 480 },
 					columns : totalColums,
 

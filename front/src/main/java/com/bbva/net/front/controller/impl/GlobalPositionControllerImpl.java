@@ -10,13 +10,17 @@ import org.primefaces.event.SelectEvent;
 import org.springframework.stereotype.Controller;
 
 import com.bbva.czic.dto.net.EnumProductType;
+import com.bbva.net.back.facade.GlobalMovementsFacade;
 import com.bbva.net.back.facade.GlobalPositionFacade;
 import com.bbva.net.back.model.commons.Money;
 import com.bbva.net.back.model.globalposition.GlobalProductsDTO;
 import com.bbva.net.back.model.globalposition.ProductDTO;
 import com.bbva.net.front.controller.GlobalPositionController;
 import com.bbva.net.front.core.AbstractBbvaController;
+import com.bbva.net.front.delegate.GraphicBarLineDelegate;
 import com.bbva.net.front.delegate.GraphicPieDelegate;
+import com.bbva.net.front.ui.accounts.AccountsPieUI;
+import com.bbva.net.front.ui.globalposition.AccountBarLineUI;
 import com.bbva.net.front.ui.globalposition.SituationPiesUI;
 import com.bbva.net.front.ui.pie.PieConfigUI;
 
@@ -30,12 +34,22 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	@Resource(name = "globalPositionFacade")
 	private transient GlobalPositionFacade globalPositionFacade;
 
+	@Resource(name = "globalMovementsFacade")
+	private transient GlobalMovementsFacade globalMovementsFacade;
+
 	@Resource(name = "graphicPieDelegate")
 	private transient GraphicPieDelegate graphicPieDelegate;
+
+	@Resource(name = "graphicBarLineDelegate")
+	private transient GraphicBarLineDelegate graphicBarLineDelegate;
 
 	private GlobalProductsDTO globalProductsDTO;
 
 	private SituationPiesUI situationGraphicPieUI;
+
+	private AccountsPieUI investmentFundsPieUI;
+
+	private AccountBarLineUI accountGraphicBarLineUI;
 
 	private PieConfigUI graphicPieProducts;
 
@@ -64,14 +78,23 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		// Get GlobalProductsDTO by currentUser (visibles and hidden)
 		this.globalProductsDTO = this.globalPositionFacade.getGlobalProductsByUser(getCurrentUser());
 
+		// Obtiene la lista de resumen de movimientos del serivico REST
+		// this.globalMovementsDTO = this.globalMovementsFacade.getGlobalMovements();
+
 		// Calculate situation graphics panels
 		this.situationGraphicPieUI = graphicPieDelegate.getSituationGlobalProducts(this.globalProductsDTO);
+
+		// Calculate investmentFunds graphics panels
+		this.investmentFundsPieUI = graphicPieDelegate.getAccountsfundsProducts(this.globalProductsDTO);
 
 		// Calculate situation graphics panels
 		this.graphicPieProducts = graphicPieDelegate.getGeneralGraphicConfig(this.globalProductsDTO);
 
 		// Calculate totals
 		this.totalsProducts = this.globalPositionFacade.getTotalsByProduct(globalProductsDTO);
+
+		// Calculate income, output and balance by Account Graphic
+		// this.accountGraphicBarLineUI = this.graphicBarLineDelegate.getInOutBalanceByAccount();
 
 	}
 
@@ -121,6 +144,10 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		return situationGraphicPieUI;
 	}
 
+	public AccountBarLineUI getAccountGraphicBarLineUI() {
+		return accountGraphicBarLineUI;
+	}
+
 	/**
 	 * @return the selectedLike
 	 */
@@ -150,10 +177,19 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		executeScript("initChart();");
 	}
 
+	public AccountsPieUI getInvestmentFundsPieUI() {
+		return investmentFundsPieUI;
+	}
+
+	public void setInvestmentFundsPieUI(AccountsPieUI investmentFundsPieUI) {
+		this.investmentFundsPieUI = investmentFundsPieUI;
+	}
+
 	@Override
 	public void onProductSelected(SelectEvent selectEvent) {
 		super.onProductSelected(selectEvent);
 		this.sendAction("accountSelected");
+
 	}
 
 	/************************************* SETTER BEANS **************************************/

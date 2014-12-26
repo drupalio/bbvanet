@@ -17,6 +17,7 @@ public interface LoanFacade {
 	 */
 	List<LeasingDTO> getLeasingByUser(String user);
 
+	
 	/**
 	 * @param user
 	 * @return
@@ -28,12 +29,13 @@ public interface LoanFacade {
 	 * @return
 	 */
 	List<RotatingAccountDTO> getRotatingAccountByUserHidden(String user);
-
+	
 	/**
 	 * @param user
 	 * @return
 	 */
 	List<RotatingAccountDTO> getRotatingAccountByUser(String user);
+
 
 	/**
 	 * @param user

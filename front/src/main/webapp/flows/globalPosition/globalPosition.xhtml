@@ -11,7 +11,6 @@
 	xmlns:bbvaAlert="http://java.sun.com/jsf/composite/bbva/alert"
 	xmlns:bbvaBody="http://java.sun.com/jsf/composite/bbva/body"
 	xmlns:bbvaContainer="http://java.sun.com/jsf/composite/bbva/container"
-	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:jsf="http://xmlns.jcp.org/jsf"
 	xmlns:bbvaButton="http://java.sun.com/jsf/composite/bbva/button"
 	xmlns:bbvaInput="http://java.sun.com/jsf/composite/bbva/input"
@@ -21,7 +20,8 @@
 <ui:composition template="../../templates/defaultLayout.xhtml">
 
 	<f:metadata>
-		<f:event listener="#{globalPositionController.preRender}" type="preRenderView" />
+		<f:event listener="#{globalPositionController.preRender}"
+			type="preRenderView" />
 	</f:metadata>
 
 	<ui:define name="bodyTitle">
@@ -39,13 +39,11 @@
 					listAccountsAdquirencia="#{customerProducts.accounts}"
 					listAccountsMore="#{customerProducts.accounts}" />
 				<bbvaGP:accountHeadTable listAccounts="#{customerProducts.accounts}"
-				    controller="#{globalPositionController}"
-					listValueLikes="#{likes}" />
+					controller="#{globalPositionController}" listValueLikes="#{likes}" />
 				<bbvaGP:accountAdquirenciaTable
 					controller="#{globalPositionController}"
 					listAccounts="#{customerProducts.accounts}" />
-				<bbvaGP:accountTailTable
-					controller="#{globalPositionController}"
+				<bbvaGP:accountTailTable controller="#{globalPositionController}"
 					listAccounts="#{customerProductsHidden.accounts}" />
 			</div>
 			<div class="row afterTable">
@@ -59,13 +57,11 @@
 
 		</bbvaContainer:productPanelBarGraphic>
 
-		<bbvaContainer:productPanelGraphics title="#{msg['title.cards']}" pieGrapihic="#{globalPositionController.graphicPieProducts}">
+		<bbvaContainer:productPanelGraphics id="cardPieGP" title="#{msg['title.cards']}" header="#{msg['graphic.tittle']}" pieGraphic="#{globalPositionController.graphicPieProducts}">
 			<div class="table-tabs">
-				<bbvaGP:cardHeadTable
-				 	controller="#{globalPositionController}"
+				<bbvaGP:cardHeadTable controller="#{globalPositionController}"
 					listCards="#{customerProducts.creditCards}" />
-				<bbvaGP:cardTailTable
-					controller="#{globalPositionController}"
+				<bbvaGP:cardTailTable controller="#{globalPositionController}"
 					listCards="#{customerProductsHidden.creditCards}" />
 			</div>
 			<div class="row afterTable">
@@ -96,11 +92,9 @@
 
 		<bbvaContainer:productPanel title="#{msg['title.Leasing']}">
 			<div class="table-tabs">
-				<bbvaGP:leasingHeadTable
-					controller="#{globalPositionController}" 
+				<bbvaGP:leasingHeadTable controller="#{globalPositionController}"
 					listLeasing="#{customerProducts.leasings}" />
-				<bbvaGP:leasingTailTable
-					controller="#{globalPositionController}"
+				<bbvaGP:leasingTailTable controller="#{globalPositionController}"
 					listLeasing="#{customerProductsHidden.leasings}" />
 			</div>
 			<div class="row afterTable">
@@ -112,11 +106,9 @@
 
 		<bbvaContainer:productPanel title="#{msg['title.loans']}">
 			<div class="table-tabs">
-				<bbvaGP:loanHeadTable
-					controller="#{globalPositionController}" 
+				<bbvaGP:loanHeadTable controller="#{globalPositionController}"
 					listLoan="#{customerProducts.loan}" />
-				<bbvaGP:loanTailTable
-					controller="#{globalPositionController}" 
+				<bbvaGP:loanTailTable controller="#{globalPositionController}"
 					listLoan="#{customerProductsHidden.loan}" />
 			</div>
 			<div class="row afterTable">
@@ -128,11 +120,9 @@
 		<bbvaContainer:productPanelGraphic
 			title="#{msg['title.electronicDeposit']}">
 			<div class="table-tabs">
-				<bbvaGP:depositHeadTable
-					controller="#{globalPositionController}"
+				<bbvaGP:depositHeadTable controller="#{globalPositionController}"
 					listDeposit="#{customerProducts.electronicDeposits}" />
-				<bbvaGP:depositTailTable
-					controller="#{globalPositionController}"
+				<bbvaGP:depositTailTable controller="#{globalPositionController}"
 					listDeposit="#{customerProductsHidden.electronicDeposits}" />
 			</div>
 			<div class="row afterTable">
@@ -147,7 +137,7 @@
 			title="#{msg['title.investmentFunds']}">
 			<div class="table-tabs">
 				<bbvaGP:investmentFundHeadTable
-					controller="#{globalPositionController}" 
+					controller="#{globalPositionController}"
 					listFund="#{customerProducts.funds}" />
 				<bbvaGP:investmentFundTailTable
 					controller="#{globalPositionController}"

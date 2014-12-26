@@ -13,6 +13,7 @@ import com.bbva.net.back.model.globalposition.ProductDTO;
 import com.bbva.net.back.service.ProductService;
 import com.bbva.net.front.core.stereotype.Delegate;
 import com.bbva.net.front.delegate.GraphicPieDelegate;
+import com.bbva.net.front.ui.accounts.AccountsPieUI;
 import com.bbva.net.front.ui.globalposition.SituationPiesUI;
 import com.bbva.net.front.ui.pie.PieConfigUI;
 import com.bbva.net.front.ui.pie.PieItemUI;
@@ -162,6 +163,43 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 		financiationPie.setPieItemUIList(financiationPieItems);
 
 		return financiationPie;
+	}
+
+	@Override
+	public AccountsPieUI getAccountsfundsProducts(final GlobalProductsDTO globalProducts) {
+
+		final AccountsPieUI accountsPieUI = new AccountsPieUI();
+		final List<ProductDTO> productList = productService.getProducts(globalProducts);
+
+		accountsPieUI.setInvertfunds(getFundsPieConfig(productList));
+
+		return accountsPieUI;
+	}
+
+	/**
+	 * Method to draws a Funds Pie graphic
+	 * 
+	 * @param List<Product> products
+	 * @return PieConfigUI
+	 */
+	public PieConfigUI getFundsPieConfig(final List<ProductDTO> products) {
+
+		final PieConfigUI fundsPie = new PieConfigUI();
+
+		final List<PieItemUI> fundsPieItems = new ArrayList<PieItemUI>();
+
+		final PieItemUI garantPieItem = new PieItemUI("el color", "Garantizado selección Consumo", this.productService
+				.getTotalProductsByType(products, EnumProductType.SI).getAmount());
+
+		final PieItemUI valorPieItem = new PieItemUI("el color", "Valor plus", this.productService
+				.getTotalProductsByType(products, EnumProductType.SI).getAmount());
+
+		fundsPieItems.add(garantPieItem);
+		fundsPieItems.add(valorPieItem);
+		fundsPie.setPieItemUIList(fundsPieItems);
+
+		return fundsPie;
+
 	}
 
 	/**

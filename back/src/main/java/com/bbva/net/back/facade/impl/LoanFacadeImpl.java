@@ -73,8 +73,9 @@ public class LoanFacadeImpl extends AbstractBbvaFacade implements LoanFacade {
 		this.globalPositionFacade = globalPositionFacade;
 	}
 
+	
 	public void setProductService(ProductService productService) {
 		this.productService = productService;
 	}
-
+	
 }
