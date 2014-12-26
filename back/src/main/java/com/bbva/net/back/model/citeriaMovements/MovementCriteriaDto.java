@@ -43,17 +43,21 @@ public class MovementCriteriaDto implements Dto {
 
 	private String incomesOrExpenses;
 
+	private String selectDate;
+
 	private String actionState;
-
-	private String bookNumber;
-
-	private String checkNumber;
 
 	private String checkState;
 
-	private String selectDate;
+	private Long checkNumber;
 
+	private Long bookNumber;
+
+	/**
+	 * 
+	 */
 	public MovementCriteriaDto() {
+
 	}
 
 	/**
@@ -69,16 +73,16 @@ public class MovementCriteriaDto implements Dto {
 	 * @param yesterday
 	 * @param movement
 	 * @param incomesOrExpenses
-	 * @param actionState
-	 * @param bookNumber
-	 * @param checkNumber
-	 * @param checkState
 	 * @param selectDate
+	 * @param actionState
+	 * @param checkState
+	 * @param checkNumber
+	 * @param bookNumber
 	 */
 	public MovementCriteriaDto(DateRangeDto dateRange, BalanceRangeDto balanceRange, Date concreteDateSince,
 			Date concreteDateTo, Date lastMonth, Date lasTwoMonth, Date lastTwoWeeks, Date lastWeek, Date today,
-			Date yesterday, String movement, String incomesOrExpenses, String actionState, String bookNumber,
-			String checkNumber, String checkState, String selectDate) {
+			Date yesterday, String movement, String incomesOrExpenses, String selectDate, String actionState,
+			String checkState, Long checkNumber, Long bookNumber) {
 		super();
 		this.dateRange = dateRange;
 		this.balanceRange = balanceRange;
@@ -92,11 +96,11 @@ public class MovementCriteriaDto implements Dto {
 		this.yesterday = yesterday;
 		this.movement = movement;
 		this.incomesOrExpenses = incomesOrExpenses;
-		this.actionState = actionState;
-		this.bookNumber = bookNumber;
-		this.checkNumber = checkNumber;
-		this.checkState = checkState;
 		this.selectDate = selectDate;
+		this.actionState = actionState;
+		this.checkState = checkState;
+		this.checkNumber = checkNumber;
+		this.bookNumber = bookNumber;
 	}
 
 	/**
@@ -268,48 +272,6 @@ public class MovementCriteriaDto implements Dto {
 	}
 
 	/**
-	 * @return the bookNumber
-	 */
-	public String getBookNumber() {
-		return bookNumber;
-	}
-
-	/**
-	 * @param bookNumber the bookNumber to set
-	 */
-	public void setBookNumber(String bookNumber) {
-		this.bookNumber = bookNumber;
-	}
-
-	/**
-	 * @return the checkNumber
-	 */
-	public String getCheckNumber() {
-		return checkNumber;
-	}
-
-	/**
-	 * @param checkNumber the checkNumber to set
-	 */
-	public void setCheckNumber(String checkNumber) {
-		this.checkNumber = checkNumber;
-	}
-
-	/**
-	 * @return the checkState
-	 */
-	public String getCheckState() {
-		return checkState;
-	}
-
-	/**
-	 * @param checkState the checkState to set
-	 */
-	public void setCheckState(String checkState) {
-		this.checkState = checkState;
-	}
-
-	/**
 	 * @return the selectDate
 	 */
 	public String getSelectDate() {
@@ -335,6 +297,48 @@ public class MovementCriteriaDto implements Dto {
 	 */
 	public void setActionState(String actionState) {
 		this.actionState = actionState;
+	}
+
+	/**
+	 * @return the checkState
+	 */
+	public String getCheckState() {
+		return checkState;
+	}
+
+	/**
+	 * @param checkState the checkState to set
+	 */
+	public void setCheckState(String checkState) {
+		this.checkState = checkState;
+	}
+
+	/**
+	 * @return the checkNumber
+	 */
+	public Long getCheckNumber() {
+		return checkNumber;
+	}
+
+	/**
+	 * @param checkNumber the checkNumber to set
+	 */
+	public void setCheckNumber(Long checkNumber) {
+		this.checkNumber = checkNumber;
+	}
+
+	/**
+	 * @return the bookNumber
+	 */
+	public Long getBookNumber() {
+		return bookNumber;
+	}
+
+	/**
+	 * @param bookNumber the bookNumber to set
+	 */
+	public void setBookNumber(Long bookNumber) {
+		this.bookNumber = bookNumber;
 	}
 
 	@Override
@@ -373,4 +377,5 @@ public class MovementCriteriaDto implements Dto {
 				&& this.getIncomesOrExpenses().equals(((MovementCriteriaDto)obj).getIncomesOrExpenses());
 
 	}
+
 }

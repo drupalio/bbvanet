@@ -52,6 +52,7 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 	/***
 	 * @param event
 	 */
+	@Override
 	public void searchMovementByFilter(final ActionEvent event) {
 		System.out.println("Movimeintos x criteria \n");
 		System.out.println("Ingresos o gastos " + movementCriteria.getIncomesOrExpenses());
@@ -64,6 +65,7 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 	/***
 	 *
 	 */
+	@Override
 	public void oneSelectDate() {
 		System.out.println("Method oneSelectDate");
 		if (movementCriteria.getSelectDate().equals(CONCRETE_DATE)) {
@@ -80,6 +82,7 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 	/***
 	 * @param event
 	 */
+	@Override
 	public void setBalanceRange(final ActionEvent event) {
 		System.out.println("Method setBalance");
 		System.out.println("Since " + movementCriteria.getBalanceRange().getBalanceSince());
@@ -89,11 +92,13 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 	/***
 	 * @param event
 	 */
+	@Override
 	public void setIncomeExpensesFilter(final ActionEvent event) {
 		System.out.println("Method searchINcome expenses filter");
 		System.out.println(movementCriteria.getIncomesOrExpenses());
 	}
 
+	@Override
 	public void actionState() {
 		System.out.println("method Action State");
 		if (movementCriteria.getActionState().equals(SEARCH_CHECK)) {
@@ -111,6 +116,7 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 	/**
 	 * @param event
 	 */
+	@Override
 	public void searchNumberCheckOrBook(final ActionEvent event) {
 		System.out.println("searchNumberCheckOrBook");
 		System.out.println("boook num" + movementCriteria.getBookNumber() + "check num"
@@ -134,6 +140,7 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 		return this.multiValueGroupFacade.getMultiValueTypes(LIST_CHECK_STATUS);
 	}
 
+	@Override
 	public void buildMessage() {
 		messageBalance = new StringBuilder("Se mostrarán los resultados mayores de ");
 

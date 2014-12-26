@@ -9,12 +9,4 @@ public class BalanceRangeDtoTest extends AbstractBbvaDTOTest<BalanceRangeDto> {
 		return new BalanceRangeDto();
 	}
 
-	/**
-	 * Invoke Equals Method
-	 */
-	@Override
-	public void checkEqualsMethod() {
-
-	}
-
 }

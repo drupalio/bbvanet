@@ -7,6 +7,7 @@ public class ProductInformationDtoTest extends AbstractBbvaDTOTest<ProductInform
 
 	@Override
 	protected ProductInformationDto getInstance() {
+		// TODO Auto-generated method stub
 		return new ProductInformationDto();
 	}
 }

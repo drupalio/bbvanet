@@ -7,6 +7,7 @@ public class PostalAddresDtoTest extends AbstractBbvaDTOTest<PostalAddresDto> {
 
 	@Override
 	protected PostalAddresDto getInstance() {
+		// TODO Auto-generated method stub
 		return new PostalAddresDto();
 	}
 
