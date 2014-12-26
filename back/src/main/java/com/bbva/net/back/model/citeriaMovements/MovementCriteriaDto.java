@@ -5,9 +5,6 @@ package com.bbva.net.back.model.citeriaMovements;
 
 import java.util.Date;
 
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
-
 import com.bbva.net.back.core.pattern.dto.Dto;
 import com.bbva.net.back.model.commons.BalanceRangeDto;
 import com.bbva.net.back.model.commons.DateRangeDto;
@@ -41,54 +38,15 @@ public class MovementCriteriaDto implements Dto {
 
 	private String incomesOrExpenses;
 
+	private String selectDate;
+
 	private String actionState;
-
-	private String bookNumber;
-
-	private String checkNumber;
 
 	private String checkState;
 
-	public MovementCriteriaDto() {
-	}
+	private Long checkNumber;
 
-	/**
-	 * @param dateRange
-	 * @param balanceRange
-	 * @param concreteDate
-	 * @param lastMonth
-	 * @param lasTwoMonth
-	 * @param lastTwoWeeks
-	 * @param lastWeek
-	 * @param today
-	 * @param yesterday
-	 * @param movement
-	 * @param incomesOrExpenses
-	 * @param actionState
-	 * @param bookNumber
-	 * @param checkNumber
-	 * @param checkState
-	 */
-	public MovementCriteriaDto(DateRangeDto dateRange, BalanceRangeDto balanceRange, Date concreteDate, Date lastMonth,
-			Date lasTwoMonth, Date lastTwoWeeks, Date lastWeek, Date today, Date yesterday, String movement,
-			String incomesOrExpenses, String actionState, String bookNumber, String checkNumber, String checkState) {
-		super();
-		this.dateRange = dateRange;
-		this.balanceRange = balanceRange;
-		this.concreteDate = concreteDate;
-		this.lastMonth = lastMonth;
-		this.lasTwoMonth = lasTwoMonth;
-		this.lastTwoWeeks = lastTwoWeeks;
-		this.lastWeek = lastWeek;
-		this.today = today;
-		this.yesterday = yesterday;
-		this.movement = movement;
-		this.incomesOrExpenses = incomesOrExpenses;
-		this.actionState = actionState;
-		this.bookNumber = bookNumber;
-		this.checkNumber = checkNumber;
-		this.checkState = checkState;
-	}
+	private Long bookNumber;
 
 	/**
 	 * @return the dateRange
@@ -244,95 +202,44 @@ public class MovementCriteriaDto implements Dto {
 		this.incomesOrExpenses = incomesOrExpenses;
 	}
 
-	/**
-	 * @return the actionState
-	 */
+	public String getSelectDate() {
+		return selectDate;
+	}
+
+	public void setSelectDate(String selectDate) {
+		this.selectDate = selectDate;
+	}
+
 	public String getActionState() {
 		return actionState;
 	}
 
-	/**
-	 * @param actionState the actionState to set
-	 */
 	public void setActionState(String actionState) {
 		this.actionState = actionState;
 	}
 
-	/**
-	 * @return the bookNumber
-	 */
-	public String getBookNumber() {
-		return bookNumber;
-	}
-
-	/**
-	 * @param bookNumber the bookNumber to set
-	 */
-	public void setBookNumber(String bookNumber) {
-		this.bookNumber = bookNumber;
-	}
-
-	/**
-	 * @return the checkNumber
-	 */
-	public String getCheckNumber() {
+	public Long getCheckNumber() {
 		return checkNumber;
 	}
 
-	/**
-	 * @param checkNumber the checkNumber to set
-	 */
-	public void setCheckNumber(String checkNumber) {
+	public void setCheckNumber(Long checkNumber) {
 		this.checkNumber = checkNumber;
 	}
 
-	/**
-	 * @return the checkState
-	 */
+	public Long getBookNumber() {
+		return bookNumber;
+	}
+
+	public void setBookNumber(Long bookNumber) {
+		this.bookNumber = bookNumber;
+	}
+
 	public String getCheckState() {
 		return checkState;
 	}
 
-	/**
-	 * @param checkState the checkState to set
-	 */
 	public void setCheckState(String checkState) {
 		this.checkState = checkState;
 	}
 
-	@Override
-	public String toString() {
-		return new ToStringBuilder(this).append("dateRange", getDateRange()).append("balanceRange", getBalanceRange())
-				.append("concreteDate", getConcreteDate()).append("lastMonth", getLastMonth())
-				.append("lasTwoMonth", getLasTwoMonth()).append("lastTwoWeeks", getLastTwoWeeks())
-				.append("lastWeek", getLastWeek()).append("today", getToday()).append("yesterday", getYesterday())
-				.append("movement", getMovement()).append("incomesOrExpenses", getIncomesOrExpenses())
-				.append("actionState", getActionState()).append("bookNumber", getBookNumber()).toString();
-	}
-
-	@Override
-	public int hashCode() {
-		return new HashCodeBuilder().append(getDateRange()).append(getBalanceRange()).append(getConcreteDate())
-				.append(getLastMonth()).append(getLasTwoMonth()).append(getLastTwoWeeks()).append(getLastWeek())
-				.append(getToday()).append(getYesterday()).append(getMovement()).append(getIncomesOrExpenses())
-				.toHashCode();
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-
-		return (obj instanceof MovementCriteriaDto)
-				&& this.getDateRange().equals(((MovementCriteriaDto)obj).getDateRange())
-				&& this.getBalanceRange().equals(((MovementCriteriaDto)obj).getBalanceRange())
-				&& this.getConcreteDate().equals(((MovementCriteriaDto)obj).getConcreteDate())
-				&& this.getLastMonth().equals(((MovementCriteriaDto)obj).getLastMonth())
-				&& this.getLasTwoMonth().equals(((MovementCriteriaDto)obj).getLasTwoMonth())
-				&& this.getLastTwoWeeks().equals(((MovementCriteriaDto)obj).getLastTwoWeeks())
-				&& this.getLastWeek().equals(((MovementCriteriaDto)obj).getLastWeek())
-				&& this.getToday().equals(((MovementCriteriaDto)obj).getToday())
-				&& this.getYesterday().equals(((MovementCriteriaDto)obj).getYesterday())
-				&& this.getMovement().equals(((MovementCriteriaDto)obj).getMovement())
-				&& this.getIncomesOrExpenses().equals(((MovementCriteriaDto)obj).getIncomesOrExpenses());
-
-	}
 }

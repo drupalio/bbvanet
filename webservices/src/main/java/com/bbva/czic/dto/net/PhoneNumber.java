@@ -3,14 +3,13 @@ package com.bbva.czic.dto.net;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para phoneNumber complex type.
+ * <p>Java class for phoneNumber complex type.
  * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="phoneNumber">
@@ -47,15 +46,13 @@ public class PhoneNumber {
     protected String number;
     protected String countryCode;
     protected String regionalCode;
-    @XmlSchemaType(name = "string")
     protected EnumPhoneNumberType type;
     protected Boolean primary;
     protected Boolean active;
-    @XmlSchemaType(name = "string")
     protected EnumContactSourceType contactSource;
 
     /**
-     * Obtiene el valor de la propiedad number.
+     * Gets the value of the number property.
      * 
      * @return
      *     possible object is
@@ -67,7 +64,7 @@ public class PhoneNumber {
     }
 
     /**
-     * Define el valor de la propiedad number.
+     * Sets the value of the number property.
      * 
      * @param value
      *     allowed object is
@@ -79,7 +76,7 @@ public class PhoneNumber {
     }
 
     /**
-     * Obtiene el valor de la propiedad countryCode.
+     * Gets the value of the countryCode property.
      * 
      * @return
      *     possible object is
@@ -91,7 +88,7 @@ public class PhoneNumber {
     }
 
     /**
-     * Define el valor de la propiedad countryCode.
+     * Sets the value of the countryCode property.
      * 
      * @param value
      *     allowed object is
@@ -103,7 +100,7 @@ public class PhoneNumber {
     }
 
     /**
-     * Obtiene el valor de la propiedad regionalCode.
+     * Gets the value of the regionalCode property.
      * 
      * @return
      *     possible object is
@@ -115,7 +112,7 @@ public class PhoneNumber {
     }
 
     /**
-     * Define el valor de la propiedad regionalCode.
+     * Sets the value of the regionalCode property.
      * 
      * @param value
      *     allowed object is
@@ -127,7 +124,7 @@ public class PhoneNumber {
     }
 
     /**
-     * Obtiene el valor de la propiedad type.
+     * Gets the value of the type property.
      * 
      * @return
      *     possible object is
@@ -139,7 +136,7 @@ public class PhoneNumber {
     }
 
     /**
-     * Define el valor de la propiedad type.
+     * Sets the value of the type property.
      * 
      * @param value
      *     allowed object is
@@ -151,7 +148,7 @@ public class PhoneNumber {
     }
 
     /**
-     * Obtiene el valor de la propiedad primary.
+     * Gets the value of the primary property.
      * 
      * @return
      *     possible object is
@@ -163,7 +160,7 @@ public class PhoneNumber {
     }
 
     /**
-     * Define el valor de la propiedad primary.
+     * Sets the value of the primary property.
      * 
      * @param value
      *     allowed object is
@@ -175,7 +172,7 @@ public class PhoneNumber {
     }
 
     /**
-     * Obtiene el valor de la propiedad active.
+     * Gets the value of the active property.
      * 
      * @return
      *     possible object is
@@ -187,7 +184,7 @@ public class PhoneNumber {
     }
 
     /**
-     * Define el valor de la propiedad active.
+     * Sets the value of the active property.
      * 
      * @param value
      *     allowed object is
@@ -199,7 +196,7 @@ public class PhoneNumber {
     }
 
     /**
-     * Obtiene el valor de la propiedad contactSource.
+     * Gets the value of the contactSource property.
      * 
      * @return
      *     possible object is
@@ -211,7 +208,7 @@ public class PhoneNumber {
     }
 
     /**
-     * Define el valor de la propiedad contactSource.
+     * Sets the value of the contactSource property.
      * 
      * @param value
      *     allowed object is

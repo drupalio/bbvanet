@@ -9,12 +9,4 @@ public class LeasingDTOTest extends AbstractBbvaDTOTest<LeasingDTO> {
 		return new LeasingDTO();
 	}
 
-	/**
-	 * Invoke Equals Method
-	 */
-	@Override
-	public void checkEqualsMethod() {
-
-	}
-
 }

@@ -11,10 +11,10 @@
 
 <composite:interface>
 
-	<composite:attribute name="id" type="String" />
-	<composite:attribute name="value" />
-	<composite:attribute name="size" />
-	<composite:attribute name="ajax" required="false"
+	<composite:attribute name="idCombo" id="idCombo1" />
+	<composite:attribute name="value" id="value1" />
+	<composite:attribute name="size" id="size1" />
+	<composite:attribute name="ajax" id="ajaxCombo1" required="false"
 		method-signature="void listen(javax.faces.event.AjaxBehaviorEvent)" />
 
 
@@ -22,7 +22,7 @@
 
 <composite:implementation>
 	<div class="#{cc.attrs.size}">
-		<p:selectOneButton id="#{cc.attrs.id}" value="#{cc.attrs.value}">
+		<p:selectOneButton id="#{cc.attrs.idCombo}" value="#{cc.attrs.value}">
 			<f:selectItem itemLabel="Activar" itemValue="true" />
 			<f:selectItem itemLabel="Desactivar" itemValue="false" />
 
