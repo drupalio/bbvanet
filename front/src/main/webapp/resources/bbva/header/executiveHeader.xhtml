@@ -9,22 +9,18 @@
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <composite:interface>
-
-
+	<composite:attribute name="title" type="String" />
+	<composite:attribute name="dat" type="String" />
 </composite:interface>
 
 <composite:implementation>
 
-	<nav class="log-menu hidden-xs hidden-sm header-buttons"
-		role="navigation">
-
-		<div class="form-client-acces">
-			<div class="executive-contact">
-				<composite:insertChildren></composite:insertChildren>
-			</div>
+		<div class="executive-links dropdown-toggle" data-toggle="dropdown">
+			<a class="executive-icon"> <span
+				class="header-sprite executive-icon"></span>
+			</a> <a class="executive-name active"> #{cc.attrs.title} <strong>#{cc.attrs.dat}</strong>
+			</a>
 		</div>
-
-	</nav>
 
 </composite:implementation>
 

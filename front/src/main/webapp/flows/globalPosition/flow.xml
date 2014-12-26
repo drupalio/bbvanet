@@ -7,7 +7,9 @@
 	<on-start>
 		<evaluate expression="globalPositionController.getCustomerProducts()" result="flowScope.customerProducts" />
 		<evaluate expression="globalPositionController.getCustomerProductsHidden()" result="flowScope.customerProductsHidden" />		
-		<evaluate expression="applicationController.getLikes()" result="flowScope.likes" />			
+		<evaluate expression="applicationController.getLikes()" result="flowScope.likes" />
+		<evaluate expression="headerController.getEjecutivo()" result="flowScope.executive" />
+
 	</on-start>
 	
 	<view-state id="globalPosition">
