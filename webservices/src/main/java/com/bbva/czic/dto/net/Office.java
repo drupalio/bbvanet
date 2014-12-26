@@ -7,9 +7,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for Office complex type.
+ * <p>Clase Java para Office complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="Office">
@@ -43,7 +43,7 @@ public class Office {
     protected String postalAddress;
 
     /**
-     * Gets the value of the code property.
+     * Obtiene el valor de la propiedad code.
      * 
      * @return
      *     possible object is
@@ -55,7 +55,7 @@ public class Office {
     }
 
     /**
-     * Sets the value of the code property.
+     * Define el valor de la propiedad code.
      * 
      * @param value
      *     allowed object is
@@ -67,7 +67,7 @@ public class Office {
     }
 
     /**
-     * Gets the value of the name property.
+     * Obtiene el valor de la propiedad name.
      * 
      * @return
      *     possible object is
@@ -79,7 +79,7 @@ public class Office {
     }
 
     /**
-     * Sets the value of the name property.
+     * Define el valor de la propiedad name.
      * 
      * @param value
      *     allowed object is
@@ -91,7 +91,7 @@ public class Office {
     }
 
     /**
-     * Gets the value of the location property.
+     * Obtiene el valor de la propiedad location.
      * 
      * @return
      *     possible object is
@@ -103,7 +103,7 @@ public class Office {
     }
 
     /**
-     * Sets the value of the location property.
+     * Define el valor de la propiedad location.
      * 
      * @param value
      *     allowed object is
@@ -115,7 +115,7 @@ public class Office {
     }
 
     /**
-     * Gets the value of the postalAddress property.
+     * Obtiene el valor de la propiedad postalAddress.
      * 
      * @return
      *     possible object is
@@ -127,7 +127,7 @@ public class Office {
     }
 
     /**
-     * Sets the value of the postalAddress property.
+     * Define el valor de la propiedad postalAddress.
      * 
      * @param value
      *     allowed object is

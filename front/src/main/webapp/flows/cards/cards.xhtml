@@ -25,7 +25,9 @@
 
 	<ui:define name="contentLeft">
 
-		<bbvaContainer:productPanelGraphics title="#{msg['title.cards']}" pieGrapihic="#{globalPositionController.graphicPieProducts}">
+		<bbvaContainer:productPanelGraphics title="#{msg['title.cards']}"
+			header="#{msg['graphic.tittle']}" id="cardPie"
+			pieGraphic="#{globalPositionController.graphicPieProducts}">
 			<div class="table-tabs">
 				<bbvaGP:cardHeadTable listCards="#{customerProducts.creditCards}" />
 				<bbvaGP:cardTailTable
@@ -38,7 +40,7 @@
 				<bbvaGP:totalBalance util="#{msg['text.used']}" currency="$"
 					total="1234" subtotal="567" />
 			</div>
-			
+
 		</bbvaContainer:productPanelGraphics>
 
 	</ui:define>

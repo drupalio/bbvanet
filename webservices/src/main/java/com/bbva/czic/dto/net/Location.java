@@ -7,9 +7,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for Location complex type.
+ * <p>Clase Java para Location complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="Location">
@@ -37,7 +37,7 @@ public class Location {
     protected String category;
 
     /**
-     * Gets the value of the city property.
+     * Obtiene el valor de la propiedad city.
      * 
      * @return
      *     possible object is
@@ -49,7 +49,7 @@ public class Location {
     }
 
     /**
-     * Sets the value of the city property.
+     * Define el valor de la propiedad city.
      * 
      * @param value
      *     allowed object is
@@ -61,7 +61,7 @@ public class Location {
     }
 
     /**
-     * Gets the value of the category property.
+     * Obtiene el valor de la propiedad category.
      * 
      * @return
      *     possible object is
@@ -73,7 +73,7 @@ public class Location {
     }
 
     /**
-     * Sets the value of the category property.
+     * Define el valor de la propiedad category.
      * 
      * @param value
      *     allowed object is

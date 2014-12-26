@@ -3655,3 +3655,15 @@
 2014-12-26 14:17:00,273 [Worker-83] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 7 resources
 2014-12-26 14:17:00,282 [Worker-83] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2014-12-26 14:17:00,282 [Worker-83] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Entelgy\Documents\Proyecto\bbvaNueva\bbvanet\front\src\test\resources
+2014-12-26 14:18:15,459 [Worker-85] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-12-26 14:18:15,462 [Worker-85] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 7 resources
+2014-12-26 14:18:15,471 [Worker-85] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-12-26 14:18:15,471 [Worker-85] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Entelgy\Documents\Proyecto\bbvaNueva\bbvanet\front\src\test\resources
+2014-12-26 14:18:20,156 [Worker-88] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-12-26 14:18:20,162 [Worker-88] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 13 resources
+2014-12-26 14:18:20,167 [Worker-88] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-12-26 14:18:20,168 [Worker-88] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Entelgy\Documents\Proyecto\bbvaNueva\bbvanet\webservices\src\test\resources
+2014-12-26 14:18:20,321 [Worker-88] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-12-26 14:18:20,322 [Worker-88] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 7 resources
+2014-12-26 14:18:20,325 [Worker-88] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-12-26 14:18:20,325 [Worker-88] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Entelgy\Documents\Proyecto\bbvaNueva\bbvanet\front\src\test\resources
