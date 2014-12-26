@@ -27,6 +27,32 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 	@Resource(name = "productService")
 	private ProductService productService;
 
+	public PieConfigUI getGeneralGraphicConfig(final GlobalProductsDTO globalProducts) {
+
+		final PieConfigUI assetPie = new PieConfigUI();
+		assetPie.setHeaderCenter("Pesos ($)");
+		final List<PieItemUI> assetPieItems = new ArrayList<PieItemUI>();
+		final List<ProductDTO> products = productService.getProducts(globalProducts);
+
+		final PieItemUI accountPieItem = new PieItemUI("el color", "Tarjetas", this.productService
+				.getTotalProductsByType(products, EnumProductType.PC).getAmount());
+		/*
+		 * final PieItemUI fundPieItem = new PieItemUI("el color", "Fondos de Inversión", this.productService
+		 * .getTotalProductsByType(products, EnumProductType.SI).getAmount()); final PieItemUI depositPieItem = new
+		 * PieItemUI("el color", "Depósitos", this.productService .getTotalProductsByType(products,
+		 * EnumProductType.ED).getAmount()); final PieItemUI rotatingAccountPieItem = new PieItemUI("el color",
+		 * "Cupo Rotativo", this.productService .getTotalProductsByType(products, EnumProductType.RQ).getAmount());
+		 */
+		assetPieItems.add(accountPieItem);
+		/*
+		 * assetPieItems.add(fundPieItem); assetPieItems.add(depositPieItem); assetPieItems.add(rotatingAccountPieItem);
+		 */
+		assetPie.setPieItemUIList(assetPieItems);
+
+		return assetPie;
+
+	}
+
 	@Override
 	public SituationPiesUI getSituationGlobalProducts(final GlobalProductsDTO globalProducts) {
 

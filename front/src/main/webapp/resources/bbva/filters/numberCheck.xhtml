@@ -11,62 +11,73 @@
 	xmlns:cc="http://jsflive.at/taglib">
 
 <composite:interface>
-
+	<composite:attribute name="valueCheck" />
+	<composite:attribute name="valueCheckNumber" />
+	<composite:attribute name="valuecheckState" />
+	<composite:attribute name="valueBookNumber" />
+	<composite:attribute name="actionListenerCheck"
+		method-signature="void actionlistener(javax.faces.event.ActionEvent)" />
 </composite:interface>
 
 <composite:implementation>
 
 	<div class="row">
-		<div>
-			<div>
+		<div class="form-horizontal">
 
-				<p:outputPanel id="customPanel">
-					<p:selectOneRadio id="customRadio" layout="custom"
-						value="#{movementsCriteriaController.movementCriteria.actionState}">
-						<f:selectItem itemLabel="#{msg['text.search.by.number.check']}"
-							itemValue="#{msg['text.search.by.number.check']}" />
-						<f:selectItem itemLabel="#{msg['text.search.by.number.status']}" itemValue="#{msg['text.search.by.number.status']}" />
-						<f:selectItem itemLabel="#{msg['text.search.by.numberbook']}"
-							itemValue="#{msg['text.search.by.numberbook']}" />
-						<p:ajax process="@this"
-							listener="#{movementsCriteriaController.actionState}"
-							update="customPanel, searchButton" />
-					</p:selectOneRadio>
+			<p:outputPanel id="customPanel">
+				<p:selectOneRadio id="customRadio" layout="custom"
+					value="#{cc.attrs.valueCheck}">
+					<f:selectItem itemLabel="#{msg['text.search.by.number.check']}"
+						itemValue="#{msg['text.search.by.number.check']}" />
+					<f:selectItem itemLabel="#{msg['text.search.by.number.status']}"
+						itemValue="#{msg['text.search.by.number.status']}" />
+					<f:selectItem itemLabel="#{msg['text.search.by.numberbook']}"
+						itemValue="#{msg['text.search.by.numberbook']}" />
+					<p:ajax process="@this"
+						listener="#{movementsCriteriaController.actionState}"
+						update="customPanel, searchButton" />
+				</p:selectOneRadio>
 
-					<h:panelGrid columns="3" cellpadding="5" id="grilla">
-						<p:radioButton id="opt1" for="customRadio" itemIndex="0" />
-						<h:outputLabel for="opt1" value="#{msg['text.search.by.number.check']}" />
-						<h:inputText id="inputNumberCheck" value="#{movementsCriteriaController.movementCriteria.checkNumber}"
-							disabled="#{movementsCriteriaController.renderedNumberCheck}" validatorMessage="Formato Invalido">
-							<f:validateRegex pattern="[0-9]*" />
-						</h:inputText>	
+				<h:panelGrid columns="3" cellpadding="5" id="grilla">
+					<p:radioButton id="opt1" for="customRadio" itemIndex="0" />
+					<h:outputLabel for="opt1"
+						value="#{msg['text.search.by.number.check']}" />
+					<h:inputText id="inputNumberCheck"
+						value="#{movementsCriteriaController.movementCriteria.checkNumber}"
+						disabled="#{movementsCriteriaController.renderedNumberCheck}"
+						validatorMessage="Formato Invalido">
+						<f:validateRegex pattern="[0-9]*" />
+					</h:inputText>
 
-						<p:radioButton id="opt2" for="customRadio" itemIndex="1" />
-						<h:outputLabel for="opt2" value="#{msg['text.search.by.number.status']}" />
-						<h:selectOneMenu id="stateSelect" value="#{movementsCriteriaController.movementCriteria.checkState}"
-							disabled="#{movementsCriteriaController.renderedNumberCheck}">
-							<f:selectItem itemLabel="#{msg['text.combo.select']}" />
-							<f:selectItems value="#{multiValueList}" var="multiValue"
-								itemValue="#{multiValue}" itemLabel="#{msg[multiValue.value]}" />
-						</h:selectOneMenu>
+					<p:radioButton id="opt2" for="customRadio" itemIndex="1" />
+					<h:outputLabel for="opt2"
+						value="#{msg['text.search.by.number.status']}" />
+					<h:selectOneMenu id="stateSelect"
+						value="#{movementsCriteriaController.movementCriteria.checkState}"
+						disabled="#{movementsCriteriaController.renderedNumberCheck}">
+						<f:selectItem itemLabel="#{msg['text.combo.select']}" />
+						<f:selectItems value="#{multiValueList}" var="multiValue"
+							itemValue="#{multiValue}" itemLabel="#{msg[multiValue.value]}" />
+					</h:selectOneMenu>
 
-						<p:radioButton id="opt3" for="customRadio" itemIndex="2" />
-						<h:outputLabel for="opt3" value="#{msg['text.search.by.numberbook']}" />
-						<h:selectOneMenu id="numberBook" value="#{movementsCriteriaController.movementCriteria.bookNumber}"
-							disabled="#{movementsCriteriaController.renderedNumberBook}">
-							<f:selectItem itemLabel="#{msg['text.combo.select']}" />
-							<f:selectItem itemLabel="Habilitados" itemValue="Habilitados" />
-							<f:selectItem itemLabel="Solicitados" itemValue="Solicitados" />
-						</h:selectOneMenu>
-					</h:panelGrid>
-				</p:outputPanel>
-
-			</div>
+					<p:radioButton id="opt3" for="customRadio" itemIndex="2" />
+					<h:outputLabel for="opt3"
+						value="#{msg['text.search.by.numberbook']}" />
+					<h:selectOneMenu id="numberBook"
+						value="#{cc.attrs.valueBookNumber}"
+						disabled="#{movementsCriteriaController.renderedNumberBook}">
+						<f:selectItem itemLabel="#{msg['text.combo.select']}" />
+						<f:selectItem itemLabel="Habilitados" itemValue="Habilitados" />
+						<f:selectItem itemLabel="Solicitados" itemValue="Solicitados" />
+					</h:selectOneMenu>
+				</h:panelGrid>
+			</p:outputPanel>
 		</div>
-		<p:commandButton id="searchButton" value="#{msg['text.comfirm']}" disabled="#{movementsCriteriaController.renderedButtonBook}" 
-		actionListener="#{movementsCriteriaController.setNumberCheckOrBook}" styleClass="btn small hidden-xs hidden-sm"
-			/>
+
+		<p:commandButton id="searchButton" value="#{msg['text.comfirm']}"
+			disabled="#{movementsCriteriaController.renderedButtonBook}"
+			actionListener="#{movementsCriteriaController.setNumberCheckOrBook}"
+			styleClass="btn small hidden-xs hidden-sm" />
 	</div>
 </composite:implementation>
-
 </html>

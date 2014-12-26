@@ -9,4 +9,11 @@ public class MovementCriteriaDtoTest extends AbstractBbvaDTOTest<MovementCriteri
 		return new MovementCriteriaDto();
 	}
 
+	/**
+	 * Invoke Equals Method
+	 */
+	@Override
+	public void checkEqualsMethod() {
+
+	}
 }

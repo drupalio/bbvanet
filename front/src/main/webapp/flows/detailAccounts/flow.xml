@@ -20,12 +20,13 @@
 			result="flowScope.customerAccounts" />
 		<evaluate expression="TermsController.getAllConditions()"
 			result="flowScope.allConditions" />
-			
+
 			<evaluate expression="movementsCriteriaController.getListMultiValueLikes()" result="flowScope.multiValueList" />	
+
 	</on-start>
 
 	<view-state id="detailAccounts">
-
+		
 		<on-render>
 			<evaluate expression="accountsController.getCustomerAccounts()"
 				result="viewScope.customerAccountsM" result-type="dataModel" />

@@ -38,7 +38,14 @@
 			<bbvaHeader:logo/>
 			<bbvaMenu:menuButtonMobile/>
 			<bbvaHeader:particulares />
-			<bbvaHeader:executive />
+			<bbvaHeader:executive>
+				<bbvaHeader:executiveHeader title="#{msg['text.executive']}:" dat="#{executive.name}"/>
+				<bbvaHeader:executiveBody>
+					<bbvaHeader:executiveItem link="https://www.google.es/maps/#{executive.coordenadas}" targe="_blank" icono="office" data="#{executive.office.name}" dataSmall="#{executive.office.addres}"/>
+					<bbvaHeader:executiveItem link="tel:#{executive.phone}"  icono="phone" data="#{executive.phone}" />
+					<bbvaHeader:executiveItem link="mailto:#{executive.mail}"  icono="mail" data="#{executive.mail}" />
+				</bbvaHeader:executiveBody>
+			</bbvaHeader:executive>
 
 		</div>
 
@@ -61,8 +68,12 @@
 				title="Ir a Cuentas" icon="account-icon"
 				rendered="#{menuActive != 'ACCOUNTS'}"/>
 
-			<bbvaMenu:itemMenu href="./cards.html" value="Tarjetas"
-				title="Ir a Tarjetas" icon="card-icon" />
+			<bbvaMenu:itemMenu href="./cards" value="Tarjetas"
+				title="Ir a Tarjetas" icon="card-icon" rendered="#{menuActive != 'CARDS'}"/>
+				
+			<bbvaMenu:itemMenu href="./cards" value="Tarjetas"
+				title="Ir a Tarjetas" icon="card-icon" 
+				liclass="active" rendered="#{menuActive == 'CARDS'}"/>
 
 			<bbvaMenu:itemMenu href="./loan" value="Préstamos"
 				title="Ir a Préstamos" icon="credit-icon" 

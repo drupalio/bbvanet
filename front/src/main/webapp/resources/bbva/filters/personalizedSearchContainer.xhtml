@@ -17,16 +17,19 @@
 
 <composite:implementation>
 
-	<h:form>
+	<h:form id="customSearch">
 		<bbvaSearch:personalizedSearchTabBody
 			title="#{msg['text.title.personalized.search']}">
 			<bbvaSearch:customSearchList classList="date-filter customSearch"
 				classSpan="arrow-left-smaller" classSpanFilter="filter"
 				title="#{msg['text.date']}">
 				<bbvaSearch:customSearchFilter
-					value="#{movementsCriteriaController.selectDate}"
+					value="#{movementsCriteriaController.movementCriteria.selectDate}"
 					valueSince="#{movementsCriteriaController.movementCriteria.dateRange.dateSince}"
-					valueTo="#{movementsCriteriaController.movementCriteria.dateRange.dateTo}" />
+					valueTo="#{movementsCriteriaController.movementCriteria.dateRange.dateTo}"
+					disabledButton="#{movementsCriteriaController.disabledButtonDate}"
+					disabledCalendar="#{movementsCriteriaController.disabledCalendar}"
+					actionListenerDate="#{movementsCriteriaController.setCustomDate}" />
 			</bbvaSearch:customSearchList>
 
 			<bbvaSearch:customSearchList classList="balance-filter"
@@ -53,18 +56,31 @@
 			<bbvaSearch:searchButtonList show="true"
 				actionListener="#{movementsCriteriaController.searchMovementByFilter}" />
 		</bbvaSearch:personalizedSearchTabBody>
-	<h:form>
-		<bbvaSearch:personalizedSearchTabBody
-			title="#{msg['text.title.search.book']}" >
-			<bbvaSearch:checkBooksContainer />
-			
-			<bbvaSearch:searchButtonList  show="false"
-				actionListener="#{movementsCriteriaController.searchNumberCheckOrBook}" />
-		</bbvaSearch:personalizedSearchTabBody>
+		<h:form id="formCheckBook">
+			<bbvaSearch:personalizedSearchTabBody
+				title="#{msg['text.title.search.book']}">
+				<bbvaSearch:checkBooksContainer
+					value="#{movementsCriteriaController.movementCriteria.selectDate}"
+					valueDateSince="#{movementsCriteriaController.movementCriteria.dateRange.dateSince}"
+					valueDateTo="#{movementsCriteriaController.movementCriteria.dateRange.dateTo}"
+					disabledButton="#{movementsCriteriaController.disabledButtonDate}"
+					disabledCalendar="#{movementsCriteriaController.disabledCalendar}"
+					actionListenerDate="#{movementsCriteriaController.setCustomDate}"
+					valueCheck="#{movementsCriteriaController.movementCriteria.actionState}"
+					valueCheckNumber="#{movementsCriteriaController.movementCriteria.checkNumber}"
+					valuecheckState="#{movementsCriteriaController.movementCriteria.checkState}"
+					valueBookNumber="#{movementsCriteriaController.movementCriteria.bookNumber}"
+					actionListenerCheck="#{movementsCriteriaController.setNumberCheckOrBook}" />
+
+				<bbvaSearch:searchButtonList show="false"
+					actionListener="#{movementsCriteriaController.searchNumberCheckOrBook}" />
+			</bbvaSearch:personalizedSearchTabBody>
+		</h:form>
+		<h:form id="downExtract">
+			<bbvaSearch:personalizedSearchTabBody title="Ya vendra">
+				<!-- <bbvaSearch:downloadExtract /> -->
+			</bbvaSearch:personalizedSearchTabBody>
+		</h:form>
 	</h:form>
-	<bbvaSearch:personalizedSearchTabBody title="Ya vendra">
-		<!-- <bbvaSearch:downloadExtract /> -->
-	</bbvaSearch:personalizedSearchTabBody>
-</h:form>
 </composite:implementation>
 </html>
