@@ -9,22 +9,19 @@
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <composite:interface>
-
-
+	<composite:attribute name="link" type="String" />
+	<composite:attribute name="targe" type="String" />
+	<composite:attribute name="icono" type="String" />
+	<composite:attribute name="data" type="String" />
+	<composite:attribute name="dataSmall" type="String" />
+	
 </composite:interface>
 
 <composite:implementation>
 
-	<nav class="log-menu hidden-xs hidden-sm header-buttons"
-		role="navigation">
-
-		<div class="form-client-acces">
-			<div class="executive-contact">
-				<composite:insertChildren></composite:insertChildren>
-			</div>
-		</div>
-
-	</nav>
+	<li class="#{cc.attrs.icono}-info"><a href="#{cc.attrs.link}" target="#{cc.attrs.targe}"> <span
+			class="header-sprite #{cc.attrs.icono}-small-icon"></span>#{cc.attrs.data} <small>#{cc.attrs.dataSmall} </small>
+	</a></li>
 
 </composite:implementation>
 
