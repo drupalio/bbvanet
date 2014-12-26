@@ -5,9 +5,6 @@ package com.bbva.net.back.model.citeriaMovements;
 
 import java.util.Date;
 
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
-
 import com.bbva.net.back.core.pattern.dto.Dto;
 import com.bbva.net.back.model.commons.BalanceRangeDto;
 import com.bbva.net.back.model.commons.DateRangeDto;
@@ -40,6 +37,16 @@ public class MovementCriteriaDto implements Dto {
 	private String movement;
 
 	private String incomesOrExpenses;
+
+	private String selectDate;
+
+	private String actionState;
+
+	private String checkState;
+
+	private Long checkNumber;
+
+	private Long bookNumber;
 
 	/**
 	 * @return the dateRange
@@ -195,38 +202,44 @@ public class MovementCriteriaDto implements Dto {
 		this.incomesOrExpenses = incomesOrExpenses;
 	}
 
-	@Override
-	public String toString() {
-		return new ToStringBuilder(this).append("dateRange", getDateRange()).append("balanceRange", getBalanceRange())
-				.append("concreteDate", getConcreteDate()).append("lastMonth", getLastMonth())
-				.append("lasTwoMonth", getLasTwoMonth()).append("lastTwoWeeks", getLastTwoWeeks())
-				.append("lastWeek", getLastWeek()).append("today", getToday()).append("yesterday", getYesterday())
-				.append("movement", getMovement()).append("incomesOrExpenses", getIncomesOrExpenses()).toString();
+	public String getSelectDate() {
+		return selectDate;
 	}
 
-	@Override
-	public int hashCode() {
-		return new HashCodeBuilder().append(getDateRange()).append(getBalanceRange()).append(getConcreteDate())
-				.append(getLastMonth()).append(getLasTwoMonth()).append(getLastTwoWeeks()).append(getLastWeek())
-				.append(getToday()).append(getYesterday()).append(getMovement()).append(getIncomesOrExpenses())
-				.toHashCode();
+	public void setSelectDate(String selectDate) {
+		this.selectDate = selectDate;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-
-		return (obj instanceof MovementCriteriaDto)
-				&& this.getDateRange().equals(((MovementCriteriaDto)obj).getDateRange())
-				&& this.getBalanceRange().equals(((MovementCriteriaDto)obj).getBalanceRange())
-				&& this.getConcreteDate().equals(((MovementCriteriaDto)obj).getConcreteDate())
-				&& this.getLastMonth().equals(((MovementCriteriaDto)obj).getLastMonth())
-				&& this.getLasTwoMonth().equals(((MovementCriteriaDto)obj).getLasTwoMonth())
-				&& this.getLastTwoWeeks().equals(((MovementCriteriaDto)obj).getLastTwoWeeks())
-				&& this.getLastWeek().equals(((MovementCriteriaDto)obj).getLastWeek())
-				&& this.getToday().equals(((MovementCriteriaDto)obj).getToday())
-				&& this.getYesterday().equals(((MovementCriteriaDto)obj).getYesterday())
-				&& this.getMovement().equals(((MovementCriteriaDto)obj).getMovement())
-				&& this.getIncomesOrExpenses().equals(((MovementCriteriaDto)obj).getIncomesOrExpenses());
-
+	public String getActionState() {
+		return actionState;
 	}
+
+	public void setActionState(String actionState) {
+		this.actionState = actionState;
+	}
+
+	public Long getCheckNumber() {
+		return checkNumber;
+	}
+
+	public void setCheckNumber(Long checkNumber) {
+		this.checkNumber = checkNumber;
+	}
+
+	public Long getBookNumber() {
+		return bookNumber;
+	}
+
+	public void setBookNumber(Long bookNumber) {
+		this.bookNumber = bookNumber;
+	}
+
+	public String getCheckState() {
+		return checkState;
+	}
+
+	public void setCheckState(String checkState) {
+		this.checkState = checkState;
+	}
+
 }

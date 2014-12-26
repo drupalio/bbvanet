@@ -8,10 +8,12 @@
 	xmlns:pm="http://primefaces.org/mobile"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:cc="http://jsflive.at/taglib"
-	xmlns:bbvaGP="http://java.sun.com/jsf/composite/bbva/globalPosition">
+	xmlns:bbvaGP="http://java.sun.com/jsf/composite/bbva/globalPosition"
+	xmlns:bbvaGraphics="http://java.sun.com/jsf/composite/bbva/graphics/accountsFonds">
 
 <composite:interface>
-	<composite:attribute name="id" type="String"/>
+
+	<composite:attribute name="id" type="String" />
 	<composite:attribute name="title" type="String" />
 </composite:interface>
 
@@ -30,15 +32,20 @@
 		</div>
 
 		<div class="tab tab-lines no-border">
-				<composite:insertChildren />
+			<composite:insertChildren />
 		</div>
-		<!-- 
 		<div class="tab tab-bars chart">
 			<div>
 				<h3>GRAFICA</h3>
 			</div>
 		</div>
-		 -->
+
+		<div class="tab tab-bars chart">
+			<div>
+				<h3>GRAFICA333</h3>
+			</div>
+		</div>
+
 		<div class="row afterTable"></div>
 	</div>
 

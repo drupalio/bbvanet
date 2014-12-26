@@ -1,6 +1,7 @@
 package com.bbva.net.front.delegate;
 
 import com.bbva.net.back.model.globalposition.GlobalProductsDTO;
+import com.bbva.net.front.ui.accounts.AccountsPieUI;
 import com.bbva.net.front.ui.globalposition.SituationPiesUI;
 
 /**
@@ -17,5 +18,14 @@ public interface GraphicPieDelegate {
 	 * @return
 	 */
 	SituationPiesUI getSituationGlobalProducts(GlobalProductsDTO globalProducts);
+
+	/**
+	 * Converts rest DTO response to funds pie UI object
+	 * 
+	 * @param globalProducts (rest DTO response)
+	 * @return
+	 */
+
+	AccountsPieUI getAccountsfundsProducts(GlobalProductsDTO globalProducts);
 
 }

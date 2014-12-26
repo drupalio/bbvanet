@@ -16,16 +16,16 @@
 </composite:interface>
 
 <composite:implementation>
-	<h:form id="detalMoves">
+	<h:form id="#{cc.attrs.id}">
 		<p:dataTable id="detalAC" styleClass="detail-table-body sortable"
 			value="#{cc.attrs.listAccounts}" var="icuenta" selectionMode="single"
 			selection="#{customerAccountsPage.selectedAccount}"
-			rowKey="#{icuenta.product.alias}">
+			rowKey="#{icuenta.productId}">
 			<p:column headerText="#{msg['text.detailMove.date']}" styleClass="sorted w18 desc"
 				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
 
 				<h:outputText styleClass="brand" style="font-size: 1.1em"
-					value="#{icuenta.product.alias}" />
+					value="#{icuenta.alias}" />
 			</p:column>
 
 			<p:column headerText="#{msg['text.detailMove.concep']}" styleClass="desc w34"
@@ -33,24 +33,24 @@
 
 				<h:outputText class="text"
 					style="font-size: 12px;color: #333;text-align: left"
-					value="#{icuenta.product.alias}" />
+					value="#{icuenta.alias}" />
 				<h:outputText class="text"
 					style="font-size: 11px;color: #333;font-weight: normal;text-align: left"
-					value="#{icuenta.product.alias}" />
+					value="#{icuenta.alias}" />
 			</p:column>
 
 			<p:column class="head" headerText="#{msg['text.detailMove.value']}" styleClass="desc w24"
 				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
 
 				<h:outputText class="currency" style="font-size: 15px;color: #333"
-					value="#{icuenta.product.totalCash}" />
+					value="#{icuenta.totalCash}" />
 
 			</p:column>
 			<p:column class="head" headerText="#{msg['text.detailMove.balance']}" styleClass="desc w24"
 				style="font-size: 0.7em;color: #333;font-family: Arial;background: none;border-style: none">
 
 				<h:outputText class="currency" style="font-size: 15px;color: #333"
-					value="#{icuenta.product.totalCash}" />
+					value="#{icuenta.totalCash}" />
 
 			</p:column>
 		</p:dataTable>

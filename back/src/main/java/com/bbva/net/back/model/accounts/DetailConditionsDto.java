@@ -1,14 +1,11 @@
 package com.bbva.net.back.model.accounts;
 
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
-
 import com.bbva.net.back.core.pattern.dto.Dto;
 
 public class DetailConditionsDto implements Dto {
 
 	public DetailConditionsDto() {
-
+		// TODO Auto-generated constructor stub
 	}
 
 	public DetailConditionsDto(String categoria, String descripcion, String fechaApertura, String comisiones) {
@@ -69,26 +66,21 @@ public class DetailConditionsDto implements Dto {
 	}
 
 	@Override
-	public String toString() {
-		return new ToStringBuilder(this).append("categoria", getCategoria()).append("descripcion", getDescripcion())
-				.append("fechaApertura", getFechaApertura()).append("comisiones", getComisiones()).toString();
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		return super.equals(obj);
 	}
 
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder().append(getCategoria()).append(getDescripcion()).append(getFechaApertura())
-				.append(getComisiones()).toHashCode();
+		// TODO Auto-generated method stub
+		return super.hashCode();
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-
-		return (obj instanceof DetailConditionsDto)
-				&& this.getCategoria().equals(((DetailConditionsDto)obj).getCategoria())
-				&& this.getDescripcion().equals(((DetailConditionsDto)obj).getDescripcion())
-				&& this.getFechaApertura().equals(((DetailConditionsDto)obj).getFechaApertura())
-				&& this.getComisiones().equals(((DetailConditionsDto)obj).getComisiones());
-
+	public String toString() {
+		// TODO Auto-generated method stub
+		return super.toString();
 	}
 
 }

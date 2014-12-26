@@ -9,12 +9,4 @@ public class MultiValueGroupTest extends AbstractBbvaDTOTest<MultiValueGroup> {
 		return new MultiValueGroup();
 	}
 
-	/**
-	 * Invoke Equals Method
-	 */
-	@Override
-	public void checkEqualsMethod() {
-
-	}
-
 }

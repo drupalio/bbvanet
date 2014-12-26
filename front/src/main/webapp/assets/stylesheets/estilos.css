@@ -240,3 +240,9 @@ button.ui-state-default {
 td.ui-datatable-subtable-header:empty {
 	display: none
 }
+
+.ui-button {
+  color: #333333 !important; 
+  background-color: white !important;
+  border-color: #cccccc !important;
+}

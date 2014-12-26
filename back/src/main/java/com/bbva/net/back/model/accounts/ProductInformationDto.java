@@ -1,8 +1,5 @@
 package com.bbva.net.back.model.accounts;
 
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
-
 import com.bbva.net.back.core.pattern.dto.Dto;
 
 public class ProductInformationDto implements Dto {
@@ -58,24 +55,21 @@ public class ProductInformationDto implements Dto {
 	}
 
 	@Override
-	public String toString() {
-		return new ToStringBuilder(this).append("alias", getAlias()).append("numCuenta", getNumCuenta())
-				.append("tipoCuenta", getTipoCuenta()).toString();
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		return super.equals(obj);
 	}
 
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder().append(getAlias()).append(getNumCuenta()).append(getTipoCuenta()).toHashCode();
+		// TODO Auto-generated method stub
+		return super.hashCode();
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-
-		return (obj instanceof ProductInformationDto)
-				&& this.getAlias().equals(((ProductInformationDto)obj).getAlias())
-				&& this.getNumCuenta().equals(((ProductInformationDto)obj).getNumCuenta())
-				&& this.getTipoCuenta().equals(((ProductInformationDto)obj).getTipoCuenta());
-
+	public String toString() {
+		// TODO Auto-generated method stub
+		return super.toString();
 	}
 
 }

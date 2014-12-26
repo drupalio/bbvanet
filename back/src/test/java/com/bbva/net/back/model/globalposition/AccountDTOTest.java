@@ -10,12 +10,4 @@ public class AccountDTOTest extends AbstractBbvaDTOTest<AccountDTO> {
 		return new AccountDTO();
 	}
 
-	/**
-	 * Invoke Equals Method
-	 */
-	@Override
-	public void checkEqualsMethod() {
-
-	}
-
 }
