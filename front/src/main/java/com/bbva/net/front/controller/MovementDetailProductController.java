@@ -19,6 +19,6 @@ public interface MovementDetailProductController {
 	/**
 	 * Método que obtiene la lista de movimientos en una cuenta
 	 */
-	// getMovementsByAccout();
+	// getMovementsByAccount();
 
 }

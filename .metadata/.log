@@ -7165,3 +7165,9 @@ java.lang.NullPointerException: No IModelProvider exists for project P/front of 
 
 !ENTRY net.sourceforge.eclipsejetty.launcher 1 0 2014-12-23 14:32:48.044
 !MESSAGE Fixed scope for dependency C:/Users/Nerly/.m2/repository/org/fluttercode/datafactory/datafactory/0.8/datafactory-0.8.jar: changed compile to test
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2014-12-26 07:52:28.544
+!MESSAGE The POM for com.sun.xml.bind:jaxb-core:jar:2.2.11 is invalid, transitive dependencies (if any) will not be available, enable debug logging for more details
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2014-12-26 07:52:28.556
+!MESSAGE The POM for com.sun.xml.bind:jaxb-impl:jar:2.2.11 is invalid, transitive dependencies (if any) will not be available, enable debug logging for more details
