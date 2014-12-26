@@ -107,7 +107,7 @@ public abstract class AbstractBbvaDTOTest<T extends Serializable> {
 		new VisitorCommand<Method>(setterMethodsList) {
 
 			@Override
-			protected void exceute(final Method method) {
+			protected void execute(final Method method) {
 
 				final Class<?> parameterClass = method.getParameterTypes()[0];
 				final Object value = BeanBbvaUtils.instantiateClass(parameterClass);
@@ -124,7 +124,7 @@ public abstract class AbstractBbvaDTOTest<T extends Serializable> {
 		new VisitorCommand<Method>(getterMethodsList) {
 
 			@Override
-			protected void exceute(final Method method) {
+			protected void execute(final Method method) {
 				ReflectionBbvaUtils.invokeMethod(method, dto);
 			}
 		};

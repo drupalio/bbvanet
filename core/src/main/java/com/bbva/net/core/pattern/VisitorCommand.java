@@ -22,7 +22,7 @@ public abstract class VisitorCommand<T> {
 		}
 
 		for (final T object : list) {
-			exceute(object);
+			execute(object);
 		}
 	}
 
@@ -31,5 +31,5 @@ public abstract class VisitorCommand<T> {
 	 * 
 	 * @param object
 	 */
-	protected abstract void exceute(T object);
+	protected abstract void execute(T object);
 }

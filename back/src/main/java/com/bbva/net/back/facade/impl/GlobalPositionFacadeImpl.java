@@ -41,6 +41,7 @@ public class GlobalPositionFacadeImpl extends AbstractBbvaFacade implements Glob
 	public GlobalProductsDTO getGlobalProductsByUser(final String user) throws RestClientException {
 
 		final List<Product> response = this.globalPositionService.getExtractGlobalBalance(user, null, null, null, null);
+		// return globalPositionMapper.map(response);
 		return globalPositionMapper.map(response);
 
 	}
@@ -59,6 +60,8 @@ public class GlobalPositionFacadeImpl extends AbstractBbvaFacade implements Glob
 	public Map<EnumProductType, Money> getTotalsByProduct(GlobalProductsDTO globalProductsDTO) {
 		return productService.getTotals(globalProductsDTO);
 	}
+
+	/********************************** DEPENDENCY INJECTIONS ***********************************/
 
 	/**
 	 * @param globalPositionService

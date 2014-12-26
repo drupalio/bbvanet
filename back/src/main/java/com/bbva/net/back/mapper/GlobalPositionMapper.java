@@ -5,9 +5,6 @@ import java.util.List;
 import com.bbva.czic.dto.net.Product;
 import com.bbva.net.back.model.globalposition.GlobalProductsDTO;
 
-/**
- * @author Entelgy
- */
 public interface GlobalPositionMapper {
 
 	/**
@@ -15,5 +12,4 @@ public interface GlobalPositionMapper {
 	 * @return
 	 */
 	GlobalProductsDTO map(List<Product> products);
-
 }
