@@ -21,12 +21,10 @@ public class DateRangeDto implements Dto {
 
 	private Date dateTo;
 
-	public DateRangeDto() {
-		super();
+	public DateRangeDto() {		
 	}
 
 	public DateRangeDto(Date dateSince, Date dateTo) {
-		super();
 		this.dateSince = dateSince;
 		this.dateTo = dateTo;
 	}
@@ -71,6 +69,8 @@ public class DateRangeDto implements Dto {
 
 	@Override
 	public boolean equals(Object obj) {
-		return (obj instanceof DateRangeDto) && this.getDateSince().equals(((DateRangeDto)obj).getDateTo());
+		return (obj instanceof DateRangeDto) 
+				&& this.getDateSince().equals(((DateRangeDto)obj).getDateSince())
+				&& this.getDateTo().equals(((DateRangeDto)obj).getDateTo());
 	}
 }

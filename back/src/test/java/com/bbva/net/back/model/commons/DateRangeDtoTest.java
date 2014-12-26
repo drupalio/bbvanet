@@ -9,4 +9,12 @@ public class DateRangeDtoTest extends AbstractBbvaDTOTest<DateRangeDto> {
 		return new DateRangeDto();
 	}
 
+	/**
+	 * Invoke Equals Method
+	 */
+	@Override
+	public void checkEqualsMethod() {
+
+	}
+
 }

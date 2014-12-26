@@ -53,12 +53,13 @@ public class MovementCriteriaDto implements Dto {
 
 	private Long bookNumber;
 
+
 	/**
 	 * 
 	 */
 	public MovementCriteriaDto() {
-
 	}
+	
 
 	/**
 	 * @param dateRange
@@ -103,6 +104,9 @@ public class MovementCriteriaDto implements Dto {
 		this.bookNumber = bookNumber;
 	}
 
+
+
+
 	/**
 	 * @return the dateRange
 	 */
@@ -110,6 +114,7 @@ public class MovementCriteriaDto implements Dto {
 		return dateRange;
 	}
 
+	
 	/**
 	 * @param dateRange the dateRange to set
 	 */
@@ -117,6 +122,7 @@ public class MovementCriteriaDto implements Dto {
 		this.dateRange = dateRange;
 	}
 
+	
 	/**
 	 * @return the balanceRange
 	 */
@@ -124,6 +130,7 @@ public class MovementCriteriaDto implements Dto {
 		return balanceRange;
 	}
 
+	
 	/**
 	 * @param balanceRange the balanceRange to set
 	 */
@@ -131,6 +138,7 @@ public class MovementCriteriaDto implements Dto {
 		this.balanceRange = balanceRange;
 	}
 
+	
 	/**
 	 * @return the concreteDateSince
 	 */
@@ -138,6 +146,7 @@ public class MovementCriteriaDto implements Dto {
 		return concreteDateSince;
 	}
 
+	
 	/**
 	 * @param concreteDateSince the concreteDateSince to set
 	 */
@@ -145,6 +154,7 @@ public class MovementCriteriaDto implements Dto {
 		this.concreteDateSince = concreteDateSince;
 	}
 
+	
 	/**
 	 * @return the concreteDateTo
 	 */
@@ -152,6 +162,7 @@ public class MovementCriteriaDto implements Dto {
 		return concreteDateTo;
 	}
 
+	
 	/**
 	 * @param concreteDateTo the concreteDateTo to set
 	 */
@@ -159,6 +170,7 @@ public class MovementCriteriaDto implements Dto {
 		this.concreteDateTo = concreteDateTo;
 	}
 
+	
 	/**
 	 * @return the lastMonth
 	 */
@@ -166,6 +178,7 @@ public class MovementCriteriaDto implements Dto {
 		return lastMonth;
 	}
 
+	
 	/**
 	 * @param lastMonth the lastMonth to set
 	 */
@@ -173,6 +186,7 @@ public class MovementCriteriaDto implements Dto {
 		this.lastMonth = lastMonth;
 	}
 
+	
 	/**
 	 * @return the lasTwoMonth
 	 */
@@ -180,6 +194,7 @@ public class MovementCriteriaDto implements Dto {
 		return lasTwoMonth;
 	}
 
+	
 	/**
 	 * @param lasTwoMonth the lasTwoMonth to set
 	 */
@@ -187,6 +202,7 @@ public class MovementCriteriaDto implements Dto {
 		this.lasTwoMonth = lasTwoMonth;
 	}
 
+	
 	/**
 	 * @return the lastTwoWeeks
 	 */
@@ -194,6 +210,7 @@ public class MovementCriteriaDto implements Dto {
 		return lastTwoWeeks;
 	}
 
+	
 	/**
 	 * @param lastTwoWeeks the lastTwoWeeks to set
 	 */
@@ -201,6 +218,7 @@ public class MovementCriteriaDto implements Dto {
 		this.lastTwoWeeks = lastTwoWeeks;
 	}
 
+	
 	/**
 	 * @return the lastWeek
 	 */
@@ -208,6 +226,7 @@ public class MovementCriteriaDto implements Dto {
 		return lastWeek;
 	}
 
+	
 	/**
 	 * @param lastWeek the lastWeek to set
 	 */
@@ -215,6 +234,7 @@ public class MovementCriteriaDto implements Dto {
 		this.lastWeek = lastWeek;
 	}
 
+	
 	/**
 	 * @return the today
 	 */
@@ -222,6 +242,7 @@ public class MovementCriteriaDto implements Dto {
 		return today;
 	}
 
+	
 	/**
 	 * @param today the today to set
 	 */
@@ -229,6 +250,7 @@ public class MovementCriteriaDto implements Dto {
 		this.today = today;
 	}
 
+	
 	/**
 	 * @return the yesterday
 	 */
@@ -236,6 +258,7 @@ public class MovementCriteriaDto implements Dto {
 		return yesterday;
 	}
 
+	
 	/**
 	 * @param yesterday the yesterday to set
 	 */
@@ -243,6 +266,7 @@ public class MovementCriteriaDto implements Dto {
 		this.yesterday = yesterday;
 	}
 
+	
 	/**
 	 * @return the movement
 	 */
@@ -250,6 +274,7 @@ public class MovementCriteriaDto implements Dto {
 		return movement;
 	}
 
+	
 	/**
 	 * @param movement the movement to set
 	 */
@@ -257,6 +282,7 @@ public class MovementCriteriaDto implements Dto {
 		this.movement = movement;
 	}
 
+	
 	/**
 	 * @return the incomesOrExpenses
 	 */
@@ -264,6 +290,7 @@ public class MovementCriteriaDto implements Dto {
 		return incomesOrExpenses;
 	}
 
+	
 	/**
 	 * @param incomesOrExpenses the incomesOrExpenses to set
 	 */
@@ -271,6 +298,7 @@ public class MovementCriteriaDto implements Dto {
 		this.incomesOrExpenses = incomesOrExpenses;
 	}
 
+	
 	/**
 	 * @return the selectDate
 	 */
@@ -278,6 +306,7 @@ public class MovementCriteriaDto implements Dto {
 		return selectDate;
 	}
 
+	
 	/**
 	 * @param selectDate the selectDate to set
 	 */
@@ -285,6 +314,7 @@ public class MovementCriteriaDto implements Dto {
 		this.selectDate = selectDate;
 	}
 
+	
 	/**
 	 * @return the actionState
 	 */
@@ -292,6 +322,7 @@ public class MovementCriteriaDto implements Dto {
 		return actionState;
 	}
 
+	
 	/**
 	 * @param actionState the actionState to set
 	 */
@@ -299,6 +330,7 @@ public class MovementCriteriaDto implements Dto {
 		this.actionState = actionState;
 	}
 
+	
 	/**
 	 * @return the checkState
 	 */
@@ -306,6 +338,7 @@ public class MovementCriteriaDto implements Dto {
 		return checkState;
 	}
 
+	
 	/**
 	 * @param checkState the checkState to set
 	 */
@@ -313,6 +346,7 @@ public class MovementCriteriaDto implements Dto {
 		this.checkState = checkState;
 	}
 
+	
 	/**
 	 * @return the checkNumber
 	 */
@@ -320,6 +354,7 @@ public class MovementCriteriaDto implements Dto {
 		return checkNumber;
 	}
 
+	
 	/**
 	 * @param checkNumber the checkNumber to set
 	 */
@@ -327,6 +362,7 @@ public class MovementCriteriaDto implements Dto {
 		this.checkNumber = checkNumber;
 	}
 
+	
 	/**
 	 * @return the bookNumber
 	 */
@@ -334,6 +370,7 @@ public class MovementCriteriaDto implements Dto {
 		return bookNumber;
 	}
 
+	
 	/**
 	 * @param bookNumber the bookNumber to set
 	 */
@@ -349,16 +386,19 @@ public class MovementCriteriaDto implements Dto {
 				.append("lastTwoWeeks", getLastTwoWeeks()).append("lastWeek", getLastWeek())
 				.append("today", getToday()).append("yesterday", getYesterday()).append("movement", getMovement())
 				.append("incomesOrExpenses", getIncomesOrExpenses()).append("actionState", getActionState())
+				.append("checkState", getCheckState()).append("checkNumber", getCheckNumber())
 				.append("bookNumber", getBookNumber()).toString();
 	}
 
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder().append(getDateRange()).append(getBalanceRange()).append(getConcreteDateSince())
+		return new HashCodeBuilder().append(getDateRange()).append(getBalanceRange()).append(getConcreteDateSince()).append(getConcreteDateTo())
 				.append(getLastMonth()).append(getLasTwoMonth()).append(getLastTwoWeeks()).append(getLastWeek())
 				.append(getToday()).append(getYesterday()).append(getMovement()).append(getIncomesOrExpenses())
+				.append(getActionState()).append(getCheckState()).append(getCheckNumber()).append(getBookNumber())
 				.toHashCode();
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -367,6 +407,7 @@ public class MovementCriteriaDto implements Dto {
 				&& this.getDateRange().equals(((MovementCriteriaDto)obj).getDateRange())
 				&& this.getBalanceRange().equals(((MovementCriteriaDto)obj).getBalanceRange())
 				&& this.getConcreteDateSince().equals(((MovementCriteriaDto)obj).getConcreteDateSince())
+				&& this.getConcreteDateTo().equals(((MovementCriteriaDto)obj).getConcreteDateTo())
 				&& this.getLastMonth().equals(((MovementCriteriaDto)obj).getLastMonth())
 				&& this.getLasTwoMonth().equals(((MovementCriteriaDto)obj).getLasTwoMonth())
 				&& this.getLastTwoWeeks().equals(((MovementCriteriaDto)obj).getLastTwoWeeks())
@@ -374,7 +415,11 @@ public class MovementCriteriaDto implements Dto {
 				&& this.getToday().equals(((MovementCriteriaDto)obj).getToday())
 				&& this.getYesterday().equals(((MovementCriteriaDto)obj).getYesterday())
 				&& this.getMovement().equals(((MovementCriteriaDto)obj).getMovement())
-				&& this.getIncomesOrExpenses().equals(((MovementCriteriaDto)obj).getIncomesOrExpenses());
+				&& this.getIncomesOrExpenses().equals(((MovementCriteriaDto)obj).getIncomesOrExpenses())
+				&& this.getActionState().equals(((MovementCriteriaDto)obj).getActionState())
+				&& this.getCheckState().equals(((MovementCriteriaDto)obj).getCheckState())
+				&& this.getCheckNumber().equals(((MovementCriteriaDto)obj).getCheckNumber())
+				&& this.getBookNumber().equals(((MovementCriteriaDto)obj).getBookNumber());
 
 	}
 
