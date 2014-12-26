@@ -14,21 +14,44 @@
 
 <composite:interface>
 	<composite:attribute name="title" type="String" />
+	<composite:attribute name="value" />
+	<composite:attribute name="valueDateSince" />
+	<composite:attribute name="valueDateTo" />
+	<composite:attribute name="disabledButton" />
+	<composite:attribute name="disabledCalendar" />
+	<composite:attribute name="actionListenerDate"/>
+
+
+	<composite:attribute name="valueCheck" />
+	<composite:attribute name="valueCheckNumber" />
+	<composite:attribute name="valuecheckState" />
+	<composite:attribute name="valueBookNumber" />
+	<composite:attribute name="actionListenerCheck"
+		method-signature="void actionlistener(javax.faces.event.ActionEvent)" />
 </composite:interface>
 
 <composite:implementation>
 
-		<bbvaSearch:customSearchList classList="date-filter checkBooks"
-			classSpan="arrow-left-smaller" classSpanFilter="filter"
-			title="#{msg['text.date']}">
-			<bbvaSearch:customSearchFilter />
-		</bbvaSearch:customSearchList>
+	<bbvaSearch:customSearchList classList="date-filter checkBooks"
+		classSpan="arrow-left-smaller" classSpanFilter="filter"
+		title="#{msg['text.date']}">
+		<bbvaSearch:customSearchFilter value="#{cc.attrs.value}"
+			valueDateSince="#{cc.attrs.valueDateSince}"
+			valueDateTo="#{cc.attrs.valueDateTo}"
+			disabledButton="#{cc.attrs.disabledButton}"
+			disabledCalendar="#{cc.attrs.disabledCalendar}" 
+			actionListenerDate="#{cc.attrs.actionListenerDate}"/>
+	</bbvaSearch:customSearchList>
 
-		<bbvaSearch:checkBoxList
-			classList="check-books-ticket radio-filter mobile-hidden"
-			classSpan="arrow-left-smaller" classSpanFilter="filter"
-			title="#{msg['text.number.check.books']}">
-			<bbvaSearch:numberCheck />
-		</bbvaSearch:checkBoxList>
+	<bbvaSearch:checkBoxList
+		classList="check-books-ticket radio-filter mobile-hidden"
+		classSpan="arrow-left-smaller" classSpanFilter="filter"
+		title="#{msg['text.number.check.books']}">
+		<bbvaSearch:numberCheck valueCheck="#{cc.attrs.valueCheck}"
+			valueCheckNumber="#{cc.attrs.valueCheckNumber}"
+			valuecheckState="#{cc.attrs.valuecheckState}"
+			valueBookNumber="#{cc.attrs.valueBookNumber}" 
+			actionListenerCheck="#{cc.attrs.actionListenerCheck}"/>
+	</bbvaSearch:checkBoxList>
 </composite:implementation>
 </html>

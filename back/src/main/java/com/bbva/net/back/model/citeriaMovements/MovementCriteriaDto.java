@@ -23,7 +23,9 @@ public class MovementCriteriaDto implements Dto {
 
 	private BalanceRangeDto balanceRange = new BalanceRangeDto();
 
-	private Date concreteDate;
+	private Date concreteDateSince;
+
+	private Date concreteDateTo;
 
 	private Date lastMonth;
 
@@ -48,7 +50,7 @@ public class MovementCriteriaDto implements Dto {
 	private String checkNumber;
 
 	private String checkState;
-	
+
 	private String selectDate;
 
 	public MovementCriteriaDto() {
@@ -57,7 +59,8 @@ public class MovementCriteriaDto implements Dto {
 	/**
 	 * @param dateRange
 	 * @param balanceRange
-	 * @param concreteDate
+	 * @param concreteDateSince
+	 * @param concreteDateTo
 	 * @param lastMonth
 	 * @param lasTwoMonth
 	 * @param lastTwoWeeks
@@ -70,14 +73,17 @@ public class MovementCriteriaDto implements Dto {
 	 * @param bookNumber
 	 * @param checkNumber
 	 * @param checkState
+	 * @param selectDate
 	 */
-	public MovementCriteriaDto(DateRangeDto dateRange, BalanceRangeDto balanceRange, Date concreteDate, Date lastMonth,
-			Date lasTwoMonth, Date lastTwoWeeks, Date lastWeek, Date today, Date yesterday, String movement,
-			String incomesOrExpenses, String actionState, String bookNumber, String checkNumber, String checkState) {
+	public MovementCriteriaDto(DateRangeDto dateRange, BalanceRangeDto balanceRange, Date concreteDateSince,
+			Date concreteDateTo, Date lastMonth, Date lasTwoMonth, Date lastTwoWeeks, Date lastWeek, Date today,
+			Date yesterday, String movement, String incomesOrExpenses, String actionState, String bookNumber,
+			String checkNumber, String checkState, String selectDate) {
 		super();
 		this.dateRange = dateRange;
 		this.balanceRange = balanceRange;
-		this.concreteDate = concreteDate;
+		this.concreteDateSince = concreteDateSince;
+		this.concreteDateTo = concreteDateTo;
 		this.lastMonth = lastMonth;
 		this.lasTwoMonth = lasTwoMonth;
 		this.lastTwoWeeks = lastTwoWeeks;
@@ -90,6 +96,7 @@ public class MovementCriteriaDto implements Dto {
 		this.bookNumber = bookNumber;
 		this.checkNumber = checkNumber;
 		this.checkState = checkState;
+		this.selectDate = selectDate;
 	}
 
 	/**
@@ -121,17 +128,31 @@ public class MovementCriteriaDto implements Dto {
 	}
 
 	/**
-	 * @return the concreteDate
+	 * @return the concreteDateSince
 	 */
-	public Date getConcreteDate() {
-		return concreteDate;
+	public Date getConcreteDateSince() {
+		return concreteDateSince;
 	}
 
 	/**
-	 * @param concreteDate the concreteDate to set
+	 * @param concreteDateSince the concreteDateSince to set
 	 */
-	public void setConcreteDate(Date concreteDate) {
-		this.concreteDate = concreteDate;
+	public void setConcreteDateSince(Date concreteDateSince) {
+		this.concreteDateSince = concreteDateSince;
+	}
+
+	/**
+	 * @return the concreteDateTo
+	 */
+	public Date getConcreteDateTo() {
+		return concreteDateTo;
+	}
+
+	/**
+	 * @param concreteDateTo the concreteDateTo to set
+	 */
+	public void setConcreteDateTo(Date concreteDateTo) {
+		this.concreteDateTo = concreteDateTo;
 	}
 
 	/**
@@ -247,20 +268,6 @@ public class MovementCriteriaDto implements Dto {
 	}
 
 	/**
-	 * @return the actionState
-	 */
-	public String getActionState() {
-		return actionState;
-	}
-
-	/**
-	 * @param actionState the actionState to set
-	 */
-	public void setActionState(String actionState) {
-		this.actionState = actionState;
-	}
-
-	/**
 	 * @return the bookNumber
 	 */
 	public String getBookNumber() {
@@ -302,7 +309,6 @@ public class MovementCriteriaDto implements Dto {
 		this.checkState = checkState;
 	}
 
-	
 	/**
 	 * @return the selectDate
 	 */
@@ -310,7 +316,6 @@ public class MovementCriteriaDto implements Dto {
 		return selectDate;
 	}
 
-	
 	/**
 	 * @param selectDate the selectDate to set
 	 */
@@ -318,19 +323,34 @@ public class MovementCriteriaDto implements Dto {
 		this.selectDate = selectDate;
 	}
 
+	/**
+	 * @return the actionState
+	 */
+	public String getActionState() {
+		return actionState;
+	}
+
+	/**
+	 * @param actionState the actionState to set
+	 */
+	public void setActionState(String actionState) {
+		this.actionState = actionState;
+	}
+
 	@Override
 	public String toString() {
 		return new ToStringBuilder(this).append("dateRange", getDateRange()).append("balanceRange", getBalanceRange())
-				.append("concreteDate", getConcreteDate()).append("lastMonth", getLastMonth())
-				.append("lasTwoMonth", getLasTwoMonth()).append("lastTwoWeeks", getLastTwoWeeks())
-				.append("lastWeek", getLastWeek()).append("today", getToday()).append("yesterday", getYesterday())
-				.append("movement", getMovement()).append("incomesOrExpenses", getIncomesOrExpenses())
-				.append("actionState", getActionState()).append("bookNumber", getBookNumber()).toString();
+				.append("concreteDateSince", getConcreteDateSince()).append("concreteDateTo", getConcreteDateTo())
+				.append("lastMonth", getLastMonth()).append("lasTwoMonth", getLasTwoMonth())
+				.append("lastTwoWeeks", getLastTwoWeeks()).append("lastWeek", getLastWeek())
+				.append("today", getToday()).append("yesterday", getYesterday()).append("movement", getMovement())
+				.append("incomesOrExpenses", getIncomesOrExpenses()).append("actionState", getActionState())
+				.append("bookNumber", getBookNumber()).toString();
 	}
 
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder().append(getDateRange()).append(getBalanceRange()).append(getConcreteDate())
+		return new HashCodeBuilder().append(getDateRange()).append(getBalanceRange()).append(getConcreteDateSince())
 				.append(getLastMonth()).append(getLasTwoMonth()).append(getLastTwoWeeks()).append(getLastWeek())
 				.append(getToday()).append(getYesterday()).append(getMovement()).append(getIncomesOrExpenses())
 				.toHashCode();
@@ -342,7 +362,7 @@ public class MovementCriteriaDto implements Dto {
 		return (obj instanceof MovementCriteriaDto)
 				&& this.getDateRange().equals(((MovementCriteriaDto)obj).getDateRange())
 				&& this.getBalanceRange().equals(((MovementCriteriaDto)obj).getBalanceRange())
-				&& this.getConcreteDate().equals(((MovementCriteriaDto)obj).getConcreteDate())
+				&& this.getConcreteDateSince().equals(((MovementCriteriaDto)obj).getConcreteDateSince())
 				&& this.getLastMonth().equals(((MovementCriteriaDto)obj).getLastMonth())
 				&& this.getLasTwoMonth().equals(((MovementCriteriaDto)obj).getLasTwoMonth())
 				&& this.getLastTwoWeeks().equals(((MovementCriteriaDto)obj).getLastTwoWeeks())

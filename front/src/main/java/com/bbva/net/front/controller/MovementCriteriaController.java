@@ -90,5 +90,12 @@ public interface MovementCriteriaController {
 	 * @param event
 	 */
 	public void preRender(ComponentSystemEvent event);
+	
+	
+	/**
+	 * 
+	 * @param event
+	 */
+	public void setCustomDate(ActionEvent event);
 
 }

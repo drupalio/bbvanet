@@ -28,8 +28,6 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 
 	private static final Integer LIST_CHECK_STATUS = 2;
 
-	private boolean disabledConcreteDate = false;
-
 	private boolean disbaledNumberBook = true;
 
 	private boolean disabledNumberCheck = true;
@@ -71,9 +69,11 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 		if (movementCriteria.getSelectDate().equals(CONCRETE_DATE)) {
 			setDisabledCalendar(false);
 			setDisabledButtonDate(false);
-		} else {
+			System.out.println("if " +isDisabledCalendar()+isDisabledButtonDate());
+		} else {			
 			setDisabledCalendar(true);
 			setDisabledButtonDate(false);
+			System.out.println("else" +isDisabledCalendar()+isDisabledButtonDate());
 		}
 	}
 
@@ -164,6 +164,12 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 		}
 	}
 
+	@Override
+	public void setCustomDate(ActionEvent event) {
+		System.out.println("setCustomDate");
+
+	}
+
 	/**
 	 * @return the movementCriteria
 	 */
@@ -176,20 +182,6 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 	 */
 	public void setMovementCriteria(MovementCriteriaDto movementCriteria) {
 		this.movementCriteria = movementCriteria;
-	}
-
-	/**
-	 * @return the renderedConcreteDate
-	 */
-	public boolean isRenderedConcreteDate() {
-		return disabledConcreteDate;
-	}
-
-	/**
-	 * @param renderedConcreteDate the renderedConcreteDate to set
-	 */
-	public void setRenderedConcreteDate(boolean renderedConcreteDate) {
-		this.disabledConcreteDate = renderedConcreteDate;
 	}
 
 	/**
