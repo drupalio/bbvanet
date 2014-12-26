@@ -7,9 +7,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for Conditions complex type.
+ * <p>Clase Java para Conditions complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="Conditions">
@@ -49,7 +49,7 @@ public class Conditions {
     protected String mobilizationConditions;
 
     /**
-     * Gets the value of the category property.
+     * Obtiene el valor de la propiedad category.
      * 
      * @return
      *     possible object is
@@ -61,7 +61,7 @@ public class Conditions {
     }
 
     /**
-     * Sets the value of the category property.
+     * Define el valor de la propiedad category.
      * 
      * @param value
      *     allowed object is
@@ -73,7 +73,7 @@ public class Conditions {
     }
 
     /**
-     * Gets the value of the description property.
+     * Obtiene el valor de la propiedad description.
      * 
      * @return
      *     possible object is
@@ -85,7 +85,7 @@ public class Conditions {
     }
 
     /**
-     * Sets the value of the description property.
+     * Define el valor de la propiedad description.
      * 
      * @param value
      *     allowed object is
@@ -97,7 +97,7 @@ public class Conditions {
     }
 
     /**
-     * Gets the value of the openingDate property.
+     * Obtiene el valor de la propiedad openingDate.
      * 
      * @return
      *     possible object is
@@ -109,7 +109,7 @@ public class Conditions {
     }
 
     /**
-     * Sets the value of the openingDate property.
+     * Define el valor de la propiedad openingDate.
      * 
      * @param value
      *     allowed object is
@@ -121,7 +121,7 @@ public class Conditions {
     }
 
     /**
-     * Gets the value of the commission property.
+     * Obtiene el valor de la propiedad commission.
      * 
      * @return
      *     possible object is
@@ -133,7 +133,7 @@ public class Conditions {
     }
 
     /**
-     * Sets the value of the commission property.
+     * Define el valor de la propiedad commission.
      * 
      * @param value
      *     allowed object is
@@ -145,7 +145,7 @@ public class Conditions {
     }
 
     /**
-     * Gets the value of the office property.
+     * Obtiene el valor de la propiedad office.
      * 
      * @return
      *     possible object is
@@ -157,7 +157,7 @@ public class Conditions {
     }
 
     /**
-     * Sets the value of the office property.
+     * Define el valor de la propiedad office.
      * 
      * @param value
      *     allowed object is
@@ -169,7 +169,7 @@ public class Conditions {
     }
 
     /**
-     * Gets the value of the mobilizationConditions property.
+     * Obtiene el valor de la propiedad mobilizationConditions.
      * 
      * @return
      *     possible object is
@@ -181,7 +181,7 @@ public class Conditions {
     }
 
     /**
-     * Sets the value of the mobilizationConditions property.
+     * Define el valor de la propiedad mobilizationConditions.
      * 
      * @param value
      *     allowed object is

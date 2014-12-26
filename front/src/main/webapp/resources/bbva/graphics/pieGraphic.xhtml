@@ -16,7 +16,7 @@
 <composite:implementation>
 
 
-	<h:form>
+	<h:form id="tuform">
 		<div align="center">
 			<div style="display: inline-block;">
 				<span
@@ -38,7 +38,7 @@
 		</div>
 		<div class="chart-cheese" id="tu-situacion-grafico"
 			data-highcharts-chart="3">
-			<div id="chart" />
+			<div id="chart2_1"></div>
 		</div>
 
 	</h:form>
@@ -60,8 +60,8 @@
 			totalColums.push(colums);
 			</c:forEach>
 
-			var chart = c3.generate({
-
+			var chart2_1 = c3.generate({
+				bindto: '#chart2_1',
 				data : {
 
 					size: { height: 240, width: 480 },

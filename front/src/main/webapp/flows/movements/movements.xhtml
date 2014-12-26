@@ -10,6 +10,7 @@
 	xmlns:bbvaAlert="http://java.sun.com/jsf/composite/bbva/alert"
 	xmlns:bbvaBody="http://java.sun.com/jsf/composite/bbva/body"
 	xmlns:bbvaContainer="http://java.sun.com/jsf/composite/bbva/container"
+	xmlns:bbvaDetailMotion="http://java.sun.com/jsf/composite/bbva/movementsDetail"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:jsf="http://xmlns.jcp.org/jsf">
 
@@ -24,13 +25,16 @@
 	</ui:define>
 
 	<ui:define name="contentLeft">
-	
+
 		<h1>#{movementsAccountController.selectedProduct.productId}</h1>
-	
+		<div class="table-tabs">
+			<bbvaDetailMotion:detailMovesTable id="detailAccounts"
+				listAccounts="#{customerAccounts}" />
+		</div>
 	</ui:define>
 
 	<ui:define name="contentRight">
-	
+
 	</ui:define>
 
 </ui:composition>
