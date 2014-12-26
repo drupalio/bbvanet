@@ -14,6 +14,7 @@ import com.bbva.net.back.facade.GlobalMovementsFacade;
 import com.bbva.net.back.facade.GlobalPositionFacade;
 import com.bbva.net.back.model.commons.Money;
 import com.bbva.net.back.model.globalposition.GlobalProductsDTO;
+import com.bbva.net.back.model.globalposition.ProductDTO;
 import com.bbva.net.front.controller.GlobalPositionController;
 import com.bbva.net.front.core.AbstractBbvaController;
 import com.bbva.net.front.delegate.GraphicBarLineDelegate;
@@ -21,6 +22,7 @@ import com.bbva.net.front.delegate.GraphicPieDelegate;
 import com.bbva.net.front.ui.accounts.AccountsPieUI;
 import com.bbva.net.front.ui.globalposition.AccountBarLineUI;
 import com.bbva.net.front.ui.globalposition.SituationPiesUI;
+import com.bbva.net.front.ui.pie.PieConfigUI;
 
 @Controller(value = "globalPositionController")
 public class GlobalPositionControllerImpl extends AbstractBbvaController implements GlobalPositionController {
@@ -49,6 +51,16 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	private AccountBarLineUI accountGraphicBarLineUI;
 
+	private PieConfigUI graphicPieProducts;
+
+	public PieConfigUI getGraphicPieProducts() {
+		return graphicPieProducts;
+	}
+
+	public void setGraphicPieProducts(PieConfigUI graphicPieProducts) {
+		this.graphicPieProducts = graphicPieProducts;
+	}
+
 	private ActivePanelType activePanel = ActivePanelType.SITUATION;
 
 	private Map<EnumProductType, Money> totalsProducts;
@@ -74,6 +86,9 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 		// Calculate investmentFunds graphics panels
 		this.investmentFundsPieUI = graphicPieDelegate.getAccountsfundsProducts(this.globalProductsDTO);
+
+		// Calculate situation graphics panels
+		this.graphicPieProducts = graphicPieDelegate.getGeneralGraphicConfig(this.globalProductsDTO);
 
 		// Calculate totals
 		this.totalsProducts = this.globalPositionFacade.getTotalsByProduct(globalProductsDTO);
@@ -114,6 +129,11 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	public void renderPieFinanciation() {
 		this.activePanel = ActivePanelType.FINANCIATION;
 		initChart();
+	}
+
+	public void onAccountSelected(final SelectEvent selectEvent) {
+		ProductDTO a = (ProductDTO)selectEvent.getObject();
+		System.out.print("hooola " + a.getProductId());
 	}
 
 	public String getActivePanel() {

@@ -4,6 +4,11 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/webflow 
     http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
 	
+	<on-start>
+		<evaluate expression="accountsController.getCustomerAccounts()"
+			result="flowScope.customerAccounts" />
+	</on-start>
+	
 	<view-state id="movements">
 		<on-entry>
 			<set name="flowScope.menuActive" value="'ACCOUNTS'" />

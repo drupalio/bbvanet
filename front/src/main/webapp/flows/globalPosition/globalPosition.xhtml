@@ -51,11 +51,13 @@
 					listProduct="#{customerProductsHidden.accounts}" />
 				<bbvaGP:totalBalance util="#{msg['text.accountant']}" currency="$"
 					total="1234" subtotal="567" />
+					
+					
 			</div>
 
 		</bbvaContainer:productPanelBarGraphic>
 
-		<bbvaContainer:productPanelGraphic title="#{msg['title.cards']}">
+		<bbvaContainer:productPanelGraphics title="#{msg['title.cards']}" pieGrapihic="#{globalPositionController.graphicPieProducts}">
 			<div class="table-tabs">
 				<bbvaGP:cardHeadTable controller="#{globalPositionController}"
 					listCards="#{customerProducts.creditCards}" />
@@ -68,7 +70,7 @@
 				<bbvaGP:totalBalance util="#{msg['text.used']}" currency="$"
 					total="1234" subtotal="567" />
 			</div>
-		</bbvaContainer:productPanelGraphic>
+		</bbvaContainer:productPanelGraphics>
 
 		<bbvaContainer:productPanel title="#{msg['title.rotaryQuota']}">
 			<div class="table-tabs">

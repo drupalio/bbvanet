@@ -10,7 +10,6 @@
 	xmlns:bbvaAlert="http://java.sun.com/jsf/composite/bbva/alert"
 	xmlns:bbvaBody="http://java.sun.com/jsf/composite/bbva/body"
 	xmlns:bbvaContainer="http://java.sun.com/jsf/composite/bbva/container"
-	xmlns:bbvaDetailMotion="http://java.sun.com/jsf/composite/bbva/movementsDetail"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:jsf="http://xmlns.jcp.org/jsf">
 
@@ -18,7 +17,7 @@
 <ui:composition template="../../templates/defaultLayout.xhtml">
 
 	<ui:define name="bodyTitle">
-		<bbvaBody:title title="#{msg['title.accountsPersonal']}">
+		<bbvaBody:title title="#{msg['title.cards']}">
 			<bbvaBody:titleOptionProduct optionButttonLeft="Mis productos"
 				optionButttonRight="Catálogo de productos" />
 		</bbvaBody:title>
@@ -26,14 +25,26 @@
 
 	<ui:define name="contentLeft">
 
-		<h1>#{movementsAccountController.selectedProduct.productId}</h1>
-		<div class="table-tabs">
-			<bbvaDetailMotion:detailMovesTable id="detailAccounts"
-				listAccounts="#{customerAccounts}" />
-		</div>
+		<bbvaContainer:productPanelGraphics title="#{msg['title.cards']}" pieGrapihic="#{globalPositionController.graphicPieProducts}">
+			<div class="table-tabs">
+				<bbvaGP:cardHeadTable listCards="#{customerProducts.creditCards}" />
+				<bbvaGP:cardTailTable
+					listCards="#{customerProductsHidden.creditCards}" />
+			</div>
+
+			<div class="row afterTable">
+				<bbvaGP:productFooter
+					listProduct="#{customerProductsHidden.creditCards}" />
+				<bbvaGP:totalBalance util="#{msg['text.used']}" currency="$"
+					total="1234" subtotal="567" />
+			</div>
+			
+		</bbvaContainer:productPanelGraphics>
+
 	</ui:define>
 
 	<ui:define name="contentRight">
+
 
 	</ui:define>
 
