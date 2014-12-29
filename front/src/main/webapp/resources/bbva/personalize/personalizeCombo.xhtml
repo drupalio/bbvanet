@@ -23,13 +23,15 @@
 	<composite:attribute name="size" />
 	<composite:attribute name="ajaxCom" required="false"
 		method-signature="void listen(javax.faces.event.AjaxBehaviorEvent)" />
+
 	<composite:attribute name="classIcon" />
 	<composite:attribute name="labelIcon" />
 	<composite:attribute name="idCombo" />
 
 	<composite:attribute name="valueButton" />
 	<composite:attribute name="idButton" />
-	<composite:attribute name="actionListener" />
+	<composite:attribute name="actionListenerCom"
+		method-signature="void actionlistener(javax.faces.event.ActionEvent)" />
 
 </composite:interface>
 
@@ -53,11 +55,11 @@
 					size="#{cc.attrs.size}" value="#{cc.attrs.value}" />
 			</c:if>
 
-			<c:if test="#{cc.getValueExpression('size') == 'smallCombo'}">
+			<c:if test="#{cc.attrs.size == 'smallCombo'}">
 				<bbvaButton:iconButton id="#{cc.attrs.idButton}"
 					value="#{cc.attrs.valueButton}" type="submit"
 					style="margin-top:6px !important"
-					actionListener="#{cc.attrs.actionListener}">
+					actionListener="#{cc.attrs.actionListenerCom}">
 				</bbvaButton:iconButton>
 			</c:if>
 		</div>

@@ -30,7 +30,7 @@
 		</div>
 		<div class="chart-cheese" id="#{cc.attrs.id}"
 			data-highcharts-chart="3">
-			<div id="chart2_2" class="c3"></div>
+			<div id="chart2_4" class="c3"></div>
 		</div>
 
 	</h:form>
@@ -38,8 +38,8 @@
 
 
 	<script>
-	
-	//function initChart() {
+		//function initChart() {
+
 		var totalColums = [];
 		var label;
 		var colums;
@@ -53,13 +53,18 @@
 		</c:forEach>
 
 		var chart = c3.generate({
-			bindto : '#chart2_2',
-			data : {
+			bindto : '#chart2_4',
 
+			legend : {
+				position : 'top'
+			},
+
+			data : {
 				size : {
 					height : 240,
 					width : 480
 				},
+
 				columns : totalColums,
 
 				type : 'pie',
@@ -72,9 +77,10 @@
 				onmouseout : function(d, i) {
 					console.log("onmouseout", d, i);
 				}
-			}
+			},
+		});
+
 		//};
-		
 	</script>
 
 

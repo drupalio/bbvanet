@@ -119,7 +119,7 @@
 			</div>
 		</bbvaContainer:productPanel>
 
-		<bbvaContainer:productPanelGraphic
+		<bbvaContainer:productPanelLineGraphic
 			title="#{msg['title.electronicDeposit']}">
 			<div class="table-tabs">
 				<bbvaGP:depositHeadTable controller="#{globalPositionController}"
@@ -133,12 +133,13 @@
 				<bbvaGP:totalBalance util="#{msg['text.accountant']}" currency="$"
 					total="1234" subtotal="567" />
 			</div>
-		</bbvaContainer:productPanelGraphic>
+		</bbvaContainer:productPanelLineGraphic>
 
 		<bbvaContainer:productPanelGraphic id="fundsPieGP"
 			title="#{msg['title.investmentFunds']}"
 			header="#{msg['graphicFunds.tittle']}"
 			pieGraphic="#{globalPositionController.graphicPieInvestmentFunds}">
+
 			<div class="table-tabs">
 				<bbvaGP:investmentFundHeadTable
 					controller="#{globalPositionController}"

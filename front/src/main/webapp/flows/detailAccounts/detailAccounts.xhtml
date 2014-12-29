@@ -55,7 +55,7 @@
 			<div class="tab-content">
 
 				<bbvaSearch:tabCriteria>
-					<bbvaSearch:personalizedSearchContainer />
+					<bbvaSearch:personalizedSearchDate />
 				</bbvaSearch:tabCriteria>
 
 				<bbvaAcc:termsAccounts>
@@ -131,7 +131,7 @@
 					<bbvaPersonalize:personalizeInputClass
 						divClass="customize-product-name" nameButton="buttonAdd"
 						valueLabel="#{msg['text.nameProduct']}" idButton="buttonUpdate"
-						idInput="inputName" valueButton="#{msg['button.save']}"
+						idInput="inputName" valueButton="#{msg['button.add']}"
 						valueInput="#{personalizeProductAccountController.personalizeProductAccountDto.alias}" />
 					<span class="separator"></span>
 
@@ -139,7 +139,8 @@
 						idCombo="comboOne" divClass="customize-virtual"
 						valueButton="#{msg['button.save']}" idButton="buttonComboOne"
 						valueLabel="#{msg['text.virtualCorresp']}"
-						ajax="#{personalizeProductAccountController.offMessage}"
+						actionListenerCom="#{personalizeProductAccountController.successful}"
+						ajaxCom="#{personalizeProductAccountController.offMessage}"
 						value="#{personalizeProductAccountController.personalizeProductAccountDto.virtualMail}" />
 					<bbvaMessage:messageCheck
 						render="#{personalizeProductAccountController.menSuccessful}" />
@@ -174,6 +175,8 @@
 			<bbvaDetailMotion:detailMovesTable id="detailAccounts"
 				listAccounts="#{customerAccounts}" />
 		</div>
+
+
 	</ui:define>
 
 	<ui:define name="contentRight">
