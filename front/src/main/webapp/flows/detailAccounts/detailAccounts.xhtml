@@ -24,9 +24,10 @@
 <ui:composition template="../../templates/defaultLayout.xhtml">
 
 	<ui:define name="bodyTitle">
-		<bbvaBody:title title="#{msg['title.accountsPersonal']}">
-			<bbvaBody:titleOptionProduct optionButttonLeft="Mis productos"
-				optionButttonRight="Catálogo de productos" />
+		<bbvaBody:title title="#{msg['title.loans']}">
+			<bbvaBody:titleOptionProduct
+				optionButttonLeft="#{msg['title.myProducts']}"
+				optionButttonRight="#{msg['title.productCatalog']}" />
 		</bbvaBody:title>
 	</ui:define>
 
@@ -37,6 +38,7 @@
 				<bbvaDetAcc:itemTabMenu title="#{msg['text.consult']}"
 					icon="iconFont-611" classLi="tab-left consultas-btn" type="2"
 					role="#tab-consultas" />
+
 				<bbvaDetAcc:itemTabMenu title="#{msg['text.operations']}"
 					icon="iconFont-015" classLi="tab-left operaciones-btn" type="2" />
 
@@ -44,8 +46,8 @@
 					role="#tab-personalizar" classLi="tab-right hidden-xs hidden-sm"
 					type="1" />
 				<bbvaDetAcc:itemTabMenu title="#{msg['text.conditions']}"
-					icon="iconFont-104" classLi="tab-right" type="1"
-					role="#tab-condiciones" />
+					role="#tab-condiciones" classLi="tab-right hidden-xs hidden-sm"
+					type="1" />
 				<bbvaDetAcc:itemTabMenu title="#{msg['text.personalized']}"
 					icon="iconFont-217" classLi="tab-right hidden-md hidden-lg"
 					type="1" />
@@ -128,15 +130,15 @@
 				<bbvaPersonalize:personalizeAccount>
 					<bbvaPersonalize:personalizeInputClass
 						divClass="customize-product-name" nameButton="buttonAdd"
-						valueLabel="#{msg['text.nameProduct']}" idButton="cc" idInput="dd"
-						valueButton="#{msg['button.save']}" classButton="btn btn-default"
+						valueLabel="#{msg['text.nameProduct']}" idButton="buttonUpdate"
+						idInput="inputName" valueButton="#{msg['button.save']}"
 						valueInput="#{personalizeProductAccountController.personalizeProductAccountDto.alias}" />
 					<span class="separator"></span>
 
 					<bbvaPersonalize:personalizeCombo size="smallCombo"
-						idComboOne="comboOne" divClass="customize-virtual"
-						valueButton="#{msg['button.save']}"
-						valueLabel="#{msg['text.virtualCorresp']}" idButton="datas"
+						idCombo="comboOne" divClass="customize-virtual"
+						valueButton="#{msg['button.save']}" idButton="buttonComboOne"
+						valueLabel="#{msg['text.virtualCorresp']}"
 						ajax="#{personalizeProductAccountController.offMessage}"
 						value="#{personalizeProductAccountController.personalizeProductAccountDto.virtualMail}" />
 					<bbvaMessage:messageCheck
@@ -144,30 +146,27 @@
 					<span class="separator"></span>
 
 					<bbvaPersonalize:personalizeCombo size="bigCombo"
-						idComboOne="comboTwo" divClass="customize-online"
+						idCombo="comboTwo" divClass="customize-online"
 						classIcon="icon-info-blue" valueLabel="#{msg['text.consult']}"
 						labelIcon="#{msg['text.online']}"
 						value="#{personalizeProductAccountController.personalizeProductAccountDto.searchOnline}" />
 
 					<bbvaPersonalize:personalizeCombo size="bigCombo"
-						idComboOne="comboThree" divClass="customize-online"
+						idCombo="comboThree" divClass="customize-online"
 						classIcon="icon-info-blue" valueLabel="#{msg['text.work']}"
 						labelIcon="#{msg['text.online']}"
 						value="#{personalizeProductAccountController.personalizeProductAccountDto.operationOnline}" />
 
 					<bbvaButton:iconButton id="buttonThree" type="submit"
 						actionListener="#{personalizeProductAccountController.operKey}"
-						value="#{msg['button.save']}" style="margin-top:6px !important"
-						classB="btn btn-default" />
+						value="#{msg['button.save']}" classB="btn btn-default"
+						style="margin: -6px 30px 20px !important" />
 
 					<bbvaMessage:divOperationKey idComfirm="buttonFour"
 						idInput="inputTwo" nameB="buttonConfirm" idInputDiv="divClass"
 						render="#{personalizeProductAccountController.menOperationKey}"
 						value="#{personalizeProductAccountController.personalizeProductAccountDto.operationKey}" />
 				</bbvaPersonalize:personalizeAccount>
-				
-			
-				
 			</div>
 		</bbvaDetAcc:tabMenu>
 
@@ -175,8 +174,6 @@
 			<bbvaDetailMotion:detailMovesTable id="detailAccounts"
 				listAccounts="#{customerAccounts}" />
 		</div>
-
-		<bbvaDetailMotion:tableContent />
 	</ui:define>
 
 	<ui:define name="contentRight">

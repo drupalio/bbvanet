@@ -125,6 +125,7 @@ div.ui-corner-all {
 	border-radius: 6px !important;
 	float: left !important;
 	width: 100% !important;
+	max-width: 410px !important;
 }
 
 div.ui-state-default {
@@ -208,7 +209,7 @@ div.ui-state-default {
 
 .button-text-only {
 	font-size: 13px;
-	margin-top: -5px !important;
+	s margin-top: -5px !important;
 }
 
 button.ui-state-default {
@@ -216,6 +217,10 @@ button.ui-state-default {
 	height: 40px !important;
 	text-align: center !important;
 	padding: 12px 14px !important;
+}
+
+input.ui-state-hover {
+	background: none !important;
 }
 
 .table-ui-button {
@@ -242,7 +247,6 @@ td.ui-datatable-subtable-header:empty {
 }
 
 .ui-button {
-  color: #333333 !important; 
-  background-color: white !important;
-  border-color: #cccccc !important;
+	background-color: white !important;
+	border-color: #cccccc !important;
 }

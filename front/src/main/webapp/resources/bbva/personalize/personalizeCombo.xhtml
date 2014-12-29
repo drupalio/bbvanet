@@ -21,11 +21,11 @@
 
 	<composite:attribute name="value" />
 	<composite:attribute name="size" />
-	<composite:attribute name="ajax" required="false"
+	<composite:attribute name="ajaxCom" required="false"
 		method-signature="void listen(javax.faces.event.AjaxBehaviorEvent)" />
 	<composite:attribute name="classIcon" />
 	<composite:attribute name="labelIcon" />
-	<composite:attribute name="idComboOne" />
+	<composite:attribute name="idCombo" />
 
 	<composite:attribute name="valueButton" />
 	<composite:attribute name="idButton" />
@@ -41,9 +41,18 @@
 			<span class="#{cc.attrs.classIcon}">#{cc.attrs.labelIcon}</span>
 		</p:outputLabel>
 		<div class="rigthDiv">
-			<bbvaButton:comboButtons idCombo="#{cc.attrs.idComboOne}"
-				size="#{cc.attrs.size}" ajax="#{cc.attrs.ajax}"
-				value="#{cc.attrs.value}" />
+
+			<c:if test="#{cc.getValueExpression('ajaxCom') != null}">
+				<bbvaButton:comboButtons idCombo="#{cc.attrs.idCombo}"
+					size="#{cc.attrs.size}" value="#{cc.attrs.value}"
+					ajax="#{cc.attrs.ajaxCom}" />
+			</c:if>
+
+			<c:if test="#{cc.getValueExpression('ajaxCom') == null}">
+				<bbvaButton:comboButtons idCombo="#{cc.attrs.idCombo}"
+					size="#{cc.attrs.size}" value="#{cc.attrs.value}" />
+			</c:if>
+
 			<c:if test="#{cc.getValueExpression('size') == 'smallCombo'}">
 				<bbvaButton:iconButton id="#{cc.attrs.idButton}"
 					value="#{cc.attrs.valueButton}" type="submit"
