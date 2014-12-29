@@ -41,9 +41,9 @@
 			<bbvaHeader:executive>
 				<bbvaHeader:executiveHeader title="#{msg['text.executive']}:" dat="#{headerController.getEjecutivo().name}"/>
 				<bbvaHeader:executiveBody>
-					<bbvaHeader:executiveItem link="https://www.google.es/maps/#{executive.coordenadas}" targe="_blank" icono="office" data="#{executive.office.name}" dataSmall="#{executive.office.addres}"/>
-					<bbvaHeader:executiveItem link="tel:#{executive.phone}"  icono="phone" data="#{executive.phone}" />
-					<bbvaHeader:executiveItem link="mailto:#{executive.mail}"  icono="mail" data="#{executive.mail}" />
+					<bbvaHeader:executiveItem link="https://www.google.es/maps/#{headerController.getEjecutivo().coordenadas}" targe="_blank" icono="office" data="#{headerController.getEjecutivo().office.name}" dataSmall="#{headerController.getEjecutivo().office.addres}"/>
+					<bbvaHeader:executiveItem link="tel:#{executive.phone}"  icono="phone" data="#{headerController.getEjecutivo().phone}" />
+					<bbvaHeader:executiveItem link="mailto:#{executive.mail}"  icono="mail" data="#{headerController.getEjecutivo().mail}" />
 				</bbvaHeader:executiveBody>
 			</bbvaHeader:executive>
 
