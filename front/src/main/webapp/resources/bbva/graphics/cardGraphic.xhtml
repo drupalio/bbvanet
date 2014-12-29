@@ -18,11 +18,7 @@
 
 	<h:form id="pieGe">
 		<div align="center">
-			<div style="display: inline-block;">
-				<span
-					style="color: #274b6d; font-size: 16px; font: bold 16px Trebuchet MS, Arial, sans-serif; font-size: 14px; fill: #274b6d; width: 232px;">
-					#{cc.attrs.pieConfigUI.headerLeft}</span>
-			</div>
+			
 			<div style="display: inline-block;" align="center">
 			
 			<span
@@ -30,15 +26,11 @@
 					#{cc.attrs.pieConfigUI.headerCenter}</span>
 			
 			</div>
-			<div style="display: inline-block;">
-				<span
-					style="color: #0073c9; font: bold 12px Trebuchet MS, Arial, sans-serif; font-size: 18px; font-family: Arial; fill: #0073c9; width: 232px;">
-					#{cc.attrs.pieConfigUI.headerRight}</span>
-			</div>
+
 		</div>
-		<div class="chart-cheese" id="1234"
+		<div class="chart-cheese" id="#{cc.attrs.id}"
 			data-highcharts-chart="3">
-			<div id="chart2_2"></div>
+			<div id="chart2_2" class="c3"></div>
 		</div>
 
 	</h:form>
@@ -46,7 +38,7 @@
 
 
 	<script>
-		function initChart() {
+		//function initChart() {
 
 			var totalColums = [];
 			var label;
@@ -60,7 +52,7 @@
 			totalColums.push(colums);
 			</c:forEach>
 
-			var chart2_2 = c3.generate({
+			var chart = c3.generate({
 				bindto: '#chart2_2',
 				data : {
 					
@@ -80,7 +72,7 @@
 				}
 			});
 
-		};
+		//};
 	</script>
 
 

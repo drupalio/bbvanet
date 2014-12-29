@@ -836,7 +836,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"type": "LO",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A6",
-	"financialState": "A",
+	"financialState": "P",
 	"visible": true,
 	"operable": true,
 	"balance": {
@@ -1496,7 +1496,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"type": "TDC",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A11",
-	"financialState": "A",
+	"financialState": "P",
 	"visible": true,
 	"operable": true,
 	"balance": {
@@ -1628,7 +1628,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"type": "TDC",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A12",
-	"financialState": "A",
+	"financialState": "P",
 	"visible": true,
 	"operable": true,
 	"balance": {
@@ -1760,7 +1760,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"type": "LI",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A13",
-	"financialState": "A",
+	"financialState": "P",
 	"visible": true,
 	"operable": true,
 	"balance": {
@@ -1892,7 +1892,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"type": "TDC",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A14",
-	"financialState": "A",
+	"financialState": "P",
 	"visible": true,
 	"operable": true,
 	"balance": {
@@ -2024,7 +2024,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"type": "LI",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A15",
-	"financialState": "A",
+	"financialState": "P",
 	"visible": true,
 	"operable": true,
 	"balance": {
@@ -2552,7 +2552,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"type": "LI",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A19",
-	"financialState": "A",
+	"financialState": "P",
 	"visible": true,
 	"operable": true,
 	"balance": {
@@ -3515,7 +3515,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"type": "LO",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A6",
-	"financialState": "A",
+	"financialState": "P",
 	"visible": true,
 	"operable": true,
 	"balance": {
@@ -4175,7 +4175,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"type": "TDC",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A11",
-	"financialState": "A",
+	"financialState": "P",
 	"visible": true,
 	"operable": true,
 	"balance": {
@@ -4307,7 +4307,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"type": "TDC",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A12",
-	"financialState": "A",
+	"financialState": "P",
 	"visible": true,
 	"operable": true,
 	"balance": {
@@ -4439,7 +4439,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"type": "LI",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A13",
-	"financialState": "A",
+	"financialState": "P",
 	"visible": true,
 	"operable": true,
 	"balance": {
@@ -4571,7 +4571,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"type": "TDC",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A14",
-	"financialState": "A",
+	"financialState": "P",
 	"visible": true,
 	"operable": true,
 	"balance": {
@@ -4703,7 +4703,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"type": "LI",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A15",
-	"financialState": "A",
+	"financialState": "P",
 	"visible": true,
 	"operable": true,
 	"balance": {
@@ -5231,7 +5231,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"type": "LI",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A19",
-	"financialState": "A",
+	"financialState": "P",
 	"visible": true,
 	"operable": true,
 	"balance": {

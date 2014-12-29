@@ -4,10 +4,11 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
+import javax.faces.bean.ManagedBean;
 import javax.faces.event.ComponentSystemEvent;
+import javax.faces.view.ViewScoped;
 
 import org.primefaces.event.SelectEvent;
-import org.springframework.stereotype.Controller;
 
 import com.bbva.czic.dto.net.EnumProductType;
 import com.bbva.net.back.facade.GlobalMovementsFacade;
@@ -24,7 +25,8 @@ import com.bbva.net.front.ui.globalposition.AccountBarLineUI;
 import com.bbva.net.front.ui.globalposition.SituationPiesUI;
 import com.bbva.net.front.ui.pie.PieConfigUI;
 
-@Controller(value = "globalPositionController")
+@ManagedBean
+@ViewScoped
 public class GlobalPositionControllerImpl extends AbstractBbvaController implements GlobalPositionController {
 
 	private static final long serialVersionUID = 5726824668267606699L;
@@ -100,7 +102,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	@Override
 	public void preRender(final ComponentSystemEvent event) {
-		this.selectedProduct = null;
+
 	}
 
 	@Override

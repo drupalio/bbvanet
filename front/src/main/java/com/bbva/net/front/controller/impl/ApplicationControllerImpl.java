@@ -21,7 +21,7 @@ public class ApplicationControllerImpl extends AbstractBbvaController implements
 	private static final long serialVersionUID = -7098769540244437001L;
 
 	// private GraphicUI graphicUI;
-	private Integer LISTA_QUIEROS = 1;
+	private static final Integer LIKE_LIST = 1;
 
 	private ItemMenu menuActive = ItemMenu.PG;
 
@@ -30,6 +30,9 @@ public class ApplicationControllerImpl extends AbstractBbvaController implements
 
 	private List<MultiValueGroup> likes;
 
+	/**
+	 * 
+	 */
 	@PostConstruct
 	public void init() {
 		this.likes = this.getListMultiValueLikes();
@@ -40,7 +43,7 @@ public class ApplicationControllerImpl extends AbstractBbvaController implements
 	 */
 	@Override
 	public List<MultiValueGroup> getListMultiValueLikes() {
-		return this.multiValueGroupFacade.getMultiValueTypes(LISTA_QUIEROS);
+		return this.multiValueGroupFacade.getMultiValueTypes(LIKE_LIST);
 	}
 
 	/**
@@ -50,12 +53,18 @@ public class ApplicationControllerImpl extends AbstractBbvaController implements
 		this.multiValueGroupFacade = multiValueGroupFacade;
 	}
 
+	/**
+	 * @return
+	 */
 	public List<MultiValueGroup> getLikes() {
 		return likes;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
-	public void setMenuActive(ItemMenu menuActive) {
+	public void setMenuActive(final ItemMenu menuActive) {
 		this.menuActive = menuActive;
 	}
 

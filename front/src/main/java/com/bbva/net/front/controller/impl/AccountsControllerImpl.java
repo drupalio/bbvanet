@@ -4,16 +4,18 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
 import org.primefaces.event.SelectEvent;
-import org.springframework.stereotype.Controller;
 
 import com.bbva.net.back.facade.AccountsFacade;
 import com.bbva.net.back.model.globalposition.AccountDTO;
 import com.bbva.net.front.controller.AccountsController;
 import com.bbva.net.front.core.AbstractBbvaController;
 
-@Controller(value = "accountsController")
+@ManagedBean
+@ViewScoped
 public class AccountsControllerImpl extends AbstractBbvaController implements AccountsController {
 
 	private static final long serialVersionUID = 5726824668267606699L;
