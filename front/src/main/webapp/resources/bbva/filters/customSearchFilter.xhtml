@@ -46,7 +46,7 @@
 						<f:selectItem itemLabel="#{msg['select.radio.concret.date']}"
 							itemValue="#{msg['select.radio.concret.date']}" />
 
-						<p:ajax process="@this" event="click" update="dateSince,dateTo,dateButton"
+						<p:ajax process="@this" event="click" update="dateSince,dateTo,dateButton, @form"
 							listener="#{movementsCriteriaController.oneSelectDate}" />
 
 					</p:selectOneRadio>
