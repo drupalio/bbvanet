@@ -57,7 +57,7 @@
 
 		</bbvaContainer:productPanelBarGraphic>
 
-		<bbvaContainer:productPanelGraphics id="cardPieGP" title="#{msg['title.cards']}" header="#{msg['graphic.tittle']}" pieGraphic="#{globalPositionController.graphicPieProducts}">
+		<bbvaContainer:productCardGraphic id="cardPieGP" title="#{msg['title.cards']}" header="#{msg['graphic.tittle']}" pieGraphic="#{globalPositionController.graphicPieProducts}">
 			<div class="table-tabs">
 				<bbvaGP:cardHeadTable controller="#{globalPositionController}"
 					listCards="#{customerProducts.creditCards}" />
@@ -70,7 +70,7 @@
 				<bbvaGP:totalBalance util="#{msg['text.used']}" currency="$"
 					total="1234" subtotal="567" />
 			</div>
-		</bbvaContainer:productPanelGraphics>
+		</bbvaContainer:productCardGraphic>
 
 		<bbvaContainer:productPanel title="#{msg['title.rotaryQuota']}">
 			<div class="table-tabs">
