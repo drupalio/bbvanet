@@ -51,13 +51,15 @@
 					listProduct="#{customerProductsHidden.accounts}" />
 				<bbvaGP:totalBalance util="#{msg['text.accountant']}" currency="$"
 					total="1234" subtotal="567" />
-					
-					
+
+
 			</div>
 
 		</bbvaContainer:productPanelBarGraphic>
 
-		<bbvaContainer:productCardGraphic id="cardPieGP" title="#{msg['title.cards']}" header="#{msg['graphic.tittle']}" pieGraphic="#{globalPositionController.graphicPieProducts}">
+		<bbvaContainer:productCardGraphic id="cardPieGP"
+			title="#{msg['title.cards']}" header="#{msg['graphicCard.tittle']}"
+			pieGraphic="#{globalPositionController.graphicPieProducts}">
 			<div class="table-tabs">
 				<bbvaGP:cardHeadTable controller="#{globalPositionController}"
 					listCards="#{customerProducts.creditCards}" />
@@ -133,8 +135,10 @@
 			</div>
 		</bbvaContainer:productPanelGraphic>
 
-		<bbvaContainer:productPanelGraphic
-			title="#{msg['title.investmentFunds']}">
+		<bbvaContainer:productPanelGraphic id="fundsPieGP"
+			title="#{msg['title.investmentFunds']}"
+			header="#{msg['graphicFunds.tittle']}"
+			pieGraphic="#{globalPositionController.graphicPieInvestmentFunds}">
 			<div class="table-tabs">
 				<bbvaGP:investmentFundHeadTable
 					controller="#{globalPositionController}"

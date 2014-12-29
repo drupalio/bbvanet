@@ -12,12 +12,16 @@
 	xmlns:bbvaGraphics="http://java.sun.com/jsf/composite/bbva/graphics/accountsFonds"
 	xmlns:jsf="http://xmlns.jcp.org/jsf"
 	xmlns:bbvaSituation="http://java.sun.com/jsf/composite/bbva/graphics/situation"
-	xmlns:bbvaPieGraphic="http://java.sun.com/jsf/composite/bbva/graphics">
+	xmlns:bbvaPieGraphic="http://java.sun.com/jsf/composite/bbva/graphics/accounts"
+	xmlns:bbvaContainer="http://java.sun.com/jsf/composite/bbva/container">
 
 <composite:interface>
 
-	<composite:attribute name="id" type="String" />
 	<composite:attribute name="title" type="String" />
+	<composite:attribute name="id" type="String" />
+	<composite:attribute name="header" type="String" />
+	<composite:attribute name="pieGraphic"
+		type="com.bbva.net.front.ui.pie.PieConfigUI" />
 
 </composite:interface>
 
@@ -38,18 +42,12 @@
 		<div class="tab tab-lines no-border">
 			<composite:insertChildren />
 		</div>
-		<div class="tab tab-bars chart">
-			<div>
-				<h3>GRAFICA</h3>
-			</div>
-		</div>
 
 		<div class="tab tab-bars chart">
-			<div>
+			<div class="tab-title">#{cc.attrs.header}</div>
 
-				<h3>GRAFICA333</h3>
-
-			</div>
+			<bbvaPieGraphic:generalGrapchic id="#{cc.attrs.id}"
+				pieConfigUI="#{cc.attrs.pieGraphic}" />
 		</div>
 
 		<div class="row afterTable"></div>

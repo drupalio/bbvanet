@@ -20,7 +20,6 @@ import com.bbva.net.front.controller.GlobalPositionController;
 import com.bbva.net.front.core.AbstractBbvaController;
 import com.bbva.net.front.delegate.GraphicBarLineDelegate;
 import com.bbva.net.front.delegate.GraphicPieDelegate;
-import com.bbva.net.front.ui.accounts.AccountsPieUI;
 import com.bbva.net.front.ui.globalposition.AccountBarLineUI;
 import com.bbva.net.front.ui.globalposition.SituationPiesUI;
 import com.bbva.net.front.ui.pie.PieConfigUI;
@@ -49,7 +48,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	private SituationPiesUI situationGraphicPieUI;
 
-	private AccountsPieUI investmentFundsPieUI;
+	private PieConfigUI graphicPieInvestmentFunds;
 
 	private AccountBarLineUI accountGraphicBarLineUI;
 
@@ -87,7 +86,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		this.situationGraphicPieUI = graphicPieDelegate.getSituationGlobalProducts(this.globalProductsDTO);
 
 		// Calculate investmentFunds graphics panels
-		this.investmentFundsPieUI = graphicPieDelegate.getAccountsfundsProducts(this.globalProductsDTO);
+		this.graphicPieInvestmentFunds = graphicPieDelegate.getAccountsfundsProducts(this.globalProductsDTO);
 
 		// Calculate situation graphics panels
 		this.graphicPieProducts = graphicPieDelegate.getGeneralGraphicConfig(this.globalProductsDTO);
@@ -179,14 +178,6 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		executeScript("initChart();");
 	}
 
-	public AccountsPieUI getInvestmentFundsPieUI() {
-		return investmentFundsPieUI;
-	}
-
-	public void setInvestmentFundsPieUI(AccountsPieUI investmentFundsPieUI) {
-		this.investmentFundsPieUI = investmentFundsPieUI;
-	}
-
 	@Override
 	public void onProductSelected(SelectEvent selectEvent) {
 		super.onProductSelected(selectEvent);
@@ -202,6 +193,14 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	public void setGraphicPieDelegate(GraphicPieDelegate graphicPieDelegate) {
 		this.graphicPieDelegate = graphicPieDelegate;
+	}
+
+	public PieConfigUI getGraphicPieInvestmentFunds() {
+		return graphicPieInvestmentFunds;
+	}
+
+	public void setGraphicPieInvestmentFunds(PieConfigUI graphicPieInvestmentFunds) {
+		this.graphicPieInvestmentFunds = graphicPieInvestmentFunds;
 	}
 
 }
