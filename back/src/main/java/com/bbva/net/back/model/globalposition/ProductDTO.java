@@ -17,9 +17,9 @@ public class ProductDTO implements Dto {
 
 	private String productNumber;
 
-	private boolean asset;
+	private Boolean asset;
 
-	private boolean visible;
+	private Boolean visible;
 
 	private String alias;
 
@@ -65,25 +65,15 @@ public class ProductDTO implements Dto {
 		return (this.productNumber != null);
 	}
 
-	public boolean isAsset() {
+	public Boolean isAsset() {
 		return asset;
 	}
 
-	private boolean visibility;
-
-	public boolean isVisibility() {
-		return visibility;
-	}
-
-	public void setVisibility(boolean visibility) {
-		this.visibility = visibility;
-	}
-
-	public void setAsset(boolean value) {
+	public void setAsset(Boolean value) {
 		this.asset = value;
 	}
 
-	public boolean isSetAsset() {
+	public Boolean isSetAsset() {
 		return true;
 	}
 
@@ -123,11 +113,11 @@ public class ProductDTO implements Dto {
 		return (this.cashAvailable != null);
 	}
 
-	public boolean isVisible() {
+	public Boolean isVisible() {
 		return visible;
 	}
 
-	public void setVisible(boolean visible) {
+	public void setVisible(Boolean visible) {
 		this.visible = visible;
 	}
 
