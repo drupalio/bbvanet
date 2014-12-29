@@ -39,7 +39,7 @@
 			<bbvaMenu:menuButtonMobile/>
 			<bbvaHeader:particulares />
 			<bbvaHeader:executive>
-				<bbvaHeader:executiveHeader title="#{msg['text.executive']}:" dat="#{executive.name}"/>
+				<bbvaHeader:executiveHeader title="#{msg['text.executive']}:" dat="#{headerController.getEjecutivo().name}"/>
 				<bbvaHeader:executiveBody>
 					<bbvaHeader:executiveItem link="https://www.google.es/maps/#{executive.coordenadas}" targe="_blank" icono="office" data="#{executive.office.name}" dataSmall="#{executive.office.addres}"/>
 					<bbvaHeader:executiveItem link="tel:#{executive.phone}"  icono="phone" data="#{executive.phone}" />
