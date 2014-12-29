@@ -1,0 +1,122 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+
+<composite:interface>
+
+<!-- 	<composite:attribute name="pieConfigUI" /> -->
+</composite:interface>
+
+<composite:implementation>
+
+
+	<h:form>
+<!-- 		<div align="center"> -->
+<!-- 			<div style="display: inline-block;"> -->
+<!-- 				<span -->
+<!-- 					style="color: #274b6d; font-size: 16px; font: bold 16px Trebuchet MS, Arial, sans-serif; font-size: 14px; fill: #274b6d; width: 232px;"> -->
+<!-- 					#{cc.attrs.pieConfigUI.headerLeft}</span> -->
+<!-- 			</div> -->
+<!-- 			<div style="display: inline-block;" align="center"> -->
+			
+<!-- 			<span -->
+<!-- 					style="color:#274b6d;font-size:16px;font:bold 16px Trebuchet MS, Arial, sans-serif;fill:#274b6d;width:232px;"> -->
+<!-- 					#{cc.attrs.pieConfigUI.headerCenter}</span> -->
+			
+<!-- 			</div> -->
+<!-- 			<div style="display: inline-block;"> -->
+<!-- 				<span -->
+<!-- 					style="color: #0073c9; font: bold 12px Trebuchet MS, Arial, sans-serif; font-size: 18px; font-family: Arial; fill: #0073c9; width: 232px;"> -->
+<!-- 					#{cc.attrs.pieConfigUI.headerRight}</span> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 		<div class="chart-cheese" id="graphicBar" -->
+<!-- 			data-highcharts-chart="3"> -->
+<!-- 			<div id="chart1-1" /> -->
+<!-- 		</div> -->
+		
+		<div id="chart1_1"></div>
+
+	</h:form>
+	
+	<script>
+	/*function initChart() {
+
+			
+			var totalColums = [];
+			var label;
+			var colums;
+			var values;
+
+			<c:forEach var="pieItemUI" items="${cc.attrs.pieConfigUI.pieItemUIList}">
+			label = ("${pieItemUI.textLegend}");
+			values = ("${pieItemUI.value}");
+			colums = [ [ label ], [ values ] ];
+			totalColums.push(colums);
+			</c:forEach>
+	*/
+			var chart1_1 = c3.generate({
+				bindto: '#chart1_1',
+				tooltip: {
+			        grouped: false 
+			    },
+		    data: {
+		        x: 'x',
+			    colors: { abonos:'#0E79C3', cargos:'#045089', saldos: '#028102' },
+				type: 'bar',
+				groups: [['abonos', 'cargos']],
+				types: {
+				  saldos: 'line'
+				},
+		        columns: [
+			  ['x', 'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun','Jul','Ago','Sep','Oct','Nov','Dic','Ene'],
+			  
+			  ['abonos', 10, 5, 0, 2, 5, 10, 5, 8, 10, 50, 20, 40,10],
+			  ['cargos', -20, -50, -10, -15, -10, -5, -20, -15, -40, -10,-30,-30,-15],
+		      ['saldos', 10, 50, 8, 10, 0, 5, 12, 12, 30, 20,15,40,15]
+			],
+		  
+		    },
+			
+			//size: { height: 340, width: 780 },
+			
+			grid: {
+			  y: {
+			    lines: [{value: 0},{value: 40},{value: 50},{value: 30},{value: 20},{value: 15},{value: 10},{value: 5},{value: -30},{value: -40},{value: -50},{value: -30},{value: -20},{value: -15},{value: -10},{value: -5}]
+			  }
+			},
+		  
+		    axis: {
+		        x: {
+		        type: 'categorized' 
+		        },
+		      
+		        y: {
+		          show:false,
+		            label: {
+		                text: 'Y Label',
+		                position: 'outer-middle'
+		            }
+		        },
+		        y2: {
+		            show: false,
+		            label: {
+		                text: 'Y2 Label',
+		                position: 'outer-middle'
+		            }
+		        }
+		    }
+			
+		});
+	//};
+</script>
+
+
+</composite:implementation>
+</html>
