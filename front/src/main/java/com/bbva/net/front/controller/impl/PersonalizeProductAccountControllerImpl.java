@@ -12,7 +12,7 @@ import com.bbva.net.back.model.movements.PersonalizeAccountDTO;
 import com.bbva.net.front.controller.PersonalizeProductAccountController;
 import com.bbva.net.front.core.AbstractBbvaController;
 
-@Controller
+@Controller(value = "personalizeProductAccountController")
 public class PersonalizeProductAccountControllerImpl extends AbstractBbvaController implements
 		PersonalizeProductAccountController {
 

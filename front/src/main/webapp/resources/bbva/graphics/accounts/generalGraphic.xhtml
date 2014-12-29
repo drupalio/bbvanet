@@ -16,7 +16,7 @@
 <composite:implementation>
 
 
-	<h:form id="pieGene">
+	<h:form id="pieGe">
 		<div align="center">
 
 			<div style="display: inline-block;" align="center">
@@ -38,8 +38,6 @@
 
 
 	<script>
-		//function initChart() {
-
 		var totalColums = [];
 		var label;
 		var colums;
@@ -56,15 +54,16 @@
 			bindto : '#chart2_4',
 
 			legend : {
-				position : 'top'
+				position : 'rigth'
+
 			},
 
 			data : {
+
 				size : {
 					height : 240,
 					width : 480
 				},
-
 				columns : totalColums,
 
 				type : 'pie',
@@ -77,10 +76,8 @@
 				onmouseout : function(d, i) {
 					console.log("onmouseout", d, i);
 				}
-			},
+			}
 		});
-
-		//};
 	</script>
 
 
