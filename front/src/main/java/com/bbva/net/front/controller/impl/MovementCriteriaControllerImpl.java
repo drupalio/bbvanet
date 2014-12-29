@@ -17,7 +17,7 @@ import com.bbva.net.front.core.AbstractBbvaController;
 /**
  * @author User
  */
-@Controller
+@Controller(value = "movementsCriteriaController")
 public class MovementCriteriaControllerImpl extends AbstractBbvaController implements MovementCriteriaController {
 
 	private static final long serialVersionUID = 1L;

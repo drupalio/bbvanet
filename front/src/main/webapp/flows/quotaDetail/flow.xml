@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow 
+    http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+	
+	<var name="movementsAccountController" class="com.bbva.net.front.controller.impl.MovementsAccountControllerImpl"/>
+	<var name="accountsController" class="com.bbva.net.front.controller.impl.AccountsControllerImpl"/>
+	
+	<on-start>
+		<evaluate expression="accountsController.getCustomerAccounts()" result="flowScope.customerAccounts" />
+	</on-start>
+	
+	<view-state id="quotaDetail">
+		
+	</view-state>
+	
+</flow>
