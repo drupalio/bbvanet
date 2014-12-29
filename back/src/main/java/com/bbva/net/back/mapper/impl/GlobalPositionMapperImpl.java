@@ -94,12 +94,24 @@ public class GlobalPositionMapperImpl extends ConfigurableMapper implements Glob
 		// Add Money Converter
 		factory.getConverterFactory().registerConverter(new MoneyConverter());
 
-		// Map Product parent fields
+		// Map parent Product DTO
 		factory.classMap(Product.class, ProductDTO.class).field("alias", "alias")
-				.field("balance.availableBalance", "cashAvailable").field("id", "productId").byDefault()
-				.field("name", "productName").field("id", "productNumber")
-				.field("balance.availableBalance", "totalCash").field("type", "typeProd").field("visible", "asset")
-				.field("", "").register();
+				.field("balance.availableBalance", "cashAvailable").field("id", "productId")
+				.field("name", "productName").field("id", "productNumber").field("balance.total", "totalCash")
+				.field("type", "typeProd").field("visible", "visible").byDefault().register();
+
+		// Map Loan DTO
+		factory.classMap(Product.class, LoanDTO.class).field("balance.availableBalance", "totalDue")
+				.field("balance.total", "totalDebt").byDefault().register();
+
+		// Map RotatingAccount DTO
+		factory.classMap(Product.class, RotatingAccountDTO.class)
+				.field("balance.availableBalance", "quota.availableQuota")
+				.field("balance.total", "quota.totalQuotaDebt").byDefault().register();
+
+		// Map CreditCard DTO
+		factory.classMap(Product.class, CreditCardDTO.class).field("balance.availableBalance", "quota.availableQuota")
+				.field("balance.total", "quota.totalQuotaDebt").byDefault().register();
 	}
 
 }

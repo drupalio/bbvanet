@@ -30,14 +30,17 @@ public abstract class AbstractBbvaController implements Serializable {
 
 	private static final long serialVersionUID = -4820146844257478597L;
 
-	protected ProductDTO selectedProduct;
-
 	protected String DEFAULT_USER = "123";
+
+	private enum SessionParamenterType {
+
+		SELECTED_PRODUCT
+	}
 
 	/**
 	 * @param componenteSystemEvent
 	 */
-	public void preRender(ComponentSystemEvent componenteSystemEvent) {
+	public void preRender(final ComponentSystemEvent componentSystemEvent) {
 		LOGGER.info("Rendering .... " + this.getClass().getSimpleName());
 	}
 
@@ -54,8 +57,8 @@ public abstract class AbstractBbvaController implements Serializable {
 	 * @return current HttpSession from FacesContext
 	 */
 	protected HttpSession getSession() {
-		final FacesContext fCtx = FlowFacesContext.getCurrentInstance();
-		return (HttpSession)fCtx.getExternalContext().getSession(true);
+		final FacesContext facesContext = FlowFacesContext.getCurrentInstance();
+		return (HttpSession)facesContext.getExternalContext().getSession(true);
 	}
 
 	/**
@@ -85,10 +88,10 @@ public abstract class AbstractBbvaController implements Serializable {
 	 */
 	protected void initFlow(final String url) {
 
-		ExternalContext ec = FlowFacesContext.getCurrentInstance().getExternalContext();
+		final ExternalContext externalContext = FlowFacesContext.getCurrentInstance().getExternalContext();
 
 		try {
-			ec.redirect(url);
+			externalContext.redirect(url);
 		} catch (IOException ex) {
 			LOGGER.info(ex.getMessage());
 		}
@@ -105,7 +108,7 @@ public abstract class AbstractBbvaController implements Serializable {
 	 * @param var
 	 * @param object
 	 */
-	protected void putVarInFlow(String var, Object object) {
+	protected void putVarInFlow(final String var, final Object object) {
 		getWebFlowRequestContext().getFlashScope().put(var, object);
 	}
 
@@ -122,22 +125,21 @@ public abstract class AbstractBbvaController implements Serializable {
 	private org.springframework.webflow.execution.RequestContext getWebFlowRequestContext() {
 
 		org.springframework.webflow.execution.RequestContext requestContext = RequestContextHolder.getRequestContext();
-		final RequestControlContext requestControlContext = (RequestControlContext)requestContext;
-		return requestControlContext;
+		return requestContext;
 	}
 
 	/**
 	 * @return
 	 */
 	public ProductDTO getSelectedProduct() {
-		return selectedProduct;
+		return (ProductDTO)getSession().getAttribute(SessionParamenterType.SELECTED_PRODUCT.name());
 	}
 
 	/**
 	 * @param selectedProduct
 	 */
 	public void setSelectedProduct(final ProductDTO selectedProduct) {
-		this.selectedProduct = selectedProduct;
+		getSession().setAttribute(SessionParamenterType.SELECTED_PRODUCT.name(), selectedProduct);
 	}
 
 	/**

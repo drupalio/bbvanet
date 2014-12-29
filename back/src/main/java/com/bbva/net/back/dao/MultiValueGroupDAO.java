@@ -9,7 +9,6 @@ import com.bbva.net.back.entity.MultiValueGroup;
 
 /**
  * @author User
- *
  */
 public interface MultiValueGroupDAO {
 
@@ -19,6 +18,6 @@ public interface MultiValueGroupDAO {
 	 * @param typeId
 	 * @return
 	 */
-	public List<MultiValueGroup> getTypes(Integer typeId);
+	List<MultiValueGroup> getTypes(Integer typeId);
 
 }
