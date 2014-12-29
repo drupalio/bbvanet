@@ -23,7 +23,7 @@ public interface MovementCriteriaController {
 	void searchMovementByFilter(ActionEvent event);
 
 	/***
-	 * method to select the date type is called when you click on the date oneRadio menu component
+	 * Method to select the date type is called when you click on the date oneRadio menu component
 	 */
 	void oneSelectDate();
 
@@ -71,11 +71,9 @@ public interface MovementCriteriaController {
 	 * @return List<MultiValueGroup>
 	 */
 	List<MultiValueGroup> getListMultiValueLikes();
-	
-	
+
 	/**
 	 * Method to buil a message for balanceFilter
-	 * 
 	 */
 	void buildMessage();
 
@@ -83,19 +81,15 @@ public interface MovementCriteriaController {
 	 * Method to validate a balance range
 	 */
 	void balanceValidator();
-	
-	
+
 	/***
-	 * 
 	 * @param event
 	 */
-	public void preRender(ComponentSystemEvent event);
-	
-	
+	void preRender(ComponentSystemEvent event);
+
 	/**
-	 * 
 	 * @param event
 	 */
-	public void setCustomDate(ActionEvent event);
+	void setCustomDate(ActionEvent event);
 
 }

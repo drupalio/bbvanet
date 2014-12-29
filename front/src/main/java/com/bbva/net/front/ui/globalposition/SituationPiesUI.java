@@ -23,7 +23,7 @@ public class SituationPiesUI implements Serializable {
 		return situation;
 	}
 
-	public void setSituation(PieConfigUI situation) {
+	public void setSituation(final PieConfigUI situation) {
 		this.situation = situation;
 	}
 
@@ -31,7 +31,7 @@ public class SituationPiesUI implements Serializable {
 		return assets;
 	}
 
-	public void setAssets(PieConfigUI assets) {
+	public void setAssets(final PieConfigUI assets) {
 		this.assets = assets;
 	}
 
@@ -39,7 +39,7 @@ public class SituationPiesUI implements Serializable {
 		return financing;
 	}
 
-	public void setFinancing(PieConfigUI financing) {
+	public void setFinancing(final PieConfigUI financing) {
 		this.financing = financing;
 	}
 
@@ -47,7 +47,7 @@ public class SituationPiesUI implements Serializable {
 		return totalAssets;
 	}
 
-	public void setTotalAssets(BigDecimal totalAssets) {
+	public void setTotalAssets(final BigDecimal totalAssets) {
 		this.totalAssets = totalAssets;
 	}
 
@@ -55,7 +55,7 @@ public class SituationPiesUI implements Serializable {
 		return totalFinancing;
 	}
 
-	public void setTotalFinancing(BigDecimal totalFinancing) {
+	public void setTotalFinancing(final BigDecimal totalFinancing) {
 		this.totalFinancing = totalFinancing;
 	}
 

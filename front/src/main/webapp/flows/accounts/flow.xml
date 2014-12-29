@@ -4,6 +4,8 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/webflow 
     http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
 
+	<var name="accountsController" class="com.bbva.net.front.controller.impl.AccountsControllerImpl"/>
+	
 	<on-start>
 		<evaluate expression="accountsController.getCustomerAccounts()" result="flowScope.customerAccounts" />
 		<evaluate expression="accountsController.getCustomerAccountsHidden()" result="flowScope.customerAccountsHidden" />
@@ -20,10 +22,6 @@
 	</view-state>
 	
 	<view-state id="movementsAccount" view="externalRedirect:movements">		
-		<on-entry>
-			<evaluate expression="accountsController.getSelectedProduct()" result="flowScope.selectedProduct" />
-			<evaluate expression="movementsAccountController.setSelectedProduct(selectedProduct)"/>
-		</on-entry>	
 	</view-state>
 
 </flow>

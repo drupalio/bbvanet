@@ -35,7 +35,7 @@ public class AccountDTO extends ProductDTO {
 
 	@Override
 	public boolean equals(Object obj) {
-		return (obj instanceof AccountDTO) && this.getOverDraft().equals(((AccountDTO)obj).getOverDraft())
+		return (obj instanceof AccountDTO) && this.getProductId().equals(((AccountDTO)obj).getProductId())
 				&& this.getProductNumber().equals(((ProductDTO)obj).getProductNumber());
 	}
 

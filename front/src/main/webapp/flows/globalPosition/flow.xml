@@ -4,12 +4,13 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/webflow 
     http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
 
+	<var name="globalPositionController" class="com.bbva.net.front.controller.impl.GlobalPositionControllerImpl"/>
+	
 	<on-start>
 		<evaluate expression="globalPositionController.getCustomerProducts()" result="flowScope.customerProducts" />
 		<evaluate expression="globalPositionController.getCustomerProductsHidden()" result="flowScope.customerProductsHidden" />		
 		<evaluate expression="applicationController.getLikes()" result="flowScope.likes" />
 		<evaluate expression="headerController.getEjecutivo()" result="flowScope.executive" />
-
 	</on-start>
 	
 	<view-state id="globalPosition">
@@ -21,10 +22,6 @@
 	</view-state>
 	
 	<view-state id="detailAccount" view="externalRedirect:movements">
-		<on-entry>
-			<evaluate expression="globalPositionController.getSelectedProduct()" result="flowScope.selectedProduct" />
-			<evaluate expression="movementsAccountController.setSelectedProduct(selectedProduct)"/>
-		</on-entry>	
 	</view-state>
 
 </flow>
