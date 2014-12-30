@@ -1,0 +1,48 @@
+<application xmlns="http://wadl.dev.java.net/2009/02" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:prefix1="http://bbva.com/saz/co/grantingticket/V01"><grammars><xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://bbva.com/saz/co/grantingticket/V01" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://bbva.com/saz/co/grantingticket/V01">
+<xs:element name="Authentication" type="tns:Authentication"/>
+<xs:element name="AuthenticationData" type="tns:AuthenticationData"/>
+<xs:element name="AuthenticationState" type="tns:AuthenticationState"/>
+<xs:element name="ConsumerContext" type="tns:ConsumerContext"/>
+<xs:element name="UserPreferences" type="tns:UserPreferences"/>
+<xs:complexType name="AuthenticationState">
+<xs:sequence>
+<xs:element minOccurs="0" name="authenticationState" type="xs:string"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="authenticationData" nillable="true" type="tns:AuthenticationData"/>
+<xs:element minOccurs="0" name="userType" type="xs:string"/>
+<xs:element minOccurs="0" name="userStatus" type="xs:string"/>
+<xs:element minOccurs="0" name="clientStatus" type="xs:string"/>
+<xs:element minOccurs="0" name="countableTerminal" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="AuthenticationData">
+<xs:sequence>
+<xs:element minOccurs="0" name="idAuthenticationData" type="xs:string"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="authenticationData" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ConsumerContext">
+<xs:sequence>
+<xs:element minOccurs="0" name="authentication" type="tns:Authentication"/>
+<xs:element minOccurs="0" name="userPreferences" type="tns:UserPreferences"/>
+<xs:element minOccurs="0" name="backendSession" type="xs:string"/>
+<xs:element minOccurs="0" name="addressIp" type="xs:string"/>
+<xs:element minOccurs="0" name="dialogId" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="Authentication">
+<xs:sequence>
+<xs:element minOccurs="0" name="consumerId" type="xs:string"/>
+<xs:element minOccurs="0" name="authenticationType" type="xs:string"/>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="authenticationData" nillable="true" type="tns:AuthenticationData"/>
+<xs:element minOccurs="0" name="userId" type="xs:string"/>
+<xs:element minOccurs="0" name="client" type="xs:string"/>
+<xs:element minOccurs="0" name="accessCode" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="UserPreferences">
+<xs:sequence>
+<xs:element minOccurs="0" name="language" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
+</grammars><resources base="http://150.250.233.39:7275/saz/co/grantingTicket"><resource path="/V01" id="com.bbva.saz.co.grantingticket.facade.v01.impl.SrvCOGrantingTicket"><method name="DELETE" id="deleteTicket"><response status="204"></response></method><method name="POST" id="createTicket"><request><representation mediaType="application/json" element="prefix1:ConsumerContext"/></request><response><representation mediaType="application/json" element="prefix1:AuthenticationState"/></response></method></resource></resources></application>

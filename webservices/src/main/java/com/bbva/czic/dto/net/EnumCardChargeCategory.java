@@ -13,9 +13,12 @@ import javax.xml.bind.annotation.XmlType;
  * <pre>
  * &lt;simpleType name="EnumCardChargeCategory">
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *     &lt;enumeration value="TRAVEL"/>
- *     &lt;enumeration value="CLOTHS"/>
- *     &lt;enumeration value="FOOD"/>
+ *     &lt;enumeration value="CHANNEL_SALES"/>
+ *     &lt;enumeration value="LEISURE"/>
+ *     &lt;enumeration value="OTHERS"/>
+ *     &lt;enumeration value="BASIC_COMMERCE"/>
+ *     &lt;enumeration value="GIFT_BOOK_DISC"/>
+ *     &lt;enumeration value="CLOTHING"/>
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
@@ -25,9 +28,12 @@ import javax.xml.bind.annotation.XmlType;
 @XmlEnum
 public enum EnumCardChargeCategory {
 
-    TRAVEL,
-    CLOTHS,
-    FOOD;
+    CHANNEL_SALES,
+    LEISURE,
+    OTHERS,
+    BASIC_COMMERCE,
+    GIFT_BOOK_DISC,
+    CLOTHING;
 
     public String value() {
         return name();

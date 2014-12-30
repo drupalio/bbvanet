@@ -6,12 +6,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for enumProductType.
+ * <p>Java class for EnumProductType.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * <p>
  * <pre>
- * &lt;simpleType name="enumProductType">
+ * &lt;simpleType name="EnumProductType">
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
  *     &lt;enumeration value="PC"/>
  *     &lt;enumeration value="TDC"/>
@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlType;
  * </pre>
  * 
  */
-@XmlType(name = "enumProductType")
+@XmlType(name = "EnumProductType")
 @XmlEnum
 public enum EnumProductType {
 
