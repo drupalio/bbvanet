@@ -7,9 +7,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for ConsumerContext complex type.
+ * <p>Clase Java para ConsumerContext complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="ConsumerContext">
@@ -46,7 +46,7 @@ public class ConsumerContext {
     protected String dialogId;
 
     /**
-     * Gets the value of the authentication property.
+     * Obtiene el valor de la propiedad authentication.
      * 
      * @return
      *     possible object is
@@ -58,7 +58,7 @@ public class ConsumerContext {
     }
 
     /**
-     * Sets the value of the authentication property.
+     * Define el valor de la propiedad authentication.
      * 
      * @param value
      *     allowed object is
@@ -70,7 +70,7 @@ public class ConsumerContext {
     }
 
     /**
-     * Gets the value of the userPreferences property.
+     * Obtiene el valor de la propiedad userPreferences.
      * 
      * @return
      *     possible object is
@@ -82,7 +82,7 @@ public class ConsumerContext {
     }
 
     /**
-     * Sets the value of the userPreferences property.
+     * Define el valor de la propiedad userPreferences.
      * 
      * @param value
      *     allowed object is
@@ -94,7 +94,7 @@ public class ConsumerContext {
     }
 
     /**
-     * Gets the value of the backendSession property.
+     * Obtiene el valor de la propiedad backendSession.
      * 
      * @return
      *     possible object is
@@ -106,7 +106,7 @@ public class ConsumerContext {
     }
 
     /**
-     * Sets the value of the backendSession property.
+     * Define el valor de la propiedad backendSession.
      * 
      * @param value
      *     allowed object is
@@ -118,7 +118,7 @@ public class ConsumerContext {
     }
 
     /**
-     * Gets the value of the addressIp property.
+     * Obtiene el valor de la propiedad addressIp.
      * 
      * @return
      *     possible object is
@@ -130,7 +130,7 @@ public class ConsumerContext {
     }
 
     /**
-     * Sets the value of the addressIp property.
+     * Define el valor de la propiedad addressIp.
      * 
      * @param value
      *     allowed object is
@@ -142,7 +142,7 @@ public class ConsumerContext {
     }
 
     /**
-     * Gets the value of the dialogId property.
+     * Obtiene el valor de la propiedad dialogId.
      * 
      * @return
      *     possible object is
@@ -154,7 +154,7 @@ public class ConsumerContext {
     }
 
     /**
-     * Sets the value of the dialogId property.
+     * Define el valor de la propiedad dialogId.
      * 
      * @param value
      *     allowed object is

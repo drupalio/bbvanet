@@ -1,7 +1,5 @@
 package com.bbva.net.webservices.executives.impl;
 
-import org.springframework.beans.factory.annotation.Value;
-
 import com.bbva.czic.dto.net.Executive;
 import com.bbva.net.webservices.core.pattern.AbstractBbvaRestService;
 import com.bbva.net.webservices.core.stereotype.RestService;
