@@ -10,9 +10,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for Authentication complex type.
+ * <p>Clase Java para Authentication complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="Authentication">
@@ -53,7 +53,7 @@ public class Authentication {
     protected String accessCode;
 
     /**
-     * Gets the value of the consumerId property.
+     * Obtiene el valor de la propiedad consumerId.
      * 
      * @return
      *     possible object is
@@ -65,7 +65,7 @@ public class Authentication {
     }
 
     /**
-     * Sets the value of the consumerId property.
+     * Define el valor de la propiedad consumerId.
      * 
      * @param value
      *     allowed object is
@@ -77,7 +77,7 @@ public class Authentication {
     }
 
     /**
-     * Gets the value of the authenticationType property.
+     * Obtiene el valor de la propiedad authenticationType.
      * 
      * @return
      *     possible object is
@@ -89,7 +89,7 @@ public class Authentication {
     }
 
     /**
-     * Sets the value of the authenticationType property.
+     * Define el valor de la propiedad authenticationType.
      * 
      * @param value
      *     allowed object is
@@ -130,7 +130,7 @@ public class Authentication {
     }
 
     /**
-     * Gets the value of the userId property.
+     * Obtiene el valor de la propiedad userId.
      * 
      * @return
      *     possible object is
@@ -142,7 +142,7 @@ public class Authentication {
     }
 
     /**
-     * Sets the value of the userId property.
+     * Define el valor de la propiedad userId.
      * 
      * @param value
      *     allowed object is
@@ -154,7 +154,7 @@ public class Authentication {
     }
 
     /**
-     * Gets the value of the client property.
+     * Obtiene el valor de la propiedad client.
      * 
      * @return
      *     possible object is
@@ -166,7 +166,7 @@ public class Authentication {
     }
 
     /**
-     * Sets the value of the client property.
+     * Define el valor de la propiedad client.
      * 
      * @param value
      *     allowed object is
@@ -178,7 +178,7 @@ public class Authentication {
     }
 
     /**
-     * Gets the value of the accessCode property.
+     * Obtiene el valor de la propiedad accessCode.
      * 
      * @return
      *     possible object is
@@ -190,7 +190,7 @@ public class Authentication {
     }
 
     /**
-     * Sets the value of the accessCode property.
+     * Define el valor de la propiedad accessCode.
      * 
      * @param value
      *     allowed object is

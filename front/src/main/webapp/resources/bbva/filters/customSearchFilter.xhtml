@@ -18,6 +18,7 @@
 	<composite:attribute name="disabledCalendar" />
 	<composite:attribute name="actionListenerDate"
 		method-signature="void actionlistener(javax.faces.event.ActionEvent)" />
+	<composite:attribute name="listener" />
 </composite:interface>
 
 <composite:implementation>
@@ -48,7 +49,7 @@
 
 						<p:ajax process="@this" event="click"
 							update="dateSince,dateTo,dateButton, @form"
-							listener="#{movementsCriteriaController.oneSelectDate}" />
+							listener="#{cc.attrs.listener}" />
 
 					</p:selectOneRadio>
 

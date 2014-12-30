@@ -10,9 +10,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for AuthenticationData complex type.
+ * <p>Clase Java para AuthenticationData complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="AuthenticationData">
@@ -41,7 +41,7 @@ public class AuthenticationData {
     protected List<String> authenticationData;
 
     /**
-     * Gets the value of the idAuthenticationData property.
+     * Obtiene el valor de la propiedad idAuthenticationData.
      * 
      * @return
      *     possible object is
@@ -53,7 +53,7 @@ public class AuthenticationData {
     }
 
     /**
-     * Sets the value of the idAuthenticationData property.
+     * Define el valor de la propiedad idAuthenticationData.
      * 
      * @param value
      *     allowed object is
