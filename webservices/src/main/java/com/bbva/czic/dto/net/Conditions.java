@@ -3,9 +3,7 @@ package com.bbva.czic.dto.net;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
@@ -20,7 +18,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *       &lt;sequence>
  *         &lt;element name="category" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="description" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="openingDate" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+ *         &lt;element name="openingDate" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="commission" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="office" type="{urn:com:bbva:czic:dto:net}Office" minOccurs="0"/>
  *         &lt;element name="mobilizationConditions" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -45,8 +43,7 @@ public class Conditions {
 
     protected String category;
     protected String description;
-    @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar openingDate;
+    protected String openingDate;
     protected String commission;
     protected Office office;
     protected String mobilizationConditions;
@@ -104,10 +101,10 @@ public class Conditions {
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public XMLGregorianCalendar getOpeningDate() {
+    public String getOpeningDate() {
         return openingDate;
     }
 
@@ -116,10 +113,10 @@ public class Conditions {
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public void setOpeningDate(XMLGregorianCalendar value) {
+    public void setOpeningDate(String value) {
         this.openingDate = value;
     }
 

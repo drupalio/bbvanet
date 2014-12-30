@@ -1,10 +1,13 @@
 package com.bbva.net.back.facade.impl;
 
+import javax.annotation.Resource;
+
 import com.bbva.net.back.core.pattern.facade.AbstractBbvaFacade;
 import com.bbva.net.back.core.stereotype.Facade;
 import com.bbva.net.back.facade.HeaderControllerFacade;
 import com.bbva.net.back.model.executive.ExecutiveDto;
 import com.bbva.net.back.model.office.OfficeDto;
+import com.bbva.net.webservices.executives.ExecutiveService;
 
 @Facade(value = "headerControllerFacade")
 public class HeaderControllerFacadeImpl extends AbstractBbvaFacade implements HeaderControllerFacade {
@@ -13,6 +16,9 @@ public class HeaderControllerFacadeImpl extends AbstractBbvaFacade implements He
 	 * 
 	 */
 	private static final long serialVersionUID = -2451180024940294464L;
+
+	@Resource(name = "executiveService")
+	private ExecutiveService executiveService;
 
 	@Override
 	public ExecutiveDto getExecutive() {
@@ -26,6 +32,10 @@ public class HeaderControllerFacadeImpl extends AbstractBbvaFacade implements He
 		exc.setOffice(off);
 		exc.setPhone("3080808");
 		return exc;
+	}
+
+	public void setExecutiveService(ExecutiveService executiveService) {
+		this.executiveService = executiveService;
 	}
 
 }

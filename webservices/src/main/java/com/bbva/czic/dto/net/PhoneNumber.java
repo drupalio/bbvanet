@@ -7,22 +7,22 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for PhoneNumber complex type.
+ * <p>Java class for phoneNumber complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="PhoneNumber">
+ * &lt;complexType name="phoneNumber">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="contactSource" type="{urn:com:bbva:czic:dto:net}EnumContactSourceType" minOccurs="0"/>
+ *         &lt;element name="number" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="countryCode" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="regionalCode" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="number" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="type" type="{urn:com:bbva:czic:dto:net}EnumPhoneNumberType" minOccurs="0"/>
+ *         &lt;element name="type" type="{urn:com:bbva:czic:dto:net}enumPhoneNumberType" minOccurs="0"/>
  *         &lt;element name="primary" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *         &lt;element name="active" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+ *         &lt;element name="contactSource" type="{urn:com:bbva:czic:dto:net}enumContactSourceType" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -32,47 +32,47 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "PhoneNumber", propOrder = {
-    "contactSource",
+@XmlType(name = "phoneNumber", propOrder = {
+    "number",
     "countryCode",
     "regionalCode",
-    "number",
     "type",
     "primary",
-    "active"
+    "active",
+    "contactSource"
 })
 public class PhoneNumber {
 
-    protected EnumContactSourceType contactSource;
+    protected String number;
     protected String countryCode;
     protected String regionalCode;
-    protected String number;
     protected EnumPhoneNumberType type;
     protected Boolean primary;
     protected Boolean active;
+    protected EnumContactSourceType contactSource;
 
     /**
-     * Gets the value of the contactSource property.
+     * Gets the value of the number property.
      * 
      * @return
      *     possible object is
-     *     {@link EnumContactSourceType }
+     *     {@link String }
      *     
      */
-    public EnumContactSourceType getContactSource() {
-        return contactSource;
+    public String getNumber() {
+        return number;
     }
 
     /**
-     * Sets the value of the contactSource property.
+     * Sets the value of the number property.
      * 
      * @param value
      *     allowed object is
-     *     {@link EnumContactSourceType }
+     *     {@link String }
      *     
      */
-    public void setContactSource(EnumContactSourceType value) {
-        this.contactSource = value;
+    public void setNumber(String value) {
+        this.number = value;
     }
 
     /**
@@ -121,30 +121,6 @@ public class PhoneNumber {
      */
     public void setRegionalCode(String value) {
         this.regionalCode = value;
-    }
-
-    /**
-     * Gets the value of the number property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getNumber() {
-        return number;
-    }
-
-    /**
-     * Sets the value of the number property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setNumber(String value) {
-        this.number = value;
     }
 
     /**
@@ -217,6 +193,30 @@ public class PhoneNumber {
      */
     public void setActive(Boolean value) {
         this.active = value;
+    }
+
+    /**
+     * Gets the value of the contactSource property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link EnumContactSourceType }
+     *     
+     */
+    public EnumContactSourceType getContactSource() {
+        return contactSource;
+    }
+
+    /**
+     * Sets the value of the contactSource property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link EnumContactSourceType }
+     *     
+     */
+    public void setContactSource(EnumContactSourceType value) {
+        this.contactSource = value;
     }
 
 }
