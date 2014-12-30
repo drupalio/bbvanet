@@ -166,27 +166,12 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 	}
 
 	@Override
-	public AccountsPieUI getAccountsfundsProducts(final GlobalProductsDTO globalProducts) {
-
-		final AccountsPieUI accountsPieUI = new AccountsPieUI();
-		final List<ProductDTO> productList = productService.getProducts(globalProducts);
-
-		accountsPieUI.setInvertfunds(getFundsPieConfig(productList));
-
-		return accountsPieUI;
-	}
-
-	/**
-	 * Method to draws a Funds Pie graphic
-	 * 
-	 * @param List<Product> products
-	 * @return PieConfigUI
-	 */
-	public PieConfigUI getFundsPieConfig(final List<ProductDTO> products) {
+	public PieConfigUI getAccountsfundsProducts(final GlobalProductsDTO globalProducts) {
 
 		final PieConfigUI fundsPie = new PieConfigUI();
 
 		final List<PieItemUI> fundsPieItems = new ArrayList<PieItemUI>();
+		final List<ProductDTO> products = productService.getProducts(globalProducts);
 
 		final PieItemUI garantPieItem = new PieItemUI("el color", "Garantizado selección Consumo", this.productService
 				.getTotalProductsByType(products, EnumProductType.SI).getAmount());
@@ -199,7 +184,6 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 		fundsPie.setPieItemUIList(fundsPieItems);
 
 		return fundsPie;
-
 	}
 
 	/**

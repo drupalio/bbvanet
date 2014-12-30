@@ -16,6 +16,7 @@ import com.bbva.czic.dto.net.EnumProductType;
 import com.bbva.net.back.model.commons.Money;
 import com.bbva.net.back.model.globalposition.AccountDTO;
 import com.bbva.net.back.model.globalposition.AdquirenceAccountDTO;
+import com.bbva.net.back.model.globalposition.BalanceDTO;
 import com.bbva.net.back.model.globalposition.CreditCardDTO;
 import com.bbva.net.back.model.globalposition.DepositDTO;
 import com.bbva.net.back.model.globalposition.FundDTO;
@@ -39,6 +40,11 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public <T extends ProductDTO> Money getTotal(final List<T> products) {
 		return new Money(CollectionBbvaUtils.calculateTotal(products, "totalCash.amount"));
+	}
+
+	@Override
+	public <T extends ProductDTO> Money getTotalAvailable(final List<T> products) {
+		return new Money(CollectionBbvaUtils.calculateTotal(products, "cashAvailable.amount"));
 	}
 
 	@SuppressWarnings("unchecked")
@@ -68,18 +74,33 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public Map<EnumProductType, Money> getTotals(final GlobalProductsDTO globalProducts) {
+	public Map<String, BalanceDTO> getTotals(final GlobalProductsDTO globalProducts) {
 
-		final Map<EnumProductType, Money> totals = new HashMap<EnumProductType, Money>();
+		final Map<String, BalanceDTO> totals = new HashMap<String, BalanceDTO>();
 
-		totals.put(EnumProductType.PC, getTotal(globalProducts.getAccounts()));
-		totals.put(EnumProductType.AQ, getTotal(globalProducts.getAdquirencia()));
-		totals.put(EnumProductType.TDC, getTotal(globalProducts.getCreditCards()));
-		totals.put(EnumProductType.RQ, getTotal(globalProducts.getRotatingAccounts()));
-		totals.put(EnumProductType.LI, getTotal(globalProducts.getLeasings()));
-		totals.put(EnumProductType.LO, getTotal(globalProducts.getLoan()));
-		totals.put(EnumProductType.SI, getTotal(globalProducts.getFunds()));
-		totals.put(EnumProductType.ED, getTotal(globalProducts.getElectronicDeposits()));
+		totals.put(EnumProductType.PC.name(), new BalanceDTO(getTotalAvailable(globalProducts.getAccounts()),
+				getTotal(globalProducts.getAccounts())));
+
+		totals.put(EnumProductType.AQ.name(), new BalanceDTO(getTotalAvailable(globalProducts.getAdquirencia()),
+				getTotal(globalProducts.getAdquirencia())));
+
+		totals.put(EnumProductType.TDC.name(), new BalanceDTO(getTotalAvailable(globalProducts.getCreditCards()),
+				getTotal(globalProducts.getCreditCards())));
+
+		totals.put(EnumProductType.RQ.name(), new BalanceDTO(getTotalAvailable(globalProducts.getRotatingAccounts()),
+				getTotal(globalProducts.getRotatingAccounts())));
+
+		totals.put(EnumProductType.LI.name(), new BalanceDTO(getTotalAvailable(globalProducts.getLeasings()),
+				getTotal(globalProducts.getLeasings())));
+
+		totals.put(EnumProductType.LO.name(), new BalanceDTO(getTotalAvailable(globalProducts.getLoan()),
+				getTotal(globalProducts.getLoan())));
+
+		totals.put(EnumProductType.SI.name(), new BalanceDTO(getTotalAvailable(globalProducts.getFunds()),
+				getTotal(globalProducts.getFunds())));
+
+		totals.put(EnumProductType.ED.name(), new BalanceDTO(getTotalAvailable(globalProducts.getElectronicDeposits()),
+				getTotal(globalProducts.getElectronicDeposits())));
 
 		return totals;
 

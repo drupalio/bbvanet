@@ -2,8 +2,7 @@ package com.bbva.net.front.controller;
 
 import java.util.Map;
 
-import com.bbva.czic.dto.net.EnumProductType;
-import com.bbva.net.back.model.commons.Money;
+import com.bbva.net.back.model.globalposition.BalanceDTO;
 import com.bbva.net.back.model.globalposition.GlobalProductsDTO;
 
 /**
@@ -39,6 +38,6 @@ public interface GlobalPositionController {
 	/**
 	 * @return
 	 */
-	Map<EnumProductType, Money> getTotalsProducts();
+	Map<String, BalanceDTO> getTotalsProducts();
 
 }

@@ -169,14 +169,13 @@
 						value="#{personalizeProductAccountController.personalizeProductAccountDto.operationKey}" />
 				</bbvaPersonalize:personalizeAccount>
 			</div>
+
+			<div class="table-tabs">
+				<bbvaDetailMotion:detailMovesTable id="detailAccounts"
+					listAccounts="#{customerAccounts}" />
+			</div>
+
 		</bbvaDetAcc:tabMenu>
-
-		<div class="table-tabs">
-			<bbvaDetailMotion:detailMovesTable id="detailAccounts"
-				listAccounts="#{customerAccounts}" />
-		</div>
-
-
 	</ui:define>
 
 	<ui:define name="contentRight">

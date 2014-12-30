@@ -11,7 +11,7 @@
 	xmlns:bbvaGP="http://java.sun.com/jsf/composite/bbva/globalPosition"
 	xmlns:jsf="http://xmlns.jcp.org/jsf"
 	xmlns:bbvaSituation="http://java.sun.com/jsf/composite/bbva/graphics/situation"
-	xmlns:bbvaPieGraphic="http://java.sun.com/jsf/composite/bbva/graphics/accounts">
+	xmlns:bbvaPieGraphic="http://java.sun.com/jsf/composite/bbva/graphics">
 
 <composite:interface>
 	<composite:attribute name="id" type="String" />
@@ -39,13 +39,7 @@
 			<composite:insertChildren />
 		</div>
 
-		<div class="tab tab-bars chart">
-			<div class="tab-title">#{cc.attrs.header}</div>
-
-			<bbvaPieGraphic:generalGraphic id="#{cc.attrs.id}"
-				pieConfigUI="#{cc.attrs.pieGraphic}" />
-
-		</div>
+		<div class="tab tab-bars chart"></div>
 
 		<div class="row afterTable"></div>
 	</div>

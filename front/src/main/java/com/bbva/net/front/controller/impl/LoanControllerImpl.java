@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.primefaces.event.SelectEvent;
+
 import com.bbva.net.back.facade.LoanFacade;
 import com.bbva.net.back.model.globalposition.LeasingDTO;
 import com.bbva.net.back.model.globalposition.LoanDTO;
@@ -49,6 +51,13 @@ public class LoanControllerImpl extends AbstractBbvaController implements LoanCo
 	@Override
 	public List<LoanDTO> getCustomerLoanHidden() {
 		return this.loanFacade.getLoansByUserHidden(getCurrentUser());
+	}
+	
+	@Override
+	public void onProductSelected(SelectEvent selectEvent) {
+		super.onProductSelected(selectEvent);
+		this.sendAction("accountQuotaSelected");
+
 	}
 
 	/********************************* SETTERS BEANS ************************************/

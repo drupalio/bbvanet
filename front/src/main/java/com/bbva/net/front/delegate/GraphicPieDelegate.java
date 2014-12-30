@@ -1,7 +1,6 @@
 package com.bbva.net.front.delegate;
 
 import com.bbva.net.back.model.globalposition.GlobalProductsDTO;
-import com.bbva.net.front.ui.accounts.AccountsPieUI;
 import com.bbva.net.front.ui.globalposition.SituationPiesUI;
 import com.bbva.net.front.ui.pie.PieConfigUI;
 
@@ -27,7 +26,7 @@ public interface GraphicPieDelegate {
 	 * @return
 	 */
 
-	AccountsPieUI getAccountsfundsProducts(GlobalProductsDTO globalProducts);
+	PieConfigUI getAccountsfundsProducts(GlobalProductsDTO globalProducts);
 
 	/**
 	 * @param products

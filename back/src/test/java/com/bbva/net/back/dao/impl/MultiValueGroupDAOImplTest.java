@@ -38,7 +38,7 @@ public class MultiValueGroupDAOImplTest extends
 		/**
 		 * Invoke test method without data
 		 */
-		Assert.assertFalse(this.multiValueGroupDAO.getTypes(2).size() > 0);
+		Assert.assertFalse(this.multiValueGroupDAO.getTypes(1000).size() > 0);
 	}
 
 	@Test
