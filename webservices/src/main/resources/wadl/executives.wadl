@@ -1,0 +1,256 @@
+<application xmlns="http://wadl.dev.java.net/2009/02" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <grammars>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="urn:com:bbva:jee:arq:spring:core:servicing:utils" xmlns:tns="urn:com:bbva:czic:dto:net" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:com:bbva:czic:dto:net">
+            <xs:import namespace="urn:com:bbva:jee:arq:spring:core:servicing:utils"/>
+            <xs:element name="Balance" type="tns:Balance"/>
+            <xs:element name="City" type="tns:City"/>
+            <xs:element name="Conditions" type="tns:Conditions"/>
+            <xs:element name="ContactInfo" type="tns:ContactInfo"/>
+            <xs:element name="Country" type="tns:Country"/>
+            <xs:element name="Email" type="tns:Email"/>
+            <xs:element name="EnumAccountState" type="tns:EnumAccountState"/>
+            <xs:element name="EnumContactSourceType" type="tns:EnumContactSourceType"/>
+            <xs:element name="EnumFinancialStatusType" type="tns:EnumFinancialStatusType"/>
+            <xs:element name="EnumMessageType" type="tns:EnumMessageType"/>
+            <xs:element name="EnumPhoneNumberType" type="tns:EnumPhoneNumberType"/>
+            <xs:element name="EnumProductType" type="tns:EnumProductType"/>
+            <xs:element name="EnumThirdPartyType" type="tns:EnumThirdPartyType"/>
+            <xs:element name="Executive" type="tns:Executive"/>
+            <xs:element name="Location" type="tns:Location"/>
+            <xs:element name="Message" type="tns:Message"/>
+            <xs:element name="Movement" type="tns:Movement"/>
+            <xs:element name="Office" type="tns:Office"/>
+            <xs:element name="Operation" type="tns:Operation"/>
+            <xs:element name="PhoneNumber" type="tns:PhoneNumber"/>
+            <xs:element name="Product" type="tns:Product"/>
+            <xs:element name="State" type="tns:State"/>
+            <xs:element name="ThirdParty" type="tns:ThirdParty"/>
+            <xs:element name="User" type="tns:User"/>
+            <xs:complexType name="Executive">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="id" type="xs:string"/>
+                    <xs:element minOccurs="0" name="name" type="xs:string"/>
+                    <xs:element minOccurs="0" name="phone" type="xs:string"/>
+                    <xs:element minOccurs="0" name="office" type="tns:Office"/>
+                    <xs:element minOccurs="0" name="email" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="customer" nillable="true" type="tns:ThirdParty"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Office">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="code" type="xs:string"/>
+                    <xs:element minOccurs="0" name="name" type="xs:string"/>
+                    <xs:element minOccurs="0" name="location" type="tns:Location"/>
+                    <xs:element minOccurs="0" name="postalAddress" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Location">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="city" type="tns:City"/>
+                    <xs:element minOccurs="0" name="category" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="City">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="id" type="xs:string"/>
+                    <xs:element minOccurs="0" name="name" type="xs:string"/>
+                    <xs:element minOccurs="0" name="state" type="tns:State"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="State">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="id" type="xs:string"/>
+                    <xs:element minOccurs="0" name="name" type="xs:string"/>
+                    <xs:element minOccurs="0" name="country" type="tns:Country"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Country">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="id" type="xs:string"/>
+                    <xs:element minOccurs="0" name="name" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ThirdParty">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="customerId" type="tns:User"/>
+                    <xs:element minOccurs="0" name="type" type="tns:EnumThirdPartyType"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="User">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="customerId" type="xs:string"/>
+                    <xs:element minOccurs="0" name="name" type="xs:string"/>
+                    <xs:element minOccurs="0" name="ContactInfo" type="tns:ContactInfo"/>
+                    <xs:element minOccurs="0" name="userSalesExecutive" type="xs:string"/>
+                    <xs:element minOccurs="0" name="lastAccessDate" type="xs:dateTime"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="message" nillable="true" type="tns:Message"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="products" nillable="true" type="tns:Product"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ContactInfo">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="phoneNumbers" nillable="true" type="tns:PhoneNumber"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="emails" nillable="true" type="tns:Email"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="PhoneNumber">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="contactSource" type="tns:EnumContactSourceType"/>
+                    <xs:element minOccurs="0" name="countryCode" type="xs:string"/>
+                    <xs:element minOccurs="0" name="regionalCode" type="xs:string"/>
+                    <xs:element minOccurs="0" name="number" type="xs:string"/>
+                    <xs:element minOccurs="0" name="type" type="tns:EnumPhoneNumberType"/>
+                    <xs:element minOccurs="0" name="primary" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="active" type="xs:boolean"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Email">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="source" type="tns:EnumContactSourceType"/>
+                    <xs:element minOccurs="0" name="addres" type="xs:string"/>
+                    <xs:element minOccurs="0" name="primary" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="active" type="xs:boolean"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Message">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="id" type="xs:string"/>
+                    <xs:element minOccurs="0" name="title" type="xs:string"/>
+                    <xs:element minOccurs="0" name="template" type="xs:string"/>
+                    <xs:element minOccurs="0" name="reference" type="tns:EnumMessageType"/>
+                    <xs:element minOccurs="0" name="time" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="value" type="ns1:money"/>
+                    <xs:element minOccurs="0" name="info" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Product">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="id" type="xs:string"/>
+                    <xs:element minOccurs="0" name="type" type="tns:EnumProductType"/>
+                    <xs:element minOccurs="0" name="name" type="xs:string"/>
+                    <xs:element minOccurs="0" name="alias" type="xs:string"/>
+                    <xs:element minOccurs="0" name="financialState" type="tns:EnumFinancialStatusType"/>
+                    <xs:element minOccurs="0" name="visible" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="operable" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="balance" type="tns:Balance"/>
+                    <xs:element minOccurs="0" name="contactInfo" type="tns:ContactInfo"/>
+                    <xs:element minOccurs="0" name="conditions" type="tns:Conditions"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="movement" nillable="true" type="tns:Movement"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Balance">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="total" type="ns1:money"/>
+                    <xs:element minOccurs="0" name="availableBalance" type="ns1:money"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Conditions">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="category" type="xs:string"/>
+                    <xs:element minOccurs="0" name="description" type="xs:string"/>
+                    <xs:element minOccurs="0" name="openingDate" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="commission" type="xs:string"/>
+                    <xs:element minOccurs="0" name="office" type="tns:Office"/>
+                    <xs:element minOccurs="0" name="mobilizationConditions" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Movement">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="id" type="xs:string"/>
+                    <xs:element minOccurs="0" name="concept" type="xs:string"/>
+                    <xs:element minOccurs="0" name="transactionDate" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="operationDate" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="sourceReference" type="xs:string"/>
+                    <xs:element minOccurs="0" name="destinationReference" type="xs:string"/>
+                    <xs:element minOccurs="0" name="operation" type="tns:Operation"/>
+                    <xs:element minOccurs="0" name="office" type="tns:Office"/>
+                    <xs:element minOccurs="0" name="status" type="tns:EnumAccountState"/>
+                    <xs:element minOccurs="0" name="value" type="ns1:money"/>
+                    <xs:element minOccurs="0" name="balance" type="ns1:money"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Operation">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="code" type="xs:string"/>
+                    <xs:element minOccurs="0" name="description" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:simpleType name="EnumContactSourceType">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="MOBILE"/>
+                    <xs:enumeration value="WEB"/>
+                    <xs:enumeration value="THIRD_PARTY"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="EnumPhoneNumberType">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="MOBILE"/>
+                    <xs:enumeration value="LANDLINE"/>
+                    <xs:enumeration value="FAX"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="EnumMessageType">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="ADVERTISEMENT"/>
+                    <xs:enumeration value="INFORMATION"/>
+                    <xs:enumeration value="NOTIFICATION"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="EnumProductType">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="PC"/>
+                    <xs:enumeration value="TDC"/>
+                    <xs:enumeration value="LO"/>
+                    <xs:enumeration value="SI"/>
+                    <xs:enumeration value="ED"/>
+                    <xs:enumeration value="RQ"/>
+                    <xs:enumeration value="LI"/>
+                    <xs:enumeration value="AQ"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="EnumFinancialStatusType">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="A"/>
+                    <xs:enumeration value="P"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="EnumAccountState">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="ACTIVE"/>
+                    <xs:enumeration value="INACTIVE"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="EnumThirdPartyType">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="CUSTOMER"/>
+                    <xs:enumeration value="LEAD"/>
+                    <xs:enumeration value="AGGREGATE"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:schema>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:com:bbva:jee:arq:spring:core:servicing:utils" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:com:bbva:jee:arq:spring:core:servicing:utils">
+            <xs:element name="money" type="tns:money"/>
+            <xs:complexType name="money">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="amount" type="xs:decimal"/>
+                    <xs:element minOccurs="0" name="currency" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+    </grammars>
+    <resources base="http://localhost:8080/czic/executives">
+        <resource path="/V01" id="com.bbva.czic.executives.facade.v01.SrvExecutivesV01">
+            <method name="GET" id="getExecutive">
+                <request>
+                    <param name="$filter" style="query" default="null" type="xs:string"/>
+                    <param name="$fields" style="query" default="null" type="xs:string"/>
+                    <param name="$expands" style="query" default="null" type="xs:string"/>
+                    <param name="$sort" style="query" default="null" type="xs:string"/>
+                </request>
+                <response>
+                    <representation mediaType="application/json"/>
+                </response>
+            </method>
+        </resource>
+    </resources>
+</application>

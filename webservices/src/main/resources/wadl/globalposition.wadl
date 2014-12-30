@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<noscript><meta http-equiv="refresh" content="0; URL=/files/julio.indriago/F0374JLCX/globalposition.wadl?nojsmode=1" /></noscript>
+<script type="text/javascript">
+window.load_start_ms = new Date().getTime();
+window.load_log = [];
+window.logLoad = function(k) {
+	var ms = new Date().getTime();
+	window.load_log.push({
+		k: k,
+		t: (ms-window.load_start_ms)/1000
+	})
+}
+if(self!==top)window.document.write("\u003Cstyle>body * {display:none !important;}\u003C\/style>\u003Ca href=\"#\" onclick="+
+"\"top.location.href=window.location.href\" style=\"display:block !important;padding:10px\">Go to Slack.com\u003C\/a>");
+</script>
+
+
+<script type="text/javascript">
+window.callSlackAPIUnauthed = function(method, args, callback) {
+	var url = '/api/'+method+'?t='+new Date().getTime();
+	var req = new XMLHttpRequest();
+	
+	req.onreadystatechange = function() {
+		if (req.readyState == 4) {
+			req.onreadystatechange = null;
+			var obj;
+			
+			if (req.status == 200) {
+				if (req.responseText.indexOf('{') == 0) {
+					try {
+						eval('obj = '+req.responseText);
+					} catch (err) {
+						console.warn('unable to do anything with api rsp');
+					}
+				}
+			}
+			
+			obj = obj || {
+				ok: false	
+			}
+			
+			callback(obj.ok, obj, args);
+		}
+	}
+	
+	req.open('POST', url, 1);
+	req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+	var args2 = [];
+	for (i in args) {
+		args2[args2.length] = encodeURIComponent(i)+'='+encodeURIComponent(args[i]);
+	}
+
+	req.send(args2.join('&'));
+}
+</script>
+			<meta name="referrer" content="no-referrer">
+		<script type="text/javascript">
+
+
+
+var TS_last_log_date = null;
+var TSMakeLogDate = function() {
+	var date = new Date();
+	
+	var y = date.getFullYear();
+	var mo = date.getMonth()+1;
+	var d = date.getDate();
+
+	var h = date.getHours();
+	var mi = date.getMinutes();
+	var s = date.getSeconds();
+	var ms = date.getMilliseconds();
+	var str = y+'/'+mo+'/'+d+' '+h+':'+mi+':'+s+'.'+ms;
+	if (TS_last_log_date) {
+		var diff = date-TS_last_log_date;
+		//str+= ' ('+diff+'ms)';
+	}
+	TS_last_log_date = date;
+	return str+' ';
+}
+
+var TSSSB = {
+	warn: function(txt) {
+		if (window.TS) return TS.warn(txt);
+		console.warn(txt);
+	},
+	
+	info: function(txt) {
+		if (window.TS) return TS.info(txt);
+		console.info(txt);
+	},
+	
+	// called by the ssb when user is active
+	maybeTickleMS: function() {
+		if (window.TS && TS.ui) {
+			TS.ui.maybeTickleMS()
+		}
+	},
+	
+	// called by the ssb with files
+	filesSelected: function(files) {
+		if (window.TS && TS.view) {
+			TS.view.filesSelected(files);
+		}
+	},
+	
+	// called by the ssb when the user clicks outside the web view
+	ssbChromeClicked: function(on_button) {
+		if (window.TS) {
+			TS.ssbChromeClicked(on_button);
+		}
+	},
+	
+	// to be called from SSB apps
+	openDialog: function(which) {
+		if (which == 'prefs') {
+			if (window.TS && TS.ui && TS.ui.prefs_dialog) TS.ui.prefs_dialog.start();
+			return;
+		}
+		
+		if (which == 'shortcuts') {
+			if (window.TS && TS.ui && TS.ui.shortcuts_dialog) TS.ui.shortcuts_dialog.start();
+			return;
+		}
+		
+		TSSSB.warn('TSSSB.openDialog failed, unrecognized dialog:'+which);
+	},
+	
+	// to be called from SSB apps
+	getThemeValues: function() {
+		if (window.TS && TS.model && TS.model.prefs && TS.model.prefs.sidebar_theme_custom_values) {
+			try {
+				return JSON.parse(TS.model.prefs.sidebar_theme_custom_values);
+			} catch(err) {}
+		}
+		
+		return {};
+	},
+	
+	// to be called from SSB apps
+	getAllTeams: function() {
+		if (window.TS) {
+			return TS.getAllTeams();
+		}
+		
+		return '';
+	},
+
+	// to be called from SSB apps
+	getAPIToken: function() {
+		if (window.TS && TS.model && TS.model.api_token) {
+			return TS.model.api_token;
+		}
+		
+		return '';
+	},
+
+	// to be called from SSB apps
+	getTeamId: function() {
+		if (window.TS && TS.model && TS.model.team && TS.model.team.id) {
+			return TS.model.team.id;
+		}
+		
+		return '';
+	},
+
+	// to be called from SSB apps
+	getUserId: function() {
+		if (window.TS && TS.model && TS.model.user && TS.model.user.id) {
+			return TS.model.user.id;
+		}
+		
+		return '';
+	},
+
+	// to be called from SSB apps
+	focusTabAndSwitchToChannel: function(c_id) {
+		if (!window.TS) return;
+		if (!TS.channels) return;
+		
+		if (c_id.charAt(0) === 'C') {
+			TS.channels.displayChannel(c_id);
+			
+		} else if (c_id.charAt(0) === 'D') {
+			TS.ims.startImById(c_id);
+			
+		} else if (c_id.charAt(0) === 'G') {
+			TS.groups.displayGroup(c_id);
+			
+		} else {
+			return false;
+		}
+		
+		window.focus();
+		return true;
+	},
+
+	// to be called from SSB apps
+	sendMsgFromUser: function(c_id, text) {
+		if (!window.TS) return TSSSB.warn('TSSSB.sendMsgFromUser failed, no window.TS present') && false;
+		if (!TS.client) return TSSSB.warn('TSSSB.sendMsgFromUser failed, no TS.client present') && false;
+		if (!c_id) return TSSSB.warn('TSSSB.sendMsgFromUser failed, no c_id provided') && false;
+		if (!text) return TSSSB.warn('TSSSB.sendMsgFromUser failed, no text provided') && false;
+		
+		var sent = false;
+		if (c_id.indexOf('C') == 0 && TS.channels.getChannelById(c_id)) { // a channel
+			sent = TS.channels.sendMsg(c_id, text);
+
+		} else if (c_id.indexOf('G') == 0 && TS.groups.getGroupById(c_id)) { // a group
+			sent = TS.groups.sendMsg(c_id, text);
+		
+		} else if (TS.ims.getImById(c_id)) {
+			sent = TS.ims.sendMsg(c_id, text);
+		
+		}
+		
+		if (!sent) return TSSSB.warn('TSSSB.sendMsgFromUser failed, invalid c_id or possible permission failure') && false;
+		return true;
+	},
+	timeout_tim: 0,
+	
+	callWinSSB: function(method, args) {
+		var args_str = '';
+		if (args != undefined && args != null) {
+			try {
+				args_str = JSON.stringify(args)
+			} catch(e) {
+				args_str = 'bad/no args';
+			}
+		}
+		
+		if (window.winssb && winssb[method]) {
+			
+			if (args) { 
+				TSSSB.info(TSMakeLogDate()+'TSSSB: calling winssb.'+method+' with args: '+args_str);
+				winssb[method](args);
+			} else {
+				TSSSB.info(TSMakeLogDate()+'TSSSB: calling winssb.'+method+' with no args');
+				winssb[method]();
+			}
+			return true;
+		}
+		
+		TSSSB.warn(TSMakeLogDate()+'TSSSB: failed calling winssb.'+method+' with args: '+args_str);
+		
+		return false;
+		
+	},
+	
+	callMacGap: function(method, args) {
+		var args_str = '';
+		if (args != undefined && args != null) {
+			try {
+				args_str = JSON.stringify(args)
+			} catch(e) {
+				args_str = 'bad/no args';
+			}
+		}
+		
+		//TSSSB.info(TSMakeLogDate()+'TSSSB '+method+' '+args_str);
+		
+		if (method == 'reload' && macgap.app && macgap.app.reload) {
+			macgap.app.reload();
+			return true;
+		}
+		
+		if (method == 'didStartLoading' && macgap.app && macgap.app.didStartLoading) {
+			macgap.app.didStartLoading(args);
+			return true;
+		}
+		
+		if (method == 'didFinishLoading' && macgap.app && macgap.app.didFinishLoading) {
+			macgap.app.didFinishLoading();
+			return true;
+		}
+		
+		if (method == 'setCurrentTeam' && macgap.state && macgap.state.setCurrentTeam) {
+			macgap.state.setCurrentTeam(args);
+			return true;
+		}
+		
+		if (method == 'disableSecureInput' && macgap.app && macgap.app.disableSecureInput) {
+			macgap.app.disableSecureInput();
+			return true;
+		}
+		
+		if (method == 'didSignIn' && macgap.teams && macgap.teams.didSignIn) {
+			macgap.teams.didSignIn();
+			return true;
+		}
+		
+		if (method == 'didSignOut' && macgap.teams && macgap.teams.didSignOut) {
+			macgap.teams.didSignOut();
+			return true;
+		}
+		
+		if (method == 'refreshTileColors' && macgap.teams && macgap.teams.refreshTileColors) {
+			macgap.teams.refreshTileColors();
+			return true;
+		}
+		
+		if (method == 'updateTitleBarColor' && macgap.teams && macgap.teams.updateTitleBarColor) {
+			macgap.teams.updateTitleBarColor(args);
+			return true;
+		}
+		
+		if (method == 'displayTeam' && macgap.teams && macgap.teams.displayTeam) {
+			macgap.teams.displayTeam(args);
+			return true;
+		}
+		
+		if (method == 'speakString' && macgap.app && macgap.app.speakString) {
+			macgap.app.speakString(args);
+			return true;
+		}
+		
+		if (method == 'notify' && macgap.app && macgap.notice && macgap.notice.notify) {
+			macgap.notice.notify(args);
+			return true;
+		}
+		
+		if (method == 'setBadgeCount' && macgap.dock) {
+			if (args.all_unread_highlights_cnt + args.all_unread_cnt) {
+				if (macgap.dock.setBadgeCount) { // tabbed ssb
+					macgap.dock.setBadgeCount(args.all_unread_highlights_cnt, args.all_unread_cnt, args.bullet);
+				} else { // non tabbed ssb
+					var cnt = args.all_unread_highlights_cnt; // if any unread mentions, use that number
+					if (cnt > 9) cnt = '9+'; 
+					if (!cnt) cnt = (args.bullet) ? '•' : ''; // if no all_unread_highlights_cnt then just show • (as long as they have not turned off the pref)
+					macgap.dock.badge = cnt.toString();
+				}
+			} else {
+				macgap.dock.badge = '';
+			}
+			return true;
+		}
+		
+		if (method == 'signInTeam' && macgap.teams && macgap.teams.signInTeam) {
+			macgap.teams.signInTeam()
+			return true;
+		}
+		
+		if (method == 'teamsUpdate' && macgap.teams && macgap.teams.update) {
+			macgap.teams.update(args);
+			return true;
+		}
+		
+		if (method == 'preloadSounds' && macgap.sound && macgap.sound.preloadSounds) {
+			macgap.sound.preloadSounds(args);
+			return true;
+		}
+		
+		if (method == 'playRemoteSound' && macgap.sound && macgap.sound.playRemote) {
+			macgap.sound.playRemote(args);
+			return true;
+		}
+		
+		if (method == 'setImage' && macgap.teams && macgap.teams.setImage && window.TS && TS.model && TS.model.mac_ssb_version >= .68) {
+			macgap.teams.setImage(args);
+			return true;
+		}
+		
+		return false;
+	},
+	
+	call: function(method, args) {
+		if (!window.macgap && !window.winssb) return false;
+		
+		if (method == 'didFinishLoading') {
+			clearTimeout(TSSSB.timeout_tim);
+		}
+		
+		if (method == 'didStartLoading') {
+			clearTimeout(TSSSB.timeout_tim);
+			
+			var ms = args;
+			TSSSB.info(TSMakeLogDate()+'TSSSB.timeout_tim set for ms:'+ms);
+			TSSSB.timeout_tim = setTimeout(function() {
+				TSSSB.info(TSMakeLogDate()+'TSSSB.timeout_tim fired, we\'re about to be reloaded for taking too long');
+				TSSSB.warn(TSMakeLogDate()+' '+JSON.stringify(window.load_log, null, '\t'));
+			}, ms)
+		}
+	
+	
+		if (window.macgap) {
+			return TSSSB.callMacGap(method, args);
+		}
+	
+		if (window.winssb) {
+			return TSSSB.callWinSSB(method, args);
+		}
+		
+		return false;
+	}
+}
+
+</script>	<script type="text/javascript">TSSSB.call('didFinishLoading');</script>
+	    <meta charset="utf-8">
+    <title>globalPosition.wadl | Entelgy Slack</title>
+    <meta name="author" content="Slack">
+
+							
+														
+		
+		<!-- output_css "core" -->
+    <link href="https://slack.global.ssl.fastly.net/31839/style/rollup-plastic_1419867103.css" rel="stylesheet" type="text/css">
+
+	<!-- output_css "regular" -->
+    <link href="https://slack.global.ssl.fastly.net/28071/style/comments_1418235739.css" rel="stylesheet" type="text/css">
+    <link href="https://slack.global.ssl.fastly.net/30473/style/stars_1418235754.css" rel="stylesheet" type="text/css">
+    <link href="https://slack.global.ssl.fastly.net/25082/style/print_1418235682.css" rel="stylesheet" type="text/css">
+    <link href="https://slack.global.ssl.fastly.net/31650/style/files_1419288179.css" rel="stylesheet" type="text/css">
+    <link href="https://slack.global.ssl.fastly.net/31650/style/libs_codemirror_1419288190.css" rel="stylesheet" type="text/css">
+
+	
+
+	
+	
+	
+
+    <!--[if lt IE 9]>
+    <script src="https://slack.global.ssl.fastly.net/1261/js/libs_html5shiv_1361923886.js"></script>
+    <![endif]-->
+
+    <link href='https://fonts.googleapis.com/css?family=Lato:300,300italic,400,700,900,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+
+	
+<link id="favicon" rel="shortcut icon" href="https://slack.global.ssl.fastly.net/20655/img/icons/favicon-32.png" sizes="16x16 32x32 48x48" type="image/png" />
+
+<link rel="icon" href="https://slack.global.ssl.fastly.net/9427/img/icons/app-256.png" sizes="256x256" type="image/png" />
+
+<link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://slack.global.ssl.fastly.net/21506/img/icons/ios-152.png" />
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://slack.global.ssl.fastly.net/21506/img/icons/ios-144.png" />
+<link rel="apple-touch-icon-precomposed" sizes="120x120" href="https://slack.global.ssl.fastly.net/21506/img/icons/ios-120.png" />
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://slack.global.ssl.fastly.net/21506/img/icons/ios-114.png" />
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://slack.global.ssl.fastly.net/21506/img/icons/ios-72.png" />
+<link rel="apple-touch-icon-precomposed" href="https://slack.global.ssl.fastly.net/21506/img/icons/ios-57.png" />
+
+<meta name="msapplication-TileColor" content="#FFFFFF" />
+<meta name="msapplication-TileImage" content="https://slack.global.ssl.fastly.net/20655/img/icons/app-144.png" />			<script type="text/javascript">
+
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-106458-17', 'slack.com');
+	ga('send', 'pageview');
+
+	(function(e,c,b,f,d,g,a){e.SlackBeaconObject=d;
+	e[d]=e[d]||function(){(e[d].q=e[d].q||[]).push([1*new Date(),arguments])};
+	e[d].l=1*new Date();g=c.createElement(b);a=c.getElementsByTagName(b)[0];
+	g.async=1;g.src=f;a.parentNode.insertBefore(g,a)
+	})(window,document,"script","https://slack.global.ssl.fastly.net/15899/js/libs_beacon_1392444912.js","sb");
+	sb('set', 'token', '3307f436963e02d4f9eb85ce5159744c');
+	sb('set', 'user_id', 'U0346UGLK');
+	sb('set', 'user_batch', "immediate-launch");
+	sb('set', 'user_created', "2014-12-04");
+	sb('set', 'name_tag', 'entelgy-co/fgparamio');
+	sb('track', 'pageview');
+
+
+	function track(a){ga('send','event','web',a);sb('track',a);}
+
+</script>	
+</head>
+
+  <body>
+
+  		<script>
+	
+		var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+		if (w > 1440) document.querySelector('body').classList.add('widescreen');
+	
+	</script>
+
+  	
+	
+
+			<nav id="site_nav" class="no_transition">
+
+	<div id="site_nav_contents">
+
+		<div id="user_menu">
+			<div id="user_menu_contents">
+				<div id="user_menu_avatar"><span class="member_image thumb_48" style="background-image: url('https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2014-12-09/3179765654_ab966108f21c25c9d10e_192.jpg')"></span></div>
+				<h3>Signed in as</h3>
+				<span id="user_menu_name">fgparamio</span>
+			</div>
+		</div>
+
+		<div class="nav_contents">
+
+			<ul class="primary_nav">
+				<li><a href="/home"><i class="fa fa-home"></i>Home</a></li>
+				<li><a href="/account"><i class="fa fa-user"></i>Account & Profile</a></li>
+				<li><a href="/services/new"><i class="fa fa-wrench"></i>Integrations</a></li>
+				<li><a href="/archives"><i class="fa fa-inbox"></i>Message Archives</a></li>
+				<li><a href="/files"><i class="fa fa-file"></i>Files</a></li>
+				<li><a href="/team"><i class="fa fa-book"></i>Team Directory</a></li>
+									<li><a href="/stats"><i class="fa fa-tachometer"></i>Statistics</a></li>
+													<li><a href="/customize"><i class="fa fa-magic"></i>Customize</a></li>
+											</ul>
+
+							<h3>Administration</h3>
+				<ul id="admin_nav" class="secondary_nav">
+					<li><a href="/admin/settings">Team Settings</a></li>
+					<li><a href="/admin">Manage Your Team</a></li>
+					<li><a href="/admin/invites">Invitations</a></li>
+					<li><a href="/admin/billing">Billing</a></li>
+					<li><a href="/admin/auth">Authentication</a></li>				</ul>
+			
+		</div>
+
+		<div id="footer">
+
+			<ul id="footer_nav">
+				<li><a href="/is">Tour</a></li>
+				<li><a href="/apps">Apps</a></li>
+				<li><a href="/brand-guidelines">Brand Guidelines</a></li>
+				<li><a href="/help">Help</a></li>
+				<li><a href="https://api.slack.com" target="_blank">API<i class="fa fa-external-link small_left_margin"></i></a></li>
+									<li><a href="/account/gateways">Gateways</a></li>
+								<li><a href="/pricing">Pricing</a></li>
+				<li><a href="/help/requests/new">Contact</a></li>
+				<li><a href="/terms-of-service">Policies</a></li>
+				<li><a href="http://slackhq.com/" target="_blank">Our Blog</a></li>
+				<li><a href="https://slack.com/signout/3136666549?crumb=s-1419965948-36e5439abd-%E2%98%83">Sign Out<i class="fa fa-sign-out small_left_margin"></i></a></li>
+			</ul>
+
+			<p id="footer_signature">Made with <i class="fa fa-heart"></i> by Slack</p>
+
+		</div>
+
+	</div>
+</nav>	
+	<header>
+					<a id="menu_toggle" class="no_transition">
+				<span class="menu_icon"></span>
+				<span class="menu_label">Menu</span>
+				<span class="vert_divider"></span>
+			</a>
+			<h1 id="header_team_name" class="inline_block no_transition">
+				<a href="/home">
+					<i class="fa fa-home" /></i>
+					Entelgy
+				</a>
+			</h1>
+			<div class="header_nav">
+				<div class="header_btns float_right">
+					<a id="team_switcher">
+						<i class="fa fa-th-large"></i><span class="label"><br />Teams</span>
+					</a>
+					<a href="/help" id="help_link">
+						<i class="fa fa-life-ring"></i><span class="label"><br />Help</span>
+					</a>
+					<a href="/messages">
+						<img src="https://slack.global.ssl.fastly.net/21506/img/icons/ios-64.png" srcset="https://slack.global.ssl.fastly.net/21506/img/icons/ios-32.png 1x, https://slack.global.ssl.fastly.net/21506/img/icons/ios-64.png 2x" />
+						<span class="label"><br />Launch</span>
+					</a>
+				</div>
+						                    <ul id="header_team_nav">
+		                        		                            <li class="active">
+		                            	<a href="https://entelgy-co.slack.com/home" target="https://entelgy-co.slack.com/">
+		                            				                            			<i class="team_icon default" >E</i>
+		                            				                            		<span class="switcher_label team_name">Entelgy</span>
+		                            				                            			<i class="fa fa-check active_icon"></i>
+		                            				                            	</a>
+		                            </li>
+		                        		                        <li id="add_team_option"><a href="https://slack.com/signin" target="_blank"><i class="fa fa-plus team_icon"></i> <span class="switcher_label">Sign in to another team...</span></a></li>
+		                    </ul>
+		                			</div>
+		
+		
+	</header>
+
+	<div id="page">
+
+		<div id="page_contents" >
+
+<p class="print_only">
+	<strong>Created by julio.indriago on December 17, 2014 at 2:01 PM</strong><br />
+	<span class="subtle_silver break_word">https://entelgy-co.slack.com/files/julio.indriago/F0374JLCX/globalposition.wadl</span>
+</p>
+
+<div class="file_header_container no_print"></div>
+
+<div class="alert_container">
+		<div class="file_public_link_shared alert" style="display: none;">
+			<a id="file_public_link_revoker" class="btn btn_small btn_outline float_right" data-toggle="tooltip" title="You can revoke the public link to this file. This will cause any previously shared links to stop working.">Revoke</a>
+		
+	<i class="fa fa-link"></i> Public Link: <a class="file_public_link" href="https://slack-files.com/T0340KLG5-F0374JLCX-59b59aa43e" target="new">https://slack-files.com/T0340KLG5-F0374JLCX-59b59aa43e</a>
+</div></div>
+
+<div id="file_page" class="card top_padding">
+
+	<p class="small subtle_silver no_print meta">
+		12KB Plain Text snippet created on <span class="date">December 17th 2014</span>.
+				<span class="file_share_list"></span>
+	</p>
+
+	<a id="file_action_cog" class="action_cog action_cog_snippet float_right no_print">
+		<span>Actions </span><i class="fa fa-cog"></i>
+	</a>
+	<a id="snippet_expand_toggle" class="float_right no_print">
+		<i class="fa fa-expand "></i>
+		<i class="fa fa-compress hidden"></i>
+	</a>
+
+	<div class="large_bottom_margin clearfix">
+		<pre id="file_contents">&lt;application xmlns=&quot;http://wadl.dev.java.net/2009/02&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:prefix1=&quot;urn:com:bbva:czic:dto:net&quot;&gt;
+    &lt;grammars&gt;
+        &lt;xs:schema xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:ns1=&quot;urn:com:bbva:jee:arq:spring:core:servicing:utils&quot; xmlns:tns=&quot;urn:com:bbva:czic:dto:net&quot; attributeFormDefault=&quot;unqualified&quot; elementFormDefault=&quot;unqualified&quot; targetNamespace=&quot;urn:com:bbva:czic:dto:net&quot;&gt;
+            &lt;xs:import namespace=&quot;urn:com:bbva:jee:arq:spring:core:servicing:utils&quot;/&gt;
+            &lt;xs:element name=&quot;Balance&quot; type=&quot;tns:Balance&quot;/&gt;
+            &lt;xs:element name=&quot;City&quot; type=&quot;tns:City&quot;/&gt;
+            &lt;xs:element name=&quot;Conditions&quot; type=&quot;tns:Conditions&quot;/&gt;
+            &lt;xs:element name=&quot;ContactInfo&quot; type=&quot;tns:ContactInfo&quot;/&gt;
+            &lt;xs:element name=&quot;Country&quot; type=&quot;tns:Country&quot;/&gt;
+            &lt;xs:element name=&quot;Email&quot; type=&quot;tns:Email&quot;/&gt;
+            &lt;xs:element name=&quot;Location&quot; type=&quot;tns:Location&quot;/&gt;
+            &lt;xs:element name=&quot;Office&quot; type=&quot;tns:Office&quot;/&gt;
+            &lt;xs:element name=&quot;Operation&quot; type=&quot;tns:Operation&quot;/&gt;
+            &lt;xs:element name=&quot;Product&quot; type=&quot;tns:Product&quot;/&gt;
+            &lt;xs:element name=&quot;State&quot; type=&quot;tns:State&quot;/&gt;
+            &lt;xs:element name=&quot;enumContactSourceType&quot; type=&quot;tns:enumContactSourceType&quot;/&gt;
+            &lt;xs:element name=&quot;enumFinancialStatusType&quot; type=&quot;tns:enumFinancialStatusType&quot;/&gt;
+            &lt;xs:element name=&quot;enumPhoneNumberType&quot; type=&quot;tns:enumPhoneNumberType&quot;/&gt;
+            &lt;xs:element name=&quot;enumProductType&quot; type=&quot;tns:enumProductType&quot;/&gt;
+            &lt;xs:element name=&quot;movement&quot; type=&quot;tns:movement&quot;/&gt;
+            &lt;xs:element name=&quot;phoneNumber&quot; type=&quot;tns:phoneNumber&quot;/&gt;
+            &lt;xs:complexType name=&quot;Product&quot;&gt;
+                &lt;xs:sequence&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;id&quot; type=&quot;xs:string&quot;/&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;type&quot; type=&quot;tns:enumProductType&quot;/&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;name&quot; type=&quot;xs:string&quot;/&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;alias&quot; type=&quot;xs:string&quot;/&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;financialState&quot; type=&quot;tns:enumFinancialStatusType&quot;/&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;visible&quot; type=&quot;xs:boolean&quot;/&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;operable&quot; type=&quot;xs:boolean&quot;/&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;balance&quot; type=&quot;tns:Balance&quot;/&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;contactInfo&quot; type=&quot;tns:ContactInfo&quot;/&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;conditions&quot; type=&quot;tns:Conditions&quot;/&gt;
+                    &lt;xs:element maxOccurs=&quot;unbounded&quot; minOccurs=&quot;0&quot; name=&quot;movement&quot; nillable=&quot;true&quot; type=&quot;tns:movement&quot;/&gt;
+                &lt;/xs:sequence&gt;
+            &lt;/xs:complexType&gt;
+            &lt;xs:complexType name=&quot;Balance&quot;&gt;
+                &lt;xs:sequence&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;total&quot; type=&quot;ns1:money&quot;/&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;availableBalance&quot; type=&quot;ns1:money&quot;/&gt;
+                &lt;/xs:sequence&gt;
+            &lt;/xs:complexType&gt;
+            &lt;xs:complexType name=&quot;ContactInfo&quot;&gt;
+                &lt;xs:sequence&gt;
+                    &lt;xs:element maxOccurs=&quot;unbounded&quot; minOccurs=&quot;0&quot; name=&quot;phoneNumbers&quot; nillable=&quot;true&quot; type=&quot;tns:phoneNumber&quot;/&gt;
+                    &lt;xs:element maxOccurs=&quot;unbounded&quot; minOccurs=&quot;0&quot; name=&quot;emails&quot; nillable=&quot;true&quot; type=&quot;tns:Email&quot;/&gt;
+                &lt;/xs:sequence&gt;
+            &lt;/xs:complexType&gt;
+            &lt;xs:complexType name=&quot;phoneNumber&quot;&gt;
+                &lt;xs:sequence&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;number&quot; type=&quot;xs:string&quot;/&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;countryCode&quot; type=&quot;xs:string&quot;/&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;regionalCode&quot; type=&quot;xs:string&quot;/&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;type&quot; type=&quot;tns:enumPhoneNumberType&quot;/&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;primary&quot; type=&quot;xs:boolean&quot;/&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;active&quot; type=&quot;xs:boolean&quot;/&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;contactSource&quot; type=&quot;tns:enumContactSourceType&quot;/&gt;
+                &lt;/xs:sequence&gt;
+            &lt;/xs:complexType&gt;
+            &lt;xs:complexType name=&quot;Email&quot;&gt;
+                &lt;xs:sequence&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;source&quot; type=&quot;tns:enumContactSourceType&quot;/&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;addres&quot; type=&quot;xs:string&quot;/&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;primary&quot; type=&quot;xs:boolean&quot;/&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;active&quot; type=&quot;xs:boolean&quot;/&gt;
+                &lt;/xs:sequence&gt;
+            &lt;/xs:complexType&gt;
+            &lt;xs:complexType name=&quot;Conditions&quot;&gt;
+                &lt;xs:sequence&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;category&quot; type=&quot;xs:string&quot;/&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;description&quot; type=&quot;xs:string&quot;/&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;openingDate&quot; type=&quot;xs:string&quot;/&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;commission&quot; type=&quot;xs:string&quot;/&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;office&quot; type=&quot;tns:Office&quot;/&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;mobilizationConditions&quot; type=&quot;xs:string&quot;/&gt;
+                &lt;/xs:sequence&gt;
+            &lt;/xs:complexType&gt;
+            &lt;xs:complexType name=&quot;Office&quot;&gt;
+                &lt;xs:sequence&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;code&quot; type=&quot;xs:string&quot;/&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;name&quot; type=&quot;xs:string&quot;/&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;location&quot; type=&quot;tns:Location&quot;/&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;postalAddress&quot; type=&quot;xs:string&quot;/&gt;
+                &lt;/xs:sequence&gt;
+            &lt;/xs:complexType&gt;
+            &lt;xs:complexType name=&quot;Location&quot;&gt;
+                &lt;xs:sequence&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;city&quot; type=&quot;tns:City&quot;/&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;category&quot; type=&quot;xs:string&quot;/&gt;
+                &lt;/xs:sequence&gt;
+            &lt;/xs:complexType&gt;
+            &lt;xs:complexType name=&quot;City&quot;&gt;
+                &lt;xs:sequence&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;id&quot; type=&quot;xs:string&quot;/&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;name&quot; type=&quot;xs:string&quot;/&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;state&quot; type=&quot;tns:State&quot;/&gt;
+                &lt;/xs:sequence&gt;
+            &lt;/xs:complexType&gt;
+            &lt;xs:complexType name=&quot;State&quot;&gt;
+                &lt;xs:sequence&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;id&quot; type=&quot;xs:string&quot;/&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;name&quot; type=&quot;xs:string&quot;/&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;country&quot; type=&quot;tns:Country&quot;/&gt;
+                &lt;/xs:sequence&gt;
+            &lt;/xs:complexType&gt;
+            &lt;xs:complexType name=&quot;Country&quot;&gt;
+                &lt;xs:sequence&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;id&quot; type=&quot;xs:string&quot;/&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;name&quot; type=&quot;xs:string&quot;/&gt;
+                &lt;/xs:sequence&gt;
+            &lt;/xs:complexType&gt;
+            &lt;xs:complexType name=&quot;movement&quot;&gt;
+                &lt;xs:sequence&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;id&quot; type=&quot;xs:string&quot;/&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;concept&quot; type=&quot;xs:string&quot;/&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;transactionDate&quot; type=&quot;xs:string&quot;/&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;sourceReference&quot; type=&quot;xs:string&quot;/&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;destinationReference&quot; type=&quot;xs:string&quot;/&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;operation&quot; type=&quot;tns:Operation&quot;/&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;value&quot; type=&quot;ns1:money&quot;/&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;balance&quot; type=&quot;ns1:money&quot;/&gt;
+                &lt;/xs:sequence&gt;
+            &lt;/xs:complexType&gt;
+            &lt;xs:complexType name=&quot;Operation&quot;&gt;
+                &lt;xs:sequence&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;code&quot; type=&quot;xs:string&quot;/&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;description&quot; type=&quot;xs:string&quot;/&gt;
+                &lt;/xs:sequence&gt;
+            &lt;/xs:complexType&gt;
+            &lt;xs:simpleType name=&quot;enumProductType&quot;&gt;
+                &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+                    &lt;xs:enumeration value=&quot;PC&quot;/&gt;
+                    &lt;xs:enumeration value=&quot;CA&quot;/&gt;
+                    &lt;xs:enumeration value=&quot;TDC&quot;/&gt;
+                    &lt;xs:enumeration value=&quot;LO&quot;/&gt;
+                    &lt;xs:enumeration value=&quot;SI&quot;/&gt;
+                    &lt;xs:enumeration value=&quot;CC&quot;/&gt;
+                    &lt;xs:enumeration value=&quot;RQ&quot;/&gt;
+                    &lt;xs:enumeration value=&quot;LI&quot;/&gt;
+                    &lt;xs:enumeration value=&quot;AQ&quot;/&gt;
+                &lt;/xs:restriction&gt;
+            &lt;/xs:simpleType&gt;
+            &lt;xs:simpleType name=&quot;enumFinancialStatusType&quot;&gt;
+                &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+                    &lt;xs:enumeration value=&quot;A&quot;/&gt;
+                    &lt;xs:enumeration value=&quot;P&quot;/&gt;
+                &lt;/xs:restriction&gt;
+            &lt;/xs:simpleType&gt;
+            &lt;xs:simpleType name=&quot;enumPhoneNumberType&quot;&gt;
+                &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+                    &lt;xs:enumeration value=&quot;MOBILE&quot;/&gt;
+                    &lt;xs:enumeration value=&quot;LANDLINE&quot;/&gt;
+                    &lt;xs:enumeration value=&quot;FAX&quot;/&gt;
+                &lt;/xs:restriction&gt;
+            &lt;/xs:simpleType&gt;
+            &lt;xs:simpleType name=&quot;enumContactSourceType&quot;&gt;
+                &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+                    &lt;xs:enumeration value=&quot;MOBILE&quot;/&gt;
+                    &lt;xs:enumeration value=&quot;WEB&quot;/&gt;
+                    &lt;xs:enumeration value=&quot;THIRD_PARTY&quot;/&gt;
+                &lt;/xs:restriction&gt;
+            &lt;/xs:simpleType&gt;
+        &lt;/xs:schema&gt;
+        &lt;xs:schema xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:tns=&quot;urn:com:bbva:jee:arq:spring:core:servicing:utils&quot; attributeFormDefault=&quot;unqualified&quot; elementFormDefault=&quot;unqualified&quot; targetNamespace=&quot;urn:com:bbva:jee:arq:spring:core:servicing:utils&quot;&gt;
+            &lt;xs:element name=&quot;money&quot; type=&quot;tns:money&quot;/&gt;
+            &lt;xs:complexType name=&quot;money&quot;&gt;
+                &lt;xs:sequence&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;amount&quot; type=&quot;xs:decimal&quot;/&gt;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;currency&quot; type=&quot;xs:string&quot;/&gt;
+                &lt;/xs:sequence&gt;
+            &lt;/xs:complexType&gt;
+        &lt;/xs:schema&gt;
+    &lt;/grammars&gt;
+    &lt;resources base=&quot;http://localhost:8080/czic/GlobalPosition&quot;&gt;
+        &lt;resource path=&quot;/V01&quot; id=&quot;com.bbva.czic.globalposition.facade.v01.SrvGlobalPositionV01&quot;&gt;
+            &lt;resource path=&quot;/customers/{customerId}/products&quot;&gt;
+                &lt;param name=&quot;customerId&quot; style=&quot;template&quot; type=&quot;xs:string&quot;/&gt;
+                &lt;method name=&quot;GET&quot; id=&quot;getExtractGlobalBalance&quot;&gt;
+                    &lt;request&gt;
+                        &lt;param name=&quot;$filter&quot; style=&quot;query&quot; default=&quot;(productType=={productType})&quot; type=&quot;xs:string&quot;/&gt;
+                        &lt;param name=&quot;$fields&quot; style=&quot;query&quot; default=&quot;null&quot; type=&quot;xs:string&quot;/&gt;
+                        &lt;param name=&quot;$expands&quot; style=&quot;query&quot; default=&quot;null&quot; type=&quot;xs:string&quot;/&gt;
+                        &lt;param name=&quot;$sort&quot; style=&quot;query&quot; default=&quot;null&quot; type=&quot;xs:string&quot;/&gt;
+                    &lt;/request&gt;
+                    &lt;response&gt;
+                        &lt;representation mediaType=&quot;application/json&quot;/&gt;
+                    &lt;/response&gt;
+                &lt;/method&gt;
+            &lt;/resource&gt;
+            &lt;resource path=&quot;/{idProduct}&quot;&gt;
+                &lt;param name=&quot;idProduct&quot; style=&quot;template&quot; type=&quot;xs:string&quot;/&gt;
+                &lt;method name=&quot;PUT&quot; id=&quot;update&quot;&gt;
+                    &lt;request&gt;
+                        &lt;representation mediaType=&quot;application/json&quot; element=&quot;prefix1:Product&quot;/&gt;
+                    &lt;/request&gt;
+                    &lt;response&gt;
+                        &lt;representation mediaType=&quot;application/json&quot;/&gt;
+                    &lt;/response&gt;
+                &lt;/method&gt;
+            &lt;/resource&gt;
+        &lt;/resource&gt;
+    &lt;/resources&gt;
+&lt;/application&gt;</pre>
+
+		<p class="file_page_meta no_print" style="line-height: 1.5rem;">
+			<label class="checkbox normal mini float-right no_top_padding no_min_width">
+				<input type="checkbox" id="file_preview_wrap_cb"> wrap long lines
+			</label>
+		</p>
+
+	</div>
+
+	<div id="comments_holder" class="clearfix clear_both">
+	<div class="col span_1_of_6"></div>
+	<div class="col span_4_of_6 no_right_padding">
+		<div id="file_page_comments">
+			<div class="loading_hash_animation">
+	<img src="https://slack.global.ssl.fastly.net/18295/img/loading_hash_animation_@2x.gif" srcset="https://slack.global.ssl.fastly.net/20655/img/loading_hash_animation.gif 1x, https://slack.global.ssl.fastly.net/18295/img/loading_hash_animation_@2x.gif 2x" alt="Loading" class="loading_hash" /><br />loading...
+	<noscript>
+		You must enable javascript in order to use Slack :(
+				<style type="text/css">div.loading_hash { display: none; }</style>
+	</noscript>
+</div>		</div>	
+		<form action="https://entelgy-co.slack.com/files/julio.indriago/F0374JLCX/globalposition.wadl" 
+		id="file_comment_form" 
+					class="comment_form"
+				method="post">
+			<a href="/team/fgparamio" class="member_preview_link" data-member-id="U0346UGLK" >
+			<span class="member_image thumb_36" style="background-image: url('https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2014-12-09/3179765654_ab966108f21c25c9d10e_72.jpg')"></span>
+		</a>		
+		<input type="hidden" name="addcomment" value="1" />
+	<input type="hidden" name="crumb" value="s-1419965948-d40216ddfb-☃" />
+
+	<textarea id="file_comment" data-el-id-to-keep-in-view="file_comment_submit_btn" class="comment_input small_bottom_margin" name="comment" wrap="virtual" ></textarea>
+	<span class="input_note float_left cloud_silver file_comment_tip">cmd+enter to submit</span>	<button id="file_comment_submit_btn" type="submit" class="btn float_right  ladda-button" data-style="expand-right"><span class="ladda-label">Add Comment</span></button>
+</form>
+
+<form action="https://entelgy-co.slack.com/files/julio.indriago/F0374JLCX/globalposition.wadl" 
+		id="file_edit_comment_form" 
+					class="edit_comment_form hidden"
+				method="post">
+	<textarea id="file_edit_comment" class="comment_input small_bottom_margin" name="comment" wrap="virtual"></textarea><br>
+	<span class="input_note float_left cloud_silver file_comment_tip">cmd+enter to submit</span>	<input type="submit" class="save btn float_right " value="Save Changes" />
+	<button class="cancel btn btn_outline float_right small_right_margin ">Cancel</button>
+</form>	
+	</div>
+	<div class="col span_1_of_6"></div>
+</div>
+</div>
+
+<div id="file_share_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="Share" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h3>
+			Share 
+			Snippet											</h3>
+	</div>
+
+	<div class="modal-body share_dialog">
+				
+		<div id="share_channels">
+
+			<p id="select_share_channels_note" class="select_share_note">Sharing a file into a channel makes it public. All members of your team will have access to it.</p>
+			<p id="select_share_ims_note" class="hidden select_share_note">Sharing a file with a person means that only they will have access to it (unless it is also shared into a channel or with a group).</p>
+			<p id="select_share_groups_note" class="hidden select_share_note">Sharing a file into a group means that only members of that group will have access to it (unless it is also shared into a channel).</p>
+
+			<p>
+				<label id="select_share_label" for="select_share_channels">Share in</label>
+				<select id="select_share_channels" name="select_share_channels" >
+					<optgroup label="Channels">
+																					<option value="C0357RLV5">#bbvanet</option>
+																												<option value="C0340KLGK">#general</option>
+																												<option value="C0340KLGM">#random</option>
+																												<option value="C0340PKQF">#soa-team</option>
+																		</optgroup>
+					<optgroup label="People" id="select_share_ims">
+																														<option value="D0346UGLV">slackbot</option>
+																																													<option value="D0346UGLZ" data-user-id="U0340KLG9"></option>
+																																													<option value="D0346UGMB" data-user-id="U0346T2UD"></option>
+																																													<option value="D03476GHR" data-user-id="U03476GH7"></option>
+																																													<option value="D034A5J1T" data-user-id="U034A5J19"></option>
+																																													<option value="D034AULSB" data-user-id="U034AULRM"></option>
+																																													<option value="D034CEAMU" data-user-id="U034CEAML"></option>
+																																													<option value="D03582UTX" data-user-id="U03582UTB"></option>
+																																													<option value="D03583163" data-user-id="U03583155"></option>
+																																													<option value="D0358989V" data-user-id="U0358989H"></option>
+																																													<option value="D0358KWCM" data-user-id="U0358KWBT"></option>
+																																													<option value="D0359L3DC" data-user-id="U0359L3CS"></option>
+																																													<option value="D0359M2QG" data-user-id="U0359M2NY"></option>
+																																													<option value="D035T72GB" data-user-id="U035T72FF"></option>
+																																													<option value="D038B7X98" data-user-id="U038B7X8A"></option>
+																										</optgroup>
+					
+				</select>			
+			</p>
+
+		</div>
+
+		<p class="no_bottom_margin">
+			<label class="inline-block align_top">Add Comment <span class="normal">(optional)</span></label>
+			<textarea id="file_comment_textarea" class="comment_input" name="comment" wrap="virtual"></textarea>
+		</p>
+
+	</div>
+
+	<div class="modal-footer">
+	  <button id="file_share_cancel" class="btn btn_outline" data-dismiss="modal" aria-hidden="true">Cancel</button>
+	  <button id="file_share_submit" class="btn ladda-button" data-style="expand-right">
+	  	<span class="ladda-label">
+	  		Share
+	  		Snippet										  	</span>
+	  </button>
+	</div>
+	
+</div>
+	
+
+		
+	</div>
+	<div id="overlay"></div>
+</div>
+
+
+
+
+<script type="text/javascript">
+var cdn_url = 'https://slack.global.ssl.fastly.net';
+</script>
+	<script type="text/javascript">
+<!--
+	// common boot_data
+	var boot_data = {
+		start_ms: new Date().getTime(),
+		app: 'web',
+		user_id: 'U0346UGLK',
+		svn_rev: '31894',
+		redir_domain: 'slack-redir.com',
+		api_url: '/api/',
+		team_url: 'https://entelgy-co.slack.com/',
+		image_proxy_url: 'https://slack-imgs.com/',
+		api_token: 'xoxs-3136666549-3142968699-3142968743-21f23ad339',
+		feature_status: false,
+		feature_attachments_inline: false,
+		feature_search_attachments: false,
+		feature_chat_sounds: false,
+		feature_darken_scroll_handle: false,
+		feature_cmd_autocomplete: true,
+		feature_require_at: true,
+		feature_image_proxy: true,
+		feature_channel_eventlog_client: true,
+		feature_simple_smile: true,
+		feature_bot_users: true,
+		feature_post_previews: false,
+		feature_user_hidden_msgs: false,
+		feature_muting: false,
+		feature_new_ls: true,
+		feature_macssb1_banner: true,
+		feature_latest_event_ts: true,
+		feature_new_team_directory: false,
+		feature_no_redirects_in_ssb: true,
+		feature_referer_policy: true,
+		feature_client_exif_orientation_on_uploads: true,
+		feature_spaces: false,
+		feature_comment_mentions_autocomplete: false,
+		feature_ra_channel_archive: false,
+
+		img: {
+			app_icon: 'https://slack.global.ssl.fastly.net/20655/img/slack_growl_icon.png'
+		},
+		page_needs_custom_emoji: false
+	};
+
+	// web/mobile boot_data
+			boot_data.login_data = JSON.parse('{\"ok\":true,\"self\":{\"id\":\"U0346UGLK\",\"name\":\"fgparamio\",\"prefs\":{\"highlight_words\":\"\",\"user_colors\":\"\",\"color_names_in_list\":true,\"growls_enabled\":true,\"tz\":\"America\\/Bogota\",\"push_dm_alert\":true,\"push_mention_alert\":true,\"push_everything\":true,\"push_idle_wait\":2,\"push_sound\":\"b2.mp3\",\"push_loud_channels\":\"\",\"push_mention_channels\":\"\",\"push_loud_channels_set\":\"\",\"email_alerts\":\"instant\",\"email_alerts_sleep_until\":0,\"email_misc\":true,\"email_weekly\":true,\"welcome_message_hidden\":false,\"all_channels_loud\":true,\"loud_channels\":\"\",\"never_channels\":\"\",\"loud_channels_set\":\"\",\"show_member_presence\":true,\"search_sort\":\"timestamp\",\"expand_inline_imgs\":true,\"expand_internal_inline_imgs\":true,\"expand_snippets\":false,\"posts_formatting_guide\":true,\"seen_welcome_2\":true,\"seen_ssb_prompt\":false,\"search_only_my_channels\":false,\"emoji_mode\":\"default\",\"has_invited\":true,\"has_uploaded\":true,\"has_created_channel\":true,\"search_exclude_channels\":\"\",\"messages_theme\":\"default\",\"webapp_spellcheck\":true,\"no_joined_overlays\":false,\"no_created_overlays\":false,\"dropbox_enabled\":false,\"seen_user_menu_tip_card\":true,\"seen_team_menu_tip_card\":true,\"seen_channel_menu_tip_card\":false,\"seen_message_input_tip_card\":true,\"seen_channels_tip_card\":true,\"seen_domain_invite_reminder\":false,\"seen_member_invite_reminder\":false,\"seen_flexpane_tip_card\":true,\"seen_search_input_tip_card\":true,\"mute_sounds\":false,\"arrow_history\":false,\"tab_ui_return_selects\":true,\"obey_inline_img_limit\":true,\"new_msg_snd\":\"knock_brush.mp3\",\"collapsible\":false,\"collapsible_by_click\":true,\"require_at\":false,\"mac_ssb_bounce\":\"\",\"mac_ssb_bullet\":true,\"win_ssb_bullet\":true,\"expand_non_media_attachments\":true,\"show_typing\":true,\"pagekeys_handled\":true,\"last_snippet_type\":\"\",\"display_real_names_override\":0,\"time24\":false,\"enter_is_special_in_tbt\":false,\"graphic_emoticons\":false,\"convert_emoticons\":true,\"autoplay_chat_sounds\":true,\"ss_emojis\":true,\"sidebar_behavior\":\"\",\"mark_msgs_read_immediately\":true,\"start_scroll_at_oldest\":true,\"snippet_editor_wrap_long_lines\":false,\"ls_disabled\":false,\"sidebar_theme\":\"default\",\"sidebar_theme_custom_values\":\"\",\"f_key_search\":false,\"k_key_omnibox\":true,\"speak_growls\":false,\"mac_speak_voice\":\"com.apple.speech.synthesis.voice.Alex\",\"mac_speak_speed\":250,\"comma_key_prefs\":false,\"at_channel_suppressed_channels\":\"\",\"push_at_channel_suppressed_channels\":\"\",\"prompted_for_email_disabling\":false,\"full_text_extracts\":false,\"no_text_in_notifications\":false,\"muted_channels\":\"\",\"no_macssb1_banner\":false,\"privacy_policy_seen\":true,\"search_exclude_bots\":false,\"fuzzy_matching\":false},\"created\":1417701066},\"team\":{\"id\":\"T0340KLG5\",\"name\":\"Entelgy\",\"email_domain\":\"entelgy.com\",\"domain\":\"entelgy-co\",\"msg_edit_window_mins\":-1,\"prefs\":{\"default_channels\":[\"C0340KLGK\",\"C0340KLGM\"],\"msg_edit_window_mins\":-1,\"allow_message_deletion\":true,\"hide_referers\":true,\"display_real_names\":false,\"who_can_at_everyone\":\"regular\",\"who_can_at_channel\":\"ra\",\"who_can_create_channels\":\"regular\",\"who_can_archive_channels\":\"regular\",\"who_can_create_groups\":\"ra\",\"who_can_post_general\":\"ra\",\"who_can_kick_channels\":\"admin\",\"who_can_kick_groups\":\"regular\",\"retention_type\":0,\"retention_duration\":0,\"group_retention_type\":0,\"group_retention_duration\":0,\"dm_retention_type\":0,\"dm_retention_duration\":0,\"require_at_for_mention\":0},\"icon\":{\"image_34\":\"https:\\/\\/slack.global.ssl.fastly.net\\/28461\\/img\\/avatars-teams\\/ava_0000-34.png\",\"image_44\":\"https:\\/\\/slack.global.ssl.fastly.net\\/28461\\/img\\/avatars-teams\\/ava_0000-44.png\",\"image_68\":\"https:\\/\\/slack.global.ssl.fastly.net\\/28461\\/img\\/avatars-teams\\/ava_0000-68.png\",\"image_88\":\"https:\\/\\/slack.global.ssl.fastly.net\\/28461\\/img\\/avatars-teams\\/ava_0000-88.png\",\"image_102\":\"https:\\/\\/slack.global.ssl.fastly.net\\/28461\\/img\\/avatars-teams\\/ava_0000-102.png\",\"image_132\":\"https:\\/\\/slack.global.ssl.fastly.net\\/28461\\/img\\/avatars-teams\\/ava_0000-132.png\",\"image_default\":true},\"over_storage_limit\":false},\"latest_event_ts\":\"1419965348.000000\",\"channels\":[{\"id\":\"C0357RLV5\",\"name\":\"bbvanet\",\"is_channel\":true,\"created\":1418138033,\"creator\":\"U0346UGLK\",\"is_archived\":false,\"is_general\":false,\"is_member\":true,\"members\":[\"U0340KLG9\",\"U0346UGLK\",\"U03582UTB\",\"U03583155\",\"U0358989H\",\"U0359L3CS\",\"U0359M2NY\",\"U035T72FF\"],\"topic\":{\"value\":\"\",\"creator\":\"\",\"last_set\":0},\"purpose\":{\"value\":\"Front-end de la aplicaci\\u00f3n de BBVA Net\",\"creator\":\"U0346UGLK\",\"last_set\":1418138035}},{\"id\":\"C0340KLGK\",\"name\":\"general\",\"is_channel\":true,\"created\":1417637088,\"creator\":\"U0340KLG9\",\"is_archived\":false,\"is_general\":true,\"is_member\":true,\"members\":[\"U0340KLG9\",\"U0346T2UD\",\"U0346UGLK\",\"U03476GH7\",\"U034A5J19\",\"U034AULRM\",\"U0358KWBT\",\"U0359L3CS\",\"U035T72FF\",\"U038B7X8A\"],\"topic\":{\"value\":\"\",\"creator\":\"\",\"last_set\":0},\"purpose\":{\"value\":\"This channel is for team-wide communication and announcements. All team members are in this channel.\",\"creator\":\"\",\"last_set\":0}},{\"id\":\"C0340KLGM\",\"name\":\"random\",\"is_channel\":true,\"created\":1417637088,\"creator\":\"U0340KLG9\",\"is_archived\":false,\"is_general\":false,\"is_member\":true,\"members\":[\"U0340KLG9\",\"U0346UGLK\",\"U034A5J19\",\"U034AULRM\",\"U0358KWBT\",\"U0359L3CS\",\"U038B7X8A\"],\"topic\":{\"value\":\"\",\"creator\":\"\",\"last_set\":0},\"purpose\":{\"value\":\"A place for non-work banter, links, articles of interest, humor or anything else which you\'d like concentrated in some place other than work-related channels.\",\"creator\":\"\",\"last_set\":0}},{\"id\":\"C0340PKQF\",\"name\":\"soa-team\",\"is_channel\":true,\"created\":1417638361,\"creator\":\"U0340KLG9\",\"is_archived\":false,\"is_general\":false,\"is_member\":true,\"members\":[\"U0340KLG9\",\"U0346T2UD\",\"U0346UGLK\",\"U03476GH7\",\"U034AULRM\",\"U0358KWBT\",\"U035T72FF\",\"U038B7X8A\"],\"topic\":{\"value\":\"\",\"creator\":\"\",\"last_set\":0},\"purpose\":{\"value\":\"Servcios web para el BBVA\",\"creator\":\"U0340KLG9\",\"last_set\":1417638362}}],\"groups\":[],\"ims\":[{\"id\":\"D0346UGLV\",\"is_im\":true,\"user\":\"USLACKBOT\",\"created\":1417701066,\"is_user_deleted\":false},{\"id\":\"D0346UGLZ\",\"is_im\":true,\"user\":\"U0340KLG9\",\"created\":1417701066,\"is_user_deleted\":false},{\"id\":\"D0346UGMB\",\"is_im\":true,\"user\":\"U0346T2UD\",\"created\":1417701066,\"is_user_deleted\":false},{\"id\":\"D03476GHR\",\"is_im\":true,\"user\":\"U03476GH7\",\"created\":1417702992,\"is_user_deleted\":false},{\"id\":\"D034A5J1T\",\"is_im\":true,\"user\":\"U034A5J19\",\"created\":1417723573,\"is_user_deleted\":false},{\"id\":\"D034AULSB\",\"is_im\":true,\"user\":\"U034AULRM\",\"created\":1417729225,\"is_user_deleted\":false},{\"id\":\"D034CEAMU\",\"is_im\":true,\"user\":\"U034CEAML\",\"created\":1417729311,\"is_user_deleted\":false},{\"id\":\"D03582UTX\",\"is_im\":true,\"user\":\"U03582UTB\",\"created\":1418139540,\"is_user_deleted\":false},{\"id\":\"D03583163\",\"is_im\":true,\"user\":\"U03583155\",\"created\":1418139595,\"is_user_deleted\":false},{\"id\":\"D0358989V\",\"is_im\":true,\"user\":\"U0358989H\",\"created\":1418141110,\"is_user_deleted\":false},{\"id\":\"D0358KWCM\",\"is_im\":true,\"user\":\"U0358KWBT\",\"created\":1418143623,\"is_user_deleted\":false},{\"id\":\"D0359L3DC\",\"is_im\":true,\"user\":\"U0359L3CS\",\"created\":1418139788,\"is_user_deleted\":false},{\"id\":\"D0359M2QG\",\"is_im\":true,\"user\":\"U0359M2NY\",\"created\":1418139996,\"is_user_deleted\":false},{\"id\":\"D035T72GB\",\"is_im\":true,\"user\":\"U035T72FF\",\"created\":1418310419,\"is_user_deleted\":false},{\"id\":\"D038B7X98\",\"is_im\":true,\"user\":\"U038B7X8A\",\"created\":1419366428,\"is_user_deleted\":false}],\"users\":[{\"id\":\"U0358989H\",\"name\":\"alejandra95\",\"deleted\":false,\"status\":null,\"color\":\"df3dc0\",\"real_name\":\"\",\"skype\":null,\"phone\":null,\"tz\":\"America\\/Bogota\",\"tz_label\":\"South America Pacific Standard Time\",\"tz_offset\":-18000,\"profile\":{\"image_24\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-12-09\\/3181366478_f222b68d6f04a81423c0_24.jpg\",\"image_32\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-12-09\\/3181366478_f222b68d6f04a81423c0_32.jpg\",\"image_48\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-12-09\\/3181366478_f222b68d6f04a81423c0_48.jpg\",\"image_72\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-12-09\\/3181366478_f222b68d6f04a81423c0_72.jpg\",\"image_192\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-12-09\\/3181366478_f222b68d6f04a81423c0_192.jpg\",\"image_original\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-12-09\\/3181366478_f222b68d6f04a81423c0_original.jpg\",\"real_name\":\"\",\"real_name_normalized\":\"\",\"email\":\"alejandra.gutierrez@entelgy.com\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U034AULRM\",\"name\":\"andrescamilorojas\",\"deleted\":false,\"status\":null,\"color\":\"e96699\",\"real_name\":\"Andr\\u00e9s Mari\\u00f1o\",\"skype\":null,\"phone\":null,\"tz\":\"America\\/Bogota\",\"tz_label\":\"South America Pacific Standard Time\",\"tz_offset\":-18000,\"profile\":{\"first_name\":\"Andr\\u00e9s\",\"last_name\":\"Mari\\u00f1o\",\"real_name\":\"Andr\\u00e9s Mari\\u00f1o\",\"real_name_normalized\":\"Andres Marino\",\"email\":\"andres.marino@entelgy.com\",\"image_24\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/e8184b8258e77c135374d4a1c283e5ed.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F8390%2Fimg%2Favatars%2Fava_0007-24.png\",\"image_32\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/e8184b8258e77c135374d4a1c283e5ed.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F8390%2Fimg%2Favatars%2Fava_0007-32.png\",\"image_48\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/e8184b8258e77c135374d4a1c283e5ed.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F8390%2Fimg%2Favatars%2Fava_0007-48.png\",\"image_72\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/e8184b8258e77c135374d4a1c283e5ed.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F8390%2Fimg%2Favatars%2Fava_0007-72.png\",\"image_192\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/e8184b8258e77c135374d4a1c283e5ed.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F20655%2Fimg%2Favatars%2Fava_0007.png\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U038B7X8A\",\"name\":\"cristancho\",\"deleted\":false,\"status\":null,\"color\":\"d58247\",\"real_name\":\"Cristian Donaldo\",\"skype\":null,\"phone\":null,\"tz\":\"America\\/Bogota\",\"tz_label\":\"South America Pacific Standard Time\",\"tz_offset\":-18000,\"profile\":{\"first_name\":\"Cristian\",\"last_name\":\"Donaldo\",\"real_name\":\"Cristian Donaldo\",\"real_name_normalized\":\"Cristian Donaldo\",\"email\":\"cristian.donaldo@entelgy.com\",\"image_24\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/386548944435af66da8151b4046f3344.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F8390%2Fimg%2Favatars%2Fava_0011-24.png\",\"image_32\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/386548944435af66da8151b4046f3344.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F8390%2Fimg%2Favatars%2Fava_0011-32.png\",\"image_48\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/386548944435af66da8151b4046f3344.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F8390%2Fimg%2Favatars%2Fava_0011-48.png\",\"image_72\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/386548944435af66da8151b4046f3344.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F8390%2Fimg%2Favatars%2Fava_0011-72.png\",\"image_192\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/386548944435af66da8151b4046f3344.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F8390%2Fimg%2Favatars%2Fava_0011.png\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U035T72FF\",\"name\":\"danicorc\",\"deleted\":false,\"status\":null,\"color\":\"9b3b45\",\"real_name\":\"Daniel Cortes\",\"skype\":\"\",\"phone\":\"3103018994\",\"tz\":\"America\\/Bogota\",\"tz_label\":\"South America Pacific Standard Time\",\"tz_offset\":-18000,\"profile\":{\"first_name\":\"Daniel\",\"last_name\":\"Cortes\",\"title\":\"SOA Development\",\"skype\":\"\",\"phone\":\"3103018994\",\"image_24\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-12-11\\/3199088542_be67ce17caba836b7f83_24.jpg\",\"image_32\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-12-11\\/3199088542_be67ce17caba836b7f83_32.jpg\",\"image_48\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-12-11\\/3199088542_be67ce17caba836b7f83_48.jpg\",\"image_72\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-12-11\\/3199088542_be67ce17caba836b7f83_72.jpg\",\"image_192\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-12-11\\/3199088542_be67ce17caba836b7f83_192.jpg\",\"image_original\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-12-11\\/3199088542_be67ce17caba836b7f83_original.jpg\",\"real_name\":\"Daniel Cortes\",\"real_name_normalized\":\"Daniel Cortes\",\"email\":\"daniel.cortes@entelgy.com\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U03476GH7\",\"name\":\"dbernal\",\"deleted\":false,\"status\":null,\"color\":\"3c989f\",\"real_name\":\"David Bernal\",\"skype\":null,\"phone\":null,\"tz\":\"America\\/Bogota\",\"tz_label\":\"South America Pacific Standard Time\",\"tz_offset\":-18000,\"profile\":{\"first_name\":\"David\",\"last_name\":\"Bernal\",\"real_name\":\"David Bernal\",\"real_name_normalized\":\"David Bernal\",\"email\":\"david.bernal@entelgy.com\",\"image_24\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/d4db7d3ead290d387ff45af5ed6dd835.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F8390%2Fimg%2Favatars%2Fava_0022-24.png\",\"image_32\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/d4db7d3ead290d387ff45af5ed6dd835.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F8390%2Fimg%2Favatars%2Fava_0022-32.png\",\"image_48\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/d4db7d3ead290d387ff45af5ed6dd835.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F8390%2Fimg%2Favatars%2Fava_0022-48.png\",\"image_72\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/d4db7d3ead290d387ff45af5ed6dd835.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F8390%2Fimg%2Favatars%2Fava_0022-72.png\",\"image_192\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/d4db7d3ead290d387ff45af5ed6dd835.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F8390%2Fimg%2Favatars%2Fava_0022.png\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U0346T2UD\",\"name\":\"dtafur\",\"deleted\":false,\"status\":null,\"color\":\"4bbe2e\",\"real_name\":\"David Tafur\",\"skype\":null,\"phone\":null,\"tz\":\"America\\/Bogota\",\"tz_label\":\"South America Pacific Standard Time\",\"tz_offset\":-18000,\"profile\":{\"first_name\":\"David\",\"last_name\":\"Tafur\",\"real_name\":\"David Tafur\",\"real_name_normalized\":\"David Tafur\",\"email\":\"david.tafur@entelgy.com\",\"image_24\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/3f66c86abc78d13d4851c6fa9c6ccb96.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F8390%2Fimg%2Favatars%2Fava_0022-24.png\",\"image_32\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/3f66c86abc78d13d4851c6fa9c6ccb96.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F8390%2Fimg%2Favatars%2Fava_0022-32.png\",\"image_48\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/3f66c86abc78d13d4851c6fa9c6ccb96.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F8390%2Fimg%2Favatars%2Fava_0022-48.png\",\"image_72\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/3f66c86abc78d13d4851c6fa9c6ccb96.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F8390%2Fimg%2Favatars%2Fava_0022-72.png\",\"image_192\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/3f66c86abc78d13d4851c6fa9c6ccb96.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F8390%2Fimg%2Favatars%2Fava_0022.png\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U034CEAML\",\"name\":\"fernando\",\"deleted\":false,\"status\":null,\"color\":\"e0a729\",\"real_name\":\"Luis Fernando Ni\\u00f1o\",\"skype\":\"cudoxnba\",\"phone\":\"3124656734\",\"tz\":\"America\\/Bogota\",\"tz_label\":\"South America Pacific Standard Time\",\"tz_offset\":-18000,\"profile\":{\"first_name\":\"Luis Fernando\",\"last_name\":\"Ni\\u00f1o\",\"image_24\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-12-05\\/3153705276_15f6cc3c3690cf714e38_24.jpg\",\"image_32\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-12-05\\/3153705276_15f6cc3c3690cf714e38_32.jpg\",\"image_48\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-12-05\\/3153705276_15f6cc3c3690cf714e38_48.jpg\",\"image_72\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-12-05\\/3153705276_15f6cc3c3690cf714e38_72.jpg\",\"image_192\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-12-05\\/3153705276_15f6cc3c3690cf714e38_192.jpg\",\"image_original\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-12-05\\/3153705276_15f6cc3c3690cf714e38_original.jpg\",\"title\":\"Ingeniero de Sistemas\",\"skype\":\"cudoxnba\",\"phone\":\"3124656734\",\"real_name\":\"Luis Fernando Ni\\u00f1o\",\"real_name_normalized\":\"Luis Fernando Nino\",\"email\":\"luisfernando.nino@entelgy.com\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U0346UGLK\",\"name\":\"fgparamio\",\"deleted\":false,\"status\":null,\"color\":\"e7392d\",\"real_name\":\"Fernando Paramio\",\"skype\":\"fgparamio\",\"phone\":\"\",\"tz\":\"America\\/Bogota\",\"tz_label\":\"South America Pacific Standard Time\",\"tz_offset\":-18000,\"profile\":{\"first_name\":\"Fernando\",\"last_name\":\"Paramio\",\"title\":\"\",\"skype\":\"fgparamio\",\"phone\":\"\",\"image_24\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-12-09\\/3179765654_ab966108f21c25c9d10e_24.jpg\",\"image_32\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-12-09\\/3179765654_ab966108f21c25c9d10e_32.jpg\",\"image_48\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-12-09\\/3179765654_ab966108f21c25c9d10e_48.jpg\",\"image_72\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-12-09\\/3179765654_ab966108f21c25c9d10e_72.jpg\",\"image_192\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-12-09\\/3179765654_ab966108f21c25c9d10e_192.jpg\",\"image_original\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-12-09\\/3179765654_ab966108f21c25c9d10e_original.jpg\",\"real_name\":\"Fernando Paramio\",\"real_name_normalized\":\"Fernando Paramio\",\"email\":\"fgparamio@yahoo.es\"},\"is_admin\":true,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U0359L3CS\",\"name\":\"ingmpt\",\"deleted\":false,\"status\":null,\"color\":\"2b6836\",\"real_name\":\"\",\"skype\":null,\"phone\":null,\"tz\":\"America\\/Bogota\",\"tz_label\":\"South America Pacific Standard Time\",\"tz_offset\":-18000,\"profile\":{\"real_name\":\"\",\"real_name_normalized\":\"\",\"email\":\"ingmpt@gmail.com\",\"image_24\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/768ef7f66c72735908d449d4f32a6699.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F8390%2Fimg%2Favatars%2Fava_0010-24.png\",\"image_32\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/768ef7f66c72735908d449d4f32a6699.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F8390%2Fimg%2Favatars%2Fava_0010-32.png\",\"image_48\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/768ef7f66c72735908d449d4f32a6699.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F8390%2Fimg%2Favatars%2Fava_0010-48.png\",\"image_72\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/768ef7f66c72735908d449d4f32a6699.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F8390%2Fimg%2Favatars%2Fava_0010-72.png\",\"image_192\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/768ef7f66c72735908d449d4f32a6699.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F8390%2Fimg%2Favatars%2Fava_0010.png\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U0359M2NY\",\"name\":\"ivan\",\"deleted\":false,\"status\":null,\"color\":\"99a949\",\"real_name\":\"Iv\\u00e1n Trebilcock\",\"skype\":\"Iv\\u00e1n\",\"phone\":\"\",\"tz\":\"America\\/Bogota\",\"tz_label\":\"South America Pacific Standard Time\",\"tz_offset\":-18000,\"profile\":{\"image_24\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-12-09\\/3179759136_4742d12f58b231928132_24.jpg\",\"image_32\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-12-09\\/3179759136_4742d12f58b231928132_32.jpg\",\"image_48\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-12-09\\/3179759136_4742d12f58b231928132_48.jpg\",\"image_72\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-12-09\\/3179759136_4742d12f58b231928132_72.jpg\",\"image_192\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-12-09\\/3179759136_4742d12f58b231928132_192.jpg\",\"image_original\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-12-09\\/3179759136_4742d12f58b231928132_original.jpg\",\"first_name\":\"Iv\\u00e1n\",\"last_name\":\"Trebilcock\",\"title\":\"\",\"skype\":\"Iv\\u00e1n\",\"phone\":\"\",\"real_name\":\"Iv\\u00e1n Trebilcock\",\"real_name_normalized\":\"Ivan Trebilcock\",\"email\":\"ivan.trebilcock@entelgy.com\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U03582UTB\",\"name\":\"jhon00021\",\"deleted\":false,\"status\":null,\"color\":\"684b6c\",\"real_name\":\"Jhon Velasquez\",\"skype\":\"\",\"phone\":\"\",\"tz\":\"America\\/Bogota\",\"tz_label\":\"South America Pacific Standard Time\",\"tz_offset\":-18000,\"profile\":{\"first_name\":\"Jhon\",\"last_name\":\"Velasquez\",\"title\":\"\",\"skype\":\"\",\"phone\":\"\",\"real_name\":\"Jhon Velasquez\",\"real_name_normalized\":\"Jhon Velasquez\",\"email\":\"jhon00021@gmail.com\",\"image_24\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/44709d24c4552eef99cee911c43e3a1e.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F8390%2Fimg%2Favatars%2Fava_0026-24.png\",\"image_32\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/44709d24c4552eef99cee911c43e3a1e.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F8390%2Fimg%2Favatars%2Fava_0026-32.png\",\"image_48\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/44709d24c4552eef99cee911c43e3a1e.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F20655%2Fimg%2Favatars%2Fava_0026-48.png\",\"image_72\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/44709d24c4552eef99cee911c43e3a1e.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F8390%2Fimg%2Favatars%2Fava_0026-72.png\",\"image_192\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/44709d24c4552eef99cee911c43e3a1e.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F20655%2Fimg%2Favatars%2Fava_0026.png\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U034A5J19\",\"name\":\"juan.sanchez\",\"deleted\":false,\"status\":null,\"color\":\"674b1b\",\"real_name\":\"Juan Sanchez\",\"skype\":null,\"phone\":null,\"tz\":\"America\\/Bogota\",\"tz_label\":\"South America Pacific Standard Time\",\"tz_offset\":-18000,\"profile\":{\"first_name\":\"Juan\",\"last_name\":\"Sanchez\",\"image_24\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-12-04\\/3146436007_ec1f3ce0f52e5b10558a_24.jpg\",\"image_32\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-12-04\\/3146436007_ec1f3ce0f52e5b10558a_32.jpg\",\"image_48\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-12-04\\/3146436007_ec1f3ce0f52e5b10558a_48.jpg\",\"image_72\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-12-04\\/3146436007_ec1f3ce0f52e5b10558a_72.jpg\",\"image_192\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-12-04\\/3146436007_ec1f3ce0f52e5b10558a_192.jpg\",\"image_original\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-12-04\\/3146436007_ec1f3ce0f52e5b10558a_original.jpg\",\"real_name\":\"Juan Sanchez\",\"real_name_normalized\":\"Juan Sanchez\",\"email\":\"juan.sanchez@entelgy.com\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U0340KLG9\",\"name\":\"julio.indriago\",\"deleted\":false,\"status\":null,\"color\":\"9f69e7\",\"real_name\":\"Julio Indriago\",\"skype\":\"jcindriago\",\"phone\":\"+57 (319) 395.4515\",\"tz\":\"America\\/Bogota\",\"tz_label\":\"South America Pacific Standard Time\",\"tz_offset\":-18000,\"profile\":{\"first_name\":\"Julio\",\"last_name\":\"Indriago\",\"skype\":\"jcindriago\",\"phone\":\"+57 (319) 395.4515\",\"title\":\"Fire Guru\",\"real_name\":\"Julio Indriago\",\"real_name_normalized\":\"Julio Indriago\",\"email\":\"julio.indriago@entelgy.com\",\"image_24\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/a2875c19c01b813780647a240e092d31.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F8390%2Fimg%2Favatars%2Fava_0004-24.png\",\"image_32\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/a2875c19c01b813780647a240e092d31.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F8390%2Fimg%2Favatars%2Fava_0004-32.png\",\"image_48\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/a2875c19c01b813780647a240e092d31.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F8390%2Fimg%2Favatars%2Fava_0004-48.png\",\"image_72\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/a2875c19c01b813780647a240e092d31.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F8390%2Fimg%2Favatars%2Fava_0004-72.png\",\"image_192\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/a2875c19c01b813780647a240e092d31.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F8390%2Fimg%2Favatars%2Fava_0004.png\"},\"is_admin\":true,\"is_owner\":true,\"is_primary_owner\":true,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U03583155\",\"name\":\"nerlyaguilera\",\"deleted\":false,\"status\":null,\"color\":\"5b89d5\",\"real_name\":\"\",\"skype\":null,\"phone\":null,\"tz\":\"America\\/Bogota\",\"tz_label\":\"South America Pacific Standard Time\",\"tz_offset\":-18000,\"profile\":{\"image_24\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-12-09\\/3178300785_0bed26cf499b6b74d53e_24.jpg\",\"image_32\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-12-09\\/3178300785_0bed26cf499b6b74d53e_32.jpg\",\"image_48\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-12-09\\/3178300785_0bed26cf499b6b74d53e_48.jpg\",\"image_72\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-12-09\\/3178300785_0bed26cf499b6b74d53e_72.jpg\",\"image_192\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-12-09\\/3178300785_0bed26cf499b6b74d53e_192.jpg\",\"image_original\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-12-09\\/3178300785_0bed26cf499b6b74d53e_original.jpg\",\"real_name\":\"\",\"real_name_normalized\":\"\",\"email\":\"nerly.aguilera@entelgy.com\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U0358KWBT\",\"name\":\"sebastian.gamba\",\"deleted\":false,\"status\":null,\"color\":\"4cc091\",\"real_name\":\"Sebastian Gamba\",\"skype\":null,\"phone\":null,\"tz\":\"America\\/Bogota\",\"tz_label\":\"South America Pacific Standard Time\",\"tz_offset\":-18000,\"profile\":{\"first_name\":\"Sebastian\",\"last_name\":\"Gamba\",\"image_24\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-12-09\\/3180310922_d33f46302ba980cdf9a4_24.jpg\",\"image_32\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-12-09\\/3180310922_d33f46302ba980cdf9a4_32.jpg\",\"image_48\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-12-09\\/3180310922_d33f46302ba980cdf9a4_48.jpg\",\"image_72\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-12-09\\/3180310922_d33f46302ba980cdf9a4_72.jpg\",\"image_192\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-12-09\\/3180310922_d33f46302ba980cdf9a4_192.jpg\",\"image_original\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-12-09\\/3180310922_d33f46302ba980cdf9a4_original.jpg\",\"real_name\":\"Sebastian Gamba\",\"real_name_normalized\":\"Sebastian Gamba\",\"email\":\"sebastian.gamba@entelgy.com\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"USLACKBOT\",\"name\":\"slackbot\",\"deleted\":false,\"status\":null,\"color\":\"757575\",\"real_name\":\"Slack Bot\",\"skype\":null,\"phone\":null,\"tz\":null,\"tz_label\":\"Pacific Standard Time\",\"tz_offset\":-28800,\"profile\":{\"first_name\":\"Slack\",\"last_name\":\"Bot\",\"image_24\":\"https:\\/\\/slack-assets2.s3-us-west-2.amazonaws.com\\/10068\\/img\\/slackbot_24.png\",\"image_32\":\"https:\\/\\/slack-assets2.s3-us-west-2.amazonaws.com\\/10068\\/img\\/slackbot_32.png\",\"image_48\":\"https:\\/\\/slack-assets2.s3-us-west-2.amazonaws.com\\/10068\\/img\\/slackbot_48.png\",\"image_72\":\"https:\\/\\/slack-assets2.s3-us-west-2.amazonaws.com\\/10068\\/img\\/slackbot_72.png\",\"image_192\":\"https:\\/\\/slack-assets2.s3-us-west-2.amazonaws.com\\/10068\\/img\\/slackbot_192.png\",\"real_name\":\"Slack Bot\",\"real_name_normalized\":\"Slack Bot\",\"email\":null},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false}],\"bots\":[{\"id\":\"B0359HEPQ\",\"name\":\"github\",\"deleted\":false,\"icons\":{\"image_36\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-12-09\\/3178068705_6bd7eb7d82b442d17ef9_36.jpg\",\"image_48\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-12-09\\/3178068705_6bd7eb7d82b442d17ef9_48.jpg\",\"image_72\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-12-09\\/3178068705_6bd7eb7d82b442d17ef9_72.jpg\"}},{\"id\":\"B036AQWK6\",\"name\":\"github\",\"deleted\":false,\"icons\":{\"image_48\":\"https:\\/\\/slack.global.ssl.fastly.net\\/30301\\/plugins\\/github\\/assets\\/bot_48.png\"}},{\"id\":\"B03648CH4\",\"name\":\"jenkins\",\"deleted\":false,\"icons\":{\"image_48\":\"https:\\/\\/slack.global.ssl.fastly.net\\/20653\\/img\\/services\\/jenkins-ci_48.png\"}},{\"id\":\"B03429KRY\",\"name\":\"Trello\",\"deleted\":false,\"icons\":{\"image_48\":\"https:\\/\\/slack.global.ssl.fastly.net\\/22752\\/plugins\\/trello\\/assets\\/bot_48.png\"}},{\"id\":\"B035811BF\",\"name\":\"Trello\",\"deleted\":false,\"icons\":{\"image_48\":\"https:\\/\\/slack.global.ssl.fastly.net\\/22752\\/plugins\\/trello\\/assets\\/bot_48.png\"}},{\"id\":\"B0362N927\",\"name\":\"github\",\"deleted\":true,\"icons\":{\"image_48\":\"https:\\/\\/slack.global.ssl.fastly.net\\/30301\\/plugins\\/github\\/assets\\/bot_48.png\"}}],\"svn_rev\":\"31894\",\"min_svn_rev\":31589,\"cache_version\":\"v1-dog\"}');
+	
+	// client boot data
+		
+
+//-->
+</script>	
+			
+	
+	<!-- output_js "core" -->
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/28007/js/libs_jquery-2.1.1_1414000604.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/28787/js/libs_bootstrap_plastic_1415154507.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/10860/js/libs_flash_detect_1381167216.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/13459/js/libs_fastclick_1386624392.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/26610/js/libs_headroom_1412189418.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/31109/js/plastic_1418348819.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/11842/js/libs_soundmanager2_1383085430.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/30695/js/libs_bowser_1417799155.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/503/js/libs_signals_1361923852.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/1305/js/libs_history_1361923867.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/4406/js/libs_cookie_1366239918.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/31531/js/libs_emoji_1419025899.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/26879/js/libs_jquery.chosen_1412620264.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/27520/js/libs_jquery.lazyload_1413386396.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/18990/js/libs_handlebars-v2.0.0_1398281367.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/31541/js/libs_codemirror_1419026077.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/31541/js/codemirror_load_1419026344.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/31774/js/TS_1419393336.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/28512/js/TS.ui_1414701522.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/31743/js/TS.model_1419373274.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/11998/js/libs_spin_1383256342.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/11998/js/libs_ladda_1383256337.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/28235/js/libs_jquery.scrollintoview_1414193366.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/9884/js/libs_jquery.transit_1378853780.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/26505/js/libs_jquery.monkeyScroll_1412031480.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/26627/js/libs_jquery.assorted_1412200589.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/5060/js/libs_jquery.draghover_1367639920.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/28953/js/libs_jquery.autosize_1415386916.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/25627/js/libs_jquery.TS_tabComplete_1410969496.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/31287/js/libs_jquery.TS_tabComplete2_1418756387.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/1389/js/libs_stacktrace_1361923906.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/10445/js/libs_truncate_1380213559.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/504/js/libs_swfobject_1361923915.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/12503/js/libs_web_socket_1384203154.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/5148/js/libs_jquery.imagesloaded_1367960402.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/31847/js/TS.web_1419881820.js" crossorigin="anonymous"></script>
+
+			<!-- output_js "secondary" -->
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/31816/js/rollup-secondary_required_1419457060.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/31732/js/TS.storage_1419371502.js" crossorigin="anonymous"></script>
+
+		<!-- output_js "regular" -->
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/31842/js/TS.web.comments_1419877771.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/31708/js/TS.web.file_1419356572.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/31541/js/libs_codemirror_1419026077.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/31541/js/codemirror_load_1419026344.js" crossorigin="anonymous"></script>
+
+		<script type="text/javascript">
+	<!--
+		boot_data.page_needs_custom_emoji = true;
+		
+		boot_data.file = JSON.parse('{\"id\":\"F0374JLCX\",\"created\":1418842911,\"timestamp\":1418842911,\"name\":\"globalPosition.wadl\",\"title\":\"globalPosition.wadl\",\"mimetype\":\"text\\/plain\",\"filetype\":\"text\",\"pretty_type\":\"Plain Text\",\"user\":\"U0340KLG9\",\"editable\":true,\"size\":12135,\"mode\":\"snippet\",\"is_external\":false,\"external_type\":\"\",\"is_public\":true,\"public_url_shared\":false,\"url\":\"https:\\/\\/slack-files.com\\/files-pub\\/T0340KLG5-F0374JLCX-59b59aa43e\\/globalposition.wadl\",\"url_download\":\"https:\\/\\/slack-files.com\\/files-pub\\/T0340KLG5-F0374JLCX-59b59aa43e\\/download\\/globalposition.wadl\",\"url_private\":\"https:\\/\\/files.slack.com\\/files-pri\\/T0340KLG5-F0374JLCX\\/globalposition.wadl\",\"url_private_download\":\"https:\\/\\/files.slack.com\\/files-pri\\/T0340KLG5-F0374JLCX\\/download\\/globalposition.wadl\",\"permalink\":\"https:\\/\\/entelgy-co.slack.com\\/files\\/julio.indriago\\/F0374JLCX\\/globalposition.wadl\",\"permalink_public\":\"https:\\/\\/slack-files.com\\/T0340KLG5-F0374JLCX-59b59aa43e\",\"edit_link\":\"https:\\/\\/entelgy-co.slack.com\\/files\\/julio.indriago\\/F0374JLCX\\/globalposition.wadl\\/edit\",\"preview\":\"<application xmlns=\\\"http:\\/\\/wadl.dev.java.net\\/2009\\/02\\\" xmlns:xs=\\\"http:\\/\\/www.w3.org\\/2001\\/XMLSchema\\\" xmlns:prefix1=\\\"urn:com:bbva:czic:dto:net\\\">\\n    <grammars>\\n        <xs:schema xmlns:xs=\\\"http:\\/\\/www.w3.org\\/2001\\/XMLSchema\\\" xmlns:ns1=\\\"urn:com:bbva:jee:arq:spring:core:servicing:utils\\\" xmlns:tns=\\\"urn:com:bbva:czic:dto:net\\\" attributeFormDefault=\\\"unqualified\\\" elementFormDefault=\\\"unqualified\\\" targetNamespace=\\\"urn:com:bbva:czic:dto:net\\\">\\n            <xs:import namespace=\\\"urn:com:bbva:jee:arq:spring:core:servicing:utils\\\"\\/>\\n            <xs:element name=\\\"Balance\\\" type=\\\"tns:Balance\\\"\\/>\\n            <xs:element name=\\\"City\\\" type=\\\"tns:City\\\"\\/>\\n            <xs:element name=\\\"Conditions\\\" type=\\\"tns:Conditions\\\"\\/>\\n            <xs:element name=\\\"ContactInfo\\\" type=\\\"tns:ContactInfo\\\"\\/>\\n            <xs:element name=\\\"Country\\\" type=\\\"tns:Country\\\"\\/>\\n            <xs:element name=\\\"Email\\\" type=\\\"tns:Email\\\"\\/>\",\"preview_highlight\":\"<div class=\\\"sssh-code\\\"><div class=\\\"sssh-line\\\"><pre>&lt;application xmlns=&quot;http:\\/\\/wadl.dev.java.net\\/2009\\/02&quot; xmlns:xs=&quot;http:\\/\\/www.w3.org\\/2001\\/XMLSchema&quot; xmlns:prefix1=&quot;urn:com:bbva:czic:dto:net&quot;&gt;\\r<\\/pre><\\/div>\\n<div class=\\\"sssh-line\\\"><pre>    &lt;grammars&gt;\\r<\\/pre><\\/div>\\n<div class=\\\"sssh-line\\\"><pre>        &lt;xs:schema xmlns:xs=&quot;http:\\/\\/www.w3.org\\/2001\\/XMLSchema&quot; xmlns:ns1=&quot;urn:com:bbva:jee:arq:spring:core:servicing:utils&quot; xmlns:tns=&quot;urn:com:bbva:czic:dto:net&quot; attributeFormDefault=&quot;unqualified&quot; elementFormDefault=&quot;unqualified&quot; targetNamespace=&quot;urn:com:bbva:czic:dto:net&quot;&gt;\\r<\\/pre><\\/div>\\n<div class=\\\"sssh-line\\\"><pre>            &lt;xs:import namespace=&quot;urn:com:bbva:jee:arq:spring:core:servicing:utils&quot;\\/&gt;\\r<\\/pre><\\/div>\\n<div class=\\\"sssh-line\\\"><pre>            &lt;xs:element name=&quot;Balance&quot; type=&quot;tns:Balance&quot;\\/&gt;\\r<\\/pre><\\/div>\\n<div class=\\\"sssh-line\\\"><pre>            &lt;xs:element name=&quot;City&quot; type=&quot;tns:City&quot;\\/&gt;\\r<\\/pre><\\/div>\\n<div class=\\\"sssh-line\\\"><pre>            &lt;xs:element name=&quot;Conditions&quot; type=&quot;tns:Conditions&quot;\\/&gt;\\r<\\/pre><\\/div>\\n<div class=\\\"sssh-line\\\"><pre>            &lt;xs:element name=&quot;ContactInfo&quot; type=&quot;tns:ContactInfo&quot;\\/&gt;\\r<\\/pre><\\/div>\\n<div class=\\\"sssh-line\\\"><pre>            &lt;xs:element name=&quot;Country&quot; type=&quot;tns:Country&quot;\\/&gt;\\r<\\/pre><\\/div>\\n<div class=\\\"sssh-line\\\"><pre>            &lt;xs:element name=&quot;Email&quot; type=&quot;tns:Email&quot;\\/&gt;\\r<\\/pre><\\/div>\\n<\\/div>\",\"lines\":203,\"lines_more\":193,\"channels\":[\"C0357RLV5\"],\"groups\":[],\"ims\":[],\"comments_count\":1,\"initial_comment\":{\"id\":\"Fc0375TVB0\",\"created\":1418842911,\"timestamp\":1418842911,\"user\":\"U0340KLG9\",\"comment\":\"El \\u00faltimo generado\\r\\n\"}}');
+		boot_data.file.comments = JSON.parse('[{\"id\":\"Fc0375TVB0\",\"created\":1418842911,\"timestamp\":1418842911,\"user\":\"U0340KLG9\",\"comment\":\"El \\u00faltimo generado\\r\\n\"}]');
+
+		
+
+		var g_editor;
+
+		$(function(){
+
+			var wrap_long_lines = !!TS.model.code_wrap_long_lines;
+
+			g_editor = CodeMirror(function(elt){
+				var content = document.getElementById("file_contents");
+				content.parentNode.replaceChild(elt, content);
+			}, {
+				value: $('#file_contents').text(),
+				lineNumbers: true,
+				matchBrackets: true,
+				indentUnit: 4,
+				indentWithTabs: true,
+				enterMode: "keep",
+				tabMode: "shift",
+				viewportMargin: Infinity,
+				readOnly: true,
+				lineWrapping: wrap_long_lines
+			});
+
+			$('#file_preview_wrap_cb').bind('change', function(e) {
+				TS.model.code_wrap_long_lines = $(this).prop('checked');
+				g_editor.setOption('lineWrapping', TS.model.code_wrap_long_lines);
+			})
+
+			$('#file_preview_wrap_cb').prop('checked', wrap_long_lines);
+
+			CodeMirror.switchSlackMode(g_editor, 'text');
+		});
+
+		
+		$('#file_comment').css('overflow', 'hidden').autogrow();
+	//-->
+	</script>
+
+			<script type="text/javascript">TS.boot(boot_data);</script>
+	<!-- slack-www157 / 2014-12-30 10:59:08 / v31894 -->
+
+</body>
+</html>
