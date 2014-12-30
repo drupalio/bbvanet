@@ -10,9 +10,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for AuthenticationState complex type.
+ * <p>Clase Java para AuthenticationState complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="AuthenticationState">
@@ -53,7 +53,7 @@ public class AuthenticationState {
     protected String countableTerminal;
 
     /**
-     * Gets the value of the authenticationState property.
+     * Obtiene el valor de la propiedad authenticationState.
      * 
      * @return
      *     possible object is
@@ -65,7 +65,7 @@ public class AuthenticationState {
     }
 
     /**
-     * Sets the value of the authenticationState property.
+     * Define el valor de la propiedad authenticationState.
      * 
      * @param value
      *     allowed object is
@@ -106,7 +106,7 @@ public class AuthenticationState {
     }
 
     /**
-     * Gets the value of the userType property.
+     * Obtiene el valor de la propiedad userType.
      * 
      * @return
      *     possible object is
@@ -118,7 +118,7 @@ public class AuthenticationState {
     }
 
     /**
-     * Sets the value of the userType property.
+     * Define el valor de la propiedad userType.
      * 
      * @param value
      *     allowed object is
@@ -130,7 +130,7 @@ public class AuthenticationState {
     }
 
     /**
-     * Gets the value of the userStatus property.
+     * Obtiene el valor de la propiedad userStatus.
      * 
      * @return
      *     possible object is
@@ -142,7 +142,7 @@ public class AuthenticationState {
     }
 
     /**
-     * Sets the value of the userStatus property.
+     * Define el valor de la propiedad userStatus.
      * 
      * @param value
      *     allowed object is
@@ -154,7 +154,7 @@ public class AuthenticationState {
     }
 
     /**
-     * Gets the value of the clientStatus property.
+     * Obtiene el valor de la propiedad clientStatus.
      * 
      * @return
      *     possible object is
@@ -166,7 +166,7 @@ public class AuthenticationState {
     }
 
     /**
-     * Sets the value of the clientStatus property.
+     * Define el valor de la propiedad clientStatus.
      * 
      * @param value
      *     allowed object is
@@ -178,7 +178,7 @@ public class AuthenticationState {
     }
 
     /**
-     * Gets the value of the countableTerminal property.
+     * Obtiene el valor de la propiedad countableTerminal.
      * 
      * @return
      *     possible object is
@@ -190,7 +190,7 @@ public class AuthenticationState {
     }
 
     /**
-     * Sets the value of the countableTerminal property.
+     * Define el valor de la propiedad countableTerminal.
      * 
      * @param value
      *     allowed object is
