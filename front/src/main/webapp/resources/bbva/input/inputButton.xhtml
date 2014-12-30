@@ -24,7 +24,6 @@
 	<composite:attribute name="nameButton" type="java.lang.String" />
 
 	<composite:attribute name="idInput" />
-	<composite:attribute name="styleClassInput" />
 	<composite:attribute name="valueInput" />
 	<composite:attribute name="typeInput" type="java.lang.String" />
 	<composite:attribute name="styleInput" />
@@ -41,8 +40,7 @@
 		<p:inputText id="#{cc.attrs.idInput}" type="#{cc.attrs.typeInput}"
 			value="#{cc.attrs.valueInput}" maxlength="#{cc.attrs.maxlength}"
 			onkeyup="enableDisableButton(this, #{cc.attrs.nameButton})"
-			style="#{cc.attrs.styleInput}"
-			styleClass="#{cc.attrs.styleClassInput}">
+			style="#{cc.attrs.styleInput}" styleClass="form-control">
 		</p:inputText>
 	</fieldset>
 

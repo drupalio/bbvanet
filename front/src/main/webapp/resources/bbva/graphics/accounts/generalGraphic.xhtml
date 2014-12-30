@@ -1,0 +1,85 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+
+<composite:interface>
+	<composite:attribute name="id" type="String" />
+	<composite:attribute name="pieConfigGUI" />
+</composite:interface>
+
+<composite:implementation>
+
+
+	<h:form id="pieGe">
+		<div align="center">
+
+			<div style="display: inline-block;" align="center">
+
+				<span
+					style="color: #274b6d; font-size: 16px; font: bold 16px Trebuchet MS, Arial, sans-serif; fill: #274b6d; width: 232px;">
+					#{cc.attrs.pieConfigUI.headerCenter}</span>
+
+			</div>
+
+		</div>
+		<div class="chart-cheese" id="#{cc.attrs.id}"
+			data-highcharts-chart="3">
+			<div id="chart2_4" class="c3"></div>
+		</div>
+
+	</h:form>
+
+
+
+	<script>
+		var totalColums = [];
+		var label;
+		var colums;
+		var values;
+
+		<c:forEach var="pieItemUI" items="${cc.attrs.pieConfigUI.pieItemUIList}">
+		label = ("${pieItemUI.textLegend}");
+		values = ("${pieItemUI.value}");
+		colums = [ [ label ], [ values ] ];
+		totalColums.push(colums);
+		</c:forEach>
+
+		var chart = c3.generate({
+			bindto : '#chart2_4',
+
+			legend : {
+				position : 'rigth'
+
+			},
+
+			data : {
+
+				size : {
+					height : 240,
+					width : 480
+				},
+				columns : totalColums,
+
+				type : 'pie',
+				onclick : function(d, i) {
+					console.log("onclick", d, i);
+				},
+				onmouseover : function(d, i) {
+					console.log("onmouseover", d, i);
+				},
+				onmouseout : function(d, i) {
+					console.log("onmouseout", d, i);
+				}
+			}
+		});
+	</script>
+
+
+</composite:implementation>
+</html>

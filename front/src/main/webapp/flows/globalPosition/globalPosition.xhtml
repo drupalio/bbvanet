@@ -44,10 +44,12 @@
 					listAccountsAdquirencia="#{customerProducts.accounts}"
 					listAccountsMore="#{customerProducts.accounts}" />
 				<bbvaGP:accountHeadTable listAccounts="#{customerProducts.accounts}"
-					controller="#{globalPositionController}" listValueLikes="#{likes}" />
+					controller="#{globalPositionController}" />
+				
 				<bbvaGP:accountAdquirenciaTable
 					controller="#{globalPositionController}"
-					listAccounts="#{customerProducts.accounts}" />
+					listAccounts="#{customerProducts.adquirencia}" />
+				 
 				<bbvaGP:accountTailTable controller="#{globalPositionController}"
 					listAccounts="#{customerProductsHidden.accounts}" />
 			</div>
@@ -57,14 +59,12 @@
 				<bbvaGP:totalBalance util="#{msg['text.accountant']}" 
 					total="#{globalPositionController.totalsProducts['PC'].total}" 
 					subtotal="#{globalPositionController.totalsProducts['PC'].available}" />
-					
-					
 			</div>
-
 		</bbvaContainer:productPanelBarGraphic>
 
 		<bbvaContainer:productCardGraphic id="cardPieGP" title="#{msg['title.cards']}" 
 				header="#{msg['graphic.tittle']}" pieGraphic="#{globalPositionController.graphicPieProducts}">
+
 			<div class="table-tabs">
 				<bbvaGP:cardHeadTable controller="#{globalPositionController}"
 					listCards="#{customerProducts.creditCards}" />
@@ -128,7 +128,7 @@
 			</div>
 		</bbvaContainer:productPanel>
 
-		<bbvaContainer:productPanelGraphic
+		<bbvaContainer:productPanelLineGraphic
 			title="#{msg['title.electronicDeposit']}">
 			<div class="table-tabs">
 				<bbvaGP:depositHeadTable controller="#{globalPositionController}"
@@ -143,10 +143,13 @@
 					total="#{globalPositionController.totalsProducts['ED'].total}" 
 					subtotal="#{globalPositionController.totalsProducts['ED'].available}" />
 			</div>
-		</bbvaContainer:productPanelGraphic>
+		</bbvaContainer:productPanelLineGraphic>
 
-		<bbvaContainer:productPanelGraphic
-			title="#{msg['title.investmentFunds']}">
+		<bbvaContainer:productPanelGraphic id="fundsPieGP"
+			title="#{msg['title.investmentFunds']}"
+			header="#{msg['graphicFunds.tittle']}"
+			pieGraphic="#{globalPositionController.graphicPieInvestmentFunds}">
+
 			<div class="table-tabs">
 				<bbvaGP:investmentFundHeadTable
 					controller="#{globalPositionController}"
