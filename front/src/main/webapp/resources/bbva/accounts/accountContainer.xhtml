@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:bbvaAcc="http://java.sun.com/jsf/composite/bbva/accounts"
+	xmlns:bbvaGP="http://java.sun.com/jsf/composite/bbva/globalPosition"
+	xmlns:bbvaAlert="http://java.sun.com/jsf/composite/bbva/alert"
+	xmlns:bbvaBody="http://java.sun.com/jsf/composite/bbva/body"
+	xmlns:bbvaContainer="http://java.sun.com/jsf/composite/bbva/container"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:bbvaDetAcc="http://java.sun.com/jsf/composite/bbva/tab"
+	xmlns:bbvaCalendar="http://java.sun.com/jsf/composite/bbva/calendar"
+	xmlns:bbvaDetailMotion="http://java.sun.com/jsf/composite/bbva/movementsDetail"
+	xmlns:bbvaSearch="http://java.sun.com/jsf/composite/bbva/filters"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:bbvaMessage="http://java.sun.com/jsf/composite/bbva/messages"
+	xmlns:bbvaPersonalize="http://java.sun.com/jsf/composite/bbva/personalize"
+	xmlns:bbvaButton="http://java.sun.com/jsf/composite/bbva/button">
+
+<composite:interface>
+	<composite:attribute name="title" type="String" />
+</composite:interface>
+<composite:implementation>
+
+	<bbvaAcc:termsAccounts>
+		<bbvaAcc:termsAccountsPanelInfo>
+			<bbvaAcc:termsAccountsPanelInfoHeader
+				title="Información del Producto" />
+			<bbvaAcc:termsAccountsPanelInfoItemTitle date="#{msg['text.alias']}:"
+				val="4" />
+			<bbvaAcc:termsAccountsPanelInfoItemData
+				date="#{allConditions.informacionProducto.alias}" val="7" />
+			<bbvaAcc:termsAccountsPanelInfoItemTitle
+				date="#{msg['text.account.number']}:" val="4" />
+			<bbvaAcc:termsAccountsPanelInfoItemData
+				date="#{allConditions.informacionProducto.numCuenta}" val="7" />
+			<bbvaAcc:termsAccountsPanelInfoItemTitle
+				date="#{msg['text.account.type']}:" val="4" />
+			<bbvaAcc:termsAccountsPanelInfoItemData
+				date="#{allConditions.informacionProducto.tipoCuenta}" val="7" />
+		</bbvaAcc:termsAccountsPanelInfo>
+
+		<bbvaAcc:termsAccountsPanelInfoItemBody title="Intervinientes">
+			<bbvaAcc:termsAccountsPanelInfoItemTitle date="#{msg['text.holder']}"
+				val="4" />
+			<bbvaAcc:termsAccountsPanelInfoItemData
+				date="#{allConditions.intervinientes.titular1}" val="7" />
+			<bbvaAcc:termsAccountsPanelInfoItemTitle date="#{msg['text.holder']}"
+				val="4" />
+			<bbvaAcc:termsAccountsPanelInfoItemData
+				date="#{allConditions.intervinientes.titular2}" val="7" />
+			<bbvaAcc:termsAccountsPanelInfoItemTitle
+				date="#{msg['text.conditions.mobilization']}" val="4" />
+			<bbvaAcc:termsAccountsPanelInfoItemData
+				date="#{allConditions.intervinientes.condicionesMovilizacion}"
+				val="7" />
+		</bbvaAcc:termsAccountsPanelInfoItemBody>
+
+		<bbvaAcc:termsAccountsPanelInfoItemBody
+			title="#{msg['text.conditions']}">
+			<bbvaAcc:termsAccountsPanelInfoItemTitle
+				date="#{msg['text.category']}:" val="4" />
+			<bbvaAcc:termsAccountsPanelInfoItemData
+				date="#{allConditions.detalleCondiciones.categoria}" val="7" />
+			<bbvaAcc:termsAccountsPanelInfoItemTitle
+				date="#{msg['text.description']}:" val="4" />
+			<bbvaAcc:termsAccountsPanelInfoItemData
+				date="#{allConditions.detalleCondiciones.descripcion}" val="7" />
+			<bbvaAcc:termsAccountsPanelInfoItemTitle
+				date="#{msg['text.opening.date']}:" val="4" />
+			<bbvaAcc:termsAccountsPanelInfoItemData
+				date="#{allConditions.detalleCondiciones.fechaApertura}" val="7" />
+			<bbvaAcc:termsAccountsPanelInfoItemTitle
+				date="#{msg['text.commissions']}:" val="4" />
+			<bbvaAcc:termsAccountsPanelInfoItemData
+				date="#{allConditions.detalleCondiciones.comisiones}" val="7" />
+		</bbvaAcc:termsAccountsPanelInfoItemBody>
+
+		<bbvaAcc:termsAccountsPanelInfoItemBody
+			title="#{msg['text.postal.addres']}">
+			<bbvaAcc:termsAccountsPanelInfoItemTitle
+				date="#{msg['text.office.name']}" val="4" />
+			<bbvaAcc:termsAccountsPanelInfoItemData
+				date="#{allConditions.direccionPostal.RmesOficina}" val="7" />
+			<bbvaAcc:termsAccountsPanelInfoItemTitle
+				date="#{msg['text.postal.addres']}" val="4" />
+			<bbvaAcc:termsAccountsPanelInfoItemData
+				date="#{allConditions.direccionPostal.direccionPostal}" val="7" />
+		</bbvaAcc:termsAccountsPanelInfoItemBody>
+
+	</bbvaAcc:termsAccounts>
+</composite:implementation>
+</html>

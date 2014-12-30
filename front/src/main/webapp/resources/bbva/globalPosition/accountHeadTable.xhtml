@@ -27,7 +27,7 @@
 
 		<p:dataTable id="tableAccounts" widgetVar="tableAccounts"
 			var="iproduct" rowIndexVar="findex"
-			rendered="#{menuActive == 'ACCOUNTS'}" selectionMode="single"
+			selectionMode="single"
 			rowKey="#{iproduct.productId}" value="#{cc.attrs.listAccounts}">
 
 			<p:ajax event="rowSelect"
@@ -35,10 +35,9 @@
 
 			<p:ajax event="rowUnselect" />
 
-			<p:column class="head" headerText="#{msg['text.account.name']}"
+			<p:column class="head" 
 				styleClass="col-xs-6 col-md-8"
 				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
-
 
 				<h:outputText styleClass="title-label"
 					style="font-size: 1.1em; font-weight:bold; color:#0078d2"

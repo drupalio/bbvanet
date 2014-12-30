@@ -23,6 +23,16 @@ public class BalanceDTO implements Dto {
 
 	private Money total;
 
+	public BalanceDTO() {
+		super();
+	}
+
+	public BalanceDTO(Money available, Money total) {
+		super();
+		this.available = available;
+		this.total = total;
+	}
+
 	public Money getAvailable() {
 		return available;
 	}
