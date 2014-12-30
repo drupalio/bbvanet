@@ -10,12 +10,10 @@ import javax.faces.view.ViewScoped;
 
 import org.primefaces.event.SelectEvent;
 
-import com.bbva.czic.dto.net.EnumProductType;
 import com.bbva.net.back.facade.GlobalMovementsFacade;
 import com.bbva.net.back.facade.GlobalPositionFacade;
-import com.bbva.net.back.model.commons.Money;
+import com.bbva.net.back.model.globalposition.BalanceDTO;
 import com.bbva.net.back.model.globalposition.GlobalProductsDTO;
-import com.bbva.net.back.model.globalposition.ProductDTO;
 import com.bbva.net.front.controller.GlobalPositionController;
 import com.bbva.net.front.core.AbstractBbvaController;
 import com.bbva.net.front.delegate.GraphicBarLineDelegate;
@@ -55,17 +53,9 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	private PieConfigUI graphicPieProducts;
 
-	public PieConfigUI getGraphicPieProducts() {
-		return graphicPieProducts;
-	}
-
-	public void setGraphicPieProducts(PieConfigUI graphicPieProducts) {
-		this.graphicPieProducts = graphicPieProducts;
-	}
-
 	private ActivePanelType activePanel = ActivePanelType.SITUATION;
 
-	private Map<EnumProductType, Money> totalsProducts;
+	private Map<String, BalanceDTO> totalsProducts;
 
 	private enum ActivePanelType {
 
@@ -133,11 +123,6 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		initChart();
 	}
 
-	public void onAccountSelected(final SelectEvent selectEvent) {
-		ProductDTO a = (ProductDTO)selectEvent.getObject();
-		System.out.print("hooola " + a.getProductId());
-	}
-
 	public String getActivePanel() {
 		return this.activePanel.name();
 	}
@@ -161,7 +146,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	 * @return
 	 */
 	@Override
-	public Map<EnumProductType, Money> getTotalsProducts() {
+	public Map<String, BalanceDTO> getTotalsProducts() {
 		return totalsProducts;
 	}
 
@@ -170,6 +155,20 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	 */
 	public void setSelectedLike(final String selectedLike) {
 		this.selectedLike = selectedLike;
+	}
+
+	/**
+	 * @return
+	 */
+	public PieConfigUI getGraphicPieProducts() {
+		return graphicPieProducts;
+	}
+
+	/**
+	 * @param graphicPieProducts
+	 */
+	public void setGraphicPieProducts(PieConfigUI graphicPieProducts) {
+		this.graphicPieProducts = graphicPieProducts;
 	}
 
 	/**
