@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:cc="http://jsflive.at/taglib"
+	xmlns:bbvaDetAcc="http://java.sun.com/jsf/composite/bbva/tab"
+	xmlns:bbvaGP="http://java.sun.com/jsf/composite/bbva/globalPosition">
+
+
+<composite:interface>
+	<composite:attribute name="textUp" type="String" />
+	<composite:attribute name="valueUp" type="String" />
+	<composite:attribute name="textDown" type="String" />
+	<composite:attribute name="valueDown" type="String" />
+	<composite:attribute name="valueGrphic" type="String" />
+</composite:interface>
+
+
+<composite:implementation>
+	<div class="hidden-xs hidden-sm col-md-4 bbva-chart">
+		<div class="tooltip-progress tooltip fade top in" role="tooltip">
+			<div class="tooltip-arrow"></div>
+			<div class="tooltip-inner">
+				<p>
+					#{cc.attrs.textUp} <span>$ #{cc.attrs.valueUp}</span>
+				</p>
+				<p class="monto">
+					#{cc.attrs.textDown} <span>$ #{cc.attrs.valueDown}</span>
+				</p>
+			</div>
+		</div>
+		<div class="progress">
+			<div class="progress-bar" role="progressbar" aria-valuenow="#{cc.attrs.valueGrphic}"
+				aria-valuemin="0" aria-valuemax="100" style="width: #{cc.attrs.valueGrphic}%;">
+				<span class="sr-only">#{cc.attrs.valueGrphic}% Complete</span>
+			</div>
+		</div>
+	</div>
+</composite:implementation>
+
+</html>

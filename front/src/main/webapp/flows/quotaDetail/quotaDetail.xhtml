@@ -19,7 +19,8 @@
 	xmlns:jsf="http://xmlns.jcp.org/jsf"
 	xmlns:bbvaMessage="http://java.sun.com/jsf/composite/bbva/messages"
 	xmlns:bbvaPersonalize="http://java.sun.com/jsf/composite/bbva/personalize"
-	xmlns:bbvaButton="http://java.sun.com/jsf/composite/bbva/button">
+	xmlns:bbvaButton="http://java.sun.com/jsf/composite/bbva/button"
+	xmlns:bbvaQuotaHeader="http://java.sun.com/jsf/composite/bbva/quota">
 
 
 <ui:composition template="../../templates/defaultLayout.xhtml">
@@ -32,152 +33,33 @@
 	</ui:define>
 
 	<ui:define name="contentLeft">
-
-		<h1>#{movementsAccountController.selectedProduct.productId}</h1>
-
-
-
-		<bbvaDetAcc:tabMenu>
-			<ul class="nav nav-pills nav-operation-options"
-				style="display: block;">
-				<bbvaDetAcc:itemTabMenu title="#{msg['text.consult']}"
-					icon="iconFont-611" classLi="tab-left consultas-btn" type="2"
-					role="#tab-consultas" />
-				<bbvaDetAcc:itemTabMenu title="#{msg['text.operations']}"
-					icon="iconFont-015" classLi="tab-left operaciones-btn" type="2" />
-
-				<bbvaDetAcc:itemTabMenu title="#{msg['text.personalized']}"
-					role="#tab-personalizar" classLi="tab-right hidden-xs hidden-sm"
-					type="1" />
-				<bbvaDetAcc:itemTabMenu title="#{msg['text.conditions']}"
-					icon="iconFont-104" classLi="tab-right" type="1"
-					role="#tab-condiciones" />
-				<bbvaDetAcc:itemTabMenu title="#{msg['text.personalized']}"
-					icon="iconFont-217" classLi="tab-right hidden-md hidden-lg"
-					type="1" />
-			</ul>
-			<div class="tab-content">
-
-				<bbvaSearch:tabCriteria>
-					<bbvaSearch:personalizedSearchContainer />
-				</bbvaSearch:tabCriteria>
-
-				<bbvaAcc:termsAccounts>
-					<bbvaAcc:termsAccountsPanelInfo>
-						<bbvaAcc:termsAccountsPanelInfoHeader
-							title="Información del Producto" />
-						<bbvaAcc:termsAccountsPanelInfoItemTitle
-							date="#{msg['text.alias']}:" val="4" />
-						<bbvaAcc:termsAccountsPanelInfoItemData
-							date="#{allConditions.informacionProducto.alias}" val="7" />
-						<bbvaAcc:termsAccountsPanelInfoItemTitle
-							date="#{msg['text.account.number']}:" val="4" />
-						<bbvaAcc:termsAccountsPanelInfoItemData
-							date="#{allConditions.informacionProducto.numCuenta}" val="7" />
-						<bbvaAcc:termsAccountsPanelInfoItemTitle
-							date="#{msg['text.account.type']}:" val="4" />
-						<bbvaAcc:termsAccountsPanelInfoItemData
-							date="#{allConditions.informacionProducto.tipoCuenta}" val="7" />
-					</bbvaAcc:termsAccountsPanelInfo>
-					<bbvaAcc:termsAccountsPanelInfoItemBody title="Intervinientes">
-						<bbvaAcc:termsAccountsPanelInfoItemTitle
-							date="#{msg['text.holder']}" val="4" />
-						<bbvaAcc:termsAccountsPanelInfoItemData
-							date="#{allConditions.intervinientes.titular1}" val="7" />
-						<bbvaAcc:termsAccountsPanelInfoItemTitle
-							date="#{msg['text.holder']}" val="4" />
-						<bbvaAcc:termsAccountsPanelInfoItemData
-							date="#{allConditions.intervinientes.titular2}" val="7" />
-						<bbvaAcc:termsAccountsPanelInfoItemTitle
-							date="#{msg['text.conditions.mobilization']}" val="4" />
-						<bbvaAcc:termsAccountsPanelInfoItemData
-							date="#{allConditions.intervinientes.condicionesMovilizacion}"
-							val="7" />
-					</bbvaAcc:termsAccountsPanelInfoItemBody>
-
-					<bbvaAcc:termsAccountsPanelInfoItemBody
-						title="#{msg['text.conditions']}">
-						<bbvaAcc:termsAccountsPanelInfoItemTitle
-							date="#{msg['text.category']}:" val="4" />
-						<bbvaAcc:termsAccountsPanelInfoItemData
-							date="#{allConditions.detalleCondiciones.categoria}" val="7" />
-						<bbvaAcc:termsAccountsPanelInfoItemTitle
-							date="#{msg['text.description']}:" val="4" />
-						<bbvaAcc:termsAccountsPanelInfoItemData
-							date="#{allConditions.detalleCondiciones.descripcion}" val="7" />
-						<bbvaAcc:termsAccountsPanelInfoItemTitle
-							date="#{msg['text.opening.date']}:" val="4" />
-						<bbvaAcc:termsAccountsPanelInfoItemData
-							date="#{allConditions.detalleCondiciones.fechaApertura}" val="7" />
-						<bbvaAcc:termsAccountsPanelInfoItemTitle
-							date="#{msg['text.commissions']}:" val="4" />
-						<bbvaAcc:termsAccountsPanelInfoItemData
-							date="#{allConditions.detalleCondiciones.comisiones}" val="7" />
-					</bbvaAcc:termsAccountsPanelInfoItemBody>
-
-					<bbvaAcc:termsAccountsPanelInfoItemBody
-						title="#{msg['text.postal.addres']}">
-						<bbvaAcc:termsAccountsPanelInfoItemTitle
-							date="#{msg['text.office.name']}" val="4" />
-						<bbvaAcc:termsAccountsPanelInfoItemData
-							date="#{allConditions.direccionPostal.nombreOficina}" val="7" />
-						<bbvaAcc:termsAccountsPanelInfoItemTitle
-							date="#{msg['text.postal.addres']}" val="4" />
-						<bbvaAcc:termsAccountsPanelInfoItemData
-							date="#{allConditions.direccionPostal.direccionPostal}" val="7" />
-
-					</bbvaAcc:termsAccountsPanelInfoItemBody>
-				</bbvaAcc:termsAccounts>
-
-				<!-- panel personalizar -->
-
-				<bbvaPersonalize:personalizeAccount>
-					<bbvaPersonalize:personalizeInputClass
-						divClass="customize-product-name" nameButton="buttonAdd"
-						valueLabel="#{msg['text.nameProduct']}" idButton="cc" idInput="dd"
-						valueButton="#{msg['button.save']}" classButton="btn btn-default"
-						valueInput="#{personalizeProductAccountController.personalizeProductAccountDto.alias}" />
-					<span class="separator"></span>
-
-					<bbvaPersonalize:personalizeCombo size="smallCombo"
-						idComboOne="comboOne" divClass="customize-virtual"
-						valueButton="#{msg['button.save']}"
-						valueLabel="#{msg['text.virtualCorresp']}" idButton="datas"
-						ajax="#{personalizeProductAccountController.offMessage}"
-						value="#{personalizeProductAccountController.personalizeProductAccountDto.virtualMail}" />
-					<bbvaMessage:messageCheck
-						render="#{personalizeProductAccountController.menSuccessful}" />
-					<span class="separator"></span>
-
-					<bbvaPersonalize:personalizeCombo size="bigCombo"
-						idComboOne="comboTwo" divClass="customize-online"
-						classIcon="icon-info-blue" valueLabel="#{msg['text.consult']}"
-						labelIcon="#{msg['text.online']}"
-						value="#{personalizeProductAccountController.personalizeProductAccountDto.searchOnline}" />
-
-					<bbvaPersonalize:personalizeCombo size="bigCombo"
-						idComboOne="comboThree" divClass="customize-online"
-						classIcon="icon-info-blue" valueLabel="#{msg['text.work']}"
-						labelIcon="#{msg['text.online']}"
-						value="#{personalizeProductAccountController.personalizeProductAccountDto.operationOnline}" />
-
-					<bbvaButton:iconButton id="buttonThree" type="submit"
-						actionListener="#{personalizeProductAccountController.operKey}"
-						value="#{msg['button.save']}" style="margin-top:6px !important"
-						classB="btn btn-default" />
-
-					<bbvaMessage:divOperationKey idComfirm="buttonFour"
-						idInput="inputTwo" nameB="buttonConfirm" idInputDiv="divClass"
-						render="#{personalizeProductAccountController.menOperationKey}"
-						value="#{personalizeProductAccountController.personalizeProductAccountDto.operationKey}" />
-				</bbvaPersonalize:personalizeAccount>
-
-
-
-			</div>
-		</bbvaDetAcc:tabMenu>
-
-
+		<bbvaQuotaHeader:quotaDetail>#{msg['title.accountsPersonal']}
+			<bbvaQuotaHeader:quotaDetailHeader>
+				<bbvaQuotaHeader:quotaDetailHeaderLeft alias="Alias Cupo Rotativo"
+					numCuenta="0013-0073-00-9612782465" tipoPrestamo="#{msg['title.rotaryQuota']}" />
+				<bbvaQuotaHeader:quotaDetailGraphic textUp="#{msg['text.outstandingBalance']}"
+					valueUp="12.000.000" textDown="#{msg['text.amountRequested']}"
+					valueDown="30.000.000" valueGrphic="10" />
+				<bbvaQuotaHeader:quotaDetailHeaderRight textUp="#{msg['text.outstandingBalance']}"
+					valueUp="12.000.000" textDown="#{msg['text.amountRequested']}"
+					valueDown="30.000.000" />
+			</bbvaQuotaHeader:quotaDetailHeader>
+			<bbvaQuotaHeader:quotaDetailHeaderBody>
+			<bbvaQuotaHeader:quotaDetailHeaderBodyContainer type ="left">
+				<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem text="#{msg['text.numberShares']}" value="12"/>
+				<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem text="#{msg['text.dueDate']}" value="05/08/2014"/>
+				<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem text="#{msg['text.datePayment']}" value="30/05/2014"/>
+				<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem text="#{msg['text.datePreviousCut']}" value="05/08/2014"/>
+				<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem text="#{msg['text.search.by.number.status']}" value="Normal"/>
+			</bbvaQuotaHeader:quotaDetailHeaderBodyContainer>
+			<bbvaQuotaHeader:quotaDetailHeaderBodyContainer type ="right">
+				<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem text="#{msg['text.minimumPayment']}" value="$ 0.00"/>
+				<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem text="#{msg['text.hoursCollections']}" value="0.00 hrs"/>
+				<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem text="#{msg['text.account.balance.label']}" value="$ 18.000.00"/>
+				<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem text="#{msg['text.totalBalancePreviousCut']}" value="$ 20.000.00"/>
+			</bbvaQuotaHeader:quotaDetailHeaderBodyContainer>
+			</bbvaQuotaHeader:quotaDetailHeaderBody>			
+		</bbvaQuotaHeader:quotaDetail>
 
 	</ui:define>
 
