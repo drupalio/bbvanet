@@ -7,6 +7,7 @@ import org.mockito.Mockito;
 
 import com.bbva.net.back.facade.GlobalPositionFacade;
 import com.bbva.net.back.model.globalposition.GlobalProductsDTO;
+import com.bbva.net.front.delegate.GraphicBarLineDelegate;
 import com.bbva.net.front.delegate.GraphicPieDelegate;
 
 /**
@@ -23,6 +24,8 @@ public class GlobalPositionControllerImplTest {
 
 	private GraphicPieDelegate graphicPieDelegate;
 
+	private GraphicBarLineDelegate graphicBarLineDelegate;
+
 	@Before
 	public void init() {
 
@@ -30,8 +33,10 @@ public class GlobalPositionControllerImplTest {
 
 		globalPositionFacade = Mockito.mock(GlobalPositionFacade.class);
 		graphicPieDelegate = Mockito.mock(GraphicPieDelegate.class);
+		graphicBarLineDelegate = Mockito.mock(GraphicBarLineDelegate.class);
 		globalPositionController.setGlobalPositionFacade(globalPositionFacade);
 		globalPositionController.setGraphicPieDelegate(graphicPieDelegate);
+		globalPositionController.setGraphicBarLineDelegate(graphicBarLineDelegate);
 		globalPositionController.init();
 
 	}
@@ -52,6 +57,7 @@ public class GlobalPositionControllerImplTest {
 		Mockito.verify(this.globalPositionFacade, Mockito.atLeastOnce()).getGlobalProductsByUser(DEFAULT_USER);
 		// graphicPieUI = Mockito.mock(GraphicPieUI.class);
 
+		Mockito.verify(this.graphicBarLineDelegate, Mockito.atLeastOnce()).getInOutBalanceByAccount();
 	}
 
 	@Test

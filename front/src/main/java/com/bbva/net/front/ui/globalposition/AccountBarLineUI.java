@@ -9,34 +9,34 @@ public class AccountBarLineUI implements Serializable {
 
 	private static final long serialVersionUID = 8653589171354611176L;
 
-	private List<BarLineItemUI> payment;
+	private List<BarLineItemUI> paymentList;
 
-	private List<BarLineItemUI> charges;
+	private List<BarLineItemUI> chargesList;
 
-	private List<BarLineItemUI> balance;
+	private List<BarLineItemUI> balanceList;
 
-	public List<BarLineItemUI> getPayment() {
-		return payment;
+	public List<BarLineItemUI> getPaymentList() {
+		return paymentList;
 	}
 
-	public void setPayment(List<BarLineItemUI> payment) {
-		this.payment = payment;
+	public void setPaymentList(List<BarLineItemUI> paymentList) {
+		this.paymentList = paymentList;
 	}
 
-	public List<BarLineItemUI> getCharges() {
-		return charges;
+	public List<BarLineItemUI> getChargesList() {
+		return chargesList;
 	}
 
-	public void setCharges(List<BarLineItemUI> charges) {
-		this.charges = charges;
+	public void setChargesList(List<BarLineItemUI> chargesList) {
+		this.chargesList = chargesList;
 	}
 
-	public List<BarLineItemUI> getBalance() {
-		return balance;
+	public List<BarLineItemUI> getBalanceList() {
+		return balanceList;
 	}
 
-	public void setBalance(List<BarLineItemUI> balance) {
-		this.balance = balance;
+	public void setBalanceList(List<BarLineItemUI> balanceList) {
+		this.balanceList = balanceList;
 	}
 
 }

@@ -81,7 +81,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		this.globalProductsDTO = this.globalPositionFacade.getGlobalProductsByUser(getCurrentUser());
 
 		// Obtiene la lista de resumen de movimientos del serivico REST
-		// this.globalMovementsDTO = this.globalMovementsFacade.getGlobalMovements();
+		// this.globalMovementsFacade.getGlobalMovements();
 
 		// Calculate situation graphics panels
 		this.situationGraphicPieUI = graphicPieDelegate.getSituationGlobalProducts(this.globalProductsDTO);
@@ -96,7 +96,8 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		this.totalsProducts = this.globalPositionFacade.getTotalsByProduct(globalProductsDTO);
 
 		// Calculate income, output and balance by Account Graphic
-		// this.accountGraphicBarLineUI = this.graphicBarLineDelegate.getInOutBalanceByAccount();
+		// Acualmente obtiene el objeto Ui quemado en el delegate
+		this.accountGraphicBarLineUI = this.graphicBarLineDelegate.getInOutBalanceByAccount();
 
 	}
 
@@ -202,6 +203,10 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	public void setGraphicPieDelegate(GraphicPieDelegate graphicPieDelegate) {
 		this.graphicPieDelegate = graphicPieDelegate;
+	}
+
+	public void setGraphicBarLineDelegate(GraphicBarLineDelegate graphicBarLineDelegate) {
+		this.graphicBarLineDelegate = graphicBarLineDelegate;
 	}
 
 }
