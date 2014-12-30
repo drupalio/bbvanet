@@ -7,9 +7,8 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:bbvaAcc="http://java.sun.com/jsf/composite/bbva/accounts"
 	xmlns:bbvaBody="http://java.sun.com/jsf/composite/bbva/body"
-	
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-	xmlns:bbvaDetAcc="http://java.sun.com/jsf/composite/bbva/tab"	
+	xmlns:bbvaDetAcc="http://java.sun.com/jsf/composite/bbva/tab"
 	xmlns:bbvaDetailMotion="http://java.sun.com/jsf/composite/bbva/movementsDetail"
 	xmlns:bbvaSearch="http://java.sun.com/jsf/composite/bbva/filters"
 	xmlns:jsf="http://xmlns.jcp.org/jsf"
@@ -20,8 +19,9 @@
 
 	<ui:define name="bodyTitle">
 		<bbvaBody:title title="#{msg['title.accountsPersonal']}">
-			<bbvaBody:titleOptionProduct optionButttonLeft="Mis productos"
-				optionButttonRight="Catálogo de productos" />
+			<bbvaBody:titleOptionProduct
+				optionButttonLeft="#{msg['title.myProducts']}"
+				optionButttonRight="#{msg['title.productCatalog']}" />
 		</bbvaBody:title>
 	</ui:define>
 
@@ -53,11 +53,11 @@
 				<bbvaSearch:tabCriteria>
 					<bbvaSearch:personalizedSearchContainer />
 				</bbvaSearch:tabCriteria>
-				
+
 				<!-- Tab Condiciones -->
 				<bbvaAcc:accountContainer />
-				
-				<!-- Tab Condiciones -->
+
+				<!-- Tab Personalizar -->
 				<bbvaPersonalize:personalizeContainer />
 
 			</div>
