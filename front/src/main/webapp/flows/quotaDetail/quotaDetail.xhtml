@@ -18,7 +18,8 @@
 	xmlns:jsf="http://xmlns.jcp.org/jsf"
 	xmlns:bbvaMessage="http://java.sun.com/jsf/composite/bbva/messages"
 	xmlns:bbvaPersonalize="http://java.sun.com/jsf/composite/bbva/personalize"
-	xmlns:bbvaButton="http://java.sun.com/jsf/composite/bbva/button">
+	xmlns:bbvaButton="http://java.sun.com/jsf/composite/bbva/button"
+	xmlns:bbvaQuotaHeader="http://java.sun.com/jsf/composite/bbva/quota">
 
 
 <ui:composition template="../../templates/defaultLayout.xhtml">
@@ -32,6 +33,37 @@
 	</ui:define>
 
 	<ui:define name="contentLeft">
+
+
+		<bbvaQuotaHeader:quotaDetail>#{msg['title.accountsPersonal']}
+			<bbvaQuotaHeader:quotaDetailHeader>
+				<bbvaQuotaHeader:quotaDetailHeaderLeft alias="Alias Cupo Rotativo"
+					numCuenta="0013-0073-00-9612782465" tipoPrestamo="#{msg['title.rotaryQuota']}" />
+				<bbvaQuotaHeader:quotaDetailGraphic textUp="#{msg['text.outstandingBalance']}"
+					valueUp="12.000.000" textDown="#{msg['text.amountRequested']}"
+					valueDown="30.000.000" valueGrphic="10" />
+				<bbvaQuotaHeader:quotaDetailHeaderRight textUp="#{msg['text.outstandingBalance']}"
+					valueUp="12.000.000" textDown="#{msg['text.amountRequested']}"
+					valueDown="30.000.000" />
+			</bbvaQuotaHeader:quotaDetailHeader>
+			<bbvaQuotaHeader:quotaDetailHeaderBody>
+			<bbvaQuotaHeader:quotaDetailHeaderBodyContainer type ="left">
+				<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem text="#{msg['text.numberShares']}" value="12"/>
+				<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem text="#{msg['text.dueDate']}" value="05/08/2014"/>
+				<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem text="#{msg['text.datePayment']}" value="30/05/2014"/>
+				<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem text="#{msg['text.datePreviousCut']}" value="05/08/2014"/>
+				<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem text="#{msg['text.search.by.number.status']}" value="Normal"/>
+			</bbvaQuotaHeader:quotaDetailHeaderBodyContainer>
+			<bbvaQuotaHeader:quotaDetailHeaderBodyContainer type ="right">
+				<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem text="#{msg['text.minimumPayment']}" value="$ 0.00"/>
+				<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem text="#{msg['text.hoursCollections']}" value="0.00 hrs"/>
+				<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem text="#{msg['text.account.balance.label']}" value="$ 18.000.00"/>
+				<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem text="#{msg['text.totalBalancePreviousCut']}" value="$ 20.000.00"/>
+			</bbvaQuotaHeader:quotaDetailHeaderBodyContainer>
+			</bbvaQuotaHeader:quotaDetailHeaderBody>			
+		</bbvaQuotaHeader:quotaDetail>
+
+
 		<bbvaDetAcc:tabMenu>
 			<ul class="nav nav-pills nav-operation-options"
 				style="display: block;">
@@ -72,7 +104,6 @@
 			<bbvaDetailMotion:detailMovesTable id="detailAccounts"
 				listAccounts="#{customerAccounts}" />
 		</div>
-
 	</ui:define>
 
 	<ui:define name="contentRight">
