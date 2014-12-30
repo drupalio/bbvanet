@@ -10,17 +10,14 @@ import javax.faces.view.ViewScoped;
 
 import org.primefaces.event.SelectEvent;
 
-import com.bbva.czic.dto.net.EnumProductType;
 import com.bbva.net.back.facade.GlobalMovementsFacade;
 import com.bbva.net.back.facade.GlobalPositionFacade;
-import com.bbva.net.back.model.commons.Money;
+import com.bbva.net.back.model.globalposition.BalanceDTO;
 import com.bbva.net.back.model.globalposition.GlobalProductsDTO;
-import com.bbva.net.back.model.globalposition.ProductDTO;
 import com.bbva.net.front.controller.GlobalPositionController;
 import com.bbva.net.front.core.AbstractBbvaController;
 import com.bbva.net.front.delegate.GraphicBarLineDelegate;
 import com.bbva.net.front.delegate.GraphicPieDelegate;
-import com.bbva.net.front.ui.accounts.AccountsPieUI;
 import com.bbva.net.front.ui.globalposition.AccountBarLineUI;
 import com.bbva.net.front.ui.globalposition.SituationPiesUI;
 import com.bbva.net.front.ui.pie.PieConfigUI;
@@ -49,23 +46,15 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	private SituationPiesUI situationGraphicPieUI;
 
-	private AccountsPieUI investmentFundsPieUI;
+	private PieConfigUI graphicPieInvestmentFunds;
 
 	private AccountBarLineUI accountGraphicBarLineUI;
 
 	private PieConfigUI graphicPieProducts;
 
-	public PieConfigUI getGraphicPieProducts() {
-		return graphicPieProducts;
-	}
-
-	public void setGraphicPieProducts(PieConfigUI graphicPieProducts) {
-		this.graphicPieProducts = graphicPieProducts;
-	}
-
 	private ActivePanelType activePanel = ActivePanelType.SITUATION;
 
-	private Map<EnumProductType, Money> totalsProducts;
+	private Map<String, BalanceDTO> totalsProducts;
 
 	private enum ActivePanelType {
 
@@ -87,7 +76,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		this.situationGraphicPieUI = graphicPieDelegate.getSituationGlobalProducts(this.globalProductsDTO);
 
 		// Calculate investmentFunds graphics panels
-		this.investmentFundsPieUI = graphicPieDelegate.getAccountsfundsProducts(this.globalProductsDTO);
+		this.graphicPieInvestmentFunds = graphicPieDelegate.getAccountsfundsProducts(this.globalProductsDTO);
 
 		// Calculate situation graphics panels
 		this.graphicPieProducts = graphicPieDelegate.getGeneralGraphicConfig(this.globalProductsDTO);
@@ -133,11 +122,6 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		initChart();
 	}
 
-	public void onAccountSelected(final SelectEvent selectEvent) {
-		ProductDTO a = (ProductDTO)selectEvent.getObject();
-		System.out.print("hooola " + a.getProductId());
-	}
-
 	public String getActivePanel() {
 		return this.activePanel.name();
 	}
@@ -161,7 +145,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	 * @return
 	 */
 	@Override
-	public Map<EnumProductType, Money> getTotalsProducts() {
+	public Map<String, BalanceDTO> getTotalsProducts() {
 		return totalsProducts;
 	}
 
@@ -173,18 +157,24 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	}
 
 	/**
+	 * @return
+	 */
+	public PieConfigUI getGraphicPieProducts() {
+		return graphicPieProducts;
+	}
+
+	/**
+	 * @param graphicPieProducts
+	 */
+	public void setGraphicPieProducts(PieConfigUI graphicPieProducts) {
+		this.graphicPieProducts = graphicPieProducts;
+	}
+
+	/**
 	 * 
 	 */
 	public void initChart() {
 		executeScript("initChart();");
-	}
-
-	public AccountsPieUI getInvestmentFundsPieUI() {
-		return investmentFundsPieUI;
-	}
-
-	public void setInvestmentFundsPieUI(AccountsPieUI investmentFundsPieUI) {
-		this.investmentFundsPieUI = investmentFundsPieUI;
 	}
 
 	@Override
@@ -202,6 +192,14 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	public void setGraphicPieDelegate(GraphicPieDelegate graphicPieDelegate) {
 		this.graphicPieDelegate = graphicPieDelegate;
+	}
+
+	public PieConfigUI getGraphicPieInvestmentFunds() {
+		return graphicPieInvestmentFunds;
+	}
+
+	public void setGraphicPieInvestmentFunds(PieConfigUI graphicPieInvestmentFunds) {
+		this.graphicPieInvestmentFunds = graphicPieInvestmentFunds;
 	}
 
 }
