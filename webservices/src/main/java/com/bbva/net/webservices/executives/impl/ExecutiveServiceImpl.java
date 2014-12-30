@@ -10,7 +10,7 @@ import com.bbva.net.webservices.executives.ExecutiveService;
 @RestService(value = "executiveService")
 public class ExecutiveServiceImpl extends AbstractBbvaRestService implements ExecutiveService {
 
-	@Value("${rest.executive.url}")
+	
 	private String URL_GLOBAL_POSITION;
 
 	@Override
