@@ -1,6 +1,8 @@
 package com.bbva.net.back.model.commons;
 
 import java.math.BigDecimal;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
@@ -48,7 +50,10 @@ public class Money implements Dto {
 
 	@Override
 	public String toString() {
-		return currency + amount.toString();
+		final NumberFormat formatter = NumberFormat.getInstance(new Locale("es_CO"));
+		formatter.setGroupingUsed(true);
+		formatter.setMinimumFractionDigits(2);
+		return currency + formatter.format(amount);
 	}
 
 	@Override

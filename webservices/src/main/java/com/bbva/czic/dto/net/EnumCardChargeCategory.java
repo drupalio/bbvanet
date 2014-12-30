@@ -6,34 +6,34 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for enumContactSourceType.
+ * <p>Java class for EnumCardChargeCategory.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * <p>
  * <pre>
- * &lt;simpleType name="enumContactSourceType">
+ * &lt;simpleType name="EnumCardChargeCategory">
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *     &lt;enumeration value="MOBILE"/>
- *     &lt;enumeration value="WEB"/>
- *     &lt;enumeration value="THIRD_PARTY"/>
+ *     &lt;enumeration value="TRAVEL"/>
+ *     &lt;enumeration value="CLOTHS"/>
+ *     &lt;enumeration value="FOOD"/>
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
  * 
  */
-@XmlType(name = "enumContactSourceType")
+@XmlType(name = "EnumCardChargeCategory")
 @XmlEnum
-public enum EnumContactSourceType {
+public enum EnumCardChargeCategory {
 
-    MOBILE,
-    WEB,
-    THIRD_PARTY;
+    TRAVEL,
+    CLOTHS,
+    FOOD;
 
     public String value() {
         return name();
     }
 
-    public static EnumContactSourceType fromValue(String v) {
+    public static EnumCardChargeCategory fromValue(String v) {
         return valueOf(v);
     }
 

@@ -8,6 +8,7 @@ import java.util.Map;
 
 import com.bbva.czic.dto.net.EnumProductType;
 import com.bbva.net.back.model.commons.Money;
+import com.bbva.net.back.model.globalposition.BalanceDTO;
 import com.bbva.net.back.model.globalposition.GlobalProductsDTO;
 import com.bbva.net.back.model.globalposition.ProductDTO;
 import com.bbva.net.core.collection.BbvaPredicate;
@@ -22,6 +23,12 @@ public interface ProductService {
 	 * @return
 	 */
 	<T extends ProductDTO> Money getTotal(final List<T> products);
+
+	/**
+	 * @param products
+	 * @return
+	 */
+	<T extends ProductDTO> Money getTotalAvailable(final List<T> products);
 
 	/**
 	 * @param products
@@ -51,7 +58,7 @@ public interface ProductService {
 	 * @param globalProducts
 	 * @return
 	 */
-	Map<EnumProductType, Money> getTotals(GlobalProductsDTO globalProducts);
+	Map<String, BalanceDTO> getTotals(GlobalProductsDTO globalProducts);
 
 	/**
 	 * @param globalProducts
