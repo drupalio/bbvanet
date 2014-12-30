@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="phoneNumbers" type="{urn:com:bbva:czic:dto:net}PhoneNumber" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="phoneNumbers" type="{urn:com:bbva:czic:dto:net}phoneNumber" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="emails" type="{urn:com:bbva:czic:dto:net}Email" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
