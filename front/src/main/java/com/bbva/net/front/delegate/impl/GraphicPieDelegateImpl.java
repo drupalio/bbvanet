@@ -13,7 +13,6 @@ import com.bbva.net.back.model.globalposition.ProductDTO;
 import com.bbva.net.back.service.ProductService;
 import com.bbva.net.front.core.stereotype.Delegate;
 import com.bbva.net.front.delegate.GraphicPieDelegate;
-import com.bbva.net.front.ui.accounts.AccountsPieUI;
 import com.bbva.net.front.ui.globalposition.SituationPiesUI;
 import com.bbva.net.front.ui.pie.PieConfigUI;
 import com.bbva.net.front.ui.pie.PieItemUI;
