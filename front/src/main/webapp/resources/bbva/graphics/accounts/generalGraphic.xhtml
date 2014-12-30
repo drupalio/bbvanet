@@ -53,10 +53,6 @@
 		var chart = c3.generate({
 			bindto : '#chart2_4',
 
-			legend : {
-				position : 'rigth'
-			},
-
 			data : {
 
 				size : {
@@ -75,7 +71,11 @@
 				onmouseout : function(d, i) {
 					console.log("onmouseout", d, i);
 				}
-			}
+			},
+
+			legend : {
+				position : 'right'
+			},
 		});
 	</script>
 
