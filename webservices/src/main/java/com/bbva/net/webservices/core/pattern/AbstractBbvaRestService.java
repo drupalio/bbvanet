@@ -17,6 +17,9 @@ public abstract class AbstractBbvaRestService {
 	@Value("${rest.base.url}")
 	protected String URL_BASE;
 
+	@Value("${rest.base.customer.url}")
+	protected String URL_BASE_CUSTOMER;
+
 	@Resource(name = "restTemplate")
 	protected RestTemplate restTemplate;
 

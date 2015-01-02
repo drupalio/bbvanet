@@ -1,5 +1,6 @@
 package com.bbva.net.back.model.movements;
 
+import com.bbva.czic.dto.net.EnumMonth;
 import com.bbva.net.back.core.pattern.dto.Dto;
 import com.bbva.net.back.model.commons.Money;
 
@@ -13,7 +14,7 @@ public class MovementsResumeDTO implements Dto {
 
 	private Money balance;
 
-	private String month;
+	private EnumMonth month;
 
 	public Money getInCome() {
 		return inCome;
@@ -39,11 +40,11 @@ public class MovementsResumeDTO implements Dto {
 		this.balance = balance;
 	}
 
-	public String getMonth() {
+	public EnumMonth getMonth() {
 		return month;
 	}
 
-	public void setMonth(String month) {
+	public void setMonth(EnumMonth month) {
 		this.month = month;
 	}
 

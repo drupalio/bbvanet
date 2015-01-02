@@ -1,65 +1,41 @@
 package com.bbva.net.back.facade.impl;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Resource;
+
+import org.springframework.web.client.RestClientException;
+
+import com.bbva.czic.dto.net.AccMovementsResume;
+import com.bbva.net.back.core.pattern.facade.AbstractBbvaFacade;
 import com.bbva.net.back.core.stereotype.Facade;
 import com.bbva.net.back.facade.GlobalMovementsFacade;
-import com.bbva.net.back.model.commons.Money;
-import com.bbva.net.back.model.movements.GlobalResumenMovementsDTO;
-import com.bbva.net.back.model.movements.MovementsResumeDTO;
+import com.bbva.net.back.mapper.GlobalResumeMovementsMapper;
+import com.bbva.net.back.model.movements.GlobalResumeMovementsDTO;
+import com.bbva.net.webservices.customers.CustomerService;
 
 @Facade(value = "globalMovementsFacade")
-public class GlobalMovementsFacadeImpl implements GlobalMovementsFacade {
+public class GlobalMovementsFacadeImpl extends AbstractBbvaFacade implements GlobalMovementsFacade {
+
+	private static final long serialVersionUID = 1L;
+
+	// CLIENTE REST
+	@Resource(name = "customerService")
+	private CustomerService customerService;
+
+	@Resource(name = "globalResumeMovementsMapper")
+	private GlobalResumeMovementsMapper globalResumeMovementsMapper;
 
 	@Override
-	public GlobalResumenMovementsDTO getGlobalMovements() {
-		// Falta la llamada a la interfaz REST - Por ahora se hardcodea el objeto de retorno
+	public GlobalResumeMovementsDTO getGlobalMovementsByCustomer(final String customerId) throws RestClientException {
 
-		// final List<MovementsGraphicDTO> response = this.globalPositionService.getExtractGlobalBalance(user, null, null,
-		// null, null);
-		// return globalPositionMapper.map(response);
+		final List<AccMovementsResume> response = this.customerService.listAccountsMovementsResume(customerId);
+		return globalResumeMovementsMapper.map(response);
+	}
 
-		GlobalResumenMovementsDTO globalMovementsDTO = new GlobalResumenMovementsDTO();
-
-		List<MovementsResumeDTO> movementsGraphicList = new ArrayList<MovementsResumeDTO>();
-
-		for (int i = 0; i < 10; i++) {
-
-			MovementsResumeDTO movementsGraphicDTO = new MovementsResumeDTO();
-			Money valor1 = new Money();
-			valor1.setAmount(new BigDecimal(1000).multiply(new BigDecimal(50)));
-			valor1.setCurrency("$");
-
-			movementsGraphicDTO.setBalance(valor1);
-			movementsGraphicDTO.setInCome(valor1);
-			movementsGraphicDTO.setOutCome(valor1);
-			movementsGraphicDTO.setMonth("Enero");
-
-			movementsGraphicList.add(movementsGraphicDTO);
-
-			globalMovementsDTO.setGlobalMovementsDTO(movementsGraphicList);
-		}
-
-		for (int i = 0; i < 10; i++) {
-
-			MovementsResumeDTO movementsGraphicDTO = new MovementsResumeDTO();
-			Money valor2 = new Money();
-			valor2.setAmount(new BigDecimal(1000).multiply(new BigDecimal(50)));
-			valor2.setCurrency("$");
-
-			movementsGraphicDTO.setBalance(valor2);
-			movementsGraphicDTO.setInCome(valor2);
-			movementsGraphicDTO.setOutCome(valor2);
-			movementsGraphicDTO.setMonth("Enero");
-
-			movementsGraphicList.add(movementsGraphicDTO);
-
-			globalMovementsDTO.setGlobalMovementsDTO(movementsGraphicList);
-		}
-
-		return globalMovementsDTO;
+	/********************************** DEPENDENCY INJECTIONS ***********************************/
+	public void setCustomerService(final CustomerService customerService) {
+		this.customerService = customerService;
 	}
 
 }
