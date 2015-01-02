@@ -16,13 +16,11 @@ import com.bbva.net.back.entity.MultiValueGroup;
 
 /**
  * @author User
- *
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:spring-test-context.xml")
-public class MultiValueGroupDAOImplTest extends
-		AbstractTransactionalJUnit4SpringContextTests {
+public class MultiValueGroupDAOImplTest extends AbstractTransactionalJUnit4SpringContextTests {
 
 	@Resource(name = "multiValueGroupDao")
 	private MultiValueGroupDAO multiValueGroupDAO;
@@ -47,8 +45,7 @@ public class MultiValueGroupDAOImplTest extends
 		/**
 		 * Invoke test method with Null
 		 */
-		final List<MultiValueGroup> result = this.multiValueGroupDAO
-				.getTypes(null);
+		final List<MultiValueGroup> result = this.multiValueGroupDAO.getTypes(null);
 
 		/**
 		 * Asserts
