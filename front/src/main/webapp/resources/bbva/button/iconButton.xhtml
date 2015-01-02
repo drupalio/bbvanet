@@ -13,6 +13,7 @@
 	<composite:attribute name="id" />
 	<composite:attribute name="value" />
 	<composite:attribute name="style" />
+	<composite:attribute name="show" type="boolean" default="true" />
 	<composite:attribute name="classButton" />
 	<composite:attribute name="action"
 		method-signature="java.lang.String action()" />
@@ -30,9 +31,9 @@
 	<c:if
 		test="#{cc.getValueExpression('actionListener') != null and cc.getValueExpression('action') != null}">
 		<button class="#{cc.attrs.classButton}"
-			disabled="#{cc.attrs.disabled}" type="#{cc.attrs.type}"
-			jsf:style="#{cc.attrs.style}" jsf:id="#{cc.attrs.id}"
-			jsf:action="#{cc.attrs.action}"
+			jsf:rendered="#{cc.attrs.show}" disabled="#{cc.attrs.disabled}"
+			type="#{cc.attrs.type}" jsf:style="#{cc.attrs.style}"
+			jsf:id="#{cc.attrs.id}" jsf:action="#{cc.attrs.action}"
 			jsf:actionListener="#{cc.attrs.actionListener}">
 			<span class="#{cc.attrs.icon}" /> #{cc.attrs.value}
 			<f:ajax execute="@form" render="@form" />
@@ -42,8 +43,9 @@
 	<c:if
 		test="#{cc.getValueExpression('actionListener') != null and cc.getValueExpression('action') == null}">
 		<button class="#{cc.attrs.classButton}"
-			disabled="#{cc.attrs.disabled}" type="#{cc.attrs.type}"
-			jsf:style="#{cc.attrs.style}" jsf:id="#{cc.attrs.id}"
+			jsf:rendered="#{cc.attrs.show}" disabled="#{cc.attrs.disabled}"
+			type="#{cc.attrs.type}" jsf:style="#{cc.attrs.style}"
+			jsf:id="#{cc.attrs.id}"
 			jsf:actionListener="#{cc.attrs.actionListener}">
 			<span class="#{cc.attrs.icon}" /> #{cc.attrs.value}
 			<f:ajax execute="@form" render="@form" />
@@ -53,9 +55,9 @@
 	<c:if
 		test="#{cc.getValueExpression('actionListener') == null and cc.getValueExpression('action') != null}">
 		<button class="#{cc.attrs.classButton}"
-			disabled="#{cc.attrs.disabled}" type="#{cc.attrs.type}"
-			jsf:style="#{cc.attrs.style}" jsf:id="#{cc.attrs.id}"
-			jsf:action="#{cc.attrs.action}">
+			jsf:rendered="#{cc.attrs.show}" disabled="#{cc.attrs.disabled}"
+			type="#{cc.attrs.type}" jsf:style="#{cc.attrs.style}"
+			jsf:id="#{cc.attrs.id}" jsf:action="#{cc.attrs.action}">
 			<span class="#{cc.attrs.icon}" /> #{cc.attrs.value}
 			<f:ajax execute="@form" render="@form" />
 		</button>
@@ -64,8 +66,9 @@
 	<c:if
 		test="#{cc.getValueExpression('actionListener') == null and cc.getValueExpression('action') == null}">
 		<button class="#{cc.attrs.classButton}"
-			disabled="#{cc.attrs.disabled}" type="#{cc.attrs.type}"
-			jsf:style="#{cc.attrs.style}" jsf:id="#{cc.attrs.id}">
+			jsf:rendered="#{cc.attrs.show}" disabled="#{cc.attrs.disabled}"
+			type="#{cc.attrs.type}" jsf:style="#{cc.attrs.style}"
+			jsf:id="#{cc.attrs.id}">
 			<span class="#{cc.attrs.icon}" /> #{cc.attrs.value}
 		</button>
 	</c:if>
