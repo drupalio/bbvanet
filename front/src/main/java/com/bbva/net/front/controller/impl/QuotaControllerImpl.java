@@ -4,6 +4,7 @@
 package com.bbva.net.front.controller.impl;
 
 import javax.faces.event.ActionEvent;
+import javax.faces.event.AjaxBehaviorEvent;
 
 import org.springframework.stereotype.Controller;
 
@@ -68,8 +69,21 @@ public class QuotaControllerImpl extends AbstractBbvaController implements Quota
 
 	}
 
+	/***
+	 * @param event
+	 */
 	@Override
-	public void oneSelectDate() {
+	public void searchMovementByFilter(final ActionEvent event) {
+		System.out.println("Movimeintos x criteria \n");
+		System.out.println(" selectDate " + movementCriteria.getSelectDate());
+	}
+
+	/***
+	 * @param event
+	 */
+
+	@Override
+	public void oneSelectDate(AjaxBehaviorEvent event) {
 		System.out.println("Method oneSelectDate");
 		if (movementCriteria.getSelectDate().equals(CONCRETE_DATE)) {
 			setDisabledCalendar(false);
