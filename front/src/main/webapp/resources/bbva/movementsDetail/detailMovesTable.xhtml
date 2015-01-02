@@ -6,61 +6,83 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pm="http://primefaces.org/mobile"
-	xmlns:jsf="http://xmlns.jcp.org/jsf"
-	xmlns:bbvaGP="http://java.sun.com/jsf/composite/bbva/globalPosition">
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
 
 <composite:interface>
 	<composite:attribute name="id" type="String" />
 	<composite:attribute name="listAccounts" type="java.util.List" />
-
 </composite:interface>
 
 <composite:implementation>
 	<h:form id="#{cc.attrs.id}">
-		<p:dataTable id="detalAC" styleClass="detail-table-body sortable"
-			value="#{cc.attrs.listAccounts}" var="icuenta" selectionMode="single"
-			selection="#{customerAccountsPage.selectedAccount}"
-			rowKey="#{icuenta.productId}">
-			<p:column headerText="#{msg['text.detailMove.date']}" styleClass="sorted w18 desc"
-				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
+	<article class="detail-table-group">
 
-				<h:outputText styleClass="brand" style="font-size: 1.1em"
-					value="#{icuenta.alias}" />
-			</p:column>
+		<div class="utility-icons">
+			<a href="#"><span class="icon-excel-file"
+				title="Exportar a excel"></span></a> <a href="#"><span
+				class="icon-pdf-file" title="Descargar pdf"></span></a> <a href="#"><span
+				class="icon-send-by-email" title="Enviar"></span></a> <a href="#"><span
+				class="icon-printer" title="Imprimir"></span></a>
+		</div>
 
-			<p:column headerText="#{msg['text.detailMove.concep']}" styleClass="desc w34"
-				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none;">
+		<h3
+			>Últimos
+			movimientos</h3>
 
-				<h:outputText class="text"
-					style="font-size: 12px;color: #333;text-align: left"
-					value="#{icuenta.alias}" />
-				<h:outputText class="text"
-					style="font-size: 11px;color: #333;font-weight: normal;text-align: left"
-					value="#{icuenta.alias}" />
-			</p:column>
+		<div class="table-wrapper">
+			<p:dataTable id="detalAC" styleClass="detail-table-body sortable"
+				value="#{cc.attrs.listAccounts}" var="icuenta"
+				selectionMode="single"
+				selection="#{customerAccountsPage.selectedAccount}"
+				rowKey="#{icuenta.productId}">
+				<p:column headerText="#{msg['text.detailMove.date']}"
+					styleClass="sorted w18 desc"
+					style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
 
-			<p:column class="head" headerText="#{msg['text.detailMove.value']}" styleClass="desc w24"
-				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
+					<h:outputText styleClass="brand" style="font-size: 1.1em"
+						value="#{icuenta.alias}" />
+				</p:column>
 
-				<h:outputText class="currency" style="font-size: 15px;color: #333"
-					value="#{icuenta.totalCash}" />
+				<p:column headerText="#{msg['text.detailMove.concep']}"
+					styleClass="desc w34"
+					style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none;">
 
-			</p:column>
-			<p:column class="head" headerText="#{msg['text.detailMove.balance']}" styleClass="desc w24"
-				style="font-size: 0.7em;color: #333;font-family: Arial;background: none;border-style: none">
+					<h:outputText class="text"
+						style="font-size: 12px;color: #333;text-align: left"
+						value="#{icuenta.alias}" />
+					<h:outputText class="text"
+						style="font-size: 11px;color: #333;font-weight: normal;text-align: left"
+						value="#{icuenta.alias}" />
+				</p:column>
 
-				<h:outputText class="currency" style="font-size: 15px;color: #333"
-					value="#{icuenta.totalCash}" />
+				<p:column class="head" headerText="#{msg['text.detailMove.value']}"
+					styleClass="desc w24"
+					style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
 
-			</p:column>
-		</p:dataTable>
+					<h:outputText class="currency" style="font-size: 15px;color: #333"
+						value="#{icuenta.totalCash}" />
+
+				</p:column>
+				<p:column class="head"
+					headerText="#{msg['text.detailMove.balance']}"
+					styleClass="desc w24"
+					style="font-size: 0.7em;color: #333;font-family: Arial;background: none;border-style: none">
+
+					<h:outputText class="currency" style="font-size: 15px;color: #333"
+						value="#{icuenta.totalCash}" />
+
+				</p:column>
+			</p:dataTable>
+		</div>
 		<footer class="detail-table-footer">
 
-			<button id="nextPagebLink" class="btn btn-more-results" value="More Results" jsf:action="next">
+			<button id="nextPagebLink" class="btn btn-more-results"
+				value="More Results" jsf:action="next">
 				<f:ajax execute="@form" render="@form :detalMoves" />
 				<span>#{msg['text.detailMove.footer']}</span>
 			</button>
 		</footer>
+		</article>
 	</h:form>
 
 </composite:implementation>

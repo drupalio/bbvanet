@@ -14,13 +14,13 @@ import javax.xml.bind.annotation.XmlType;
  * &lt;simpleType name="enumProductType">
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
  *     &lt;enumeration value="PC"/>
+ *     &lt;enumeration value="AQ"/>
  *     &lt;enumeration value="TDC"/>
+ *     &lt;enumeration value="RQ"/>
+ *     &lt;enumeration value="LI"/>
  *     &lt;enumeration value="LO"/>
  *     &lt;enumeration value="SI"/>
  *     &lt;enumeration value="ED"/>
- *     &lt;enumeration value="RQ"/>
- *     &lt;enumeration value="LI"/>
- *     &lt;enumeration value="AQ"/>
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
@@ -31,13 +31,13 @@ import javax.xml.bind.annotation.XmlType;
 public enum EnumProductType {
 
     PC,
+    AQ,
     TDC,
-    LO,
-    SI,
-    ED,
     RQ,
     LI,
-    AQ;
+    LO,
+    SI,
+    ED;
 
     public String value() {
         return name();

@@ -18,11 +18,12 @@
 	<composite:attribute name="disabledCalendar" />
 	<composite:attribute name="actionListenerDate"
 		method-signature="void actionlistener(javax.faces.event.ActionEvent)" />
+	<composite:attribute name="listener" />
 </composite:interface>
 
 <composite:implementation>
 
-	<div class="date-filter-content">
+	<div class="date-filter-content" style="width: 100% !important;">
 		<h:form id="panelGroup">
 			<div class="form-horizontal">
 				<div class="row">
@@ -46,8 +47,9 @@
 						<f:selectItem itemLabel="#{msg['select.radio.concret.date']}"
 							itemValue="#{msg['select.radio.concret.date']}" />
 
-						<p:ajax process="@this" event="click" update="dateSince,dateTo,dateButton, @form"
-							listener="#{movementsCriteriaController.oneSelectDate}" />
+						<p:ajax process="@this" event="click"
+							update="dateSince,dateTo,dateButton, @form"
+							listener="#{cc.attrs.listener}" />
 
 					</p:selectOneRadio>
 

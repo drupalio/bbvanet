@@ -20412,18 +20412,19 @@ h3.visible-xs {
 /* line 64, ../../../assets/scss/partials/tabs/_cupo.scss */
 .cupo .detail-cupo p {
   color: #666;
-  display: table;
+  display: inline;
   font-family: Helvetica, sans-serif;
   font-size: 12px;
   height: 17px;
   line-height: 17px;
-  float: left;
+  float: none;
   margin-right: 8px;
 }
 /* line 74, ../../../assets/scss/partials/tabs/_cupo.scss */
 .cupo .detail-cupo span {
   color: #333;
-  display: table;
+  display: inline;
+  float: none;
   font-family: Helvetica, sans-serif;
   font-size: 12px;
   height: 17px;
@@ -20449,19 +20450,21 @@ h3.visible-xs {
 }
 /* line 97, ../../../assets/scss/partials/tabs/_cupo.scss */
 .cupo .detail-cupo .detail-cupo-right {
-  padding-right: 4px !important;
+  padding-right: 4px ;
 }
 @media (max-width: 506px) {
   /* line 97, ../../../assets/scss/partials/tabs/_cupo.scss */
   .cupo .detail-cupo .detail-cupo-right {
-    padding-left: 0 !important;
+    padding-left: 0;
   }
 }
 /* line 102, ../../../assets/scss/partials/tabs/_cupo.scss */
 .cupo .detail-cupo .detail-cupo-right .detail-cupo-line {
   float: right;
-  width: auto;
+  width: 100%;
   height: auto;
+  text-align: right;
+  
 }
 @media (max-width: 475px) {
   /* line 106, ../../../assets/scss/partials/tabs/_cupo.scss */

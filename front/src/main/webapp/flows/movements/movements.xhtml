@@ -1,36 +1,73 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:bbvaGP="http://java.sun.com/jsf/composite/bbva/globalPosition"
-	xmlns:bbvaAlert="http://java.sun.com/jsf/composite/bbva/alert"
+	xmlns:bbvaAcc="http://java.sun.com/jsf/composite/bbva/accounts"
 	xmlns:bbvaBody="http://java.sun.com/jsf/composite/bbva/body"
-	xmlns:bbvaContainer="http://java.sun.com/jsf/composite/bbva/container"
-	xmlns:bbvaDetailMotion="http://java.sun.com/jsf/composite/bbva/movementsDetail"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-	xmlns:jsf="http://xmlns.jcp.org/jsf">
+	xmlns:bbvaDetAcc="http://java.sun.com/jsf/composite/bbva/tab"
+	xmlns:bbvaDetailMotion="http://java.sun.com/jsf/composite/bbva/movementsDetail"
+	xmlns:bbvaSearch="http://java.sun.com/jsf/composite/bbva/filters"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:bbvaPersonalize="http://java.sun.com/jsf/composite/bbva/personalize">
 
 
 <ui:composition template="../../templates/defaultLayout.xhtml">
 
 	<ui:define name="bodyTitle">
 		<bbvaBody:title title="#{msg['title.accountsPersonal']}">
-			<bbvaBody:titleOptionProduct optionButttonLeft="Mis productos"
-				optionButttonRight="Catálogo de productos" />
+			<bbvaBody:titleOptionProduct
+				optionButttonLeft="#{msg['title.myProducts']}"
+				optionButttonRight="#{msg['title.productCatalog']}" />
 		</bbvaBody:title>
 	</ui:define>
 
 	<ui:define name="contentLeft">
 
-		<h1>#{movementsAccountController.selectedProduct.productId}</h1>
+		<bbvaDetAcc:tabMenu>
+			<ul class="nav nav-pills nav-operation-options"
+				style="display: block;">
+				<bbvaDetAcc:itemTabMenu title="#{msg['text.consult']}"
+					icon="iconFont-611" classLi="tab-left consultas-btn" type="2"
+					role="#tab-consultas" />
+				<bbvaDetAcc:itemTabMenu title="#{msg['text.operations']}"
+					icon="iconFont-015" classLi="tab-left operaciones-btn" type="2" />
+
+				<bbvaDetAcc:itemTabMenu title="#{msg['text.personalized']}"
+					role="#tab-personalizar" classLi="tab-right hidden-xs hidden-sm"
+					type="1" />
+				<bbvaDetAcc:itemTabMenu title="#{msg['text.conditions']}"
+					icon="iconFont-104" classLi="tab-right" type="1"
+					role="#tab-condiciones" />
+				<bbvaDetAcc:itemTabMenu title="#{msg['text.personalized']}"
+					icon="iconFont-217" classLi="tab-right hidden-md hidden-lg"
+					type="1" />
+			</ul>
+
+			<div class="tab-content">
+
+				<!-- Tab Consultar -->
+				<bbvaSearch:tabCriteria>
+					<bbvaSearch:personalizedSearchContainer />
+				</bbvaSearch:tabCriteria>
+
+				<!-- Tab Condiciones -->
+				<bbvaAcc:accountContainer />
+
+				<!-- Tab Personalizar -->
+				<bbvaPersonalize:personalizeContainer />
+
+			</div>
+		</bbvaDetAcc:tabMenu>
+
 		<div class="table-tabs">
 			<bbvaDetailMotion:detailMovesTable id="detailAccounts"
 				listAccounts="#{customerAccounts}" />
 		</div>
+
 	</ui:define>
 
 	<ui:define name="contentRight">

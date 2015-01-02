@@ -1,0 +1,82 @@
+<application xmlns="http://wadl.dev.java.net/2009/02" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <grammars>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="urn:com:bbva:jee:arq:spring:core:servicing:utils" xmlns:tns="urn:com:bbva:czic:dto:net" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:com:bbva:czic:dto:net">
+            <xs:import namespace="urn:com:bbva:jee:arq:spring:core:servicing:utils"/>
+            <xs:element name="AccMovementsResume" type="tns:AccMovementsResume"/>
+            <xs:element name="CardCharge" type="tns:CardCharge"/>
+            <xs:element name="EnumCardChargeCategory" type="tns:EnumCardChargeCategory"/>
+            <xs:element name="EnumMonth" type="tns:EnumMonth"/>
+            <xs:complexType name="CardCharge">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="category" type="tns:EnumCardChargeCategory"/>
+                    <xs:element minOccurs="0" name="amount" type="ns1:money"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="AccMovementsResume">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="income" type="ns1:money"/>
+                    <xs:element minOccurs="0" name="outcome" type="ns1:money"/>
+                    <xs:element minOccurs="0" name="balance" type="ns1:money"/>
+                    <xs:element minOccurs="0" name="month" type="tns:EnumMonth"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:simpleType name="EnumCardChargeCategory">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="CHANNEL_SALES"/>
+                    <xs:enumeration value="LEISURE"/>
+                    <xs:enumeration value="OTHERS"/>
+                    <xs:enumeration value="BASIC_COMMERCE"/>
+                    <xs:enumeration value="GIFT_BOOK_DISC"/>
+                    <xs:enumeration value="CLOTHING"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="EnumMonth">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="JANUARY"/>
+                    <xs:enumeration value="FEBRUARY"/>
+                    <xs:enumeration value="MARCH"/>
+                    <xs:enumeration value="APRIL"/>
+                    <xs:enumeration value="MAY"/>
+                    <xs:enumeration value="JUNE"/>
+                    <xs:enumeration value="JULY"/>
+                    <xs:enumeration value="AUGUST"/>
+                    <xs:enumeration value="SEPTEMBER"/>
+                    <xs:enumeration value="OCTOBER"/>
+                    <xs:enumeration value="NOVEMBER"/>
+                    <xs:enumeration value="DECEMBER"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:schema>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:com:bbva:jee:arq:spring:core:servicing:utils" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:com:bbva:jee:arq:spring:core:servicing:utils">
+            <xs:element name="money" type="tns:money"/>
+            <xs:complexType name="money">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="amount" type="xs:decimal"/>
+                    <xs:element minOccurs="0" name="currency" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+    </grammars>
+    <resources base="http://localhost:8080/czic/customers">
+        <resource path="/V01" id="com.bbva.czic.customers.facade.v01.SrvCustomersV01">
+            <resource path="/{customerId}/accounts/movementsResume">
+                <param name="customerId" style="template" type="xs:string"/>
+                <method name="GET" id="listAccountsMovementsResume">
+                    <request/>
+                    <response>
+                        <representation mediaType="application/json"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/{customerId}/creditCard/cardCharges">
+                <param name="customerId" style="template" type="xs:string"/>
+                <method name="GET" id="listCreditCardsCharges">
+                    <request/>
+                    <response>
+                        <representation mediaType="application/json"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+    </resources>
+</application>

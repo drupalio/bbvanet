@@ -27,12 +27,24 @@ public interface QuotaController {
 	 */
 	TermsAccountsDto getAllConditions();
 	
+	/***
+	 * Method to set criteria parameters
+	 * @param event
+	 */
+	void setCriteriaDate(ActionEvent event);
 	
 	/***
 	 * Method to search quota movements by personalized date* 
 	 * @param event
 	 */
 	void searchQuotaMovement(ActionEvent event);
+
+	
+	/***
+	 * Method to flag select date 
+	 * @param event
+	 */
+	void oneSelectDate();
 	
 	
 	
