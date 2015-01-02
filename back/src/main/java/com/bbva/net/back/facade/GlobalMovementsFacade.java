@@ -1,9 +1,9 @@
 package com.bbva.net.back.facade;
 
-import com.bbva.net.back.model.movements.GlobalResumenMovementsDTO;
+import com.bbva.net.back.model.movements.GlobalResumeMovementsDTO;
 
 public interface GlobalMovementsFacade {
 
-	GlobalResumenMovementsDTO getGlobalMovements();
+	GlobalResumeMovementsDTO getGlobalMovementsByCustomer(String customerId);
 
 }

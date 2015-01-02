@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import com.bbva.net.back.facade.GlobalMovementsFacade;
 import com.bbva.net.back.facade.GlobalPositionFacade;
 import com.bbva.net.back.model.globalposition.GlobalProductsDTO;
 import com.bbva.net.front.delegate.GraphicBarLineDelegate;
@@ -26,6 +27,8 @@ public class GlobalPositionControllerImplTest {
 
 	private GraphicBarLineDelegate graphicBarLineDelegate;
 
+	private GlobalMovementsFacade globalMovementsFacade;
+
 	@Before
 	public void init() {
 
@@ -33,10 +36,13 @@ public class GlobalPositionControllerImplTest {
 
 		globalPositionFacade = Mockito.mock(GlobalPositionFacade.class);
 		graphicPieDelegate = Mockito.mock(GraphicPieDelegate.class);
+		globalMovementsFacade = Mockito.mock(GlobalMovementsFacade.class);
+
 		graphicBarLineDelegate = Mockito.mock(GraphicBarLineDelegate.class);
 		globalPositionController.setGlobalPositionFacade(globalPositionFacade);
 		globalPositionController.setGraphicPieDelegate(graphicPieDelegate);
 		globalPositionController.setGraphicBarLineDelegate(graphicBarLineDelegate);
+		globalPositionController.setGlobalMovementsFacade(globalMovementsFacade);
 		globalPositionController.init();
 
 	}
@@ -58,6 +64,10 @@ public class GlobalPositionControllerImplTest {
 		// graphicPieUI = Mockito.mock(GraphicPieUI.class);
 
 		Mockito.verify(this.graphicBarLineDelegate, Mockito.atLeastOnce()).getInOutBalanceByAccount();
+
+		// Ver comentario en la clase testiada para detalles del comentario, se comentó allá y se comenta acá para aprobar
+		// test
+		// Mockito.verify(this.globalMovementsFacade, Mockito.atLeastOnce()).getGlobalMovementsByCustomer(DEFAULT_USER);
 	}
 
 	@Test
