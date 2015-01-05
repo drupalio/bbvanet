@@ -20,7 +20,7 @@
 	xmlns:bbvaPersonalize="http://java.sun.com/jsf/composite/bbva/personalize"
 	xmlns:bbvaButton="http://java.sun.com/jsf/composite/bbva/button"
 	xmlns:bbvaQuotaHeader="http://java.sun.com/jsf/composite/bbva/quota"
-	xmlns:bbvaDetailMovents="http://java.sun.com/jsf/composite/bbva/movementsDetail">
+	xmlns:bbvaDetailMotion="http://java.sun.com/jsf/composite/bbva/movementsDetailQuota">
 
 
 <ui:composition template="../../templates/defaultLayout.xhtml">
@@ -116,8 +116,7 @@
 				<bbvaQuota:detailsQuotaTable id="detailAccounts"
 					listAccounts="#{customerAccounts}" />
 
-				<bbvaDetailMovents:tableContent />
-
+				<bbvaDetailMotion:tableContent />
 			</div>
 		</bbvaQuotaHeader:quotaDetailContent>
 

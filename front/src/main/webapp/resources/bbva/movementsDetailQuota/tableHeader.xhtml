@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pm="http://primefaces.org/mobile">
+
+<composite:interface>
+
+	<composite:attribute id="motionDetail" name="motion" />
+
+</composite:interface>
+
+<composite:implementation>
+	<header class="table-detail-header">
+		<div class="table-tab hidden-xs hidden-sm">
+			<div class="table-detail-border">
+				<a href="#"> <span title="Descargar" class="icon-folder"></span>
+				</a> <a href="#"> <span title="Enviar" class="icon-send-by-email"></span>
+				</a> <a href="#"> <span title="Imprimir" class="icon-printer"></span>
+				</a>
+				<div class="table-detail-close">
+					<a href="#"> <span class="close-text">#{msg['text.close']}</span>
+						<button class="close-icon" type="button"></button>
+					</a>
+				</div>
+			</div>
+		</div>
+		<table class="detail">
+			<tbody>
+				<tr>
+					<td style=""><span class="link">05/06/2014</span></td>
+					<td class="text-cell" style="margin-left: 50px"><strong>Comercio
+							Lorem ipsum</strong> <small>PAGO</small></td>
+					<td class="digit-cell" style=""><em> -390.00</em></td>
+					<td class="digit-cell" style=""><em> 12,943,536.35</em></td>
+					<td class="visible-xs" style="display: table-cell;">
+						<div class="left">
+							<a href="#">Abono traspaso Internet 0142738768768</a> <small>27/12/2013</small>
+						</div>
+						<div class="right">
+							<em>$ 1.348.900</em> <small>$ -75.568</small>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</header>
+
+</composite:implementation>
+</html>

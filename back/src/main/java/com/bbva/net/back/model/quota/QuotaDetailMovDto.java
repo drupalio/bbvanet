@@ -6,8 +6,12 @@ package com.bbva.net.back.model.quota;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
+
 import com.bbva.net.back.core.pattern.dto.Dto;
 import com.bbva.net.back.model.commons.Money;
+import com.bbva.net.back.model.movements.PersonalizeAccountDTO;
 
 /**
  * @author User
@@ -16,37 +20,37 @@ public class QuotaDetailMovDto implements Dto {
 
 	private static final long serialVersionUID = 1L;
 
-	String red;
+	private String red;
 
-	String city;
+	private String city;
 
-	BigDecimal consignmentNumber;
+	private BigDecimal consignmentNumber;
 
-	String situation;
+	private String situation;
 
-	Money saleValue;
+	private Money saleValue;
 
-	Money valueTip;
+	private Money valueTip;
 
-	Money commission;
+	private Money commission;
 
-	Money chargeReFuente;
+	private Money chargeReFuente;
 
-	BigDecimal code;
+	private BigDecimal code;
 
-	Date dateConsignment;
+	private Date dateConsignment;
 
-	String typeConsignment;
+	private String typeConsignment;
 
-	BigDecimal numberDtos;
+	private BigDecimal numberDtos;
 
-	Money ivaValue;
+	private Money ivaValue;
 
-	Money consumptionValue;
+	private Money consumptionValue;
 
-	Money chargeIva;
+	private Money chargeIva;
 
-	String charge;
+	private String charge;
 
 	/**
 	 * 
@@ -94,7 +98,6 @@ public class QuotaDetailMovDto implements Dto {
 		this.charge = charge;
 	}
 
-	
 	/**
 	 * @return the red
 	 */
@@ -102,7 +105,6 @@ public class QuotaDetailMovDto implements Dto {
 		return red;
 	}
 
-	
 	/**
 	 * @param red the red to set
 	 */
@@ -110,7 +112,6 @@ public class QuotaDetailMovDto implements Dto {
 		this.red = red;
 	}
 
-	
 	/**
 	 * @return the city
 	 */
@@ -118,7 +119,6 @@ public class QuotaDetailMovDto implements Dto {
 		return city;
 	}
 
-	
 	/**
 	 * @param city the city to set
 	 */
@@ -126,7 +126,6 @@ public class QuotaDetailMovDto implements Dto {
 		this.city = city;
 	}
 
-	
 	/**
 	 * @return the consignmentNumber
 	 */
@@ -134,7 +133,6 @@ public class QuotaDetailMovDto implements Dto {
 		return consignmentNumber;
 	}
 
-	
 	/**
 	 * @param consignmentNumber the consignmentNumber to set
 	 */
@@ -142,7 +140,6 @@ public class QuotaDetailMovDto implements Dto {
 		this.consignmentNumber = consignmentNumber;
 	}
 
-	
 	/**
 	 * @return the situation
 	 */
@@ -150,7 +147,6 @@ public class QuotaDetailMovDto implements Dto {
 		return situation;
 	}
 
-	
 	/**
 	 * @param situation the situation to set
 	 */
@@ -158,7 +154,6 @@ public class QuotaDetailMovDto implements Dto {
 		this.situation = situation;
 	}
 
-	
 	/**
 	 * @return the saleValue
 	 */
@@ -166,7 +161,6 @@ public class QuotaDetailMovDto implements Dto {
 		return saleValue;
 	}
 
-	
 	/**
 	 * @param saleValue the saleValue to set
 	 */
@@ -174,7 +168,6 @@ public class QuotaDetailMovDto implements Dto {
 		this.saleValue = saleValue;
 	}
 
-	
 	/**
 	 * @return the valueTip
 	 */
@@ -182,7 +175,6 @@ public class QuotaDetailMovDto implements Dto {
 		return valueTip;
 	}
 
-	
 	/**
 	 * @param valueTip the valueTip to set
 	 */
@@ -190,7 +182,6 @@ public class QuotaDetailMovDto implements Dto {
 		this.valueTip = valueTip;
 	}
 
-	
 	/**
 	 * @return the commission
 	 */
@@ -198,7 +189,6 @@ public class QuotaDetailMovDto implements Dto {
 		return commission;
 	}
 
-	
 	/**
 	 * @param commission the commission to set
 	 */
@@ -206,7 +196,6 @@ public class QuotaDetailMovDto implements Dto {
 		this.commission = commission;
 	}
 
-	
 	/**
 	 * @return the chargeReFuente
 	 */
@@ -214,7 +203,6 @@ public class QuotaDetailMovDto implements Dto {
 		return chargeReFuente;
 	}
 
-	
 	/**
 	 * @param chargeReFuente the chargeReFuente to set
 	 */
@@ -222,7 +210,6 @@ public class QuotaDetailMovDto implements Dto {
 		this.chargeReFuente = chargeReFuente;
 	}
 
-	
 	/**
 	 * @return the code
 	 */
@@ -230,7 +217,6 @@ public class QuotaDetailMovDto implements Dto {
 		return code;
 	}
 
-	
 	/**
 	 * @param code the code to set
 	 */
@@ -238,7 +224,6 @@ public class QuotaDetailMovDto implements Dto {
 		this.code = code;
 	}
 
-	
 	/**
 	 * @return the dateConsignment
 	 */
@@ -246,7 +231,6 @@ public class QuotaDetailMovDto implements Dto {
 		return dateConsignment;
 	}
 
-	
 	/**
 	 * @param dateConsignment the dateConsignment to set
 	 */
@@ -254,7 +238,6 @@ public class QuotaDetailMovDto implements Dto {
 		this.dateConsignment = dateConsignment;
 	}
 
-	
 	/**
 	 * @return the typeConsignment
 	 */
@@ -262,7 +245,6 @@ public class QuotaDetailMovDto implements Dto {
 		return typeConsignment;
 	}
 
-	
 	/**
 	 * @param typeConsignment the typeConsignment to set
 	 */
@@ -270,7 +252,6 @@ public class QuotaDetailMovDto implements Dto {
 		this.typeConsignment = typeConsignment;
 	}
 
-	
 	/**
 	 * @return the numberDtos
 	 */
@@ -278,7 +259,6 @@ public class QuotaDetailMovDto implements Dto {
 		return numberDtos;
 	}
 
-	
 	/**
 	 * @param numberDtos the numberDtos to set
 	 */
@@ -286,7 +266,6 @@ public class QuotaDetailMovDto implements Dto {
 		this.numberDtos = numberDtos;
 	}
 
-	
 	/**
 	 * @return the ivaValue
 	 */
@@ -294,7 +273,6 @@ public class QuotaDetailMovDto implements Dto {
 		return ivaValue;
 	}
 
-	
 	/**
 	 * @param ivaValue the ivaValue to set
 	 */
@@ -302,7 +280,6 @@ public class QuotaDetailMovDto implements Dto {
 		this.ivaValue = ivaValue;
 	}
 
-	
 	/**
 	 * @return the consumptionValue
 	 */
@@ -310,7 +287,6 @@ public class QuotaDetailMovDto implements Dto {
 		return consumptionValue;
 	}
 
-	
 	/**
 	 * @param consumptionValue the consumptionValue to set
 	 */
@@ -318,7 +294,6 @@ public class QuotaDetailMovDto implements Dto {
 		this.consumptionValue = consumptionValue;
 	}
 
-	
 	/**
 	 * @return the chargeIva
 	 */
@@ -326,7 +301,6 @@ public class QuotaDetailMovDto implements Dto {
 		return chargeIva;
 	}
 
-	
 	/**
 	 * @param chargeIva the chargeIva to set
 	 */
@@ -334,7 +308,6 @@ public class QuotaDetailMovDto implements Dto {
 		this.chargeIva = chargeIva;
 	}
 
-	
 	/**
 	 * @return the charge
 	 */
@@ -342,11 +315,54 @@ public class QuotaDetailMovDto implements Dto {
 		return charge;
 	}
 
-	
 	/**
 	 * @param charge the charge to set
 	 */
 	public void setCharge(String charge) {
 		this.charge = charge;
+	}
+
+	@Override
+	public String toString() {
+		return new ToStringBuilder(this).append("red", getRed()).append("city", getCity())
+				.append("consignmentNumber", getConsignmentNumber()).append("situation", getSituation())
+				.append("saleValue", getSaleValue()).append("valueTip", getValueTip())
+				.append("commission", getCommission()).append("chargeReFuente", getChargeReFuente())
+				.append("code", getCode()).append("dateConsignment", getDateConsignment())
+				.append("typeConsignment", getTypeConsignment()).append("numberDtos", getNumberDtos())
+				.append("ivaValue", getIvaValue()).append("consumptionValue", getConsumptionValue())
+				.append("chargeIva", getChargeIva()).append("charge", getCharge()).toString();
+	}
+
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder().append(getRed()).append(getCity()).append(getConsignmentNumber())
+				.append(getSituation()).append(getSaleValue()).append(getValueTip()).append(getCommission())
+				.append(getChargeReFuente()).append(getCode()).append(getDateConsignment())
+				.append(getTypeConsignment()).append(getNumberDtos()).append(getIvaValue())
+				.append(getConsumptionValue()).append(getChargeIva()).append(getCharge()).toHashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+
+		return (obj instanceof QuotaDetailMovDto)
+				&& this.getChargeReFuente().equals(((QuotaDetailMovDto)obj).getChargeReFuente())
+				&& this.getCity().equals(((QuotaDetailMovDto)obj).getCity())
+				&& this.getRed().equals(((QuotaDetailMovDto)obj).getRed())
+				&& this.getConsignmentNumber().equals(((QuotaDetailMovDto)obj).getConsignmentNumber())
+				&& this.getSituation().equals(((QuotaDetailMovDto)obj).getSituation())
+				&& this.getSaleValue().equals(((QuotaDetailMovDto)obj).getSaleValue())
+				&& this.getValueTip().equals(((QuotaDetailMovDto)obj).getValueTip())
+				&& this.getCommission().equals(((QuotaDetailMovDto)obj).getCommission())
+				&& this.getCode().equals(((QuotaDetailMovDto)obj).getCode())
+				&& this.getDateConsignment().equals(((QuotaDetailMovDto)obj).getDateConsignment())
+				&& this.getTypeConsignment().equals(((QuotaDetailMovDto)obj).getTypeConsignment())
+				&& this.getNumberDtos().equals(((QuotaDetailMovDto)obj).getNumberDtos())
+				&& this.getIvaValue().equals(((QuotaDetailMovDto)obj).getIvaValue())
+				&& this.getConsumptionValue().equals(((QuotaDetailMovDto)obj).getConsumptionValue())
+				&& this.getChargeIva().equals(((QuotaDetailMovDto)obj).getChargeIva())
+				&& this.getCharge().equals(((QuotaDetailMovDto)obj).getCharge());
+
 	}
 }

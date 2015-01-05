@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:bbvafileUpload="http://java.sun.com/jsf/composite/bbva/movementsDetail"
+	xmlns:pm="http://primefaces.org/mobile">
+
+<composite:interface>
+
+	<composite:attribute id="footerFile" name="file" />
+
+</composite:interface>
+
+<composite:implementation>
+	<footer class="hidden-xs hidden-sm">
+		<h2>Archivos asociados</h2>
+		<div class="file-upload">
+			<p>Aquí puedes guardar la factura, el ticket, etc. El tamaño de
+				los archivos no puede superar 1 MB</p>
+			<div class="btn-container">
+				<div class="btn small">
+					<!-- <span>Añadir archivos</span> <input type="file" multiple="" /> -->
+					<span>Añadir archivos</span> <bbvafileUpload:fileUpload />
+				</div>
+			</div>
+		</div>
+	</footer>
+
+</composite:implementation>
+</html>

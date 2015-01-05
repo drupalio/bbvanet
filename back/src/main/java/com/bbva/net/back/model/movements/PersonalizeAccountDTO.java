@@ -25,6 +25,14 @@ public class PersonalizeAccountDTO implements Dto {
 	public PersonalizeAccountDTO() {
 	}
 
+	/**
+	 * @param alias
+	 * @param virtualMail
+	 * @param searchOnline
+	 * @param operationOnline
+	 * @param operationKey
+	 */
+
 	public PersonalizeAccountDTO(String alias, boolean virtualMail, boolean searchOnline, boolean operationOnline,
 			String operationKey) {
 
