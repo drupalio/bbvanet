@@ -34,7 +34,8 @@
 			</bbvaSearch:customSearchList>
 
 			<bbvaSearch:searchButtonList show="true"
-				actionListener="#{quotaController.searchMovementByFilter}" />
+				actionListenerRemove="#{quotaController.searchMovementByFilter}"
+				actionListenerShow="#{quotaController.searchMovementByFilter}" />
 		</bbvaSearch:personalizedSearchTabBody>
 	</h:form>
 </composite:implementation>

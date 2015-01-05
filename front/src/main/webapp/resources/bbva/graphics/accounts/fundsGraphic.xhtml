@@ -39,22 +39,27 @@
 
 	<script>
 		var totalColums = [];
+		var colorsLegend = [];
 		var label;
 		var colums;
 		var values;
+		var color;
+		var colors;
 
 		<c:forEach var="pieItemUI" items="${cc.attrs.pieConfigUI.pieItemUIList}">
 		label = ("${pieItemUI.textLegend}");
 		values = ("${pieItemUI.value}");
 		colums = [ [ label ], [ values ] ];
 		totalColums.push(colums);
+
+		color = ("${pieItemUI.color}");
+		colorsLegend.push(color);
 		</c:forEach>
 
 		var chart = c3.generate({
 			bindto : '#chart2_4',
 
 			data : {
-
 				size : {
 					height : 240,
 					width : 480
@@ -73,9 +78,10 @@
 				}
 			},
 
-			legend : {
-				position : 'right'
+			color : {
+				pattern : colorsLegend
 			},
+
 		});
 	</script>
 

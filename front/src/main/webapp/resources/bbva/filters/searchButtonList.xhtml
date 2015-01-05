@@ -8,11 +8,14 @@
 	xmlns:composite="http://java.sun.com/jsf/composite"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-	xmlns:jsf="http://xmlns.jcp.org/jsf">
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:bbvaButton="http://java.sun.com/jsf/composite/bbva/button">
 
 <composite:interface>
 	<composite:attribute name="show" type="boolean" />
-	<composite:attribute name="actionListener"
+	<composite:attribute name="actionListenerShow"
+		method-signature="void actionlistener(javax.faces.event.ActionEvent)" />
+	<composite:attribute name="actionListenerRemove"
 		method-signature="void actionlistener(javax.faces.event.ActionEvent)" />
 </composite:interface>
 
@@ -20,13 +23,14 @@
 	<li class="filter-buttons">
 
 		<div>
-			<p:commandButton value="#{msg['button.clean.filters']}"
-				rendered="#{cc.attrs.show}"
-				styleClass="btn btn-default hidden-xs hidden-sm">
-			</p:commandButton>
-			<p:commandButton styleClass="btn btn-default" rendered="true"
-				actionListener="#{cc.attrs.actionListener}"
-				value="#{msg['button.see.result']}" icon="document-view-icon" />
+			<bbvaButton:iconButton id="removeFields" icon="trash-icon"
+				value="#{msg['button.clean.filters']}" show="#{cc.attrs.show}"
+				classButton="btn btn-default hidden-xs hidden-sm"
+				actionListener="#{cc.attrs.actionListenerRemove}" />
+			<bbvaButton:iconButton id="showResult"
+				value="#{msg['button.see.result']}" icon="document-view-icon"
+				classButton="btn btn-default" show="true"
+				actionListener="#{cc.attrs.actionListenerShow}" />
 		</div>
 	</li>
 </composite:implementation>
