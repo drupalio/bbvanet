@@ -6,7 +6,7 @@ import javax.annotation.Resource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import com.bbva.net.back.facade.HeaderControllerFacade;
+import com.bbva.net.back.facade.HeaderFacade;
 import com.bbva.net.back.model.executive.ExecutiveDto;
 import com.bbva.net.front.controller.HeaderController;
 import com.bbva.net.front.core.AbstractBbvaController;
@@ -15,8 +15,8 @@ import com.bbva.net.front.core.AbstractBbvaController;
 @Scope(value = "globalSession")
 public class HeaderControllerImpl extends AbstractBbvaController implements HeaderController {
 
-	@Resource(name = "headerControllerFacade")
-	private transient HeaderControllerFacade executive;
+	@Resource(name = "headerFacade")
+	private transient HeaderFacade executive;
 
 	/**
 	 * 

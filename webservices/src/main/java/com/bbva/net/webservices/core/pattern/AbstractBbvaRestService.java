@@ -23,6 +23,9 @@ public abstract class AbstractBbvaRestService {
 	@Resource(name = "restTemplate")
 	protected RestTemplate restTemplate;
 
+	@Value("${rest.base.executive.url}")
+	protected String URL_BASE_EXECUTIVE;
+
 	/**
 	 * @param response
 	 * @param entityClass
