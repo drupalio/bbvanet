@@ -7,9 +7,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for State complex type.
+ * <p>Clase Java para State complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="State">
@@ -40,7 +40,7 @@ public class State {
     protected Country country;
 
     /**
-     * Gets the value of the id property.
+     * Obtiene el valor de la propiedad id.
      * 
      * @return
      *     possible object is
@@ -52,7 +52,7 @@ public class State {
     }
 
     /**
-     * Sets the value of the id property.
+     * Define el valor de la propiedad id.
      * 
      * @param value
      *     allowed object is
@@ -64,7 +64,7 @@ public class State {
     }
 
     /**
-     * Gets the value of the name property.
+     * Obtiene el valor de la propiedad name.
      * 
      * @return
      *     possible object is
@@ -76,7 +76,7 @@ public class State {
     }
 
     /**
-     * Sets the value of the name property.
+     * Define el valor de la propiedad name.
      * 
      * @param value
      *     allowed object is
@@ -88,7 +88,7 @@ public class State {
     }
 
     /**
-     * Gets the value of the country property.
+     * Obtiene el valor de la propiedad country.
      * 
      * @return
      *     possible object is
@@ -100,7 +100,7 @@ public class State {
     }
 
     /**
-     * Sets the value of the country property.
+     * Define el valor de la propiedad country.
      * 
      * @param value
      *     allowed object is
