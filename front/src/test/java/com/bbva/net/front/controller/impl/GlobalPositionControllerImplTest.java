@@ -65,9 +65,7 @@ public class GlobalPositionControllerImplTest {
 
 		Mockito.verify(this.graphicBarLineDelegate, Mockito.atLeastOnce()).getInOutBalanceByAccount();
 
-		// Ver comentario en la clase testiada para detalles del comentario, se comentó allá y se comenta acá para aprobar
-		// test
-		// Mockito.verify(this.globalMovementsFacade, Mockito.atLeastOnce()).getGlobalMovementsByCustomer(DEFAULT_USER);
+		Mockito.verify(this.globalMovementsFacade, Mockito.atLeastOnce()).getGlobalMovementsByCustomer(DEFAULT_USER);
 	}
 
 	@Test
