@@ -12,6 +12,7 @@
 <composite:interface>
 	<composite:attribute name="id" type="String" />
 	<composite:attribute name="listAccounts" type="java.util.List" />
+	<composite:attribute name="controller" />
 </composite:interface>
 
 <composite:implementation>
@@ -31,9 +32,11 @@
 			<div class="table-wrapper">
 				<p:dataTable id="detalAC" styleClass="detail-table-body sortable"
 					value="#{cc.attrs.listAccounts}" var="icuenta"
-					selectionMode="single"
-					selection="#{customerAccountsPage.selectedAccount}"
-					rowKey="#{icuenta.productId}">
+					selectionMode="single" rowKey="#{icuenta.productId}">
+
+					<p:ajax event="rowSelect" oncomplete="PF('dialog3').show();"
+						listener="#{cc.attrs.controller.onProductSelected}" />
+					<p:ajax event="rowUnselect" />
 
 					<p:column headerText="#{msg['title.quotaNumber']}"
 						styleClass="sorted w18 desc"
@@ -64,9 +67,13 @@
 
 					</p:column>
 				</p:dataTable>
-			</div>
-			<footer class="detail-table-footer">
 
+				<p:dialog widgetVar="dialog3">
+					<bbvaDetailMovents:tableContent />
+				</p:dialog>
+			</div>
+
+			<footer class="detail-table-footer">
 				<button id="nextPagebLink" class="btn btn-more-results"
 					value="More Results" jsf:action="next">
 					<f:ajax execute="@form" render="@form :detalMoves" />

@@ -6,6 +6,7 @@ package com.bbva.net.front.controller.impl;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.AjaxBehaviorEvent;
 
+import org.primefaces.event.SelectEvent;
 import org.springframework.stereotype.Controller;
 
 import com.bbva.net.back.model.accounts.TermsAccountsDto;
@@ -123,6 +124,11 @@ public class QuotaControllerImpl extends AbstractBbvaController implements Quota
 	public void setDisabledButtonDate(boolean disabledButtonDate) {
 		this.disabledButtonDate = disabledButtonDate;
 
+	}
+
+	@Override
+	public void onProductSelected(SelectEvent selectEvent) {
+		super.onProductSelected(selectEvent);
 	}
 
 	public RotatingAccountDTO getSelectedProduct() {
