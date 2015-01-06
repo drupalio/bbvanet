@@ -59,7 +59,10 @@ public class GlobalPositionFacadeImpl extends AbstractBbvaFacade implements Glob
 	public Map<String, BalanceDTO> getTotalsByProduct(GlobalProductsDTO globalProductsDTO) {
 		return productService.getTotals(globalProductsDTO);
 	}
-
+	@Override
+	public Map<String, List<String>> getNamesProducts(GlobalProductsDTO globalProducts){
+		return productService.getProductsName(globalProducts);
+	}
 	/********************************** DEPENDENCY INJECTIONS ***********************************/
 
 	/**

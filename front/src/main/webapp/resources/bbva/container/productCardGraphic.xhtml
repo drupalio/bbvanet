@@ -45,8 +45,8 @@
 			<bbvaPieGraphic:cardGraphic id="#{cc.attrs.id}"
 				pieConfigUI="#{cc.attrs.pieGraphic}" />
 
-			<bbvaPieGraphic:footerFiltersGraphic nameRight="Tarjetas"
-				nameLeft="Periodo" />
+			<bbvaPieGraphic:footerFiltersGraphic nameRight="Tarjetas" listRight="#{globalPositionController.namesProducts['TDC']}"
+				nameLeft="Periodo" listLeft="#{globalPositionController.periodGraphics()}"/>
 		</div>
 
 		<div class="row afterTable"></div>

@@ -18,6 +18,22 @@ public class QuotaDate implements Dto {
 
 	private String anterior;
 
+	public QuotaDate() {
+
+	}
+
+	/**
+	 * @param vencimiento
+	 * @param pago
+	 * @param anterior
+	 */
+
+	public QuotaDate(String vencimiento, String pago, String anterior) {
+		this.vencimiento = vencimiento;
+		this.pago = pago;
+		this.anterior = anterior;
+	}
+
 	public String getVencimiento() {
 		return vencimiento;
 	}
@@ -48,7 +64,6 @@ public class QuotaDate implements Dto {
 
 	@Override
 	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
 		return (obj instanceof QuotaDate) && this.getVencimiento().equals(((QuotaDate)obj).getVencimiento())
 				&& this.getPago().equals(((QuotaDate)obj).getPago())
 				&& this.getAnterior().equals(((QuotaDate)obj).getAnterior());
@@ -61,7 +76,6 @@ public class QuotaDate implements Dto {
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
 		return new ToStringBuilder(this).append("Vencimiento ", getVencimiento()).append("Pago ", getPago())
 				.append("Anterior ", getAnterior()).toString();
 	}

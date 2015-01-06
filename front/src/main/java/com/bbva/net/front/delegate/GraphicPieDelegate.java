@@ -29,9 +29,11 @@ public interface GraphicPieDelegate {
 	PieConfigUI getAccountsfundsProducts(GlobalProductsDTO globalProducts);
 
 	/**
-	 * @param products
+	 * 
+	 * @param customerId
 	 * @return
 	 */
-	PieConfigUI getGeneralGraphicConfig(final GlobalProductsDTO globalProducts);
+	 
+	PieConfigUI getCardGraphicByUser(final String customerId);
 
 }

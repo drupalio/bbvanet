@@ -20,12 +20,14 @@
 <ui:composition template="../../templates/defaultLayout.xhtml">
 
 	<f:metadata>
-		<f:event listener="#{globalPositionController.preRender}" type="preRenderView" />
+		<f:event listener="#{globalPositionController.preRender}"
+			type="preRenderView" />
 	</f:metadata>
 
-	<c:forEach var="type" items="#{globalPositionController.totalsProducts.keySet()}">  
-    	 <ui:param name="#{type}" value="#{type}"/>  
-	</c:forEach>  
+	<c:forEach var="type"
+		items="#{globalPositionController.totalsProducts.keySet()}">
+		<ui:param name="#{type}" value="#{type}" />
+	</c:forEach>
 
 	<ui:define name="bodyTitle">
 		<bbvaBody:title title="#{msg['title.positionGlobal']}" />
@@ -43,25 +45,25 @@
 					listAccountsMore="#{customerProducts.accounts}" />
 				<bbvaGP:accountHeadTable listAccounts="#{customerProducts.accounts}"
 					controller="#{globalPositionController}" />
-				
+
 				<bbvaGP:accountAdquirenciaTable
 					controller="#{globalPositionController}"
 					listAccounts="#{customerProducts.adquirencia}" />
-				 
+
 				<bbvaGP:accountTailTable controller="#{globalPositionController}"
 					listAccounts="#{customerProductsHidden.accounts}" />
 			</div>
 			<div class="row afterTable">
 				<bbvaGP:productFooter
 					listProduct="#{customerProductsHidden.accounts}" />
-				<bbvaGP:totalBalance util="#{msg['text.accountant']}" 
-					total="#{globalPositionController.totalsProducts['PC'].total}" 
+				<bbvaGP:totalBalance util="#{msg['text.accountant']}"
+					total="#{globalPositionController.totalsProducts['PC'].total}"
 					subtotal="#{globalPositionController.totalsProducts['PC'].available}" />
 			</div>
 		</bbvaContainer:productPanelBarGraphic>
 
 		<bbvaContainer:productCardGraphic id="cardPieGP" title="#{msg['title.cards']}" 
-				header="#{msg['graphic.tittle']}" pieGraphic="#{globalPositionController.graphicPieProducts}">
+				header="#{msg['graphicCard.tittle']}" pieGraphic="#{globalPositionController.graphicPieCards}">
 
 			<div class="table-tabs">
 				<bbvaGP:cardHeadTable controller="#{globalPositionController}"
@@ -72,9 +74,9 @@
 			<div class="row afterTable">
 				<bbvaGP:productFooter
 					listProduct="#{customerProductsHidden.creditCards}" />
-				<bbvaGP:totalBalance util="#{msg['text.used']}" 
-					total="#{globalPositionController.totalsProducts['TDC'].total}" 
-					subtotal="#{globalPositionController.totalsProducts['TDC'].available}"/>
+				<bbvaGP:totalBalance util="#{msg['text.used']}"
+					total="#{globalPositionController.totalsProducts['TDC'].total}"
+					subtotal="#{globalPositionController.totalsProducts['TDC'].available}" />
 			</div>
 		</bbvaContainer:productCardGraphic>
 
@@ -92,7 +94,7 @@
 			<div class="row afterTable">
 				<bbvaGP:productFooter
 					listProduct="#{customerProductsHidden.rotatingAccounts}" />
-				<bbvaGP:totalBalance 
+				<bbvaGP:totalBalance
 					total="#{globalPositionController.totalsProducts['RQ'].total}" />
 			</div>
 		</bbvaContainer:productPanel>
@@ -107,7 +109,7 @@
 			<div class="row afterTable">
 				<bbvaGP:productFooter
 					listProduct="#{customerProductsHidden.leasings}" />
-				<bbvaGP:totalBalance 
+				<bbvaGP:totalBalance
 					total="#{globalPositionController.totalsProducts['LI'].total}" />
 			</div>
 		</bbvaContainer:productPanel>
@@ -121,8 +123,8 @@
 			</div>
 			<div class="row afterTable">
 				<bbvaGP:productFooter listProduct="#{customerProductsHidden.loan}" />
-				<bbvaGP:totalBalance 
-					total="#{globalPositionController.totalsProducts['LO'].total}"/>
+				<bbvaGP:totalBalance
+					total="#{globalPositionController.totalsProducts['LO'].total}" />
 			</div>
 		</bbvaContainer:productPanel>
 
@@ -137,13 +139,13 @@
 			<div class="row afterTable">
 				<bbvaGP:productFooter
 					listProduct="#{customerProductsHidden.electronicDeposits}" />
-				<bbvaGP:totalBalance util="#{msg['text.accountant']}" 
-					total="#{globalPositionController.totalsProducts['ED'].total}" 
+				<bbvaGP:totalBalance util="#{msg['text.accountant']}"
+					total="#{globalPositionController.totalsProducts['ED'].total}"
 					subtotal="#{globalPositionController.totalsProducts['ED'].available}" />
 			</div>
 		</bbvaContainer:productPanelLineGraphic>
 
-		<bbvaContainer:productPanelGraphic id="fundsPieGP"
+		<bbvaContainer:productPanelFundsGraphic id="fundsPieGP"
 			title="#{msg['title.investmentFunds']}"
 			header="#{msg['graphicFunds.tittle']}"
 			pieGraphic="#{globalPositionController.graphicPieInvestmentFunds}">
@@ -158,9 +160,10 @@
 			</div>
 			<div class="row afterTable">
 				<bbvaGP:productFooter listProduct="#{customerProductsHidden.funds}" />
-				<bbvaGP:totalBalance total="#{globalPositionController.totalsProducts['SI'].total}" />
+				<bbvaGP:totalBalance
+					total="#{globalPositionController.totalsProducts['SI'].total}" />
 			</div>
-		</bbvaContainer:productPanelGraphic>
+		</bbvaContainer:productPanelFundsGraphic>
 
 	</ui:define>
 
