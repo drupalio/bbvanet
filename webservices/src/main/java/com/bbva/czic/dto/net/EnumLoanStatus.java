@@ -6,32 +6,30 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para EnumAccountState.
+ * <p>Clase Java para EnumLoanStatus.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * <p>
  * <pre>
- * &lt;simpleType name="EnumAccountState">
+ * &lt;simpleType name="EnumLoanStatus">
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *     &lt;enumeration value="ACTIVE"/>
- *     &lt;enumeration value="INACTIVE"/>
+ *     &lt;enumeration value="NORMAL"/>
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
  * 
  */
-@XmlType(name = "EnumAccountState")
+@XmlType(name = "EnumLoanStatus")
 @XmlEnum
-public enum EnumAccountState {
+public enum EnumLoanStatus {
 
-    ACTIVE,
-    INACTIVE;
+    NORMAL;
 
     public String value() {
         return name();
     }
 
-    public static EnumAccountState fromValue(String v) {
+    public static EnumLoanStatus fromValue(String v) {
         return valueOf(v);
     }
 

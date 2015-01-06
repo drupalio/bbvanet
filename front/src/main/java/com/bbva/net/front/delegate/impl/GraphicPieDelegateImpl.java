@@ -17,7 +17,6 @@ import com.bbva.net.back.model.globalposition.ProductDTO;
 import com.bbva.net.back.service.ProductService;
 import com.bbva.net.front.core.stereotype.Delegate;
 import com.bbva.net.front.delegate.GraphicPieDelegate;
-import com.bbva.net.front.ui.accounts.AccountsPieUI;
 import com.bbva.net.front.ui.globalposition.SituationPiesUI;
 import com.bbva.net.front.ui.pie.PieConfigUI;
 import com.bbva.net.front.ui.pie.PieItemUI;
@@ -178,10 +177,10 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 		final List<PieItemUI> fundsPieItems = new ArrayList<PieItemUI>();
 		final List<ProductDTO> products = productService.getProducts(globalProducts);
 
-		final PieItemUI garantPieItem = new PieItemUI("el color", "Garantizado selección Consumo", this.productService
+		final PieItemUI valorPieItem = new PieItemUI("#197AC4", "Valor plus", this.productService
 				.getTotalProductsByType(products, EnumProductType.SI).getAmount());
 
-		final PieItemUI valorPieItem = new PieItemUI("el color", "Valor plus", this.productService
+		final PieItemUI garantPieItem = new PieItemUI("#83C030", "Garantizado selección Consumo", this.productService
 				.getTotalProductsByType(products, EnumProductType.SI).getAmount());
 
 		fundsPieItems.add(garantPieItem);

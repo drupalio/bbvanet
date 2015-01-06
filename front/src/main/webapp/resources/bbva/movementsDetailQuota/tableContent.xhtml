@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:bbvaDetailMotion="http://java.sun.com/jsf/composite/bbva/movementsDetailQuota"
+	xmlns:pm="http://primefaces.org/mobile">
+
+<composite:interface>
+
+</composite:interface>
+
+<composite:implementation>
+
+	<div class="table-wrapper">
+		<table class="detail-table-body sortable">
+			<tbody>
+				<tr class="detail-row">
+					<td colspan="4" class="td-detail" style="">
+						<div class="detail-content">
+							<div class="table-detail-border">
+
+								<!-- aki va header -->
+								<bbvaDetailMotion:tableHeader />
+
+								<!-- luego va botones container -->
+								<bbvaDetailMotion:buttonQuotaContainer />
+
+
+								<!-- luego cuerpo del contenido -->
+								<bbvaDetailMotion:tableBody
+									detailMovement="#{movementDetailController.getDetailMovementByAccount()}" />
+
+
+								<!-- luego va footer archivos asociados -->
+								<bbvaDetailMotion:tableFooterFile />
+
+								<!-- luego va footer notas -->
+								<bbvaDetailMotion:tableFooterNotes />
+
+							</div>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+</composite:implementation>
+</html>

@@ -8,4 +8,12 @@ public class PersonalizeAccountDTOTest extends AbstractBbvaDTOTest<PersonalizeAc
 	protected PersonalizeAccountDTO getInstance() {
 		return new PersonalizeAccountDTO();
 	}
+
+	/**
+	 * Invoke Equals Method
+	 */
+	@Override
+	public void checkEqualsMethod() {
+
+	}
 }
