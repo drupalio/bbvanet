@@ -201,13 +201,13 @@ div.ui-state-default {
 .smallCombo {
 	float: left !important;
 	width: 75% !important;
-	height: 40px !important;
+	height: 42px !important;
 }
 
 .bigCombo {
 	float: left !important;
 	width: 100% !important;
-	height: 40px !important;
+	height: 42px !important;
 }
 
 .button-text-only {
@@ -256,10 +256,20 @@ td.ui-datatable-subtable-header:empty {
 
 table.ui-widget {
 	width: 100%;
+	margin-left: 25px !important;
 }
 
 .ui-radiobutton-icon {
 	margin-right: 1px !important;
-	margin-bottom: 1px !important;
 	margin-left: 0px !important;
+}
+
+.ui-selectoneradio label {
+	margin-top: -4px !important;
+	margin-left: -13px !important;
+}
+
+input ..ui-inputfield {
+	background: -moz-linear-gradient(center top, rgba(255, 255, 255, 0.8),
+		rgba(255, 255, 255, 0)) repeat scroll 0% 0% #C4C4C4 !important;
 }

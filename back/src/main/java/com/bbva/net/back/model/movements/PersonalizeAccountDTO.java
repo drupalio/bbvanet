@@ -1,5 +1,8 @@
 package com.bbva.net.back.model.movements;
 
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
+
 import com.bbva.net.back.core.pattern.dto.Dto;
 
 public class PersonalizeAccountDTO implements Dto {
@@ -19,9 +22,25 @@ public class PersonalizeAccountDTO implements Dto {
 
 	private String operationKey;
 
-	private String emails;
-
 	public PersonalizeAccountDTO() {
+	}
+
+	/**
+	 * @param alias
+	 * @param virtualMail
+	 * @param searchOnline
+	 * @param operationOnline
+	 * @param operationKey
+	 */
+
+	public PersonalizeAccountDTO(String alias, boolean virtualMail, boolean searchOnline, boolean operationOnline,
+			String operationKey) {
+
+		this.alias = alias;
+		this.virtualMail = virtualMail;
+		this.searchOnline = searchOnline;
+		this.operationKey = operationKey;
+		this.operationOnline = operationOnline;
 	}
 
 	public String getAlias() {
@@ -64,16 +83,32 @@ public class PersonalizeAccountDTO implements Dto {
 		this.operationKey = operationKey;
 	}
 
-	public String getEmails() {
-		return emails;
-	}
-
-	public void setEmails(String emails) {
-		this.emails = emails;
-	}
-
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 
+	@Override
+	public String toString() {
+		return new ToStringBuilder(this).append("Alias", getAlias()).append("VirtualMail", isVirtualMail())
+				.append("SearhOnline", isSearchOnline()).append("OperationOnline", isOperationOnline())
+				.append("OperationKey", getOperationKey()).toString();
+	}
+
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder().append(getAlias()).append(isVirtualMail()).append(isSearchOnline())
+				.append(isOperationOnline()).append(getOperationKey()).toHashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+
+		return (obj instanceof PersonalizeAccountDTO)
+				&& this.getAlias().equals(((PersonalizeAccountDTO)obj).getAlias())
+				&& this.isVirtualMail() == ((PersonalizeAccountDTO)obj).isVirtualMail()
+				&& this.getOperationKey().equals(((PersonalizeAccountDTO)obj).getOperationKey())
+				&& this.isOperationOnline() == (((PersonalizeAccountDTO)obj).isOperationOnline())
+				&& this.isSearchOnline() == (((PersonalizeAccountDTO)obj).isSearchOnline());
+
+	}
 }
