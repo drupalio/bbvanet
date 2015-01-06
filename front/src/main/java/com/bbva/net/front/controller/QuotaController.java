@@ -10,12 +10,14 @@ import javax.faces.event.AjaxBehaviorEvent;
 
 import com.bbva.net.back.model.accounts.TermsAccountsDto;
 import com.bbva.net.back.model.personalize.PersonalizeAccountDTO;
-import com.bbva.net.back.model.quota.QuotaRotatingDto;
+import com.bbva.net.back.model.quota.QuotaDetailDto;
 
 /**
  * @author User
  */
 public interface QuotaController {
+
+	QuotaDetailDto getQuotaDetail();
 
 	/**
 	 * Method to customize a quota
@@ -52,6 +54,6 @@ public interface QuotaController {
 
 	void searchMovementByFilter(final ActionEvent event);
 
-//	List<QuotaRotatingDto> getQuotaRotary();
+	// List<QuotaRotatingDto> getQuotaRotary();
 
 }

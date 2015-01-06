@@ -24,11 +24,11 @@
 			<div class="row">
 				<div class="col-xs-12 col-sm-6 chart-selection input-control" >
 					<label for="cuentas-personales-chart-tiempo">#{cc.attrs.nameLeft}</label>
-					<bbvaInput:comboSelected width="60% !important" id="periodo" />
+					<bbvaInput:comboSelected width="60% !important" id="#{cc.attrs.nameLeft}" list="#{cc.attrs.listLeft}"/>
 				</div>
 				<div class="col-xs-12 col-sm-6 chart-selection input-control">
 					<label for="cuentas-personales-chart-cuentas">#{cc.attrs.nameRight}</label>
-					<bbvaInput:comboSelected width="60% !important" id="Tarjetas"/>
+					<bbvaInput:comboSelected width="60% !important" id="#{cc.attrs.nameRight}" list="#{cc.attrs.listRight}"/>
 				</div>
 			</div>
 		</div>

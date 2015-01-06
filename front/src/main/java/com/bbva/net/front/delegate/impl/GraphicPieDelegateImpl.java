@@ -6,10 +6,11 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import javax.annotation.Resource;
-
 import com.bbva.czic.dto.net.EnumFundsType;
 import com.bbva.czic.dto.net.EnumProductType;
 import com.bbva.net.back.model.globalposition.FundDTO;
+import com.bbva.net.back.facade.CardsFacade;
+import com.bbva.net.back.model.cards.CardsChargesDTO;
 import com.bbva.net.back.model.globalposition.GlobalProductsDTO;
 import com.bbva.net.back.model.globalposition.ProductDTO;
 import com.bbva.net.back.service.FundsService;
@@ -29,29 +30,38 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 	@Resource(name = "productService")
 	private ProductService productService;
 
+	@Resource(name = "cardsFacade")
+	private CardsFacade cardsFacade;
+
 	@Resource(name = "fundsService")
 	private FundsService fundsService;
 
-	public PieConfigUI getGeneralGraphicConfig(final GlobalProductsDTO globalProducts) {
+	public PieConfigUI getCardGraphicByUser(final String customerId) {
 
 		final PieConfigUI assetPie = new PieConfigUI();
 		assetPie.setHeaderCenter("Pesos ($)");
 		final List<PieItemUI> assetPieItems = new ArrayList<PieItemUI>();
-		final List<ProductDTO> products = productService.getProducts(globalProducts);
+		final List<CardsChargesDTO> cardsCharges = cardsFacade.getCardsChargesByUser(customerId);
 
-		final PieItemUI accountPieItem = new PieItemUI("el color", "Tarjetas", this.productService
-				.getTotalProductsByType(products, EnumProductType.PC).getAmount());
-		/*
-		 * final PieItemUI fundPieItem = new PieItemUI("el color", "Fondos de Inversión", this.productService
-		 * .getTotalProductsByType(products, EnumProductType.SI).getAmount()); final PieItemUI depositPieItem = new
-		 * PieItemUI("el color", "Depósitos", this.productService .getTotalProductsByType(products,
-		 * EnumProductType.ED).getAmount()); final PieItemUI rotatingAccountPieItem = new PieItemUI("el color",
-		 * "Cupo Rotativo", this.productService .getTotalProductsByType(products, EnumProductType.RQ).getAmount());
-		 */
-		assetPieItems.add(accountPieItem);
-		/*
-		 * assetPieItems.add(fundPieItem); assetPieItems.add(depositPieItem); assetPieItems.add(rotatingAccountPieItem);
-		 */
+		final PieItemUI salesPieItem = new PieItemUI("el color", cardsCharges.get(0).getCategorie(), cardsCharges
+				.get(0).getAmmount().getAmount());
+		final PieItemUI clothesPieItem = new PieItemUI("el color", cardsCharges.get(1).getCategorie(), cardsCharges
+				.get(1).getAmmount().getAmount());
+		final PieItemUI othersPieItem = new PieItemUI("el color", cardsCharges.get(2).getCategorie(), cardsCharges
+				.get(2).getAmmount().getAmount());
+		final PieItemUI leisurePieItem = new PieItemUI("el color", cardsCharges.get(3).getCategorie(), cardsCharges
+				.get(3).getAmmount().getAmount());
+		final PieItemUI booksPieItem = new PieItemUI("el color", cardsCharges.get(4).getCategorie(), cardsCharges
+				.get(4).getAmmount().getAmount());
+		final PieItemUI commercePieItem = new PieItemUI("el color", cardsCharges.get(5).getCategorie(), cardsCharges
+				.get(5).getAmmount().getAmount());
+
+		assetPieItems.add(salesPieItem);
+		assetPieItems.add(clothesPieItem);
+		assetPieItems.add(othersPieItem);
+		assetPieItems.add(leisurePieItem);
+		assetPieItems.add(booksPieItem);
+		assetPieItems.add(commercePieItem);
 		assetPie.setPieItemUIList(assetPieItems);
 
 		return assetPie;
@@ -88,10 +98,8 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 
 		final PieItemUI assetPieItem = new PieItemUI("el color", "Activos", this.productService
 				.getTotalAssets(products).getAmount());
-
 		final PieItemUI financiationPieItem = new PieItemUI("el color", "Financiación", this.productService
 				.getTotalFinanciacion(products).getAmount());
-
 		situationPieItems.add(assetPieItem);
 		situationPieItems.add(financiationPieItem);
 		situationPie.setPieItemUIList(situationPieItems);

@@ -23,16 +23,17 @@ public interface GraphicPieDelegate {
 	SituationPiesUI getSituationGlobalProducts(GlobalProductsDTO globalProducts);
 
 	/**
-	 * @param products
-	 * @return
-	 */
-	PieConfigUI getGeneralGraphicConfig(final GlobalProductsDTO globalProducts);
-
-	/**
 	 * @param funds
 	 * @return
 	 */
 
 	PieConfigUI getAccountsfundsProducts(List<FundDTO> funds);
+
+	/**
+	 * @param customerId
+	 * @return
+	 */
+
+	PieConfigUI getCardGraphicByUser(final String customerId);
 
 }

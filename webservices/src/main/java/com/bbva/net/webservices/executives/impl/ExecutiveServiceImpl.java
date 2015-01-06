@@ -8,11 +8,10 @@ import com.bbva.net.webservices.executives.ExecutiveService;
 @RestService(value = "executiveService")
 public class ExecutiveServiceImpl extends AbstractBbvaRestService implements ExecutiveService {
 
-	private String URL_GLOBAL_POSITION;
-
 	@Override
-	public Executive getExecutive(String $filter, String $fields, String $expands, String $sort) {
-		return null;
+	public Executive getExecutive(String customerId, String $fields, String $expands, String $sort) {
+		final Executive executive = restTemplate.getForObject(URL_BASE_EXECUTIVE, Executive.class);
+		return executive;
 	}
 
 }

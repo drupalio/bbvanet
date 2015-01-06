@@ -44,10 +44,12 @@
 			var label;
 			var colums;
 			var values;
+			var color;
 
 			<c:forEach var="pieItemUI" items="${cc.attrs.pieConfigUI.pieItemUIList}">
 			label = ("${pieItemUI.textLegend}");
 			values = ("${pieItemUI.value}");
+			color = ("${pieItemUI.color}");
 			colums = [ [ label ], [ values ] ];
 			totalColums.push(colums);
 			</c:forEach>
@@ -68,7 +70,7 @@
 					},
 					onmouseout : function(d, i) {
 						console.log("onmouseout", d, i);
-					}
+					},
 				}
 			});
 

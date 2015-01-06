@@ -2,6 +2,7 @@ package com.bbva.net.core.utils;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -32,7 +33,23 @@ public final class CollectionBbvaUtils {
 
 		return BigDecimal.valueOf(totalValue);
 	}
+	/**
+	 * 
+	 * @param list
+	 * @param expressionLenguage
+	 * @return
+	 */
+	public static <T extends Serializable> List<String> nameProduct(List<T> list, final String expressionLenguage) {
 
+
+		List<String> names= new ArrayList<String>();
+		for (Iterator<T> iterator = list.iterator(); iterator.hasNext();) {
+			T object = iterator.next();
+			names.add(getNameByEL(object, expressionLenguage));
+		}
+
+		return names;
+	}
 	/**
 	 * @param object
 	 * @param expressionLenguage
@@ -47,5 +64,18 @@ public final class CollectionBbvaUtils {
 			return 0;
 		}
 	}
+	/**
+	 * 
+	 * @param object
+	 * @param expressionLenguage
+	 * @return
+	 */
+	public static String getNameByEL(final Serializable object, final String expressionLenguage) {
 
+		try {
+			return (String) PropertyUtils.getProperty(object, expressionLenguage);
+		} catch (final Exception exception) {
+			return "";
+		}
+	}
 }

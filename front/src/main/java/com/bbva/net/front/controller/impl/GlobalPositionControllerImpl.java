@@ -13,6 +13,8 @@ import javax.faces.view.ViewScoped;
 import org.primefaces.event.SelectEvent;
 
 import com.bbva.net.back.facade.FundsTypeFacade;
+import com.bbva.czic.dto.net.EnumProductType;
+import com.bbva.net.back.facade.CardsFacade;
 import com.bbva.net.back.facade.GlobalMovementsFacade;
 import com.bbva.net.back.facade.GlobalPositionFacade;
 import com.bbva.net.back.model.globalposition.BalanceDTO;
@@ -62,11 +64,13 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	private AccountBarLineUI accountGraphicBarLineUI;
 
-	private PieConfigUI graphicPieProducts;
+	private PieConfigUI graphicPieCards;
 
 	private ActivePanelType activePanel = ActivePanelType.SITUATION;
 
 	private Map<String, BalanceDTO> totalsProducts;
+
+	private Map<String, List<String>> namesProducts;
 
 	private enum ActivePanelType {
 
@@ -95,7 +99,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		this.graphicPieInvestmentFunds = graphicPieDelegate.getAccountsfundsProducts(this.fundDTOs);
 
 		// Calculate situation graphics panels
-		this.graphicPieProducts = graphicPieDelegate.getGeneralGraphicConfig(this.globalProductsDTO);
+		this.graphicPieCards = graphicPieDelegate.getCardGraphicByUser(getCurrentUser());
 
 		// Calculate totals
 		this.totalsProducts = this.globalPositionFacade.getTotalsByProduct(globalProductsDTO);
@@ -104,6 +108,8 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		// Acualmente obtiene el objeto Ui quemado en el delegate
 		this.accountGraphicBarLineUI = this.graphicBarLineDelegate.getInOutBalanceByAccount();
 
+		// Get names of products
+		this.namesProducts = globalPositionFacade.getNamesProducts(globalProductsDTO);
 	}
 
 	@Override
@@ -176,15 +182,15 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	/**
 	 * @return
 	 */
-	public PieConfigUI getGraphicPieProducts() {
-		return graphicPieProducts;
+	public PieConfigUI getGraphicPieCards() {
+		return graphicPieCards;
 	}
 
 	/**
-	 * @param graphicPieProducts
+	 * @param graphicPieCards
 	 */
-	public void setGraphicPieProducts(PieConfigUI graphicPieProducts) {
-		this.graphicPieProducts = graphicPieProducts;
+	public void setGraphicPieCards(PieConfigUI graphicPieCards) {
+		this.graphicPieCards = graphicPieCards;
 	}
 
 	/**
@@ -199,6 +205,15 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		super.onProductSelected(selectEvent);
 		this.sendAction("accountSelected");
 
+	}
+
+	public List<String> periodGraphics() {
+		final List<String> period = new ArrayList<String>();
+		period.add("Últimos 12 meses");
+		period.add("Últimos 6 meses");
+		period.add("Últimos 3 meses");
+		period.add("Últimos mes");
+		return period;
 	}
 
 	/************************************* SETTER BEANS **************************************/
@@ -256,4 +271,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		this.fundsTypeFacade = fundsTypeFacade;
 	}
 
+	public Map<String, List<String>> getNamesProducts() {
+		return namesProducts;
+	}
 }
