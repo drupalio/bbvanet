@@ -38,7 +38,7 @@ public class GraphicBarLineDelegateImpl implements GraphicBarLineDelegate {
 
 			if (!mov.getInCome().equals(null)) {
 				BarLineItemUI paymentsBarLine = new BarLineItemUI();
-				paymentsBarLine.setTypeMovement("Abonos");
+				paymentsBarLine.setTypeMovement(MessagesHelper.INSTANCE.getString("movement.payments"));
 				paymentsBarLine.setValue(mov.getInCome());
 				paymentsBarLine.setMonth(MessagesHelper.INSTANCE.getMonthPrefix(mov.getMonth()));
 				paymentsList.add(paymentsBarLine);
@@ -46,14 +46,14 @@ public class GraphicBarLineDelegateImpl implements GraphicBarLineDelegate {
 
 			if (!mov.getOutCome().equals(null)) {
 				BarLineItemUI outcomeBarLine = new BarLineItemUI();
-				outcomeBarLine.setTypeMovement("Cargos");
+				outcomeBarLine.setTypeMovement(MessagesHelper.INSTANCE.getString("movement.charges"));
 				outcomeBarLine.setValue(mov.getOutCome());
 				outcomeBarLine.setMonth(MessagesHelper.INSTANCE.getMonthPrefix(mov.getMonth()));
 				chargeList.add(outcomeBarLine);
 			}
 			if (!mov.getBalance().equals(null)) {
 				BarLineItemUI balanceBarLine = new BarLineItemUI();
-				balanceBarLine.setTypeMovement("Saldos");
+				balanceBarLine.setTypeMovement(MessagesHelper.INSTANCE.getString("movement.balance"));
 				balanceBarLine.setValue(mov.getBalance());
 				balanceBarLine.setMonth(MessagesHelper.INSTANCE.getMonthPrefix(mov.getMonth()));
 				balanceList.add(balanceBarLine);

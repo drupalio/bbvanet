@@ -12,8 +12,8 @@ import javax.faces.view.ViewScoped;
 
 import org.primefaces.event.SelectEvent;
 
-import com.bbva.net.back.facade.GlobalMovementsFacade;
 import com.bbva.net.back.facade.GlobalPositionFacade;
+import com.bbva.net.back.facade.MovementsResumeFacade;
 import com.bbva.net.back.model.globalposition.BalanceDTO;
 import com.bbva.net.back.model.globalposition.GlobalProductsDTO;
 import com.bbva.net.back.model.movements.GlobalResumeMovementsDTO;
@@ -37,7 +37,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	private transient GlobalPositionFacade globalPositionFacade;
 
 	@Resource(name = "globalMovementsFacade")
-	private transient GlobalMovementsFacade globalMovementsFacade;
+	private transient MovementsResumeFacade movementsResumeFacade;
 
 	@Resource(name = "graphicPieDelegate")
 	private transient GraphicPieDelegate graphicPieDelegate;
@@ -77,7 +77,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		this.globalProductsDTO = this.globalPositionFacade.getGlobalProductsByUser(getCurrentUser());
 
 		// Obtiene la lista de resumen de movimientos del serivico REST
-		this.globalResumeMovementsDTO = this.globalMovementsFacade.getMovementsResumeByeCustomer(getCurrentUser());
+		this.globalResumeMovementsDTO = this.movementsResumeFacade.getMovementsResumeByeCustomer(getCurrentUser());
 
 		// Calculate situation graphics panels
 		this.situationGraphicPieUI = graphicPieDelegate.getSituationGlobalProducts(this.globalProductsDTO);
@@ -228,8 +228,8 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	}
 
-	public void setGlobalMovementsFacade(final GlobalMovementsFacade globalMovementsFacade) {
-		this.globalMovementsFacade = globalMovementsFacade;
+	public void setMovementsResumeFacade(final MovementsResumeFacade movementsResumeFacade) {
+		this.movementsResumeFacade = movementsResumeFacade;
 	}
 
 	public Map<String, List<String>> getNamesProducts() {

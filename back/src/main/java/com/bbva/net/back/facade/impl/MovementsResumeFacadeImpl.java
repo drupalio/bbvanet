@@ -9,7 +9,7 @@ import org.springframework.web.client.RestClientException;
 import com.bbva.czic.dto.net.AccMovementsResume;
 import com.bbva.net.back.core.pattern.facade.AbstractBbvaFacade;
 import com.bbva.net.back.core.stereotype.Facade;
-import com.bbva.net.back.facade.GlobalMovementsFacade;
+import com.bbva.net.back.facade.MovementsResumeFacade;
 import com.bbva.net.back.mapper.GlobalResumeMovementsMapper;
 import com.bbva.net.back.model.movements.GlobalResumeMovementsDTO;
 import com.bbva.net.webservices.customers.CustomerService;
@@ -20,7 +20,7 @@ import com.bbva.net.webservices.customers.CustomerService;
  * @author Entelgy
  */
 @Facade(value = "globalMovementsFacade")
-public class GlobalMovementsFacadeImpl extends AbstractBbvaFacade implements GlobalMovementsFacade {
+public class MovementsResumeFacadeImpl extends AbstractBbvaFacade implements MovementsResumeFacade {
 
 	private static final long serialVersionUID = 1L;
 

@@ -8,11 +8,10 @@ import com.bbva.net.back.model.movements.MovementsResumeDTO;
 public interface GlobalResumeMovementsMapper {
 
 	/**
+	 * Mapea la lista resumen de movimientos del servicio, al objeto DTO de negocio
+	 * 
 	 * @param movementsResume
-	 * @return
 	 */
-	// GlobalResumeMovementsDTO map(List<AccMovementsResume> movementsResume);
-
 	List<MovementsResumeDTO> map(final List<AccMovementsResume> movementsResume);
 
 }
