@@ -8,7 +8,7 @@ import javax.faces.event.AjaxBehaviorEvent;
 import org.springframework.stereotype.Controller;
 
 import com.bbva.net.back.facade.PersonalizeProductAccountFacade;
-import com.bbva.net.back.model.movements.PersonalizeAccountDTO;
+import com.bbva.net.back.model.personalize.PersonalizeAccountDTO;
 import com.bbva.net.front.controller.PersonalizeProductAccountController;
 import com.bbva.net.front.core.AbstractBbvaController;
 

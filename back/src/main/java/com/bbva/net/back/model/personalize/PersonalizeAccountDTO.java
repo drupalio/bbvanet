@@ -1,4 +1,4 @@
-package com.bbva.net.back.model.movements;
+package com.bbva.net.back.model.personalize;
 
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;

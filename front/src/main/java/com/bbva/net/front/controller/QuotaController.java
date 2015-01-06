@@ -3,11 +3,14 @@
  */
 package com.bbva.net.front.controller;
 
+import java.util.List;
+
 import javax.faces.event.ActionEvent;
 import javax.faces.event.AjaxBehaviorEvent;
 
 import com.bbva.net.back.model.accounts.TermsAccountsDto;
-import com.bbva.net.back.model.movements.PersonalizeAccountDTO;
+import com.bbva.net.back.model.personalize.PersonalizeAccountDTO;
+import com.bbva.net.back.model.quota.QuotaRotatingDto;
 
 /**
  * @author User
@@ -17,7 +20,7 @@ public interface QuotaController {
 	/**
 	 * Method to customize a quota
 	 */
-	PersonalizeAccountDTO getPersonalizeProductAccountDto();
+	PersonalizeAccountDTO getPersonalizeAccountDto();
 
 	/**
 	 * Method to get all conditions of a quota
@@ -48,5 +51,7 @@ public interface QuotaController {
 	// show Results.... moved MovementCriteriaControllerImpl
 
 	void searchMovementByFilter(final ActionEvent event);
+
+//	List<QuotaRotatingDto> getQuotaRotary();
 
 }

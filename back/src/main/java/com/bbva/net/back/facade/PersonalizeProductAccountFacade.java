@@ -1,6 +1,6 @@
 package com.bbva.net.back.facade;
 
-import com.bbva.net.back.model.movements.PersonalizeAccountDTO;
+import com.bbva.net.back.model.personalize.PersonalizeAccountDTO;
 
 public interface PersonalizeProductAccountFacade {
 

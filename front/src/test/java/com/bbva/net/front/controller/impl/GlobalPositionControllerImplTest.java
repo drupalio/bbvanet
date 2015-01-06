@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import com.bbva.net.back.facade.FundsTypeFacade;
 import com.bbva.net.back.facade.GlobalMovementsFacade;
 import com.bbva.net.back.facade.GlobalPositionFacade;
 import com.bbva.net.back.model.globalposition.GlobalProductsDTO;
@@ -25,6 +26,8 @@ public class GlobalPositionControllerImplTest {
 
 	private GraphicPieDelegate graphicPieDelegate;
 
+	private FundsTypeFacade fundsTypeFacade;
+
 	private GraphicBarLineDelegate graphicBarLineDelegate;
 
 	private GlobalMovementsFacade globalMovementsFacade;
@@ -37,12 +40,14 @@ public class GlobalPositionControllerImplTest {
 		globalPositionFacade = Mockito.mock(GlobalPositionFacade.class);
 		graphicPieDelegate = Mockito.mock(GraphicPieDelegate.class);
 		globalMovementsFacade = Mockito.mock(GlobalMovementsFacade.class);
+		fundsTypeFacade = Mockito.mock(FundsTypeFacade.class);
 
 		graphicBarLineDelegate = Mockito.mock(GraphicBarLineDelegate.class);
 		globalPositionController.setGlobalPositionFacade(globalPositionFacade);
 		globalPositionController.setGraphicPieDelegate(graphicPieDelegate);
 		globalPositionController.setGraphicBarLineDelegate(graphicBarLineDelegate);
 		globalPositionController.setGlobalMovementsFacade(globalMovementsFacade);
+		globalPositionController.setFundsTypeFacade(fundsTypeFacade);
 		globalPositionController.init();
 
 	}

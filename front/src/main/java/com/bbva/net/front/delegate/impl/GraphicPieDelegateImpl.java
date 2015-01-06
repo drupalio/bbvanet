@@ -7,9 +7,12 @@ import java.util.ResourceBundle;
 
 import javax.annotation.Resource;
 
+import com.bbva.czic.dto.net.EnumFundsType;
 import com.bbva.czic.dto.net.EnumProductType;
+import com.bbva.net.back.model.globalposition.FundDTO;
 import com.bbva.net.back.model.globalposition.GlobalProductsDTO;
 import com.bbva.net.back.model.globalposition.ProductDTO;
+import com.bbva.net.back.service.FundsService;
 import com.bbva.net.back.service.ProductService;
 import com.bbva.net.front.core.stereotype.Delegate;
 import com.bbva.net.front.delegate.GraphicPieDelegate;
@@ -25,6 +28,9 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 
 	@Resource(name = "productService")
 	private ProductService productService;
+
+	@Resource(name = "fundsService")
+	private FundsService fundsService;
 
 	public PieConfigUI getGeneralGraphicConfig(final GlobalProductsDTO globalProducts) {
 
@@ -165,18 +171,16 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 	}
 
 	@Override
-	public PieConfigUI getAccountsfundsProducts(final GlobalProductsDTO globalProducts) {
+	public PieConfigUI getAccountsfundsProducts(final List<FundDTO> funds) {
 
 		final PieConfigUI fundsPie = new PieConfigUI();
 
 		final List<PieItemUI> fundsPieItems = new ArrayList<PieItemUI>();
-		final List<ProductDTO> products = productService.getProducts(globalProducts);
 
-		final PieItemUI valorPieItem = new PieItemUI("#197AC4", "Valor plus", this.productService
-				.getTotalProductsByType(products, EnumProductType.SI).getAmount());
-
-		final PieItemUI garantPieItem = new PieItemUI("#83C030", "Garantizado selección Consumo", this.productService
-				.getTotalProductsByType(products, EnumProductType.SI).getAmount());
+		final PieItemUI valorPieItem = new PieItemUI("#197AC4", "Valor plus", this.fundsService.getTotalFundByType(
+				funds, EnumFundsType.plusValue).getAmount());
+		final PieItemUI garantPieItem = new PieItemUI("#83C030", "Garantizado seleccón consumo", this.fundsService
+				.getTotalFundByType(funds, EnumFundsType.guaranteedValue).getAmount());
 
 		fundsPieItems.add(garantPieItem);
 		fundsPieItems.add(valorPieItem);

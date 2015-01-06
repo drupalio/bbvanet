@@ -1,5 +1,6 @@
-package com.bbva.net.back.model.movements;
+package com.bbva.net.back.model.personalize;
 
+import com.bbva.net.back.model.personalize.PersonalizeAccountDTO;
 import com.bbva.net.core.test.AbstractBbvaDTOTest;
 
 public class PersonalizeAccountDTOTest extends AbstractBbvaDTOTest<PersonalizeAccountDTO> {

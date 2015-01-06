@@ -9,4 +9,12 @@ public class FundDTOTest extends AbstractBbvaDTOTest<FundDTO> {
 		return new FundDTO();
 	}
 
+	/**
+	 * Invoke Equals Method
+	 */
+	@Override
+	public void checkEqualsMethod() {
+
+	}
+
 }

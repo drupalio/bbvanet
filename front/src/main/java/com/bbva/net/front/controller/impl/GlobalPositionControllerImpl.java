@@ -1,5 +1,7 @@
 package com.bbva.net.front.controller.impl;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
@@ -10,9 +12,11 @@ import javax.faces.view.ViewScoped;
 
 import org.primefaces.event.SelectEvent;
 
+import com.bbva.net.back.facade.FundsTypeFacade;
 import com.bbva.net.back.facade.GlobalMovementsFacade;
 import com.bbva.net.back.facade.GlobalPositionFacade;
 import com.bbva.net.back.model.globalposition.BalanceDTO;
+import com.bbva.net.back.model.globalposition.FundDTO;
 import com.bbva.net.back.model.globalposition.GlobalProductsDTO;
 import com.bbva.net.back.model.movements.GlobalResumeMovementsDTO;
 import com.bbva.net.front.controller.GlobalPositionController;
@@ -34,6 +38,9 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	@Resource(name = "globalPositionFacade")
 	private transient GlobalPositionFacade globalPositionFacade;
 
+	@Resource(name = "fundsTypeFacade")
+	private transient FundsTypeFacade fundsTypeFacade;
+
 	@Resource(name = "globalMovementsFacade")
 	private transient GlobalMovementsFacade globalMovementsFacade;
 
@@ -44,6 +51,8 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	private transient GraphicBarLineDelegate graphicBarLineDelegate;
 
 	private GlobalProductsDTO globalProductsDTO;
+
+	private List<FundDTO> fundDTOs;
 
 	private SituationPiesUI situationGraphicPieUI;
 
@@ -72,6 +81,8 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		// Get GlobalProductsDTO by currentUser (visibles and hidden)
 		this.globalProductsDTO = this.globalPositionFacade.getGlobalProductsByUser(getCurrentUser());
 
+		this.fundDTOs = this.fundsTypeFacade.getFundsDataGraphic(getCurrentUser());
+
 		// Obtiene la lista de resumen de movimientos del serivico REST
 		// ESTA LINEA SE COMENTA, YA QUE SOLICITA OTRO CONSUMO DE SERVICIO, DIFERENTE AL GLOBAL POSITION
 		// SI ESTÁ ENCENDIDO UN MOCK EN SOAPUI PARA GP, EL MOCK DE CUSTOMER AL TIEMPO, LA APLICACION NO CORRE.
@@ -81,7 +92,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		this.situationGraphicPieUI = graphicPieDelegate.getSituationGlobalProducts(this.globalProductsDTO);
 
 		// Calculate investmentFunds graphics panels
-		this.graphicPieInvestmentFunds = graphicPieDelegate.getAccountsfundsProducts(this.globalProductsDTO);
+		this.graphicPieInvestmentFunds = graphicPieDelegate.getAccountsfundsProducts(this.fundDTOs);
 
 		// Calculate situation graphics panels
 		this.graphicPieProducts = graphicPieDelegate.getGeneralGraphicConfig(this.globalProductsDTO);
@@ -208,6 +219,20 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		return graphicPieInvestmentFunds;
 	}
 
+	/**
+	 * @return the fundDTOs
+	 */
+	public List<FundDTO> getFundDTOs() {
+		return fundDTOs;
+	}
+
+	/**
+	 * @param fundDTOs the fundDTOs to set
+	 */
+	public void setFundDTOs(List<FundDTO> fundDTOs) {
+		this.fundDTOs = fundDTOs;
+	}
+
 	public void setGraphicPieInvestmentFunds(PieConfigUI graphicPieInvestmentFunds) {
 		this.graphicPieInvestmentFunds = graphicPieInvestmentFunds;
 
@@ -215,6 +240,20 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	public void setGlobalMovementsFacade(final GlobalMovementsFacade globalMovementsFacade) {
 		this.globalMovementsFacade = globalMovementsFacade;
+	}
+
+	/**
+	 * @return the fundsTypeFacade
+	 */
+	public FundsTypeFacade getFundsTypeFacade() {
+		return fundsTypeFacade;
+	}
+
+	/**
+	 * @param fundsTypeFacade the fundsTypeFacade to set
+	 */
+	public void setFundsTypeFacade(FundsTypeFacade fundsTypeFacade) {
+		this.fundsTypeFacade = fundsTypeFacade;
 	}
 
 }
