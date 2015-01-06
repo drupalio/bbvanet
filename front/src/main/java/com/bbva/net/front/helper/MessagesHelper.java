@@ -35,6 +35,7 @@ public enum MessagesHelper {
 	 * @return
 	 */
 	public String getMonthPrefix(final EnumMonth month) {
-		return getString("month" + StringUtils.lowerCase(month.name()) + "prefix");
+		return getString("month." + StringUtils.lowerCase(month.name()) + ".prefix");
 	}
+
 }
