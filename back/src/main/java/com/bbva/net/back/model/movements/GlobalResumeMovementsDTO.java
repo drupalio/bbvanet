@@ -7,14 +7,14 @@ public class GlobalResumeMovementsDTO implements Serializable {
 
 	private static final long serialVersionUID = 3416944562783875982L;
 
-	private List<MovementsResumeDTO> globalMovementsDTO;
+	private List<MovementsResumeDTO> movementsResumeDTO;
 
-	public List<MovementsResumeDTO> getGlobalMovementsDTO() {
-		return globalMovementsDTO;
+	public List<MovementsResumeDTO> getMovementsResumeDTO() {
+		return movementsResumeDTO;
 	}
 
-	public void setGlobalMovementsDTO(List<MovementsResumeDTO> globalMovementsDTO) {
-		this.globalMovementsDTO = globalMovementsDTO;
+	public void setMovementsResumeDTO(List<MovementsResumeDTO> movementsResumeDTO) {
+		this.movementsResumeDTO = movementsResumeDTO;
 	}
 
 }

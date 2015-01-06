@@ -14,6 +14,11 @@ import com.bbva.net.back.mapper.GlobalResumeMovementsMapper;
 import com.bbva.net.back.model.movements.GlobalResumeMovementsDTO;
 import com.bbva.net.webservices.customers.CustomerService;
 
+/**
+ * Clase que implementa cliente REST para resumen de movimientos en las cuentas
+ * 
+ * @author Entelgy
+ */
 @Facade(value = "globalMovementsFacade")
 public class GlobalMovementsFacadeImpl extends AbstractBbvaFacade implements GlobalMovementsFacade {
 
@@ -26,11 +31,16 @@ public class GlobalMovementsFacadeImpl extends AbstractBbvaFacade implements Glo
 	@Resource(name = "globalResumeMovementsMapper")
 	private GlobalResumeMovementsMapper globalResumeMovementsMapper;
 
+	/**
+	 * Método que implementa el cliente REST para obtener el resumend de movimientos en las cuentas de un usuario
+	 */
 	@Override
-	public GlobalResumeMovementsDTO getGlobalMovementsByCustomer(final String customerId) throws RestClientException {
-
+	public GlobalResumeMovementsDTO getMovementsResumeByeCustomer(final String customerId) throws RestClientException {
+		GlobalResumeMovementsDTO globalMovements = new GlobalResumeMovementsDTO();
 		final List<AccMovementsResume> response = this.customerService.listAccountsMovementsResume(customerId);
-		return globalResumeMovementsMapper.map(response);
+		globalMovements.setMovementsResumeDTO(globalResumeMovementsMapper.map(response));
+		return globalMovements;
+
 	}
 
 	/********************************** DEPENDENCY INJECTIONS ***********************************/

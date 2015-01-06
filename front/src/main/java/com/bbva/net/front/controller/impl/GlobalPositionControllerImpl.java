@@ -73,9 +73,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		this.globalProductsDTO = this.globalPositionFacade.getGlobalProductsByUser(getCurrentUser());
 
 		// Obtiene la lista de resumen de movimientos del serivico REST
-		// ESTA LINEA SE COMENTA, YA QUE SOLICITA OTRO CONSUMO DE SERVICIO, DIFERENTE AL GLOBAL POSITION
-		// SI ESTÁ ENCENDIDO UN MOCK EN SOAPUI PARA GP, EL MOCK DE CUSTOMER AL TIEMPO, LA APLICACION NO CORRE.
-		this.globalResumeMovementsDTO = this.globalMovementsFacade.getGlobalMovementsByCustomer(getCurrentUser());
+		this.globalResumeMovementsDTO = this.globalMovementsFacade.getMovementsResumeByeCustomer(getCurrentUser());
 
 		// Calculate situation graphics panels
 		this.situationGraphicPieUI = graphicPieDelegate.getSituationGlobalProducts(this.globalProductsDTO);
@@ -91,7 +89,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 		// Calculate income, output and balance by Account Graphic
 		// Acualmente obtiene el objeto Ui quemado en el delegate
-		this.accountGraphicBarLineUI = this.graphicBarLineDelegate.getInOutBalanceByAccount();
+		this.accountGraphicBarLineUI = this.graphicBarLineDelegate.getInOutBalanceByAccount(globalResumeMovementsDTO);
 
 	}
 
