@@ -23,7 +23,7 @@ public interface SrvGlobalPositionV01 {
     Response getExtractGlobalBalance(@PathParam("customerId") String customerId, @QueryParam("$filter") @DefaultValue("(productType=={productType})") String $filter, @QueryParam("$fields") @DefaultValue("null") String $fields, @QueryParam("$expands") @DefaultValue("null") String $expands, 
                 @QueryParam("$sort") @DefaultValue("null") String $sort);
 
-    @PUT 
+    @PUT
     @Consumes("application/json")
     @Produces("application/json")
     @Path("/{idProduct}")
