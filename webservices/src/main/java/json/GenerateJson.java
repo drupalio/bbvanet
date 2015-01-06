@@ -1,11 +1,18 @@
 package json;
 
+import java.math.BigDecimal;
+
+import com.bbva.czic.dto.net.Balance;
 import com.bbva.czic.dto.net.City;
+import com.bbva.czic.dto.net.Conditions;
+import com.bbva.czic.dto.net.ContactInfo;
 import com.bbva.czic.dto.net.Country;
-import com.bbva.czic.dto.net.Executive;
+import com.bbva.czic.dto.net.EnumFinancialStatusType;
+import com.bbva.czic.dto.net.Loan;
 import com.bbva.czic.dto.net.Location;
 import com.bbva.czic.dto.net.Office;
 import com.bbva.czic.dto.net.State;
+import com.bbva.jee.arq.spring.core.servicing.utils.Money;
 import com.google.gson.Gson;
 
 public class GenerateJson {
@@ -14,18 +21,28 @@ public class GenerateJson {
 
 		Gson json = new Gson();
 
-		System.out.println(json.toJson(getExecutive()));
+		System.out.println(json.toJson(getLoan()));
 
 	}
 
-	public static Executive getExecutive() {
+	public static Loan getLoan() {
+
 		Office ofic = new Office();
 		Location location = new Location();
-		Executive exce = new Executive();
 		City city = new City();
 		State state = new State();
-
 		Country country = new Country();
+		Loan loan = new Loan();
+		Balance balance = new Balance();
+		Money money = new Money();
+		Conditions condiciones = new Conditions();
+		ContactInfo contactInfo = new ContactInfo();
+		EnumFinancialStatusType d = null;
+		EnumFinancialStatusType c2 = null;
+
+		money.setAmount(new BigDecimal(1000000));
+		money.setCurrency("COP");
+
 		country.setId("12");
 		country.setName("Colombia");
 
@@ -45,13 +62,28 @@ public class GenerateJson {
 		ofic.setName("BBVA 23247");
 		ofic.setPostalAddress("Calle 36");
 
-		exce.setOffice(ofic);
-		exce.setEmail("Jhon002@gmail.com");
-		exce.setName("Jhon ");
-		exce.setId("123");
-		exce.setPhone("3212324");
+		balance.setAvailableBalance(money);
+		balance.setTotal(money);
 
-		return exce;
+		condiciones.setCategory("Categoria");
+		condiciones.setCommission("Comision");
+		condiciones.setDescription("Descripcion");
+		condiciones.setMobilizationConditions("condiciones movilizacion");
+		condiciones.setOffice(ofic);
+		condiciones.setOpeningDate("Fecha de apertura");
+
+		loan.setAlias("Alias Loan");
+		loan.setBalance(balance);
+		loan.setConditions(condiciones);
+		loan.setContactInfo(contactInfo);
+		loan.setFinancialState(d);
+		loan.setId("IDLoan");
+		loan.setName("nombre Loan");
+		loan.setOperable(true);
+		loan.setType(null);
+		loan.setVisible(true);
+
+		return loan;
 	}
 
 }

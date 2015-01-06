@@ -12,6 +12,7 @@ import com.bbva.net.back.model.accounts.TermsAccountsDto;
 import com.bbva.net.back.model.citeriaMovements.MovementCriteriaDto;
 import com.bbva.net.back.model.globalposition.RotatingAccountDTO;
 import com.bbva.net.back.model.movements.PersonalizeAccountDTO;
+import com.bbva.net.back.model.quota.QuotaDetailDto;
 import com.bbva.net.front.controller.QuotaController;
 import com.bbva.net.front.core.AbstractBbvaController;
 
@@ -125,8 +126,15 @@ public class QuotaControllerImpl extends AbstractBbvaController implements Quota
 
 	}
 
+	@Override
 	public RotatingAccountDTO getSelectedProduct() {
 		return (RotatingAccountDTO)super.getSelectedProduct();
+	}
+
+	@Override
+	public QuotaDetailDto getQuotaDetail() {
+
+		return null;
 	}
 
 }
