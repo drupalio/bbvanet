@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import javax.annotation.Resource;
+
 import com.bbva.czic.dto.net.EnumFundsType;
 import com.bbva.czic.dto.net.EnumProductType;
 import com.bbva.net.back.model.globalposition.FundDTO;
@@ -17,6 +18,7 @@ import com.bbva.net.back.service.FundsService;
 import com.bbva.net.back.service.ProductService;
 import com.bbva.net.front.core.stereotype.Delegate;
 import com.bbva.net.front.delegate.GraphicPieDelegate;
+import com.bbva.net.front.helper.MessagesHelper;
 import com.bbva.net.front.ui.globalposition.SituationPiesUI;
 import com.bbva.net.front.ui.pie.PieConfigUI;
 import com.bbva.net.front.ui.pie.PieItemUI;
@@ -185,10 +187,12 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 
 		final List<PieItemUI> fundsPieItems = new ArrayList<PieItemUI>();
 
-		final PieItemUI valorPieItem = new PieItemUI("#197AC4", "Valor plus", this.fundsService.getTotalFundByType(
-				funds, EnumFundsType.plusValue).getAmount());
-		final PieItemUI garantPieItem = new PieItemUI("#83C030", "Garantizado seleccón consumo", this.fundsService
-				.getTotalFundByType(funds, EnumFundsType.guaranteedValue).getAmount());
+		final PieItemUI valorPieItem = new PieItemUI("#197AC4",
+				MessagesHelper.INSTANCE.getString("graphicFunds.plusValue"), this.fundsService.getTotalFundByType(
+						funds, EnumFundsType.plusValue).getAmount());
+		final PieItemUI garantPieItem = new PieItemUI("#83C030",
+				MessagesHelper.INSTANCE.getString("graphicFunds.guaranteedValue"), this.fundsService
+						.getTotalFundByType(funds, EnumFundsType.guaranteedValue).getAmount());
 
 		fundsPieItems.add(garantPieItem);
 		fundsPieItems.add(valorPieItem);
