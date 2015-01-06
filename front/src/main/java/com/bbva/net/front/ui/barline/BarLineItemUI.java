@@ -2,7 +2,6 @@ package com.bbva.net.front.ui.barline;
 
 import java.io.Serializable;
 
-import com.bbva.czic.dto.net.EnumMonth;
 import com.bbva.net.back.model.commons.Money;
 
 /**
@@ -16,7 +15,7 @@ public class BarLineItemUI implements Serializable {
 
 	private Money value;
 
-	private EnumMonth month;
+	private String month;
 
 	public String getTypeMovement() {
 		return typeMovement;
@@ -34,11 +33,11 @@ public class BarLineItemUI implements Serializable {
 		this.value = value;
 	}
 
-	public EnumMonth getMonth() {
+	public String getMonth() {
 		return month;
 	}
 
-	public void setMonth(EnumMonth month) {
+	public void setMonth(String month) {
 		this.month = month;
 	}
 
