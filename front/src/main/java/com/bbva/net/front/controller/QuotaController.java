@@ -8,11 +8,14 @@ import javax.faces.event.AjaxBehaviorEvent;
 
 import com.bbva.net.back.model.accounts.TermsAccountsDto;
 import com.bbva.net.back.model.movements.PersonalizeAccountDTO;
+import com.bbva.net.back.model.quota.QuotaDetailDto;
 
 /**
  * @author User
  */
 public interface QuotaController {
+
+	QuotaDetailDto getQuotaDetail();
 
 	/**
 	 * Method to customize a quota
