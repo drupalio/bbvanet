@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:soapui-project activeEnvironment="Default" name="globalPosition_wadl" soapui-version="5.0.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="globalPosition_wadl" type="rest" basePath="/czic/GlobalPosition" definitionUrl="file:/C:/Users/Entelgy/bbvaNet/bbvanet/webservices/src/main/resources/wadl/wadl/globalPosition_wadl.wadl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/C:/Users/Entelgy/bbvaNet/bbvanet/webservices/src/main/resources/wadl/wadl/globalPosition_wadl.wadl"><con:part><con:url>file:/C:/Users/Entelgy/bbvaNet/bbvanet/webservices/src/main/resources/wadl/wadl/globalPosition_wadl.wadl</con:url><con:content><![CDATA[<application xmlns="http://wadl.dev.java.net/2009/02" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<con:soapui-project activeEnvironment="Default" name="globalPosition_wadl" soapui-version="5.0.0" abortOnError="false" runType="SEQUENTIAL" resourceRoot="${projectDir}" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="globalPosition_wadl" type="rest" basePath="/czic/GlobalPosition" definitionUrl="file:/C:/Users/Entelgy/bbvaNet/bbvanet/webservices/src/main/resources/wadl/wadl/globalPosition_wadl.wadl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/C:/Users/Entelgy/bbvaNet/bbvanet/webservices/src/main/resources/wadl/wadl/globalPosition_wadl.wadl"><con:part><con:url>file:/C:/Users/Entelgy/bbvaNet/bbvanet/webservices/src/main/resources/wadl/wadl/globalPosition_wadl.wadl</con:url><con:content><![CDATA[<application xmlns="http://wadl.dev.java.net/2009/02" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <grammars>
     <include href="../xsds/schema1.xsd"/>
     <include href="../xsds/schema2.xsd"/>
@@ -5990,7 +5990,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		"currency": "$"
 	},
 	"month": "DECEMBER"
-}]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/executives/V01" method="GET" resourcePath="/czic/executives/V01"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+}]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/executives/V01" method="GET" resourcePath="/czic/executives/V01"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Examples showing how to match based on path, query param and header
 // Match based on path
 def requestPath = mockRequest.getPath()
@@ -6031,4 +6031,85 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 
 */
 </con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{"id":"123","name":"Jhon ","phone":"3212324","office":{"code":"0073","name":"BBVA 23247","location":{"city":{"id":"123","name":"Bogota","state":{"id":"123456","name":"Cundinamarca","country":{"id":"12","name":"Colombia"}}},"category":"Kennedy"},"postalAddress":"Calle 36"},"email":"Jhon002@gmail.com"}
-</con:responseContent></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
+</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/customers/V01/123/creditCard/cardCharges" method="GET" resourcePath="/czic/customers/V01/123/creditCard/cardCharges"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
+	"category":"CHANNEL_SALES",
+	"amount":{
+		"amount":700000.0,
+		"currency":"$"
+		}
+},
+{
+	"category":"LEISURE",
+	"amount":{
+		"amount":1300000.0,
+		"currency":"$"
+		}
+},
+{
+	"category":"OTHERS",
+	"amount":{
+		"amount":700000.0,
+		"currency":"$"
+		}
+},
+{
+	"category":"BASIC_COMMERCE",
+	"amount":{
+		"amount":1300000.0,
+		"currency":"$"
+		}
+},
+{
+	"category":"GIFT_BOOK_DISC",
+	"amount":{
+		"amount":700000.0,
+		"currency":"$"
+		}
+},
+{
+	"category":"CLOTHING",
+	"amount":{
+		"amount":1300000.0,
+		"currency":"$"
+		}
+}]</con:responseContent></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
