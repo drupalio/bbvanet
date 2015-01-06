@@ -2,11 +2,11 @@ package com.bbva.net.back.model.globalposition;
 
 import com.bbva.net.core.test.AbstractBbvaDTOTest;
 
-public class BalanceDTOTest extends AbstractBbvaDTOTest<BalanceDTO> {
+public class BalanceDTOTest extends AbstractBbvaDTOTest<BalanceDto> {
 
 	@Override
-	protected BalanceDTO getInstance() {
-		return new BalanceDTO();
+	protected BalanceDto getInstance() {
+		return new BalanceDto();
 	}
 
 }

@@ -1,9 +1,9 @@
 package com.bbva.net.back.facade;
 
-import com.bbva.net.back.model.personalize.PersonalizeAccountDTO;
+import com.bbva.net.back.model.personalize.PersonalizeAccountDto;
 
 public interface PersonalizeProductAccountFacade {
 
-	PersonalizeAccountDTO getPersonalizeAccountDto(String defaultUser, String defaultProduct);
+	PersonalizeAccountDto getPersonalizeAccountDto(String defaultUser, String defaultProduct);
 
 }

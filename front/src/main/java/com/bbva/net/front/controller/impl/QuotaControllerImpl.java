@@ -13,8 +13,8 @@ import org.springframework.stereotype.Controller;
 
 import com.bbva.net.back.model.accounts.TermsAccountsDto;
 import com.bbva.net.back.model.citeriaMovements.MovementCriteriaDto;
-import com.bbva.net.back.model.globalposition.RotatingAccountDTO;
-import com.bbva.net.back.model.personalize.PersonalizeAccountDTO;
+import com.bbva.net.back.model.globalposition.RotatingAccountDto;
+import com.bbva.net.back.model.personalize.PersonalizeAccountDto;
 import com.bbva.net.back.model.quota.QuotaDetailDto;
 import com.bbva.net.front.controller.QuotaController;
 import com.bbva.net.front.core.AbstractBbvaController;
@@ -35,7 +35,7 @@ public class QuotaControllerImpl extends AbstractBbvaController implements Quota
 
 	private MovementCriteriaDto movementCriteria = new MovementCriteriaDto();
 
-	private PersonalizeAccountDTO personalizeAccountDto = new PersonalizeAccountDTO();
+	private PersonalizeAccountDto personalizeAccountDto = new PersonalizeAccountDto();
 
 	@Override
 	public TermsAccountsDto getAllConditions() {
@@ -87,8 +87,8 @@ public class QuotaControllerImpl extends AbstractBbvaController implements Quota
 		super.onProductSelected(selectEvent);
 	}
 
-	public RotatingAccountDTO getSelectedProduct() {
-		return (RotatingAccountDTO)super.getSelectedProduct();
+	public RotatingAccountDto getSelectedProduct() {
+		return (RotatingAccountDto)super.getSelectedProduct();
 	}
 
 	// @Override
@@ -142,14 +142,14 @@ public class QuotaControllerImpl extends AbstractBbvaController implements Quota
 	/**
 	 * @return the personalizeAccountDto
 	 */
-	public PersonalizeAccountDTO getPersonalizeAccountDto() {
+	public PersonalizeAccountDto getPersonalizeAccountDto() {
 		return personalizeAccountDto;
 	}
 
 	/**
 	 * @param personalizeAccountDto the personalizeAccountDto to set
 	 */
-	public void setPersonalizeAccountDto(PersonalizeAccountDTO personalizeAccountDto) {
+	public void setPersonalizeAccountDto(PersonalizeAccountDto personalizeAccountDto) {
 		this.personalizeAccountDto = personalizeAccountDto;
 	}
 

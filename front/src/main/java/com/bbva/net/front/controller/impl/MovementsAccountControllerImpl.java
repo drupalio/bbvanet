@@ -4,7 +4,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.view.ViewScoped;
 
-import com.bbva.net.back.model.globalposition.ProductDTO;
+import com.bbva.net.back.model.globalposition.ProductDto;
 import com.bbva.net.front.controller.MovementsAccountController;
 import com.bbva.net.front.core.AbstractBbvaController;
 
@@ -20,7 +20,7 @@ public class MovementsAccountControllerImpl extends AbstractBbvaController imple
 	}
 
 	@Override
-	public void setSelectedProduct(ProductDTO selectedProduct) {
+	public void setSelectedProduct(ProductDto selectedProduct) {
 		super.setSelectedProduct(selectedProduct);
 	}
 

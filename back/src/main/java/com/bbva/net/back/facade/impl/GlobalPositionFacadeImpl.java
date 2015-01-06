@@ -12,8 +12,8 @@ import com.bbva.net.back.core.pattern.facade.AbstractBbvaFacade;
 import com.bbva.net.back.core.stereotype.Facade;
 import com.bbva.net.back.facade.GlobalPositionFacade;
 import com.bbva.net.back.mapper.GlobalPositionMapper;
-import com.bbva.net.back.model.globalposition.BalanceDTO;
-import com.bbva.net.back.model.globalposition.GlobalProductsDTO;
+import com.bbva.net.back.model.globalposition.BalanceDto;
+import com.bbva.net.back.model.globalposition.GlobalProductsDto;
 import com.bbva.net.back.predicate.HiddenProductPredicate;
 import com.bbva.net.back.predicate.VisibleProductPredicate;
 import com.bbva.net.back.service.ProductService;
@@ -37,7 +37,7 @@ public class GlobalPositionFacadeImpl extends AbstractBbvaFacade implements Glob
 	private ProductService productService;
 
 	@Override
-	public GlobalProductsDTO getGlobalProductsByUser(final String user) throws RestClientException {
+	public GlobalProductsDto getGlobalProductsByUser(final String user) throws RestClientException {
 
 		final List<Product> response = this.globalPositionService.getExtractGlobalBalance(user, null, null, null, null);
 		// return globalPositionMapper.map(response);
@@ -46,21 +46,21 @@ public class GlobalPositionFacadeImpl extends AbstractBbvaFacade implements Glob
 	}
 
 	@Override
-	public GlobalProductsDTO getGlobalProductsVisibles(final GlobalProductsDTO globalProductsDTO) {
+	public GlobalProductsDto getGlobalProductsVisibles(final GlobalProductsDto globalProductsDTO) {
 		return productService.select(globalProductsDTO, new VisibleProductPredicate());
 	}
 
 	@Override
-	public GlobalProductsDTO getGlobalProductsHidden(final GlobalProductsDTO globalProductsDTO) {
+	public GlobalProductsDto getGlobalProductsHidden(final GlobalProductsDto globalProductsDTO) {
 		return productService.select(globalProductsDTO, new HiddenProductPredicate());
 	}
 
 	@Override
-	public Map<String, BalanceDTO> getTotalsByProduct(GlobalProductsDTO globalProductsDTO) {
+	public Map<String, BalanceDto> getTotalsByProduct(GlobalProductsDto globalProductsDTO) {
 		return productService.getTotals(globalProductsDTO);
 	}
 	@Override
-	public Map<String, List<String>> getNamesProducts(GlobalProductsDTO globalProducts){
+	public Map<String, List<String>> getNamesProducts(GlobalProductsDto globalProducts){
 		return productService.getProductsName(globalProducts);
 	}
 	/********************************** DEPENDENCY INJECTIONS ***********************************/

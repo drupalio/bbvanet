@@ -2,7 +2,7 @@ package com.bbva.net.back.facade;
 
 import java.util.List;
 
-import com.bbva.net.back.model.globalposition.AccountDTO;
+import com.bbva.net.back.model.globalposition.AccountDto;
 
 /**
  * @author Entelgy
@@ -13,12 +13,12 @@ public interface AccountsFacade {
 	 * @param user
 	 * @return
 	 */
-	List<AccountDTO> getAccountsByUser(String user);
+	List<AccountDto> getAccountsByUser(String user);
 
 	/**
 	 * @param user
 	 * @return
 	 */
-	List<AccountDTO> getAccountsByUserHidden(String user);
+	List<AccountDto> getAccountsByUserHidden(String user);
 
 }

@@ -2,8 +2,8 @@ package com.bbva.net.front.controller;
 
 import java.util.Map;
 
-import com.bbva.net.back.model.globalposition.BalanceDTO;
-import com.bbva.net.back.model.globalposition.GlobalProductsDTO;
+import com.bbva.net.back.model.globalposition.BalanceDto;
+import com.bbva.net.back.model.globalposition.GlobalProductsDto;
 
 /**
  * @author Entelgy
@@ -13,12 +13,12 @@ public interface GlobalPositionController {
 	/**
 	 * @return
 	 */
-	GlobalProductsDTO getCustomerProducts();
+	GlobalProductsDto getCustomerProducts();
 
 	/**
 	 * @return
 	 */
-	GlobalProductsDTO getCustomerProductsHidden();
+	GlobalProductsDto getCustomerProductsHidden();
 
 	/**
 	 * 
@@ -38,6 +38,6 @@ public interface GlobalPositionController {
 	/**
 	 * @return
 	 */
-	Map<String, BalanceDTO> getTotalsProducts();
+	Map<String, BalanceDto> getTotalsProducts();
 
 }

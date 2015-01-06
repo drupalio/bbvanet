@@ -4,7 +4,7 @@ import java.util.Date;
 
 import com.bbva.net.back.core.pattern.dto.Dto;
 
-public class NewsAlertsDTO implements Dto {
+public class NewsAlertsDto implements Dto {
 
 	private static final long serialVersionUID = 1L;
 
@@ -25,7 +25,7 @@ public class NewsAlertsDTO implements Dto {
 	 * @param title
 	 * @param description
 	 */
-	public NewsAlertsDTO(String idNewsAlerts, Date alertDate, String type, String title, String description) {
+	public NewsAlertsDto(String idNewsAlerts, Date alertDate, String type, String title, String description) {
 
 		this.idNewsAlerts = idNewsAlerts;
 		this.alertDate = alertDate;
@@ -34,7 +34,7 @@ public class NewsAlertsDTO implements Dto {
 		this.description = description;
 	}
 
-	public NewsAlertsDTO() {
+	public NewsAlertsDto() {
 
 	}
 

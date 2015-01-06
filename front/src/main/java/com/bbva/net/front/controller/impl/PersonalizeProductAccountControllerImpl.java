@@ -8,7 +8,7 @@ import javax.faces.event.AjaxBehaviorEvent;
 import org.springframework.stereotype.Controller;
 
 import com.bbva.net.back.facade.PersonalizeProductAccountFacade;
-import com.bbva.net.back.model.personalize.PersonalizeAccountDTO;
+import com.bbva.net.back.model.personalize.PersonalizeAccountDto;
 import com.bbva.net.front.controller.PersonalizeProductAccountController;
 import com.bbva.net.front.core.AbstractBbvaController;
 
@@ -22,7 +22,7 @@ public class PersonalizeProductAccountControllerImpl extends AbstractBbvaControl
 
 	private boolean menOperationKey;
 
-	private PersonalizeAccountDTO personalizeAccountDTO;
+	private PersonalizeAccountDto personalizeAccountDTO;
 
 	@PostConstruct
 	public void init() {
@@ -47,7 +47,7 @@ public class PersonalizeProductAccountControllerImpl extends AbstractBbvaControl
 	}
 
 	@Override
-	public PersonalizeAccountDTO getPersonalizeProductAccountDto() {
+	public PersonalizeAccountDto getPersonalizeProductAccountDto() {
 		return this.personalizeAccountDTO;
 	}
 

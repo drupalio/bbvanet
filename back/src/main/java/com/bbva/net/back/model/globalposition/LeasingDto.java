@@ -1,6 +1,6 @@
 package com.bbva.net.back.model.globalposition;
 
-public class DepositDTO extends ProductDTO {
+public class LeasingDto extends LoanDto {
 
 	private final static long serialVersionUID = 1L;
 

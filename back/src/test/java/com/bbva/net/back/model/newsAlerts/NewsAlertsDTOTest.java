@@ -2,11 +2,11 @@ package com.bbva.net.back.model.newsAlerts;
 
 import com.bbva.net.core.test.AbstractBbvaDTOTest;
 
-public class NewsAlertsDTOTest extends AbstractBbvaDTOTest<NewsAlertsDTO> {
+public class NewsAlertsDTOTest extends AbstractBbvaDTOTest<NewsAlertsDto> {
 
 	@Override
-	protected NewsAlertsDTO getInstance() {
-		return new NewsAlertsDTO();
+	protected NewsAlertsDto getInstance() {
+		return new NewsAlertsDto();
 	}
 
 }

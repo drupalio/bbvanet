@@ -3,17 +3,17 @@ package com.bbva.net.back.model.globalposition;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-public class RotatingAccountDTO extends LoanDTO {
+public class RotatingAccountDto extends LoanDto {
 
 	private final static long serialVersionUID = 1L;
 
-	private QuotaDTO quota;
+	private QuotaDto quota;
 
-	public QuotaDTO getQuota() {
+	public QuotaDto getQuota() {
 		return quota;
 	}
 
-	public void setQuota(QuotaDTO value) {
+	public void setQuota(QuotaDto value) {
 		this.quota = value;
 	}
 
@@ -33,7 +33,7 @@ public class RotatingAccountDTO extends LoanDTO {
 
 	@Override
 	public boolean equals(Object obj) {
-		return (obj instanceof RotatingAccountDTO) && this.getQuota().equals(((RotatingAccountDTO)obj).getQuota());
+		return (obj instanceof RotatingAccountDto) && this.getQuota().equals(((RotatingAccountDto)obj).getQuota());
 	}
 
 }

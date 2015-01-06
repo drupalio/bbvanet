@@ -6,7 +6,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import com.bbva.net.back.core.pattern.dto.Dto;
 import com.bbva.net.back.model.commons.Money;
 
-public class CardsChargesDTO implements Dto {
+public class CardsChargesDto implements Dto {
 
 
 
@@ -41,9 +41,9 @@ public class CardsChargesDTO implements Dto {
 
 	@Override
 	public boolean equals(Object obj) {
-		return (obj instanceof CardsChargesDTO) && this.getCategorie().equals(((CardsChargesDTO)obj).getCategorie())
+		return (obj instanceof CardsChargesDto) && this.getCategorie().equals(((CardsChargesDto)obj).getCategorie())
 				&& this.getAmmount().equals(
-						((CardsChargesDTO) obj).getAmmount());
+						((CardsChargesDto) obj).getAmmount());
 	}
 
 	@Override

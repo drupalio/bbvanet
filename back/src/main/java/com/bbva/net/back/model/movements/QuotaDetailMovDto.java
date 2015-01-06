@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.bbva.net.back.model.quota;
+package com.bbva.net.back.model.movements;
 
 import java.math.BigDecimal;
 import java.util.Date;

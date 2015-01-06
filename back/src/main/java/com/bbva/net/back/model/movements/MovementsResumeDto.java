@@ -4,7 +4,7 @@ import com.bbva.czic.dto.net.EnumMonth;
 import com.bbva.net.back.core.pattern.dto.Dto;
 import com.bbva.net.back.model.commons.Money;
 
-public class MovementsResumeDTO implements Dto {
+public class MovementsResumeDto implements Dto {
 
 	private static final long serialVersionUID = 8294714761635380153L;
 

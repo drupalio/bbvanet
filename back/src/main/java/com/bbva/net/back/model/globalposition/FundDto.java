@@ -5,19 +5,19 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 
 import com.bbva.czic.dto.net.EnumFundsType;
 
-public class FundDTO extends ProductDTO {
+public class FundDto extends ProductDto {
 
 	private final static long serialVersionUID = 1L;
 
 	private EnumFundsType typefunds;
 
-	public FundDTO() {
+	public FundDto() {
 	}
 
 	/**
 	 * @param typefunds
 	 */
-	public FundDTO(EnumFundsType typefunds) {
+	public FundDto(EnumFundsType typefunds) {
 		this.typefunds = typefunds;
 	}
 
@@ -47,7 +47,7 @@ public class FundDTO extends ProductDTO {
 
 	@Override
 	public boolean equals(Object obj) {
-		return (obj instanceof FundDTO) && this.getTypefunds().equals(((FundDTO)obj).getTypefunds());
+		return (obj instanceof FundDto) && this.getTypefunds().equals(((FundDto)obj).getTypefunds());
 	}
 
 }

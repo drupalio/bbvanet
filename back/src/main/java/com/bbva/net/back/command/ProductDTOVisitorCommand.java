@@ -2,20 +2,20 @@ package com.bbva.net.back.command;
 
 import java.util.List;
 
-import com.bbva.net.back.model.globalposition.AccountDTO;
-import com.bbva.net.back.model.globalposition.AdquirenceAccountDTO;
-import com.bbva.net.back.model.globalposition.CreditCardDTO;
-import com.bbva.net.back.model.globalposition.DepositDTO;
-import com.bbva.net.back.model.globalposition.FundDTO;
-import com.bbva.net.back.model.globalposition.LeasingDTO;
-import com.bbva.net.back.model.globalposition.LoanDTO;
-import com.bbva.net.back.model.globalposition.ProductDTO;
-import com.bbva.net.back.model.globalposition.RotatingAccountDTO;
+import com.bbva.net.back.model.globalposition.AccountDto;
+import com.bbva.net.back.model.globalposition.AdquirenceAccountDto;
+import com.bbva.net.back.model.globalposition.CreditCardDto;
+import com.bbva.net.back.model.globalposition.DepositDto;
+import com.bbva.net.back.model.globalposition.FundDto;
+import com.bbva.net.back.model.globalposition.LeasingDto;
+import com.bbva.net.back.model.globalposition.LoanDto;
+import com.bbva.net.back.model.globalposition.ProductDto;
+import com.bbva.net.back.model.globalposition.RotatingAccountDto;
 import com.bbva.net.core.pattern.VisitorCommand;
 
-public abstract class ProductDTOVisitorCommand extends VisitorCommand<ProductDTO> {
+public abstract class ProductDTOVisitorCommand extends VisitorCommand<ProductDto> {
 
-	public ProductDTOVisitorCommand(List<ProductDTO> list) {
+	public ProductDTOVisitorCommand(List<ProductDto> list) {
 		super(list);
 	}
 
@@ -24,73 +24,73 @@ public abstract class ProductDTOVisitorCommand extends VisitorCommand<ProductDTO
 	/**
 	 * @param account
 	 */
-	public abstract void execute(final AccountDTO account);
+	public abstract void execute(final AccountDto account);
 
 	/**
 	 * @param adquirenceAccount
 	 */
-	public abstract void execute(final AdquirenceAccountDTO adquirenceAccount);
+	public abstract void execute(final AdquirenceAccountDto adquirenceAccount);
 
 	/**
 	 * @param creditCard
 	 */
-	public abstract void execute(final CreditCardDTO creditCard);
+	public abstract void execute(final CreditCardDto creditCard);
 
 	/**
 	 * @param rotatingAccount
 	 */
-	public abstract void execute(final RotatingAccountDTO rotatingAccount);
+	public abstract void execute(final RotatingAccountDto rotatingAccount);
 
 	/**
 	 * @param leasing
 	 */
-	public abstract void execute(final LeasingDTO leasing);
+	public abstract void execute(final LeasingDto leasing);
 
 	/**
 	 * @param loan
 	 */
-	public abstract void execute(final LoanDTO loan);
+	public abstract void execute(final LoanDto loan);
 
 	/**
 	 * @param fund
 	 */
-	public abstract void execute(final FundDTO fund);
+	public abstract void execute(final FundDto fund);
 
 	/**
 	 * @param deposit
 	 */
-	public abstract void execute(final DepositDTO deposit);
+	public abstract void execute(final DepositDto deposit);
 
 	/**
 	 * 
 	 */
 	@Override
-	protected void execute(final ProductDTO productDTO) {
+	protected void execute(final ProductDto productDTO) {
 
 		switch (productDTO.getTypeProd()) {
 		case PC:
-			this.execute((AccountDTO)productDTO);
+			this.execute((AccountDto)productDTO);
 			break;
 		case AQ:
-			this.execute((AdquirenceAccountDTO)productDTO);
+			this.execute((AdquirenceAccountDto)productDTO);
 			break;
 		case TDC:
-			this.execute((CreditCardDTO)productDTO);
+			this.execute((CreditCardDto)productDTO);
 			break;
 		case RQ:
-			this.execute((RotatingAccountDTO)productDTO);
+			this.execute((RotatingAccountDto)productDTO);
 			break;
 		case LI:
-			this.execute((LeasingDTO)productDTO);
+			this.execute((LeasingDto)productDTO);
 			break;
 		case LO:
-			this.execute((LoanDTO)productDTO);
+			this.execute((LoanDto)productDTO);
 			break;
 		case SI:
-			this.execute((FundDTO)productDTO);
+			this.execute((FundDto)productDTO);
 			break;
 		case ED:
-			this.execute((DepositDTO)productDTO);
+			this.execute((DepositDto)productDTO);
 			break;
 		default:
 			break;

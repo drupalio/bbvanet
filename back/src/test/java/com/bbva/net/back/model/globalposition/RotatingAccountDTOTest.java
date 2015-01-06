@@ -2,11 +2,11 @@ package com.bbva.net.back.model.globalposition;
 
 import com.bbva.net.core.test.AbstractBbvaDTOTest;
 
-public class RotatingAccountDTOTest extends AbstractBbvaDTOTest<RotatingAccountDTO> {
+public class RotatingAccountDTOTest extends AbstractBbvaDTOTest<RotatingAccountDto> {
 
 	@Override
-	protected RotatingAccountDTO getInstance() {
-		return new RotatingAccountDTO();
+	protected RotatingAccountDto getInstance() {
+		return new RotatingAccountDto();
 	}
 
 	/**

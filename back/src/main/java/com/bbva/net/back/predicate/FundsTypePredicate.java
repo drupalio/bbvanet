@@ -1,10 +1,10 @@
 package com.bbva.net.back.predicate;
 
 import com.bbva.czic.dto.net.EnumFundsType;
-import com.bbva.net.back.model.globalposition.FundDTO;
+import com.bbva.net.back.model.globalposition.FundDto;
 import com.bbva.net.core.collection.BbvaPredicate;
 
-public class FundsTypePredicate extends BbvaPredicate<FundDTO> {
+public class FundsTypePredicate extends BbvaPredicate<FundDto> {
 
 	private EnumFundsType fundsType;
 
@@ -13,7 +13,7 @@ public class FundsTypePredicate extends BbvaPredicate<FundDTO> {
 	}
 
 	@Override
-	protected boolean eval(final FundDTO fund) {
+	protected boolean eval(final FundDto fund) {
 		return fund.getTypefunds().equals(fundsType);
 	}
 }

@@ -9,11 +9,11 @@ import javax.annotation.Resource;
 
 import com.bbva.czic.dto.net.EnumFundsType;
 import com.bbva.czic.dto.net.EnumProductType;
-import com.bbva.net.back.model.globalposition.FundDTO;
+import com.bbva.net.back.model.globalposition.FundDto;
 import com.bbva.net.back.facade.CardsFacade;
-import com.bbva.net.back.model.cards.CardsChargesDTO;
-import com.bbva.net.back.model.globalposition.GlobalProductsDTO;
-import com.bbva.net.back.model.globalposition.ProductDTO;
+import com.bbva.net.back.model.cards.CardsChargesDto;
+import com.bbva.net.back.model.globalposition.GlobalProductsDto;
+import com.bbva.net.back.model.globalposition.ProductDto;
 import com.bbva.net.back.service.FundsService;
 import com.bbva.net.back.service.ProductService;
 import com.bbva.net.front.core.stereotype.Delegate;
@@ -43,7 +43,7 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 		final PieConfigUI assetPie = new PieConfigUI();
 		assetPie.setHeaderCenter("Pesos ($)");
 		final List<PieItemUI> assetPieItems = new ArrayList<PieItemUI>();
-		final List<CardsChargesDTO> cardsCharges = cardsFacade.getCardsChargesByUser(customerId);
+		final List<CardsChargesDto> cardsCharges = cardsFacade.getCardsChargesByUser(customerId);
 
 		final PieItemUI salesPieItem = new PieItemUI("el color", cardsCharges.get(0).getCategorie(), cardsCharges
 				.get(0).getAmmount().getAmount());
@@ -71,10 +71,10 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 	}
 
 	@Override
-	public SituationPiesUI getSituationGlobalProducts(final GlobalProductsDTO globalProducts) {
+	public SituationPiesUI getSituationGlobalProducts(final GlobalProductsDto globalProducts) {
 
 		final SituationPiesUI situationPiesUI = new SituationPiesUI();
-		final List<ProductDTO> productList = productService.getProducts(globalProducts);
+		final List<ProductDto> productList = productService.getProducts(globalProducts);
 
 		situationPiesUI.setSituation(getSituationPieConfig(productList));
 		situationPiesUI.setAssets(getAssetPieConfig(productList));
@@ -92,7 +92,7 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 	 * @param List<Product> products
 	 * @return PieConfigUI
 	 */
-	public PieConfigUI getSituationPieConfig(final List<ProductDTO> products) {
+	public PieConfigUI getSituationPieConfig(final List<ProductDto> products) {
 
 		final PieConfigUI situationPie = new PieConfigUI();
 
@@ -116,7 +116,7 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 	 * @param List<Product> products
 	 * @return PieConfigUI
 	 */
-	public PieConfigUI getAssetPieConfig(final List<ProductDTO> products) {
+	public PieConfigUI getAssetPieConfig(final List<ProductDto> products) {
 
 		final PieConfigUI assetPie = new PieConfigUI();
 		assetPie.setHeaderLeft(" Activos ");
@@ -152,7 +152,7 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 	 * @param List<Product> products
 	 * @return PieConfigUI
 	 */
-	public PieConfigUI getFinanciationPieConfig(final List<ProductDTO> products) {
+	public PieConfigUI getFinanciationPieConfig(final List<ProductDto> products) {
 
 		final PieConfigUI financiationPie = new PieConfigUI();
 		DecimalFormat myFormatter = new DecimalFormat(ResourceBundle.getBundle("i18n_es").getString(
@@ -181,7 +181,7 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 	}
 
 	@Override
-	public PieConfigUI getAccountsfundsProducts(final List<FundDTO> funds) {
+	public PieConfigUI getAccountsfundsProducts(final List<FundDto> funds) {
 
 		final PieConfigUI fundsPie = new PieConfigUI();
 

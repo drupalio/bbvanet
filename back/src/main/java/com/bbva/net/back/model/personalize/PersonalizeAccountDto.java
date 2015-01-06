@@ -5,7 +5,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 
 import com.bbva.net.back.core.pattern.dto.Dto;
 
-public class PersonalizeAccountDTO implements Dto {
+public class PersonalizeAccountDto implements Dto {
 
 	/**
 	 * 
@@ -22,7 +22,7 @@ public class PersonalizeAccountDTO implements Dto {
 
 	private String operationKey;
 
-	public PersonalizeAccountDTO() {
+	public PersonalizeAccountDto() {
 	}
 
 	/**
@@ -33,7 +33,7 @@ public class PersonalizeAccountDTO implements Dto {
 	 * @param operationKey
 	 */
 
-	public PersonalizeAccountDTO(String alias, boolean virtualMail, boolean searchOnline, boolean operationOnline,
+	public PersonalizeAccountDto(String alias, boolean virtualMail, boolean searchOnline, boolean operationOnline,
 			String operationKey) {
 
 		this.alias = alias;
@@ -103,12 +103,12 @@ public class PersonalizeAccountDTO implements Dto {
 	@Override
 	public boolean equals(Object obj) {
 
-		return (obj instanceof PersonalizeAccountDTO)
-				&& this.getAlias().equals(((PersonalizeAccountDTO)obj).getAlias())
-				&& this.isVirtualMail() == ((PersonalizeAccountDTO)obj).isVirtualMail()
-				&& this.getOperationKey().equals(((PersonalizeAccountDTO)obj).getOperationKey())
-				&& this.isOperationOnline() == (((PersonalizeAccountDTO)obj).isOperationOnline())
-				&& this.isSearchOnline() == (((PersonalizeAccountDTO)obj).isSearchOnline());
+		return (obj instanceof PersonalizeAccountDto)
+				&& this.getAlias().equals(((PersonalizeAccountDto)obj).getAlias())
+				&& this.isVirtualMail() == ((PersonalizeAccountDto)obj).isVirtualMail()
+				&& this.getOperationKey().equals(((PersonalizeAccountDto)obj).getOperationKey())
+				&& this.isOperationOnline() == (((PersonalizeAccountDto)obj).isOperationOnline())
+				&& this.isSearchOnline() == (((PersonalizeAccountDto)obj).isSearchOnline());
 
 	}
 }

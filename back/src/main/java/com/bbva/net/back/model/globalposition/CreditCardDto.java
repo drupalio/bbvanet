@@ -5,13 +5,13 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 
 import com.bbva.net.back.model.commons.Money;
 
-public class CreditCardDTO extends ProductDTO {
+public class CreditCardDto extends ProductDto {
 
 	private final static long serialVersionUID = 1L;
 
 	private Money bin;
 
-	private QuotaDTO quota;
+	private QuotaDto quota;
 
 	public Money getBin() {
 		return bin;
@@ -25,11 +25,11 @@ public class CreditCardDTO extends ProductDTO {
 		return (this.bin != null);
 	}
 
-	public QuotaDTO getQuota() {
+	public QuotaDto getQuota() {
 		return quota;
 	}
 
-	public void setQuota(final QuotaDTO value) {
+	public void setQuota(final QuotaDto value) {
 		this.quota = value;
 	}
 
@@ -49,7 +49,7 @@ public class CreditCardDTO extends ProductDTO {
 
 	@Override
 	public boolean equals(Object obj) {
-		return (obj instanceof CreditCardDTO) && this.getBin().equals(((CreditCardDTO)obj).getBin());
+		return (obj instanceof CreditCardDto) && this.getBin().equals(((CreditCardDto)obj).getBin());
 	}
 
 }

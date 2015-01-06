@@ -8,9 +8,9 @@ import java.util.Map;
 
 import com.bbva.czic.dto.net.EnumProductType;
 import com.bbva.net.back.model.commons.Money;
-import com.bbva.net.back.model.globalposition.BalanceDTO;
-import com.bbva.net.back.model.globalposition.GlobalProductsDTO;
-import com.bbva.net.back.model.globalposition.ProductDTO;
+import com.bbva.net.back.model.globalposition.BalanceDto;
+import com.bbva.net.back.model.globalposition.GlobalProductsDto;
+import com.bbva.net.back.model.globalposition.ProductDto;
 import com.bbva.net.core.collection.BbvaPredicate;
 
 /**
@@ -22,59 +22,59 @@ public interface ProductService {
 	 * @param products
 	 * @return
 	 */
-	<T extends ProductDTO> Money getTotal(final List<T> products);
+	<T extends ProductDto> Money getTotal(final List<T> products);
 
 	/**
 	 * @param products
 	 * @return
 	 */
-	<T extends ProductDTO> Money getTotalAvailable(final List<T> products);
+	<T extends ProductDto> Money getTotalAvailable(final List<T> products);
 	/**
 	 * 
 	 * @param products
 	 * @return
 	 */
-	<T extends ProductDTO> List<String> getNameProduct(final List<T> products);
+	<T extends ProductDto> List<String> getNameProduct(final List<T> products);
 	/**
 	 * @param products
 	 * @return
 	 */
-	Money getTotalAssets(List<ProductDTO> products);
+	Money getTotalAssets(List<ProductDto> products);
 
 	/**
 	 * @param products
 	 * @return
 	 */
-	Money getTotalFinanciacion(List<ProductDTO> products);
+	Money getTotalFinanciacion(List<ProductDto> products);
 
 	/**
 	 * @param products
 	 * @return
 	 */
-	Money getTotalProductsByType(List<ProductDTO> products, EnumProductType type);
+	Money getTotalProductsByType(List<ProductDto> products, EnumProductType type);
 
 	/***
 	 * @param globalProduct
 	 * @return
 	 */
-	List<ProductDTO> getProducts(GlobalProductsDTO globalProducts);
+	List<ProductDto> getProducts(GlobalProductsDto globalProducts);
 
 	/**
 	 * @param globalProducts
 	 * @return
 	 */
-	Map<String, BalanceDTO> getTotals(GlobalProductsDTO globalProducts);
+	Map<String, BalanceDto> getTotals(GlobalProductsDto globalProducts);
 
 	/**
 	 * @param globalProducts
 	 * @param predicate
 	 * @return
 	 */
-	GlobalProductsDTO select(final GlobalProductsDTO globalProducts, BbvaPredicate<ProductDTO> predicate);
+	GlobalProductsDto select(final GlobalProductsDto globalProducts, BbvaPredicate<ProductDto> predicate);
 	/**
 	 * 
 	 * @param globalProducts
 	 * @return
 	 */
-	Map<String, List<String>> getProductsName(GlobalProductsDTO globalProducts);
+	Map<String, List<String>> getProductsName(GlobalProductsDto globalProducts);
 }

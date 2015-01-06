@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.bbva.czic.dto.net.EnumFundsType;
 import com.bbva.net.back.model.commons.Money;
-import com.bbva.net.back.model.globalposition.FundDTO;
-import com.bbva.net.back.model.globalposition.ProductDTO;
+import com.bbva.net.back.model.globalposition.FundDto;
+import com.bbva.net.back.model.globalposition.ProductDto;
 import com.bbva.net.back.predicate.FundsTypePredicate;
 import com.bbva.net.back.service.FundsService;
 import com.bbva.net.core.utils.CollectionBbvaUtils;
@@ -17,20 +17,20 @@ import com.bbva.net.core.utils.CollectionBbvaUtils;
 public class FundsServiceImpl implements FundsService {
 
 	@Override
-	public <T extends ProductDTO> Money getTotal(final List<T> products) {
+	public <T extends ProductDto> Money getTotal(final List<T> products) {
 		return new Money(CollectionBbvaUtils.calculateTotal(products, "totalCash.amount"));
 	}
 
 	@Override
-	public <T extends ProductDTO> Money getTotalAvailable(final List<T> products) {
+	public <T extends ProductDto> Money getTotalAvailable(final List<T> products) {
 		return new Money(CollectionBbvaUtils.calculateTotal(products, "cashAvailable.amount"));
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public Money getTotalFundByType(final List<FundDTO> funds, final EnumFundsType fundsType) {
+	public Money getTotalFundByType(final List<FundDto> funds, final EnumFundsType fundsType) {
 
-		final List<ProductDTO> fundsByType = (List<ProductDTO>)CollectionUtils.select(funds, new FundsTypePredicate(
+		final List<ProductDto> fundsByType = (List<ProductDto>)CollectionUtils.select(funds, new FundsTypePredicate(
 				fundsType));
 
 		return getTotal(fundsByType);

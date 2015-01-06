@@ -4,14 +4,14 @@ import java.util.List;
 
 import com.bbva.czic.dto.net.CardCharge;
 import com.bbva.czic.dto.net.Product;
-import com.bbva.net.back.model.globalposition.AccountDTO;
-import com.bbva.net.back.model.globalposition.AdquirenceAccountDTO;
-import com.bbva.net.back.model.globalposition.CreditCardDTO;
-import com.bbva.net.back.model.globalposition.DepositDTO;
-import com.bbva.net.back.model.globalposition.FundDTO;
-import com.bbva.net.back.model.globalposition.LeasingDTO;
-import com.bbva.net.back.model.globalposition.LoanDTO;
-import com.bbva.net.back.model.globalposition.RotatingAccountDTO;
+import com.bbva.net.back.model.globalposition.AccountDto;
+import com.bbva.net.back.model.globalposition.AdquirenceAccountDto;
+import com.bbva.net.back.model.globalposition.CreditCardDto;
+import com.bbva.net.back.model.globalposition.DepositDto;
+import com.bbva.net.back.model.globalposition.FundDto;
+import com.bbva.net.back.model.globalposition.LeasingDto;
+import com.bbva.net.back.model.globalposition.LoanDto;
+import com.bbva.net.back.model.globalposition.RotatingAccountDto;
 import com.bbva.net.core.pattern.VisitorCommand;
 
 public abstract class CardVisitorCommand extends VisitorCommand<CardCharge> {

@@ -9,7 +9,7 @@ import javax.faces.event.ActionEvent;
 import javax.faces.event.AjaxBehaviorEvent;
 
 import com.bbva.net.back.model.accounts.TermsAccountsDto;
-import com.bbva.net.back.model.personalize.PersonalizeAccountDTO;
+import com.bbva.net.back.model.personalize.PersonalizeAccountDto;
 import com.bbva.net.back.model.quota.QuotaDetailDto;
 
 /**
@@ -22,7 +22,7 @@ public interface QuotaController {
 	/**
 	 * Method to customize a quota
 	 */
-	PersonalizeAccountDTO getPersonalizeAccountDto();
+	PersonalizeAccountDto getPersonalizeAccountDto();
 
 	/**
 	 * Method to get all conditions of a quota

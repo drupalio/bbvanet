@@ -3,8 +3,8 @@ package com.bbva.net.back.facade;
 import java.util.List;
 import java.util.Map;
 
-import com.bbva.net.back.model.globalposition.BalanceDTO;
-import com.bbva.net.back.model.globalposition.GlobalProductsDTO;
+import com.bbva.net.back.model.globalposition.BalanceDto;
+import com.bbva.net.back.model.globalposition.GlobalProductsDto;
 
 /**
  * @author Entelgy
@@ -15,28 +15,28 @@ public interface GlobalPositionFacade {
 	 * @param user
 	 * @return
 	 */
-	GlobalProductsDTO getGlobalProductsByUser(String user);
+	GlobalProductsDto getGlobalProductsByUser(String user);
 
 	/**
 	 * @return
 	 */
-	GlobalProductsDTO getGlobalProductsVisibles(GlobalProductsDTO globalProductsDTO);
+	GlobalProductsDto getGlobalProductsVisibles(GlobalProductsDto globalProductsDTO);
 
 	/**
 	 * @return
 	 */
-	GlobalProductsDTO getGlobalProductsHidden(GlobalProductsDTO globalProductsDTO);
+	GlobalProductsDto getGlobalProductsHidden(GlobalProductsDto globalProductsDTO);
 
 	/**
 	 * @param globalProductsDTO
 	 * @return
 	 */
-	Map<String, BalanceDTO> getTotalsByProduct(GlobalProductsDTO globalProductsDTO);
+	Map<String, BalanceDto> getTotalsByProduct(GlobalProductsDto globalProductsDTO);
 	
 	/**
 	 * 
 	 * @param globalProducts
 	 * @return
 	 */
-	Map<String, List<String>> getNamesProducts(GlobalProductsDTO globalProducts);
+	Map<String, List<String>> getNamesProducts(GlobalProductsDto globalProducts);
 }

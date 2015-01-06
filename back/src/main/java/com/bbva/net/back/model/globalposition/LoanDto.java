@@ -5,7 +5,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 
 import com.bbva.net.back.model.commons.Money;
 
-public class LoanDTO extends ProductDTO {
+public class LoanDto extends ProductDto {
 
 	private final static long serialVersionUID = 1L;
 
@@ -50,8 +50,8 @@ public class LoanDTO extends ProductDTO {
 
 	@Override
 	public boolean equals(Object obj) {
-		return (obj instanceof LoanDTO) && this.getTotalDebt().equals(((LoanDTO)obj).getTotalDebt())
-				&& this.getTotalDue().equals(((LoanDTO)obj).getTotalDue());
+		return (obj instanceof LoanDto) && this.getTotalDebt().equals(((LoanDto)obj).getTotalDebt())
+				&& this.getTotalDue().equals(((LoanDto)obj).getTotalDue());
 	}
 
 }

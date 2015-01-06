@@ -14,17 +14,17 @@ import org.springframework.stereotype.Service;
 
 import com.bbva.czic.dto.net.EnumProductType;
 import com.bbva.net.back.model.commons.Money;
-import com.bbva.net.back.model.globalposition.AccountDTO;
-import com.bbva.net.back.model.globalposition.AdquirenceAccountDTO;
-import com.bbva.net.back.model.globalposition.BalanceDTO;
-import com.bbva.net.back.model.globalposition.CreditCardDTO;
-import com.bbva.net.back.model.globalposition.DepositDTO;
-import com.bbva.net.back.model.globalposition.FundDTO;
-import com.bbva.net.back.model.globalposition.GlobalProductsDTO;
-import com.bbva.net.back.model.globalposition.LeasingDTO;
-import com.bbva.net.back.model.globalposition.LoanDTO;
-import com.bbva.net.back.model.globalposition.ProductDTO;
-import com.bbva.net.back.model.globalposition.RotatingAccountDTO;
+import com.bbva.net.back.model.globalposition.AccountDto;
+import com.bbva.net.back.model.globalposition.AdquirenceAccountDto;
+import com.bbva.net.back.model.globalposition.BalanceDto;
+import com.bbva.net.back.model.globalposition.CreditCardDto;
+import com.bbva.net.back.model.globalposition.DepositDto;
+import com.bbva.net.back.model.globalposition.FundDto;
+import com.bbva.net.back.model.globalposition.GlobalProductsDto;
+import com.bbva.net.back.model.globalposition.LeasingDto;
+import com.bbva.net.back.model.globalposition.LoanDto;
+import com.bbva.net.back.model.globalposition.ProductDto;
+import com.bbva.net.back.model.globalposition.RotatingAccountDto;
 import com.bbva.net.back.predicate.AssetPredicated;
 import com.bbva.net.back.predicate.ProductTypePredicate;
 import com.bbva.net.back.service.ProductService;
@@ -38,24 +38,24 @@ import com.bbva.net.core.utils.CollectionBbvaUtils;
 public class ProductServiceImpl implements ProductService {
 
 	@Override
-	public <T extends ProductDTO> Money getTotal(final List<T> products) {
+	public <T extends ProductDto> Money getTotal(final List<T> products) {
 		return new Money(CollectionBbvaUtils.calculateTotal(products, "totalCash.amount"));
 	}
 
 	@Override
-	public <T extends ProductDTO> Money getTotalAvailable(final List<T> products) {
+	public <T extends ProductDto> Money getTotalAvailable(final List<T> products) {
 		return new Money(CollectionBbvaUtils.calculateTotal(products, "cashAvailable.amount"));
 	}
 	@Override
-	public <T extends ProductDTO> List<String> getNameProduct(final List<T> products) {
+	public <T extends ProductDto> List<String> getNameProduct(final List<T> products) {
 		return new ArrayList<String>(CollectionBbvaUtils.nameProduct(products, "productId"));
 	}
 	@SuppressWarnings("unchecked")
 	@Override
-	public Money getTotalAssets(final List<ProductDTO> products) {
+	public Money getTotalAssets(final List<ProductDto> products) {
 
 		// Get only asset productos
-		final List<ProductDTO> assetsProduct = (List<ProductDTO>)CollectionUtils
+		final List<ProductDto> assetsProduct = (List<ProductDto>)CollectionUtils
 				.select(products, new AssetPredicated());
 
 		// Calculate total cash from asset products
@@ -65,10 +65,10 @@ public class ProductServiceImpl implements ProductService {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public Money getTotalFinanciacion(final List<ProductDTO> products) {
+	public Money getTotalFinanciacion(final List<ProductDto> products) {
 
 		// Get only asset productos
-		final List<ProductDTO> assetsProduct = (List<ProductDTO>)CollectionUtils.select(products,
+		final List<ProductDto> assetsProduct = (List<ProductDto>)CollectionUtils.select(products,
 				PredicateUtils.notPredicate(new AssetPredicated()));
 
 		// Calculate total cash from asset products
@@ -77,32 +77,32 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public Map<String, BalanceDTO> getTotals(final GlobalProductsDTO globalProducts) {
+	public Map<String, BalanceDto> getTotals(final GlobalProductsDto globalProducts) {
 
-		final Map<String, BalanceDTO> totals = new HashMap<String, BalanceDTO>();
+		final Map<String, BalanceDto> totals = new HashMap<String, BalanceDto>();
 
-		totals.put(EnumProductType.PC.name(), new BalanceDTO(getTotalAvailable(globalProducts.getAccounts()),
+		totals.put(EnumProductType.PC.name(), new BalanceDto(getTotalAvailable(globalProducts.getAccounts()),
 				getTotal(globalProducts.getAccounts())));
 
-		totals.put(EnumProductType.AQ.name(), new BalanceDTO(getTotalAvailable(globalProducts.getAdquirencia()),
+		totals.put(EnumProductType.AQ.name(), new BalanceDto(getTotalAvailable(globalProducts.getAdquirencia()),
 				getTotal(globalProducts.getAdquirencia())));
 
-		totals.put(EnumProductType.TDC.name(), new BalanceDTO(getTotalAvailable(globalProducts.getCreditCards()),
+		totals.put(EnumProductType.TDC.name(), new BalanceDto(getTotalAvailable(globalProducts.getCreditCards()),
 				getTotal(globalProducts.getCreditCards())));
 
-		totals.put(EnumProductType.RQ.name(), new BalanceDTO(getTotalAvailable(globalProducts.getRotatingAccounts()),
+		totals.put(EnumProductType.RQ.name(), new BalanceDto(getTotalAvailable(globalProducts.getRotatingAccounts()),
 				getTotal(globalProducts.getRotatingAccounts())));
 
-		totals.put(EnumProductType.LI.name(), new BalanceDTO(getTotalAvailable(globalProducts.getLeasings()),
+		totals.put(EnumProductType.LI.name(), new BalanceDto(getTotalAvailable(globalProducts.getLeasings()),
 				getTotal(globalProducts.getLeasings())));
 
-		totals.put(EnumProductType.LO.name(), new BalanceDTO(getTotalAvailable(globalProducts.getLoan()),
+		totals.put(EnumProductType.LO.name(), new BalanceDto(getTotalAvailable(globalProducts.getLoan()),
 				getTotal(globalProducts.getLoan())));
 
-		totals.put(EnumProductType.SI.name(), new BalanceDTO(getTotalAvailable(globalProducts.getFunds()),
+		totals.put(EnumProductType.SI.name(), new BalanceDto(getTotalAvailable(globalProducts.getFunds()),
 				getTotal(globalProducts.getFunds())));
 
-		totals.put(EnumProductType.ED.name(), new BalanceDTO(getTotalAvailable(globalProducts.getElectronicDeposits()),
+		totals.put(EnumProductType.ED.name(), new BalanceDto(getTotalAvailable(globalProducts.getElectronicDeposits()),
 				getTotal(globalProducts.getElectronicDeposits())));
 
 		return totals;
@@ -111,9 +111,9 @@ public class ProductServiceImpl implements ProductService {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public Money getTotalProductsByType(final List<ProductDTO> products, final EnumProductType productType) {
+	public Money getTotalProductsByType(final List<ProductDto> products, final EnumProductType productType) {
 
-		final List<ProductDTO> productsByType = (List<ProductDTO>)CollectionUtils.select(products,
+		final List<ProductDto> productsByType = (List<ProductDto>)CollectionUtils.select(products,
 				new ProductTypePredicate(productType));
 
 		return getTotal(productsByType);
@@ -123,9 +123,9 @@ public class ProductServiceImpl implements ProductService {
 	 * 
 	 */
 	@Override
-	public List<ProductDTO> getProducts(final GlobalProductsDTO globalProduct) {
+	public List<ProductDto> getProducts(final GlobalProductsDto globalProduct) {
 
-		final List<ProductDTO> products = new ArrayList<ProductDTO>();
+		final List<ProductDto> products = new ArrayList<ProductDto>();
 
 		products.addAll(globalProduct.getAccounts());
 		products.addAll(globalProduct.getAdquirencia());
@@ -141,20 +141,20 @@ public class ProductServiceImpl implements ProductService {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public GlobalProductsDTO select(final GlobalProductsDTO globalProducts, final BbvaPredicate<ProductDTO> predicate) {
+	public GlobalProductsDto select(final GlobalProductsDto globalProducts, final BbvaPredicate<ProductDto> predicate) {
 
-		final GlobalProductsDTO result = new GlobalProductsDTO();
+		final GlobalProductsDto result = new GlobalProductsDto();
 
-		result.setAccounts((List<AccountDTO>)CollectionUtils.select(globalProducts.getAccounts(), predicate));
-		result.setAdquirencia((List<AdquirenceAccountDTO>)CollectionUtils.select(globalProducts.getAdquirencia(),
+		result.setAccounts((List<AccountDto>)CollectionUtils.select(globalProducts.getAccounts(), predicate));
+		result.setAdquirencia((List<AdquirenceAccountDto>)CollectionUtils.select(globalProducts.getAdquirencia(),
 				predicate));
-		result.setCreditCards((List<CreditCardDTO>)CollectionUtils.select(globalProducts.getCreditCards(), predicate));
-		result.setElectronicDeposits((List<DepositDTO>)CollectionUtils.select(globalProducts.getElectronicDeposits(),
+		result.setCreditCards((List<CreditCardDto>)CollectionUtils.select(globalProducts.getCreditCards(), predicate));
+		result.setElectronicDeposits((List<DepositDto>)CollectionUtils.select(globalProducts.getElectronicDeposits(),
 				predicate));
-		result.setFunds((List<FundDTO>)CollectionUtils.select(globalProducts.getFunds(), predicate));
-		result.setLeasings((List<LeasingDTO>)CollectionUtils.select(globalProducts.getLeasings(), predicate));
-		result.setLoan((List<LoanDTO>)CollectionUtils.select(globalProducts.getLoan(), predicate));
-		result.setRotatingAccounts((List<RotatingAccountDTO>)CollectionUtils.select(
+		result.setFunds((List<FundDto>)CollectionUtils.select(globalProducts.getFunds(), predicate));
+		result.setLeasings((List<LeasingDto>)CollectionUtils.select(globalProducts.getLeasings(), predicate));
+		result.setLoan((List<LoanDto>)CollectionUtils.select(globalProducts.getLoan(), predicate));
+		result.setRotatingAccounts((List<RotatingAccountDto>)CollectionUtils.select(
 				globalProducts.getRotatingAccounts(), predicate));
 
 		return result;
@@ -162,7 +162,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public Map<String, List<String>> getProductsName(GlobalProductsDTO globalProducts) {
+	public Map<String, List<String>> getProductsName(GlobalProductsDto globalProducts) {
 
 		final Map<String, List<String>> totals = new HashMap<String, List<String>>();
 

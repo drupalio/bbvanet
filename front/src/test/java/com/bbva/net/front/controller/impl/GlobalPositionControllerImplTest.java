@@ -8,7 +8,7 @@ import org.mockito.Mockito;
 import com.bbva.net.back.facade.FundsTypeFacade;
 import com.bbva.net.back.facade.GlobalMovementsFacade;
 import com.bbva.net.back.facade.GlobalPositionFacade;
-import com.bbva.net.back.model.globalposition.GlobalProductsDTO;
+import com.bbva.net.back.model.globalposition.GlobalProductsDto;
 import com.bbva.net.front.delegate.GraphicBarLineDelegate;
 import com.bbva.net.front.delegate.GraphicPieDelegate;
 
@@ -58,10 +58,10 @@ public class GlobalPositionControllerImplTest {
 		globalPositionController.setGraphicPieDelegate(graphicPieDelegate);
 
 		// prepara el test
-		Mockito.when(globalPositionFacade.getGlobalProductsByUser(DEFAULT_USER)).thenReturn(new GlobalProductsDTO());
+		Mockito.when(globalPositionFacade.getGlobalProductsByUser(DEFAULT_USER)).thenReturn(new GlobalProductsDto());
 
 		// invoca metodo a probar
-		final GlobalProductsDTO globalProducts = this.globalPositionController.getCustomerProducts();
+		final GlobalProductsDto globalProducts = this.globalPositionController.getCustomerProducts();
 
 		// Comprobar resultados
 		// Assert.assertNotNull(globalProducts);
@@ -101,7 +101,7 @@ public class GlobalPositionControllerImplTest {
 	@Test
 	public void checkGraphicPaiUI() {
 
-		GlobalProductsDTO globalProducts = Mockito.mock(GlobalProductsDTO.class);
+		GlobalProductsDto globalProducts = Mockito.mock(GlobalProductsDto.class);
 		this.globalPositionController.getSituationGraphicPieUI();
 
 		Assert.assertEquals(this.globalPositionController.getSituationGraphicPieUI(),

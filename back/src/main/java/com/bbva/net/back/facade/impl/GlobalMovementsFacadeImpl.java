@@ -11,7 +11,7 @@ import com.bbva.net.back.core.pattern.facade.AbstractBbvaFacade;
 import com.bbva.net.back.core.stereotype.Facade;
 import com.bbva.net.back.facade.GlobalMovementsFacade;
 import com.bbva.net.back.mapper.GlobalResumeMovementsMapper;
-import com.bbva.net.back.model.movements.GlobalResumeMovementsDTO;
+import com.bbva.net.back.model.movements.GlobalResumeMovementsDto;
 import com.bbva.net.webservices.customers.CustomerService;
 
 @Facade(value = "globalMovementsFacade")
@@ -27,7 +27,7 @@ public class GlobalMovementsFacadeImpl extends AbstractBbvaFacade implements Glo
 	private GlobalResumeMovementsMapper globalResumeMovementsMapper;
 
 	@Override
-	public GlobalResumeMovementsDTO getGlobalMovementsByCustomer(final String customerId) throws RestClientException {
+	public GlobalResumeMovementsDto getGlobalMovementsByCustomer(final String customerId) throws RestClientException {
 
 		final List<AccMovementsResume> response = this.customerService.listAccountsMovementsResume(customerId);
 		return globalResumeMovementsMapper.map(response);

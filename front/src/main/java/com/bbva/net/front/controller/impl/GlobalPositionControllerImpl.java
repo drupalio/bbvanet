@@ -17,10 +17,10 @@ import com.bbva.czic.dto.net.EnumProductType;
 import com.bbva.net.back.facade.CardsFacade;
 import com.bbva.net.back.facade.GlobalMovementsFacade;
 import com.bbva.net.back.facade.GlobalPositionFacade;
-import com.bbva.net.back.model.globalposition.BalanceDTO;
-import com.bbva.net.back.model.globalposition.FundDTO;
-import com.bbva.net.back.model.globalposition.GlobalProductsDTO;
-import com.bbva.net.back.model.movements.GlobalResumeMovementsDTO;
+import com.bbva.net.back.model.globalposition.BalanceDto;
+import com.bbva.net.back.model.globalposition.FundDto;
+import com.bbva.net.back.model.globalposition.GlobalProductsDto;
+import com.bbva.net.back.model.movements.GlobalResumeMovementsDto;
 import com.bbva.net.front.controller.GlobalPositionController;
 import com.bbva.net.front.core.AbstractBbvaController;
 import com.bbva.net.front.delegate.GraphicBarLineDelegate;
@@ -52,15 +52,15 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	@Resource(name = "graphicBarLineDelegate")
 	private transient GraphicBarLineDelegate graphicBarLineDelegate;
 
-	private GlobalProductsDTO globalProductsDTO;
+	private GlobalProductsDto globalProductsDTO;
 
-	private List<FundDTO> fundDTOs;
+	private List<FundDto> fundDTOs;
 
 	private SituationPiesUI situationGraphicPieUI;
 
 	private PieConfigUI graphicPieInvestmentFunds;
 
-	private GlobalResumeMovementsDTO globalResumeMovementsDTO;
+	private GlobalResumeMovementsDto globalResumeMovementsDTO;
 
 	private AccountBarLineUI accountGraphicBarLineUI;
 
@@ -68,7 +68,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	private ActivePanelType activePanel = ActivePanelType.SITUATION;
 
-	private Map<String, BalanceDTO> totalsProducts;
+	private Map<String, BalanceDto> totalsProducts;
 
 	private Map<String, List<String>> namesProducts;
 
@@ -118,12 +118,12 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	}
 
 	@Override
-	public GlobalProductsDTO getCustomerProducts() {
+	public GlobalProductsDto getCustomerProducts() {
 		return this.globalPositionFacade.getGlobalProductsVisibles(globalProductsDTO);
 	}
 
 	@Override
-	public GlobalProductsDTO getCustomerProductsHidden() {
+	public GlobalProductsDto getCustomerProductsHidden() {
 		return this.globalPositionFacade.getGlobalProductsHidden(globalProductsDTO);
 	}
 
@@ -168,7 +168,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	 * @return
 	 */
 	@Override
-	public Map<String, BalanceDTO> getTotalsProducts() {
+	public Map<String, BalanceDto> getTotalsProducts() {
 		return totalsProducts;
 	}
 
@@ -237,14 +237,14 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	/**
 	 * @return the fundDTOs
 	 */
-	public List<FundDTO> getFundDTOs() {
+	public List<FundDto> getFundDTOs() {
 		return fundDTOs;
 	}
 
 	/**
 	 * @param fundDTOs the fundDTOs to set
 	 */
-	public void setFundDTOs(List<FundDTO> fundDTOs) {
+	public void setFundDTOs(List<FundDto> fundDTOs) {
 		this.fundDTOs = fundDTOs;
 	}
 

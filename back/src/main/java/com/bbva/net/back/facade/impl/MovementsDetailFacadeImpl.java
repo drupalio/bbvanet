@@ -7,9 +7,9 @@ import com.bbva.net.back.core.pattern.facade.AbstractBbvaFacade;
 import com.bbva.net.back.core.stereotype.Facade;
 import com.bbva.net.back.facade.MovementsDetailFacade;
 import com.bbva.net.back.model.commons.Money;
-import com.bbva.net.back.model.movements.MovementDTO;
-import com.bbva.net.back.model.movements.MovementDetailDTO;
-import com.bbva.net.back.model.movements.MovementDetailOperationDTO;
+import com.bbva.net.back.model.movements.MovementDto;
+import com.bbva.net.back.model.movements.MovementDetailDto;
+import com.bbva.net.back.model.movements.MovementDetailOperationDto;
 
 @Facade(value = "movementsDetailFacade")
 public class MovementsDetailFacadeImpl extends AbstractBbvaFacade implements MovementsDetailFacade {
@@ -17,11 +17,11 @@ public class MovementsDetailFacadeImpl extends AbstractBbvaFacade implements Mov
 	private static final long serialVersionUID = 9136300938311662362L;
 
 	@Override
-	public MovementDTO getMovementDetailByMovementId(String numMovement) {
+	public MovementDto getMovementDetailByMovementId(String numMovement) {
 
-		MovementDTO movement = new MovementDTO();
-		MovementDetailDTO movementDetail = new MovementDetailDTO();
-		MovementDetailOperationDTO movementOperation = new MovementDetailOperationDTO();
+		MovementDto movement = new MovementDto();
+		MovementDetailDto movementDetail = new MovementDetailDto();
+		MovementDetailOperationDto movementOperation = new MovementDetailOperationDto();
 		Money moneyMovement = new Money();
 		Money moneyBalanceMovement = new Money();
 

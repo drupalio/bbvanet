@@ -1,6 +1,6 @@
 package com.bbva.net.front.controller;
 
-import com.bbva.net.back.model.movements.MovementDTO;
+import com.bbva.net.back.model.movements.MovementDto;
 
 /**
  * Interface que define los métodos que retornan los datos del detalle de los movimientos en los productos
@@ -14,7 +14,7 @@ public interface MovementDetailProductController {
 	 * 
 	 * @return
 	 */
-	MovementDTO getDetailMovementByAccount();
+	MovementDto getDetailMovementByAccount();
 
 	/**
 	 * Método que obtiene la lista de movimientos en una cuenta
