@@ -1,5 +1,6 @@
 package com.bbva.net.back.facade;
 
+import java.util.List;
 import java.util.Map;
 
 import com.bbva.net.back.model.globalposition.BalanceDTO;
@@ -31,4 +32,11 @@ public interface GlobalPositionFacade {
 	 * @return
 	 */
 	Map<String, BalanceDTO> getTotalsByProduct(GlobalProductsDTO globalProductsDTO);
+	
+	/**
+	 * 
+	 * @param globalProducts
+	 * @return
+	 */
+	Map<String, List<String>> getNamesProducts(GlobalProductsDTO globalProducts);
 }
