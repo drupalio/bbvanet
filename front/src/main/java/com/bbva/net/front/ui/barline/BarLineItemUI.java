@@ -1,7 +1,8 @@
 package com.bbva.net.front.ui.barline;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
+
+import com.bbva.net.back.model.commons.Money;
 
 /**
  * @author Entelgy
@@ -10,100 +11,44 @@ public class BarLineItemUI implements Serializable {
 
 	private static final long serialVersionUID = -2372578184295420459L;
 
-	private String color;
+	private Money inCome;
 
-	private BigDecimal value;
+	private Money outCome;
 
-	private String textLegend;
+	private Money balance;
 
-	private String percentage;
+	private String month;
 
-	private char currency = '$';
-
-	private String type;
-
-	/**
-	 * @return
-	 */
-	public String getColor() {
-		return color;
+	public Money getInCome() {
+		return inCome;
 	}
 
-	/**
-	 * @param color
-	 */
-	public void setColor(final String color) {
-		this.color = color;
+	public void setInCome(Money inCome) {
+		this.inCome = inCome;
 	}
 
-	/**
-	 * @return
-	 */
-	public BigDecimal getValue() {
-		return value;
+	public Money getOutCome() {
+		return outCome;
 	}
 
-	/**
-	 * @param value
-	 */
-	public void setValue(final BigDecimal value) {
-		this.value = value;
+	public void setOutCome(Money outCome) {
+		this.outCome = outCome;
 	}
 
-	/**
-	 * @return
-	 */
-	public String getTextLegend() {
-		return textLegend;
+	public Money getBalance() {
+		return balance;
 	}
 
-	/**
-	 * @param textLegend
-	 */
-	public void setTextLegend(final String textLegend) {
-		this.textLegend = textLegend;
+	public void setBalance(Money balance) {
+		this.balance = balance;
 	}
 
-	/**
-	 * @return
-	 */
-	public String getPercentage() {
-		return percentage;
+	public String getMonth() {
+		return month;
 	}
 
-	/**
-	 * @param percentage
-	 */
-	public void setPercentage(final String percentage) {
-		this.percentage = percentage;
-	}
-
-	/**
-	 * @return
-	 */
-	public char getCurrency() {
-		return currency;
-	}
-
-	/**
-	 * @param currency
-	 */
-	public void setCurrency(final char currency) {
-		this.currency = currency;
-	}
-
-	/**
-	 * @return
-	 */
-	public String getType() {
-		return type;
-	}
-
-	/**
-	 * @param type
-	 */
-	public void setType(final String type) {
-		this.type = type;
+	public void setMonth(String month) {
+		this.month = month;
 	}
 
 }

@@ -24,16 +24,18 @@
 				classSpan="arrow-left-smaller" classSpanFilter="filter"
 				title="#{msg['text.date']}">
 				<bbvaSearch:customSearchFilter
-					value="#{movementsCriteriaController.movementCriteria.selectDate}"
-					valueSince="#{movementsCriteriaController.movementCriteria.dateRange.dateSince}"
-					valueTo="#{movementsCriteriaController.movementCriteria.dateRange.dateTo}"
-					disabledButton="#{movementsCriteriaController.disabledButtonDate}"
-					disabledCalendar="#{movementsCriteriaController.disabledCalendar}"
-					actionListenerDate="#{movementsCriteriaController.setCustomDate}" />
+					value="#{quotaController.movementCriteria.selectDate}"
+					valueSince="#{quotaController.movementCriteria.dateRange.dateSince}"
+					valueTo="#{quotaController.movementCriteria.dateRange.dateTo}"
+					disabledButton="#{quotaController.disabledButtonDate}"
+					disabledCalendar="#{quotaController.disabledCalendar}"
+					actionListenerDate="#{quotaController.setCustomDate}"
+					listener="#{quotaController.oneSelectDate}" />
 			</bbvaSearch:customSearchList>
 
 			<bbvaSearch:searchButtonList show="true"
-				actionListener="#{movementsCriteriaController.searchMovementByFilter}" />
+				actionListenerRemove="#{quotaController.searchMovementByFilter}"
+				actionListenerShow="#{quotaController.searchMovementByFilter}" />
 		</bbvaSearch:personalizedSearchTabBody>
 	</h:form>
 </composite:implementation>

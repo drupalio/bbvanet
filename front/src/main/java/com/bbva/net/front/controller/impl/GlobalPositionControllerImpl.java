@@ -14,6 +14,7 @@ import com.bbva.net.back.facade.GlobalMovementsFacade;
 import com.bbva.net.back.facade.GlobalPositionFacade;
 import com.bbva.net.back.model.globalposition.BalanceDTO;
 import com.bbva.net.back.model.globalposition.GlobalProductsDTO;
+import com.bbva.net.back.model.movements.GlobalResumeMovementsDTO;
 import com.bbva.net.front.controller.GlobalPositionController;
 import com.bbva.net.front.core.AbstractBbvaController;
 import com.bbva.net.front.delegate.GraphicBarLineDelegate;
@@ -48,6 +49,8 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	private PieConfigUI graphicPieInvestmentFunds;
 
+	private GlobalResumeMovementsDTO globalResumeMovementsDTO;
+
 	private AccountBarLineUI accountGraphicBarLineUI;
 
 	private PieConfigUI graphicPieProducts;
@@ -70,7 +73,9 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		this.globalProductsDTO = this.globalPositionFacade.getGlobalProductsByUser(getCurrentUser());
 
 		// Obtiene la lista de resumen de movimientos del serivico REST
-		// this.globalMovementsDTO = this.globalMovementsFacade.getGlobalMovements();
+		// ESTA LINEA SE COMENTA, YA QUE SOLICITA OTRO CONSUMO DE SERVICIO, DIFERENTE AL GLOBAL POSITION
+		// SI ESTÁ ENCENDIDO UN MOCK EN SOAPUI PARA GP, EL MOCK DE CUSTOMER AL TIEMPO, LA APLICACION NO CORRE.
+		this.globalResumeMovementsDTO = this.globalMovementsFacade.getGlobalMovementsByCustomer(getCurrentUser());
 
 		// Calculate situation graphics panels
 		this.situationGraphicPieUI = graphicPieDelegate.getSituationGlobalProducts(this.globalProductsDTO);
@@ -85,7 +90,8 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		this.totalsProducts = this.globalPositionFacade.getTotalsByProduct(globalProductsDTO);
 
 		// Calculate income, output and balance by Account Graphic
-		// this.accountGraphicBarLineUI = this.graphicBarLineDelegate.getInOutBalanceByAccount();
+		// Acualmente obtiene el objeto Ui quemado en el delegate
+		this.accountGraphicBarLineUI = this.graphicBarLineDelegate.getInOutBalanceByAccount();
 
 	}
 
@@ -194,12 +200,21 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		this.graphicPieDelegate = graphicPieDelegate;
 	}
 
+	public void setGraphicBarLineDelegate(GraphicBarLineDelegate graphicBarLineDelegate) {
+		this.graphicBarLineDelegate = graphicBarLineDelegate;
+	}
+
 	public PieConfigUI getGraphicPieInvestmentFunds() {
 		return graphicPieInvestmentFunds;
 	}
 
 	public void setGraphicPieInvestmentFunds(PieConfigUI graphicPieInvestmentFunds) {
 		this.graphicPieInvestmentFunds = graphicPieInvestmentFunds;
+
+	}
+
+	public void setGlobalMovementsFacade(final GlobalMovementsFacade globalMovementsFacade) {
+		this.globalMovementsFacade = globalMovementsFacade;
 	}
 
 }

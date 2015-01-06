@@ -10,6 +10,7 @@
 	xmlns:cc="http://jsflive.at/taglib"
 	xmlns:jsf="http://xmlns.jcp.org/jsf"
 	xmlns:bbvaAccountGraphic="http://java.sun.com/jsf/composite/bbva/graphics/accounts"
+	xmlns:bbvaPieGraphic="http://java.sun.com/jsf/composite/bbva/graphics"
 	xmlns:bbvaGP="http://java.sun.com/jsf/composite/bbva/globalPosition">
 
 <composite:interface>
@@ -38,7 +39,8 @@
 
 		<div class="tab tab-bars chart">
 			<div>
-			<bbvaAccountGraphic:barGraphic/>
+			<bbvaAccountGraphic:barGraphic barLineUIList= "#{globalPositionController.accountGraphicBarLineUI}"/>
+			<bbvaPieGraphic:footerFiltersGraphic nameRight="Cuentas" nameLeft="Tiempo"/>
 <!-- 				<h3>GRAFICA555</h3> -->
 			</div>
 		</div>

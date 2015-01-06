@@ -7,9 +7,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for UserPreferences complex type.
+ * <p>Clase Java para UserPreferences complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="UserPreferences">
@@ -34,7 +34,7 @@ public class UserPreferences {
     protected String language;
 
     /**
-     * Gets the value of the language property.
+     * Obtiene el valor de la propiedad language.
      * 
      * @return
      *     possible object is
@@ -46,7 +46,7 @@ public class UserPreferences {
     }
 
     /**
-     * Sets the value of the language property.
+     * Define el valor de la propiedad language.
      * 
      * @param value
      *     allowed object is

@@ -4,11 +4,12 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/webflow 
     http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
 	
-	<var name="movementsAccountController" class="com.bbva.net.front.controller.impl.MovementsAccountControllerImpl"/>
+	<var name="quotaController" class="com.bbva.net.front.controller.impl.QuotaControllerImpl"/>
 	<var name="accountsController" class="com.bbva.net.front.controller.impl.AccountsControllerImpl"/>
 	
 	<on-start>
 		<evaluate expression="accountsController.getCustomerAccounts()" result="flowScope.customerAccounts" />
+		
 	</on-start>
 	
 	<view-state id="quotaDetail">

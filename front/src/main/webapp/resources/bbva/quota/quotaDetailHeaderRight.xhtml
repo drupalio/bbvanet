@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:cc="http://jsflive.at/taglib"
+	xmlns:bbvaDetAcc="http://java.sun.com/jsf/composite/bbva/tab"
+	xmlns:bbvaGP="http://java.sun.com/jsf/composite/bbva/globalPosition">
+
+
+<composite:interface>
+	<composite:attribute name="textUp" type="String" />
+	<composite:attribute name="valueUp" type="String" />
+	<composite:attribute name="textDown" type="String" />
+	<composite:attribute name="valueDown" type="String" />
+</composite:interface>
+
+
+<composite:implementation>
+	<div class="col-xs-6 col-md-4 right">
+		<p class="small">#{cc.attrs.textUp}</p>
+		<p class="balance">$ #{cc.attrs.valueUp}</p>
+		<p>
+			#{cc.attrs.textDown} <strong class="info-acuerdo">$ #{cc.attrs.valueDown}</strong>
+		</p>
+	</div>
+
+</composite:implementation>
+
+</html>

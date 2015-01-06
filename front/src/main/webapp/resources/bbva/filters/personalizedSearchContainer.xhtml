@@ -22,19 +22,26 @@
 			title="#{msg['text.title.personalized.search']}">
 			<bbvaSearch:customSearchList classList="date-filter customSearch"
 				classSpan="arrow-left-smaller" classSpanFilter="filter"
-				title="#{msg['text.date']}">
+				title="#{msg['text.date']}"
+				filterTitle="#{movementsCriteriaController.movementCriteria.dateRange.dateSince}"
+				filterMessage="#{movementsCriteriaController.movementCriteria.dateRange.dateTo}">
 				<bbvaSearch:customSearchFilter
 					value="#{movementsCriteriaController.movementCriteria.selectDate}"
 					valueSince="#{movementsCriteriaController.movementCriteria.dateRange.dateSince}"
 					valueTo="#{movementsCriteriaController.movementCriteria.dateRange.dateTo}"
 					disabledButton="#{movementsCriteriaController.disabledButtonDate}"
 					disabledCalendar="#{movementsCriteriaController.disabledCalendar}"
-					actionListenerDate="#{movementsCriteriaController.setCustomDate}" />
+					actionListenerDate="#{movementsCriteriaController.setCustomDate}"
+					listener="#{movementsCriteriaController.oneSelectDate}" />
 			</bbvaSearch:customSearchList>
 
 			<bbvaSearch:customSearchList classList="balance-filter"
 				classSpan="arrow-left-smaller" classSpanFilter="filter"
-				title="#{msg['text.balance']}">
+				title="#{msg['text.balance']}"
+				filterTitle="#{movementsCriteriaController.sinceText}"
+				filterTitle2="#{movementsCriteriaController.toText}"
+				filterMessage="#{movementsCriteriaController.movementCriteria.balanceRange.balanceSince}"
+				filterMessage2="#{movementsCriteriaController.movementCriteria.balanceRange.balanceTo}">
 				<bbvaSearch:balanceFilter
 					valueSince="#{movementsCriteriaController.movementCriteria.balanceRange.balanceSince}"
 					valueTo="#{movementsCriteriaController.movementCriteria.balanceRange.balanceTo}" />
@@ -54,7 +61,8 @@
 			</bbvaSearch:customSearchList>
 
 			<bbvaSearch:searchButtonList show="true"
-				actionListener="#{movementsCriteriaController.searchMovementByFilter}" />
+				actionListenerRemove="#{movementsCriteriaController.searchMovementByFilter}"
+				actionListenerShow="#{movementsCriteriaController.searchMovementByFilter}" />
 		</bbvaSearch:personalizedSearchTabBody>
 		<h:form id="formCheckBook">
 			<bbvaSearch:personalizedSearchTabBody
@@ -73,7 +81,7 @@
 					actionListenerCheck="#{movementsCriteriaController.setNumberCheckOrBook}" />
 
 				<bbvaSearch:searchButtonList show="false"
-					actionListener="#{movementsCriteriaController.searchNumberCheckOrBook}" />
+					actionListenerShow="#{movementsCriteriaController.searchNumberCheckOrBook}" />
 			</bbvaSearch:personalizedSearchTabBody>
 		</h:form>
 		<h:form id="downExtract">

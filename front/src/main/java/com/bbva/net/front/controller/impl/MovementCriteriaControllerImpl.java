@@ -41,6 +41,10 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 	private boolean disabledButtonDate = true;
 
 	private StringBuilder messageBalance;
+	
+	private String sinceText;
+	
+	private String toText;
 
 	private MovementCriteriaDto movementCriteria = new MovementCriteriaDto();
 
@@ -85,6 +89,8 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 	@Override
 	public void setBalanceRange(final ActionEvent event) {
 		System.out.println("Method setBalance");
+		setSinceText("Desde: ");
+		setToText("Hasta: ");
 		System.out.println("Since " + movementCriteria.getBalanceRange().getBalanceSince());
 		System.out.println("To " + movementCriteria.getBalanceRange().getBalanceTo());
 	}
@@ -301,5 +307,37 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 	 */
 	public void setDisabledButtonDate(boolean disabledButtonDate) {
 		this.disabledButtonDate = disabledButtonDate;
+	}
+
+	
+	/**
+	 * @return the sinceText
+	 */
+	public String getSinceText() {
+		return sinceText;
+	}
+
+	
+	/**
+	 * @param sinceText the sinceText to set
+	 */
+	public void setSinceText(String sinceText) {
+		this.sinceText = sinceText;
+	}
+
+	
+	/**
+	 * @return the toText
+	 */
+	public String getToText() {
+		return toText;
+	}
+
+	
+	/**
+	 * @param toText the toText to set
+	 */
+	public void setToText(String toText) {
+		this.toText = toText;
 	}
 }

@@ -15,6 +15,9 @@
 
 <composite:interface>
 	<composite:attribute name="title" type="String" />
+	<composite:attribute name="valueDateSince" />
+	<composite:attribute name="valueDateTo" />
+	<composite:attribute name="id" />
 
 </composite:interface>
 
@@ -23,11 +26,11 @@
 		<div>
 			<input type="text" maxlength="10"
 				class="datepicker form-control calendar valid"
-				jsf:id="customSearch-dateFieldFrom" name="dateFieldFrom"
+				jsf:id="#{cc.attrs.id}" name="dateFieldFrom"
 				placeholder="__/__/____" autocomplete="off"
 				data-date-format="dd/mm/yyyy" data-provide="datepicker-inline"
 				data-filter="Desde: " aria-required="true"
-				jsf:value="#{calendar.date}"/>
+				jsf:value="#{cc.attrs.valeDateSice}" />
 			<f:ajax event="mouseover" listener="#{calendar.capturaFecha}" />
 		</div>
 
