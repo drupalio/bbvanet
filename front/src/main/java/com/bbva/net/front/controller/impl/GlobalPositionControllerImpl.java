@@ -12,8 +12,6 @@ import javax.faces.view.ViewScoped;
 
 import org.primefaces.event.SelectEvent;
 
-import com.bbva.czic.dto.net.EnumProductType;
-import com.bbva.net.back.facade.CardsFacade;
 import com.bbva.net.back.facade.GlobalMovementsFacade;
 import com.bbva.net.back.facade.GlobalPositionFacade;
 import com.bbva.net.back.model.globalposition.BalanceDTO;
@@ -65,6 +63,16 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	private Map<String, BalanceDTO> totalsProducts;
 	
 	private Map<String, List<String>> namesProducts;
+	
+	private String datos;
+
+	public String getDatos() {
+		return datos;
+	}
+
+	public void setDatos(String datos) {
+		this.datos = datos;
+	}
 
 	private enum ActivePanelType {
 
@@ -106,7 +114,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	@Override
 	public void preRender(final ComponentSystemEvent event) {
-
+		
 	}
 
 	@Override
@@ -197,6 +205,16 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		super.onProductSelected(selectEvent);
 		this.sendAction("accountSelected");
 
+	}
+	
+	public void onComboSelectedCard() {
+		System.out.println("Seleciona combo tarjetas"+datos);
+		this.graphicPieCards = graphicPieDelegate.getAccountsfundsProducts(this.globalProductsDTO);
+
+	}
+	
+	public void onComboSelectedAccount() {
+		System.out.println("Seleciona combo cuentas"+datos);
 	}
 	
 	public List<String> periodGraphics(){

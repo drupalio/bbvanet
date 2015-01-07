@@ -45,7 +45,7 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 		final PieItemUI othersPieItem = new PieItemUI("el color",cardsCharges.get(2).getCategorie(), cardsCharges.get(2).getAmmount().getAmount());
 		final PieItemUI leisurePieItem = new PieItemUI("el color",cardsCharges.get(3).getCategorie(), cardsCharges.get(3).getAmmount().getAmount());
 		final PieItemUI booksPieItem = new PieItemUI("el color",cardsCharges.get(4).getCategorie(), cardsCharges.get(4).getAmmount().getAmount());
-		final PieItemUI commercePieItem = new PieItemUI("el color",cardsCharges.get(5).getCategorie(), cardsCharges.get(5).getAmmount().getAmount());
+		final PieItemUI commercePieItem = new PieItemUI("#197AC4",cardsCharges.get(5).getCategorie(), cardsCharges.get(5).getAmmount().getAmount());
 		
 		assetPieItems.add(salesPieItem);
 		assetPieItems.add(clothesPieItem);

@@ -18,7 +18,7 @@ public class CustomerServiceImpl extends AbstractBbvaRestService implements Cust
 	@Value("${rest.customer.url}")
 	private String URL_CUSTOMER;
 
-	@Value("${rest.cardcharges.url}")
+	@Value("${rest.cardsCharges.url}")
 	private String URL_CARDCHARGES;
 
 	@Override
