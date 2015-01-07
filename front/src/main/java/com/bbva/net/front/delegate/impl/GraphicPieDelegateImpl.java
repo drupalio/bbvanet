@@ -1,6 +1,5 @@
 package com.bbva.net.front.delegate.impl;
 
-import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,15 +7,18 @@ import java.util.ResourceBundle;
 
 import javax.annotation.Resource;
 
-import com.bbva.czic.dto.net.EnumCardChargeCategory;
+import com.bbva.czic.dto.net.EnumFundsType;
 import com.bbva.czic.dto.net.EnumProductType;
+import com.bbva.net.back.model.globalposition.FundDto;
 import com.bbva.net.back.facade.CardsFacade;
-import com.bbva.net.back.model.cards.CardsChargesDTO;
-import com.bbva.net.back.model.globalposition.GlobalProductsDTO;
-import com.bbva.net.back.model.globalposition.ProductDTO;
+import com.bbva.net.back.model.cards.CardsChargesDto;
+import com.bbva.net.back.model.globalposition.GlobalProductsDto;
+import com.bbva.net.back.model.globalposition.ProductDto;
+import com.bbva.net.back.service.FundsService;
 import com.bbva.net.back.service.ProductService;
 import com.bbva.net.front.core.stereotype.Delegate;
 import com.bbva.net.front.delegate.GraphicPieDelegate;
+import com.bbva.net.front.helper.MessagesHelper;
 import com.bbva.net.front.ui.globalposition.SituationPiesUI;
 import com.bbva.net.front.ui.pie.PieConfigUI;
 import com.bbva.net.front.ui.pie.PieItemUI;
@@ -29,16 +31,19 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 
 	@Resource(name = "productService")
 	private ProductService productService;
-	
+
 	@Resource(name = "cardsFacade")
 	private CardsFacade cardsFacade;
+
+	@Resource(name = "fundsService")
+	private FundsService fundsService;
 
 	public PieConfigUI getCardGraphicByUser(final String customerId) {
 
 		final PieConfigUI assetPie = new PieConfigUI();
 		assetPie.setHeaderCenter("Pesos ($)");
 		final List<PieItemUI> assetPieItems = new ArrayList<PieItemUI>();
-		final List<CardsChargesDTO> cardsCharges = cardsFacade.getCardsChargesByUser(customerId);
+		final List<CardsChargesDto> cardsCharges = cardsFacade.getCardsChargesByUser(customerId);
 		
 		final PieItemUI salesPieItem = new PieItemUI("el color", cardsCharges.get(0).getCategorie(), cardsCharges.get(0).getAmmount().getAmount());
 		final PieItemUI clothesPieItem = new PieItemUI("el color",cardsCharges.get(1).getCategorie(), cardsCharges.get(1).getAmmount().getAmount());
@@ -46,6 +51,7 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 		final PieItemUI leisurePieItem = new PieItemUI("el color",cardsCharges.get(3).getCategorie(), cardsCharges.get(3).getAmmount().getAmount());
 		final PieItemUI booksPieItem = new PieItemUI("el color",cardsCharges.get(4).getCategorie(), cardsCharges.get(4).getAmmount().getAmount());
 		final PieItemUI commercePieItem = new PieItemUI("#197AC4",cardsCharges.get(5).getCategorie(), cardsCharges.get(5).getAmmount().getAmount());
+		
 		
 		assetPieItems.add(salesPieItem);
 		assetPieItems.add(clothesPieItem);
@@ -60,10 +66,10 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 	}
 
 	@Override
-	public SituationPiesUI getSituationGlobalProducts(final GlobalProductsDTO globalProducts) {
+	public SituationPiesUI getSituationGlobalProducts(final GlobalProductsDto globalProducts) {
 
 		final SituationPiesUI situationPiesUI = new SituationPiesUI();
-		final List<ProductDTO> productList = productService.getProducts(globalProducts);
+		final List<ProductDto> productList = productService.getProducts(globalProducts);
 
 		situationPiesUI.setSituation(getSituationPieConfig(productList));
 		situationPiesUI.setAssets(getAssetPieConfig(productList));
@@ -81,7 +87,7 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 	 * @param List<Product> products
 	 * @return PieConfigUI
 	 */
-	public PieConfigUI getSituationPieConfig(final List<ProductDTO> products) {
+	public PieConfigUI getSituationPieConfig(final List<ProductDto> products) {
 
 		final PieConfigUI situationPie = new PieConfigUI();
 
@@ -105,7 +111,7 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 	 * @param List<Product> products
 	 * @return PieConfigUI
 	 */
-	public PieConfigUI getAssetPieConfig(final List<ProductDTO> products) {
+	public PieConfigUI getAssetPieConfig(final List<ProductDto> products) {
 
 		final PieConfigUI assetPie = new PieConfigUI();
 		assetPie.setHeaderLeft(" Activos ");
@@ -141,7 +147,7 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 	 * @param List<Product> products
 	 * @return PieConfigUI
 	 */
-	public PieConfigUI getFinanciationPieConfig(final List<ProductDTO> products) {
+	public PieConfigUI getFinanciationPieConfig(final List<ProductDto> products) {
 
 		final PieConfigUI financiationPie = new PieConfigUI();
 		DecimalFormat myFormatter = new DecimalFormat(ResourceBundle.getBundle("i18n_es").getString(
@@ -170,18 +176,18 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 	}
 
 	@Override
-	public PieConfigUI getAccountsfundsProducts(final GlobalProductsDTO globalProducts) {
+	public PieConfigUI getAccountsfundsProducts(final List<FundDto> funds) {
 
 		final PieConfigUI fundsPie = new PieConfigUI();
 
 		final List<PieItemUI> fundsPieItems = new ArrayList<PieItemUI>();
-		final List<ProductDTO> products = productService.getProducts(globalProducts);
 
-		final PieItemUI valorPieItem = new PieItemUI("#197AC4", "Valor plus", this.productService
-				.getTotalProductsByType(products, EnumProductType.SI).getAmount());
-
-		final PieItemUI garantPieItem = new PieItemUI("#83C030", "Garantizado selección Consumo", this.productService
-				.getTotalProductsByType(products, EnumProductType.SI).getAmount());
+		final PieItemUI valorPieItem = new PieItemUI("#197AC4",
+				MessagesHelper.INSTANCE.getString("graphicFunds.plusValue"), this.fundsService.getTotalFundByType(
+						funds, EnumFundsType.plusValue).getAmount());
+		final PieItemUI garantPieItem = new PieItemUI("#83C030",
+				MessagesHelper.INSTANCE.getString("graphicFunds.guaranteedValue"), this.fundsService
+						.getTotalFundByType(funds, EnumFundsType.guaranteedValue).getAmount());
 
 		fundsPieItems.add(garantPieItem);
 		fundsPieItems.add(valorPieItem);

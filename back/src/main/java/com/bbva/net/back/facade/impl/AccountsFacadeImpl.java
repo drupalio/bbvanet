@@ -8,8 +8,8 @@ import com.bbva.net.back.core.pattern.facade.AbstractBbvaFacade;
 import com.bbva.net.back.core.stereotype.Facade;
 import com.bbva.net.back.facade.AccountsFacade;
 import com.bbva.net.back.facade.GlobalPositionFacade;
-import com.bbva.net.back.model.globalposition.AccountDTO;
-import com.bbva.net.back.model.globalposition.GlobalProductsDTO;
+import com.bbva.net.back.model.globalposition.AccountDto;
+import com.bbva.net.back.model.globalposition.GlobalProductsDto;
 import com.bbva.net.back.predicate.HiddenProductPredicate;
 import com.bbva.net.back.predicate.VisibleProductPredicate;
 import com.bbva.net.back.service.ProductService;
@@ -26,15 +26,15 @@ public class AccountsFacadeImpl extends AbstractBbvaFacade implements AccountsFa
 	private ProductService productService;
 
 	@Override
-	public List<AccountDTO> getAccountsByUser(String user) {
+	public List<AccountDto> getAccountsByUser(String user) {
 
-		final GlobalProductsDTO globalProductsDTO = this.globalPositionFacade.getGlobalProductsByUser(user);
+		final GlobalProductsDto globalProductsDTO = this.globalPositionFacade.getGlobalProductsByUser(user);
 		return productService.select(globalProductsDTO, new VisibleProductPredicate()).getAccounts();
 	}
 
 	@Override
-	public List<AccountDTO> getAccountsByUserHidden(String user) {
-		final GlobalProductsDTO globalProductsDTO = this.globalPositionFacade.getGlobalProductsByUser(user);
+	public List<AccountDto> getAccountsByUserHidden(String user) {
+		final GlobalProductsDto globalProductsDTO = this.globalPositionFacade.getGlobalProductsByUser(user);
 		return productService.select(globalProductsDTO, new HiddenProductPredicate()).getAccounts();
 	}
 

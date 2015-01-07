@@ -6,12 +6,13 @@ package com.bbva.net.front.controller.impl;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.AjaxBehaviorEvent;
 
+import org.primefaces.event.SelectEvent;
 import org.springframework.stereotype.Controller;
 
 import com.bbva.net.back.model.accounts.TermsAccountsDto;
 import com.bbva.net.back.model.citeriaMovements.MovementCriteriaDto;
-import com.bbva.net.back.model.globalposition.RotatingAccountDTO;
-import com.bbva.net.back.model.movements.PersonalizeAccountDTO;
+import com.bbva.net.back.model.globalposition.RotatingAccountDto;
+import com.bbva.net.back.model.personalize.PersonalizeAccountDto;
 import com.bbva.net.back.model.quota.QuotaDetailDto;
 import com.bbva.net.front.controller.QuotaController;
 import com.bbva.net.front.core.AbstractBbvaController;
@@ -32,25 +33,7 @@ public class QuotaControllerImpl extends AbstractBbvaController implements Quota
 
 	private MovementCriteriaDto movementCriteria = new MovementCriteriaDto();
 
-	/**
-	 * @return the movementCriteria
-	 */
-	public MovementCriteriaDto getMovementCriteria() {
-		return movementCriteria;
-	}
-
-	/**
-	 * @param movementCriteria the movementCriteria to set
-	 */
-	public void setMovementCriteria(MovementCriteriaDto movementCriteria) {
-		this.movementCriteria = movementCriteria;
-	}
-
-	@Override
-	public PersonalizeAccountDTO getPersonalizeProductAccountDto() {
-		// TODO Auto-generated method sgetSelectedProduct();()
-		return null;
-	}
+	private PersonalizeAccountDto personalizeAccountDto = new PersonalizeAccountDto();
 
 	@Override
 	public TermsAccountsDto getAllConditions() {
@@ -97,6 +80,20 @@ public class QuotaControllerImpl extends AbstractBbvaController implements Quota
 		}
 	}
 
+	@Override
+	public void onProductSelected(SelectEvent selectEvent) {
+		super.onProductSelected(selectEvent);
+	}
+
+	public RotatingAccountDto getSelectedProduct() {
+		return (RotatingAccountDto)super.getSelectedProduct();
+	}
+
+	// @Override
+	// public List<QuotaRotatingDto> getQuotaRotary() {
+	// return this.LoanFacade.getCustomerRotatingAccount(getCurrentUser());
+	// }
+
 	/**
 	 * @return the disabledCalendar
 	 */
@@ -126,9 +123,32 @@ public class QuotaControllerImpl extends AbstractBbvaController implements Quota
 
 	}
 
-	@Override
-	public RotatingAccountDTO getSelectedProduct() {
-		return (RotatingAccountDTO)super.getSelectedProduct();
+	/**
+	 * @return the movementCriteria
+	 */
+	public MovementCriteriaDto getMovementCriteria() {
+		return movementCriteria;
+	}
+
+	/**
+	 * @param movementCriteria the movementCriteria to set
+	 */
+	public void setMovementCriteria(MovementCriteriaDto movementCriteria) {
+		this.movementCriteria = movementCriteria;
+	}
+
+	/**
+	 * @return the personalizeAccountDto
+	 */
+	public PersonalizeAccountDto getPersonalizeAccountDto() {
+		return personalizeAccountDto;
+	}
+
+	/**
+	 * @param personalizeAccountDto the personalizeAccountDto to set
+	 */
+	public void setPersonalizeAccountDto(PersonalizeAccountDto personalizeAccountDto) {
+		this.personalizeAccountDto = personalizeAccountDto;
 	}
 
 	@Override

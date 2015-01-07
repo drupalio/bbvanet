@@ -1,5 +1,6 @@
 package com.bbva.net.back.model.quota;
 
+import com.bbva.net.back.model.movements.QuotaDetailMovDto;
 import com.bbva.net.core.test.AbstractBbvaDTOTest;
 
 public class QuotaDetailMovDtoTest extends AbstractBbvaDTOTest<QuotaDetailMovDto> {

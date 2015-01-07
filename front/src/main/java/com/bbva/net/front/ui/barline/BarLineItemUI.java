@@ -11,36 +11,26 @@ public class BarLineItemUI implements Serializable {
 
 	private static final long serialVersionUID = -2372578184295420459L;
 
-	private Money inCome;
+	private String typeMovement;
 
-	private Money outCome;
-
-	private Money balance;
+	private Money value;
 
 	private String month;
 
-	public Money getInCome() {
-		return inCome;
+	public String getTypeMovement() {
+		return typeMovement;
 	}
 
-	public void setInCome(Money inCome) {
-		this.inCome = inCome;
+	public void setTypeMovement(String typeMovement) {
+		this.typeMovement = typeMovement;
 	}
 
-	public Money getOutCome() {
-		return outCome;
+	public Money getValue() {
+		return value;
 	}
 
-	public void setOutCome(Money outCome) {
-		this.outCome = outCome;
-	}
-
-	public Money getBalance() {
-		return balance;
-	}
-
-	public void setBalance(Money balance) {
-		this.balance = balance;
+	public void setValue(Money value) {
+		this.value = value;
 	}
 
 	public String getMonth() {

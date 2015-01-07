@@ -12,9 +12,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for Loan complex type.
+ * <p>Clase Java para Loan complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="Loan">
@@ -40,24 +40,24 @@ public class Loan
     extends Product
 {
 
-    @XmlElementRefs({
-        @XmlElementRef(name = "payment", type = JAXBElement.class),
-        @XmlElementRef(name = "status", type = JAXBElement.class),
-        @XmlElementRef(name = "balance", type = JAXBElement.class)
-    })
+//    @XmlElementRefs({
+//        @XmlElementRef(name = "balance", type = JAXBElement.class, required = false),
+//        @XmlElementRef(name = "payment", type = JAXBElement.class, required = false),
+//        @XmlElementRef(name = "status", type = JAXBElement.class, required = false)
+//    })
     protected List<JAXBElement<?>> rest;
 
     /**
-     * Gets the rest of the content model. 
+     * Obtiene el resto del modelo de contenido. 
      * 
      * <p>
-     * You are getting this "catch-all" property because of the following reason: 
-     * The field name "Balance" is used by two different parts of a schema. See: 
-     * line 0 of file:/C:/Users/Nerly/Documents/trabajo/bbvaNueva/webservices/src/main/resources/wadl/loan.wadl#grammar1
-     * line 0 of file:/C:/Users/Nerly/Documents/trabajo/bbvaNueva/webservices/src/main/resources/wadl/loan.wadl#grammar1
+     * Ha obtenido esta propiedad que permite capturar todo por el siguiente motivo: 
+     * El nombre de campo "Balance" se est� utilizando en dos partes diferentes de un esquema. Consulte: 
+     * l�nea 0 de file:/C:/Jhon/Entelgy/BLUE%20SPRING/WS/bbvaNet/bbvanet/webservices/src/main/resources/wadl/loan.xml#grammar1
+     * l�nea 0 de file:/C:/Jhon/Entelgy/BLUE%20SPRING/WS/bbvaNet/bbvanet/webservices/src/main/resources/wadl/loan.xml#grammar1
      * <p>
-     * To get rid of this property, apply a property customization to one 
-     * of both of the following declarations to change their names: 
+     * Para deshacerse de esta propiedad, aplique una personalizaci�n de propiedad a una
+     * de las dos declaraciones siguientes para cambiarles de nombre: 
      * Gets the value of the rest property.
      * 
      * <p>
@@ -75,9 +75,9 @@ public class Loan
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
+     * {@link JAXBElement }{@code <}{@link Balance }{@code >}
      * {@link JAXBElement }{@code <}{@link Payment }{@code >}
      * {@link JAXBElement }{@code <}{@link EnumLoanStatus }{@code >}
-     * {@link JAXBElement }{@code <}{@link Balance }{@code >}
      * 
      * 
      */

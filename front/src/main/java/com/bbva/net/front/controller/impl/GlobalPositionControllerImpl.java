@@ -13,10 +13,13 @@ import javax.faces.view.ViewScoped;
 import org.primefaces.event.SelectEvent;
 
 import com.bbva.net.back.facade.GlobalMovementsFacade;
+import com.bbva.net.back.facade.FundsTypeFacade;
 import com.bbva.net.back.facade.GlobalPositionFacade;
-import com.bbva.net.back.model.globalposition.BalanceDTO;
-import com.bbva.net.back.model.globalposition.GlobalProductsDTO;
-import com.bbva.net.back.model.movements.GlobalResumeMovementsDTO;
+import com.bbva.net.back.model.globalposition.BalanceDto;
+import com.bbva.net.back.model.globalposition.FundDto;
+import com.bbva.net.back.model.globalposition.GlobalProductsDto;
+import com.bbva.net.back.model.movements.GlobalResumeMovementsDto;
+import com.bbva.net.back.facade.MovementsResumeFacade;
 import com.bbva.net.front.controller.GlobalPositionController;
 import com.bbva.net.front.core.AbstractBbvaController;
 import com.bbva.net.front.delegate.GraphicBarLineDelegate;
@@ -36,8 +39,11 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	@Resource(name = "globalPositionFacade")
 	private transient GlobalPositionFacade globalPositionFacade;
 
+	@Resource(name = "fundsTypeFacade")
+	private transient FundsTypeFacade fundsTypeFacade;
+
 	@Resource(name = "globalMovementsFacade")
-	private transient GlobalMovementsFacade globalMovementsFacade;
+	private transient MovementsResumeFacade movementsResumeFacade;
 
 	@Resource(name = "graphicPieDelegate")
 	private transient GraphicPieDelegate graphicPieDelegate;
@@ -45,14 +51,15 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	@Resource(name = "graphicBarLineDelegate")
 	private transient GraphicBarLineDelegate graphicBarLineDelegate;
 
+	private GlobalProductsDto globalProductsDTO;
 
-	private GlobalProductsDTO globalProductsDTO;
+	private List<FundDto> fundDTOs;
 
 	private SituationPiesUI situationGraphicPieUI;
 
 	private PieConfigUI graphicPieInvestmentFunds;
 
-	private GlobalResumeMovementsDTO globalResumeMovementsDTO;
+	private GlobalResumeMovementsDto globalResumeMovementsDTO;
 
 	private AccountBarLineUI accountGraphicBarLineUI;
 
@@ -60,8 +67,8 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	private ActivePanelType activePanel = ActivePanelType.SITUATION;
 
-	private Map<String, BalanceDTO> totalsProducts;
-	
+	private Map<String, BalanceDto> totalsProducts;
+
 	private Map<String, List<String>> namesProducts;
 	
 	private String datos;
@@ -87,16 +94,16 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		// Get GlobalProductsDTO by currentUser (visibles and hidden)
 		this.globalProductsDTO = this.globalPositionFacade.getGlobalProductsByUser(getCurrentUser());
 
+		this.fundDTOs = this.fundsTypeFacade.getFundsDataGraphic(getCurrentUser());
+
 		// Obtiene la lista de resumen de movimientos del serivico REST
-		// ESTA LINEA SE COMENTA, YA QUE SOLICITA OTRO CONSUMO DE SERVICIO, DIFERENTE AL GLOBAL POSITION
-		// SI ESTÁ ENCENDIDO UN MOCK EN SOAPUI PARA GP, EL MOCK DE CUSTOMER AL TIEMPO, LA APLICACION NO CORRE.
-		this.globalResumeMovementsDTO = this.globalMovementsFacade.getGlobalMovementsByCustomer(getCurrentUser());
+		this.globalResumeMovementsDTO = this.movementsResumeFacade.getMovementsResumeByeCustomer(getCurrentUser());
 
 		// Calculate situation graphics panels
 		this.situationGraphicPieUI = graphicPieDelegate.getSituationGlobalProducts(this.globalProductsDTO);
 
 		// Calculate investmentFunds graphics panels
-		this.graphicPieInvestmentFunds = graphicPieDelegate.getAccountsfundsProducts(this.globalProductsDTO);
+		this.graphicPieInvestmentFunds = graphicPieDelegate.getAccountsfundsProducts(this.fundDTOs);
 
 		// Calculate situation graphics panels
 		this.graphicPieCards = graphicPieDelegate.getCardGraphicByUser(getCurrentUser());
@@ -106,10 +113,12 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 		// Calculate income, output and balance by Account Graphic
 		// Acualmente obtiene el objeto Ui quemado en el delegate
-		this.accountGraphicBarLineUI = this.graphicBarLineDelegate.getInOutBalanceByAccount();
-		
-		//Get names of products
-		this.namesProducts=globalPositionFacade.getNamesProducts(globalProductsDTO);
+
+		this.accountGraphicBarLineUI = this.graphicBarLineDelegate.getInOutBalanceByAccount(globalResumeMovementsDTO);
+
+		// Get names of products
+		this.namesProducts = globalPositionFacade.getNamesProducts(globalProductsDTO);
+
 	}
 
 	@Override
@@ -118,12 +127,12 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	}
 
 	@Override
-	public GlobalProductsDTO getCustomerProducts() {
+	public GlobalProductsDto getCustomerProducts() {
 		return this.globalPositionFacade.getGlobalProductsVisibles(globalProductsDTO);
 	}
 
 	@Override
-	public GlobalProductsDTO getCustomerProductsHidden() {
+	public GlobalProductsDto getCustomerProductsHidden() {
 		return this.globalPositionFacade.getGlobalProductsHidden(globalProductsDTO);
 	}
 
@@ -168,7 +177,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	 * @return
 	 */
 	@Override
-	public Map<String, BalanceDTO> getTotalsProducts() {
+	public Map<String, BalanceDto> getTotalsProducts() {
 		return totalsProducts;
 	}
 
@@ -178,15 +187,15 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	public void setSelectedLike(final String selectedLike) {
 		this.selectedLike = selectedLike;
 	}
+
 	/**
-	 * 
 	 * @return
 	 */
 	public PieConfigUI getGraphicPieCards() {
 		return graphicPieCards;
 	}
+
 	/**
-	 * 
 	 * @param graphicPieCards
 	 */
 	public void setGraphicPieCards(PieConfigUI graphicPieCards) {
@@ -206,10 +215,9 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		this.sendAction("accountSelected");
 
 	}
-	
 	public void onComboSelectedCard() {
 		System.out.println("Seleciona combo tarjetas"+datos);
-		this.graphicPieCards = graphicPieDelegate.getAccountsfundsProducts(this.globalProductsDTO);
+		this.graphicPieCards = graphicPieDelegate.getAccountsfundsProducts(this.fundDTOs);
 
 	}
 	
@@ -225,6 +233,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		period.add("Últimos mes");
 		return period;
 	}
+
 	/************************************* SETTER BEANS **************************************/
 
 	public void setGlobalPositionFacade(final GlobalPositionFacade globalPositionFacade) {
@@ -243,15 +252,43 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		return graphicPieInvestmentFunds;
 	}
 
+	/**
+	 * @return the fundDTOs
+	 */
+	public List<FundDto> getFundDTOs() {
+		return fundDTOs;
+	}
+
+	/**
+	 * @param fundDTOs the fundDTOs to set
+	 */
+	public void setFundDTOs(List<FundDto> fundDTOs) {
+		this.fundDTOs = fundDTOs;
+	}
+
 	public void setGraphicPieInvestmentFunds(PieConfigUI graphicPieInvestmentFunds) {
 		this.graphicPieInvestmentFunds = graphicPieInvestmentFunds;
 
 	}
 
-	public void setGlobalMovementsFacade(final GlobalMovementsFacade globalMovementsFacade) {
-		this.globalMovementsFacade = globalMovementsFacade;
+	public void setMovementsResumeFacade(final MovementsResumeFacade movementsResumeFacade) {
+		this.movementsResumeFacade = movementsResumeFacade;
 	}
-	
+
+	/**
+	 * @return the fundsTypeFacade
+	 */
+	public FundsTypeFacade getFundsTypeFacade() {
+		return fundsTypeFacade;
+	}
+
+	/**
+	 * @param fundsTypeFacade the fundsTypeFacade to set
+	 */
+	public void setFundsTypeFacade(FundsTypeFacade fundsTypeFacade) {
+		this.fundsTypeFacade = fundsTypeFacade;
+	}
+
 	public Map<String, List<String>> getNamesProducts() {
 		return namesProducts;
 	}

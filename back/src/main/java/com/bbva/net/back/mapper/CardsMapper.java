@@ -4,9 +4,9 @@ import java.util.List;
 
 import com.bbva.czic.dto.net.CardCharge;
 import com.bbva.czic.dto.net.Product;
-import com.bbva.net.back.model.cards.CardsChargesDTO;
-import com.bbva.net.back.model.globalposition.CreditCardDTO;
-import com.bbva.net.back.model.globalposition.GlobalProductsDTO;
+import com.bbva.net.back.model.cards.CardsChargesDto;
+import com.bbva.net.back.model.globalposition.CreditCardDto;
+import com.bbva.net.back.model.globalposition.GlobalProductsDto;
 
 public interface CardsMapper {
 
@@ -15,6 +15,6 @@ public interface CardsMapper {
 	 * @param CardCharges
 	 * @return
 	 */
-	List<CardsChargesDTO> map(List<CardCharge> CardCharges);
+	List<CardsChargesDto> map(List<CardCharge> CardCharges);
 
 }

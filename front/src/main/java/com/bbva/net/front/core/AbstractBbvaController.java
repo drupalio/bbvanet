@@ -19,7 +19,7 @@ import org.springframework.webflow.engine.RequestControlContext;
 import org.springframework.webflow.execution.Event;
 import org.springframework.webflow.execution.RequestContextHolder;
 
-import com.bbva.net.back.model.globalposition.ProductDTO;
+import com.bbva.net.back.model.globalposition.ProductDto;
 
 /**
  * @author Entelgy
@@ -131,14 +131,14 @@ public abstract class AbstractBbvaController implements Serializable {
 	/**
 	 * @return
 	 */
-	public ProductDTO getSelectedProduct() {
-		return (ProductDTO)getSession().getAttribute(SessionParamenterType.SELECTED_PRODUCT.name());
+	public ProductDto getSelectedProduct() {
+		return (ProductDto)getSession().getAttribute(SessionParamenterType.SELECTED_PRODUCT.name());
 	}
 
 	/**
 	 * @param selectedProduct
 	 */
-	public void setSelectedProduct(final ProductDTO selectedProduct) {
+	public void setSelectedProduct(final ProductDto selectedProduct) {
 		getSession().setAttribute(SessionParamenterType.SELECTED_PRODUCT.name(), selectedProduct);
 	}
 
@@ -146,7 +146,7 @@ public abstract class AbstractBbvaController implements Serializable {
 	 * @param selectEvent
 	 */
 	public void onProductSelected(final SelectEvent selectEvent) {
-		this.setSelectedProduct((ProductDTO)selectEvent.getObject());
+		this.setSelectedProduct((ProductDto)selectEvent.getObject());
 		System.out.print("ON productSelected\n");
 	}
 }

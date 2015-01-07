@@ -2,11 +2,11 @@ package com.bbva.net.back.model.globalposition;
 
 import com.bbva.net.core.test.AbstractBbvaDTOTest;
 
-public class CreditCardDTOTest extends AbstractBbvaDTOTest<CreditCardDTO> {
+public class CreditCardDTOTest extends AbstractBbvaDTOTest<CreditCardDto> {
 
 	@Override
-	protected CreditCardDTO getInstance() {
-		return new CreditCardDTO();
+	protected CreditCardDto getInstance() {
+		return new CreditCardDto();
 	}
 
 }

@@ -2,7 +2,7 @@ package com.bbva.net.front.controller;
 
 import java.util.List;
 
-import com.bbva.net.back.model.globalposition.AccountDTO;
+import com.bbva.net.back.model.globalposition.AccountDto;
 
 /**
  * @author Entelgy
@@ -12,11 +12,11 @@ public interface AccountsController {
 	/**
 	 * @return accountList for user logged
 	 */
-	List<AccountDTO> getCustomerAccounts();
+	List<AccountDto> getCustomerAccounts();
 
 	/**
 	 * @return
 	 */
-	List<AccountDTO> getCustomerAccountsHidden();
+	List<AccountDto> getCustomerAccountsHidden();
 
 }
