@@ -46,10 +46,12 @@ public class ProductServiceImpl implements ProductService {
 	public <T extends ProductDto> Money getTotalAvailable(final List<T> products) {
 		return new Money(CollectionBbvaUtils.calculateTotal(products, "cashAvailable.amount"));
 	}
+
 	@Override
 	public <T extends ProductDto> List<String> getNameProduct(final List<T> products) {
 		return new ArrayList<String>(CollectionBbvaUtils.nameProduct(products, "productId"));
 	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public Money getTotalAssets(final List<ProductDto> products) {
@@ -108,7 +110,7 @@ public class ProductServiceImpl implements ProductService {
 		return totals;
 
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public Money getTotalProductsByType(final List<ProductDto> products, final EnumProductType productType) {
@@ -170,18 +172,18 @@ public class ProductServiceImpl implements ProductService {
 
 		totals.put(EnumProductType.AQ.name(), getNameProduct(globalProducts.getAdquirencia()));
 
-		totals.put(EnumProductType.TDC.name(),getNameProduct(globalProducts.getCreditCards()));
+		totals.put(EnumProductType.TDC.name(), getNameProduct(globalProducts.getCreditCards()));
 
 		totals.put(EnumProductType.RQ.name(), getNameProduct(globalProducts.getRotatingAccounts()));
 
-		totals.put(EnumProductType.LI.name(),getNameProduct(globalProducts.getLeasings()));
+		totals.put(EnumProductType.LI.name(), getNameProduct(globalProducts.getLeasings()));
 
 		totals.put(EnumProductType.LO.name(), getNameProduct(globalProducts.getLoan()));
 
 		totals.put(EnumProductType.SI.name(), getNameProduct(globalProducts.getFunds()));
 
 		totals.put(EnumProductType.ED.name(), getNameProduct(globalProducts.getElectronicDeposits()));
-		
+
 		return totals;
 	}
 

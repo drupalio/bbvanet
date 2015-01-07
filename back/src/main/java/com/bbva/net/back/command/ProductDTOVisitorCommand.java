@@ -5,8 +5,6 @@ import java.util.List;
 import com.bbva.net.back.model.globalposition.AccountDto;
 import com.bbva.net.back.model.globalposition.AdquirenceAccountDto;
 import com.bbva.net.back.model.globalposition.CreditCardDto;
-import com.bbva.net.back.model.globalposition.DepositDto;
-import com.bbva.net.back.model.globalposition.FundDto;
 import com.bbva.net.back.model.globalposition.LeasingDto;
 import com.bbva.net.back.model.globalposition.LoanDto;
 import com.bbva.net.back.model.globalposition.ProductDto;
@@ -52,16 +50,6 @@ public abstract class ProductDTOVisitorCommand extends VisitorCommand<ProductDto
 	public abstract void execute(final LoanDto loan);
 
 	/**
-	 * @param fund
-	 */
-	public abstract void execute(final FundDto fund);
-
-	/**
-	 * @param deposit
-	 */
-	public abstract void execute(final DepositDto deposit);
-
-	/**
 	 * 
 	 */
 	@Override
@@ -87,10 +75,10 @@ public abstract class ProductDTOVisitorCommand extends VisitorCommand<ProductDto
 			this.execute((LoanDto)productDTO);
 			break;
 		case SI:
-			this.execute((FundDto)productDTO);
+			this.execute(productDTO);
 			break;
 		case ED:
-			this.execute((DepositDto)productDTO);
+			this.execute(productDTO);
 			break;
 		default:
 			break;
