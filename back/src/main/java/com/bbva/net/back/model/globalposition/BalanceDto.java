@@ -12,7 +12,7 @@ import com.bbva.net.back.model.commons.Money;
 /**
  * @author Entelgy
  */
-public class BalanceDTO implements Dto {
+public class BalanceDto implements Dto {
 
 	/**
 	 * 
@@ -23,11 +23,11 @@ public class BalanceDTO implements Dto {
 
 	private Money total;
 
-	public BalanceDTO() {
+	public BalanceDto() {
 		super();
 	}
 
-	public BalanceDTO(Money available, Money total) {
+	public BalanceDto(Money available, Money total) {
 		super();
 		this.available = available;
 		this.total = total;
@@ -63,7 +63,7 @@ public class BalanceDTO implements Dto {
 
 	@Override
 	public boolean equals(Object obj) {
-		return (obj instanceof BalanceDTO) && this.getAvailable().equals(((BalanceDTO)obj).getAvailable())
-				&& this.getTotal().equals(((BalanceDTO)obj).getTotal());
+		return (obj instanceof BalanceDto) && this.getAvailable().equals(((BalanceDto)obj).getAvailable())
+				&& this.getTotal().equals(((BalanceDto)obj).getTotal());
 	}
 }

@@ -16,9 +16,9 @@ import com.bbva.net.back.facade.CardsFacade;
 import com.bbva.net.back.facade.GlobalPositionFacade;
 import com.bbva.net.back.mapper.CardsMapper;
 import com.bbva.net.back.mapper.GlobalPositionMapper;
-import com.bbva.net.back.model.cards.CardsChargesDTO;
-import com.bbva.net.back.model.globalposition.AccountDTO;
-import com.bbva.net.back.model.globalposition.GlobalProductsDTO;
+import com.bbva.net.back.model.cards.CardsChargesDto;
+import com.bbva.net.back.model.globalposition.AccountDto;
+import com.bbva.net.back.model.globalposition.GlobalProductsDto;
 import com.bbva.net.back.predicate.HiddenProductPredicate;
 import com.bbva.net.back.predicate.VisibleProductPredicate;
 import com.bbva.net.back.service.ProductService;
@@ -44,7 +44,7 @@ public class CardsFacadeImpl extends AbstractBbvaFacade implements CardsFacade {
 	private ProductService productService;
 	
 	@Override
-	public List<CardsChargesDTO> getCardsChargesByUser(String customerId) {
+	public List<CardsChargesDto> getCardsChargesByUser(String customerId) {
 		
 		final List<CardCharge> response = cardsChargeService
 				.listCreditCardsCharges(customerId);

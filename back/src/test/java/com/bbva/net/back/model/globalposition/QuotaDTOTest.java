@@ -2,11 +2,11 @@ package com.bbva.net.back.model.globalposition;
 
 import com.bbva.net.core.test.AbstractBbvaDTOTest;
 
-public class QuotaDTOTest extends AbstractBbvaDTOTest<QuotaDTO> {
+public class QuotaDTOTest extends AbstractBbvaDTOTest<QuotaDto> {
 
 	@Override
-	protected QuotaDTO getInstance() {
-		return new QuotaDTO();
+	protected QuotaDto getInstance() {
+		return new QuotaDto();
 	}
 
 }

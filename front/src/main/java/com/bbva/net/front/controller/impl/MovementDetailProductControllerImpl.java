@@ -5,7 +5,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 
 import com.bbva.net.back.facade.MovementsDetailFacade;
-import com.bbva.net.back.model.movements.MovementDTO;
+import com.bbva.net.back.model.movements.MovementDto;
 import com.bbva.net.front.controller.MovementDetailProductController;
 import com.bbva.net.front.core.AbstractBbvaController;
 
@@ -27,7 +27,7 @@ public class MovementDetailProductControllerImpl extends AbstractBbvaController 
 	private transient MovementsDetailFacade movementsDetailFacade;
 
 	@Override
-	public MovementDTO getDetailMovementByAccount() {
+	public MovementDto getDetailMovementByAccount() {
 
 		return this.movementsDetailFacade.getMovementDetailByMovementId(movementId);
 	}

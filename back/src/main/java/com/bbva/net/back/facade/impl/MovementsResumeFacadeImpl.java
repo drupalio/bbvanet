@@ -11,7 +11,7 @@ import com.bbva.net.back.core.pattern.facade.AbstractBbvaFacade;
 import com.bbva.net.back.core.stereotype.Facade;
 import com.bbva.net.back.facade.MovementsResumeFacade;
 import com.bbva.net.back.mapper.GlobalResumeMovementsMapper;
-import com.bbva.net.back.model.movements.GlobalResumeMovementsDTO;
+import com.bbva.net.back.model.movements.GlobalResumeMovementsDto;
 import com.bbva.net.webservices.customers.CustomerService;
 
 /**
@@ -35,10 +35,10 @@ public class MovementsResumeFacadeImpl extends AbstractBbvaFacade implements Mov
 	 * Método que implementa el cliente REST para obtener el resumend de movimientos en las cuentas de un usuario
 	 */
 	@Override
-	public GlobalResumeMovementsDTO getMovementsResumeByeCustomer(final String customerId) throws RestClientException {
-		GlobalResumeMovementsDTO globalMovements = new GlobalResumeMovementsDTO();
+	public GlobalResumeMovementsDto getMovementsResumeByeCustomer(final String customerId) throws RestClientException {
+		GlobalResumeMovementsDto globalMovements = new GlobalResumeMovementsDto();
 		final List<AccMovementsResume> response = this.customerService.listAccountsMovementsResume(customerId);
-		globalMovements.setMovementsResumeDTO(globalResumeMovementsMapper.map(response));
+		globalMovements.setMovementsResumeDto(globalResumeMovementsMapper.map(response));
 		return globalMovements;
 
 	}

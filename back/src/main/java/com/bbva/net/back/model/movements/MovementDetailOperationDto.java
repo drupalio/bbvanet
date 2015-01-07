@@ -12,7 +12,7 @@ import com.bbva.net.back.core.pattern.dto.Dto;
  * 
  * @author Entelgy
  */
-public class MovementDetailOperationDTO implements Dto {
+public class MovementDetailOperationDto implements Dto {
 
 	private static final long serialVersionUID = -847893951090008856L;
 
@@ -64,8 +64,8 @@ public class MovementDetailOperationDTO implements Dto {
 	@Override
 	public boolean equals(Object obj) {
 
-		return (obj instanceof MovementDetailOperationDTO)
-				&& this.getOperationID().equals(((MovementDetailOperationDTO)obj).getOperationID());
+		return (obj instanceof MovementDetailOperationDto)
+				&& this.getOperationID().equals(((MovementDetailOperationDto)obj).getOperationID());
 	}
 
 	@Override

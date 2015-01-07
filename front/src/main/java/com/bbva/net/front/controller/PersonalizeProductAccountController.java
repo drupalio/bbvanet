@@ -3,7 +3,7 @@ package com.bbva.net.front.controller;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.AjaxBehaviorEvent;
 
-import com.bbva.net.back.model.movements.PersonalizeAccountDTO;
+import com.bbva.net.back.model.personalize.PersonalizeAccountDto;
 
 /**
  * @author Entelgy
@@ -15,7 +15,7 @@ public interface PersonalizeProductAccountController {
 	 * 
 	 * @return
 	 */
-	PersonalizeAccountDTO getPersonalizeProductAccountDto();
+	PersonalizeAccountDto getPersonalizeProductAccountDto();
 
 	/**
 	 * Metodos de rendered de mensajes que estan en la vista

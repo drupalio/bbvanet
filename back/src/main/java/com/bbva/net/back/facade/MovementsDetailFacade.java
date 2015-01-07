@@ -1,6 +1,6 @@
 package com.bbva.net.back.facade;
 
-import com.bbva.net.back.model.movements.MovementDTO;
+import com.bbva.net.back.model.movements.MovementDto;
 
 public interface MovementsDetailFacade {
 
@@ -12,6 +12,6 @@ public interface MovementsDetailFacade {
 	 * @param numMovement
 	 * @return
 	 */
-	MovementDTO getMovementDetailByMovementId(String numMovement);
+	MovementDto getMovementDetailByMovementId(String numMovement);
 
 }

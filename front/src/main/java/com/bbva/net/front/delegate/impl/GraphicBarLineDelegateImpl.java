@@ -3,8 +3,8 @@ package com.bbva.net.front.delegate.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.bbva.net.back.model.movements.GlobalResumeMovementsDTO;
-import com.bbva.net.back.model.movements.MovementsResumeDTO;
+import com.bbva.net.back.model.movements.GlobalResumeMovementsDto;
+import com.bbva.net.back.model.movements.MovementsResumeDto;
 import com.bbva.net.front.core.stereotype.Delegate;
 import com.bbva.net.front.delegate.GraphicBarLineDelegate;
 import com.bbva.net.front.helper.MessagesHelper;
@@ -25,14 +25,14 @@ public class GraphicBarLineDelegateImpl implements GraphicBarLineDelegate {
 	 * @return accountBarLineUI
 	 */
 	@Override
-	public AccountBarLineUI getInOutBalanceByAccount(final GlobalResumeMovementsDTO globalResumeMovements) {
+	public AccountBarLineUI getInOutBalanceByAccount(final GlobalResumeMovementsDto globalResumeMovements) {
 
 		final ArrayList<BarLineItemUI> paymentsList = new ArrayList<BarLineItemUI>();
 		final List<BarLineItemUI> chargeList = new ArrayList<BarLineItemUI>();
 		final List<BarLineItemUI> balanceList = new ArrayList<BarLineItemUI>();
 		final AccountBarLineUI accountBarLine = new AccountBarLineUI();
 
-		for (final MovementsResumeDTO mov : globalResumeMovements.getMovementsResumeDTO()) {
+		for (MovementsResumeDto mov : globalResumeMovements.getMovementsResumeDto()) {
 
 			if (mov.getInCome() != null) {
 				final BarLineItemUI paymentsBarLine = new BarLineItemUI();

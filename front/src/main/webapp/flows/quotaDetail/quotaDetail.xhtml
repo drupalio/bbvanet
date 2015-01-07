@@ -113,10 +113,8 @@
 			</bbvaDetAcc:tabMenu>
 
 			<div class="table-tabs">
-				<bbvaQuota:detailsQuotaTable id="detailAccounts"
-					listAccounts="#{customerAccounts}" />
-
-				<bbvaDetailMotion:tableContent />
+				<bbvaQuota:detailsQuotaTable id="quotaRotative"
+					listAccounts="#{customerAccounts}" controller="#{quotaController}" />
 			</div>
 		</bbvaQuotaHeader:quotaDetailContent>
 

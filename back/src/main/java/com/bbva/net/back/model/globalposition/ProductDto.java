@@ -7,7 +7,7 @@ import com.bbva.czic.dto.net.EnumProductType;
 import com.bbva.net.back.core.pattern.dto.Dto;
 import com.bbva.net.back.model.commons.Money;
 
-public class ProductDTO implements Dto {
+public class ProductDto implements Dto {
 
 	private final static long serialVersionUID = 1L;
 
@@ -142,8 +142,8 @@ public class ProductDTO implements Dto {
 
 	@Override
 	public boolean equals(Object obj) {
-		return (obj instanceof ProductDTO) && this.getProductId().equals(((ProductDTO)obj).getProductId())
-				&& this.getProductNumber().equals(((ProductDTO)obj).getProductNumber());
+		return (obj instanceof ProductDto) && this.getProductId().equals(((ProductDto)obj).getProductId())
+				&& this.getProductNumber().equals(((ProductDto)obj).getProductNumber());
 	}
 
 }

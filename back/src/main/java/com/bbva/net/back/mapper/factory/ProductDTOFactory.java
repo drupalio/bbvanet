@@ -4,54 +4,54 @@ import ma.glasnost.orika.MappingContext;
 import ma.glasnost.orika.ObjectFactory;
 
 import com.bbva.czic.dto.net.Product;
-import com.bbva.net.back.model.globalposition.AccountDTO;
-import com.bbva.net.back.model.globalposition.AdquirenceAccountDTO;
-import com.bbva.net.back.model.globalposition.CreditCardDTO;
-import com.bbva.net.back.model.globalposition.DepositDTO;
-import com.bbva.net.back.model.globalposition.FundDTO;
-import com.bbva.net.back.model.globalposition.LeasingDTO;
-import com.bbva.net.back.model.globalposition.LoanDTO;
-import com.bbva.net.back.model.globalposition.ProductDTO;
-import com.bbva.net.back.model.globalposition.RotatingAccountDTO;
+import com.bbva.net.back.model.globalposition.AccountDto;
+import com.bbva.net.back.model.globalposition.AdquirenceAccountDto;
+import com.bbva.net.back.model.globalposition.CreditCardDto;
+import com.bbva.net.back.model.globalposition.DepositDto;
+import com.bbva.net.back.model.globalposition.FundDto;
+import com.bbva.net.back.model.globalposition.LeasingDto;
+import com.bbva.net.back.model.globalposition.LoanDto;
+import com.bbva.net.back.model.globalposition.ProductDto;
+import com.bbva.net.back.model.globalposition.RotatingAccountDto;
 
 /**
  * @author Entelgy
  */
-public class ProductDTOFactory implements ObjectFactory<ProductDTO> {
+public class ProductDTOFactory implements ObjectFactory<ProductDto> {
 
 	/**
 	 * 
 	 */
 	@Override
-	public ProductDTO create(Object source, MappingContext mappingContext) {
+	public ProductDto create(Object source, MappingContext mappingContext) {
 
-		ProductDTO productDto = null;
+		ProductDto productDto = null;
 		final Product product = (Product)source;
 
 		switch (product.getType()) {
 		case PC:
-			productDto = new AccountDTO();
+			productDto = new AccountDto();
 			break;
 		case AQ:
-			productDto = new AdquirenceAccountDTO();
+			productDto = new AdquirenceAccountDto();
 			break;
 		case TDC:
-			productDto = new CreditCardDTO();
+			productDto = new CreditCardDto();
 			break;
 		case RQ:
-			productDto = new RotatingAccountDTO();
+			productDto = new RotatingAccountDto();
 			break;
 		case LI:
-			productDto = new LeasingDTO();
+			productDto = new LeasingDto();
 			break;
 		case LO:
-			productDto = new LoanDTO();
+			productDto = new LoanDto();
 			break;
 		case SI:
-			productDto = new FundDTO();
+			productDto = new FundDto();
 			break;
 		case ED:
-			productDto = new DepositDTO();
+			productDto = new DepositDto();
 			break;
 		default:
 			break;

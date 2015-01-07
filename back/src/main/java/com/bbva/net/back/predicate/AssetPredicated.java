@@ -3,16 +3,16 @@
  */
 package com.bbva.net.back.predicate;
 
-import com.bbva.net.back.model.globalposition.ProductDTO;
+import com.bbva.net.back.model.globalposition.ProductDto;
 import com.bbva.net.core.collection.BbvaPredicate;
 
 /**
  * @author User
  */
-public class AssetPredicated extends BbvaPredicate<ProductDTO> {
+public class AssetPredicated extends BbvaPredicate<ProductDto> {
 
 	@Override
-	protected boolean eval(ProductDTO product) {
+	protected boolean eval(ProductDto product) {
 		return product.isAsset();
 	}
 

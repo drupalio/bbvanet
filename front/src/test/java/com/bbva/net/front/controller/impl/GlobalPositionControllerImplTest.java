@@ -5,10 +5,11 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import com.bbva.net.back.facade.FundsTypeFacade;
 import com.bbva.net.back.facade.GlobalPositionFacade;
+import com.bbva.net.back.model.globalposition.GlobalProductsDto;
 import com.bbva.net.back.facade.MovementsResumeFacade;
-import com.bbva.net.back.model.globalposition.GlobalProductsDTO;
-import com.bbva.net.back.model.movements.GlobalResumeMovementsDTO;
+import com.bbva.net.back.model.movements.GlobalResumeMovementsDto;
 import com.bbva.net.front.delegate.GraphicBarLineDelegate;
 import com.bbva.net.front.delegate.GraphicPieDelegate;
 
@@ -26,6 +27,8 @@ public class GlobalPositionControllerImplTest {
 
 	private GraphicPieDelegate graphicPieDelegate;
 
+	private FundsTypeFacade fundsTypeFacade;
+
 	private GraphicBarLineDelegate graphicBarLineDelegate;
 
 	private MovementsResumeFacade globalMovementsFacade;
@@ -37,13 +40,20 @@ public class GlobalPositionControllerImplTest {
 
 		globalPositionFacade = Mockito.mock(GlobalPositionFacade.class);
 		graphicPieDelegate = Mockito.mock(GraphicPieDelegate.class);
+
+		fundsTypeFacade = Mockito.mock(FundsTypeFacade.class);
+
 		globalMovementsFacade = Mockito.mock(MovementsResumeFacade.class);
 
 		graphicBarLineDelegate = Mockito.mock(GraphicBarLineDelegate.class);
 		globalPositionController.setGlobalPositionFacade(globalPositionFacade);
 		globalPositionController.setGraphicPieDelegate(graphicPieDelegate);
 		globalPositionController.setGraphicBarLineDelegate(graphicBarLineDelegate);
+
+		globalPositionController.setFundsTypeFacade(fundsTypeFacade);
+
 		globalPositionController.setMovementsResumeFacade(globalMovementsFacade);
+
 		globalPositionController.init();
 
 	}
@@ -54,12 +64,12 @@ public class GlobalPositionControllerImplTest {
 		globalPositionController.setGraphicPieDelegate(graphicPieDelegate);
 
 		// prepara el test
-		Mockito.when(globalPositionFacade.getGlobalProductsByUser(DEFAULT_USER)).thenReturn(new GlobalProductsDTO());
+		Mockito.when(globalPositionFacade.getGlobalProductsByUser(DEFAULT_USER)).thenReturn(new GlobalProductsDto());
 
 		// invoca metodo a probar
-		final GlobalProductsDTO globalProducts = this.globalPositionController.getCustomerProducts();
+		final GlobalProductsDto globalProducts = this.globalPositionController.getCustomerProducts();
 
-		final GlobalResumeMovementsDTO globalResumeMovementsDTO = this.globalMovementsFacade
+		final GlobalResumeMovementsDto globalResumeMovementsDTO = this.globalMovementsFacade
 				.getMovementsResumeByeCustomer(DEFAULT_USER);
 		// Comprobar resultados
 		// Assert.assertNotNull(globalProducts);
@@ -100,7 +110,7 @@ public class GlobalPositionControllerImplTest {
 	@Test
 	public void checkGraphicPaiUI() {
 
-		GlobalProductsDTO globalProducts = Mockito.mock(GlobalProductsDTO.class);
+		GlobalProductsDto globalProducts = Mockito.mock(GlobalProductsDto.class);
 		this.globalPositionController.getSituationGraphicPieUI();
 
 		Assert.assertEquals(this.globalPositionController.getSituationGraphicPieUI(),

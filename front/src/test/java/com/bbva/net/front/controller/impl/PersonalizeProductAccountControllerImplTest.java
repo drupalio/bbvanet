@@ -6,7 +6,7 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import com.bbva.net.back.facade.PersonalizeProductAccountFacade;
-import com.bbva.net.back.model.movements.PersonalizeAccountDTO;
+import com.bbva.net.back.model.personalize.PersonalizeAccountDto;
 
 public class PersonalizeProductAccountControllerImplTest {
 
@@ -40,7 +40,7 @@ public class PersonalizeProductAccountControllerImplTest {
 
 		// Prepare test
 		Mockito.when(personalizeProductAccountFacade.getPersonalizeAccountDto(DEFAULT_USER, DEFAULT_PRODUCT))
-				.thenReturn(new PersonalizeAccountDTO());
+				.thenReturn(new PersonalizeAccountDto());
 
 		this.personalizeProductAccountControllerImpl.init();
 
@@ -49,7 +49,7 @@ public class PersonalizeProductAccountControllerImplTest {
 		this.personalizeProductAccountControllerImpl.isMenSuccessful();
 
 		// Invoke method
-		PersonalizeAccountDTO result = personalizeProductAccountControllerImpl.getPersonalizeProductAccountDto();
+		PersonalizeAccountDto result = personalizeProductAccountControllerImpl.getPersonalizeProductAccountDto();
 		// Check results
 		Assert.assertNotNull(result);
 	}

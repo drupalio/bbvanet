@@ -8,39 +8,39 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-public class GlobalProductsDTO implements Serializable {
+public class GlobalProductsDto implements Serializable {
 
 	private final static long serialVersionUID = 1L;
 
-	private List<AccountDTO> accounts;
+	private List<AccountDto> accounts;
 
-	private List<RotatingAccountDTO> rotatingAccounts;
+	private List<RotatingAccountDto> rotatingAccounts;
 
-	private List<LeasingDTO> leasings;
+	private List<LeasingDto> leasings;
 
-	private List<FundDTO> funds;
+	private List<FundDto> funds;
 
-	private List<CreditCardDTO> creditCards;
+	private List<CreditCardDto> creditCards;
 
-	private List<DepositDTO> electronicDeposits;
+	private List<DepositDto> electronicDeposits;
 
-	private List<AdquirenceAccountDTO> adquirencia;
+	private List<AdquirenceAccountDto> adquirencia;
 
-	private List<LoanDTO> loan;
+	private List<LoanDto> loan;
 
-	public GlobalProductsDTO() {
+	public GlobalProductsDto() {
 
-		this.accounts = new ArrayList<AccountDTO>();
-		this.rotatingAccounts = new ArrayList<RotatingAccountDTO>();
-		this.leasings = new ArrayList<LeasingDTO>();
-		this.funds = new ArrayList<FundDTO>();
-		this.creditCards = new ArrayList<CreditCardDTO>();
-		this.electronicDeposits = new ArrayList<DepositDTO>();
-		this.adquirencia = new ArrayList<AdquirenceAccountDTO>();
-		this.loan = new ArrayList<LoanDTO>();
+		this.accounts = new ArrayList<AccountDto>();
+		this.rotatingAccounts = new ArrayList<RotatingAccountDto>();
+		this.leasings = new ArrayList<LeasingDto>();
+		this.funds = new ArrayList<FundDto>();
+		this.creditCards = new ArrayList<CreditCardDto>();
+		this.electronicDeposits = new ArrayList<DepositDto>();
+		this.adquirencia = new ArrayList<AdquirenceAccountDto>();
+		this.loan = new ArrayList<LoanDto>();
 	}
 
-	public List<AccountDTO> getAccounts() {
+	public List<AccountDto> getAccounts() {
 		return this.accounts;
 	}
 
@@ -52,7 +52,7 @@ public class GlobalProductsDTO implements Serializable {
 		this.accounts = null;
 	}
 
-	public List<RotatingAccountDTO> getRotatingAccounts() {
+	public List<RotatingAccountDto> getRotatingAccounts() {
 		return this.rotatingAccounts;
 	}
 
@@ -64,7 +64,7 @@ public class GlobalProductsDTO implements Serializable {
 		this.rotatingAccounts = null;
 	}
 
-	public List<LeasingDTO> getLeasings() {
+	public List<LeasingDto> getLeasings() {
 		return this.leasings;
 	}
 
@@ -76,7 +76,7 @@ public class GlobalProductsDTO implements Serializable {
 		this.leasings = null;
 	}
 
-	public List<FundDTO> getFunds() {
+	public List<FundDto> getFunds() {
 		return this.funds;
 	}
 
@@ -88,7 +88,7 @@ public class GlobalProductsDTO implements Serializable {
 		this.funds = null;
 	}
 
-	public List<CreditCardDTO> getCreditCards() {
+	public List<CreditCardDto> getCreditCards() {
 		return this.creditCards;
 	}
 
@@ -100,7 +100,7 @@ public class GlobalProductsDTO implements Serializable {
 		this.creditCards = null;
 	}
 
-	public List<DepositDTO> getElectronicDeposits() {
+	public List<DepositDto> getElectronicDeposits() {
 		return this.electronicDeposits;
 	}
 
@@ -112,43 +112,43 @@ public class GlobalProductsDTO implements Serializable {
 		this.electronicDeposits = null;
 	}
 
-	public void setAccounts(List<AccountDTO> accounts) {
+	public void setAccounts(List<AccountDto> accounts) {
 		this.accounts = accounts;
 	}
 
-	public void setRotatingAccounts(List<RotatingAccountDTO> rotatingAccounts) {
+	public void setRotatingAccounts(List<RotatingAccountDto> rotatingAccounts) {
 		this.rotatingAccounts = rotatingAccounts;
 	}
 
-	public void setLeasings(List<LeasingDTO> leasings) {
+	public void setLeasings(List<LeasingDto> leasings) {
 		this.leasings = leasings;
 	}
 
-	public void setFunds(List<FundDTO> funds) {
+	public void setFunds(List<FundDto> funds) {
 		this.funds = funds;
 	}
 
-	public void setCreditCards(List<CreditCardDTO> creditCards) {
+	public void setCreditCards(List<CreditCardDto> creditCards) {
 		this.creditCards = creditCards;
 	}
 
-	public void setElectronicDeposits(List<DepositDTO> electronicDeposits) {
+	public void setElectronicDeposits(List<DepositDto> electronicDeposits) {
 		this.electronicDeposits = electronicDeposits;
 	}
 
-	public List<LoanDTO> getLoan() {
+	public List<LoanDto> getLoan() {
 		return loan;
 	}
 
-	public void setLoan(List<LoanDTO> loan) {
+	public void setLoan(List<LoanDto> loan) {
 		this.loan = loan;
 	}
 
-	public List<AdquirenceAccountDTO> getAdquirencia() {
+	public List<AdquirenceAccountDto> getAdquirencia() {
 		return adquirencia;
 	}
 
-	public void setAdquirencia(List<AdquirenceAccountDTO> adquirencia) {
+	public void setAdquirencia(List<AdquirenceAccountDto> adquirencia) {
 		this.adquirencia = adquirencia;
 	}
 

@@ -6,7 +6,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import com.bbva.net.back.core.pattern.dto.Dto;
 import com.bbva.net.back.model.commons.Money;
 
-public class QuotaDTO implements Dto {
+public class QuotaDto implements Dto {
 
 	private final static long serialVersionUID = 1L;
 
@@ -14,7 +14,7 @@ public class QuotaDTO implements Dto {
 
 	private Money totalQuotaDebt;
 
-	public QuotaDTO() {
+	public QuotaDto() {
 		super();
 	}
 
@@ -55,8 +55,8 @@ public class QuotaDTO implements Dto {
 
 	@Override
 	public boolean equals(Object obj) {
-		return (obj instanceof QuotaDTO) && this.getAvailableQuota().equals(((QuotaDTO)obj).getAvailableQuota())
-				&& this.getTotalQuotaDebt().equals(((QuotaDTO)obj).getTotalQuotaDebt());
+		return (obj instanceof QuotaDto) && this.getAvailableQuota().equals(((QuotaDto)obj).getAvailableQuota())
+				&& this.getTotalQuotaDebt().equals(((QuotaDto)obj).getTotalQuotaDebt());
 	}
 
 }

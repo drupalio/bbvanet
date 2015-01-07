@@ -17,30 +17,30 @@ import com.bbva.net.back.mapper.converter.AssetConverter;
 import com.bbva.net.back.mapper.converter.FinancialStateConverter;
 import com.bbva.net.back.mapper.converter.MoneyConverter;
 import com.bbva.net.back.mapper.factory.ProductDTOFactory;
-import com.bbva.net.back.model.cards.CardsChargesDTO;
-import com.bbva.net.back.model.globalposition.AccountDTO;
-import com.bbva.net.back.model.globalposition.AdquirenceAccountDTO;
-import com.bbva.net.back.model.globalposition.BalanceDTO;
-import com.bbva.net.back.model.globalposition.CreditCardDTO;
-import com.bbva.net.back.model.globalposition.DepositDTO;
-import com.bbva.net.back.model.globalposition.FundDTO;
-import com.bbva.net.back.model.globalposition.GlobalProductsDTO;
-import com.bbva.net.back.model.globalposition.LeasingDTO;
-import com.bbva.net.back.model.globalposition.LoanDTO;
-import com.bbva.net.back.model.globalposition.ProductDTO;
-import com.bbva.net.back.model.globalposition.RotatingAccountDTO;
+import com.bbva.net.back.model.cards.CardsChargesDto;
+import com.bbva.net.back.model.globalposition.AccountDto;
+import com.bbva.net.back.model.globalposition.AdquirenceAccountDto;
+import com.bbva.net.back.model.globalposition.BalanceDto;
+import com.bbva.net.back.model.globalposition.CreditCardDto;
+import com.bbva.net.back.model.globalposition.DepositDto;
+import com.bbva.net.back.model.globalposition.FundDto;
+import com.bbva.net.back.model.globalposition.GlobalProductsDto;
+import com.bbva.net.back.model.globalposition.LeasingDto;
+import com.bbva.net.back.model.globalposition.LoanDto;
+import com.bbva.net.back.model.globalposition.ProductDto;
+import com.bbva.net.back.model.globalposition.RotatingAccountDto;
 
 @Mapper(value = "cardsMapper")
 public class CardsMapperImpl extends ConfigurableMapper implements CardsMapper {
 
 	@Override
-	public List<CardsChargesDTO> map(List<CardCharge> CardCharges) {
-		final List<CardsChargesDTO> cardsCharges =  new ArrayList<CardsChargesDTO>();
+	public List<CardsChargesDto> map(List<CardCharge> CardCharges) {
+		final List<CardsChargesDto> cardsCharges =  new ArrayList<CardsChargesDto>();
 
 		new CardVisitorCommand(CardCharges) {
 			@Override
 			public void executeCards(CardCharge product,String name) {
-				cardsCharges.add(map(product, CardsChargesDTO.class));
+				cardsCharges.add(map(product, CardsChargesDto.class));
 				cardsCharges.get(cardsCharges.size()-1).setCategorie(name);
 			}			
 		};
@@ -55,7 +55,7 @@ public class CardsMapperImpl extends ConfigurableMapper implements CardsMapper {
 		
 		factory.getConverterFactory().registerConverter(new MoneyConverter());
 		// Map CardsCharges Product DTO
-		factory.classMap(CardCharge.class, CardsChargesDTO.class).field("category", "categorie")
+		factory.classMap(CardCharge.class, CardsChargesDto.class).field("category", "categorie")
 				.field("amount", "ammount").byDefault()
 				.register();
 

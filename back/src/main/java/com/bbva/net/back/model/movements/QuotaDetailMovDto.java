@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.bbva.net.back.model.quota;
+package com.bbva.net.back.model.movements;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -11,7 +11,6 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 
 import com.bbva.net.back.core.pattern.dto.Dto;
 import com.bbva.net.back.model.commons.Money;
-import com.bbva.net.back.model.movements.PersonalizeAccountDTO;
 
 /**
  * @author User

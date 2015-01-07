@@ -7,9 +7,9 @@ import javax.annotation.Resource;
 import org.primefaces.event.SelectEvent;
 
 import com.bbva.net.back.facade.LoanFacade;
-import com.bbva.net.back.model.globalposition.LeasingDTO;
-import com.bbva.net.back.model.globalposition.LoanDTO;
-import com.bbva.net.back.model.globalposition.RotatingAccountDTO;
+import com.bbva.net.back.model.globalposition.LeasingDto;
+import com.bbva.net.back.model.globalposition.LoanDto;
+import com.bbva.net.back.model.globalposition.RotatingAccountDto;
 import com.bbva.net.front.controller.LoanController;
 import com.bbva.net.front.core.AbstractBbvaController;
 
@@ -24,32 +24,32 @@ public class LoanControllerImpl extends AbstractBbvaController implements LoanCo
 	private transient LoanFacade loanFacade;
 
 	@Override
-	public List<RotatingAccountDTO> getCustomerRotatingAccount() {
+	public List<RotatingAccountDto> getCustomerRotatingAccount() {
 		return this.loanFacade.getRotatingAccountByUser(getCurrentUser());
 	}
 
 	@Override
-	public List<RotatingAccountDTO> getCustomerRotatingAccountHidden() {
+	public List<RotatingAccountDto> getCustomerRotatingAccountHidden() {
 		return this.loanFacade.getRotatingAccountByUserHidden(getCurrentUser());
 	}
 
 	@Override
-	public List<LeasingDTO> getCustomerLeasing() {
+	public List<LeasingDto> getCustomerLeasing() {
 		return this.loanFacade.getLeasingByUser(getCurrentUser());
 	}
 
 	@Override
-	public List<LeasingDTO> getCustomerLeasingHidden() {
+	public List<LeasingDto> getCustomerLeasingHidden() {
 		return this.loanFacade.getLeasingByUserHidden(getCurrentUser());
 	}
 
 	@Override
-	public List<LoanDTO> getCustomerLoan() {
+	public List<LoanDto> getCustomerLoan() {
 		return this.loanFacade.getLoansByUser(getCurrentUser());
 	}
 
 	@Override
-	public List<LoanDTO> getCustomerLoanHidden() {
+	public List<LoanDto> getCustomerLoanHidden() {
 		return this.loanFacade.getLoansByUserHidden(getCurrentUser());
 	}
 	
