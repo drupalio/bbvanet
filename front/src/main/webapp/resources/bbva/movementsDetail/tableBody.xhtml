@@ -4,13 +4,13 @@
 	xmlns:composite="http://java.sun.com/jsf/composite"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui" 
-	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:p="http://primefaces.org/ui" xmlns:jsf="http://xmlns.jcp.org/jsf"
 	xmlns:pm="http://primefaces.org/mobile">
 
 <composite:interface>
 
-	<composite:attribute id="tableBody" name="detailMovement" type="com.bbva.net.back.model.movements.MovementDTO" />
+	<composite:attribute id="tableBody" name="detailMovement"
+		type="com.bbva.net.back.model.movements.MovementDto" />
 
 </composite:interface>
 
@@ -32,8 +32,8 @@
 			</dl>
 			<dl>
 				<dd>Fecha valor</dd>
-<!-- 				<dt>18/06/2014</dt> -->
-					<dt>#{cc.attrs.detailMovement.movementDate}</dt>
+				<!-- 				<dt>18/06/2014</dt> -->
+				<dt>#{cc.attrs.detailMovement.movementDate}</dt>
 			</dl>
 			<dl>
 				<dd>Hora Operación</dd>
@@ -41,43 +41,43 @@
 			</dl>
 			<dl>
 				<dd>Valor</dd>
-<!-- 				<dt>$ 390.00</dt> -->
-					<dt>#{cc.attrs.detailMovement.movementValue}</dt>
+				<!-- 				<dt>$ 390.00</dt> -->
+				<dt>#{cc.attrs.detailMovement.movementValue}</dt>
 			</dl>
 			<dl>
 				<dd>Saldo después de movimiento</dd>
-<!-- 				<dt>$ 12,943,536.35</dt> -->
-					<dt>#{cc.attrs.detailMovement.totalBalance}</dt>
+				<!-- 				<dt>$ 12,943,536.35</dt> -->
+				<dt>#{cc.attrs.detailMovement.totalBalance}</dt>
 			</dl>
 			<dl>
 				<dd>Código de operación</dd>
-<!-- 				<dt>056</dt> -->
-					<dt>#{cc.attrs.detailMovement.movementDetailOperationDTO.operationID}</dt>
+				<!-- 				<dt>056</dt> -->
+				<dt>#{cc.attrs.detailMovement.movementDetailOperationDto.operationID}</dt>
 			</dl>
 			<dl>
 				<dd>Descripción de la operación</dd>
-<!-- 				<dt>TRANSFERENCIA</dt> -->
-					<dt>#{cc.attrs.detailMovement.movementDetailOperationDTO.operationDescription}</dt>
+				<!-- 				<dt>TRANSFERENCIA</dt> -->
+				<dt>#{cc.attrs.detailMovement.movementDetailOperationDto.operationDescription}</dt>
 			</dl>
 			<dl>
 				<dd>Observaciones</dd>
-<!-- 				<dt>Lorem ipsum dolor sir amet, consectetur</dt> -->
-					<dt>#{cc.attrs.detailMovement.movementDetailDTO.observations}</dt>
+				<!-- 				<dt>Lorem ipsum dolor sir amet, consectetur</dt> -->
+				<dt>#{cc.attrs.detailMovement.movementDetailDto.observations}</dt>
 			</dl>
 			<dl>
 				<dd>Centro origen del movimiento</dd>
-<!-- 				<dt>0136 CHAPINERO</dt> -->
-					<dt>#{cc.attrs.detailMovement.movementDetailDTO.centralSourceMovement}</dt>
+				<!-- 				<dt>0136 CHAPINERO</dt> -->
+				<dt>#{cc.attrs.detailMovement.movementDetailDto.centralSourceMovement}</dt>
 			</dl>
 			<dl>
 				<dd class="border-desktop">Plaza</dd>
-<!-- 				<dt class="border-desktop">BOGOTA(CUNDIMARCA)</dt> -->
-					<dt>#{cc.attrs.detailMovement.movementDetailDTO.plaza}</dt>
+				<!-- 				<dt class="border-desktop">BOGOTA(CUNDIMARCA)</dt> -->
+				<dt>#{cc.attrs.detailMovement.movementDetailDto.plaza}</dt>
 			</dl>
 			<dl>
 				<dd class="border-desktop border-mobile">Estado</dd>
-<!-- 				<dt class="border-desktop border-mobile">Enviada</dt> -->
-					<dt>#{cc.attrs.detailMovement.movementDetailDTO.state}</dt>
+				<!-- 				<dt class="border-desktop border-mobile">Enviada</dt> -->
+				<dt>#{cc.attrs.detailMovement.movementDetailDto.state}</dt>
 			</dl>
 		</div>
 	</div>
