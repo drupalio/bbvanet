@@ -48,8 +48,8 @@ public class MovementsDetailFacadeImpl extends AbstractBbvaFacade implements Mov
 		movement.setMovementValue(moneyMovement);
 		movement.setTotalBalance(moneyBalanceMovement);
 
-		movement.setMovementDetailDTO(movementDetail);
-		movement.setMovementDetailOperationDTO(movementOperation);
+		movement.setMovementDetailDto(movementDetail);
+		movement.setMovementDetailOperationDto(movementOperation);
 
 		return movement;
 	}

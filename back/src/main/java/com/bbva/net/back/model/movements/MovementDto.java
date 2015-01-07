@@ -134,28 +134,28 @@ public class MovementDto implements Dto {
 	/**
 	 * @return the movementDetailDTO
 	 */
-	public MovementDetailDto getMovementDetailDTO() {
+	public MovementDetailDto getMovementDetailDto() {
 		return movementDetailDTO;
 	}
 
 	/**
 	 * @param movementDetailDTO the movementDetailDTO to set
 	 */
-	public void setMovementDetailDTO(MovementDetailDto movementDetailDTO) {
+	public void setMovementDetailDto(MovementDetailDto movementDetailDTO) {
 		this.movementDetailDTO = movementDetailDTO;
 	}
 
 	/**
 	 * @return the movementDetailOperationDTO
 	 */
-	public MovementDetailOperationDto getMovementDetailOperationDTO() {
+	public MovementDetailOperationDto getMovementDetailOperationDto() {
 		return movementDetailOperationDTO;
 	}
 
 	/**
 	 * @param movementDetailOperationDTO the movementDetailOperationDTO to set
 	 */
-	public void setMovementDetailOperationDTO(MovementDetailOperationDto movementDetailOperationDTO) {
+	public void setMovementDetailOperationDto(MovementDetailOperationDto movementDetailOperationDTO) {
 		this.movementDetailOperationDTO = movementDetailOperationDTO;
 	}
 
