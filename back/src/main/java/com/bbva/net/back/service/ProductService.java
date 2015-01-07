@@ -29,12 +29,13 @@ public interface ProductService {
 	 * @return
 	 */
 	<T extends ProductDTO> Money getTotalAvailable(final List<T> products);
+
 	/**
-	 * 
 	 * @param products
 	 * @return
 	 */
 	<T extends ProductDTO> List<String> getNameProduct(final List<T> products);
+
 	/**
 	 * @param products
 	 * @return
@@ -71,10 +72,11 @@ public interface ProductService {
 	 * @return
 	 */
 	GlobalProductsDTO select(final GlobalProductsDTO globalProducts, BbvaPredicate<ProductDTO> predicate);
+
 	/**
-	 * 
 	 * @param globalProducts
 	 * @return
 	 */
 	Map<String, List<String>> getProductsName(GlobalProductsDTO globalProducts);
+
 }
