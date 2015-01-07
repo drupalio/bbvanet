@@ -13,10 +13,12 @@ import javax.faces.view.ViewScoped;
 import org.primefaces.event.SelectEvent;
 
 import com.bbva.net.back.facade.FundsTypeFacade;
-import com.bbva.czic.dto.net.EnumProductType;
-import com.bbva.net.back.facade.CardsFacade;
-import com.bbva.net.back.facade.GlobalMovementsFacade;
 import com.bbva.net.back.facade.GlobalPositionFacade;
+import com.bbva.net.back.model.globalposition.BalanceDto;
+import com.bbva.net.back.model.globalposition.FundDto;
+import com.bbva.net.back.model.globalposition.GlobalProductsDto;
+import com.bbva.net.back.model.movements.GlobalResumeMovementsDto;
+import com.bbva.net.back.facade.MovementsResumeFacade;
 import com.bbva.net.back.model.globalposition.BalanceDto;
 import com.bbva.net.back.model.globalposition.FundDto;
 import com.bbva.net.back.model.globalposition.GlobalProductsDto;
@@ -44,7 +46,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	private transient FundsTypeFacade fundsTypeFacade;
 
 	@Resource(name = "globalMovementsFacade")
-	private transient GlobalMovementsFacade globalMovementsFacade;
+	private transient MovementsResumeFacade movementsResumeFacade;
 
 	@Resource(name = "graphicPieDelegate")
 	private transient GraphicPieDelegate graphicPieDelegate;
@@ -88,9 +90,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		this.fundDTOs = this.fundsTypeFacade.getFundsDataGraphic(getCurrentUser());
 
 		// Obtiene la lista de resumen de movimientos del serivico REST
-		// ESTA LINEA SE COMENTA, YA QUE SOLICITA OTRO CONSUMO DE SERVICIO, DIFERENTE AL GLOBAL POSITION
-		// SI ESTÁ ENCENDIDO UN MOCK EN SOAPUI PARA GP, EL MOCK DE CUSTOMER AL TIEMPO, LA APLICACION NO CORRE.
-		this.globalResumeMovementsDTO = this.globalMovementsFacade.getGlobalMovementsByCustomer(getCurrentUser());
+		this.globalResumeMovementsDTO = this.movementsResumeFacade.getMovementsResumeByeCustomer(getCurrentUser());
 
 		// Calculate situation graphics panels
 		this.situationGraphicPieUI = graphicPieDelegate.getSituationGlobalProducts(this.globalProductsDTO);
@@ -106,10 +106,12 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 		// Calculate income, output and balance by Account Graphic
 		// Acualmente obtiene el objeto Ui quemado en el delegate
-		this.accountGraphicBarLineUI = this.graphicBarLineDelegate.getInOutBalanceByAccount();
+
+		this.accountGraphicBarLineUI = this.graphicBarLineDelegate.getInOutBalanceByAccount(globalResumeMovementsDTO);
 
 		// Get names of products
 		this.namesProducts = globalPositionFacade.getNamesProducts(globalProductsDTO);
+
 	}
 
 	@Override
@@ -253,8 +255,8 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	}
 
-	public void setGlobalMovementsFacade(final GlobalMovementsFacade globalMovementsFacade) {
-		this.globalMovementsFacade = globalMovementsFacade;
+	public void setMovementsResumeFacade(final MovementsResumeFacade movementsResumeFacade) {
+		this.movementsResumeFacade = movementsResumeFacade;
 	}
 
 	/**
