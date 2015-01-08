@@ -7,8 +7,6 @@ import com.bbva.czic.dto.net.Product;
 import com.bbva.net.back.model.globalposition.AccountDto;
 import com.bbva.net.back.model.globalposition.AdquirenceAccountDto;
 import com.bbva.net.back.model.globalposition.CreditCardDto;
-import com.bbva.net.back.model.globalposition.DepositDto;
-import com.bbva.net.back.model.globalposition.FundDto;
 import com.bbva.net.back.model.globalposition.LeasingDto;
 import com.bbva.net.back.model.globalposition.LoanDto;
 import com.bbva.net.back.model.globalposition.RotatingAccountDto;
