@@ -34,4 +34,11 @@ public class CategoryFilterServiceImpl implements CategoryFilterService {
 		return comboFilter;
 	}
 
+	public static void main(String[] args) {
+
+		ComboFilterGraphicsDto comboFilter = new ComboFilterGraphicsDto();
+		comboFilter.setPeriod("Último mes");
+
+	}
+
 }
