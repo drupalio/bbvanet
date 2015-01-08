@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-import com.bbva.net.back.model.comboFilter.ComboFilterGraphicsDto;
+import com.bbva.net.back.model.comboFilter.PeriodFilterDto;
 import com.bbva.net.back.service.CategoryFilterService;
 
 /**
@@ -18,7 +18,7 @@ public class CategoryFilterServiceImpl implements CategoryFilterService {
 	 * Método encargado de calcular el periodo de consulta en un filtro
 	 */
 	@Override
-	public ComboFilterGraphicsDto getPeriodFilter(final ComboFilterGraphicsDto comboFilter) {
+	public PeriodFilterDto getPeriodFilter(final PeriodFilterDto comboFilter) {
 
 		// Este formato está pendiente definir
 		final SimpleDateFormat formatDate = new SimpleDateFormat("dd-MM-yyyy", Locale.ROOT);

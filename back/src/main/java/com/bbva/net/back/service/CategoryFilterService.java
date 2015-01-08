@@ -1,6 +1,6 @@
 package com.bbva.net.back.service;
 
-import com.bbva.net.back.model.comboFilter.ComboFilterGraphicsDto;
+import com.bbva.net.back.model.comboFilter.PeriodFilterDto;
 
 public interface CategoryFilterService {
 
@@ -8,6 +8,6 @@ public interface CategoryFilterService {
 	 * @param period
 	 * @return
 	 */
-	ComboFilterGraphicsDto getPeriodFilter(ComboFilterGraphicsDto comboFilter);
+	PeriodFilterDto getPeriodFilter(PeriodFilterDto comboFilter);
 
 }
