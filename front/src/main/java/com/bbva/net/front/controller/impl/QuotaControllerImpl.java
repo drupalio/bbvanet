@@ -6,6 +6,7 @@ package com.bbva.net.front.controller.impl;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.AjaxBehaviorEvent;
 
+import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
 import org.springframework.stereotype.Controller;
 
@@ -153,8 +154,11 @@ public class QuotaControllerImpl extends AbstractBbvaController implements Quota
 
 	@Override
 	public QuotaDetailDto getQuotaDetail() {
-
-		return null;
+		return new QuotaDetailDto();
 	}
 
+	public void data(ActionEvent event) {
+		System.out.println("entro");
+		RequestContext.getCurrentInstance().execute("PF('widgetVarDialogName').show()");
+	}
 }

@@ -32,156 +32,38 @@
 	</ui:define>
 
 	<ui:define name="contentLeft">
-		<bbvaDetAcc:tabMenu>
-			<ul class="nav nav-pills nav-operation-options"
-				style="display: block;">
-				<bbvaDetAcc:itemTabMenu title="#{msg['text.consult']}"
-					icon="iconFont-611" classLi="tab-left consultas-btn" type="2"
-					role="#tab-consultas" />
 
-				<bbvaDetAcc:itemTabMenu title="#{msg['text.operations']}"
-					icon="iconFont-015" classLi="tab-left operaciones-btn" type="2" />
+		<h:form>
+			<bbvaButton:iconButton id="data"
+				actionListener="#{quotaController.data}" value="Basic" type="button" />
+			<p:dialog header="Basic Dialog" widgetVar="widgetVarDialogName"
+				modal="true" id="recoverKeyModal">
+				<bbvaMessage:dialogRecoverPassword />
+			</p:dialog>
+		</h:form>
 
-				<bbvaDetAcc:itemTabMenu title="#{msg['text.personalized']}"
-					role="#tab-personalizar" classLi="tab-right hidden-xs hidden-sm"
-					type="1" />
-				<bbvaDetAcc:itemTabMenu title="#{msg['text.conditions']}"
-					role="#tab-condiciones" classLi="tab-right hidden-xs hidden-sm"
-					type="1" />
-				<bbvaDetAcc:itemTabMenu title="#{msg['text.personalized']}"
-					icon="iconFont-217" classLi="tab-right hidden-md hidden-lg"
-					type="1" />
-			</ul>
-			<div class="tab-content">
+		<h:form>
+			<p:commandButton id="dats" onclick="PF('widgetVarDialogName').show()"
+				value="Basic" type="button" />
 
-				<bbvaSearch:tabCriteria>
-					<bbvaSearch:personalizedSearchDate />
-				</bbvaSearch:tabCriteria>
+			<p:dialog header="Basic Dialog" widgetVar="widgetVarDialogName"
+				modal="true" id="recoverKeyModal">
+				<bbvaMessage:dialogRecoverPassword />
+			</p:dialog>
+		</h:form>
 
-				<bbvaAcc:termsAccounts>
-					<bbvaAcc:termsAccountsPanelInfo>
-						<bbvaAcc:termsAccountsPanelInfoHeader
-							title="Información del Producto" />
-						<bbvaAcc:termsAccountsPanelInfoItemTitle
-							date="#{msg['text.alias']}:" val="4" />
-						<bbvaAcc:termsAccountsPanelInfoItemData
-							date="#{allConditions.informacionProducto.alias}" val="7" />
-						<bbvaAcc:termsAccountsPanelInfoItemTitle
-							date="#{msg['text.account.number']}:" val="4" />
-						<bbvaAcc:termsAccountsPanelInfoItemData
-							date="#{allConditions.informacionProducto.numCuenta}" val="7" />
-						<bbvaAcc:termsAccountsPanelInfoItemTitle
-							date="#{msg['text.account.type']}:" val="4" />
-						<bbvaAcc:termsAccountsPanelInfoItemData
-							date="#{allConditions.informacionProducto.tipoCuenta}" val="7" />
-					</bbvaAcc:termsAccountsPanelInfo>
-					<bbvaAcc:termsAccountsPanelInfoItemBody title="Intervinientes">
-						<bbvaAcc:termsAccountsPanelInfoItemTitle
-							date="#{msg['text.holder']}" val="4" />
-						<bbvaAcc:termsAccountsPanelInfoItemData
-							date="#{allConditions.intervinientes.titular1}" val="7" />
-						<bbvaAcc:termsAccountsPanelInfoItemTitle
-							date="#{msg['text.holder']}" val="4" />
-						<bbvaAcc:termsAccountsPanelInfoItemData
-							date="#{allConditions.intervinientes.titular2}" val="7" />
-						<bbvaAcc:termsAccountsPanelInfoItemTitle
-							date="#{msg['text.conditions.mobilization']}" val="4" />
-						<bbvaAcc:termsAccountsPanelInfoItemData
-							date="#{allConditions.intervinientes.condicionesMovilizacion}"
-							val="7" />
-					</bbvaAcc:termsAccountsPanelInfoItemBody>
-
-					<bbvaAcc:termsAccountsPanelInfoItemBody
-						title="#{msg['text.conditions']}">
-						<bbvaAcc:termsAccountsPanelInfoItemTitle
-							date="#{msg['text.category']}:" val="4" />
-						<bbvaAcc:termsAccountsPanelInfoItemData
-							date="#{allConditions.detalleCondiciones.categoria}" val="7" />
-						<bbvaAcc:termsAccountsPanelInfoItemTitle
-							date="#{msg['text.description']}:" val="4" />
-						<bbvaAcc:termsAccountsPanelInfoItemData
-							date="#{allConditions.detalleCondiciones.descripcion}" val="7" />
-						<bbvaAcc:termsAccountsPanelInfoItemTitle
-							date="#{msg['text.opening.date']}:" val="4" />
-						<bbvaAcc:termsAccountsPanelInfoItemData
-							date="#{allConditions.detalleCondiciones.fechaApertura}" val="7" />
-						<bbvaAcc:termsAccountsPanelInfoItemTitle
-							date="#{msg['text.commissions']}:" val="4" />
-						<bbvaAcc:termsAccountsPanelInfoItemData
-							date="#{allConditions.detalleCondiciones.comisiones}" val="7" />
-					</bbvaAcc:termsAccountsPanelInfoItemBody>
-
-					<bbvaAcc:termsAccountsPanelInfoItemBody
-						title="#{msg['text.postal.addres']}">
-						<bbvaAcc:termsAccountsPanelInfoItemTitle
-							date="#{msg['text.office.name']}" val="4" />
-						<bbvaAcc:termsAccountsPanelInfoItemData
-							date="#{allConditions.direccionPostal.nombreOficina}" val="7" />
-						<bbvaAcc:termsAccountsPanelInfoItemTitle
-							date="#{msg['text.postal.addres']}" val="4" />
-						<bbvaAcc:termsAccountsPanelInfoItemData
-							date="#{allConditions.direccionPostal.direccionPostal}" val="7" />
-
-					</bbvaAcc:termsAccountsPanelInfoItemBody>
-				</bbvaAcc:termsAccounts>
-
-				<!-- panel personalizar -->
-
-				<bbvaPersonalize:personalizeAccount>
-					<bbvaPersonalize:personalizeInputClass
-						divClass="customize-product-name" nameButton="buttonAdd"
-						valueLabel="#{msg['text.nameProduct']}" idButton="buttonUpdate"
-						idInput="inputName" valueButton="#{msg['button.add']}"
-						valueInput="#{personalizeProductAccountController.personalizeProductAccountDto.alias}" />
-					<span class="separator"></span>
-
-					<bbvaPersonalize:personalizeCombo size="smallCombo"
-						idCombo="comboOne" divClass="customize-virtual"
-						valueButton="#{msg['button.save']}" idButton="buttonComboOne"
-						valueLabel="#{msg['text.virtualCorresp']}"
-						actionListenerCom="#{personalizeProductAccountController.successful}"
-						ajaxCom="#{personalizeProductAccountController.offMessage}"
-						value="#{personalizeProductAccountController.personalizeProductAccountDto.virtualMail}" />
-					<bbvaMessage:messageCheck
-						render="#{personalizeProductAccountController.menSuccessful}" />
-					<span class="separator"></span>
-
-					<bbvaPersonalize:personalizeCombo size="bigCombo"
-						idCombo="comboTwo" divClass="customize-online"
-						classIcon="icon-info-blue" valueLabel="#{msg['text.consult']}"
-						labelIcon="#{msg['text.online']}"
-						value="#{personalizeProductAccountController.personalizeProductAccountDto.searchOnline}" />
-
-					<bbvaPersonalize:personalizeCombo size="bigCombo"
-						idCombo="comboThree" divClass="customize-online"
-						classIcon="icon-info-blue" valueLabel="#{msg['text.work']}"
-						labelIcon="#{msg['text.online']}"
-						value="#{personalizeProductAccountController.personalizeProductAccountDto.operationOnline}" />
-
-					<bbvaButton:iconButton id="buttonThree" type="submit"
-						actionListener="#{personalizeProductAccountController.operKey}"
-						value="#{msg['button.save']}" classB="btn btn-default"
-						style="margin: -6px 30px 20px !important" />
-
-					<bbvaMessage:divOperationKey idComfirm="buttonFour"
-						idInput="inputTwo" nameB="buttonConfirm" idInputDiv="divClass"
-						render="#{personalizeProductAccountController.menOperationKey}"
-						value="#{personalizeProductAccountController.personalizeProductAccountDto.operationKey}" />
-				</bbvaPersonalize:personalizeAccount>
-			</div>
-		</bbvaDetAcc:tabMenu>
-
-		<div class="table-tabs">
-			<bbvaDetailMotion:detailMovesTable id="detailAccounts"
-				listAccounts="#{customerAccounts}" />
-		</div>
-
+		<bbvaMessage:dialogRecoverPassword />
 
 	</ui:define>
 
 	<ui:define name="contentRight">
 
 	</ui:define>
+
+	<p:dialog header="Basic Dialog" widgetVar="widgetVarDialogName"
+		modal="true" id="recoverKeyModal">
+		<bbvaMessage:dialogRecoverPassword />
+	</p:dialog>
 
 </ui:composition>
 
