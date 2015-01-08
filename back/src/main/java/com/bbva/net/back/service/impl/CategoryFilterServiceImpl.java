@@ -20,25 +20,22 @@ public class CategoryFilterServiceImpl implements CategoryFilterService {
 	@Override
 	public ComboFilterGraphicsDto getPeriodFilter(final ComboFilterGraphicsDto comboFilter) {
 
-		final SimpleDateFormat format1 = new SimpleDateFormat("dd-MM-yyyy", Locale.ROOT);
+		// Este formato está pendiente definir
+		final SimpleDateFormat formatDate = new SimpleDateFormat("dd-MM-yyyy", Locale.ROOT);
 		final Calendar currentDate = Calendar.getInstance();
 		final Calendar endDate = Calendar.getInstance();
-		// se extrae el tiempo en meses del filtro y se parsea a int
-		final int period = Integer.parseInt(comboFilter.getPeriod().replaceAll("[^0-9]", ""));
+		// se extrae el tiempo en meses del filtro
+		final StringBuilder strPeriod = new StringBuilder(comboFilter.getPeriod().replaceAll("[^0-9]", ""));
+		final String strMonth = strPeriod.length() == 0 ? "1" : "";
+		strPeriod.append(strMonth);
+		final int period = Integer.parseInt(strPeriod.toString());
 
 		endDate.add(Calendar.MONTH, -period);
 
-		comboFilter.setStartDate(format1.format(currentDate.getTime()));
-		comboFilter.setEndDate(format1.format(endDate.getTime()));
+		comboFilter.setStartDate(formatDate.format(currentDate.getTime()));
+		comboFilter.setEndDate(formatDate.format(endDate.getTime()));
 
 		return comboFilter;
-	}
-
-	public static void main(String[] args) {
-
-		ComboFilterGraphicsDto comboFilter = new ComboFilterGraphicsDto();
-		comboFilter.setPeriod("Último mes");
-
 	}
 
 }
