@@ -2,9 +2,9 @@ package com.bbva.net.front.controller;
 
 import java.util.List;
 
-import com.bbva.net.back.model.globalposition.LeasingDTO;
-import com.bbva.net.back.model.globalposition.LoanDTO;
-import com.bbva.net.back.model.globalposition.RotatingAccountDTO;
+import com.bbva.net.back.model.globalposition.LeasingDto;
+import com.bbva.net.back.model.globalposition.LoanDto;
+import com.bbva.net.back.model.globalposition.RotatingAccountDto;
 
 /**
  * @author Entelgy
@@ -14,31 +14,31 @@ public interface LoanController {
 	/**
 	 * @return
 	 */
-	List<RotatingAccountDTO> getCustomerRotatingAccount();
+	List<RotatingAccountDto> getCustomerRotatingAccount();
 
 	/**
 	 * @return
 	 */
-	List<LeasingDTO> getCustomerLeasing();
+	List<LeasingDto> getCustomerLeasing();
 
 	/**
 	 * @return
 	 */
-	List<RotatingAccountDTO> getCustomerRotatingAccountHidden();
+	List<RotatingAccountDto> getCustomerRotatingAccountHidden();
 
 	/**
 	 * @return
 	 */
-	List<LeasingDTO> getCustomerLeasingHidden();
+	List<LeasingDto> getCustomerLeasingHidden();
 
 	/**
 	 * @return
 	 */
-	List<LoanDTO> getCustomerLoan();
+	List<LoanDto> getCustomerLoan();
 
 	/**
 	 * @return
 	 */
-	List<LoanDTO> getCustomerLoanHidden();
+	List<LoanDto> getCustomerLoanHidden();
 
 }

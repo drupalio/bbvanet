@@ -10,7 +10,7 @@ import javax.faces.bean.ViewScoped;
 import org.primefaces.event.SelectEvent;
 
 import com.bbva.net.back.facade.AccountsFacade;
-import com.bbva.net.back.model.globalposition.AccountDTO;
+import com.bbva.net.back.model.globalposition.AccountDto;
 import com.bbva.net.front.controller.AccountsController;
 import com.bbva.net.front.core.AbstractBbvaController;
 
@@ -33,12 +33,12 @@ public class AccountsControllerImpl extends AbstractBbvaController implements Ac
 	}
 
 	@Override
-	public List<AccountDTO> getCustomerAccounts() {
+	public List<AccountDto> getCustomerAccounts() {
 		return this.accountsFacade.getAccountsByUser(getCurrentUser());
 	}
 
 	@Override
-	public List<AccountDTO> getCustomerAccountsHidden() {
+	public List<AccountDto> getCustomerAccountsHidden() {
 		return this.accountsFacade.getAccountsByUserHidden(getCurrentUser());
 	}
 

@@ -6,8 +6,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.bbva.net.back.model.globalposition.GlobalProductsDTO;
-import com.bbva.net.back.model.globalposition.ProductDTO;
+import com.bbva.net.back.model.globalposition.GlobalProductsDto;
+import com.bbva.net.back.model.globalposition.ProductDto;
 import com.bbva.net.back.service.impl.ProductServiceImpl;
 
 public class ProductServiceImplTest {
@@ -22,7 +22,7 @@ public class ProductServiceImplTest {
 
 	@Test
 	public void checkGetProductsNotEmpty() {
-		final List<ProductDTO> products = productServiceImpl.getProducts(new GlobalProductsDTO());
+		final List<ProductDto> products = productServiceImpl.getProducts(new GlobalProductsDto());
 
 		/**
 		 * Asserts

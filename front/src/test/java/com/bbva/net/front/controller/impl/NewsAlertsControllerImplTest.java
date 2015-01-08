@@ -10,7 +10,7 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import com.bbva.net.back.facade.NewsAlertsFacade;
-import com.bbva.net.back.model.newsAlerts.NewsAlertsDTO;
+import com.bbva.net.back.model.newsAlerts.NewsAlertsDto;
 
 public class NewsAlertsControllerImplTest {
 
@@ -35,7 +35,7 @@ public class NewsAlertsControllerImplTest {
 	public void deleteNewAlertTrue() {
 		this.newsAlertsController.deleteNewsAlertsFacade(Mockito.mock(ActionEvent.class));
 		Mockito.verify(this.newsAlertsFacade, Mockito.atLeastOnce()).deleteNewsAlertsFacade(
-				Mockito.anyListOf(NewsAlertsDTO.class));
+				Mockito.anyListOf(NewsAlertsDto.class));
 	}
 
 	@Test
@@ -43,7 +43,7 @@ public class NewsAlertsControllerImplTest {
 
 		this.newsAlertsController.changeNoViewedState(Mockito.mock(ActionEvent.class));
 		Mockito.verify(this.newsAlertsFacade, Mockito.atLeastOnce()).changeNoViewedState(
-				Mockito.anyListOf(NewsAlertsDTO.class));
+				Mockito.anyListOf(NewsAlertsDto.class));
 	}
 
 	@Test
@@ -51,13 +51,13 @@ public class NewsAlertsControllerImplTest {
 
 		this.newsAlertsController.changeViewedState(Mockito.mock(ActionEvent.class));
 		Mockito.verify(this.newsAlertsFacade, Mockito.atLeastOnce()).changeViewedState(
-				Mockito.anyListOf(NewsAlertsDTO.class));
+				Mockito.anyListOf(NewsAlertsDto.class));
 	}
 
 	@Test
 	public void getAlertsNews() {
 
-		Mockito.when(newsAlertsFacade.getNewsAlertsList()).thenReturn(new ArrayList<NewsAlertsDTO>());
+		Mockito.when(newsAlertsFacade.getNewsAlertsList()).thenReturn(new ArrayList<NewsAlertsDto>());
 		/**
 		 * Invoke test method
 		 */
@@ -72,7 +72,7 @@ public class NewsAlertsControllerImplTest {
 		/**
 		 * Prepare test case
 		 */
-		newsAlertsController.setNewsAlertSelectedList(new ArrayList<NewsAlertsDTO>());
+		newsAlertsController.setNewsAlertSelectedList(new ArrayList<NewsAlertsDto>());
 
 		/**
 		 * Invoke test method

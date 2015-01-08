@@ -3,7 +3,7 @@ package com.bbva.net.back.mapper;
 import java.util.List;
 
 import com.bbva.czic.dto.net.Product;
-import com.bbva.net.back.model.globalposition.GlobalProductsDTO;
+import com.bbva.net.back.model.globalposition.GlobalProductsDto;
 
 public interface GlobalPositionMapper {
 
@@ -11,5 +11,5 @@ public interface GlobalPositionMapper {
 	 * @param products
 	 * @return
 	 */
-	GlobalProductsDTO map(List<Product> products);
+	GlobalProductsDto map(List<Product> products);
 }

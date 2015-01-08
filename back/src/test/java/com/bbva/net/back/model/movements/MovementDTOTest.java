@@ -2,12 +2,12 @@ package com.bbva.net.back.model.movements;
 
 import com.bbva.net.core.test.AbstractBbvaDTOTest;
 
-public class MovementDTOTest extends AbstractBbvaDTOTest<MovementDTO> {
+public class MovementDTOTest extends AbstractBbvaDTOTest<MovementDto> {
 
 	@Override
-	protected MovementDTO getInstance() {
+	protected MovementDto getInstance() {
 
-		return new MovementDTO();
+		return new MovementDto();
 	}
 
 }

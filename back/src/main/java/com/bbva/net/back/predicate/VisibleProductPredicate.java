@@ -1,12 +1,12 @@
 package com.bbva.net.back.predicate;
 
-import com.bbva.net.back.model.globalposition.ProductDTO;
+import com.bbva.net.back.model.globalposition.ProductDto;
 import com.bbva.net.core.collection.BbvaPredicate;
 
-public class VisibleProductPredicate extends BbvaPredicate<ProductDTO> {
+public class VisibleProductPredicate extends BbvaPredicate<ProductDto> {
 
 	@Override
-	protected boolean eval(ProductDTO productDTO) {
+	protected boolean eval(ProductDto productDTO) {
 		return productDTO.isVisible();
 	}
 

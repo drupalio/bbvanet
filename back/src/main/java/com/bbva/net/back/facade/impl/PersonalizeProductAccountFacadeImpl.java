@@ -3,7 +3,7 @@ package com.bbva.net.back.facade.impl;
 import com.bbva.net.back.core.pattern.facade.AbstractBbvaFacade;
 import com.bbva.net.back.core.stereotype.Facade;
 import com.bbva.net.back.facade.PersonalizeProductAccountFacade;
-import com.bbva.net.back.model.movements.PersonalizeAccountDTO;
+import com.bbva.net.back.model.personalize.PersonalizeAccountDto;
 
 @Facade(value = "personalizeProductAccountFacade")
 public class PersonalizeProductAccountFacadeImpl extends AbstractBbvaFacade implements PersonalizeProductAccountFacade {
@@ -12,8 +12,8 @@ public class PersonalizeProductAccountFacadeImpl extends AbstractBbvaFacade impl
 
 
 	@Override
-	public PersonalizeAccountDTO getPersonalizeAccountDto(String defaultUser, String defaultProduct) {
-		return new PersonalizeAccountDTO();
+	public PersonalizeAccountDto getPersonalizeAccountDto(String defaultUser, String defaultProduct) {
+		return new PersonalizeAccountDto();
 	}
 
 }

@@ -18,8 +18,9 @@
 
 	<ui:define name="bodyTitle">
 		<bbvaBody:title title="#{msg['title.cards']}">
-			<bbvaBody:titleOptionProduct optionButttonLeft="Mis productos"
-				optionButttonRight="Catálogo de productos" />
+			<bbvaBody:titleOptionProduct
+				optionButttonLeft="#{msg['title.myProducts']}"
+				optionButttonRight="#{msg['title.productCatalog']}" />
 		</bbvaBody:title>
 	</ui:define>
 
@@ -27,7 +28,7 @@
 
 		<bbvaContainer:productCardGraphic title="#{msg['title.cards']}"
 			header="#{msg['graphicCard.tittle']}" id="cardPie"
-			pieGraphic="#{globalPositionController.graphicPieProducts}">
+			pieGraphic="#{globalPositionController.graphicPieCards}">
 			<div class="table-tabs">
 				<bbvaGP:cardHeadTable listCards="#{customerProducts.creditCards}" />
 				<bbvaGP:cardTailTable
