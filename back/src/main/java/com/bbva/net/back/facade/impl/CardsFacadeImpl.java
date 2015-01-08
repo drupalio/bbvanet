@@ -48,11 +48,16 @@ public class CardsFacadeImpl extends AbstractBbvaFacade implements CardsFacade {
 	private CardService cardChargeService;
 	
 	@Override
-
 	public List<CardsChargesDto> getCardsChargesByUser(String customerId) {
-		cardChargeService.getCreditCardCharges(customerId, null,null,null, null);
 		final List<CardCharge> response = cardsCustomerService
 				.listCreditCardsCharges(customerId);
+		return cardsMapper.map(response);
+	}
+
+	@Override
+	public List<CardsChargesDto> getCardsChargesFilter(String customerId,
+			String startDate, String endDate) {
+		final List<CardCharge> response=cardChargeService.getCreditCardCharges(customerId, null,null,null, null);
 		return cardsMapper.map(response);
 	}
 	

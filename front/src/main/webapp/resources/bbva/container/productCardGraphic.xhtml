@@ -38,27 +38,26 @@
 		<div class="tab tab-lines no-border">
 			<composite:insertChildren />
 		</div>
-<h:form id="cardForm" >
+
 		<div class="tab tab-bars chart">
 			<div class="tab-title">#{cc.attrs.header}</div>
 
-				
+				<h:form id="cardForm" >
 					<bbvaPieGraphic:cardGraphic id="#{cc.attrs.id}"
 						pieConfigUI="#{cc.attrs.pieGraphic}" />
-				
-
+				</h:form>
+				<h:form id="FooterForm" >
 					<bbvaPieGraphic:footerFiltersCards nameRight="Tarjetas"
-						listRight="#{globalPositionController.namesProducts['TDC']}"
 						nameLeft="Periodo"
 						listLeft="#{globalPositionController.periodGraphics()}"
 						valueLeft="#{globalPositionController.datos}"
 						listenerLeft="#{globalPositionController.onComboSelectedCard}"
-						valueRight="#{globalPositionController.datos}"
 						listenerRight="#{globalPositionController.onComboSelectedCard}" />
-
+				</h:form>
+				
 
 		</div>
-</h:form>
+
 		<div class="row afterTable"></div>
 	</div>
 

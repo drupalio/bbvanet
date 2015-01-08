@@ -8,22 +8,20 @@
 	xmlns:pm="http://primefaces.org/mobile">
 
 <composite:interface>
-	<composite:attribute name="id" type="String" />
 	<composite:attribute name="list" type="java.util.List" />
-	<composite:attribute name="width" type="String" />
-	<composite:attribute name="ajax" required="false"
-		method-signature="void listen(javax.faces.event.AjaxBehaviorEvent)" />
+	<composite:attribute name="totalProduct" type="String" />
 	<composite:attribute name="value" />	
 	<composite:attribute name="listener"/>
+	<composite:attribute name="render" type="String"/>
 </composite:interface>
 
 <composite:implementation>
-	<div style="display: inline-block; width: #{cc.attrs.width}">
-		<h:selectOneMenu id="#{cc.attrs.id}" value="#{cc.attrs.value}" >
+	<div style="display: inline-block; width:60% !important">
+		<h:selectOneMenu id="productGraphic" value="#{cc.attrs.value}">
+			<f:selectItem itemLabel="#{cc.attrs.totalProduct}" itemValue="#{cc.attrs.totalProduct}" />
 			<f:selectItems value="#{cc.attrs.list}" var="ilist" itemLabel="#{ilist}"
 				itemValue="#{ilist}" />
-			<f:ajax listener="#{cc.attrs.listener}" event="change" execute="@form" render="@form :cardForm "/>
-	
+			<f:ajax listener="#{cc.attrs.listener}" event="change" execute="@form" render="#{cc.attrs.render}" />
 		</h:selectOneMenu>
 	</div>
 </composite:implementation>
