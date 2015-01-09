@@ -25,7 +25,31 @@
 
 	<ui:define name="contentLeft">
 
-		<bbvaContainer:productPanelBarGraphic
+				<bbvaContainer:productPanelBarGraphic id="AccountGP"
+			title="#{msg['title.accountsPersonal']}">
+			<div class="table-tabs">
+				<bbvaGP:accountSearch listAccounts="#{customerProducts.accounts}"
+					listAccountsAdquirencia="#{customerProducts.accounts}"
+					listAccountsMore="#{customerProducts.accounts}" />
+				<bbvaGP:accountHeadTable listAccounts="#{customerProducts.accounts}"
+					controller="#{globalPositionController}" />
+
+				<bbvaGP:accountAdquirenciaTable
+					controller="#{globalPositionController}"
+					listAccounts="#{customerProducts.adquirencia}" />
+
+				<bbvaGP:accountTailTable controller="#{globalPositionController}"
+					listAccounts="#{customerProductsHidden.accounts}" />
+			</div>
+			<div class="row afterTable">
+				<bbvaGP:productFooter
+					listProduct="#{customerProductsHidden.accounts}" />
+				<bbvaGP:totalBalance util="#{msg['text.accountant']}"
+					total="#{globalPositionController.totalsProducts['PC'].total}"
+					subtotal="#{globalPositionController.totalsProducts['PC'].available}" />
+			</div>
+		</bbvaContainer:productPanelBarGraphic>
+		<!-- <bbvaContainer:productPanelBarGraphic
 			title="#{msg['title.accountsPersonal']}">
 			<div class="table-tabs">
 				<bbvaGP:accountSearch listAccounts="#{customerAccounts}" />
@@ -40,7 +64,7 @@
 				<bbvaGP:productFooter listProduct="#{customerAccountsHidden}" />
 				<bbvaGP:totalBalance />
 			</div>
-		</bbvaContainer:productPanelBarGraphic>
+		</bbvaContainer:productPanelBarGraphic> -->
 	</ui:define>
 
 	<ui:define name="contentRight">
