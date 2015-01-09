@@ -18,12 +18,12 @@
 
 <composite:implementation>
     <div style="display: inline-block; width: 60% !important">
-        <h:selectOneMenu id="periodo" value="#{cc.attrs.valueMenu}" >
+        <h:selectOneMenu id="periodo" value="#{cc.attrs.valueMenu}"  >
             <f:selectItems value="#{periodFilterCriteriaController.getListMultiValuePeriod()}" 
-            var="ilist" itemLabel="#{msg[ilist.value]}" itemValue="#{ilist.id}" />
-            <f:ajax listener="#{cc.attrs.listener}" event="change" execute="@form" render="#{cc.attrs.render}"/>
+            var="multiValue" itemLabel="#{msg[multiValue.value]}" itemValue="#{multiValue.id}" />
+            <f:ajax listener="#{cc.attrs.listener}" event="valueChange" execute="@this" render="#{cc.attrs.render}"/>
        </h:selectOneMenu>
     </div>
 </composite:implementation>
-
+ 
 </html>

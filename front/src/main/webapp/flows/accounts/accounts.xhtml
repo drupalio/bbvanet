@@ -25,7 +25,7 @@
 
 	<ui:define name="contentLeft">
 
-				<bbvaContainer:productPanelBarGraphic id="AccountGP"
+				<bbvaContainer:productPanelAccountGraphic id="AccountGP"
 			title="#{msg['title.accountsPersonal']}">
 			<div class="table-tabs">
 				<bbvaGP:accountSearch listAccounts="#{customerProducts.accounts}"
@@ -48,23 +48,8 @@
 					total="#{globalPositionController.totalsProducts['PC'].total}"
 					subtotal="#{globalPositionController.totalsProducts['PC'].available}" />
 			</div>
-		</bbvaContainer:productPanelBarGraphic>
-		<!-- <bbvaContainer:productPanelBarGraphic
-			title="#{msg['title.accountsPersonal']}">
-			<div class="table-tabs">
-				<bbvaGP:accountSearch listAccounts="#{customerAccounts}" />
-				<bbvaGP:accountHeadTable listAccounts="#{customerAccounts}"
-					controller="#{accountsController}" />
-				<bbvaGP:accountAdquirenciaTable listAccounts="#{customerAccounts}"
-					controller="#{accountsController}" />
-				<bbvaGP:accountTailTable listAccounts="#{customerAccountsHidden}"
-					controller="#{accountsController}" />
-			</div>
-			<div class="row afterTable">
-				<bbvaGP:productFooter listProduct="#{customerAccountsHidden}" />
-				<bbvaGP:totalBalance />
-			</div>
-		</bbvaContainer:productPanelBarGraphic> -->
+		</bbvaContainer:productPanelAccountGraphic>
+		
 	</ui:define>
 
 	<ui:define name="contentRight">

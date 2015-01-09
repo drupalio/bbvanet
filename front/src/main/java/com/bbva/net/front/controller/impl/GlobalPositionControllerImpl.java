@@ -8,8 +8,8 @@ import javax.annotation.Resource;
 import javax.faces.bean.ManagedBean;
 import javax.faces.event.ComponentSystemEvent;
 import javax.faces.view.ViewScoped;
-import org.apache.cxf.jaxrs.ext.search.client.SearchConditionBuilder;
 
+import org.apache.cxf.jaxrs.ext.search.client.SearchConditionBuilder;
 import org.primefaces.event.SelectEvent;
 
 import com.bbva.net.back.facade.CardsFacade;
@@ -27,7 +27,6 @@ import com.bbva.net.front.controller.GlobalPositionController;
 import com.bbva.net.front.core.AbstractBbvaController;
 import com.bbva.net.front.delegate.GraphicBarLineDelegate;
 import com.bbva.net.front.delegate.GraphicPieDelegate;
-import com.bbva.net.front.helper.MessagesHelper;
 import com.bbva.net.front.ui.globalposition.AccountBarLineUI;
 import com.bbva.net.front.ui.globalposition.SituationPiesUI;
 import com.bbva.net.front.ui.pie.PieConfigUI;
@@ -78,17 +77,13 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	private Map<String, List<String>> namesProducts;
 
-	private String datos;
+	private String periodCardSelected;
 
 	private String periodAccountSelected;
 
-	public String getDatos() {
-		return datos;
-	}
+	private String cardSelected;
 
-	public void setDatos(String datos) {
-		this.datos = datos;
-	}
+	private String accountSelected;
 
 	private enum ActivePanelType {
 
@@ -232,28 +227,15 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 		SearchConditionBuilder b = SearchConditionBuilder.instance();
 		String filter = b.is("starDateSelectd").greaterThan(10).and().is("starDate").lessThan(20).query();
-		/*
-		 * Map<String, String> props = new HashMap<String, String>();
-props.put("search.date-format", "yyyy-MM-dd&#39;T&#39;HH:mm:ss");
-props.put("search.timezone.support", "false");
- 
-Date d = df.parse("2011-03-01 12:34:00");
-         
-FiqlSearchConditionBuilder bCustom = new FiqlSearchConditionBuilder(props);
-         
-String ret = bCustom.is("foo").equalTo(d).query();
-		 */
-		
-		System.out.println("Seleciona combo tarjetas"+datos);
-		if(MessagesHelper.INSTANCE.getString("text.allCards").equals(datos)){
-			//this.graphicPieCards=graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(getCurrentUser(),filter,""));
-		}else{			
 
-			//(chargeDate=ge={startDate};chargeDate=le={enDate})
-			//this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesFilter(idProduct,filter,""));
-
-			this.graphicPieCards = graphicPieDelegate.getAccountsfundsProducts(this.fundDTOs);
-		}
+		// System.out.println("Seleciona combo tarjetas" + datos);
+		// if (MessagesHelper.INSTANCE.getString("text.allCards").equals(datos)) {
+		// //
+		// this.graphicPieCards=graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(getCurrentUser(),filter,""));
+		// } else {
+		//
+		// this.graphicPieCards = graphicPieDelegate.getAccountsfundsProducts(this.fundDTOs);
+		// }
 	}
 
 	public void onComboSelectedAccount() {
@@ -330,12 +312,36 @@ String ret = bCustom.is("foo").equalTo(d).query();
 		return cardsFacade;
 	}
 
+	public String getPeriodCardSelected() {
+		return periodCardSelected;
+	}
+
+	public void setPeriodCardSelected(String periodCardSelected) {
+		this.periodCardSelected = periodCardSelected;
+	}
+
 	public String getPeriodAccountSelected() {
 		return periodAccountSelected;
 	}
 
 	public void setPeriodAccountSelected(String periodAccountSelected) {
 		this.periodAccountSelected = periodAccountSelected;
+	}
+
+	public String getCardSelected() {
+		return cardSelected;
+	}
+
+	public void setCardSelected(String cardSelected) {
+		this.cardSelected = cardSelected;
+	}
+
+	public String getAccountSelected() {
+		return accountSelected;
+	}
+
+	public void setAccountSelected(String accountSelected) {
+		this.accountSelected = accountSelected;
 	}
 
 }
