@@ -20,6 +20,7 @@
 	<composite:attribute name="disabledButton" />
 	<composite:attribute name="disabledCalendar" />
 	<composite:attribute name="actionListenerDate"/>
+	<composite:attribute name="listenerDate"/>
 
 
 	<composite:attribute name="valueCheck" />
@@ -35,19 +36,21 @@
 	<bbvaSearch:customSearchList classList="date-filter checkBooks"
 		classSpan="arrow-left-smaller" classSpanFilter="filter"
 		title="#{msg['text.date']}">
-		<bbvaSearch:customSearchFilter value="#{cc.attrs.value}"
+		<bbvaSearch:customSearchFilter id="dateCheck"
+			value="#{cc.attrs.value}"
 			valueDateSince="#{cc.attrs.valueDateSince}"
 			valueDateTo="#{cc.attrs.valueDateTo}"
 			disabledButton="#{cc.attrs.disabledButton}"
 			disabledCalendar="#{cc.attrs.disabledCalendar}" 
-			actionListenerDate="#{cc.attrs.actionListenerDate}"/>
+			actionListenerDate="#{cc.attrs.actionListenerDate}"
+			listenerDate="#{cc.attrs.listenerDate}"/>
 	</bbvaSearch:customSearchList>
 
-	<bbvaSearch:checkBoxList
+	<bbvaSearch:checkBoxList id="checkList"
 		classList="check-books-ticket radio-filter mobile-hidden"
 		classSpan="arrow-left-smaller" classSpanFilter="filter"
 		title="#{msg['text.number.check.books']}">
-		<bbvaSearch:numberCheck 
+		<bbvaSearch:numberCheck id="numberCheck"
 			valueCheck="#{cc.attrs.valueCheck}"
 			valueCheckNumber="#{cc.attrs.valueCheckNumber}"
 			valuecheckState="#{cc.attrs.valuecheckState}"
