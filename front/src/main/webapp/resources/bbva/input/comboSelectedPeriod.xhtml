@@ -8,22 +8,15 @@
 	xmlns:pm="http://primefaces.org/mobile">
 
 <composite:interface>
-	
-	<composite:attribute name="width" type="String" />
-	<composite:attribute name="valueMenu" />	
+	<composite:attribute name="list" type="java.util.List" />
+	<composite:attribute name="width" type="String"/>
+	<composite:attribute name="value" />	
 	<composite:attribute name="listener"/>
-	<composite:attribute name="render"/>
+	<composite:attribute name="render" type="String"/>
 </composite:interface>
 
 <composite:implementation>
-	<div style="display: inline-block; width: 60% !important">
-		<h:selectOneMenu id="comboFilterPeriod" value="#{cc.attrs.valueMenu}" >
-			<f:selectItems value="#{periodFilterCriteriaController.getListMultiValuePeriod()}" 
-			var="ilist" itemLabel="#{msg[ilist.value]}" itemValue="#{ilist.value}" />
-			<f:ajax listener="#{cc.attrs.listener}" event="change" execute="@form" render="#{cc.attrs.render}"/>	
 	
-		</h:selectOneMenu>
-	</div>
 </composite:implementation>
 
 </html>
