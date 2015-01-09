@@ -1,5 +1,6 @@
 package com.bbva.net.front.controller.impl;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -8,7 +9,6 @@ import javax.annotation.Resource;
 import javax.faces.bean.ManagedBean;
 import javax.faces.event.ComponentSystemEvent;
 import javax.faces.view.ViewScoped;
-import org.apache.cxf.jaxrs.ext.search.client.SearchConditionBuilder;
 
 import org.primefaces.event.SelectEvent;
 
@@ -78,17 +78,11 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	private Map<String, List<String>> namesProducts;
 
-	private String datos;
-
 	private String periodAccountSelected;
-
-	public String getDatos() {
-		return datos;
-	}
-
-	public void setDatos(String datos) {
-		this.datos = datos;
-	}
+	
+	private String periodCardSelected;
+	
+	private String cardSelected;
 
 	private enum ActivePanelType {
 
@@ -115,7 +109,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		this.graphicPieInvestmentFunds = graphicPieDelegate.getAccountsfundsProducts(this.fundDTOs);
 
 		// Calculate situation graphics panels
-		this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(getCurrentUser()));
+		this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(getCurrentUser(),null));
 
 		// Calculate totals
 		this.totalsProducts = this.globalPositionFacade.getTotalsByProduct(globalProductsDTO);
@@ -229,29 +223,19 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	 * Filter combo of Cards
 	 */
 	public void onComboSelectedCard() {
+		EnumPeriodType periodType = EnumPeriodType.valueOf(Integer.parseInt(this.periodCardSelected));
 
-		SearchConditionBuilder b = SearchConditionBuilder.instance();
-		String filter = b.is("starDateSelectd").greaterThan(10).and().is("starDate").lessThan(20).query();
-		/*
-		 * Map<String, String> props = new HashMap<String, String>();
-props.put("search.date-format", "yyyy-MM-dd&#39;T&#39;HH:mm:ss");
-props.put("search.timezone.support", "false");
- 
-Date d = df.parse("2011-03-01 12:34:00");
-         
-FiqlSearchConditionBuilder bCustom = new FiqlSearchConditionBuilder(props);
-         
-String ret = bCustom.is("foo").equalTo(d).query();
-		 */
+		System.out.println(" Seleciona combo tarjetas"+cardSelected+"  "+periodCardSelected);
+		DateRangeDto dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
 		
-		System.out.println("Seleciona combo tarjetas"+datos);
-		if(MessagesHelper.INSTANCE.getString("text.allCards").equals(datos)){
-			//this.graphicPieCards=graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(getCurrentUser(),filter,""));
+		
+		if(MessagesHelper.INSTANCE.getString("text.allCards").equals(cardSelected)){
+			this.graphicPieCards=graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(getCurrentUser(),dateRange));
 		}else{			
-
-			//(chargeDate=ge={startDate};chargeDate=le={enDate})
-			//this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesFilter(idProduct,filter,""));
-
+			//Este es el llamado al servicio corrrespondiente
+			//this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesFilter(idProduct,dateRange));
+			
+			//linea de prueba	
 			this.graphicPieCards = graphicPieDelegate.getAccountsfundsProducts(this.fundDTOs);
 		}
 	}
@@ -337,5 +321,20 @@ String ret = bCustom.is("foo").equalTo(d).query();
 	public void setPeriodAccountSelected(String periodAccountSelected) {
 		this.periodAccountSelected = periodAccountSelected;
 	}
+	
+	public String getPeriodCardSelected() {
+		return periodCardSelected;
+	}
 
+	public void setPeriodCardSelected(String periodCardSelected) {
+		this.periodCardSelected = periodCardSelected;
+	}
+
+	public String getCardSelected() {
+		return cardSelected;
+	}
+
+	public void setCardSelected(String cardSelected) {
+		this.cardSelected = cardSelected;
+	}
 }
