@@ -41,7 +41,6 @@ public final class CollectionBbvaUtils {
 	 */
 	public static <T extends Serializable> List<String> nameProduct(List<T> list, final String expressionLenguage) {
 
-
 		List<String> names= new ArrayList<String>();
 		for (Iterator<T> iterator = list.iterator(); iterator.hasNext();) {
 			T object = iterator.next();

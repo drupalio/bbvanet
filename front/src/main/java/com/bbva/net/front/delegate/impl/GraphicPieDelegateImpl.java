@@ -32,25 +32,25 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 	@Resource(name = "productService")
 	private ProductService productService;
 
-	@Resource(name = "cardsFacade")
-	private CardsFacade cardsFacade;
-
 	@Resource(name = "fundsService")
 	private FundsService fundsService;
-
-	public PieConfigUI getCardGraphicByUser(final String customerId) {
-
+	
+	/**
+	 * 
+	 * @param cardsCharges
+	 * @return
+	 */
+	public PieConfigUI getCardGraphic(final List<CardsChargesDto> cardsCharges){
 		final PieConfigUI assetPie = new PieConfigUI();
 		assetPie.setHeaderCenter("Pesos ($)");
 		final List<PieItemUI> assetPieItems = new ArrayList<PieItemUI>();
-		final List<CardsChargesDto> cardsCharges = cardsFacade.getCardsChargesByUser(customerId);
 		
-		final PieItemUI salesPieItem = new PieItemUI("el color", cardsCharges.get(0).getCategorie(), cardsCharges.get(0).getAmmount().getAmount());
-		final PieItemUI clothesPieItem = new PieItemUI("el color",cardsCharges.get(1).getCategorie(), cardsCharges.get(1).getAmmount().getAmount());
-		final PieItemUI othersPieItem = new PieItemUI("el color",cardsCharges.get(2).getCategorie(), cardsCharges.get(2).getAmmount().getAmount());
-		final PieItemUI leisurePieItem = new PieItemUI("el color",cardsCharges.get(3).getCategorie(), cardsCharges.get(3).getAmmount().getAmount());
-		final PieItemUI booksPieItem = new PieItemUI("el color",cardsCharges.get(4).getCategorie(), cardsCharges.get(4).getAmmount().getAmount());
-		final PieItemUI commercePieItem = new PieItemUI("#197AC4",cardsCharges.get(5).getCategorie(), cardsCharges.get(5).getAmmount().getAmount());
+		final PieItemUI salesPieItem = new PieItemUI("el color", MessagesHelper.INSTANCE.getString("categorie.sales"), cardsCharges.get(0).getAmmount().getAmount());
+		final PieItemUI clothesPieItem = new PieItemUI("el color",MessagesHelper.INSTANCE.getString("categorie.clothes"), cardsCharges.get(1).getAmmount().getAmount());
+		final PieItemUI othersPieItem = new PieItemUI("el color",MessagesHelper.INSTANCE.getString("categorie.others"), cardsCharges.get(2).getAmmount().getAmount());
+		final PieItemUI leisurePieItem = new PieItemUI("el color",MessagesHelper.INSTANCE.getString("categorie.leisure"), cardsCharges.get(3).getAmmount().getAmount());
+		final PieItemUI booksPieItem = new PieItemUI("el color",MessagesHelper.INSTANCE.getString("categorie.books"), cardsCharges.get(4).getAmmount().getAmount());
+		final PieItemUI commercePieItem = new PieItemUI("#197AC4",MessagesHelper.INSTANCE.getString("categorie.commerce"), cardsCharges.get(5).getAmmount().getAmount());
 		
 		
 		assetPieItems.add(salesPieItem);
@@ -62,7 +62,6 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 		assetPie.setPieItemUIList(assetPieItems);
 
 		return assetPie;
-
 	}
 
 	@Override
