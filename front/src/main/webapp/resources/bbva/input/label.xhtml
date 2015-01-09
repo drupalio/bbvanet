@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+<composite:interface>
+
+	<composite:attribute name="id" />
+	<composite:attribute name="for" />
+	<composite:attribute name="value" />
+	<composite:attribute name="data" />
+
+</composite:interface>
+
+<composite:implementation>
+
+	<c:if
+		test="#{cc.getValueExpression('data') != null and cc.getValueExpression('for') != null}">
+		<h:outputLabel id="#{cc.attrs.id}" for="#{cc.attrs.for}"
+			value="#{cc.attrs.value}"
+			class="col-xs-12 col-sm-12 col-md-5 control-label left">
+			<span data-original-title="#{cc.attrs.data}" class="required"
+				data-toggle="tooltip" title=""></span>
+		</h:outputLabel>
+	</c:if>
+
+	<c:if
+		test="#{cc.getValueExpression('data') != null and cc.getValueExpression('for') == null}">
+		<h:outputLabel id="#{cc.attrs.id}" value="#{cc.attrs.value}"
+			class="col-xs-12 col-sm-12 col-md-5 control-label left">
+			<span data-original-title="#{cc.attrs.data}" class="required"
+				data-toggle="tooltip" title=""></span>
+		</h:outputLabel>
+	</c:if>
+
+	<c:if
+		test="#{cc.getValueExpression('data') == null and cc.getValueExpression('for') != null}">
+		<h:outputLabel id="#{cc.attrs.id}" for="#{cc.attrs.for}"
+			value="#{cc.attrs.value}"
+			class="col-xs-12 col-sm-12 col-md-5 control-label left">
+		</h:outputLabel>
+	</c:if>
+
+	<c:if
+		test="#{cc.getValueExpression('data') == null and cc.getValueExpression('for') == null}">
+		<h:outputLabel id="#{cc.attrs.id}" value="#{cc.attrs.value}"
+			class="col-xs-12 col-sm-12 col-md-5 control-label left">
+		</h:outputLabel>
+	</c:if>
+
+</composite:implementation>
+
+</html>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile">
+
+<composite:interface>
+
+	<composite:attribute name="id" />
+	<composite:attribute name="value" />
+	<composite:attribute name="type" />
+	<composite:attribute name="required" />
+	<composite:attribute name="maxlength" type="java.lang.Integer" />
+	<composite:attribute name="requiredMessage" required="false"
+		default="An input is required" />
+	<composite:attribute name="validatorMessage" required="false"
+		default="Invalid input" />
+	<composite:attribute name="onclick" required="false" default="" />
+	<composite:editableValueHolder name="input" targets="input" />
+
+</composite:interface>
+
+<composite:implementation>
+
+	<div id="registerUser-error" class="arrow_box_container">
+		<div class="arrow_box error-tooltip">
+			<h3>Alerta!</h3>
+			<p>Este campo es obligatorio.</p>
+		</div>
+	</div>
+
+	<p:inputText id="#{cc.attrs.id}" type="#{cc.attrs.type}"
+		value="#{cc.attrs.value}" maxlength="#{cc.attrs.maxlength}"
+		required="#{cc.attrs.required}"
+		requiredMessage="#{cc.attrs.requiredMessage}"
+		validatorMessage="#{cc.attrs.validatorMessage}"
+		title="#{component.valid?'':'Este campo es obligatorio.'}"
+		onclick="#{cc.attrs.onclick}"
+		styleClass="#{component.valid?'form-control':'form-control  has-error'}">
+	</p:inputText>
+
+</composite:implementation>
+
+</html>
