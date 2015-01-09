@@ -44,7 +44,7 @@
 	position: relative !important;
 }
 
-div.ui-state-active {
+selectOneButton.ui-state-active {
 	color: #005098 !important;
 	cursor: pointer;
 	font-family: "BBVA Web Medium", arial, sans-serif !important;
@@ -121,7 +121,7 @@ div.ui-state-active {
 	font-feature-settings: normal
 }
 
-div.ui-corner-all {
+selectOneButton.ui-corner-all {
 	border-radius: 8px !important;
 	float: left !important;
 	width: 100% !important;
@@ -129,7 +129,7 @@ div.ui-corner-all {
 	height: 100% !important;
 }
 
-div.ui-state-default {
+selectOneButton.ui-state-default {
 	color: #0078D2;
 	background-attachment: scroll;
 	background-clip: border-box;

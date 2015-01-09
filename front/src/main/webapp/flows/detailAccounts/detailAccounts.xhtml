@@ -36,23 +36,18 @@
 		<h:form>
 			<bbvaButton:iconButton id="data"
 				actionListener="#{quotaController.data}" value="Basic" type="button" />
-			<p:dialog header="Basic Dialog" widgetVar="widgetVarDialogName"
-				modal="true" id="recoverKeyModal">
-				<bbvaMessage:dialogRecoverPassword />
-			</p:dialog>
 		</h:form>
 
 		<h:form>
-			<p:commandButton id="dats" onclick="PF('widgetVarDialogName').show();"
-				value="Basic" type="button" />
+			<p:commandButton id="dats"
+				onclick="PF('widgetVarDialogName').show();" value="Basic"
+				type="button" />
 
 			<p:dialog header="Basic Dialog" widgetVar="widgetVarDialogName"
 				modal="true" id="recoverKeyModal">
 				<bbvaMessage:dialogRecoverPassword />
 			</p:dialog>
 		</h:form>
-
-		<bbvaMessage:dialogRecoverPassword />
 
 	</ui:define>
 

@@ -36,6 +36,8 @@ public class QuotaControllerImpl extends AbstractBbvaController implements Quota
 
 	private PersonalizeAccountDto personalizeAccountDto = new PersonalizeAccountDto();
 
+	private QuotaDetailDto quotaDetailDto = new QuotaDetailDto();
+
 	@Override
 	public TermsAccountsDto getAllConditions() {
 		// TODO Auto-generated method stub
@@ -155,6 +157,13 @@ public class QuotaControllerImpl extends AbstractBbvaController implements Quota
 	@Override
 	public QuotaDetailDto getQuotaDetail() {
 		return new QuotaDetailDto();
+	}
+
+	/**
+	 * @return the quotaDetailDto
+	 */
+	public QuotaDetailDto getQuotaDetailDto() {
+		return quotaDetailDto;
 	}
 
 	public void data(ActionEvent event) {
