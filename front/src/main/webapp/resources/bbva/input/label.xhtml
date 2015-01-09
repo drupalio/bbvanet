@@ -10,10 +10,10 @@
 
 <composite:interface>
 
-	<composite:attribute name="id" />
-	<composite:attribute name="for" />
-	<composite:attribute name="value" />
-	<composite:attribute name="data" />
+	<composite:attribute name="id" type="String" />
+	<composite:attribute name="for" type="String" />
+	<composite:attribute name="value" type="String" />
+	<composite:attribute name="data" type="String" />
 
 </composite:interface>
 
@@ -21,12 +21,12 @@
 
 	<c:if
 		test="#{cc.getValueExpression('data') != null and cc.getValueExpression('for') != null}">
-		<h:outputLabel id="#{cc.attrs.id}" for="#{cc.attrs.for}"
+		<p:outputLabel id="#{cc.attrs.id}" for="#{cc.attrs.for}"
 			value="#{cc.attrs.value}"
 			class="col-xs-12 col-sm-12 col-md-5 control-label left">
 			<span data-original-title="#{cc.attrs.data}" class="required"
 				data-toggle="tooltip" title=""></span>
-		</h:outputLabel>
+		</p:outputLabel>
 	</c:if>
 
 	<c:if
