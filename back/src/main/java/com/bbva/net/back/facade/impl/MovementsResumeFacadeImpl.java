@@ -37,7 +37,7 @@ public class MovementsResumeFacadeImpl extends AbstractBbvaFacade implements Mov
 	@Override
 	public GlobalResumeMovementsDto getMovementsResumeByeCustomer(final String customerId) throws RestClientException {
 		GlobalResumeMovementsDto globalMovements = new GlobalResumeMovementsDto();
-		final List<AccMovementsResume> response = this.customerService.listAccountsMovementsResume(customerId);
+		final List<AccMovementsResume> response = this.customerService.listAccountsMovementsResume(customerId,"");
 		globalMovements.setMovementsResumeDto(globalResumeMovementsMapper.map(response));
 		return globalMovements;
 

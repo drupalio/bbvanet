@@ -131,5 +131,5 @@ public class GlobalPositionControllerImplTest {
 		// this.globalPositionController.getCustomerProducts();
 
 	}
-
+	
 }

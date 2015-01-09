@@ -12,12 +12,13 @@
 		<evaluate expression="applicationController.getLikes()" result="flowScope.likes" />
 	</on-start>
 	
-	<view-state id="globalPosition">
+	<view-state id="globalPosition" >
 		<on-entry>
 			<set name="flowScope.menuActive" value="'PG'" />
 			<evaluate expression="new java.lang.String()"/>
 		</on-entry>
 		<transition to="detailAccount" on="accountSelected"></transition>
+		
 	</view-state>
 	
 	<view-state id="detailAccount" view="externalRedirect:movements">

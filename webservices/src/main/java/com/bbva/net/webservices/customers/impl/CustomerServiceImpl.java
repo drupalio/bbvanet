@@ -13,7 +13,8 @@ import com.bbva.net.webservices.core.stereotype.RestService;
 import com.bbva.net.webservices.customers.CustomerService;
 
 @RestService(value = "customerService")
-public class CustomerServiceImpl extends AbstractBbvaRestService implements CustomerService {
+public class CustomerServiceImpl extends AbstractBbvaRestService implements
+		CustomerService {
 
 	@Value("${rest.customer.url}")
 	private String URL_CUSTOMER;
@@ -22,9 +23,11 @@ public class CustomerServiceImpl extends AbstractBbvaRestService implements Cust
 	private String URL_CARDCHARGES;
 
 	@Override
-	public List<AccMovementsResume> listAccountsMovementsResume(String customerId) {
-		
-		final AccMovementsResume[] customers = restTemplate.getForObject(URL_BASE_CUSTOMER + customerId + URL_CUSTOMER,
+	public List<AccMovementsResume> listAccountsMovementsResume(
+			String customerId, String filter) {
+
+		final AccMovementsResume[] customers = restTemplate.getForObject(
+				URL_BASE_CUSTOMER + customerId + URL_CUSTOMER,
 				AccMovementsResume[].class);
 		final List<AccMovementsResume> customerResult = new ArrayList<AccMovementsResume>();
 		CollectionUtils.addAll(customerResult, customers);
@@ -32,15 +35,15 @@ public class CustomerServiceImpl extends AbstractBbvaRestService implements Cust
 	}
 
 	@Override
-	public List<CardCharge> listCreditCardsCharges(String customerId) {
-		
-		final CardCharge[] cardsCharges = restTemplate.getForObject(URL_BASE_CUSTOMER + customerId + URL_CARDCHARGES,
+	public List<CardCharge> listCreditCardsCharges(String customerId, String filter) {
+
+		final CardCharge[] cardsCharges = restTemplate.getForObject(
+				URL_BASE_CUSTOMER + customerId + URL_CARDCHARGES,
 				CardCharge[].class);
 		final List<CardCharge> cardsChargesResult = new ArrayList<CardCharge>();
 		CollectionUtils.addAll(cardsChargesResult, cardsCharges);
 		return cardsChargesResult;
-		
-		
+
 	}
 
 }

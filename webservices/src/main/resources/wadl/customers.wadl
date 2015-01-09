@@ -6,12 +6,6 @@
             <xs:element name="CardCharge" type="tns:CardCharge"/>
             <xs:element name="EnumCardChargeCategory" type="tns:EnumCardChargeCategory"/>
             <xs:element name="EnumMonth" type="tns:EnumMonth"/>
-            <xs:complexType name="CardCharge">
-                <xs:sequence>
-                    <xs:element minOccurs="0" name="category" type="tns:EnumCardChargeCategory"/>
-                    <xs:element minOccurs="0" name="amount" type="ns1:money"/>
-                </xs:sequence>
-            </xs:complexType>
             <xs:complexType name="AccMovementsResume">
                 <xs:sequence>
                     <xs:element minOccurs="0" name="income" type="ns1:money"/>
@@ -20,16 +14,12 @@
                     <xs:element minOccurs="0" name="month" type="tns:EnumMonth"/>
                 </xs:sequence>
             </xs:complexType>
-            <xs:simpleType name="EnumCardChargeCategory">
-                <xs:restriction base="xs:string">
-                    <xs:enumeration value="CHANNEL_SALES"/>
-                    <xs:enumeration value="LEISURE"/>
-                    <xs:enumeration value="OTHERS"/>
-                    <xs:enumeration value="BASIC_COMMERCE"/>
-                    <xs:enumeration value="GIFT_BOOK_DISC"/>
-                    <xs:enumeration value="CLOTHING"/>
-                </xs:restriction>
-            </xs:simpleType>
+            <xs:complexType name="CardCharge">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="category" type="tns:EnumCardChargeCategory"/>
+                    <xs:element minOccurs="0" name="amount" type="ns1:money"/>
+                </xs:sequence>
+            </xs:complexType>
             <xs:simpleType name="EnumMonth">
                 <xs:restriction base="xs:string">
                     <xs:enumeration value="JANUARY"/>
@@ -44,6 +34,16 @@
                     <xs:enumeration value="OCTOBER"/>
                     <xs:enumeration value="NOVEMBER"/>
                     <xs:enumeration value="DECEMBER"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="EnumCardChargeCategory">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="CHANNEL_SALES"/>
+                    <xs:enumeration value="LEISURE"/>
+                    <xs:enumeration value="OTHERS"/>
+                    <xs:enumeration value="BASIC_COMMERCE"/>
+                    <xs:enumeration value="GIFT_BOOK_DISC"/>
+                    <xs:enumeration value="CLOTHING"/>
                 </xs:restriction>
             </xs:simpleType>
         </xs:schema>
@@ -62,7 +62,9 @@
             <resource path="/{customerId}/accounts/movementsResume">
                 <param name="customerId" style="template" type="xs:string"/>
                 <method name="GET" id="listAccountsMovementsResume">
-                    <request/>
+                    <request>
+                        <param name="$filter" style="query" default="null" type="xs:string"/>
+                    </request>
                     <response>
                         <representation mediaType="application/json"/>
                     </response>
@@ -71,7 +73,9 @@
             <resource path="/{customerId}/creditCard/cardCharges">
                 <param name="customerId" style="template" type="xs:string"/>
                 <method name="GET" id="listCreditCardsCharges">
-                    <request/>
+                    <request>
+                        <param name="$filter" style="query" default="null" type="xs:string"/>
+                    </request>
                     <response>
                         <representation mediaType="application/json"/>
                     </response>

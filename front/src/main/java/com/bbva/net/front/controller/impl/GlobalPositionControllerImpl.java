@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 import javax.faces.bean.ManagedBean;
 import javax.faces.event.ComponentSystemEvent;
 import javax.faces.view.ViewScoped;
+import org.apache.cxf.jaxrs.ext.search.client.SearchConditionBuilder;
 
 import org.primefaces.event.SelectEvent;
 
@@ -223,11 +224,17 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	 * Filter combo of Cards
 	 */
 	public void onComboSelectedCard() {
+		SearchConditionBuilder b = SearchConditionBuilder.instance();
+		String filter = b.is("starDateSelectd").greaterThan(10).and().is("starDate").lessThan(20).query();
+		
+		
 		System.out.println("Seleciona combo tarjetas"+datos);
 		if(MessagesHelper.INSTANCE.getString("text.allCards").equals(datos)){
-			this.graphicPieCards=graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(getCurrentUser()));
-		}else{
-			//this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesFilter(getCurrentUser(),"",""));
+			//this.graphicPieCards=graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(getCurrentUser(),filter,""));
+		}else{			
+
+			//(chargeDate=ge={startDate};chargeDate=le={enDate})
+			//this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesFilter(idProduct,filter,""));
 			this.graphicPieCards = graphicPieDelegate.getAccountsfundsProducts(this.fundDTOs);
 		}
 	}

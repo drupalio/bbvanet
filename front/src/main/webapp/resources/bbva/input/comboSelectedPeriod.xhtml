@@ -27,7 +27,7 @@
     <div style="display: inline-block; width: 60% !important">
         <h:selectOneMenu id="periodo" value="#{cc.attrs.valueMenu}" >
             <f:selectItems value="#{periodFilterCriteriaController.getListMultiValuePeriod()}" 
-            var="ilist" itemLabel="#{msg[ilist.value]}" itemValue="#{msg[ilist.value]}" />
+            var="ilist" itemLabel="#{msg[ilist.value]}" itemValue="#{msg[ilist.value]}  " />
             <f:ajax listener="#{cc.attrs.listener}" event="change" execute="@form" render="#{cc.attrs.render}"/>
        </h:selectOneMenu>
     </div>
