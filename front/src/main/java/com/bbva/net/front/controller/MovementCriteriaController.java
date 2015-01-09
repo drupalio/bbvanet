@@ -6,9 +6,12 @@ package com.bbva.net.front.controller;
 import java.util.List;
 
 import javax.faces.event.ActionEvent;
+import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.event.ComponentSystemEvent;
 
 import com.bbva.net.back.entity.MultiValueGroup;
+import com.bbva.net.back.model.checkbook.CheckDto;
+import com.bbva.net.back.model.checkbook.CheckbookDto;
 
 /**
  * @author User
@@ -91,5 +94,11 @@ public interface MovementCriteriaController {
 	 * @param event
 	 */
 	void setCustomDate(ActionEvent event);
+
+	void captureDate(AjaxBehaviorEvent e);
+
+	List<CheckDto> getCheckId(int idCheck, String status);
+
+	List<CheckbookDto> getCheckbookDto(int idCheck);
 
 }
