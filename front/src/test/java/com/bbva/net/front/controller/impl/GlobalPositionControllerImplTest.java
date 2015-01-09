@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import com.bbva.net.back.facade.CardsFacade;
 import com.bbva.net.back.facade.FundsTypeFacade;
 import com.bbva.net.back.facade.GlobalPositionFacade;
 import com.bbva.net.back.model.globalposition.GlobalProductsDto;
@@ -12,6 +13,7 @@ import com.bbva.net.back.facade.MovementsResumeFacade;
 import com.bbva.net.back.model.movements.GlobalResumeMovementsDto;
 import com.bbva.net.front.delegate.GraphicBarLineDelegate;
 import com.bbva.net.front.delegate.GraphicPieDelegate;
+import com.bbva.net.front.ui.pie.PieConfigUI;
 
 /**
  * @author Entelgy
@@ -26,6 +28,8 @@ public class GlobalPositionControllerImplTest {
 	private GlobalPositionFacade globalPositionFacade;
 
 	private GraphicPieDelegate graphicPieDelegate;
+	
+	private CardsFacade cardsFacade;
 
 	private FundsTypeFacade fundsTypeFacade;
 
@@ -40,7 +44,7 @@ public class GlobalPositionControllerImplTest {
 
 		globalPositionFacade = Mockito.mock(GlobalPositionFacade.class);
 		graphicPieDelegate = Mockito.mock(GraphicPieDelegate.class);
-
+		cardsFacade = Mockito.mock(CardsFacade.class);
 		fundsTypeFacade = Mockito.mock(FundsTypeFacade.class);
 
 		globalMovementsFacade = Mockito.mock(MovementsResumeFacade.class);
@@ -49,7 +53,7 @@ public class GlobalPositionControllerImplTest {
 		globalPositionController.setGlobalPositionFacade(globalPositionFacade);
 		globalPositionController.setGraphicPieDelegate(graphicPieDelegate);
 		globalPositionController.setGraphicBarLineDelegate(graphicBarLineDelegate);
-
+		globalPositionController.setCardsFacade(cardsFacade);
 		globalPositionController.setFundsTypeFacade(fundsTypeFacade);
 
 		globalPositionController.setMovementsResumeFacade(globalMovementsFacade);
@@ -78,6 +82,7 @@ public class GlobalPositionControllerImplTest {
 
 		Mockito.verify(this.graphicBarLineDelegate, Mockito.atLeastOnce()).getInOutBalanceByAccount(
 				globalResumeMovementsDTO);
+		
 
 		Mockito.verify(this.globalMovementsFacade, Mockito.atLeastOnce()).getMovementsResumeByeCustomer(DEFAULT_USER);
 	}

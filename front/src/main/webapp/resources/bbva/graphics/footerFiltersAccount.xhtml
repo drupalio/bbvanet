@@ -12,12 +12,10 @@
 <composite:interface>
 	<composite:attribute name="nameLeft" type="String" />
 	<composite:attribute name="nameRight" type="String" />
-	<!--  composite:attribute name="listLeft" type="java.util.List" />-->
-	<composite:attribute name="listRight" type="java.util.List" />
-	<composite:attribute name="valueLeft" />
-	<composite:attribute name="valueRight" />
-	<composite:attribute name="listenerLeft" method-signature="void onComboSelectedAccount()"/>
-	<composite:attribute name="listenerRight" method-signature="void onComboSelectedAccount()"/>
+	<composite:attribute name="listenerLeft"
+		method-signature="void onComboSelectedAccount()" />
+	<composite:attribute name="listenerRight"
+		method-signature="void onComboSelectedAccount()" />
 </composite:interface>
 
 <composite:implementation>
@@ -25,24 +23,29 @@
 
 	<div class="chart-options">
 		<div class="row">
-
-			<div class="col-xs-12 col-sm-6 chart-selection input-control">
-				<label for="cuentas-personales-chart-tiempo">#{cc.attrs.nameLeft}</label>
-				<bbvaInput:comboSelectedPeriod listener="#{periodFilterCriteriaController.onComboSelectedAccount}" 
-				valueMenu="#{periodFilterCriteriaController.period}" render=":accountGP:barGraphic"/>
-			</div>
-			<div class="col-xs-12 col-sm-6 chart-selection input-control">
-				<label for="cuentas-personales-chart-cuentas">#{cc.attrs.nameRight}</label>
-				<bbvaInput:comboSelectedPeriod listener="#{periodFilterCriteriaController.onComboSelectedAccount}" 
-				valueMenu="#{periodFilterCriteriaController.period}" render=":accountGP:barGraphic"/>
-				<!-- <bbvaInput:comboSelectederiod width="60% !important"
-					id="#{cc.attrs.nameRight}" list="#{cc.attrs.listRight}"
-					value="#{cc.attrs.valueRight}" listener="#{cc.attrs.listenerRight}"/> -->
-			</div>
-
+			<h:form id="footerBarGraphicPeriod">
+				<div class="col-xs-12 col-sm-6 chart-selection input-control">
+					<label for="cuentas-personales-chart-tiempo">#{cc.attrs.nameLeft}</label>
+					<bbvaInput:comboSelectedPeriod
+						listener="#{periodFilterCriteriaController.onComboSelectedAccount}"
+						valueMenu="#{periodFilterCriteriaController.period}"
+						render=":accountGP:barGraphic" />
+				</div>
+			</h:form>
+			<h:form id="footerBarGraphicProduct">
+				<div class="col-xs-12 col-sm-6 chart-selection input-control">
+					<label for="cuentas-personales-chart-cuentas">#{cc.attrs.nameRight}</label>
+					<bbvaInput:comboSelectedProduct width="60% !important"
+						id="#{msg['title.cards']}"
+						totalProduct="#{msg['text.allAccounts']}"
+						list="#{globalPositionController.namesProducts['PC']}"
+						value="#{globalPositionController.datos}"
+						listener="#{cc.attrs.listenerRight}"
+						render=":accountGP:barGraphic" />
+				</div>
+			</h:form>
 		</div>
 	</div>
-
 
 </composite:implementation>
 </html>

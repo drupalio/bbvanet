@@ -12,7 +12,7 @@ import javax.faces.view.ViewScoped;
 
 import org.primefaces.event.SelectEvent;
 
-import com.bbva.net.back.facade.GlobalMovementsFacade;
+import com.bbva.net.back.facade.CardsFacade;
 import com.bbva.net.back.facade.FundsTypeFacade;
 import com.bbva.net.back.facade.GlobalPositionFacade;
 import com.bbva.net.back.model.globalposition.BalanceDto;
@@ -24,6 +24,7 @@ import com.bbva.net.front.controller.GlobalPositionController;
 import com.bbva.net.front.core.AbstractBbvaController;
 import com.bbva.net.front.delegate.GraphicBarLineDelegate;
 import com.bbva.net.front.delegate.GraphicPieDelegate;
+import com.bbva.net.front.helper.MessagesHelper;
 import com.bbva.net.front.ui.globalposition.AccountBarLineUI;
 import com.bbva.net.front.ui.globalposition.SituationPiesUI;
 import com.bbva.net.front.ui.pie.PieConfigUI;
@@ -41,6 +42,9 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	@Resource(name = "fundsTypeFacade")
 	private transient FundsTypeFacade fundsTypeFacade;
+	
+	@Resource(name = "cardsFacade")
+	private transient CardsFacade cardsFacade;
 
 	@Resource(name = "globalMovementsFacade")
 	private transient MovementsResumeFacade movementsResumeFacade;
@@ -106,7 +110,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		this.graphicPieInvestmentFunds = graphicPieDelegate.getAccountsfundsProducts(this.fundDTOs);
 
 		// Calculate situation graphics panels
-		this.graphicPieCards = graphicPieDelegate.getCardGraphicByUser(getCurrentUser());
+		this.graphicPieCards=graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(getCurrentUser()));
 
 		// Calculate totals
 		this.totalsProducts = this.globalPositionFacade.getTotalsByProduct(globalProductsDTO);
@@ -215,23 +219,21 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		this.sendAction("accountSelected");
 
 	}
+	/**
+	 * Filter combo of Cards
+	 */
 	public void onComboSelectedCard() {
 		System.out.println("Seleciona combo tarjetas"+datos);
-		this.graphicPieCards = graphicPieDelegate.getAccountsfundsProducts(this.fundDTOs);
-
+		if(MessagesHelper.INSTANCE.getString("text.allCards").equals(datos)){
+			this.graphicPieCards=graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(getCurrentUser()));
+		}else{
+			//this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesFilter(getCurrentUser(),"",""));
+			this.graphicPieCards = graphicPieDelegate.getAccountsfundsProducts(this.fundDTOs);
+		}
 	}
-	
 	public void onComboSelectedAccount() {
 		System.out.println("Seleciona combo cuentas"+datos);
-	}
-	
-	public List<String> periodGraphics(){
-		final List<String> period= new ArrayList<String>();
-		period.add("Últimos 12 meses");
-		period.add("Últimos 6 meses");
-		period.add("Últimos 3 meses");
-		period.add("Últimos mes");
-		return period;
+		this.accountGraphicBarLineUI = this.graphicBarLineDelegate.getInOutBalanceByAccount(globalResumeMovementsDTO);
 	}
 
 	/************************************* SETTER BEANS **************************************/
@@ -291,5 +293,13 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	public Map<String, List<String>> getNamesProducts() {
 		return namesProducts;
+	}
+	
+	public void setCardsFacade(CardsFacade cardsFacade) {
+		this.cardsFacade = cardsFacade;
+	}
+
+	public CardsFacade getCardsFacade() {
+		return cardsFacade;
 	}
 }

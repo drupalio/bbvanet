@@ -12,12 +12,10 @@
 <composite:interface>
 	<composite:attribute name="nameLeft" type="String" />
 	<composite:attribute name="nameRight" type="String" />
-	<composite:attribute name="listLeft" type="java.util.List" />
-	<composite:attribute name="listRight" type="java.util.List" />
-	<composite:attribute name="valueLeft" />
-	<composite:attribute name="valueRight" />
-	<composite:attribute name="listenerLeft" method-signature="boolean onComboSelectedCard()"/>
-	<composite:attribute name="listenerRight" method-signature="boolean onComboSelectedCard()"/>
+	<composite:attribute name="listenerLeft"
+		method-signature="void onComboSelectedCard()" />
+	<composite:attribute name="listenerRight"
+		method-signature="void onComboSelectedCard()" />
 </composite:interface>
 
 <composite:implementation>
@@ -25,20 +23,24 @@
 
 	<div class="chart-options">
 		<div class="row">
-
+			<h:form id="FooterForm">
 			<div class="col-xs-12 col-sm-6 chart-selection input-control">
 				<label for="cuentas-personales-chart-tiempo">#{cc.attrs.nameLeft}</label>
-<!-- 				<bbvaInput:comboSelected width="60% !important" -->
-<!-- 					id="#{cc.attrs.nameLeft}" list="#{cc.attrs.listLeft}"  -->
-<!-- 					value="#{cc.attrs.valueLeft}" listener="#{cc.attrs.listenerLeft}"/> -->
+				<bbvaInput:comboSelectedPeriod
+					listener="#{cc.attrs.listenerLeft}"
+					valueMenu="#{globalPositionController.datos}"
+					render=":cardPieGP:cardForm" />
 			</div>
+			</h:form>
+			<h:form id="FooterFormpro">
 			<div class="col-xs-12 col-sm-6 chart-selection input-control">
 				<label for="cuentas-personales-chart-cuentas">#{cc.attrs.nameRight}</label>
-<!-- 				<bbvaInput:comboSelected width="60% !important" -->
-<!-- 					id="#{cc.attrs.nameRight}" list="#{cc.attrs.listRight}" -->
-<!-- 					value="#{cc.attrs.valueRight}" listener="#{cc.attrs.listenerRight}"/> -->
+				<bbvaInput:comboSelectedProduct totalProduct="#{msg['text.allCards']}"
+					list="#{globalPositionController.namesProducts['TDC']}" listener="#{cc.attrs.listenerRight}" 
+					value="#{globalPositionController.datos}" render=":cardPieGP:cardForm" />
+					
 			</div>
-
+</h:form>
 		</div>
 	</div>
 
