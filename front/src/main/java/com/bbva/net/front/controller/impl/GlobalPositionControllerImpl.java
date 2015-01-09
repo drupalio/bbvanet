@@ -226,7 +226,17 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	public void onComboSelectedCard() {
 		SearchConditionBuilder b = SearchConditionBuilder.instance();
 		String filter = b.is("starDateSelectd").greaterThan(10).and().is("starDate").lessThan(20).query();
-		
+		/*
+		 * Map<String, String> props = new HashMap<String, String>();
+props.put("search.date-format", "yyyy-MM-dd&#39;T&#39;HH:mm:ss");
+props.put("search.timezone.support", "false");
+ 
+Date d = df.parse("2011-03-01 12:34:00");
+         
+FiqlSearchConditionBuilder bCustom = new FiqlSearchConditionBuilder(props);
+         
+String ret = bCustom.is("foo").equalTo(d).query();
+		 */
 		
 		System.out.println("Seleciona combo tarjetas"+datos);
 		if(MessagesHelper.INSTANCE.getString("text.allCards").equals(datos)){
