@@ -36,7 +36,7 @@
 					<f:selectItem itemLabel="#{msg['text.search.by.numberbook']}"
 						itemValue="#{msg['text.search.by.numberbook']}" />
 					<p:ajax process="@this"
-						listener="#{movementsCriteriaController.actionState}"
+						listener="#{checkBookController.actionState}"
 						update="customPanel, searchButton" />
 				</p:selectOneRadio>
 
@@ -46,8 +46,8 @@
 						value="#{msg['text.search.by.number.check']}" />
 					<h:inputText id="inputNumberCheck"
 						styleClass="form-control num-cheque number required valid"
-						value="#{movementsCriteriaController.movementCriteria.checkNumber}"
-						disabled="#{movementsCriteriaController.renderedNumberCheck}"
+						value="#{cc.attrs.valueCheckNumber}"
+						disabled="#{checkBookController.disabledNumberCheck}"
 						validatorMessage="Formato Invalido">
 						<f:validateRegex pattern="[0-9]*" />
 					</h:inputText>
@@ -56,8 +56,8 @@
 					<h:outputLabel for="opt2"
 						value="#{msg['text.search.by.number.status']}" />
 					<h:selectOneMenu id="stateSelect" styleClass="btn-group bootstrap-select btn dropdown-toggle selectpicker btn-default"
-						value="#{movementsCriteriaController.movementCriteria.checkState}"
-						disabled="#{movementsCriteriaController.renderedNumberCheck}">
+						value="#{cc.attrs.valuecheckState}"
+						disabled="#{checkBookController.disabledNumberCheck}">
 						<f:selectItem itemLabel="#{msg['text.combo.select']}" />
 						<f:selectItems value="#{multiValueList}" var="multiValue"
 							itemValue="#{multiValue}" itemLabel="#{msg[multiValue.value]}" />
@@ -68,7 +68,7 @@
 						value="#{msg['text.search.by.numberbook']}" />
 					<h:selectOneMenu id="numberBook"
 						value="#{cc.attrs.valueBookNumber}"
-						disabled="#{movementsCriteriaController.renderedNumberBook}">
+						disabled="#{checkBookController.disabledNumberBook}">
 						<f:selectItem itemLabel="#{msg['text.combo.select']}" />
 						<f:selectItem itemLabel="1111-2222" itemValue="1111-2222" />
 						<f:selectItem itemLabel="1111-2222-3333-"
@@ -80,7 +80,7 @@
 
 		<button jsf:id="searchButton" type="submit"
 			jsf:actionListener="#{movementsCriteriaController.setNumberCheckOrBook}"
-			jsf:disabled="#{movementsCriteriaController.renderedButtonBook}"
+			jsf:disabled="#{checkBookController.disabledButtonBook}"
 			class="btn small hidden-xs hidden-sm">#{msg['button.confirm']}</button>
 
 	</div>

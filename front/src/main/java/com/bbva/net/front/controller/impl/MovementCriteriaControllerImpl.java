@@ -12,8 +12,6 @@ import org.springframework.stereotype.Controller;
 import com.bbva.net.back.entity.MultiValueGroup;
 import com.bbva.net.back.facade.MovementCriteriaFacade;
 import com.bbva.net.back.facade.MultiValueGroupFacade;
-import com.bbva.net.back.model.checkbook.CheckDto;
-import com.bbva.net.back.model.checkbook.CheckbookDto;
 import com.bbva.net.back.model.citeriaMovements.MovementCriteriaDto;
 import com.bbva.net.back.model.commons.BalanceRangeDto;
 import com.bbva.net.back.model.commons.DateRangeDto;
@@ -30,15 +28,7 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 
 	private static final String CONCRETE_DATE = "Fecha concreta";
 
-	private static final String SEARCH_CHECK = "Búsqueda por nº de talonario";
-
 	private static final Integer LIST_CHECK_STATUS = 2;
-
-	private boolean disbaledNumberBook = true;
-
-	private boolean disabledNumberCheck = true;
-
-	private boolean disabledButtonBook = true;
 
 	private boolean disabledButtonBalance = true;
 
@@ -123,31 +113,6 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 	}
 
 	@Override
-	public void actionState() {
-		System.out.println("method Action State");
-		if (movementCriteria.getActionState().equals(SEARCH_CHECK)) {
-			setRenderedNumberCheck(true);
-			setRenderedNumberBook(false);
-			setRenderedButtonBook(false);
-		} else {
-			setRenderedNumberBook(true);
-			setRenderedNumberCheck(false);
-			setRenderedButtonBook(false);
-
-		}
-	}
-
-	/**
-	 * @param event
-	 */
-	@Override
-	public void searchNumberCheckOrBook(final ActionEvent event) {
-		System.out.println("searchNumberCheckOrBook");
-		System.out.println("boook num" + movementCriteria.getBookNumber() + "check num"
-				+ movementCriteria.getCheckNumber() + "check State" + movementCriteria.getCheckState());
-	}
-
-	@Override
 	public void setNumberCheckOrBook(final ActionEvent event) {
 		System.out.println("setNumberCheckOrBook");
 	}
@@ -211,18 +176,6 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 		System.out.println(movementCriteria.getDateRange().getDateTo());
 	}
 
-	@Override
-	public List<CheckDto> getCheckId(final int idCheck, final String status) {
-		List<CheckDto> checkList = movementCriteriaFacade.getCheck(idCheck, status);
-		return checkList;
-	}
-
-	@Override
-	public List<CheckbookDto> getCheckbookDto(final int idCheck) {
-		List<CheckbookDto> checkBookList = movementCriteriaFacade.getCheckbookDto(idCheck);
-		return checkBookList;
-	}
-
 	/**
 	 * @return the movementCriteria
 	 */
@@ -249,48 +202,6 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 	 */
 	public String getSelectDate() {
 		return selectDate;
-	}
-
-	/**
-	 * @return the renderedNumberBook
-	 */
-	public boolean isRenderedNumberBook() {
-		return disbaledNumberBook;
-	}
-
-	/**
-	 * @param renderedNumberBook the renderedNumberBook to set
-	 */
-	public void setRenderedNumberBook(boolean renderedNumberBook) {
-		this.disbaledNumberBook = renderedNumberBook;
-	}
-
-	/**
-	 * @return the renderedNumberCheck
-	 */
-	public boolean isRenderedNumberCheck() {
-		return disabledNumberCheck;
-	}
-
-	/**
-	 * @param renderedNumberCheck the renderedNumberCheck to set
-	 */
-	public void setRenderedNumberCheck(boolean renderedNumberCheck) {
-		this.disabledNumberCheck = renderedNumberCheck;
-	}
-
-	/**
-	 * @return the renderedButtonBook
-	 */
-	public boolean isRenderedButtonBook() {
-		return disabledButtonBook;
-	}
-
-	/**
-	 * @param renderedButtonBook the renderedButtonBook to set
-	 */
-	public void setRenderedButtonBook(boolean renderedButtonBook) {
-		this.disabledButtonBook = renderedButtonBook;
 	}
 
 	/**
@@ -417,48 +328,6 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 	 */
 	public void setToDate(Date toDate) {
 		this.toDate = toDate;
-	}
-
-	/**
-	 * @return the disbaledNumberBook
-	 */
-	public boolean isDisbaledNumberBook() {
-		return disbaledNumberBook;
-	}
-
-	/**
-	 * @param disbaledNumberBook the disbaledNumberBook to set
-	 */
-	public void setDisbaledNumberBook(boolean disbaledNumberBook) {
-		this.disbaledNumberBook = disbaledNumberBook;
-	}
-
-	/**
-	 * @return the disabledNumberCheck
-	 */
-	public boolean isDisabledNumberCheck() {
-		return disabledNumberCheck;
-	}
-
-	/**
-	 * @param disabledNumberCheck the disabledNumberCheck to set
-	 */
-	public void setDisabledNumberCheck(boolean disabledNumberCheck) {
-		this.disabledNumberCheck = disabledNumberCheck;
-	}
-
-	/**
-	 * @return the disabledButtonBook
-	 */
-	public boolean isDisabledButtonBook() {
-		return disabledButtonBook;
-	}
-
-	/**
-	 * @param disabledButtonBook the disabledButtonBook to set
-	 */
-	public void setDisabledButtonBook(boolean disabledButtonBook) {
-		this.disabledButtonBook = disabledButtonBook;
 	}
 
 	/**
