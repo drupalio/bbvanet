@@ -1,6 +1,5 @@
 package com.bbva.net.front.controller.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -15,11 +14,14 @@ import org.primefaces.event.SelectEvent;
 import com.bbva.net.back.facade.CardsFacade;
 import com.bbva.net.back.facade.FundsTypeFacade;
 import com.bbva.net.back.facade.GlobalPositionFacade;
+import com.bbva.net.back.facade.MovementsResumeFacade;
+import com.bbva.net.back.model.comboFilter.EnumPeriodType;
+import com.bbva.net.back.model.commons.DateRangeDto;
 import com.bbva.net.back.model.globalposition.BalanceDto;
 import com.bbva.net.back.model.globalposition.FundDto;
 import com.bbva.net.back.model.globalposition.GlobalProductsDto;
 import com.bbva.net.back.model.movements.GlobalResumeMovementsDto;
-import com.bbva.net.back.facade.MovementsResumeFacade;
+import com.bbva.net.back.service.impl.DateFilterServiceImpl;
 import com.bbva.net.front.controller.GlobalPositionController;
 import com.bbva.net.front.core.AbstractBbvaController;
 import com.bbva.net.front.delegate.GraphicBarLineDelegate;
@@ -42,7 +44,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	@Resource(name = "fundsTypeFacade")
 	private transient FundsTypeFacade fundsTypeFacade;
-	
+
 	@Resource(name = "cardsFacade")
 	private transient CardsFacade cardsFacade;
 
@@ -74,8 +76,10 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	private Map<String, BalanceDto> totalsProducts;
 
 	private Map<String, List<String>> namesProducts;
-	
+
 	private String datos;
+
+	private String periodAccountSelected;
 
 	public String getDatos() {
 		return datos;
@@ -110,7 +114,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		this.graphicPieInvestmentFunds = graphicPieDelegate.getAccountsfundsProducts(this.fundDTOs);
 
 		// Calculate situation graphics panels
-		this.graphicPieCards=graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(getCurrentUser()));
+		this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(getCurrentUser()));
 
 		// Calculate totals
 		this.totalsProducts = this.globalPositionFacade.getTotalsByProduct(globalProductsDTO);
@@ -127,7 +131,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	@Override
 	public void preRender(final ComponentSystemEvent event) {
-		
+
 	}
 
 	@Override
@@ -219,20 +223,26 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		this.sendAction("accountSelected");
 
 	}
+
 	/**
 	 * Filter combo of Cards
 	 */
 	public void onComboSelectedCard() {
-		System.out.println("Seleciona combo tarjetas"+datos);
-		if(MessagesHelper.INSTANCE.getString("text.allCards").equals(datos)){
-			this.graphicPieCards=graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(getCurrentUser()));
-		}else{
-			//this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesFilter(getCurrentUser(),"",""));
+		System.out.println("Seleciona combo tarjetas" + datos);
+		if (MessagesHelper.INSTANCE.getString("text.allCards").equals(datos)) {
+			this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade
+					.getCardsChargesByUser(getCurrentUser()));
+		} else {
+			// this.graphicPieCards =
+			// graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesFilter(getCurrentUser(),"",""));
 			this.graphicPieCards = graphicPieDelegate.getAccountsfundsProducts(this.fundDTOs);
 		}
 	}
+
 	public void onComboSelectedAccount() {
-		System.out.println("Seleciona combo cuentas"+datos);
+
+		EnumPeriodType periodType = EnumPeriodType.valueOf(Integer.parseInt(this.periodAccountSelected));
+		DateRangeDto dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
 		this.accountGraphicBarLineUI = this.graphicBarLineDelegate.getInOutBalanceByAccount(globalResumeMovementsDTO);
 	}
 
@@ -294,7 +304,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	public Map<String, List<String>> getNamesProducts() {
 		return namesProducts;
 	}
-	
+
 	public void setCardsFacade(CardsFacade cardsFacade) {
 		this.cardsFacade = cardsFacade;
 	}
@@ -302,4 +312,13 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	public CardsFacade getCardsFacade() {
 		return cardsFacade;
 	}
+
+	public String getPeriodAccountSelected() {
+		return periodAccountSelected;
+	}
+
+	public void setPeriodAccountSelected(String periodAccountSelected) {
+		this.periodAccountSelected = periodAccountSelected;
+	}
+
 }

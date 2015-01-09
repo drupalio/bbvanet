@@ -31,6 +31,8 @@ public class PeriodFilterCriteriaControllerImpl extends AbstractBbvaController i
 	 */
 	private EnumPeriodType period;
 
+	// private String period;
+
 	/**
 	 * 
 	 */
@@ -50,14 +52,13 @@ public class PeriodFilterCriteriaControllerImpl extends AbstractBbvaController i
 		return this.multiValueGroupFacade.getMultiValueTypes(LIST_CHECK_STATUS);
 	}
 
-	/**
-	 * 
-	 */
-	public void onComboSelectedAccount() {
-
-		System.out.println("HOLA TIA");
-
-	}
+	// public String getPeriod() {
+	// return period;
+	// }
+	//
+	// public void setPeriod(String period) {
+	// this.period = period;
+	// }
 
 	/**
 	 * @return

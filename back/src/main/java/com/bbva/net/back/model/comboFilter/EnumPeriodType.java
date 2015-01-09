@@ -1,39 +1,40 @@
 package com.bbva.net.back.model.comboFilter;
 
-
-
 public enum EnumPeriodType {
 
-	YESTERDAY(1,"Ayer", -1),
-	TODAY(2,"Hoy",0),
-	LAST_WEEK(3,"Última semana",-1),
-	LAST_TWO_WEEK(1,"Últimas dos semanas",-2),
-	LAST_MONTH(4,"Último mes",-1),
-	LAST_TWO_MONTH(5,"Últimos 2 meses",-2),
-	LAST_THREE_MONTH(6,"Últimos 3 meses",-3),
-	LAST_SIX_MONTH(7,"Últimos 6 meses",-6),
-	LAST_TWELVE_MONTH(8,"Últimos 12 meses",-12)
-	;
+	YESTERDAY(9, "Ayer", -1), TODAY(8, "Hoy", 0), LAST_WEEK(7, "Última semana", -1), LAST_TWO_WEEK(6,
+			"Últimas dos semanas", -2), LAST_TWO_MONTH(5, "Últimos 2 meses", -2), LAST_MONTH(14, "Último mes", -1), LAST_THREE_MONTH(
+			13, "Últimos 3 meses", -3), LAST_SIX_MONTH(12, "Últimos 6 meses", -6), LAST_TWELVE_MONTH(11,
+			"Últimos 12 meses", -12);
 
-	private int periodType;
+	private int periodId;
 
 	private String periodLabel;
-	
-	private int optionfilterDate;
 
-	private EnumPeriodType(int periodType, String periodLabel, int optionfilterDate) {
-		this.periodType = periodType;
+	private int quantityPeriod;
+
+	private EnumPeriodType(int periodId, String periodLabel, int quantityPeriod) {
+		this.periodId = periodId;
 		this.periodLabel = periodLabel;
-		this.optionfilterDate = optionfilterDate;
-		
+		this.quantityPeriod = quantityPeriod;
+
 	}
 
-	public int getPeriodType() {
-		return periodType;
+	public static EnumPeriodType valueOf(int periodId) {
+		for (EnumPeriodType periodType : EnumPeriodType.values()) {
+			if (periodType.getPeriodId() == periodId) {
+				return periodType;
+			}
+		}
+		return null;
 	}
 
-	public void setPeriodType(int periodType) {
-		this.periodType = periodType;
+	public int getPeriodId() {
+		return periodId;
+	}
+
+	public void setPeriodIdype(int periodId) {
+		this.periodId = periodId;
 	}
 
 	public String getPeriodLabel() {
@@ -44,16 +45,16 @@ public enum EnumPeriodType {
 		this.periodLabel = periodLabel;
 	}
 
-	
-	public int getOptionfilterDate() {
-		return optionfilterDate;
+	public int getQuantityPeriod() {
+		return quantityPeriod;
 	}
 
-	
-	public void setOptionfilterDate(int optionfilterDate) {
-		this.optionfilterDate = optionfilterDate;
+	public void setQuantityPeriod(int quantityPeriod) {
+		this.quantityPeriod = quantityPeriod;
 	}
 
-
+	public void setPeriodId(int periodId) {
+		this.periodId = periodId;
+	}
 
 }

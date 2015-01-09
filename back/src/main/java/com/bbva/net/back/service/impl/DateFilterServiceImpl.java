@@ -3,6 +3,7 @@ package com.bbva.net.back.service.impl;
 import java.util.Date;
 
 import org.apache.commons.lang3.time.DateUtils;
+import org.springframework.stereotype.Service;
 
 import com.bbva.net.back.model.comboFilter.EnumPeriodType;
 import com.bbva.net.back.model.commons.DateRangeDto;
@@ -13,6 +14,7 @@ import com.bbva.net.back.service.DateFilterService;
  * 
  * @author Entelgy
  */
+@Service(value = "DateFilterService")
 public class DateFilterServiceImpl implements DateFilterService {
 
 	/**
@@ -26,33 +28,31 @@ public class DateFilterServiceImpl implements DateFilterService {
 
 		switch (comboFilter) {
 		case YESTERDAY:
-			dateRange.setDateTo(DateUtils.addDays(currentDate, EnumPeriodType.YESTERDAY.getOptionfilterDate()));
+			dateRange.setDateTo(DateUtils.addDays(currentDate, EnumPeriodType.YESTERDAY.getQuantityPeriod()));
 			break;
 		case TODAY:
 			dateRange.setDateTo(currentDate);
 			break;
 		case LAST_WEEK:
-			dateRange.setDateTo(DateUtils.addWeeks(currentDate, EnumPeriodType.LAST_WEEK.getOptionfilterDate()));
+			dateRange.setDateTo(DateUtils.addWeeks(currentDate, EnumPeriodType.LAST_WEEK.getQuantityPeriod()));
 			break;
 		case LAST_TWO_WEEK:
-			dateRange.setDateTo(DateUtils.addWeeks(currentDate, EnumPeriodType.LAST_TWO_WEEK.getOptionfilterDate()));
+			dateRange.setDateTo(DateUtils.addWeeks(currentDate, EnumPeriodType.LAST_TWO_WEEK.getQuantityPeriod()));
 			break;
 		case LAST_MONTH:
-			dateRange.setDateTo(DateUtils.addMonths(currentDate, EnumPeriodType.LAST_MONTH.getOptionfilterDate()));
+			dateRange.setDateTo(DateUtils.addMonths(currentDate, EnumPeriodType.LAST_MONTH.getQuantityPeriod()));
 			break;
 		case LAST_TWO_MONTH:
-			dateRange.setDateTo(DateUtils.addMonths(currentDate, EnumPeriodType.LAST_TWO_MONTH.getOptionfilterDate()));
+			dateRange.setDateTo(DateUtils.addMonths(currentDate, EnumPeriodType.LAST_TWO_MONTH.getQuantityPeriod()));
 			break;
 		case LAST_THREE_MONTH:
-			dateRange
-					.setDateTo(DateUtils.addMonths(currentDate, EnumPeriodType.LAST_THREE_MONTH.getOptionfilterDate()));
+			dateRange.setDateTo(DateUtils.addMonths(currentDate, EnumPeriodType.LAST_THREE_MONTH.getQuantityPeriod()));
 			break;
 		case LAST_SIX_MONTH:
-			dateRange.setDateTo(DateUtils.addMonths(currentDate, EnumPeriodType.LAST_SIX_MONTH.getOptionfilterDate()));
+			dateRange.setDateTo(DateUtils.addMonths(currentDate, EnumPeriodType.LAST_SIX_MONTH.getQuantityPeriod()));
 			break;
 		case LAST_TWELVE_MONTH:
-			dateRange
-					.setDateTo(DateUtils.addMonths(currentDate, EnumPeriodType.LAST_TWELVE_MONTH.getOptionfilterDate()));
+			dateRange.setDateTo(DateUtils.addMonths(currentDate, EnumPeriodType.LAST_TWELVE_MONTH.getQuantityPeriod()));
 			break;
 
 		default:

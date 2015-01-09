@@ -74,25 +74,25 @@
 		</insert>
 		
 		<insert tableName="MULTIVALUEGROUP">
-			<column name="ID" autoIncrement="true" />
+			<column name="ID">11</column>
 			<column name="VALUE">text.combo.period.lasttwelve</column>
 			<column name="TYPE_ID">3</column>
 		</insert>
 		
 		<insert tableName="MULTIVALUEGROUP">
-			<column name="ID" autoIncrement="true" />
+			<column name="ID">12</column>
 			<column name="VALUE">text.combo.period.lastsix</column>
 			<column name="TYPE_ID">3</column>
 		</insert>
 		
 		<insert tableName="MULTIVALUEGROUP">
-			<column name="ID" autoIncrement="true" />
+			<column name="ID">13</column>
 			<column name="VALUE">text.combo.period.lastthree</column>
 			<column name="TYPE_ID">3</column>
 		</insert>
 		
 		<insert tableName="MULTIVALUEGROUP">
-			<column name="ID" autoIncrement="true" />
+			<column name="ID">14</column>
 			<column name="VALUE">text.combo.period.lastmonth</column>
 			<column name="TYPE_ID">3</column>
 		</insert>
