@@ -224,8 +224,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	 */
 	public void onComboSelectedCard() {
 		System.out.println("Seleciona combo tarjetas"+datos);
-		if(datos.equals(MessagesHelper.INSTANCE.getString("text.allCards"))){
-			//this.graphicPieCards=graphicPieDelegate.getCardGraphicByUser(getCurrentUser());
+		if(MessagesHelper.INSTANCE.getString("text.allCards").equals(datos)){
 			this.graphicPieCards=graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(getCurrentUser()));
 		}else{
 			//this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesFilter(getCurrentUser(),"",""));
@@ -235,15 +234,6 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	public void onComboSelectedAccount() {
 		System.out.println("Seleciona combo cuentas"+datos);
 		this.accountGraphicBarLineUI = this.graphicBarLineDelegate.getInOutBalanceByAccount(globalResumeMovementsDTO);
-	}
-	
-	public List<String> periodGraphics(){
-		final List<String> period= new ArrayList<String>();
-		period.add("Últimos 12 meses");
-		period.add("Últimos 6 meses");
-		period.add("Últimos 3 meses");
-		period.add("Últimos mes");
-		return period;
 	}
 
 	/************************************* SETTER BEANS **************************************/
@@ -303,5 +293,13 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	public Map<String, List<String>> getNamesProducts() {
 		return namesProducts;
+	}
+	
+	public void setCardsFacade(CardsFacade cardsFacade) {
+		this.cardsFacade = cardsFacade;
+	}
+
+	public CardsFacade getCardsFacade() {
+		return cardsFacade;
 	}
 }
