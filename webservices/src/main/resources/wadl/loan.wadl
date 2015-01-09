@@ -78,17 +78,17 @@
                     <xs:element minOccurs="0" name="name" type="xs:string"/>
                 </xs:sequence>
             </xs:complexType>
-            <xs:complexType name="Loan">
-                <xs:complexContent>
-                    <xs:extension base="tns:Product">
-                        <xs:sequence>
-                            <xs:element minOccurs="0" name="balance" type="tns:Balance"/>
-                            <xs:element minOccurs="0" name="payment" type="tns:Payment"/>
-                            <xs:element minOccurs="0" name="status" type="tns:EnumLoanStatus"/>
-                        </xs:sequence>
-                    </xs:extension>
-                </xs:complexContent>
-            </xs:complexType>
+           <xs:complexType name="Loan">
+   			 <xs:complexContent>
+   			   <xs:extension base="tns:Product">
+    		    <xs:sequence>
+                 <xs:element name="status" type="tns:EnumLoanStatus" minOccurs="0"/>
+                 <xs:element name="payment" type="tns:Payment" minOccurs="0"/>
+                <xs:element name="balance" type="tns:Balance" minOccurs="0"/>
+               </xs:sequence>
+             </xs:extension>
+           </xs:complexContent>
+          </xs:complexType>
             <xs:complexType name="Product">
                 <xs:sequence>
                     <xs:element minOccurs="0" name="id" type="xs:string"/>
@@ -105,11 +105,12 @@
                 </xs:sequence>
             </xs:complexType>
             <xs:complexType name="Balance">
-                <xs:sequence>
-                    <xs:element minOccurs="0" name="total" type="ns1:money"/>
-                    <xs:element minOccurs="0" name="availableBalance" type="ns1:money"/>
-                </xs:sequence>
-            </xs:complexType>
+    			<xs:sequence>
+     			  <xs:element name="tradeBalance" type="ns1:money" minOccurs="0"/>
+        		  <xs:element name="availableBalance" type="ns1:money" minOccurs="0"/>
+        		  <xs:element name="total" type="ns1:money" minOccurs="0"/>
+   				</xs:sequence>
+ 		    </xs:complexType>
             <xs:complexType name="Payment">
                 <xs:sequence>
                     <xs:element minOccurs="0" name="dueDate" type="xs:dateTime"/>

@@ -19,13 +19,16 @@ public abstract class AbstractBbvaRestService {
 
 	@Value("${rest.base.customer.url}")
 	protected String URL_BASE_CUSTOMER;
-	
+
 	@Resource(name = "restTemplate")
 	protected RestTemplate restTemplate;
 
+	@Value("${rest.rotaryQuota.base}")
+	protected String URL_BASE_ROTARYQUOTA;
+
 	@Value("${rest.base.executive.url}")
 	protected String URL_BASE_EXECUTIVE;
-	
+
 	@Value("${rest.base.cards.url}")
 	protected String URL_BASE_CARDS;
 

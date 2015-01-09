@@ -8,8 +8,9 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import com.bbva.net.back.core.pattern.dto.Dto;
 import com.bbva.net.back.model.accounts.ProductInformationDto;
 import com.bbva.net.back.model.commons.Money;
+import com.bbva.net.back.model.globalposition.ProductDto;
 
-public class QuotaDetailDto implements Dto {
+public class QuotaDetailDto extends ProductDto implements Dto {
 
 	/**
 	 * 
@@ -19,10 +20,6 @@ public class QuotaDetailDto implements Dto {
 	private ProductInformationDto informacion;
 
 	private int porcentaje;
-
-	private Money outstandingBalance;
-
-	private Money amountRequested;
 
 	private int numberOfShares;
 
@@ -36,7 +33,11 @@ public class QuotaDetailDto implements Dto {
 
 	private Money minimumPayment;
 
-	private String collectionSchedule;
+	private Money feeCollection;
+
+	private Money outstandingBalance;
+
+	private Money amountRequested;
 
 	private Money availableBalance;
 
@@ -55,13 +56,13 @@ public class QuotaDetailDto implements Dto {
 	 * @param fechas
 	 * @param state
 	 * @param minimumPayment
-	 * @param collectionSchedule
+	 * @param feeCollection
 	 * @param availableBalance
 	 * @param balancePrevious
 	 */
 
 	public QuotaDetailDto(ProductInformationDto informacion, int porcentaje, Money outstandingBalance,
-			Money amountRequested, int numberOfShares, String state, Money minimumPayment, String collectionSchedule,
+			Money amountRequested, int numberOfShares, String state, Money minimumPayment, Money feeCollection,
 			Money availableBalance, Money balancePrevious, Date dateMaturity, Date datePayment, Date datePrevious) {
 
 		this.informacion = informacion;
@@ -74,7 +75,7 @@ public class QuotaDetailDto implements Dto {
 		this.datePrevious = datePrevious;
 		this.state = state;
 		this.minimumPayment = minimumPayment;
-		this.collectionSchedule = collectionSchedule;
+		this.feeCollection = feeCollection;
 		this.availableBalance = availableBalance;
 		this.balancePrevious = balancePrevious;
 	}
@@ -135,12 +136,12 @@ public class QuotaDetailDto implements Dto {
 		this.minimumPayment = minimumPayment;
 	}
 
-	public String getCollectionSchedule() {
-		return collectionSchedule;
+	public Money getFeeCollection() {
+		return feeCollection;
 	}
 
-	public void setCollectionSchedule(String collectionSchedule) {
-		this.collectionSchedule = collectionSchedule;
+	public void setFeeCollection(Money feeCollection) {
+		this.feeCollection = feeCollection;
 	}
 
 	public Money getAvailableBalance() {
@@ -208,9 +209,8 @@ public class QuotaDetailDto implements Dto {
 				.append("numberOfShares", getNumberOfShares()).append("dateMaturity", getDateMaturity())
 				.append("datePayment", getDatePayment()).append("datePrevious", getDatePrevious())
 				.append("state", getState()).append("minimumPayment", getMinimumPayment())
-				.append("collectionSchedule", getCollectionSchedule())
-				.append("availableBalance", getAvailableBalance()).append("balancePrevious", getBalancePrevious())
-				.toString();
+				.append("feeCollection", getFeeCollection()).append("availableBalance", getAvailableBalance())
+				.append("balancePrevious", getBalancePrevious()).toString();
 	}
 
 	@Override
@@ -218,8 +218,7 @@ public class QuotaDetailDto implements Dto {
 		return new HashCodeBuilder().append(getInformacion()).append(getPorcentaje()).append(getOutstandingBalance())
 				.append(getAmountRequested()).append(getNumberOfShares()).append(getDatePrevious())
 				.append(getDateMaturity()).append(getDatePayment()).append(getState()).append(getMinimumPayment())
-				.append(getCollectionSchedule()).append(getAvailableBalance()).append(getBalancePrevious())
-				.toHashCode();
+				.append(getFeeCollection()).append(getAvailableBalance()).append(getBalancePrevious()).toHashCode();
 	}
 
 	@Override
@@ -236,7 +235,7 @@ public class QuotaDetailDto implements Dto {
 				&& this.getDatePrevious().equals(((QuotaDetailDto)obj).getDatePrevious())
 				&& this.getState().equals(((QuotaDetailDto)obj).getState())
 				&& this.getMinimumPayment().equals(((QuotaDetailDto)obj).getMinimumPayment())
-				&& this.getCollectionSchedule().equals(((QuotaDetailDto)obj).getCollectionSchedule())
+				&& this.getFeeCollection().equals(((QuotaDetailDto)obj).getFeeCollection())
 				&& this.getAvailableBalance().equals(((QuotaDetailDto)obj).getAvailableBalance())
 				&& this.getBalancePrevious().equals(((QuotaDetailDto)obj).getBalancePrevious());
 
