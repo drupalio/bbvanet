@@ -47,13 +47,18 @@
 
 					<f:selectItem itemLabel="#{msg['select.radio.concret.date']}"
 						itemValue="#{msg['select.radio.concret.date']}" />
-					<f:ajax event="click" 
-					render="
+					<f:ajax event="click"
+						render="
 					tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:calendarSince
 					tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:calendarTo
-					tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:dateButton"
+					tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:dateButton
+					
+					tabMenu:tabCriteria:personalizedSearchContainer:customSearch:formCheckBook:checkSearchTab:checkContainer:customCheckList:customDate:calendarSince
+					tabMenu:tabCriteria:personalizedSearchContainer:customSearch:formCheckBook:checkSearchTab:checkContainer:customCheckList:customDate:calendarTo
+					tabMenu:tabCriteria:personalizedSearchContainer:customSearch:formCheckBook:checkSearchTab:checkContainer:customCheckList:customDate:dateButton
+					"
 						listener="#{cc.attrs.listenerDate.oneSelectDate}" />
-			
+
 				</p:selectOneRadio>
 
 				<div class="col-xs-6">
@@ -90,11 +95,11 @@
 		</div>
 
 
-	
+
 		<div class="date-period radio-group">
 			<div class="form-horizontal date-specific">
-			<p:radioButton id="customSearch-filter-datePeriod" for="customRadio"
-						itemIndex="6" />
+				<p:radioButton id="customSearch-filter-datePeriod" for="customRadio"
+					itemIndex="6" />
 				<label for="customSearch-filter-datePeriod">#{msg['select.radio.concret.date']}</label>
 			</div>
 			<div>
@@ -104,8 +109,10 @@
 							<label for="customSearch-dateFieldFrom">Desde:</label>
 						</div>
 						<div class="col-xs-10 col-md-12 input-control">
-						<p:calendar id="calendarSince" value="#{cc.attrs.valueDateSince}" disabled="#{cc.attrs.disabledCalendar}" />						
-														
+							<p:calendar widgetVar="calendarSinceWV" id="calendarSince"
+								value="#{cc.attrs.valueDateSince}"
+								disabled="#{cc.attrs.disabledCalendar}" />
+
 						</div>
 					</div>
 				</div>
@@ -115,16 +122,18 @@
 							<label for="customSearch-dateFieldTo">Hasta:</label>
 						</div>
 						<div class="col-xs-10 col-md-12 input-control">
-						<p:calendar id="calendarTo" value="#{cc.attrs.valueDateTo}" disabled="#{cc.attrs.disabledCalendar}" />
-						
-							
+							<p:calendar widgetVar="calendarToSinceWV" id="calendarTo"
+								value="#{cc.attrs.valueDateTo}"
+								disabled="#{cc.attrs.disabledCalendar}" />
+
+
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<button jsf:id="dateButton" class="btn small hidden-xs hidden-sm"	
-			jsf:disabled="#{cc.attrs.disabledButton}"		
+		<button jsf:id="dateButton" class="btn small hidden-xs hidden-sm"
+			jsf:disabled="#{cc.attrs.disabledButton}"
 			jsf:actionListener="#{movementsCriteriaController.setCustomDate}">#{msg['button.confirm']}</button>
 	</div>
 

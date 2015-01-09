@@ -10,6 +10,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.event.ComponentSystemEvent;
 import javax.faces.view.ViewScoped;
 
+import org.apache.cxf.jaxrs.ext.search.client.SearchConditionBuilder;
 import org.primefaces.event.SelectEvent;
 
 import com.bbva.net.back.facade.CardsFacade;
@@ -80,9 +81,11 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	private String periodAccountSelected;
 	
-	private String periodCardSelected;
+	private String periodCardSelected="";
 	
-	private String cardSelected;
+	private String cardSelected="";
+
+	private String accountSelected;
 
 	private enum ActivePanelType {
 
@@ -238,6 +241,15 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 			//linea de prueba	
 			this.graphicPieCards = graphicPieDelegate.getAccountsfundsProducts(this.fundDTOs);
 		}
+
+		// System.out.println("Seleciona combo tarjetas" + datos);
+		// if (MessagesHelper.INSTANCE.getString("text.allCards").equals(datos)) {
+		// //
+		// this.graphicPieCards=graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(getCurrentUser(),filter,""));
+		// } else {
+		//
+		// this.graphicPieCards = graphicPieDelegate.getAccountsfundsProducts(this.fundDTOs);
+		// }
 	}
 
 	public void onComboSelectedAccount() {
@@ -314,20 +326,20 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		return cardsFacade;
 	}
 
-	public String getPeriodAccountSelected() {
-		return periodAccountSelected;
-	}
-
-	public void setPeriodAccountSelected(String periodAccountSelected) {
-		this.periodAccountSelected = periodAccountSelected;
-	}
-	
 	public String getPeriodCardSelected() {
 		return periodCardSelected;
 	}
 
 	public void setPeriodCardSelected(String periodCardSelected) {
 		this.periodCardSelected = periodCardSelected;
+	}
+
+	public String getPeriodAccountSelected() {
+		return periodAccountSelected;
+	}
+
+	public void setPeriodAccountSelected(String periodAccountSelected) {
+		this.periodAccountSelected = periodAccountSelected;
 	}
 
 	public String getCardSelected() {
@@ -337,4 +349,13 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	public void setCardSelected(String cardSelected) {
 		this.cardSelected = cardSelected;
 	}
+
+	public String getAccountSelected() {
+		return accountSelected;
+	}
+
+	public void setAccountSelected(String accountSelected) {
+		this.accountSelected = accountSelected;
+	}
+
 }

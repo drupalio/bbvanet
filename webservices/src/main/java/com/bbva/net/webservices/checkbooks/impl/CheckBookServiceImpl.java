@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.springframework.beans.factory.annotation.Value;
 
 import com.bbva.czic.dto.net.Check;
 import com.bbva.czic.dto.net.Checkbook;
@@ -17,21 +18,20 @@ import com.bbva.net.webservices.core.stereotype.RestService;
 /**
  * @author User
  */
-@RestService(value = "checkService")
+@RestService(value = "checkBookService")
 public class CheckBookServiceImpl extends AbstractBbvaRestService implements CheckBookService {
 
-//	@Value("${rest.check.url}")
-	private String URL_CHECK;
-	
+	@Value("${rest.base.check.url}")
+	private String URL_BASE_CHECK;
 
-	//@Value("${rest.checkBook.url}")
+	@Value("${rest.checkBook.url}")
 	private String URL_CHECKBOOK;
 
 	@Override
 	public List<Check> getChecks(String checkId, String $filter, String $fields, String $expands, String $sort) {
 		final List<Check> checkList = new ArrayList<Check>();
 
-		final Check[] check = restTemplate.getForObject(URL_BASE + checkId + URL_CHECK, Check[].class);
+		final Check[] check = restTemplate.getForObject(URL_BASE_CHECK + URL_CHECKBOOK + checkId, Check[].class);
 
 		CollectionUtils.addAll(checkList, check);
 
@@ -43,8 +43,7 @@ public class CheckBookServiceImpl extends AbstractBbvaRestService implements Che
 			String $sort) {
 		List<Checkbook> listCheckBook = new ArrayList<Checkbook>();
 
-		final Checkbook[] check = restTemplate.getForObject(URL_BASE + checkbookId + URL_CHECKBOOK,
-				Checkbook[].class);
+		final Checkbook[] check = restTemplate.getForObject(URL_BASE_CHECK + checkbookId, Checkbook[].class);
 
 		CollectionUtils.addAll(listCheckBook, check);
 
