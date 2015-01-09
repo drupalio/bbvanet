@@ -5,6 +5,7 @@
     http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
 
 	<var name="accountsController" class="com.bbva.net.front.controller.impl.AccountsControllerImpl"/>
+	<var name="globalPositionController" class="com.bbva.net.front.controller.impl.GlobalPositionControllerImpl"/>
 	
 	<on-start>
 		<evaluate expression="accountsController.getCustomerAccounts()" result="flowScope.customerAccounts" />
