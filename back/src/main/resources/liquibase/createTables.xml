@@ -24,6 +24,11 @@
 			<column name="ID">2</column>
 			<column name="TYPE_NAME">CHEQUESTADO</column>
 		</insert>
+		
+		<insert tableName="MULTIVALUETYPE">
+			<column name="ID">3</column>
+			<column name="TYPE_NAME">PERIODOS</column>
+		</insert>
 
 		<!-- Table MULTVALUEGROUP -->
 		<createTable tableName="MULTIVALUEGROUP">
@@ -67,6 +72,31 @@
 			<column name="VALUE">text.combo.cheks.requested</column>
 			<column name="TYPE_ID">2</column>
 		</insert>
+		
+		<insert tableName="MULTIVALUEGROUP">
+			<column name="ID" autoIncrement="true" />
+			<column name="VALUE">text.combo.period.lasttwelve</column>
+			<column name="TYPE_ID">3</column>
+		</insert>
+		
+		<insert tableName="MULTIVALUEGROUP">
+			<column name="ID" autoIncrement="true" />
+			<column name="VALUE">text.combo.period.lastsix</column>
+			<column name="TYPE_ID">3</column>
+		</insert>
+		
+		<insert tableName="MULTIVALUEGROUP">
+			<column name="ID" autoIncrement="true" />
+			<column name="VALUE">text.combo.period.lastthree</column>
+			<column name="TYPE_ID">3</column>
+		</insert>
+		
+		<insert tableName="MULTIVALUEGROUP">
+			<column name="ID" autoIncrement="true" />
+			<column name="VALUE">text.combo.period.lastmonth</column>
+			<column name="TYPE_ID">3</column>
+		</insert>
+		
 
 	</changeSet>
 
