@@ -2,6 +2,7 @@ package com.bbva.net.front.delegate;
 
 import java.util.List;
 
+import com.bbva.net.back.model.cards.CardsChargesDto;
 import com.bbva.net.back.model.globalposition.FundDto;
 import com.bbva.net.back.model.globalposition.GlobalProductsDto;
 import com.bbva.net.front.ui.globalposition.SituationPiesUI;
@@ -30,10 +31,9 @@ public interface GraphicPieDelegate {
 	PieConfigUI getAccountsfundsProducts(List<FundDto> funds);
 
 	/**
-	 * @param customerId
+	 * 
+	 * @param cardsCharges
 	 * @return
 	 */
-
-	PieConfigUI getCardGraphicByUser(final String customerId);
-
+	PieConfigUI getCardGraphic(final List<CardsChargesDto> cardsCharges);
 }

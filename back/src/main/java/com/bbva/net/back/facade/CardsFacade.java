@@ -17,5 +17,12 @@ public interface CardsFacade {
 	 * @return
 	 */
 	List<CardsChargesDto> getCardsChargesByUser(String customerId);
-
+	/**
+	 * 
+	 * @param customerId
+	 * @param startDate
+	 * @param endDate
+	 * @return
+	 */
+	List<CardsChargesDto> getCardsChargesFilter(String customerId,String startDate,String endDate);
 }
