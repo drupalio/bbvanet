@@ -7,9 +7,11 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pm="http://primefaces.org/mobile"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:cc="http://jsflive.at/taglib"
-	xmlns:bbvaButton="http://java.sun.com/jsf/composite/bbva/button">
+	xmlns:bbvaButton="http://java.sun.com/jsf/composite/bbva/button"
+	xmlns:bbvaCalendar="http://java.sun.com/jsf/composite/bbva/calendar">
 
 <composite:interface>
 	<composite:attribute name="value" />
@@ -17,78 +19,113 @@
 	<composite:attribute name="valueDateTo" />
 	<composite:attribute name="disabledButton" />
 	<composite:attribute name="disabledCalendar" />
-	<composite:attribute name="actionListenerDate"
-		method-signature="void actionlistener(javax.faces.event.ActionEvent)" />
-	<composite:attribute name="listener"
-		method-signature="void listener(javax.faces.event.AjaxBehaviorEvent)" />
+	<composite:attribute name="actionListenerDate" />
 </composite:interface>
-
 
 <composite:implementation>
 
 	<div class="date-filter-content" style="width: 100% !important;">
-		<h:form id="panelGroup">
-			<div class="form-horizontal">
-				<div class="row">
 
-					<p:selectOneRadio id="console" value="#{cc.attrs.value}"
-						layout="grid" columns="2">
-						<f:selectItem itemLabel="#{msg['select.radio.today']}"
-							itemValue="#{msg['select.radio.today']}" />
-						<f:selectItem itemLabel="#{msg['select.radio.yesterday']}"
-							itemValue="#{msg['select.radio.yesterday']}" />
-						<f:selectItem itemLabel="#{msg['select.radio.last.week']}"
-							itemValue="#{msg['select.radio.last.week']}" />
+		<div class="form-horizontal">
+			<div class="row">
 
-						<f:selectItem itemLabel="#{msg['select.radio.last.two.weeks']}"
-							itemValue="#{msg['select.radio.last.two.weeks']}" />
-						<f:selectItem itemLabel="#{msg['select.radio.last.month']}"
-							itemValue="#{msg['select.radio.last.month']}" />
-						<f:selectItem itemLabel="#{msg['select.radio.last.two.months']}"
-							itemValue="#{msg['select.radio.last.two.months']}" />
+				<p:selectOneRadio id="customRadio" layout="custom"
+					value="#{cc.attrs.value}">
+					<f:selectItem itemLabel="#{msg['select.radio.today']}"
+						itemValue="#{msg['select.radio.today']}" />
+					<f:selectItem itemLabel="#{msg['select.radio.yesterday']}"
+						itemValue="#{msg['select.radio.yesterday']}" />
+					<f:selectItem itemLabel="#{msg['select.radio.last.week']}"
+						itemValue="#{msg['select.radio.last.week']}" />
 
-						<f:selectItem itemLabel="#{msg['select.radio.concret.date']}"
-							itemValue="#{msg['select.radio.concret.date']}" />
+					<f:selectItem itemLabel="#{msg['select.radio.last.two.weeks']}"
+						itemValue="#{msg['select.radio.last.two.weeks']}" />
+					<f:selectItem itemLabel="#{msg['select.radio.last.month']}"
+						itemValue="#{msg['select.radio.last.month']}" />
+					<f:selectItem itemLabel="#{msg['select.radio.last.two.months']}"
+						itemValue="#{msg['select.radio.last.two.months']}" />
 
-						<p:ajax process="@this" event="click"
-							update="dateSince,dateTo,dateButton, @form"
-							listener="#{cc.attrs.listener}" />
+					<f:selectItem itemLabel="#{msg['select.radio.concret.date']}"
+						itemValue="#{msg['select.radio.concret.date']}" />
+					<f:ajax event="click" 
+					render="
+					tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:calendarSince
+					tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:calendarTo
+					tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:dateButton"
+						listener="#{cc.attrs.listenerDate.oneSelectDate}" />
+			
+				</p:selectOneRadio>
 
-					</p:selectOneRadio>
-
+				<div class="col-xs-6">
+					<p:radioButton id="customSearch-filter-today" for="customRadio"
+						itemIndex="0" />
+					<label for="customSearch-filter-today">#{msg['select.radio.today']}</label>
+				</div>
+				<div class="col-xs-6">
+					<p:radioButton id="customSearch-filter-yesterday" for="customRadio"
+						itemIndex="1" />
+					<label for="customSearch-filter-yesterday">#{msg['select.radio.yesterday']}</label>
+				</div>
+				<div class="col-xs-6">
+					<p:radioButton id="customSearch-filter-week" for="customRadio"
+						itemIndex="2" />
+					<label for="customSearch-filter-week">#{msg['select.radio.last.week']}</label>
+				</div>
+				<div class="col-xs-6">
+					<p:radioButton id="customSearch-filter-two-week" for="customRadio"
+						itemIndex="3" />
+					<label for="customSearch-filter-two-week">#{msg['select.radio.last.two.weeks']}</label>
+				</div>
+				<div class="col-xs-6">
+					<p:radioButton id="customSearch-filter-month" for="customRadio"
+						itemIndex="4" />
+					<label for="customSearch-filter-month">#{msg['select.radio.last.month']}</label>
+				</div>
+				<div class="col-xs-6">
+					<p:radioButton id="customSearch-filter-two-month" for="customRadio"
+						itemIndex="5" />
+					<label for="customSearch-filter-two-month">#{msg['select.radio.last.two.months']}</label>
 				</div>
 			</div>
+		</div>
 
-			<h:panelGrid id="panel" columns="2" cellpadding="10">
-				<p:column>
-					<p:row>
-						<h:outputLabel value="#{msg['text.since']}:" />
-					</p:row>
-					<br></br>
-					<p:row>
-						<p:calendar id="dateSince" value="#{cc.attrs.valueDateSince}"
-							disabled="#{cc.attrs.disabledCalendar}" placeholder="__/__/____" />
-					</p:row>
-				</p:column>
-				<p:column colspan="2">
-					<p:row>
-						<h:outputLabel value="#{msg['text.to']}:" />
-					</p:row>
-					<br></br>
-					<p:row>
-						<p:calendar id="dateTo" value="#{cc.attrs.valueDateTo}"
-							disabled="#{cc.attrs.disabledCalendar}" placeholder="__/__/____" />
-					</p:row>
-				</p:column>
-			</h:panelGrid>
 
-			<p:spacer />
-			<bbvaButton:iconButton id="dateButton"
-				disabled="#{cc.attrs.disabledButton}"
-				value="#{msg['button.confirm']}"
-				classButton="btn small hidden-xs hidden-sm"
-				actionListener="#{cc.attrs.actionListenerDate}" />
-		</h:form>
+	
+		<div class="date-period radio-group">
+			<div class="form-horizontal date-specific">
+			<p:radioButton id="customSearch-filter-datePeriod" for="customRadio"
+						itemIndex="6" />
+				<label for="customSearch-filter-datePeriod">#{msg['select.radio.concret.date']}</label>
+			</div>
+			<div>
+				<div class="col-xs-12 col-md-6">
+					<div class="form-group">
+						<div class="col-xs-2 col-md-12">
+							<label for="customSearch-dateFieldFrom">Desde:</label>
+						</div>
+						<div class="col-xs-10 col-md-12 input-control">
+						<p:calendar id="calendarSince" value="#{cc.attrs.valueDateSince}" disabled="#{cc.attrs.disabledCalendar}" />						
+														
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12 col-md-6">
+					<div class="form-group">
+						<div class="col-xs-2 col-md-12">
+							<label for="customSearch-dateFieldTo">Hasta:</label>
+						</div>
+						<div class="col-xs-10 col-md-12 input-control">
+						<p:calendar id="calendarTo" value="#{cc.attrs.valueDateTo}" disabled="#{cc.attrs.disabledCalendar}" />
+						
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<button jsf:id="dateButton" class="btn small hidden-xs hidden-sm"	
+			jsf:disabled="#{cc.attrs.disabledButton}"		
+			jsf:actionListener="#{movementsCriteriaController.setCustomDate}">#{msg['button.confirm']}</button>
 	</div>
 
 </composite:implementation>

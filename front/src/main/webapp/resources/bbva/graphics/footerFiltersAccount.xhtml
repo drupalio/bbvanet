@@ -26,9 +26,8 @@
 			<h:form id="footerBarGraphicPeriod">
 				<div class="col-xs-12 col-sm-6 chart-selection input-control">
 					<label for="cuentas-personales-chart-tiempo">#{cc.attrs.nameLeft}</label>
-					<bbvaInput:comboSelectedPeriod
-						listener="#{cc.attrs.listenerLeft}"
-						valueMenu="#{periodFilterCriteriaController.period}"
+					<bbvaInput:comboSelectedPeriod listener="#{cc.attrs.listenerLeft}"
+						valueMenu="#{globalPositionController.periodAccountSelected}"
 						render=":accountGP:barGraphic" />
 				</div>
 			</h:form>

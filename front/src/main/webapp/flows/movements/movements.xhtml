@@ -27,7 +27,7 @@
 
 	<ui:define name="contentLeft">
 
-		<bbvaDetAcc:tabMenu>
+		<bbvaDetAcc:tabMenu id="tabMenu">
 			<ul class="nav nav-pills nav-operation-options"
 				style="display: block;">
 				<bbvaDetAcc:itemTabMenu title="#{msg['text.consult']}"
@@ -50,8 +50,8 @@
 			<div class="tab-content">
 
 				<!-- Tab Consultar -->
-				<bbvaSearch:tabCriteria>
-					<bbvaSearch:personalizedSearchContainer />
+				<bbvaSearch:tabCriteria id="tabCriteria">
+					<bbvaSearch:personalizedSearchContainer id="personalizedSearchContainer"/>
 				</bbvaSearch:tabCriteria>
 
 				<!-- Tab Condiciones -->

@@ -6,6 +6,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
 	xmlns:cc="http://jsflive.at/taglib">
 
 <composite:interface>
@@ -38,9 +39,9 @@
 			</h:panelGrid>
 
 		</div>
-		<p:commandButton styleClass="btn small hidden-xs hidden-sm"
-			actionListener="#{movementsCriteriaController.setIncomeExpensesFilter}"
-			value="#{msg['button.confirm']}" />
+		<button jsf:id="balanceButton" type="submit"
+			jsf:actionListener="#{movementsCriteriaController.setIncomeExpensesFilter}"
+			class="btn small hidden-xs hidden-sm">#{msg['button.confirm']}</button>
 	</div>
 </composite:implementation>
 </html>
