@@ -2,9 +2,9 @@ package com.bbva.net.back.model.comboFilter;
 
 import com.bbva.net.back.core.pattern.dto.Dto;
 
-public class ComboFilterGraphicsDto implements Dto {
+public class PeriodFilterDto implements Dto {
 
-	private static final long serialVersionUID = 3962274908934070992L;
+	private static final long serialVersionUID = -225505302565701272L;
 
 	private String period;
 

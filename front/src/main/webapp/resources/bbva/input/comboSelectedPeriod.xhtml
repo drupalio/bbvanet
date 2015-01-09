@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile">
+
+<composite:interface>
+	
+	<composite:attribute name="width" type="String" />
+	<composite:attribute name="valueMenu" />	
+	<composite:attribute name="listener"/>
+	<composite:attribute name="render"/>
+</composite:interface>
+
+<composite:implementation>
+	<div style="display: inline-block; width: 60% !important">
+		<h:selectOneMenu id="comboFilterPeriod" value="#{cc.attrs.valueMenu}" >
+			<f:selectItems value="#{periodFilterCriteriaController.getListMultiValuePeriod()}" 
+			var="ilist" itemLabel="#{msg[ilist.value]}" itemValue="#{ilist.value}" />
+			<f:ajax listener="#{cc.attrs.listener}" event="change" execute="@form" render="#{cc.attrs.render}"/>	
+	
+		</h:selectOneMenu>
+	</div>
+</composite:implementation>
+
+</html>

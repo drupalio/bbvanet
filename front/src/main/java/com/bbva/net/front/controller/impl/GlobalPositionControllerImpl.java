@@ -234,6 +234,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	}
 	public void onComboSelectedAccount() {
 		System.out.println("Seleciona combo cuentas"+datos);
+		this.accountGraphicBarLineUI = this.graphicBarLineDelegate.getInOutBalanceByAccount(globalResumeMovementsDTO);
 	}
 	
 	public List<String> periodGraphics(){

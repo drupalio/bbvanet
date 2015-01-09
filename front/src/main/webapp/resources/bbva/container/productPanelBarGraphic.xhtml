@@ -39,10 +39,18 @@
 
 		<div class="tab tab-bars chart">
 			<div>
+			<h:form id="barGraphic">
 			<bbvaAccountGraphic:barGraphic barLineUIList= "#{globalPositionController.accountGraphicBarLineUI}"/>
-			<bbvaPieGraphic:footerFiltersGraphic nameRight="Cuentas" nameLeft="Tiempo"/>
+			</h:form>
+			
+			<h:form id="footerBarGraphic">
+			<bbvaPieGraphic:footerFiltersAccount nameRight="Tarjetas"
+					nameLeft="Periodo"
+					listenerRight="#{globalPositionController.onComboSelectedAccount}" />
 <!-- 				<h3>GRAFICA555</h3> -->
+			</h:form>
 			</div>
+			
 		</div>
 
 		<div class="row afterTable"></div>

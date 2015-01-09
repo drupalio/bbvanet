@@ -7,11 +7,8 @@ import javax.annotation.Resource;
 
 import com.bbva.czic.dto.net.CardCharge;
 import com.bbva.czic.dto.net.EnumMonth;
-import com.bbva.czic.dto.net.EnumProductType;
-import com.bbva.czic.dto.net.Product;
 import com.bbva.net.back.core.pattern.facade.AbstractBbvaFacade;
 import com.bbva.net.back.core.stereotype.Facade;
-import com.bbva.net.back.facade.AccountsFacade;
 import com.bbva.net.back.facade.CardsFacade;
 import com.bbva.net.back.facade.GlobalPositionFacade;
 import com.bbva.net.back.mapper.CardsMapper;
