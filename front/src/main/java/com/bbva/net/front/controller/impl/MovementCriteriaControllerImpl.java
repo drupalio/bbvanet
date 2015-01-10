@@ -1,6 +1,7 @@
 package com.bbva.net.front.controller.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -9,8 +10,11 @@ import javax.faces.event.ActionEvent;
 import org.springframework.stereotype.Controller;
 
 import com.bbva.net.back.entity.MultiValueGroup;
+import com.bbva.net.back.facade.MovementCriteriaFacade;
 import com.bbva.net.back.facade.MultiValueGroupFacade;
 import com.bbva.net.back.model.citeriaMovements.MovementCriteriaDto;
+import com.bbva.net.back.model.commons.BalanceRangeDto;
+import com.bbva.net.back.model.commons.DateRangeDto;
 import com.bbva.net.front.controller.MovementCriteriaController;
 import com.bbva.net.front.core.AbstractBbvaController;
 
@@ -24,15 +28,7 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 
 	private static final String CONCRETE_DATE = "Fecha concreta";
 
-	private static final String SEARCH_CHECK = "Búsqueda por nº de talonario";
-
 	private static final Integer LIST_CHECK_STATUS = 2;
-
-	private boolean disbaledNumberBook = true;
-
-	private boolean disabledNumberCheck = true;
-
-	private boolean disabledButtonBook = true;
 
 	private boolean disabledButtonBalance = true;
 
@@ -41,17 +37,30 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 	private boolean disabledButtonDate = true;
 
 	private StringBuilder messageBalance;
-	
+
 	private String sinceText;
-	
+
 	private String toText;
 
+	private String selectDate;
+
+	private Date sinceDate;
+
+	private Date toDate;
+
 	private MovementCriteriaDto movementCriteria = new MovementCriteriaDto();
+
+	private BalanceRangeDto balanceRange = new BalanceRangeDto();
+
+	private DateRangeDto dateRange = new DateRangeDto();
 
 	private List<MultiValueGroup> multiValueList = new ArrayList<MultiValueGroup>();
 
 	@Resource(name = "multiValueGroupFacade")
 	private transient MultiValueGroupFacade multiValueGroupFacade;
+
+	@Resource(name = "movementCriteriaFacade")
+	private transient MovementCriteriaFacade movementCriteriaFacade;
 
 	/***
 	 * @param event
@@ -63,7 +72,6 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 		System.out.println(" selectDate " + movementCriteria.getSelectDate());
 		System.out.println("Since " + movementCriteria.getBalanceRange().getBalanceSince());
 		System.out.println("To " + movementCriteria.getBalanceRange().getBalanceTo());
-
 	}
 
 	/***
@@ -72,14 +80,14 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 	@Override
 	public void oneSelectDate() {
 		System.out.println("Method oneSelectDate");
-		if (movementCriteria.getSelectDate().equals(CONCRETE_DATE)) {
+		if (getSelectDate().equals(CONCRETE_DATE)) {
 			setDisabledCalendar(false);
 			setDisabledButtonDate(false);
-			System.out.println("if " +isDisabledCalendar()+isDisabledButtonDate());
-		} else {			
+			System.out.println("if " + isDisabledCalendar() + isDisabledButtonDate());
+		} else {
 			setDisabledCalendar(true);
 			setDisabledButtonDate(false);
-			System.out.println("else" +isDisabledCalendar()+isDisabledButtonDate());
+			System.out.println("else" + isDisabledCalendar() + isDisabledButtonDate());
 		}
 	}
 
@@ -105,32 +113,7 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 	}
 
 	@Override
-	public void actionState() {
-		System.out.println("method Action State");
-		if (movementCriteria.getActionState().equals(SEARCH_CHECK)) {
-			setRenderedNumberCheck(true);
-			setRenderedNumberBook(false);
-			setRenderedButtonBook(false);
-		} else {
-			setRenderedNumberBook(true);
-			setRenderedNumberCheck(false);
-			setRenderedButtonBook(false);
-
-		}
-	}
-
-	/**
-	 * @param event
-	 */
-	@Override
-	public void searchNumberCheckOrBook(final ActionEvent event) {
-		System.out.println("searchNumberCheckOrBook");
-		System.out.println("boook num" + movementCriteria.getBookNumber() + "check num"
-				+ movementCriteria.getCheckNumber() + "check State" + movementCriteria.getCheckState());
-	}
-
-	@Override
-	public void setNumberCheckOrBook(ActionEvent event) {
+	public void setNumberCheckOrBook(final ActionEvent event) {
 		System.out.println("setNumberCheckOrBook");
 	}
 
@@ -149,9 +132,7 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 	@Override
 	public void buildMessage() {
 		messageBalance = new StringBuilder("Se mostrarán los resultados mayores de ");
-
 		messageBalance.append(movementCriteria.getBalanceRange().getBalanceSince() + "$");
-
 	}
 
 	@Override
@@ -178,9 +159,21 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 	}
 
 	@Override
-	public void setCustomDate(ActionEvent event) {
-		System.out.println("setCustomDate");
+	public void captureDate(javax.faces.event.AjaxBehaviorEvent e) {
 
+		System.out.println("aw" + getSinceDate() + " hasta " + getToDate());
+	}
+
+	@Override
+	public void setCustomDate(final ActionEvent event) {
+		System.out.println("setCustomDate");
+		movementCriteria.setSelectDate(getSelectDate());
+		this.dateRange.setDateSince(getSinceDate());
+		this.dateRange.setDateTo(getToDate());
+		movementCriteria.setDateRange(dateRange);
+		System.out.println(movementCriteria.getSelectDate());
+		System.out.println(movementCriteria.getDateRange().getDateSince());
+		System.out.println(movementCriteria.getDateRange().getDateTo());
 	}
 
 	/**
@@ -198,45 +191,17 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 	}
 
 	/**
-	 * @return the renderedNumberBook
+	 * @param movementCriteria the movementCriteria to set
 	 */
-	public boolean isRenderedNumberBook() {
-		return disbaledNumberBook;
+	public void setSelectDate(String selectDate) {
+		this.selectDate = selectDate;
 	}
 
 	/**
-	 * @param renderedNumberBook the renderedNumberBook to set
+	 * @return the selectDate
 	 */
-	public void setRenderedNumberBook(boolean renderedNumberBook) {
-		this.disbaledNumberBook = renderedNumberBook;
-	}
-
-	/**
-	 * @return the renderedNumberCheck
-	 */
-	public boolean isRenderedNumberCheck() {
-		return disabledNumberCheck;
-	}
-
-	/**
-	 * @param renderedNumberCheck the renderedNumberCheck to set
-	 */
-	public void setRenderedNumberCheck(boolean renderedNumberCheck) {
-		this.disabledNumberCheck = renderedNumberCheck;
-	}
-
-	/**
-	 * @return the renderedButtonBook
-	 */
-	public boolean isRenderedButtonBook() {
-		return disabledButtonBook;
-	}
-
-	/**
-	 * @param renderedButtonBook the renderedButtonBook to set
-	 */
-	public void setRenderedButtonBook(boolean renderedButtonBook) {
-		this.disabledButtonBook = renderedButtonBook;
+	public String getSelectDate() {
+		return selectDate;
 	}
 
 	/**
@@ -309,7 +274,6 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 		this.disabledButtonDate = disabledButtonDate;
 	}
 
-	
 	/**
 	 * @return the sinceText
 	 */
@@ -317,7 +281,6 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 		return sinceText;
 	}
 
-	
 	/**
 	 * @param sinceText the sinceText to set
 	 */
@@ -325,7 +288,6 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 		this.sinceText = sinceText;
 	}
 
-	
 	/**
 	 * @return the toText
 	 */
@@ -333,11 +295,66 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 		return toText;
 	}
 
-	
 	/**
 	 * @param toText the toText to set
 	 */
 	public void setToText(String toText) {
 		this.toText = toText;
+	}
+
+	/**
+	 * @return the sinceDate
+	 */
+	public Date getSinceDate() {
+		return sinceDate;
+	}
+
+	/**
+	 * @param sinceDate the sinceDate to set
+	 */
+	public void setSinceDate(Date sinceDate) {
+		this.sinceDate = sinceDate;
+	}
+
+	/**
+	 * @return the toDate
+	 */
+	public Date getToDate() {
+		return toDate;
+	}
+
+	/**
+	 * @param toDate the toDate to set
+	 */
+	public void setToDate(Date toDate) {
+		this.toDate = toDate;
+	}
+
+	/**
+	 * @return the disabledButtonBalance
+	 */
+	public boolean isDisabledButtonBalance() {
+		return disabledButtonBalance;
+	}
+
+	/**
+	 * @param disabledButtonBalance the disabledButtonBalance to set
+	 */
+	public void setDisabledButtonBalance(boolean disabledButtonBalance) {
+		this.disabledButtonBalance = disabledButtonBalance;
+	}
+
+	/**
+	 * @return the balanceRange
+	 */
+	public BalanceRangeDto getBalanceRange() {
+		return balanceRange;
+	}
+
+	/**
+	 * @param balanceRange the balanceRange to set
+	 */
+	public void setBalanceRange(BalanceRangeDto balanceRange) {
+		this.balanceRange = balanceRange;
 	}
 }

@@ -8,9 +8,9 @@ import com.bbva.jee.arq.spring.core.servicing.utils.Money;
 
 
 /**
- * <p>Java class for movement complex type.
+ * <p>Clase Java para movement complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="movement">
@@ -56,7 +56,7 @@ public class Movement {
     protected Money balance;
 
     /**
-     * Gets the value of the id property.
+     * Obtiene el valor de la propiedad id.
      * 
      * @return
      *     possible object is
@@ -68,7 +68,7 @@ public class Movement {
     }
 
     /**
-     * Sets the value of the id property.
+     * Define el valor de la propiedad id.
      * 
      * @param value
      *     allowed object is
@@ -80,7 +80,7 @@ public class Movement {
     }
 
     /**
-     * Gets the value of the concept property.
+     * Obtiene el valor de la propiedad concept.
      * 
      * @return
      *     possible object is
@@ -92,7 +92,7 @@ public class Movement {
     }
 
     /**
-     * Sets the value of the concept property.
+     * Define el valor de la propiedad concept.
      * 
      * @param value
      *     allowed object is
@@ -104,7 +104,7 @@ public class Movement {
     }
 
     /**
-     * Gets the value of the transactionDate property.
+     * Obtiene el valor de la propiedad transactionDate.
      * 
      * @return
      *     possible object is
@@ -116,7 +116,7 @@ public class Movement {
     }
 
     /**
-     * Sets the value of the transactionDate property.
+     * Define el valor de la propiedad transactionDate.
      * 
      * @param value
      *     allowed object is
@@ -128,7 +128,7 @@ public class Movement {
     }
 
     /**
-     * Gets the value of the sourceReference property.
+     * Obtiene el valor de la propiedad sourceReference.
      * 
      * @return
      *     possible object is
@@ -140,7 +140,7 @@ public class Movement {
     }
 
     /**
-     * Sets the value of the sourceReference property.
+     * Define el valor de la propiedad sourceReference.
      * 
      * @param value
      *     allowed object is
@@ -152,7 +152,7 @@ public class Movement {
     }
 
     /**
-     * Gets the value of the destinationReference property.
+     * Obtiene el valor de la propiedad destinationReference.
      * 
      * @return
      *     possible object is
@@ -164,7 +164,7 @@ public class Movement {
     }
 
     /**
-     * Sets the value of the destinationReference property.
+     * Define el valor de la propiedad destinationReference.
      * 
      * @param value
      *     allowed object is
@@ -176,7 +176,7 @@ public class Movement {
     }
 
     /**
-     * Gets the value of the operation property.
+     * Obtiene el valor de la propiedad operation.
      * 
      * @return
      *     possible object is
@@ -188,7 +188,7 @@ public class Movement {
     }
 
     /**
-     * Sets the value of the operation property.
+     * Define el valor de la propiedad operation.
      * 
      * @param value
      *     allowed object is
@@ -200,7 +200,7 @@ public class Movement {
     }
 
     /**
-     * Gets the value of the value property.
+     * Obtiene el valor de la propiedad value.
      * 
      * @return
      *     possible object is
@@ -212,7 +212,7 @@ public class Movement {
     }
 
     /**
-     * Sets the value of the value property.
+     * Define el valor de la propiedad value.
      * 
      * @param value
      *     allowed object is
@@ -224,7 +224,7 @@ public class Movement {
     }
 
     /**
-     * Gets the value of the balance property.
+     * Obtiene el valor de la propiedad balance.
      * 
      * @return
      *     possible object is
@@ -236,7 +236,7 @@ public class Movement {
     }
 
     /**
-     * Sets the value of the balance property.
+     * Define el valor de la propiedad balance.
      * 
      * @param value
      *     allowed object is

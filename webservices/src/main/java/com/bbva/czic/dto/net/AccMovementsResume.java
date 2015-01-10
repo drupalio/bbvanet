@@ -3,14 +3,15 @@ package com.bbva.czic.dto.net;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import com.bbva.jee.arq.spring.core.servicing.utils.Money;
 
 
 /**
- * <p>Java class for AccMovementsResume complex type.
+ * <p>Clase Java para AccMovementsResume complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="AccMovementsResume">
@@ -41,10 +42,11 @@ public class AccMovementsResume {
     protected Money income;
     protected Money outcome;
     protected Money balance;
+    @XmlSchemaType(name = "string")
     protected EnumMonth month;
 
     /**
-     * Gets the value of the income property.
+     * Obtiene el valor de la propiedad income.
      * 
      * @return
      *     possible object is
@@ -56,7 +58,7 @@ public class AccMovementsResume {
     }
 
     /**
-     * Sets the value of the income property.
+     * Define el valor de la propiedad income.
      * 
      * @param value
      *     allowed object is
@@ -68,7 +70,7 @@ public class AccMovementsResume {
     }
 
     /**
-     * Gets the value of the outcome property.
+     * Obtiene el valor de la propiedad outcome.
      * 
      * @return
      *     possible object is
@@ -80,7 +82,7 @@ public class AccMovementsResume {
     }
 
     /**
-     * Sets the value of the outcome property.
+     * Define el valor de la propiedad outcome.
      * 
      * @param value
      *     allowed object is
@@ -92,7 +94,7 @@ public class AccMovementsResume {
     }
 
     /**
-     * Gets the value of the balance property.
+     * Obtiene el valor de la propiedad balance.
      * 
      * @return
      *     possible object is
@@ -104,7 +106,7 @@ public class AccMovementsResume {
     }
 
     /**
-     * Sets the value of the balance property.
+     * Define el valor de la propiedad balance.
      * 
      * @param value
      *     allowed object is
@@ -116,7 +118,7 @@ public class AccMovementsResume {
     }
 
     /**
-     * Gets the value of the month property.
+     * Obtiene el valor de la propiedad month.
      * 
      * @return
      *     possible object is
@@ -128,7 +130,7 @@ public class AccMovementsResume {
     }
 
     /**
-     * Sets the value of the month property.
+     * Define el valor de la propiedad month.
      * 
      * @param value
      *     allowed object is
