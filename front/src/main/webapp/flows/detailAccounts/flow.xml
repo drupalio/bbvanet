@@ -6,11 +6,6 @@
 
 	<view-state id="detailAccounts">
 		<transition on="start" to="dialogRecover" />
-		<transition on="next" to="sales" />
-	</view-state>
-
-	<view-state id="sales">
-		<transition on="back" to="detailAccounts" />
 	</view-state>
 
 	<subflow-state id="dialogRecover" subflow="detailAccounts/dialogRecover">

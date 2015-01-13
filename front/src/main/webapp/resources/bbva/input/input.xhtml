@@ -22,6 +22,19 @@
 
 <composite:implementation>
 
+	<script>
+		function checkFilled(inputId) {
+			inputId.className = "form-control ";
+		}
+	</script>
+
+	<div id="registerUser-error" class="arrow_box_container">
+		<div class="arrow_box error-tooltip">
+			<h3>Alerta!</h3>
+			<p>Este campo es obligatorio.</p>
+		</div>
+	</div>
+
 	<p:inputText id="#{cc.attrs.id}" type="#{cc.attrs.type}"
 		value="#{cc.attrs.value}" maxlength="#{cc.attrs.maxlength}"
 		required="#{cc.attrs.required}"
