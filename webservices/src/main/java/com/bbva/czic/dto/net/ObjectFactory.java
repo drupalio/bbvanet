@@ -25,9 +25,7 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     private final static QName _CardCharge_QNAME = new QName("urn:com:bbva:czic:dto:net", "CardCharge");
-    private final static QName _AccMovementsResume_QNAME = new QName("urn:com:bbva:czic:dto:net", "AccMovementsResume");
     private final static QName _EnumCardChargeCategory_QNAME = new QName("urn:com:bbva:czic:dto:net", "EnumCardChargeCategory");
-    private final static QName _EnumMonth_QNAME = new QName("urn:com:bbva:czic:dto:net", "EnumMonth");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.bbva.czic.dto.net
@@ -45,14 +43,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link AccMovementsResume }
-     * 
-     */
-    public AccMovementsResume createAccMovementsResume() {
-        return new AccMovementsResume();
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link CardCharge }{@code >}}
      * 
      */
@@ -62,30 +52,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link AccMovementsResume }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "urn:com:bbva:czic:dto:net", name = "AccMovementsResume")
-    public JAXBElement<AccMovementsResume> createAccMovementsResume(AccMovementsResume value) {
-        return new JAXBElement<AccMovementsResume>(_AccMovementsResume_QNAME, AccMovementsResume.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link EnumCardChargeCategory }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:com:bbva:czic:dto:net", name = "EnumCardChargeCategory")
     public JAXBElement<EnumCardChargeCategory> createEnumCardChargeCategory(EnumCardChargeCategory value) {
         return new JAXBElement<EnumCardChargeCategory>(_EnumCardChargeCategory_QNAME, EnumCardChargeCategory.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link EnumMonth }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "urn:com:bbva:czic:dto:net", name = "EnumMonth")
-    public JAXBElement<EnumMonth> createEnumMonth(EnumMonth value) {
-        return new JAXBElement<EnumMonth>(_EnumMonth_QNAME, EnumMonth.class, null, value);
     }
 
 }
