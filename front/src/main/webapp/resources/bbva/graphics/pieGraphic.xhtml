@@ -62,9 +62,9 @@
 
 			var chart2_1 = c3.generate({
 				bindto: '#chart2_1',
+				//size: { height: 330, width: 270 },
 				data : {
 
-					size: { height: 240, width: 480 },
 					columns : totalColums,
 
 					type : 'pie',
@@ -78,6 +78,7 @@
 						console.log("onmouseout", d, i);
 					}
 				}
+			
 			});
 
 		};

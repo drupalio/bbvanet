@@ -58,7 +58,7 @@ public abstract class AbstractBbvaController implements Serializable {
 	 */
 	protected HttpSession getSession() {
 		final FacesContext facesContext = FlowFacesContext.getCurrentInstance();
-		return (HttpSession)facesContext.getExternalContext().getSession(true);
+		return (HttpSession)facesContext.getExternalContext().getSession(false);
 	}
 
 	/**

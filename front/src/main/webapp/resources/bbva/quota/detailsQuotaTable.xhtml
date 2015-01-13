@@ -7,7 +7,8 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pm="http://primefaces.org/mobile"
 	xmlns:jsf="http://xmlns.jcp.org/jsf"
-	xmlns:bbvaDetailMovents="http://java.sun.com/jsf/composite/bbva/movementsDetailQuota">
+	xmlns:bbvaDetailMovents="http://java.sun.com/jsf/composite/bbva/movementsDetailQuota"
+	xmlns:bbvaDetailMotion="http://java.sun.com/jsf/composite/bbva/movementsDetailQuota">
 
 <composite:interface>
 	<composite:attribute name="id" type="String" />
@@ -16,7 +17,11 @@
 </composite:interface>
 
 <composite:implementation>
+
 	<h:form id="#{cc.attrs.id}">
+	
+		<p:commandButton value="Basic" type="button" onclick="PF('dlg1').show();" />
+		
 		<article class="detail-table-group">
 
 			<div class="utility-icons">
@@ -34,8 +39,7 @@
 					value="#{cc.attrs.listAccounts}" var="icuenta"
 					selectionMode="single" rowKey="#{icuenta.productId}">
 
-					<p:ajax event="rowSelect" oncomplete="PF('dialog3').show();"
-						listener="#{cc.attrs.controller.onProductSelected}" />
+					<p:ajax event="rowSelect" listener="#{cc.attrs.controller.onProductSelected}" />
 					<p:ajax event="rowUnselect" />
 
 					<p:column headerText="#{msg['title.quotaNumber']}"
@@ -66,6 +70,10 @@
 							value="#{icuenta.totalCash}" />
 
 					</p:column>
+					
+					 <p:rowExpansion>
+					 	<bbvaDetailMotion:tableContent />	
+					 </p:rowExpansion>
 				</p:dataTable>
 
 				<p:dialog widgetVar="dialog3">
@@ -82,7 +90,11 @@
 			</footer>
 		</article>
 	</h:form>
-
+	
+	<p:dialog header="Basic Dialog" widgetVar="dlg1"  modal="true" closable="true" height="100">
+		<h:outputText value="Resistance to PrimeFaces is futile!" />
+	</p:dialog>
+	
 </composite:implementation>
 
 </html>

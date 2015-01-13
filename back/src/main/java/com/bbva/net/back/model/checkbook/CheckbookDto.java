@@ -3,6 +3,9 @@
  */
 package com.bbva.net.back.model.checkbook;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
@@ -28,10 +31,13 @@ public class CheckbookDto implements Dto {
 	private String firstCheck;
 
 	private String id;
+	
+	private List<CheckDto> checks = new ArrayList<CheckDto>();
 
 	public CheckbookDto() {
 	}
 
+	
 	/**
 	 * @param actualState
 	 * @param deliveryDate
@@ -40,9 +46,10 @@ public class CheckbookDto implements Dto {
 	 * @param lastCheck
 	 * @param firstCheck
 	 * @param id
+	 * @param checks
 	 */
 	public CheckbookDto(String actualState, String deliveryDate, String requestDate, String totalCheck,
-			String lastCheck, String firstCheck, String id) {
+			String lastCheck, String firstCheck, String id, List<CheckDto> checks) {
 		this.actualState = actualState;
 		this.deliveryDate = deliveryDate;
 		this.requestDate = requestDate;
@@ -50,7 +57,10 @@ public class CheckbookDto implements Dto {
 		this.lastCheck = lastCheck;
 		this.firstCheck = firstCheck;
 		this.id = id;
+		this.checks = checks;
 	}
+
+
 
 	/**
 	 * @return the actualState
@@ -142,6 +152,24 @@ public class CheckbookDto implements Dto {
 	public String getId() {
 		return id;
 	}
+
+	
+	/**
+	 * @return the checks
+	 */
+	public List<CheckDto> getChecks() {
+		return checks;
+	}
+
+
+	
+	/**
+	 * @param checks the checks to set
+	 */
+	public void setChecks(List<CheckDto> checks) {
+		this.checks = checks;
+	}
+
 
 	/**
 	 * @param id the id to set

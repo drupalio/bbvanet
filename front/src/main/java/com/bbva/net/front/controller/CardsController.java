@@ -10,9 +10,5 @@ import com.bbva.net.back.model.globalposition.GlobalProductsDto;
  */
 public interface CardsController {
 
-	/**
-	 * @return
-	 */
-	GlobalProductsDto getCustomerProducts();
 
 }
