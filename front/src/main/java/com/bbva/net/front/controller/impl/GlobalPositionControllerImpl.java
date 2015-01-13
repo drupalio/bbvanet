@@ -1,6 +1,5 @@
 package com.bbva.net.front.controller.impl;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -10,7 +9,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.event.ComponentSystemEvent;
 import javax.faces.view.ViewScoped;
 
-import org.apache.cxf.jaxrs.ext.search.client.SearchConditionBuilder;
 import org.primefaces.event.SelectEvent;
 
 import com.bbva.net.back.facade.CardsFacade;
@@ -80,10 +78,10 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	private Map<String, List<String>> namesProducts;
 
 	private String periodAccountSelected;
-	
-	private String periodCardSelected="";
-	
-	private String cardSelected="";
+
+	private String periodCardSelected = "";
+
+	private String cardSelected = "";
 
 	private String accountSelected;
 
@@ -112,7 +110,8 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		this.graphicPieInvestmentFunds = graphicPieDelegate.getAccountsfundsProducts(this.fundDTOs);
 
 		// Calculate situation graphics panels
-		this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(getCurrentUser(),null));
+		this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(getCurrentUser(),
+				null));
 
 		// Calculate totals
 		this.totalsProducts = this.globalPositionFacade.getTotalsByProduct(globalProductsDTO);
@@ -228,17 +227,18 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	public void onComboSelectedCard() {
 		EnumPeriodType periodType = EnumPeriodType.valueOf(Integer.parseInt(this.periodCardSelected));
 
-		System.out.println(" Seleciona combo tarjetas"+cardSelected+"  "+periodCardSelected);
+		System.out.println(" Seleciona combo tarjetas" + cardSelected + "  " + periodCardSelected);
 		DateRangeDto dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
-		
-		
-		if(MessagesHelper.INSTANCE.getString("text.allCards").equals(cardSelected)){
-			this.graphicPieCards=graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(getCurrentUser(),dateRange));
-		}else{			
-			//Este es el llamado al servicio corrrespondiente
-			//this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesFilter(idProduct,dateRange));
-			
-			//linea de prueba	
+
+		if (MessagesHelper.INSTANCE.getString("text.allCards").equals(cardSelected)) {
+			this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(
+					getCurrentUser(), dateRange));
+		} else {
+			// Este es el llamado al servicio corrrespondiente
+			// this.graphicPieCards =
+			// graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesFilter(idProduct,dateRange));
+
+			// linea de prueba
 			this.graphicPieCards = graphicPieDelegate.getAccountsfundsProducts(this.fundDTOs);
 		}
 
@@ -320,10 +320,6 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	public void setCardsFacade(CardsFacade cardsFacade) {
 		this.cardsFacade = cardsFacade;
-	}
-
-	public CardsFacade getCardsFacade() {
-		return cardsFacade;
 	}
 
 	public String getPeriodCardSelected() {
