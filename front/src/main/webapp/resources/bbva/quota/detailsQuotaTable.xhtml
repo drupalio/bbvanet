@@ -19,9 +19,7 @@
 <composite:implementation>
 
 	<h:form id="#{cc.attrs.id}">
-	
-		<p:commandButton value="Basic" type="button" onclick="PF('dlg1').show();" />
-		
+
 		<article class="detail-table-group">
 
 			<div class="utility-icons">
@@ -39,7 +37,8 @@
 					value="#{cc.attrs.listAccounts}" var="icuenta"
 					selectionMode="single" rowKey="#{icuenta.productId}">
 
-					<p:ajax event="rowSelect" listener="#{cc.attrs.controller.onProductSelected}" />
+					<p:ajax event="rowSelect"
+						listener="#{cc.attrs.controller.onProductSelected}" />
 					<p:ajax event="rowUnselect" />
 
 					<p:column headerText="#{msg['title.quotaNumber']}"
@@ -70,15 +69,11 @@
 							value="#{icuenta.totalCash}" />
 
 					</p:column>
-					
-					 <p:rowExpansion>
-					 	<bbvaDetailMotion:tableContent />	
-					 </p:rowExpansion>
-				</p:dataTable>
 
-				<p:dialog widgetVar="dialog3">
-					<bbvaDetailMovents:tableContent />
-				</p:dialog>
+					<p:rowExpansion>
+						<bbvaDetailMotion:tableContent />
+					</p:rowExpansion>
+				</p:dataTable>
 			</div>
 
 			<footer class="detail-table-footer">
@@ -90,11 +85,12 @@
 			</footer>
 		</article>
 	</h:form>
-	
-	<p:dialog header="Basic Dialog" widgetVar="dlg1"  modal="true" closable="true" height="100">
+
+	<p:dialog header="Basic Dialog" widgetVar="dlg1" modal="true"
+		closable="true" height="100">
 		<h:outputText value="Resistance to PrimeFaces is futile!" />
 	</p:dialog>
-	
+
 </composite:implementation>
 
 </html>

@@ -9,6 +9,8 @@ import javax.faces.event.AjaxBehaviorEvent;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
 import org.springframework.stereotype.Controller;
+import org.springframework.webflow.engine.RequestControlContext;
+import org.springframework.webflow.execution.Event;
 
 import com.bbva.net.back.model.accounts.TermsAccountsDto;
 import com.bbva.net.back.model.citeriaMovements.MovementCriteriaDto;
@@ -166,8 +168,12 @@ public class QuotaControllerImpl extends AbstractBbvaController implements Quota
 		return quotaDetailDto;
 	}
 
-	public void data(ActionEvent event) {
+	/**
+	 * @param action to send in current flow
+	 */
+	public void showRecoveryPassword() {
 		System.out.println("entro");
-		RequestContext.getCurrentInstance().execute("PF('widgetVarDialogName').show()");
+		this.sendAction("showRecoveryPassword");
 	}
+
 }

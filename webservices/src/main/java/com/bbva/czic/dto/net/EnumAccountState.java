@@ -13,8 +13,9 @@ import javax.xml.bind.annotation.XmlType;
  * <pre>
  * &lt;simpleType name="EnumAccountState">
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *     &lt;enumeration value="ACTIVE"/>
- *     &lt;enumeration value="INACTIVE"/>
+ *     &lt;enumeration value="ACCEPTED"/>
+ *     &lt;enumeration value="REJECTED"/>
+ *     &lt;enumeration value="PENDING"/>
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
@@ -24,8 +25,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlEnum
 public enum EnumAccountState {
 
-    ACTIVE,
-    INACTIVE;
+    ACCEPTED,
+    REJECTED,
+    PENDING;
 
     public String value() {
         return name();

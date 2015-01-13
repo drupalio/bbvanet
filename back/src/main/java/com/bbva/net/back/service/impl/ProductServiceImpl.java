@@ -89,7 +89,7 @@ public class ProductServiceImpl implements ProductService {
 		totals.put(EnumProductType.AQ.name(), new BalanceDto(getTotalAvailable(globalProducts.getAdquirencia()),
 				getTotal(globalProducts.getAdquirencia())));
 
-		totals.put(EnumProductType.TDC.name(), new BalanceDto(getTotalAvailable(globalProducts.getCreditCards()),
+		totals.put(EnumProductType.TC.name(), new BalanceDto(getTotalAvailable(globalProducts.getCreditCards()),
 				getTotal(globalProducts.getCreditCards())));
 
 		totals.put(EnumProductType.RQ.name(), new BalanceDto(getTotalAvailable(globalProducts.getRotatingAccounts()),
@@ -172,7 +172,7 @@ public class ProductServiceImpl implements ProductService {
 
 		totals.put(EnumProductType.AQ.name(), getNameProduct(globalProducts.getAdquirencia()));
 
-		totals.put(EnumProductType.TDC.name(), getNameProduct(globalProducts.getCreditCards()));
+		totals.put(EnumProductType.TC.name(), getNameProduct(globalProducts.getCreditCards()));
 
 		totals.put(EnumProductType.RQ.name(), getNameProduct(globalProducts.getRotatingAccounts()));
 

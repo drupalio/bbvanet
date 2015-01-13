@@ -16,8 +16,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="source" type="{urn:com:bbva:czic:dto:net}enumContactSourceType" minOccurs="0"/>
- *         &lt;element name="addres" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="source" type="{urn:com:bbva:czic:dto:net}EnumContactSourceType" minOccurs="0"/>
+ *         &lt;element name="address" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="primary" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *         &lt;element name="active" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *       &lt;/sequence>
@@ -31,14 +31,14 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Email", propOrder = {
     "source",
-    "addres",
+    "address",
     "primary",
     "active"
 })
 public class Email {
 
     protected EnumContactSourceType source;
-    protected String addres;
+    protected String address;
     protected Boolean primary;
     protected Boolean active;
 
@@ -67,27 +67,27 @@ public class Email {
     }
 
     /**
-     * Gets the value of the addres property.
+     * Gets the value of the address property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getAddres() {
-        return addres;
+    public String getAddress() {
+        return address;
     }
 
     /**
-     * Sets the value of the addres property.
+     * Sets the value of the address property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setAddres(String value) {
-        this.addres = value;
+    public void setAddress(String value) {
+        this.address = value;
     }
 
     /**
