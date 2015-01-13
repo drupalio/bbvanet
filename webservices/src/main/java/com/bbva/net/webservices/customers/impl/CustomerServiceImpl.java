@@ -24,8 +24,8 @@ public class CustomerServiceImpl extends AbstractBbvaRestService implements Cust
 	@Override
 	public List<AccMovementsResume> listAccountsMovementsResume(String customerId, String filter) {
 
-		final AccMovementsResume[] customers = restTemplate.getForObject(URL_BASE_CUSTOMER + customerId + URL_CUSTOMER,
-				AccMovementsResume[].class);
+		final AccMovementsResume[] customers = restTemplate.getForObject(URL_BASE_CUSTOMER + customerId + URL_CUSTOMER
+				+ filter, AccMovementsResume[].class);
 		final List<AccMovementsResume> customerResult = new ArrayList<AccMovementsResume>();
 		CollectionUtils.addAll(customerResult, customers);
 		return customerResult;
