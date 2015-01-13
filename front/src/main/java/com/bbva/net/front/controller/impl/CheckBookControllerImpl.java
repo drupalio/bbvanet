@@ -7,9 +7,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.bbva.net.back.entity.MultiValueGroup;
@@ -17,6 +19,7 @@ import com.bbva.net.back.facade.CheckBookFacade;
 import com.bbva.net.back.facade.MultiValueGroupFacade;
 import com.bbva.net.back.model.checkbook.CheckDto;
 import com.bbva.net.back.model.checkbook.CheckbookDto;
+import com.bbva.net.back.model.comboFilter.EnumCheckStatus;
 import com.bbva.net.front.core.AbstractBbvaController;
 
 /**
@@ -24,6 +27,7 @@ import com.bbva.net.front.core.AbstractBbvaController;
  */
 
 @Controller(value = "checkBookController")
+@Scope(value = "globalSession")
 public class CheckBookControllerImpl extends AbstractBbvaController implements CheckBookController {
 
 	private static final long serialVersionUID = 1L;
@@ -31,6 +35,8 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 	private static final String SEARCH_CHECK = "Búsqueda por nº de talonario";
 
 	private static final String CONCRETE_DATE = "Fecha concreta";
+
+	private static final Integer LIST_CHECK_STATUS = 2;
 
 	private String selectDate;
 
@@ -49,9 +55,9 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 	private boolean disabledButtonDate = true;
 
 	private String actionState;
-	
+
 	private String checkState;
-	
+
 	private String checkBookNumber;
 
 	private List<MultiValueGroup> multiValueList = new ArrayList<MultiValueGroup>();
@@ -64,6 +70,11 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 	@Resource(name = "multiValueGroupFacade")
 	private transient MultiValueGroupFacade multiValueGroupFacade;
 
+	@PostConstruct
+	public void init() {
+		this.multiValueList = this.getListMultiValueLikes();
+	}
+
 	/**
 	 * @param event
 	 */
@@ -72,7 +83,7 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 		System.out.println("/** searchNumberCheckOrBook **/ ");
 		check.setStatus(checkState);
 		System.out.println("check num: " + check.getId() + " check State: " + check.getStatus());
-		//List<CheckDto> checkList = checkBookFacade.getCheck(check.getId(), null);
+		// List<CheckDto> checkList = checkBookFacade.getCheck(check.getId(), null);
 	}
 
 	@Override
@@ -109,6 +120,19 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 			setDisabledNumberCheck(false);
 			setDisabledButtonBook(false);
 		}
+	}
+
+	@Override
+	public List<MultiValueGroup> getListMultiValueLikes() {
+		return this.multiValueGroupFacade.getMultiValueTypes(LIST_CHECK_STATUS);
+	}
+
+	@Override
+	public void setNumberCheckOrBook(final ActionEvent event) {
+		System.out.println("setNumberCheckOrBook");
+		EnumCheckStatus.valueOf(Integer.parseInt(getCheckState())) ;
+		System.out.println(check.getId() + " C.E " + EnumCheckStatus.valueOf(Integer.parseInt(getCheckState())) + "  "
+				+ getCheckBookNumber());
 	}
 
 	/**
@@ -237,7 +261,6 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 		this.actionState = actionState;
 	}
 
-	
 	/**
 	 * @return the checkState
 	 */
@@ -245,7 +268,6 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 		return checkState;
 	}
 
-	
 	/**
 	 * @param checkState the checkState to set
 	 */
@@ -253,7 +275,6 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 		this.checkState = checkState;
 	}
 
-	
 	/**
 	 * @return the checkBookNumber
 	 */
@@ -261,7 +282,6 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 		return checkBookNumber;
 	}
 
-	
 	/**
 	 * @param checkBookNumber the checkBookNumber to set
 	 */

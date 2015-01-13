@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.faces.event.ActionEvent;
 
+import com.bbva.net.back.entity.MultiValueGroup;
 import com.bbva.net.back.model.checkbook.CheckbookDto;
 
 public interface CheckBookController {
@@ -31,5 +32,19 @@ public interface CheckBookController {
 	 * @param event
 	 */
 	void searchCheck(ActionEvent event);
+
+	/**
+	 * Method to set a check or book, according filters given
+	 * 
+	 * @param event
+	 */
+	void setNumberCheckOrBook(ActionEvent event);
+
+	/**
+	 * Method to get MultiValueGroup List, list to check status
+	 * 
+	 * @return List<MultiValueGroup>
+	 */
+	List<MultiValueGroup> getListMultiValueLikes();
 
 }

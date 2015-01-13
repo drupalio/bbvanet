@@ -3,13 +3,9 @@
  */
 package com.bbva.net.front.controller;
 
-import java.util.List;
-
 import javax.faces.event.ActionEvent;
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.event.ComponentSystemEvent;
-
-import com.bbva.net.back.entity.MultiValueGroup;
 
 /**
  * @author User
@@ -42,25 +38,10 @@ public interface MovementCriteriaController {
 	 */
 	void setIncomeExpensesFilter(ActionEvent event);
 
-
-	/**
-	 * Method to set a check or book, according filters given
-	 * 
-	 * @param event
-	 */
-	void setNumberCheckOrBook(ActionEvent event);
-
 	/**
 	 * Method to clean filters
 	 */
 	void cleanFilters();
-
-	/**
-	 * Method to get MultiValueGroup List, list to check status
-	 * 
-	 * @return List<MultiValueGroup>
-	 */
-	List<MultiValueGroup> getListMultiValueLikes();
 
 	/**
 	 * Method to buil a message for balanceFilter

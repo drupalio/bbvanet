@@ -55,18 +55,56 @@
 					<p:radioButton id="opt2" for="customRadio" itemIndex="1" />
 					<h:outputLabel for="opt2"
 						value="#{msg['text.search.by.number.status']}" />
-					<h:selectOneMenu id="stateSelect" styleClass="btn-group bootstrap-select btn dropdown-toggle selectpicker btn-default"
+					<h:selectOneMenu id="stateSelect"
+						style=" 
+						    width: 41px;
+    height: 38px;
+    background-position: 13px 12px;					
+						
+						background: white;
+  background: -moz-linear-gradient(top, #ffffff 40%, #e1e1e1 200%);
+  background: -o-linear-gradient(top, #ffffff 40%, #e1e1e1 200%);
+  background: -webkit-linear-gradient(top, #ffffff 40%, #e1e1e1 200%);
+  background: linear-gradient(to bottom, #ffffff 40%, #e1e1e1 200%);
+  border-color: #d5e2ee;
+  width: 100%;
+  padding: 6.5px;
+  padding-left: 6px;
+  padding-right: 32px;
+  font-size: 0.95em;
+  color: #0093e2;
+							"
 						value="#{cc.attrs.valuecheckState}"
 						disabled="#{checkBookController.disabledNumberCheck}">
 						<f:selectItem itemLabel="#{msg['text.combo.select']}" />
-						<f:selectItems value="#{multiValueList}" var="multiValue"
-							itemValue="#{multiValue}" itemLabel="#{msg[multiValue.value]}" />
+						<f:selectItems value="#{checkBookController.multiValueList}"
+							var="multiValue" itemValue="#{multiValue.id}"
+							itemLabel="#{msg[multiValue.value]}" />
 					</h:selectOneMenu>
 
 					<p:radioButton id="opt3" for="customRadio" itemIndex="2" />
 					<h:outputLabel for="opt3"
 						value="#{msg['text.search.by.numberbook']}" />
+
 					<h:selectOneMenu id="numberBook"
+						style=" 
+						    width: 41px;
+    height: 38px;
+    background-position: 13px 12px;					
+						
+						background: white;
+  background: -moz-linear-gradient(top, #ffffff 40%, #e1e1e1 200%);
+  background: -o-linear-gradient(top, #ffffff 40%, #e1e1e1 200%);
+  background: -webkit-linear-gradient(top, #ffffff 40%, #e1e1e1 200%);
+  background: linear-gradient(to bottom, #ffffff 40%, #e1e1e1 200%);
+  border-color: #d5e2ee;
+  width: 100%;
+  padding: 6.5px;
+  padding-left: 6px;
+  padding-right: 32px;
+  font-size: 0.95em;
+  color: #0093e2;
+							"
 						value="#{cc.attrs.valueBookNumber}"
 						disabled="#{checkBookController.disabledNumberBook}">
 						<f:selectItem itemLabel="#{msg['text.combo.select']}" />
@@ -74,12 +112,13 @@
 						<f:selectItem itemLabel="1111-2222-3333-"
 							itemValue="1111-2222-3333" />
 					</h:selectOneMenu>
+
 				</h:panelGrid>
 			</p:outputPanel>
 		</div>
 
 		<button jsf:id="searchButton" type="submit"
-			jsf:actionListener="#{movementsCriteriaController.setNumberCheckOrBook}"
+			jsf:actionListener="#{checkBookController.setNumberCheckOrBook}"
 			jsf:disabled="#{checkBookController.disabledButtonBook}"
 			class="btn small hidden-xs hidden-sm">#{msg['button.confirm']}</button>
 
