@@ -81,7 +81,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	private String periodAccountSelected;
 	
-	private String periodCardSelected="";
+	private String periodCardSelected="0";
 	
 	private String cardSelected="";
 
@@ -226,11 +226,12 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	 * Filter combo of Cards
 	 */
 	public void onComboSelectedCard() {
-		EnumPeriodType periodType = EnumPeriodType.valueOf(Integer.parseInt(this.periodCardSelected));
-
-		System.out.println(" Seleciona combo tarjetas"+cardSelected+"  "+periodCardSelected);
-		DateRangeDto dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
-		
+		System.out.println(" Seleciona combo tarjetas "+cardSelected+"  periodo "+periodCardSelected);
+		DateRangeDto dateRange=null;
+		if(!periodCardSelected.equals("0")){
+			EnumPeriodType periodType = EnumPeriodType.valueOf(Integer.parseInt(this.periodCardSelected));		
+			dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
+		}
 		
 		if(MessagesHelper.INSTANCE.getString("text.allCards").equals(cardSelected)){
 			this.graphicPieCards=graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(getCurrentUser(),dateRange));
@@ -241,15 +242,6 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 			//linea de prueba	
 			this.graphicPieCards = graphicPieDelegate.getAccountsfundsProducts(this.fundDTOs);
 		}
-
-		// System.out.println("Seleciona combo tarjetas" + datos);
-		// if (MessagesHelper.INSTANCE.getString("text.allCards").equals(datos)) {
-		// //
-		// this.graphicPieCards=graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(getCurrentUser(),filter,""));
-		// } else {
-		//
-		// this.graphicPieCards = graphicPieDelegate.getAccountsfundsProducts(this.fundDTOs);
-		// }
 	}
 
 	public void onComboSelectedAccount() {
