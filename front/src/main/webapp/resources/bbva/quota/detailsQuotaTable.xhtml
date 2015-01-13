@@ -18,10 +18,7 @@
 
 <composite:implementation>
 
-	<h:form id="#{cc.attrs.id}">
-	
-		<p:commandButton value="Basic" type="button" onclick="PF('dlg1').show();" />
-		
+	<h:form id="#{cc.attrs.id}">	
 		<article class="detail-table-group">
 
 			<div class="utility-icons">
@@ -36,11 +33,17 @@
 
 			<div class="table-wrapper">
 				<p:dataTable id="detalAC" styleClass="detail-table-body sortable"
-					value="#{cc.attrs.listAccounts}" var="icuenta"
-					selectionMode="single" rowKey="#{icuenta.productId}">
+					value="#{cc.attrs.listAccounts}" var="icuenta" widgetVar="dataTableWV"
+					selectionMode="single" rowKey="#{icuenta.productId}"
+					rowIndexVar="rowIndex">
 
-					<p:ajax event="rowSelect" listener="#{cc.attrs.controller.onProductSelected}" />
+					<p:ajax event="rowSelect" listener="#{cc.attrs.controller.onProductSelected}"/>
+      							
 					<p:ajax event="rowUnselect" />
+
+					 <p:column>
+      					<p:rowToggler rendered="true" />
+   					 </p:column>
 
 					<p:column headerText="#{msg['title.quotaNumber']}"
 						styleClass="sorted w18 desc"
@@ -91,9 +94,7 @@
 		</article>
 	</h:form>
 	
-	<p:dialog header="Basic Dialog" widgetVar="dlg1"  modal="true" closable="true" height="100">
-		<h:outputText value="Resistance to PrimeFaces is futile!" />
-	</p:dialog>
+	
 	
 </composite:implementation>
 
