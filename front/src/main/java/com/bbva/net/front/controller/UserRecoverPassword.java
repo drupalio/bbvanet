@@ -1,7 +1,9 @@
 package com.bbva.net.front.controller;
 
+import javax.faces.event.ActionEvent;
+
 public interface UserRecoverPassword {
 
-	void showRecoveryPassword();
+	public void showRecoveryPassword(ActionEvent event);
 
 }

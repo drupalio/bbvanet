@@ -1,5 +1,7 @@
 package com.bbva.net.front.controller.impl;
 
+import javax.faces.event.ActionEvent;
+
 import org.primefaces.context.RequestContext;
 import org.springframework.stereotype.Controller;
 
@@ -16,7 +18,9 @@ public class UserRecoverPasswordImpl extends AbstractBbvaController implements
 	 * action to send in current flow
 	 */
 	@Override
-	public void showRecoveryPassword() {
+	public void showRecoveryPassword(ActionEvent event) {
 		System.out.println("entro");
+		RequestContext.getCurrentInstance().execute(
+				"PF('employeeSearch').show();");
 	}
 }

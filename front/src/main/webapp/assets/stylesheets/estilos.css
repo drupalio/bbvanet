@@ -210,12 +210,12 @@ selectOneButton.ui-state-default {
 	height: 42px !important;
 }
 
-.button-text-only {
+selectOneButton.button-text-only {
 	font-size: 13px;
 	margin-top: -5px !important;
 }
 
-button.ui-state-default {
+selectOneButton.ui-state-default {
 	box-shadow: 0px 1px 0px #0079C1 inset !important;
 	height: 100% !important;
 	text-align: center !important;
@@ -241,15 +241,15 @@ input.ui-state-hover {
 	background: #ffffff !important;
 }
 
-.ui-state-hover {
-	background: #e0f6fc !important;
-}
+/* .ui-state-hover { */
+/* 	background: #e0f6fc !important; */
+/* } */
 
 td.ui-datatable-subtable-header:empty {
 	display: none
 }
 
-.ui-button {
+selectOneButton.ui-button {
 	background-color: white !important;
 	border-color: #cccccc !important;
 }
