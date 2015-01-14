@@ -45,7 +45,7 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 
 		final PieItemUI salesPieItem = new PieItemUI("#1874CD", MessagesHelper.INSTANCE.getString("categorie.sales"),
 				cardsCharges.get(0).getAmmount().getAmount());
-		final PieItemUI clothesPieItem = new PieItemUI("#27408B",
+		final PieItemUI clothesPieItem = new PieItemUI("#104E8B",
 				MessagesHelper.INSTANCE.getString("categorie.clothes"), cardsCharges.get(1).getAmmount().getAmount());
 		final PieItemUI othersPieItem = new PieItemUI("#A2CD5A", MessagesHelper.INSTANCE.getString("categorie.others"),
 				cardsCharges.get(2).getAmmount().getAmount());

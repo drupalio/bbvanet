@@ -40,16 +40,28 @@ public class CardsFacadeImpl extends AbstractBbvaFacade implements CardsFacade {
 	@Resource(name = "fiqlService")
 	private FiqlService fiqlService;
 
+	/**
+	 * Determina si debe crear o no la cadena del filtro
+	 */
 	@Override
 	public List<CardsChargesDto> getCardsChargesByUser(final String customerId, final DateRangeDto dateRange) {
-		final String filter = fiqlService.getFiqlQueryByDateRange(dateRange);
+		String filter = fiqlService.getFiqlQueryByDateRange(dateRange);
+		if (!filter.equals("")) {
+			filter = "?$filter=(" + filter + ")";
+		}
 		final List<CardCharge> response = cardsCustomerService.listCreditCardsCharges(customerId, filter);
 		return cardsMapper.map(response);
 	}
 
+	/**
+	 * Determina si debe crear o no la cadena del filtro
+	 */
 	@Override
 	public List<CardsChargesDto> getCardsChargesFilter(final String customerId, final DateRangeDto dateRange) {
-		final String filter = fiqlService.getFiqlQueryByDateRange(dateRange);
+		String filter = fiqlService.getFiqlQueryByDateRange(dateRange);
+		if (!filter.equals("")) {
+			filter = "?$filter=(" + filter + ")";
+		}
 		final List<CardCharge> response = cardChargeService.getCreditCardCharges(customerId, filter, "", "", "");
 		return cardsMapper.map(response);
 	}

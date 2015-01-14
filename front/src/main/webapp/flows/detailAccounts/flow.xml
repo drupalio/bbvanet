@@ -12,6 +12,10 @@
 
 	<var name="movementsCriteriaController"
 		class="com.bbva.net.front.controller.impl.MovementCriteriaControllerImpl" />
+
+	<var name="checkBookController"
+		class="com.bbva.net.front.controller.impl.CheckBookControllerImpl" />
+
 	<var name="TermsController" class="com.bbva.net.front.controller.impl.TermsControllerImpl" />
 
 	<on-start>
@@ -20,7 +24,7 @@
 		<evaluate expression="TermsController.getAllConditions()"
 			result="flowScope.allConditions" />
 
-		<evaluate expression="movementsCriteriaController.getListMultiValueLikes()"
+		<evaluate expression="checkBookController.getMultiValueList()"
 			result="flowScope.multiValueList" />
 
 	</on-start>

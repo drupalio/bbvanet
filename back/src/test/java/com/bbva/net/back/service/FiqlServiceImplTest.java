@@ -34,6 +34,6 @@ public class FiqlServiceImplTest {
 	public void checkFiqlEmpty() {
 		DateRangeDto dateRange = null;
 		final String filtro = fiqlServiceImpl.getFiqlQueryByDateRange(dateRange);
-		Assert.assertNotNull(filtro);
+		Assert.assertEquals("filtro vacia", "", filtro);
 	}
 }

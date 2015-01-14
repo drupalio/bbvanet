@@ -28,7 +28,7 @@
 					<label for="cuentas-personales-chart-tiempo">#{cc.attrs.nameLeft}</label>
 					<bbvaInput:comboSelectedPeriod listener="#{cc.attrs.listenerLeft}"
 						valueMenu="#{globalPositionController.periodAccountSelected}"
-						render=":accountGP:barGraphic" />
+						render=":AccountGP:barGraphic" />
 				</div>
 			</h:form>
 			<h:form id="footerBarGraphicProduct">
@@ -40,7 +40,7 @@
 						list="#{globalPositionController.namesProducts['PC']}"
 						value="#{globalPositionController.accountSelected}"
 						listener="#{cc.attrs.listenerRight}"
-						render=":accountGP:barGraphic" />
+						render=":AccountGP:barGraphic" />
 				</div>
 			</h:form>
 		</div>
