@@ -1648,7 +1648,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 },
 {
 	"id": "2031",
-	"type": "TDC",
+	"type": "TC",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A11",
 	"financialState": "P",
@@ -1780,7 +1780,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 },
 {
 	"id": "2032",
-	"type": "TDC",
+	"type": "TC",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A12",
 	"financialState": "P",
@@ -2044,7 +2044,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 },
 {
 	"id": "2034",
-	"type": "TDC",
+	"type": "TC",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A14",
 	"financialState": "P",
