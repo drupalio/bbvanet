@@ -42,10 +42,10 @@ public class Loan
 {
 
     @XmlElementRefs({
-        @XmlElementRef(name = "status", type = JAXBElement.class),
-        @XmlElementRef(name = "balance", type = JAXBElement.class),
         @XmlElementRef(name = "debt", type = JAXBElement.class),
-        @XmlElementRef(name = "payment", type = JAXBElement.class)
+        @XmlElementRef(name = "payment", type = JAXBElement.class),
+        @XmlElementRef(name = "status", type = JAXBElement.class),
+        @XmlElementRef(name = "balance", type = JAXBElement.class)
     })
     protected List<JAXBElement<?>> rest;
 
