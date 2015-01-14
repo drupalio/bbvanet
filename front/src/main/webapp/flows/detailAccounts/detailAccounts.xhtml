@@ -24,9 +24,22 @@
 
 				<p:outputPanel>
 					<h:form id="mainForm">
-						<p:commandButton classButton="btn btn-form next" action="start"
-							update="mainForm" value="#{msg['button.next']}" />
+						<bbvaMessage:recoverContent>
+							<bbvaMessage:recoverHead
+								title="#{msg['title.retrieveYourPassword']}"
+								pointOne="#{msg['text.userNewDigitalKey']}"
+								pointTwo="#{msg['text.confirmation']}" />
+							<bbvaMessage:recoverFooter>
+								<p:commandButton id="nextButton" classButton="btn btn-form next"
+									action="#{recoverPassController.respuesta}"
+									value="#{msg['button.next']}" update=":mainForm">
+
+								</p:commandButton>
+							</bbvaMessage:recoverFooter>
+
+						</bbvaMessage:recoverContent>
 					</h:form>
+
 				</p:outputPanel>
 
 			</p:dialog>

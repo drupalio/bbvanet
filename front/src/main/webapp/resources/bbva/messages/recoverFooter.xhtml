@@ -19,14 +19,17 @@
 </composite:interface>
 
 <composite:implementation>
-	<div class="modal-footer recoverKeyModal">
+
+ 
+	<div  id="#{cc.clientId}" class="modal-footer recoverKeyModal">
 		<bbvaInput:input id="recoverKeyCond" type="checkbox" required="true" />
 		<p:outputLabel class="control-label left"
 			value="#{msg['text.condiConfirmOne']}" for="recoverKeyCond">
 			<a href="#{cc.attrs.href}" title="Descargar PDF terminos.">#{msg['text.condiConfirmTwo']}
 				<span class="adobe-blue"> </span> <span class="adobe-size">(6Kb)</span>
 			</a>
-		</p:outputLabel>
+		</p:outputLabel>		
+		 <composite:insertChildren></composite:insertChildren>		
 	</div>
 </composite:implementation>
 </html>
