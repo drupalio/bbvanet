@@ -28,7 +28,7 @@
 				<label for="cuentas-personales-chart-tiempo">#{cc.attrs.nameLeft}</label>
 				<bbvaInput:comboSelectedPeriod
 					listener="#{cc.attrs.listenerLeft}"
-					valueMenu="#{globalPositionController.datos}"
+					valueMenu="#{globalPositionController.periodCardSelected}"
 					render=":cardPieGP:cardForm" />
 			</div>
 			</h:form>
@@ -37,7 +37,7 @@
 				<label for="cuentas-personales-chart-cuentas">#{cc.attrs.nameRight}</label>
 				<bbvaInput:comboSelectedProduct totalProduct="#{msg['text.allCards']}"
 					list="#{globalPositionController.namesProducts['TDC']}" listener="#{cc.attrs.listenerRight}" 
-					value="#{globalPositionController.datos}" render=":cardPieGP:cardForm" />
+					value="#{globalPositionController.cardSelected}" render=":cardPieGP:cardForm" />
 					
 			</div>
 </h:form>

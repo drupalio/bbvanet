@@ -1,11 +1,15 @@
 package com.bbva.net.webservices.core.pattern;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.ws.rs.core.Response;
 
+import org.apache.cxf.jaxrs.client.WebClient;
 import org.codehaus.jackson.JsonParseException;
+import org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
@@ -38,7 +42,6 @@ public abstract class AbstractBbvaRestService {
 	 * @return
 	 * @throws RestClientException
 	 */
-
 	protected <T> T readJsonValue(Response response, Class<T> entityClass) throws RestClientException {
 
 		try {
@@ -54,14 +57,47 @@ public abstract class AbstractBbvaRestService {
 		return null;
 	}
 
+	/**
+	 * @param URL
+	 * @return
+	 */
+	protected WebClient getJsonWebClient(final String URL) {
+
+		final List<Object> providers = new ArrayList<Object>();
+		providers.add(new JacksonJaxbJsonProvider());
+		final WebClient webClient = WebClient.create(URL);
+		webClient.accept("application/json").type("application/json");
+
+		return webClient;
+	}
+
+	/**
+	 * @param URL
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	protected <T> List<T> getJsonCollection(final String URL, Class<T> clazz) {
+		return (List<T>)getJsonWebClient(URL).getCollection(clazz);
+	}
+
+	/**
+	 * @param exception
+	 * @throws RestClientException
+	 */
 	private void throwsRestClientException(final Exception exception) throws RestClientException {
 		throw new RestClientException("Rest Client ERROR ", exception);
 	}
 
+	/**
+	 * @param restTemplate
+	 */
 	public void setRestTemplate(RestTemplate restTemplate) {
 		this.restTemplate = restTemplate;
 	}
 
+	/**
+	 * @param uRL_BASE
+	 */
 	public void setURL_BASE(String uRL_BASE) {
 		URL_BASE = uRL_BASE;
 	}

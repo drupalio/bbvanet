@@ -11,7 +11,9 @@ import com.bbva.net.back.core.pattern.facade.AbstractBbvaFacade;
 import com.bbva.net.back.core.stereotype.Facade;
 import com.bbva.net.back.facade.MovementsResumeFacade;
 import com.bbva.net.back.mapper.GlobalResumeMovementsMapper;
+import com.bbva.net.back.model.commons.DateRangeDto;
 import com.bbva.net.back.model.movements.GlobalResumeMovementsDto;
+import com.bbva.net.back.service.FiqlService;
 import com.bbva.net.webservices.customers.CustomerService;
 
 /**
@@ -31,16 +33,30 @@ public class MovementsResumeFacadeImpl extends AbstractBbvaFacade implements Mov
 	@Resource(name = "globalResumeMovementsMapper")
 	private GlobalResumeMovementsMapper globalResumeMovementsMapper;
 
+	@Resource(name = "fiqlService")
+	private FiqlService fiqlService;
+
 	/**
 	 * Método que implementa el cliente REST para obtener el resumend de movimientos en las cuentas de un usuario
 	 */
 	@Override
-	public GlobalResumeMovementsDto getMovementsResumeByeCustomer(final String customerId) throws RestClientException {
+	public GlobalResumeMovementsDto getMovementsResumeByeCustomer(final String customerId, final DateRangeDto dateRange)
+			throws RestClientException {
 		GlobalResumeMovementsDto globalMovements = new GlobalResumeMovementsDto();
-		final List<AccMovementsResume> response = this.customerService.listAccountsMovementsResume(customerId);
-		globalMovements.setMovementsResumeDto(globalResumeMovementsMapper.map(response));
-		return globalMovements;
 
+		if (dateRange == null) {
+
+			final List<AccMovementsResume> response = this.customerService.listAccountsMovementsResume(customerId, "");
+			globalMovements.setMovementsResumeDto(globalResumeMovementsMapper.map(response));
+			return globalMovements;
+		} else {
+			// Pasar FilQL
+			String filter = "?$filter=(" + fiqlService.getFiqlQueryByDateRange(dateRange) + ")";
+			final List<AccMovementsResume> response = this.customerService.listAccountsMovementsResume(customerId,
+					filter);
+			globalMovements.setMovementsResumeDto(globalResumeMovementsMapper.map(response));
+			return globalMovements;
+		}
 	}
 
 	/********************************** DEPENDENCY INJECTIONS ***********************************/

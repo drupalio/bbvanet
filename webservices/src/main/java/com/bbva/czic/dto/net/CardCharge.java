@@ -3,14 +3,15 @@ package com.bbva.czic.dto.net;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import com.bbva.jee.arq.spring.core.servicing.utils.Money;
 
 
 /**
- * <p>Java class for CardCharge complex type.
+ * <p>Clase Java para CardCharge complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="CardCharge">
@@ -34,11 +35,12 @@ import com.bbva.jee.arq.spring.core.servicing.utils.Money;
 })
 public class CardCharge {
 
+    @XmlSchemaType(name = "string")
     protected EnumCardChargeCategory category;
     protected Money amount;
 
     /**
-     * Gets the value of the category property.
+     * Obtiene el valor de la propiedad category.
      * 
      * @return
      *     possible object is
@@ -50,7 +52,7 @@ public class CardCharge {
     }
 
     /**
-     * Sets the value of the category property.
+     * Define el valor de la propiedad category.
      * 
      * @param value
      *     allowed object is
@@ -62,7 +64,7 @@ public class CardCharge {
     }
 
     /**
-     * Gets the value of the amount property.
+     * Obtiene el valor de la propiedad amount.
      * 
      * @return
      *     possible object is
@@ -74,7 +76,7 @@ public class CardCharge {
     }
 
     /**
-     * Sets the value of the amount property.
+     * Define el valor de la propiedad amount.
      * 
      * @param value
      *     allowed object is

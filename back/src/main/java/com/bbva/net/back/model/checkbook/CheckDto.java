@@ -3,6 +3,8 @@
  */
 package com.bbva.net.back.model.checkbook;
 
+import java.util.Date;
+
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
@@ -22,7 +24,7 @@ public class CheckDto implements Dto {
 
 	private Money value;
 
-	private String issueDate;
+	private Date issueDate;
 
 	private String id;
 
@@ -36,7 +38,7 @@ public class CheckDto implements Dto {
 	 * @param issueDate
 	 * @param id
 	 */
-	public CheckDto(String modifiedDate, String status, Money value, String issueDate, String id) {
+	public CheckDto(String modifiedDate, String status, Money value, Date issueDate, String id) {
 		this.modifiedDate = modifiedDate;
 		this.status = status;
 		this.value = value;
@@ -89,14 +91,14 @@ public class CheckDto implements Dto {
 	/**
 	 * @return the issueDate
 	 */
-	public String getIssueDate() {
+	public Date getIssueDate() {
 		return issueDate;
 	}
 
 	/**
 	 * @param issueDate the issueDate to set
 	 */
-	public void setIssueDate(String issueDate) {
+	public void setIssueDate(Date issueDate) {
 		this.issueDate = issueDate;
 	}
 

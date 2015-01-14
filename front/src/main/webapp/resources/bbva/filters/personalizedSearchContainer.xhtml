@@ -18,21 +18,22 @@
 <composite:implementation>
 
 	<h:form id="customSearch">
-		<bbvaSearch:personalizedSearchTabBody
+		<bbvaSearch:personalizedSearchTabBody id="perTabBody"
 			title="#{msg['text.title.personalized.search']}">
-			<bbvaSearch:customSearchList classList="date-filter customSearch"
-				classSpan="arrow-left-smaller" classSpanFilter="filter"
-				title="#{msg['text.date']}"
+			<bbvaSearch:customSearchList id="customList"
+				classList="date-filter customSearch" classSpan="arrow-left-smaller"
+				classSpanFilter="filter" title="#{msg['text.date']}"
 				filterTitle="#{movementsCriteriaController.movementCriteria.dateRange.dateSince}"
 				filterMessage="#{movementsCriteriaController.movementCriteria.dateRange.dateTo}">
-				<bbvaSearch:customSearchFilter
-					value="#{movementsCriteriaController.movementCriteria.selectDate}"
-					valueSince="#{movementsCriteriaController.movementCriteria.dateRange.dateSince}"
-					valueTo="#{movementsCriteriaController.movementCriteria.dateRange.dateTo}"
+
+				<bbvaSearch:customSearchFilter id="customDate"
+					value="#{movementsCriteriaController.selectDate}"
+					valueDateSince="#{movementsCriteriaController.sinceDate}"
+					valueDateTo="#{movementsCriteriaController.toDate}"
 					disabledButton="#{movementsCriteriaController.disabledButtonDate}"
 					disabledCalendar="#{movementsCriteriaController.disabledCalendar}"
 					actionListenerDate="#{movementsCriteriaController.setCustomDate}"
-					listener="#{movementsCriteriaController.oneSelectDate}" />
+					listenerDate="#{movementsCriteriaController}" />
 			</bbvaSearch:customSearchList>
 
 			<bbvaSearch:customSearchList classList="balance-filter"
@@ -49,7 +50,8 @@
 
 			<bbvaSearch:customSearchList classList="incomeAndExpenses-filter"
 				classSpan="arrow-left-smaller" classSpanFilter="filter"
-				title="#{msg['text.entry.expediture']}">
+				title="#{msg['text.entry.expediture']}"
+				filterMessage="#{movementsCriteriaController.movementCriteria.incomesOrExpenses}">
 				<bbvaSearch:incomeAndExpensesFilter
 					value="#{movementsCriteriaController.movementCriteria.incomesOrExpenses}" />
 			</bbvaSearch:customSearchList>
@@ -64,26 +66,29 @@
 				actionListenerRemove="#{movementsCriteriaController.searchMovementByFilter}"
 				actionListenerShow="#{movementsCriteriaController.searchMovementByFilter}" />
 		</bbvaSearch:personalizedSearchTabBody>
+
 		<h:form id="formCheckBook">
-			<bbvaSearch:personalizedSearchTabBody
+			<bbvaSearch:personalizedSearchTabBody id="checkSearchTab"
 				title="#{msg['text.title.search.book']}">
-				<bbvaSearch:checkBooksContainer
-					value="#{movementsCriteriaController.movementCriteria.selectDate}"
-					valueDateSince="#{movementsCriteriaController.movementCriteria.dateRange.dateSince}"
-					valueDateTo="#{movementsCriteriaController.movementCriteria.dateRange.dateTo}"
-					disabledButton="#{movementsCriteriaController.disabledButtonDate}"
-					disabledCalendar="#{movementsCriteriaController.disabledCalendar}"
-					actionListenerDate="#{movementsCriteriaController.setCustomDate}"
-					valueCheck="#{movementsCriteriaController.movementCriteria.actionState}"
-					valueCheckNumber="#{movementsCriteriaController.movementCriteria.checkNumber}"
-					valuecheckState="#{movementsCriteriaController.movementCriteria.checkState}"
-					valueBookNumber="#{movementsCriteriaController.movementCriteria.bookNumber}"
-					actionListenerCheck="#{movementsCriteriaController.setNumberCheckOrBook}" />
+				<bbvaSearch:checkBooksContainer id="checkContainer"
+					value="#{checkBookController.selectDate}"
+					valueDateSince="#{checkBookController.sinceDate}"
+					valueDateTo="#{checkBookController.toDate}"
+					disabledButton="#{checkBookController.disabledButtonDate}"
+					disabledCalendar="#{checkBookController.disabledCalendar}"
+					actionListenerDate="#{checkBookController.setCustomDate}"
+					listenerDate="#{checkBookController}"
+					valueCheck="#{checkBookController.actionState}"
+					valueCheckNumber="#{checkBookController.check.id}"
+					valuecheckState="#{checkBookController.checkState}"
+					valueBookNumber="#{checkBookController.checkBookNumber}"
+					actionListenerCheck="#{checkBookController.searchCheck}" />
 
 				<bbvaSearch:searchButtonList show="false"
 					actionListenerShow="#{movementsCriteriaController.searchNumberCheckOrBook}" />
 			</bbvaSearch:personalizedSearchTabBody>
 		</h:form>
+
 		<h:form id="downExtract">
 			<bbvaSearch:personalizedSearchTabBody title="Ya vendra">
 				<!-- <bbvaSearch:downloadExtract /> -->

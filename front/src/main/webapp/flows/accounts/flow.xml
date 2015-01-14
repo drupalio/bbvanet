@@ -5,8 +5,10 @@
     http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
 
 	<var name="accountsController" class="com.bbva.net.front.controller.impl.AccountsControllerImpl"/>
+	<var name="globalPositionController" class="com.bbva.net.front.controller.impl.GlobalPositionControllerImpl"/>
 	
 	<on-start>
+		<evaluate expression="globalPositionController.getCustomerProducts()" result="flowScope.customerProducts" />
 		<evaluate expression="accountsController.getCustomerAccounts()" result="flowScope.customerAccounts" />
 		<evaluate expression="accountsController.getCustomerAccountsHidden()" result="flowScope.customerAccountsHidden" />
 	</on-start>

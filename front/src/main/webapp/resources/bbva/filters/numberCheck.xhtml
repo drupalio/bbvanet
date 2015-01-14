@@ -7,6 +7,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pm="http://primefaces.org/mobile"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:cc="http://jsflive.at/taglib">
 
@@ -30,11 +31,12 @@
 					<f:selectItem itemLabel="#{msg['text.search.by.number.check']}"
 						itemValue="#{msg['text.search.by.number.check']}" />
 					<f:selectItem itemLabel="#{msg['text.search.by.number.status']}"
-						itemValue="#{msg['text.search.by.number.status']}" />
+						itemValue="#{msg['text.search.by.number.status']}"
+						noSelectionOption="false" />
 					<f:selectItem itemLabel="#{msg['text.search.by.numberbook']}"
 						itemValue="#{msg['text.search.by.numberbook']}" />
 					<p:ajax process="@this"
-						listener="#{movementsCriteriaController.actionState}"
+						listener="#{checkBookController.actionState}"
 						update="customPanel, searchButton" />
 				</p:selectOneRadio>
 
@@ -43,8 +45,9 @@
 					<h:outputLabel for="opt1"
 						value="#{msg['text.search.by.number.check']}" />
 					<h:inputText id="inputNumberCheck"
-						value="#{movementsCriteriaController.movementCriteria.checkNumber}"
-						disabled="#{movementsCriteriaController.renderedNumberCheck}"
+						styleClass="form-control num-cheque number required valid"
+						value="#{cc.attrs.valueCheckNumber}"
+						disabled="#{checkBookController.disabledNumberCheck}"
 						validatorMessage="Formato Invalido">
 						<f:validateRegex pattern="[0-9]*" />
 					</h:inputText>
@@ -53,31 +56,72 @@
 					<h:outputLabel for="opt2"
 						value="#{msg['text.search.by.number.status']}" />
 					<h:selectOneMenu id="stateSelect"
-						value="#{movementsCriteriaController.movementCriteria.checkState}"
-						disabled="#{movementsCriteriaController.renderedNumberCheck}">
+						style=" 
+						    width: 41px;
+    height: 38px;
+    background-position: 13px 12px;					
+						
+						background: white;
+  background: -moz-linear-gradient(top, #ffffff 40%, #e1e1e1 200%);
+  background: -o-linear-gradient(top, #ffffff 40%, #e1e1e1 200%);
+  background: -webkit-linear-gradient(top, #ffffff 40%, #e1e1e1 200%);
+  background: linear-gradient(to bottom, #ffffff 40%, #e1e1e1 200%);
+  border-color: #d5e2ee;
+  width: 100%;
+  padding: 6.5px;
+  padding-left: 6px;
+  padding-right: 32px;
+  font-size: 0.95em;
+  color: #0093e2;
+							"
+						value="#{cc.attrs.valuecheckState}"
+						disabled="#{checkBookController.disabledNumberCheck}">
 						<f:selectItem itemLabel="#{msg['text.combo.select']}" />
-						<f:selectItems value="#{multiValueList}" var="multiValue"
-							itemValue="#{multiValue}" itemLabel="#{msg[multiValue.value]}" />
+						<f:selectItems value="#{checkBookController.multiValueList}"
+							var="multiValue" itemValue="#{multiValue.id}"
+							itemLabel="#{msg[multiValue.value]}" />
 					</h:selectOneMenu>
 
 					<p:radioButton id="opt3" for="customRadio" itemIndex="2" />
 					<h:outputLabel for="opt3"
 						value="#{msg['text.search.by.numberbook']}" />
+
 					<h:selectOneMenu id="numberBook"
+						style=" 
+						    width: 41px;
+    height: 38px;
+    background-position: 13px 12px;					
+						
+						background: white;
+  background: -moz-linear-gradient(top, #ffffff 40%, #e1e1e1 200%);
+  background: -o-linear-gradient(top, #ffffff 40%, #e1e1e1 200%);
+  background: -webkit-linear-gradient(top, #ffffff 40%, #e1e1e1 200%);
+  background: linear-gradient(to bottom, #ffffff 40%, #e1e1e1 200%);
+  border-color: #d5e2ee;
+  width: 100%;
+  padding: 6.5px;
+  padding-left: 6px;
+  padding-right: 32px;
+  font-size: 0.95em;
+  color: #0093e2;
+							"
 						value="#{cc.attrs.valueBookNumber}"
-						disabled="#{movementsCriteriaController.renderedNumberBook}">
+						disabled="#{checkBookController.disabledNumberBook}">
 						<f:selectItem itemLabel="#{msg['text.combo.select']}" />
 						<f:selectItem itemLabel="1111-2222" itemValue="1111-2222" />
-						<f:selectItem itemLabel="1111-2222-3333-" itemValue="1111-2222-3333" />
+						<f:selectItem itemLabel="1111-2222-3333-"
+							itemValue="1111-2222-3333" />
 					</h:selectOneMenu>
+
 				</h:panelGrid>
 			</p:outputPanel>
 		</div>
 
-		<p:commandButton id="searchButton" value="#{msg['text.comfirm']}"
-			disabled="#{movementsCriteriaController.renderedButtonBook}"
-			actionListener="#{movementsCriteriaController.setNumberCheckOrBook}"
-			styleClass="btn small hidden-xs hidden-sm" />
+		<button jsf:id="searchButton" type="submit"
+			jsf:actionListener="#{checkBookController.setNumberCheckOrBook}"
+			jsf:disabled="#{checkBookController.disabledButtonBook}"
+			class="btn small hidden-xs hidden-sm">#{msg['button.confirm']}</button>
+
 	</div>
 </composite:implementation>
 </html>

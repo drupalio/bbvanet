@@ -16,7 +16,7 @@
 <composite:interface>
 	<composite:attribute name="id" type="String" />
 	<composite:attribute name="title" type="String" />
-	
+
 </composite:interface>
 
 <composite:implementation>
@@ -39,17 +39,19 @@
 
 		<div class="tab tab-bars chart">
 			<div>
-			<h:form id="barGraphic">
-			<bbvaAccountGraphic:barGraphic barLineUIList= "#{globalPositionController.accountGraphicBarLineUI}"/>
-			</h:form>
-			
-			<bbvaPieGraphic:footerFiltersAccount nameRight="Tarjetas"
+				<h:form id="barGraphic">
+					<bbvaAccountGraphic:barGraphic
+						barLineUIList="#{globalPositionController.accountGraphicBarLineUI}" />
+				</h:form>
+
+				<bbvaPieGraphic:footerFiltersAccount nameRight="Tarjetas"
 					nameLeft="Periodo"
+					listenerLeft="#{globalPositionController.onComboSelectedAccount}"
 					listenerRight="#{globalPositionController.onComboSelectedAccount}" />
-<!-- 				<h3>GRAFICA555</h3> -->
+				<!-- 				<h3>GRAFICA555</h3> -->
 
 			</div>
-			
+
 		</div>
 
 		<div class="row afterTable"></div>

@@ -28,6 +28,8 @@ public class GlobalPositionServiceImpl extends AbstractBbvaRestService implement
 				Product[].class);
 		final List<Product> productsResult = new ArrayList<Product>();
 		CollectionUtils.addAll(productsResult, products);
+		
+		
 		return productsResult;
 	}
 
