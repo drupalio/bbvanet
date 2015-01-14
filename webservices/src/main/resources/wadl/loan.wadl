@@ -36,18 +36,18 @@
             <xs:element name="PhoneNumber" type="tns:PhoneNumber"/>
             <xs:element name="Product" type="tns:Product"/>
             <xs:element name="State" type="tns:State"/>
-            <xs:complexType name="Loan">
-                <xs:complexContent>
-                    <xs:extension base="tns:Product">
-						<xs:sequence>
-                            <xs:element minOccurs="0" name="debt" type="tns:Balance"/>
-                            <xs:element minOccurs="0" name="balance" type="tns:Balance"/>
-                            <xs:element minOccurs="0" name="payment" type="tns:Payment"/>
-                            <xs:element minOccurs="0" name="status" type="tns:EnumLoanStatus"/>
-                        </xs:sequence>
-                    </xs:extension>
-                </xs:complexContent>
-            </xs:complexType>
+           <xs:complexType name="Loan">
+				<xs:complexContent>
+				<xs:extension base="tns:Product">
+			<xs:sequence>
+				<xs:element minOccurs="0" name="debt" type="tns:Balance"/>
+				<xs:element minOccurs="0" name="balance" type="tns:Balance"/>
+				<xs:element minOccurs="0" name="payment" type="tns:Payment"/>
+				<xs:element minOccurs="0" name="status" type="tns:EnumLoanStatus"/>
+			</xs:sequence>
+		</xs:extension>
+			</xs:complexContent>
+			</xs:complexType>
             <xs:complexType name="Product">
                 <xs:sequence>
                     <xs:element minOccurs="0" name="id" type="xs:string"/>

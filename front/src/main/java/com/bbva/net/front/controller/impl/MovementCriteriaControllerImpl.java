@@ -26,9 +26,7 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 
 	private static final long serialVersionUID = 1L;
 
-	private static final String CONCRETE_DATE = "Fecha concreta";
-
-	private static final Integer LIST_CHECK_STATUS = 2;
+	private static final String CONCRETE_DATE = "Fecha concreta";	
 
 	private boolean disabledButtonBalance = true;
 
@@ -53,8 +51,6 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 	private BalanceRangeDto balanceRange = new BalanceRangeDto();
 
 	private DateRangeDto dateRange = new DateRangeDto();
-
-	private List<MultiValueGroup> multiValueList = new ArrayList<MultiValueGroup>();
 
 	@Resource(name = "multiValueGroupFacade")
 	private transient MultiValueGroupFacade multiValueGroupFacade;
@@ -113,20 +109,10 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 	}
 
 	@Override
-	public void setNumberCheckOrBook(final ActionEvent event) {
-		System.out.println("setNumberCheckOrBook");
-	}
-
-	@Override
 	public void cleanFilters() {
 		System.out.println("Clean");
 		movementCriteria = new MovementCriteriaDto();
 
-	}
-
-	@Override
-	public List<MultiValueGroup> getListMultiValueLikes() {
-		return this.multiValueGroupFacade.getMultiValueTypes(LIST_CHECK_STATUS);
 	}
 
 	@Override
@@ -202,20 +188,6 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 	 */
 	public String getSelectDate() {
 		return selectDate;
-	}
-
-	/**
-	 * @return the multiValueList
-	 */
-	public List<MultiValueGroup> getMultiValueList() {
-		return multiValueList;
-	}
-
-	/**
-	 * @param multiValueList the multiValueList to set
-	 */
-	public void setMultiValueList(List<MultiValueGroup> multiValueList) {
-		this.multiValueList = multiValueList;
 	}
 
 	/**

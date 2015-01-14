@@ -101,7 +101,8 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		this.fundDTOs = this.fundsTypeFacade.getFundsDataGraphic(getCurrentUser());
 
 		// Obtiene la lista de resumen de movimientos del serivico REST
-		this.globalResumeMovementsDTO = this.movementsResumeFacade.getMovementsResumeByeCustomer(getCurrentUser());
+		this.globalResumeMovementsDTO = this.movementsResumeFacade
+				.getMovementsResumeByeCustomer(getCurrentUser(), null);
 
 		// Calculate situation graphics panels
 		this.situationGraphicPieUI = graphicPieDelegate.getSituationGlobalProducts(this.globalProductsDTO);
@@ -256,7 +257,10 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 		EnumPeriodType periodType = EnumPeriodType.valueOf(Integer.parseInt(this.periodAccountSelected));
 		DateRangeDto dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
-		this.accountGraphicBarLineUI = this.graphicBarLineDelegate.getInOutBalanceByAccount(globalResumeMovementsDTO);
+		// movementsResumeFacade.getMovementsResumeByeCustomer(getCurrentUser(), dateRange);
+
+		this.accountGraphicBarLineUI = this.graphicBarLineDelegate.getInOutBalanceByAccount(movementsResumeFacade
+				.getMovementsResumeByeCustomer(getCurrentUser(), dateRange));
 	}
 
 	/************************************* SETTER BEANS **************************************/

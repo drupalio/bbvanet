@@ -87,7 +87,7 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 	/**
 	 * Method to draws a Situation Pie graphic
 	 * 
-	 * @param List<Product> products
+	 * @param List <Product> products
 	 * @return PieConfigUI
 	 */
 	public PieConfigUI getSituationPieConfig(final List<ProductDto> products) {
@@ -111,7 +111,7 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 	/**
 	 * Method to draws a Situation Asset Pie graphic
 	 * 
-	 * @param List<Product> products
+	 * @param List <Product> products
 	 * @return PieConfigUI
 	 */
 	public PieConfigUI getAssetPieConfig(final List<ProductDto> products) {
@@ -147,7 +147,7 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 	/**
 	 * Method to draws a Situation Asset Pie graphic
 	 * 
-	 * @param List<Product> products
+	 * @param List <Product> products
 	 * @return PieConfigUI
 	 */
 	public PieConfigUI getFinanciationPieConfig(final List<ProductDto> products) {

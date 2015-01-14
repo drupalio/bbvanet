@@ -20,6 +20,7 @@
 	<composite:attribute name="actionListener"
 		method-signature="void actionlistener(javax.faces.event.ActionEvent)" />
 	<composite:attribute name="icon" />
+	<composite:attribute name="onclick" />
 	<composite:attribute name="disabled" type="java.lang.String" />
 	<composite:attribute name="type" type="java.lang.String" />
 
@@ -30,7 +31,7 @@
 
 	<c:if
 		test="#{cc.getValueExpression('actionListener') != null and cc.getValueExpression('action') != null}">
-		<button class="#{cc.attrs.classButton}"
+		<button class="#{cc.attrs.classButton}" onclick="#{cc.attrs.onclick}"
 			jsf:rendered="#{cc.attrs.show}" disabled="#{cc.attrs.disabled}"
 			type="#{cc.attrs.type}" jsf:style="#{cc.attrs.style}"
 			jsf:id="#{cc.attrs.id}" jsf:action="#{cc.attrs.action}"
@@ -42,7 +43,7 @@
 
 	<c:if
 		test="#{cc.getValueExpression('actionListener') != null and cc.getValueExpression('action') == null}">
-		<button class="#{cc.attrs.classButton}"
+		<button class="#{cc.attrs.classButton}" onclick="#{cc.attrs.onclick}"
 			jsf:rendered="#{cc.attrs.show}" disabled="#{cc.attrs.disabled}"
 			type="#{cc.attrs.type}" jsf:style="#{cc.attrs.style}"
 			jsf:id="#{cc.attrs.id}"
@@ -54,7 +55,7 @@
 
 	<c:if
 		test="#{cc.getValueExpression('actionListener') == null and cc.getValueExpression('action') != null}">
-		<button class="#{cc.attrs.classButton}"
+		<button class="#{cc.attrs.classButton}" onclick="#{cc.attrs.onclick}"
 			jsf:rendered="#{cc.attrs.show}" disabled="#{cc.attrs.disabled}"
 			type="#{cc.attrs.type}" jsf:style="#{cc.attrs.style}"
 			jsf:id="#{cc.attrs.id}" jsf:action="#{cc.attrs.action}">
@@ -65,7 +66,7 @@
 
 	<c:if
 		test="#{cc.getValueExpression('actionListener') == null and cc.getValueExpression('action') == null}">
-		<button class="#{cc.attrs.classButton}"
+		<button class="#{cc.attrs.classButton}" onclick="#{cc.attrs.onclick}"
 			jsf:rendered="#{cc.attrs.show}" disabled="#{cc.attrs.disabled}"
 			type="#{cc.attrs.type}" jsf:style="#{cc.attrs.style}"
 			jsf:id="#{cc.attrs.id}">

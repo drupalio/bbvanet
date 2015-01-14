@@ -17,7 +17,9 @@ public abstract class ProductDTOVisitorCommand extends VisitorCommand<ProductDto
 		super(list);
 	}
 
-	/* ^********************************* ABSTRACT METHOD ******************************** */
+	/*
+	 * ^********************************* ABSTRACT METHOD ********************************
+	 */
 
 	/**
 	 * @param account
