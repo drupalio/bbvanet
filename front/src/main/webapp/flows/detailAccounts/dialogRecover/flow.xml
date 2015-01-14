@@ -6,16 +6,15 @@
 	parent="parent-flow">
 
 	<action-state id="getDataAction">
-		<evaluate expression="getDataController" />
-		<transition on="yes" to="confirmation" />
+		<evaluate expression="userRecoverPassword.showMessageCheck()" />
+		<transition on="yes" to="checkMessage" />
 	</action-state>
 
-	<view-state id="confirmation">
-		<transition on="reset" to="reset" />
+	<view-state id="checkMessage">
 		<transition on="confirm" to="final" />
 	</view-state>
 
-	<view-state id="reset">
+	<view-state id="transition">
 		<transition on="getData" to="getDataAction" />
 	</view-state>
 

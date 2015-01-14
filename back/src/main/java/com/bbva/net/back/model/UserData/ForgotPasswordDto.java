@@ -41,8 +41,9 @@ public class ForgotPasswordDto implements Dto {
 	 * @param newConfirrmKey
 	 * @param conditions
 	 */
-	public ForgotPasswordDto(String user, int cardNumber, int cardKey, String identification,
-			String typeIdentification, int newKey, int newConfirrmKey, boolean conditions) {
+	public ForgotPasswordDto(String user, int cardNumber, int cardKey,
+			String identification, String typeIdentification, int newKey,
+			int newConfirrmKey, boolean conditions) {
 		super();
 		this.user = user;
 		this.cardNumber = cardNumber;
@@ -62,7 +63,8 @@ public class ForgotPasswordDto implements Dto {
 	}
 
 	/**
-	 * @param user the user to set
+	 * @param user
+	 *            the user to set
 	 */
 	public void setUser(String user) {
 		this.user = user;
@@ -76,7 +78,8 @@ public class ForgotPasswordDto implements Dto {
 	}
 
 	/**
-	 * @param cardNumber the cardNumber to set
+	 * @param cardNumber
+	 *            the cardNumber to set
 	 */
 	public void setCardNumber(int cardNumber) {
 		this.cardNumber = cardNumber;
@@ -90,7 +93,8 @@ public class ForgotPasswordDto implements Dto {
 	}
 
 	/**
-	 * @param cardKey the cardKey to set
+	 * @param cardKey
+	 *            the cardKey to set
 	 */
 	public void setCardKey(int cardKey) {
 		this.cardKey = cardKey;
@@ -104,7 +108,8 @@ public class ForgotPasswordDto implements Dto {
 	}
 
 	/**
-	 * @param identification the identification to set
+	 * @param identification
+	 *            the identification to set
 	 */
 	public void setIdentification(String identification) {
 		this.identification = identification;
@@ -118,7 +123,8 @@ public class ForgotPasswordDto implements Dto {
 	}
 
 	/**
-	 * @param typeIdentification the typeIdentification to set
+	 * @param typeIdentification
+	 *            the typeIdentification to set
 	 */
 	public void setTypeIdentification(String typeIdentification) {
 		this.typeIdentification = typeIdentification;
@@ -132,7 +138,8 @@ public class ForgotPasswordDto implements Dto {
 	}
 
 	/**
-	 * @param newKey the newKey to set
+	 * @param newKey
+	 *            the newKey to set
 	 */
 	public void setNewKey(int newKey) {
 		this.newKey = newKey;
@@ -146,7 +153,8 @@ public class ForgotPasswordDto implements Dto {
 	}
 
 	/**
-	 * @param newConfirrmKey the newConfirrmKey to set
+	 * @param newConfirrmKey
+	 *            the newConfirrmKey to set
 	 */
 	public void setNewConfirrmKey(int newConfirrmKey) {
 		this.newConfirrmKey = newConfirrmKey;
@@ -160,7 +168,8 @@ public class ForgotPasswordDto implements Dto {
 	}
 
 	/**
-	 * @param conditions the conditions to set
+	 * @param conditions
+	 *            the conditions to set
 	 */
 	public void setConditions(boolean conditions) {
 		this.conditions = conditions;

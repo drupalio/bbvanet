@@ -8,13 +8,10 @@
 	xmlns:bbvaMessage="http://java.sun.com/jsf/composite/bbva/messages">
 
 	<h:form id="mainForm">
-		<div style="" class="cancel-btn-container">
-			<div class="modal-footer cancel-wizard">
 
-				<p:commandButton styleClass="btn btn-form" type="submit"
-					value="#{msg['button.cancel']}"
-					onclick="PF('employeeSearch').hide();" />
-			</div>
-		</div>
+		<p:commandButton styleClass="btn btn-form" type="submit"
+			value="#{msg['button.cancel']}" action="confirm"
+			onclick="PF('employeeSearch').hide();" />
+
 	</h:form>
 </ui:composition>
