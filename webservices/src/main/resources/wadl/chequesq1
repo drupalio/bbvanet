@@ -5,16 +5,15 @@
             <xs:element name="Check" type="tns:Check"/>
             <xs:element name="Checkbook" type="tns:Checkbook"/>
             <xs:element name="EnumCheckStatus" type="tns:EnumCheckStatus"/>
-            <xs:element name="EnumCheckbookStatus" type="tns:EnumCheckbookStatus"/>
             <xs:complexType name="Checkbook">
                 <xs:sequence>
                     <xs:element minOccurs="0" name="id" type="xs:string"/>
                     <xs:element minOccurs="0" name="firstCheck" type="xs:int"/>
-                    <xs:element minOccurs="0" name="lastCheck" type="xs:int"/>
-                    <xs:element minOccurs="0" name="totalCheck" type="xs:int"/>
+                    <xs:element minOccurs="0" name="lastCheckl" type="xs:int"/>
+                    <xs:element minOccurs="0" name="totalCheck" type="xs:string"/>
                     <xs:element minOccurs="0" name="requestDate" type="xs:dateTime"/>
                     <xs:element minOccurs="0" name="deliveryDate" type="xs:dateTime"/>
-                    <xs:element minOccurs="0" name="actualState" type="tns:EnumCheckbookStatus"/>
+                    <xs:element minOccurs="0" name="actualState" type="xs:string"/>
                     <xs:element maxOccurs="unbounded" minOccurs="0" name="checks" nillable="true" type="tns:Check"/>
                 </xs:sequence>
             </xs:complexType>
@@ -27,12 +26,6 @@
                     <xs:element minOccurs="0" name="modifiedDate" type="xs:dateTime"/>
                 </xs:sequence>
             </xs:complexType>
-            <xs:simpleType name="EnumCheckbookStatus">
-                <xs:restriction base="xs:string">
-                    <xs:enumeration value="HABILITADO"/>
-                    <xs:enumeration value="SOLICITADO"/>
-                </xs:restriction>
-            </xs:simpleType>
             <xs:simpleType name="EnumCheckStatus">
                 <xs:restriction base="xs:string">
                     <xs:enumeration value="HABILITADO"/>
@@ -54,8 +47,13 @@
         <resource path="/V01" id="com.bbva.czic.checkbooks.facade.v01.SrvCheckbooksV01">
             <resource path="/checks/{checkId}">
                 <param name="checkId" style="template" type="xs:string"/>
-                <method name="GET" id="getCheck">
-                    <request/>
+                <method name="GET" id="getChecks">
+                    <request>
+                        <param name="$filter" style="query" default="null" type="xs:string"/>
+                        <param name="$fields" style="query" default="null" type="xs:string"/>
+                        <param name="$expands" style="query" default="null" type="xs:string"/>
+                        <param name="$sort" style="query" default="null" type="xs:string"/>
+                    </request>
                     <response>
                         <representation mediaType="application/json" element="prefix1:Check"/>
                     </response>
@@ -63,8 +61,13 @@
             </resource>
             <resource path="/{checkbookId}">
                 <param name="checkbookId" style="template" type="xs:string"/>
-                <method name="GET" id="getCheckbook">
-                    <request/>
+                <method name="GET" id="getCheckbooks">
+                    <request>
+                        <param name="$filter" style="query" default="null" type="xs:string"/>
+                        <param name="$fields" style="query" default="null" type="xs:string"/>
+                        <param name="$expands" style="query" default="null" type="xs:string"/>
+                        <param name="$sort" style="query" default="null" type="xs:string"/>
+                    </request>
                     <response>
                         <representation mediaType="application/json" element="prefix1:Checkbook"/>
                     </response>
