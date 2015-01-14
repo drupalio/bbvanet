@@ -6,38 +6,38 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for EnumProductType.
+ * <p>Java class for enumProductType.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * <p>
  * <pre>
- * &lt;simpleType name="EnumProductType">
+ * &lt;simpleType name="enumProductType">
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
  *     &lt;enumeration value="PC"/>
- *     &lt;enumeration value="TC"/>
+ *     &lt;enumeration value="AQ"/>
+ *     &lt;enumeration value="TDC"/>
+ *     &lt;enumeration value="RQ"/>
+ *     &lt;enumeration value="LI"/>
  *     &lt;enumeration value="LO"/>
  *     &lt;enumeration value="SI"/>
  *     &lt;enumeration value="ED"/>
- *     &lt;enumeration value="RQ"/>
- *     &lt;enumeration value="LI"/>
- *     &lt;enumeration value="AQ"/>
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
  * 
  */
-@XmlType(name = "EnumProductType")
+@XmlType(name = "enumProductType")
 @XmlEnum
 public enum EnumProductType {
 
     PC,
-    TC,
-    LO,
-    SI,
-    ED,
+    AQ,
+    TDC,
     RQ,
     LI,
-    AQ;
+    LO,
+    SI,
+    ED;
 
     public String value() {
         return name();
