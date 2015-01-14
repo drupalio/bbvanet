@@ -1,15 +1,14 @@
-
 package com.bbva.czic.dto.net;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Clase Java para City complex type.
- * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>
+ * Clase Java para City complex type.
+ * <p>
+ * El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="City">
@@ -18,97 +17,53 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="state" type="{urn:com:bbva:czic:dto:net}State" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "City", propOrder = {
-    "id",
-    "name",
-    "state"
-})
+@XmlType(name = "City", propOrder = { "id", "name" })
 public class City {
 
-    protected String id;
-    protected String name;
-    protected State state;
+	protected String id;
 
-    /**
-     * Obtiene el valor de la propiedad id.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getId() {
-        return id;
-    }
+	protected String name;
 
-    /**
-     * Define el valor de la propiedad id.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setId(String value) {
-        this.id = value;
-    }
+	/**
+	 * Obtiene el valor de la propiedad id.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getId() {
+		return id;
+	}
 
-    /**
-     * Obtiene el valor de la propiedad name.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getName() {
-        return name;
-    }
+	/**
+	 * Define el valor de la propiedad id.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setId(String value) {
+		this.id = value;
+	}
 
-    /**
-     * Define el valor de la propiedad name.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setName(String value) {
-        this.name = value;
-    }
+	/**
+	 * Obtiene el valor de la propiedad name.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getName() {
+		return name;
+	}
 
-    /**
-     * Obtiene el valor de la propiedad state.
-     * 
-     * @return
-     *     possible object is
-     *     {@link State }
-     *     
-     */
-    public State getState() {
-        return state;
-    }
-
-    /**
-     * Define el valor de la propiedad state.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link State }
-     *     
-     */
-    public void setState(State value) {
-        this.state = value;
-    }
-
+	/**
+	 * Define el valor de la propiedad name.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setName(String value) {
+		this.name = value;
+	}
 }

@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:bbvaMessage="http://java.sun.com/jsf/composite/bbva/messages"
+	xmlns:bbvaInput="http://java.sun.com/jsf/composite/bbva/input"
+	xmlns:bbvaButton="http://java.sun.com/jsf/composite/bbva/button">
+
+<composite:interface>
+	<composite:attribute name="href" />
+	<composite:attribute name="update" />
+	<composite:attribute name="action"
+		method-signature="java.lang.String action()" />
+</composite:interface>
+
+<composite:implementation>
+	<div class="modal-footer recoverKeyModal">
+		<bbvaInput:input id="recoverKeyCond" type="checkbox" required="true" />
+		<p:outputLabel class="control-label left"
+			value="#{msg['text.condiConfirmOne']}" for="recoverKeyCond">
+			<a href="#{cc.attrs.href}" title="Descargar PDF terminos.">#{msg['text.condiConfirmTwo']}
+				<span class="adobe-blue"> </span> <span class="adobe-size">(6Kb)</span>
+			</a>
+		</p:outputLabel>
+	</div>
+</composite:implementation>
+</html>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow
+        http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
+	parent="parent-flow">
+
+	<action-state id="getDataAction">
+		<evaluate expression="userRecoverPassword.showMessageCheck()" />
+		<transition on="yes" to="checkMessage" />
+	</action-state>
+
+	<view-state id="checkMessage">
+		<transition on="confirm" to="final" />
+	</view-state>
+
+	<view-state id="transition">
+		<transition on="getData" to="getDataAction" />
+	</view-state>
+
+	<end-state id="final" />
+
+</flow>

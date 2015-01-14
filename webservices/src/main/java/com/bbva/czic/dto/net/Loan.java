@@ -12,15 +12,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para Loan complex type.
+ * <p>Java class for Loan complex type.
  * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="Loan">
  *   &lt;complexContent>
  *     &lt;extension base="{urn:com:bbva:czic:dto:net}Product">
  *       &lt;sequence>
+ *         &lt;element name="debt" type="{urn:com:bbva:czic:dto:net}Balance" minOccurs="0"/>
  *         &lt;element name="balance" type="{urn:com:bbva:czic:dto:net}Balance" minOccurs="0"/>
  *         &lt;element name="payment" type="{urn:com:bbva:czic:dto:net}Payment" minOccurs="0"/>
  *         &lt;element name="status" type="{urn:com:bbva:czic:dto:net}EnumLoanStatus" minOccurs="0"/>
@@ -40,24 +41,25 @@ public class Loan
     extends Product
 {
 
-//    @XmlElementRefs({
-//        @XmlElementRef(name = "balance", type = JAXBElement.class, required = false),
-//        @XmlElementRef(name = "payment", type = JAXBElement.class, required = false),
-//        @XmlElementRef(name = "status", type = JAXBElement.class, required = false)
-//    })
+    @XmlElementRefs({
+        @XmlElementRef(name = "debt", type = JAXBElement.class),
+        @XmlElementRef(name = "payment", type = JAXBElement.class),
+        @XmlElementRef(name = "status", type = JAXBElement.class),
+        @XmlElementRef(name = "balance", type = JAXBElement.class)
+    })
     protected List<JAXBElement<?>> rest;
 
     /**
-     * Obtiene el resto del modelo de contenido. 
+     * Gets the rest of the content model. 
      * 
      * <p>
-     * Ha obtenido esta propiedad que permite capturar todo por el siguiente motivo: 
-     * El nombre de campo "Balance" se est� utilizando en dos partes diferentes de un esquema. Consulte: 
-     * l�nea 0 de file:/C:/Jhon/Entelgy/BLUE%20SPRING/WS/bbvaNet/bbvanet/webservices/src/main/resources/wadl/loan.xml#grammar1
-     * l�nea 0 de file:/C:/Jhon/Entelgy/BLUE%20SPRING/WS/bbvaNet/bbvanet/webservices/src/main/resources/wadl/loan.xml#grammar1
+     * You are getting this "catch-all" property because of the following reason: 
+     * The field name "Balance" is used by two different parts of a schema. See: 
+     * line 0 of file:/C:/Users/Entelgy/Desarrollo/bbvaNet/webservices/src/main/resources/wadl/loan.wadl#grammar2
+     * line 0 of file:/C:/Users/Entelgy/Desarrollo/bbvaNet/webservices/src/main/resources/wadl/loan.wadl#grammar2
      * <p>
-     * Para deshacerse de esta propiedad, aplique una personalizaci�n de propiedad a una
-     * de las dos declaraciones siguientes para cambiarles de nombre: 
+     * To get rid of this property, apply a property customization to one 
+     * of both of the following declarations to change their names: 
      * Gets the value of the rest property.
      * 
      * <p>
@@ -76,8 +78,9 @@ public class Loan
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link JAXBElement }{@code <}{@link Balance }{@code >}
-     * {@link JAXBElement }{@code <}{@link Payment }{@code >}
      * {@link JAXBElement }{@code <}{@link EnumLoanStatus }{@code >}
+     * {@link JAXBElement }{@code <}{@link Payment }{@code >}
+     * {@link JAXBElement }{@code <}{@link Balance }{@code >}
      * 
      * 
      */

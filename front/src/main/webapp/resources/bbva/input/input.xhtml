@@ -9,11 +9,7 @@
 
 <composite:interface>
 
-	<composite:attribute name="idInput" />
-	<composite:attribute name="idLabel" />
-	<composite:attribute name="for" />
-	<composite:attribute name="classLabel" />
-	<composite:attribute name="label" />
+	<composite:attribute name="id" />
 	<composite:attribute name="value" />
 	<composite:attribute name="type" />
 	<composite:attribute name="required" />
@@ -42,10 +38,7 @@
 		</div>
 	</div>
 
-	<h:outputLabel id="#{cc.attrs.idLabel}" value="#{cc.attrs.label}"
-		for="#{cc.attrs.for}" class="#{cc.attrs.classLabel}" />
-
-	<p:inputText id="#{cc.attrs.idInput}" type="#{cc.attrs.type}"
+	<p:inputText id="#{cc.attrs.id}" type="#{cc.attrs.type}"
 		value="#{cc.attrs.value}" maxlength="#{cc.attrs.maxlength}"
 		required="#{cc.attrs.required}"
 		requiredMessage="#{cc.attrs.requiredMessage}"

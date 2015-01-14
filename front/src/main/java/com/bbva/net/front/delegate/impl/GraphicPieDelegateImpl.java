@@ -86,7 +86,7 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 	/**
 	 * Method to draws a Situation Pie graphic
 	 * 
-	 * @param List<Product> products
+	 * @param List <Product> products
 	 * @return PieConfigUI
 	 */
 	public PieConfigUI getSituationPieConfig(final List<ProductDto> products) {
@@ -110,7 +110,7 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 	/**
 	 * Method to draws a Situation Asset Pie graphic
 	 * 
-	 * @param List<Product> products
+	 * @param List <Product> products
 	 * @return PieConfigUI
 	 */
 	public PieConfigUI getAssetPieConfig(final List<ProductDto> products) {
@@ -146,7 +146,7 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 	/**
 	 * Method to draws a Situation Asset Pie graphic
 	 * 
-	 * @param List<Product> products
+	 * @param List <Product> products
 	 * @return PieConfigUI
 	 */
 	public PieConfigUI getFinanciationPieConfig(final List<ProductDto> products) {
@@ -161,7 +161,7 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 		final List<PieItemUI> financiationPieItems = new ArrayList<PieItemUI>();
 
 		final PieItemUI cardsPieItem = new PieItemUI("el color", "Tarjetas de Crédito", this.productService
-				.getTotalProductsByType(products, EnumProductType.TDC).getAmount());
+				.getTotalProductsByType(products, EnumProductType.TC).getAmount());
 
 		final PieItemUI leasingPieItem = new PieItemUI("el color", "Leasing", this.productService
 				.getTotalProductsByType(products, EnumProductType.LI).getAmount());

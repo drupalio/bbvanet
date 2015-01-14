@@ -4,40 +4,14 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/webflow 
     http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
 
-	<var name="calendar"
-		class="com.bbva.net.front.controller.impl.MoveAccountsControllerImpl" />
-
-	<var name="accountsController"
-		class="com.bbva.net.front.controller.impl.AccountsControllerImpl" />
-
-	<var name="movementsCriteriaController"
-		class="com.bbva.net.front.controller.impl.MovementCriteriaControllerImpl" />
-
-	<var name="checkBookController"
-		class="com.bbva.net.front.controller.impl.CheckBookControllerImpl" />
-
-	<var name="TermsController" class="com.bbva.net.front.controller.impl.TermsControllerImpl" />
-
-	<on-start>
-		<evaluate expression="accountsController.getCustomerAccounts()"
-			result="flowScope.customerAccounts" />
-		<evaluate expression="TermsController.getAllConditions()"
-			result="flowScope.allConditions" />
-
-		<evaluate expression="checkBookController.getMultiValueList()"
-			result="flowScope.multiValueList" />
-
-	</on-start>
 
 	<view-state id="detailAccounts">
-
-		<on-render>
-			<evaluate expression="accountsController.getCustomerAccounts()"
-				result="viewScope.customerAccountsM" result-type="dataModel" />
-		</on-render>
-		<transition on="next">
-			<evaluate expression="calendar.nextPage()" />
-		</transition>
-
+		<transition on="start" to="embedded-flow" />
 	</view-state>
+
+	<subflow-state id="embedded-flow" subflow="detailAccounts/dialogRecover">
+		<input name="mode" value="'embedded'" />
+		<transition on="final" to="detailAccounts" />
+	</subflow-state>
+
 </flow>

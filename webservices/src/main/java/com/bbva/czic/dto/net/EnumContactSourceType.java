@@ -1,17 +1,17 @@
-
 package com.bbva.czic.dto.net;
 
 import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Clase Java para enumContactSourceType.
- * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * <p>
+ * Clase Java para enumContactSourceType.
+ * <p>
+ * El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>
+ * 
  * <pre>
- * &lt;simpleType name="enumContactSourceType">
+ * &lt;simpleType name="EnumContactSourceType">
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
  *     &lt;enumeration value="MOBILE"/>
  *     &lt;enumeration value="WEB"/>
@@ -19,22 +19,19 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
- * 
  */
-@XmlType(name = "enumContactSourceType")
+@XmlType(name = "EnumContactSourceType")
 @XmlEnum
 public enum EnumContactSourceType {
 
-    MOBILE,
-    WEB,
-    THIRD_PARTY;
+	MOBILE, WEB, THIRD_PARTY;
 
-    public String value() {
-        return name();
-    }
+	public String value() {
+		return name();
+	}
 
-    public static EnumContactSourceType fromValue(String v) {
-        return valueOf(v);
-    }
+	public static EnumContactSourceType fromValue(String v) {
+		return valueOf(v);
+	}
 
 }
