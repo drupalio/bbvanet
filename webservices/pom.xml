@@ -160,8 +160,8 @@
 							<wadlOptions>
 								<wadlOption>
 									<impl>false</impl>
-									<wadl>src/main/resources/wadl/globalposition.wadl</wadl>
-									<packagename>com.bbva.net.webservices.globalposition</packagename>
+									<wadl>src/main/resources/wadl/loan.wadl</wadl>
+									<packagename>com.bbva.net.webservices.loan</packagename>
 								</wadlOption>
 							</wadlOptions>
 						</configuration>

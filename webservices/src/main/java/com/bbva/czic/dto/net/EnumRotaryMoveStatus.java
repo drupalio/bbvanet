@@ -6,34 +6,30 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for EnumPhoneNumberType.
+ * <p>Java class for EnumRotaryMoveStatus.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * <p>
  * <pre>
- * &lt;simpleType name="EnumPhoneNumberType">
+ * &lt;simpleType name="EnumRotaryMoveStatus">
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *     &lt;enumeration value="MOBILE"/>
- *     &lt;enumeration value="LANDLINE"/>
- *     &lt;enumeration value="FAX"/>
+ *     &lt;enumeration value="VALIDAR"/>
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
  * 
  */
-@XmlType(name = "EnumPhoneNumberType")
+@XmlType(name = "EnumRotaryMoveStatus")
 @XmlEnum
-public enum EnumPhoneNumberType {
+public enum EnumRotaryMoveStatus {
 
-    MOBILE,
-    LANDLINE,
-    FAX;
+    VALIDAR;
 
     public String value() {
         return name();
     }
 
-    public static EnumPhoneNumberType fromValue(String v) {
+    public static EnumRotaryMoveStatus fromValue(String v) {
         return valueOf(v);
     }
 
