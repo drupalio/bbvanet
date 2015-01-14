@@ -19,61 +19,36 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-	private final static QName _Activity_QNAME = new QName(
-			"urn:com:bbva:czic:dto:net", "Activity");
-	private final static QName _EnumRotaryMoveStatus_QNAME = new QName(
-			"urn:com:bbva:czic:dto:net", "EnumRotaryMoveStatus");
-	private final static QName _Email_QNAME = new QName(
-			"urn:com:bbva:czic:dto:net", "Email");
-	private final static QName _State_QNAME = new QName(
-			"urn:com:bbva:czic:dto:net", "State");
+	private final static QName _Activity_QNAME = new QName("urn:com:bbva:czic:dto:net", "Activity");
+	private final static QName _EnumRotaryMoveStatus_QNAME = new QName("urn:com:bbva:czic:dto:net", "EnumRotaryMoveStatus");
+	private final static QName _Email_QNAME = new QName("urn:com:bbva:czic:dto:net", "Email");
+	private final static QName _State_QNAME = new QName("urn:com:bbva:czic:dto:net", "State");
 
-	private final static QName _EnumFinancialStatusType_QNAME = new QName(
-			"urn:com:bbva:czic:dto:net", "enumFinancialStatusType");
-	private final static QName _PhoneNumber_QNAME = new QName(
-			"urn:com:bbva:czic:dto:net", "phoneNumber");
-	private final static QName _Movement_QNAME = new QName(
-			"urn:com:bbva:czic:dto:net", "movement");
+	private final static QName _EnumFinancialStatusType_QNAME = new QName("urn:com:bbva:czic:dto:net", "enumFinancialStatusType");
+	private final static QName _PhoneNumber_QNAME = new QName("urn:com:bbva:czic:dto:net", "phoneNumber");
+	private final static QName _Movement_QNAME = new QName("urn:com:bbva:czic:dto:net", "movement");
 
-	private final static QName _ContactInfo_QNAME = new QName(
-			"urn:com:bbva:czic:dto:net", "ContactInfo");
-	private final static QName _Office_QNAME = new QName(
-			"urn:com:bbva:czic:dto:net", "Office");
-	private final static QName _EnumAccountState_QNAME = new QName(
-			"urn:com:bbva:czic:dto:net", "EnumAccountState");
+	private final static QName _ContactInfo_QNAME = new QName("urn:com:bbva:czic:dto:net", "ContactInfo");
+	private final static QName _Office_QNAME = new QName("urn:com:bbva:czic:dto:net", "Office");
+	private final static QName _EnumAccountState_QNAME = new QName("urn:com:bbva:czic:dto:net", "EnumAccountState");
 
-	private final static QName _Product_QNAME = new QName(
-			"urn:com:bbva:czic:dto:net", "Product");
-	private final static QName _Function_QNAME = new QName(
-			"urn:com:bbva:czic:dto:net", "Function");
-	private final static QName _Location_QNAME = new QName(
-			"urn:com:bbva:czic:dto:net", "Location");
+	private final static QName _Product_QNAME = new QName("urn:com:bbva:czic:dto:net", "Product");
+	private final static QName _Function_QNAME = new QName("urn:com:bbva:czic:dto:net", "Function");
+	private final static QName _Location_QNAME = new QName("urn:com:bbva:czic:dto:net", "Location");
 
-	private final static QName _Country_QNAME = new QName(
-			"urn:com:bbva:czic:dto:net", "Country");
-	private final static QName _Contract_QNAME = new QName(
-			"urn:com:bbva:czic:dto:net", "Contract");
+	private final static QName _Country_QNAME = new QName("urn:com:bbva:czic:dto:net", "Country");
+	private final static QName _Contract_QNAME = new QName("urn:com:bbva:czic:dto:net", "Contract");
 
-	private final static QName _City_QNAME = new QName(
-			"urn:com:bbva:czic:dto:net", "City");
-	private final static QName _Loan_QNAME = new QName(
-			"urn:com:bbva:czic:dto:net", "Loan");
-	private final static QName _Balance_QNAME = new QName(
-			"urn:com:bbva:czic:dto:net", "Balance");
-	private final static QName _Conditions_QNAME = new QName(
-			"urn:com:bbva:czic:dto:net", "Conditions");
-	private final static QName _EnumLoanStatus_QNAME = new QName(
-			"urn:com:bbva:czic:dto:net", "EnumLoanStatus");
-	private final static QName _EnumPhoneNumberType_QNAME = new QName(
-			"urn:com:bbva:czic:dto:net", "EnumPhoneNumberType");
-	private final static QName _Operation_QNAME = new QName(
-			"urn:com:bbva:czic:dto:net", "Operation");
-	private final static QName _EnumProductType_QNAME = new QName(
-			"urn:com:bbva:czic:dto:net", "EnumProductType");
-	private final static QName _EnumContactSourceType_QNAME = new QName(
-			"urn:com:bbva:czic:dto:net", "EnumContactSourceType");
-	private final static QName _Payment_QNAME = new QName(
-			"urn:com:bbva:czic:dto:net", "Payment");
+	private final static QName _City_QNAME = new QName("urn:com:bbva:czic:dto:net", "City");
+	private final static QName _Loan_QNAME = new QName("urn:com:bbva:czic:dto:net", "Loan");
+	private final static QName _Balance_QNAME = new QName("urn:com:bbva:czic:dto:net", "Balance");
+	private final static QName _Conditions_QNAME = new QName("urn:com:bbva:czic:dto:net", "Conditions");
+	private final static QName _EnumLoanStatus_QNAME = new QName("urn:com:bbva:czic:dto:net", "EnumLoanStatus");
+	private final static QName _EnumPhoneNumberType_QNAME = new QName("urn:com:bbva:czic:dto:net", "EnumPhoneNumberType");
+	private final static QName _Operation_QNAME = new QName("urn:com:bbva:czic:dto:net", "Operation");
+	private final static QName _EnumProductType_QNAME = new QName("urn:com:bbva:czic:dto:net", "EnumProductType");
+	private final static QName _EnumContactSourceType_QNAME = new QName("urn:com:bbva:czic:dto:net", "EnumContactSourceType");
+	private final static QName _Payment_QNAME = new QName("urn:com:bbva:czic:dto:net", "Payment");
 	private final static QName _LoanBalance_QNAME = new QName("", "balance");
 	private final static QName _LoanPayment_QNAME = new QName("", "payment");
 	private final static QName _LoanStatus_QNAME = new QName("", "status");
