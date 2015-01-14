@@ -31,7 +31,9 @@
 				</div>
 			</div>
 			<div class="modal-footer recoverKeyModal">
-				<button class="btn btn-form" data-dismiss="modal">#{msg['text.close']}</button>
+				<p:commandButton styleClass="btn btn-form" type="submit"
+					value="#{msg['text.close']}" action="confirm"
+					onclick="PF('employeeSearch').hide();" />
 			</div>
 		</div>
 	</div>

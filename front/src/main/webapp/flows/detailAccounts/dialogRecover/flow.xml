@@ -4,9 +4,11 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/webflow
         http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
 	parent="parent-flow">
+		
+	<var name="userRecoveryController" class="com.bbva.net.front.controller.impl.RecoverPasswordControllerImpl"/>
 
 	<action-state id="getDataAction">
-		<evaluate expression="userRecoverPassword.showMessageCheck()" />
+		<evaluate expression="userRecoveryController.showMessageCheck()" />
 		<transition on="yes" to="checkMessage" />
 	</action-state>
 
