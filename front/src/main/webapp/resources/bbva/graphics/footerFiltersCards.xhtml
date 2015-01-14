@@ -23,7 +23,7 @@
 
 	<div class="chart-options">
 		<div class="row">
-			<h:form id="FooterForm">
+			<h:form>
 			<div class="col-xs-12 col-sm-6 chart-selection input-control">
 				<label for="cuentas-personales-chart-tiempo">#{cc.attrs.nameLeft}</label>
 				<bbvaInput:comboSelectedPeriod
@@ -32,7 +32,7 @@
 					render=":cardPieGP:cardForm" />
 			</div>
 			</h:form>
-			<h:form id="FooterFormpro">
+			<h:form>
 			<div class="col-xs-12 col-sm-6 chart-selection input-control">
 				<label for="cuentas-personales-chart-cuentas">#{cc.attrs.nameRight}</label>
 				<bbvaInput:comboSelectedProduct totalProduct="#{msg['text.allCards']}"

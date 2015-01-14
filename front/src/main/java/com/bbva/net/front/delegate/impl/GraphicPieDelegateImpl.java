@@ -9,9 +9,8 @@ import javax.annotation.Resource;
 
 import com.bbva.czic.dto.net.EnumFundsType;
 import com.bbva.czic.dto.net.EnumProductType;
-import com.bbva.net.back.model.globalposition.FundDto;
-import com.bbva.net.back.facade.CardsFacade;
 import com.bbva.net.back.model.cards.CardsChargesDto;
+import com.bbva.net.back.model.globalposition.FundDto;
 import com.bbva.net.back.model.globalposition.GlobalProductsDto;
 import com.bbva.net.back.model.globalposition.ProductDto;
 import com.bbva.net.back.service.FundsService;
@@ -34,25 +33,29 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 
 	@Resource(name = "fundsService")
 	private FundsService fundsService;
-	
+
 	/**
-	 * 
 	 * @param cardsCharges
 	 * @return
 	 */
-	public PieConfigUI getCardGraphic(final List<CardsChargesDto> cardsCharges){
+	public PieConfigUI getCardGraphic(final List<CardsChargesDto> cardsCharges) {
 		final PieConfigUI assetPie = new PieConfigUI();
 		assetPie.setHeaderCenter("Pesos ($)");
 		final List<PieItemUI> assetPieItems = new ArrayList<PieItemUI>();
-		
-		final PieItemUI salesPieItem = new PieItemUI("el color", MessagesHelper.INSTANCE.getString("categorie.sales"), cardsCharges.get(0).getAmmount().getAmount());
-		final PieItemUI clothesPieItem = new PieItemUI("el color",MessagesHelper.INSTANCE.getString("categorie.clothes"), cardsCharges.get(1).getAmmount().getAmount());
-		final PieItemUI othersPieItem = new PieItemUI("el color",MessagesHelper.INSTANCE.getString("categorie.others"), cardsCharges.get(2).getAmmount().getAmount());
-		final PieItemUI leisurePieItem = new PieItemUI("el color",MessagesHelper.INSTANCE.getString("categorie.leisure"), cardsCharges.get(3).getAmmount().getAmount());
-		final PieItemUI booksPieItem = new PieItemUI("el color",MessagesHelper.INSTANCE.getString("categorie.books"), cardsCharges.get(4).getAmmount().getAmount());
-		final PieItemUI commercePieItem = new PieItemUI("#197AC4",MessagesHelper.INSTANCE.getString("categorie.commerce"), cardsCharges.get(5).getAmmount().getAmount());
-		
-		
+
+		final PieItemUI salesPieItem = new PieItemUI("#1874CD", MessagesHelper.INSTANCE.getString("categorie.sales"),
+				cardsCharges.get(0).getAmmount().getAmount());
+		final PieItemUI clothesPieItem = new PieItemUI("#27408B",
+				MessagesHelper.INSTANCE.getString("categorie.clothes"), cardsCharges.get(1).getAmmount().getAmount());
+		final PieItemUI othersPieItem = new PieItemUI("#A2CD5A", MessagesHelper.INSTANCE.getString("categorie.others"),
+				cardsCharges.get(2).getAmmount().getAmount());
+		final PieItemUI leisurePieItem = new PieItemUI("#698B22",
+				MessagesHelper.INSTANCE.getString("categorie.leisure"), cardsCharges.get(3).getAmmount().getAmount());
+		final PieItemUI booksPieItem = new PieItemUI("#FFC125", MessagesHelper.INSTANCE.getString("categorie.books"),
+				cardsCharges.get(4).getAmmount().getAmount());
+		final PieItemUI commercePieItem = new PieItemUI("#EE7600",
+				MessagesHelper.INSTANCE.getString("categorie.commerce"), cardsCharges.get(5).getAmmount().getAmount());
+
 		assetPieItems.add(salesPieItem);
 		assetPieItems.add(clothesPieItem);
 		assetPieItems.add(othersPieItem);

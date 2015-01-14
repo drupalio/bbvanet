@@ -49,9 +49,14 @@ public class CardsFacadeImpl extends AbstractBbvaFacade implements CardsFacade {
 
 	@Override
 	public List<CardsChargesDto> getCardsChargesFilter(final String customerId, final DateRangeDto dateRange) {
-
 		final String filter = fiqlService.getFiqlQueryByDateRange(dateRange);
-		final List<CardCharge> response = cardChargeService.getCreditCardCharges(customerId, filter, null, null, null);
+		final List<CardCharge> response = cardChargeService.getCreditCardCharges(customerId, filter, "", "", "");
 		return cardsMapper.map(response);
+	}
+
+	/********************************** DEPENDENCY INJECTIONS ***********************************/
+
+	public void setCardsCustomerService(CustomerService cardsCustomerService) {
+		this.cardsCustomerService = cardsCustomerService;
 	}
 }

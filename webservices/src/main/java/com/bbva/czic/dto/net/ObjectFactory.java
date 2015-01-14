@@ -24,12 +24,10 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _CardCharge_QNAME = new QName("urn:com:bbva:czic:dto:net", "CardCharge");
-    private final static QName _EnumCardChargeCategory_QNAME = new QName("urn:com:bbva:czic:dto:net", "EnumCardChargeCategory");
     private final static QName _EnumFinancialStatusType_QNAME = new QName("urn:com:bbva:czic:dto:net", "enumFinancialStatusType");
     private final static QName _State_QNAME = new QName("urn:com:bbva:czic:dto:net", "State");
-    private final static QName _PhoneNumber_QNAME = new QName("urn:com:bbva:czic:dto:net", "phoneNumber");
     private final static QName _Email_QNAME = new QName("urn:com:bbva:czic:dto:net", "Email");
+    private final static QName _PhoneNumber_QNAME = new QName("urn:com:bbva:czic:dto:net", "phoneNumber");
     private final static QName _Movement_QNAME = new QName("urn:com:bbva:czic:dto:net", "movement");
     private final static QName _ContactInfo_QNAME = new QName("urn:com:bbva:czic:dto:net", "ContactInfo");
     private final static QName _Office_QNAME = new QName("urn:com:bbva:czic:dto:net", "Office");
@@ -60,9 +58,6 @@ public class ObjectFactory {
     }
 
     /**
-<<<<<<< HEAD
-     * Create an instance of {@link JAXBElement }{@code <}{@link CardCharge }{@code >}}
-=======
      * Create an instance of {@link Operation }
      * 
      */
@@ -72,7 +67,6 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Product }
->>>>>>> master
      * 
      */
     public Product createProduct() {
@@ -80,9 +74,6 @@ public class ObjectFactory {
     }
 
     /**
-<<<<<<< HEAD
-     * Create an instance of {@link JAXBElement }{@code <}{@link EnumCardChargeCategory }{@code >}}
-=======
      * Create an instance of {@link Location }
      * 
      */
@@ -92,12 +83,12 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Country }
->>>>>>> master
      * 
      */
     public Country createCountry() {
         return new Country();
     }
+
     /**
      * Create an instance of {@link City }
      * 
@@ -181,21 +172,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link PhoneNumber }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "urn:com:bbva:czic:dto:net", name = "phoneNumber")
-    public JAXBElement<PhoneNumber> createPhoneNumber(PhoneNumber value) {
-        return new JAXBElement<PhoneNumber>(_PhoneNumber_QNAME, PhoneNumber.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link Email }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:com:bbva:czic:dto:net", name = "Email")
     public JAXBElement<Email> createEmail(Email value) {
         return new JAXBElement<Email>(_Email_QNAME, Email.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link PhoneNumber }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "urn:com:bbva:czic:dto:net", name = "phoneNumber")
+    public JAXBElement<PhoneNumber> createPhoneNumber(PhoneNumber value) {
+        return new JAXBElement<PhoneNumber>(_PhoneNumber_QNAME, PhoneNumber.class, null, value);
     }
 
     /**
