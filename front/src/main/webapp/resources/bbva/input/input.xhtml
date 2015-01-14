@@ -8,6 +8,7 @@
 	xmlns:pm="http://primefaces.org/mobile">
 
 <composite:interface>
+
 	<composite:attribute name="id" />
 	<composite:attribute name="value" />
 	<composite:attribute name="type" />
@@ -18,6 +19,8 @@
 	<composite:attribute name="validatorMessage" required="false"
 		default="Invalid input" />
 	<composite:attribute name="onclick" required="false" default="" />
+	<composite:editableValueHolder name="input" targets="input" />
+
 </composite:interface>
 
 <composite:implementation>
@@ -41,7 +44,7 @@
 		requiredMessage="#{cc.attrs.requiredMessage}"
 		validatorMessage="#{cc.attrs.validatorMessage}"
 		title="#{component.valid?'':'Este campo es obligatorio.'}"
-		onclick="#{cc.attrs.onclick}"
+		onclick="checkFilled(this)"
 		styleClass="#{component.valid?'form-control':'form-control  has-error'}">
 	</p:inputText>
 

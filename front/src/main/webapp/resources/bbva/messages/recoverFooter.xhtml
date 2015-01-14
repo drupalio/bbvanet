@@ -12,6 +12,10 @@
 	xmlns:bbvaButton="http://java.sun.com/jsf/composite/bbva/button">
 
 <composite:interface>
+	<composite:attribute name="href" />
+	<composite:attribute name="update" />
+	<composite:attribute name="action"
+		method-signature="java.lang.String action()" />
 </composite:interface>
 
 <composite:implementation>
@@ -19,11 +23,10 @@
 		<bbvaInput:input id="recoverKeyCond" type="checkbox" required="true" />
 		<p:outputLabel class="control-label left"
 			value="#{msg['text.condiConfirmOne']}" for="recoverKeyCond">
-			<a href="#" title="Descargar PDF terminos.">#{msg['text.condiConfirmTwo']}
+			<a href="#{cc.attrs.href}" title="Descargar PDF terminos.">#{msg['text.condiConfirmTwo']}
 				<span class="adobe-blue"> </span> <span class="adobe-size">(6Kb)</span>
 			</a>
 		</p:outputLabel>
-		<composite:insertChildren></composite:insertChildren>
 	</div>
 </composite:implementation>
 </html>

@@ -1,9 +1,9 @@
 package com.bbva.net.front.controller;
 
-import javax.faces.event.ActionEvent;
+import org.primefaces.event.SelectEvent;
 
 public interface UserRecoverPassword {
 
-	public void showRecoveryPassword(ActionEvent event);
+	public void changePageDialog();
 
 }

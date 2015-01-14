@@ -244,13 +244,16 @@ input.ui-state-hover {
 /* .ui-state-hover { */
 /* 	background: #e0f6fc !important; */
 /* } */
-
 td.ui-datatable-subtable-header:empty {
 	display: none
 }
 
 selectOneButton.ui-button {
 	background-color: white !important;
+	border-color: #cccccc !important;
+}
+
+.ui-button {
 	border-color: #cccccc !important;
 }
 
@@ -269,7 +272,7 @@ table.ui-widget {
 	margin-left: -13px !important;
 }
 
-input ..ui-inputfield {
+input .ui-inputfield {
 	background: -moz-linear-gradient(center top, rgba(255, 255, 255, 0.8),
 		rgba(255, 255, 255, 0)) repeat scroll 0% 0% #C4C4C4 !important;
 }

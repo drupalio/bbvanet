@@ -14,8 +14,8 @@
 			<h2 class="blockTitle">Employee information page</h2>
 
 			<h:form id="form">
-				<p:commandButton onclick="PF('employeeSearch').show();"
-					value="Load employee data" />
+				<p:commandLink onclick="PF('employeeSearch').show();"
+					value="#{msg['text.recoverPassword']}" styleClass="modal-trigger" />
 			</h:form>
 			<p:dialog widgetVar="employeeSearch" header="Search employee"
 				style="display: block; position:relative; border: 1px solid #DBDCDC; background-color: #F4F7F5"
