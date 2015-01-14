@@ -42,10 +42,10 @@ public class Loan
 {
 
     @XmlElementRefs({
-        @XmlElementRef(name = "status", type = JAXBElement.class),
-        @XmlElementRef(name = "payment", type = JAXBElement.class),
+        @XmlElementRef(name = "debt", type = JAXBElement.class),
         @XmlElementRef(name = "balance", type = JAXBElement.class),
-        @XmlElementRef(name = "debt", type = JAXBElement.class)
+        @XmlElementRef(name = "payment", type = JAXBElement.class),
+        @XmlElementRef(name = "status", type = JAXBElement.class)
     })
     protected List<JAXBElement<?>> rest;
 
@@ -55,8 +55,8 @@ public class Loan
      * <p>
      * You are getting this "catch-all" property because of the following reason: 
      * The field name "Balance" is used by two different parts of a schema. See: 
-     * line 0 of file:/C:/Users/User/newRepo/bbvanet/webservices/src/main/resources/wadl/loan.wadl#grammar2
-     * line 0 of file:/C:/Users/User/newRepo/bbvanet/webservices/src/main/resources/wadl/loan.wadl#grammar2
+     * line 0 of file:/C:/Users/Entelgy/Desarrollo/bbvaNet/webservices/src/main/resources/wadl/loan.wadl#grammar2
+     * line 0 of file:/C:/Users/Entelgy/Desarrollo/bbvaNet/webservices/src/main/resources/wadl/loan.wadl#grammar2
      * <p>
      * To get rid of this property, apply a property customization to one 
      * of both of the following declarations to change their names: 
@@ -77,10 +77,10 @@ public class Loan
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
+     * {@link JAXBElement }{@code <}{@link Balance }{@code >}
      * {@link JAXBElement }{@code <}{@link EnumLoanStatus }{@code >}
+     * {@link JAXBElement }{@code <}{@link Balance }{@code >}
      * {@link JAXBElement }{@code <}{@link Payment }{@code >}
-     * {@link JAXBElement }{@code <}{@link Balance }{@code >}
-     * {@link JAXBElement }{@code <}{@link Balance }{@code >}
      * 
      * 
      */
