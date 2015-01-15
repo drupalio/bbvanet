@@ -5,10 +5,10 @@
     http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
 
 
-<var name="recoverPassController" class="com.bbva.net.front.controller.impl.RecoverPasswordControllerImpl"/>
+	<var name="userRecoveryController" class="com.bbva.net.front.controller.impl.RecoverPasswordControllerImpl"/>
 	
 	<view-state id="detailAccounts">
-		<transition on="start" to="embedded-flow" />
+		<transition on="next" to="embedded-flow" />
 	</view-state>
 
 	<subflow-state id="embedded-flow" subflow="detailAccounts/dialogRecover">
