@@ -26,13 +26,13 @@
 					<p>A continuación puede ingresar en la Net con su nueva Clave
 						de Acceso</p>
 					<p>
-						<strong>Su nueva clave es XXXX</strong>
+						<strong>Su nueva clave es <h:outputLabel value="#{recoverPassController.cardNumber1}" /></strong>
 					</p>
 				</div>
 			</div>
 			<div class="modal-footer recoverKeyModal">
 				<p:commandButton styleClass="btn btn-form" type="submit"
-					value="#{msg['text.close']}" action="confirm"
+					value="#{msg['text.close']}" action="#{recoverPassController.close}"
 					onclick="PF('employeeSearch').hide();" />
 			</div>
 		</div>
