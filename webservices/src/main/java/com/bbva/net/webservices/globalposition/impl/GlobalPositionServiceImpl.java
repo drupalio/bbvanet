@@ -1,11 +1,9 @@
 package com.bbva.net.webservices.globalposition.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.core.Response;
 
-import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Value;
 
 import com.bbva.czic.dto.net.Product;
@@ -24,11 +22,7 @@ public class GlobalPositionServiceImpl extends AbstractBbvaRestService implement
 	public List<Product> getExtractGlobalBalance(String customerId, String $filter, String $fields, String $expands,
 			String $sort) {
 
-		final Product[] products = restTemplate.getForObject(URL_BASE + customerId + URL_GLOBAL_POSITION,
-				Product[].class);
-		final List<Product> productsResult = new ArrayList<Product>();
-		CollectionUtils.addAll(productsResult, products);
-		return productsResult;
+		return getJsonCollection(URL_BASE + customerId + URL_GLOBAL_POSITION, Product.class);
 	}
 
 	@Override
