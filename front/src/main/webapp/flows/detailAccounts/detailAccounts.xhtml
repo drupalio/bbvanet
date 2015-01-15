@@ -5,11 +5,13 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:bbvaButton="http://java.sun.com/jsf/composite/bbva/button"
+	xmlns:bbvaInput="http://java.sun.com/jsf/composite/bbva/input"
 	xmlns:bbvaMessage="http://java.sun.com/jsf/composite/bbva/messages"
 	template="../../templates/defaultLayout.xhtml">
 
 
 	<ui:define name="contentLeft">
+
 		<div>
 			<h2 class="blockTitle">Employee information page</h2>
 
@@ -17,15 +19,17 @@
 				<p:commandLink onclick="PF('employeeSearch').show();"
 					value="#{msg['text.recoverPassword']}" styleClass="modal-trigger" />
 			</h:form>
+
 			<h:form id="form12">
 				<p:commandLink onclick="PF('employeeSearch').show();"
 					value="#{msg['text.recoverUser']}" styleClass="modal-trigger" />
-			</h:form>
-			<p:dialog widgetVar="employeeSearch" header="Search employee"
+			</h:form>	
+
+			<p:dialog id="dialogo" widgetVar="employeeSearch"
+				header="Search employee"
 				style="display: block; position:relative; border: 1px solid #DBDCDC; background-color: #F4F7F5"
 				class="modal modal-wizard fade recoverKeyModal in modal-dialog modal-lg modal-content"
 				modal="true" width="110%" height="100%">
-
 				<p:outputPanel>
 					<h:form id="mainForm">
 						<bbvaMessage:recoverContent>
@@ -34,8 +38,11 @@
 								pointOne="#{msg['text.userNewDigitalKey']}"
 								pointTwo="#{msg['text.confirmation']}" />
 							<bbvaMessage:recoverFooter>
+
+								<h:inputText id="hola" value="#{recoverPassController.binCard}" />
 								<p:commandButton id="nextButton" classButton="btn btn-form next"
-									action="#{recoverPassController.respuesta}"
+									action="#{recoverPassController.next}"
+									actionListener="#{recoverPassController.vamos}"
 									value="#{msg['button.next']}" update=":mainForm">
 
 								</p:commandButton>

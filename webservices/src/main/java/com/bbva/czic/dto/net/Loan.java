@@ -1,4 +1,3 @@
-
 package com.bbva.czic.dto.net;
 
 import java.util.ArrayList;
