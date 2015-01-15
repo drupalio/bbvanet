@@ -22,23 +22,15 @@ public class CustomerServiceImpl extends AbstractBbvaRestService implements Cust
 	@Value("${rest.cardsCharges.url}")
 	private String URL_CARDCHARGES;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<AccMovementsResume> listAccountsMovementsResume(String customerId, String filter) {
 
+		String filterParam = (filter.equals("")) ? "" : "filter";
 		WebClient wc = getJsonWebClient(URL_BASE_CUSTOMER + customerId + URL_CUSTOMER);
-		// WebClient wc = WebClient.create(URL_BASE_CUSTOMER + customerId + URL_CUSTOMER);
-		wc.query("_s", "");
-		// find all the books with id greater than 123
-		@SuppressWarnings("unchecked")
-		List<AccMovementsResume> accMovementsResume = (List<AccMovementsResume>)wc
-				.getCollection(AccMovementsResume.class);
+		wc.query(filterParam, filter);
 
-		return accMovementsResume;
-		/*
-		 * final AccMovementsResume[] customers = restTemplate.getForObject(URL_BASE_CUSTOMER + customerId + URL_CUSTOMER +
-		 * filter, AccMovementsResume[].class); final List<AccMovementsResume> customerResult = new
-		 * ArrayList<AccMovementsResume>(); CollectionUtils.addAll(customerResult, customers); return customerResult;
-		 */
+		return (List<AccMovementsResume>)wc.getCollection(AccMovementsResume.class);
 	}
 
 	@Override
