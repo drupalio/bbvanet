@@ -34,11 +34,19 @@ public class CardsFacadeImpl extends AbstractBbvaFacade implements CardsFacade {
 	@Resource(name = "cardsMapper")
 	private CardsMapper cardsMapper;
 
+	public void setCardChargeService(CardService cardChargeService) {
+		this.cardChargeService = cardChargeService;
+	}
+
 	@Resource(name = "productService")
 	private ProductService productService;
 
 	@Resource(name = "fiqlService")
 	private FiqlService fiqlService;
+
+	public void setFiqlService(FiqlService fiqlService) {
+		this.fiqlService = fiqlService;
+	}
 
 	/**
 	 * Determina si debe crear o no la cadena del filtro
@@ -51,6 +59,10 @@ public class CardsFacadeImpl extends AbstractBbvaFacade implements CardsFacade {
 		}
 		final List<CardCharge> response = cardsCustomerService.listCreditCardsCharges(customerId, filter);
 		return cardsMapper.map(response);
+	}
+
+	public void setCardsMapper(CardsMapper cardsMapper) {
+		this.cardsMapper = cardsMapper;
 	}
 
 	/**
