@@ -2,8 +2,10 @@ package com.bbva.net.front.controller.impl;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.bbva.net.back.entity.MultiValueGroup;
@@ -18,6 +20,7 @@ import com.bbva.net.front.core.AbstractBbvaController;
  * @author Entelgy
  */
 @Controller(value = "periodFilterCriteriaController")
+@Scope(value = "globalSession")
 public class PeriodFilterCriteriaControllerImpl extends AbstractBbvaController implements
 		PeriodFilterCriteriaController {
 
@@ -31,7 +34,10 @@ public class PeriodFilterCriteriaControllerImpl extends AbstractBbvaController i
 	 */
 	private EnumPeriodType period;
 
-	// private String period;
+	/**
+	 * 
+	 */
+	private List<MultiValueGroup> multiValuePeriod;
 
 	/**
 	 * 
@@ -44,6 +50,11 @@ public class PeriodFilterCriteriaControllerImpl extends AbstractBbvaController i
 	@Resource(name = "multiValueGroupFacade")
 	private transient MultiValueGroupFacade multiValueGroupFacade;
 
+	@PostConstruct
+	public void init() {
+		this.multiValuePeriod = this.getListMultiValuePeriod();
+	}
+
 	/**
 	 * Método que obtiene los items del combo filtro en grafica cuentas
 	 */
@@ -51,14 +62,6 @@ public class PeriodFilterCriteriaControllerImpl extends AbstractBbvaController i
 	public List<MultiValueGroup> getListMultiValuePeriod() {
 		return this.multiValueGroupFacade.getMultiValueTypes(LIST_CHECK_STATUS);
 	}
-
-	// public String getPeriod() {
-	// return period;
-	// }
-	//
-	// public void setPeriod(String period) {
-	// this.period = period;
-	// }
 
 	/**
 	 * @return
@@ -72,6 +75,13 @@ public class PeriodFilterCriteriaControllerImpl extends AbstractBbvaController i
 	 */
 	public void setPeriod(final EnumPeriodType period) {
 		this.period = period;
+	}
+
+	/**
+	 * @return
+	 */
+	public List<MultiValueGroup> getMultiValuePeriod() {
+		return multiValuePeriod;
 	}
 
 }

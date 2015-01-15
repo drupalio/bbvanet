@@ -51,7 +51,7 @@ public class MovementsResumeFacadeImpl extends AbstractBbvaFacade implements Mov
 			return globalMovements;
 		} else {
 			// Pasar FilQL
-			String filter = "?$filter=(" + fiqlService.getFiqlQueryByDateRange(dateRange) + ")";
+			String filter = fiqlService.getFiqlQueryByDateRange(dateRange);
 			final List<AccMovementsResume> response = this.customerService.listAccountsMovementsResume(customerId,
 					filter);
 			globalMovements.setMovementsResumeDto(globalResumeMovementsMapper.map(response));

@@ -15,16 +15,13 @@
 </composite:interface>
 
 <composite:implementation>
-
-
-	<h:form>
-		
-		<div id="chart1_4"></div>
-
-	</h:form>
-	
+	<h:form id="account" >	
+			<div id="chart1_4"></div>
 	<script>
 	
+	$(document).ready(function() {
+
+	var chart1_4;	
 	var payTotalColums = [];
 	var balanceTotalColums = [];
 	var chargeTotalColums = [];
@@ -44,7 +41,7 @@
 	xColumns.push("x");
 	
 	//Itera lista de abonos
-	<c:forEach var="barLineItemUI" items="${cc.attrs.barLineUIList.paymentList}">
+	<c:forEach var="barLineItemUI" items="${cc.attrs.barLineUIList.paymentList}" varStatus="status" >
 	payTotalColums.push("${barLineItemUI.value.amount}");
 	xColumns.push("${barLineItemUI.month}");
 	</c:forEach>
@@ -57,8 +54,7 @@
 	chargeTotalColums.push("${barLineItemUI.value.amount}");
 	</c:forEach>
 	
-	
-			var chart1_4 = c3.generate({
+	chart1_4 = c3.generate({
 				bindto: '#chart1_4',
 				tooltip: {
 			        grouped: false 
@@ -110,9 +106,9 @@
 		    }
 			
 		});
-	//};
+	});
 </script>
-
+</h:form>
 
 </composite:implementation>
 </html>
