@@ -11,16 +11,14 @@ import com.bbva.net.back.model.globalposition.ProductDto;
 import com.bbva.net.back.model.globalposition.RotatingAccountDto;
 import com.bbva.net.core.pattern.VisitorCommand;
 
-public abstract class ProductDTOVisitorCommand extends
-		VisitorCommand<ProductDto> {
+public abstract class ProductDTOVisitorCommand extends VisitorCommand<ProductDto> {
 
 	public ProductDTOVisitorCommand(List<ProductDto> list) {
 		super(list);
 	}
 
 	/*
-	 * ^********************************* ABSTRACT METHOD
-	 * ********************************
+	 * ^********************************* ABSTRACT METHOD ********************************
 	 */
 
 	/**
@@ -61,22 +59,22 @@ public abstract class ProductDTOVisitorCommand extends
 
 		switch (productDTO.getTypeProd()) {
 		case PC:
-			this.execute((AccountDto) productDTO);
+			this.execute((AccountDto)productDTO);
 			break;
 		case AQ:
-			this.execute((AdquirenceAccountDto) productDTO);
+			this.execute((AdquirenceAccountDto)productDTO);
 			break;
 		case TC:
-			this.execute((CreditCardDto) productDTO);
+			this.execute((CreditCardDto)productDTO);
 			break;
 		case RQ:
-			this.execute((RotatingAccountDto) productDTO);
+			this.execute((RotatingAccountDto)productDTO);
 			break;
 		case LI:
-			this.execute((LeasingDto) productDTO);
+			this.execute((LeasingDto)productDTO);
 			break;
 		case LO:
-			this.execute((LoanDto) productDTO);
+			this.execute((LoanDto)productDTO);
 			break;
 		case SI:
 			this.execute(productDTO);

@@ -4,6 +4,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/webflow 
     http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
 
+<var name="recoverPassController" class="com.bbva.net.front.controller.impl.RecoverPasswordControllerImpl"/>
 
 	<view-state id="detailAccounts">
 		<transition on="start" to="embedded-flow" />

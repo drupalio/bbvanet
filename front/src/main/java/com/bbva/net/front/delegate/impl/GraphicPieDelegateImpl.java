@@ -38,6 +38,7 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 	 * @param cardsCharges
 	 * @return
 	 */
+	@Override
 	public PieConfigUI getCardGraphic(final List<CardsChargesDto> cardsCharges) {
 		final PieConfigUI assetPie = new PieConfigUI();
 		assetPie.setHeaderCenter("Pesos ($)");

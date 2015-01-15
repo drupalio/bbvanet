@@ -9,9 +9,13 @@
 
 	<h:form id="mainForm">
 
-		<p:commandButton styleClass="btn btn-form" type="submit"
-			value="#{msg['button.cancel']}" action="confirm"
-			onclick="PF('employeeSearch').hide();" />
+		<bbvaMessage:recoverContent>
+			<bbvaMessage:recoverHead title="#{msg['title.retrieveYourPassword']}"
+				pointOne="#{msg['text.userNewDigitalKey']}"
+				pointTwo="#{msg['text.confirmation']}" />
+			<bbvaMessage:dialogCheck />
+		</bbvaMessage:recoverContent>
+
 
 	</h:form>
 </ui:composition>

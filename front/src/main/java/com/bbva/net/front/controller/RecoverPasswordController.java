@@ -1,6 +1,6 @@
 package com.bbva.net.front.controller;
 
-public interface UserRecoverPassword {
+public interface RecoverPasswordController {
 
 	public String showMessageCheck();
 
