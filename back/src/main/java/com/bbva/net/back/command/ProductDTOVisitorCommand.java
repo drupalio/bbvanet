@@ -17,7 +17,9 @@ public abstract class ProductDTOVisitorCommand extends VisitorCommand<ProductDto
 		super(list);
 	}
 
-	/* ^********************************* ABSTRACT METHOD ******************************** */
+	/*
+	 * ^********************************* ABSTRACT METHOD ********************************
+	 */
 
 	/**
 	 * @param account
@@ -62,7 +64,7 @@ public abstract class ProductDTOVisitorCommand extends VisitorCommand<ProductDto
 		case AQ:
 			this.execute((AdquirenceAccountDto)productDTO);
 			break;
-		case TDC:
+		case TC:
 			this.execute((CreditCardDto)productDTO);
 			break;
 		case RQ:

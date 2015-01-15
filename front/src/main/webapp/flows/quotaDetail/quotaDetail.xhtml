@@ -43,35 +43,48 @@
 						numCuenta="0013-0073-00-9612782465"
 						tipoPrestamo="#{msg['title.rotaryQuota']}" />
 					<bbvaQuotaHeader:quotaDetailGraphic
-						textUp="#{msg['text.outstandingBalance']}" valueUp="12.000.000"
-						textDown="#{msg['text.amountRequested']}" valueDown="30.000.000"
+						textUp="#{msg['text.outstandingBalance']}"
+						valueUp="#{quotaController.quotaDetailDto.outstandingBalance}"
+						textDown="#{msg['text.amountRequested']}"
+						valueDown="#{quotaController.quotaDetailDto.amountRequested}"
 						valueGrphic="10" />
 					<bbvaQuotaHeader:quotaDetailHeaderRight
-						textUp="#{msg['text.outstandingBalance']}" valueUp="12.000.000"
-						textDown="#{msg['text.amountRequested']}" valueDown="30.000.000" />
+						textUp="#{msg['text.outstandingBalance']}"
+						valueUp="#{quotaController.quotaDetailDto.outstandingBalance}"
+						textDown="#{msg['text.amountRequested']}"
+						valueDown="#{quotaController.quotaDetailDto.amountRequested}" />
 				</bbvaQuotaHeader:quotaDetailHeader>
 				<bbvaQuotaHeader:quotaDetailHeaderBody>
 					<bbvaQuotaHeader:quotaDetailHeaderBodyContainer type="left">
 						<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem
-							text="#{msg['text.numberShares']}" value="12" />
+							text="#{msg['text.numberShares']}"
+							value="#{quotaController.quotaDetailDto.numberOfShares}" />
 						<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem
-							text="#{msg['text.dueDate']}" value="05/08/2014" />
+							text="#{msg['text.dueDate']}"
+							value="#{quotaController.quotaDetailDto.dateMaturity}" />
 						<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem
-							text="#{msg['text.datePayment']}" value="30/05/2014" />
+							text="#{msg['text.datePayment']}"
+							value="#{quotaController.quotaDetailDto.datePayment}" />
 						<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem
-							text="#{msg['text.datePreviousCut']}" value="05/08/2014" />
+							text="#{msg['text.datePreviousCut']}"
+							value="#{quotaController.quotaDetailDto.datePrevious}" />
 						<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem
-							text="#{msg['text.search.by.number.status']}" value="Normal" />
+							text="#{msg['text.search.by.number.status']}"
+							value="#{quotaController.quotaDetailDto.state}" />
 					</bbvaQuotaHeader:quotaDetailHeaderBodyContainer>
 					<bbvaQuotaHeader:quotaDetailHeaderBodyContainer type="right">
 						<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem
-							text="#{msg['text.minimumPayment']}" value="$ 0.00" />
+							text="#{msg['text.minimumPayment']}"
+							value="#{quotaController.quotaDetailDto.minimumPayment}" />
 						<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem
-							text="#{msg['text.hoursCollections']}" value="0.00 hrs" />
+							text="#{msg['text.hoursCollections']}"
+							value="#{collectionSchedule}" />
 						<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem
-							text="#{msg['text.account.balance.label']}" value="$ 18.000.00" />
+							text="#{msg['text.account.balance.label']}"
+							value="#{quotaController.quotaDetailDto.availableBalance}" />
 						<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem
-							text="#{msg['text.totalBalancePreviousCut']}" value="$ 20.000.00" />
+							text="#{msg['text.totalBalancePreviousCut']}"
+							value="#{quotaController.quotaDetailDto.balancePrevious}" />
 					</bbvaQuotaHeader:quotaDetailHeaderBodyContainer>
 				</bbvaQuotaHeader:quotaDetailHeaderBody>
 			</bbvaQuotaHeader:quotaDetail>

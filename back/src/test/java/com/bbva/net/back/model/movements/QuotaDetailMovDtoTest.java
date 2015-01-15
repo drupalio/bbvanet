@@ -1,4 +1,4 @@
-package com.bbva.net.back.model.quota;
+package com.bbva.net.back.model.movements;
 
 import com.bbva.net.back.model.movements.QuotaDetailMovDto;
 import com.bbva.net.core.test.AbstractBbvaDTOTest;

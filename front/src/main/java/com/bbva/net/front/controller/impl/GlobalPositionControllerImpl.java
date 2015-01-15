@@ -31,8 +31,7 @@ import com.bbva.net.front.ui.globalposition.AccountBarLineUI;
 import com.bbva.net.front.ui.globalposition.SituationPiesUI;
 import com.bbva.net.front.ui.pie.PieConfigUI;
 
-@ManagedBean
-@ViewScoped
+
 public class GlobalPositionControllerImpl extends AbstractBbvaController implements GlobalPositionController {
 
 	private static final long serialVersionUID = 5726824668267606699L;

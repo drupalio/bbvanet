@@ -14,10 +14,45 @@
 
 	<context:spring-configured />
 	<context:component-scan base-package="com.bbva.net.webservices" />
-	<context:property-placeholder location="classpath*:*.properties"/>
-	
+	<context:property-placeholder location="classpath*:*.properties" />
+
+
+	<bean id="jacksonObjectMapper" class="org.codehaus.jackson.map.ObjectMapper" />
+	<bean
+		class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetObject" ref="jacksonObjectMapper" />
+		<property name="targetMethod" value="configure" />
+		<property name="arguments">
+			<list>
+				<value type="org.codehaus.jackson.map.DeserializationConfig.Feature">FAIL_ON_UNKNOWN_PROPERTIES</value>
+				<value>false</value>
+			</list>
+		</property>
+	</bean>
 
 	<bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
+		<property name="messageConverters">
+			<list>
+				<bean
+					class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				</bean>
+			</list>
+		</property>
 	</bean>
+
+
+	<bean id="factoryBean" class="org.apache.cxf.jaxrs.client.JAXRSClientFactoryBean">
+		<property name="providers">
+			<list>
+				<bean class="org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider">
+					<constructor-arg ref="jacksonObjectMapper" />
+					<constructor-arg>
+						<value></value>
+					</constructor-arg>
+				</bean>
+			</list>
+		</property>
+	</bean>
+
 
 </beans>   

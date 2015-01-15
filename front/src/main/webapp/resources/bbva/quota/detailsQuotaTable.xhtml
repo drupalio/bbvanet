@@ -37,9 +37,8 @@
 					selectionMode="single" rowKey="#{icuenta.productId}"
 					rowIndexVar="rowIndex">
 
-					<p:ajax event="rowSelect" listener="#{cc.attrs.controller.onProductSelected}"/>
-      							
-					<p:ajax event="rowUnselect" />
+					<p:ajax event="rowSelect"
+						listener="#{cc.attrs.controller.onProductSelected}" />
 
 					 <p:column>
       					<p:rowToggler rendered="true" />
@@ -73,15 +72,11 @@
 							value="#{icuenta.totalCash}" />
 
 					</p:column>
-					
-					 <p:rowExpansion>
-					 	<bbvaDetailMotion:tableContent />	
-					 </p:rowExpansion>
-				</p:dataTable>
 
-				<p:dialog widgetVar="dialog3">
-					<bbvaDetailMovents:tableContent />
-				</p:dialog>
+					<p:rowExpansion>
+						<bbvaDetailMotion:tableContent />
+					</p:rowExpansion>
+				</p:dataTable>
 			</div>
 
 			<footer class="detail-table-footer">
@@ -93,9 +88,6 @@
 			</footer>
 		</article>
 	</h:form>
-	
-	
-	
 </composite:implementation>
 
 </html>

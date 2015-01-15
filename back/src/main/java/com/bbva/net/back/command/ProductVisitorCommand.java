@@ -66,7 +66,7 @@ public abstract class ProductVisitorCommand extends VisitorCommand<Product> {
 		case AQ:
 			this.executeAdquirenceAccount(product);
 			break;
-		case TDC:
+		case TC:
 			this.executeCredictCard(product);
 			break;
 		case RQ:

@@ -1,15 +1,14 @@
 package com.bbva.net.webservices.core.pattern;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.ws.rs.core.Response;
 
+import org.apache.cxf.jaxrs.client.JAXRSClientFactoryBean;
 import org.apache.cxf.jaxrs.client.WebClient;
 import org.codehaus.jackson.JsonParseException;
-import org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,6 +25,12 @@ public abstract class AbstractBbvaRestService {
 
 	@Resource(name = "restTemplate")
 	protected RestTemplate restTemplate;
+
+	@Resource(name = "factoryBean")
+	private JAXRSClientFactoryBean factoryBean;
+
+	@Value("${rest.rotaryQuota.base}")
+	protected String URL_BASE_ROTARYQUOTA;
 
 	@Value("${rest.base.executive.url}")
 	protected String URL_BASE_EXECUTIVE;
@@ -59,13 +64,11 @@ public abstract class AbstractBbvaRestService {
 	 * @return
 	 */
 	protected WebClient getJsonWebClient(String URL) {
-
-		List<Object> providers = new ArrayList<Object>();
-		providers.add(new JacksonJaxbJsonProvider());
-		WebClient webClient = WebClient.create(URL);
+		factoryBean.setAddress(URL);
+		final WebClient webClient = factoryBean.createWebClient();
 		webClient.accept("application/json").type("application/json");
-
 		return webClient;
+
 	}
 
 	/**
@@ -90,6 +93,13 @@ public abstract class AbstractBbvaRestService {
 	 */
 	public void setRestTemplate(RestTemplate restTemplate) {
 		this.restTemplate = restTemplate;
+	}
+
+	/**
+	 * @param factoryBean
+	 */
+	public void setFactoryBean(JAXRSClientFactoryBean factoryBean) {
+		this.factoryBean = factoryBean;
 	}
 
 	/**

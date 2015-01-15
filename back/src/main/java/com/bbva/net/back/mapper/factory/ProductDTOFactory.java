@@ -35,7 +35,7 @@ public class ProductDTOFactory implements ObjectFactory<ProductDto> {
 		case AQ:
 			productDto = new AdquirenceAccountDto();
 			break;
-		case TDC:
+		case TC:
 			productDto = new CreditCardDto();
 			break;
 		case RQ:

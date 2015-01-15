@@ -6,8 +6,11 @@ package com.bbva.net.front.controller.impl;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.AjaxBehaviorEvent;
 
+import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
 import org.springframework.stereotype.Controller;
+import org.springframework.webflow.engine.RequestControlContext;
+import org.springframework.webflow.execution.Event;
 
 import com.bbva.net.back.model.accounts.TermsAccountsDto;
 import com.bbva.net.back.model.citeriaMovements.MovementCriteriaDto;
@@ -21,7 +24,8 @@ import com.bbva.net.front.core.AbstractBbvaController;
  * @author User
  */
 @Controller(value = "quotaController")
-public class QuotaControllerImpl extends AbstractBbvaController implements QuotaController {
+public class QuotaControllerImpl extends AbstractBbvaController implements
+		QuotaController {
 
 	private static final long serialVersionUID = 1L;
 
@@ -34,6 +38,8 @@ public class QuotaControllerImpl extends AbstractBbvaController implements Quota
 	private MovementCriteriaDto movementCriteria = new MovementCriteriaDto();
 
 	private PersonalizeAccountDto personalizeAccountDto = new PersonalizeAccountDto();
+
+	private QuotaDetailDto quotaDetailDto = new QuotaDetailDto();
 
 	@Override
 	public TermsAccountsDto getAllConditions() {
@@ -72,11 +78,13 @@ public class QuotaControllerImpl extends AbstractBbvaController implements Quota
 		if (movementCriteria.getSelectDate().equals(CONCRETE_DATE)) {
 			setDisabledCalendar(false);
 			setDisabledButtonDate(false);
-			System.out.println("if " + isDisabledCalendar() + isDisabledButtonDate());
+			System.out.println("if " + isDisabledCalendar()
+					+ isDisabledButtonDate());
 		} else {
 			setDisabledCalendar(true);
 			setDisabledButtonDate(false);
-			System.out.println("else" + isDisabledCalendar() + isDisabledButtonDate());
+			System.out.println("else" + isDisabledCalendar()
+					+ isDisabledButtonDate());
 		}
 	}
 
@@ -86,7 +94,7 @@ public class QuotaControllerImpl extends AbstractBbvaController implements Quota
 	}
 
 	public RotatingAccountDto getSelectedProduct() {
-		return (RotatingAccountDto)super.getSelectedProduct();
+		return (RotatingAccountDto) super.getSelectedProduct();
 	}
 
 	// @Override
@@ -102,7 +110,8 @@ public class QuotaControllerImpl extends AbstractBbvaController implements Quota
 	}
 
 	/**
-	 * @param disabledCalendar the disabledCalendar to set
+	 * @param disabledCalendar
+	 *            the disabledCalendar to set
 	 */
 	public void setDisabledCalendar(boolean disabledCalendar) {
 		this.disabledCalendar = disabledCalendar;
@@ -116,7 +125,8 @@ public class QuotaControllerImpl extends AbstractBbvaController implements Quota
 	}
 
 	/**
-	 * @param disabledButtonDate the disabledButtonDate to set
+	 * @param disabledButtonDate
+	 *            the disabledButtonDate to set
 	 */
 	public void setDisabledButtonDate(boolean disabledButtonDate) {
 		this.disabledButtonDate = disabledButtonDate;
@@ -131,7 +141,8 @@ public class QuotaControllerImpl extends AbstractBbvaController implements Quota
 	}
 
 	/**
-	 * @param movementCriteria the movementCriteria to set
+	 * @param movementCriteria
+	 *            the movementCriteria to set
 	 */
 	public void setMovementCriteria(MovementCriteriaDto movementCriteria) {
 		this.movementCriteria = movementCriteria;
@@ -145,16 +156,23 @@ public class QuotaControllerImpl extends AbstractBbvaController implements Quota
 	}
 
 	/**
-	 * @param personalizeAccountDto the personalizeAccountDto to set
+	 * @param personalizeAccountDto
+	 *            the personalizeAccountDto to set
 	 */
-	public void setPersonalizeAccountDto(PersonalizeAccountDto personalizeAccountDto) {
+	public void setPersonalizeAccountDto(
+			PersonalizeAccountDto personalizeAccountDto) {
 		this.personalizeAccountDto = personalizeAccountDto;
 	}
 
 	@Override
 	public QuotaDetailDto getQuotaDetail() {
-
-		return null;
+		return new QuotaDetailDto();
 	}
 
+	/**
+	 * @return the quotaDetailDto
+	 */
+	public QuotaDetailDto getQuotaDetailDto() {
+		return quotaDetailDto;
+	}
 }
