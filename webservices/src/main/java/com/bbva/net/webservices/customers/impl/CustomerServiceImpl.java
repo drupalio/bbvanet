@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.cxf.jaxrs.client.WebClient;
 import org.springframework.beans.factory.annotation.Value;
 
 import com.bbva.czic.dto.net.AccMovementsResume;
@@ -24,11 +25,20 @@ public class CustomerServiceImpl extends AbstractBbvaRestService implements Cust
 	@Override
 	public List<AccMovementsResume> listAccountsMovementsResume(String customerId, String filter) {
 
-		final AccMovementsResume[] customers = restTemplate.getForObject(URL_BASE_CUSTOMER + customerId + URL_CUSTOMER
-				+ filter, AccMovementsResume[].class);
-		final List<AccMovementsResume> customerResult = new ArrayList<AccMovementsResume>();
-		CollectionUtils.addAll(customerResult, customers);
-		return customerResult;
+		WebClient wc = getJsonWebClient(URL_BASE_CUSTOMER + customerId + URL_CUSTOMER);
+		// WebClient wc = WebClient.create(URL_BASE_CUSTOMER + customerId + URL_CUSTOMER);
+		wc.query("_s", "");
+		// find all the books with id greater than 123
+		@SuppressWarnings("unchecked")
+		List<AccMovementsResume> accMovementsResume = (List<AccMovementsResume>)wc
+				.getCollection(AccMovementsResume.class);
+
+		return accMovementsResume;
+		/*
+		 * final AccMovementsResume[] customers = restTemplate.getForObject(URL_BASE_CUSTOMER + customerId + URL_CUSTOMER +
+		 * filter, AccMovementsResume[].class); final List<AccMovementsResume> customerResult = new
+		 * ArrayList<AccMovementsResume>(); CollectionUtils.addAll(customerResult, customers); return customerResult;
+		 */
 	}
 
 	@Override

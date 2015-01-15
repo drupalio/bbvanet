@@ -58,11 +58,11 @@ public abstract class AbstractBbvaRestService {
 	 * @param URL
 	 * @return
 	 */
-	protected WebClient getJsonWebClient(final String URL) {
+	protected WebClient getJsonWebClient(String URL) {
 
-		final List<Object> providers = new ArrayList<Object>();
+		List<Object> providers = new ArrayList<Object>();
 		providers.add(new JacksonJaxbJsonProvider());
-		final WebClient webClient = WebClient.create(URL);
+		WebClient webClient = WebClient.create(URL);
 		webClient.accept("application/json").type("application/json");
 
 		return webClient;
