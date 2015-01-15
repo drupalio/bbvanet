@@ -119,31 +119,6 @@
 
 	<ui:define name="contentRight">
 
-		<bbvaSituation:globalSituationPanel />
-
-		<bbvaAlert:alertsPanel header="Alertas y Novedades" numAlerts="8" />
-
-		<h:form>
-
-			<bbvaInput:selectOneMenuLikes label="qwe"
-				value="#{globalPositionController.selectedLike}"
-				valueList="#{globalPositionController.listPrb}"/>
-
-			<p:inputText>
-				<p:ajax event="keyup" listener="#{globalPositionController.onKeyUp}" />
-			</p:inputText>
-
-			<h:outputLabel value="#{prueba.name}"></h:outputLabel>
-			<button jsf:action="refresh">
-				ACCIÓN
-				<f:ajax execute="@form" render="@form" />
-			</button>
-			<p:outputLabel>Selector</p:outputLabel>
-
-			<bbvaInput:comboSelected width="col-md-6" />
-
-
-		</h:form>
 
 	</ui:define>
 
