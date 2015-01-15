@@ -9,10 +9,12 @@ import com.bbva.net.back.facade.CardsFacade;
 import com.bbva.net.back.facade.FundsTypeFacade;
 import com.bbva.net.back.facade.GlobalPositionFacade;
 import com.bbva.net.back.facade.MovementsResumeFacade;
+import com.bbva.net.back.model.commons.DateRangeDto;
 import com.bbva.net.back.model.globalposition.GlobalProductsDto;
 import com.bbva.net.back.model.movements.GlobalResumeMovementsDto;
 import com.bbva.net.front.delegate.GraphicBarLineDelegate;
 import com.bbva.net.front.delegate.GraphicPieDelegate;
+import com.bbva.net.front.ui.pie.PieConfigUI;
 
 /**
  * @author Entelgy
@@ -122,6 +124,18 @@ public class GlobalPositionControllerImplTest {
 
 	}
 
+	@Test
+	public void checkOnComboFilterGraphic() {
+		DateRangeDto dateRange = Mockito.mock(DateRangeDto.class);
+		PieConfigUI prueba = Mockito.mock(PieConfigUI.class);
+		globalPositionController.setCardSelected("Todas las tarjetas");
+		// Mockito.when(MessagesHelper.INSTANCE.getString("text.allCards")).thenReturn("Todas las tarjetas");
+		Mockito.when(graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(DEFAULT_USER, dateRange)))
+				.thenReturn(prueba);
+		// Mockito.verify(graphicPieDelegate, Mockito.atLeastOnce()).getCardGraphic(
+		// globalPositionController.onComboSelectedCard();
+	}
+
 	/**
 	 * 
 	 */
@@ -130,5 +144,4 @@ public class GlobalPositionControllerImplTest {
 		// this.globalPositionController.getCustomerProducts();
 
 	}
-
 }

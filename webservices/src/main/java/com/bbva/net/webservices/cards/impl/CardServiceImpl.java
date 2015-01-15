@@ -21,7 +21,6 @@ public class CardServiceImpl extends AbstractBbvaRestService implements CardServ
 	@Override
 	public List<CardCharge> getCreditCardCharges(String id, String $filter, String $fields, String $expands,
 			String $sort) {
-
 		final CardCharge[] products = restTemplate.getForObject(URL_BASE_CARDS + id + URL_CARDCHARGES,
 				CardCharge[].class);
 		final List<CardCharge> productsResult = new ArrayList<CardCharge>();

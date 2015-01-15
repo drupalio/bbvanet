@@ -45,6 +45,6 @@ public interface CheckBookController {
 	 * 
 	 * @return List<MultiValueGroup>
 	 */
-	List<MultiValueGroup> getListMultiValueLikes();
+	List<MultiValueGroup> getListMultiValueChecks();
 
 }

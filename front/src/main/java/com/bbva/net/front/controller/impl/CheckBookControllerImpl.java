@@ -72,7 +72,7 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 
 	@PostConstruct
 	public void init() {
-		this.multiValueList = this.getListMultiValueLikes();
+		this.multiValueList = this.getListMultiValueChecks();
 	}
 
 	/**
@@ -123,7 +123,7 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 	}
 
 	@Override
-	public List<MultiValueGroup> getListMultiValueLikes() {
+	public List<MultiValueGroup> getListMultiValueChecks() {
 		return this.multiValueGroupFacade.getMultiValueTypes(LIST_CHECK_STATUS);
 	}
 

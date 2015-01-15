@@ -35,21 +35,26 @@
 		//function initChart() {
 
 			var totalColums = [];
+			var colorsLegend = [];
 			var label;
 			var colums;
 			var values;
 			var color;
+			var colors;
 
 			<c:forEach var="pieItemUI" items="${cc.attrs.pieConfigUI.pieItemUIList}">
 			label = ("${pieItemUI.textLegend}");
 			values = ("${pieItemUI.value}");
-			color = ("${pieItemUI.color}");
 			colums = [ [ label ], [ values ] ];
 			totalColums.push(colums);
+
+			color = ("${pieItemUI.color}");
+			colorsLegend.push(color);
 			</c:forEach>
 
 			var chart = c3.generate({
 				bindto: '#chart2_2',
+				//size: { height: 330, width: 400 },
 				data : {
 					
 					size: { height: 240, width: 480 },
@@ -65,7 +70,10 @@
 					onmouseout : function(d, i) {
 						console.log("onmouseout", d, i);
 					},
-				}
+				},
+				color : {
+					pattern : colorsLegend
+				},
 			});
 
 		//};

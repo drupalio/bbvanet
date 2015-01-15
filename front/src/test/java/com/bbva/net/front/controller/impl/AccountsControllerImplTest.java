@@ -62,7 +62,8 @@ public class AccountsControllerImplTest {
 		Mockito.when(accountsFacade.getAccountsByUser(DEFAULT_USER)).thenThrow(new RestClientException(""));
 
 		// Invocación al método
-		this.accountsController.getCustomerAccounts();
+		final List<AccountDto> customerAccounts = this.accountsController.getCustomerAccounts();
+		Assert.assertNull(customerAccounts);
 
 	}
 

@@ -5552,58 +5552,16 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 }
 
 */
-</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200"><con:settings/></con:response></con:restMockAction><con:restMockAction name="/czic/customers/V01/123/accounts/movementsResume" method="GET" resourcePath="/czic/customers/V01/123/accounts/movementsResume"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>// Match based on query parameter
-//def queryString = mockRequest.getRequest().getQueryString()
-//log.info "QueryString: " + queryString
-/*
-if( queryString.contains("filter") )
+</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200"><con:settings/></con:response></con:restMockAction><con:restMockAction name="/czic/customers/V01/123/accounts/movementsResume" method="GET" resourcePath="/czic/customers/V01/123/accounts/movementsResume"><con:settings/><con:defaultResponse>No_Filter_response</con:defaultResponse><con:dispatchStyle>SCRIPT</con:dispatchStyle><con:dispatchPath>def requestMock = mockRequest.getRequest().toString()
+log.info "*** "+requestMock
+if( requestMock.contains("filter") )
 {
-    // return the name of the response you want to dispatch
+	log.info "Ejecutando con Filtro "
     return "Filter_response"
 }else{
-	return "Response1"
-}*/
-/*
-// Examples showing how to match based on path, query param and header
-// Match based on path
-def requestPath = mockRequest.getPath()
-log.info "Path: "+ requestPath
-
-if( requestPath.contains("json") )
-{
-    // return the name of the response you want to dispatch
-    return "JSON Response"
-}
-
-
-// Match based on query parameter
-def queryString = mockRequest.getRequest().getQueryString()
-log.info "QueryString: " + queryString
-
-if( queryString.contains("stockholm") )
-{
-    // return the name of the response you want to dispatch
-    return "Response Stockholm"
-}
-else if( queryString.contains("london") )
-{
-    // return the name of the response you want to dispatch
-    return "Response London"
-}
-
-
-// Match based on header
-def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
-log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
-
-if( acceptEncodingHeadeList.contains("gzip,deflate") )
-{
-    // return the name of the response you want to dispatch
-    return "GZiped Response"
-}
-
-*/
-</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
+	log.info "Ejecutando SIN Filtro "
+	return "No_Filter_response"
+}</con:dispatchPath><con:response name="No_Filter_response" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
 	"income": {
 		"amount": 10,
 		"currency": "$"
@@ -5788,41 +5746,41 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		"currency": "$"
 	},
 	"outcome": {
-		"amount": -40,
+		"amount": -30,
 		"currency": "$"
 	},
 	"balance": {
-		"amount": 12,
+		"amount": 10,
 		"currency": "$"
 	},
 	"month": "JANUARY"
 },
 {
 	"income": {
-		"amount": 15,
+		"amount": 10,
 		"currency": "$"
 	},
 	"outcome": {
-		"amount": -60,
+		"amount": -30,
 		"currency": "$"
 	},
 	"balance": {
-		"amount": 18,
+		"amount": 20,
 		"currency": "$"
 	},
 	"month": "FEBRUARY"
 },
 {
 	"income": {
-		"amount": 20,
+		"amount": 30,
 		"currency": "$"
 	},
 	"outcome": {
-		"amount": -8,
+		"amount": -10,
 		"currency": "$"
 	},
 	"balance": {
-		"amount": 2,
+		"amount": 25,
 		"currency": "$"
 	},
 	"month": "MARCH"
@@ -5833,44 +5791,14 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		"currency": "$"
 	},
 	"outcome": {
-		"amount": -10,
-		"currency": "$"
-	},
-	"balance": {
-		"amount": 30,
-		"currency": "$"
-	},
-	"month": "APRIL"
-},
-{
-	"income": {
-		"amount": 30,
-		"currency": "$"
-	},
-	"outcome": {
-		"amount": -12,
+		"amount": -20,
 		"currency": "$"
 	},
 	"balance": {
 		"amount": 10,
 		"currency": "$"
 	},
-	"month": "MAY"
-},
-{
-	"income": {
-		"amount": 35,
-		"currency": "$"
-	},
-	"outcome": {
-		"amount": -14,
-		"currency": "$"
-	},
-	"balance": {
-		"amount": 42,
-		"currency": "$"
-	},
-	"month": "JUNE"
+	"month": "APRIL"
 },
 {
 	"income": {
@@ -5878,78 +5806,33 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		"currency": "$"
 	},
 	"outcome": {
-		"amount": -16,
+		"amount": -10,
 		"currency": "$"
 	},
 	"balance": {
-		"amount": 48,
+		"amount": 40,
 		"currency": "$"
 	},
-	"month": "JULY"
+	"month": "MAY"
 },
 {
 	"income": {
-		"amount": 45,
+		"amount": 25,
 		"currency": "$"
 	},
 	"outcome": {
-		"amount": -18,
+		"amount": -15,
 		"currency": "$"
 	},
 	"balance": {
-		"amount": 15,
+		"amount": 22,
 		"currency": "$"
 	},
-	"month": "AUGUST"
-},
-{
-	"income": {
-		"amount": 50,
-		"currency": "$"
-	},
-	"outcome": {
-		"amount": -20,
-		"currency": "$"
-	},
-	"balance": {
-		"amount": 60,
-		"currency": "$"
-	},
-	"month": "SEPTEMBER"
-},
-{
-	"income": {
-		"amount": 55,
-		"currency": "$"
-	},
-	"outcome": {
-		"amount": -22,
-		"currency": "$"
-	},
-	"balance": {
-		"amount": 66,
-		"currency": "$"
-	},
-	"month": "OCTOBER"
+	"month": "JUNE"
 },
 {
 	"income": {
 		"amount": 60,
-		"currency": "$"
-	},
-	"outcome": {
-		"amount": -24,
-		"currency": "$"
-	},
-	"balance": {
-		"amount": 72,
-		"currency": "$"
-	},
-	"month": "NOVEMBER"
-},
-{
-	"income": {
-		"amount": 65,
 		"currency": "$"
 	},
 	"outcome": {
@@ -5957,10 +5840,70 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		"currency": "$"
 	},
 	"balance": {
-		"amount": 28,
+		"amount": 58,
 		"currency": "$"
 	},
-	"month": "DECEMBER"
+	"month": "JULY"
+},
+{
+	"income": {
+		"amount": 10,
+		"currency": "$"
+	},
+	"outcome": {
+		"amount": -20,
+		"currency": "$"
+	},
+	"balance": {
+		"amount": 20,
+		"currency": "$"
+	},
+	"month": "AUGUST"
+},
+{
+	"income": {
+		"amount": 40,
+		"currency": "$"
+	},
+	"outcome": {
+		"amount": -5,
+		"currency": "$"
+	},
+	"balance": {
+		"amount": 30,
+		"currency": "$"
+	},
+	"month": "SEPTEMBER"
+},
+{
+	"income": {
+		"amount": 15,
+		"currency": "$"
+	},
+	"outcome": {
+		"amount": -25,
+		"currency": "$"
+	},
+	"balance": {
+		"amount": 70,
+		"currency": "$"
+	},
+	"month": "OCTOBER"
+},
+{
+	"income": {
+		"amount": 50,
+		"currency": "$"
+	},
+	"outcome": {
+		"amount": -14,
+		"currency": "$"
+	},
+	"balance": {
+		"amount": 55,
+		"currency": "$"
+	},
+	"month": "NOVEMBER"
 }]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/customers/V01" method="GET" resourcePath="/czic/customers/V01"><con:settings/><con:defaultResponse xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Examples showing how to match based on path, query param and header
 // Match based on path

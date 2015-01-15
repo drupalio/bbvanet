@@ -33,7 +33,7 @@ public class FiqlServiceImpl implements FiqlService {
 		}
 
 		final SearchConditionBuilder filter = SearchConditionBuilder.instance(FIQL_LANGUAGE);
-		return filter.is(START_DATE).notBefore(formatDate(dateRange.getDateSince())).and().is(END_DATE)
+		return filter.is(END_DATE).notBefore(formatDate(dateRange.getDateSince())).and().is(START_DATE)
 				.notAfter(dateRange.getDateTo()).query();
 
 	}

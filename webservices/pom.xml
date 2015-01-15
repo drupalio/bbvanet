@@ -59,6 +59,11 @@
 			<scope>test</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -77,20 +82,64 @@
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-wadl2java-plugin</artifactId>
-			<version>3.0.2</version>
+			<version>3.0.3</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-rt-rs-client</artifactId>
-			<version>3.0.2</version>
+			<version>3.0.3</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-rt-frontend-jaxrs</artifactId>
-			<version>3.0.2</version>
+			<version>3.0.3</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-rs-extension-providers</artifactId>
+			<version>3.0.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxws</artifactId>
+			<version>3.0.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxrs</artifactId>
+			<version>3.0.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-rs-extension-search</artifactId>
+			<version>3.0.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http</artifactId>
+			<version>3.0.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http-jetty</artifactId>
+			<version>3.0.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-testutils</artifactId>
+			<version>3.0.3</version>
+		</dependency>
+
+
 		<!-- jackson 2 -->
 
 		<dependency>
@@ -129,10 +178,13 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.apache.cxf</groupId>
-			<artifactId>cxf-rt-rs-extension-providers</artifactId>
-			<version>3.0.2</version>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-xc</artifactId>
+			<version>1.9.13</version>
 		</dependency>
+
+
+
 		<!-- Mapeador de Objetos Orika -->
 		<dependency>
 			<groupId>ma.glasnost.orika</groupId>
@@ -163,11 +215,11 @@
 									<wadl>src/main/resources/wadl/loan.wadl</wadl>
 									<packagename>com.bbva.net.webservices.loan</packagename>
 								</wadlOption>
-	<!-- <wadlOption> -->
-	<!-- <impl>false</impl> -->
-	<!-- <wadl>src/main/resources/wadl/loan.wadl</wadl> -->
-	<!-- <packagename>com.bbva.net.webservices.loan</packagename> -->
-	<!-- </wadlOption> -->
+								<!-- <wadlOption> -->
+								<!-- <impl>false</impl> -->
+								<!-- <wadl>src/main/resources/wadl/loan.wadl</wadl> -->
+								<!-- <packagename>com.bbva.net.webservices.loan</packagename> -->
+								<!-- </wadlOption> -->
 							</wadlOptions>
 						</configuration>
 						<goals>
