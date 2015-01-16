@@ -1,14 +1,15 @@
+
 package com.bbva.czic.dto.net;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
 
+
 /**
- * <p>
- * Clase Java para Location complex type.
- * <p>
- * El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>Java class for Location complex type.
+ * 
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="Location">
@@ -25,109 +26,143 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Location", propOrder = { "city", "country", "state", "postalAddress", "category" })
+@XmlType(name = "Location", propOrder = {
+    "city",
+    "country",
+    "state",
+    "postalAddress",
+    "category"
+})
 public class Location {
 
-	protected City city;
+    protected City city;
+    protected Country country;
+    protected State state;
+    protected String postalAddress;
+    protected String category;
 
-	protected Country country;
+    /**
+     * Gets the value of the city property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link City }
+     *     
+     */
+    public City getCity() {
+        return city;
+    }
 
-	protected State state;
+    /**
+     * Sets the value of the city property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link City }
+     *     
+     */
+    public void setCity(City value) {
+        this.city = value;
+    }
 
-	protected String postalAddress;
+    /**
+     * Gets the value of the country property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Country }
+     *     
+     */
+    public Country getCountry() {
+        return country;
+    }
 
-	protected String category;
+    /**
+     * Sets the value of the country property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Country }
+     *     
+     */
+    public void setCountry(Country value) {
+        this.country = value;
+    }
 
-	/**
-	 * Obtiene el valor de la propiedad city.
-	 * 
-	 * @return possible object is {@link City }
-	 */
-	public City getCity() {
-		return city;
-	}
+    /**
+     * Gets the value of the state property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link State }
+     *     
+     */
+    public State getState() {
+        return state;
+    }
 
-	/**
-	 * Define el valor de la propiedad city.
-	 * 
-	 * @param value allowed object is {@link City }
-	 */
-	public void setCity(City value) {
-		this.city = value;
-	}
+    /**
+     * Sets the value of the state property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link State }
+     *     
+     */
+    public void setState(State value) {
+        this.state = value;
+    }
 
-	/**
-	 * Obtiene el valor de la propiedad category.
-	 * 
-	 * @return possible object is {@link Country }
-	 */
-	public Country getCountry() {
-		return country;
-	}
+    /**
+     * Gets the value of the postalAddress property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getPostalAddress() {
+        return postalAddress;
+    }
 
-	/**
-	 * Sets the value of the country property.
-	 * 
-	 * @param value allowed object is {@link Country }
-	 */
-	public void setCountry(Country value) {
-		this.country = value;
-	}
+    /**
+     * Sets the value of the postalAddress property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setPostalAddress(String value) {
+        this.postalAddress = value;
+    }
 
-	/**
-	 * Gets the value of the state property.
-	 * 
-	 * @return possible object is {@link State }
-	 */
-	public State getState() {
-		return state;
-	}
+    /**
+     * Gets the value of the category property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getCategory() {
+        return category;
+    }
 
-	/**
-	 * Sets the value of the state property.
-	 * 
-	 * @param value allowed object is {@link State }
-	 */
-	public void setState(State value) {
-		this.state = value;
-	}
-
-	/**
-	 * Gets the value of the postalAddress property.
-	 * 
-	 * @return possible object is {@link String }
-	 */
-	public String getPostalAddress() {
-		return postalAddress;
-	}
-
-	/**
-	 * Sets the value of the postalAddress property.
-	 * 
-	 * @param value allowed object is {@link String }
-	 */
-	public void setPostalAddress(String value) {
-		this.postalAddress = value;
-	}
-
-	/**
-	 * Gets the value of the category property.
-	 * 
-	 * @return possible object is {@link String }
-	 */
-	public String getCategory() {
-		return category;
-	}
-
-	/**
-	 * Define el valor de la propiedad category.
-	 * 
-	 * @param value allowed object is {@link String }
-	 */
-	public void setCategory(String value) {
-		this.category = value;
-	}
+    /**
+     * Sets the value of the category property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setCategory(String value) {
+        this.category = value;
+    }
 
 }
