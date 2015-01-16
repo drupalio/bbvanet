@@ -1,6 +1,5 @@
 package com.bbva.net.front.controller.impl;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,17 +18,20 @@ import com.bbva.net.front.core.AbstractBbvaController;
 
 @Controller(value = "recoverPassController")
 @Scope(value = "globalSession")
-public class RecoverPasswordControllerImpl extends AbstractBbvaController implements RecoverPasswordController {
+public class RecoverPasswordControllerImpl extends AbstractBbvaController
+		implements
+			RecoverPasswordController {
 
 	private static final long serialVersionUID = 6795761532672076491L;
 
 	private static final Integer LIST_DOC_TYPES = 4;
 
-	private RecoverydDto recoveryDto;
+	private RecoverydDto recoveryDto = new RecoverydDto();;
 
 	private List<MultiValueGroup> multiValueList = new ArrayList<MultiValueGroup>();
 
-	private String binCard, cardNumber1, cardNumber2, cardNumber3, typeDoc, passConfirm;
+	private String binCard, cardNumber1, cardNumber2, cardNumber3, typeDoc,
+			passConfirm;
 
 	@Resource(name = "multiValueGroupFacade")
 	private transient MultiValueGroupFacade multiValueGroupFacade;
@@ -55,10 +57,9 @@ public class RecoverPasswordControllerImpl extends AbstractBbvaController implem
 		System.out.println("Respuesta ");
 		return "next";
 	}
-
 	@Override
-	public void vamos(ActionEvent event){
-		System.out.println("vamos"+ getBinCard());
+	public void vamos(ActionEvent event) {
+		System.out.println("vamos" + getBinCard());
 	}
 	/**
 	 * @return the recoveryDto
@@ -68,7 +69,8 @@ public class RecoverPasswordControllerImpl extends AbstractBbvaController implem
 	}
 
 	/**
-	 * @param recoveryDto the recoveryDto to set
+	 * @param recoveryDto
+	 *            the recoveryDto to set
 	 */
 	public void setRecoveryDto(RecoverydDto recoveryDto) {
 		this.recoveryDto = recoveryDto;
@@ -82,7 +84,8 @@ public class RecoverPasswordControllerImpl extends AbstractBbvaController implem
 	}
 
 	/**
-	 * @param multiValueList the multiValueList to set
+	 * @param multiValueList
+	 *            the multiValueList to set
 	 */
 	public void setMultiValueList(List<MultiValueGroup> multiValueList) {
 		this.multiValueList = multiValueList;
@@ -96,7 +99,8 @@ public class RecoverPasswordControllerImpl extends AbstractBbvaController implem
 	}
 
 	/**
-	 * @param binCard the binCard to set
+	 * @param binCard
+	 *            the binCard to set
 	 */
 	public void setBinCard(String binCard) {
 		this.binCard = binCard;
@@ -110,7 +114,8 @@ public class RecoverPasswordControllerImpl extends AbstractBbvaController implem
 	}
 
 	/**
-	 * @param cardNumber1 the cardNumber1 to set
+	 * @param cardNumber1
+	 *            the cardNumber1 to set
 	 */
 	public void setCardNumber1(String cardNumber1) {
 		this.cardNumber1 = cardNumber1;
@@ -124,7 +129,8 @@ public class RecoverPasswordControllerImpl extends AbstractBbvaController implem
 	}
 
 	/**
-	 * @param cardNumber2 the cardNumber2 to set
+	 * @param cardNumber2
+	 *            the cardNumber2 to set
 	 */
 	public void setCardNumber2(String cardNumber2) {
 		this.cardNumber2 = cardNumber2;
@@ -138,7 +144,8 @@ public class RecoverPasswordControllerImpl extends AbstractBbvaController implem
 	}
 
 	/**
-	 * @param cardNumber3 the cardNumber3 to set
+	 * @param cardNumber3
+	 *            the cardNumber3 to set
 	 */
 	public void setCardNumber3(String cardNumber3) {
 		this.cardNumber3 = cardNumber3;
@@ -152,7 +159,8 @@ public class RecoverPasswordControllerImpl extends AbstractBbvaController implem
 	}
 
 	/**
-	 * @param typeDoc the typeDoc to set
+	 * @param typeDoc
+	 *            the typeDoc to set
 	 */
 	public void setTypeDoc(String typeDoc) {
 		this.typeDoc = typeDoc;
@@ -166,7 +174,8 @@ public class RecoverPasswordControllerImpl extends AbstractBbvaController implem
 	}
 
 	/**
-	 * @param passConfirm the passConfirm to set
+	 * @param passConfirm
+	 *            the passConfirm to set
 	 */
 	public void setPassConfirm(String passConfirm) {
 		this.passConfirm = passConfirm;
@@ -180,9 +189,11 @@ public class RecoverPasswordControllerImpl extends AbstractBbvaController implem
 	}
 
 	/**
-	 * @param multiValueGroupFacade the multiValueGroupFacade to set
+	 * @param multiValueGroupFacade
+	 *            the multiValueGroupFacade to set
 	 */
-	public void setMultiValueGroupFacade(MultiValueGroupFacade multiValueGroupFacade) {
+	public void setMultiValueGroupFacade(
+			MultiValueGroupFacade multiValueGroupFacade) {
 		this.multiValueGroupFacade = multiValueGroupFacade;
 	}
 }

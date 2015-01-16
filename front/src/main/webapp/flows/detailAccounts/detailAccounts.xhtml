@@ -23,13 +23,13 @@
 			<h:form id="form12">
 				<p:commandLink onclick="PF('employeeSearch').show();"
 					value="#{msg['text.recoverUser']}" styleClass="modal-trigger" />
-			</h:form>	
+			</h:form>
 
 			<p:dialog id="dialogo" widgetVar="employeeSearch"
-				header="Search employee"
-				style="display: block; position:relative; border: 1px solid #DBDCDC; background-color: #F4F7F5"
+				header="Search employee" resizable="false"
+				style="display: block; position:relative; border: 1px solid #DBDCDC; background-color: #F4F7F5; padding: -3% -3% !important;"
 				class="modal modal-wizard fade recoverKeyModal in modal-dialog modal-lg modal-content"
-				modal="true" width="110%" height="100%">
+				modal="true" width="104%" height="100%">
 				<p:outputPanel>
 					<h:form id="mainForm">
 						<bbvaMessage:recoverContent>
@@ -37,22 +37,18 @@
 								title="#{msg['title.retrieveYourPassword']}"
 								pointOne="#{msg['text.userNewDigitalKey']}"
 								pointTwo="#{msg['text.confirmation']}" />
+							<bbvaMessage:recoverPasswordBody />
 							<bbvaMessage:recoverFooter>
-
-								<h:inputText id="hola" value="#{recoverPassController.binCard}" />
-								<p:commandButton id="nextButton" classButton="btn btn-form next"
+								<p:commandButton id="nextButton"
+									styleClass="btn btn-form next nextButton"
 									action="#{recoverPassController.next}"
 									actionListener="#{recoverPassController.vamos}"
 									value="#{msg['button.next']}" update=":mainForm">
-
 								</p:commandButton>
 							</bbvaMessage:recoverFooter>
-
 						</bbvaMessage:recoverContent>
 					</h:form>
-
 				</p:outputPanel>
-
 			</p:dialog>
 		</div>
 	</ui:define>
