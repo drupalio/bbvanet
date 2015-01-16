@@ -10,9 +10,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para Conditions complex type.
+ * <p>Java class for Conditions complex type.
  * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="Conditions">
@@ -83,7 +83,7 @@ public class Conditions {
     }
 
     /**
-     * Obtiene el valor de la propiedad category.
+     * Gets the value of the category property.
      * 
      * @return
      *     possible object is
@@ -95,7 +95,7 @@ public class Conditions {
     }
 
     /**
-     * Define el valor de la propiedad category.
+     * Sets the value of the category property.
      * 
      * @param value
      *     allowed object is
@@ -107,7 +107,7 @@ public class Conditions {
     }
 
     /**
-     * Obtiene el valor de la propiedad description.
+     * Gets the value of the description property.
      * 
      * @return
      *     possible object is
@@ -119,7 +119,7 @@ public class Conditions {
     }
 
     /**
-     * Define el valor de la propiedad description.
+     * Sets the value of the description property.
      * 
      * @param value
      *     allowed object is
@@ -131,7 +131,7 @@ public class Conditions {
     }
 
     /**
-     * Obtiene el valor de la propiedad openingDate.
+     * Gets the value of the openingDate property.
      * 
      * @return
      *     possible object is
@@ -143,7 +143,7 @@ public class Conditions {
     }
 
     /**
-     * Define el valor de la propiedad openingDate.
+     * Sets the value of the openingDate property.
      * 
      * @param value
      *     allowed object is
@@ -155,7 +155,7 @@ public class Conditions {
     }
 
     /**
-     * Obtiene el valor de la propiedad commission.
+     * Gets the value of the commission property.
      * 
      * @return
      *     possible object is
@@ -167,7 +167,7 @@ public class Conditions {
     }
 
     /**
-     * Define el valor de la propiedad commission.
+     * Sets the value of the commission property.
      * 
      * @param value
      *     allowed object is
@@ -179,7 +179,7 @@ public class Conditions {
     }
 
     /**
-     * Obtiene el valor de la propiedad office.
+     * Gets the value of the office property.
      * 
      * @return
      *     possible object is
@@ -191,7 +191,7 @@ public class Conditions {
     }
 
     /**
-     * Define el valor de la propiedad office.
+     * Sets the value of the office property.
      * 
      * @param value
      *     allowed object is
@@ -203,7 +203,7 @@ public class Conditions {
     }
 
     /**
-     * Obtiene el valor de la propiedad mobilizationConditions.
+     * Gets the value of the mobilizationConditions property.
      * 
      * @return
      *     possible object is
@@ -215,7 +215,7 @@ public class Conditions {
     }
 
     /**
-     * Define el valor de la propiedad mobilizationConditions.
+     * Sets the value of the mobilizationConditions property.
      * 
      * @param value
      *     allowed object is
