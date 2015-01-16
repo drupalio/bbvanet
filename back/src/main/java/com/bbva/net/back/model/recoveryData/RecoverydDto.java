@@ -15,7 +15,7 @@ public class RecoverydDto implements Dto {
 
 	private int cardNumber;
 
-	private int cardKey;
+	private Integer cardKey;
 
 	private String typeIdentification;
 
@@ -23,7 +23,7 @@ public class RecoverydDto implements Dto {
 
 	private int newKey;
 
-	private boolean conditions;
+	private boolean conditions= false;
 
 	/**
 	 * 
@@ -41,7 +41,7 @@ public class RecoverydDto implements Dto {
 	 * @param newKey
 	 * @param conditions
 	 */
-	public RecoverydDto(String user, int binCard, int cardNumber, int cardKey, String typeIdentification,
+	public RecoverydDto(String user, int binCard, int cardNumber, Integer cardKey, String typeIdentification,
 			int identification, int newKey, boolean conditions) {
 		this.user = user;
 		this.binCard = binCard;
@@ -98,14 +98,14 @@ public class RecoverydDto implements Dto {
 	/**
 	 * @return the cardKey
 	 */
-	public int getCardKey() {
+	public Integer getCardKey() {
 		return cardKey;
 	}
 
 	/**
 	 * @param cardKey the cardKey to set
 	 */
-	public void setCardKey(int cardKey) {
+	public void setCardKey(Integer cardKey) {
 		this.cardKey = cardKey;
 	}
 

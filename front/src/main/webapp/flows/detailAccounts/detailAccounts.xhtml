@@ -32,6 +32,8 @@
 				modal="true" width="110%" height="100%">
 				<p:outputPanel>
 					<h:form id="mainForm">
+					<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+					
 						<bbvaMessage:recoverContent>
 							<bbvaMessage:recoverHead
 								title="#{msg['title.retrieveYourPassword']}"
@@ -39,10 +41,21 @@
 								pointTwo="#{msg['text.confirmation']}" />
 							<bbvaMessage:recoverFooter>
 
-								<h:inputText id="hola" value="#{recoverPassController.binCard}" />
+								<p:inputText id="hola" value="#{recoverPassController.recoveryDto.cardKey}" 
+								maxlength="4"
+								
+								
+								requiredMessage="yes" validatorMessage="asd">
+									<f:convertNumber  maxIntegerDigits="4" integerOnly="true" groupingUsed="false"/>
+								</p:inputText>
+								<p:message id="formarDateIni" for="hola" />
+								<h:inputText id="hola2" value="#{recoverPassController.passConfirm}" >
+									
+								</h:inputText>
+								<p:message id="formar" for="hola2" />
 								<p:commandButton id="nextButton" classButton="btn btn-form next"
 									action="#{recoverPassController.next}"
-									actionListener="#{recoverPassController.vamos}"
+									actionListener="#{recoverPassController.recoveryPass}"
 									value="#{msg['button.next']}" update=":mainForm">
 
 								</p:commandButton>
