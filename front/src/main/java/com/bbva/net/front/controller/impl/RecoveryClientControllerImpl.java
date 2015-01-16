@@ -5,8 +5,6 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
 import org.springframework.context.annotation.Scope;
@@ -15,25 +13,25 @@ import org.springframework.stereotype.Controller;
 import com.bbva.net.back.entity.MultiValueGroup;
 import com.bbva.net.back.facade.MultiValueGroupFacade;
 import com.bbva.net.back.model.recoveryData.RecoverydDto;
-import com.bbva.net.front.controller.RecoverPasswordController;
+import com.bbva.net.front.controller.RecoveryClientController;
 import com.bbva.net.front.core.AbstractBbvaController;
 
-@Controller(value = "recoverPassController")
+@Controller(value = "recoverClientController")
 @Scope(value = "globalSession")
-public class RecoverPasswordControllerImpl extends AbstractBbvaController
-		implements
-			RecoverPasswordController {
+public class RecoveryClientControllerImpl extends AbstractBbvaController implements RecoveryClientController {
 
-	private static final long serialVersionUID = 6795761532672076491L;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	private static final Integer LIST_DOC_TYPES = 4;
 
-	private RecoverydDto recoveryDto = new RecoverydDto();
+	private RecoverydDto recoveryDto;
 
 	private List<MultiValueGroup> multiValueList = new ArrayList<MultiValueGroup>();
 
-	private String binCard, cardNumber1, cardNumber2, cardNumber3, typeDoc; Integer passConfirm;
-
+	private String binCard, cardNumber1, cardNumber2, cardNumber3, typeDoc, passConfirm;
 
 	@Resource(name = "multiValueGroupFacade")
 	private transient MultiValueGroupFacade multiValueGroupFacade;
@@ -57,20 +55,14 @@ public class RecoverPasswordControllerImpl extends AbstractBbvaController
 	@Override
 	public String next() {
 		System.out.println("Respuesta ");
-		if(recoveryDto.getCardKey()== getPassConfirm()){
-		 return "next";	
-		}else{
-			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR, "Alerta", "Por favor, escribe el mismo valor de nuevo."));
-		}
-		return "oo";
+		return "next";
 	}
-	
+
 	@Override
-	public void recoveryPass(ActionEvent event){
-		StringBuilder sb = new StringBuilder();
-		sb.append(getBinCard()).append(getCardNumber1()).append(getCardNumber2()).append(getCardNumber3());
-		System.out.println("vamos"+ getBinCard());
+	public void vamos(ActionEvent event) {
+		System.out.println("vamos" + getBinCard());
 	}
+
 	/**
 	 * @return the recoveryDto
 	 */
@@ -79,8 +71,7 @@ public class RecoverPasswordControllerImpl extends AbstractBbvaController
 	}
 
 	/**
-	 * @param recoveryDto
-	 *            the recoveryDto to set
+	 * @param recoveryDto the recoveryDto to set
 	 */
 	public void setRecoveryDto(RecoverydDto recoveryDto) {
 		this.recoveryDto = recoveryDto;
@@ -94,8 +85,7 @@ public class RecoverPasswordControllerImpl extends AbstractBbvaController
 	}
 
 	/**
-	 * @param multiValueList
-	 *            the multiValueList to set
+	 * @param multiValueList the multiValueList to set
 	 */
 	public void setMultiValueList(List<MultiValueGroup> multiValueList) {
 		this.multiValueList = multiValueList;
@@ -109,8 +99,7 @@ public class RecoverPasswordControllerImpl extends AbstractBbvaController
 	}
 
 	/**
-	 * @param binCard
-	 *            the binCard to set
+	 * @param binCard the binCard to set
 	 */
 	public void setBinCard(String binCard) {
 		this.binCard = binCard;
@@ -124,8 +113,7 @@ public class RecoverPasswordControllerImpl extends AbstractBbvaController
 	}
 
 	/**
-	 * @param cardNumber1
-	 *            the cardNumber1 to set
+	 * @param cardNumber1 the cardNumber1 to set
 	 */
 	public void setCardNumber1(String cardNumber1) {
 		this.cardNumber1 = cardNumber1;
@@ -139,8 +127,7 @@ public class RecoverPasswordControllerImpl extends AbstractBbvaController
 	}
 
 	/**
-	 * @param cardNumber2
-	 *            the cardNumber2 to set
+	 * @param cardNumber2 the cardNumber2 to set
 	 */
 	public void setCardNumber2(String cardNumber2) {
 		this.cardNumber2 = cardNumber2;
@@ -154,8 +141,7 @@ public class RecoverPasswordControllerImpl extends AbstractBbvaController
 	}
 
 	/**
-	 * @param cardNumber3
-	 *            the cardNumber3 to set
+	 * @param cardNumber3 the cardNumber3 to set
 	 */
 	public void setCardNumber3(String cardNumber3) {
 		this.cardNumber3 = cardNumber3;
@@ -169,8 +155,7 @@ public class RecoverPasswordControllerImpl extends AbstractBbvaController
 	}
 
 	/**
-	 * @param typeDoc
-	 *            the typeDoc to set
+	 * @param typeDoc the typeDoc to set
 	 */
 	public void setTypeDoc(String typeDoc) {
 		this.typeDoc = typeDoc;
@@ -179,15 +164,14 @@ public class RecoverPasswordControllerImpl extends AbstractBbvaController
 	/**
 	 * @return the passConfirm
 	 */
-	public Integer getPassConfirm() {
+	public String getPassConfirm() {
 		return passConfirm;
 	}
 
 	/**
-	 * @param passConfirm
-	 *            the passConfirm to set
+	 * @param passConfirm the passConfirm to set
 	 */
-	public void setPassConfirm(Integer passConfirm) {
+	public void setPassConfirm(String passConfirm) {
 		this.passConfirm = passConfirm;
 	}
 
@@ -199,11 +183,10 @@ public class RecoverPasswordControllerImpl extends AbstractBbvaController
 	}
 
 	/**
-	 * @param multiValueGroupFacade
-	 *            the multiValueGroupFacade to set
+	 * @param multiValueGroupFacade the multiValueGroupFacade to set
 	 */
-	public void setMultiValueGroupFacade(
-			MultiValueGroupFacade multiValueGroupFacade) {
+	public void setMultiValueGroupFacade(MultiValueGroupFacade multiValueGroupFacade) {
 		this.multiValueGroupFacade = multiValueGroupFacade;
 	}
+
 }

@@ -13,7 +13,7 @@
 	<ui:define name="contentLeft">
 
 		<div>
-			<h2 class="blockTitle">Employee information page</h2>
+			<h2 class="blockTitle">Test information page</h2>
 
 			<h:form id="form">
 				<p:commandLink onclick="PF('employeeSearch').show();"
@@ -23,13 +23,13 @@
 			<h:form id="form12">
 				<p:commandLink onclick="PF('employeeSearch').show();"
 					value="#{msg['text.recoverUser']}" styleClass="modal-trigger" />
-			</h:form>	
+			</h:form>
 
 			<p:dialog id="dialogo" widgetVar="employeeSearch"
-				header="Search employee"
-				style="display: block; position:relative; border: 1px solid #DBDCDC; background-color: #F4F7F5"
+				header="Search employee" resizable="false"
+				style="display: block; position:relative; border: 1px solid #DBDCDC; background-color: #F4F7F5; padding: -3% -3% !important;"
 				class="modal modal-wizard fade recoverKeyModal in modal-dialog modal-lg modal-content"
-				modal="true" width="110%" height="100%">
+				modal="true" width="104%" height="100%">
 				<p:outputPanel>
 					<h:form id="mainForm">
 					<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
@@ -39,7 +39,9 @@
 								title="#{msg['title.retrieveYourPassword']}"
 								pointOne="#{msg['text.userNewDigitalKey']}"
 								pointTwo="#{msg['text.confirmation']}" />
+							<bbvaMessage:recoverPasswordBody />
 							<bbvaMessage:recoverFooter>
+<<<<<<< HEAD
 
 								<p:inputText id="hola" value="#{recoverPassController.recoveryDto.cardKey}" 
 								maxlength="4"
@@ -54,18 +56,15 @@
 								</h:inputText>
 								<p:message id="formar" for="hola2" />
 								<p:commandButton id="nextButton" classButton="btn btn-form next"
+									styleClass="btn btn-form next nextButton"
 									action="#{recoverPassController.next}"
 									actionListener="#{recoverPassController.recoveryPass}"
 									value="#{msg['button.next']}" update=":mainForm">
-
 								</p:commandButton>
 							</bbvaMessage:recoverFooter>
-
 						</bbvaMessage:recoverContent>
 					</h:form>
-
 				</p:outputPanel>
-
 			</p:dialog>
 		</div>
 	</ui:define>
