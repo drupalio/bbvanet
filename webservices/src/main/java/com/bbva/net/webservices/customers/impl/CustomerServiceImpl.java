@@ -26,7 +26,7 @@ public class CustomerServiceImpl extends AbstractBbvaRestService implements Cust
 	@Override
 	public List<AccMovementsResume> listAccountsMovementsResume(String customerId, String filter) {
 
-		String filterParam = (filter.equals("")) ? "" : "filter";
+		String filterParam = filter.equals("") ? "" : "filter";
 		WebClient wc = getJsonWebClient(URL_BASE_CUSTOMER + customerId + URL_CUSTOMER);
 		wc.query(filterParam, filter);
 
