@@ -26,14 +26,15 @@
 			</h:form>
 
 			<p:dialog id="dialogo" widgetVar="employeeSearch"
-				header="Search employee" resizable="false"
+				header="Recupere su clave de acceso" resizable="false"
 				style="display: block; position:relative; border: 1px solid #DBDCDC; background-color: #F4F7F5; padding: -3% -3% !important;"
 				class="modal modal-wizard fade recoverKeyModal in modal-dialog modal-lg modal-content"
 				modal="true" width="104%" height="100%">
 				<p:outputPanel>
 					<h:form id="mainForm">
-					<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
-					
+						<p:messages id="messages" showDetail="true" autoUpdate="true"
+							closable="true" />
+
 						<bbvaMessage:recoverContent>
 							<bbvaMessage:recoverHead
 								title="#{msg['title.retrieveYourPassword']}"
@@ -41,20 +42,6 @@
 								pointTwo="#{msg['text.confirmation']}" />
 							<bbvaMessage:recoverPasswordBody />
 							<bbvaMessage:recoverFooter>
-<<<<<<< HEAD
-
-								<p:inputText id="hola" value="#{recoverPassController.recoveryDto.cardKey}" 
-								maxlength="4"
-								
-								
-								requiredMessage="yes" validatorMessage="asd">
-									<f:convertNumber  maxIntegerDigits="4" integerOnly="true" groupingUsed="false"/>
-								</p:inputText>
-								<p:message id="formarDateIni" for="hola" />
-								<h:inputText id="hola2" value="#{recoverPassController.passConfirm}" >
-									
-								</h:inputText>
-								<p:message id="formar" for="hola2" />
 								<p:commandButton id="nextButton" classButton="btn btn-form next"
 									styleClass="btn btn-form next nextButton"
 									action="#{recoverPassController.next}"

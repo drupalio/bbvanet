@@ -39,12 +39,13 @@
 	</div>
 	<p:inputText id="#{cc.attrs.id}" type="#{cc.attrs.type}"
 		value="#{cc.attrs.value}" maxlength="#{cc.attrs.maxlength}"
-		required="#{cc.attrs.required}"
+		required="#{cc.attrs.required}" 
 		requiredMessage="#{cc.attrs.requiredMessage}"
 		validatorMessage="#{cc.attrs.validatorMessage}"
 		title="#{component.valid?'':'Este campo es obligatorio.'}"
 		onclick="checkFilled(this)"
 		styleClass="#{component.valid?'form-control':'form-control  has-error'}">
+		<composite:insertChildren></composite:insertChildren>
 	</p:inputText>
 </composite:implementation>
 

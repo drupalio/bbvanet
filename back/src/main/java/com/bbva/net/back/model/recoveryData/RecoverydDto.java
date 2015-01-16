@@ -11,17 +11,17 @@ public class RecoverydDto implements Dto {
 
 	private String user;
 
-	private int binCard;
+	private Integer binCard;
 
-	private int cardNumber;
+	private Integer cardNumber;
 
 	private Integer cardKey;
 
 	private String typeIdentification;
 
-	private int identification;
+	private Integer identification;
 
-	private int newKey;
+	private Integer newKey;
 
 	private boolean conditions= false;
 
@@ -42,8 +42,8 @@ public class RecoverydDto implements Dto {
 	 * @param conditions
 	 */
 
-	public RecoverydDto(String user, int binCard, int cardNumber, Integer cardKey, String typeIdentification,
-			int identification, int newKey, boolean conditions) {
+	public RecoverydDto(String user, Integer binCard, Integer cardNumber, Integer cardKey, String typeIdentification,
+			Integer identification, Integer newKey, boolean conditions) {
 		this.user = user;
 		this.binCard = binCard;
 		this.cardNumber = cardNumber;
@@ -72,7 +72,7 @@ public class RecoverydDto implements Dto {
 	/**
 	 * @return the binCard
 	 */
-	public int getBinCard() {
+	public Integer getBinCard() {
 		return binCard;
 	}
 
@@ -80,14 +80,14 @@ public class RecoverydDto implements Dto {
 	 * @param binCard
 	 *            the binCard to set
 	 */
-	public void setBinCard(int binCard) {
+	public void setBinCard(Integer binCard) {
 		this.binCard = binCard;
 	}
 
 	/**
 	 * @return the cardNumber
 	 */
-	public int getCardNumber() {
+	public Integer getCardNumber() {
 		return cardNumber;
 	}
 
@@ -95,7 +95,7 @@ public class RecoverydDto implements Dto {
 	 * @param cardNumber
 	 *            the cardNumber to set
 	 */
-	public void setCardNumber(int cardNumber) {
+	public void setCardNumber(Integer cardNumber) {
 		this.cardNumber = cardNumber;
 	}
 
@@ -132,7 +132,7 @@ public class RecoverydDto implements Dto {
 	/**
 	 * @return the identification
 	 */
-	public int getIdentification() {
+	public Integer getIdentification() {
 		return identification;
 	}
 
@@ -140,14 +140,14 @@ public class RecoverydDto implements Dto {
 	 * @param identification
 	 *            the identification to set
 	 */
-	public void setIdentification(int identification) {
+	public void setIdentification(Integer identification) {
 		this.identification = identification;
 	}
 
 	/**
 	 * @return the newKey
 	 */
-	public int getNewKey() {
+	public Integer getNewKey() {
 		return newKey;
 	}
 
@@ -155,7 +155,7 @@ public class RecoverydDto implements Dto {
 	 * @param newKey
 	 *            the newKey to set
 	 */
-	public void setNewKey(int newKey) {
+	public void setNewKey(Integer newKey) {
 		this.newKey = newKey;
 	}
 
