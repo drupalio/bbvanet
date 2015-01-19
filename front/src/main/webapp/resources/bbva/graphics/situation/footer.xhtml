@@ -24,14 +24,14 @@
 				<f:ajax execute="@form" render="@form :globalPanel" />
 			</a> <span data-original-title="Mensaje de ayuda" title=""
 				data-toggle="tooltip" class="icon-info-blue"></span><span
-				class="importe-situacion">#{cc.attrs.footerInfo.totalAssets}</span></li>
+				class="importe-situacion">#{cc.attrs.footerInfo.totalAssets.toString()}</span></li>
 			<li class="button-table financiacion"><a
 				jsf:action="#{globalPositionController.renderPieFinanciation}"
 				class="icon-financing">Financiación 
 				<f:ajax execute="@form" render="@form :globalPanel" />
 			</a> <span data-original-title="Mensaje de ayuda" title=""
 				data-toggle="tooltip" class="icon-info-blue"></span><span
-				class="importe-situacion">#{cc.attrs.footerInfo.totalFinancing}</span></li>
+				class="importe-situacion">#{cc.attrs.footerInfo.totalFinancing.toString()}</span></li>
 		</ul>
 	</div>
 
