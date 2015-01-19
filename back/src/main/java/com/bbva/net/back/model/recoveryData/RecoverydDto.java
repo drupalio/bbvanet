@@ -41,8 +41,9 @@ public class RecoverydDto implements Dto {
 	 * @param newKey
 	 * @param conditions
 	 */
-	public RecoverydDto(String user, int binCard, int cardNumber, int cardKey, String typeIdentification,
-			int identification, int newKey, boolean conditions) {
+	public RecoverydDto(String user, int binCard, int cardNumber, int cardKey,
+			String typeIdentification, int identification, int newKey,
+			boolean conditions) {
 		this.user = user;
 		this.binCard = binCard;
 		this.cardNumber = cardNumber;
@@ -61,7 +62,8 @@ public class RecoverydDto implements Dto {
 	}
 
 	/**
-	 * @param user the user to set
+	 * @param user
+	 *            the user to set
 	 */
 	public void setUser(String user) {
 		this.user = user;
@@ -75,7 +77,8 @@ public class RecoverydDto implements Dto {
 	}
 
 	/**
-	 * @param binCard the binCard to set
+	 * @param binCard
+	 *            the binCard to set
 	 */
 	public void setBinCard(int binCard) {
 		this.binCard = binCard;
@@ -89,7 +92,8 @@ public class RecoverydDto implements Dto {
 	}
 
 	/**
-	 * @param cardNumber the cardNumber to set
+	 * @param cardNumber
+	 *            the cardNumber to set
 	 */
 	public void setCardNumber(int cardNumber) {
 		this.cardNumber = cardNumber;
@@ -103,7 +107,8 @@ public class RecoverydDto implements Dto {
 	}
 
 	/**
-	 * @param cardKey the cardKey to set
+	 * @param cardKey
+	 *            the cardKey to set
 	 */
 	public void setCardKey(int cardKey) {
 		this.cardKey = cardKey;
@@ -117,7 +122,8 @@ public class RecoverydDto implements Dto {
 	}
 
 	/**
-	 * @param typeIdentification the typeIdentification to set
+	 * @param typeIdentification
+	 *            the typeIdentification to set
 	 */
 	public void setTypeIdentification(String typeIdentification) {
 		this.typeIdentification = typeIdentification;
@@ -131,7 +137,8 @@ public class RecoverydDto implements Dto {
 	}
 
 	/**
-	 * @param identification the identification to set
+	 * @param identification
+	 *            the identification to set
 	 */
 	public void setIdentification(int identification) {
 		this.identification = identification;
@@ -145,7 +152,8 @@ public class RecoverydDto implements Dto {
 	}
 
 	/**
-	 * @param newKey the newKey to set
+	 * @param newKey
+	 *            the newKey to set
 	 */
 	public void setNewKey(int newKey) {
 		this.newKey = newKey;
@@ -159,13 +167,13 @@ public class RecoverydDto implements Dto {
 	}
 
 	/**
-	 * @param conditions the conditions to set
+	 * @param conditions
+	 *            the conditions to set
 	 */
 	public void setConditions(boolean conditions) {
 		this.conditions = conditions;
 	}
-	
-	
+
 	/**
 	 * @param user
 	 * @param binCard
@@ -177,26 +185,35 @@ public class RecoverydDto implements Dto {
 	 * @param newConfirmKey
 	 * @param conditions
 	 */
-	
+
 	@Override
 	public String toString() {
 		return new ToStringBuilder(this).append("user", getUser())
-				.append("binCard", getBinCard()).append("cardNumber", getCardNumber())
-				.append("cardKey", getCardKey()).append("typeIdentification", getTypeIdentification())
-				.append("identification", getIdentification()).append("newKey", getNewKey()).append("conditions", isConditions()).toString();
+				.append("binCard", getBinCard())
+				.append("cardNumber", getCardNumber())
+				.append("cardKey", getCardKey())
+				.append("typeIdentification", getTypeIdentification())
+				.append("identification", getIdentification())
+				.append("newKey", getNewKey())
+				.append("conditions", isConditions()).toString();
 	}
 
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder().append(getUser()).append(getBinCard()).append(getCardNumber())
-				.append(getCardKey()).append(getTypeIdentification()).append(getIdentification()).append(getNewKey()).append(isConditions()).toHashCode();
+		return new HashCodeBuilder().append(getUser()).append(getBinCard())
+				.append(getCardNumber()).append(getCardKey())
+				.append(getTypeIdentification()).append(getIdentification())
+				.append(getNewKey()).append(isConditions()).toHashCode();
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 
-		return (obj instanceof RecoverydDto) && this.getUser().equals(((RecoverydDto)obj).getUser())
-				&& this.getTypeIdentification().equals(((RecoverydDto)obj).getTypeIdentification())
-				&& this.getIdentification()==(((RecoverydDto)obj).getIdentification());
+		return (obj instanceof RecoverydDto)
+				&& this.getUser().equals(((RecoverydDto) obj).getUser())
+				&& this.getTypeIdentification().equals(
+						((RecoverydDto) obj).getTypeIdentification())
+				&& this.getIdentification() == (((RecoverydDto) obj)
+						.getIdentification());
 	}
 }

@@ -5,11 +5,13 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:bbvaButton="http://java.sun.com/jsf/composite/bbva/button"
+	xmlns:bbvaInput="http://java.sun.com/jsf/composite/bbva/input"
 	xmlns:bbvaMessage="http://java.sun.com/jsf/composite/bbva/messages"
 	template="../../templates/defaultLayout.xhtml">
 
 
 	<ui:define name="contentLeft">
+
 		<div>
 			<h2 class="blockTitle">Employee information page</h2>
 
@@ -17,38 +19,46 @@
 				<p:commandLink onclick="PF('employeeSearch').show();"
 					value="#{msg['text.recoverPassword']}" styleClass="modal-trigger" />
 			</h:form>
+
 			<h:form id="form12">
 				<p:commandLink onclick="PF('employeeSearch').show();"
 					value="#{msg['text.recoverUser']}" styleClass="modal-trigger" />
 			</h:form>
+			<<<<<<< HEAD
 			<p:dialog widgetVar="employeeSearch" header="Search employee"
 				style="display: block; position:relative; border: 1px solid #DBDCDC; background-color: #F4F7F5"
 				class="modal modal-wizard fade recoverKeyModal in modal-dialog modal-lg modal-content"
-				modal="true" width="110%" height="100%" showHeader="false" >
+				modal="true" width="110%" height="100%" showHeader="false">
 				
+=======
+
+<!-- 			<p:dialog id="dialogo" widgetVar="employeeSearch" -->
+				<!-- 				header="Search employee" resizable="false" -->
+				<!-- 				style="display: block; position:relative; border: 1px solid #DBDCDC; background-color: #F4F7F5; padding: -3% -3% !important;" -->
+				<!-- 				class="modal modal-wizard fade recoverKeyModal in modal-dialog modal-lg modal-content" -->
+				<!-- 				modal="true" width="104%" height="100%"> -->
+
 				<p:outputPanel>
 					<h:form id="mainForm">
 						<bbvaMessage:recoverContent>
-							<bbvaMessage:recoverHead
-								title="#{msg['title.retrieveYourUser']}"
+							<bbvaMessage:recoverHead title="#{msg['title.retrieveYourUser']}"
 								pointOne="#{msg['text.userNew']}"
-								pointTwo="#{msg['text.confirmation']}"
-								pointOneState="active" 
-								sizeProgress="0px"/>
-							<bbvaMessage:recoverUserBody/>
+								pointTwo="#{msg['text.confirmation']}" pointOneState="active"
+								sizeProgress="0px" />
+							<bbvaMessage:recoverUserBody />
 							<bbvaMessage:recoverFooter pointTwo="#{msg['text.confirmation']}">
-								<p:commandButton id="nextButton" styleClass="btn btn-form next" 								
-									value="#{msg['button.next']}" update=":mainForm" style="font-weight: inherit;text-shadow: inherit;position: relative;padding: 3px 2px;box-shadow:inherit;margin-top:60px;border:1px solid #00559D !important;">
+								<p:commandButton id="nextButton" styleClass="btn btn-form next"
+									value="#{msg['button.next']}" update=":mainForm"
+									style="font-weight: inherit;text-shadow: inherit;position: relative;padding: 3px 2px;box-shadow:inherit;margin-top:60px;border:1px solid #00559D !important;">
+								title="#{msg['title.retrieveYourPassword']}"
+								pointOne="#{msg['text.userNewDigitalKey']}"
+								pointTwo="#{msg['text.confirmation']}" />
 								</p:commandButton>
-								
 							</bbvaMessage:recoverFooter>
-
+							<bbvaMessage:recoverPasswordBody />
 						</bbvaMessage:recoverContent>
-						
 					</h:form>
-
 				</p:outputPanel>
-
 			</p:dialog>
 		</div>
 	</ui:define>

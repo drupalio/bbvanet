@@ -13,18 +13,21 @@ import org.springframework.stereotype.Controller;
 import com.bbva.net.back.entity.MultiValueGroup;
 import com.bbva.net.back.facade.MultiValueGroupFacade;
 import com.bbva.net.back.model.recoveryData.RecoverydDto;
-import com.bbva.net.front.controller.RecoverPasswordController;
+import com.bbva.net.front.controller.RecoveryClientController;
 import com.bbva.net.front.core.AbstractBbvaController;
 
-@Controller(value = "recoverPassController")
+@Controller(value = "recoverClientController")
 @Scope(value = "globalSession")
-public class RecoverPasswordControllerImpl extends AbstractBbvaController implements RecoverPasswordController {
+public class RecoveryClientControllerImpl extends AbstractBbvaController implements RecoveryClientController {
 
-	private static final long serialVersionUID = 6795761532672076491L;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	private static final Integer LIST_DOC_TYPES = 4;
 
-	private RecoverydDto recoveryDto = new RecoverydDto();;
+	private RecoverydDto recoveryDto;
 
 	private List<MultiValueGroup> multiValueList = new ArrayList<MultiValueGroup>();
 
@@ -47,6 +50,17 @@ public class RecoverPasswordControllerImpl extends AbstractBbvaController implem
 	public String close() {
 		System.out.println("Close");
 		return "close";
+	}
+
+	@Override
+	public String next() {
+		System.out.println("Respuesta ");
+		return "next";
+	}
+
+	@Override
+	public void vamos(ActionEvent event) {
+		System.out.println("vamos" + getBinCard());
 	}
 
 	/**
@@ -173,18 +187,6 @@ public class RecoverPasswordControllerImpl extends AbstractBbvaController implem
 	 */
 	public void setMultiValueGroupFacade(MultiValueGroupFacade multiValueGroupFacade) {
 		this.multiValueGroupFacade = multiValueGroupFacade;
-	}
-
-	@Override
-	public String next() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void vamos(ActionEvent event) {
-		// TODO Auto-generated method stub
-
 	}
 
 }
