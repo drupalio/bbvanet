@@ -1,5 +1,6 @@
 @CHARSET "ISO-8859-1";
 
+/* Personalizar */
 .leftDiv {
 	float: left !important;
 	box-sizing: border-box !important;
@@ -17,6 +18,7 @@
 	box-sizing: border-box !important;
 }
 
+/* Personalizar */
 .leftLabel {
 	color: #0078D2 !important;
 	font-family: "BBVA Web Light", Arial, sans-serif !important;
@@ -27,6 +29,7 @@
 	margin-top: 0px !important;
 }
 
+/* Personalizar */
 .rigthDiv {
 	box-sizing: border-box !important;
 	color: #333 !important;
@@ -44,77 +47,30 @@
 	position: relative !important;
 }
 
+/* para los botones del personalizar */
 selectOneButton.ui-state-active {
 	color: #005098 !important;
 	cursor: pointer;
 	font-family: "BBVA Web Medium", arial, sans-serif !important;
 	font-weight: bold !important;
-	font-feature-settings: normal;
-	font-kerning: auto;
-	font-language-override: normal;
 	font-size: 15px;
-	font-size-adjust: none;
-	font-stretch: normal;
-	font-style: normal;
-	font-synthesis: weight style;
-	font-variant: normal;
-	font-variant-alternates: normal;
-	font-variant-caps: normal;
-	font-variant-east-asian: normal;
-	font-variant-ligatures: normal;
-	font-variant-numeric: normal;
-	font-variant-position: normal;
 	line-height: 13px;
 	text-align: center;
-	text-shadow: none;
-	white-space: nowrap;
 	width: 50% !important;
 	height: 100% !important;
 	text-align: center !important;
-	background-attachment: scroll !important;
-	background-clip: border-box !important;
 	background-color: transparent !important;
 	background-image: linear-gradient(#FFF 40%, #D2E5EB 200%) !important;
-	background-origin: padding-box !important;
-	background-position: 0% 0% !important;
-	background-repeat: repeat !important;
-	background-size: auto auto !important;
-	border-bottom-color: #D2E5EB !important;
-	border-bottom-left-radius: 4px !important;
-	border-bottom-right-radius: 4px !important;
-	border-bottom-style: solid !important;
-	border-bottom-width: 1px !important;
-	border-image-outset: 0 0 0 0 !important;
-	border-image-repeat: stretch stretch !important;
-	border-image-slice: 100% 100% 100% 100% !important;
-	border-image-source: none !important;
-	border-image-width: 1 1 1 1 !important;
-	border-left-color: #D2E5EB !important;
-	border-left-style: solid !important;
-	border-left-width: 1px !important;
-	border-right-color: #D2E5EB !important;
-	border-right-style: solid !important;
-	border-right-width: 1px !important;
-	border-top-color: #D2E5EB !important;
+	border-color: #D2E5EB !important;
 	border-top-left-radius: 4px !important;
 	border-top-right-radius: 4px !important;
-	border-top-style: solid !important;
-	border-top-width: 1px !important;
 	box-shadow: rgba(0, 0, 0, 0.125) 0px 3px 5px 0px inset !important;
-	box-sizing: border-box !important;
 	cursor: pointer !important;
 	outline-color: #0078D2 !important;
-	vertical-align: middle !important;
-	white-space: nowrap !important;
 	z-index: 2 !important;
-	-moz-border-bottom-colors: none !important;
-	-moz-border-left-colors: none !important;
-	-moz-border-right-colors: none !important;
-	-moz-border-top-colors: none !important;
-	-moz-user-select: none !important;
-	font-feature-settings: normal
 }
 
+/* para los botones del personalizar */
 selectOneButton.ui-corner-all {
 	border-radius: 8px !important;
 	float: left !important;
@@ -123,92 +79,53 @@ selectOneButton.ui-corner-all {
 	height: 100% !important;
 }
 
+/* para los botones del personalizar */
 selectOneButton.ui-state-default {
 	color: #0078D2;
-	background-attachment: scroll;
-	background-clip: border-box;
 	background-color: transparent;
 	background-image: linear-gradient(#FFF 40%, #D2E5EB 200%);
-	background-origin: padding-box;
-	background-position: 0% 0%;
 	background-repeat: repeat;
-	background-size: auto auto;
-	border-bottom-color: #D2E5EB;
+	border-color: #D2E5EB;
 	border-bottom-left-radius: 4px;
 	border-bottom-right-radius: 4px;
-	border-bottom-style: solid;
-	border-bottom-width: 1px;
-	border-image-outset: 0 0 0 0;
-	border-image-repeat: stretch stretch;
-	border-image-slice: 100% 100% 100% 100%;
-	border-image-source: none;
-	border-image-width: 1 1 1 1;
-	border-left-color: #D2E5EB;
-	border-left-style: solid;
-	border-left-width: 1px;
-	border-right-color: #D2E5EB;
-	border-right-style: solid;
-	border-right-width: 1px;
-	border-top-color: #D2E5EB;
-	border-top-left-radius: 4px;
-	border-top-right-radius: 4px;
-	border-top-style: solid;
-	border-top-width: 1px;
-	box-sizing: border-box;
 	cursor: pointer;
 	font-family: "BBVA Web Medium", arial, sans-serif;
-	font-feature-settings: normal;
-	font-kerning: auto;
-	font-language-override: normal;
 	font-size: 13.3px;
-	font-size-adjust: none;
-	font-stretch: normal;
-	font-style: normal;
-	font-synthesis: weight style;
-	font-variant: normal;
-	font-variant-alternates: normal;
-	font-variant-caps: normal;
-	font-variant-east-asian: normal;
-	font-variant-ligatures: normal;
-	font-variant-numeric: normal;
-	font-variant-position: normal;
 	font-weight: bold !important;
 	height: 100% !important;
 	line-height: 13px;
 	margin-bottom: 0px;
 	margin-left: 0px;
 	width: 50%;
-	overflow: hidden;
-	overflow-x: hidden;
-	overflow-y: hidden;
-	text-align: center;
-	text-shadow: none;
-	vertical-align: middle;
-	white-space: nowrap;
-	-moz-border-bottom-colors: none;
-	-moz-border-left-colors: none;
-	-moz-border-right-colors: none;
-	-moz-border-top-colors: none;
-	-moz-user-select: none;
+	background-color: transparent;
 }
 
+/* para los botones del personalizar */
+selectOneButton.button-text-only {
+	font-size: 13px;
+	margin-top: -5px !important;
+}
+
+/* para los botones del personalizar */
+selectOneButton.ui-button {
+	background-color: white !important;
+	border-color: #cccccc !important;
+}
+
+/* el selectOneButton con boton */
 .smallCombo {
 	float: left !important;
 	width: 75% !important;
 	height: 42px !important;
 }
-
+/* el selectOneButton sin boton */
 .bigCombo {
 	float: left !important;
 	width: 100% !important;
 	height: 42px !important;
 }
 
-selectOneButton.button-text-only {
-	font-size: 13px;
-	margin-top: -5px !important;
-}
-
+/* quita la linea blanca de arriba del boton y pone en el centro el texto */
 button.ui-state-default {
 	box-shadow: 0px 1px 0px #0079C1 inset !important;
 	text-align: center !important;
@@ -233,16 +150,17 @@ td.ui-datatable-subtable-header:empty {
 	display: none
 }
 
-selectOneButton.ui-button {
-	background-color: white !important;
-	border-color: #cccccc !important;
+/* Para que la tabla cambie de color hover */
+tr:hover {
+	background: none repeat scroll 0% 0% #E0F6FC !important;
 }
 
-.ui-button {
-	border-color: #cccccc !important;
+/* borde de las tablas hover */
+tr.ui-state-hover {
+	box-shadow: 0px 0px 8px #FFF, 0px 1px 0px #FFF inset !important;
 }
 
-table.ui-widget {
+.table.ui-widget {
 	width: 100%;
 	margin-left: 25px !important;
 }
@@ -257,17 +175,12 @@ table.ui-widget {
 	margin-left: -13px !important;
 }
 
-input .ui-inputfield {
-	background: -moz-linear-gradient(center top, rgba(255, 255, 255, 0.8),
-		rgba(255, 255, 255, 0)) repeat scroll 0% 0% #C4C4C4 !important;
-}
-
 /* para la cabecera del dialog */
 .ui-dialog-titlebar {
 	visibility: hidden !important;
 }
 
-/* para el label del dialogo */
+/* para el label del dialogo recovery */
 .fontLabel {
 	color: #71777F !important;
 	font-family: "Arial" !important;
@@ -276,7 +189,7 @@ input .ui-inputfield {
 	line-height: 17px !important;
 }
 
-/* para el label conditions dialog */
+/* para el label conditions dialog recovery */
 .conditionsLabel {
 	font-family: "Arial" !important;
 	font-size: 11.9px !important;
@@ -286,7 +199,7 @@ input .ui-inputfield {
 	width: 100%;
 }
 
-/* para el input del dialogo */
+/* para el input del dialogo recovery */
 .fontInput {
 	padding-left: 10px;
 	padding-right: 10px;
@@ -296,19 +209,52 @@ input .ui-inputfield {
 	border-collapse: separate;
 }
 
-/* para el check Button del dialog */
+/* para el check Button del dialog recovery */
 .checkInput {
 	display: none !important;
 }
 
 /* para el boton next del dialog */
 .nextButton {
-	margin-top: 63px !important;
-	font-size: 15.4px !important;
-	padding: 9px 12px !important;
-	margin-right: 8px ! important;
+	border-bottom-left-radius: 4px !important;
+	border-top-left-radius: 4px !important;
+	border-bottom-right-radius: 6px !important;
+	border-top-right-radius: 4px !important;
 	font-weight: 400 !important;
-	margin-top: 63px ! important;
-	margin-bottom: -60px !important;
-	border: 4px solid transparent;
+	line-height: 0px !important;
+	padding: 6px 0px !important;
+	position: relative !important;
+	text-shadow: none !important;
+	margin: 11% 2% -11% 0px !important;
+	border-color: 1px solid #00559D !important;
+	vertical-align: text-top !important;
+	font-size: 100% !important;
+	border-color: #00559D !important;
+	background: linear-gradient(to bottom, #0079C1 0%, #00559D 100%) repeat
+		scroll 0% 0% transparent !important;
+	border-color: #00559D !important;
+	border-color: #00559D !important;
+}
+
+/* sombra del input, color y estilo de la letra */
+input.ui-inputfield {
+	box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.16) inset !important;
+	color: #999EA5 !important;
+	font-weight: 400 !important;
+}
+
+/* borde del input, color y estilo de la letra */
+input.ui-state-default {
+	border-color: #DBDCDF !important;
+	color: #999EA5 !important;
+	font-weight: 400 !important;
+}
+
+/* estado cuando mouseover en el input */
+input.ui-state-hover {
+	border-color: #DBDCDF !important;
+	font-weight: 400 !important;
+	box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.16) inset !important;
+	color: #999EA5 !important;
+	background-color: #FFF !important;
 }

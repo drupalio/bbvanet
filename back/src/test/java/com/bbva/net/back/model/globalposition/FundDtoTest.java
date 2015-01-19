@@ -2,7 +2,7 @@ package com.bbva.net.back.model.globalposition;
 
 import com.bbva.net.core.test.AbstractBbvaDTOTest;
 
-public class FundDTOTest extends AbstractBbvaDTOTest<FundDto> {
+public class FundDtoTest extends AbstractBbvaDTOTest<FundDto> {
 
 	@Override
 	protected FundDto getInstance() {
