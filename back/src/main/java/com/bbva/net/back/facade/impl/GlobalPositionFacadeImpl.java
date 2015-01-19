@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.web.client.RestClientException;
 
 import com.bbva.czic.dto.net.Product;
@@ -39,7 +40,8 @@ public class GlobalPositionFacadeImpl extends AbstractBbvaFacade implements Glob
 	@Override
 	public GlobalProductsDto getGlobalProductsByUser(final String user) throws RestClientException {
 
-		final List<Product> response = this.globalPositionService.getExtractGlobalBalance(user, null, null, null, null);
+		final List<Product> response = this.globalPositionService.getExtractGlobalBalance(user, StringUtils.EMPTY,
+				StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY);
 		// return globalPositionMapper.map(response);
 		return globalPositionMapper.map(response);
 
@@ -59,10 +61,12 @@ public class GlobalPositionFacadeImpl extends AbstractBbvaFacade implements Glob
 	public Map<String, BalanceDto> getTotalsByProduct(GlobalProductsDto globalProductsDTO) {
 		return productService.getTotals(globalProductsDTO);
 	}
+
 	@Override
-	public Map<String, List<String>> getNamesProducts(GlobalProductsDto globalProducts){
+	public Map<String, List<String>> getNamesProducts(GlobalProductsDto globalProducts) {
 		return productService.getProductsName(globalProducts);
 	}
+
 	/********************************** DEPENDENCY INJECTIONS ***********************************/
 
 	/**

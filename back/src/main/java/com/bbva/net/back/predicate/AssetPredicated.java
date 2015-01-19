@@ -13,7 +13,7 @@ public class AssetPredicated extends BbvaPredicate<ProductDto> {
 
 	@Override
 	protected boolean eval(ProductDto product) {
-		return product.isAsset();
+		return (product == null || product.isAsset() == null) ? true : product.isAsset();
 	}
 
 }

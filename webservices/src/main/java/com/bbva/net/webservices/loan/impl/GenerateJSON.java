@@ -1,10 +1,6 @@
 package com.bbva.net.webservices.loan.impl;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.xml.bind.JAXBElement;
 
 import com.bbva.czic.dto.net.Balance;
 import com.bbva.czic.dto.net.City;
