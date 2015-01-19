@@ -1,5 +1,6 @@
 @CHARSET "ISO-8859-1";
 
+/* Personalizar */
 .leftDiv {
 	float: left !important;
 	box-sizing: border-box !important;
@@ -17,6 +18,7 @@
 	box-sizing: border-box !important;
 }
 
+/* Personalizar */
 .leftLabel {
 	color: #0078D2 !important;
 	font-family: "BBVA Web Light", Arial, sans-serif !important;
@@ -27,6 +29,7 @@
 	margin-top: 0px !important;
 }
 
+/* Personalizar */
 .rigthDiv {
 	box-sizing: border-box !important;
 	color: #333 !important;
@@ -44,6 +47,7 @@
 	position: relative !important;
 }
 
+/* para los botones del personalizar */
 selectOneButton.ui-state-active {
 	color: #005098 !important;
 	cursor: pointer;
@@ -66,6 +70,7 @@ selectOneButton.ui-state-active {
 	z-index: 2 !important;
 }
 
+/* para los botones del personalizar */
 selectOneButton.ui-corner-all {
 	border-radius: 8px !important;
 	float: left !important;
@@ -74,6 +79,7 @@ selectOneButton.ui-corner-all {
 	height: 100% !important;
 }
 
+/* para los botones del personalizar */
 selectOneButton.ui-state-default {
 	color: #0078D2;
 	background-color: transparent;
@@ -94,23 +100,32 @@ selectOneButton.ui-state-default {
 	background-color: transparent;
 }
 
+/* para los botones del personalizar */
+selectOneButton.button-text-only {
+	font-size: 13px;
+	margin-top: -5px !important;
+}
+
+/* para los botones del personalizar */
+selectOneButton.ui-button {
+	background-color: white !important;
+	border-color: #cccccc !important;
+}
+
+/* el selectOneButton con boton */
 .smallCombo {
 	float: left !important;
 	width: 75% !important;
 	height: 42px !important;
 }
-
+/* el selectOneButton sin boton */
 .bigCombo {
 	float: left !important;
 	width: 100% !important;
 	height: 42px !important;
 }
 
-selectOneButton.button-text-only {
-	font-size: 13px;
-	margin-top: -5px !important;
-}
-
+/* quita la linea blanca de arriba del boton y pone en el centro el texto */
 button.ui-state-default {
 	box-shadow: 0px 1px 0px #0079C1 inset !important;
 	text-align: center !important;
@@ -135,12 +150,17 @@ td.ui-datatable-subtable-header:empty {
 	display: none
 }
 
-selectOneButton.ui-button {
-	background-color: white !important;
-	border-color: #cccccc !important;
+/* Para que la tabla cambie de color hover */
+tr:hover {
+	background: none repeat scroll 0% 0% #E0F6FC !important;
 }
 
-table.ui-widget {
+/* borde de las tablas hover */
+tr.ui-state-hover {
+	box-shadow: 0px 0px 8px #FFF, 0px 1px 0px #FFF inset !important;
+}
+
+.table.ui-widget {
 	width: 100%;
 	margin-left: 25px !important;
 }
