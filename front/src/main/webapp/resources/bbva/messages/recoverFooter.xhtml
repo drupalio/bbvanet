@@ -19,8 +19,8 @@
 
 	<div id="#{cc.clientId}" class="modal-footer recoverKeyModal">
 		<div>
-			<p:inputText id="recoverKeyCond" type="checkbox" required="true"
-				styleClass="checkInput" />
+			<p:selectBooleanCheckbox required="true" id="recoverKeyCond"
+				value="#{recoverPassController.recoveryDto.conditions}" />
 			<h:outputLabel styleClass="control-label left conditionsLabel"
 				value="#{msg['text.condiConfirmOne']}" for="recoverKeyCond">
 				<h:commandLink title="Descargar PDF terminos."
