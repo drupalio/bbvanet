@@ -206,15 +206,17 @@ input .ui-inputfield {
 	border-bottom-right-radius: 6px !important;
 	border-top-right-radius: 4px !important;
 	font-weight: 400 !important;
-	line-height: 24px !important;
-	padding: 5px 8px !important;
+	line-height: 0px !important;
+	padding: 6px 0px !important;
 	position: relative !important;
 	text-shadow: none !important;
 	margin: 11% 2% -16% 0px !important;
-	width: 16% !important;
 	border-color: 1px solid #00559D !important;
 	vertical-align: text-top !important;
+	font-size: 100% !important;
 	border-color: #00559D !important;
 	background: linear-gradient(to bottom, #0079C1 0%, #00559D 100%) repeat
 		scroll 0% 0% transparent !important;
+	border-color: #00559D !important;
+	border-color: #00559D !important;
 }

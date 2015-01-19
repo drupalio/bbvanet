@@ -20,14 +20,14 @@
 	<div id="#{cc.clientId}" class="modal-footer recoverKeyModal">
 		<div>
 			<p:selectBooleanCheckbox required="true" id="recoverKeyCond"
-				value="#{recoverPassController.recoveryDto.conditions}" />
+				value="#{recoverPassController.recoveryDto.conditions}"
+				style="float: left" />
 			<h:outputLabel styleClass="control-label left conditionsLabel"
 				value="#{msg['text.condiConfirmOne']}" for="recoverKeyCond">
-				<h:commandLink title="Descargar PDF terminos."
-					hreflang="#{cc.attrs.href}" value="#{msg['text.condiConfirmTwo']}">
-					<span class="adobe-blue"> </span>
-					<span class="adobe-size">(6Kb)</span>
-				</h:commandLink>
+				<a title="Descargar PDF terminos." href="#{cc.attrs.href}">
+					#{msg['text.condiConfirmTwo']} <span class="adobe-blue"> </span> <span
+					class="adobe-size">(6Kb)</span>
+				</a>
 			</h:outputLabel>
 		</div>
 		<composite:insertChildren></composite:insertChildren>
