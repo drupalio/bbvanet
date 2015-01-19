@@ -21,8 +21,9 @@
 		<div>
 			<p:selectBooleanCheckbox required="true" id="recoverKeyCond"
 				value="#{recoverPassController.recoveryDto.conditions}"
-				style="float: left" />
+				style="float: left !important;" />
 			<h:outputLabel styleClass="control-label left conditionsLabel"
+				style="margin-top: -4.7% !important; margin-left: 3.5% !important"
 				value="#{msg['text.condiConfirmOne']}" for="recoverKeyCond">
 				<a title="Descargar PDF terminos." href="#{cc.attrs.href}">
 					#{msg['text.condiConfirmTwo']} <span class="adobe-blue"> </span> <span

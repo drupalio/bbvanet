@@ -27,14 +27,13 @@
 
 			<p:dialog id="dialogo" widgetVar="employeeSearch"
 				header="Recupere su clave de acceso" resizable="false"
-				style="display: block; position:relative; border: 1px solid #DBDCDC; background-color: #F4F7F5; padding: -3% -3% !important;"
-				class="modal modal-wizard fade recoverKeyModal in modal-dialog modal-lg modal-content"
-				modal="true" width="105%" height="110%">
+				style="display: block; position:relative; border: 1px solid #DBDCDC; background-color: #F4F7F5;"
+				class="modal recoverKeyModal modal-content" modal="true"
+				width="105%">
 				<p:outputPanel>
 					<h:form id="mainForm">
 						<p:messages id="messages" showDetail="true" autoUpdate="true"
 							closable="true" />
-
 						<bbvaMessage:recoverContent>
 							<bbvaMessage:recoverHead
 								title="#{msg['title.retrieveYourPassword']}"
@@ -42,7 +41,8 @@
 								pointTwo="#{msg['text.confirmation']}" />
 							<bbvaMessage:recoverPasswordBody />
 							<bbvaMessage:recoverFooter>
-								<p:commandButton id="nextButton" classButton="btn btn-form next"
+								<p:commandButton id="nextButton"
+									classButton="btn btn-form next nextButton"
 									styleClass="btn btn-form next nextButton"
 									action="#{recoverPassController.next}"
 									actionListener="#{recoverPassController.recoveryPass}"

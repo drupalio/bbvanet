@@ -210,7 +210,7 @@ input .ui-inputfield {
 	padding: 6px 0px !important;
 	position: relative !important;
 	text-shadow: none !important;
-	margin: 11% 2% -16% 0px !important;
+	margin: 11% 2% -11% 0px !important;
 	border-color: 1px solid #00559D !important;
 	vertical-align: text-top !important;
 	font-size: 100% !important;
@@ -219,4 +219,23 @@ input .ui-inputfield {
 		scroll 0% 0% transparent !important;
 	border-color: #00559D !important;
 	border-color: #00559D !important;
+}
+
+/* sombra del input  */
+input.ui-inputfield {
+	box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.16) inset !important;
+}
+
+/* borde del input */
+input.ui-state-default {
+	border-color: #DBDCDF !important;
+}
+
+/* estado cuando mouseover */
+input.ui-state-hover {
+	border-color: #DBDCDF !important;
+	font-weight: 400 !important;
+	box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.16) inset !important;
+	color: #999EA5 !important;
+	background-color: #FFF !important;
 }
