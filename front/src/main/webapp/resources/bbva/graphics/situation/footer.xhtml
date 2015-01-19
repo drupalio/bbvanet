@@ -20,14 +20,14 @@
 		<ul>
 			<li class="button-table activos"><a
 				jsf:action="#{globalPositionController.renderPieAssets}" 
-				class="icon-active">Activos 
+				class="icon-active">#{msg['title.footer.activos']} 
 				<f:ajax execute="@form" render="@form :globalPanel" />
 			</a> <span data-original-title="Mensaje de ayuda" title=""
 				data-toggle="tooltip" class="icon-info-blue"></span><span
 				class="importe-situacion">#{cc.attrs.footerInfo.totalAssets.toString()}</span></li>
 			<li class="button-table financiacion"><a
 				jsf:action="#{globalPositionController.renderPieFinanciation}"
-				class="icon-financing">Financiación 
+				class="icon-financing">#{msg['title.footer.financiacion']}  
 				<f:ajax execute="@form" render="@form :globalPanel" />
 			</a> <span data-original-title="Mensaje de ayuda" title=""
 				data-toggle="tooltip" class="icon-info-blue"></span><span
