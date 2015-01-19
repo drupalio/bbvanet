@@ -1,11 +1,12 @@
 package com.bbva.net.front.controller.impl;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
 import org.springframework.context.annotation.Scope;
@@ -25,11 +26,13 @@ public class RecoverPasswordControllerImpl extends AbstractBbvaController implem
 
 	private static final Integer LIST_DOC_TYPES = 4;
 
-	private RecoverydDto recoveryDto;
+	private RecoverydDto recoveryDto = new RecoverydDto();
 
 	private List<MultiValueGroup> multiValueList = new ArrayList<MultiValueGroup>();
 
-	private String binCard, cardNumber1, cardNumber2, cardNumber3, typeDoc, passConfirm;
+	private String binCard, cardNumber1, cardNumber2, cardNumber3, typeDoc;
+
+	Integer passConfirm;
 
 	@Resource(name = "multiValueGroupFacade")
 	private transient MultiValueGroupFacade multiValueGroupFacade;
@@ -52,14 +55,26 @@ public class RecoverPasswordControllerImpl extends AbstractBbvaController implem
 
 	@Override
 	public String next() {
-		System.out.println("Respuesta ");
+		System.out.println("next ");
+
 		return "next";
 	}
 
 	@Override
-	public void vamos(ActionEvent event){
-		System.out.println("vamos"+ getBinCard());
+	public void recoveryPass(ActionEvent event) {
+		StringBuilder sb = new StringBuilder();
+		sb.append(getBinCard()).append(getCardNumber1()).append(getCardNumber2()).append(getCardNumber3());
+
+		if (recoveryDto.getCardKey() == getPassConfirm()) {
+
+		} else {
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Alerta",
+							"Por favor, escribe el mismo valor de nuevo."));
+		}		
 	}
+
 	/**
 	 * @return the recoveryDto
 	 */
@@ -161,14 +176,14 @@ public class RecoverPasswordControllerImpl extends AbstractBbvaController implem
 	/**
 	 * @return the passConfirm
 	 */
-	public String getPassConfirm() {
+	public Integer getPassConfirm() {
 		return passConfirm;
 	}
 
 	/**
 	 * @param passConfirm the passConfirm to set
 	 */
-	public void setPassConfirm(String passConfirm) {
+	public void setPassConfirm(Integer passConfirm) {
 		this.passConfirm = passConfirm;
 	}
 

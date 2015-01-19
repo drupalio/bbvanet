@@ -11,19 +11,19 @@ public class RecoverydDto implements Dto {
 
 	private String user;
 
-	private int binCard;
+	private Integer binCard;
 
-	private int cardNumber;
+	private Integer cardNumber;
 
-	private int cardKey;
+	private Integer cardKey;
 
 	private String typeIdentification;
 
-	private int identification;
+	private Integer identification;
 
-	private int newKey;
+	private Integer newKey;
 
-	private boolean conditions;
+	private boolean conditions= false;
 
 	/**
 	 * 
@@ -41,8 +41,9 @@ public class RecoverydDto implements Dto {
 	 * @param newKey
 	 * @param conditions
 	 */
-	public RecoverydDto(String user, int binCard, int cardNumber, int cardKey, String typeIdentification,
-			int identification, int newKey, boolean conditions) {
+
+	public RecoverydDto(String user, Integer binCard, Integer cardNumber, Integer cardKey, String typeIdentification,
+			Integer identification, Integer newKey, boolean conditions) {
 		this.user = user;
 		this.binCard = binCard;
 		this.cardNumber = cardNumber;
@@ -61,7 +62,8 @@ public class RecoverydDto implements Dto {
 	}
 
 	/**
-	 * @param user the user to set
+	 * @param user
+	 *            the user to set
 	 */
 	public void setUser(String user) {
 		this.user = user;
@@ -70,42 +72,45 @@ public class RecoverydDto implements Dto {
 	/**
 	 * @return the binCard
 	 */
-	public int getBinCard() {
+	public Integer getBinCard() {
 		return binCard;
 	}
 
 	/**
-	 * @param binCard the binCard to set
+	 * @param binCard
+	 *            the binCard to set
 	 */
-	public void setBinCard(int binCard) {
+	public void setBinCard(Integer binCard) {
 		this.binCard = binCard;
 	}
 
 	/**
 	 * @return the cardNumber
 	 */
-	public int getCardNumber() {
+	public Integer getCardNumber() {
 		return cardNumber;
 	}
 
 	/**
-	 * @param cardNumber the cardNumber to set
+	 * @param cardNumber
+	 *            the cardNumber to set
 	 */
-	public void setCardNumber(int cardNumber) {
+	public void setCardNumber(Integer cardNumber) {
 		this.cardNumber = cardNumber;
 	}
 
 	/**
 	 * @return the cardKey
 	 */
-	public int getCardKey() {
+	public Integer getCardKey() {
 		return cardKey;
 	}
 
 	/**
-	 * @param cardKey the cardKey to set
+	 * @param cardKey
+	 *            the cardKey to set
 	 */
-	public void setCardKey(int cardKey) {
+	public void setCardKey(Integer cardKey) {
 		this.cardKey = cardKey;
 	}
 
@@ -117,7 +122,8 @@ public class RecoverydDto implements Dto {
 	}
 
 	/**
-	 * @param typeIdentification the typeIdentification to set
+	 * @param typeIdentification
+	 *            the typeIdentification to set
 	 */
 	public void setTypeIdentification(String typeIdentification) {
 		this.typeIdentification = typeIdentification;
@@ -126,28 +132,30 @@ public class RecoverydDto implements Dto {
 	/**
 	 * @return the identification
 	 */
-	public int getIdentification() {
+	public Integer getIdentification() {
 		return identification;
 	}
 
 	/**
-	 * @param identification the identification to set
+	 * @param identification
+	 *            the identification to set
 	 */
-	public void setIdentification(int identification) {
+	public void setIdentification(Integer identification) {
 		this.identification = identification;
 	}
 
 	/**
 	 * @return the newKey
 	 */
-	public int getNewKey() {
+	public Integer getNewKey() {
 		return newKey;
 	}
 
 	/**
-	 * @param newKey the newKey to set
+	 * @param newKey
+	 *            the newKey to set
 	 */
-	public void setNewKey(int newKey) {
+	public void setNewKey(Integer newKey) {
 		this.newKey = newKey;
 	}
 
@@ -159,13 +167,13 @@ public class RecoverydDto implements Dto {
 	}
 
 	/**
-	 * @param conditions the conditions to set
+	 * @param conditions
+	 *            the conditions to set
 	 */
 	public void setConditions(boolean conditions) {
 		this.conditions = conditions;
 	}
-	
-	
+
 	/**
 	 * @param user
 	 * @param binCard
@@ -177,26 +185,35 @@ public class RecoverydDto implements Dto {
 	 * @param newConfirmKey
 	 * @param conditions
 	 */
-	
+
 	@Override
 	public String toString() {
 		return new ToStringBuilder(this).append("user", getUser())
-				.append("binCard", getBinCard()).append("cardNumber", getCardNumber())
-				.append("cardKey", getCardKey()).append("typeIdentification", getTypeIdentification())
-				.append("identification", getIdentification()).append("newKey", getNewKey()).append("conditions", isConditions()).toString();
+				.append("binCard", getBinCard())
+				.append("cardNumber", getCardNumber())
+				.append("cardKey", getCardKey())
+				.append("typeIdentification", getTypeIdentification())
+				.append("identification", getIdentification())
+				.append("newKey", getNewKey())
+				.append("conditions", isConditions()).toString();
 	}
 
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder().append(getUser()).append(getBinCard()).append(getCardNumber())
-				.append(getCardKey()).append(getTypeIdentification()).append(getIdentification()).append(getNewKey()).append(isConditions()).toHashCode();
+		return new HashCodeBuilder().append(getUser()).append(getBinCard())
+				.append(getCardNumber()).append(getCardKey())
+				.append(getTypeIdentification()).append(getIdentification())
+				.append(getNewKey()).append(isConditions()).toHashCode();
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 
-		return (obj instanceof RecoverydDto) && this.getUser().equals(((RecoverydDto)obj).getUser())
-				&& this.getTypeIdentification().equals(((RecoverydDto)obj).getTypeIdentification())
-				&& this.getIdentification()==(((RecoverydDto)obj).getIdentification());
+		return (obj instanceof RecoverydDto)
+				&& this.getUser().equals(((RecoverydDto) obj).getUser())
+				&& this.getTypeIdentification().equals(
+						((RecoverydDto) obj).getTypeIdentification())
+				&& this.getIdentification() == (((RecoverydDto) obj)
+						.getIdentification());
 	}
 }

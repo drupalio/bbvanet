@@ -13,23 +13,24 @@
 
 <composite:interface>
 	<composite:attribute name="href" />
-	<composite:attribute name="update" />
-	<composite:attribute name="action"
-		method-signature="java.lang.String action()" />
 </composite:interface>
 
 <composite:implementation>
 
- 
-	<div  id="#{cc.clientId}" class="modal-footer recoverKeyModal">
-		<bbvaInput:input id="recoverKeyCond" type="checkbox" required="true" />
-		<p:outputLabel class="control-label left"
-			value="#{msg['text.condiConfirmOne']}" for="recoverKeyCond">
-			<a href="#{cc.attrs.href}" title="Descargar PDF terminos.">#{msg['text.condiConfirmTwo']}
-				<span class="adobe-blue"> </span> <span class="adobe-size">(6Kb)</span>
-			</a>
-		</p:outputLabel>		
-		 <composite:insertChildren></composite:insertChildren>		
+	<div id="#{cc.clientId}" class="modal-footer recoverKeyModal">
+		<div>
+			<p:inputText id="recoverKeyCond" type="checkbox" required="true"
+				styleClass="checkInput" />
+			<h:outputLabel styleClass="control-label left conditionsLabel"
+				value="#{msg['text.condiConfirmOne']}" for="recoverKeyCond">
+				<h:commandLink title="Descargar PDF terminos."
+					hreflang="#{cc.attrs.href}" value="#{msg['text.condiConfirmTwo']}">
+					<span class="adobe-blue"> </span>
+					<span class="adobe-size">(6Kb)</span>
+				</h:commandLink>
+			</h:outputLabel>
+		</div>
+		<composite:insertChildren></composite:insertChildren>
 	</div>
 </composite:implementation>
 </html>
