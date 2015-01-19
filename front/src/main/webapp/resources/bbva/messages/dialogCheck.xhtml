@@ -22,17 +22,18 @@
 		<div style="display: block;" class="step-content">
 			<div class="modal-body recoverKeyModal">
 				<div class="modal-steps-confirm">
-					<h2>Operación realizada correctamente</h2>
-					<p>A continuación puede ingresar en la Net con su nueva Clave
-						de Acceso</p>
+					<h2>#{msg['title.opertationCheck']}</h2>
+					<p>#{msg['mssg.operationCheck']}</p>
 					<p>
-						<strong>Su nueva clave es <h:outputLabel value="#{recoverPassController.cardNumber1}" /></strong>
+						<strong> #{msg['text.newPasswordIs']} <h:outputLabel
+								value="#{recoverPassController.cardNumber1}" /></strong>
 					</p>
 				</div>
 			</div>
 			<div class="modal-footer recoverKeyModal">
-				<p:commandButton styleClass="btn btn-form" type="submit"
-					value="#{msg['text.close']}" action="#{recoverPassController.close}"
+				<p:commandButton styleClass="btn btn-form closeButton" type="submit"
+					value="#{msg['text.close']}"
+					action="#{recoverPassController.close}"
 					onclick="PF('employeeSearch').hide();" />
 			</div>
 		</div>
