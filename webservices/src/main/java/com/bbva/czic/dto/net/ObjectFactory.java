@@ -24,6 +24,10 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _LoanBalance_QNAME = new QName("", "balance");
+    private final static QName _LoanPayment_QNAME = new QName("", "payment");
+    private final static QName _LoanStatus_QNAME = new QName("", "status");
+    private final static QName _LoanDebt_QNAME = new QName("", "debt");
     private final static QName _Activity_QNAME = new QName("urn:com:bbva:czic:dto:net", "Activity");
     private final static QName _EnumRotaryMoveStatus_QNAME = new QName("urn:com:bbva:czic:dto:net", "EnumRotaryMoveStatus");
     private final static QName _Email_QNAME = new QName("urn:com:bbva:czic:dto:net", "Email");
@@ -49,10 +53,6 @@ public class ObjectFactory {
     private final static QName _EnumProductType_QNAME = new QName("urn:com:bbva:czic:dto:net", "EnumProductType");
     private final static QName _EnumContactSourceType_QNAME = new QName("urn:com:bbva:czic:dto:net", "EnumContactSourceType");
     private final static QName _Payment_QNAME = new QName("urn:com:bbva:czic:dto:net", "Payment");
-    private final static QName _LoanBalance_QNAME = new QName("", "balance");
-    private final static QName _LoanPayment_QNAME = new QName("", "payment");
-    private final static QName _LoanStatus_QNAME = new QName("", "status");
-    private final static QName _LoanDebt_QNAME = new QName("", "debt");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.bbva.czic.dto.net
@@ -203,6 +203,42 @@ public class ObjectFactory {
      */
     public Office createOffice() {
         return new Office();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Balance }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "", name = "balance", scope = Loan.class)
+    public JAXBElement<Balance> createLoanBalance(Balance value) {
+        return new JAXBElement<Balance>(_LoanBalance_QNAME, Balance.class, Loan.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Payment }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "", name = "payment", scope = Loan.class)
+    public JAXBElement<Payment> createLoanPayment(Payment value) {
+        return new JAXBElement<Payment>(_LoanPayment_QNAME, Payment.class, Loan.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link EnumLoanStatus }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "", name = "status", scope = Loan.class)
+    public JAXBElement<EnumLoanStatus> createLoanStatus(EnumLoanStatus value) {
+        return new JAXBElement<EnumLoanStatus>(_LoanStatus_QNAME, EnumLoanStatus.class, Loan.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Balance }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "", name = "debt", scope = Loan.class)
+    public JAXBElement<Balance> createLoanDebt(Balance value) {
+        return new JAXBElement<Balance>(_LoanDebt_QNAME, Balance.class, Loan.class, value);
     }
 
     /**
@@ -428,42 +464,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "urn:com:bbva:czic:dto:net", name = "Payment")
     public JAXBElement<Payment> createPayment(Payment value) {
         return new JAXBElement<Payment>(_Payment_QNAME, Payment.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Balance }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "", name = "balance", scope = Loan.class)
-    public JAXBElement<Balance> createLoanBalance(Balance value) {
-        return new JAXBElement<Balance>(_LoanBalance_QNAME, Balance.class, Loan.class, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Payment }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "", name = "payment", scope = Loan.class)
-    public JAXBElement<Payment> createLoanPayment(Payment value) {
-        return new JAXBElement<Payment>(_LoanPayment_QNAME, Payment.class, Loan.class, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link EnumLoanStatus }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "", name = "status", scope = Loan.class)
-    public JAXBElement<EnumLoanStatus> createLoanStatus(EnumLoanStatus value) {
-        return new JAXBElement<EnumLoanStatus>(_LoanStatus_QNAME, EnumLoanStatus.class, Loan.class, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Balance }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "", name = "debt", scope = Loan.class)
-    public JAXBElement<Balance> createLoanDebt(Balance value) {
-        return new JAXBElement<Balance>(_LoanDebt_QNAME, Balance.class, Loan.class, value);
     }
 
 }
