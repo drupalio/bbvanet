@@ -229,11 +229,8 @@ tr.ui-state-hover {
 	border-color: 1px solid #00559D !important;
 	vertical-align: text-top !important;
 	font-size: 100% !important;
-	border-color: #00559D !important;
 	background: linear-gradient(to bottom, #0079C1 0%, #00559D 100%) repeat
 		scroll 0% 0% transparent !important;
-	border-color: #00559D !important;
-	border-color: #00559D !important;
 }
 
 /* sombra del input, color y estilo de la letra */
@@ -257,4 +254,14 @@ input.ui-state-hover {
 	box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.16) inset !important;
 	color: #999EA5 !important;
 	background-color: #FFF !important;
+}
+
+/* estilos boton close dialog Check */
+.closeButton {
+	font-weight: 400 !important;
+	text-shadow: none !important;
+	font-size: 12px !important;
+	padding: 7px 6.5px !important;
+	border-radius: 4px !important;
+	margin-bottom: -14% !important;
 }
