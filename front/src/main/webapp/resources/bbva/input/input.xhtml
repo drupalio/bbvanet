@@ -12,7 +12,6 @@
 	<composite:attribute name="id" />
 	<composite:attribute name="value" />
 	<composite:attribute name="type" />
-	<composite:attribute name="width" />
 	<composite:attribute name="required" />
 	<composite:attribute name="maxlength" type="java.lang.Integer" />
 	<composite:attribute name="requiredMessage" required="false"
@@ -40,12 +39,13 @@
 	</div>
 	<p:inputText id="#{cc.attrs.id}" type="#{cc.attrs.type}"
 		value="#{cc.attrs.value}" maxlength="#{cc.attrs.maxlength}"
-		required="#{cc.attrs.required}"
+		required="#{cc.attrs.required}" 
 		requiredMessage="#{cc.attrs.requiredMessage}"
 		validatorMessage="#{cc.attrs.validatorMessage}"
 		title="#{component.valid?'':'Este campo es obligatorio.'}"
 		onclick="checkFilled(this)"
-		styleClass="#{component.valid?'form-control':'form-control  has-error'}" style="width:#{cc.attrs.width}">
+		styleClass="#{component.valid?'form-control':'form-control  has-error'}">
+		<composite:insertChildren></composite:insertChildren>
 	</p:inputText>
 </composite:implementation>
 
