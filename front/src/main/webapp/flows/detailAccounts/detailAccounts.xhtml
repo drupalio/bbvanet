@@ -24,24 +24,27 @@
 			<p:dialog widgetVar="employeeSearch" header="Search employee"
 				style="display: block; position:relative; border: 1px solid #DBDCDC; background-color: #F4F7F5"
 				class="modal modal-wizard fade recoverKeyModal in modal-dialog modal-lg modal-content"
-				modal="true" width="110%" height="100%">
-
+				modal="true" width="110%" height="100%" showHeader="false" >
+				
 				<p:outputPanel>
 					<h:form id="mainForm">
 						<bbvaMessage:recoverContent>
 							<bbvaMessage:recoverHead
-								title="#{msg['title.retrieveYourPassword']}"
-								pointOne="#{msg['text.userNewDigitalKey']}"
-								pointTwo="#{msg['text.confirmation']}" />
-							<bbvaMessage:recoverFooter>
-								<p:commandButton id="nextButton" classButton="btn btn-form next"
-									action="#{recoverPassController.respuesta}"
-									value="#{msg['button.next']}" update=":mainForm">
-
+								title="#{msg['title.retrieveYourUser']}"
+								pointOne="#{msg['text.userNew']}"
+								pointTwo="#{msg['text.confirmation']}"
+								pointOneState="active" 
+								sizeProgress="0px"/>
+							<bbvaMessage:recoverUserBody/>
+							<bbvaMessage:recoverFooter pointTwo="#{msg['text.confirmation']}">
+								<p:commandButton id="nextButton" styleClass="btn btn-form next" 								
+									value="#{msg['button.next']}" update=":mainForm" style="font-weight: inherit;text-shadow: inherit;position: relative;padding: 3px 2px;box-shadow:inherit;margin-top:60px;border:1px solid #00559D !important;">
 								</p:commandButton>
+								
 							</bbvaMessage:recoverFooter>
 
 						</bbvaMessage:recoverContent>
+						
 					</h:form>
 
 				</p:outputPanel>

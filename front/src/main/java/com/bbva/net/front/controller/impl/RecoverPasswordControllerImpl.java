@@ -17,16 +17,26 @@ import com.bbva.net.front.core.AbstractBbvaController;
 
 @Controller(value = "recoverPassController")
 @Scope(value = "globalSession")
-public class RecoverPasswordControllerImpl extends AbstractBbvaController implements
-		RecoverPasswordController {
+public class RecoverPasswordControllerImpl extends AbstractBbvaController implements RecoverPasswordController {
+
 	private static final long serialVersionUID = 6795761532672076491L;
 
 	private static final Integer LIST_DOC_TYPES = 4;
-	
+
 	private RecoverydDto recoveryDto;
-	
+
+	private String valor;
+
+	public String getValor() {
+		return valor;
+	}
+
+	public void setValor(String valor) {
+		this.valor = valor;
+	}
+
 	private List<MultiValueGroup> multiValueList = new ArrayList<MultiValueGroup>();
-	
+
 	@Resource(name = "multiValueGroupFacade")
 	private transient MultiValueGroupFacade multiValueGroupFacade;
 
@@ -34,25 +44,23 @@ public class RecoverPasswordControllerImpl extends AbstractBbvaController implem
 	public void init() {
 		this.multiValueList = this.getListMultiValueDocuments();
 	}
-	
+
 	@Override
 	public List<MultiValueGroup> getListMultiValueDocuments() {
 		return this.multiValueGroupFacade.getMultiValueTypes(LIST_DOC_TYPES);
 	}
-	
 
 	@Override
 	public String showMessageCheck() {
 		return "yes";
-	}	
-	
+	}
+
 	@Override
-	public String respuesta(){
+	public String respuesta() {
 		System.out.println("Respuesta ");
 		return "start";
 	}
 
-	
 	/**
 	 * @return the recoveryDto
 	 */
@@ -60,7 +68,6 @@ public class RecoverPasswordControllerImpl extends AbstractBbvaController implem
 		return recoveryDto;
 	}
 
-	
 	/**
 	 * @param recoveryDto the recoveryDto to set
 	 */
@@ -68,7 +75,6 @@ public class RecoverPasswordControllerImpl extends AbstractBbvaController implem
 		this.recoveryDto = recoveryDto;
 	}
 
-	
 	/**
 	 * @return the multiValueList
 	 */
@@ -76,11 +82,10 @@ public class RecoverPasswordControllerImpl extends AbstractBbvaController implem
 		return multiValueList;
 	}
 
-	
 	/**
 	 * @param multiValueList the multiValueList to set
 	 */
 	public void setMultiValueList(List<MultiValueGroup> multiValueList) {
 		this.multiValueList = multiValueList;
-	} 
+	}
 }

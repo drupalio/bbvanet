@@ -16,20 +16,30 @@
 	<composite:attribute name="update" />
 	<composite:attribute name="action"
 		method-signature="java.lang.String action()" />
+	<composite:attribute name="pointTwo" type="java.lang.String" />
 </composite:interface>
 
 <composite:implementation>
 
- 
-	<div  id="#{cc.clientId}" class="modal-footer recoverKeyModal">
-		<bbvaInput:input id="recoverKeyCond" type="checkbox" required="true" />
-		<p:outputLabel class="control-label left"
-			value="#{msg['text.condiConfirmOne']}" for="recoverKeyCond">
+
+	<div id="#{cc.clientId}" class="modal-footer recoverKeyModal">
+		<!-- 	<input aria-required="true" name="recoverUserCond" id="recoverUserCond" value="true" type="checkbox"/> -->
+		<!-- 		<bbvaInput:input id="rrecoverUserCond" type="checkbox" required="true" width="0%"/> -->
+		<label class="control-label left" for="recoverUserCond"
+			style="border-bottom: 1px solid #D5E2EE; width: 100%; padding-bottom: 24px">#{msg['text.condiConfirmOne']}
 			<a href="#{cc.attrs.href}" title="Descargar PDF terminos.">#{msg['text.condiConfirmTwo']}
 				<span class="adobe-blue"> </span> <span class="adobe-size">(6Kb)</span>
-			</a>
-		</p:outputLabel>		
-		 <composite:insertChildren></composite:insertChildren>		
+		</a>
+		</label>
+		<composite:insertChildren></composite:insertChildren>
 	</div>
+			<div style="left: 0px; width: 1272px;" class="steps-group row">
+			<div style="width: 52%;" class="steps step1 final-step">
+				<div class="step-header visible-xs visible-sm">
+					<span class="icon-lastStep"></span>#{cc.attrs.pointTwo}
+				</div>
+
+			</div>
+		</div>
 </composite:implementation>
 </html>

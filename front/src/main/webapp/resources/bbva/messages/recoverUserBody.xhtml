@@ -17,18 +17,8 @@
 
 <composite:implementation>
 
-	<div style="left: 0px; width: 1272px;" class="steps-group row">
-		<div style="width: 636px;" class="steps step0">
-			<div class="step-header visible-xs visible-sm open-step">
-				<span class="icon-firstStep"></span>#{cc.attrs.message}
-			</div>
-			<div style="" class="step-content">
-				<composite:insertChildren></composite:insertChildren>
-			</div>
-		</div>
-	</div>
-	<div class="modal-body recoverKeyModal">
-		<h2>#{msg['text.messageNuDigitalKey']}</h2>
+	<div class="modal-body recoverKeyModal form-horizontal">
+		<h2>#{msg['text.messageUserDialog']}</h2>
 		<div class="block-error hidden col-xs-12">
 			<div class="error-icon-container">
 				<span class="alert-red"></span>
@@ -37,112 +27,77 @@
 				<h2 class="error-title">#{msg['text.errorData']}</h2>
 			</div>
 		</div>
-		<div class="form-group">
-			<p:outputLabel id="recoverKeyUserLabel" for="recoverKeyUser"
-				value="#{msg['text.user']}"
-				class="col-xs-12 col-sm-12 col-md-5 control-label left">
+
+		<div class="form-group" style="margin-bottom: 20px; height: 36px">
+			<label id="recoverKeyCardLabel" for="recoverKeyUser"
+				class="col-xs-12 col-sm-12 col-md-5 control-label left">#{msg['text.numberCard']}
 				<span
-					data-original-title="Ingrese el usuario con el que se registró previamente en el site. Compuesto por 8 caracteres alfanuméricos, únicamente podrán incluirse letras y mínimo tendrán que ser 4."
-					class="required" data-toggle="tooltip" title=""></span>
-			</p:outputLabel>
-			<div class="col-xs-12 col-sm-12 col-md-7 input-group">
-				<div class="input-control">
-					<bbvaInput:input id="recoverKeyUser" type="text" required="true" />
-				</div>
-			</div>
-		</div>
-		<div class="form-group">
-			<p:outputLabel id="recoverKeyCardLabel" for="recoverKeyUser"
-				value="#{msg['text.numberCard']}"
-				class="col-xs-12 col-sm-12 col-md-5 control-label left">
-				<span
-					data-original-title="Seleccionar los 4 primeros dígitos de la tarjeta activa en el Banco. Este número debe tener clave para cajero automático. Si la tarjeta es “Débito Maestro”, debe seleccionar lel número “5895” en el combo."
-					class="required" data-toggle="tooltip" title=""></span>
-			</p:outputLabel>
-			<div class="col-xs-12 col-sm-12 col-md-7 input-group">
+				data-original-title="Seleccionar los 4 primeros dígitos de la tarjeta activa en el Banco. Este número debe tener clave para cajero automático. Si la tarjeta es “Débito Maestro”, debe seleccionar lel número “5895” en el combo."
+				class="required" data-toggle="tooltip" title=""></span>
+			</label>
+			<div class="col-xs-12 col-sm-12 col-md-7">
 				<div class="col-xs-6 col-sm-3 input-control"
 					style="width: 25% !important">
-					<bbvaInput:comboSelected id="datj" />
+					<bbvaInput:comboSelected id="recoverKeyUser" />
 				</div>
 				<div class="col-xs-6 col-sm-3 input-control"
 					style="width: 25% !important">
 					<bbvaInput:input id="recoverKeyCod2Card" type="text"
-						required="true" />
+						required="true" maxlength="4" requiredMessage="requerido"
+						validatorMessage="valida" value="#{recoverPassController.valor}" />
 				</div>
 				<div class="col-xs-6 col-sm-3 input-control"
 					style="width: 25% !important">
 					<bbvaInput:input id="recoverKeyCod3Card" type="text"
-						required="true" />
+						required="true" maxlength="4" requiredMessage="requerido"
+						validatorMessage="valida" value="#{recoverPassController.valor}" />
 				</div>
 				<div class="col-xs-6 col-sm-3 input-control"
 					style="width: 25% !important">
 					<bbvaInput:input id="recoverKeyCod4Card" type="text"
-						required="true" />
+						required="true" maxlength="4" requiredMessage="requerido"
+						validatorMessage="valida" value="#{recoverPassController.valor}" />
 				</div>
 			</div>
 		</div>
-		<div class="form-group">
-			<p:outputLabel id="recoverKeyPassCardLabel" for="recoverKeyPassCard"
-				value="#{msg['text.keyCard']}"
-				class="col-xs-12 col-sm-12 col-md-5 control-label left">
+
+		<div class="form-group" style="margin-bottom: 20px; height: 36px">
+			<label id="recoverKeyPassCardLabel" for="recoverKeyPassCard"
+				class="col-xs-12 col-sm-12 col-md-5 control-label left">#{msg['text.keyCard']}
 				<span
-					data-original-title="La clave a incluir es la utilizada en Cajeros Automáticos. En caso de introducir la clave de manera errónea más de tres veces, el sistema bloqueará de manera automática la tarjeta. Para desbloquearla deberá acudir a la oficina dónde registró los productos."
-					class="required" data-toggle="tooltip" title=""></span>
-			</p:outputLabel>
-			<div class="col-xs-12 col-sm-12 col-md-7 input-group">
-				<div class="input-control">
-					<bbvaInput:input id="recoverKeyPassCard" type="password"
-						required="true" />
-				</div>
+				data-original-title="La clave a incluir es la utilizada en Cajeros Automáticos. En caso de introducir la clave de manera errónea más de tres veces, el sistema bloqueará de manera automática la tarjeta. Para desbloquearla deberá acudir a la oficina dónde registró los productos."
+				class="required" data-toggle="tooltip" title=""></span>
+			</label>
+			<div class="col-xs-12 col-sm-12 col-md-7">
+
+				<bbvaInput:input id="recoverKeyPassCard" type="text" required="true"
+					maxlength="8" requiredMessage="requerido" validatorMessage="valida"
+					value="#{recoverPassController.valor}" />
+
 			</div>
 		</div>
-		<div class="form-group">
-			<p:outputLabel id="recoverKeyDocLabel" for="recoverKeyPassCard"
-				value="#{msg['text.identificationUser']}"
-				class="col-xs-12 col-sm-12 col-md-5 control-label left">
+		<div class="form-group" style="margin-bottom: 20px; height: 36px">
+			<label id="recoverKeyDocLabel" for="recoverKeyDocNum"
+				class="col-xs-12 col-sm-12 col-md-5 control-label left">#{msg['text.identificationUser']}
 				<span
-					data-original-title="El número de identificación no debe incluir puntos ni letras."
-					class="required" data-toggle="tooltip" title=""></span>
-			</p:outputLabel>
-			<div class="col-xs-12 col-sm-12 col-md-7 input-group">
-				<div
-					class="col-xs-12 col-sm-12 col-md-6 input-control recoverKeyDocType">
+				data-original-title="El número de identificación no debe incluir puntos ni letras."
+				class="required" data-toggle="tooltip" title=""></span>
+			</label>
+			<div class="col-xs-12 col-sm-12 col-md-7">
+				<div class="col-xs-12 col-sm-7 input-control recoverUserDocType">
 					<bbvaInput:comboSelected id="datt" />
 				</div>
 				<div
-					class="col-xs-12 col-sm-12 col-md-6 input-control recoverKeyDocNum">
-					<bbvaInput:input id="recoverKeyDocNum" type="text" required="true" />
+					class="col-xs-12 col-sm-12 col-md-5 input-control recoverUserDocNum">
+					<bbvaInput:input id="recoverKeyDocNum" type="text" required="true"
+						maxlength="8" requiredMessage="requerido"
+						validatorMessage="valida" value="#{recoverPassController.valor}" />
 				</div>
 			</div>
 		</div>
-		<div class="form-group">
-			<p:outputLabel id="recoverKeyPassLabel" for="recoverKeyPass"
-				value="#{msg['text.NewCodeBBVA']}"
-				class="col-xs-12 col-sm-12 col-md-5 control-label left">
-				<span
-					data-original-title="Compuesta por mínimo 5 caracteres alfanuméricos y máximo 8 (números del 0 al 9 y letras de la A a la Z), con posibilidad de incluir mayúsculas y minúsculas."
-					class="required" data-toggle="tooltip" title=""></span>
-			</p:outputLabel>
-			<div class="col-xs-12 col-sm-12 col-md-7 input-group">
-				<div class="input-control">
-					<bbvaInput:input id="recoverKeyPass" type="password"
-						required="true" class="form-control" value="" />
-				</div>
-			</div>
-		</div>
-		<div class="form-group">
-			<p:outputLabel id="recoverKeyPassConfLabel" for="recoverKeyPassConf"
-				value="#{msg['text.ConfirmNewCodeBBVA']}"
-				class="col-xs-12 col-sm-12 col-md-5 control-label left">
-			</p:outputLabel>
-			<div class="col-xs-12 col-sm-12 col-md-7 input-group">
-				<div class="input-control">
-					<bbvaInput:input id="recoverKeyPassConf" type="password"
-						required="true" />
-				</div>
-			</div>
-		</div>
+		
 	</div>
+
 </composite:implementation>
 
 </html>
