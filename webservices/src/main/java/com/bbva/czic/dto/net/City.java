@@ -1,14 +1,15 @@
+
 package com.bbva.czic.dto.net;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
 
+
 /**
- * <p>
- * Clase Java para City complex type.
- * <p>
- * El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>Java class for City complex type.
+ * 
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="City">
@@ -22,48 +23,65 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "City", propOrder = { "id", "name" })
+@XmlType(name = "City", propOrder = {
+    "id",
+    "name"
+})
 public class City {
 
-	protected String id;
+    protected String id;
+    protected String name;
 
-	protected String name;
+    /**
+     * Gets the value of the id property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getId() {
+        return id;
+    }
 
-	/**
-	 * Obtiene el valor de la propiedad id.
-	 * 
-	 * @return possible object is {@link String }
-	 */
-	public String getId() {
-		return id;
-	}
+    /**
+     * Sets the value of the id property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setId(String value) {
+        this.id = value;
+    }
 
-	/**
-	 * Define el valor de la propiedad id.
-	 * 
-	 * @param value allowed object is {@link String }
-	 */
-	public void setId(String value) {
-		this.id = value;
-	}
+    /**
+     * Gets the value of the name property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getName() {
+        return name;
+    }
 
-	/**
-	 * Obtiene el valor de la propiedad name.
-	 * 
-	 * @return possible object is {@link String }
-	 */
-	public String getName() {
-		return name;
-	}
+    /**
+     * Sets the value of the name property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setName(String value) {
+        this.name = value;
+    }
 
-	/**
-	 * Define el valor de la propiedad name.
-	 * 
-	 * @param value allowed object is {@link String }
-	 */
-	public void setName(String value) {
-		this.name = value;
-	}
 }

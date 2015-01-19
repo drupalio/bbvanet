@@ -1,3 +1,4 @@
+
 package com.bbva.czic.dto.net;
 
 import java.util.ArrayList;
@@ -41,10 +42,10 @@ public class Loan
 {
 
     @XmlElementRefs({
-        @XmlElementRef(name = "payment", type = JAXBElement.class),
+        @XmlElementRef(name = "status", type = JAXBElement.class),
         @XmlElementRef(name = "balance", type = JAXBElement.class),
-        @XmlElementRef(name = "debt", type = JAXBElement.class),
-        @XmlElementRef(name = "status", type = JAXBElement.class)
+        @XmlElementRef(name = "payment", type = JAXBElement.class),
+        @XmlElementRef(name = "debt", type = JAXBElement.class)
     })
     protected List<JAXBElement<?>> rest;
 
@@ -76,8 +77,8 @@ public class Loan
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link JAXBElement }{@code <}{@link Payment }{@code >}
      * {@link JAXBElement }{@code <}{@link Balance }{@code >}
+     * {@link JAXBElement }{@code <}{@link Payment }{@code >}
      * {@link JAXBElement }{@code <}{@link Balance }{@code >}
      * {@link JAXBElement }{@code <}{@link EnumLoanStatus }{@code >}
      * 
