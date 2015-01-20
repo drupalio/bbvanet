@@ -13,10 +13,10 @@
 	<ui:define name="contentLeft">
 
 		<div>
-			<h2 class="blockTitle">Test information page</h2>
+			<h2 class="blockTitle">Test flow dialog</h2>
 
 			<h:form id="form">
-				<p:commandLink onclick="PF('employeeSearch').show();"
+				<p:commandLink onclick="PF('recoverPass').show();"
 					value="#{msg['text.recoverPassword']}" styleClass="modal-trigger" />
 			</h:form>
 
@@ -25,19 +25,20 @@
 					value="#{msg['text.recoverUser']}" styleClass="modal-trigger" />
 			</h:form>
 
-			<p:dialog id="dialogo" widgetVar="employeeSearch"
+			<p:dialog id="dialogo" widgetVar="recoverPass"
 				header="Recupere su clave de acceso" resizable="false"
 				style="display: block; position:relative; border: 1px solid #DBDCDC; background-color: #F4F7F5;"
 				class="modal recoverKeyModal modal-content" modal="true"
 				width="105%">
 				<p:outputPanel>
 					<h:form id="mainForm">
-						<bbvaMessage:recoverContent>
+					
+						<bbvaMessage:recoverContent id="recoverContainer">
 							<bbvaMessage:recoverHead
 								title="#{msg['title.retrieveYourPassword']}"
 								pointOne="#{msg['text.userNewDigitalKey']}"
 								pointTwo="#{msg['text.confirmation']}" />
-							<bbvaMessage:recoverPasswordBody />
+							<bbvaMessage:recoverPasswordBody id="passBody"/>
 							<bbvaMessage:recoverFooter>
 								<p:commandButton id="nextButton"
 									classButton="btn btn-form next nextButton"
