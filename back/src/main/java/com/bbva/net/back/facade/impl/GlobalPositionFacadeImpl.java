@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.web.client.RestClientException;
 
 import com.bbva.czic.dto.net.Product;
@@ -39,7 +40,9 @@ public class GlobalPositionFacadeImpl extends AbstractBbvaFacade implements Glob
 	@Override
 	public GlobalProductsDto getGlobalProductsByUser(final String user) throws RestClientException {
 
-		final List<Product> response = this.globalPositionService.getExtractGlobalBalance(user, "", "", "", "");
+		final List<Product> response = this.globalPositionService.getExtractGlobalBalance(user, StringUtils.EMPTY,
+				StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY);
+
 		// return globalPositionMapper.map(response);
 		return globalPositionMapper.map(response);
 

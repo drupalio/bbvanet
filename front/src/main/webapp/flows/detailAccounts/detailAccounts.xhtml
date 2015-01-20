@@ -27,25 +27,25 @@
 			
 			<p:dialog id="dialogo" widgetVar="employeeSearch"
 				header="Recupere su clave de acceso" resizable="false"
-				style="display: block; position:relative; border: 1px solid #DBDCDC; background-color: #F4F7F5; padding: -3% -3% !important;"
-				class="modal modal-wizard fade recoverKeyModal in modal-dialog modal-lg modal-content"
-				modal="true" width="104%" height="100%">
+				style="display: block; position:relative; border: 1px solid #DBDCDC; background-color: #F4F7F5;"
+				class="modal recoverKeyModal modal-content" modal="true"
+				width="105%">
 				<p:outputPanel>
 					<h:form id="mainForm">
 						<p:messages id="messages" showDetail="true" autoUpdate="true"
 							closable="true" />
-						<bbvaMessage:recoverContent close="#{recoverClientController.close}">
+							<bbvaMessage:recoverContent>
 							<bbvaMessage:recoverHead title="#{msg['title.retrieveYourPassword']}"
 								pointOne="#{msg['text.userNewDigitalKey']}"
 								pointTwo="#{msg['text.confirmation']}" pointOneState="active"
 								sizeProgress="0px" />
-<!-- 							<bbvaMessage:recoverPasswordBody /> -->
+								<bbvaMessage:recoverPasswordBody />
 							<bbvaMessage:recoverFooter pointTwo="#{msg['text.confirmation']}">
-								<p:commandButton id="nextButton" styleClass="btn btn-form next"
-									value="#{msg['button.next']}" update=":mainForm"
-									style="font-weight: inherit;text-shadow: inherit;position: relative;padding: 3px 2px;box-shadow:inherit;margin-top:60px;border:1px solid #00559D !important;"
+								<p:commandButton id="nextButton"
+									styleClass="btn btn-form next nextButton"
 									action="#{recoverPassController.next}"
-                                    actionListener="#{recoverPassController.recoveryPass}">
+                                    actionListener="#{recoverPassController.recoveryPass}"
+                                    value="#{msg['button.next']}" update=":mainForm">
 								</p:commandButton>
 							</bbvaMessage:recoverFooter>
 						</bbvaMessage:recoverContent>
@@ -55,9 +55,9 @@
 		
 		<p:dialog id="recoverUser" widgetVar="recoveryUser"
 				header="Recupere su usuario" resizable="false"
-				style="display: block; position:absolute; border: 1px solid #DBDCDC; background-color: #F4F7F5; padding: -3% -3% !important;"
+				style="display: block; position:absolute; border: 1px solid #DBDCDC; background-color: #F4F7F5;"
 				class="modal modal-wizard fade recoverKeyModal in modal-dialog modal-lg modal-content"
-				modal="true" width="104%" showHeader="false">
+				modal="true" width="105%" showHeader="false">
 				<p:outputPanel>
 					<h:form id="recoveryUserForm">
 						<p:messages id="messagesU" showDetail="true" autoUpdate="true"

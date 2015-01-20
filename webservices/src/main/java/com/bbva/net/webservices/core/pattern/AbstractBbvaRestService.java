@@ -103,10 +103,10 @@ public abstract class AbstractBbvaRestService {
 	}
 
 	/**
-	 * @param uRL_BASE
+	 * @param URL
 	 */
-	public void setURL_BASE(String uRL_BASE) {
-		URL_BASE = uRL_BASE;
+	public void setURL_BASE(String URL) {
+		this.URL_BASE = URL;
 	}
 
 }

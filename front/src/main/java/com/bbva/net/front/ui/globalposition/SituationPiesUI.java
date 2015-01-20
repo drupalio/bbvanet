@@ -1,8 +1,8 @@
 package com.bbva.net.front.ui.globalposition;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
+import com.bbva.net.back.model.commons.Money;
 import com.bbva.net.front.ui.pie.PieConfigUI;
 
 public class SituationPiesUI implements Serializable {
@@ -15,9 +15,9 @@ public class SituationPiesUI implements Serializable {
 
 	private PieConfigUI financing;
 
-	private BigDecimal totalAssets;
+	private Money totalAssets;
 
-	private BigDecimal totalFinancing;
+	private Money totalFinancing;
 
 	public PieConfigUI getSituation() {
 		return situation;
@@ -43,19 +43,19 @@ public class SituationPiesUI implements Serializable {
 		this.financing = financing;
 	}
 
-	public BigDecimal getTotalAssets() {
+	public Money getTotalAssets() {
 		return totalAssets;
 	}
 
-	public void setTotalAssets(final BigDecimal totalAssets) {
+	public void setTotalAssets(Money totalAssets) {
 		this.totalAssets = totalAssets;
 	}
 
-	public BigDecimal getTotalFinancing() {
+	public Money getTotalFinancing() {
 		return totalFinancing;
 	}
 
-	public void setTotalFinancing(final BigDecimal totalFinancing) {
+	public void setTotalFinancing(Money totalFinancing) {
 		this.totalFinancing = totalFinancing;
 	}
 

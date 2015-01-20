@@ -2,10 +2,10 @@ package com.bbva.net.back.model.globalposition;
 
 import com.bbva.net.core.test.AbstractBbvaDTOTest;
 
-public class DepositDTOTest extends AbstractBbvaDTOTest<DepositDto> {
+public class ProductDtoTest extends AbstractBbvaDTOTest<ProductDto> {
 
 	@Override
-	protected DepositDto getInstance() {
+	protected ProductDto getInstance() {
 		return new DepositDto();
 	}
 
