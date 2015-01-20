@@ -55,7 +55,7 @@ public class RecoverPasswordControllerImpl extends AbstractBbvaController implem
 
 	@Override
 	public String next() {
-		System.out.println("next ");
+		System.out.println("next");
 
 		return "next";
 	}

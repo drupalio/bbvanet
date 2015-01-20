@@ -54,13 +54,8 @@ public class RecoveryClientControllerImpl extends AbstractBbvaController impleme
 
 	@Override
 	public String next() {
-		System.out.println("Respuesta ");
+		System.out.println("Respuesta Usuario");
 		return "next";
-	}
-
-	@Override
-	public void vamos(ActionEvent event) {
-		System.out.println("vamos" + getBinCard());
 	}
 
 	/**
@@ -187,6 +182,12 @@ public class RecoveryClientControllerImpl extends AbstractBbvaController impleme
 	 */
 	public void setMultiValueGroupFacade(MultiValueGroupFacade multiValueGroupFacade) {
 		this.multiValueGroupFacade = multiValueGroupFacade;
+	}
+
+	@Override
+	public void recoveryUSer(ActionEvent event) {
+		System.out.println("vamos" + getBinCard());
+
 	}
 
 }

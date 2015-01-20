@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<composite:interface>
+	
+</composite:interface>
+
+<composite:implementation>
+
+	<div style="width: 636px;" class="steps step1 final-step">
+		<div class="step-header visible-xs visible-sm open-step">
+			<span class="icon-lastStep"></span>#{msg['text.confirmation']}
+		</div>
+		<div style="display: block;" class="step-content">
+			<div class="modal-body recoverKeyModal">
+				<div class="modal-steps-confirm">
+					<h2>Operación realizada correctamente</h2>
+					<p>A continuación puede ingresar en la Net con su nuevo Usuario
+					<strong>ZDEX6</strong>
+					</p>
+				</div>
+			</div>
+			<div class="modal-footer recoverKeyModal">
+				<p:commandButton styleClass="btn btn-form" style="font-weight: inherit;text-shadow: inherit;position: relative;padding: 3px 2px;box-shadow:inherit;margin-top:60px;border:1px solid #00559D !important;" type="submit"
+					value="#{msg['text.close']}" action="#{recoverClientController.close}"
+					onclick="PF('recoverUser').hide();" />
+			</div>
+		</div>
+	</div>
+
+</composite:implementation>
+
+</html>
+

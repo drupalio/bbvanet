@@ -29,6 +29,6 @@ public interface RecoveryClientController {
 	 */
 	List<MultiValueGroup> getListMultiValueDocuments();
 
-	void vamos(ActionEvent event);
+	void recoveryUSer(ActionEvent event);
 
 }
