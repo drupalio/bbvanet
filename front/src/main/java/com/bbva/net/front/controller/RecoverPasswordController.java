@@ -34,4 +34,9 @@ public interface RecoverPasswordController {
 	 */
 	void recoveryPass(ActionEvent event);
 
+	/**
+	 * Method to clean all the variables used in the form
+	 */
+	void clean();
+
 }
