@@ -34,11 +34,13 @@ public class RecoverPasswordControllerImpl extends AbstractBbvaController implem
 
 	Integer passConfirm;
 
+	boolean renderTermsAndConditions = false;
+
 	@Resource(name = "multiValueGroupFacade")
 	private transient MultiValueGroupFacade multiValueGroupFacade;
 
 	@PostConstruct
-	public void init() {
+	public void init() {		
 		this.multiValueList = this.getListMultiValueDocuments();
 	}
 
@@ -49,6 +51,7 @@ public class RecoverPasswordControllerImpl extends AbstractBbvaController implem
 
 	@Override
 	public String close() {
+		clean();
 		System.out.println("Close");
 		return "close";
 	}
@@ -61,9 +64,12 @@ public class RecoverPasswordControllerImpl extends AbstractBbvaController implem
 	}
 
 	@Override
-	public void recoveryPass(ActionEvent event) {
+	public void recoveryPass(final ActionEvent event) {
 		StringBuilder sb = new StringBuilder();
 		sb.append(getBinCard()).append(getCardNumber1()).append(getCardNumber2()).append(getCardNumber3());
+		if (isRenderTermsAndConditions() == false) {
+			setRenderTermsAndConditions(true);
+		}
 
 		if (recoveryDto.getCardKey() == getPassConfirm()) {
 
@@ -72,7 +78,16 @@ public class RecoverPasswordControllerImpl extends AbstractBbvaController implem
 					null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Alerta",
 							"Por favor, escribe el mismo valor de nuevo."));
-		}		
+		}
+	}
+
+	@Override
+	public void clean() {
+		setRenderTermsAndConditions(false);
+		setPassConfirm(null);
+		setBinCard(null); setCardNumber1(null);setCardNumber2(null); setCardNumber3(null);;
+		setTypeDoc(null);
+		this.recoveryDto = new RecoverydDto();
 	}
 
 	/**
@@ -199,5 +214,19 @@ public class RecoverPasswordControllerImpl extends AbstractBbvaController implem
 	 */
 	public void setMultiValueGroupFacade(MultiValueGroupFacade multiValueGroupFacade) {
 		this.multiValueGroupFacade = multiValueGroupFacade;
+	}
+
+	/**
+	 * @return the renderTermsAndConditions
+	 */
+	public boolean isRenderTermsAndConditions() {
+		return renderTermsAndConditions;
+	}
+
+	/**
+	 * @param renderTermsAndConditions the renderTermsAndConditions to set
+	 */
+	public void setRenderTermsAndConditions(boolean renderTermsAndConditions) {
+		this.renderTermsAndConditions = renderTermsAndConditions;
 	}
 }
