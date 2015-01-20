@@ -28,7 +28,10 @@ public interface RecoverPasswordController {
 	 */
 	List<MultiValueGroup> getListMultiValueDocuments();
 
-
-	void vamos(ActionEvent event);
+	/**
+	 * Method that creates a new password, given user information.
+	 * @param event
+	 */
+	void recoveryPass(ActionEvent event);
 
 }

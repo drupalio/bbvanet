@@ -7,7 +7,7 @@ import javax.faces.event.AjaxBehaviorEvent;
 
 import org.springframework.stereotype.Controller;
 
-import com.bbva.net.back.facade.PersonalizeProductAccountFacade;
+import com.bbva.net.back.facade.PersonalizeProductFacade;
 import com.bbva.net.back.model.personalize.PersonalizeAccountDto;
 import com.bbva.net.front.controller.PersonalizeProductAccountController;
 import com.bbva.net.front.core.AbstractBbvaController;
@@ -39,9 +39,9 @@ public class PersonalizeProductAccountControllerImpl extends AbstractBbvaControl
 	}
 
 	@Resource(name = "personalizeProductAccountFacade")
-	private PersonalizeProductAccountFacade personalizeProductAccountFacade;
+	private PersonalizeProductFacade personalizeProductAccountFacade;
 
-	public void setPersonalizeProductAccountFacade(PersonalizeProductAccountFacade personalizeProductAccountFacade) {
+	public void setPersonalizeProductAccountFacade(PersonalizeProductFacade personalizeProductAccountFacade) {
 		this.personalizeProductAccountFacade = personalizeProductAccountFacade;
 
 	}

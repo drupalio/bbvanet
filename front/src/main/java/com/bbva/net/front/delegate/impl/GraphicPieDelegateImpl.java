@@ -78,8 +78,8 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 		situationPiesUI.setAssets(getAssetPieConfig(productList));
 		situationPiesUI.setFinancing(getFinanciationPieConfig(productList));
 
-		situationPiesUI.setTotalAssets((productService.getTotalAssets(productList).getAmount()));
-		situationPiesUI.setTotalFinancing((productService.getTotalFinanciacion(productList).getAmount()));
+		situationPiesUI.setTotalAssets((productService.getTotalAssets(productList)));
+		situationPiesUI.setTotalFinancing((productService.getTotalFinanciacion(productList)));
 
 		return situationPiesUI;
 	}

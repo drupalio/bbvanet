@@ -5,7 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import com.bbva.net.back.facade.PersonalizeProductAccountFacade;
+import com.bbva.net.back.facade.PersonalizeProductFacade;
 import com.bbva.net.back.model.personalize.PersonalizeAccountDto;
 
 public class PersonalizeProductAccountControllerImplTest {
@@ -16,7 +16,7 @@ public class PersonalizeProductAccountControllerImplTest {
 
 	private PersonalizeProductAccountControllerImpl personalizeProductAccountControllerImpl;
 
-	private PersonalizeProductAccountFacade personalizeProductAccountFacade;
+	private PersonalizeProductFacade personalizeProductAccountFacade;
 
 	@Before
 	public void init() {
@@ -28,7 +28,7 @@ public class PersonalizeProductAccountControllerImplTest {
 
 		this.personalizeProductAccountControllerImpl.successful(null);
 
-		this.personalizeProductAccountFacade = Mockito.mock(PersonalizeProductAccountFacade.class);
+		this.personalizeProductAccountFacade = Mockito.mock(PersonalizeProductFacade.class);
 
 		this.personalizeProductAccountControllerImpl
 				.setPersonalizeProductAccountFacade(personalizeProductAccountFacade);
