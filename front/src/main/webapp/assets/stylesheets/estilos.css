@@ -265,3 +265,7 @@ input.ui-state-hover {
 	border-radius: 4px !important;
 	margin-bottom: -14% !important;
 }
+.margenContent {
+	top: -20% !important;
+	left: 22% !important;
+}
