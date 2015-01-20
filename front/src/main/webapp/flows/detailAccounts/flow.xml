@@ -5,15 +5,20 @@
     http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
 
 
-<var name="recoverPassController" class="com.bbva.net.front.controller.impl.RecoverPasswordControllerImpl"/>
-	
+	<var name="userRecoveryController"
+		class="com.bbva.net.front.controller.impl.RecoverPasswordControllerImpl" />
+
+
 	<view-state id="detailAccounts">
-		<transition on="start" to="embedded-flow" />
+		<transition on="next" to="embedded-flow" />
+		<transition on="close" to="final" />
 	</view-state>
 
 	<subflow-state id="embedded-flow" subflow="detailAccounts/dialogRecover">
 		<input name="mode" value="'embedded'" />
 		<transition on="final" to="detailAccounts" />
 	</subflow-state>
+
+	<end-state id="final" />
 
 </flow>

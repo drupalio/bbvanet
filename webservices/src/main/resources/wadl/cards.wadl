@@ -1,14 +1,5 @@
 <application xmlns="http://wadl.dev.java.net/2009/02" xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <grammars>
-        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:com:bbva:jee:arq:spring:core:servicing:utils" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:com:bbva:jee:arq:spring:core:servicing:utils">
-            <xs:element name="money" type="tns:money"/>
-            <xs:complexType name="money">
-                <xs:sequence>
-                    <xs:element minOccurs="0" name="amount" type="xs:decimal"/>
-                    <xs:element minOccurs="0" name="currency" type="xs:string"/>
-                </xs:sequence>
-            </xs:complexType>
-        </xs:schema>
         <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="urn:com:bbva:jee:arq:spring:core:servicing:utils" xmlns:tns="urn:com:bbva:czic:dto:net" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:com:bbva:czic:dto:net">
             <xs:import namespace="urn:com:bbva:jee:arq:spring:core:servicing:utils"/>
             <xs:element name="CardCharge" type="tns:CardCharge"/>
@@ -21,11 +12,23 @@
             </xs:complexType>
             <xs:simpleType name="EnumCardChargeCategory">
                 <xs:restriction base="xs:string">
-                    <xs:enumeration value="TRAVEL"/>
-                    <xs:enumeration value="CLOTHS"/>
-                    <xs:enumeration value="FOOD"/>
+                    <xs:enumeration value="CHANNEL_SALES"/>
+                    <xs:enumeration value="LEISURE"/>
+                    <xs:enumeration value="OTHERS"/>
+                    <xs:enumeration value="BASIC_COMMERCE"/>
+                    <xs:enumeration value="GIFT_BOOK_DISC"/>
+                    <xs:enumeration value="CLOTHING"/>
                 </xs:restriction>
             </xs:simpleType>
+        </xs:schema>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:com:bbva:jee:arq:spring:core:servicing:utils" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:com:bbva:jee:arq:spring:core:servicing:utils">
+            <xs:element name="money" type="tns:money"/>
+            <xs:complexType name="money">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="amount" type="xs:decimal"/>
+                    <xs:element minOccurs="0" name="currency" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
         </xs:schema>
     </grammars>
     <resources base="http://localhost:8080/czic/cards">

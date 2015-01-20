@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.cxf.jaxrs.client.WebClient;
 import org.springframework.beans.factory.annotation.Value;
 
 import com.bbva.czic.dto.net.AccMovementsResume;
@@ -21,21 +22,22 @@ public class CustomerServiceImpl extends AbstractBbvaRestService implements Cust
 	@Value("${rest.cardsCharges.url}")
 	private String URL_CARDCHARGES;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<AccMovementsResume> listAccountsMovementsResume(String customerId, String filter) {
 
-		final AccMovementsResume[] customers = restTemplate.getForObject(URL_BASE_CUSTOMER + customerId + URL_CUSTOMER
-				+ filter, AccMovementsResume[].class);
-		final List<AccMovementsResume> customerResult = new ArrayList<AccMovementsResume>();
-		CollectionUtils.addAll(customerResult, customers);
-		return customerResult;
+		String filterParam = filter.equals("") ? "" : "filter";
+		WebClient wc = getJsonWebClient(URL_BASE_CUSTOMER + customerId + URL_CUSTOMER);
+		wc.query(filterParam, filter);
+
+		return (List<AccMovementsResume>)wc.getCollection(AccMovementsResume.class);
 	}
 
 	@Override
 	public List<CardCharge> listCreditCardsCharges(String customerId, String filter) {
 
-		final CardCharge[] cardsCharges = restTemplate.getForObject(URL_BASE_CUSTOMER + customerId + URL_CARDCHARGES,
-				CardCharge[].class);
+		final CardCharge[] cardsCharges = restTemplate.getForObject(URL_BASE_CUSTOMER + customerId + URL_CARDCHARGES
+				+ filter, CardCharge[].class);
 		final List<CardCharge> cardsChargesResult = new ArrayList<CardCharge>();
 		CollectionUtils.addAll(cardsChargesResult, cardsCharges);
 		return cardsChargesResult;

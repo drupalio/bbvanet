@@ -63,8 +63,7 @@ public abstract class AbstractBbvaRestService {
 	 * @param URL
 	 * @return
 	 */
-	protected WebClient getJsonWebClient(final String URL) {
-
+	protected WebClient getJsonWebClient(String URL) {
 		factoryBean.setAddress(URL);
 		final WebClient webClient = factoryBean.createWebClient();
 		webClient.accept("application/json").type("application/json");
@@ -101,6 +100,13 @@ public abstract class AbstractBbvaRestService {
 	 */
 	public void setFactoryBean(JAXRSClientFactoryBean factoryBean) {
 		this.factoryBean = factoryBean;
+	}
+
+	/**
+	 * @param URL
+	 */
+	public void setURL_BASE(String URL) {
+		this.URL_BASE = URL;
 	}
 
 }

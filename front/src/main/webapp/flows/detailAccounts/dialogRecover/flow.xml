@@ -8,16 +8,12 @@
 	<var name="userRecoveryController" class="com.bbva.net.front.controller.impl.RecoverPasswordControllerImpl"/>
 
 	<action-state id="getDataAction">
-		<evaluate expression="userRecoveryController.showMessageCheck()" />
-		<transition on="yes" to="checkMessage" />
+		<evaluate expression="userRecoveryController.next()" />
+		<transition on="next" to="checkMessage" />
 	</action-state>
 
 	<view-state id="checkMessage">
-		<transition on="confirm" to="final" />
-	</view-state>
-
-	<view-state id="transition">
-		<transition on="getData" to="getDataAction" />
+		<transition on="close" to="final" />
 	</view-state>
 
 	<end-state id="final" />

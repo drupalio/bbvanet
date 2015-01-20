@@ -1,16 +1,16 @@
+
 package com.bbva.jee.arq.spring.core.servicing.utils;
 
 import java.math.BigDecimal;
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
 
+
 /**
- * <p>
- * Java class for money complex type.
- * <p>
- * The following schema fragment specifies the expected content contained within this class.
+ * <p>Java class for money complex type.
+ * 
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="money">
@@ -24,71 +24,65 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "money", propOrder = { "amount", "currency" })
+@XmlType(name = "money", propOrder = {
+    "amount",
+    "currency"
+})
 public class Money {
 
-	protected BigDecimal amount;
+    protected BigDecimal amount;
+    protected String currency;
 
-	protected String currency;
+    /**
+     * Gets the value of the amount property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link BigDecimal }
+     *     
+     */
+    public BigDecimal getAmount() {
+        return amount;
+    }
 
-	public Money() {
-		super();
-	}
+    /**
+     * Sets the value of the amount property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link BigDecimal }
+     *     
+     */
+    public void setAmount(BigDecimal value) {
+        this.amount = value;
+    }
 
-	public Money(String arg0) {
-		String[] temp;
+    /**
+     * Gets the value of the currency property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getCurrency() {
+        return currency;
+    }
 
-		/* delimiter */
-		String delimiter = " ";
-
-		if (arg0 != null) {
-
-			/* given string will be split by the argument delimiter provided. */
-			temp = arg0.split(delimiter);
-
-			if (temp != null && temp.length == 2) {
-				setAmount(new BigDecimal(temp[0]));
-				setCurrency(temp[1]);
-			}
-		}
-	}
-
-	/**
-	 * Gets the value of the amount property.
-	 * 
-	 * @return possible object is {@link BigDecimal }
-	 */
-	public BigDecimal getAmount() {
-		return amount;
-	}
-
-	/**
-	 * Sets the value of the amount property.
-	 * 
-	 * @param value allowed object is {@link BigDecimal }
-	 */
-	public void setAmount(BigDecimal value) {
-		this.amount = value;
-	}
-
-	/**
-	 * Gets the value of the currency property.
-	 * 
-	 * @return possible object is {@link String }
-	 */
-	public String getCurrency() {
-		return currency;
-	}
-
-	/**
-	 * Sets the value of the currency property.
-	 * 
-	 * @param value allowed object is {@link String }
-	 */
-	public void setCurrency(String value) {
-		this.currency = value;
-	}
+    /**
+     * Sets the value of the currency property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setCurrency(String value) {
+        this.currency = value;
+    }
 
 }
