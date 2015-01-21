@@ -75,7 +75,7 @@
 					valueDateSince="#{checkBookController.sinceDate}"
 					valueDateTo="#{checkBookController.toDate}"
 					disabledButton="#{checkBookController.disabledButtonDate}"
-					disabledCalendar="#{checkBookController.disabledCalendar}"
+					disabledCalendar="#{checkBookController.renderComponents[disabledCalendar]}"
 					actionListenerDate="#{checkBookController.setCustomDate}"
 					listenerDate="#{checkBookController}"
 					valueCheck="#{checkBookController.actionState}"

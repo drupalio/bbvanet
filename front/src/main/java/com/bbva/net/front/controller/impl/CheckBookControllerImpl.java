@@ -5,7 +5,9 @@ package com.bbva.net.front.controller.impl;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
@@ -20,6 +22,8 @@ import com.bbva.net.back.facade.MultiValueGroupFacade;
 import com.bbva.net.back.model.checkbook.CheckDto;
 import com.bbva.net.back.model.checkbook.CheckbookDto;
 import com.bbva.net.back.model.comboFilter.EnumCheckStatus;
+import com.bbva.net.back.model.commons.DateRangeDto;
+import com.bbva.net.back.model.enums.RenderAttributes;
 import com.bbva.net.front.core.AbstractBbvaController;
 
 /**
@@ -59,11 +63,15 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 	private String checkState;
 
 	private String checkBookNumber;
-
+		
+	private	Map<String, Boolean> renderComponents = new HashMap<String, Boolean>();			
+	
 	private List<MultiValueGroup> multiValueList = new ArrayList<MultiValueGroup>();
 
 	private CheckDto check = new CheckDto();
-
+	
+	private DateRangeDto dateRange = new DateRangeDto();		
+	
 	@Resource(name = "checkBookFacade")
 	private transient CheckBookFacade checkBookFacade;
 
@@ -97,8 +105,8 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 	public void oneSelectDate() {
 		System.out.println("Method oneSelectDate");
 		if (getSelectDate().equals(CONCRETE_DATE)) {
-
-			setDisabledCalendar(false);
+			renderComponents.put(RenderAttributes.CALENDAR.getName(), false);
+			//setDisabledCalendar(false);
 			setDisabledButtonDate(false);
 			System.out.println("if " + isDisabledCalendar() + isDisabledButtonDate());
 		} else {
@@ -106,6 +114,18 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 			setDisabledButtonDate(false);
 			System.out.println("else" + isDisabledCalendar() + isDisabledButtonDate());
 		}
+	}		
+	
+	@Override
+	public void setCustomDate(final ActionEvent event) {
+		System.out.println("setCustomDate");
+		this.getSelectDate();
+		this.dateRange.setDateSince(getSinceDate());
+		this.dateRange.setDateTo(getToDate());
+		
+		System.out.println(getSelectDate());
+		System.out.println(getSinceDate());
+		System.out.println(getToDate());
 	}
 
 	@Override
@@ -289,6 +309,22 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 		this.checkBookNumber = checkBookNumber;
 	}
 
+	
+	/**
+	 * @return the renderComponents
+	 */
+	public Map<String, Boolean> getRenderComponents() {
+		return renderComponents;
+	}
+
+	
+	/**
+	 * @param renderComponents the renderComponents to set
+	 */
+	public void setRenderComponents(Map<String, Boolean> renderComponents) {
+		this.renderComponents = renderComponents;
+	}
+
 	/**
 	 * @return the multiValueList
 	 */
@@ -315,6 +351,22 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 	 */
 	public void setCheck(CheckDto check) {
 		this.check = check;
+	}
+
+	
+	/**
+	 * @return the dateRange
+	 */
+	public DateRangeDto getDateRange() {
+		return dateRange;
+	}
+
+	
+	/**
+	 * @param dateRange the dateRange to set
+	 */
+	public void setDateRange(DateRangeDto dateRange) {
+		this.dateRange = dateRange;
 	}
 
 	/**

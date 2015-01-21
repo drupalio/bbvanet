@@ -47,4 +47,10 @@ public interface CheckBookController {
 	 */
 	List<MultiValueGroup> getListMultiValueChecks();
 
+	/**
+	 * Method to set partial customdate
+	 * 
+	 */
+	void setCustomDate(ActionEvent event);
+
 }
