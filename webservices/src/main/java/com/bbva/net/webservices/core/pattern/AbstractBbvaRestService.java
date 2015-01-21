@@ -38,6 +38,12 @@ public abstract class AbstractBbvaRestService {
 	@Value("${rest.base.cards.url}")
 	protected String URL_BASE_CARDS;
 
+	@Value("${rest.base.accounts.url}")
+	protected String URL_BASE_ACCOUNTS;
+
+	@Value("${rest.accounts.url}")
+	protected String URL_ACCOUNTS;
+
 	/**
 	 * @param response
 	 * @param entityClass

@@ -205,11 +205,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"balance": {
 		"total": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"availableBalance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	"contactInfo": {
@@ -282,11 +282,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -300,11 +300,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -318,11 +318,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	}]
 },
@@ -337,11 +337,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"balance": {
 		"total": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"availableBalance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	"contactInfo": {
@@ -414,11 +414,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -432,11 +432,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -450,11 +450,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	}]
 },
@@ -469,11 +469,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"balance": {
 		"total": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"availableBalance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	"contactInfo": {
@@ -546,11 +546,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -564,11 +564,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -582,11 +582,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	}]
 },
@@ -601,11 +601,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"balance": {
 		"total": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"availableBalance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	"contactInfo": {
@@ -678,11 +678,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -696,11 +696,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -714,11 +714,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	}]
 },
@@ -733,11 +733,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"balance": {
 		"total": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"availableBalance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	"contactInfo": {
@@ -810,11 +810,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -828,11 +828,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -846,11 +846,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	}]
 },
@@ -865,11 +865,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"balance": {
 		"total": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"availableBalance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	"contactInfo": {
@@ -942,11 +942,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -960,11 +960,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -978,11 +978,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	}]
 },
@@ -997,11 +997,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"balance": {
 		"total": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"availableBalance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	"contactInfo": {
@@ -1074,11 +1074,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -1092,11 +1092,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -1110,11 +1110,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	}]
 },
@@ -1129,11 +1129,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"balance": {
 		"total": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"availableBalance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	"contactInfo": {
@@ -1206,11 +1206,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -1224,11 +1224,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -1242,11 +1242,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	}]
 },
@@ -1261,11 +1261,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"balance": {
 		"total": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"availableBalance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	"contactInfo": {
@@ -1338,11 +1338,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -1356,11 +1356,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -1374,11 +1374,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	}]
 },
@@ -1393,11 +1393,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"balance": {
 		"total": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"availableBalance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	"contactInfo": {
@@ -1470,11 +1470,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -1488,11 +1488,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -1506,11 +1506,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	}]
 },
@@ -1525,11 +1525,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"balance": {
 		"total": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"availableBalance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	"contactInfo": {
@@ -1602,11 +1602,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -1620,11 +1620,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -1638,11 +1638,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	}]
 },
@@ -1657,11 +1657,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"balance": {
 		"total": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"availableBalance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	"contactInfo": {
@@ -1734,11 +1734,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -1752,11 +1752,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -1770,11 +1770,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	}]
 },
@@ -1789,11 +1789,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"balance": {
 		"total": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"availableBalance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	"contactInfo": {
@@ -1866,11 +1866,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -1884,11 +1884,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -1902,11 +1902,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	}]
 },
@@ -1921,11 +1921,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"balance": {
 		"total": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"availableBalance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	"contactInfo": {
@@ -1998,11 +1998,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -2016,11 +2016,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -2034,11 +2034,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	}]
 },
@@ -2053,11 +2053,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"balance": {
 		"total": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"availableBalance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	"contactInfo": {
@@ -2130,11 +2130,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -2148,11 +2148,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -2166,11 +2166,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	}]
 },
@@ -2185,11 +2185,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"balance": {
 		"total": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"availableBalance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	"contactInfo": {
@@ -2262,11 +2262,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -2280,11 +2280,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -2298,11 +2298,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	}]
 },
@@ -2317,11 +2317,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"balance": {
 		"total": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"availableBalance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	"contactInfo": {
@@ -2394,11 +2394,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -2412,11 +2412,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -2430,11 +2430,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	}]
 },
@@ -2449,11 +2449,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"balance": {
 		"total": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"availableBalance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	"contactInfo": {
@@ -2526,11 +2526,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -2544,11 +2544,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -2562,11 +2562,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	}]
 },
@@ -2581,11 +2581,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"balance": {
 		"total": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"availableBalance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	"contactInfo": {
@@ -2658,11 +2658,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -2676,11 +2676,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -2694,11 +2694,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	}]
 },
@@ -2713,11 +2713,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"balance": {
 		"total": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"availableBalance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	"contactInfo": {
@@ -2790,11 +2790,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -2808,11 +2808,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -2826,11 +2826,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	}]
 }]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/GlobalPosition/V01/customers//products" method="GET" resourcePath="/czic/GlobalPosition/V01/customers//products"><con:settings/><con:defaultResponse xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
@@ -2884,11 +2884,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"balance": {
 		"total": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"availableBalance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	"contactInfo": {
@@ -2961,11 +2961,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -2979,11 +2979,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -2997,11 +2997,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	}]
 },
@@ -3016,11 +3016,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"balance": {
 		"total": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"availableBalance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	"contactInfo": {
@@ -3093,11 +3093,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -3111,11 +3111,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -3129,11 +3129,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	}]
 },
@@ -3148,11 +3148,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"balance": {
 		"total": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"availableBalance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	"contactInfo": {
@@ -3225,11 +3225,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -3243,11 +3243,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -3261,11 +3261,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	}]
 },
@@ -3280,11 +3280,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"balance": {
 		"total": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"availableBalance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	"contactInfo": {
@@ -3357,11 +3357,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -3375,11 +3375,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -3393,11 +3393,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	}]
 },
@@ -3412,11 +3412,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"balance": {
 		"total": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"availableBalance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	"contactInfo": {
@@ -3489,11 +3489,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -3507,11 +3507,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -3525,11 +3525,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	}]
 },
@@ -3544,11 +3544,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"balance": {
 		"total": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"availableBalance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	"contactInfo": {
@@ -3621,11 +3621,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -3639,11 +3639,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -3657,11 +3657,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	}]
 },
@@ -3676,11 +3676,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"balance": {
 		"total": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"availableBalance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	"contactInfo": {
@@ -3753,11 +3753,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -3771,11 +3771,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -3789,11 +3789,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	}]
 },
@@ -3808,11 +3808,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"balance": {
 		"total": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"availableBalance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	"contactInfo": {
@@ -3885,11 +3885,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -3903,11 +3903,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -3921,11 +3921,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	}]
 },
@@ -3940,11 +3940,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"balance": {
 		"total": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"availableBalance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	"contactInfo": {
@@ -4017,11 +4017,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -4035,11 +4035,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -4053,11 +4053,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	}]
 },
@@ -4072,11 +4072,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"balance": {
 		"total": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"availableBalance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	"contactInfo": {
@@ -4149,11 +4149,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -4167,11 +4167,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -4185,11 +4185,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	}]
 },
@@ -4204,11 +4204,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"balance": {
 		"total": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"availableBalance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	"contactInfo": {
@@ -4281,11 +4281,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -4299,11 +4299,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -4317,11 +4317,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	}]
 },
@@ -4336,11 +4336,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"balance": {
 		"total": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"availableBalance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	"contactInfo": {
@@ -4413,11 +4413,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -4431,11 +4431,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -4449,11 +4449,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	}]
 },
@@ -4468,11 +4468,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"balance": {
 		"total": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"availableBalance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	"contactInfo": {
@@ -4545,11 +4545,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -4563,11 +4563,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -4581,11 +4581,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	}]
 },
@@ -4600,11 +4600,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"balance": {
 		"total": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"availableBalance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	"contactInfo": {
@@ -4677,11 +4677,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -4695,11 +4695,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -4713,11 +4713,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	}]
 },
@@ -4732,11 +4732,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"balance": {
 		"total": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"availableBalance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	"contactInfo": {
@@ -4809,11 +4809,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -4827,11 +4827,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -4845,11 +4845,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	}]
 },
@@ -4864,11 +4864,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"balance": {
 		"total": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"availableBalance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	"contactInfo": {
@@ -4941,11 +4941,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -4959,11 +4959,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -4977,11 +4977,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	}]
 },
@@ -4996,11 +4996,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"balance": {
 		"total": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"availableBalance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	"contactInfo": {
@@ -5073,11 +5073,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -5091,11 +5091,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -5109,11 +5109,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	}]
 },
@@ -5128,11 +5128,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"balance": {
 		"total": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"availableBalance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	"contactInfo": {
@@ -5205,11 +5205,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -5223,11 +5223,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -5241,11 +5241,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	}]
 },
@@ -5260,11 +5260,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"balance": {
 		"total": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"availableBalance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	"contactInfo": {
@@ -5337,11 +5337,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -5355,11 +5355,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -5373,11 +5373,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	}]
 },
@@ -5392,11 +5392,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"balance": {
 		"total": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"availableBalance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	"contactInfo": {
@@ -5469,11 +5469,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -5487,11 +5487,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	},
 	{
@@ -5505,11 +5505,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"value": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		},
 		"balance": {
 			"amount": 100000,
-			"currency": "$"
+			"currency": "COP"
 		}
 	}]
 }]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/GlobalPosition/V01/" method="PUT" resourcePath="/czic/GlobalPosition/V01/"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
@@ -5553,7 +5553,6 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 
 */
 </con:dispatchPath><con:response name="Response 1" httpResponseStatus="200"><con:settings/></con:response></con:restMockAction><con:restMockAction name="/czic/customers/V01/123/accounts/movementsResume" method="GET" resourcePath="/czic/customers/V01/123/accounts/movementsResume"><con:settings/><con:defaultResponse>No_Filter_response</con:defaultResponse><con:dispatchStyle>SCRIPT</con:dispatchStyle><con:dispatchPath>def requestMock = mockRequest.getRequest().toString()
-log.info "*** "+requestMock
 if( requestMock.contains("filter") )
 {
 	log.info "Ejecutando con Filtro "
@@ -5564,344 +5563,344 @@ if( requestMock.contains("filter") )
 }</con:dispatchPath><con:response name="No_Filter_response" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
 	"income": {
 		"amount": 10,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"outcome": {
 		"amount": -40,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"balance": {
 		"amount": 12,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"month": "JANUARY"
 },
 {
 	"income": {
 		"amount": 15,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"outcome": {
 		"amount": -60,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"balance": {
 		"amount": 18,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"month": "FEBRUARY"
 },
 {
 	"income": {
 		"amount": 20,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"outcome": {
 		"amount": -8,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"balance": {
 		"amount": 2,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"month": "MARCH"
 },
 {
 	"income": {
 		"amount": 25,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"outcome": {
 		"amount": -10,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"balance": {
 		"amount": 30,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"month": "APRIL"
 },
 {
 	"income": {
 		"amount": 30,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"outcome": {
 		"amount": -12,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"balance": {
 		"amount": 10,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"month": "MAY"
 },
 {
 	"income": {
 		"amount": 35,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"outcome": {
 		"amount": -14,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"balance": {
 		"amount": 42,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"month": "JUNE"
 },
 {
 	"income": {
 		"amount": 40,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"outcome": {
 		"amount": -16,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"balance": {
 		"amount": 48,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"month": "JULY"
 },
 {
 	"income": {
 		"amount": 45,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"outcome": {
 		"amount": -18,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"balance": {
 		"amount": 15,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"month": "AUGUST"
 },
 {
 	"income": {
 		"amount": 50,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"outcome": {
 		"amount": -20,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"balance": {
 		"amount": 60,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"month": "SEPTEMBER"
 },
 {
 	"income": {
 		"amount": 55,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"outcome": {
 		"amount": -22,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"balance": {
 		"amount": 66,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"month": "OCTOBER"
 },
 {
 	"income": {
 		"amount": 60,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"outcome": {
 		"amount": -24,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"balance": {
 		"amount": 72,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"month": "NOVEMBER"
 },
 {
 	"income": {
 		"amount": 65,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"outcome": {
 		"amount": -26,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"balance": {
 		"amount": 28,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"month": "DECEMBER"
 }]</con:responseContent></con:response><con:response name="Filter_response" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
 	"income": {
 		"amount": 10,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"outcome": {
 		"amount": -30,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"balance": {
 		"amount": 10,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"month": "JANUARY"
 },
 {
 	"income": {
 		"amount": 10,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"outcome": {
 		"amount": -30,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"balance": {
 		"amount": 20,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"month": "FEBRUARY"
 },
 {
 	"income": {
 		"amount": 30,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"outcome": {
 		"amount": -10,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"balance": {
 		"amount": 25,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"month": "MARCH"
 },
 {
 	"income": {
 		"amount": 25,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"outcome": {
 		"amount": -20,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"balance": {
 		"amount": 10,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"month": "APRIL"
 },
 {
 	"income": {
 		"amount": 40,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"outcome": {
 		"amount": -10,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"balance": {
 		"amount": 40,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"month": "MAY"
 },
 {
 	"income": {
 		"amount": 25,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"outcome": {
 		"amount": -15,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"balance": {
 		"amount": 22,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"month": "JUNE"
 },
 {
 	"income": {
 		"amount": 60,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"outcome": {
 		"amount": -26,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"balance": {
 		"amount": 58,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"month": "JULY"
 },
 {
 	"income": {
 		"amount": 10,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"outcome": {
 		"amount": -20,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"balance": {
 		"amount": 20,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"month": "AUGUST"
 },
 {
 	"income": {
 		"amount": 40,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"outcome": {
 		"amount": -5,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"balance": {
 		"amount": 30,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"month": "SEPTEMBER"
 },
 {
 	"income": {
 		"amount": 15,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"outcome": {
 		"amount": -25,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"balance": {
 		"amount": 70,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"month": "OCTOBER"
 },
 {
 	"income": {
 		"amount": 50,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"outcome": {
 		"amount": -14,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"balance": {
 		"amount": 55,
-		"currency": "$"
+		"currency": "COP"
 	},
 	"month": "NOVEMBER"
 }]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/customers/V01" method="GET" resourcePath="/czic/customers/V01"><con:settings/><con:defaultResponse xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
@@ -6147,4 +6146,148 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		"amount":600000.0,
 		"currency":"$"
 		}
+}]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/accounts/V01/123/movementsResumes" method="GET" resourcePath="/czic/accounts/V01/123/movementsResumes"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
+	"income": {
+		"amount": 5,
+		"currency": "COP"
+	},
+	"outcome": {
+		"amount": -10,
+		"currency": "COP"
+	},
+	"balance": {
+		"amount": 8,
+		"currency": "COP"
+	},
+	"month": "JANUARY"
+},
+{
+	"income": {
+		"amount": 10,
+		"currency": "COP"
+	},
+	"outcome": {
+		"amount": -10,
+		"currency": "COP"
+	},
+	"balance": {
+		"amount": 0,
+		"currency": "COP"
+	},
+	"month": "FEBRUARY"
+},
+{
+	"income": {
+		"amount": 70,
+		"currency": "COP"
+	},
+	"outcome": {
+		"amount": -60,
+		"currency": "COP"
+	},
+	"balance": {
+		"amount": 10,
+		"currency": "COP"
+	},
+	"month": "MARCH"
+},
+{
+	"income": {
+		"amount": 25,
+		"currency": "COP"
+	},
+	"outcome": {
+		"amount": -10,
+		"currency": "COP"
+	},
+	"balance": {
+		"amount": 15,
+		"currency": "COP"
+	},
+	"month": "APRIL"
+},
+{
+	"income": {
+		"amount": 30,
+		"currency": "COP"
+	},
+	"outcome": {
+		"amount": -20,
+		"currency": "COP"
+	},
+	"balance": {
+		"amount": 10,
+		"currency": "COP"
+	},
+	"month": "MAY"
+},
+{
+	"income": {
+		"amount": 35,
+		"currency": "COP"
+	},
+	"outcome": {
+		"amount": -15,
+		"currency": "COP"
+	},
+	"balance": {
+		"amount": 20,
+		"currency": "COP"
+	},
+	"month": "JUNE"
+},
+{
+	"income": {
+		"amount": 60,
+		"currency": "COP"
+	},
+	"outcome": {
+		"amount": -25,
+		"currency": "COP"
+	},
+	"balance": {
+		"amount": 35,
+		"currency": "COP"
+	},
+	"month": "JULY"
 }]</con:responseContent></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

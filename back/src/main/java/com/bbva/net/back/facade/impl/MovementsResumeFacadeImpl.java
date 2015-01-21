@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.web.client.RestClientException;
 
 import com.bbva.czic.dto.net.AccMovementsResume;
@@ -14,6 +15,7 @@ import com.bbva.net.back.mapper.GlobalResumeMovementsMapper;
 import com.bbva.net.back.model.commons.DateRangeDto;
 import com.bbva.net.back.model.movements.GlobalResumeMovementsDto;
 import com.bbva.net.back.service.FiqlService;
+import com.bbva.net.webservices.accounts.AccountsService;
 import com.bbva.net.webservices.customers.CustomerService;
 
 /**
@@ -30,6 +32,9 @@ public class MovementsResumeFacadeImpl extends AbstractBbvaFacade implements Mov
 	@Resource(name = "customerService")
 	private CustomerService customerService;
 
+	@Resource(name = "accountsService")
+	private AccountsService accountsService;
+
 	@Resource(name = "globalResumeMovementsMapper")
 	private GlobalResumeMovementsMapper globalResumeMovementsMapper;
 
@@ -40,7 +45,7 @@ public class MovementsResumeFacadeImpl extends AbstractBbvaFacade implements Mov
 	 * Método que implementa el cliente REST para obtener el resumend de movimientos en las cuentas de un usuario
 	 */
 	@Override
-	public GlobalResumeMovementsDto getMovementsResumeByeCustomer(final String customerId, final DateRangeDto dateRange)
+	public GlobalResumeMovementsDto getMovementsResumeByCustomer(final String customerId, final DateRangeDto dateRange)
 			throws RestClientException {
 		GlobalResumeMovementsDto globalMovements = new GlobalResumeMovementsDto();
 
@@ -59,9 +64,22 @@ public class MovementsResumeFacadeImpl extends AbstractBbvaFacade implements Mov
 		}
 	}
 
+	@Override
+	public GlobalResumeMovementsDto getMovementsResumeByAccount(String accountId) {
+		GlobalResumeMovementsDto globalMovements = new GlobalResumeMovementsDto();
+		final List<AccMovementsResume> response = this.accountsService.getAccMovementResume(accountId,
+				StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY);
+		globalMovements.setMovementsResumeDto(globalResumeMovementsMapper.map(response));
+		return globalMovements;
+	}
+
 	/********************************** DEPENDENCY INJECTIONS ***********************************/
 	public void setCustomerService(final CustomerService customerService) {
 		this.customerService = customerService;
+	}
+
+	public void setAccountsService(AccountsService accountsService) {
+		this.accountsService = accountsService;
 	}
 
 }

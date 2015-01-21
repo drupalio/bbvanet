@@ -5,9 +5,7 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
-import javax.faces.bean.ManagedBean;
 import javax.faces.event.ComponentSystemEvent;
-import javax.faces.view.ViewScoped;
 
 import org.primefaces.event.SelectEvent;
 
@@ -30,7 +28,6 @@ import com.bbva.net.front.helper.MessagesHelper;
 import com.bbva.net.front.ui.globalposition.AccountBarLineUI;
 import com.bbva.net.front.ui.globalposition.SituationPiesUI;
 import com.bbva.net.front.ui.pie.PieConfigUI;
-
 
 public class GlobalPositionControllerImpl extends AbstractBbvaController implements GlobalPositionController {
 
@@ -100,8 +97,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		this.fundDTOs = this.fundsTypeFacade.getFundsDataGraphic(getCurrentUser());
 
 		// Obtiene la lista de resumen de movimientos del serivico REST
-		this.globalResumeMovementsDTO = this.movementsResumeFacade
-				.getMovementsResumeByeCustomer(getCurrentUser(), null);
+		this.globalResumeMovementsDTO = this.movementsResumeFacade.getMovementsResumeByCustomer(getCurrentUser(), null);
 
 		// Calculate situation graphics panels
 		this.situationGraphicPieUI = graphicPieDelegate.getSituationGlobalProducts(this.globalProductsDTO);
@@ -118,8 +114,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 		// Calculate income, output and balance by Account Graphic
 		// Acualmente obtiene el objeto Ui quemado en el delegate
-
-		this.accountGraphicBarLineUI = this.graphicBarLineDelegate.getInOutBalanceByAccount(globalResumeMovementsDTO);
+		this.accountGraphicBarLineUI = this.graphicBarLineDelegate.getInOutBalanceAccount(globalResumeMovementsDTO);
 
 		// Get names of products
 		this.namesProducts = globalPositionFacade.getNamesProducts(globalProductsDTO);
@@ -242,14 +237,22 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		}
 	}
 
-	public void onComboSelectedAccount() {
+	public void onComboPeriodSelectedAccount() {
 
 		EnumPeriodType periodType = EnumPeriodType.valueOf(Integer.parseInt(this.periodAccountSelected));
 		DateRangeDto dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
 		// movementsResumeFacade.getMovementsResumeByeCustomer(getCurrentUser(), dateRange);
 
-		this.accountGraphicBarLineUI = this.graphicBarLineDelegate.getInOutBalanceByAccount(movementsResumeFacade
-				.getMovementsResumeByeCustomer(getCurrentUser(), dateRange));
+		this.accountGraphicBarLineUI = this.graphicBarLineDelegate.getInOutBalanceAccount(movementsResumeFacade
+				.getMovementsResumeByCustomer(getCurrentUser(), dateRange));
+	}
+
+	public void onComboProductSelectedAccount() {
+
+		this.globalResumeMovementsDTO = this.movementsResumeFacade.getMovementsResumeByAccount(DEFAULT_ACCOUNT);
+		// this.globalResumeMovementsDTO = this.movementsResumeFacade.getMovementsResumeByAccount(accountSelected);
+		this.accountGraphicBarLineUI = this.graphicBarLineDelegate.getInOutBalanceAccount(globalResumeMovementsDTO);
+
 	}
 
 	/************************************* SETTER BEANS **************************************/
