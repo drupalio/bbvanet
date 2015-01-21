@@ -33,11 +33,12 @@ public class CheckBookMapperImpl extends ConfigurableMapper implements CheckBook
 		factory.classMap(Check.class, CheckDto.class).field("id", "id").field("issueDate", "issueDate")
 				.field("value", "value").field("status", "status").field("modifiedDate", "modifiedDate").byDefault()
 				.register();
-		
+
 		// Map CheckBook DTO
-		factory.classMap(Checkbook.class, CheckbookDto.class).field("id", "id").field("firstCheck", "firstCheck").field("lastCheckl", "lastCheck")
-		.field("totalCheck", "totalCheck").field("requestDate", "requestDate").field("deliveryDate", "deliveryDate").field("actualState", "actualState").field("checks", "checks").byDefault()
-						.register();	
+		factory.classMap(Checkbook.class, CheckbookDto.class).field("id", "id").field("firstCheck", "firstCheck")
+				.field("lastCheck", "lastCheck").field("totalCheck", "totalCheck").field("requestDate", "requestDate")
+				.field("deliveryDate", "deliveryDate").field("actualState", "actualState").field("checks", "checks")
+				.byDefault().register();
 
 	}
 

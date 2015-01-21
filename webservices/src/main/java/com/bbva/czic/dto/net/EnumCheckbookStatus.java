@@ -6,32 +6,32 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for enumFinancialStatusType.
+ * <p>Java class for EnumCheckbookStatus.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * <p>
  * <pre>
- * &lt;simpleType name="enumFinancialStatusType">
+ * &lt;simpleType name="EnumCheckbookStatus">
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *     &lt;enumeration value="A"/>
- *     &lt;enumeration value="P"/>
+ *     &lt;enumeration value="HABILITADO"/>
+ *     &lt;enumeration value="SOLICITADO"/>
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
  * 
  */
-@XmlType(name = "enumFinancialStatusType")
+@XmlType(name = "EnumCheckbookStatus")
 @XmlEnum
-public enum EnumFinancialStatusType {
+public enum EnumCheckbookStatus {
 
-    A,
-    P;
+    HABILITADO,
+    SOLICITADO;
 
     public String value() {
         return name();
     }
 
-    public static EnumFinancialStatusType fromValue(String v) {
+    public static EnumCheckbookStatus fromValue(String v) {
         return valueOf(v);
     }
 
