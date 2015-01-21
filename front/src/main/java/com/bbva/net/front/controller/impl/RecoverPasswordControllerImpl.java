@@ -40,7 +40,7 @@ public class RecoverPasswordControllerImpl extends AbstractBbvaController implem
 	private transient MultiValueGroupFacade multiValueGroupFacade;
 
 	@PostConstruct
-	public void init() {		
+	public void init() {
 		this.multiValueList = this.getListMultiValueDocuments();
 	}
 
@@ -58,7 +58,7 @@ public class RecoverPasswordControllerImpl extends AbstractBbvaController implem
 
 	@Override
 	public String next() {
-		System.out.println("next ");
+		System.out.println("next");
 
 		return "next";
 	}
@@ -79,15 +79,20 @@ public class RecoverPasswordControllerImpl extends AbstractBbvaController implem
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Alerta",
 							"Por favor, escribe el mismo valor de nuevo."));
 		}
+
 	}
 
 	@Override
 	public void clean() {
 		setRenderTermsAndConditions(false);
 		setPassConfirm(null);
-		setBinCard(null); setCardNumber1(null);setCardNumber2(null); setCardNumber3(null);;
+		setBinCard(null);
+		setCardNumber1(null);
+		setCardNumber2(null);
+		setCardNumber3(null);
 		setTypeDoc(null);
 		this.recoveryDto = new RecoverydDto();
+
 	}
 
 	/**

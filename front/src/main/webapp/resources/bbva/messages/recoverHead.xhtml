@@ -16,7 +16,9 @@
 	<composite:attribute name="title" type="java.lang.String" />
 	<composite:attribute name="pointOne" type="java.lang.String" />
 	<composite:attribute name="pointTwo" type="java.lang.String" />
-
+	<composite:attribute name="pointOneState" type="java.lang.String" />
+	<composite:attribute name="pointTwoState" type="java.lang.String" />
+	<composite:attribute name="sizeProgress" type="java.lang.String"/>
 </composite:interface>
 
 <composite:implementation>
@@ -25,19 +27,27 @@
 		<h1 class="modal-title">#{cc.attrs.title}</h1>
 		<div class="progressbar-load hidden-xs hidden-sm">
 			<div class="progress-bar-container">
-				<div class="point-background first-step active">
+				<div class="point-background first-step #{cc.attrs.pointOneState}">
 					<div class="text">#{cc.attrs.pointOne}</div>
 					<div class="point"></div>
 				</div>
-				<div class="point-background last-step">
+				<div class="point-background last-step #{cc.attrs.pointTwoState}">
 					<div style="right: 67px;" class="text">#{cc.attrs.pointTwo}</div>
 					<div class="point"></div>
 				</div>
 				<div class="progress">
-					<div style="width: 0px;" class="progress-bar" role="progressbar"
+					<div style="width:#{cc.attrs.sizeProgress};" class="progress-bar" role="progressbar"
 						aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
 				</div>
 			</div>
+		</div>
+	</div>
+		<div style="left: 0px; width: 1272px;" class="steps-group row">
+		<div style="width: 52%;" class="steps step0">
+			<div class="step-header visible-xs visible-sm open-step">
+				<span class="icon-firstStep"></span> #{cc.attrs.pointOne}
+			</div>
+
 		</div>
 	</div>
 </composite:implementation>

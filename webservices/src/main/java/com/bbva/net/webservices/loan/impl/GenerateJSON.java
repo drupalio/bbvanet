@@ -18,7 +18,7 @@ import com.bbva.jee.arq.spring.core.servicing.utils.Money;
 import com.google.gson.Gson;
 
 public class GenerateJSON {
-
+/*
 	public static void main(String[] args) {
 		Gson gson = new Gson();
 		String loanJSON = gson.toJson(getLoan());
@@ -83,5 +83,5 @@ public class GenerateJSON {
 		loan.setContract(contract);
 
 		return loan;
-	}
+	}*/
 }

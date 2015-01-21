@@ -23,11 +23,11 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *       &lt;sequence>
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="firstCheck" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
- *         &lt;element name="lastCheckl" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
- *         &lt;element name="totalCheck" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="lastCheck" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+ *         &lt;element name="totalCheck" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *         &lt;element name="requestDate" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="deliveryDate" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
- *         &lt;element name="actualState" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="actualState" type="{urn:com:bbva:czic:dto:net}EnumCheckbookStatus" minOccurs="0"/>
  *         &lt;element name="checks" type="{urn:com:bbva:czic:dto:net}Check" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -41,7 +41,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 @XmlType(name = "Checkbook", propOrder = {
     "id",
     "firstCheck",
-    "lastCheckl",
+    "lastCheck",
     "totalCheck",
     "requestDate",
     "deliveryDate",
@@ -52,13 +52,13 @@ public class Checkbook {
 
     protected String id;
     protected Integer firstCheck;
-    protected Integer lastCheckl;
-    protected String totalCheck;
+    protected Integer lastCheck;
+    protected Integer totalCheck;
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar requestDate;
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar deliveryDate;
-    protected String actualState;
+    protected EnumCheckbookStatus actualState;
     @XmlElement(nillable = true)
     protected List<Check> checks;
 
@@ -111,27 +111,27 @@ public class Checkbook {
     }
 
     /**
-     * Gets the value of the lastCheckl property.
+     * Gets the value of the lastCheck property.
      * 
      * @return
      *     possible object is
      *     {@link Integer }
      *     
      */
-    public Integer getLastCheckl() {
-        return lastCheckl;
+    public Integer getLastCheck() {
+        return lastCheck;
     }
 
     /**
-     * Sets the value of the lastCheckl property.
+     * Sets the value of the lastCheck property.
      * 
      * @param value
      *     allowed object is
      *     {@link Integer }
      *     
      */
-    public void setLastCheckl(Integer value) {
-        this.lastCheckl = value;
+    public void setLastCheck(Integer value) {
+        this.lastCheck = value;
     }
 
     /**
@@ -139,10 +139,10 @@ public class Checkbook {
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link Integer }
      *     
      */
-    public String getTotalCheck() {
+    public Integer getTotalCheck() {
         return totalCheck;
     }
 
@@ -151,10 +151,10 @@ public class Checkbook {
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link Integer }
      *     
      */
-    public void setTotalCheck(String value) {
+    public void setTotalCheck(Integer value) {
         this.totalCheck = value;
     }
 
@@ -211,10 +211,10 @@ public class Checkbook {
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link EnumCheckbookStatus }
      *     
      */
-    public String getActualState() {
+    public EnumCheckbookStatus getActualState() {
         return actualState;
     }
 
@@ -223,10 +223,10 @@ public class Checkbook {
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link EnumCheckbookStatus }
      *     
      */
-    public void setActualState(String value) {
+    public void setActualState(EnumCheckbookStatus value) {
         this.actualState = value;
     }
 

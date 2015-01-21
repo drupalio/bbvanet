@@ -27,7 +27,7 @@ import com.bbva.jee.arq.spring.core.servicing.utils.Money;
  *         &lt;element name="destinationReference" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="operation" type="{urn:com:bbva:czic:dto:net}Operation" minOccurs="0"/>
  *         &lt;element name="office" type="{urn:com:bbva:czic:dto:net}Office" minOccurs="0"/>
- *         &lt;element name="status" type="{urn:com:bbva:czic:dto:net}EnumAccountState" minOccurs="0"/>
+ *         &lt;element name="status" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="value" type="{urn:com:bbva:jee:arq:spring:core:servicing:utils}money" minOccurs="0"/>
  *         &lt;element name="balance" type="{urn:com:bbva:jee:arq:spring:core:servicing:utils}money" minOccurs="0"/>
  *         &lt;element name="numberOfQuotas" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -66,7 +66,7 @@ public class Movement {
     protected String destinationReference;
     protected Operation operation;
     protected Office office;
-    protected EnumAccountState status;
+    protected String status;
     protected Money value;
     protected Money balance;
     protected String numberOfQuotas;
@@ -268,10 +268,10 @@ public class Movement {
      * 
      * @return
      *     possible object is
-     *     {@link EnumAccountState }
+     *     {@link String }
      *     
      */
-    public EnumAccountState getStatus() {
+    public String getStatus() {
         return status;
     }
 
@@ -280,10 +280,10 @@ public class Movement {
      * 
      * @param value
      *     allowed object is
-     *     {@link EnumAccountState }
+     *     {@link String }
      *     
      */
-    public void setStatus(EnumAccountState value) {
+    public void setStatus(String value) {
         this.status = value;
     }
 
