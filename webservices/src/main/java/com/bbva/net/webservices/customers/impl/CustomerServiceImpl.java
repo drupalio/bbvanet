@@ -34,7 +34,6 @@ public class CustomerServiceImpl extends AbstractBbvaRestService implements Cust
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<CardCharge> listCreditCardsCharges(String customerId, String filter) {
-		System.out.println("customer " + filter);
 		String filterParam = filter.equals("") ? "" : "$filter";
 		WebClient wc = getJsonWebClient(URL_BASE_CUSTOMER + customerId + URL_CARDCHARGES);
 		wc.query(filterParam, filter);

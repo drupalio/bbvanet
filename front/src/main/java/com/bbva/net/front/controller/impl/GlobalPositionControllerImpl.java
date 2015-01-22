@@ -224,8 +224,8 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	 * Filter combo of Graphic Cards
 	 */
 	public void onComboSelectedCard() {
-		EnumPeriodType periodType = EnumPeriodType.valueOf(this.periodCardSelected);
-		DateRangeDto dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
+		final EnumPeriodType periodType = EnumPeriodType.valueOf(this.periodCardSelected);
+		final DateRangeDto dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
 
 		if (MessagesHelper.INSTANCE.getString("text.allCards").equals(cardSelected)) {
 			this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(
