@@ -5,9 +5,7 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
-import javax.faces.bean.ManagedBean;
 import javax.faces.event.ComponentSystemEvent;
-import javax.faces.view.ViewScoped;
 
 import org.primefaces.event.SelectEvent;
 
@@ -30,7 +28,6 @@ import com.bbva.net.front.helper.MessagesHelper;
 import com.bbva.net.front.ui.globalposition.AccountBarLineUI;
 import com.bbva.net.front.ui.globalposition.SituationPiesUI;
 import com.bbva.net.front.ui.pie.PieConfigUI;
-
 
 public class GlobalPositionControllerImpl extends AbstractBbvaController implements GlobalPositionController {
 
@@ -78,9 +75,9 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	private String periodAccountSelected;
 
-	private String periodCardSelected = "0";
+	private int periodCardSelected = EnumPeriodType.LAST_TWELVE_MONTH.getPeriodId();
 
-	private String cardSelected = "";
+	private String cardSelected = MessagesHelper.INSTANCE.getString("text.allCards");
 
 	private String accountSelected;
 
@@ -109,9 +106,11 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		// Calculate investmentFunds graphics panels
 		this.graphicPieInvestmentFunds = graphicPieDelegate.getAccountsfundsProducts(this.fundDTOs);
 
-		// Calculate situation graphics panels
+		// Calculate cards graphics panel
+		EnumPeriodType periodType = EnumPeriodType.valueOf(this.periodCardSelected);
+		DateRangeDto dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
 		this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(getCurrentUser(),
-				null));
+				dateRange));
 
 		// Calculate totals
 		this.totalsProducts = this.globalPositionFacade.getTotalsByProduct(globalProductsDTO);
@@ -226,17 +225,14 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	 */
 	public void onComboSelectedCard() {
 
-		DateRangeDto dateRange = null;
-		if (!periodCardSelected.equals("0")) {
-			EnumPeriodType periodType = EnumPeriodType.valueOf(Integer.parseInt(this.periodCardSelected));
-			dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
-		}
+		final EnumPeriodType periodType = EnumPeriodType.valueOf(this.periodCardSelected);
+		final DateRangeDto dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
 
 		if (MessagesHelper.INSTANCE.getString("text.allCards").equals(cardSelected)) {
 			this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(
 					getCurrentUser(), dateRange));
 		} else {
-
+			System.out.println("cards ");
 			this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesFilter(cardSelected,
 					dateRange));
 		}
@@ -315,11 +311,11 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		this.cardsFacade = cardsFacade;
 	}
 
-	public String getPeriodCardSelected() {
+	public int getPeriodCardSelected() {
 		return periodCardSelected;
 	}
 
-	public void setPeriodCardSelected(String periodCardSelected) {
+	public void setPeriodCardSelected(int periodCardSelected) {
 		this.periodCardSelected = periodCardSelected;
 	}
 

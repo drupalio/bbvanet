@@ -6066,47 +6066,16 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		"amount":1300000.0,
 		"currency":"$"
 		}
-}]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/cards/V01/123/creditCard/cardCharges" method="GET" resourcePath="/czic/cards/V01/123/creditCard/cardCharges"><con:settings/><con:defaultResponse xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
-// Examples showing how to match based on path, query param and header
-// Match based on path
-def requestPath = mockRequest.getPath()
-log.info "Path: "+ requestPath
-
-if( requestPath.contains("json") )
+}]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/cards/V01/creditCard/2032/cardCharges" method="GET" resourcePath="/czic/cards/V01/creditCard/2032/cardCharges"><con:settings/><con:defaultResponse xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/><con:dispatchStyle>SCRIPT</con:dispatchStyle><con:dispatchPath>def requestMock = mockRequest.getRequest().toString()
+log.info "*** "+requestMock
+if( requestMock.contains("filter") )
 {
-    // return the name of the response you want to dispatch
-    return "JSON Response"
-}
-
-
-// Match based on query parameter
-def queryString = mockRequest.getRequest().getQueryString()
-log.info "QueryString: " + queryString
-
-if( queryString.contains("stockholm") )
-{
-    // return the name of the response you want to dispatch
-    return "Response Stockholm"
-}
-else if( queryString.contains("london") )
-{
-    // return the name of the response you want to dispatch
-    return "Response London"
-}
-
-
-// Match based on header
-def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
-log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
-
-if( acceptEncodingHeadeList.contains("gzip,deflate") )
-{
-    // return the name of the response you want to dispatch
-    return "GZiped Response"
-}
-
-*/
-</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
+	log.info "Ejecutando con Filtro "
+    return "Filter_response"
+}else{
+	log.info "Ejecutando SIN Filtro "
+	return "No_Filter_response"
+}</con:dispatchPath><con:response name="No_Filter_response" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
 	"category":"CHANNEL_SALES",
 	"amount":{
 		"amount":100000.0,
@@ -6145,6 +6114,47 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"category":"CLOTHING",
 	"amount":{
 		"amount":600000.0,
+		"currency":"$"
+		}
+}]</con:responseContent></con:response><con:response name="Filter_response" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
+	"category":"CHANNEL_SALES",
+	"amount":{
+		"amount":600000.0,
+		"currency":"$"
+		}
+},
+{
+	"category":"LEISURE",
+	"amount":{
+		"amount":500000.0,
+		"currency":"$"
+		}
+},
+{
+	"category":"OTHERS",
+	"amount":{
+		"amount":400000.0,
+		"currency":"$"
+		}
+},
+{
+	"category":"BASIC_COMMERCE",
+	"amount":{
+		"amount":300000.0,
+		"currency":"$"
+		}
+},
+{
+	"category":"GIFT_BOOK_DISC",
+	"amount":{
+		"amount":200000.0,
+		"currency":"$"
+		}
+},
+{
+	"category":"CLOTHING",
+	"amount":{
+		"amount":100000.0,
 		"currency":"$"
 		}
 }]</con:responseContent></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

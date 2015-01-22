@@ -11,11 +11,10 @@
 		<bbvaMessage:recoverContent>
 			<bbvaMessage:recoverHead title="#{msg['title.retrieveYourPassword']}"
 				pointOne="#{msg['text.userNewDigitalKey']}"
-				pointTwo="#{msg['text.confirmation']}" 
-				pointOneState="active" 
-				pointTwoState="active" 
-				sizeProgress="559px"/>
+				pointTwo="#{msg['text.confirmation']}" pointOneState="active"
+				pointTwoState="active" sizeProgress="559px" />
 			<bbvaMessage:dialogCheck />
+
 		</bbvaMessage:recoverContent>
 	</h:form>
 	<h:form id="recoveryUserForm">
@@ -23,11 +22,13 @@
 		<bbvaMessage:recoverContent>
 			<bbvaMessage:recoverHead title="#{msg['title.retrieveYourUser']}"
 				pointOne="#{msg['text.userNew']}"
-				pointTwo="#{msg['text.confirmation']}" 
-				pointOneState="active" 
-				pointTwoState="active" 
-				sizeProgress="559px"/>
-			<bbvaMessage:dialogCheckUser close="#{recoverClientController.close}"/>
+				pointTwo="#{msg['text.confirmation']}" pointOneState="active"
+				pointTwoState="active" sizeProgress="559px" />
+			<bbvaMessage:recoverFooter pointTwo="#{msg['text.confirmation']}">
+				<bbvaMessage:dialogCheckUser
+					close="#{recoverClientController.close}" />
+			</bbvaMessage:recoverFooter>
+
 		</bbvaMessage:recoverContent>
 	</h:form>
 </ui:composition>

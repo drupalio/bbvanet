@@ -20,7 +20,7 @@
 	<div class="item-hidden" style="display: block;">
 		<h:form id="#{cc.attrs.id}">
 			<p:dataTable id="#{cc.attrs.id}" var="iprodcut" rowIndexVar="findex"
-				selectionMode="single"
+				selectionMode="single" styleClass="hide-column-names"
 				rowKey="#{iprodcut.productId}" value="#{cc.attrs.listQuota}"
 				emptyMessage="#{msg['mssg.list.empty']}">
 
