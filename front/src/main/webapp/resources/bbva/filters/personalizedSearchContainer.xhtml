@@ -70,12 +70,13 @@
 		<h:form id="formCheckBook">
 			<bbvaSearch:personalizedSearchTabBody id="checkSearchTab"
 				title="#{msg['text.title.search.book']}">
+				
 				<bbvaSearch:checkBooksContainer id="checkContainer"
 					value="#{checkBookController.selectDate}"
 					valueDateSince="#{checkBookController.sinceDate}"
 					valueDateTo="#{checkBookController.toDate}"
-					disabledButton="#{checkBookController.disabledButtonDate}"
-					disabledCalendar="#{checkBookController.renderComponents[disabledCalendar]}"
+					disabledButton="#{checkBookController.renderComponents['BUTTONDATE']}"
+					disabledCalendar="#{checkBookController.renderComponents['CALENDAR']}"
 					actionListenerDate="#{checkBookController.setCustomDate}"
 					listenerDate="#{checkBookController}"
 					valueCheck="#{checkBookController.actionState}"
@@ -85,7 +86,7 @@
 					actionListenerCheck="#{checkBookController.searchCheck}" />
 
 				<bbvaSearch:searchButtonList show="false"
-					actionListenerShow="#{movementsCriteriaController.searchNumberCheckOrBook}" />
+					actionListenerShow="#{checkBookController.showResults}" />
 			</bbvaSearch:personalizedSearchTabBody>
 		</h:form>
 

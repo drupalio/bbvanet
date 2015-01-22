@@ -22,9 +22,12 @@ import com.bbva.net.back.facade.MultiValueGroupFacade;
 import com.bbva.net.back.model.checkbook.CheckDto;
 import com.bbva.net.back.model.checkbook.CheckbookDto;
 import com.bbva.net.back.model.comboFilter.EnumCheckStatus;
+import com.bbva.net.back.model.comboFilter.EnumPeriodType;
 import com.bbva.net.back.model.commons.DateRangeDto;
 import com.bbva.net.back.model.enums.RenderAttributes;
+import com.bbva.net.back.service.impl.DateFilterServiceImpl;
 import com.bbva.net.front.core.AbstractBbvaController;
+import com.bbva.net.front.helper.MessagesHelper;
 
 /**
  * @author User
@@ -36,9 +39,9 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 
 	private static final long serialVersionUID = 1L;
 
-	private static final String SEARCH_CHECK = "Búsqueda por nº de talonario";
+	private static final String SEARCH_CHECK = MessagesHelper.INSTANCE.getString("text.search.by.numberbook");
 
-	private static final String CONCRETE_DATE = "Fecha concreta";
+	private static final String CONCRETE_DATE = MessagesHelper.INSTANCE.getString("select.radio.concret.date");
 
 	private static final Integer LIST_CHECK_STATUS = 2;
 
@@ -48,97 +51,141 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 
 	private Date toDate;
 
-	private boolean disabledNumberBook = true;
-
-	private boolean disabledNumberCheck = true;
-
-	private boolean disabledButtonBook = true;
-
-	private boolean disabledCalendar = true;
-
-	private boolean disabledButtonDate = true;
-
 	private String actionState;
 
 	private String checkState;
 
 	private String checkBookNumber;
-		
-	private	Map<String, Boolean> renderComponents = new HashMap<String, Boolean>();			
 	
+	private String title =  MessagesHelper.INSTANCE.getString("text.last.movments");
+
+	private Map<String, Boolean> renderComponents = new HashMap<String, Boolean>();
+
 	private List<MultiValueGroup> multiValueList = new ArrayList<MultiValueGroup>();
+	
+	private List<CheckbookDto> checkBookList = new ArrayList<CheckbookDto>();
+	
+	private List<CheckDto> checkList = new ArrayList<CheckDto>();
 
 	private CheckDto check = new CheckDto();
-	
-	private DateRangeDto dateRange = new DateRangeDto();		
-	
+
+	private DateRangeDto dateRange = new DateRangeDto();	
+
 	@Resource(name = "checkBookFacade")
 	private transient CheckBookFacade checkBookFacade;
 
 	@Resource(name = "multiValueGroupFacade")
 	private transient MultiValueGroupFacade multiValueGroupFacade;
+	
+	
 
 	@PostConstruct
 	public void init() {
 		this.multiValueList = this.getListMultiValueChecks();
-	}
-
-	/**
-	 * @param event
-	 */
-	@Override
-	public void searchCheck(final ActionEvent event) {
-		System.out.println("/** searchNumberCheckOrBook **/ ");
-		check.setStatus(checkState);
-		System.out.println("check num: " + check.getId() + " check State: " + check.getStatus());
-		// List<CheckDto> checkList = checkBookFacade.getCheck(check.getId(), null);
+		renderComponents.put(RenderAttributes.MOVEMENTSTABLE.toString(), true);
+		renderComponents.put(RenderAttributes.CHECKTABLE.toString(), false);
+		clean();
 	}
 
 	@Override
-	public List<CheckbookDto> getCheckbookDto() {
-		List<CheckbookDto> checkBookList /** = checkBookFacade.getCheckbookDto(idCheck) **/
-		= null;
-		return checkBookList;
+	public void clean() {
+		
+		renderComponents.put(RenderAttributes.CALENDAR.toString(), true);
+		renderComponents.put(RenderAttributes.BUTTONDATE.toString(), true);
+
+		renderComponents.put(RenderAttributes.NUMBERBOOK.toString(), true);
+		renderComponents.put(RenderAttributes.NUMBERCHECK.toString(), true);
+		renderComponents.put(RenderAttributes.BUTTONBOOK.toString(), true);
+		
+		renderComponents.put(RenderAttributes.FILTERNUMBERCHECK.toString(), false);
+		renderComponents.put(RenderAttributes.FILTERCHECKBOOK.toString(), false);
+		renderComponents.put(RenderAttributes.FILTERDATE.toString(), false);		
+		
 	}
+	
 
 	@Override
 	public void oneSelectDate() {
 		System.out.println("Method oneSelectDate");
+		
+		renderComponents.put(RenderAttributes.FILTERDATE.toString(), true);
+		
 		if (getSelectDate().equals(CONCRETE_DATE)) {
-			renderComponents.put(RenderAttributes.CALENDAR.getName(), false);
-			//setDisabledCalendar(false);
-			setDisabledButtonDate(false);
-			System.out.println("if " + isDisabledCalendar() + isDisabledButtonDate());
-		} else {
-			setDisabledCalendar(true);
-			setDisabledButtonDate(false);
-			System.out.println("else" + isDisabledCalendar() + isDisabledButtonDate());
-		}
-	}		
+			renderComponents.put(RenderAttributes.CALENDAR.toString(), false);
+			renderComponents.put(RenderAttributes.BUTTONDATE.toString(), false);
 	
+		} else {
+			renderComponents.put(RenderAttributes.CALENDAR.toString(), true);
+			renderComponents.put(RenderAttributes.BUTTONDATE.toString(), false);
+		
+		}
+	}
+
 	@Override
 	public void setCustomDate(final ActionEvent event) {
 		System.out.println("setCustomDate");
 		this.getSelectDate();
 		this.dateRange.setDateSince(getSinceDate());
-		this.dateRange.setDateTo(getToDate());
-		
-		System.out.println(getSelectDate());
-		System.out.println(getSinceDate());
-		System.out.println(getToDate());
+		this.dateRange.setDateTo(getToDate());	
 	}
 
 	@Override
 	public void actionState() {
 		System.out.println("method Action State");
 		if (getActionState().equals(SEARCH_CHECK)) {
-			setDisabledNumberCheck(true);
-			setDisabledNumberBook(false);
-			setDisabledButtonBook(false);
+			
+			renderComponents.put(RenderAttributes.FILTERNUMBERCHECK.toString(), true);
+			renderComponents.put(RenderAttributes.NUMBERCHECK.toString(), true);
+			renderComponents.put(RenderAttributes.NUMBERBOOK.toString(), false);
+			renderComponents.put(RenderAttributes.BUTTONBOOK.toString(), false);
+
 		} else {
-			setDisabledNumberBook(true);
-			setDisabledNumberCheck(false);
-			setDisabledButtonBook(false);
+						
+			renderComponents.put(RenderAttributes.FILTERCHECKBOOK.toString(), true);
+			renderComponents.put(RenderAttributes.NUMBERBOOK.toString(), true);
+			renderComponents.put(RenderAttributes.NUMBERCHECK.toString(), false);
+			renderComponents.put(RenderAttributes.BUTTONBOOK.toString(), false);
+		}
+	}
+	
+	@Override
+	public void showResults(final ActionEvent event){
+		System.out.println("showResults");
+		
+		
+		
+		
+		if( renderComponents.get(RenderAttributes.FILTERCHECKBOOK.toString()) ){
+			System.out.println("cheques");			
+			//ToDo servicio que consulta cheques.			
+			System.out.println("check num: " + check.getId() + " check State: " +  EnumCheckStatus.valueOf(Integer.parseInt(getCheckState())) );
+			// this.checkList = checkBookFacade.getCheck(check.getId(), EnumCheckStatus.valueOf(Integer.parseInt(getCheckState())) );
+			setTitle( new String(MessagesHelper.INSTANCE.getString("tex.check.status")) );
+			renderComponents.put(RenderAttributes.MOVEMENTSTABLE.toString(), false);
+			System.out.println(renderComponents.containsValue(RenderAttributes.MOVEMENTSTABLE.toString()));
+			renderComponents.put(RenderAttributes.CHECKTABLE.toString(), true);
+			clean();
+		}else if(renderComponents.get(RenderAttributes.FILTERNUMBERCHECK.toString()) ){			
+			System.out.println("talonarios");
+			System.out.println("checkbook num: " + getCheckBookNumber());
+			//ToDo servicio que consulta talonarios.
+			//this.checkBookList = checkBookFacade.getCheckbookDto(getCheckBookNumber());
+			setTitle( MessagesHelper.INSTANCE.getString("tex.check.status") );
+			renderComponents.put(RenderAttributes.MOVEMENTSTABLE.toString(), false);
+			renderComponents.put(RenderAttributes.CHECKTABLE.toString(), true);
+			clean();
+		}else if( renderComponents.get( RenderAttributes.FILTERDATE.toString() ) ){
+			//ToDo servicio que consulta cheques por fecha
+			EnumPeriodType periodType = EnumPeriodType.valueOfLabel( this.getSelectDate() );
+			System.out.println("periodType "+periodType);
+			dateRange =  new DateFilterServiceImpl().getPeriodFilter(periodType);
+			System.out.println(dateRange.getDateSince() + "  to "+dateRange.getDateTo());
+			setTitle( MessagesHelper.INSTANCE.getString("tex.check.status") );
+			renderComponents.put(RenderAttributes.MOVEMENTSTABLE.toString(), false);
+			renderComponents.put(RenderAttributes.CHECKTABLE.toString(), true);
+			clean();
+		}else{
+			System.out.println("sin filtros");
 		}
 	}
 
@@ -150,7 +197,7 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 	@Override
 	public void setNumberCheckOrBook(final ActionEvent event) {
 		System.out.println("setNumberCheckOrBook");
-		EnumCheckStatus.valueOf(Integer.parseInt(getCheckState())) ;
+		EnumCheckStatus.valueOf(Integer.parseInt(getCheckState()));
 		System.out.println(check.getId() + " C.E " + EnumCheckStatus.valueOf(Integer.parseInt(getCheckState())) + "  "
 				+ getCheckBookNumber());
 	}
@@ -198,76 +245,6 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 	}
 
 	/**
-	 * @return the disabledNumberBook
-	 */
-	public boolean isDisabledNumberBook() {
-		return disabledNumberBook;
-	}
-
-	/**
-	 * @param disabledNumberBook the disabledNumberBook to set
-	 */
-	public void setDisabledNumberBook(boolean disabledNumberBook) {
-		this.disabledNumberBook = disabledNumberBook;
-	}
-
-	/**
-	 * @return the disabledNumberCheck
-	 */
-	public boolean isDisabledNumberCheck() {
-		return disabledNumberCheck;
-	}
-
-	/**
-	 * @param disabledNumberCheck the disabledNumberCheck to set
-	 */
-	public void setDisabledNumberCheck(boolean disabledNumberCheck) {
-		this.disabledNumberCheck = disabledNumberCheck;
-	}
-
-	/**
-	 * @return the disabledButtonBook
-	 */
-	public boolean isDisabledButtonBook() {
-		return disabledButtonBook;
-	}
-
-	/**
-	 * @param disabledButtonBook the disabledButtonBook to set
-	 */
-	public void setDisabledButtonBook(boolean disabledButtonBook) {
-		this.disabledButtonBook = disabledButtonBook;
-	}
-
-	/**
-	 * @return the disabledCalendar
-	 */
-	public boolean isDisabledCalendar() {
-		return disabledCalendar;
-	}
-
-	/**
-	 * @param disabledCalendar the disabledCalendar to set
-	 */
-	public void setDisabledCalendar(boolean disabledCalendar) {
-		this.disabledCalendar = disabledCalendar;
-	}
-
-	/**
-	 * @return the disabledButtonDate
-	 */
-	public boolean isDisabledButtonDate() {
-		return disabledButtonDate;
-	}
-
-	/**
-	 * @param disabledButtonDate the disabledButtonDate to set
-	 */
-	public void setDisabledButtonDate(boolean disabledButtonDate) {
-		this.disabledButtonDate = disabledButtonDate;
-	}
-
-	/**
 	 * @return the actionState
 	 */
 	public String getActionState() {
@@ -311,13 +288,27 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 
 	
 	/**
+	 * @return the title
+	 */
+	public String getTitle() {
+		return title;
+	}
+
+	
+	/**
+	 * @param title the title to set
+	 */
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	/**
 	 * @return the renderComponents
 	 */
 	public Map<String, Boolean> getRenderComponents() {
 		return renderComponents;
 	}
 
-	
 	/**
 	 * @param renderComponents the renderComponents to set
 	 */
@@ -339,6 +330,38 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 		this.multiValueList = multiValueList;
 	}
 
+	
+	/**
+	 * @return the checkBookList
+	 */
+	public List<CheckbookDto> getCheckBookList() {
+		return checkBookList;
+	}
+
+	
+	/**
+	 * @param checkBookList the checkBookList to set
+	 */
+	public void setCheckBookList(List<CheckbookDto> checkBookList) {
+		this.checkBookList = checkBookList;
+	}
+
+	
+	/**
+	 * @return the checkList
+	 */
+	public List<CheckDto> getCheckList() {
+		return checkList;
+	}
+
+	
+	/**
+	 * @param checkList the checkList to set
+	 */
+	public void setCheckList(List<CheckDto> checkList) {
+		this.checkList = checkList;
+	}
+
 	/**
 	 * @return the check
 	 */
@@ -353,7 +376,6 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 		this.check = check;
 	}
 
-	
 	/**
 	 * @return the dateRange
 	 */
@@ -361,7 +383,6 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 		return dateRange;
 	}
 
-	
 	/**
 	 * @param dateRange the dateRange to set
 	 */
