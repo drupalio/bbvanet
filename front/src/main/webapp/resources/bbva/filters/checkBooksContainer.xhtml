@@ -37,13 +37,13 @@
 		classSpan="arrow-left-smaller" classSpanFilter="filter"
 		title="#{msg['text.date']}">
 		<bbvaSearch:customSearchFilter id="customDate"
-			value="#{checkBookController.selectDate}"
-			valueDateSince="#{checkBookController.sinceDate}"
-			valueDateTo="#{checkBookController.toDate}"
-			disabledButton="#{checkBookController.disabledButtonDate}"
-			disabledCalendar="#{checkBookController.disabledCalendar}"
-			actionListenerDate="#{checkBookController.setCustomDate}"
-			listenerDate="#{checkBookController}" />
+			value="#{cc.attrs.value}"
+			valueDateSince="#{cc.attrs.valueDateSince}"
+			valueDateTo="#{cc.attrs.valueDateTo}"
+			disabledButton="#{cc.attrs.disabledButton}"
+			disabledCalendar="#{cc.attrs.disabledCalendar}"
+			actionListenerDate="#{cc.attrs.actionListenerDate}"
+			listenerDate="#{cc.attrs.listenerDate}" />
 	</bbvaSearch:customSearchList>
 
 	<bbvaSearch:checkBoxList id="checkList"

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<composite:interface>
+	<composite:attribute name="id" type="String" />
+	<composite:attribute name="listAccounts" type="java.util.List" />
+	<composite:attribute name="listAccountsAdquirencia" type="java.util.List" />
+	<composite:attribute name="listAccountsMore" type="java.util.List" />
+
+</composite:interface>
+
+<composite:implementation>
+
+
+	<table class="table-tabs" id="#{cc.attrs.id}">
+		<thead>
+			<tr>
+				<th class="search-head" colspan="2">
+					<ul>
+						<li><a href="#" title="">Cuentas <span
+								class="count-accounts">#{cc.attrs.listAccounts.size()+cc.attrs.listAccountsAdquirencia.size()+cc.attrs.listAccountsMore.size()}</span></a></li>
+						<li><a href="#" title="">Ver todas</a></li>
+					</ul>
+					<form action="#" method="POST" class="form form-search" role="form">
+						<span class="search-icon"></span> <input name="search"
+							class="form-control" type="text" />
+					</form>
+					<p class="icon-noresult noResults hidden">
+						La busqueda de la cuenta <span></span> no ha tenido resultado.
+					</p>
+				</th>
+			</tr>
+		</thead>
+	</table>
+
+</composite:implementation>
+
+</html>
