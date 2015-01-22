@@ -49,27 +49,27 @@ public class MovementsResumeFacadeImpl extends AbstractBbvaFacade implements Mov
 			throws RestClientException {
 		GlobalResumeMovementsDto globalMovements = new GlobalResumeMovementsDto();
 
-		if (dateRange == null) {
+		String filter = dateRange == null ? StringUtils.EMPTY : fiqlService.getFiqlQueryByDateRange(dateRange);
 
-			final List<AccMovementsResume> response = this.customerService.listAccountsMovementsResume(customerId, "");
-			globalMovements.setMovementsResumeDto(globalResumeMovementsMapper.map(response));
-			return globalMovements;
-		} else {
-			// Pasar FilQL
-			String filter = fiqlService.getFiqlQueryByDateRange(dateRange);
-			final List<AccMovementsResume> response = this.customerService.listAccountsMovementsResume(customerId,
-					filter);
-			globalMovements.setMovementsResumeDto(globalResumeMovementsMapper.map(response));
-			return globalMovements;
-		}
+		final List<AccMovementsResume> response = this.customerService.listAccountsMovementsResume(customerId, filter);
+		globalMovements.setMovementsResumeDto(globalResumeMovementsMapper.map(response));
+
+		return globalMovements;
+
 	}
 
 	@Override
-	public GlobalResumeMovementsDto getMovementsResumeByAccount(String accountId) {
+	public GlobalResumeMovementsDto getMovementsResumeByAccount(String accountId, DateRangeDto dateRange,
+			String fields, String expands, String sort) {
+
 		GlobalResumeMovementsDto globalMovements = new GlobalResumeMovementsDto();
-		final List<AccMovementsResume> response = this.accountsService.getAccMovementResume(accountId,
-				StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY);
+
+		String filter = dateRange == null ? StringUtils.EMPTY : fiqlService.getFiqlQueryByDateRange(dateRange);
+
+		final List<AccMovementsResume> response = this.accountsService.getAccMovementResume(accountId, filter, fields,
+				expands, sort);
 		globalMovements.setMovementsResumeDto(globalResumeMovementsMapper.map(response));
+
 		return globalMovements;
 	}
 

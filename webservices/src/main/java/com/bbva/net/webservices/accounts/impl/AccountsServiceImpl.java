@@ -41,7 +41,7 @@ public class AccountsServiceImpl extends AbstractBbvaRestService implements Acco
 	public List<AccMovementsResume> getAccMovementResume(String id, String $filter, String $fields, String $expands,
 			String $sort) {
 		WebClient wc = getJsonWebClient(URL_BASE_ACCOUNTS + id + URL_ACCOUNTS);
-
+		wc.query("filtro", $filter);
 		return (List<AccMovementsResume>)wc.getCollection(AccMovementsResume.class);
 	}
 

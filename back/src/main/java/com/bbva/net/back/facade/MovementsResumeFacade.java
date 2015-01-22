@@ -7,6 +7,7 @@ public interface MovementsResumeFacade {
 
 	GlobalResumeMovementsDto getMovementsResumeByCustomer(String customerId, DateRangeDto dateRange);
 
-	GlobalResumeMovementsDto getMovementsResumeByAccount(String accountId);
+	GlobalResumeMovementsDto getMovementsResumeByAccount(String accountId, DateRangeDto filter, String fields,
+			String expands, String sort);
 
 }
