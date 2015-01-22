@@ -1,9 +1,8 @@
 package com.bbva.net.webservices.cards.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.cxf.jaxrs.client.WebClient;
 import org.springframework.beans.factory.annotation.Value;
 
 import com.bbva.czic.dto.net.CardCharge;
@@ -18,14 +17,15 @@ public class CardServiceImpl extends AbstractBbvaRestService implements CardServ
 	@Value("${rest.cardsCharges.url}")
 	private String URL_CARDCHARGES;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<CardCharge> getCreditCardCharges(String id, String $filter, String $fields, String $expands,
 			String $sort) {
-		final CardCharge[] products = restTemplate.getForObject(URL_BASE_CARDS + id + URL_CARDCHARGES,
-				CardCharge[].class);
-		final List<CardCharge> productsResult = new ArrayList<CardCharge>();
-		CollectionUtils.addAll(productsResult, products);
-		return productsResult;
+		System.out.println("cards " + $filter);
+		String filterParam = $filter.equals("") ? "" : "$filter";
+		WebClient wc = getJsonWebClient(URL_BASE_CARDS + id + URL_CARDCHARGES);
+		wc.query(filterParam, $filter);
+		System.out.println($filter);
+		return (List<CardCharge>)wc.getCollection(CardCharge.class);
 	}
-
 }

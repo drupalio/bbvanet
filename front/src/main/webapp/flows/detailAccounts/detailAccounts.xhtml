@@ -24,37 +24,52 @@
 				<p:commandLink onclick="PF('recoveryUser').show();"
 					value="#{msg['text.recoverUser']}" styleClass="modal-trigger" />
 			</h:form>
-			
+
+			<h:form id="form22" >
+				<h:selectOneMenu 
+					styleClass="col-xs-6 col-sm-3 input-control btn-group bootstrap-select btn dropdown-toggle selectpicker">
+					<f:selectItem itemLabel="#{msg['text.combo.select']}" />
+					<f:selectItems value="#{cc.attrs.list}" var="multiValue"
+						itemLabel="#{msg[multiValue.value]}" itemValue="#{multiValue.id}" />
+				</h:selectOneMenu>
+				
+				<p:commandButton id="nextButton" styleClass="btn btn-form next" partialSubmit="true"
+					style="font-weight: inherit;text-shadow: inherit;position: relative;padding: 3px 2px;box-shadow:inherit;margin-top:120px;border:1px solid #00559D !important;"
+					value="#{msg['button.next']}" update=":form22" >
+				</p:commandButton>
+			</h:form>
+
+
 			<p:dialog id="dialogo" widgetVar="employeeSearch"
 				header="Recupere su clave de acceso" resizable="false"
 				style="border: 1px solid #DBDCDC; background-color: #F4F7F5;"
-				class="margenContent modal modal-wizard fade recoverKeyModal in modal-dialog modal-lg modal-content" modal="true"
-				width="105%">
+				class="margenContent modal modal-wizard fade recoverKeyModal in modal-dialog modal-lg modal-content"
+				modal="true" width="105%">
 				<p:outputPanel>
 					<h:form id="mainForm">
 						<p:messages id="messages" showDetail="true" autoUpdate="true"
 							closable="true" />
-							<bbvaMessage:recoverContent>
-							<bbvaMessage:recoverHead title="#{msg['title.retrieveYourPassword']}"
+						<bbvaMessage:recoverContent>
+							<bbvaMessage:recoverHead
+								title="#{msg['title.retrieveYourPassword']}"
 								pointOne="#{msg['text.userNewDigitalKey']}"
 								pointTwo="#{msg['text.confirmation']}" pointOneState="active"
 								sizeProgress="0px" />
-								<bbvaMessage:recoverPasswordBody />
+							<bbvaMessage:recoverPasswordBody />
 							<bbvaMessage:recoverFooter pointTwo="#{msg['text.confirmation']}">
-								<p:commandButton id="nextButton"
-									styleClass="btn btn-form next"
+								<p:commandButton id="nextButton" styleClass="btn btn-form next"
 									action="#{recoverPassController.next}"
 									style="font-weight: inherit;text-shadow: inherit;position: relative;padding: 3px 2px;box-shadow:inherit;margin-top:120px;border:1px solid #00559D !important;"
-                                    actionListener="#{recoverPassController.recoveryPass}"
-                                    value="#{msg['button.next']}" update=":mainForm">
+									actionListener="#{recoverPassController.recoveryPass}"
+									value="#{msg['button.next']}" update=":mainForm">
 								</p:commandButton>
 							</bbvaMessage:recoverFooter>
 						</bbvaMessage:recoverContent>
 					</h:form>
 				</p:outputPanel>
 			</p:dialog>
-		
-		<p:dialog id="recoverUser" widgetVar="recoveryUser"
+
+			<p:dialog id="recoverUser" widgetVar="recoveryUser"
 				header="Recupere su usuario" resizable="false"
 				style="border: 1px solid #DBDCDC; background-color: #F4F7F5;"
 				class="margenContent modal modal-wizard fade recoverKeyModal in modal-dialog modal-lg modal-content"
@@ -68,20 +83,20 @@
 								pointOne="#{msg['text.userNew']}"
 								pointTwo="#{msg['text.confirmation']}" pointOneState="active"
 								sizeProgress="0px" />
-<!-- 							<bbvaMessage:recoverUserBody /> -->
+							<bbvaMessage:recoverUserBody />
 							<bbvaMessage:recoverFooter pointTwo="#{msg['text.confirmation']}">
 								<p:commandButton id="nextButtonU" styleClass="btn btn-form next"
-									value="#{msg['button.next']}" update=":recoveryUserForm"
+									value="#{msg['button.next']}" update=":recoveryUserForm" 
 									style="font-weight: inherit;text-shadow: inherit;position: relative;padding: 3px 2px;box-shadow:inherit;margin-top:120px;border:1px solid #00559D !important;"
 									action="#{recoverClientController.next}"
-                                    actionListener="#{recoverPassController.recoveryPass}">
+									actionListener="#{recoverPassController.recoveryPass}">
 								</p:commandButton>
 							</bbvaMessage:recoverFooter>
 						</bbvaMessage:recoverContent>
 					</h:form>
 				</p:outputPanel>
 			</p:dialog>
-			
+
 		</div>
 	</ui:define>
 

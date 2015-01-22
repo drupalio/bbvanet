@@ -269,3 +269,9 @@ input.ui-state-hover {
 	top: -20% !important;
 	left: 22% !important;
 }
+.hide-column-names table thead tr {
+    display: none;
+}
+.nonee{
+	display: none;
+}
