@@ -26,40 +26,46 @@ public class DateFilterServiceImpl implements DateFilterService {
 		DateRangeDto dateRange = new DateRangeDto();
 		final Date currentDate = new Date();
 
-		switch (comboFilter) {
-		case YESTERDAY:
-			dateRange.setDateTo(DateUtils.addDays(currentDate, EnumPeriodType.YESTERDAY.getQuantityPeriod()));
-			break;
-		case TODAY:
-			dateRange.setDateTo(currentDate);
-			break;
-		case LAST_WEEK:
-			dateRange.setDateTo(DateUtils.addWeeks(currentDate, EnumPeriodType.LAST_WEEK.getQuantityPeriod()));
-			break;
-		case LAST_TWO_WEEK:
-			dateRange.setDateTo(DateUtils.addWeeks(currentDate, EnumPeriodType.LAST_TWO_WEEK.getQuantityPeriod()));
-			break;
-		case LAST_MONTH:
-			dateRange.setDateTo(DateUtils.addMonths(currentDate, EnumPeriodType.LAST_MONTH.getQuantityPeriod()));
-			break;
-		case LAST_TWO_MONTH:
-			dateRange.setDateTo(DateUtils.addMonths(currentDate, EnumPeriodType.LAST_TWO_MONTH.getQuantityPeriod()));
-			break;
-		case LAST_THREE_MONTH:
-			dateRange.setDateTo(DateUtils.addMonths(currentDate, EnumPeriodType.LAST_THREE_MONTH.getQuantityPeriod()));
-			break;
-		case LAST_SIX_MONTH:
-			dateRange.setDateTo(DateUtils.addMonths(currentDate, EnumPeriodType.LAST_SIX_MONTH.getQuantityPeriod()));
-			break;
-		case LAST_TWELVE_MONTH:
-			dateRange.setDateTo(DateUtils.addMonths(currentDate, EnumPeriodType.LAST_TWELVE_MONTH.getQuantityPeriod()));
-			break;
+		if (comboFilter != null) {
 
-		default:
-			break;
+			switch (comboFilter) {
+			case YESTERDAY:
+				dateRange.setDateTo(DateUtils.addDays(currentDate, EnumPeriodType.YESTERDAY.getQuantityPeriod()));
+				break;
+			case TODAY:
+				dateRange.setDateTo(currentDate);
+				break;
+			case LAST_WEEK:
+				dateRange.setDateTo(DateUtils.addWeeks(currentDate, EnumPeriodType.LAST_WEEK.getQuantityPeriod()));
+				break;
+			case LAST_TWO_WEEK:
+				dateRange.setDateTo(DateUtils.addWeeks(currentDate, EnumPeriodType.LAST_TWO_WEEK.getQuantityPeriod()));
+				break;
+			case LAST_MONTH:
+				dateRange.setDateTo(DateUtils.addMonths(currentDate, EnumPeriodType.LAST_MONTH.getQuantityPeriod()));
+				break;
+			case LAST_TWO_MONTH:
+				dateRange
+						.setDateTo(DateUtils.addMonths(currentDate, EnumPeriodType.LAST_TWO_MONTH.getQuantityPeriod()));
+				break;
+			case LAST_THREE_MONTH:
+				dateRange.setDateTo(DateUtils.addMonths(currentDate,
+						EnumPeriodType.LAST_THREE_MONTH.getQuantityPeriod()));
+				break;
+			case LAST_SIX_MONTH:
+				dateRange
+						.setDateTo(DateUtils.addMonths(currentDate, EnumPeriodType.LAST_SIX_MONTH.getQuantityPeriod()));
+				break;
+			case LAST_TWELVE_MONTH:
+				dateRange.setDateTo(DateUtils.addMonths(currentDate,
+						EnumPeriodType.LAST_TWELVE_MONTH.getQuantityPeriod()));
+				break;
+
+			default:
+				break;
+			}
 		}
 
 		return dateRange;
 	}
-
 }

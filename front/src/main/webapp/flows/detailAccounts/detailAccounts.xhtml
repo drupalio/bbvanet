@@ -40,7 +40,7 @@
 								pointOne="#{msg['text.userNewDigitalKey']}"
 								pointTwo="#{msg['text.confirmation']}" pointOneState="active"
 								sizeProgress="0px" />
-<!-- 							<bbvaMessage:recoverPasswordBody id="passBody" /> -->
+							<bbvaMessage:recoverPasswordBody id="passBody" />
 							<bbvaMessage:recoverFooter pointTwo="#{msg['text.confirmation']}">
 								<p:commandButton id="nextButton" styleClass="btn btn-form next"
 									action="#{recoverPassController.next}"
@@ -68,7 +68,7 @@
 								pointOne="#{msg['text.userNew']}"
 								pointTwo="#{msg['text.confirmation']}" pointOneState="active"
 								sizeProgress="0px" />
-<!-- 							<bbvaMessage:recoverUserBody /> -->
+							<bbvaMessage:recoverUserBody />
 							<bbvaMessage:recoverFooter pointTwo="#{msg['text.confirmation']}">
 								<p:commandButton id="nextButtonU" styleClass="btn btn-form next"
 									value="#{msg['button.next']}" update=":recoveryUserForm" 

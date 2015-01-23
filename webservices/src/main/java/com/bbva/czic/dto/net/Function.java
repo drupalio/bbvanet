@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="type" type="{urn:com:bbva:czic:dto:net}EnumRotaryMoveStatus" minOccurs="0"/>
+ *         &lt;element name="type" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -34,7 +34,7 @@ import javax.xml.bind.annotation.XmlType;
 public class Function {
 
     protected String id;
-    protected EnumRotaryMoveStatus type;
+    protected String type;
 
     /**
      * Gets the value of the id property.
@@ -65,10 +65,10 @@ public class Function {
      * 
      * @return
      *     possible object is
-     *     {@link EnumRotaryMoveStatus }
+     *     {@link String }
      *     
      */
-    public EnumRotaryMoveStatus getType() {
+    public String getType() {
         return type;
     }
 
@@ -77,10 +77,10 @@ public class Function {
      * 
      * @param value
      *     allowed object is
-     *     {@link EnumRotaryMoveStatus }
+     *     {@link String }
      *     
      */
-    public void setType(EnumRotaryMoveStatus value) {
+    public void setType(String value) {
         this.type = value;
     }
 
