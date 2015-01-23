@@ -1,0 +1,101 @@
+<application xmlns="http://wadl.dev.java.net/2009/02" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:prefix1="urn:com:bbva:czic:dto:net">
+    <grammars>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="urn:com:bbva:jee:arq:spring:core:servicing:utils" xmlns:tns="urn:com:bbva:czic:dto:net" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:com:bbva:czic:dto:net">
+            <xs:import namespace="urn:com:bbva:jee:arq:spring:core:servicing:utils"/>
+            <xs:element name="Activity" type="tns:Activity"/>
+            <xs:element name="City" type="tns:City"/>
+            <xs:element name="Conditions" type="tns:Conditions"/>
+            <xs:element name="Country" type="tns:Country"/>
+            <xs:element name="Function" type="tns:Function"/>
+            <xs:element name="Location" type="tns:Location"/>
+            <xs:element name="Office" type="tns:Office"/>
+            <xs:element name="State" type="tns:State"/>
+            <xs:complexType name="Conditions">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="alias" type="xs:string"/>
+                    <xs:element minOccurs="0" name="category" type="xs:string"/>
+                    <xs:element minOccurs="0" name="description" type="xs:string"/>
+                    <xs:element minOccurs="0" name="openingDate" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="commission" type="xs:string"/>
+                    <xs:element minOccurs="0" name="office" type="tns:Office"/>
+                    <xs:element minOccurs="0" name="mobilizationConditions" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="activities" nillable="true" type="tns:Activity"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Office">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="code" type="xs:string"/>
+                    <xs:element minOccurs="0" name="name" type="xs:string"/>
+                    <xs:element minOccurs="0" name="location" type="tns:Location"/>
+                    <xs:element minOccurs="0" name="postalAddress" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Location">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="city" type="tns:City"/>
+                    <xs:element minOccurs="0" name="country" type="tns:Country"/>
+                    <xs:element minOccurs="0" name="state" type="tns:State"/>
+                    <xs:element minOccurs="0" name="postalAddress" type="xs:string"/>
+                    <xs:element minOccurs="0" name="category" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="City">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="id" type="xs:string"/>
+                    <xs:element minOccurs="0" name="name" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Country">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="id" type="xs:string"/>
+                    <xs:element minOccurs="0" name="name" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="states" nillable="true" type="tns:State"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="State">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="id" type="xs:string"/>
+                    <xs:element minOccurs="0" name="name" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="cities" nillable="true" type="tns:City"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Activity">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="operationDate" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="executionDate" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="function" type="tns:Function"/>
+                    <xs:element minOccurs="0" name="amount" type="ns1:money"/>
+                    <xs:element minOccurs="0" name="reference" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Function">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="id" type="xs:string"/>
+                    <xs:element minOccurs="0" name="type" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:com:bbva:jee:arq:spring:core:servicing:utils" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:com:bbva:jee:arq:spring:core:servicing:utils">
+            <xs:element name="money" type="tns:money"/>
+            <xs:complexType name="money">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="amount" type="xs:decimal"/>
+                    <xs:element minOccurs="0" name="currency" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+    </grammars>
+    <resources base="http://localhost:8080/czic/products">
+        <resource path="/V01" id="com.bbva.czic.products.facade.v01.impl.SrvProductsV01">
+            <resource path="/{productId}/conditions">
+                <param name="productId" style="template" type="xs:string"/>
+                <method name="GET" id="getConditions">
+                    <request/>
+                    <response>
+                        <representation mediaType="application/json" element="prefix1:Conditions"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+    </resources>
+</application>

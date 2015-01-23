@@ -24,4 +24,8 @@ public class MovementsAccountControllerImpl extends AbstractBbvaController imple
 		super.setSelectedProduct(selectedProduct);
 	}
 
+	public ProductDto getProduct() {
+		return super.getSelectedProduct();
+	}
+
 }

@@ -3,15 +3,14 @@
  */
 package com.bbva.net.front.controller.impl;
 
+import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.AjaxBehaviorEvent;
 
-import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
 import org.springframework.stereotype.Controller;
-import org.springframework.webflow.engine.RequestControlContext;
-import org.springframework.webflow.execution.Event;
 
+import com.bbva.net.back.facade.TermasAccountsFacade;
 import com.bbva.net.back.model.accounts.TermsAccountsDto;
 import com.bbva.net.back.model.citeriaMovements.MovementCriteriaDto;
 import com.bbva.net.back.model.globalposition.RotatingAccountDto;
@@ -24,8 +23,7 @@ import com.bbva.net.front.core.AbstractBbvaController;
  * @author User
  */
 @Controller(value = "quotaController")
-public class QuotaControllerImpl extends AbstractBbvaController implements
-		QuotaController {
+public class QuotaControllerImpl extends AbstractBbvaController implements QuotaController {
 
 	private static final long serialVersionUID = 1L;
 
@@ -41,10 +39,15 @@ public class QuotaControllerImpl extends AbstractBbvaController implements
 
 	private QuotaDetailDto quotaDetailDto = new QuotaDetailDto();
 
+	@Resource(name = "TermsFacade")
+	private transient TermasAccountsFacade detallesCuenta;
+
 	@Override
 	public TermsAccountsDto getAllConditions() {
+		TermsAccountsDto detalle = this.detallesCuenta.getAllConditions("numCuenta", "usuario");
+		detalle.getInformacionProducto().getAlias();
 		// TODO Auto-generated method stub
-		return null;
+		return detalle;
 	}
 
 	@Override
@@ -78,13 +81,11 @@ public class QuotaControllerImpl extends AbstractBbvaController implements
 		if (movementCriteria.getSelectDate().equals(CONCRETE_DATE)) {
 			setDisabledCalendar(false);
 			setDisabledButtonDate(false);
-			System.out.println("if " + isDisabledCalendar()
-					+ isDisabledButtonDate());
+			System.out.println("if " + isDisabledCalendar() + isDisabledButtonDate());
 		} else {
 			setDisabledCalendar(true);
 			setDisabledButtonDate(false);
-			System.out.println("else" + isDisabledCalendar()
-					+ isDisabledButtonDate());
+			System.out.println("else" + isDisabledCalendar() + isDisabledButtonDate());
 		}
 	}
 
@@ -93,8 +94,9 @@ public class QuotaControllerImpl extends AbstractBbvaController implements
 		super.onProductSelected(selectEvent);
 	}
 
+	@Override
 	public RotatingAccountDto getSelectedProduct() {
-		return (RotatingAccountDto) super.getSelectedProduct();
+		return (RotatingAccountDto)super.getSelectedProduct();
 	}
 
 	// @Override
@@ -110,8 +112,7 @@ public class QuotaControllerImpl extends AbstractBbvaController implements
 	}
 
 	/**
-	 * @param disabledCalendar
-	 *            the disabledCalendar to set
+	 * @param disabledCalendar the disabledCalendar to set
 	 */
 	public void setDisabledCalendar(boolean disabledCalendar) {
 		this.disabledCalendar = disabledCalendar;
@@ -125,8 +126,7 @@ public class QuotaControllerImpl extends AbstractBbvaController implements
 	}
 
 	/**
-	 * @param disabledButtonDate
-	 *            the disabledButtonDate to set
+	 * @param disabledButtonDate the disabledButtonDate to set
 	 */
 	public void setDisabledButtonDate(boolean disabledButtonDate) {
 		this.disabledButtonDate = disabledButtonDate;
@@ -141,8 +141,7 @@ public class QuotaControllerImpl extends AbstractBbvaController implements
 	}
 
 	/**
-	 * @param movementCriteria
-	 *            the movementCriteria to set
+	 * @param movementCriteria the movementCriteria to set
 	 */
 	public void setMovementCriteria(MovementCriteriaDto movementCriteria) {
 		this.movementCriteria = movementCriteria;
@@ -151,16 +150,15 @@ public class QuotaControllerImpl extends AbstractBbvaController implements
 	/**
 	 * @return the personalizeAccountDto
 	 */
+	@Override
 	public PersonalizeAccountDto getPersonalizeAccountDto() {
 		return personalizeAccountDto;
 	}
 
 	/**
-	 * @param personalizeAccountDto
-	 *            the personalizeAccountDto to set
+	 * @param personalizeAccountDto the personalizeAccountDto to set
 	 */
-	public void setPersonalizeAccountDto(
-			PersonalizeAccountDto personalizeAccountDto) {
+	public void setPersonalizeAccountDto(PersonalizeAccountDto personalizeAccountDto) {
 		this.personalizeAccountDto = personalizeAccountDto;
 	}
 

@@ -24,6 +24,8 @@
 
 <composite:interface>
 	<composite:attribute name="title" type="String" />
+	<composite:attribute name="numCuenta" type="String" />
+	<composite:attribute name="tipo" type="String" />
 </composite:interface>
 <composite:implementation>
 
@@ -38,11 +40,11 @@
 			<bbvaAcc:termsAccountsPanelInfoItemTitle
 				date="#{msg['text.account.number']}:" val="4" />
 			<bbvaAcc:termsAccountsPanelInfoItemData
-				date="#{allConditions.informacionProducto.numCuenta}" val="7" />
+				date="#{cc.attrs.numCuenta}" val="7" />
 			<bbvaAcc:termsAccountsPanelInfoItemTitle
 				date="#{msg['text.account.type']}:" val="4" />
 			<bbvaAcc:termsAccountsPanelInfoItemData
-				date="#{allConditions.informacionProducto.tipoCuenta}" val="7" />
+				date="#{cc.attrs.tipo}" val="7" />
 		</bbvaAcc:termsAccountsPanelInfo>
 
 		<bbvaAcc:termsAccountsPanelInfoItemBody title="Intervinientes">
@@ -86,7 +88,7 @@
 			<bbvaAcc:termsAccountsPanelInfoItemTitle
 				date="#{msg['text.office.name']}" val="4" />
 			<bbvaAcc:termsAccountsPanelInfoItemData
-				date="#{allConditions.direccionPostal.RmesOficina}" val="7" />
+				date="#{allConditions.direccionPostal.nombreOficina}" val="7" />
 			<bbvaAcc:termsAccountsPanelInfoItemTitle
 				date="#{msg['text.postal.addres']}" val="4" />
 			<bbvaAcc:termsAccountsPanelInfoItemData
