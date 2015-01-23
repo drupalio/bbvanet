@@ -8,14 +8,27 @@
 	xmlns:bbvaMessage="http://java.sun.com/jsf/composite/bbva/messages">
 
 	<h:form id="mainForm">
-
 		<bbvaMessage:recoverContent>
 			<bbvaMessage:recoverHead title="#{msg['title.retrieveYourPassword']}"
 				pointOne="#{msg['text.userNewDigitalKey']}"
-				pointTwo="#{msg['text.confirmation']}" />
+				pointTwo="#{msg['text.confirmation']}" pointOneState="active"
+				pointTwoState="active" sizeProgress="559px" />
 			<bbvaMessage:dialogCheck />
+
 		</bbvaMessage:recoverContent>
+	</h:form>
+	<h:form id="recoveryUserForm">
 
+		<bbvaMessage:recoverContent>
+			<bbvaMessage:recoverHead title="#{msg['title.retrieveYourUser']}"
+				pointOne="#{msg['text.userNew']}"
+				pointTwo="#{msg['text.confirmation']}" pointOneState="active"
+				pointTwoState="active" sizeProgress="559px" />
+			<bbvaMessage:recoverFooter pointTwo="#{msg['text.confirmation']}">
+				<bbvaMessage:dialogCheckUser
+					close="#{recoverClientController.close}" />
+			</bbvaMessage:recoverFooter>
 
+		</bbvaMessage:recoverContent>
 	</h:form>
 </ui:composition>

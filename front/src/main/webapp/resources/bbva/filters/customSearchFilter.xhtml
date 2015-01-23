@@ -24,6 +24,8 @@
 
 <composite:implementation>
 
+
+
 	<div class="date-filter-content" style="width: 100% !important;">
 
 		<div class="form-horizontal">
@@ -105,8 +107,8 @@
 			<div>
 				<div class="col-xs-12 col-md-6">
 					<div class="form-group">
-						<div class="col-xs-2 col-md-12">
-							<label for="customSearch-dateFieldFrom">Desde:</label>
+						<div class="col-xs-2 col-md-12">						
+							<label for="calendarSinceWV">Desde:</label>
 						</div>
 						<div class="col-xs-10 col-md-12 input-control">
 							<p:calendar widgetVar="calendarSinceWV" id="calendarSince"
@@ -119,7 +121,7 @@
 				<div class="col-xs-12 col-md-6">
 					<div class="form-group">
 						<div class="col-xs-2 col-md-12">
-							<label for="customSearch-dateFieldTo">Hasta:</label>
+							<label for="calendarToSinceWV">Hasta:</label>
 						</div>
 						<div class="col-xs-10 col-md-12 input-control">
 							<p:calendar widgetVar="calendarToSinceWV" id="calendarTo"
@@ -134,7 +136,7 @@
 		</div>
 		<button jsf:id="dateButton" class="btn small hidden-xs hidden-sm"
 			jsf:disabled="#{cc.attrs.disabledButton}"
-			jsf:actionListener="#{movementsCriteriaController.setCustomDate}">#{msg['button.confirm']}</button>
+			jsf:actionListener="#{checkBookController.setCustomDate}">#{msg['button.confirm']}</button>
 	</div>
 
 </composite:implementation>

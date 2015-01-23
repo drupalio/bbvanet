@@ -1,15 +1,12 @@
 package com.bbva.net.front.controller.impl;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
 
 import org.springframework.stereotype.Controller;
 
-import com.bbva.net.back.entity.MultiValueGroup;
 import com.bbva.net.back.facade.MovementCriteriaFacade;
 import com.bbva.net.back.facade.MultiValueGroupFacade;
 import com.bbva.net.back.model.citeriaMovements.MovementCriteriaDto;

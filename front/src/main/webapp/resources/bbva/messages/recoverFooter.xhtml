@@ -13,25 +13,34 @@
 
 <composite:interface>
 	<composite:attribute name="href" />
+	<composite:attribute name="update" />
+	<composite:attribute name="action"
+		method-signature="java.lang.String action()" />
+	<composite:attribute name="pointTwo" type="java.lang.String" />
 </composite:interface>
 
 <composite:implementation>
-
 	<div id="#{cc.clientId}" class="modal-footer recoverKeyModal">
-		<div>
-			<p:selectBooleanCheckbox  id="recoverKeyCond"
+			<p:selectBooleanCheckbox  id="recoverKeyCond" required="true"
 				value="#{recoverPassController.recoveryDto.conditions}"
 				style="float: left !important;"  />
 			<h:outputLabel styleClass="control-label left conditionsLabel"
-				style="margin-top: -4.7% !important; margin-left: 3.5% !important"
+				style="margin-top: -4.7% !important; margin-left: 3.5% !important; width: 96%"
 				value="#{msg['text.condiConfirmOne']}" for="recoverKeyCond">
 				<a title="Descargar PDF terminos." href="#{cc.attrs.href}">
 					#{msg['text.condiConfirmTwo']} <span class="adobe-blue"> </span> <span
 					class="adobe-size">(6Kb)</span>
 				</a>
 			</h:outputLabel>
-		</div>
 		<composite:insertChildren></composite:insertChildren>
+	</div>
+	<div style="left: 0px; width: 1272px;" class="steps-group row">
+		<div style="width: 52%;" class="steps step1 final-step">
+			<div class="step-header visible-xs visible-sm">
+				<span class="icon-lastStep"></span>#{cc.attrs.pointTwo}
+			</div>
+
+		</div>
 	</div>
 </composite:implementation>
 </html>

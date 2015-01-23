@@ -41,6 +41,12 @@ public abstract class AbstractBbvaRestService {
 	@Value("${rest.products.url}")
 	protected String URL_BASE_PRODUCTS;
 
+	@Value("${rest.base.accounts.url}")
+	protected String URL_BASE_ACCOUNTS;
+
+	@Value("${rest.accounts.url}")
+	protected String URL_ACCOUNTS;
+
 	/**
 	 * @param response
 	 * @param entityClass

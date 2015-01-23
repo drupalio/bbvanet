@@ -32,6 +32,8 @@ public abstract class AbstractBbvaController implements Serializable {
 
 	protected String DEFAULT_USER = "123";
 
+	protected String DEFAULT_ACCOUNT = "123";
+
 	private enum SessionParamenterType {
 
 		SELECTED_PRODUCT

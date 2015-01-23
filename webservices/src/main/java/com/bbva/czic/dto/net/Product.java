@@ -22,10 +22,10 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="type" type="{urn:com:bbva:czic:dto:net}EnumProductType" minOccurs="0"/>
+ *         &lt;element name="type" type="{urn:com:bbva:czic:dto:net}enumProductType" minOccurs="0"/>
  *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="alias" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="financialState" type="{urn:com:bbva:czic:dto:net}EnumFinancialStatusType" minOccurs="0"/>
+ *         &lt;element name="financialState" type="{urn:com:bbva:czic:dto:net}enumFinancialStatusType" minOccurs="0"/>
  *         &lt;element name="visible" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *         &lt;element name="operable" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *         &lt;element name="balance" type="{urn:com:bbva:czic:dto:net}Balance" minOccurs="0"/>
@@ -57,7 +57,7 @@ import javax.xml.bind.annotation.XmlType;
     "contract"
 })
 @XmlSeeAlso({
-    Loan.class
+    Account.class
 })
 public class Product {
 
