@@ -22,36 +22,15 @@ public class PersonalizeProductAccountControllerImplTest {
 	public void init() {
 		this.personalizeProductAccountControllerImpl = new PersonalizeProductAccountControllerImpl();
 
-		this.personalizeProductAccountControllerImpl.operKey(null);
+		this.personalizeProductAccountControllerImpl.operKey();
 
-		this.personalizeProductAccountControllerImpl.offMessage(null);
+		this.personalizeProductAccountControllerImpl.offMessage();
 
-		this.personalizeProductAccountControllerImpl.successful(null);
+		this.personalizeProductAccountControllerImpl.successful();
 
-		this.personalizeProductAccountFacade = Mockito.mock(PersonalizeProductFacade.class);
+		this.personalizeProductAccountFacade = Mockito
+				.mock(PersonalizeProductFacade.class);
 
-		this.personalizeProductAccountControllerImpl
-				.setPersonalizeProductAccountFacade(personalizeProductAccountFacade);
-
-	}
-
-	@Test
-	public void checkGetPersonalizeAccountDTO() {
-
-		// Prepare test
-		Mockito.when(personalizeProductAccountFacade.getPersonalizeAccountDto(DEFAULT_USER, DEFAULT_PRODUCT))
-				.thenReturn(new PersonalizeAccountDto());
-
-		this.personalizeProductAccountControllerImpl.init();
-
-		this.personalizeProductAccountControllerImpl.isMenOperationKey();
-
-		this.personalizeProductAccountControllerImpl.isMenSuccessful();
-
-		// Invoke method
-		PersonalizeAccountDto result = personalizeProductAccountControllerImpl.getPersonalizeProductAccountDto();
-		// Check results
-		Assert.assertNotNull(result);
 	}
 
 }

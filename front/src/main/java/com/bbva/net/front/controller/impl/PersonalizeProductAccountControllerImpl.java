@@ -1,5 +1,6 @@
 package com.bbva.net.front.controller.impl;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
@@ -11,7 +12,11 @@ import com.bbva.net.front.controller.PersonalizeProductAccountController;
 import com.bbva.net.front.core.AbstractBbvaController;
 
 @Controller(value = "personalizeProductAccountController")
-public class PersonalizeProductAccountControllerImpl extends AbstractBbvaController implements PersonalizeProductAccountController {
+public class PersonalizeProductAccountControllerImpl
+		extends
+			AbstractBbvaController
+		implements
+			PersonalizeProductAccountController {
 
 	private static final long serialVersionUID = 4372849387340418649L;
 
@@ -24,7 +29,8 @@ public class PersonalizeProductAccountControllerImpl extends AbstractBbvaControl
 
 	private PersonalizeAccountDto personalizeAccountDTO;
 
-	public PersonalizeProductAccountControllerImpl() {
+	@PostConstruct
+	public void init() {
 
 		menOperationKey = false;
 		menSuccessful = false;

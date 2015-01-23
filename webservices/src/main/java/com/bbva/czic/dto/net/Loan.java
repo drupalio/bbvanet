@@ -1,13 +1,8 @@
 
 package com.bbva.czic.dto.net;
 
-import java.util.ArrayList;
-import java.util.List;
-import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElementRef;
-import javax.xml.bind.annotation.XmlElementRefs;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -22,9 +17,8 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;extension base="{urn:com:bbva:czic:dto:net}Product">
  *       &lt;sequence>
  *         &lt;element name="debt" type="{urn:com:bbva:czic:dto:net}Balance" minOccurs="0"/>
- *         &lt;element name="balance" type="{urn:com:bbva:czic:dto:net}Balance" minOccurs="0"/>
  *         &lt;element name="payment" type="{urn:com:bbva:czic:dto:net}Payment" minOccurs="0"/>
- *         &lt;element name="status" type="{urn:com:bbva:czic:dto:net}EnumLoanStatus" minOccurs="0"/>
+ *         &lt;element name="status" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/extension>
  *   &lt;/complexContent>
@@ -35,60 +29,88 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Loan", propOrder = {
-    "rest"
+    "debt",
+    "payment",
+    "status"
 })
 public class Loan
     extends Product
 {
 
-    @XmlElementRefs({
-        @XmlElementRef(name = "payment", type = JAXBElement.class),
-        @XmlElementRef(name = "status", type = JAXBElement.class),
-        @XmlElementRef(name = "balance", type = JAXBElement.class),
-        @XmlElementRef(name = "debt", type = JAXBElement.class)
-    })
-    protected List<JAXBElement<?>> rest;
+    protected Balance debt;
+    protected Payment payment;
+    protected String status;
 
     /**
-     * Gets the rest of the content model. 
+     * Gets the value of the debt property.
      * 
-     * <p>
-     * You are getting this "catch-all" property because of the following reason: 
-     * The field name "Balance" is used by two different parts of a schema. See: 
-     * line 0 of file:/C:/Users/Entelgy/Desarrollo/bbvanet/webservices/src/main/resources/wadl/loan.wadl#grammar2
-     * line 0 of file:/C:/Users/Entelgy/Desarrollo/bbvanet/webservices/src/main/resources/wadl/loan.wadl#grammar2
-     * <p>
-     * To get rid of this property, apply a property customization to one 
-     * of both of the following declarations to change their names: 
-     * Gets the value of the rest property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the rest property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getRest().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link JAXBElement }{@code <}{@link Balance }{@code >}
-     * {@link JAXBElement }{@code <}{@link Balance }{@code >}
-     * {@link JAXBElement }{@code <}{@link Payment }{@code >}
-     * {@link JAXBElement }{@code <}{@link EnumLoanStatus }{@code >}
-     * 
-     * 
+     * @return
+     *     possible object is
+     *     {@link Balance }
+     *     
      */
-    public List<JAXBElement<?>> getRest() {
-        if (rest == null) {
-            rest = new ArrayList<JAXBElement<?>>();
-        }
-        return this.rest;
+    public Balance getDebt() {
+        return debt;
+    }
+
+    /**
+     * Sets the value of the debt property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Balance }
+     *     
+     */
+    public void setDebt(Balance value) {
+        this.debt = value;
+    }
+
+    /**
+     * Gets the value of the payment property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Payment }
+     *     
+     */
+    public Payment getPayment() {
+        return payment;
+    }
+
+    /**
+     * Sets the value of the payment property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Payment }
+     *     
+     */
+    public void setPayment(Payment value) {
+        this.payment = value;
+    }
+
+    /**
+     * Gets the value of the status property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getStatus() {
+        return status;
+    }
+
+    /**
+     * Sets the value of the status property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setStatus(String value) {
+        this.status = value;
     }
 
 }

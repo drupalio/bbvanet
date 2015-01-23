@@ -3,9 +3,7 @@ package com.bbva.czic.dto.net;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.datatype.XMLGregorianCalendar;
 import com.bbva.jee.arq.spring.core.servicing.utils.Money;
 
 
@@ -19,9 +17,9 @@ import com.bbva.jee.arq.spring.core.servicing.utils.Money;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="dueDate" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
- *         &lt;element name="paymentDate" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
- *         &lt;element name="shortDate" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+ *         &lt;element name="dueDate" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="paymentDate" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="shortDate" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="fees" type="{urn:com:bbva:jee:arq:spring:core:servicing:utils}money" minOccurs="0"/>
  *         &lt;element name="minimumPayment" type="{urn:com:bbva:jee:arq:spring:core:servicing:utils}money" minOccurs="0"/>
  *         &lt;element name="numbersOfQuota" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
@@ -44,12 +42,9 @@ import com.bbva.jee.arq.spring.core.servicing.utils.Money;
 })
 public class Payment {
 
-    @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar dueDate;
-    @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar paymentDate;
-    @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar shortDate;
+    protected String dueDate;
+    protected String paymentDate;
+    protected String shortDate;
     protected Money fees;
     protected Money minimumPayment;
     protected Integer numbersOfQuota;
@@ -59,10 +54,10 @@ public class Payment {
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public XMLGregorianCalendar getDueDate() {
+    public String getDueDate() {
         return dueDate;
     }
 
@@ -71,10 +66,10 @@ public class Payment {
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public void setDueDate(XMLGregorianCalendar value) {
+    public void setDueDate(String value) {
         this.dueDate = value;
     }
 
@@ -83,10 +78,10 @@ public class Payment {
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public XMLGregorianCalendar getPaymentDate() {
+    public String getPaymentDate() {
         return paymentDate;
     }
 
@@ -95,10 +90,10 @@ public class Payment {
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public void setPaymentDate(XMLGregorianCalendar value) {
+    public void setPaymentDate(String value) {
         this.paymentDate = value;
     }
 
@@ -107,10 +102,10 @@ public class Payment {
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public XMLGregorianCalendar getShortDate() {
+    public String getShortDate() {
         return shortDate;
     }
 
@@ -119,10 +114,10 @@ public class Payment {
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public void setShortDate(XMLGregorianCalendar value) {
+    public void setShortDate(String value) {
         this.shortDate = value;
     }
 

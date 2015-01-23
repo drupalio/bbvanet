@@ -18,6 +18,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="state" type="{urn:com:bbva:czic:dto:net}State" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -29,12 +30,14 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "City", propOrder = {
     "id",
-    "name"
+    "name",
+    "state"
 })
 public class City {
 
     protected String id;
     protected String name;
+    protected State state;
 
     /**
      * Gets the value of the id property.
@@ -82,6 +85,30 @@ public class City {
      */
     public void setName(String value) {
         this.name = value;
+    }
+
+    /**
+     * Gets the value of the state property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link State }
+     *     
+     */
+    public State getState() {
+        return state;
+    }
+
+    /**
+     * Sets the value of the state property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link State }
+     *     
+     */
+    public void setState(State value) {
+        this.state = value;
     }
 
 }
