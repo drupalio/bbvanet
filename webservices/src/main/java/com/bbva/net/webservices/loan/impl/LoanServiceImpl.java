@@ -6,13 +6,11 @@ import com.bbva.net.webservices.core.stereotype.RestService;
 import com.bbva.net.webservices.loan.LoanService;
 
 @RestService(value = "loanService")
-public class LoanServiceImpl extends AbstractBbvaRestService implements
-		LoanService {
+public class LoanServiceImpl extends AbstractBbvaRestService implements LoanService {
 
 	@Override
 	public Loan getRotaryQuota(String idLoan) {
-		final Loan loan = restTemplate.getForObject(URL_BASE_ROTARYQUOTA
-				+ idLoan, Loan.class);
+		final Loan loan = restTemplate.getForObject(URL_BASE_ROTARYQUOTA + idLoan, Loan.class);
 		return loan;
 	}
 
