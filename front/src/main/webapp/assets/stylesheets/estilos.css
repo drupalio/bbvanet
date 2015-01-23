@@ -281,7 +281,7 @@ input.ui-state-hover {
 	display: inline-block;
 	width: 100%;
 }
-/* el h2 del body */
+/* el h2 del recoverPasswordBody del dialog  */
 .h2Class {
 	font-size: 16.1px !important;
 	width: 104%;
