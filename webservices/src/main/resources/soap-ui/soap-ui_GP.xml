@@ -6146,7 +6146,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		"amount":600000.0,
 		"currency":"$"
 		}
-}]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/accounts/V01/123/movementsResumes" method="GET" resourcePath="/czic/accounts/V01/123/movementsResumes"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+}]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/accounts/V01/123/movementsResumes" method="GET" resourcePath="/czic/accounts/V01/123/movementsResumes"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Examples showing how to match based on path, query param and header
 // Match based on path
 def requestPath = mockRequest.getPath()
@@ -6290,4 +6290,122 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		"currency": "COP"
 	},
 	"month": "JULY"
-}]</con:responseContent></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
+}]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/loan/V01/rotaryQuota/" method="GET" resourcePath="/czic/loan/V01/rotaryQuota/"><con:settings/><con:defaultResponse xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
+	"debt": {
+		"total": {
+			"amount": 500,
+			"currency": "$"
+		},
+		"availableBalance": {
+			"amount": 300,
+			"currency": "$"
+		}
+	},
+	"payment": {
+		"dueDate": "19/01/2015",
+		"paymentDate": "14/01/2015",
+		"shortDate": "01/01/2015",
+		"fees": {
+			"amount": 200,
+			"currency": "$"
+		},
+		"minimumPayment": {
+			"amount": 0,
+			"currency": "$"
+		},
+		"numbersOfQuota": 12
+	},
+	"status": "Normal",
+	"id": "9500-01-40-2606-9499",
+	"type": "SI",
+	"name": "Rotary",
+	"alias": "xxxx",
+	"financialState": "A",
+	"visible": true,
+	"operable": false,
+	"balance": {
+		"total": {
+			"amount": 500,
+			"currency": "$"
+		},
+		"availableBalance": {
+			"amount": 200,
+			"currency": "$"
+		}
+	},
+	"contactInfo": {
+		
+	},
+	"conditions": {
+		"alias": "conditions",
+		"category": "2",
+		"description": "ninguna",
+		"openingDate": "12/05/2014",
+		"commission": "ninguna",
+		"office": {
+			"code": "12345",
+			"name": "office",
+			"location": {
+				"city": {
+					"id": "1",
+					"name": "Bogota"
+				},
+				"country": {
+					"id": "1",
+					"name": "Colombia"
+				},
+				"state": {
+					"id": "1",
+					"name": ""
+				},
+				"postalAddress": "cra 15 n 174",
+				"category": "2"
+			},
+			"postalAddress": "cra 15 n 174"
+		},
+		"mobilizationConditions": "ninguna"
+	},
+	"contract": {
+		"number": "31543576655"
+	}
+}</con:responseContent></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
