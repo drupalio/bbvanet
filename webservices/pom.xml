@@ -209,9 +209,9 @@
 							<sourceRoot>src/main/java</sourceRoot>
 							<wadlOptions>
 								<wadlOption>
-									<impl>false</impl>
-									<wadl>src/main/resources/wadl/loan.wadl</wadl>
-									<packagename>com.bbva.net.webservices.loan</packagename>
+<!-- 									<impl>false</impl> -->
+<!-- 									<wadl>src/main/resources/wadl/globalposition.wadl</wadl> -->
+<!-- 									<packagename>com.bbva.net.webservices.globalposition</packagename> -->
 								</wadlOption>
 							</wadlOptions>
 						</configuration>
