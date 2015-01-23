@@ -1,60 +1,71 @@
+
 package com.bbva.czic.dto.net;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
 import com.bbva.jee.arq.spring.core.servicing.utils.Money;
-import javax.xml.datatype.XMLGregorianCalendar;
+
 
 /**
- * <p>Java class for movement complex type.
+ * <p>Java class for Movement complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- * <p>
- * Clase Java para Movement complex type.
- * <p>
- * El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
- * &lt;complexType name="movement">
+ * &lt;complexType name="Movement">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="concept" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="transactionDate" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="operationDate" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="sourceReference" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="destinationReference" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="operation" type="{urn:com:bbva:czic:dto:net}Operation" minOccurs="0"/>
+ *         &lt;element name="office" type="{urn:com:bbva:czic:dto:net}Office" minOccurs="0"/>
+ *         &lt;element name="status" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="value" type="{urn:com:bbva:jee:arq:spring:core:servicing:utils}money" minOccurs="0"/>
  *         &lt;element name="balance" type="{urn:com:bbva:jee:arq:spring:core:servicing:utils}money" minOccurs="0"/>
+ *         &lt;element name="numberOfQuotas" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "movement", propOrder = {
+@XmlType(name = "Movement", propOrder = {
     "id",
     "concept",
     "transactionDate",
+    "operationDate",
     "sourceReference",
     "destinationReference",
     "operation",
+    "office",
+    "status",
     "value",
-    "balance"
+    "balance",
+    "numberOfQuotas"
 })
 public class Movement {
 
     protected String id;
     protected String concept;
     protected String transactionDate;
+    protected String operationDate;
     protected String sourceReference;
     protected String destinationReference;
     protected Operation operation;
+    protected Office office;
+    protected String status;
     protected Money value;
     protected Money balance;
+    protected String numberOfQuotas;
 
     /**
      * Gets the value of the id property.
@@ -126,6 +137,30 @@ public class Movement {
      */
     public void setTransactionDate(String value) {
         this.transactionDate = value;
+    }
+
+    /**
+     * Gets the value of the operationDate property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getOperationDate() {
+        return operationDate;
+    }
+
+    /**
+     * Sets the value of the operationDate property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setOperationDate(String value) {
+        this.operationDate = value;
     }
 
     /**
@@ -201,6 +236,54 @@ public class Movement {
     }
 
     /**
+     * Gets the value of the office property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Office }
+     *     
+     */
+    public Office getOffice() {
+        return office;
+    }
+
+    /**
+     * Sets the value of the office property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Office }
+     *     
+     */
+    public void setOffice(Office value) {
+        this.office = value;
+    }
+
+    /**
+     * Gets the value of the status property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getStatus() {
+        return status;
+    }
+
+    /**
+     * Sets the value of the status property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setStatus(String value) {
+        this.status = value;
+    }
+
+    /**
      * Gets the value of the value property.
      * 
      * @return
@@ -247,4 +330,29 @@ public class Movement {
     public void setBalance(Money value) {
         this.balance = value;
     }
+
+    /**
+     * Gets the value of the numberOfQuotas property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getNumberOfQuotas() {
+        return numberOfQuotas;
+    }
+
+    /**
+     * Sets the value of the numberOfQuotas property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setNumberOfQuotas(String value) {
+        this.numberOfQuotas = value;
+    }
+
 }

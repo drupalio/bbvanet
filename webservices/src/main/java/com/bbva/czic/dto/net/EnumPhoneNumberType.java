@@ -6,14 +6,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for enumPhoneNumberType.
- * <p>Clase Java para EnumPhoneNumberType.
->>>>>>> master
+ * <p>Java class for EnumPhoneNumberType.
  * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * <p>
  * <pre>
- * &lt;simpleType name="enumPhoneNumberType">
+ * &lt;simpleType name="EnumPhoneNumberType">
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
  *     &lt;enumeration value="MOBILE"/>
  *     &lt;enumeration value="LANDLINE"/>
@@ -23,7 +21,7 @@ import javax.xml.bind.annotation.XmlType;
  * </pre>
  * 
  */
-@XmlType(name = "enumPhoneNumberType")
+@XmlType(name = "EnumPhoneNumberType")
 @XmlEnum
 public enum EnumPhoneNumberType {
 

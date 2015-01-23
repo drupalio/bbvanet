@@ -8,9 +8,9 @@ import com.bbva.jee.arq.spring.core.servicing.utils.Money;
 
 
 /**
- * <p>Clase Java para Payment complex type.
+ * <p>Java class for Payment complex type.
  * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="Payment">
@@ -50,7 +50,7 @@ public class Payment {
     protected Integer numbersOfQuota;
 
     /**
-     * Obtiene el valor de la propiedad dueDate.
+     * Gets the value of the dueDate property.
      * 
      * @return
      *     possible object is
@@ -62,7 +62,7 @@ public class Payment {
     }
 
     /**
-     * Define el valor de la propiedad dueDate.
+     * Sets the value of the dueDate property.
      * 
      * @param value
      *     allowed object is
@@ -74,7 +74,7 @@ public class Payment {
     }
 
     /**
-     * Obtiene el valor de la propiedad paymentDate.
+     * Gets the value of the paymentDate property.
      * 
      * @return
      *     possible object is
@@ -86,7 +86,7 @@ public class Payment {
     }
 
     /**
-     * Define el valor de la propiedad paymentDate.
+     * Sets the value of the paymentDate property.
      * 
      * @param value
      *     allowed object is
@@ -98,7 +98,7 @@ public class Payment {
     }
 
     /**
-     * Obtiene el valor de la propiedad shortDate.
+     * Gets the value of the shortDate property.
      * 
      * @return
      *     possible object is
@@ -110,7 +110,7 @@ public class Payment {
     }
 
     /**
-     * Define el valor de la propiedad shortDate.
+     * Sets the value of the shortDate property.
      * 
      * @param value
      *     allowed object is
@@ -122,7 +122,7 @@ public class Payment {
     }
 
     /**
-     * Obtiene el valor de la propiedad fees.
+     * Gets the value of the fees property.
      * 
      * @return
      *     possible object is
@@ -134,7 +134,7 @@ public class Payment {
     }
 
     /**
-     * Define el valor de la propiedad fees.
+     * Sets the value of the fees property.
      * 
      * @param value
      *     allowed object is
@@ -146,7 +146,7 @@ public class Payment {
     }
 
     /**
-     * Obtiene el valor de la propiedad minimumPayment.
+     * Gets the value of the minimumPayment property.
      * 
      * @return
      *     possible object is
@@ -158,7 +158,7 @@ public class Payment {
     }
 
     /**
-     * Define el valor de la propiedad minimumPayment.
+     * Sets the value of the minimumPayment property.
      * 
      * @param value
      *     allowed object is
@@ -170,7 +170,7 @@ public class Payment {
     }
 
     /**
-     * Obtiene el valor de la propiedad numbersOfQuota.
+     * Gets the value of the numbersOfQuota property.
      * 
      * @return
      *     possible object is
@@ -182,7 +182,7 @@ public class Payment {
     }
 
     /**
-     * Define el valor de la propiedad numbersOfQuota.
+     * Sets the value of the numbersOfQuota property.
      * 
      * @param value
      *     allowed object is

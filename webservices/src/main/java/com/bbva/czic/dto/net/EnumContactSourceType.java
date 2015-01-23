@@ -6,13 +6,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for enumContactSourceType.
- * <p>Clase Java para EnumContactSourceType.
+ * <p>Java class for EnumContactSourceType.
  * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * <p>
  * <pre>
- * &lt;simpleType name="enumContactSourceType">
+ * &lt;simpleType name="EnumContactSourceType">
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
  *     &lt;enumeration value="MOBILE"/>
  *     &lt;enumeration value="WEB"/>
@@ -22,7 +21,7 @@ import javax.xml.bind.annotation.XmlType;
  * </pre>
  * 
  */
-@XmlType(name = "enumContactSourceType")
+@XmlType(name = "EnumContactSourceType")
 @XmlEnum
 public enum EnumContactSourceType {
 
