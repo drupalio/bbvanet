@@ -9,9 +9,11 @@ import com.bbva.net.back.facade.CardsFacade;
 import com.bbva.net.back.facade.FundsTypeFacade;
 import com.bbva.net.back.facade.GlobalPositionFacade;
 import com.bbva.net.back.facade.MovementsResumeFacade;
+import com.bbva.net.back.model.comboFilter.EnumPeriodType;
 import com.bbva.net.back.model.commons.DateRangeDto;
 import com.bbva.net.back.model.globalposition.GlobalProductsDto;
 import com.bbva.net.back.model.movements.GlobalResumeMovementsDto;
+import com.bbva.net.back.service.impl.DateFilterServiceImpl;
 import com.bbva.net.front.delegate.GraphicBarLineDelegate;
 import com.bbva.net.front.delegate.GraphicPieDelegate;
 import com.bbva.net.front.ui.pie.PieConfigUI;
@@ -38,6 +40,10 @@ public class GlobalPositionControllerImplTest {
 
 	private MovementsResumeFacade globalMovementsFacade;
 
+	DateRangeDto dateRange;
+
+	EnumPeriodType periodType;
+
 	@Before
 	public void init() {
 
@@ -47,7 +53,8 @@ public class GlobalPositionControllerImplTest {
 		graphicPieDelegate = Mockito.mock(GraphicPieDelegate.class);
 		cardsFacade = Mockito.mock(CardsFacade.class);
 		fundsTypeFacade = Mockito.mock(FundsTypeFacade.class);
-
+		periodType = EnumPeriodType.valueOf(Integer.parseInt("11"));
+		dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
 		globalMovementsFacade = Mockito.mock(MovementsResumeFacade.class);
 
 		graphicBarLineDelegate = Mockito.mock(GraphicBarLineDelegate.class);
