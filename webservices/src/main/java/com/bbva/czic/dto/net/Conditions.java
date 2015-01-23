@@ -11,6 +11,11 @@ import javax.xml.bind.annotation.XmlType;
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
+ * Clase Java para Conditions complex type.
+ * <p>
+ * El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>
+ * 
  * <pre>
  * &lt;complexType name="Conditions">
  *   &lt;complexContent>

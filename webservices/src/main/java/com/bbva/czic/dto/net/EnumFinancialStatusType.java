@@ -1,15 +1,15 @@
-
 package com.bbva.czic.dto.net;
 
 import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for enumFinancialStatusType.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
  * <p>
+ * Clase Java para EnumFinancialStatusType.
+ * <p>
+ * El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>
+ * 
  * <pre>
  * &lt;simpleType name="enumFinancialStatusType">
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
@@ -18,21 +18,19 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
- * 
  */
 @XmlType(name = "enumFinancialStatusType")
 @XmlEnum
 public enum EnumFinancialStatusType {
 
-    A,
-    P;
+	A, P;
 
-    public String value() {
-        return name();
-    }
+	public String value() {
+		return name();
+	}
 
-    public static EnumFinancialStatusType fromValue(String v) {
-        return valueOf(v);
-    }
+	public static EnumFinancialStatusType fromValue(String v) {
+		return valueOf(v);
+	}
 
 }

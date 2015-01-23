@@ -24,8 +24,10 @@
 				<p:commandLink onclick="PF('recoveryUser').show();"
 					value="#{msg['text.recoverUser']}" styleClass="modal-trigger" />
 			</h:form>
-			<p:dialog id="dialogo" widgetVar="recoverPass" resizable="false"
-				style="border: 1px solid #DBDCDC; background-color: #F4F7F5; "
+
+			<p:dialog id="dialogo" widgetVar="recoverPass"
+				header="Recupere su clave de acceso" resizable="false"
+				style="border: 1px solid #DBDCDC; background-color: #F4F7F5;"
 				class="margenContent modal modal-wizard fade recoverKeyModal in modal-dialog modal-lg modal-content"
 				modal="true" width="100%">
 				<p:outputPanel>

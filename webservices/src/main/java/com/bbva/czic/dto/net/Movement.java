@@ -1,16 +1,19 @@
-
 package com.bbva.czic.dto.net;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
 import com.bbva.jee.arq.spring.core.servicing.utils.Money;
-
+import javax.xml.datatype.XMLGregorianCalendar;
 
 /**
  * <p>Java class for movement complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * Clase Java para Movement complex type.
+ * <p>
+ * El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="movement">
@@ -30,8 +33,6 @@ import com.bbva.jee.arq.spring.core.servicing.utils.Money;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "movement", propOrder = {
@@ -246,5 +247,4 @@ public class Movement {
     public void setBalance(Money value) {
         this.balance = value;
     }
-
 }
