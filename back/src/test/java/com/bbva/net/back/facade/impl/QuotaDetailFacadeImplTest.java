@@ -14,7 +14,7 @@ import com.bbva.net.webservices.loan.LoanService;
 
 public class QuotaDetailFacadeImplTest {
 
-	private final String DEFAULT_ID = "9500-01-40-2606-9499";
+	private static final String DEFAULT_ID = "9500-01-40-2606-9499";
 	private QuotaDetailFacadeImpl quotaDetailFacede;
 
 	// CLIENTE REST

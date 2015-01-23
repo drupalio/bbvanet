@@ -1,7 +1,11 @@
 package com.bbva.net.front.controller.impl;
 
+import javax.faces.event.ActionEvent;
+
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
+import javax.faces.component.behavior.AjaxBehavior;
+import javax.faces.event.AjaxBehaviorEvent;
 
 import org.springframework.stereotype.Controller;
 
@@ -64,7 +68,7 @@ public class PersonalizeProductAccountControllerImpl
 	 * Metodo que muestra el mensaje successful
 	 */
 	@Override
-	public void successful() {
+	public void successful(ActionEvent event) {
 		this.menSuccessful = true;
 	}
 
@@ -93,7 +97,7 @@ public class PersonalizeProductAccountControllerImpl
 	 * boton del comboButton
 	 */
 	@Override
-	public void offMessage() {
+	public void offMessage(AjaxBehaviorEvent event) {
 		this.menSuccessful = false;
 	}
 

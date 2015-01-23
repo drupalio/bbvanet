@@ -1,5 +1,9 @@
 package com.bbva.net.front.controller;
 
+import javax.faces.event.ActionEvent;
+
+import javax.faces.event.AjaxBehaviorEvent;
+
 import com.bbva.net.back.model.personalize.PersonalizeAccountDto;
 
 /**
@@ -20,7 +24,7 @@ public interface PersonalizeProductAccountController {
 	 * @param event
 	 */
 
-	void successful();
+	void successful(ActionEvent event);
 
 	void operKey();
 
@@ -28,6 +32,6 @@ public interface PersonalizeProductAccountController {
 
 	boolean isMenSuccessful();
 
-	void offMessage();
+	void offMessage(AjaxBehaviorEvent event);
 
 }

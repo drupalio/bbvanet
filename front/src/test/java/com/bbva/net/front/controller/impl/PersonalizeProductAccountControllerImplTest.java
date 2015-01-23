@@ -24,9 +24,9 @@ public class PersonalizeProductAccountControllerImplTest {
 
 		this.personalizeProductAccountControllerImpl.operKey();
 
-		this.personalizeProductAccountControllerImpl.offMessage();
+		this.personalizeProductAccountControllerImpl.offMessage(null);
 
-		this.personalizeProductAccountControllerImpl.successful();
+		this.personalizeProductAccountControllerImpl.successful(null);
 
 		this.personalizeProductAccountFacade = Mockito
 				.mock(PersonalizeProductFacade.class);
