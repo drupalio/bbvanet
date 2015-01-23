@@ -362,7 +362,6 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 					dateRange, StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY);
 			// this.globalResumeMovementsDTO = this.movementsResumeFacade.getMovementsResumeByAccount(accountSelected);
 			this.accountGraphicBarLineUI = this.graphicBarLineDelegate.getInOutBalanceAccount(globalResumeMovementsDTO);
-			System.out.println("Consume ACCOUNTS");
 		}
 		// Cosume Servicio Customer
 		if (!StringUtils.isEmpty(periodAccountSelected)
@@ -370,7 +369,6 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 			this.accountGraphicBarLineUI = this.graphicBarLineDelegate.getInOutBalanceAccount(movementsResumeFacade
 					.getMovementsResumeByCustomer(getCurrentUser(), dateRange));
-			System.out.println("Consume CUSTOMER");
 
 		}
 
