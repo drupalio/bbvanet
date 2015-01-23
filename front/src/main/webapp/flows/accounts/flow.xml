@@ -23,7 +23,7 @@
 		<transition on="accountSelected" to="movementsAccount"></transition>
 	</view-state>
 	
-	<view-state id="movementsAccount" view="externalRedirect:movements">		
+	<view-state id="movementsAccount" view="externalRedirect:movements">
 	</view-state>
 
 </flow>

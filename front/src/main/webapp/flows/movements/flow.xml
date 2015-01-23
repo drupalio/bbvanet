@@ -6,9 +6,11 @@
 	
 	<var name="movementsAccountController" class="com.bbva.net.front.controller.impl.MovementsAccountControllerImpl"/>
 	<var name="accountsController" class="com.bbva.net.front.controller.impl.AccountsControllerImpl"/>
-	
+
 	<on-start>
 		<evaluate expression="accountsController.getCustomerAccounts()" result="flowScope.customerAccounts" />
+		<evaluate expression="accountsController.getAllConditions()" result="flowScope.allConditions" />
+		<evaluate expression="movementsAccountController.getProduct()" result="flowScope.pruduct" />
 	</on-start>
 	
 	<view-state id="movements">

@@ -1,15 +1,14 @@
-
 package com.bbva.czic.dto.net;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for Function complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * Clase Java para Function complex type.
+ * <p>
+ * El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="Function">
@@ -23,65 +22,49 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Function", propOrder = {
-    "id",
-    "type"
-})
+@XmlType(name = "Function", propOrder = { "id", "type" })
 public class Function {
 
-    protected String id;
-    protected String type;
+	protected String id;
 
-    /**
-     * Gets the value of the id property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getId() {
-        return id;
-    }
+	protected String type;
 
-    /**
-     * Sets the value of the id property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setId(String value) {
-        this.id = value;
-    }
+	/**
+	 * Obtiene el valor de la propiedad id.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getId() {
+		return id;
+	}
 
-    /**
-     * Gets the value of the type property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getType() {
-        return type;
-    }
+	/**
+	 * Define el valor de la propiedad id.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setId(String value) {
+		this.id = value;
+	}
 
-    /**
-     * Sets the value of the type property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setType(String value) {
-        this.type = value;
-    }
+	/**
+	 * Obtiene el valor de la propiedad type.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getType() {
+		return type;
+	}
+
+	/**
+	 * Define el valor de la propiedad type.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setType(String value) {
+		this.type = value;
+	}
 
 }

@@ -9,10 +9,16 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 /**
+ * <<<<<<< HEAD
+ * <p>
+ * Clase Java para Conditions complex type.
+ * <p>
+ * El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase. =======
  * <p>
  * Java class for Conditions complex type.
  * <p>
- * The following schema fragment specifies the expected content contained within this class.
+ * The following schema fragment specifies the expected content contained within this class. >>>>>>>
+ * 7ac5963a925b219e7e4adf530756af15b3e56b5c
  * 
  * <pre>
  * &lt;complexType name="Conditions">

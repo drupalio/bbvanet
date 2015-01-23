@@ -33,6 +33,7 @@ import com.bbva.net.front.ui.pie.PieConfigUI;
 /**
  * @author Entelgy
  */
+
 public class GlobalPositionControllerImpl extends AbstractBbvaController implements GlobalPositionController {
 
 	/**
@@ -142,15 +143,9 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	 */
 	private String accountSelected = StringUtils.EMPTY;
 
-	/**
-	 * 
-	 */
-	private String periodCardSelected = "0";
+	private String periodCardSelected = StringUtils.EMPTY;
 
-	/**
-	 * 
-	 */
-	private String cardSelected = "";
+	private String cardSelected = StringUtils.EMPTY;
 
 	/**
 	 * @author Entelgy
@@ -182,7 +177,8 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		// Calculate investmentFunds graphics panels
 		this.graphicPieInvestmentFunds = graphicPieDelegate.getAccountsfundsProducts(this.fundDTOs);
 
-		// Calculate situation graphics panels
+		// Calculate cards graphics panel
+
 		this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(getCurrentUser(),
 				null));
 
@@ -328,17 +324,19 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	 */
 	public void onComboSelectedCard() {
 
-		DateRangeDto dateRange = null;
-		if (!periodCardSelected.equals("0")) {
-			final EnumPeriodType periodType = EnumPeriodType.valueOf(Integer.parseInt(this.periodCardSelected));
-			dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
+		EnumPeriodType periodType = null;
+		if (!this.periodCardSelected.isEmpty()) {
+			periodType = EnumPeriodType.valueOf(Integer.parseInt(this.periodCardSelected));
+		} else {
+			periodType = EnumPeriodType.valueOf(EnumPeriodType.LAST_TWELVE_MONTH.getPeriodId());
 		}
+		DateRangeDto dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
 
 		if (MessagesHelper.INSTANCE.getString("text.allCards").equals(cardSelected)) {
 			this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(
 					getCurrentUser(), dateRange));
 		} else {
-
+			System.out.println("cards ");
 			this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesFilter(cardSelected,
 					dateRange));
 		}
