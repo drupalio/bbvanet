@@ -3,6 +3,7 @@
  */
 package com.bbva.net.front.controller.impl;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -26,6 +27,7 @@ import com.bbva.net.back.model.comboFilter.EnumPeriodType;
 import com.bbva.net.back.model.commons.DateRangeDto;
 import com.bbva.net.back.model.enums.RenderAttributes;
 import com.bbva.net.back.service.impl.DateFilterServiceImpl;
+import com.bbva.net.front.controller.CheckBookController;
 import com.bbva.net.front.core.AbstractBbvaController;
 import com.bbva.net.front.helper.MessagesHelper;
 
@@ -57,6 +59,10 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 
 	private String checkBookNumber;
 	
+	private String sinceDatestr;
+
+	private String toDatestr;
+	
 	private String title =  MessagesHelper.INSTANCE.getString("text.last.movments");
 
 	private Map<String, Boolean> renderComponents = new HashMap<String, Boolean>();
@@ -77,7 +83,7 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 	@Resource(name = "multiValueGroupFacade")
 	private transient MultiValueGroupFacade multiValueGroupFacade;
 	
-	
+	SimpleDateFormat dateFormat = new SimpleDateFormat( MessagesHelper.INSTANCE.getStringI18("date.pattner.dd.mm.yyyy"));
 
 	@PostConstruct
 	public void init() {
@@ -124,9 +130,18 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 	@Override
 	public void setCustomDate(final ActionEvent event) {
 		System.out.println("setCustomDate");
-		this.getSelectDate();
+
 		this.dateRange.setDateSince(getSinceDate());
-		this.dateRange.setDateTo(getToDate());	
+		this.dateRange.setDateTo(getToDate());
+		if (! (getSinceDate()==(null)) && ! (getToDate()==(null))) {
+			sinceDatestr = "Desde: "+dateFormat.format(getSinceDate());
+			toDatestr = "Hasta: "+dateFormat.format(getToDate());
+		}else{
+			sinceDatestr =getSelectDate();
+		}		
+		System.out.println(getSelectDate());
+		System.out.println(sinceDatestr);
+		System.out.println(toDatestr);		 
 	}
 
 	@Override
@@ -150,10 +165,7 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 	
 	@Override
 	public void showResults(final ActionEvent event){
-		System.out.println("showResults");
-		
-		
-		
+		System.out.println("showResults");					
 		
 		if( renderComponents.get(RenderAttributes.FILTERCHECKBOOK.toString()) ){
 			System.out.println("cheques");			
@@ -287,6 +299,38 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 	}
 
 	
+	
+	/**
+	 * @return the sinceDatestr
+	 */
+	public String getSinceDatestr() {
+		return sinceDatestr;
+	}
+
+	
+	/**
+	 * @param sinceDatestr the sinceDatestr to set
+	 */
+	public void setSinceDatestr(String sinceDatestr) {
+		this.sinceDatestr = sinceDatestr;
+	}
+
+	
+	/**
+	 * @return the toDatestr
+	 */
+	public String getToDatestr() {
+		return toDatestr;
+	}
+
+	
+	/**
+	 * @param toDatestr the toDatestr to set
+	 */
+	public void setToDatestr(String toDatestr) {
+		this.toDatestr = toDatestr;
+	}
+
 	/**
 	 * @return the title
 	 */

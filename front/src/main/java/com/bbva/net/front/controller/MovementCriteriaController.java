@@ -4,7 +4,6 @@
 package com.bbva.net.front.controller;
 
 import javax.faces.event.ActionEvent;
-import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.event.ComponentSystemEvent;
 
 /**
@@ -62,7 +61,5 @@ public interface MovementCriteriaController {
 	 * @param event
 	 */
 	void setCustomDate(ActionEvent event);
-
-	void captureDate(AjaxBehaviorEvent e);
 
 }
