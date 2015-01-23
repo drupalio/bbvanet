@@ -10,9 +10,9 @@ import com.bbva.jee.arq.spring.core.servicing.utils.Money;
 
 
 /**
- * <p>Java class for Movement complex type.
+ * <p>Clase Java para Movement complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="Movement">
@@ -66,13 +66,14 @@ public class Movement {
     protected String destinationReference;
     protected Operation operation;
     protected Office office;
+    @XmlSchemaType(name = "string")
     protected EnumAccountState status;
     protected Money value;
     protected Money balance;
     protected String numberOfQuotas;
 
     /**
-     * Gets the value of the id property.
+     * Obtiene el valor de la propiedad id.
      * 
      * @return
      *     possible object is
@@ -84,7 +85,7 @@ public class Movement {
     }
 
     /**
-     * Sets the value of the id property.
+     * Define el valor de la propiedad id.
      * 
      * @param value
      *     allowed object is
@@ -96,7 +97,7 @@ public class Movement {
     }
 
     /**
-     * Gets the value of the concept property.
+     * Obtiene el valor de la propiedad concept.
      * 
      * @return
      *     possible object is
@@ -108,7 +109,7 @@ public class Movement {
     }
 
     /**
-     * Sets the value of the concept property.
+     * Define el valor de la propiedad concept.
      * 
      * @param value
      *     allowed object is
@@ -120,7 +121,7 @@ public class Movement {
     }
 
     /**
-     * Gets the value of the transactionDate property.
+     * Obtiene el valor de la propiedad transactionDate.
      * 
      * @return
      *     possible object is
@@ -132,7 +133,7 @@ public class Movement {
     }
 
     /**
-     * Sets the value of the transactionDate property.
+     * Define el valor de la propiedad transactionDate.
      * 
      * @param value
      *     allowed object is
@@ -144,7 +145,7 @@ public class Movement {
     }
 
     /**
-     * Gets the value of the operationDate property.
+     * Obtiene el valor de la propiedad operationDate.
      * 
      * @return
      *     possible object is
@@ -156,7 +157,7 @@ public class Movement {
     }
 
     /**
-     * Sets the value of the operationDate property.
+     * Define el valor de la propiedad operationDate.
      * 
      * @param value
      *     allowed object is
@@ -168,7 +169,7 @@ public class Movement {
     }
 
     /**
-     * Gets the value of the sourceReference property.
+     * Obtiene el valor de la propiedad sourceReference.
      * 
      * @return
      *     possible object is
@@ -180,7 +181,7 @@ public class Movement {
     }
 
     /**
-     * Sets the value of the sourceReference property.
+     * Define el valor de la propiedad sourceReference.
      * 
      * @param value
      *     allowed object is
@@ -192,7 +193,7 @@ public class Movement {
     }
 
     /**
-     * Gets the value of the destinationReference property.
+     * Obtiene el valor de la propiedad destinationReference.
      * 
      * @return
      *     possible object is
@@ -204,7 +205,7 @@ public class Movement {
     }
 
     /**
-     * Sets the value of the destinationReference property.
+     * Define el valor de la propiedad destinationReference.
      * 
      * @param value
      *     allowed object is
@@ -216,7 +217,7 @@ public class Movement {
     }
 
     /**
-     * Gets the value of the operation property.
+     * Obtiene el valor de la propiedad operation.
      * 
      * @return
      *     possible object is
@@ -228,7 +229,7 @@ public class Movement {
     }
 
     /**
-     * Sets the value of the operation property.
+     * Define el valor de la propiedad operation.
      * 
      * @param value
      *     allowed object is
@@ -240,7 +241,7 @@ public class Movement {
     }
 
     /**
-     * Gets the value of the office property.
+     * Obtiene el valor de la propiedad office.
      * 
      * @return
      *     possible object is
@@ -252,7 +253,7 @@ public class Movement {
     }
 
     /**
-     * Sets the value of the office property.
+     * Define el valor de la propiedad office.
      * 
      * @param value
      *     allowed object is
@@ -264,7 +265,7 @@ public class Movement {
     }
 
     /**
-     * Gets the value of the status property.
+     * Obtiene el valor de la propiedad status.
      * 
      * @return
      *     possible object is
@@ -276,7 +277,7 @@ public class Movement {
     }
 
     /**
-     * Sets the value of the status property.
+     * Define el valor de la propiedad status.
      * 
      * @param value
      *     allowed object is
@@ -288,7 +289,7 @@ public class Movement {
     }
 
     /**
-     * Gets the value of the value property.
+     * Obtiene el valor de la propiedad value.
      * 
      * @return
      *     possible object is
@@ -300,7 +301,7 @@ public class Movement {
     }
 
     /**
-     * Sets the value of the value property.
+     * Define el valor de la propiedad value.
      * 
      * @param value
      *     allowed object is
@@ -312,7 +313,7 @@ public class Movement {
     }
 
     /**
-     * Gets the value of the balance property.
+     * Obtiene el valor de la propiedad balance.
      * 
      * @return
      *     possible object is
@@ -324,7 +325,7 @@ public class Movement {
     }
 
     /**
-     * Sets the value of the balance property.
+     * Define el valor de la propiedad balance.
      * 
      * @param value
      *     allowed object is
@@ -336,7 +337,7 @@ public class Movement {
     }
 
     /**
-     * Gets the value of the numberOfQuotas property.
+     * Obtiene el valor de la propiedad numberOfQuotas.
      * 
      * @return
      *     possible object is
@@ -348,7 +349,7 @@ public class Movement {
     }
 
     /**
-     * Sets the value of the numberOfQuotas property.
+     * Define el valor de la propiedad numberOfQuotas.
      * 
      * @param value
      *     allowed object is

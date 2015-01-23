@@ -3,13 +3,14 @@ package com.bbva.czic.dto.net;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for Function complex type.
+ * <p>Clase Java para Function complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="Function">
@@ -34,10 +35,11 @@ import javax.xml.bind.annotation.XmlType;
 public class Function {
 
     protected String id;
+    @XmlSchemaType(name = "string")
     protected EnumRotaryMoveStatus type;
 
     /**
-     * Gets the value of the id property.
+     * Obtiene el valor de la propiedad id.
      * 
      * @return
      *     possible object is
@@ -49,7 +51,7 @@ public class Function {
     }
 
     /**
-     * Sets the value of the id property.
+     * Define el valor de la propiedad id.
      * 
      * @param value
      *     allowed object is
@@ -61,7 +63,7 @@ public class Function {
     }
 
     /**
-     * Gets the value of the type property.
+     * Obtiene el valor de la propiedad type.
      * 
      * @return
      *     possible object is
@@ -73,7 +75,7 @@ public class Function {
     }
 
     /**
-     * Sets the value of the type property.
+     * Define el valor de la propiedad type.
      * 
      * @param value
      *     allowed object is

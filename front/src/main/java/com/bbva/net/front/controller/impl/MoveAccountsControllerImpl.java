@@ -19,7 +19,7 @@ public class MoveAccountsControllerImpl extends AbstractBbvaController {
 	private List exam;
 
 	private String valor;
-	
+
 	public String getDate() {
 		return date;
 	}
@@ -32,6 +32,7 @@ public class MoveAccountsControllerImpl extends AbstractBbvaController {
 
 		System.out.println("aw" + date);
 	}
+
 	public List getExam() {
 		return exam;
 	}
@@ -63,9 +64,11 @@ public class MoveAccountsControllerImpl extends AbstractBbvaController {
 	public void seleccionC(ValueChangeEvent event) {
 		System.out.print("Nuevo dato: " + event.getNewValue() + ", Viejo dato: " + event.getOldValue());
 	}
-	public void nextPage(){
-		
+
+	public void nextPage() {
+
 	}
+
 	public void seleccionACC(SelectEvent event) {
 		System.out.print("Nuevo dato: " + event.getSource() + ", Viejo dato: " + event.getObject());
 	}
