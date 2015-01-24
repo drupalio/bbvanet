@@ -3,25 +3,23 @@ package com.bbva.czic.dto.net;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.datatype.XMLGregorianCalendar;
 import com.bbva.jee.arq.spring.core.servicing.utils.Money;
 
 
 /**
- * <p>Clase Java para Payment complex type.
+ * <p>Java class for Payment complex type.
  * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="Payment">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="dueDate" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
- *         &lt;element name="paymentDate" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
- *         &lt;element name="shortDate" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+ *         &lt;element name="dueDate" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="paymentDate" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="shortDate" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="fees" type="{urn:com:bbva:jee:arq:spring:core:servicing:utils}money" minOccurs="0"/>
  *         &lt;element name="minimumPayment" type="{urn:com:bbva:jee:arq:spring:core:servicing:utils}money" minOccurs="0"/>
  *         &lt;element name="numbersOfQuota" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
@@ -44,90 +42,87 @@ import com.bbva.jee.arq.spring.core.servicing.utils.Money;
 })
 public class Payment {
 
-    @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar dueDate;
-    @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar paymentDate;
-    @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar shortDate;
+    protected String dueDate;
+    protected String paymentDate;
+    protected String shortDate;
     protected Money fees;
     protected Money minimumPayment;
     protected Integer numbersOfQuota;
 
     /**
-     * Obtiene el valor de la propiedad dueDate.
+     * Gets the value of the dueDate property.
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public XMLGregorianCalendar getDueDate() {
+    public String getDueDate() {
         return dueDate;
     }
 
     /**
-     * Define el valor de la propiedad dueDate.
+     * Sets the value of the dueDate property.
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public void setDueDate(XMLGregorianCalendar value) {
+    public void setDueDate(String value) {
         this.dueDate = value;
     }
 
     /**
-     * Obtiene el valor de la propiedad paymentDate.
+     * Gets the value of the paymentDate property.
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public XMLGregorianCalendar getPaymentDate() {
+    public String getPaymentDate() {
         return paymentDate;
     }
 
     /**
-     * Define el valor de la propiedad paymentDate.
+     * Sets the value of the paymentDate property.
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public void setPaymentDate(XMLGregorianCalendar value) {
+    public void setPaymentDate(String value) {
         this.paymentDate = value;
     }
 
     /**
-     * Obtiene el valor de la propiedad shortDate.
+     * Gets the value of the shortDate property.
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public XMLGregorianCalendar getShortDate() {
+    public String getShortDate() {
         return shortDate;
     }
 
     /**
-     * Define el valor de la propiedad shortDate.
+     * Sets the value of the shortDate property.
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public void setShortDate(XMLGregorianCalendar value) {
+    public void setShortDate(String value) {
         this.shortDate = value;
     }
 
     /**
-     * Obtiene el valor de la propiedad fees.
+     * Gets the value of the fees property.
      * 
      * @return
      *     possible object is
@@ -139,7 +134,7 @@ public class Payment {
     }
 
     /**
-     * Define el valor de la propiedad fees.
+     * Sets the value of the fees property.
      * 
      * @param value
      *     allowed object is
@@ -151,7 +146,7 @@ public class Payment {
     }
 
     /**
-     * Obtiene el valor de la propiedad minimumPayment.
+     * Gets the value of the minimumPayment property.
      * 
      * @return
      *     possible object is
@@ -163,7 +158,7 @@ public class Payment {
     }
 
     /**
-     * Define el valor de la propiedad minimumPayment.
+     * Sets the value of the minimumPayment property.
      * 
      * @param value
      *     allowed object is
@@ -175,7 +170,7 @@ public class Payment {
     }
 
     /**
-     * Obtiene el valor de la propiedad numbersOfQuota.
+     * Gets the value of the numbersOfQuota property.
      * 
      * @return
      *     possible object is
@@ -187,7 +182,7 @@ public class Payment {
     }
 
     /**
-     * Define el valor de la propiedad numbersOfQuota.
+     * Sets the value of the numbersOfQuota property.
      * 
      * @param value
      *     allowed object is

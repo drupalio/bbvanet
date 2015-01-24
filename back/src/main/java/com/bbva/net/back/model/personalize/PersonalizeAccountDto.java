@@ -16,10 +16,6 @@ public class PersonalizeAccountDto implements Dto {
 
 	private boolean virtualMail;
 
-	private boolean searchOnline;
-
-	private boolean operationOnline;
-
 	private String operationKey;
 
 	public PersonalizeAccountDto() {
@@ -33,14 +29,12 @@ public class PersonalizeAccountDto implements Dto {
 	 * @param operationKey
 	 */
 
-	public PersonalizeAccountDto(String alias, boolean virtualMail, boolean searchOnline, boolean operationOnline,
-			String operationKey) {
+	public PersonalizeAccountDto(String alias, boolean virtualMail,
+			boolean searchOnline, boolean operationOnline, String operationKey) {
 
 		this.alias = alias;
 		this.virtualMail = virtualMail;
-		this.searchOnline = searchOnline;
 		this.operationKey = operationKey;
-		this.operationOnline = operationOnline;
 	}
 
 	public String getAlias() {
@@ -59,22 +53,6 @@ public class PersonalizeAccountDto implements Dto {
 		this.virtualMail = virtualMail;
 	}
 
-	public boolean isSearchOnline() {
-		return searchOnline;
-	}
-
-	public void setSearchOnline(boolean searchOnline) {
-		this.searchOnline = searchOnline;
-	}
-
-	public boolean isOperationOnline() {
-		return operationOnline;
-	}
-
-	public void setOperationOnline(boolean operationOnline) {
-		this.operationOnline = operationOnline;
-	}
-
 	public String getOperationKey() {
 		return operationKey;
 	}
@@ -89,26 +67,27 @@ public class PersonalizeAccountDto implements Dto {
 
 	@Override
 	public String toString() {
-		return new ToStringBuilder(this).append("Alias", getAlias()).append("VirtualMail", isVirtualMail())
-				.append("SearhOnline", isSearchOnline()).append("OperationOnline", isOperationOnline())
+		return new ToStringBuilder(this).append("Alias", getAlias())
+				.append("VirtualMail", isVirtualMail())
 				.append("OperationKey", getOperationKey()).toString();
 	}
 
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder().append(getAlias()).append(isVirtualMail()).append(isSearchOnline())
-				.append(isOperationOnline()).append(getOperationKey()).toHashCode();
+		return new HashCodeBuilder().append(getAlias()).append(isVirtualMail())
+				.append(getOperationKey()).toHashCode();
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 
 		return (obj instanceof PersonalizeAccountDto)
-				&& this.getAlias().equals(((PersonalizeAccountDto)obj).getAlias())
-				&& this.isVirtualMail() == ((PersonalizeAccountDto)obj).isVirtualMail()
-				&& this.getOperationKey().equals(((PersonalizeAccountDto)obj).getOperationKey())
-				&& this.isOperationOnline() == (((PersonalizeAccountDto)obj).isOperationOnline())
-				&& this.isSearchOnline() == (((PersonalizeAccountDto)obj).isSearchOnline());
+				&& this.getAlias().equals(
+						((PersonalizeAccountDto) obj).getAlias())
+				&& this.isVirtualMail() == ((PersonalizeAccountDto) obj)
+						.isVirtualMail()
+				&& this.getOperationKey().equals(
+						((PersonalizeAccountDto) obj).getOperationKey());
 
 	}
 }

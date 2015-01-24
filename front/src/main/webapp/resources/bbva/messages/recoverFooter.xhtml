@@ -21,26 +21,22 @@
 
 <composite:implementation>
 	<div id="#{cc.clientId}" class="modal-footer recoverKeyModal">
-			<p:selectBooleanCheckbox  id="recoverKeyCond" required="true"
-				value="#{recoverPassController.recoveryDto.conditions}"
-				style="float: left !important;"  />
-			<h:outputLabel styleClass="control-label left conditionsLabel"
-				style="margin-top: -4.7% !important; margin-left: 3.5% !important; width: 96%"
-				value="#{msg['text.condiConfirmOne']}" for="recoverKeyCond">
-				<a title="Descargar PDF terminos." href="#{cc.attrs.href}">
-					#{msg['text.condiConfirmTwo']} <span class="adobe-blue"> </span> <span
-					class="adobe-size">(6Kb)</span>
-				</a>
-			</h:outputLabel>
-		<composite:insertChildren></composite:insertChildren>
-	</div>
-	<div style="left: 0px; width: 1272px;" class="steps-group row">
-		<div style="width: 52%;" class="steps step1 final-step">
-			<div class="step-header visible-xs visible-sm">
-				<span class="icon-lastStep"></span>#{cc.attrs.pointTwo}
-			</div>
-
+		<div class="separatorConditions">
+			<h:panelGroup>
+				<p:selectBooleanCheckbox id="recoverKeyCond" required="true"
+					value="#{recoverPassController.recoveryDto.conditions}"
+					style="float: left !important;" />
+				<h:outputLabel styleClass="control-label left conditionsLabel"
+					style="margin-left: 1% !important; width: 75%;"
+					value="#{msg['text.condiConfirmOne']}" for="recoverKeyCond">
+					<a title="Descargar PDF terminos." href="#{cc.attrs.href}">
+						#{msg['text.condiConfirmTwo']} <span class="adobe-blue"> </span> <span
+						class="adobe-size">(6Kb)</span>
+					</a>
+				</h:outputLabel>
+			</h:panelGroup>
 		</div>
+		<composite:insertChildren></composite:insertChildren>
 	</div>
 </composite:implementation>
 </html>

@@ -12,7 +12,9 @@ import com.bbva.net.back.model.commons.Money;
 import com.bbva.net.back.model.globalposition.FundDto;
 
 @Facade(value = "fundsTypeFacade")
-public class FundsTypeFacadeImpl extends AbstractBbvaFacade implements FundsTypeFacade {
+public class FundsTypeFacadeImpl extends AbstractBbvaFacade
+		implements
+			FundsTypeFacade {
 
 	/**
 	 * 
@@ -27,11 +29,18 @@ public class FundsTypeFacadeImpl extends AbstractBbvaFacade implements FundsType
 		FundDto plusValue = new FundDto();
 		FundDto guarantedValue = new FundDto();
 
+		Money plusValueMoney = new Money();
+		plusValueMoney.setAmount(new BigDecimal(700000));
+		plusValueMoney.setCurrency("$");
+		Money guarantedValueMoney = new Money();
+		guarantedValueMoney.setAmount(new BigDecimal(300000));
+		guarantedValueMoney.setCurrency("$");
+
 		plusValue.setTypefunds(EnumFundsType.plusValue);
-		plusValue.setTotalCash(new Money(new BigDecimal(700000)));
+		plusValue.setTotalCash(plusValueMoney);
 
 		guarantedValue.setTypefunds(EnumFundsType.guaranteedValue);
-		guarantedValue.setTotalCash(new Money(new BigDecimal(300000)));
+		guarantedValue.setTotalCash(guarantedValueMoney);
 
 		funds.add(plusValue);
 		funds.add(guarantedValue);

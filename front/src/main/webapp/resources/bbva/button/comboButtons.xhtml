@@ -22,7 +22,8 @@
 
 <composite:implementation>
 	<div class="#{cc.attrs.size}">
-		<p:selectOneButton id="#{cc.attrs.idCombo}" value="#{cc.attrs.value}">
+		<p:selectOneButton id="#{cc.attrs.idCombo}" value="#{cc.attrs.value}"
+			styleClass="yourStyleClass">
 			<f:selectItem itemLabel="Activar" itemValue="true" />
 			<f:selectItem itemLabel="Desactivar" itemValue="false" />
 

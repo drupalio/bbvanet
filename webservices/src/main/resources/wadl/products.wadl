@@ -15,7 +15,7 @@
                     <xs:element minOccurs="0" name="alias" type="xs:string"/>
                     <xs:element minOccurs="0" name="category" type="xs:string"/>
                     <xs:element minOccurs="0" name="description" type="xs:string"/>
-                    <xs:element minOccurs="0" name="openingDate" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="openingDate" type="xs:string"/>
                     <xs:element minOccurs="0" name="commission" type="xs:string"/>
                     <xs:element minOccurs="0" name="office" type="tns:Office"/>
                     <xs:element minOccurs="0" name="mobilizationConditions" type="xs:string"/>
@@ -61,8 +61,8 @@
             </xs:complexType>
             <xs:complexType name="Activity">
                 <xs:sequence>
-                    <xs:element minOccurs="0" name="operationDate" type="xs:dateTime"/>
-                    <xs:element minOccurs="0" name="executionDate" type="xs:dateTime"/>
+                    <xs:element minOccurs="0" name="operationDate" type="xs:string"/>
+                    <xs:element minOccurs="0" name="executionDate" type="xs:string"/>
                     <xs:element minOccurs="0" name="function" type="tns:Function"/>
                     <xs:element minOccurs="0" name="amount" type="ns1:money"/>
                     <xs:element minOccurs="0" name="reference" type="xs:string"/>
