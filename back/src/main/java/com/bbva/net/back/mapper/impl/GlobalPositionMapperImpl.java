@@ -104,7 +104,7 @@ public class GlobalPositionMapperImpl extends ConfigurableMapper implements Glob
 		factory.classMap(Product.class, ProductDto.class).field("alias", "alias")
 				.field("balance.availableBalance", "cashAvailable").field("id", "productId")
 				.field("name", "productName").field("id", "productNumber").field("balance.total", "totalCash")
-				.field("financialState", "asset").field("type", "typeProd").field("visible", "visible").byDefault()
+				.field("financialState", "asset").field("type", "subTypeProd").field("visible", "visible").byDefault()
 				.register();
 
 		// Map Loan DTO

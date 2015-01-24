@@ -13,6 +13,7 @@ import com.bbva.net.back.model.globalposition.LeasingDto;
 import com.bbva.net.back.model.globalposition.LoanDto;
 import com.bbva.net.back.model.globalposition.ProductDto;
 import com.bbva.net.back.model.globalposition.RotatingAccountDto;
+import com.bbva.net.back.utils.ProductUtils;
 
 /**
  * @author Entelgy
@@ -28,7 +29,7 @@ public class ProductDTOFactory implements ObjectFactory<ProductDto> {
 		ProductDto productDto = null;
 		final Product product = (Product)source;
 
-		switch (product.getType()) {
+		switch (ProductUtils.getEnumProductTypeBySubType(product.getType())) {
 		case PC:
 			productDto = new AccountDto();
 			break;
@@ -56,6 +57,8 @@ public class ProductDTOFactory implements ObjectFactory<ProductDto> {
 		default:
 			break;
 		}
+		
+		productDto.setTypeProd(ProductUtils.getEnumProductTypeBySubType(product.getType()));
 
 		return productDto;
 	}
