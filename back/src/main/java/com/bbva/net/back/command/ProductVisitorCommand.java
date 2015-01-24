@@ -86,7 +86,7 @@ public abstract class ProductVisitorCommand extends VisitorCommand<Product> {
 			this.executeDeposit(product);
 			break;
 		default:
-			break;
+			throw new RuntimeException();
 		}
 
 	}

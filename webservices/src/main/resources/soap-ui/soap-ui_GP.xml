@@ -988,7 +988,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 },
 {
 	"id": "2027",
-	"type": "LO",
+	"type": "HI",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A6",
 	"financialState": "P",
@@ -1252,7 +1252,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 },
 {
 	"id": "2028",
-	"type": "SI",
+	"type": "FA",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A8",
 	"financialState": "A",
@@ -1912,7 +1912,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 },
 {
 	"id": "2033",
-	"type": "LI",
+	"type": "LS",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A13",
 	"financialState": "P",
@@ -2176,7 +2176,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 },
 {
 	"id": "2035",
-	"type": "LI",
+	"type": "LS",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A15",
 	"financialState": "P",
@@ -2308,7 +2308,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 },
 {
 	"id": "2036",
-	"type": "RQ",
+	"type": "CR",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A16",
 	"financialState": "A",
@@ -2440,7 +2440,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 },
 {
 	"id": "2037",
-	"type": "RQ",
+	"type": "CR",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A17",
 	"financialState": "A",
@@ -2704,7 +2704,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 },
 {
 	"id": "2039",
-	"type": "LI",
+	"type": "LS",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A19",
 	"financialState": "P",
@@ -3667,7 +3667,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 },
 {
 	"id": "2046",
-	"type": "LO",
+	"type": "HI",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A6",
 	"financialState": "P",
@@ -3931,7 +3931,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 },
 {
 	"id": "2048",
-	"type": "SI",
+	"type": "FA",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A8",
 	"financialState": "A",
@@ -4327,7 +4327,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 },
 {
 	"id": "2051",
-	"type": "TDC",
+	"type": "TC",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A11",
 	"financialState": "P",
@@ -4459,7 +4459,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 },
 {
 	"id": "2052",
-	"type": "TDC",
+	"type": "TC",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A12",
 	"financialState": "P",
@@ -4723,7 +4723,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 },
 {
 	"id": "2054",
-	"type": "TDC",
+	"type": "TC",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A14",
 	"financialState": "P",
@@ -4855,7 +4855,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 },
 {
 	"id": "2055",
-	"type": "LI",
+	"type": "LS",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A15",
 	"financialState": "P",
@@ -4987,7 +4987,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 },
 {
 	"id": "2056",
-	"type": "RQ",
+	"type": "CR",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A16",
 	"financialState": "A",
@@ -5119,7 +5119,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 },
 {
 	"id": "2057",
-	"type": "RQ",
+	"type": "CR",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A17",
 	"financialState": "A",
@@ -5383,7 +5383,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 },
 {
 	"id": "2059",
-	"type": "LI",
+	"type": "LS",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A19",
 	"financialState": "P",
@@ -5984,7 +5984,32 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 }
 
 */
-</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{"id":"123","name":"Jhon ","phone":"3212324","office":{"code":"0073","name":"BBVA 23247","location":{"city":{"id":"123","name":"Bogota","state":{"id":"123456","name":"Cundinamarca","country":{"id":"12","name":"Colombia"}}},"category":"Kennedy"},"postalAddress":"Calle 36"},"email":"Jhon002@gmail.com"}
+</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
+	"id": "123",
+	"name": "Jhon ",
+	"phone": "3212324",
+	"office": {
+		"code": "0073",
+		"name": "BBVA 23247",
+		"location": {
+			"city": {
+				"id": "123",
+				"name": "Bogota",
+				"state": {
+					"id": "123456",
+					"name": "Cundinamarca",
+					"country": {
+						"id": "12",
+						"name": "Colombia"
+					}
+				}
+			},
+			"category": "Kennedy"
+		},
+		"postalAddress": "Calle 36"
+	},
+	"email": "Jhon002@gmail.com"
+}
 </con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/customers/V01/123/creditCard/cardCharges" method="GET" resourcePath="/czic/customers/V01/123/creditCard/cardCharges"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Examples showing how to match based on path, query param and header
 // Match based on path
@@ -6066,47 +6091,16 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		"amount":1300000.0,
 		"currency":"$"
 		}
-}]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/cards/V01/123/creditCard/cardCharges" method="GET" resourcePath="/czic/cards/V01/123/creditCard/cardCharges"><con:settings/><con:defaultResponse xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
-// Examples showing how to match based on path, query param and header
-// Match based on path
-def requestPath = mockRequest.getPath()
-log.info "Path: "+ requestPath
-
-if( requestPath.contains("json") )
+}]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/cards/V01/creditCard/2032/cardCharges" method="GET" resourcePath="/czic/cards/V01/creditCard/2032/cardCharges"><con:settings/><con:defaultResponse xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/><con:dispatchStyle>SCRIPT</con:dispatchStyle><con:dispatchPath>def requestMock = mockRequest.getRequest().toString()
+log.info "*** "+requestMock
+if( requestMock.contains("filter") )
 {
-    // return the name of the response you want to dispatch
-    return "JSON Response"
-}
-
-
-// Match based on query parameter
-def queryString = mockRequest.getRequest().getQueryString()
-log.info "QueryString: " + queryString
-
-if( queryString.contains("stockholm") )
-{
-    // return the name of the response you want to dispatch
-    return "Response Stockholm"
-}
-else if( queryString.contains("london") )
-{
-    // return the name of the response you want to dispatch
-    return "Response London"
-}
-
-
-// Match based on header
-def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
-log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
-
-if( acceptEncodingHeadeList.contains("gzip,deflate") )
-{
-    // return the name of the response you want to dispatch
-    return "GZiped Response"
-}
-
-*/
-</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
+	log.info "Ejecutando con Filtro "
+    return "Filter_response"
+}else{
+	log.info "Ejecutando SIN Filtro "
+	return "No_Filter_response"
+}</con:dispatchPath><con:response name="No_Filter_response" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
 	"category":"CHANNEL_SALES",
 	"amount":{
 		"amount":100000.0,
@@ -6147,4 +6141,231 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		"amount":600000.0,
 		"currency":"$"
 		}
-}]</con:responseContent></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
+}]</con:responseContent></con:response><con:response name="Filter_response" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
+	"category":"CHANNEL_SALES",
+	"amount":{
+		"amount":600000.0,
+		"currency":"$"
+		}
+},
+{
+	"category":"LEISURE",
+	"amount":{
+		"amount":500000.0,
+		"currency":"$"
+		}
+},
+{
+	"category":"OTHERS",
+	"amount":{
+		"amount":400000.0,
+		"currency":"$"
+		}
+},
+{
+	"category":"BASIC_COMMERCE",
+	"amount":{
+		"amount":300000.0,
+		"currency":"$"
+		}
+},
+{
+	"category":"GIFT_BOOK_DISC",
+	"amount":{
+		"amount":200000.0,
+		"currency":"$"
+		}
+},
+{
+	"category":"CLOTHING",
+	"amount":{
+		"amount":100000.0,
+		"currency":"$"
+		}
+}]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/products/V01/2031/conditions" method="GET" resourcePath="/czic/products/V01/2031/conditions"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
+	"alias": "Alias Producto",
+	"category": "Categoria producto",
+	"description": "Descripcion del producto",
+	"openingDate": "Fecha de apertura",
+	"commission": "commison producto",
+	"office": {
+		"code": "0073",
+		"name": "BBVA 23247",
+		"location": {
+			"city": {
+				"id": "123",
+				"name": "Bogota"
+			},
+			"country": {
+				"id": "12",
+				"name": "Colombia"
+			},
+			"state": {
+				"id": "123456",
+				"name": "Cundinamarca"
+			},
+			"postalAddress": "Direccion posta",
+			"category": "Kennedy"
+		},
+		"postalAddress": "Calle 36"
+	},
+	"mobilizationConditions": "Consiciones de movilizacion"
+}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/loan/V01/rotaryQuota/" method="GET" resourcePath="/czic/loan/V01/rotaryQuota/"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
+	"debt": {
+		"total": {
+			"amount": 500,
+			"currency": "$"
+		},
+		"availableBalance": {
+			"amount": 300,
+			"currency": "$"
+		}
+	},
+	"payment": {
+		"dueDate": "19/01/2015",
+		"paymentDate": "14/01/2015",
+		"shortDate": "01/01/2015",
+		"fees": {
+			"amount": 200,
+			"currency": "$"
+		},
+		"minimumPayment": {
+			"amount": 0,
+			"currency": "$"
+		},
+		"numbersOfQuota": 5
+	},
+	"status": "Normal",
+	"id": "9500-01-40-2606-9499",
+	"type": "SI",
+	"name": "Rotary",
+	"alias": "xxxx",
+	"financialState": "A",
+	"visible": true,
+	"operable": false,
+	"balance": {
+		"total": {
+			"amount": 500,
+			"currency": "$"
+		},
+		"availableBalance": {
+			"amount": 200,
+			"currency": "$"
+		}
+	},
+	"contactInfo": {
+		
+	},
+	"conditions": {
+		"alias": "conditions",
+		"category": "2",
+		"description": "ninguna",
+		"openingDate": "12/05/2014",
+		"commission": "ninguna",
+		"office": {
+			"code": "12345",
+			"name": "office",
+			"location": {
+				"city": {
+					"id": "1",
+					"name": "Bogota"
+				},
+				"country": {
+					"id": "1",
+					"name": "Colombia"
+				},
+				"state": {
+					"id": "1",
+					"name": ""
+				},
+				"postalAddress": "cra 15 n 174",
+				"category": "2"
+			},
+			"postalAddress": "cra 15 n 174"
+		},
+		"mobilizationConditions": "ninguna"
+	},
+	"contract": {
+		"number": "31543576655"
+	}
+}</con:responseContent></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

@@ -55,7 +55,7 @@ public class ProductDTOFactory implements ObjectFactory<ProductDto> {
 			productDto = new DepositDto();
 			break;
 		default:
-			break;
+			throw new RuntimeException();
 		}
 		
 		productDto.setTypeProd(ProductUtils.getEnumProductTypeBySubType(product.getType()));

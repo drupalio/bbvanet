@@ -6,6 +6,7 @@ import ma.glasnost.orika.MapperFactory;
 import ma.glasnost.orika.impl.ConfigurableMapper;
 import ma.glasnost.orika.metadata.TypeFactory;
 
+import com.bbva.czic.dto.net.EnumProductType;
 import com.bbva.czic.dto.net.Product;
 import com.bbva.net.back.command.ProductVisitorCommand;
 import com.bbva.net.back.core.stereotype.Mapper;
@@ -41,43 +42,66 @@ public class GlobalPositionMapperImpl extends ConfigurableMapper implements Glob
 
 			@Override
 			public void executeRotatingAccount(final Product rotatingAccount) {
-				globalProducts.getRotatingAccounts().add(map(rotatingAccount, RotatingAccountDto.class));
+				
+				RotatingAccountDto product = map(rotatingAccount, RotatingAccountDto.class);
+				product.setTypeProd(EnumProductType.AQ);
+				globalProducts.getRotatingAccounts().add(product);
 			}
 
 			@Override
 			public void executeLoan(final Product loan) {
-				globalProducts.getLoan().add(map(loan, LoanDto.class));
+								
+				LoanDto product = map(loan, RotatingAccountDto.class);
+				product.setTypeProd(EnumProductType.LO);
+				globalProducts.getLoan().add(product);				
 			}
 
 			@Override
 			public void executeLeasing(final Product leasing) {
-				globalProducts.getLeasings().add(map(leasing, LeasingDto.class));
+				LeasingDto product = map(leasing, LeasingDto.class);
+				product.setTypeProd(EnumProductType.LI);
+				globalProducts.getLeasings().add(product);				
 			}
 
 			@Override
 			public void executeFund(final Product fund) {
-				globalProducts.getFunds().add(map(fund, FundDto.class));
+				FundDto product = map(fund, FundDto.class);
+				product.setTypeProd(EnumProductType.SI);
+				globalProducts.getFunds().add(product);	
+				
 			}
 
 			@Override
 			public void executeDeposit(final Product deposit) {
-				globalProducts.getElectronicDeposits().add(map(deposit, DepositDto.class));
+				DepositDto product = map(deposit, DepositDto.class);
+				product.setTypeProd(EnumProductType.ED);
+				globalProducts.getElectronicDeposits().add(product);	
+				
 			}
 
 			@Override
 			public void executeCredictCard(final Product creditCard) {
-				globalProducts.getCreditCards().add(map(creditCard, CreditCardDto.class));
+				CreditCardDto product = map(creditCard, CreditCardDto.class);
+				product.setTypeProd(EnumProductType.TC);
+				globalProducts.getCreditCards().add(product);	
+								
 			}
 
 			@Override
 			public void executeAdquirenceAccount(final Product adquirenceAccount) {
-				globalProducts.getAdquirencia().add(map(adquirenceAccount, AdquirenceAccountDto.class));
+				
+				AdquirenceAccountDto product = map(adquirenceAccount, AdquirenceAccountDto.class);
+				product.setTypeProd(EnumProductType.AQ);
+				globalProducts.getAdquirencia().add(product);				
 
 			}
 
 			@Override
 			public void executeAccount(final Product account) {
-				globalProducts.getAccounts().add(map(account, AccountDto.class));
+				
+				AccountDto product = map(account, AccountDto.class);
+				product.setTypeProd(EnumProductType.PC);
+				globalProducts.getAccounts().add(product);					
 			}
 		};
 
