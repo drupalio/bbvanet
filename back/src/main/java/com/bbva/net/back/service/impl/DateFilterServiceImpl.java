@@ -30,42 +30,39 @@ public class DateFilterServiceImpl implements DateFilterService {
 
 			switch (comboFilter) {
 			case YESTERDAY:
-				dateRange.setDateTo(DateUtils.addDays(currentDate, EnumPeriodType.YESTERDAY.getQuantityPeriod()));
+				dateRange.setDateSince(DateUtils.addDays(currentDate, EnumPeriodType.YESTERDAY.getQuantityPeriod()));
 				break;
 			case TODAY:
-				dateRange.setDateTo(currentDate);
+				dateRange.setDateSince(currentDate);
 				break;
 			case LAST_WEEK:
-				dateRange.setDateTo(DateUtils.addWeeks(currentDate, EnumPeriodType.LAST_WEEK.getQuantityPeriod()));
+				dateRange.setDateSince(DateUtils.addWeeks(currentDate, EnumPeriodType.LAST_WEEK.getQuantityPeriod()));
 				break;
 			case LAST_TWO_WEEK:
-				dateRange.setDateTo(DateUtils.addWeeks(currentDate, EnumPeriodType.LAST_TWO_WEEK.getQuantityPeriod()));
+				dateRange
+						.setDateSince(DateUtils.addWeeks(currentDate, EnumPeriodType.LAST_TWO_WEEK.getQuantityPeriod()));
 				break;
 			case LAST_MONTH:
-				dateRange.setDateTo(DateUtils.addMonths(currentDate, EnumPeriodType.LAST_MONTH.getQuantityPeriod()));
+				dateRange.setDateSince(DateUtils.addMonths(currentDate, EnumPeriodType.LAST_MONTH.getQuantityPeriod()));
 				break;
 			case LAST_TWO_MONTH:
-				dateRange
-						.setDateTo(DateUtils.addMonths(currentDate, EnumPeriodType.LAST_TWO_MONTH.getQuantityPeriod()));
+				dateRange.setDateSince(DateUtils.addMonths(currentDate,
+						EnumPeriodType.LAST_TWO_MONTH.getQuantityPeriod()));
 				break;
 			case LAST_THREE_MONTH:
-				dateRange.setDateTo(DateUtils.addMonths(currentDate,
+				dateRange.setDateSince(DateUtils.addMonths(currentDate,
 						EnumPeriodType.LAST_THREE_MONTH.getQuantityPeriod()));
 				break;
 			case LAST_SIX_MONTH:
-				dateRange
-						.setDateTo(DateUtils.addMonths(currentDate, EnumPeriodType.LAST_SIX_MONTH.getQuantityPeriod()));
+				dateRange.setDateSince(DateUtils.addMonths(currentDate,
+						EnumPeriodType.LAST_SIX_MONTH.getQuantityPeriod()));
 				break;
 			case LAST_TWELVE_MONTH:
-				dateRange.setDateTo(DateUtils.addMonths(currentDate,
+				dateRange.setDateSince(DateUtils.addMonths(currentDate,
 						EnumPeriodType.LAST_TWELVE_MONTH.getQuantityPeriod()));
-				break;
-
-			default:
 				break;
 			}
 		}
-
 		return dateRange;
 	}
 }

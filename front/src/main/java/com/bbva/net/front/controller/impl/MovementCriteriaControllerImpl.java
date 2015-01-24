@@ -1,10 +1,13 @@
 package com.bbva.net.front.controller.impl;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.bbva.net.back.facade.MovementCriteriaFacade;
@@ -14,16 +17,20 @@ import com.bbva.net.back.model.commons.BalanceRangeDto;
 import com.bbva.net.back.model.commons.DateRangeDto;
 import com.bbva.net.front.controller.MovementCriteriaController;
 import com.bbva.net.front.core.AbstractBbvaController;
+import com.bbva.net.front.helper.MessagesHelper;
 
 /**
  * @author User
  */
 @Controller(value = "movementsCriteriaController")
+@Scope(value = "globalSession")
 public class MovementCriteriaControllerImpl extends AbstractBbvaController implements MovementCriteriaController {
 
 	private static final long serialVersionUID = 1L;
 
-	private static final String CONCRETE_DATE = "Fecha concreta";	
+	private static final String CONCRETE_DATE = MessagesHelper.INSTANCE.getString("select.radio.concret.date");
+
+	SimpleDateFormat dateFormat = new SimpleDateFormat(MessagesHelper.INSTANCE.getStringI18("date.pattner.dd.mm.yyyy"));
 
 	private boolean disabledButtonBalance = true;
 
@@ -38,6 +45,10 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 	private String toText;
 
 	private String selectDate;
+
+	private String sinceDatestr;
+
+	private String toDatestr;
 
 	private Date sinceDate;
 
@@ -54,6 +65,10 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 
 	@Resource(name = "movementCriteriaFacade")
 	private transient MovementCriteriaFacade movementCriteriaFacade;
+
+	@PostConstruct
+	public void init() {
+	}
 
 	/***
 	 * @param event
@@ -127,24 +142,18 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 			if (movementCriteria.getBalanceRange().getBalanceSince()
 					.compareTo(movementCriteria.getBalanceRange().getBalanceTo()) == -1) {
 
-				setRenderedButtonBalance(false);
+				setDisabledButtonBalance(false);
 				messageBalance = new StringBuilder("Se mostrarán los resultados mayores de "
 						+ movementCriteria.getBalanceRange().getBalanceSince() + "$" + " y menores de "
 						+ movementCriteria.getBalanceRange().getBalanceTo() + "$");
 
 			} else {
-				setRenderedButtonBalance(true);
+				setDisabledButtonBalance(true);
 				buildMessage();
 			}
 		} else {
 			messageBalance = new StringBuilder();
 		}
-	}
-
-	@Override
-	public void captureDate(javax.faces.event.AjaxBehaviorEvent e) {
-
-		System.out.println("aw" + getSinceDate() + " hasta " + getToDate());
 	}
 
 	@Override
@@ -154,65 +163,43 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 		this.dateRange.setDateSince(getSinceDate());
 		this.dateRange.setDateTo(getToDate());
 		movementCriteria.setDateRange(dateRange);
+		if (! (getSinceDate()==(null)) && ! (getToDate()==(null))) {
+			sinceDatestr = "Desde: "+dateFormat.format(getSinceDate());
+			toDatestr = "Hasta: "+dateFormat.format(getToDate());
+		}else{
+			sinceDatestr =getSelectDate();
+		}		
 		System.out.println(movementCriteria.getSelectDate());
-		System.out.println(movementCriteria.getDateRange().getDateSince());
-		System.out.println(movementCriteria.getDateRange().getDateTo());
+		System.out.println(sinceDatestr);
+		System.out.println(toDatestr);
 	}
 
 	/**
-	 * @return the movementCriteria
+	 * @return the dateFormat
 	 */
-	public MovementCriteriaDto getMovementCriteria() {
-		return movementCriteria;
+	public SimpleDateFormat getDateFormat() {
+		return dateFormat;
 	}
 
 	/**
-	 * @param movementCriteria the movementCriteria to set
+	 * @param dateFormat the dateFormat to set
 	 */
-	public void setMovementCriteria(MovementCriteriaDto movementCriteria) {
-		this.movementCriteria = movementCriteria;
+	public void setDateFormat(SimpleDateFormat dateFormat) {
+		this.dateFormat = dateFormat;
 	}
 
 	/**
-	 * @param movementCriteria the movementCriteria to set
+	 * @return the disabledButtonBalance
 	 */
-	public void setSelectDate(String selectDate) {
-		this.selectDate = selectDate;
-	}
-
-	/**
-	 * @return the selectDate
-	 */
-	public String getSelectDate() {
-		return selectDate;
-	}
-
-	/**
-	 * @return the renderedButtonBalance
-	 */
-	public boolean isRenderedButtonBalance() {
+	public boolean isDisabledButtonBalance() {
 		return disabledButtonBalance;
 	}
 
 	/**
-	 * @param renderedButtonBalance the renderedButtonBalance to set
+	 * @param disabledButtonBalance the disabledButtonBalance to set
 	 */
-	public void setRenderedButtonBalance(boolean renderedButtonBalance) {
-		this.disabledButtonBalance = renderedButtonBalance;
-	}
-
-	/**
-	 * @return the messageBalance
-	 */
-	public StringBuilder getMessageBalance() {
-		return messageBalance;
-	}
-
-	/**
-	 * @param messageBalance the messageBalance to set
-	 */
-	public void setMessageBalance(StringBuilder messageBalance) {
-		this.messageBalance = messageBalance;
+	public void setDisabledButtonBalance(boolean disabledButtonBalance) {
+		this.disabledButtonBalance = disabledButtonBalance;
 	}
 
 	/**
@@ -244,6 +231,20 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 	}
 
 	/**
+	 * @return the messageBalance
+	 */
+	public StringBuilder getMessageBalance() {
+		return messageBalance;
+	}
+
+	/**
+	 * @param messageBalance the messageBalance to set
+	 */
+	public void setMessageBalance(StringBuilder messageBalance) {
+		this.messageBalance = messageBalance;
+	}
+
+	/**
 	 * @return the sinceText
 	 */
 	public String getSinceText() {
@@ -269,6 +270,48 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 	 */
 	public void setToText(String toText) {
 		this.toText = toText;
+	}
+
+	/**
+	 * @return the selectDate
+	 */
+	public String getSelectDate() {
+		return selectDate;
+	}
+
+	/**
+	 * @param selectDate the selectDate to set
+	 */
+	public void setSelectDate(String selectDate) {
+		this.selectDate = selectDate;
+	}
+
+	/**
+	 * @return the sinceDatestr
+	 */
+	public String getSinceDatestr() {
+		return sinceDatestr;
+	}
+
+	/**
+	 * @param sinceDatestr the sinceDatestr to set
+	 */
+	public void setSinceDatestr(String sinceDatestr) {
+		this.sinceDatestr = sinceDatestr;
+	}
+
+	/**
+	 * @return the toDatestr
+	 */
+	public String getToDatestr() {
+		return toDatestr;
+	}
+
+	/**
+	 * @param toDatestr the toDatestr to set
+	 */
+	public void setToDatestr(String toDatestr) {
+		this.toDatestr = toDatestr;
 	}
 
 	/**
@@ -300,17 +343,17 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 	}
 
 	/**
-	 * @return the disabledButtonBalance
+	 * @return the movementCriteria
 	 */
-	public boolean isDisabledButtonBalance() {
-		return disabledButtonBalance;
+	public MovementCriteriaDto getMovementCriteria() {
+		return movementCriteria;
 	}
 
 	/**
-	 * @param disabledButtonBalance the disabledButtonBalance to set
+	 * @param movementCriteria the movementCriteria to set
 	 */
-	public void setDisabledButtonBalance(boolean disabledButtonBalance) {
-		this.disabledButtonBalance = disabledButtonBalance;
+	public void setMovementCriteria(MovementCriteriaDto movementCriteria) {
+		this.movementCriteria = movementCriteria;
 	}
 
 	/**
@@ -325,5 +368,47 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 	 */
 	public void setBalanceRange(BalanceRangeDto balanceRange) {
 		this.balanceRange = balanceRange;
+	}
+
+	/**
+	 * @return the dateRange
+	 */
+	public DateRangeDto getDateRange() {
+		return dateRange;
+	}
+
+	/**
+	 * @param dateRange the dateRange to set
+	 */
+	public void setDateRange(DateRangeDto dateRange) {
+		this.dateRange = dateRange;
+	}
+
+	/**
+	 * @return the multiValueGroupFacade
+	 */
+	public MultiValueGroupFacade getMultiValueGroupFacade() {
+		return multiValueGroupFacade;
+	}
+
+	/**
+	 * @param multiValueGroupFacade the multiValueGroupFacade to set
+	 */
+	public void setMultiValueGroupFacade(MultiValueGroupFacade multiValueGroupFacade) {
+		this.multiValueGroupFacade = multiValueGroupFacade;
+	}
+
+	/**
+	 * @return the movementCriteriaFacade
+	 */
+	public MovementCriteriaFacade getMovementCriteriaFacade() {
+		return movementCriteriaFacade;
+	}
+
+	/**
+	 * @param movementCriteriaFacade the movementCriteriaFacade to set
+	 */
+	public void setMovementCriteriaFacade(MovementCriteriaFacade movementCriteriaFacade) {
+		this.movementCriteriaFacade = movementCriteriaFacade;
 	}
 }
