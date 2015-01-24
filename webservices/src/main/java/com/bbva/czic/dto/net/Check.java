@@ -22,7 +22,7 @@ import com.bbva.jee.arq.spring.core.servicing.utils.Money;
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="issueDate" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="value" type="{urn:com:bbva:jee:arq:spring:core:servicing:utils}money" minOccurs="0"/>
- *         &lt;element name="status" type="{urn:com:bbva:czic:dto:net}EnumCheckStatus" minOccurs="0"/>
+ *         &lt;element name="status" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="modifiedDate" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -46,7 +46,7 @@ public class Check {
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar issueDate;
     protected Money value;
-    protected EnumCheckStatus status;
+    protected String status;
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar modifiedDate;
 
@@ -127,10 +127,10 @@ public class Check {
      * 
      * @return
      *     possible object is
-     *     {@link EnumCheckStatus }
+     *     {@link String }
      *     
      */
-    public EnumCheckStatus getStatus() {
+    public String getStatus() {
         return status;
     }
 
@@ -139,10 +139,10 @@ public class Check {
      * 
      * @param value
      *     allowed object is
-     *     {@link EnumCheckStatus }
+     *     {@link String }
      *     
      */
-    public void setStatus(EnumCheckStatus value) {
+    public void setStatus(String value) {
         this.status = value;
     }
 
