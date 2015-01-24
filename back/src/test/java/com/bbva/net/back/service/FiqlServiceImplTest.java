@@ -1,5 +1,9 @@
 package com.bbva.net.back.service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -35,5 +39,21 @@ public class FiqlServiceImplTest {
 		DateRangeDto dateRange = null;
 		final String filtro = fiqlServiceImpl.getFiqlQueryByDateRange(dateRange);
 		Assert.assertEquals("filtro vacia", "", filtro);
+	}
+
+	@Test
+	public void checkRange() throws ParseException {
+
+		final String dateFrom = "2014-01-01";
+		final SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		final Date fromDate = formatter.parse(dateFrom);
+
+		final String dateTo = "2014-12-12";
+		final Date toDate = formatter.parse(dateTo);
+
+		final DateRangeDto dateRange = new DateRangeDto(fromDate, toDate);
+		final String result = fiqlServiceImpl.getFiqlQueryByDateRange(dateRange);
+		Assert.assertEquals("null=ge=2014-01-01;null=le=2014-12-12", result);
+
 	}
 }
