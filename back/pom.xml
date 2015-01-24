@@ -58,7 +58,7 @@
 			<scope>test</scope>
 		</dependency>
 
-		
+
 		<dependency>
 			<groupId>org.fluttercode.datafactory</groupId>
 			<artifactId>datafactory</artifactId>
@@ -179,6 +179,7 @@
 					<redirectTestOutputToFile>true</redirectTestOutputToFile>
 					<excludes>
 						<exclude>**/*_Roo_*</exclude>
+						<exclude>**/IT*.java</exclude>
 					</excludes>
 				</configuration>
 			</plugin>
@@ -209,16 +210,10 @@
 						</goals>
 					</execution>
 				</executions>
-				<!--
-				<configuration>
-					<changeLogFile>src/main/resources/liquibase/changeLogs.xml</changeLogFile>
-					<driver>com.mysql.jdbc.Driver</driver>
-					<username>root</username>
-					<password></password>
-					<url>jdbc:mysql://localhost:3306/</url>
-					<promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
-				</configuration>
-				-->
+				<!-- <configuration> <changeLogFile>src/main/resources/liquibase/changeLogs.xml</changeLogFile> 
+					<driver>com.mysql.jdbc.Driver</driver> <username>root</username> <password></password> 
+					<url>jdbc:mysql://localhost:3306/</url> <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase> 
+					</configuration> -->
 				<dependencies>
 					<dependency>
 						<groupId>com.oracle</groupId>
@@ -226,6 +221,29 @@
 						<version>10.2.0.4.0</version>
 					</dependency>
 				</dependencies>
+			</plugin>
+			<plugin>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>2.14.1</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.maven.surefire</groupId>
+						<artifactId>surefire-junit47</artifactId>
+						<version>2.14.1</version>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<skipTests>${skip.integration.tests}</skipTests>
+					<testFailureIgnore>true</testFailureIgnore>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>integration-test</goal>
+							<goal>verify</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 
@@ -257,8 +275,24 @@
 						<redirectTestOutputToFile>true</redirectTestOutputToFile>
 						<excludes>
 							<exclude>**/*_Roo_*</exclude>
+							<exclude>**/IT*.java</exclude>
 						</excludes>
 					</configuration>
+				</plugin>
+				<plugin>
+					<artifactId>maven-failsafe-plugin</artifactId>
+					<configuration>
+						<skipTests>${skip.integration.tests}</skipTests>
+						<testFailureIgnore>true</testFailureIgnore>
+					</configuration>
+					<executions>
+						<execution>
+							<goals>
+								<goal>integration-test</goal>
+								<goal>verify</goal>
+							</goals>
+						</execution>
+					</executions>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -274,4 +308,41 @@
 		</pluginManagement>
 		<finalName>kqco_mult_web_back</finalName>
 	</build>
+
+	<profiles>
+		<!-- The Configuration of the development profile -->
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<!-- Specifies the build.profile.id property that must be equal than 
+					the name of the directory that contains the profile specific configuration 
+					file. Because the name of the directory that contains the configuration file 
+					of the development profile is dev, we must set the value of the build.profile.id 
+					property to dev. -->
+				<build.profile.id>dev</build.profile.id>
+				<!-- Only unit tests are run when the development profile is active -->
+				<skip.integration.tests>true</skip.integration.tests>
+				<skip.unit.tests>false</skip.unit.tests>
+			</properties>
+		</profile>
+		<!-- The Configuration of the integration-test profile -->
+		<profile>
+			<id>integration</id>
+			<properties>
+				<!-- Specifies the build.profile.id property that must be equal than 
+					the name of the directory that contains the profile specific configuration 
+					file. Because the name of the directory that contains the configuration file 
+					of the integration-test profile is integration-test, we must set the value 
+					of the build.profile.id property to integration-test. -->
+				<build.profile.id>integration</build.profile.id>
+				<!-- Only integration tests are run when the integration-test profile 
+					is active -->
+				<skip.integration.tests>false</skip.integration.tests>
+				<skip.unit.tests>true</skip.unit.tests>
+			</properties>
+		</profile>
+	</profiles>
 </project>
