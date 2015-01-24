@@ -5,6 +5,6 @@ import com.bbva.net.front.ui.globalposition.AccountBarLineUI;
 
 public interface GraphicBarLineDelegate {
 
-	AccountBarLineUI getInOutBalanceByAccount(GlobalResumeMovementsDto globalResumenMovementsDTO);
+	AccountBarLineUI getInOutBalanceAccount(GlobalResumeMovementsDto globalResumenMovementsDTO);
 
 }

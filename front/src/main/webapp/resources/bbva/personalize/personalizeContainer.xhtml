@@ -26,19 +26,18 @@
 	<composite:attribute name="title" type="String" />
 </composite:interface>
 <composite:implementation>
-
-
 	<bbvaPersonalize:personalizeAccount>
 		<bbvaPersonalize:personalizeInputClass
 			divClass="customize-product-name" nameButton="buttonAdd"
 			valueLabel="#{msg['text.nameProduct']}" idButton="buttonUpdate"
-			idInput="inputName" valueButton="#{msg['button.add']}"
+			idInput="inputName" valueButton="#{msg['button.save']}"
 			valueInput="#{personalizeProductAccountController.personalizeProductAccountDto.alias}" />
 		<span class="separator"></span>
 
-		<bbvaPersonalize:personalizeCombo size="smallCombo" idCombo="comboOne"
-			divClass="customize-virtual" valueButton="#{msg['button.save']}"
-			idButton="buttonComboOne" valueLabel="#{msg['text.virtualCorresp']}"
+		<bbvaPersonalize:personalizeCombo size="smallCombo yourStyleClass"
+			idCombo="comboOne" divClass="customize-virtual"
+			valueButton="#{msg['button.save']}" idButton="buttonComboOne"
+			valueLabel="#{msg['text.virtualCorresp']}"
 			actionListenerCom="#{personalizeProductAccountController.successful}"
 			ajaxCom="#{personalizeProductAccountController.offMessage}"
 			value="#{personalizeProductAccountController.personalizeProductAccountDto.virtualMail}" />
@@ -46,26 +45,29 @@
 			render="#{personalizeProductAccountController.menSuccessful}" />
 		<span class="separator"></span>
 
-		<bbvaPersonalize:personalizeCombo size="bigCombo" idCombo="comboTwo"
-			divClass="customize-online" classIcon="icon-info-blue"
-			valueLabel="#{msg['text.consult']}" labelIcon="#{msg['text.online']}"
-			value="#{personalizeProductAccountController.personalizeProductAccountDto.searchOnline}" />
+		<bbvaPersonalize:personalizeCombo size="bigCombo yourStyleClass"
+			idCombo="comboTwo" divClass="customize-online"
+			classIcon="icon-info-blue" valueLabel="#{msg['text.consult']}"
+			labelIcon="#{msg['text.online']}"
+			value="#{personalizeProductAccountController.search}" />
 
-		<bbvaPersonalize:personalizeCombo size="bigCombo" idCombo="comboThree"
-			divClass="customize-online" classIcon="icon-info-blue"
-			valueLabel="#{msg['text.work']}" labelIcon="#{msg['text.online']}"
-			value="#{personalizeProductAccountController.personalizeProductAccountDto.operationOnline}" />
+		<bbvaPersonalize:personalizeCombo size="bigCombo yourStyleClass"
+			idCombo="comboThree" divClass="customize-online"
+			classIcon="icon-info-blue" valueLabel="#{msg['text.work']}"
+			labelIcon="#{msg['text.online']}"
+			value="#{personalizeProductAccountController.operation}" />
 
-		<bbvaButton:iconButton id="buttonThree" value="#{msg['button.save']}"
-			type="submit" style="margin: -6px 30px 20px !important"
-			classButton="btn btn-default"
-			actionListener="#{personalizeProductAccountController.operKey}" />
+		<p:commandButton id="buttonThree" value="#{msg['button.save']}"
+			style="margin: -6px 20px 20px !important; padding: 3px 1px;"
+			styleClass="btn btn-default"
+			actionListener="#{personalizeProductAccountController.operKey}">
+			<f:ajax render="@form" />
+		</p:commandButton>
 
 		<bbvaMessage:divOperationKey idComfirm="buttonFour" idInput="inputTwo"
 			nameB="buttonConfirm" idInputDiv="divClass"
 			render="#{personalizeProductAccountController.menOperationKey}"
 			value="#{personalizeProductAccountController.personalizeProductAccountDto.operationKey}" />
 	</bbvaPersonalize:personalizeAccount>
-
 </composite:implementation>
 </html>

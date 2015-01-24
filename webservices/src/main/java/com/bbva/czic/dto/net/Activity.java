@@ -3,9 +3,7 @@ package com.bbva.czic.dto.net;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.datatype.XMLGregorianCalendar;
 import com.bbva.jee.arq.spring.core.servicing.utils.Money;
 
 
@@ -19,8 +17,8 @@ import com.bbva.jee.arq.spring.core.servicing.utils.Money;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="operationDate" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
- *         &lt;element name="executionDate" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+ *         &lt;element name="operationDate" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="executionDate" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="function" type="{urn:com:bbva:czic:dto:net}Function" minOccurs="0"/>
  *         &lt;element name="amount" type="{urn:com:bbva:jee:arq:spring:core:servicing:utils}money" minOccurs="0"/>
  *         &lt;element name="reference" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -42,10 +40,8 @@ import com.bbva.jee.arq.spring.core.servicing.utils.Money;
 })
 public class Activity {
 
-    @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar operationDate;
-    @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar executionDate;
+    protected String operationDate;
+    protected String executionDate;
     protected Function function;
     protected Money amount;
     protected String reference;
@@ -55,10 +51,10 @@ public class Activity {
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public XMLGregorianCalendar getOperationDate() {
+    public String getOperationDate() {
         return operationDate;
     }
 
@@ -67,10 +63,10 @@ public class Activity {
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public void setOperationDate(XMLGregorianCalendar value) {
+    public void setOperationDate(String value) {
         this.operationDate = value;
     }
 
@@ -79,10 +75,10 @@ public class Activity {
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public XMLGregorianCalendar getExecutionDate() {
+    public String getExecutionDate() {
         return executionDate;
     }
 
@@ -91,10 +87,10 @@ public class Activity {
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public void setExecutionDate(XMLGregorianCalendar value) {
+    public void setExecutionDate(String value) {
         this.executionDate = value;
     }
 

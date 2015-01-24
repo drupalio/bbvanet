@@ -3,9 +3,7 @@ package com.bbva.czic.dto.net;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.datatype.XMLGregorianCalendar;
 import com.bbva.jee.arq.spring.core.servicing.utils.Money;
 
 
@@ -21,13 +19,13 @@ import com.bbva.jee.arq.spring.core.servicing.utils.Money;
  *       &lt;sequence>
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="concept" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="transactionDate" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
- *         &lt;element name="operationDate" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+ *         &lt;element name="transactionDate" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="operationDate" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="sourceReference" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="destinationReference" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="operation" type="{urn:com:bbva:czic:dto:net}Operation" minOccurs="0"/>
  *         &lt;element name="office" type="{urn:com:bbva:czic:dto:net}Office" minOccurs="0"/>
- *         &lt;element name="status" type="{urn:com:bbva:czic:dto:net}EnumAccountState" minOccurs="0"/>
+ *         &lt;element name="status" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="value" type="{urn:com:bbva:jee:arq:spring:core:servicing:utils}money" minOccurs="0"/>
  *         &lt;element name="balance" type="{urn:com:bbva:jee:arq:spring:core:servicing:utils}money" minOccurs="0"/>
  *         &lt;element name="numberOfQuotas" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -58,15 +56,13 @@ public class Movement {
 
     protected String id;
     protected String concept;
-    @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar transactionDate;
-    @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar operationDate;
+    protected String transactionDate;
+    protected String operationDate;
     protected String sourceReference;
     protected String destinationReference;
     protected Operation operation;
     protected Office office;
-    protected EnumAccountState status;
+    protected String status;
     protected Money value;
     protected Money balance;
     protected String numberOfQuotas;
@@ -124,10 +120,10 @@ public class Movement {
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public XMLGregorianCalendar getTransactionDate() {
+    public String getTransactionDate() {
         return transactionDate;
     }
 
@@ -136,10 +132,10 @@ public class Movement {
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public void setTransactionDate(XMLGregorianCalendar value) {
+    public void setTransactionDate(String value) {
         this.transactionDate = value;
     }
 
@@ -148,10 +144,10 @@ public class Movement {
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public XMLGregorianCalendar getOperationDate() {
+    public String getOperationDate() {
         return operationDate;
     }
 
@@ -160,10 +156,10 @@ public class Movement {
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public void setOperationDate(XMLGregorianCalendar value) {
+    public void setOperationDate(String value) {
         this.operationDate = value;
     }
 
@@ -268,10 +264,10 @@ public class Movement {
      * 
      * @return
      *     possible object is
-     *     {@link EnumAccountState }
+     *     {@link String }
      *     
      */
-    public EnumAccountState getStatus() {
+    public String getStatus() {
         return status;
     }
 
@@ -280,10 +276,10 @@ public class Movement {
      * 
      * @param value
      *     allowed object is
-     *     {@link EnumAccountState }
+     *     {@link String }
      *     
      */
-    public void setStatus(EnumAccountState value) {
+    public void setStatus(String value) {
         this.status = value;
     }
 

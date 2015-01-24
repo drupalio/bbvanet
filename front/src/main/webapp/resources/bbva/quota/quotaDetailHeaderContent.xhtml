@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:cc="http://jsflive.at/taglib"
+	xmlns:bbvaQuotaHeader="http://java.sun.com/jsf/composite/bbva/quota">
+
+<composite:interface>
+
+</composite:interface>
+
+<composite:implementation>
+
+	<bbvaQuotaHeader:quotaDetail>
+		<bbvaQuotaHeader:quotaDetailHeader>
+			<bbvaQuotaHeader:quotaDetailHeaderLeft
+				alias="#{msg['title.quotaAlias']}"
+				numCuenta="#{quotaController.quotaDetailDto.id}"
+				tipoPrestamo="#{msg['title.rotaryQuota']}" />
+			<bbvaQuotaHeader:quotaDetailGraphic
+				textUp="#{msg['text.outstandingBalance']}"
+				valueUp="#{quotaController.quotaDetailDto.outstandingBalance}"
+				textDown="#{msg['text.amountRequested']}"
+				valueDown="#{quotaController.quotaDetailDto.amountRequested}"
+				valueGrphic="10" />
+			<bbvaQuotaHeader:quotaDetailHeaderRight
+				textUp="#{msg['text.outstandingBalance']}"
+				valueUp="#{quotaController.quotaDetailDto.outstandingBalance}"
+				textDown="#{msg['text.amountRequested']}"
+				valueDown="#{quotaController.quotaDetailDto.amountRequested}" />
+		</bbvaQuotaHeader:quotaDetailHeader>
+		<bbvaQuotaHeader:quotaDetailHeaderBody>
+			<bbvaQuotaHeader:quotaDetailHeaderBodyContainer type="left">
+				<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem
+					text="#{msg['text.numberShares']}"
+					value="#{quotaController.quotaDetailDto.numberOfShares}" />
+				<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem
+					text="#{msg['text.dueDate']}"
+					value="#{quotaController.quotaDetailDto.dateMaturity}" />
+				<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem
+					text="#{msg['text.datePayment']}"
+					value="#{quotaController.quotaDetailDto.datePayment}" />
+				<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem
+					text="#{msg['text.datePreviousCut']}"
+					value="#{quotaController.quotaDetailDto.datePrevious}" />
+				<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem
+					text="#{msg['text.search.by.number.status']}"
+					value="#{quotaController.quotaDetailDto.state}" />
+			</bbvaQuotaHeader:quotaDetailHeaderBodyContainer>
+			<bbvaQuotaHeader:quotaDetailHeaderBodyContainer type="right">
+				<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem
+					text="#{msg['text.minimumPayment']}"
+					value="#{quotaController.quotaDetailDto.minimumPayment}" />
+				<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem
+					text="#{msg['text.feeCollections']}"
+					value="#{quotaController.quotaDetailDto.feeCollection}" />
+				<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem
+					text="#{msg['text.account.balance.label']}"
+					value="#{quotaController.quotaDetailDto.availableBalance}" />
+				<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem
+					text="#{msg['text.totalBalancePreviousCut']}"
+					value="#{quotaController.quotaDetailDto.balancePrevious}" />
+			</bbvaQuotaHeader:quotaDetailHeaderBodyContainer>
+		</bbvaQuotaHeader:quotaDetailHeaderBody>
+	</bbvaQuotaHeader:quotaDetail>
+</composite:implementation>
+</html>

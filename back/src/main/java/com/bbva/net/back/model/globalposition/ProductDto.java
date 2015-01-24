@@ -19,6 +19,8 @@ public class ProductDto implements Dto {
 
 	private Boolean asset;
 
+	private Boolean OperationOnline;
+
 	private Boolean visible;
 
 	private String alias;
@@ -121,6 +123,21 @@ public class ProductDto implements Dto {
 		this.visible = visible;
 	}
 
+	/**
+	 * @return the operationOnlineF
+	 */
+	public Boolean getOperationOnline() {
+		return OperationOnline;
+	}
+
+	/**
+	 * @param operationOnlineF
+	 *            the operationOnlineF to set
+	 */
+	public void setOperationOnline(Boolean operationOnline) {
+		OperationOnline = operationOnline;
+	}
+
 	public EnumProductType getTypeProd() {
 		return typeProd;
 	}
@@ -137,13 +154,17 @@ public class ProductDto implements Dto {
 
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder().append(getProductId()).append(getProductNumber()).toHashCode();
+		return new HashCodeBuilder().append(getProductId())
+				.append(getProductNumber()).toHashCode();
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		return (obj instanceof ProductDto) && this.getProductId().equals(((ProductDto)obj).getProductId())
-				&& this.getProductNumber().equals(((ProductDto)obj).getProductNumber());
+		return (obj instanceof ProductDto)
+				&& this.getProductId()
+						.equals(((ProductDto) obj).getProductId())
+				&& this.getProductNumber().equals(
+						((ProductDto) obj).getProductNumber());
 	}
 
 }

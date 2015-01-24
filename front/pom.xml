@@ -24,7 +24,7 @@
 		<!-- General dependencies for standard applications <dependency> <groupId>com.bbva.jee.arq.spring.core</groupId> 
 			<artifactId>arq-spring-core</artifactId> <version>${arq-spring-core.version}</version> 
 			</dependency> -->
-			
+
 
 
 		<dependency>
@@ -32,7 +32,7 @@
 			<artifactId>kqco_mult_web_back</artifactId>
 			<version>01</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

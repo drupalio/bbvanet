@@ -25,8 +25,9 @@
 	font-size: 19.25px !important;
 	font-weight: 100 !important;
 	line-height: 21.1833px !important;
-	margin-bottom: 10px !important;
-	margin-top: 0px !important;
+	margin-bottom: 10px !important margin-top: 0px !important;
+	width: 25% !important;
+	display: inline-block !important;
 }
 
 /* Personalizar */
@@ -48,7 +49,7 @@
 }
 
 /* para los botones del personalizar */
-selectOneButton.ui-state-active {
+.yourStyleClass div.ui-state-active {
 	color: #005098 !important;
 	cursor: pointer;
 	font-family: "BBVA Web Medium", arial, sans-serif !important;
@@ -68,10 +69,11 @@ selectOneButton.ui-state-active {
 	cursor: pointer !important;
 	outline-color: #0078D2 !important;
 	z-index: 2 !important;
+	min-width: 128px !important;
 }
 
 /* para los botones del personalizar */
-selectOneButton.ui-corner-all {
+.yourStyleClass div.ui-corner-all {
 	border-radius: 8px !important;
 	float: left !important;
 	width: 100% !important;
@@ -80,7 +82,7 @@ selectOneButton.ui-corner-all {
 }
 
 /* para los botones del personalizar */
-selectOneButton.ui-state-default {
+.yourStyleClass div.ui-state-default {
 	color: #0078D2;
 	background-color: transparent;
 	background-image: linear-gradient(#FFF 40%, #D2E5EB 200%);
@@ -90,24 +92,23 @@ selectOneButton.ui-state-default {
 	border-bottom-right-radius: 4px;
 	cursor: pointer;
 	font-family: "BBVA Web Medium", arial, sans-serif;
-	font-size: 13.3px;
 	font-weight: bold !important;
 	height: 100% !important;
 	line-height: 13px;
 	margin-bottom: 0px;
 	margin-left: 0px;
-	width: 50%;
+	width: 50% !important;
 	background-color: transparent;
+	min-width: 128px !important;
 }
 
 /* para los botones del personalizar */
-selectOneButton.button-text-only {
+.yourStyleClass div.button-text-only {
 	font-size: 13px;
-	margin-top: -5px !important;
 }
 
 /* para los botones del personalizar */
-selectOneButton.ui-button {
+.yourStyleClass div.ui-button {
 	background-color: white !important;
 	border-color: #cccccc !important;
 }
@@ -120,7 +121,7 @@ selectOneButton.ui-button {
 }
 /* el selectOneButton sin boton */
 .bigCombo {
-	float: left !important;
+	float: left !important;;
 	width: 100% !important;
 	height: 42px !important;
 }
@@ -194,9 +195,8 @@ tr.ui-state-hover {
 	font-family: "Arial" !important;
 	font-size: 11.9px !important;
 	padding-top: 0px;
-	padding-bottom: 24px;
-	border-bottom: 1px solid #D5E2EE;
-	width: 100%;
+	padding-bottom: 3% !important;
+	border-bottom: none !important;
 }
 
 /* para el input del dialogo recovery */
@@ -216,21 +216,18 @@ tr.ui-state-hover {
 
 /* para el boton next del dialog */
 .nextButton {
-	border-bottom-left-radius: 4px !important;
-	border-top-left-radius: 4px !important;
-	border-bottom-right-radius: 6px !important;
-	border-top-right-radius: 4px !important;
-	font-weight: 400 !important;
+	border-radius: 4px 4px 6px !important;
 	line-height: 0px !important;
 	padding: 6px 0px !important;
 	position: relative !important;
-	text-shadow: none !important;
-	margin: 11% 2% -11% 0px !important;
-	border-color: 1px solid #00559D !important;
 	vertical-align: text-top !important;
 	font-size: 100% !important;
-	background: linear-gradient(to bottom, #0079C1 0%, #00559D 100%) repeat
-		scroll 0% 0% transparent !important;
+	font-weight: inherit !important;
+	text-shadow: inherit !important;
+	padding: 6px 2px !important;
+	box-shadow: inherit !important;
+	margin-top: 10.5% !important;
+	border: 1px solid #00559D !important;
 }
 
 /* sombra del input, color y estilo de la letra */
@@ -263,5 +260,39 @@ input.ui-state-hover {
 	font-size: 12px !important;
 	padding: 7px 6.5px !important;
 	border-radius: 4px !important;
-	margin-bottom: -14% !important;
+}
+/* estilos para el boton del dialog de cancelar en response */
+.cancelButton {
+	font-weight: 400 !important;
+	text-shadow: none !important;
+	font-size: 14px !important;
+	padding: 5px 1px !important;
+	border-radius: 4px !important;
+	margin: auto;
+}
+
+.margenContent {
+	top: -20% !important;
+	left: 22% !important;
+}
+
+/* separador para el dialog recover */
+.separatorConditions {
+	border-bottom: 1px solid #D5E2EE;
+	display: inline-block;
+	width: 100%;
+}
+/* el h2 del recoverPasswordBody del dialog  */
+.h2Class {
+	font-size: 16.1px !important;
+	width: 104%;
+	border-bottom: none !important;
+}
+
+.hide-column-names table thead tr {
+	display: none;
+}
+
+.nonee {
+	display: none;
 }

@@ -27,7 +27,7 @@ public class GraphicBarLineDelegateImpl implements GraphicBarLineDelegate {
 	 * @return accountBarLineUI
 	 */
 	@Override
-	public AccountBarLineUI getInOutBalanceByAccount(final GlobalResumeMovementsDto globalResumeMovements) {
+	public AccountBarLineUI getInOutBalanceAccount(final GlobalResumeMovementsDto globalResumeMovements) {
 
 		final ArrayList<BarLineItemUI> paymentsList = new ArrayList<BarLineItemUI>();
 		final List<BarLineItemUI> chargeList = new ArrayList<BarLineItemUI>();

@@ -7,39 +7,40 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pm="http://primefaces.org/mobile"
 	xmlns:jsf="http://xmlns.jcp.org/jsf"
-	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jstl/core">
 
 <composite:interface>
-
+	<composite:attribute name="title" type="java.lang.String" />
 </composite:interface>
 
 <composite:implementation>
 
-	<div style="width: 636px;" class="steps step1 final-step">
+	<div style="width: 95%;" class="steps step0 step-success">
+		<div class="step-header visible-xs visible-sm">
+			<span class="icon-lastStep"></span>#{msg['text.userNewDigitalKey']}
+		</div>
+	</div>
+	<div style="width: 95%;" class="steps step1 final-step">
 		<div class="step-header visible-xs visible-sm open-step">
 			<span class="icon-lastStep"></span>#{msg['text.confirmation']}
 		</div>
-		<div style="display: block;" class="step-content">
-			<div class="modal-body recoverKeyModal">
-				<div class="modal-steps-confirm">
-					<h2>#{msg['title.opertationCheck']}</h2>
-					<p>#{msg['mssg.operationCheck']}</p>
-					<p>
-						<strong> #{msg['text.newPasswordIs']} <h:outputLabel
-								value="#{recoverPassController.cardNumber1}" /></strong>
-					</p>
-				</div>
-			</div>
-			<div class="modal-footer recoverKeyModal">
-				<p:commandButton styleClass="btn btn-form closeButton" type="submit"
-					value="#{msg['text.close']}"
-					action="#{recoverPassController.close}"
-					onclick="PF('employeeSearch').hide();" />
+		<div class="modal-body recoverKeyModal">
+			<div class="modal-steps-confirm">
+				<h2>#{msg['title.opertationCheck']}</h2>
+				<p>#{msg['mssg.operationCheck']}</p>
+				<p>
+					<strong> #{msg['text.newPasswordIs']} <h:outputLabel
+							value="#{recoverPassController.cardNumber1}" /></strong>
+				</p>
 			</div>
 		</div>
+		<div class="modal-footer recoverKeyModal">
+			<p:commandButton styleClass="btn btn-form closeButton" type="submit"
+				value="#{msg['text.close']}" action="#{recoverPassController.close}"
+				onclick="PF('employeeSearch').hide();" />
+		</div>
 	</div>
-
 </composite:implementation>
-
 </html>
 

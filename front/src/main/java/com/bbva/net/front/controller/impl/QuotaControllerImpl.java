@@ -3,15 +3,16 @@
  */
 package com.bbva.net.front.controller.impl;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.AjaxBehaviorEvent;
 
-import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
 import org.springframework.stereotype.Controller;
-import org.springframework.webflow.engine.RequestControlContext;
-import org.springframework.webflow.execution.Event;
 
+import com.bbva.net.back.facade.QuotaDetailFacade;
+import com.bbva.net.back.facade.TermasAccountsFacade;
 import com.bbva.net.back.model.accounts.TermsAccountsDto;
 import com.bbva.net.back.model.citeriaMovements.MovementCriteriaDto;
 import com.bbva.net.back.model.globalposition.RotatingAccountDto;
@@ -24,8 +25,9 @@ import com.bbva.net.front.core.AbstractBbvaController;
  * @author User
  */
 @Controller(value = "quotaController")
-public class QuotaControllerImpl extends AbstractBbvaController implements
-		QuotaController {
+public class QuotaControllerImpl extends AbstractBbvaController
+		implements
+			QuotaController {
 
 	private static final long serialVersionUID = 1L;
 
@@ -35,16 +37,32 @@ public class QuotaControllerImpl extends AbstractBbvaController implements
 
 	private static final String CONCRETE_DATE = "Fecha concreta";
 
+	private static final String DEFAULT_IDLOAN = "9500-01-40-2606-9499";
+
 	private MovementCriteriaDto movementCriteria = new MovementCriteriaDto();
 
 	private PersonalizeAccountDto personalizeAccountDto = new PersonalizeAccountDto();
 
 	private QuotaDetailDto quotaDetailDto = new QuotaDetailDto();
 
+	@Resource(name = "TermsFacade")
+	private transient TermasAccountsFacade detallesCuenta;
+
+	@Resource(name = "quotaDetailFacade")
+	private transient QuotaDetailFacade quotaDetailFacade;
+
+	@PostConstruct
+	public void init() {
+		this.quotaDetailDto = this.quotaDetailFacade
+				.getDetailRotaryQuota(DEFAULT_IDLOAN);
+	}
+
 	@Override
 	public TermsAccountsDto getAllConditions() {
-		// TODO Auto-generated method stub
-		return null;
+		TermsAccountsDto detalle = this.detallesCuenta.getAllConditions(
+				"numCuenta", "usuario");
+		detalle.getInformacionProducto().getAlias();
+		return detalle;
 	}
 
 	@Override
@@ -93,6 +111,7 @@ public class QuotaControllerImpl extends AbstractBbvaController implements
 		super.onProductSelected(selectEvent);
 	}
 
+	@Override
 	public RotatingAccountDto getSelectedProduct() {
 		return (RotatingAccountDto) super.getSelectedProduct();
 	}
@@ -151,6 +170,7 @@ public class QuotaControllerImpl extends AbstractBbvaController implements
 	/**
 	 * @return the personalizeAccountDto
 	 */
+	@Override
 	public PersonalizeAccountDto getPersonalizeAccountDto() {
 		return personalizeAccountDto;
 	}

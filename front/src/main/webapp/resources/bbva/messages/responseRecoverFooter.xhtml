@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:bbvaMessage="http://java.sun.com/jsf/composite/bbva/messages"
+	xmlns:bbvaInput="http://java.sun.com/jsf/composite/bbva/input"
+	xmlns:bbvaButton="http://java.sun.com/jsf/composite/bbva/button">
+
+<composite:interface>
+	<composite:attribute name="pointTwo" type="java.lang.String" />
+</composite:interface>
+
+<composite:implementation>
+
+	<div style="width: 100%;" class="steps-group row">
+		<div class="steps step1 final-step">
+			<div class="step-header visible-xs visible-sm">
+				<span class="icon-lastStep"></span>#{cc.attrs.pointTwo}
+			</div>
+		</div>
+		<div style="" class="cancel-btn-container">
+			<div class="modal-footer cancel-wizard visible-xs visible-sm">
+				<p:commandButton styleClass="btn btn-form cancelButton"
+					type="submit" value="#{msg['button.cancel']}"
+					action="#{recoverPassController.close}"
+					onclick="PF('employeeSearch').hide();" />
+			</div>
+		</div>
+	</div>
+</composite:implementation>
+</html>

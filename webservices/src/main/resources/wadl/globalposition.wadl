@@ -131,7 +131,7 @@
                 <xs:restriction base="xs:string">
                     <xs:enumeration value="PC"/>
                     <xs:enumeration value="AQ"/>
-                    <xs:enumeration value="TDC"/>
+                    <xs:enumeration value="TC"/>
                     <xs:enumeration value="RQ"/>
                     <xs:enumeration value="LI"/>
                     <xs:enumeration value="LO"/>

@@ -1,8 +1,8 @@
-
 package com.bbva.czic.dto.net;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -10,11 +10,11 @@ import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlElementRefs;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for Loan complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * Java class for Loan complex type.
+ * <p>
+ * The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="Loan">
@@ -30,65 +30,47 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Loan", propOrder = {
-    "rest"
-})
-public class Loan
-    extends Product
-{
+@XmlType(name = "Loan", propOrder = { "rest" })
+public class Loan extends Product {
 
-    @XmlElementRefs({
-        @XmlElementRef(name = "balance", type = JAXBElement.class),
-        @XmlElementRef(name = "payment", type = JAXBElement.class),
-        @XmlElementRef(name = "debt", type = JAXBElement.class),
-        @XmlElementRef(name = "status", type = JAXBElement.class)
-    })
-    protected List<JAXBElement<?>> rest;
+	@XmlElementRefs({ @XmlElementRef(name = "balance", type = JAXBElement.class),
+			@XmlElementRef(name = "payment", type = JAXBElement.class),
+			@XmlElementRef(name = "debt", type = JAXBElement.class),
+			@XmlElementRef(name = "status", type = JAXBElement.class) })
+	protected List<JAXBElement<?>> rest;
 
-    /**
-     * Gets the rest of the content model. 
-     * 
-     * <p>
-     * You are getting this "catch-all" property because of the following reason: 
-     * The field name "Balance" is used by two different parts of a schema. See: 
-     * line 0 of file:/C:/Users/Entelgy/Desarrollo/bbvanet/webservices/src/main/resources/wadl/loan.wadl#grammar2
-     * line 0 of file:/C:/Users/Entelgy/Desarrollo/bbvanet/webservices/src/main/resources/wadl/loan.wadl#grammar2
-     * <p>
-     * To get rid of this property, apply a property customization to one 
-     * of both of the following declarations to change their names: 
-     * Gets the value of the rest property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the rest property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getRest().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link JAXBElement }{@code <}{@link Balance }{@code >}
-     * {@link JAXBElement }{@code <}{@link Balance }{@code >}
-     * {@link JAXBElement }{@code <}{@link Payment }{@code >}
-     * {@link JAXBElement }{@code <}{@link EnumLoanStatus }{@code >}
-     * 
-     * 
-     */
-    public List<JAXBElement<?>> getRest() {
-        if (rest == null) {
-            rest = new ArrayList<JAXBElement<?>>();
-        }
-        return this.rest;
-    }
+	/**
+	 * Gets the rest of the content model.
+	 * <p>
+	 * You are getting this "catch-all" property because of the following reason: The field name "Balance" is used by two
+	 * different parts of a schema. See: line 0 of
+	 * file:/C:/Users/Entelgy/Desarrollo/bbvanet/webservices/src/main/resources/wadl/loan.wadl#grammar2 line 0 of
+	 * file:/C:/Users/Entelgy/Desarrollo/bbvanet/webservices/src/main/resources/wadl/loan.wadl#grammar2
+	 * <p>
+	 * To get rid of this property, apply a property customization to one of both of the following declarations to change
+	 * their names: Gets the value of the rest property.
+	 * <p>
+	 * This accessor method returns a reference to the live list, not a snapshot. Therefore any modification you make to the
+	 * returned list will be present inside the JAXB object. This is why there is not a <CODE>set</CODE> method for the rest
+	 * property.
+	 * <p>
+	 * For example, to add a new item, do as follows:
+	 * 
+	 * <pre>
+	 * getRest().add(newItem);
+	 * </pre>
+	 * <p>
+	 * Objects of the following type(s) are allowed in the list {@link JAXBElement }{@code <}{@link Balance }{@code >}
+	 * {@link JAXBElement }{@code <}{@link Balance }{@code >} {@link JAXBElement }{@code <}{@link Payment }{@code >}
+	 * {@link JAXBElement }{@code <}{@link EnumLoanStatus }{@code >}
+	 */
+	public List<JAXBElement<?>> getRest() {
+		if (rest == null) {
+			rest = new ArrayList<JAXBElement<?>>();
+		}
+		return this.rest;
+	}
 
 }
