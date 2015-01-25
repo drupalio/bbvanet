@@ -5,12 +5,13 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.client.RestClientException;
 
 import com.bbva.czic.dto.net.AccMovementsResume;
 import com.bbva.net.back.core.pattern.facade.AbstractBbvaFacade;
 import com.bbva.net.back.core.stereotype.Facade;
-import com.bbva.net.back.facade.MovementsResumeFacade;
+import com.bbva.net.back.facade.AccountMovementsResumeFacade;
 import com.bbva.net.back.mapper.GlobalResumeMovementsMapper;
 import com.bbva.net.back.model.commons.DateRangeDto;
 import com.bbva.net.back.model.movements.GlobalResumeMovementsDto;
@@ -23,8 +24,8 @@ import com.bbva.net.webservices.customers.CustomerService;
  * 
  * @author Entelgy
  */
-@Facade(value = "globalMovementsFacade")
-public class MovementsResumeFacadeImpl extends AbstractBbvaFacade implements MovementsResumeFacade {
+@Facade(value = "accountMovementsFacade")
+public class AccountMovementsResumeFacadeImpl extends AbstractBbvaFacade implements AccountMovementsResumeFacade {
 
 	private static final long serialVersionUID = 1L;
 
@@ -41,6 +42,9 @@ public class MovementsResumeFacadeImpl extends AbstractBbvaFacade implements Mov
 	@Resource(name = "fiqlService")
 	private FiqlService fiqlService;
 
+	@Value("${fiql.accountMovement.date}")
+	private String DATE;
+
 	/**
 	 * Método que implementa el cliente REST para obtener el resumend de movimientos en las cuentas de un usuario
 	 */
@@ -49,7 +53,8 @@ public class MovementsResumeFacadeImpl extends AbstractBbvaFacade implements Mov
 			throws RestClientException {
 		GlobalResumeMovementsDto globalMovements = new GlobalResumeMovementsDto();
 
-		String filter = dateRange == null ? StringUtils.EMPTY : fiqlService.getFiqlQueryByDateRange(dateRange);
+		String filter = dateRange == null ? StringUtils.EMPTY : fiqlService.getFiqlQueryByDateRange(dateRange, DATE,
+				DATE);
 
 		final List<AccMovementsResume> response = this.customerService.listAccountsMovementsResume(customerId, filter);
 		globalMovements.setMovementsResumeDto(globalResumeMovementsMapper.map(response));
@@ -64,7 +69,8 @@ public class MovementsResumeFacadeImpl extends AbstractBbvaFacade implements Mov
 
 		GlobalResumeMovementsDto globalMovements = new GlobalResumeMovementsDto();
 
-		String filter = dateRange == null ? StringUtils.EMPTY : fiqlService.getFiqlQueryByDateRange(dateRange);
+		String filter = dateRange == null ? StringUtils.EMPTY : fiqlService.getFiqlQueryByDateRange(dateRange, DATE,
+				DATE);
 
 		final List<AccMovementsResume> response = this.accountsService.getAccMovementResume(accountId, filter, fields,
 				expands, sort);

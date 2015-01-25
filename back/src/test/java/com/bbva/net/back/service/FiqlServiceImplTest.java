@@ -29,7 +29,7 @@ public class FiqlServiceImplTest {
 	public void checkFiqlNotEmpty() {
 		periodType = EnumPeriodType.valueOf(Integer.parseInt("12"));
 		DateRangeDto dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
-		final String filtro = fiqlServiceImpl.getFiqlQueryByDateRange(dateRange);
+		final String filtro = fiqlServiceImpl.getFiqlQueryByDateRange(dateRange, "", "");
 		Assert.assertNotNull(filtro);
 
 	}
@@ -37,7 +37,7 @@ public class FiqlServiceImplTest {
 	@Test
 	public void checkFiqlEmpty() {
 		DateRangeDto dateRange = null;
-		final String filtro = fiqlServiceImpl.getFiqlQueryByDateRange(dateRange);
+		final String filtro = fiqlServiceImpl.getFiqlQueryByDateRange(dateRange, null, null);
 		Assert.assertEquals("filtro vacia", "", filtro);
 	}
 
@@ -52,7 +52,7 @@ public class FiqlServiceImplTest {
 		final Date toDate = formatter.parse(dateTo);
 
 		final DateRangeDto dateRange = new DateRangeDto(fromDate, toDate);
-		final String result = fiqlServiceImpl.getFiqlQueryByDateRange(dateRange);
+		final String result = fiqlServiceImpl.getFiqlQueryByDateRange(dateRange, null, null);
 		Assert.assertEquals("null=ge=2014-01-01;null=le=2014-12-12", result);
 
 	}

@@ -3,7 +3,7 @@ package com.bbva.net.back.facade;
 import com.bbva.net.back.model.commons.DateRangeDto;
 import com.bbva.net.back.model.movements.GlobalResumeMovementsDto;
 
-public interface MovementsResumeFacade {
+public interface AccountMovementsResumeFacade {
 
 	GlobalResumeMovementsDto getMovementsResumeByCustomer(String customerId, DateRangeDto dateRange);
 

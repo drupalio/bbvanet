@@ -6,7 +6,6 @@ import java.util.Date;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.cxf.jaxrs.ext.search.client.SearchConditionBuilder;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.bbva.net.back.model.commons.DateRangeDto;
@@ -19,21 +18,15 @@ public class FiqlServiceImpl implements FiqlService {
 
 	private static final String FIQL_LANGUAGE = "fiql";
 
-	@Value("${fiql.startDate}")
-	private String START_DATE;
-
-	@Value("${fiql.endDate}")
-	private String END_DATE;
-
 	@Override
-	public String getFiqlQueryByDateRange(final DateRangeDto dateRange) {
+	public String getFiqlQueryByDateRange(final DateRangeDto dateRange, String startProperty, String endProperty) {
 
 		if (dateRange == null || dateRange.getDateSince() == null || dateRange.getDateTo() == null) {
 			return StringUtils.EMPTY;
 		}
 
 		final SearchConditionBuilder filter = SearchConditionBuilder.instance(FIQL_LANGUAGE);
-		return filter.is(START_DATE).notBefore(formatDate(dateRange.getDateSince())).and().is(END_DATE)
+		return filter.is(startProperty).notBefore(formatDate(dateRange.getDateSince())).and().is(endProperty)
 				.notAfter(dateRange.getDateTo()).query();
 
 	}

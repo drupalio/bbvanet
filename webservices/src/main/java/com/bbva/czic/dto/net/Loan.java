@@ -24,8 +24,9 @@ import javax.xml.bind.annotation.XmlType;
  * &lt;/complexType>
  * </pre>
  * 
- * nuevo loan....
+ * <<<<<<< HEAD nuevo loan....
  */
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Loan", propOrder = { "debt", "payment", "status" })
 public class Loan extends Product {

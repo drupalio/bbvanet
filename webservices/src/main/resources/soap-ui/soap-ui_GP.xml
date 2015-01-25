@@ -196,7 +196,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 */
 </con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
 	"id": "2021",
-	"type": "PC",
+	"type": "AH",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A0",
 	"financialState": "A",
@@ -328,7 +328,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 },
 {
 	"id": "2022",
-	"type": "PC",
+	"type": "AH",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A1",
 	"financialState": "A",
@@ -460,7 +460,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 },
 {
 	"id": "2023",
-	"type": "PC",
+	"type": "AH",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A2",
 	"financialState": "A",
@@ -592,7 +592,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 },
 {
 	"id": "2024",
-	"type": "PC",
+	"type": "AH",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A3",
 	"financialState": "A",
@@ -724,7 +724,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 },
 {
 	"id": "2025",
-	"type": "PC",
+	"type": "AH",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A4",
 	"financialState": "A",
@@ -856,7 +856,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 },
 {
 	"id": "2026",
-	"type": "PC",
+	"type": "AH",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A5",
 	"financialState": "A",
@@ -988,7 +988,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 },
 {
 	"id": "2027",
-	"type": "LO",
+	"type": "HI",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A6",
 	"financialState": "P",
@@ -1120,7 +1120,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 },
 {
 	"id": "2027",
-	"type": "PC",
+	"type": "AH",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A7",
 	"financialState": "A",
@@ -1252,7 +1252,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 },
 {
 	"id": "2028",
-	"type": "SI",
+	"type": "FA",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A8",
 	"financialState": "A",
@@ -1912,7 +1912,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 },
 {
 	"id": "2033",
-	"type": "LI",
+	"type": "LS",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A13",
 	"financialState": "P",
@@ -2176,7 +2176,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 },
 {
 	"id": "2035",
-	"type": "LI",
+	"type": "LS",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A15",
 	"financialState": "P",
@@ -2308,7 +2308,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 },
 {
 	"id": "2036",
-	"type": "RQ",
+	"type": "CR",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A16",
 	"financialState": "A",
@@ -2440,7 +2440,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 },
 {
 	"id": "2037",
-	"type": "RQ",
+	"type": "CR",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A17",
 	"financialState": "A",
@@ -2704,7 +2704,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 },
 {
 	"id": "2039",
-	"type": "LI",
+	"type": "LS",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A19",
 	"financialState": "P",
@@ -2875,7 +2875,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 */
 </con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
 	"id": "2040",
-	"type": "PC",
+	"type": "AH",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A0",
 	"financialState": "A",
@@ -3007,7 +3007,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 },
 {
 	"id": "2041",
-	"type": "PC",
+	"type": "AH",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A1",
 	"financialState": "A",
@@ -3139,7 +3139,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 },
 {
 	"id": "2042",
-	"type": "PC",
+	"type": "AH",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A2",
 	"financialState": "A",
@@ -3271,7 +3271,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 },
 {
 	"id": "2043",
-	"type": "PC",
+	"type": "AH",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A3",
 	"financialState": "A",
@@ -3403,7 +3403,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 },
 {
 	"id": "2044",
-	"type": "PC",
+	"type": "AH",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A4",
 	"financialState": "A",
@@ -3535,7 +3535,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 },
 {
 	"id": "2045",
-	"type": "PC",
+	"type": "AH",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A5",
 	"financialState": "A",
@@ -3667,7 +3667,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 },
 {
 	"id": "2046",
-	"type": "LO",
+	"type": "HI",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A6",
 	"financialState": "P",
@@ -3799,7 +3799,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 },
 {
 	"id": "2047",
-	"type": "PC",
+	"type": "AH",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A7",
 	"financialState": "A",
@@ -3931,7 +3931,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 },
 {
 	"id": "2048",
-	"type": "SI",
+	"type": "FA",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A8",
 	"financialState": "A",
@@ -4327,7 +4327,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 },
 {
 	"id": "2051",
-	"type": "TDC",
+	"type": "TC",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A11",
 	"financialState": "P",
@@ -4459,7 +4459,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 },
 {
 	"id": "2052",
-	"type": "TDC",
+	"type": "TC",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A12",
 	"financialState": "P",
@@ -4723,7 +4723,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 },
 {
 	"id": "2054",
-	"type": "TDC",
+	"type": "TC",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A14",
 	"financialState": "P",
@@ -4855,7 +4855,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 },
 {
 	"id": "2055",
-	"type": "LI",
+	"type": "LS",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A15",
 	"financialState": "P",
@@ -4987,7 +4987,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 },
 {
 	"id": "2056",
-	"type": "RQ",
+	"type": "CR",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A16",
 	"financialState": "A",
@@ -5119,7 +5119,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 },
 {
 	"id": "2057",
-	"type": "RQ",
+	"type": "CR",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A17",
 	"financialState": "A",
@@ -5383,7 +5383,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 },
 {
 	"id": "2059",
-	"type": "LI",
+	"type": "LS",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A19",
 	"financialState": "P",
@@ -6250,7 +6250,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		"postalAddress": "Calle 36"
 	},
 	"mobilizationConditions": "Consiciones de movilizacion"
-}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/loan/V01/rotaryQuota/" method="GET" resourcePath="/czic/loan/V01/rotaryQuota/"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/loan/V01/rotaryQuota/" method="GET" resourcePath="/czic/loan/V01/rotaryQuota/"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Examples showing how to match based on path, query param and header
 // Match based on path
 def requestPath = mockRequest.getPath()

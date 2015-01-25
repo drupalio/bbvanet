@@ -61,7 +61,7 @@ public class CardsFacadeImplTest {
 		dateRange.setDateSince(a);
 		dateRange.setDateTo(a);
 
-		Mockito.when(fiqlService.getFiqlQueryByDateRange(dateRange)).thenReturn("");
+		Mockito.when(fiqlService.getFiqlQueryByDateRange(dateRange, null, null)).thenReturn("");
 		List<CardCharge> cardCharge = new ArrayList<CardCharge>();
 		Mockito.when(cardsCustomerService.listCreditCardsCharges(DEFAULT_USER, "")).thenReturn(cardCharge);
 
@@ -80,7 +80,7 @@ public class CardsFacadeImplTest {
 		dateRange.setDateSince(a);
 		dateRange.setDateTo(a);
 
-		Mockito.when(fiqlService.getFiqlQueryByDateRange(dateRange)).thenReturn("");
+		Mockito.when(fiqlService.getFiqlQueryByDateRange(dateRange, null, null)).thenReturn("");
 		List<CardCharge> cardCharge = new ArrayList<CardCharge>();
 		Mockito.when(cardChargeService.getCreditCardCharges(DEFAULT_USER, "", "", "", "")).thenReturn(cardCharge);
 
