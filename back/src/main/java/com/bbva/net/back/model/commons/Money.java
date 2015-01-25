@@ -15,7 +15,9 @@ public class Money implements Dto {
 
 	private static final long serialVersionUID = -4589862928168820463L;
 
-	private String currency = "$";
+	private String symbol = "$";
+	
+	private String currency;
 
 	private BigDecimal amount;
 
@@ -53,7 +55,7 @@ public class Money implements Dto {
 		final NumberFormat formatter = NumberFormat.getInstance(new Locale("es_CO"));
 		formatter.setGroupingUsed(true);
 		formatter.setMinimumFractionDigits(2);
-		return currency + formatter.format(amount);
+		return symbol + formatter.format(amount);
 	}
 
 	@Override

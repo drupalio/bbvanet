@@ -3,6 +3,7 @@ package com.bbva.net.back.command;
 import java.util.List;
 
 import com.bbva.czic.dto.net.Product;
+import com.bbva.net.back.utils.ProductUtils;
 import com.bbva.net.core.pattern.VisitorCommand;
 
 public abstract class ProductVisitorCommand extends VisitorCommand<Product> {
@@ -59,7 +60,7 @@ public abstract class ProductVisitorCommand extends VisitorCommand<Product> {
 	@Override
 	protected void execute(Product product) {
 
-		switch (product.getType()) {
+		switch (ProductUtils.getEnumProductTypeBySubType(product.getType())) {
 		case PC:
 			this.executeAccount(product);
 			break;
@@ -85,7 +86,7 @@ public abstract class ProductVisitorCommand extends VisitorCommand<Product> {
 			this.executeDeposit(product);
 			break;
 		default:
-			break;
+			throw new RuntimeException();
 		}
 
 	}

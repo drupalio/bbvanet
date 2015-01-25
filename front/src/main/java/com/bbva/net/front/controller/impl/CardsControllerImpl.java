@@ -20,7 +20,7 @@ import com.bbva.net.back.model.globalposition.BalanceDto;
 import com.bbva.net.back.model.globalposition.FundDto;
 import com.bbva.net.back.model.globalposition.GlobalProductsDto;
 import com.bbva.net.back.model.movements.GlobalResumeMovementsDto;
-import com.bbva.net.back.facade.MovementsResumeFacade;
+import com.bbva.net.back.facade.AccountMovementsResumeFacade;
 import com.bbva.net.front.controller.CardsController;
 import com.bbva.net.front.controller.GlobalPositionController;
 import com.bbva.net.front.core.AbstractBbvaController;

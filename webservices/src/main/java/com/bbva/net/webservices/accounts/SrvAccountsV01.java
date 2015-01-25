@@ -11,9 +11,15 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 import com.bbva.czic.dto.net.Account;
+import com.bbva.czic.dto.net.Checkbook;
 
 @Path("/V01")
 public interface SrvAccountsV01 {
+
+    @GET
+    @Produces("application/json")
+    @Path("/{accountId}/checkbooks/{checkbookId}")
+    Checkbook getCheckbook(@PathParam("checkbookId") String checkbookId, @PathParam("accountId") String accountId);
 
     @GET
     @Produces("application/json")
@@ -23,8 +29,7 @@ public interface SrvAccountsV01 {
     @GET
     @Produces("application/json")
     @Path("/{id}/listChecks")
-    Response listCheck(@PathParam("accountId") String accountId, @QueryParam("$filter") @DefaultValue("null") String $filter, @QueryParam("$status") @DefaultValue("null") String $status, @QueryParam("$paginationKey") @DefaultValue("null") String $paginationKey, 
-                @QueryParam("$pageSize") @DefaultValue("null") String $pageSize);
+    Response listCheck(@PathParam("id") String id, @QueryParam("$filter") @DefaultValue("null") String $filter, @QueryParam("paginationKey") @DefaultValue("null") Integer paginationKey, @QueryParam("pageSize") @DefaultValue("null") Integer pageSize);
 
     @GET
     @Produces("application/json")

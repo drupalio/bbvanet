@@ -24,7 +24,6 @@ public class CardServiceImpl extends AbstractBbvaRestService implements CardServ
 		String filterParam = $filter.equals("") ? "" : "$filter";
 		WebClient wc = getJsonWebClient(URL_BASE_CARDS + id + URL_CARDCHARGES);
 		wc.query(filterParam, $filter);
-		System.out.println($filter);
 		return (List<CardCharge>)wc.getCollection(CardCharge.class);
 	}
 }

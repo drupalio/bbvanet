@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import com.bbva.czic.dto.net.CardCharge;
 import com.bbva.net.back.core.pattern.facade.AbstractBbvaFacade;
 import com.bbva.net.back.core.stereotype.Facade;
@@ -44,6 +46,9 @@ public class CardsFacadeImpl extends AbstractBbvaFacade implements CardsFacade {
 	@Resource(name = "fiqlService")
 	private FiqlService fiqlService;
 
+	@Value("${fiql.cards.date}")
+	private String DATE;
+
 	public void setFiqlService(FiqlService fiqlService) {
 		this.fiqlService = fiqlService;
 	}
@@ -53,7 +58,7 @@ public class CardsFacadeImpl extends AbstractBbvaFacade implements CardsFacade {
 	 */
 	@Override
 	public List<CardsChargesDto> getCardsChargesByUser(final String customerId, final DateRangeDto dateRange) {
-		String filter = fiqlService.getFiqlQueryByDateRange(dateRange);
+		String filter = fiqlService.getFiqlQueryByDateRange(dateRange, DATE, DATE);
 
 		final List<CardCharge> response = cardsCustomerService.listCreditCardsCharges(customerId, filter);
 		return cardsMapper.map(response);
@@ -67,10 +72,10 @@ public class CardsFacadeImpl extends AbstractBbvaFacade implements CardsFacade {
 	 * Determina si debe crear o no la cadena del filtro
 	 */
 	@Override
-	public List<CardsChargesDto> getCardsChargesFilter(final String customerId, final DateRangeDto dateRange) {
-		String filter = fiqlService.getFiqlQueryByDateRange(dateRange);
+	public List<CardsChargesDto> getCardsChargesFilter(final String productId, final DateRangeDto dateRange) {
+		String filter = fiqlService.getFiqlQueryByDateRange(dateRange, DATE, DATE);
 
-		final List<CardCharge> response = cardChargeService.getCreditCardCharges(customerId, filter, "", "", "");
+		final List<CardCharge> response = cardChargeService.getCreditCardCharges(productId, filter, "", "", "");
 		return cardsMapper.map(response);
 	}
 
