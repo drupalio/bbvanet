@@ -32,7 +32,7 @@ public class HeaderControllerImpl extends AbstractBbvaController implements Head
 
 	@Override
 	public ExecutiveDto getExecutive() {
-		return executive.getExecutive();
+		return executive.getExecutive(getCurrentUser());
 	}
 
 	public ExecutiveDto getEjecutivo() {
