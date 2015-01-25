@@ -21,6 +21,16 @@ public enum MessagesHelper {
 		final FacesContext facesContext = FlowFacesContext.getCurrentInstance();
 		return facesContext.getApplication().getResourceBundle(facesContext, "msg");
 	}
+	
+	
+	/**
+	 * @return
+	 */
+	public ResourceBundle getMessagesI18() {
+
+		final FacesContext facesContext = FlowFacesContext.getCurrentInstance();
+		return facesContext.getApplication().getResourceBundle(facesContext, "i18");
+	}
 
 	/**
 	 * @param key
@@ -28,6 +38,14 @@ public enum MessagesHelper {
 	 */
 	public String getString(final String key) {
 		return getMessages().getString(key);
+	}
+	
+	/**
+	 * @param key
+	 * @return
+	 */
+	public String getStringI18(final String key) {
+		return getMessagesI18().getString(key);
 	}
 
 	/**

@@ -28,6 +28,8 @@ public class ProductDto implements Dto {
 	private Money totalCash;
 
 	private Money cashAvailable;
+	
+	private String subTypeProd;
 
 	private EnumProductType typeProd;
 
@@ -144,6 +146,22 @@ public class ProductDto implements Dto {
 
 	public void setTypeProd(EnumProductType typeProd) {
 		this.typeProd = typeProd;
+	}
+
+	
+	/**
+	 * @return the subTypeProd
+	 */
+	public String getSubTypeProd() {
+		return subTypeProd;
+	}
+
+	
+	/**
+	 * @param subTypeProd the subTypeProd to set
+	 */
+	public void setSubTypeProd(String subTypeProd) {
+		this.subTypeProd = subTypeProd;
 	}
 
 	@Override

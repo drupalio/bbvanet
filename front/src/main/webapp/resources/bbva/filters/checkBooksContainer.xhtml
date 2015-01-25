@@ -19,7 +19,7 @@
 	<composite:attribute name="valueDateTo" />
 	<composite:attribute name="disabledButton" />
 	<composite:attribute name="disabledCalendar" />
-	<composite:attribute name="actionListenerDate" />
+	<composite:attribute name="actionListenerDate" method-signature="void actionlistener(javax.faces.event.ActionEvent)" />
 	<composite:attribute name="listenerDate" />
 
 
@@ -33,9 +33,12 @@
 
 <composite:implementation>
 
-	<bbvaSearch:customSearchList id="customCheckList" classList="date-filter checkBooks"
-		classSpan="arrow-left-smaller" classSpanFilter="filter"
-		title="#{msg['text.date']}">
+	<bbvaSearch:customSearchList id="customCheckList" 
+				classList="date-filter customSearch" classSpan="arrow-left-smaller"
+				classSpanFilter="filter" title="#{msg['text.date']}"
+				
+				filterTitle="#{checkBookController.sinceDatestr}"
+				filterMessage="#{checkBookController.toDatestr}">
 		<bbvaSearch:customSearchFilter id="customDate"
 			value="#{cc.attrs.value}"
 			valueDateSince="#{cc.attrs.valueDateSince}"

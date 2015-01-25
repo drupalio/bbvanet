@@ -1,4 +1,4 @@
-package com.bbva.net.front.controller.impl;
+package com.bbva.net.front.controller;
 
 import java.util.List;
 

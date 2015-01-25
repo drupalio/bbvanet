@@ -5,11 +5,11 @@ import ma.glasnost.orika.metadata.Type;
 
 import com.bbva.czic.dto.net.EnumFinancialStatusType;
 
-public class FinancialStateConverter extends CustomConverter<EnumFinancialStatusType, Boolean> {
+public class FinancialStateConverter extends CustomConverter<String, Boolean> {
 
 	@Override
-	public Boolean convert(EnumFinancialStatusType source, Type<? extends Boolean> destinationType) {
-		return source.equals(EnumFinancialStatusType.A);
+	public Boolean convert(String source, Type<? extends Boolean> destinationType) {
+		return source.equals(EnumFinancialStatusType.A.name());
 	}
 
 }

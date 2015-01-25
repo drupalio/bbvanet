@@ -21,16 +21,17 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="type" type="{urn:com:bbva:czic:dto:net}enumProductType" minOccurs="0"/>
+ *         &lt;element name="type" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="alias" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="financialState" type="{urn:com:bbva:czic:dto:net}enumFinancialStatusType" minOccurs="0"/>
+ *         &lt;element name="financialState" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="visible" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *         &lt;element name="operable" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *         &lt;element name="balance" type="{urn:com:bbva:czic:dto:net}Balance" minOccurs="0"/>
  *         &lt;element name="contactInfo" type="{urn:com:bbva:czic:dto:net}ContactInfo" minOccurs="0"/>
  *         &lt;element name="conditions" type="{urn:com:bbva:czic:dto:net}Conditions" minOccurs="0"/>
  *         &lt;element name="movement" type="{urn:com:bbva:czic:dto:net}Movement" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="contract" type="{urn:com:bbva:czic:dto:net}Contract" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -51,18 +52,19 @@ import javax.xml.bind.annotation.XmlType;
     "balance",
     "contactInfo",
     "conditions",
-    "movement"
+    "movement",
+    "contract"
 })
 @XmlSeeAlso({
-    Loan.class
+    Account.class
 })
 public class Product {
 
     protected String id;
-    protected EnumProductType type;
+    protected String type;
     protected String name;
     protected String alias;
-    protected EnumFinancialStatusType financialState;
+    protected String financialState;
     protected Boolean visible;
     protected Boolean operable;
     protected Balance balance;
@@ -70,6 +72,7 @@ public class Product {
     protected Conditions conditions;
     @XmlElement(nillable = true)
     protected List<Movement> movement;
+    protected Contract contract;
 
     /**
      * Gets the value of the id property.
@@ -100,10 +103,10 @@ public class Product {
      * 
      * @return
      *     possible object is
-     *     {@link EnumProductType }
+     *     {@link String }
      *     
      */
-    public EnumProductType getType() {
+    public String getType() {
         return type;
     }
 
@@ -112,10 +115,10 @@ public class Product {
      * 
      * @param value
      *     allowed object is
-     *     {@link EnumProductType }
+     *     {@link String }
      *     
      */
-    public void setType(EnumProductType value) {
+    public void setType(String value) {
         this.type = value;
     }
 
@@ -172,10 +175,10 @@ public class Product {
      * 
      * @return
      *     possible object is
-     *     {@link EnumFinancialStatusType }
+     *     {@link String }
      *     
      */
-    public EnumFinancialStatusType getFinancialState() {
+    public String getFinancialState() {
         return financialState;
     }
 
@@ -184,10 +187,10 @@ public class Product {
      * 
      * @param value
      *     allowed object is
-     *     {@link EnumFinancialStatusType }
+     *     {@link String }
      *     
      */
-    public void setFinancialState(EnumFinancialStatusType value) {
+    public void setFinancialState(String value) {
         this.financialState = value;
     }
 
@@ -338,6 +341,30 @@ public class Product {
             movement = new ArrayList<Movement>();
         }
         return this.movement;
+    }
+
+    /**
+     * Gets the value of the contract property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Contract }
+     *     
+     */
+    public Contract getContract() {
+        return contract;
+    }
+
+    /**
+     * Sets the value of the contract property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Contract }
+     *     
+     */
+    public void setContract(Contract value) {
+        this.contract = value;
     }
 
 }

@@ -23,6 +23,7 @@ public class DateRangeDto implements Dto {
 
 	public DateRangeDto() {
 		this.dateSince = new Date();
+		this.dateTo = new Date();
 	}
 
 	public DateRangeDto(Date dateSince, Date dateTo) {
