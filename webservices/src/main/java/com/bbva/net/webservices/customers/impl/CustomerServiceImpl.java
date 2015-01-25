@@ -2,6 +2,7 @@ package com.bbva.net.webservices.customers.impl;
 
 import java.util.List;
 
+import org.apache.cxf.common.util.StringUtils;
 import org.apache.cxf.jaxrs.client.WebClient;
 import org.springframework.beans.factory.annotation.Value;
 
@@ -20,13 +21,15 @@ public class CustomerServiceImpl extends AbstractBbvaRestService implements Cust
 	@Value("${rest.cardsChargesCustomer.url}")
 	private String URL_CARDCHARGES;
 
+	@Value("${fiql.filter.parameter}")
+	private String FILTER;
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<AccMovementsResume> listAccountsMovementsResume(String customerId, String filter) {
 
-		String filterParam = filter.equals("") ? "" : "filter";
 		WebClient wc = getJsonWebClient(URL_BASE_CUSTOMER + customerId + URL_CUSTOMER);
-		wc.query(filterParam, filter);
+		if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
 
 		return (List<AccMovementsResume>)wc.getCollection(AccMovementsResume.class);
 	}

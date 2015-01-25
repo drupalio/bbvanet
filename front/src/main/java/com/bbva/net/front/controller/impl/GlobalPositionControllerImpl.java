@@ -13,7 +13,7 @@ import org.primefaces.event.SelectEvent;
 import com.bbva.net.back.facade.CardsFacade;
 import com.bbva.net.back.facade.FundsTypeFacade;
 import com.bbva.net.back.facade.GlobalPositionFacade;
-import com.bbva.net.back.facade.MovementsResumeFacade;
+import com.bbva.net.back.facade.AccountMovementsResumeFacade;
 import com.bbva.net.back.model.comboFilter.EnumPeriodType;
 import com.bbva.net.back.model.commons.DateRangeDto;
 import com.bbva.net.back.model.globalposition.BalanceDto;
@@ -67,8 +67,8 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	/**
 	 * 
 	 */
-	@Resource(name = "globalMovementsFacade")
-	private transient MovementsResumeFacade movementsResumeFacade;
+	@Resource(name = "accountMovementsFacade")
+	private transient AccountMovementsResumeFacade movementsResumeFacade;
 
 	/**
 	 * 
@@ -427,7 +427,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	/**
 	 * @param movementsResumeFacade
 	 */
-	public void setMovementsResumeFacade(final MovementsResumeFacade movementsResumeFacade) {
+	public void setMovementsResumeFacade(final AccountMovementsResumeFacade movementsResumeFacade) {
 		this.movementsResumeFacade = movementsResumeFacade;
 	}
 
