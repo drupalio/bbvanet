@@ -1,5 +1,8 @@
 package com.bbva.net.back.facade;
 
+import java.util.List;
+
+import com.bbva.net.back.model.checkbook.CheckDto;
 import com.bbva.net.back.model.commons.DateRangeDto;
 import com.bbva.net.back.model.movements.GlobalResumeMovementsDto;
 
@@ -8,6 +11,9 @@ public interface AccountMovementsResumeFacade {
 	GlobalResumeMovementsDto getMovementsResumeByCustomer(String customerId, DateRangeDto dateRange);
 
 	GlobalResumeMovementsDto getMovementsResumeByAccount(String accountId, DateRangeDto filter, String fields,
+			String expands, String sort);
+	
+	List<CheckDto> getChecksByAccount(String accountId, DateRangeDto filter, String fields,
 			String expands, String sort);
 
 }

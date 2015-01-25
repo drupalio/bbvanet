@@ -21,12 +21,12 @@ public interface CheckBookMapper {
 	 * @param checkBooks
 	 * @return List checkBookDto
 	 */
-	List<CheckbookDto> mapCheckBook(List<Checkbook> checkBooks);
+	List<CheckbookDto> mapCheckBook(final List<Checkbook> checkBooks);
 	
 	/**
 	 * @param Check
 	 * @return List CheckDto
 	 */
-	List<CheckDto> mapCheck(List<Check> check);
+	List<CheckDto> mapCheck(final List<Check> check);
 
 }
