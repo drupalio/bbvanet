@@ -19,7 +19,7 @@ public class ProductDto implements Dto {
 
 	private Boolean asset;
 
-	private Boolean OperationOnline;
+	private Boolean operationOnline;
 
 	private Boolean visible;
 
@@ -126,18 +126,17 @@ public class ProductDto implements Dto {
 	}
 
 	/**
-	 * @return the operationOnlineF
+	 * @return the operationOnline
 	 */
 	public Boolean getOperationOnline() {
-		return OperationOnline;
+		return operationOnline;
 	}
 
 	/**
-	 * @param operationOnlineF
-	 *            the operationOnlineF to set
+	 * @param operationOnline the operationOnline to set
 	 */
 	public void setOperationOnline(Boolean operationOnline) {
-		OperationOnline = operationOnline;
+		this.operationOnline = operationOnline;
 	}
 
 	public EnumProductType getTypeProd() {

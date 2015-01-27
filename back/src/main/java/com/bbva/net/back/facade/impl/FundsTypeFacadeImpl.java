@@ -26,24 +26,71 @@ public class FundsTypeFacadeImpl extends AbstractBbvaFacade
 
 		List<FundDto> funds = new ArrayList<FundDto>();
 
-		FundDto plusValue = new FundDto();
-		FundDto guarantedValue = new FundDto();
+		FundDto graphicFundsFa = new FundDto();
+		FundDto graphicFundsBd = new FundDto();
+		FundDto graphicFundsBf = new FundDto();
+		FundDto graphicFundsPa = new FundDto();
+		FundDto graphicFundsBp = new FundDto();
+		FundDto graphicFundsFn = new FundDto();
+		FundDto graphicFundsFc = new FundDto();
+		FundDto graphicFundsFe = new FundDto();
+		FundDto graphicFundsFz = new FundDto();
+		FundDto graphicFundsAn = new FundDto();
+		FundDto graphicFundsFg = new FundDto();
+		FundDto graphicFundsMd = new FundDto();
+		FundDto graphicFundsFr = new FundDto();
+		FundDto graphicFundsFb = new FundDto();
 
-		Money plusValueMoney = new Money();
-		plusValueMoney.setAmount(new BigDecimal(700000));
-		plusValueMoney.setCurrency("$");
-		Money guarantedValueMoney = new Money();
-		guarantedValueMoney.setAmount(new BigDecimal(300000));
-		guarantedValueMoney.setCurrency("$");
+		Money money = new Money();
+		money.setAmount(new BigDecimal(700000));
+		money.setCurrency("$");
+		Money moneyTwo = new Money();
+		moneyTwo.setAmount(new BigDecimal(300000));
+		moneyTwo.setCurrency("$");
 
-		plusValue.setTypefunds(EnumFundsType.plusValue);
-		plusValue.setTotalCash(plusValueMoney);
+		graphicFundsFa.setTypefunds(EnumFundsType.FA);
+		graphicFundsFa.setTotalCash(money);
+		graphicFundsBd.setTypefunds(EnumFundsType.BD);
+		graphicFundsBd.setTotalCash(money);
+		graphicFundsBf.setTypefunds(EnumFundsType.BF);
+		graphicFundsBf.setTotalCash(money);
+		graphicFundsPa.setTypefunds(EnumFundsType.PA);
+		graphicFundsPa.setTotalCash(money);
+		graphicFundsBp.setTypefunds(EnumFundsType.BP);
+		graphicFundsBp.setTotalCash(money);
+		graphicFundsFn.setTypefunds(EnumFundsType.FN);
+		graphicFundsFn.setTotalCash(money);
+		graphicFundsFc.setTypefunds(EnumFundsType.FC);
+		graphicFundsFc.setTotalCash(money);
+		graphicFundsFe.setTypefunds(EnumFundsType.FE);
+		graphicFundsFe.setTotalCash(moneyTwo);
+		graphicFundsFz.setTypefunds(EnumFundsType.FZ);
+		graphicFundsFz.setTotalCash(moneyTwo);
+		graphicFundsAn.setTypefunds(EnumFundsType.AN);
+		graphicFundsAn.setTotalCash(moneyTwo);
+		graphicFundsFg.setTypefunds(EnumFundsType.FG);
+		graphicFundsFg.setTotalCash(moneyTwo);
+		graphicFundsMd.setTypefunds(EnumFundsType.MD);
+		graphicFundsMd.setTotalCash(moneyTwo);
+		graphicFundsFr.setTypefunds(EnumFundsType.FR);
+		graphicFundsFr.setTotalCash(moneyTwo);
+		graphicFundsFb.setTypefunds(EnumFundsType.FB);
+		graphicFundsFb.setTotalCash(moneyTwo);
 
-		guarantedValue.setTypefunds(EnumFundsType.guaranteedValue);
-		guarantedValue.setTotalCash(guarantedValueMoney);
-
-		funds.add(plusValue);
-		funds.add(guarantedValue);
+		funds.add(graphicFundsFa);
+		funds.add(graphicFundsBd);
+		funds.add(graphicFundsBf);
+		funds.add(graphicFundsPa);
+		funds.add(graphicFundsBp);
+		funds.add(graphicFundsFn);
+		funds.add(graphicFundsFc);
+		funds.add(graphicFundsFe);
+		funds.add(graphicFundsFz);
+		funds.add(graphicFundsAn);
+		funds.add(graphicFundsFg);
+		funds.add(graphicFundsMd);
+		funds.add(graphicFundsFr);
+		funds.add(graphicFundsFb);
 
 		return funds;
 	}

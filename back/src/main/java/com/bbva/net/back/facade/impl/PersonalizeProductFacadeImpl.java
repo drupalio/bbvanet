@@ -2,33 +2,31 @@ package com.bbva.net.back.facade.impl;
 
 import javax.annotation.Resource;
 
+import com.bbva.czic.dto.net.Product;
 import com.bbva.net.back.core.pattern.facade.AbstractBbvaFacade;
 import com.bbva.net.back.core.stereotype.Facade;
-import com.bbva.net.back.facade.GlobalPositionFacade;
 import com.bbva.net.back.facade.PersonalizeProductFacade;
-import com.bbva.net.back.mapper.GlobalPositionMapper;
+import com.bbva.net.back.mapper.PersonalizeAccountProductMapper;
+import com.bbva.net.back.model.globalposition.ProductDto;
 import com.bbva.net.webservices.globalposition.GlobalPositionService;
 
 @Facade(value = "personalizeProductAccountFacade")
-public class PersonalizeProductFacadeImpl extends AbstractBbvaFacade
-		implements
-			PersonalizeProductFacade {
+public class PersonalizeProductFacadeImpl extends AbstractBbvaFacade implements PersonalizeProductFacade {
 
 	private static final long serialVersionUID = -8535409693026365524L;
-
-	@Resource(name = "globalPositionFacade")
-	private GlobalPositionFacade globalPositionFacade;
-
-	@Resource(name = "globalPositionMapper")
-	private GlobalPositionMapper globalPositionMapper;
 
 	// CLIENTE REST
 	@Resource(name = "globalPositionService")
 	private GlobalPositionService globalPositionService;
 
-	public void setGlobalPositionFacade(
-			GlobalPositionFacade globalPositionFacade) {
-		this.globalPositionFacade = globalPositionFacade;
+	@Resource(name = "personalizeProductMapper")
+	private PersonalizeAccountProductMapper personalizeAccountProductMapper;
+
+	@Override
+	public void setUpdate(String idProduct, ProductDto productDto) {
+		Product product = personalizeAccountProductMapper.map(productDto);
+		this.globalPositionService.updateProductOperability(idProduct, product);
+		this.globalPositionService.updateProductVisibility(idProduct, product);
 	}
 
 	public void setGlobalPositionService(
@@ -36,8 +34,13 @@ public class PersonalizeProductFacadeImpl extends AbstractBbvaFacade
 		this.globalPositionService = globalPositionService;
 	}
 
-	public void setGlobalPositionMapper(
-			GlobalPositionMapper globalPositionMapper) {
-		this.globalPositionMapper = globalPositionMapper;
+	public PersonalizeAccountProductMapper getPersonalizeAccountProductMapper() {
+		return personalizeAccountProductMapper;
 	}
+
+	public void setPersonalizeAccountProductMapper(
+			PersonalizeAccountProductMapper personalizeAccountProductMapper) {
+		this.personalizeAccountProductMapper = personalizeAccountProductMapper;
+	}
+
 }

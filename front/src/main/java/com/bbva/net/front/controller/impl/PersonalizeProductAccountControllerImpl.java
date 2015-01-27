@@ -1,10 +1,8 @@
 package com.bbva.net.front.controller.impl;
 
 import javax.faces.event.ActionEvent;
-
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
-import javax.faces.component.behavior.AjaxBehavior;
 import javax.faces.event.AjaxBehaviorEvent;
 
 import org.springframework.stereotype.Controller;
@@ -25,35 +23,41 @@ public class PersonalizeProductAccountControllerImpl
 	private static final long serialVersionUID = 4372849387340418649L;
 
 	private boolean menSuccessful;
-
 	private boolean menOperationKey;
-
 	private boolean operation;
 	private boolean search;
 
-	private PersonalizeAccountDto personalizeAccountDTO;
+	private PersonalizeAccountDto personalizeProductAccountDto;
+
+	private ProductDto productDto;
+
+	@Resource(name = "personalizeProductAccountFacade")
+	private transient PersonalizeProductFacade personalizeProductAccountFacade;
 
 	@PostConstruct
 	public void init() {
-
-		menOperationKey = false;
+		this.personalizeProductAccountDto = new PersonalizeAccountDto();
+		this.productDto = new ProductDto();
+		this.menOperationKey = false;
 		menSuccessful = false;
-		this.personalizeAccountDTO = new PersonalizeAccountDto();
-
 	}
 
-	@Resource(name = "personalizeProductAccountFacade")
-	private PersonalizeProductFacade personalizeProductAccountFacade;
+	@Override
+	public void setSelectedProduct(ProductDto selectedProduct) {
+		super.setSelectedProduct(selectedProduct);
+	}
+
+	public ProductDto getProduct() {
+		this.productDto = super.getSelectedProduct();
+		this.search = productDto.isVisible();
+		this.operation = productDto.getOperationOnline();
+		return productDto;
+
+	}
 
 	public void setPersonalizeProductAccountFacade(
 			PersonalizeProductFacade personalizeProductAccountFacade) {
 		this.personalizeProductAccountFacade = personalizeProductAccountFacade;
-
-	}
-
-	@Override
-	public PersonalizeAccountDto getPersonalizeProductAccountDto() {
-		return this.personalizeAccountDTO;
 	}
 
 	/**
@@ -86,9 +90,11 @@ public class PersonalizeProductAccountControllerImpl
 	 */
 	@Override
 	public void operKey() {
-		ProductDto product = getSelectedProduct();
-		product.setOperationOnline(isOperation());
-		product.setVisible(isSearch());
+		productDto.setVisible(isSearch());
+		productDto.setOperationOnline(isOperation());
+		this.personalizeProductAccountFacade.setUpdate(
+				productDto.getProductId(), productDto);
+		System.out.println("ffff" + productDto.getOperationOnline());
 		this.menOperationKey = true;
 	}
 
@@ -115,6 +121,37 @@ public class PersonalizeProductAccountControllerImpl
 
 	public void setSearch(boolean search) {
 		this.search = search;
+	}
+
+	/**
+	 * @return the personalizeProductAccountDto
+	 */
+	public PersonalizeAccountDto getPersonalizeProductAccountDto() {
+		return personalizeProductAccountDto;
+	}
+
+	/**
+	 * @param personalizeProductAccountDto
+	 *            the personalizeProductAccountDto to set
+	 */
+	public void setPersonalizeProductAccountDto(
+			PersonalizeAccountDto personalizeProductAccountDto) {
+		this.personalizeProductAccountDto = personalizeProductAccountDto;
+	}
+
+	/**
+	 * @return the productDto
+	 */
+	public ProductDto getProductDto() {
+		return productDto;
+	}
+
+	/**
+	 * @param productDto
+	 *            the productDto to set
+	 */
+	public void setProductDto(ProductDto productDto) {
+		this.productDto = productDto;
 	}
 
 }
