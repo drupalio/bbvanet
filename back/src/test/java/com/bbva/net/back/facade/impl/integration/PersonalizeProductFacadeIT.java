@@ -1,8 +1,10 @@
 package com.bbva.net.back.facade.impl.integration;
 
 import javax.annotation.Resource;
+import javax.ws.rs.BadRequestException;
 import javax.ws.rs.ServiceUnavailableException;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.context.annotation.Profile;
@@ -22,43 +24,47 @@ public class PersonalizeProductFacadeIT {
 
 	ProductDto productDto = new ProductDto();
 
-	@Test(expected = ServiceUnavailableException.class)
+	@Test
 	public void checkVisibilityOK() throws Exception {
 		try {
-			this.personalizeProductFacade.updateProductVisibility("12345",
-					productDto);
+			this.personalizeProductFacade.updateProductVisibility(
+					"00130073005054466407", productDto);
 		} catch (Exception e) {
 			throw e;
 		}
 	}
 
-	@Test(expected = ServiceUnavailableException.class)
+	@Test(expected = BadRequestException.class)
 	public void checkVisibilityProductNull() throws Exception {
 		try {
-			this.personalizeProductFacade
-					.updateProductVisibility("12345", null);
-		} catch (Exception e) {
-			throw e;
+			this.personalizeProductFacade.updateProductVisibility(
+					"00130073005054466407", null);
+		} catch (final BadRequestException notFoundException) {
+			Assert.assertEquals(notFoundException.getMessage(),
+					"HTTP 400 Bad Request");
+			throw notFoundException;
 		}
 	}
 
-	@Test(expected = ServiceUnavailableException.class)
+	@Test
 	public void checkOperabilityOK() throws Exception {
 		try {
-			this.personalizeProductFacade.updateProductOperability("12345",
-					productDto);
+			this.personalizeProductFacade.updateProductOperability(
+					"00130073005054466407", productDto);
 		} catch (Exception e) {
 			throw e;
 		}
 	}
 
-	@Test(expected = ServiceUnavailableException.class)
+	@Test(expected = BadRequestException.class)
 	public void checkOperabilityProductNull() throws Exception {
 		try {
-			this.personalizeProductFacade.updateProductOperability("12345",
-					null);
-		} catch (Exception e) {
-			throw e;
+			this.personalizeProductFacade.updateProductOperability(
+					"00130073005054466407", null);
+		} catch (final BadRequestException notFoundException) {
+			Assert.assertEquals(notFoundException.getMessage(),
+					"HTTP 400 Bad Request");
+			throw notFoundException;
 		}
 	}
 
