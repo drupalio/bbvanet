@@ -58,32 +58,32 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 	private String checkState;
 
 	private String checkBookNumber;
-	
+
 	private String sinceDatestr;
 
 	private String toDatestr;
-	
-	private String title =  MessagesHelper.INSTANCE.getString("text.last.movments");
+
+	private String title = MessagesHelper.INSTANCE.getString("text.last.movments");
 
 	private Map<String, Boolean> renderComponents = new HashMap<String, Boolean>();
 
 	private List<MultiValueGroup> multiValueList = new ArrayList<MultiValueGroup>();
-	
+
 	private List<CheckbookDto> checkBookList = new ArrayList<CheckbookDto>();
-	
+
 	private List<CheckDto> checkList = new ArrayList<CheckDto>();
 
 	private CheckDto check = new CheckDto();
 
-	private DateRangeDto dateRange = new DateRangeDto();	
+	private DateRangeDto dateRange = new DateRangeDto();
 
 	@Resource(name = "checkBookFacade")
 	private transient CheckBookFacade checkBookFacade;
 
 	@Resource(name = "multiValueGroupFacade")
 	private transient MultiValueGroupFacade multiValueGroupFacade;
-	
-	SimpleDateFormat dateFormat = new SimpleDateFormat( MessagesHelper.INSTANCE.getStringI18("date.pattner.dd.mm.yyyy"));
+
+	SimpleDateFormat dateFormat = new SimpleDateFormat(MessagesHelper.INSTANCE.getStringI18("date.pattner.dd.mm.yyyy"));
 
 	@PostConstruct
 	public void init() {
@@ -95,35 +95,34 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 
 	@Override
 	public void clean() {
-		
+
 		renderComponents.put(RenderAttributes.CALENDAR.toString(), true);
 		renderComponents.put(RenderAttributes.BUTTONDATE.toString(), true);
 
 		renderComponents.put(RenderAttributes.NUMBERBOOK.toString(), true);
 		renderComponents.put(RenderAttributes.NUMBERCHECK.toString(), true);
 		renderComponents.put(RenderAttributes.BUTTONBOOK.toString(), true);
-		
+
 		renderComponents.put(RenderAttributes.FILTERNUMBERCHECK.toString(), false);
 		renderComponents.put(RenderAttributes.FILTERCHECKBOOK.toString(), false);
-		renderComponents.put(RenderAttributes.FILTERDATE.toString(), false);		
-		
+		renderComponents.put(RenderAttributes.FILTERDATE.toString(), false);
+
 	}
-	
 
 	@Override
 	public void oneSelectDate() {
 		System.out.println("Method oneSelectDate");
-		
+
 		renderComponents.put(RenderAttributes.FILTERDATE.toString(), true);
-		
+
 		if (getSelectDate().equals(CONCRETE_DATE)) {
 			renderComponents.put(RenderAttributes.CALENDAR.toString(), false);
 			renderComponents.put(RenderAttributes.BUTTONDATE.toString(), false);
-	
+
 		} else {
 			renderComponents.put(RenderAttributes.CALENDAR.toString(), true);
 			renderComponents.put(RenderAttributes.BUTTONDATE.toString(), false);
-		
+
 		}
 	}
 
@@ -133,70 +132,77 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 
 		this.dateRange.setDateSince(getSinceDate());
 		this.dateRange.setDateTo(getToDate());
-		if (! (getSinceDate()==(null)) && ! (getToDate()==(null))) {
-			sinceDatestr = "Desde: "+dateFormat.format(getSinceDate());
-			toDatestr = "Hasta: "+dateFormat.format(getToDate());
-		}else{
-			sinceDatestr =getSelectDate();
-		}		
-		System.out.println(getSelectDate());
-		System.out.println(sinceDatestr);
-		System.out.println(toDatestr);		 
+		if (!(getSinceDate() == (null)) && !(getToDate() == (null))) {
+			sinceDatestr = "Desde: " + dateFormat.format(getSinceDate());
+			toDatestr = "Hasta: " + dateFormat.format(getToDate());
+		} else {
+			sinceDatestr = getSelectDate();
+		}
 	}
 
 	@Override
 	public void actionState() {
 		System.out.println("method Action State");
 		if (getActionState().equals(SEARCH_CHECK)) {
-			
+
 			renderComponents.put(RenderAttributes.FILTERNUMBERCHECK.toString(), true);
 			renderComponents.put(RenderAttributes.NUMBERCHECK.toString(), true);
 			renderComponents.put(RenderAttributes.NUMBERBOOK.toString(), false);
 			renderComponents.put(RenderAttributes.BUTTONBOOK.toString(), false);
 
 		} else {
-						
+
 			renderComponents.put(RenderAttributes.FILTERCHECKBOOK.toString(), true);
 			renderComponents.put(RenderAttributes.NUMBERBOOK.toString(), true);
 			renderComponents.put(RenderAttributes.NUMBERCHECK.toString(), false);
 			renderComponents.put(RenderAttributes.BUTTONBOOK.toString(), false);
 		}
 	}
-	
+
 	@Override
-	public void showResults(final ActionEvent event){
-		System.out.println("showResults");					
-		
-		if( renderComponents.get(RenderAttributes.FILTERCHECKBOOK.toString()) ){
-			System.out.println("cheques");			
-			//ToDo servicio que consulta cheques.			
-			System.out.println("check num: " + check.getId() + " check State: " +  EnumCheckStatus.valueOf(Integer.parseInt(getCheckState())) );
-			// this.checkList = checkBookFacade.getCheck(check.getId(), EnumCheckStatus.valueOf(Integer.parseInt(getCheckState())) );
-			setTitle( new String(MessagesHelper.INSTANCE.getString("tex.check.status")) );
+	public void showResults(final ActionEvent event) {
+		System.out.println("showResults");
+
+		if (renderComponents.get(RenderAttributes.FILTERCHECKBOOK.toString())) {
+			System.out.println("cheques");
+			// ToDo servicio que consulta cheques.
+			System.out.println("check num: " + check.getId() + " check State: "
+					+ EnumCheckStatus.valueOf(Integer.parseInt(getCheckState())));
+			// this.checkList = checkBookFacade.getCheck(check.getId(),
+			// EnumCheckStatus.valueOf(Integer.parseInt(getCheckState())) );
+			setTitle(new String(MessagesHelper.INSTANCE.getString("tex.check.status")));
 			renderComponents.put(RenderAttributes.MOVEMENTSTABLE.toString(), false);
 			System.out.println(renderComponents.containsValue(RenderAttributes.MOVEMENTSTABLE.toString()));
 			renderComponents.put(RenderAttributes.CHECKTABLE.toString(), true);
 			clean();
-		}else if(renderComponents.get(RenderAttributes.FILTERNUMBERCHECK.toString()) ){			
+		} else if (renderComponents.get(RenderAttributes.FILTERNUMBERCHECK.toString())) {
 			System.out.println("talonarios");
 			System.out.println("checkbook num: " + getCheckBookNumber());
-			//ToDo servicio que consulta talonarios.
-			//this.checkBookList = checkBookFacade.getCheckbookDto(getCheckBookNumber());
-			setTitle( MessagesHelper.INSTANCE.getString("tex.check.status") );
+			// ToDo servicio que consulta talonarios.
+			// this.checkBookList = checkBookFacade.getCheckbookDto(getCheckBookNumber());
+			setTitle(MessagesHelper.INSTANCE.getString("tex.check.status"));
 			renderComponents.put(RenderAttributes.MOVEMENTSTABLE.toString(), false);
 			renderComponents.put(RenderAttributes.CHECKTABLE.toString(), true);
 			clean();
-		}else if( renderComponents.get( RenderAttributes.FILTERDATE.toString() ) ){
-			//ToDo servicio que consulta cheques por fecha
-			EnumPeriodType periodType = EnumPeriodType.valueOfLabel( this.getSelectDate() );
-			System.out.println("periodType "+periodType);
-			dateRange =  new DateFilterServiceImpl().getPeriodFilter(periodType);
-			System.out.println(dateRange.getDateSince() + "  to "+dateRange.getDateTo());
-			setTitle( MessagesHelper.INSTANCE.getString("tex.check.status") );
+		} else if (renderComponents.get(RenderAttributes.FILTERDATE.toString())) {
+			// ToDo servicio que consulta cheques por fecha
+			EnumPeriodType periodType = EnumPeriodType.valueOfLabel(this.getSelectDate());
+
+			if (!(periodType == (null))) {
+				dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
+			}
+
+			this.checkList = checkBookFacade.getCheckByStatusOrDate(DEFAULT_ACCOUNT, this.dateRange, actionState, null,
+					null);
+			if(checkList.isEmpty()){
+				System.out.println("vacia");
+			}
+
+			setTitle(MessagesHelper.INSTANCE.getString("tex.check.status"));
 			renderComponents.put(RenderAttributes.MOVEMENTSTABLE.toString(), false);
 			renderComponents.put(RenderAttributes.CHECKTABLE.toString(), true);
 			clean();
-		}else{
+		} else {
 			System.out.println("sin filtros");
 		}
 	}
@@ -298,8 +304,6 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 		this.checkBookNumber = checkBookNumber;
 	}
 
-	
-	
 	/**
 	 * @return the sinceDatestr
 	 */
@@ -307,7 +311,6 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 		return sinceDatestr;
 	}
 
-	
 	/**
 	 * @param sinceDatestr the sinceDatestr to set
 	 */
@@ -315,7 +318,6 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 		this.sinceDatestr = sinceDatestr;
 	}
 
-	
 	/**
 	 * @return the toDatestr
 	 */
@@ -323,7 +325,6 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 		return toDatestr;
 	}
 
-	
 	/**
 	 * @param toDatestr the toDatestr to set
 	 */
@@ -338,7 +339,6 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 		return title;
 	}
 
-	
 	/**
 	 * @param title the title to set
 	 */
@@ -374,7 +374,6 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 		this.multiValueList = multiValueList;
 	}
 
-	
 	/**
 	 * @return the checkBookList
 	 */
@@ -382,7 +381,6 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 		return checkBookList;
 	}
 
-	
 	/**
 	 * @param checkBookList the checkBookList to set
 	 */
@@ -390,7 +388,6 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 		this.checkBookList = checkBookList;
 	}
 
-	
 	/**
 	 * @return the checkList
 	 */
@@ -398,7 +395,6 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 		return checkList;
 	}
 
-	
 	/**
 	 * @param checkList the checkList to set
 	 */

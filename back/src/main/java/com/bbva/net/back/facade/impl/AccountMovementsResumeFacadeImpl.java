@@ -1,6 +1,5 @@
 package com.bbva.net.back.facade.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -10,13 +9,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.client.RestClientException;
 
 import com.bbva.czic.dto.net.AccMovementsResume;
-import com.bbva.czic.dto.net.Check;
 import com.bbva.net.back.core.pattern.facade.AbstractBbvaFacade;
 import com.bbva.net.back.core.stereotype.Facade;
 import com.bbva.net.back.facade.AccountMovementsResumeFacade;
-import com.bbva.net.back.mapper.CheckBookMapper;
 import com.bbva.net.back.mapper.GlobalResumeMovementsMapper;
-import com.bbva.net.back.model.checkbook.CheckDto;
 import com.bbva.net.back.model.commons.DateRangeDto;
 import com.bbva.net.back.model.movements.GlobalResumeMovementsDto;
 import com.bbva.net.back.service.FiqlService;
@@ -42,9 +38,6 @@ public class AccountMovementsResumeFacadeImpl extends AbstractBbvaFacade impleme
 
 	@Resource(name = "globalResumeMovementsMapper")
 	private GlobalResumeMovementsMapper globalResumeMovementsMapper;
-
-	@Resource(name = "checkBookMapper")
-	private CheckBookMapper checkBookMapper;
 	
 	@Resource(name = "fiqlService")
 	private FiqlService fiqlService;
@@ -86,17 +79,6 @@ public class AccountMovementsResumeFacadeImpl extends AbstractBbvaFacade impleme
 		return globalMovements;
 	}
 
-	@Override
-	public List<CheckDto> getChecksByAccount(String accountId, DateRangeDto dateRange, String status, String paginationKey, String pageSize) {
-		List<CheckDto> checkList= new ArrayList<CheckDto>();
-		String filter = dateRange == null ? StringUtils.EMPTY : fiqlService.getFiqlQueryByDateRange(dateRange, DATE,
-				DATE);
-		
-		final List<Check> response = this.accountsService.listCheck(accountId, filter, status, paginationKey, pageSize);
-		
-		checkList = checkBookMapper.mapCheck(response);
-		return checkList;
-	}
 
 	/********************************** DEPENDENCY INJECTIONS ***********************************/
 	public void setCustomerService(final CustomerService customerService) {

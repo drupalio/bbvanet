@@ -28,10 +28,10 @@ public class AccountsServiceImpl extends AbstractBbvaRestService implements Acco
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Check> listCheck(String accountId, String filter, String status, String paginationKey,
+	public List<Check> getListCheck(String accountId, String filter, String status, String paginationKey,
 			String pageSize) {
 
-		WebClient wc = getJsonWebClient(URL_BASE_CUSTOMER + accountId + URL_CHECK);
+		WebClient wc = getJsonWebClient(URL_BASE_ACCOUNTS+ accountId + URL_CHECK);
 		if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
 
 		return (List<Check>)wc.getCollection(Check.class);

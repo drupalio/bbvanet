@@ -28,7 +28,7 @@ public interface AccountsService {
 	@GET
 	@Produces("application/json")
 	@Path("/{id}/listChecks")
-	List<Check> listCheck(@PathParam("accountId") String accountId,
+	List<Check> getListCheck(@PathParam("accountId") String accountId,
 			@QueryParam("$filter") @DefaultValue("null") String $filter,
 			@QueryParam("$status") @DefaultValue("null") String $status,
 			@QueryParam("$paginationKey") @DefaultValue("null") String $paginationKey,
