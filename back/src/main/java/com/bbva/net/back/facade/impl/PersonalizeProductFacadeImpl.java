@@ -11,7 +11,9 @@ import com.bbva.net.back.model.globalposition.ProductDto;
 import com.bbva.net.webservices.globalposition.GlobalPositionService;
 
 @Facade(value = "personalizeProductAccountFacade")
-public class PersonalizeProductFacadeImpl extends AbstractBbvaFacade implements PersonalizeProductFacade {
+public class PersonalizeProductFacadeImpl extends AbstractBbvaFacade
+		implements
+			PersonalizeProductFacade {
 
 	private static final long serialVersionUID = -8535409693026365524L;
 
@@ -22,10 +24,17 @@ public class PersonalizeProductFacadeImpl extends AbstractBbvaFacade implements 
 	@Resource(name = "personalizeProductMapper")
 	private PersonalizeAccountProductMapper personalizeAccountProductMapper;
 
+	private Product product;
+
 	@Override
-	public void setUpdate(String idProduct, ProductDto productDto) {
-		Product product = personalizeAccountProductMapper.map(productDto);
+	public void updateProductOperability(String idProduct, ProductDto productDto) {
+		this.product = personalizeAccountProductMapper.map(productDto);
 		this.globalPositionService.updateProductOperability(idProduct, product);
+	}
+
+	@Override
+	public void updateProductVisibility(String idProduct, ProductDto productDto) {
+		this.product = personalizeAccountProductMapper.map(productDto);
 		this.globalPositionService.updateProductVisibility(idProduct, product);
 	}
 

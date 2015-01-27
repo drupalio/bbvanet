@@ -91,10 +91,13 @@ public class PersonalizeProductAccountControllerImpl
 	@Override
 	public void operKey() {
 		productDto.setVisible(isSearch());
-		productDto.setOperationOnline(isOperation());
-		this.personalizeProductAccountFacade.setUpdate(
+		this.personalizeProductAccountFacade.updateProductVisibility(
 				productDto.getProductId(), productDto);
-		System.out.println("ffff" + productDto.getOperationOnline());
+
+		productDto.setOperationOnline(isOperation());
+		this.personalizeProductAccountFacade.updateProductOperability(
+				productDto.getProductId(), productDto);
+
 		this.menOperationKey = true;
 	}
 
