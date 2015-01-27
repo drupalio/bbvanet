@@ -15,5 +15,20 @@
 	<import resource="classpath*:META-INF/spring/*.xml" />
 	
 	<context:property-placeholder location="*.properties" />
+	
+	<bean id="factoryBean" class="org.apache.cxf.jaxrs.client.JAXRSClientFactoryBean">
+		<aop:scoped-proxy />
+		<property name="providers">
+			<list>
+				<bean class="org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider">
+					<constructor-arg ref="jacksonObjectMapper" />
+					<constructor-arg>
+						<value></value>
+					</constructor-arg>
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
 
 </beans>
