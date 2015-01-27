@@ -11,9 +11,7 @@ import com.bbva.net.back.model.quota.QuotaDetailDto;
 import com.bbva.net.webservices.loan.LoanService;
 
 @Facade(value = "quotaDetailFacade")
-public class QuotaDetailFacadeImpl extends AbstractBbvaFacade
-		implements
-			QuotaDetailFacade {
+public class QuotaDetailFacadeImpl extends AbstractBbvaFacade implements QuotaDetailFacade {
 
 	/**
 	 * 

@@ -2,8 +2,7 @@ package com.bbva.czic.dto.net;
 
 public enum EnumFundsType {
 
-	plusValue,
-	guaranteedValue;
+	FA, BD, BF, PA, BP, FN, FC, FE, FZ, AN, FG, MD, FR, FB;
 
 	public String value() {
 		return name();
