@@ -5552,7 +5552,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 }
 
 */
-</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200"><con:settings/></con:response></con:restMockAction><con:restMockAction name="/czic/customers/V01/123/accounts/movementsResume" method="GET" resourcePath="/czic/customers/V01/123/accounts/movementsResume"><con:settings/><con:defaultResponse>No_Filter_response</con:defaultResponse><con:dispatchStyle>SCRIPT</con:dispatchStyle><con:dispatchPath>def requestMock = mockRequest.getRequest().toString()
+</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200"><con:settings/><con:responseContent/></con:response></con:restMockAction><con:restMockAction name="/czic/customers/V01/123/accounts/movementsResume" method="GET" resourcePath="/czic/customers/V01/123/accounts/movementsResume"><con:settings/><con:defaultResponse>No_Filter_response</con:defaultResponse><con:dispatchStyle>SCRIPT</con:dispatchStyle><con:dispatchPath>def requestMock = mockRequest.getRequest().toString()
 log.info "*** "+requestMock
 if( requestMock.contains("filter") )
 {
