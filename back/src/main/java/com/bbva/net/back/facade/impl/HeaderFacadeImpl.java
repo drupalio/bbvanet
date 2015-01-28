@@ -8,6 +8,7 @@ import com.bbva.net.back.core.stereotype.Facade;
 import com.bbva.net.back.facade.HeaderFacade;
 import com.bbva.net.back.mapper.ExecutiveMapper;
 import com.bbva.net.back.model.executive.ExecutiveDto;
+import com.bbva.net.back.service.FiqlService;
 import com.bbva.net.webservices.executives.ExecutiveService;
 
 @Facade(value = "headerFacade")
@@ -24,9 +25,14 @@ public class HeaderFacadeImpl extends AbstractBbvaFacade implements HeaderFacade
 	@Resource(name = "executiveMapper")
 	private ExecutiveMapper mapper;
 
+	@Resource(name = "fiqlService")
+	private FiqlService fiqlService;
+
 	@Override
-	public ExecutiveDto getExecutive() {
-		final Executive executive = this.executiveService.getExecutive(null, null, null, null);
+	public ExecutiveDto getExecutive(String user) {
+
+		final String filter = fiqlService.getCustomerFiql(user);
+		final Executive executive = this.executiveService.getExecutive(filter, null, null, null);
 		return mapper.map(executive);
 	}
 

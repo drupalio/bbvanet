@@ -20,13 +20,18 @@ public interface SrvGlobalPositionV01 {
     @GET
     @Produces("application/json")
     @Path("/customers/{customerId}/products")
-    Response getExtractGlobalBalance(@PathParam("customerId") String customerId, @QueryParam("$filter") @DefaultValue("(productType=={productType})") String $filter, @QueryParam("$fields") @DefaultValue("null") String $fields, @QueryParam("$expands") @DefaultValue("null") String $expands, 
-                @QueryParam("$sort") @DefaultValue("null") String $sort);
+    Response getExtractGlobalBalance(@PathParam("customerId") String customerId, @QueryParam("$filter") @DefaultValue("null") String $filter);
 
     @PUT
     @Consumes("application/json")
     @Produces("application/json")
-    @Path("/{idProduct}")
-    Response update(@PathParam("idProduct") String idProduct, Product product);
+    @Path("/{idProduct}/setProductOperability")
+    Response updateProductOperability(@PathParam("idProduct") String idProduct, Product product);
+
+    @PUT
+    @Consumes("application/json")
+    @Produces("application/json")
+    @Path("/{idProduct}/setProductVisibility")
+    Response updateProductVisibility(@PathParam("idProduct") String idProduct, Product product);
 
 }

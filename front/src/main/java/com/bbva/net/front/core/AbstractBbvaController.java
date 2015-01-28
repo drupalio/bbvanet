@@ -30,7 +30,7 @@ public abstract class AbstractBbvaController implements Serializable {
 
 	private static final long serialVersionUID = -4820146844257478597L;
 
-	protected String DEFAULT_USER = "123";
+	protected String DEFAULT_USER = "12345678";
 
 	protected String DEFAULT_ACCOUNT = "123";
 
