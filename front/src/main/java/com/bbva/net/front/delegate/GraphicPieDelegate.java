@@ -18,7 +18,8 @@ public interface GraphicPieDelegate {
 	/**
 	 * Converts rest DTO response to situation pie UI object
 	 * 
-	 * @param globalProducts (rest DTO response)
+	 * @param globalProducts
+	 *            (rest DTO response)
 	 * @return
 	 */
 	SituationPiesUI getSituationGlobalProducts(GlobalProductsDto globalProducts);
@@ -28,7 +29,7 @@ public interface GraphicPieDelegate {
 	 * @return
 	 */
 
-	PieConfigUI getAccountsfundsProducts(List<FundDto> funds);
+	public PieConfigUI getAccountsfundsProducts(final GlobalProductsDto globalProducts);
 
 	/**
 	 * 
