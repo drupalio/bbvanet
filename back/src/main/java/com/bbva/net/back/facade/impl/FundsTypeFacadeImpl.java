@@ -12,9 +12,7 @@ import com.bbva.net.back.model.commons.Money;
 import com.bbva.net.back.model.globalposition.FundDto;
 
 @Facade(value = "fundsTypeFacade")
-public class FundsTypeFacadeImpl extends AbstractBbvaFacade
-		implements
-			FundsTypeFacade {
+public class FundsTypeFacadeImpl extends AbstractBbvaFacade implements FundsTypeFacade {
 
 	/**
 	 * 
