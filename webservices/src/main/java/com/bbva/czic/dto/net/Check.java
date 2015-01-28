@@ -44,11 +44,11 @@ public class Check {
 
     protected String id;
     @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar issueDate;
+    protected String issueDate;
     protected Money value;
     protected String status;
     @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar modifiedDate;
+    protected String modifiedDate;
 
     /**
      * Gets the value of the id property.
@@ -82,7 +82,7 @@ public class Check {
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public XMLGregorianCalendar getIssueDate() {
+    public String getIssueDate() {
         return issueDate;
     }
 
@@ -94,7 +94,7 @@ public class Check {
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public void setIssueDate(XMLGregorianCalendar value) {
+    public void setIssueDate(String value) {
         this.issueDate = value;
     }
 
@@ -154,7 +154,7 @@ public class Check {
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public XMLGregorianCalendar getModifiedDate() {
+    public String getModifiedDate() {
         return modifiedDate;
     }
 
@@ -166,7 +166,7 @@ public class Check {
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public void setModifiedDate(XMLGregorianCalendar value) {
+    public void setModifiedDate(String value) {
         this.modifiedDate = value;
     }
 

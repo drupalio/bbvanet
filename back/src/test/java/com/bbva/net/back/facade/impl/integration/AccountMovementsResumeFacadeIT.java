@@ -13,6 +13,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.bbva.net.back.facade.AccountMovementsResumeFacade;
+import com.bbva.net.back.model.checkbook.CheckDto;
 import com.bbva.net.back.model.commons.DateRangeDto;
 import com.bbva.net.back.model.movements.GlobalResumeMovementsDto;
 
@@ -35,6 +36,11 @@ public class AccountMovementsResumeFacadeIT {
 
 		Assert.assertNotNull(resume.getMovementsResumeDto().get(0));
 
+	}
+	
+	@Test
+	public void listCheckOk(){
+		final CheckDto cheques;
 	}
 
 	@Test(expected = ClientErrorException.class)
