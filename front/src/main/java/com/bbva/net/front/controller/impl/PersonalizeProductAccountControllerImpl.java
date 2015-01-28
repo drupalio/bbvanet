@@ -39,7 +39,7 @@ public class PersonalizeProductAccountControllerImpl
 		this.personalizeProductAccountDto = new PersonalizeAccountDto();
 		this.productDto = new ProductDto();
 		this.menOperationKey = false;
-		menSuccessful = false;
+		this.menSuccessful = false;
 	}
 
 	@Override
@@ -47,10 +47,10 @@ public class PersonalizeProductAccountControllerImpl
 		super.setSelectedProduct(selectedProduct);
 	}
 
-	public ProductDto getProduct() {
+	public ProductDto getSelectedProduct() {
 		this.productDto = super.getSelectedProduct();
-		this.search = productDto.isVisible();
-		this.operation = productDto.getOperationOnline();
+		setSearch(productDto.isVisible());
+		setOperation(productDto.getOperationOnline());
 		return productDto;
 
 	}
@@ -87,27 +87,40 @@ public class PersonalizeProductAccountControllerImpl
 	/**
 	 * Metodo que muestra el div de confirmación de contraseña (divOperationKey)
 	 * y trae los datos del product seleccionado
+	 * @throws Exception 
 	 */
 	@Override
-	public void operKey() {
+	public void operKey() throws Exception {
 		productDto.setVisible(isSearch());
-		this.personalizeProductAccountFacade.updateProductVisibility(
-				productDto.getProductId(), productDto);
-
 		productDto.setOperationOnline(isOperation());
-		this.personalizeProductAccountFacade.updateProductOperability(
-				productDto.getProductId(), productDto);
 
-		this.menOperationKey = true;
+		try {
+			this.personalizeProductAccountFacade.updateProductVisibility(
+					productDto.getProductId(), productDto);
+			this.personalizeProductAccountFacade.updateProductOperability(
+					productDto.getProductId(), productDto);
+			this.menOperationKey = true;
+		} catch (Exception e) {
+			throw e;
+		}
 	}
-
 	/**
 	 * Metodo que esconde el mensaje "Successful" cuando se le da click a un
 	 * boton del comboButton
 	 */
 	@Override
-	public void offMessage(AjaxBehaviorEvent event) {
+	public void offMessageSuccesful(AjaxBehaviorEvent event) {
 		this.menSuccessful = false;
+	}
+
+	/**
+	 * Metodo que esconde el mensaje "OperKey" cuando se le da click a un boton
+	 * del comboButton
+	 */
+
+	@Override
+	public void offMessageOpenKey(AjaxBehaviorEvent event) {
+		this.menOperationKey = false;
 	}
 
 	public boolean isOperation() {

@@ -164,9 +164,9 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController
 		this.situationGraphicPieUI = graphicPieDelegate
 				.getSituationGlobalProducts(this.globalProductsDTO);
 
-		// // Calculate investmentFunds graphics panels
-		// this.graphicPieInvestmentFunds = graphicPieDelegate
-		// .getAccountsfundsProducts(this.globalProductsDTO);
+		// Calculate investmentFunds graphics panels
+		this.graphicPieInvestmentFunds = graphicPieDelegate
+				.getAccountsfundsProducts(globalProductsDTO);
 
 		// Calculate cards graphics panel
 
@@ -187,7 +187,6 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController
 				.getNamesProducts(globalProductsDTO);
 
 	}
-
 	/**
 	 * 
 	 */

@@ -205,12 +205,11 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 	}
 
 	@Override
-	public PieConfigUI getAccountsfundsProducts(
-			final GlobalProductsDto globalProducts) {
+	public PieConfigUI getAccountsfundsProducts(final GlobalProductsDto globalProducts) {
 
 		final PieConfigUI fundsPie = new PieConfigUI();
 		final List<PieItemUI> fundsPieItems = new ArrayList<PieItemUI>();
-
+		
 		final List<ProductDto> productList = productService
 				.getProducts(globalProducts);
 
