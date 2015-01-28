@@ -16,7 +16,7 @@ public class Money implements Dto {
 	private static final long serialVersionUID = -4589862928168820463L;
 
 	private String symbol = "$";
-	
+
 	private String currency;
 
 	private BigDecimal amount;

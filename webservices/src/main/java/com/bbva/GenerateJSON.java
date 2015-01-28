@@ -19,9 +19,9 @@
 //
 //	public static void main(String[] args) {
 //		Gson gson = new Gson();
-//		String checkJSON = gson.toJson(getCheck());
+//		String checkJSON = gson.toJson(getCheckList());
 //		System.out.println(checkJSON);
-//		getCheck();
+//		getCheckList();
 //	}
 //
 //	

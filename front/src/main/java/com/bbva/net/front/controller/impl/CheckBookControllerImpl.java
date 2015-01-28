@@ -205,7 +205,7 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 				dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
 			}
 			// ToDo DEFAULT_ACCOUNT accountId
-			this.checkList = checkBookFacade.getCheckByStatusOrDate(DEFAULT_ACCOUNT, this.dateRange, actionState, null,
+			this.checkList = checkBookFacade.getCheckByStatusOrDate("12345678", this.dateRange, actionState, null,
 					null);
 
 			setTitle(MessagesHelper.INSTANCE.getString("tex.check.status"));
