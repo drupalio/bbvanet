@@ -49,25 +49,36 @@ public class CheckBookFacadeImpl extends AbstractBbvaFacade implements CheckBook
 	private String DATE;
 
 	@Override
-	public List<CheckDto> getCheckById(final String idCheck) {
-		final List<Check> checks = this.checkBookService.getChecks(idCheck, null, null, null, null);
-		return checkBookMapper.mapCheck(checks);
+	public CheckDto getCheckById(final String idCheck) {
+		final Check check = this.checkBookService.getChecks(idCheck, null, null, null, null);
+		return checkBookMapper.mapCheck(check);
 	}
-
-	@Override
-	public List<CheckbookDto> getCheckbookDto(String checkbookId) {
-		final List<Checkbook> checkBooks = this.checkBookService.getCheckbooks(checkbookId, null, null, null, null);
-		return checkBookMapper.mapCheckBook(checkBooks);
-	}
-
+	
+	/***
+	 * 
+	 * month=ge=2014-12-27;month=le=2015-01-27
+	 * /accounts/V01/{accountId}/listChecks?$filter=((check.issueDate=ge={startDate};check.issueDate=le={endDate}),check.status={status})&paginationKey={paginationKey}&pageSize={pageSize}"  
+	 * 
+	 */
 	@Override
 	public List<CheckDto> getCheckByStatusOrDate(String accountId, DateRangeDto dateRange, String status,
-			String paginationKey, String pageSize) {		
+			Integer paginationKey, Integer pageSize) {
 		String filter = dateRange == null ? StringUtils.EMPTY : fiqlService.getFiqlQueryByDateRange(dateRange, DATE,
 				DATE);
 
-		final List<Check> response = this.accountService.getListCheck(accountId, filter, status, paginationKey,
-				pageSize);
-		return checkBookMapper.mapCheck(response);
+		final List<Check> response = this.accountService.listCheck(accountId, filter, paginationKey, pageSize);
+		return checkBookMapper.mapCheckList(response);
+	}
+
+	@Override
+	public CheckbookDto getCheckBookByAccountId(String accountId, String checkBookId) {
+		final Checkbook response = this.accountService.getCheckbook(checkBookId, accountId);
+		return checkBookMapper.mapCheckBook(response);
+	}
+	
+	@Override
+	public List<CheckbookDto> getCheckBooksById(String checkBookId) {
+		final List<Checkbook> response = this.checkBookService.getCheckbooks(checkBookId, null, null, null,null);
+		return checkBookMapper.mapCheckBookList(response);
 	}
 }

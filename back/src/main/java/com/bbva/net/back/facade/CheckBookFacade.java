@@ -15,21 +15,13 @@ import com.bbva.net.back.model.commons.DateRangeDto;
 public interface CheckBookFacade {
 
 	/**
-	 * Method to get a list of checks giving id Check and status
+	 * Method to get a check giving id Check
 	 * 
 	 * @param idCheck
-	 * @return List<Check>
+	 * @return Check
 	 */
-	List<CheckDto> getCheckById(String idCheck);
+	CheckDto getCheckById(final String idCheck); 
 
-	/**
-	 * Method to get a list of checkbook giving id account
-	 * 
-	 * @param idCheck
-	 * @return List<CheckbookDto>
-	 */
-
-	List<CheckbookDto> getCheckbookDto(String idCheck);
 
 	/**
 	 * Method to get a list of checks giving id Check and status
@@ -38,7 +30,8 @@ public interface CheckBookFacade {
 	 * @return List<Check>
 	 */
 	List<CheckDto> getCheckByStatusOrDate(String accountId, DateRangeDto dateRange, String status,
-			String paginationKey, String pageSize);
+			Integer paginationKey, Integer pageSize);
+	
 	
 	
 	/**
@@ -47,5 +40,12 @@ public interface CheckBookFacade {
 	 * @param checkBookId
 	 * @return CheckBookDto
 	 */
-	CheckbookDto getCheckBookById(String accountId,String checkBookId);	
+	CheckbookDto getCheckBookByAccountId(String accountId,String checkBookId);
+
+	/**
+	 * Method to search a checkBook by criteria
+	 * @param checkBookId
+	 * @return List CheckBookDto
+	 */
+	List<CheckbookDto> getCheckBooksById(String checkBookId);	
 }

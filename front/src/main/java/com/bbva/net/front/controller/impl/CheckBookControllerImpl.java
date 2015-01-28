@@ -69,13 +69,19 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 
 	private List<MultiValueGroup> multiValueList = new ArrayList<MultiValueGroup>();
 
-	private List<CheckbookDto> checkBookList = new ArrayList<CheckbookDto>();
+	private CheckbookDto checkBook = new CheckbookDto();
 
 	private List<CheckDto> checkList = new ArrayList<CheckDto>();
+
+	private List<CheckbookDto> checkBookList;
 
 	private CheckDto check = new CheckDto();
 
 	private DateRangeDto dateRange = new DateRangeDto();
+
+	private String leftTitle;
+
+	private String rightTitle;
 
 	@Resource(name = "checkBookFacade")
 	private transient CheckBookFacade checkBookFacade;
@@ -90,7 +96,16 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 		this.multiValueList = this.getListMultiValueChecks();
 		renderComponents.put(RenderAttributes.MOVEMENTSTABLE.toString(), true);
 		renderComponents.put(RenderAttributes.CHECKTABLE.toString(), false);
+		if (checkBookList == null) {
+			initCheckBookList();
+		}
 		clean();
+	}
+
+	public List<CheckbookDto> initCheckBookList() {
+		checkBookList = new ArrayList<CheckbookDto>();
+		// checkBookList = checkBookFacade.
+		return checkBookList;
 	}
 
 	@Override
@@ -168,35 +183,30 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 			// ToDo servicio que consulta cheques.
 			System.out.println("check num: " + check.getId() + " check State: "
 					+ EnumCheckStatus.valueOf(Integer.parseInt(getCheckState())));
-			// this.checkList = checkBookFacade.getCheck(check.getId(),
-			// EnumCheckStatus.valueOf(Integer.parseInt(getCheckState())) );
+			this.check = checkBookFacade.getCheckById(check.getId());
 			setTitle(new String(MessagesHelper.INSTANCE.getString("tex.check.status")));
 			renderComponents.put(RenderAttributes.MOVEMENTSTABLE.toString(), false);
-			System.out.println(renderComponents.containsValue(RenderAttributes.MOVEMENTSTABLE.toString()));
 			renderComponents.put(RenderAttributes.CHECKTABLE.toString(), true);
+			
 			clean();
 		} else if (renderComponents.get(RenderAttributes.FILTERNUMBERCHECK.toString())) {
 			System.out.println("talonarios");
 			System.out.println("checkbook num: " + getCheckBookNumber());
-			// ToDo servicio que consulta talonarios.
-			// this.checkBookList = checkBookFacade.getCheckbookDto(getCheckBookNumber());
+			// ToDo DEFAULT_ACCOUNT accountId
+			// this.checkBookList = checkBookFacade.getCheckBooksById(getCheckBookNumber());
 			setTitle(MessagesHelper.INSTANCE.getString("tex.check.status"));
 			renderComponents.put(RenderAttributes.MOVEMENTSTABLE.toString(), false);
 			renderComponents.put(RenderAttributes.CHECKTABLE.toString(), true);
 			clean();
 		} else if (renderComponents.get(RenderAttributes.FILTERDATE.toString())) {
-			// ToDo servicio que consulta cheques por fecha
 			EnumPeriodType periodType = EnumPeriodType.valueOfLabel(this.getSelectDate());
 
 			if (!(periodType == (null))) {
 				dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
 			}
-
+			// ToDo DEFAULT_ACCOUNT accountId
 			this.checkList = checkBookFacade.getCheckByStatusOrDate(DEFAULT_ACCOUNT, this.dateRange, actionState, null,
 					null);
-			if(checkList.isEmpty()){
-				System.out.println("vacia");
-			}
 
 			setTitle(MessagesHelper.INSTANCE.getString("tex.check.status"));
 			renderComponents.put(RenderAttributes.MOVEMENTSTABLE.toString(), false);
@@ -215,9 +225,17 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 	@Override
 	public void setNumberCheckOrBook(final ActionEvent event) {
 		System.out.println("setNumberCheckOrBook");
-		EnumCheckStatus.valueOf(Integer.parseInt(getCheckState()));
-		System.out.println(check.getId() + " C.E " + EnumCheckStatus.valueOf(Integer.parseInt(getCheckState())) + "  "
-				+ getCheckBookNumber());
+
+		if (renderComponents.get(RenderAttributes.FILTERNUMBERCHECK.toString())) {
+			leftTitle = " Talonario: " + getCheckBookNumber();
+
+		} else {
+			EnumCheckStatus.valueOf(Integer.parseInt(getCheckState()));
+			leftTitle = " Nº Cheque " + check.getId();
+			System.out.println(check.getId() + " C.E " + EnumCheckStatus.valueOf(Integer.parseInt(getCheckState())));
+
+		}
+
 	}
 
 	/**
@@ -375,17 +393,17 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 	}
 
 	/**
-	 * @return the checkBookList
+	 * @return the checkBook
 	 */
-	public List<CheckbookDto> getCheckBookList() {
-		return checkBookList;
+	public CheckbookDto getCheckBookList() {
+		return checkBook;
 	}
 
 	/**
-	 * @param checkBookList the checkBookList to set
+	 * @param checkBookList the checkBook to set
 	 */
-	public void setCheckBookList(List<CheckbookDto> checkBookList) {
-		this.checkBookList = checkBookList;
+	public void setCheckBookList(CheckbookDto checkBook) {
+		this.checkBook = checkBook;
 	}
 
 	/**
@@ -400,6 +418,13 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 	 */
 	public void setCheckList(List<CheckDto> checkList) {
 		this.checkList = checkList;
+	}
+
+	/**
+	 * @param checkBookList the checkBookList to set
+	 */
+	public void setCheckBookList(List<CheckbookDto> checkBookList) {
+		this.checkBookList = checkBookList;
 	}
 
 	/**
@@ -457,4 +482,33 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 	public void setMultiValueGroupFacade(MultiValueGroupFacade multiValueGroupFacade) {
 		this.multiValueGroupFacade = multiValueGroupFacade;
 	}
+
+	/**
+	 * @return the leftTitle
+	 */
+	public String getLeftTitle() {
+		return leftTitle;
+	}
+
+	/**
+	 * @param leftTitle the leftTitle to set
+	 */
+	public void setLeftTitle(String leftTitle) {
+		this.leftTitle = leftTitle;
+	}
+
+	/**
+	 * @return the rightTitle
+	 */
+	public String getRightTitle() {
+		return rightTitle;
+	}
+
+	/**
+	 * @param rightTitle the rightTitle to set
+	 */
+	public void setRightTitle(String rightTitle) {
+		this.rightTitle = rightTitle;
+	}
+
 }

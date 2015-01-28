@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import com.bbva.czic.dto.net.AccMovementsResume;
 import com.bbva.czic.dto.net.Account;
 import com.bbva.czic.dto.net.Check;
+import com.bbva.czic.dto.net.Checkbook;
 import com.bbva.czic.dto.net.MonthlyBalances;
 import com.bbva.net.webservices.accounts.AccountsService;
 import com.bbva.net.webservices.core.pattern.AbstractBbvaRestService;
@@ -28,8 +29,7 @@ public class AccountsServiceImpl extends AbstractBbvaRestService implements Acco
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Check> getListCheck(String accountId, String filter, String status, String paginationKey,
-			String pageSize) {
+	public List<Check> listCheck(String accountId, String filter, Integer paginationKey, Integer pageSize){
 
 		WebClient wc = getJsonWebClient(URL_BASE_ACCOUNTS+ accountId + URL_CHECK);
 		if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
@@ -53,5 +53,12 @@ public class AccountsServiceImpl extends AbstractBbvaRestService implements Acco
 		wc.query("filtro", $filter);
 		return (List<AccMovementsResume>)wc.getCollection(AccMovementsResume.class);
 	}
+
+	@Override
+	public Checkbook getCheckbook(String checkbookId, String accountId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

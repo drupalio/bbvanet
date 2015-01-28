@@ -6368,4 +6368,192 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"contract": {
 		"number": "31543576655"
 	}
+}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/accounts/V01/123/listChecks" method="GET" resourcePath="/czic/accounts/V01/123/listChecks"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
+	"id": "3050152441",
+	"issueDate": "08/07/2014",
+	"value": {
+		"amount": 5845782661,
+		"currency": "COP"
+	},
+	"status": "HABILITADO",
+	"modifiedDate": "20/08/2014"
+},
+{
+	"id": "5774910591",
+	"issueDate": "06/12/2014",
+	"value": {
+		"amount": 15459415291,
+		"currency": "COP"
+	},
+	"status": "HABILITADO",
+	"modifiedDate": "22/12/2014"
+},
+{
+	"id": "19764065901",
+	"issueDate": "26/01/2014",
+	"value": {
+		"amount": 15200177731,
+		"currency": "COP"
+	},
+	"status": "HABILITADO",
+	"modifiedDate": "21/05/2014"
+},
+{
+	"id": "6601116441",
+	"issueDate": "12/06/2014",
+	"value": {
+		"amount": 14753228761,
+		"currency": "COP"
+	},
+	"status": "HABILITADO",
+	"modifiedDate": "23/11/2014"
+},
+{
+	"id": "15130359301",
+	"issueDate": "04/05/2014",
+	"value": {
+		"amount": 3841971591,
+		"currency": "COP"
+	},
+	"status": "HABILITADO",
+	"modifiedDate": "06/09/2014"
+},
+{
+	"id": "18672271181",
+	"issueDate": "05/05/2014",
+	"value": {
+		"amount": 12747129901,
+		"currency": "COP"
+	},
+	"status": "HABILITADO",
+	"modifiedDate": "20/10/2014"
+},
+{
+	"id": "20144157371",
+	"issueDate": "17/04/2014",
+	"value": {
+		"amount": 14968518451,
+		"currency": "COP"
+	},
+	"status": "HABILITADO",
+	"modifiedDate": "28/06/2014"
+},
+{
+	"id": "3888831041",
+	"issueDate": "22/08/2014",
+	"value": {
+		"amount": 15176427881,
+		"currency": "COP"
+	},
+	"status": "HABILITADO",
+	"modifiedDate": "25/09/2014"
+},
+{
+	"id": "20332293001",
+	"issueDate": "20/03/2014",
+	"value": {
+		"amount": 11522923841,
+		"currency": "COP"
+	},
+	"status": "HABILITADO",
+	"modifiedDate": "24/09/2014"
+},
+{
+	"id": "18163919721",
+	"issueDate": "04/08/2014",
+	"value": {
+		"amount": 14138756631,
+		"currency": "COP"
+	},
+	"status": "HABILITADO",
+	"modifiedDate": "10/10/2014"
+}]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/checkbooks/V01/checks/123456" method="GET" resourcePath="/czic/checkbooks/V01/checks/123456"><con:settings/><con:defaultResponse xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="Response Check" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
+	"id": "1898436360",
+	"issueDate": "09/07/2014",
+	"value": {
+		"amount": 14452429331,
+		"currency": "COP"
+	},
+	"status": "HABILITADO",
+	"modifiedDate": "21/08/2015"
 }</con:responseContent></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

@@ -39,18 +39,43 @@
 //		DataFactory dataFactory = new DataFactory();
 //		
 //		checkBook.setActualState(EnumCheckbookStatus.HABILITADO);
-//		checkBook.setDeliveryDate(value);
+//		//checkBook.setDeliveryDate(value);
 //		checkBook.setFirstCheck(dataFactory.getNumberUpTo(10));
 //		checkBook.setId(dataFactory.getNumberUpTo(10)+"");
 //		checkBook.setLastCheck(dataFactory.getNumberUpTo(10));
-//		checkBook.setRequestDate(value);
+//		//checkBook.setRequestDate(value);
 //		checkBook.setTotalCheck(dataFactory.getNumberUpTo(10));
 //		return checkBook;
 //		
 //	}
 //	
+//
+//	public static <E> Check getCheck() {
+//		Check check = new Check();
+//		DataFactory dataFactory = new DataFactory();
+//		Date minDate = dataFactory.getDate(2014, 1, 1);
+//		Date maxDate = new Date();
+//		Date start = dataFactory.getDateBetween(minDate, maxDate);			
+//		Date end = dataFactory.getDateBetween(start, maxDate);
+//		Money money = new Money() ;
+//		
+//		
+//		
+//		check.setId(new Random().nextInt(Integer.MAX_VALUE)+"");
+//		check.setIssueDate(dateToSring(start));
+//		check.setModifiedDate(dateToSring(end));
+//		check.setStatus("HABILITADO");
+//		money.setAmount(new BigDecimal(new Random().nextInt(Integer.MAX_VALUE)+"1"));
+//		money.setCurrency("COP");
+//		check.setValue(money);
+//
+//		return check;
+//		
+//	}
 //	
-//	public static <E> List<Check> getCheck() {		
+//	
+//	
+//	public static <E> List<Check> getCheckList() {		
 //		
 //		DataFactory dataFactory = new DataFactory();
 //		Date minDate = dataFactory.getDate(2014, 1, 1);

@@ -26,9 +26,15 @@
 
 <composite:implementation>
 
+
 	<li class="#{cc.attrs.classList}"><a class="header"> <span
-			class="#{cc.attrs.classSpan}">#{cc.attrs.title} <span
-				class="#{cc.attrs.classSpanFilter}"></span>
+			class="#{cc.attrs.classSpan}"> <span
+				class="#{cc.attrs.classSpanFilter}">#{cc.attrs.title}</span> <span
+				class="filter"><span class="filter-title">#{cc.attrs.filterTitle}</span><span
+					class="filter-message">#{cc.attrs.filterMessage}</span> </span> <span
+				class="filter"><span class="filter-title">#{cc.attrs.filterTitle2}</span><span
+					class="filter-message">#{cc.attrs.filterMessage2}</span> </span>
+
 		</span>
 	</a> <composite:insertChildren></composite:insertChildren></li>
 </composite:implementation>
