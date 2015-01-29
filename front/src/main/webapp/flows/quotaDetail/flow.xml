@@ -6,14 +6,19 @@
 	
 	<var name="quotaController" class="com.bbva.net.front.controller.impl.QuotaControllerImpl"/>
 	<var name="accountsController" class="com.bbva.net.front.controller.impl.AccountsControllerImpl"/>
+	<var name="personalizeProductAccountController" class="com.bbva.net.front.controller.impl.PersonalizeProductAccountControllerImpl"/>
 	
 	<on-start>
 		<evaluate expression="accountsController.getCustomerAccounts()" result="flowScope.customerAccounts" />	
 		<evaluate expression="quotaController.getAllConditions()" result="flowScope.allConditions" />
+		<evaluate expression="personalizeProductAccountController.getSelectedProduct()" result="flowScope.product"/>
 	</on-start>
 	
 	<view-state id="quotaDetail">
-		
+		<on-entry>
+			<set name="flowScope.menuActive" value="'LOANS'" />
+			<evaluate expression="new java.lang.String()"/>
+		</on-entry>
 	</view-state>
 	
 </flow>

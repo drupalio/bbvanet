@@ -17,17 +17,17 @@ import org.springframework.web.client.RestTemplate;
 
 public abstract class AbstractBbvaRestService {
 
-	@Value("${rest.base.url}")
-	protected String URL_BASE;
-
-	@Value("${rest.base.customer.url}")
-	protected String URL_BASE_CUSTOMER;
-
 	@Resource(name = "restTemplate")
 	protected RestTemplate restTemplate;
 
 	@Resource(name = "factoryBean")
 	private JAXRSClientFactoryBean factoryBean;
+
+	@Value("${rest.base.url}")
+	protected String URL_BASE;
+
+	@Value("${rest.base.customer.url}")
+	protected String URL_BASE_CUSTOMER;
 
 	@Value("${rest.rotaryQuota.base}")
 	protected String URL_BASE_ROTARYQUOTA;
@@ -46,6 +46,9 @@ public abstract class AbstractBbvaRestService {
 
 	@Value("${rest.accounts.url}")
 	protected String URL_ACCOUNTS;
+	
+	@Value("${rest.check.url}")
+	protected String URL_CHECK;
 
 	/**
 	 * @param response
@@ -76,6 +79,8 @@ public abstract class AbstractBbvaRestService {
 		factoryBean.setAddress(URL);
 		final WebClient webClient = factoryBean.createWebClient();
 		webClient.accept("application/json").type("application/json");
+		factoryBean.getInInterceptors();
+
 		return webClient;
 
 	}

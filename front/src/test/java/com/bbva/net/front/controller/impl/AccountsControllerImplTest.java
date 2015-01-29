@@ -17,7 +17,7 @@ import com.bbva.net.back.model.globalposition.AccountDto;
  */
 public class AccountsControllerImplTest {
 
-	private static final String DEFAULT_USER = "123";
+	private static final String DEFAULT_USER = "12345678";
 
 	private AccountsControllerImpl accountsController;
 

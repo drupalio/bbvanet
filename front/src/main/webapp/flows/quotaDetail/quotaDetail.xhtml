@@ -34,60 +34,9 @@
 	</ui:define>
 
 	<ui:define name="contentLeft">
-#{prueba}
 		<bbvaQuotaHeader:quotaDetailContent>
-			<bbvaQuotaHeader:quotaDetail>#{msg['title.accountsPersonal']}
-			<bbvaQuotaHeader:quotaDetailHeader>
-					<bbvaQuotaHeader:quotaDetailHeaderLeft
-						alias="#{msg['title.quotaAlias']}"
-						numCuenta="#{quotaController.quotaDetailDto.id}"
-						tipoPrestamo="#{msg['title.rotaryQuota']}" />
-					<bbvaQuotaHeader:quotaDetailGraphic
-						textUp="#{msg['text.outstandingBalance']}"
-						valueUp="#{quotaController.quotaDetailDto.outstandingBalance}"
-						textDown="#{msg['text.amountRequested']}"
-						valueDown="#{quotaController.quotaDetailDto.amountRequested}"
-						valueGrphic="10" />
-					<bbvaQuotaHeader:quotaDetailHeaderRight
-						textUp="#{msg['text.outstandingBalance']}"
-						valueUp="#{quotaController.quotaDetailDto.outstandingBalance}"
-						textDown="#{msg['text.amountRequested']}"
-						valueDown="#{quotaController.quotaDetailDto.amountRequested}" />
-				</bbvaQuotaHeader:quotaDetailHeader>
-				<bbvaQuotaHeader:quotaDetailHeaderBody>
-					<bbvaQuotaHeader:quotaDetailHeaderBodyContainer type="left">
-						<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem
-							text="#{msg['text.numberShares']}"
-							value="#{quotaController.quotaDetailDto.numberOfShares}" />
-						<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem
-							text="#{msg['text.dueDate']}"
-							value="#{quotaController.quotaDetailDto.dateMaturity}" />
-						<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem
-							text="#{msg['text.datePayment']}"
-							value="#{quotaController.quotaDetailDto.datePayment}" />
-						<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem
-							text="#{msg['text.datePreviousCut']}"
-							value="#{quotaController.quotaDetailDto.datePrevious}" />
-						<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem
-							text="#{msg['text.search.by.number.status']}"
-							value="#{quotaController.quotaDetailDto.state}" />
-					</bbvaQuotaHeader:quotaDetailHeaderBodyContainer>
-					<bbvaQuotaHeader:quotaDetailHeaderBodyContainer type="right">
-						<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem
-							text="#{msg['text.minimumPayment']}"
-							value="#{quotaController.quotaDetailDto.minimumPayment}" />
-						<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem
-							text="#{msg['text.hoursCollections']}"
-							value="#{collectionSchedule}" />
-						<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem
-							text="#{msg['text.account.balance.label']}"
-							value="#{quotaController.quotaDetailDto.availableBalance}" />
-						<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem
-							text="#{msg['text.totalBalancePreviousCut']}"
-							value="#{quotaController.quotaDetailDto.balancePrevious}" />
-					</bbvaQuotaHeader:quotaDetailHeaderBodyContainer>
-				</bbvaQuotaHeader:quotaDetailHeaderBody>
-			</bbvaQuotaHeader:quotaDetail>
+
+			<bbvaQuotaHeader:quotaDetailHeaderContent />
 
 			<bbvaDetAcc:tabMenu>
 				<ul class="nav nav-pills nav-operation-options"
@@ -117,7 +66,8 @@
 					</bbvaSearch:tabCriteria>
 
 					<!-- Tab Condiciones -->
-					<bbvaAcc:accountContainer />
+					<bbvaAcc:accountContainer numCuenta="#{product.productId}"
+						tipo="#{product.productName}" />
 
 					<!-- Tab Personalizar -->
 					<bbvaPersonalize:personalizeContainer />
