@@ -6285,7 +6285,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 }
 
 */
-</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{"category":"Categoria producto","description":"Descripcion del producto","openingDate":"Fecha de apertura","commission":"commison producto","office":{"code":"0073","name":"BBVA 23247","location":{"city":{"id":"123","name":"Bogota"},"country":{"id":"12","name":"Colombia"},"state":{"id":"123456","name":"Cundinamarca"},"postalAddress":"Direccion postañ","category":"Kennedy"},"postalAddress":"Calle 36"},"mobilizationConditions":"Consiciones de movilizacion"}
+</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{"category":"Categoria producto","description":"Descripcion del producto","openingDate":"Fecha de apertura","commission":"commison producto","office":{"code":"0073","name":"BBVA 23247","location":{"city":{"id":"123","name":"Bogota"},"country":{"id":"12","name":"Colombia"},"state":{"id":"123456","name":"Cundinamarca"},"postalAddress":"Direccion posta","category":"Kennedy"},"postalAddress":"Calle 36"},"mobilizationConditions":"Consiciones de movilizacion"}
 </con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/loan/V01/rotaryQuota/" method="GET" resourcePath="/czic/loan/V01/rotaryQuota/"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Examples showing how to match based on path, query param and header
 // Match based on path
