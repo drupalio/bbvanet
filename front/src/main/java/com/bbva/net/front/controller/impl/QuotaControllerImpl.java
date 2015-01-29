@@ -24,9 +24,7 @@ import com.bbva.net.front.core.AbstractBbvaController;
  * @author User
  */
 
-public class QuotaControllerImpl extends AbstractBbvaController
-		implements
-			QuotaController {
+public class QuotaControllerImpl extends AbstractBbvaController implements QuotaController {
 
 	private static final long serialVersionUID = 1L;
 
@@ -52,15 +50,12 @@ public class QuotaControllerImpl extends AbstractBbvaController
 
 	@PostConstruct
 	public void init() {
-		this.quotaDetailDto = this.quotaDetailFacade
-				.getDetailRotaryQuota(DEFAULT_IDLOAN);
+		this.quotaDetailDto = this.quotaDetailFacade.getDetailRotaryQuota(DEFAULT_IDLOAN);
 	}
 
 	@Override
 	public TermsAccountsDto getAllConditions() {
-		TermsAccountsDto detalle = this.detallesCuenta.getAllConditions(
-				"numCuenta", "usuario");
-		detalle.getInformacionProducto().getAlias();
+		TermsAccountsDto detalle = this.detallesCuenta.getAllConditions(super.getSelectedProduct().getProductId());
 		return detalle;
 	}
 
@@ -95,13 +90,11 @@ public class QuotaControllerImpl extends AbstractBbvaController
 		if (movementCriteria.getSelectDate().equals(CONCRETE_DATE)) {
 			setDisabledCalendar(false);
 			setDisabledButtonDate(false);
-			System.out.println("if " + isDisabledCalendar()
-					+ isDisabledButtonDate());
+			System.out.println("if " + isDisabledCalendar() + isDisabledButtonDate());
 		} else {
 			setDisabledCalendar(true);
 			setDisabledButtonDate(false);
-			System.out.println("else" + isDisabledCalendar()
-					+ isDisabledButtonDate());
+			System.out.println("else" + isDisabledCalendar() + isDisabledButtonDate());
 		}
 	}
 
@@ -112,7 +105,7 @@ public class QuotaControllerImpl extends AbstractBbvaController
 
 	@Override
 	public RotatingAccountDto getSelectedProduct() {
-		return (RotatingAccountDto) super.getSelectedProduct();
+		return (RotatingAccountDto)super.getSelectedProduct();
 	}
 
 	// @Override
@@ -128,8 +121,7 @@ public class QuotaControllerImpl extends AbstractBbvaController
 	}
 
 	/**
-	 * @param disabledCalendar
-	 *            the disabledCalendar to set
+	 * @param disabledCalendar the disabledCalendar to set
 	 */
 	public void setDisabledCalendar(boolean disabledCalendar) {
 		this.disabledCalendar = disabledCalendar;
@@ -143,8 +135,7 @@ public class QuotaControllerImpl extends AbstractBbvaController
 	}
 
 	/**
-	 * @param disabledButtonDate
-	 *            the disabledButtonDate to set
+	 * @param disabledButtonDate the disabledButtonDate to set
 	 */
 	public void setDisabledButtonDate(boolean disabledButtonDate) {
 		this.disabledButtonDate = disabledButtonDate;
@@ -159,8 +150,7 @@ public class QuotaControllerImpl extends AbstractBbvaController
 	}
 
 	/**
-	 * @param movementCriteria
-	 *            the movementCriteria to set
+	 * @param movementCriteria the movementCriteria to set
 	 */
 	public void setMovementCriteria(MovementCriteriaDto movementCriteria) {
 		this.movementCriteria = movementCriteria;
@@ -175,11 +165,9 @@ public class QuotaControllerImpl extends AbstractBbvaController
 	}
 
 	/**
-	 * @param personalizeAccountDto
-	 *            the personalizeAccountDto to set
+	 * @param personalizeAccountDto the personalizeAccountDto to set
 	 */
-	public void setPersonalizeAccountDto(
-			PersonalizeAccountDto personalizeAccountDto) {
+	public void setPersonalizeAccountDto(PersonalizeAccountDto personalizeAccountDto) {
 		this.personalizeAccountDto = personalizeAccountDto;
 	}
 

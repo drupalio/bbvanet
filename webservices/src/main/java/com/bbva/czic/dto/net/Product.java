@@ -6,14 +6,13 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for Product complex type.
+ * <p>Clase Java para Product complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="Product">
@@ -32,6 +31,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="conditions" type="{urn:com:bbva:czic:dto:net}Conditions" minOccurs="0"/>
  *         &lt;element name="movement" type="{urn:com:bbva:czic:dto:net}Movement" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="contract" type="{urn:com:bbva:czic:dto:net}Contract" minOccurs="0"/>
+ *         &lt;element name="extracts" type="{urn:com:bbva:czic:dto:net}Extracto" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -53,10 +53,8 @@ import javax.xml.bind.annotation.XmlType;
     "contactInfo",
     "conditions",
     "movement",
-    "contract"
-})
-@XmlSeeAlso({
-    Account.class
+    "contract",
+    "extracts"
 })
 public class Product {
 
@@ -73,9 +71,11 @@ public class Product {
     @XmlElement(nillable = true)
     protected List<Movement> movement;
     protected Contract contract;
+    @XmlElement(nillable = true)
+    protected List<Extracto> extracts;
 
     /**
-     * Gets the value of the id property.
+     * Obtiene el valor de la propiedad id.
      * 
      * @return
      *     possible object is
@@ -87,7 +87,7 @@ public class Product {
     }
 
     /**
-     * Sets the value of the id property.
+     * Define el valor de la propiedad id.
      * 
      * @param value
      *     allowed object is
@@ -99,7 +99,7 @@ public class Product {
     }
 
     /**
-     * Gets the value of the type property.
+     * Obtiene el valor de la propiedad type.
      * 
      * @return
      *     possible object is
@@ -111,7 +111,7 @@ public class Product {
     }
 
     /**
-     * Sets the value of the type property.
+     * Define el valor de la propiedad type.
      * 
      * @param value
      *     allowed object is
@@ -123,7 +123,7 @@ public class Product {
     }
 
     /**
-     * Gets the value of the name property.
+     * Obtiene el valor de la propiedad name.
      * 
      * @return
      *     possible object is
@@ -135,7 +135,7 @@ public class Product {
     }
 
     /**
-     * Sets the value of the name property.
+     * Define el valor de la propiedad name.
      * 
      * @param value
      *     allowed object is
@@ -147,7 +147,7 @@ public class Product {
     }
 
     /**
-     * Gets the value of the alias property.
+     * Obtiene el valor de la propiedad alias.
      * 
      * @return
      *     possible object is
@@ -159,7 +159,7 @@ public class Product {
     }
 
     /**
-     * Sets the value of the alias property.
+     * Define el valor de la propiedad alias.
      * 
      * @param value
      *     allowed object is
@@ -171,7 +171,7 @@ public class Product {
     }
 
     /**
-     * Gets the value of the financialState property.
+     * Obtiene el valor de la propiedad financialState.
      * 
      * @return
      *     possible object is
@@ -183,7 +183,7 @@ public class Product {
     }
 
     /**
-     * Sets the value of the financialState property.
+     * Define el valor de la propiedad financialState.
      * 
      * @param value
      *     allowed object is
@@ -195,7 +195,7 @@ public class Product {
     }
 
     /**
-     * Gets the value of the visible property.
+     * Obtiene el valor de la propiedad visible.
      * 
      * @return
      *     possible object is
@@ -207,7 +207,7 @@ public class Product {
     }
 
     /**
-     * Sets the value of the visible property.
+     * Define el valor de la propiedad visible.
      * 
      * @param value
      *     allowed object is
@@ -219,7 +219,7 @@ public class Product {
     }
 
     /**
-     * Gets the value of the operable property.
+     * Obtiene el valor de la propiedad operable.
      * 
      * @return
      *     possible object is
@@ -231,7 +231,7 @@ public class Product {
     }
 
     /**
-     * Sets the value of the operable property.
+     * Define el valor de la propiedad operable.
      * 
      * @param value
      *     allowed object is
@@ -243,7 +243,7 @@ public class Product {
     }
 
     /**
-     * Gets the value of the balance property.
+     * Obtiene el valor de la propiedad balance.
      * 
      * @return
      *     possible object is
@@ -255,7 +255,7 @@ public class Product {
     }
 
     /**
-     * Sets the value of the balance property.
+     * Define el valor de la propiedad balance.
      * 
      * @param value
      *     allowed object is
@@ -267,7 +267,7 @@ public class Product {
     }
 
     /**
-     * Gets the value of the contactInfo property.
+     * Obtiene el valor de la propiedad contactInfo.
      * 
      * @return
      *     possible object is
@@ -279,7 +279,7 @@ public class Product {
     }
 
     /**
-     * Sets the value of the contactInfo property.
+     * Define el valor de la propiedad contactInfo.
      * 
      * @param value
      *     allowed object is
@@ -291,7 +291,7 @@ public class Product {
     }
 
     /**
-     * Gets the value of the conditions property.
+     * Obtiene el valor de la propiedad conditions.
      * 
      * @return
      *     possible object is
@@ -303,7 +303,7 @@ public class Product {
     }
 
     /**
-     * Sets the value of the conditions property.
+     * Define el valor de la propiedad conditions.
      * 
      * @param value
      *     allowed object is
@@ -344,7 +344,7 @@ public class Product {
     }
 
     /**
-     * Gets the value of the contract property.
+     * Obtiene el valor de la propiedad contract.
      * 
      * @return
      *     possible object is
@@ -356,7 +356,7 @@ public class Product {
     }
 
     /**
-     * Sets the value of the contract property.
+     * Define el valor de la propiedad contract.
      * 
      * @param value
      *     allowed object is
@@ -365,6 +365,35 @@ public class Product {
      */
     public void setContract(Contract value) {
         this.contract = value;
+    }
+
+    /**
+     * Gets the value of the extracts property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the extracts property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getExtracts().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link Extracto }
+     * 
+     * 
+     */
+    public List<Extracto> getExtracts() {
+        if (extracts == null) {
+            extracts = new ArrayList<Extracto>();
+        }
+        return this.extracts;
     }
 
 }

@@ -38,8 +38,11 @@ public abstract class AbstractBbvaRestService {
 	@Value("${rest.base.cards.url}")
 	protected String URL_BASE_CARDS;
 
-	@Value("${rest.products.url}")
+	@Value("${rest.base.products.url}")
 	protected String URL_BASE_PRODUCTS;
+
+	@Value("${rest.products.url}")
+	protected String URL_PRODUCTS;
 
 	@Value("${rest.base.accounts.url}")
 	protected String URL_BASE_ACCOUNTS;
