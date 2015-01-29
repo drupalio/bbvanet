@@ -28,39 +28,36 @@ public class CardsFacadeIT {
 
 	// @Test
 	// public void checkGetCardsChargesFilterOK() {
-	// Assert.assertNotNull(this.cardsFacade.getCardsChargesFilter("9234-3456-1234-1234", dateRange));
-	// }
-	//
-	// /**
-	// * Debió fallar producto del id pequeño
-	// *
-	// * @throws Exception
-	// */
-	// @Test
-	// public void checkGetCardsChargesFilterUserWrong() throws Exception {
-	// try {
-	// Assert.assertNotNull(this.cardsFacade.getCardsChargesFilter("9234", dateRange));
-	// } catch (Exception e) {
-	// System.out.println("Error");
-	// throw e;
-	// }
-	// }
-	//
-	// /**
-	// * Se espera una exepcion ya que el id del producto va null
-	// */
-	// @Test
-	// public void checkGetCardsChargesFilterNotProduct() {
-	// this.cardsFacade.getCardsChargesFilter(null, dateRange);
+	// Assert.assertNotNull(this.cardsFacade.getCardsChargesFilter("12345678912345678123", dateRange));
 	// }
 
 	// @Test(expected = BadRequestException.class)
+	// public void checkGetCardsChargesFilterUserWrong() throws Exception {
+	// try {
+	// Assert.assertNotNull(this.cardsFacade.getCardsChargesFilter("9234", dateRange));
+	// } catch (final BadRequestException notFoundException) {
+	// Assert.assertEquals(notFoundException.getMessage(), "HTTP 400 Bad Request");
+	// throw notFoundException;
+	// }
+	// }
+
+	// @Test(expected = BadRequestException.class)
+	// public void checkGetCardsChargesFilterNotProduct() throws Exception {
+	// try {
+	// this.cardsFacade.getCardsChargesFilter(null, dateRange);
+	// } catch (final BadRequestException notFoundException) {
+	// Assert.assertEquals(notFoundException.getMessage(), "HTTP 400 Bad Request");
+	// throw notFoundException;
+	// }
+	// }
+	//
+	// @Test(expected = BadRequestException.class)
 	// public void checkGetCardsChargesFilterNotFilter() throws Exception {
 	// try {
-	// this.cardsFacade.getCardsChargesFilter("9234-3456-1234-1234", null);
-	// } catch (Exception e) {
-	// System.out.println("HTTP 400 Bad Request");
-	// throw e;
+	// this.cardsFacade.getCardsChargesFilter("12345678123456789123", null);
+	// } catch (final BadRequestException notFoundException) {
+	// Assert.assertEquals(notFoundException.getMessage(), "HTTP 400 Bad Request");
+	// throw notFoundException;
 	// }
 	// }
 	//
@@ -68,19 +65,19 @@ public class CardsFacadeIT {
 	// public void checkGetCardsChargesFilterNull() throws Exception {
 	// try {
 	// this.cardsFacade.getCardsChargesFilter(null, null);
-	// } catch (Exception e) {
-	// System.out.println("HTTP 400 Bad Request");
-	// throw e;
+	// } catch (final BadRequestException notFoundException) {
+	// Assert.assertEquals(notFoundException.getMessage(), "HTTP 400 Bad Request");
+	// throw notFoundException;
 	// }
 	// }
-
+	//
 	// @Test(expected = ServiceUnavailableException.class)
 	// public void checkGetCardsChargesProductEmpty() throws Exception {
 	// try {
 	// this.cardsFacade.getCardsChargesFilter(StringUtils.EMPTY, dateRange);
-	// } catch (Exception e) {
-	// System.out.println("HTTP 503 Service Unavailable");
-	// throw e;
+	// } catch (final ServiceUnavailableException notFoundException) {
+	// Assert.assertEquals(notFoundException.getMessage(), "HTTP 503 Service Unavailable");
+	// throw notFoundException;
 	// }
 	// }
 	//
@@ -92,34 +89,34 @@ public class CardsFacadeIT {
 	// Date to = new Date();
 	// dateRange.setDateSince(since);
 	// dateRange.setDateTo(to);
-	// Assert.assertNotNull(this.cardsFacade.getCardsChargesFilter("9234-3456-1234-1234", dateRange));
+	// Assert.assertNotNull(this.cardsFacade.getCardsChargesFilter("1234567890123456", dateRange));
 	//
 	// }
+
+	/*
+	 * Revisar el mapeo no entra
+	 */
+	@Test
+	public void checkGetCardsChargesByUserOK() throws Exception {
+		try {
+			Assert.assertNotNull(this.cardsFacade.getCardsChargesByUser("12345678", dateRange));
+		} catch (Exception e) {
+			throw e;
+		}
+	}
+
 	// /*
-	// * Revisar el mapeo no entra
+	// * No entra valida el formato del usuario
 	// */
 	// @Test
 	// public void recheckGetCardsChargesByUserOK() throws Exception {
 	// try {
-	// Assert.assertNotNull(this.cardsFacade.getCardsChargesByUser("1024275067", dateRange));
+	// Assert.assertNotNull(this.cardsFacade.getCardsChargesByUser("10", dateRange));
 	// } catch (Exception e) {
 	// System.out.println("HTTP 409 No data");
 	// throw e;
 	// }
 	// }
-
-	/*
-	 * No entra valida el formato del usuario
-	 */
-	@Test
-	public void recheckGetCardsChargesByUserOK() throws Exception {
-		try {
-			Assert.assertNotNull(this.cardsFacade.getCardsChargesByUser("10", dateRange));
-		} catch (Exception e) {
-			System.out.println("HTTP 409 No data");
-			throw e;
-		}
-	}
 	// @Test(expected=BadRequestException.class)
 	// public void checkGetCardsChargesByUserNotFilter() throws Exception {
 	// try {
