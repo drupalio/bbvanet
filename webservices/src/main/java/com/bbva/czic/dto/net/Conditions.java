@@ -3,32 +3,30 @@ package com.bbva.czic.dto.net;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
- * <p>Java class for Conditions complex type.
+ * <p>Clase Java para Conditions complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="Conditions">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="alias" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="category" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="description" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="openingDate" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+ *         &lt;element name="openingDate" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="commission" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="office" type="{urn:com:bbva:czic:dto:net}Office" minOccurs="0"/>
  *         &lt;element name="mobilizationConditions" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="activities" type="{urn:com:bbva:czic:dto:net}Activity" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="holders" type="{urn:com:bbva:czic:dto:net}Holder" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -39,53 +37,30 @@ import javax.xml.datatype.XMLGregorianCalendar;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Conditions", propOrder = {
-    "alias",
     "category",
     "description",
     "openingDate",
     "commission",
     "office",
     "mobilizationConditions",
-    "activities"
+    "activities",
+    "holders"
 })
 public class Conditions {
 
-    protected String alias;
     protected String category;
-    protected String description;    
+    protected String description;
     protected String openingDate;
     protected String commission;
     protected Office office;
     protected String mobilizationConditions;
     @XmlElement(nillable = true)
     protected List<Activity> activities;
+    @XmlElement(nillable = true)
+    protected List<Holder> holders;
 
     /**
-     * Gets the value of the alias property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getAlias() {
-        return alias;
-    }
-
-    /**
-     * Sets the value of the alias property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setAlias(String value) {
-        this.alias = value;
-    }
-
-    /**
-     * Gets the value of the category property.
+     * Obtiene el valor de la propiedad category.
      * 
      * @return
      *     possible object is
@@ -97,7 +72,7 @@ public class Conditions {
     }
 
     /**
-     * Sets the value of the category property.
+     * Define el valor de la propiedad category.
      * 
      * @param value
      *     allowed object is
@@ -109,7 +84,7 @@ public class Conditions {
     }
 
     /**
-     * Gets the value of the description property.
+     * Obtiene el valor de la propiedad description.
      * 
      * @return
      *     possible object is
@@ -121,7 +96,7 @@ public class Conditions {
     }
 
     /**
-     * Sets the value of the description property.
+     * Define el valor de la propiedad description.
      * 
      * @param value
      *     allowed object is
@@ -133,11 +108,11 @@ public class Conditions {
     }
 
     /**
-     * Gets the value of the openingDate property.
+     * Obtiene el valor de la propiedad openingDate.
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
     public String getOpeningDate() {
@@ -145,11 +120,11 @@ public class Conditions {
     }
 
     /**
-     * Sets the value of the openingDate property.
+     * Define el valor de la propiedad openingDate.
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
     public void setOpeningDate(String value) {
@@ -157,7 +132,7 @@ public class Conditions {
     }
 
     /**
-     * Gets the value of the commission property.
+     * Obtiene el valor de la propiedad commission.
      * 
      * @return
      *     possible object is
@@ -169,7 +144,7 @@ public class Conditions {
     }
 
     /**
-     * Sets the value of the commission property.
+     * Define el valor de la propiedad commission.
      * 
      * @param value
      *     allowed object is
@@ -181,7 +156,7 @@ public class Conditions {
     }
 
     /**
-     * Gets the value of the office property.
+     * Obtiene el valor de la propiedad office.
      * 
      * @return
      *     possible object is
@@ -193,7 +168,7 @@ public class Conditions {
     }
 
     /**
-     * Sets the value of the office property.
+     * Define el valor de la propiedad office.
      * 
      * @param value
      *     allowed object is
@@ -205,7 +180,7 @@ public class Conditions {
     }
 
     /**
-     * Gets the value of the mobilizationConditions property.
+     * Obtiene el valor de la propiedad mobilizationConditions.
      * 
      * @return
      *     possible object is
@@ -217,7 +192,7 @@ public class Conditions {
     }
 
     /**
-     * Sets the value of the mobilizationConditions property.
+     * Define el valor de la propiedad mobilizationConditions.
      * 
      * @param value
      *     allowed object is
@@ -255,6 +230,35 @@ public class Conditions {
             activities = new ArrayList<Activity>();
         }
         return this.activities;
+    }
+
+    /**
+     * Gets the value of the holders property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the holders property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getHolders().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link Holder }
+     * 
+     * 
+     */
+    public List<Holder> getHolders() {
+        if (holders == null) {
+            holders = new ArrayList<Holder>();
+        }
+        return this.holders;
     }
 
 }

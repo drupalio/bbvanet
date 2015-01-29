@@ -53,9 +53,7 @@ public class AccountsControllerImpl extends AbstractBbvaController implements Ac
 
 	@Override
 	public TermsAccountsDto getAllConditions() {
-		TermsAccountsDto detalle = this.detallesCuenta.getAllConditions("numCuenta", "usuario");
-		detalle.getInformacionProducto().getAlias();
-		// TODO Auto-generated method stub
+		TermsAccountsDto detalle = this.detallesCuenta.getAllConditions(super.getSelectedProduct().getProductId());
 		return detalle;
 	}
 
