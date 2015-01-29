@@ -6051,44 +6051,65 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 
 */
 </con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
-	"category":"CHANNEL_SALES",
+	"category":"OCIO",
+	"amount":{
+		"amount":600000.0,
+		"currency":"$"
+		}
+},
+{
+	"category":"REGALOS",
+	"amount":{
+		"amount":20000.0,
+		"currency":"$"
+		}
+},
+{
+	"category":"LIBROS",
 	"amount":{
 		"amount":700000.0,
 		"currency":"$"
 		}
 },
 {
-	"category":"LEISURE",
+	"category":"DISCOS",
 	"amount":{
-		"amount":1300000.0,
+		"amount":600000.0,
 		"currency":"$"
 		}
 },
 {
-	"category":"OTHERS",
+	"category":"COMERCIOBASICO",
 	"amount":{
-		"amount":700000.0,
+		"amount":500000.0,
 		"currency":"$"
 		}
 },
 {
-	"category":"BASIC_COMMERCE",
+	"category":"ROPA",
 	"amount":{
-		"amount":1300000.0,
+		"amount":400000.0,
 		"currency":"$"
 		}
 },
 {
-	"category":"GIFT_BOOK_DISC",
+	"category":"CALZADOPERSONAL",
 	"amount":{
-		"amount":700000.0,
+		"amount":800000.0,
 		"currency":"$"
 		}
 },
 {
-	"category":"CLOTHING",
+	"category":"VARIOS",
 	"amount":{
-		"amount":1300000.0,
+		"amount":200000.0,
+		"currency":"$"
+		}
+},
+{
+	"category":"COMPRASPORCANALES",
+	"amount":{
+		"amount":900000.0,
 		"currency":"$"
 		}
 }]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/cards/V01/creditCard/2032/cardCharges" method="GET" resourcePath="/czic/cards/V01/creditCard/2032/cardCharges"><con:settings/><con:defaultResponse xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/><con:dispatchStyle>SCRIPT</con:dispatchStyle><con:dispatchPath>def requestMock = mockRequest.getRequest().toString()
@@ -6101,83 +6122,125 @@ if( requestMock.contains("filter") )
 	log.info "Ejecutando SIN Filtro "
 	return "No_Filter_response"
 }</con:dispatchPath><con:response name="No_Filter_response" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
-	"category":"CHANNEL_SALES",
+	"category":"OCIO",
 	"amount":{
 		"amount":100000.0,
 		"currency":"$"
 		}
 },
 {
-	"category":"LEISURE",
+	"category":"REGALOS",
 	"amount":{
 		"amount":200000.0,
 		"currency":"$"
 		}
 },
 {
-	"category":"OTHERS",
+	"category":"LIBROS",
 	"amount":{
 		"amount":300000.0,
 		"currency":"$"
 		}
 },
 {
-	"category":"BASIC_COMMERCE",
+	"category":"DISCOS",
 	"amount":{
 		"amount":400000.0,
 		"currency":"$"
 		}
 },
 {
-	"category":"GIFT_BOOK_DISC",
+	"category":"COMERCIOBASICO",
 	"amount":{
 		"amount":500000.0,
 		"currency":"$"
 		}
 },
 {
-	"category":"CLOTHING",
+	"category":"ROPA",
 	"amount":{
 		"amount":600000.0,
+		"currency":"$"
+		}
+},
+{
+	"category":"CALZADOPERSONAL",
+	"amount":{
+		"amount":700000.0,
+		"currency":"$"
+		}
+},
+{
+	"category":"VARIOS",
+	"amount":{
+		"amount":800000.0,
+		"currency":"$"
+		}
+},
+{
+	"category":"COMPRASPORCANALES",
+	"amount":{
+		"amount":900000.0,
 		"currency":"$"
 		}
 }]</con:responseContent></con:response><con:response name="Filter_response" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
-	"category":"CHANNEL_SALES",
+	"category":"OCIO",
+	"amount":{
+		"amount":900000.0,
+		"currency":"$"
+		}
+},
+{
+	"category":"REGALOS",
+	"amount":{
+		"amount":800000.0,
+		"currency":"$"
+		}
+},
+{
+	"category":"LIBROS",
+	"amount":{
+		"amount":700000.0,
+		"currency":"$"
+		}
+},
+{
+	"category":"DISCOS",
 	"amount":{
 		"amount":600000.0,
 		"currency":"$"
 		}
 },
 {
-	"category":"LEISURE",
+	"category":"COMERCIOBASICO",
 	"amount":{
 		"amount":500000.0,
 		"currency":"$"
 		}
 },
 {
-	"category":"OTHERS",
+	"category":"ROPA",
 	"amount":{
 		"amount":400000.0,
 		"currency":"$"
 		}
 },
 {
-	"category":"BASIC_COMMERCE",
+	"category":"CALZADOPERSONAL",
 	"amount":{
 		"amount":300000.0,
 		"currency":"$"
 		}
 },
 {
-	"category":"GIFT_BOOK_DISC",
+	"category":"VARIOS",
 	"amount":{
 		"amount":200000.0,
 		"currency":"$"
 		}
 },
 {
-	"category":"CLOTHING",
+	"category":"COMPRASPORCANALES",
 	"amount":{
 		"amount":100000.0,
 		"currency":"$"

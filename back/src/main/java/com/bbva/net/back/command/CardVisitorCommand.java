@@ -3,13 +3,6 @@ package com.bbva.net.back.command;
 import java.util.List;
 
 import com.bbva.czic.dto.net.CardCharge;
-import com.bbva.czic.dto.net.Product;
-import com.bbva.net.back.model.globalposition.AccountDto;
-import com.bbva.net.back.model.globalposition.AdquirenceAccountDto;
-import com.bbva.net.back.model.globalposition.CreditCardDto;
-import com.bbva.net.back.model.globalposition.LeasingDto;
-import com.bbva.net.back.model.globalposition.LoanDto;
-import com.bbva.net.back.model.globalposition.RotatingAccountDto;
 import com.bbva.net.core.pattern.VisitorCommand;
 
 public abstract class CardVisitorCommand extends VisitorCommand<CardCharge> {
@@ -20,11 +13,10 @@ public abstract class CardVisitorCommand extends VisitorCommand<CardCharge> {
 
 	/************************************ ABSTRACT METHODS **********************************/
 
-	
 	/**
 	 * @param product
 	 */
-	public abstract void executeCards(final CardCharge product, final String name);
+	public abstract void executeCards(final CardCharge product);
 
 	/**
 	 * 
@@ -32,27 +24,34 @@ public abstract class CardVisitorCommand extends VisitorCommand<CardCharge> {
 	@Override
 	protected void execute(CardCharge product) {
 		switch (product.getCategory()) {
-		case BASIC_COMMERCE:
-			this.executeCards(product,"Comercio básico");
+		case OCIO:
+			this.executeCards(product);
 			break;
-		case CHANNEL_SALES:
-			this.executeCards(product,"Ventas por canales");
+		case REGALOS:
+			this.executeCards(product);
 			break;
-		case CLOTHING:
-			this.executeCards(product,"Ropa, calzado y personal");
+		case LIBROS:
+			this.executeCards(product);
 			break;
-		case GIFT_BOOK_DISC:
-			this.executeCards(product,"Regalos,libros,discos");
+		case DISCOS:
+			this.executeCards(product);
 			break;
-		case LEISURE:
-			this.executeCards(product,"Ocio");
+		case COMERCIOBASICO:
+			this.executeCards(product);
 			break;
-		case OTHERS:
-			this.executeCards(product,"Varios");
+		case ROPA:
+			this.executeCards(product);
 			break;
-		
+		case CALZADOPERSONAL:
+			this.executeCards(product);
+			break;
+		case VARIOS:
+			this.executeCards(product);
+			break;
+		case COMPRASPORCANALES:
+			this.executeCards(product);
+			break;
 		}
-			
 
 	}
 
