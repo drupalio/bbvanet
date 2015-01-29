@@ -7,7 +7,6 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 
 import com.bbva.czic.dto.net.Check;
@@ -32,10 +31,7 @@ public class CheckBookFacadeImpl extends AbstractBbvaFacade implements CheckBook
 
 	private static final long serialVersionUID = 1L;
 
-	// CLIENTE REST
-	@Resource(name = "checkBookService")
-	private CheckBookService checkBookService;
-
+	
 	@Resource(name = "accountsService")
 	private AccountsService accountService;
 
@@ -48,24 +44,19 @@ public class CheckBookFacadeImpl extends AbstractBbvaFacade implements CheckBook
 	@Value("${fiql.accountMovement.date}")
 	private String DATE;
 
+	@Value("${fiql.accountMovement.status}")
+	private String STATUS;
+
 	@Override
 	public CheckDto getCheckById(final String idCheck) {
-		final Check check = this.checkBookService.getChecks(idCheck, null, null, null, null);
-		return checkBookMapper.mapCheck(check);
+		final Check check;// = this.checkBookService.getChecks(idCheck, null, null, null, null);
+		return null;//checkBookMapper.mapCheck(check);
 	}
-	
-	/***
-	 * 
-	 * month=ge=2014-12-27;month=le=2015-01-27
-	 * /accounts/V01/{accountId}/listChecks?$filter=((check.issueDate=ge={startDate};check.issueDate=le={endDate}),check.status={status})&paginationKey={paginationKey}&pageSize={pageSize}"  
-	 * 
-	 */
+
 	@Override
 	public List<CheckDto> getCheckByStatusOrDate(String accountId, DateRangeDto dateRange, String status,
 			Integer paginationKey, Integer pageSize) {
-		String filter = dateRange == null ? StringUtils.EMPTY : fiqlService.getFiqlQueryByDateRange(dateRange, DATE,
-				DATE);
-
+		String filter = dateRange == null ? fiqlService.getFiqlQueryByStatus(status, STATUS) : fiqlService.getFiqlQueryByDateRange(dateRange, DATE, DATE);
 		final List<Check> response = this.accountService.listCheck(accountId, filter, paginationKey, pageSize);
 		return checkBookMapper.mapCheckList(response);
 	}
@@ -75,10 +66,10 @@ public class CheckBookFacadeImpl extends AbstractBbvaFacade implements CheckBook
 		final Checkbook response = this.accountService.getCheckbook(checkBookId, accountId);
 		return checkBookMapper.mapCheckBook(response);
 	}
-	
+
 	@Override
 	public List<CheckbookDto> getCheckBooksById(String checkBookId) {
-		final List<Checkbook> response = this.checkBookService.getCheckbooks(checkBookId, null, null, null,null);
-		return checkBookMapper.mapCheckBookList(response);
+		final List<Checkbook> response;// = this.checkBookService.getCheckbooks(checkBookId, null, null, null, null);
+		return null;//checkBookMapper.mapCheckBookList(response);
 	}
 }

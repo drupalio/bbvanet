@@ -41,7 +41,12 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 
 	private static final long serialVersionUID = 1L;
 
+	private static final String SEARCH_BY_NUMBER_CHECK = MessagesHelper.INSTANCE
+			.getString("text.search.by.number.check");
+
 	private static final String SEARCH_CHECK = MessagesHelper.INSTANCE.getString("text.search.by.numberbook");
+
+	private static final String SEARCH_BY_STATUS = MessagesHelper.INSTANCE.getString("text.search.by.number.status");
 
 	private static final String CONCRETE_DATE = MessagesHelper.INSTANCE.getString("select.radio.concret.date");
 
@@ -49,19 +54,9 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 
 	private String selectDate;
 
-	private Date sinceDate;
+	private Date sinceDate, toDate;
 
-	private Date toDate;
-
-	private String actionState;
-
-	private String checkState;
-
-	private String checkBookNumber;
-
-	private String sinceDatestr;
-
-	private String toDatestr;
+	private String actionState, checkState, checkBookNumber, sinceDatestr, toDatestr, leftTitle, rightTitle, titleState;
 
 	private String title = MessagesHelper.INSTANCE.getString("text.last.movments");
 
@@ -73,15 +68,11 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 
 	private List<CheckDto> checkList = new ArrayList<CheckDto>();
 
-	private List<CheckbookDto> checkBookList;
+	private List<CheckbookDto> checkBookList = new ArrayList<CheckbookDto>();
 
 	private CheckDto check = new CheckDto();
 
 	private DateRangeDto dateRange = new DateRangeDto();
-
-	private String leftTitle;
-
-	private String rightTitle;
 
 	@Resource(name = "checkBookFacade")
 	private transient CheckBookFacade checkBookFacade;
@@ -115,9 +106,11 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 		renderComponents.put(RenderAttributes.BUTTONDATE.toString(), true);
 
 		renderComponents.put(RenderAttributes.NUMBERBOOK.toString(), true);
+		renderComponents.put(RenderAttributes.STATUS.toString(), true);
 		renderComponents.put(RenderAttributes.NUMBERCHECK.toString(), true);
 		renderComponents.put(RenderAttributes.BUTTONBOOK.toString(), true);
 
+		renderComponents.put(RenderAttributes.FILTERSTATUS.toString(), false);
 		renderComponents.put(RenderAttributes.FILTERNUMBERCHECK.toString(), false);
 		renderComponents.put(RenderAttributes.FILTERCHECKBOOK.toString(), false);
 		renderComponents.put(RenderAttributes.FILTERDATE.toString(), false);
@@ -158,18 +151,29 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 	@Override
 	public void actionState() {
 		System.out.println("method Action State");
-		if (getActionState().equals(SEARCH_CHECK)) {
 
+		if (getActionState().equals(SEARCH_CHECK)) {
+			
 			renderComponents.put(RenderAttributes.FILTERNUMBERCHECK.toString(), true);
 			renderComponents.put(RenderAttributes.NUMBERCHECK.toString(), true);
+			renderComponents.put(RenderAttributes.STATUS.toString(), true);
 			renderComponents.put(RenderAttributes.NUMBERBOOK.toString(), false);
 			renderComponents.put(RenderAttributes.BUTTONBOOK.toString(), false);
 
-		} else {
-
+		} else if (getActionState().equals(SEARCH_BY_NUMBER_CHECK)) {
+			
 			renderComponents.put(RenderAttributes.FILTERCHECKBOOK.toString(), true);
-			renderComponents.put(RenderAttributes.NUMBERBOOK.toString(), true);
 			renderComponents.put(RenderAttributes.NUMBERCHECK.toString(), false);
+			renderComponents.put(RenderAttributes.STATUS.toString(), true);
+			renderComponents.put(RenderAttributes.NUMBERBOOK.toString(), true);
+			renderComponents.put(RenderAttributes.BUTTONBOOK.toString(), false);
+
+		} else if (getActionState().equals(SEARCH_BY_STATUS)) {
+			
+			renderComponents.put(RenderAttributes.FILTERSTATUS.toString(), true);
+			renderComponents.put(RenderAttributes.NUMBERCHECK.toString(), true);
+			renderComponents.put(RenderAttributes.STATUS.toString(), false);
+			renderComponents.put(RenderAttributes.NUMBERBOOK.toString(), true);
 			renderComponents.put(RenderAttributes.BUTTONBOOK.toString(), false);
 		}
 	}
@@ -179,39 +183,51 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 		System.out.println("showResults");
 
 		if (renderComponents.get(RenderAttributes.FILTERCHECKBOOK.toString())) {
-			System.out.println("cheques");
-			// ToDo servicio que consulta cheques.
-			System.out.println("check num: " + check.getId() + " check State: "
-					+ EnumCheckStatus.valueOf(Integer.parseInt(getCheckState())));
-			this.check = checkBookFacade.getCheckById(check.getId());
+			
+			// TODO servicio que consulta cheques.
+			System.out.println("check num: " + check.getId());
+			//this.check = checkBookFacade.getCheckById(check.getId());
 			setTitle(new String(MessagesHelper.INSTANCE.getString("tex.check.status")));
 			renderComponents.put(RenderAttributes.MOVEMENTSTABLE.toString(), false);
 			renderComponents.put(RenderAttributes.CHECKTABLE.toString(), true);
-			
+
 			clean();
-		} else if (renderComponents.get(RenderAttributes.FILTERNUMBERCHECK.toString())) {
-			System.out.println("talonarios");
+			
+		} else if (renderComponents.get(RenderAttributes.FILTERSTATUS.toString())) {
+		
+			System.out.println(" estado: " + titleState);
+			// TODO DEFAULT_ACCOUNT accountId  
+			this.checkList = checkBookFacade.getCheckByStatusOrDate("12345678", this.dateRange, titleState, null, null);
+			setTitle(MessagesHelper.INSTANCE.getString("tex.check.status"));
+			renderComponents.put(RenderAttributes.MOVEMENTSTABLE.toString(), false);
+			renderComponents.put(RenderAttributes.CHECKTABLE.toString(), true);
+			clean();
+		}
+
+		else if (renderComponents.get(RenderAttributes.FILTERNUMBERCHECK.toString())) {
+			
 			System.out.println("checkbook num: " + getCheckBookNumber());
-			// ToDo DEFAULT_ACCOUNT accountId
+			// TODO DEFAULT_ACCOUNT accountId
 			// this.checkBookList = checkBookFacade.getCheckBooksById(getCheckBookNumber());
 			setTitle(MessagesHelper.INSTANCE.getString("tex.check.status"));
 			renderComponents.put(RenderAttributes.MOVEMENTSTABLE.toString(), false);
 			renderComponents.put(RenderAttributes.CHECKTABLE.toString(), true);
 			clean();
+			
 		} else if (renderComponents.get(RenderAttributes.FILTERDATE.toString())) {
+			
 			EnumPeriodType periodType = EnumPeriodType.valueOfLabel(this.getSelectDate());
-
 			if (!(periodType == (null))) {
 				dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
 			}
-			// ToDo DEFAULT_ACCOUNT accountId
-			this.checkList = checkBookFacade.getCheckByStatusOrDate("12345678", this.dateRange, actionState, null,
-					null);
+			// TODO DEFAULT_ACCOUNT accountId
+			this.checkList = checkBookFacade.getCheckByStatusOrDate("12345678", this.dateRange, null, null, null);
 
 			setTitle(MessagesHelper.INSTANCE.getString("tex.check.status"));
 			renderComponents.put(RenderAttributes.MOVEMENTSTABLE.toString(), false);
 			renderComponents.put(RenderAttributes.CHECKTABLE.toString(), true);
 			clean();
+			
 		} else {
 			System.out.println("sin filtros");
 		}
@@ -229,11 +245,12 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 		if (renderComponents.get(RenderAttributes.FILTERNUMBERCHECK.toString())) {
 			leftTitle = " Talonario: " + getCheckBookNumber();
 
-		} else {
-			EnumCheckStatus.valueOf(Integer.parseInt(getCheckState()));
+		}if(renderComponents.get(RenderAttributes.FILTERSTATUS.toString()))  {
+			titleState= EnumCheckStatus.valueOf(Integer.parseInt(getCheckState())).toString();
+			leftTitle = " Estado " + titleState;
+			
+		}else{
 			leftTitle = " Nº Cheque " + check.getId();
-			System.out.println(check.getId() + " C.E " + EnumCheckStatus.valueOf(Integer.parseInt(getCheckState())));
-
 		}
 
 	}

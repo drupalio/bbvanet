@@ -37,8 +37,23 @@ public class CheckBooksFacadeIT {
 	@Test
 	public void checkGetCheckByDateAndUserOK() {
 		DateRangeDto dateRange = new DateFilterServiceImpl().getPeriodFilter(EnumPeriodType.TODAY);	
-		final List<CheckDto> listCheckDto=this.checkBookFacade.getCheckByStatusOrDate("12345678", dateRange, null, null, null);
-		Assert.assertNotNull(listCheckDto);		
+		final List<CheckDto> listCheckDto=this.checkBookFacade.getCheckByStatusOrDate("12345678", dateRange, null, null, null);		
+		Assert.assertNotNull(listCheckDto);	
+		Assert.assertEquals("12834063921", listCheckDto.get(0).getId());
+	}
+	
+	
+	@Test
+	public void checkGetCheckByStatusAndUserNOK() {	
+		final List<CheckDto> listCheckDto=this.checkBookFacade.getCheckByStatusOrDate("12345678", null, "CUALQUIERA", null, null);
+		Assert.assertNotNull(listCheckDto);			
+	}
+	
+	@Test
+	public void checkGetCheckByStatusAndUserOK() {			
+		final List<CheckDto> listCheckDto=this.checkBookFacade.getCheckByStatusOrDate("123", null, "HABILITADO", null, null);
+		Assert.assertNotNull(listCheckDto);	
+		Assert.assertEquals("HABILITADO", listCheckDto.get(0).getStatus());
 	}
 
 }
