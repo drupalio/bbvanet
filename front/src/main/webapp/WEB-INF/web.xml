@@ -38,7 +38,7 @@
 			classpath*:META-INF/spring/*.xml
         </param-value>
 	</context-param>
-	
+
 	<!--  
 	<context-param>
 		<param-name>spring.profiles.active</param-name>
@@ -105,11 +105,7 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-
-	<listener>
-		<listener-class>com.sun.faces.config.ConfigureListener</listener-class>
-	</listener>
-	 
+ 
 	<listener>
 		<description>Expose the current request to the current thread.</description>
 		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
