@@ -21,12 +21,13 @@
 	<pluginRepositories />
 	<dependencies>
 
-		<!-- General dependencies for standard applications <dependency> <groupId>com.bbva.jee.arq.spring.core</groupId> 
-			<artifactId>arq-spring-core</artifactId> <version>${arq-spring-core.version}</version> 
-			</dependency> -->
-
-
-
+		<!-- General dependencies for standard applications 
+		<dependency> 
+		    <groupId>com.bbva.jee.arq.spring.core</groupId> 
+		    <artifactId>arq-spring-core</artifactId> 
+		    <version>2.0.1</version> 
+		</dependency> 
+		-->
 		<dependency>
 			<groupId>com.bbva.net.back</groupId>
 			<artifactId>kqco_mult_web_back</artifactId>
@@ -369,6 +370,9 @@
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-ear-plugin</artifactId>
 					<version>2.9.1</version>
+					<configuration>
+						<applicationXml>src/main/resources/META-INF/application.xml</applicationXml>
+					</configuration>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
