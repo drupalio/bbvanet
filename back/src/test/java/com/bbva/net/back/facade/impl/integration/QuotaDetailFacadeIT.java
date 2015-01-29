@@ -23,31 +23,31 @@ public class QuotaDetailFacadeIT {
 	@Resource(name = "quotaDetailFacade")
 	private QuotaDetailFacade quotaDetailFacade;
 
-//	@Test
-//	public void checkGetQuotaRotaryOK() throws Exception {
-//		final QuotaDetailDto quotaDetailDto = this.quotaDetailFacade
-//				.getDetailRotaryQuota("00130073005054466407");
-//		Assert.assertNotNull(quotaDetailDto);
-//	}
-//
-//	@Test(expected = ServiceUnavailableException.class)
-//	public void checkGetQuotaRotaryNotId() throws Exception {
-//		try {
-//			this.quotaDetailFacade.getDetailRotaryQuota(StringUtils.EMPTY);
-//		} catch (final ServiceUnavailableException notFoundException) {
-//			Assert.assertEquals(notFoundException.getMessage(),
-//					"HTTP 503 Service Unavailable");
-//			throw notFoundException;
-//		}
-//	}
-	@Test(expected = BadRequestException.class)
-	public void checkGetGlobalProdctsUserNoExist() throws Exception {
+	// @Test
+	// public void checkGetQuotaRotaryOK() throws Exception {
+	// final QuotaDetailDto quotaDetailDto = this.quotaDetailFacade
+	// .getDetailRotaryQuota("00130073005054466407");
+	// Assert.assertNotNull(quotaDetailDto);
+	// }
+	//
+	@Test(expected = ServiceUnavailableException.class)
+	public void checkGetQuotaRotaryNotId() throws Exception {
 		try {
-			this.quotaDetailFacade.getDetailRotaryQuota(null);
-		} catch (final BadRequestException notFoundException) {
+			this.quotaDetailFacade.getDetailRotaryQuota(StringUtils.EMPTY);
+		} catch (final ServiceUnavailableException notFoundException) {
 			Assert.assertEquals(notFoundException.getMessage(),
-					"HTTP 400 Bad Request");
+					"HTTP 503 Service Unavailable");
 			throw notFoundException;
 		}
 	}
+	// @Test(expected = BadRequestException.class)
+	// public void checkGetGlobalProdctsUserNoExist() throws Exception {
+	// try {
+	// this.quotaDetailFacade.getDetailRotaryQuota(null);
+	// } catch (final BadRequestException notFoundException) {
+	// Assert.assertEquals(notFoundException.getMessage(),
+	// "HTTP 400 Bad Request");
+	// throw notFoundException;
+	// }
+	// }
 }
