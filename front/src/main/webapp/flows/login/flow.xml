@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow 
+    http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+
+
+	<var name="loginController" class="com.bbva.net.front.controller.impl.LoginControllerImpl" />
+
+	<action-state id="login">
+		<on-entry>
+			<set name="requestScope.usuario" value="requestParameters.usuario" />
+			<set name="requestScope.password" value="requestParameters.password" />
+			<set name="requestScope.tipoId" value="requestParameters.tipoId" />
+			<set name="requestScope.numberId" value="requestParameters.numberId" />
+
+			<evaluate
+				expression="loginController.login(requestParameters.usuario,
+												  requestParameters.password,
+												  requestParameters.tipoId,
+												  requestParameters.numberId)">
+			</evaluate>
+		</on-entry>
+	</action-state>
+
+</flow>

@@ -19,7 +19,7 @@ public class ConditionsMapperImpl extends ConfigurableMapper implements Conditio
 
 	@Override
 	protected void configure(MapperFactory factory) {
-		factory.classMap(Conditions.class, TermsAccountsDto.class).field("alias", "informacionProducto.alias")
+		factory.classMap(Conditions.class, TermsAccountsDto.class)
 				.field("mobilizationConditions", "intervinientes.condicionesMovilizacion")
 				.field("category", "detalleCondiciones.categoria")
 				.field("description", "detalleCondiciones.descripcion")

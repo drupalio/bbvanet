@@ -2,7 +2,6 @@ package com.bbva.net.front.core.cxf;
 
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
@@ -33,9 +32,5 @@ public class ResponseInterceptor extends AbstractInDatabindingInterceptor {
 
 		Map<String, List<String>> headers = (Map<String, List<String>>)outMessage.get(Message.PROTOCOL_HEADERS);
 
-		if (headers == null) {
-			headers = new TreeMap<String, List<String>>(String.CASE_INSENSITIVE_ORDER);
-			outMessage.put(Message.PROTOCOL_HEADERS, headers);
-		}
 	}
 }

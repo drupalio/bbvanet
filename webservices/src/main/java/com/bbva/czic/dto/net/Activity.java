@@ -3,24 +3,22 @@ package com.bbva.czic.dto.net;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.datatype.XMLGregorianCalendar;
 import com.bbva.jee.arq.spring.core.servicing.utils.Money;
 
 
 /**
- * <p>Java class for Activity complex type.
+ * <p>Clase Java para Activity complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="Activity">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="operationDate" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
- *         &lt;element name="executionDate" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+ *         &lt;element name="operationDate" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="executionDate" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="function" type="{urn:com:bbva:czic:dto:net}Function" minOccurs="0"/>
  *         &lt;element name="amount" type="{urn:com:bbva:jee:arq:spring:core:servicing:utils}money" minOccurs="0"/>
  *         &lt;element name="reference" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -42,64 +40,62 @@ import com.bbva.jee.arq.spring.core.servicing.utils.Money;
 })
 public class Activity {
 
-    @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar operationDate;
-    @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar executionDate;
+    protected String operationDate;
+    protected String executionDate;
     protected Function function;
     protected Money amount;
     protected String reference;
 
     /**
-     * Gets the value of the operationDate property.
+     * Obtiene el valor de la propiedad operationDate.
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public XMLGregorianCalendar getOperationDate() {
+    public String getOperationDate() {
         return operationDate;
     }
 
     /**
-     * Sets the value of the operationDate property.
+     * Define el valor de la propiedad operationDate.
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public void setOperationDate(XMLGregorianCalendar value) {
+    public void setOperationDate(String value) {
         this.operationDate = value;
     }
 
     /**
-     * Gets the value of the executionDate property.
+     * Obtiene el valor de la propiedad executionDate.
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public XMLGregorianCalendar getExecutionDate() {
+    public String getExecutionDate() {
         return executionDate;
     }
 
     /**
-     * Sets the value of the executionDate property.
+     * Define el valor de la propiedad executionDate.
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public void setExecutionDate(XMLGregorianCalendar value) {
+    public void setExecutionDate(String value) {
         this.executionDate = value;
     }
 
     /**
-     * Gets the value of the function property.
+     * Obtiene el valor de la propiedad function.
      * 
      * @return
      *     possible object is
@@ -111,7 +107,7 @@ public class Activity {
     }
 
     /**
-     * Sets the value of the function property.
+     * Define el valor de la propiedad function.
      * 
      * @param value
      *     allowed object is
@@ -123,7 +119,7 @@ public class Activity {
     }
 
     /**
-     * Gets the value of the amount property.
+     * Obtiene el valor de la propiedad amount.
      * 
      * @return
      *     possible object is
@@ -135,7 +131,7 @@ public class Activity {
     }
 
     /**
-     * Sets the value of the amount property.
+     * Define el valor de la propiedad amount.
      * 
      * @param value
      *     allowed object is
@@ -147,7 +143,7 @@ public class Activity {
     }
 
     /**
-     * Gets the value of the reference property.
+     * Obtiene el valor de la propiedad reference.
      * 
      * @return
      *     possible object is
@@ -159,7 +155,7 @@ public class Activity {
     }
 
     /**
-     * Sets the value of the reference property.
+     * Define el valor de la propiedad reference.
      * 
      * @param value
      *     allowed object is
