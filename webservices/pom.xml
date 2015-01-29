@@ -213,8 +213,8 @@
 							EN ESTOS AJUSTES PERDEMOS TIEMPO. -->
 <!-- 								<wadlOption> -->
 <!-- 								<impl>false</impl> -->
-<!-- 								<wadl>src/main/resources/wadl/customers.wadl</wadl> -->
-<!-- 								<packagename>com.bbva.net.webservices.customers</packagename> -->
+<!-- 								<wadl>src/main/resources/wadl/products.wadl</wadl> -->
+<!-- 								<packagename>com.bbva.net.webservices.products</packagename> -->
 <!-- 								</wadlOption> -->
 							</wadlOptions>
 						</configuration>
