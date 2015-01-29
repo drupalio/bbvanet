@@ -16,15 +16,9 @@
 <composite:implementation>
 <h:form id="cards" >
 		<div align="center">
-			
-			<div style="display: inline-block;" align="center">
-			
 			<span
 					style="color:#274b6d;font-size:16px;font:bold 16px Trebuchet MS, Arial, sans-serif;fill:#274b6d;width:232px;">
-					#{cc.attrs.pieConfigUI.headerCenter}</span>
-			
-			</div>
-
+					#{cc.attrs.pieConfigUI.headerCenter}</span>			
 		</div>
 		<div class="chart-cheese" id="cardG" 
 			data-highcharts-chart="3">
@@ -77,9 +71,9 @@
 						console.log("onmouseout", d, i);
 					},
 				},
-				color : {
-					pattern : colorsLegend
-				},
+// 				color : {
+// 					pattern : colorsLegend
+// 				},
 			});
 
 		//};

@@ -10,10 +10,10 @@ import javax.faces.event.ComponentSystemEvent;
 import org.apache.commons.lang.StringUtils;
 import org.primefaces.event.SelectEvent;
 
+import com.bbva.net.back.facade.AccountMovementsResumeFacade;
 import com.bbva.net.back.facade.CardsFacade;
 import com.bbva.net.back.facade.FundsTypeFacade;
 import com.bbva.net.back.facade.GlobalPositionFacade;
-import com.bbva.net.back.facade.AccountMovementsResumeFacade;
 import com.bbva.net.back.model.comboFilter.EnumPeriodType;
 import com.bbva.net.back.model.commons.DateRangeDto;
 import com.bbva.net.back.model.globalposition.BalanceDto;

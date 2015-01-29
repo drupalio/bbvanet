@@ -13,12 +13,15 @@ import javax.xml.bind.annotation.XmlType;
  * <pre>
  * &lt;simpleType name="EnumCardChargeCategory">
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *     &lt;enumeration value="CHANNEL_SALES"/>
- *     &lt;enumeration value="LEISURE"/>
- *     &lt;enumeration value="OTHERS"/>
- *     &lt;enumeration value="BASIC_COMMERCE"/>
- *     &lt;enumeration value="GIFT_BOOK_DISC"/>
- *     &lt;enumeration value="CLOTHING"/>
+ *     &lt;enumeration value="OCIO"/>
+ *     &lt;enumeration value="REGALOS"/>
+ *     &lt;enumeration value="LIBROS"/>
+ *     &lt;enumeration value="DISCOS"/>
+ *     &lt;enumeration value="COMERCIOBASICO"/>
+ *     &lt;enumeration value="ROPA"/>
+ *     &lt;enumeration value="CALZADOPERSONAL"/>
+ *     &lt;enumeration value="VARIOS"/>
+ *     &lt;enumeration value="COMPRASPORCANALES"/>
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
@@ -28,12 +31,15 @@ import javax.xml.bind.annotation.XmlType;
 @XmlEnum
 public enum EnumCardChargeCategory {
 
-    CHANNEL_SALES,
-    LEISURE,
-    OTHERS,
-    BASIC_COMMERCE,
-    GIFT_BOOK_DISC,
-    CLOTHING;
+    OCIO,
+    REGALOS,
+    LIBROS,
+    DISCOS,
+    COMERCIOBASICO,
+    ROPA,
+    CALZADOPERSONAL,
+    VARIOS,
+    COMPRASPORCANALES;
 
     public String value() {
         return name();

@@ -24,31 +24,21 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _Activity_QNAME = new QName("urn:com:bbva:czic:dto:net", "Activity");
     private final static QName _Email_QNAME = new QName("urn:com:bbva:czic:dto:net", "Email");
-    private final static QName _State_QNAME = new QName("urn:com:bbva:czic:dto:net", "State");
+    private final static QName _EnumCardChargeCategory_QNAME = new QName("urn:com:bbva:czic:dto:net", "EnumCardChargeCategory");
     private final static QName _ContactInfo_QNAME = new QName("urn:com:bbva:czic:dto:net", "ContactInfo");
-    private final static QName _Office_QNAME = new QName("urn:com:bbva:czic:dto:net", "Office");
-    private final static QName _MonthlyBalances_QNAME = new QName("urn:com:bbva:czic:dto:net", "MonthlyBalances");
-    private final static QName _Check_QNAME = new QName("urn:com:bbva:czic:dto:net", "Check");
-    private final static QName _Product_QNAME = new QName("urn:com:bbva:czic:dto:net", "Product");
-    private final static QName _Function_QNAME = new QName("urn:com:bbva:czic:dto:net", "Function");
-    private final static QName _Location_QNAME = new QName("urn:com:bbva:czic:dto:net", "Location");
-    private final static QName _PhoneNumber_QNAME = new QName("urn:com:bbva:czic:dto:net", "PhoneNumber");
-    private final static QName _Country_QNAME = new QName("urn:com:bbva:czic:dto:net", "Country");
-    private final static QName _Contract_QNAME = new QName("urn:com:bbva:czic:dto:net", "Contract");
-    private final static QName _EnumMonth_QNAME = new QName("urn:com:bbva:czic:dto:net", "EnumMonth");
-    private final static QName _Movement_QNAME = new QName("urn:com:bbva:czic:dto:net", "Movement");
-    private final static QName _City_QNAME = new QName("urn:com:bbva:czic:dto:net", "City");
     private final static QName _AccMovementsResume_QNAME = new QName("urn:com:bbva:czic:dto:net", "AccMovementsResume");
-    private final static QName _Balance_QNAME = new QName("urn:com:bbva:czic:dto:net", "Balance");
+    private final static QName _EnumDocumentType_QNAME = new QName("urn:com:bbva:czic:dto:net", "EnumDocumentType");
+    private final static QName _CardCharge_QNAME = new QName("urn:com:bbva:czic:dto:net", "CardCharge");
+    private final static QName _Customer_QNAME = new QName("urn:com:bbva:czic:dto:net", "Customer");
     private final static QName _EnumPhoneNumberType_QNAME = new QName("urn:com:bbva:czic:dto:net", "EnumPhoneNumberType");
-    private final static QName _Conditions_QNAME = new QName("urn:com:bbva:czic:dto:net", "Conditions");
-    private final static QName _Operation_QNAME = new QName("urn:com:bbva:czic:dto:net", "Operation");
-    private final static QName _EnumCheckbookStatus_QNAME = new QName("urn:com:bbva:czic:dto:net", "EnumCheckbookStatus");
-    private final static QName _Account_QNAME = new QName("urn:com:bbva:czic:dto:net", "Account");
+    private final static QName _Place_QNAME = new QName("urn:com:bbva:czic:dto:net", "Place");
+    private final static QName _Document_QNAME = new QName("urn:com:bbva:czic:dto:net", "Document");
+    private final static QName _EnumSegmentType_QNAME = new QName("urn:com:bbva:czic:dto:net", "EnumSegmentType");
     private final static QName _EnumContactSourceType_QNAME = new QName("urn:com:bbva:czic:dto:net", "EnumContactSourceType");
-    private final static QName _Checkbook_QNAME = new QName("urn:com:bbva:czic:dto:net", "Checkbook");
+    private final static QName _PhoneNumber_QNAME = new QName("urn:com:bbva:czic:dto:net", "PhoneNumber");
+    private final static QName _EnumMonth_QNAME = new QName("urn:com:bbva:czic:dto:net", "EnumMonth");
+    private final static QName _EnumDwelingType_QNAME = new QName("urn:com:bbva:czic:dto:net", "EnumDwelingType");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.bbva.czic.dto.net
@@ -58,83 +48,35 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Conditions }
+     * Create an instance of {@link CardCharge }
      * 
      */
-    public Conditions createConditions() {
-        return new Conditions();
+    public CardCharge createCardCharge() {
+        return new CardCharge();
     }
 
     /**
-     * Create an instance of {@link Operation }
+     * Create an instance of {@link Customer }
      * 
      */
-    public Operation createOperation() {
-        return new Operation();
+    public Customer createCustomer() {
+        return new Customer();
     }
 
     /**
-     * Create an instance of {@link Account }
+     * Create an instance of {@link Place }
      * 
      */
-    public Account createAccount() {
-        return new Account();
+    public Place createPlace() {
+        return new Place();
     }
 
     /**
-     * Create an instance of {@link Checkbook }
+     * Create an instance of {@link Document }
      * 
      */
-    public Checkbook createCheckbook() {
-        return new Checkbook();
-    }
-
-    /**
-     * Create an instance of {@link AccMovementsResume }
-     * 
-     */
-    public AccMovementsResume createAccMovementsResume() {
-        return new AccMovementsResume();
-    }
-
-    /**
-     * Create an instance of {@link Balance }
-     * 
-     */
-    public Balance createBalance() {
-        return new Balance();
-    }
-
-    /**
-     * Create an instance of {@link Check }
-     * 
-     */
-    public Check createCheck() {
-        return new Check();
-    }
-
-    /**
-     * Create an instance of {@link Product }
-     * 
-     */
-    public Product createProduct() {
-        return new Product();
-    }
-
-    /**
-     * Create an instance of {@link Function }
-     * 
-     */
-    public Function createFunction() {
-        return new Function();
-    }
-
-    /**
-     * Create an instance of {@link Location }
-     * 
-     */
-    public Location createLocation() {
-        return new Location();
+    public Document createDocument() {
+        return new Document();
     }
 
     /**
@@ -146,46 +88,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Country }
-     * 
-     */
-    public Country createCountry() {
-        return new Country();
-    }
-
-    /**
-     * Create an instance of {@link Contract }
-     * 
-     */
-    public Contract createContract() {
-        return new Contract();
-    }
-
-    /**
-     * Create an instance of {@link Movement }
-     * 
-     */
-    public Movement createMovement() {
-        return new Movement();
-    }
-
-    /**
-     * Create an instance of {@link City }
-     * 
-     */
-    public City createCity() {
-        return new City();
-    }
-
-    /**
-     * Create an instance of {@link Activity }
-     * 
-     */
-    public Activity createActivity() {
-        return new Activity();
-    }
-
-    /**
      * Create an instance of {@link Email }
      * 
      */
@@ -194,11 +96,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link State }
+     * Create an instance of {@link AccMovementsResume }
      * 
      */
-    public State createState() {
-        return new State();
+    public AccMovementsResume createAccMovementsResume() {
+        return new AccMovementsResume();
     }
 
     /**
@@ -207,31 +109,6 @@ public class ObjectFactory {
      */
     public ContactInfo createContactInfo() {
         return new ContactInfo();
-    }
-
-    /**
-     * Create an instance of {@link Office }
-     * 
-     */
-    public Office createOffice() {
-        return new Office();
-    }
-
-    /**
-     * Create an instance of {@link MonthlyBalances }
-     * 
-     */
-    public MonthlyBalances createMonthlyBalances() {
-        return new MonthlyBalances();
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Activity }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "urn:com:bbva:czic:dto:net", name = "Activity")
-    public JAXBElement<Activity> createActivity(Activity value) {
-        return new JAXBElement<Activity>(_Activity_QNAME, Activity.class, null, value);
     }
 
     /**
@@ -244,12 +121,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link State }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link EnumCardChargeCategory }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "urn:com:bbva:czic:dto:net", name = "State")
-    public JAXBElement<State> createState(State value) {
-        return new JAXBElement<State>(_State_QNAME, State.class, null, value);
+    @XmlElementDecl(namespace = "urn:com:bbva:czic:dto:net", name = "EnumCardChargeCategory")
+    public JAXBElement<EnumCardChargeCategory> createEnumCardChargeCategory(EnumCardChargeCategory value) {
+        return new JAXBElement<EnumCardChargeCategory>(_EnumCardChargeCategory_QNAME, EnumCardChargeCategory.class, null, value);
     }
 
     /**
@@ -262,114 +139,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Office }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "urn:com:bbva:czic:dto:net", name = "Office")
-    public JAXBElement<Office> createOffice(Office value) {
-        return new JAXBElement<Office>(_Office_QNAME, Office.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link MonthlyBalances }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "urn:com:bbva:czic:dto:net", name = "MonthlyBalances")
-    public JAXBElement<MonthlyBalances> createMonthlyBalances(MonthlyBalances value) {
-        return new JAXBElement<MonthlyBalances>(_MonthlyBalances_QNAME, MonthlyBalances.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Check }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "urn:com:bbva:czic:dto:net", name = "Check")
-    public JAXBElement<Check> createCheck(Check value) {
-        return new JAXBElement<Check>(_Check_QNAME, Check.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Product }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "urn:com:bbva:czic:dto:net", name = "Product")
-    public JAXBElement<Product> createProduct(Product value) {
-        return new JAXBElement<Product>(_Product_QNAME, Product.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Function }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "urn:com:bbva:czic:dto:net", name = "Function")
-    public JAXBElement<Function> createFunction(Function value) {
-        return new JAXBElement<Function>(_Function_QNAME, Function.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Location }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "urn:com:bbva:czic:dto:net", name = "Location")
-    public JAXBElement<Location> createLocation(Location value) {
-        return new JAXBElement<Location>(_Location_QNAME, Location.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link PhoneNumber }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "urn:com:bbva:czic:dto:net", name = "PhoneNumber")
-    public JAXBElement<PhoneNumber> createPhoneNumber(PhoneNumber value) {
-        return new JAXBElement<PhoneNumber>(_PhoneNumber_QNAME, PhoneNumber.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Country }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "urn:com:bbva:czic:dto:net", name = "Country")
-    public JAXBElement<Country> createCountry(Country value) {
-        return new JAXBElement<Country>(_Country_QNAME, Country.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Contract }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "urn:com:bbva:czic:dto:net", name = "Contract")
-    public JAXBElement<Contract> createContract(Contract value) {
-        return new JAXBElement<Contract>(_Contract_QNAME, Contract.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link EnumMonth }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "urn:com:bbva:czic:dto:net", name = "EnumMonth")
-    public JAXBElement<EnumMonth> createEnumMonth(EnumMonth value) {
-        return new JAXBElement<EnumMonth>(_EnumMonth_QNAME, EnumMonth.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Movement }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "urn:com:bbva:czic:dto:net", name = "Movement")
-    public JAXBElement<Movement> createMovement(Movement value) {
-        return new JAXBElement<Movement>(_Movement_QNAME, Movement.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link City }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "urn:com:bbva:czic:dto:net", name = "City")
-    public JAXBElement<City> createCity(City value) {
-        return new JAXBElement<City>(_City_QNAME, City.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link AccMovementsResume }{@code >}}
      * 
      */
@@ -379,12 +148,30 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Balance }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link EnumDocumentType }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "urn:com:bbva:czic:dto:net", name = "Balance")
-    public JAXBElement<Balance> createBalance(Balance value) {
-        return new JAXBElement<Balance>(_Balance_QNAME, Balance.class, null, value);
+    @XmlElementDecl(namespace = "urn:com:bbva:czic:dto:net", name = "EnumDocumentType")
+    public JAXBElement<EnumDocumentType> createEnumDocumentType(EnumDocumentType value) {
+        return new JAXBElement<EnumDocumentType>(_EnumDocumentType_QNAME, EnumDocumentType.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link CardCharge }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "urn:com:bbva:czic:dto:net", name = "CardCharge")
+    public JAXBElement<CardCharge> createCardCharge(CardCharge value) {
+        return new JAXBElement<CardCharge>(_CardCharge_QNAME, CardCharge.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Customer }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "urn:com:bbva:czic:dto:net", name = "Customer")
+    public JAXBElement<Customer> createCustomer(Customer value) {
+        return new JAXBElement<Customer>(_Customer_QNAME, Customer.class, null, value);
     }
 
     /**
@@ -397,39 +184,30 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Conditions }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Place }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "urn:com:bbva:czic:dto:net", name = "Conditions")
-    public JAXBElement<Conditions> createConditions(Conditions value) {
-        return new JAXBElement<Conditions>(_Conditions_QNAME, Conditions.class, null, value);
+    @XmlElementDecl(namespace = "urn:com:bbva:czic:dto:net", name = "Place")
+    public JAXBElement<Place> createPlace(Place value) {
+        return new JAXBElement<Place>(_Place_QNAME, Place.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Operation }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Document }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "urn:com:bbva:czic:dto:net", name = "Operation")
-    public JAXBElement<Operation> createOperation(Operation value) {
-        return new JAXBElement<Operation>(_Operation_QNAME, Operation.class, null, value);
+    @XmlElementDecl(namespace = "urn:com:bbva:czic:dto:net", name = "Document")
+    public JAXBElement<Document> createDocument(Document value) {
+        return new JAXBElement<Document>(_Document_QNAME, Document.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link EnumCheckbookStatus }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link EnumSegmentType }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "urn:com:bbva:czic:dto:net", name = "EnumCheckbookStatus")
-    public JAXBElement<EnumCheckbookStatus> createEnumCheckbookStatus(EnumCheckbookStatus value) {
-        return new JAXBElement<EnumCheckbookStatus>(_EnumCheckbookStatus_QNAME, EnumCheckbookStatus.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Account }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "urn:com:bbva:czic:dto:net", name = "Account")
-    public JAXBElement<Account> createAccount(Account value) {
-        return new JAXBElement<Account>(_Account_QNAME, Account.class, null, value);
+    @XmlElementDecl(namespace = "urn:com:bbva:czic:dto:net", name = "EnumSegmentType")
+    public JAXBElement<EnumSegmentType> createEnumSegmentType(EnumSegmentType value) {
+        return new JAXBElement<EnumSegmentType>(_EnumSegmentType_QNAME, EnumSegmentType.class, null, value);
     }
 
     /**
@@ -442,12 +220,30 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Checkbook }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link PhoneNumber }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "urn:com:bbva:czic:dto:net", name = "Checkbook")
-    public JAXBElement<Checkbook> createCheckbook(Checkbook value) {
-        return new JAXBElement<Checkbook>(_Checkbook_QNAME, Checkbook.class, null, value);
+    @XmlElementDecl(namespace = "urn:com:bbva:czic:dto:net", name = "PhoneNumber")
+    public JAXBElement<PhoneNumber> createPhoneNumber(PhoneNumber value) {
+        return new JAXBElement<PhoneNumber>(_PhoneNumber_QNAME, PhoneNumber.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link EnumMonth }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "urn:com:bbva:czic:dto:net", name = "EnumMonth")
+    public JAXBElement<EnumMonth> createEnumMonth(EnumMonth value) {
+        return new JAXBElement<EnumMonth>(_EnumMonth_QNAME, EnumMonth.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link EnumDwelingType }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "urn:com:bbva:czic:dto:net", name = "EnumDwelingType")
+    public JAXBElement<EnumDwelingType> createEnumDwelingType(EnumDwelingType value) {
+        return new JAXBElement<EnumDwelingType>(_EnumDwelingType_QNAME, EnumDwelingType.class, null, value);
     }
 
 }
