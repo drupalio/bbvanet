@@ -38,7 +38,7 @@ public class AccountMovementsResumeFacadeImpl extends AbstractBbvaFacade impleme
 
 	@Resource(name = "globalResumeMovementsMapper")
 	private GlobalResumeMovementsMapper globalResumeMovementsMapper;
-
+	
 	@Resource(name = "fiqlService")
 	private FiqlService fiqlService;
 
@@ -78,6 +78,7 @@ public class AccountMovementsResumeFacadeImpl extends AbstractBbvaFacade impleme
 
 		return globalMovements;
 	}
+
 
 	/********************************** DEPENDENCY INJECTIONS ***********************************/
 	public void setCustomerService(final CustomerService customerService) {

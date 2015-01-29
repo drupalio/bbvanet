@@ -9,7 +9,6 @@ import javax.faces.event.ActionEvent;
 import javax.faces.event.AjaxBehaviorEvent;
 
 import org.primefaces.event.SelectEvent;
-import org.springframework.stereotype.Controller;
 
 import com.bbva.net.back.facade.QuotaDetailFacade;
 import com.bbva.net.back.facade.TermasAccountsFacade;
@@ -24,7 +23,7 @@ import com.bbva.net.front.core.AbstractBbvaController;
 /**
  * @author User
  */
-@Controller(value = "quotaController")
+
 public class QuotaControllerImpl extends AbstractBbvaController
 		implements
 			QuotaController {

@@ -18,7 +18,7 @@ public interface CheckBookService {
     @GET
     @Produces("application/json")
     @Path("/checks/{checkId}")
-    List<Check> getChecks(@PathParam("checkId") String checkId, @QueryParam("$filter") @DefaultValue("null") String $filter, @QueryParam("$fields") @DefaultValue("null") String $fields, @QueryParam("$expands") @DefaultValue("null") String $expands, 
+    Check getChecks(@PathParam("checkId") String checkId, @QueryParam("$filter") @DefaultValue("null") String $filter, @QueryParam("$fields") @DefaultValue("null") String $fields, @QueryParam("$expands") @DefaultValue("null") String $expands, 
                 @QueryParam("$sort") @DefaultValue("null") String $sort);
 
     @GET
