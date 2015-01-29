@@ -19,9 +19,9 @@
 //
 //	public static void main(String[] args) {
 //		Gson gson = new Gson();
-//		String checkJSON = gson.toJson(getCheckList());
+//		String checkJSON = gson.toJson(getCheckbook());
 //		System.out.println(checkJSON);
-//		getCheckList();
+//		getCheckbook();
 //	}
 //
 //	
@@ -37,13 +37,17 @@
 //	public static <E> Checkbook getCheckbook() {
 //		Checkbook checkBook = new Checkbook();
 //		DataFactory dataFactory = new DataFactory();
+//		Date minDate = dataFactory.getDate(2014, 1, 1);
+//		Date maxDate = new Date();
+//		Date start = dataFactory.getDateBetween(minDate, maxDate);			
+//		Date end = dataFactory.getDateBetween(start, maxDate);
 //		
 //		checkBook.setActualState(EnumCheckbookStatus.HABILITADO);
-//		//checkBook.setDeliveryDate(value);
-//		checkBook.setFirstCheck(dataFactory.getNumberUpTo(10));
+//		checkBook.setDeliveryDate(dateToSring(start));
+//		checkBook.setFirstCheck(dataFactory.getNumberUpTo(10)+"");
 //		checkBook.setId(dataFactory.getNumberUpTo(10)+"");
-//		checkBook.setLastCheck(dataFactory.getNumberUpTo(10));
-//		//checkBook.setRequestDate(value);
+//		checkBook.setLastCheck(dataFactory.getNumberUpTo(10)+"");
+//		checkBook.setRequestDate(dateToSring(end));
 //		checkBook.setTotalCheck(dataFactory.getNumberUpTo(10));
 //		return checkBook;
 //		

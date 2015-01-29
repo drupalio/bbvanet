@@ -95,7 +95,8 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 
 	public List<CheckbookDto> initCheckBookList() {
 		checkBookList = new ArrayList<CheckbookDto>();
-		// checkBookList = checkBookFacade.
+		//TODO accountId
+		checkBookList = checkBookFacade.getCheckBooksById("12345678");
 		return checkBookList;
 	}
 
@@ -183,21 +184,20 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 		System.out.println("showResults");
 
 		if (renderComponents.get(RenderAttributes.FILTERCHECKBOOK.toString())) {
-			
-			// TODO servicio que consulta cheques.
+			//Filter by checkId
 			System.out.println("check num: " + check.getId());
-			//this.check = checkBookFacade.getCheckById(check.getId());
+			// TODO DEFAULT_ACCOUNT accountId
+			this.check = checkBookFacade.getCheckById("12345678", check.getId());
 			setTitle(new String(MessagesHelper.INSTANCE.getString("tex.check.status")));
 			renderComponents.put(RenderAttributes.MOVEMENTSTABLE.toString(), false);
 			renderComponents.put(RenderAttributes.CHECKTABLE.toString(), true);
-
 			clean();
 			
 		} else if (renderComponents.get(RenderAttributes.FILTERSTATUS.toString())) {
-		
+			//Filter by status
 			System.out.println(" estado: " + titleState);
 			// TODO DEFAULT_ACCOUNT accountId  
-			this.checkList = checkBookFacade.getCheckByStatusOrDate("12345678", this.dateRange, titleState, null, null);
+			this.checkList = checkBookFacade.getCheckByStatusOrDate("12345678", null, titleState, null, null);
 			setTitle(MessagesHelper.INSTANCE.getString("tex.check.status"));
 			renderComponents.put(RenderAttributes.MOVEMENTSTABLE.toString(), false);
 			renderComponents.put(RenderAttributes.CHECKTABLE.toString(), true);
@@ -205,10 +205,10 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 		}
 
 		else if (renderComponents.get(RenderAttributes.FILTERNUMBERCHECK.toString())) {
-			
+			//Filter by talonario
 			System.out.println("checkbook num: " + getCheckBookNumber());
 			// TODO DEFAULT_ACCOUNT accountId
-			// this.checkBookList = checkBookFacade.getCheckBooksById(getCheckBookNumber());
+			 this.checkBook = checkBookFacade.getCheckBookByAccountId("12345678", getCheckBookNumber());
 			setTitle(MessagesHelper.INSTANCE.getString("tex.check.status"));
 			renderComponents.put(RenderAttributes.MOVEMENTSTABLE.toString(), false);
 			renderComponents.put(RenderAttributes.CHECKTABLE.toString(), true);

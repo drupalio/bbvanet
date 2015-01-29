@@ -20,18 +20,37 @@ public class AccountsServiceImpl extends AbstractBbvaRestService implements Acco
 
 	@Value("${fiql.filter.parameter}")
 	private String FILTER;
+	
+	@Value("${rest.checkBooks.url}")
+	private String URL_CHECKBOOK;
+	
+	@Value("${rest.check.url}")
+	protected String URL_CHECK;
 
 	@Override
-	public Account getAccount(String id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Account getAccount(String accountId) {
+		WebClient wc = getJsonWebClient(URL_BASE_ACCOUNTS + accountId );
+		return (Account)wc.get(Account.class);
 	}
 
+	@Override
+	public Check getCheck(String accountId, String checkId) {
+		WebClient wc = getJsonWebClient(URL_BASE_ACCOUNTS + accountId + URL_CHECK + checkId);
+		return (Check)wc.get(Check.class);
+	}
+
+	@Override
+	public Checkbook getCheckbook(String accountId, String checkbookId) {
+		WebClient wc = getJsonWebClient(URL_BASE_ACCOUNTS + accountId + URL_CHECKBOOK + checkbookId);
+		return (Checkbook)wc.get(Checkbook.class);
+	}
+	
+	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Check> listCheck(String accountId, String filter, Integer paginationKey, Integer pageSize){
+	public List<Check> listCheck(String accountId, String filter, Integer paginationKey, Integer pageSize) {
 
-		WebClient wc = getJsonWebClient(URL_BASE_ACCOUNTS+ accountId + URL_CHECK);
+		WebClient wc = getJsonWebClient(URL_BASE_ACCOUNTS + accountId + URL_CHECK_LIST);
 		if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
 
 		return (List<Check>)wc.getCollection(Check.class);
@@ -54,11 +73,6 @@ public class AccountsServiceImpl extends AbstractBbvaRestService implements Acco
 		return (List<AccMovementsResume>)wc.getCollection(AccMovementsResume.class);
 	}
 
-	@Override
-	public Checkbook getCheckbook(String checkbookId, String accountId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 
 }

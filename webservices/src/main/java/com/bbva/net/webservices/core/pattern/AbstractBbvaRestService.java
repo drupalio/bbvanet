@@ -47,8 +47,8 @@ public abstract class AbstractBbvaRestService {
 	@Value("${rest.accounts.url}")
 	protected String URL_ACCOUNTS;
 	
-	@Value("${rest.check.url}")
-	protected String URL_CHECK;
+	@Value("${rest.list.check.url}")
+	protected String URL_CHECK_LIST;
 
 	/**
 	 * @param response
