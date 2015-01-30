@@ -14,7 +14,6 @@ import org.apache.cxf.jaxrs.ext.search.client.SearchConditionBuilder;
 import org.primefaces.event.SelectEvent;
 
 import com.bbva.net.back.facade.CardsFacade;
-import com.bbva.net.back.facade.FundsTypeFacade;
 import com.bbva.net.back.facade.GlobalPositionFacade;
 import com.bbva.net.back.model.globalposition.BalanceDto;
 import com.bbva.net.back.model.globalposition.FundDto;

@@ -2,23 +2,24 @@ package com.bbva.net.front.core.cxf;
 
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
-import javax.ws.rs.core.Context;
 
 import org.apache.cxf.interceptor.AbstractOutDatabindingInterceptor;
 import org.apache.cxf.interceptor.Fault;
-import org.apache.cxf.jaxrs.ext.MessageContext;
 import org.apache.cxf.message.Message;
 import org.apache.cxf.phase.Phase;
 import org.springframework.faces.webflow.FlowFacesContext;
 
+/**
+ * @author Entelgy
+ */
 public class RequestInterceptor extends AbstractOutDatabindingInterceptor {
 
-	@Context
-	private MessageContext messageContext;
+	private enum TSecType {
+		tsec
+	}
 
 	public RequestInterceptor() {
 		super(Phase.SEND);
@@ -29,13 +30,10 @@ public class RequestInterceptor extends AbstractOutDatabindingInterceptor {
 	public void handleMessage(Message outMessage) throws Fault {
 
 		final FacesContext facesContext = FlowFacesContext.getCurrentInstance();
-		HttpSession session = (HttpSession)facesContext.getExternalContext().getSession(false);
+		final HttpSession session = (HttpSession)facesContext.getExternalContext().getSession(false);
+		final Map<String, List<String>> headers = (Map<String, List<String>>)outMessage.get(Message.PROTOCOL_HEADERS);
+		if (headers.containsKey(TSecType.tsec.name()))
+			headers.put(TSecType.tsec.name(), (List<String>)session.getAttribute(TSecType.tsec.name()));
 
-		Map<String, List<String>> headers = (Map<String, List<String>>)outMessage.get(Message.PROTOCOL_HEADERS);
-
-		if (headers == null) {
-			headers = new TreeMap<String, List<String>>(String.CASE_INSENSITIVE_ORDER);
-			outMessage.put(Message.PROTOCOL_HEADERS, headers);
-		}
 	}
 }

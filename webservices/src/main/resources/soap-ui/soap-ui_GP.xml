@@ -6051,44 +6051,65 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 
 */
 </con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
-	"category":"CHANNEL_SALES",
+	"category":"OCIO",
+	"amount":{
+		"amount":600000.0,
+		"currency":"$"
+		}
+},
+{
+	"category":"REGALOS",
+	"amount":{
+		"amount":20000.0,
+		"currency":"$"
+		}
+},
+{
+	"category":"LIBROS",
 	"amount":{
 		"amount":700000.0,
 		"currency":"$"
 		}
 },
 {
-	"category":"LEISURE",
+	"category":"DISCOS",
 	"amount":{
-		"amount":1300000.0,
+		"amount":600000.0,
 		"currency":"$"
 		}
 },
 {
-	"category":"OTHERS",
+	"category":"COMERCIOBASICO",
 	"amount":{
-		"amount":700000.0,
+		"amount":500000.0,
 		"currency":"$"
 		}
 },
 {
-	"category":"BASIC_COMMERCE",
+	"category":"ROPA",
 	"amount":{
-		"amount":1300000.0,
+		"amount":400000.0,
 		"currency":"$"
 		}
 },
 {
-	"category":"GIFT_BOOK_DISC",
+	"category":"CALZADOPERSONAL",
 	"amount":{
-		"amount":700000.0,
+		"amount":800000.0,
 		"currency":"$"
 		}
 },
 {
-	"category":"CLOTHING",
+	"category":"VARIOS",
 	"amount":{
-		"amount":1300000.0,
+		"amount":200000.0,
+		"currency":"$"
+		}
+},
+{
+	"category":"COMPRASPORCANALES",
+	"amount":{
+		"amount":900000.0,
 		"currency":"$"
 		}
 }]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/cards/V01/creditCard/2032/cardCharges" method="GET" resourcePath="/czic/cards/V01/creditCard/2032/cardCharges"><con:settings/><con:defaultResponse xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/><con:dispatchStyle>SCRIPT</con:dispatchStyle><con:dispatchPath>def requestMock = mockRequest.getRequest().toString()
@@ -6101,88 +6122,130 @@ if( requestMock.contains("filter") )
 	log.info "Ejecutando SIN Filtro "
 	return "No_Filter_response"
 }</con:dispatchPath><con:response name="No_Filter_response" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
-	"category":"CHANNEL_SALES",
+	"category":"OCIO",
 	"amount":{
 		"amount":100000.0,
 		"currency":"$"
 		}
 },
 {
-	"category":"LEISURE",
+	"category":"REGALOS",
 	"amount":{
 		"amount":200000.0,
 		"currency":"$"
 		}
 },
 {
-	"category":"OTHERS",
+	"category":"LIBROS",
 	"amount":{
 		"amount":300000.0,
 		"currency":"$"
 		}
 },
 {
-	"category":"BASIC_COMMERCE",
+	"category":"DISCOS",
 	"amount":{
 		"amount":400000.0,
 		"currency":"$"
 		}
 },
 {
-	"category":"GIFT_BOOK_DISC",
+	"category":"COMERCIOBASICO",
 	"amount":{
 		"amount":500000.0,
 		"currency":"$"
 		}
 },
 {
-	"category":"CLOTHING",
+	"category":"ROPA",
 	"amount":{
 		"amount":600000.0,
+		"currency":"$"
+		}
+},
+{
+	"category":"CALZADOPERSONAL",
+	"amount":{
+		"amount":700000.0,
+		"currency":"$"
+		}
+},
+{
+	"category":"VARIOS",
+	"amount":{
+		"amount":800000.0,
+		"currency":"$"
+		}
+},
+{
+	"category":"COMPRASPORCANALES",
+	"amount":{
+		"amount":900000.0,
 		"currency":"$"
 		}
 }]</con:responseContent></con:response><con:response name="Filter_response" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
-	"category":"CHANNEL_SALES",
+	"category":"OCIO",
+	"amount":{
+		"amount":900000.0,
+		"currency":"$"
+		}
+},
+{
+	"category":"REGALOS",
+	"amount":{
+		"amount":800000.0,
+		"currency":"$"
+		}
+},
+{
+	"category":"LIBROS",
+	"amount":{
+		"amount":700000.0,
+		"currency":"$"
+		}
+},
+{
+	"category":"DISCOS",
 	"amount":{
 		"amount":600000.0,
 		"currency":"$"
 		}
 },
 {
-	"category":"LEISURE",
+	"category":"COMERCIOBASICO",
 	"amount":{
 		"amount":500000.0,
 		"currency":"$"
 		}
 },
 {
-	"category":"OTHERS",
+	"category":"ROPA",
 	"amount":{
 		"amount":400000.0,
 		"currency":"$"
 		}
 },
 {
-	"category":"BASIC_COMMERCE",
+	"category":"CALZADOPERSONAL",
 	"amount":{
 		"amount":300000.0,
 		"currency":"$"
 		}
 },
 {
-	"category":"GIFT_BOOK_DISC",
+	"category":"VARIOS",
 	"amount":{
 		"amount":200000.0,
 		"currency":"$"
 		}
 },
 {
-	"category":"CLOTHING",
+	"category":"COMPRASPORCANALES",
 	"amount":{
 		"amount":100000.0,
 		"currency":"$"
 		}
-}]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/products/V01/2031/conditions" method="GET" resourcePath="/czic/products/V01/2031/conditions"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+}]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/products/V01/00130073000296247953/conditions" method="GET" resourcePath="/czic/products/V01/00130073000296247953/conditions"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Examples showing how to match based on path, query param and header
 // Match based on path
 def requestPath = mockRequest.getPath()
@@ -6222,35 +6285,8 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 }
 
 */
-</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
-	"alias": "Alias Producto",
-	"category": "Categoria producto",
-	"description": "Descripcion del producto",
-	"openingDate": "Fecha de apertura",
-	"commission": "commison producto",
-	"office": {
-		"code": "0073",
-		"name": "BBVA 23247",
-		"location": {
-			"city": {
-				"id": "123",
-				"name": "Bogota"
-			},
-			"country": {
-				"id": "12",
-				"name": "Colombia"
-			},
-			"state": {
-				"id": "123456",
-				"name": "Cundinamarca"
-			},
-			"postalAddress": "Direccion posta",
-			"category": "Kennedy"
-		},
-		"postalAddress": "Calle 36"
-	},
-	"mobilizationConditions": "Consiciones de movilizacion"
-}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/loan/V01/rotaryQuota/" method="GET" resourcePath="/czic/loan/V01/rotaryQuota/"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{"category":"Categoria producto","description":"Descripcion del producto","openingDate":"Fecha de apertura","commission":"commison producto","office":{"code":"0073","name":"BBVA 23247","location":{"city":{"id":"123","name":"Bogota"},"country":{"id":"12","name":"Colombia"},"state":{"id":"123456","name":"Cundinamarca"},"postalAddress":"Direccion posta","category":"Kennedy"},"postalAddress":"Calle 36"},"mobilizationConditions":"Consiciones de movilizacion"}
+</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/loan/V01/rotaryQuota/" method="GET" resourcePath="/czic/loan/V01/rotaryQuota/"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Examples showing how to match based on path, query param and header
 // Match based on path
 def requestPath = mockRequest.getPath()
@@ -6512,4 +6548,143 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		"currency": "COP"
 	},
 	"month": "JULY"
+}]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/accounts/V01/listChecks" method="GET" resourcePath="/czic/accounts/V01/12345678/listChecks"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
+	"id": "12834063921",
+	"issueDate": "09/07/2014",
+	"value": {
+		"amount": 12130896651,
+		"currency": "COP"
+	},
+	"status": "HABILITADO",
+	"modifiedDate": "21/08/2014"
+},
+{
+	"id": "16833592681",
+	"issueDate": "08/12/2014",
+	"value": {
+		"amount": 7339147361,
+		"currency": "COP"
+	},
+	"status": "HABILITADO",
+	"modifiedDate": "24/12/2014"
+},
+{
+	"id": "13467431131",
+	"issueDate": "26/01/2014",
+	"value": {
+		"amount": 11287877941,
+		"currency": "COP"
+	},
+	"status": "HABILITADO",
+	"modifiedDate": "21/05/2014"
+},
+{
+	"id": "20995245941",
+	"issueDate": "12/06/2014",
+	"value": {
+		"amount": 13882319691,
+		"currency": "COP"
+	},
+	"status": "HABILITADO",
+	"modifiedDate": "25/11/2014"
+},
+{
+	"id": "20970305661",
+	"issueDate": "05/05/2014",
+	"value": {
+		"amount": 119919931,
+		"currency": "COP"
+	},
+	"status": "HABILITADO",
+	"modifiedDate": "07/09/2014"
+},
+{
+	"id": "9588743601",
+	"issueDate": "06/05/2014",
+	"value": {
+		"amount": 4632088631,
+		"currency": "COP"
+	},
+	"status": "HABILITADO",
+	"modifiedDate": "21/10/2014"
+},
+{
+	"id": "12105069811",
+	"issueDate": "18/04/2014",
+	"value": {
+		"amount": 20168793791,
+		"currency": "COP"
+	},
+	"status": "HABILITADO",
+	"modifiedDate": "29/06/2014"
+},
+{
+	"id": "10371239671",
+	"issueDate": "23/08/2014",
+	"value": {
+		"amount": 7372037151,
+		"currency": "COP"
+	},
+	"status": "HABILITADO",
+	"modifiedDate": "26/09/2014"
+},
+{
+	"id": "19909233301",
+	"issueDate": "21/03/2014",
+	"value": {
+		"amount": 8697652971,
+		"currency": "COP"
+	},
+	"status": "HABILITADO",
+	"modifiedDate": "25/09/2014"
+},
+{
+	"id": "21301260731",
+	"issueDate": "05/08/2014",
+	"value": {
+		"amount": 11112267021,
+		"currency": "COP"
+	},
+	"status": "HABILITADO",
+	"modifiedDate": "12/10/2014"
 }]</con:responseContent></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

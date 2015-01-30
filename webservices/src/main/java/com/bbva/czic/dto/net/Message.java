@@ -10,9 +10,9 @@ import com.bbva.jee.arq.spring.core.servicing.utils.Money;
 
 
 /**
- * <p>Java class for Message complex type.
+ * <p>Clase Java para Message complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="Message">
@@ -49,6 +49,7 @@ public class Message {
     protected String id;
     protected String title;
     protected String template;
+    @XmlSchemaType(name = "string")
     protected EnumMessageType reference;
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar time;
@@ -56,7 +57,7 @@ public class Message {
     protected String info;
 
     /**
-     * Gets the value of the id property.
+     * Obtiene el valor de la propiedad id.
      * 
      * @return
      *     possible object is
@@ -68,7 +69,7 @@ public class Message {
     }
 
     /**
-     * Sets the value of the id property.
+     * Define el valor de la propiedad id.
      * 
      * @param value
      *     allowed object is
@@ -80,7 +81,7 @@ public class Message {
     }
 
     /**
-     * Gets the value of the title property.
+     * Obtiene el valor de la propiedad title.
      * 
      * @return
      *     possible object is
@@ -92,7 +93,7 @@ public class Message {
     }
 
     /**
-     * Sets the value of the title property.
+     * Define el valor de la propiedad title.
      * 
      * @param value
      *     allowed object is
@@ -104,7 +105,7 @@ public class Message {
     }
 
     /**
-     * Gets the value of the template property.
+     * Obtiene el valor de la propiedad template.
      * 
      * @return
      *     possible object is
@@ -116,7 +117,7 @@ public class Message {
     }
 
     /**
-     * Sets the value of the template property.
+     * Define el valor de la propiedad template.
      * 
      * @param value
      *     allowed object is
@@ -128,7 +129,7 @@ public class Message {
     }
 
     /**
-     * Gets the value of the reference property.
+     * Obtiene el valor de la propiedad reference.
      * 
      * @return
      *     possible object is
@@ -140,7 +141,7 @@ public class Message {
     }
 
     /**
-     * Sets the value of the reference property.
+     * Define el valor de la propiedad reference.
      * 
      * @param value
      *     allowed object is
@@ -152,7 +153,7 @@ public class Message {
     }
 
     /**
-     * Gets the value of the time property.
+     * Obtiene el valor de la propiedad time.
      * 
      * @return
      *     possible object is
@@ -164,7 +165,7 @@ public class Message {
     }
 
     /**
-     * Sets the value of the time property.
+     * Define el valor de la propiedad time.
      * 
      * @param value
      *     allowed object is
@@ -176,7 +177,7 @@ public class Message {
     }
 
     /**
-     * Gets the value of the value property.
+     * Obtiene el valor de la propiedad value.
      * 
      * @return
      *     possible object is
@@ -188,7 +189,7 @@ public class Message {
     }
 
     /**
-     * Sets the value of the value property.
+     * Define el valor de la propiedad value.
      * 
      * @param value
      *     allowed object is
@@ -200,7 +201,7 @@ public class Message {
     }
 
     /**
-     * Gets the value of the info property.
+     * Obtiene el valor de la propiedad info.
      * 
      * @return
      *     possible object is
@@ -212,7 +213,7 @@ public class Message {
     }
 
     /**
-     * Sets the value of the info property.
+     * Define el valor de la propiedad info.
      * 
      * @param value
      *     allowed object is

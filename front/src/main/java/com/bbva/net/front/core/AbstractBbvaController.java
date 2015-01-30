@@ -34,9 +34,9 @@ public abstract class AbstractBbvaController implements Serializable {
 
 	protected String DEFAULT_ACCOUNT = "123";
 
-	private enum SessionParamenterType {
+	protected enum SessionParamenterType {
 
-		SELECTED_PRODUCT
+		SELECTED_PRODUCT, TSEC
 	}
 
 	/**
@@ -71,6 +71,7 @@ public abstract class AbstractBbvaController implements Serializable {
 
 		final HttpServletRequest request = (HttpServletRequest)FlowFacesContext.getCurrentInstance()
 				.getExternalContext().getRequest();
+
 		return request.getParameter(parameter);
 	}
 

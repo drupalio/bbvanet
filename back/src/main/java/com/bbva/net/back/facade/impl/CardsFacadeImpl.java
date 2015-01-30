@@ -59,7 +59,6 @@ public class CardsFacadeImpl extends AbstractBbvaFacade implements CardsFacade {
 	@Override
 	public List<CardsChargesDto> getCardsChargesByUser(final String customerId, final DateRangeDto dateRange) {
 		String filter = fiqlService.getFiqlQueryByDateRange(dateRange, DATE, DATE);
-
 		final List<CardCharge> response = cardsCustomerService.listCreditCardsCharges(customerId, filter);
 		return cardsMapper.map(response);
 	}

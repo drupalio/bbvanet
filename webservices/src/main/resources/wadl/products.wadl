@@ -10,9 +10,9 @@
             <xs:element name="Location" type="tns:Location"/>
             <xs:element name="Office" type="tns:Office"/>
             <xs:element name="State" type="tns:State"/>
+			<xs:element name="Extract" type="tns:Extract"/>
             <xs:complexType name="Conditions">
                 <xs:sequence>
-                    <xs:element minOccurs="0" name="alias" type="xs:string"/>
                     <xs:element minOccurs="0" name="category" type="xs:string"/>
                     <xs:element minOccurs="0" name="description" type="xs:string"/>
                     <xs:element minOccurs="0" name="openingDate" type="xs:string"/>
@@ -20,6 +20,14 @@
                     <xs:element minOccurs="0" name="office" type="tns:Office"/>
                     <xs:element minOccurs="0" name="mobilizationConditions" type="xs:string"/>
                     <xs:element maxOccurs="unbounded" minOccurs="0" name="activities" nillable="true" type="tns:Activity"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="holders" nillable="true" type="tns:Holder"/>
+                </xs:sequence>
+            </xs:complexType>
+			<xs:complexType name="Extract">
+                <xs:sequence>
+                    <xs:element minOccurs="1" name="month" type="xs:string"/>
+                    <xs:element minOccurs="1" name="year" type="xs:string"/>
+                    <xs:element minOccurs="0" name="generationDate" type="xs:string"/>
                 </xs:sequence>
             </xs:complexType>
             <xs:complexType name="Office">
@@ -74,6 +82,11 @@
                     <xs:element minOccurs="0" name="type" type="xs:string"/>
                 </xs:sequence>
             </xs:complexType>
+			<xs:complexType name="Holder">
+                <xs:sequence>
+                    <xs:element minOccurs="1" name="name" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
         </xs:schema>
         <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:com:bbva:jee:arq:spring:core:servicing:utils" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:com:bbva:jee:arq:spring:core:servicing:utils">
             <xs:element name="money" type="tns:money"/>
@@ -96,6 +109,19 @@
                     </response>
                 </method>
             </resource>
+			<resource path="/{productId}/extracts">
+				<param name="productId" style="template" type="xs:string"/>
+				<method name="GET" id="listExtracts">
+					<request>
+						<param name="$filter" style="query" default="null" type="xs:string"/>
+						<param name="paginationKey" style="query" default="null" type="xs:int"/>
+						<param name="pageSize" style="query" default="null" type="xs:int"/>
+					</request>
+					<response>
+						<representation mediaType="application/json"  element="prefix1:Extract"/>
+					</response>
+				</method>
+			</resource>
         </resource>
     </resources>
 </application>

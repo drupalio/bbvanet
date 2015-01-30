@@ -39,7 +39,7 @@
 			valueButton="#{msg['button.save']}" idButton="buttonComboOne"
 			valueLabel="#{msg['text.virtualCorresp']}"
 			actionListenerCom="#{personalizeProductAccountController.successful}"
-			ajaxCom="#{personalizeProductAccountController.offMessage}"
+			ajaxCom="#{personalizeProductAccountController.offMessageSuccesful}"
 			value="#{personalizeProductAccountController.personalizeProductAccountDto.virtualMail}" />
 		<bbvaMessage:messageCheck
 			render="#{personalizeProductAccountController.menSuccessful}" />
@@ -49,12 +49,14 @@
 			idCombo="comboTwo" divClass="customize-online"
 			classIcon="icon-info-blue" valueLabel="#{msg['text.consult']}"
 			labelIcon="#{msg['text.online']}"
+			ajaxCom="#{personalizeProductAccountController.offMessageOpenKey}"
 			value="#{personalizeProductAccountController.search}" />
 
 		<bbvaPersonalize:personalizeCombo size="bigCombo yourStyleClass"
 			idCombo="comboThree" divClass="customize-online"
 			classIcon="icon-info-blue" valueLabel="#{msg['text.work']}"
 			labelIcon="#{msg['text.online']}"
+			ajaxCom="#{personalizeProductAccountController.offMessageOpenKey}"
 			value="#{personalizeProductAccountController.operation}" />
 
 		<p:commandButton id="buttonThree" value="#{msg['button.save']}"
