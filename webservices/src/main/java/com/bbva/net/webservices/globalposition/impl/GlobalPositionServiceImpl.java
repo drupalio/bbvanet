@@ -2,6 +2,9 @@ package com.bbva.net.webservices.globalposition.impl;
 
 import java.util.List;
 
+import javax.ws.rs.core.Response;
+
+import org.apache.cxf.jaxrs.client.WebClient;
 import org.springframework.beans.factory.annotation.Value;
 
 import com.bbva.czic.dto.net.Product;
@@ -30,12 +33,13 @@ public class GlobalPositionServiceImpl extends AbstractBbvaRestService
 	}
 
 	@Override
-	public void updateProductOperability(String idProduct, Product product) {
-		restTemplate.put(URL_BASE+ idProduct+ URL_OPERABILITY, Product.class);
+	public Response updateProductOperability(String idProduct, Product product) {
+		Response response = getJsonWebClient(URL_BASE+ idProduct+ URL_OPERABILITY).put(product);
+		return response;
 	}
-
 	@Override
-	public void updateProductVisibility(String idProduct, Product product) {
-		restTemplate.put(URL_BASE + idProduct+ URL_VISIBILITY, Product.class);
+	public Response updateProductVisibility(String idProduct, Product product) {
+		Response response = getJsonWebClient(URL_BASE+ idProduct+ URL_VISIBILITY).put(product);
+		return response;
 	}
 }
