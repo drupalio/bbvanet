@@ -250,4 +250,5 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 	public void setProductService(final ProductService productService) {
 		this.productService = productService;
 	}
+
 }

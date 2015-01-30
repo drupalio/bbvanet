@@ -43,7 +43,7 @@ public class LoginFacadeImpl extends AbstractBbvaFacade implements LoginFacade {
 		AuthenticationData authenticationData = new AuthenticationData();
 
 		// Authentication-Data
-		authenticationData.setIdAuthenticationData("iv_ticketService");
+		authenticationData.setIdAuthenticationData("");
 
 		// Authentication
 		acutentication.setAccessCode(identification);

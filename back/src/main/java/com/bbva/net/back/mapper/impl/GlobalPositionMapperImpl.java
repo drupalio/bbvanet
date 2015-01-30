@@ -42,66 +42,66 @@ public class GlobalPositionMapperImpl extends ConfigurableMapper implements Glob
 
 			@Override
 			public void executeRotatingAccount(final Product rotatingAccount) {
-				
+
 				RotatingAccountDto product = map(rotatingAccount, RotatingAccountDto.class);
-				product.setTypeProd(EnumProductType.AQ);
+				product.setTypeProd(EnumProductType.RQ);
 				globalProducts.getRotatingAccounts().add(product);
 			}
 
 			@Override
 			public void executeLoan(final Product loan) {
-								
+
 				LoanDto product = map(loan, RotatingAccountDto.class);
 				product.setTypeProd(EnumProductType.LO);
-				globalProducts.getLoan().add(product);				
+				globalProducts.getLoan().add(product);
 			}
 
 			@Override
 			public void executeLeasing(final Product leasing) {
 				LeasingDto product = map(leasing, LeasingDto.class);
 				product.setTypeProd(EnumProductType.LI);
-				globalProducts.getLeasings().add(product);				
+				globalProducts.getLeasings().add(product);
 			}
 
 			@Override
 			public void executeFund(final Product fund) {
 				FundDto product = map(fund, FundDto.class);
 				product.setTypeProd(EnumProductType.SI);
-				globalProducts.getFunds().add(product);	
-				
+				globalProducts.getFunds().add(product);
+
 			}
 
 			@Override
 			public void executeDeposit(final Product deposit) {
 				DepositDto product = map(deposit, DepositDto.class);
 				product.setTypeProd(EnumProductType.ED);
-				globalProducts.getElectronicDeposits().add(product);	
-				
+				globalProducts.getElectronicDeposits().add(product);
+
 			}
 
 			@Override
 			public void executeCredictCard(final Product creditCard) {
 				CreditCardDto product = map(creditCard, CreditCardDto.class);
 				product.setTypeProd(EnumProductType.TC);
-				globalProducts.getCreditCards().add(product);	
-								
+				globalProducts.getCreditCards().add(product);
+
 			}
 
 			@Override
 			public void executeAdquirenceAccount(final Product adquirenceAccount) {
-				
+
 				AdquirenceAccountDto product = map(adquirenceAccount, AdquirenceAccountDto.class);
 				product.setTypeProd(EnumProductType.AQ);
-				globalProducts.getAdquirencia().add(product);				
+				globalProducts.getAdquirencia().add(product);
 
 			}
 
 			@Override
 			public void executeAccount(final Product account) {
-				
+
 				AccountDto product = map(account, AccountDto.class);
 				product.setTypeProd(EnumProductType.PC);
-				globalProducts.getAccounts().add(product);					
+				globalProducts.getAccounts().add(product);
 			}
 		};
 
