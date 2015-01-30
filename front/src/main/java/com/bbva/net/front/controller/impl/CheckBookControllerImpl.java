@@ -187,7 +187,7 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 			//Filter by checkId
 			System.out.println("check num: " + check.getId());
 			// TODO DEFAULT_ACCOUNT accountId
-			this.check = checkBookFacade.getCheckById("12345678", check.getId());
+			this.check = checkBookFacade.getCheckById(getSelectedProduct().getProductId(), check.getId());
 			setTitle(new String(MessagesHelper.INSTANCE.getString("tex.check.status")));
 			renderComponents.put(RenderAttributes.MOVEMENTSTABLE.toString(), false);
 			renderComponents.put(RenderAttributes.CHECKTABLE.toString(), true);
@@ -197,7 +197,7 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 			//Filter by status
 			System.out.println(" estado: " + titleState);
 			// TODO DEFAULT_ACCOUNT accountId  
-			this.checkList = checkBookFacade.getCheckByStatusOrDate("12345678", null, titleState, null, null);
+			this.checkList = checkBookFacade.getCheckByStatusOrDate(getSelectedProduct().getProductId(), null, titleState, 1, 10);
 			setTitle(MessagesHelper.INSTANCE.getString("tex.check.status"));
 			renderComponents.put(RenderAttributes.MOVEMENTSTABLE.toString(), false);
 			renderComponents.put(RenderAttributes.CHECKTABLE.toString(), true);
@@ -208,7 +208,7 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 			//Filter by talonario
 			System.out.println("checkbook num: " + getCheckBookNumber());
 			// TODO DEFAULT_ACCOUNT accountId
-			 this.checkBook = checkBookFacade.getCheckBookByAccountId("12345678", getCheckBookNumber());
+			 this.checkBook = checkBookFacade.getCheckBookByAccountId(getSelectedProduct().getProductId(), getCheckBookNumber());
 			setTitle(MessagesHelper.INSTANCE.getString("tex.check.status"));
 			renderComponents.put(RenderAttributes.MOVEMENTSTABLE.toString(), false);
 			renderComponents.put(RenderAttributes.CHECKTABLE.toString(), true);
@@ -221,7 +221,7 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 				dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
 			}
 			// TODO DEFAULT_ACCOUNT accountId
-			this.checkList = checkBookFacade.getCheckByStatusOrDate("12345678", this.dateRange, null, null, null);
+			this.checkList = checkBookFacade.getCheckByStatusOrDate(getSelectedProduct().getProductId(), this.dateRange, null, 1, 10);
 
 			setTitle(MessagesHelper.INSTANCE.getString("tex.check.status"));
 			renderComponents.put(RenderAttributes.MOVEMENTSTABLE.toString(), false);

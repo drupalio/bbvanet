@@ -50,7 +50,9 @@
 
 					<h:outputText class="text"
 						style="font-size: 12px;color: #333;text-align: left"
-						value="#{icuenta.issueDate}" />
+						value="#{icuenta.issueDate}" >
+						   <f:convertDateTime pattern="dd/MM/yyyy" /> 
+						  </h:outputText> 
 				
 				</p:column>
 
