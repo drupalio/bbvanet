@@ -11,12 +11,16 @@ import org.apache.cxf.interceptor.AbstractOutDatabindingInterceptor;
 import org.apache.cxf.interceptor.Fault;
 import org.apache.cxf.message.Message;
 import org.apache.cxf.phase.Phase;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.faces.webflow.FlowFacesContext;
 
 /**
  * @author Entelgy
  */
 public class RequestInterceptor extends AbstractOutDatabindingInterceptor {
+
+	protected static final Logger LOGGER = LoggerFactory.getLogger(RequestInterceptor.class);
 
 	private enum TSecType {
 		tsec
@@ -29,13 +33,17 @@ public class RequestInterceptor extends AbstractOutDatabindingInterceptor {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void handleMessage(Message outMessage) throws Fault {
-
-		final FacesContext facesContext = FlowFacesContext.getCurrentInstance();
-		final HttpSession session = (HttpSession)facesContext.getExternalContext().getSession(false);
-		final Map<String, List<String>> headers = (Map<String, List<String>>)outMessage.get(Message.PROTOCOL_HEADERS);
-		final List<String> tsecHeader = new ArrayList<String>();
-		tsecHeader.add((String)session.getAttribute(TSecType.tsec.name()));
-		headers.put(TSecType.tsec.name(), tsecHeader);
+		try {
+			final FacesContext facesContext = FlowFacesContext.getCurrentInstance();
+			final HttpSession session = (HttpSession)facesContext.getExternalContext().getSession(false);
+			final Map<String, List<String>> headers = (Map<String, List<String>>)outMessage
+					.get(Message.PROTOCOL_HEADERS);
+			final List<String> tsecHeader = new ArrayList<String>();
+			tsecHeader.add((String)session.getAttribute(TSecType.tsec.name()));
+			headers.put(TSecType.tsec.name(), tsecHeader);
+		} catch (final Exception exception) {
+			LOGGER.info("ERROR REQUEST INTERCEPTOR");
+		}
 
 	}
 }

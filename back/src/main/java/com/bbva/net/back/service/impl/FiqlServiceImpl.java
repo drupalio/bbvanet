@@ -30,6 +30,18 @@ public class FiqlServiceImpl implements FiqlService {
 				.notAfter(dateRange.getDateTo()).query();
 
 	}
+	
+	@Override
+	public String getFiqlQueryByStatus(final String status, String statusProperty) {
+
+		if (status == null) {
+			return StringUtils.EMPTY;
+		}
+
+		final SearchConditionBuilder filter = SearchConditionBuilder.instance(FIQL_LANGUAGE);
+		return filter.is(statusProperty).equalTo(status).query();
+
+	}
 
 	@Override
 	public String getFiqlEqual(String parameter, String value) {

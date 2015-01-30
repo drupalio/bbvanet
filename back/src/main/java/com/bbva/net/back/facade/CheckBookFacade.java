@@ -17,10 +17,11 @@ public interface CheckBookFacade {
 	/**
 	 * Method to get a check giving id Check
 	 * 
-	 * @param idCheck
+	 * @param checkId
+	 * @param accountId
 	 * @return Check
 	 */
-	CheckDto getCheckById(final String idCheck); 
+	CheckDto getCheckById(final String accountId, final String checkId); 
 
 
 	/**
@@ -43,9 +44,9 @@ public interface CheckBookFacade {
 	CheckbookDto getCheckBookByAccountId(String accountId,String checkBookId);
 
 	/**
-	 * Method to search a checkBook by criteria
-	 * @param checkBookId
+	 * Method to search a checkBook by accountId
+	 * @param accountId
 	 * @return List CheckBookDto
 	 */
-	List<CheckbookDto> getCheckBooksById(String checkBookId);	
+	List<CheckbookDto> getCheckBooksById(String accountId);	
 }

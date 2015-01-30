@@ -36,10 +36,10 @@ public class QuotaDetailImplMapper extends ConfigurableMapper
 				.field("status", "state")
 				.field("payment.minimumPayment", "minimumPayment")
 				.field("payment.fees", "feeCollection")
-				.field("balance.availableBalance", "outstandingBalance")
-				.field("balance.total", "amountRequested")
-				.field("debt.availableBalance", "availableBalance")
-				.field("debt.total", "balancePrevious").byDefault().register();
+				.field("balance.availableBalance", "availableBalance")
+				.field("balance.total", "balancePrevious")
+				.field("debt.availableBalance", "outstandingBalance")
+				.field("debt.total", "amountRequested").byDefault().register();
 
 	}
 }
