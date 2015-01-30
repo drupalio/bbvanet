@@ -56,20 +56,13 @@
 		<param-value>.xhtml</param-value>
 	</context-param>
 
+	<!-- 
 	<context-param>
 		<param-name>com.sun.faces.numberOfViewsInSession</param-name>
 		<param-value>5</param-value>
 	</context-param>
-
-	<context-param>
-		<param-name>org.apache.myfaces.NUMBER_OF_VIEWS_IN_SESSION</param-name>
-		<param-value>5</param-value>
-	</context-param>
-	<context-param>
-		<param-name>org.apache.myfaces.SERIALIZE_STATE_IN_SESSION</param-name>
-		<param-value>false</param-value>
-	</context-param>
-
+	 -->
+	 
 	<context-param>
 		<param-name>javax.faces.FACELETS_REFRESH_PERIOD</param-name>
 		<param-value>1</param-value>
@@ -77,7 +70,7 @@
 
 	<context-param>
 		<param-name>javax.faces.PROJECT_STAGE</param-name>
-		<param-value>Development</param-value>
+		<param-value>Production</param-value>
 	</context-param>
 
 	<context-param>
