@@ -10,15 +10,12 @@
 	<action-state id="login">
 		<on-entry>
 			<set name="requestScope.usuario" value="requestParameters.usuario" />
-			<set name="requestScope.password" value="requestParameters.password" />
-			<set name="requestScope.tipoId" value="requestParameters.tipoId" />
-			<set name="requestScope.numberId" value="requestParameters.numberId" />
+			<set name="requestScope.password" value="requestParameters.password2" />
+			<set name="requestScope.tipoId" value="requestParameters.TipoId" />
+			<set name="requestScope.numberId" value="requestParameters.NumeroId" />
 
 			<evaluate
-				expression="loginController.login(requestParameters.usuario,
-												  requestParameters.password,
-												  requestParameters.tipoId,
-												  requestParameters.numberId)">
+				expression="loginController.login()">
 			</evaluate>
 		</on-entry>
 	</action-state>

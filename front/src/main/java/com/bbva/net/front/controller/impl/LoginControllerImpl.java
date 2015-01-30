@@ -17,14 +17,15 @@ public class LoginControllerImpl extends AbstractBbvaController implements Login
 	private LoginFacade loginFacade;
 
 	@Override
-	public void login(String user, String password, String identification, String identificationType) {
+	public void login() {
 
 		// 1 Create Session;
 		final FacesContext facesContext = FlowFacesContext.getCurrentInstance();
 		facesContext.getExternalContext().getSession(true);
 
 		// 2. Invocar al GrantingTicket y recuperar tsec
-		final String tsec = this.loginFacade.login(user, password, identification, identificationType);
+		final String tsec = this.loginFacade.login(getRequestParameter("user"), getRequestParameter("password"),
+				getRequestParameter("identification"), getRequestParameter("identificationType"));
 
 		// 3. Almacenar tsec en la session
 		this.getSession().setAttribute(SessionParamenterType.TSEC.name(), tsec);

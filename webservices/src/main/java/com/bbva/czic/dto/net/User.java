@@ -12,9 +12,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
- * <p>Java class for User complex type.
+ * <p>Clase Java para User complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="User">
@@ -23,8 +23,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *       &lt;sequence>
  *         &lt;element name="customerId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="ContactInfo" type="{urn:com:bbva:czic:dto:net}ContactInfo" minOccurs="0"/>
- *         &lt;element name="userSalesExecutive" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="contactInfo" type="{urn:com:bbva:czic:dto:net}ContactInfo" minOccurs="0"/>
+ *         &lt;element name="salesExecutive" type="{urn:com:bbva:czic:dto:net}Executive" minOccurs="0"/>
  *         &lt;element name="lastAccessDate" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="message" type="{urn:com:bbva:czic:dto:net}Message" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="products" type="{urn:com:bbva:czic:dto:net}Product" maxOccurs="unbounded" minOccurs="0"/>
@@ -41,7 +41,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "customerId",
     "name",
     "contactInfo",
-    "userSalesExecutive",
+    "salesExecutive",
     "lastAccessDate",
     "message",
     "products"
@@ -50,9 +50,8 @@ public class User {
 
     protected String customerId;
     protected String name;
-    @XmlElement(name = "ContactInfo")
     protected ContactInfo contactInfo;
-    protected String userSalesExecutive;
+    protected Executive salesExecutive;
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar lastAccessDate;
     @XmlElement(nillable = true)
@@ -61,7 +60,7 @@ public class User {
     protected List<Product> products;
 
     /**
-     * Gets the value of the customerId property.
+     * Obtiene el valor de la propiedad customerId.
      * 
      * @return
      *     possible object is
@@ -73,7 +72,7 @@ public class User {
     }
 
     /**
-     * Sets the value of the customerId property.
+     * Define el valor de la propiedad customerId.
      * 
      * @param value
      *     allowed object is
@@ -85,7 +84,7 @@ public class User {
     }
 
     /**
-     * Gets the value of the name property.
+     * Obtiene el valor de la propiedad name.
      * 
      * @return
      *     possible object is
@@ -97,7 +96,7 @@ public class User {
     }
 
     /**
-     * Sets the value of the name property.
+     * Define el valor de la propiedad name.
      * 
      * @param value
      *     allowed object is
@@ -109,7 +108,7 @@ public class User {
     }
 
     /**
-     * Gets the value of the contactInfo property.
+     * Obtiene el valor de la propiedad contactInfo.
      * 
      * @return
      *     possible object is
@@ -121,7 +120,7 @@ public class User {
     }
 
     /**
-     * Sets the value of the contactInfo property.
+     * Define el valor de la propiedad contactInfo.
      * 
      * @param value
      *     allowed object is
@@ -133,31 +132,31 @@ public class User {
     }
 
     /**
-     * Gets the value of the userSalesExecutive property.
+     * Obtiene el valor de la propiedad salesExecutive.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link Executive }
      *     
      */
-    public String getUserSalesExecutive() {
-        return userSalesExecutive;
+    public Executive getSalesExecutive() {
+        return salesExecutive;
     }
 
     /**
-     * Sets the value of the userSalesExecutive property.
+     * Define el valor de la propiedad salesExecutive.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link Executive }
      *     
      */
-    public void setUserSalesExecutive(String value) {
-        this.userSalesExecutive = value;
+    public void setSalesExecutive(Executive value) {
+        this.salesExecutive = value;
     }
 
     /**
-     * Gets the value of the lastAccessDate property.
+     * Obtiene el valor de la propiedad lastAccessDate.
      * 
      * @return
      *     possible object is
@@ -169,7 +168,7 @@ public class User {
     }
 
     /**
-     * Sets the value of the lastAccessDate property.
+     * Define el valor de la propiedad lastAccessDate.
      * 
      * @param value
      *     allowed object is
