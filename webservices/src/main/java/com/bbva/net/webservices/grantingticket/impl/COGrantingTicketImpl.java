@@ -14,15 +14,13 @@ public class COGrantingTicketImpl extends AbstractBbvaRestService implements Srv
 	@Override
 	public void deleteTicket() {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public AuthenticationState createTicket(ConsumerContext consumercontext) {
 
-		WebClient wc = getJsonWebClient(URL_GRANTING);
-		wc.put(consumercontext);
-		return (AuthenticationState)wc.getCollection(AuthenticationState.class);
+		final WebClient wc = getJsonWebClient(URL_GRANTING);
+		return wc.post(consumercontext, AuthenticationState.class);
 	}
 
 }
