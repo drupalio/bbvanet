@@ -29,15 +29,15 @@ public final class ProductUtils {
 
 		String leasingVect[] = { "LS" };
 		List<String> leasingList = Arrays.asList(leasingVect);
-		
-		//ToDo: Deposito Electronico
+
+		// ToDo: Deposito Electronico
 		String depositElecVect[] = { "ED" };
 		List<String> depositElecList = Arrays.asList(depositElecVect);
 
-		//ToDo:adquisición
+		// ToDo:adquisición
 		String adqVect[] = { "AQ" };
 		List<String> adqList = Arrays.asList(adqVect);
-		
+
 		if (cuentasList.contains(subType)) {
 			return EnumProductType.PC;
 		} else if (cupoList.contains(subType)) {
@@ -54,7 +54,7 @@ public final class ProductUtils {
 			return EnumProductType.LI;
 		} else if (depositElecList.contains(subType)) {
 			return EnumProductType.ED;
-		}else if (adqList.contains(subType)) {
+		} else if (adqList.contains(subType)) {
 			return EnumProductType.AQ;
 		}
 
