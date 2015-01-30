@@ -71,6 +71,7 @@ public abstract class AbstractBbvaController implements Serializable {
 
 		final HttpServletRequest request = (HttpServletRequest)FlowFacesContext.getCurrentInstance()
 				.getExternalContext().getRequest();
+
 		return request.getParameter(parameter);
 	}
 

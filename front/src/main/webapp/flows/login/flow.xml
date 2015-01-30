@@ -8,19 +8,11 @@
 	<var name="loginController" class="com.bbva.net.front.controller.impl.LoginControllerImpl" />
 
 	<action-state id="login">
-		<on-entry>
-			<set name="requestScope.usuario" value="requestParameters.usuario" />
-			<set name="requestScope.password" value="requestParameters.password" />
-			<set name="requestScope.tipoId" value="requestParameters.tipoId" />
-			<set name="requestScope.numberId" value="requestParameters.numberId" />
-
-			<evaluate
-				expression="loginController.login(requestParameters.usuario,
-												  requestParameters.password,
-												  requestParameters.tipoId,
-												  requestParameters.numberId)">
-			</evaluate>
-		</on-entry>
+		<evaluate expression="loginController.login()">
+		</evaluate>
+		<transition to="finish"></transition>
 	</action-state>
 
+	<end-state id="finish" view="flowRedirect:globalPosition" />
+	
 </flow>
