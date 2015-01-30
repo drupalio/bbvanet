@@ -15,7 +15,6 @@ import com.bbva.net.back.model.globalposition.AccountDto;
 import com.bbva.net.front.controller.AccountsController;
 import com.bbva.net.front.core.AbstractBbvaController;
 
-@Controller(value = "accountsController")
 public class AccountsControllerImpl extends AbstractBbvaController implements AccountsController {
 
 	private static final long serialVersionUID = 5726824668267606699L;
