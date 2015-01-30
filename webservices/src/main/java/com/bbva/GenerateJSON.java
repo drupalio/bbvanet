@@ -12,6 +12,9 @@
 //import com.bbva.czic.dto.net.Check;
 //import com.bbva.czic.dto.net.Checkbook;
 //import com.bbva.czic.dto.net.EnumCheckbookStatus;
+//
+//import com.bbva.czic.dto.net.Product;
+//
 //import com.bbva.jee.arq.spring.core.servicing.utils.Money;
 //import com.google.gson.Gson;
 //
@@ -40,11 +43,11 @@
 //		Date end = dataFactory.getDateBetween(start, maxDate);
 //
 //		checkBook.setActualState(EnumCheckbookStatus.HABILITADO);
-//		checkBook.setDeliveryDate(dateToSring(start));
+//		//checkBook.setDeliveryDate(dateToSring(start));
 //		checkBook.setFirstCheck(dataFactory.getNumberUpTo(10) + "");
 //		checkBook.setId(dataFactory.getNumberUpTo(10) + "");
 //		checkBook.setLastCheck(dataFactory.getNumberUpTo(10) + "");
-//		checkBook.setRequestDate(dateToSring(end));
+//		//checkBook.setRequestDate(dateToSring(end));
 //		checkBook.setTotalCheck(dataFactory.getNumberUpTo(10));
 //		return checkBook;
 //
