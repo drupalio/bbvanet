@@ -32,8 +32,8 @@ public class RequestInterceptor extends AbstractOutDatabindingInterceptor {
 		final FacesContext facesContext = FlowFacesContext.getCurrentInstance();
 		final HttpSession session = (HttpSession)facesContext.getExternalContext().getSession(false);
 		final Map<String, List<String>> headers = (Map<String, List<String>>)outMessage.get(Message.PROTOCOL_HEADERS);
-
-		// headers.put(TSecType.tsec.name(), session.getAttribute(TSecType.tsec.name()));
+		if (headers.containsKey(TSecType.tsec.name()))
+			headers.put(TSecType.tsec.name(), (List<String>)session.getAttribute(TSecType.tsec.name()));
 
 	}
 }
