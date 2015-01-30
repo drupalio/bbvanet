@@ -23,13 +23,13 @@ public class QuotaDetailFacadeIT {
 	@Resource(name = "quotaDetailFacade")
 	private QuotaDetailFacade quotaDetailFacade;
 
-	// @Test
-	// public void checkGetQuotaRotaryOK() throws Exception {
-	// final QuotaDetailDto quotaDetailDto = this.quotaDetailFacade
-	// .getDetailRotaryQuota("00130073005054466407");
-	// Assert.assertNotNull(quotaDetailDto);
-	// }
-	//
+	@Test
+	public void checkGetQuotaRotaryOK() throws Exception {
+		final QuotaDetailDto quotaDetailDto = this.quotaDetailFacade
+				.getDetailRotaryQuota("00130073005054466407");
+		Assert.assertNotNull(quotaDetailDto);
+	}
+
 	@Test(expected = ServiceUnavailableException.class)
 	public void checkGetQuotaRotaryNotId() throws Exception {
 		try {
@@ -40,14 +40,14 @@ public class QuotaDetailFacadeIT {
 			throw notFoundException;
 		}
 	}
-	// @Test(expected = BadRequestException.class)
-	// public void checkGetGlobalProdctsUserNoExist() throws Exception {
-	// try {
-	// this.quotaDetailFacade.getDetailRotaryQuota(null);
-	// } catch (final BadRequestException notFoundException) {
-	// Assert.assertEquals(notFoundException.getMessage(),
-	// "HTTP 400 Bad Request");
-	// throw notFoundException;
-	// }
-	// }
+	@Test(expected = BadRequestException.class)
+	public void checkGetGlobalProdctsUserNoExist() throws Exception {
+		try {
+			this.quotaDetailFacade.getDetailRotaryQuota(null);
+		} catch (final BadRequestException notFoundException) {
+			Assert.assertEquals(notFoundException.getMessage(),
+					"HTTP 400 Bad Request");
+			throw notFoundException;
+		}
+	}
 }
