@@ -24,14 +24,14 @@ public class LoginControllerImpl extends AbstractBbvaController implements Login
 		facesContext.getExternalContext().getSession(true);
 
 		// 2. Invocar al GrantingTicket y recuperar tsec
-		final String tsec = this.loginFacade.login(getRequestParameter("user"), getRequestParameter("password"),
-				getRequestParameter("identification"), getRequestParameter("identificationType"));
+		final String tsec = this.loginFacade.login(getRequestParameter("usuario"), getRequestParameter("password2"),
+				getRequestParameter("NumeroId"), getRequestParameter("TipoId"));
 
 		// 3. Almacenar tsec en la session
 		this.getSession().setAttribute(SessionParamenterType.TSEC.name(), tsec);
 
 		// 3. Redirigir a Posición global
-		this.initFlow("globalPosition");
+		// this.initFlow("globalPosition");
 
 	}
 }

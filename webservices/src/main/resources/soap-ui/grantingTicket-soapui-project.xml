@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="grantingTicket" soapui-version="5.0.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="grantingTicket" type="rest" basePath="/saz/co/grantingTicket" definitionUrl="file:/C:/Users/Entelgy/bbvaNet/bbvanet/webservices/src/main/resources/wadl/grantingTicket.wadl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/C:/Users/Entelgy/bbvaNet/bbvanet/webservices/src/main/resources/wadl/grantingTicket.wadl"><con:part><con:url>file:/C:/Users/Entelgy/bbvaNet/bbvanet/webservices/src/main/resources/wadl/grantingTicket.wadl</con:url><con:content><![CDATA[<application xmlns="http://wadl.dev.java.net/2009/02" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:prefix1="http://bbva.com/saz/co/grantingticket/V01">
+  <grammars>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://bbva.com/saz/co/grantingticket/V01" xmlns:tns="http://bbva.com/saz/co/grantingticket/V01">
+      <xs:element name="Authentication" type="tns:Authentication"/>
+      <xs:element name="AuthenticationData" type="tns:AuthenticationData"/>
+      <xs:element name="AuthenticationState" type="tns:AuthenticationState"/>
+      <xs:element name="ConsumerContext" type="tns:ConsumerContext"/>
+      <xs:element name="UserPreferences" type="tns:UserPreferences"/>
+      <xs:complexType name="AuthenticationState">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="authenticationState" type="xs:string"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="authenticationData" nillable="true" type="tns:AuthenticationData"/>
+          <xs:element minOccurs="0" name="userType" type="xs:string"/>
+          <xs:element minOccurs="0" name="userStatus" type="xs:string"/>
+          <xs:element minOccurs="0" name="clientStatus" type="xs:string"/>
+          <xs:element minOccurs="0" name="countableTerminal" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="AuthenticationData">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="idAuthenticationData" type="xs:string"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="authenticationData" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ConsumerContext">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="authentication" type="tns:Authentication"/>
+          <xs:element minOccurs="0" name="userPreferences" type="tns:UserPreferences"/>
+          <xs:element minOccurs="0" name="backendSession" type="xs:string"/>
+          <xs:element minOccurs="0" name="addressIp" type="xs:string"/>
+          <xs:element minOccurs="0" name="dialogId" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Authentication">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="consumerId" type="xs:string"/>
+          <xs:element minOccurs="0" name="authenticationType" type="xs:string"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="authenticationData" nillable="true" type="tns:AuthenticationData"/>
+          <xs:element minOccurs="0" name="userId" type="xs:string"/>
+          <xs:element minOccurs="0" name="client" type="xs:string"/>
+          <xs:element minOccurs="0" name="accessCode" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="UserPreferences">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="language" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </grammars>
+  <resources base="http://150.250.233.39:7275/saz/co/grantingTicket">
+    <resource path="/V01" id="com.bbva.saz.co.grantingticket.facade.v01.impl.SrvCOGrantingTicket">
+      <method name="DELETE" id="deleteTicket">
+        <response status="204"/>
+      </method>
+      <method name="POST" id="createTicket">
+        <request>
+          <representation mediaType="application/json" element="prefix1:ConsumerContext"/>
+        </request>
+        <response>
+          <representation mediaType="application/json" element="prefix1:AuthenticationState"/>
+        </response>
+      </method>
+    </resource>
+  </resources>
+</application>]]></con:content><con:type>http://wadl.dev.java.net/2009/02</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8089/</con:endpoint><con:endpoint>http://localhost:8089/</con:endpoint></con:endpoints><con:resource name="/V01" path="/V01"><con:settings/><con:parameters/><con:method name="DELETE - deleteTicket" method="DELETE"><con:settings/><con:parameters/><con:request name="Request 1" mediaType="application/json"><con:settings/><con:endpoint>http://localhost:8089/</con:endpoint><con:request/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method><con:method name="POST - createTicket" method="POST"><con:settings/><con:parameters/><con:representation type="REQUEST" id=""><con:mediaType>application/json</con:mediaType><con:params/><con:element xmlns:v01="http://bbva.com/saz/co/grantingticket/V01">v01:ConsumerContext</con:element><con:description xsi:nil="true"/></con:representation><con:representation type="RESPONSE" id=""><con:mediaType>application/json</con:mediaType><con:params/><con:element xmlns:v01="http://bbva.com/saz/co/grantingticket/V01">v01:AuthenticationState</con:element><con:description xsi:nil="true"/></con:representation><con:request name="Request 1" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:9001</con:endpoint><con:request/><con:originalUri>http://localhost/saz/co/grantingTicket/V01</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource></con:interface><con:restMockService port="9001" path="/" host="localhost" name="REST MockService 1" docroot=""><con:settings/><con:properties/><con:restMockAction name="/saz/co/grantingTicket/V01" method="DELETE" resourcePath="/saz/co/grantingTicket/V01"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200"><con:settings/></con:response></con:restMockAction><con:restMockAction name="/saz/co/grantingTicket/V01" method="POST" resourcePath="/saz/co/grantingTicket/V01"><con:settings/><con:defaultResponse xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
+	"authenticationState": "ACT",
+	"userType": "VIP",
+	"userStatus": "ACT",
+	"clientStatus": "ACT",
+	"countableTerminal": "XXX"
+}</con:responseContent><con:header><con:name>tsec</con:name><con:value>wWe28BJqarHCUqcwpLnj3YYhpklvktCCI0cDy7IBXsk2boXi67RaF5E5Ypz8</con:value></con:header></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
