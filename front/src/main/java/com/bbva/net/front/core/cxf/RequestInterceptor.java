@@ -1,5 +1,6 @@
 package com.bbva.net.front.core.cxf;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -32,8 +33,9 @@ public class RequestInterceptor extends AbstractOutDatabindingInterceptor {
 		final FacesContext facesContext = FlowFacesContext.getCurrentInstance();
 		final HttpSession session = (HttpSession)facesContext.getExternalContext().getSession(false);
 		final Map<String, List<String>> headers = (Map<String, List<String>>)outMessage.get(Message.PROTOCOL_HEADERS);
-		if (headers.containsKey(TSecType.tsec.name()))
-			headers.put(TSecType.tsec.name(), (List<String>)session.getAttribute(TSecType.tsec.name()));
+		final List<String> tsecHeader = new ArrayList<String>();
+		tsecHeader.add((String)session.getAttribute(TSecType.tsec.name()));
+		headers.put(TSecType.tsec.name(), tsecHeader);
 
 	}
 }
