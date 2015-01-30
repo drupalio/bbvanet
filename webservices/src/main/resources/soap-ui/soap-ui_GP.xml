@@ -6699,7 +6699,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"requestDate": "22/08/2014",
 	"deliveryDate": "10/07/2014",
 	"actualState": "HABILITADO"
-}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/accounts/V01/12345678/checks/12345678" method="GET" resourcePath="/czic/accounts/V01/12345678/checks/12345678"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/accounts/V01/12345678/checks/12345678" method="GET" resourcePath="/czic/accounts/V01/12345678/checks/12345678"><con:settings/><con:defaultResponse>Response check</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Examples showing how to match based on path, query param and header
 // Match based on path
 def requestPath = mockRequest.getPath()
