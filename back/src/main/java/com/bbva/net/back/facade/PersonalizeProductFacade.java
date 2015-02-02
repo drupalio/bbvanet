@@ -6,7 +6,7 @@ import com.bbva.net.back.model.globalposition.ProductDto;
 
 public interface PersonalizeProductFacade {
 
-	public void updateProductOperability(String idProduct, ProductDto productDto);
+	public Response updateProductOperability(String idProduct, ProductDto productDto);
 
 	public Response updateProductVisibility(String idProduct, ProductDto productDto);
 

@@ -26,9 +26,10 @@ public class PersonalizeProductFacadeImpl extends AbstractBbvaFacade implements 
 	private Product product;
 
 	@Override
-	public void updateProductOperability(String idProduct, ProductDto productDto) {
+	public Response updateProductOperability(String idProduct, ProductDto productDto) {
 		this.product = personalizeAccountProductMapper.map(productDto);
-		this.globalPositionService.updateProductOperability(idProduct, product);
+		final Response response = this.globalPositionService.updateProductOperability(idProduct, product);
+		return response;
 	}
 
 	@Override

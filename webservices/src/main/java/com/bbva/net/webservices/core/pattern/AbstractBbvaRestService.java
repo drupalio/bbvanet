@@ -26,6 +26,9 @@ public abstract class AbstractBbvaRestService {
 	@Value("${rest.base.url}")
 	protected String URL_BASE;
 
+	@Value("${rest.global.base}")
+	protected String URL_GLOBAL_BASE;
+
 	@Value("${rest.base.customer.url}")
 	protected String URL_BASE_CUSTOMER;
 
