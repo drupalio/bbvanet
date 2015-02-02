@@ -164,8 +164,8 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 		// Calculate cards graphics panel
 
-		this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(getCurrentUser(),
-				null));
+		// this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(getCurrentUser(),
+		// null));
 
 		// Calculate totals
 		this.totalsProducts = this.globalPositionFacade.getTotalsByProduct(globalProductsDTO);

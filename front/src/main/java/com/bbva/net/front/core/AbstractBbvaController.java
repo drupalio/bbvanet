@@ -32,7 +32,7 @@ public abstract class AbstractBbvaController implements Serializable {
 
 	protected String DEFAULT_USER = "12345678";
 
-	protected String DEFAULT_ACCOUNT = "123";
+	protected String DEFAULT_ACCOUNT = "12345678909876543210";
 
 	protected enum SessionParamenterType {
 
