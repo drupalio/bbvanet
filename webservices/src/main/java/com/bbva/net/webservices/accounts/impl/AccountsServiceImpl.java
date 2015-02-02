@@ -29,20 +29,23 @@ public class AccountsServiceImpl extends AbstractBbvaRestService implements Acco
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Check> listCheck(String accountId, String filter, Integer paginationKey, Integer pageSize){
+	public List<Check> listCheck(String accountId, String filter, Integer paginationKey, Integer pageSize) {
 
-		WebClient wc = getJsonWebClient(URL_BASE_ACCOUNTS+ accountId + URL_CHECK);
+		WebClient wc = getJsonWebClient(URL_BASE_ACCOUNTS + accountId + URL_CHECK);
 		if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
 
 		return (List<Check>)wc.getCollection(Check.class);
 	}
 
-	// Pinta Grafica Cupo rotaativo
+	@SuppressWarnings("unchecked")
 	@Override
-	public List<MonthlyBalances> getAccountMonthlyBalance(String id, String $filter, String $fields, String $expands,
-			String $sort) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<MonthlyBalances> getAccountMonthlyBalance(String accountId, String filter, String fields,
+			String expands, String sort) {
+		WebClient wc = getJsonWebClient(URL_BASE_ACCOUNTS + accountId + URL_MOUNTHBALANCE);
+		if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
+		if (!StringUtils.isEmpty(fields)) wc.query(FILTER, fields);
+
+		return (List<MonthlyBalances>)wc.getCollection(MonthlyBalances.class);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -59,6 +62,5 @@ public class AccountsServiceImpl extends AbstractBbvaRestService implements Acco
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 
 }

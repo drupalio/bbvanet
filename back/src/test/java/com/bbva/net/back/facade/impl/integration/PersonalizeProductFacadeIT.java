@@ -1,10 +1,6 @@
 package com.bbva.net.back.facade.impl.integration;
 
 import javax.annotation.Resource;
-import javax.ws.rs.BadRequestException;
-import javax.ws.rs.ServiceUnavailableException;
-
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.context.annotation.Profile;
@@ -24,15 +20,14 @@ public class PersonalizeProductFacadeIT {
 
 	ProductDto productDto = new ProductDto();
 
-	// @Test
-	// public void checkVisibilityOK() throws Exception {
-	// try {
-	// this.personalizeProductFacade.updateProductVisibility(
-	// "00130073005054466407", productDto);
-	// } catch (Exception e) {
-	// throw e;
-	// }
-	// }
+	@Test
+	public void checkVisibilityOK() throws Exception {
+		try {
+			this.personalizeProductFacade.updateProductVisibility("00130073005054466407", productDto);
+		} catch (Exception e) {
+			throw e;
+		}
+	}
 	//
 	// @Test(expected = BadRequestException.class)
 	// public void checkVisibilityProductNull() throws Exception {
