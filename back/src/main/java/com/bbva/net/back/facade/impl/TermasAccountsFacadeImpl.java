@@ -41,7 +41,7 @@ public class TermasAccountsFacadeImpl extends AbstractBbvaFacade implements Term
 		// prueba.setIntervinientes(intervinientes);
 		// prueba.setDireccionPostal(direccionPostal);
 		// Se quema numero para realizar prueba
-		numCuenta = "00130073000296247953";
+		// numCuenta = "00130073000296247953";
 		final Conditions condiciones = this.productsService.getConditions(numCuenta);
 
 		return mapper.map(condiciones);

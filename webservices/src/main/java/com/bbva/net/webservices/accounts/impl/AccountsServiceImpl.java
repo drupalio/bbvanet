@@ -69,12 +69,15 @@ public class AccountsServiceImpl extends AbstractBbvaRestService implements Acco
 		return (List<Check>)wc.getCollection(Check.class);
 	}
 
-	// Pinta Grafica Cupo rotaativo
+	@SuppressWarnings("unchecked")
 	@Override
-	public List<MonthlyBalances> getAccountMonthlyBalance(String id, String $filter, String $fields, String $expands,
-			String $sort) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<MonthlyBalances> getAccountMonthlyBalance(String accountId, String filter, String fields,
+			String expands, String sort) {
+		WebClient wc = getJsonWebClient(URL_BASE_ACCOUNTS + accountId + URL_MOUNTHBALANCE);
+		if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
+		if (!StringUtils.isEmpty(fields)) wc.query(FILTER, fields);
+
+		return (List<MonthlyBalances>)wc.getCollection(MonthlyBalances.class);
 	}
 
 	@SuppressWarnings("unchecked")
