@@ -29,6 +29,12 @@ public interface AccountsService {
 
     @GET
     @Produces("application/json")
+    @Path("/{accountId}/checks/{checkId}")
+    Check getCheck(@PathParam("accountId") String accountId, @PathParam("checkId") String checkId);
+
+
+    @GET
+    @Produces("application/json")
     @Path("/{id}")
     Account getAccount(@PathParam("id") String id);
 
