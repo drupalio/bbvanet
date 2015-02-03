@@ -27,5 +27,42 @@
 	<bean id="requestInterceptor" class="com.bbva.net.front.core.cxf.RequestInterceptor"/>
 	<bean id="responseInterceptor" class="com.bbva.net.front.core.cxf.ResponseInterceptor"/>
 	
+	<bean id="jacksonObjectMapper" class="org.codehaus.jackson.map.ObjectMapper" />
+	<bean
+		class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetObject" ref="jacksonObjectMapper" />
+		<property name="targetMethod" value="configure" />
+		<property name="arguments">
+			<list>
+				<value type="org.codehaus.jackson.map.DeserializationConfig.Feature">FAIL_ON_UNKNOWN_PROPERTIES</value>
+				<value>false</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="factoryBean" class="org.apache.cxf.jaxrs.client.JAXRSClientFactoryBean">
+		<aop:scoped-proxy />
+		<property name="providers">
+			<list>
+				<bean class="org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider">
+					<constructor-arg ref="jacksonObjectMapper" />
+					<constructor-arg>
+						<value></value>
+					</constructor-arg>
+				</bean>
+			</list>
+		</property>
+		<property name="outInterceptors">
+			<list>
+				<ref bean="requestInterceptor"/>
+			</list>
+		</property>
+		<property name="inInterceptors">
+			<list>
+				<ref bean="responseInterceptor"/>
+			</list>
+		</property>
+	</bean>
+	
 
 </beans>   
