@@ -1,0 +1,30 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+<composite:interface />
+
+<composite:implementation>
+
+	<div class="chart-options">
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 chart-selection input-control">
+					<label for="depositos-chart-depositos">Depósito:</label>
+					<select data-width="160px" data-container="body" class="selectpicker chart-selection-account" id="depositos-chart-depositos" style="display: none;">
+						<option selected="" value="assets/js/graphycs/data/depositos.json">Todos los depósitos</option>
+						<option value="assets/js/graphycs/data/depositos.json">XYZ * 0000</option>
+						<option value="assets/js/graphycs/data/depositos.json">ASD * 0000</option>
+					</select><div class="btn-group bootstrap-select chart-selection-account" style="width: 160px;"><button data-toggle="dropdown" class="btn dropdown-toggle selectpicker btn-default" type="button" data-id="depositos-chart-depositos" title="Todos los depósitos"><span class="filter-option pull-left">Todos los depósitos</span>&nbsp;<span class="caret"></span></button></div>
+				</div>
+			</div>
+		</div>
+
+
+</composite:implementation>
+
+</html>

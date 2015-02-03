@@ -5,18 +5,21 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pm="http://primefaces.org/mobile"
-	xmlns:jsf="http://xmlns.jcp.org/jsf">
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:bbvaEDesposit="http://java.sun.com/jsf/composite/bbva/graphics/electronicDeposit">>
 
 <composite:interface />
 
 <composite:implementation>
-	<h:form id="containerPanel">
-		<div class="tab tab-bars chart" style="display: block;">
+	<h:form id="bodyPanel">
 		
-			<!-- Titulo del componente -->
-			<div class="tab-title">
-					#{msg['title.graphic.depositsInvestment']}
-			</div>
+		<div class="row">
+			
+			
+				<!--Inserta compoente Grafica-->
+				<bbvaEDesposit:electronicDepositGraphic/>
+				
+				<!--Inserta compoente footer-->
 			
 		</div>
 	</h:form>
