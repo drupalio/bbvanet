@@ -13,7 +13,6 @@ import com.bbva.net.back.model.cards.CardsChargesDto;
 import com.bbva.net.back.model.globalposition.GlobalProductsDto;
 import com.bbva.net.back.model.globalposition.ProductDto;
 import com.bbva.net.back.service.ProductService;
-import com.bbva.net.back.utils.ProductUtils;
 import com.bbva.net.front.core.stereotype.Delegate;
 import com.bbva.net.front.delegate.GraphicPieDelegate;
 import com.bbva.net.front.helper.MessagesHelper;
