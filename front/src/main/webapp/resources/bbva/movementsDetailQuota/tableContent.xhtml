@@ -5,7 +5,8 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui" xmlns:jsf="http://xmlns.jcp.org/jsf"
-	xmlns:bbvaDetailMotion="http://java.sun.com/jsf/composite/bbva/movementsDetailQuota"
+	xmlns:bbvaDetailMotion="http://java.sun.com/jsf/composite/bbva/movementsDetail"
+	xmlns:bbvaDetailMotionQuota="http://java.sun.com/jsf/composite/bbva/movementsDetailQuota"
 	xmlns:pm="http://primefaces.org/mobile">
 
 <composite:interface>
@@ -23,14 +24,15 @@
 							<div class="table-detail-border">
 
 								<!-- aki va header -->
-								<bbvaDetailMotion:tableHeader />
+								<bbvaDetailMotionQuota:tableHeader />
 
 								<!-- luego va botones container -->
-								<bbvaDetailMotion:buttonQuotaContainer />
+								<bbvaDetailMotion:buttonContainer button1="lorem"
+									button2="Lorem ipsum" button3="Lorem ipsum" />
 
 
 								<!-- luego cuerpo del contenido -->
-								<bbvaDetailMotion:tableBody
+								<bbvaDetailMotionQuota:tableBody
 									detailMovement="#{movementDetailController.getDetailMovementByAccount()}" />
 
 
@@ -39,7 +41,6 @@
 
 								<!-- luego va footer notas -->
 								<bbvaDetailMotion:tableFooterNotes />
-
 							</div>
 						</div>
 					</td>

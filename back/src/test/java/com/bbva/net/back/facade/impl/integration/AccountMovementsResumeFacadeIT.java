@@ -3,8 +3,9 @@ package com.bbva.net.back.facade.impl.integration;
 import java.util.Date;
 
 import javax.annotation.Resource;
-import javax.ws.rs.ClientErrorException;
+import javax.ws.rs.BadRequestException;
 
+import org.apache.commons.lang.StringUtils;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,7 +14,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.bbva.net.back.facade.AccountMovementsResumeFacade;
-import com.bbva.net.back.model.checkbook.CheckDto;
 import com.bbva.net.back.model.commons.DateRangeDto;
 import com.bbva.net.back.model.movements.GlobalResumeMovementsDto;
 
@@ -22,11 +22,18 @@ import com.bbva.net.back.model.movements.GlobalResumeMovementsDto;
 @RunWith(SpringJUnit4ClassRunner.class)
 public class AccountMovementsResumeFacadeIT {
 
-	private static final String DEFAULT_USER = "123";
+	private static final String DEFAULT_USER = "12345678";
+
+	private static final String BAD_USER = "123456";
+
+	private static final String DEFAULT_ACCOUNT = "12345678998765432101";
+
+	private static final String BAD_ACCOUNT = "1234567899";
 
 	@Resource(name = "accountMovementsFacade")
 	private AccountMovementsResumeFacade accountMovementsFacade;
-	/*
+
+	// ***************** Customer Interface *****************
 	@Test
 	public void checkMovementsResumeByCustomerOk() {
 
@@ -34,23 +41,108 @@ public class AccountMovementsResumeFacadeIT {
 		final GlobalResumeMovementsDto resume = this.accountMovementsFacade.getMovementsResumeByCustomer(DEFAULT_USER,
 				new DateRangeDto(new Date(), new Date()));
 
+		Assert.assertNotNull(resume);
 		Assert.assertNotNull(resume.getMovementsResumeDto().get(0));
 
 	}
-	
+
 	@Test
-	public void listCheckOk(){
-		final CheckDto cheques;
+	public void checkMovementsResumeByCustomerOkWhitoutFilter() {
+
+		// SrvCustomersV01 -> listAccountsMovementsResume
+		final GlobalResumeMovementsDto resume = this.accountMovementsFacade.getMovementsResumeByCustomer(DEFAULT_USER,
+				null);
+
+		Assert.assertNotNull(resume);
+		Assert.assertNotNull(resume.getMovementsResumeDto().get(0));
+
 	}
 
-	@Test(expected = ClientErrorException.class)
+	@Test(expected = BadRequestException.class)
 	public void checkMovementsResumeByCustomerNotUser() {
-		this.accountMovementsFacade.getMovementsResumeByCustomer(null, new DateRangeDto(new Date(), new Date()));
+		// SrvCustomersV01 -> listAccountsMovementsResume
+		try {
+			this.accountMovementsFacade.getMovementsResumeByCustomer(null, new DateRangeDto(new Date(), new Date()));
+		} catch (final BadRequestException notFoundException) {
+			Assert.assertEquals(notFoundException.getMessage(), "HTTP 400 Bad Request");
+			throw notFoundException;
+		}
 	}
-	*/
-	@Test(expected = ClientErrorException.class)
+
+	@Test()
 	public void checkMovementsResumeByCustomerNotDate() {
-		this.accountMovementsFacade.getMovementsResumeByCustomer(DEFAULT_USER, new DateRangeDto(null, null));
+
+		// SrvCustomersV01 -> listAccountsMovementsResume
+		final GlobalResumeMovementsDto resume = this.accountMovementsFacade.getMovementsResumeByCustomer(DEFAULT_USER,
+				new DateRangeDto(null, null));
+		Assert.assertNotNull(resume);
+		Assert.assertNotNull(resume.getMovementsResumeDto().get(0));
+
+	}
+
+	@Test(expected = BadRequestException.class)
+	public void checkMovementsResumeByBadCustomer() {
+
+		// SrvCustomersV01 -> listAccountsMovementsResume
+		try {
+			this.accountMovementsFacade
+					.getMovementsResumeByCustomer(BAD_USER, new DateRangeDto(new Date(), new Date()));
+		} catch (final BadRequestException notFoundException) {
+			Assert.assertEquals(notFoundException.getMessage(), "HTTP 400 Bad Request");
+			throw notFoundException;
+		}
+	}
+
+	// ***************** Accounts Interface *****************
+
+	@Test(expected = BadRequestException.class)
+	public void checkMovementsResumeByAccountsNotAccount() {
+		// SrvAccountsV01 -> listAccountsMovementsResume
+		try {
+			this.accountMovementsFacade.getMovementsResumeByAccount(null, new DateRangeDto(new Date(), new Date()),
+					StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY);
+		} catch (final BadRequestException notFoundException) {
+			Assert.assertEquals(notFoundException.getMessage(), "HTTP 400 Bad Request");
+			throw notFoundException;
+		}
+	}
+
+	@Test()
+	public void checkMovementsResumeByAccountNotDate() {
+		// Debe devolver los 12 meses sin fecha
+		// SrvAccountsV01 -> listAccountsMovementsResume
+		final GlobalResumeMovementsDto resume = this.accountMovementsFacade.getMovementsResumeByAccount(
+				DEFAULT_ACCOUNT, null, StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY);
+		Assert.assertNotNull(resume);
+		Assert.assertNotNull(resume.getMovementsResumeDto().get(0));
+
+	}
+
+	@Test(expected = BadRequestException.class)
+	public void checkMovementsResumeByBadAccount() {
+
+		// SrvAccountsV01 -> listAccountsMovementsResume
+		try {
+			this.accountMovementsFacade.getMovementsResumeByAccount(BAD_ACCOUNT, new DateRangeDto(new Date(),
+					new Date()), StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY);
+		} catch (final BadRequestException notFoundException) {
+			Assert.assertEquals(notFoundException.getMessage(), "HTTP 400 Bad Request");
+			throw notFoundException;
+		}
+
+	}
+
+	@Test()
+	public void checkMovementsResumeByAccountOK() {
+
+		// SrvAccountsV01 -> listAccountsMovementsResume
+		final GlobalResumeMovementsDto resume = this.accountMovementsFacade.getMovementsResumeByAccount(
+				DEFAULT_ACCOUNT, new DateRangeDto(new Date(), new Date()), StringUtils.EMPTY, StringUtils.EMPTY,
+				StringUtils.EMPTY);
+
+		Assert.assertNotNull(resume);
+		Assert.assertNotNull(resume.getMovementsResumeDto().get(0));
+
 	}
 
 }

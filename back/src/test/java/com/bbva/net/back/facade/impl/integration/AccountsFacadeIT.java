@@ -14,7 +14,7 @@ import com.bbva.net.back.facade.AccountsFacade;
 @RunWith(SpringJUnit4ClassRunner.class)
 public class AccountsFacadeIT {
 
-	@Resource(name = "globalPositionFacade")
-	private AccountsFacade globalPositionFacade;
+	@Resource(name = "accountsFacade")
+	private AccountsFacade accountsFacade;
 
 }

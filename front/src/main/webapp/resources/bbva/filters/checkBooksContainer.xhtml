@@ -49,18 +49,19 @@
 			listenerDate="#{cc.attrs.listenerDate}" />
 	</bbvaSearch:customSearchList>
 
-	<bbvaSearch:checkBoxList id="checkList"
-		classList="check-books-ticket radio-filter mobile-hidden"
+
+<bbvaSearch:customSearchList  id="checkList"
+		classList="date-filter customSearch"
 		classSpan="arrow-left-smaller" classSpanFilter="filter"
 		title="#{msg['text.number.check.books']}"
 		filterTitle="#{checkBookController.leftTitle}"
-				filterMessage="#{checkBookController.rightTitle}">
+		filterMessage="#{checkBookController.rightTitle}">
 		<bbvaSearch:numberCheck id="numberCheck"
 			valueCheck="#{cc.attrs.valueCheck}"
 			valueCheckNumber="#{cc.attrs.valueCheckNumber}"
 			valuecheckState="#{cc.attrs.valuecheckState}"
 			valueBookNumber="#{cc.attrs.valueBookNumber}"
 			actionListenerCheck="#{cc.attrs.actionListenerCheck}" />
-	</bbvaSearch:checkBoxList>
+	</bbvaSearch:customSearchList>
 </composite:implementation>
 </html>

@@ -15,7 +15,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
+import com.bbva.jee.arq.spring.core.log.I18nLog;
+import com.bbva.jee.arq.spring.core.log.I18nLogFactory;
+
 public abstract class AbstractBbvaRestService {
+
+	protected static final I18nLog LOGGER = I18nLogFactory.getLogI18n(AbstractBbvaRestService.class);
 
 	@Resource(name = "restTemplate")
 	protected RestTemplate restTemplate;
@@ -25,6 +30,9 @@ public abstract class AbstractBbvaRestService {
 
 	@Value("${rest.base.url}")
 	protected String URL_BASE;
+
+	@Value("${rest.global.base}")
+	protected String URL_GLOBAL_BASE;
 
 	@Value("${rest.base.customer.url}")
 	protected String URL_BASE_CUSTOMER;
@@ -50,8 +58,14 @@ public abstract class AbstractBbvaRestService {
 	@Value("${rest.accounts.url}")
 	protected String URL_ACCOUNTS;
 
-	@Value("${rest.check.url}")
-	protected String URL_CHECK;
+	@Value("${rest.list.check.url}")
+	protected String URL_CHECK_LIST;
+
+	@Value("${rest.mounthBalance.url}")
+	protected String URL_MOUNTHBALANCE;
+
+	@Value("${rest.granting.url}")
+	protected String URL_GRANTING;
 
 	/**
 	 * @param response

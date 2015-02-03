@@ -26,6 +26,7 @@ import com.bbva.net.back.model.globalposition.LoanDto;
 import com.bbva.net.back.model.globalposition.ProductDto;
 import com.bbva.net.back.model.globalposition.RotatingAccountDto;
 import com.bbva.net.back.predicate.AssetPredicated;
+import com.bbva.net.back.predicate.ProductSubTypePredicate;
 import com.bbva.net.back.predicate.ProductTypePredicate;
 import com.bbva.net.back.service.ProductService;
 import com.bbva.net.core.collection.BbvaPredicate;
@@ -117,6 +118,16 @@ public class ProductServiceImpl implements ProductService {
 
 		final List<ProductDto> productsByType = (List<ProductDto>)CollectionUtils.select(products,
 				new ProductTypePredicate(productType));
+
+		return getTotal(productsByType);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public Money getTotalProductsBySubType(final List<ProductDto> products, final String subProductType) {
+
+		final List<ProductDto> productsByType = (List<ProductDto>)CollectionUtils.select(products,
+				new ProductSubTypePredicate(subProductType));
 
 		return getTotal(productsByType);
 	}
