@@ -18,7 +18,7 @@ import com.bbva.jee.arq.spring.core.servicing.utils.Money;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="balance" type="{urn:com:bbva:jee:arq:spring:core:servicing:utils}money" minOccurs="0"/>
- *         &lt;element name="month" type="{urn:com:bbva:czic:dto:net}EnumMonth" minOccurs="0"/>
+ *         &lt;element name="month" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -35,7 +35,7 @@ import com.bbva.jee.arq.spring.core.servicing.utils.Money;
 public class MonthlyBalances {
 
     protected Money balance;
-    protected EnumMonth month;
+    protected String month;
 
     /**
      * Gets the value of the balance property.
@@ -66,10 +66,10 @@ public class MonthlyBalances {
      * 
      * @return
      *     possible object is
-     *     {@link EnumMonth }
+     *     {@link String }
      *     
      */
-    public EnumMonth getMonth() {
+    public String getMonth() {
         return month;
     }
 
@@ -78,10 +78,10 @@ public class MonthlyBalances {
      * 
      * @param value
      *     allowed object is
-     *     {@link EnumMonth }
+     *     {@link String }
      *     
      */
-    public void setMonth(EnumMonth value) {
+    public void setMonth(String value) {
         this.month = value;
     }
 

@@ -43,15 +43,28 @@ public class CheckBookMapperImpl extends ConfigurableMapper implements CheckBook
 	}
 
 	@Override
-	public List<CheckbookDto> mapCheckBook(List<Checkbook> checkBooks) {
-		final List<CheckbookDto> checkBooksList = mapAsList(checkBooks, CheckbookDto.class);
-		return checkBooksList;
+	public CheckbookDto mapCheckBook(Checkbook checkBooks) {
+		final CheckbookDto checkBooksDto = map(checkBooks, CheckbookDto.class);
+		return checkBooksDto;
 	}
 
 	@Override
-	public List<CheckDto> mapCheck(List<Check> checks) {
-		final List<CheckDto> checksList = mapAsList(checks, CheckDto.class);
-		return checksList;
+	public List<CheckbookDto> mapCheckBookList(List<Checkbook> checkbook) {
+		final List<CheckbookDto> checkBookList = mapAsList(checkbook, CheckbookDto.class);
+		return checkBookList;
+	}
+	
+
+	@Override
+	public CheckDto mapCheck(Check check) {
+		final CheckDto checkDto = map(check, CheckDto.class);
+		return checkDto;
 	}
 
+	
+	@Override
+	public List<CheckDto> mapCheckList(List<Check> check) {
+		final List<CheckDto> checksList = mapAsList(check, CheckDto.class);
+		return checksList;
+	}
 }

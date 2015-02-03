@@ -69,7 +69,7 @@ public class AccountMovementsResumeFacadeImpl extends AbstractBbvaFacade impleme
 
 		GlobalResumeMovementsDto globalMovements = new GlobalResumeMovementsDto();
 
-		String filter = dateRange == null ? StringUtils.EMPTY : fiqlService.getFiqlQueryByDateRange(dateRange, DATE,
+		String filter = dateRange == null ? StringUtils.EMPTY : fiqlService.formatMonthByAccMovementResume(dateRange,
 				DATE);
 
 		final List<AccMovementsResume> response = this.accountsService.getAccMovementResume(accountId, filter, fields,

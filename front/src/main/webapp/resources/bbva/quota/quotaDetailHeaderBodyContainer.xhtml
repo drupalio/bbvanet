@@ -13,14 +13,14 @@
 
 
 <composite:interface>
-<composite:attribute name="type" type="String" />
+	<composite:attribute name="type" type="String" />
 </composite:interface>
 
 <composite:implementation>
 
-		<div class="col-xs-12 col-sm-6 detail-cupo-#{cc.attrs.type}">
+	<div class="col-xs-6 col-sm-4 detail-cupo-#{cc.attrs.type}">
 		<composite:insertChildren></composite:insertChildren>
-</div>
+	</div>
 </composite:implementation>
 
 </html>

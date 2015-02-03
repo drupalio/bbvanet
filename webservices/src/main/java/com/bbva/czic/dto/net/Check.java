@@ -3,9 +3,7 @@ package com.bbva.czic.dto.net;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.datatype.XMLGregorianCalendar;
 import com.bbva.jee.arq.spring.core.servicing.utils.Money;
 
 
@@ -20,10 +18,10 @@ import com.bbva.jee.arq.spring.core.servicing.utils.Money;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="issueDate" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+ *         &lt;element name="issueDate" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="value" type="{urn:com:bbva:jee:arq:spring:core:servicing:utils}money" minOccurs="0"/>
  *         &lt;element name="status" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="modifiedDate" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+ *         &lt;element name="modifiedDate" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -43,12 +41,10 @@ import com.bbva.jee.arq.spring.core.servicing.utils.Money;
 public class Check {
 
     protected String id;
-    @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar issueDate;
+    protected String issueDate;
     protected Money value;
     protected String status;
-    @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar modifiedDate;
+    protected String modifiedDate;
 
     /**
      * Gets the value of the id property.
@@ -79,10 +75,10 @@ public class Check {
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public XMLGregorianCalendar getIssueDate() {
+    public String getIssueDate() {
         return issueDate;
     }
 
@@ -91,10 +87,10 @@ public class Check {
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public void setIssueDate(XMLGregorianCalendar value) {
+    public void setIssueDate(String value) {
         this.issueDate = value;
     }
 
@@ -151,10 +147,10 @@ public class Check {
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public XMLGregorianCalendar getModifiedDate() {
+    public String getModifiedDate() {
         return modifiedDate;
     }
 
@@ -163,10 +159,10 @@ public class Check {
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public void setModifiedDate(XMLGregorianCalendar value) {
+    public void setModifiedDate(String value) {
         this.modifiedDate = value;
     }
 

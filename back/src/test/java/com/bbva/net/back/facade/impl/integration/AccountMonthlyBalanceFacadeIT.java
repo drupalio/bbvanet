@@ -8,6 +8,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @Profile("integration")
 @ContextConfiguration(locations = "classpath:spring-test-context.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
-public class FundsTypeFacadeIT {
+public class AccountMonthlyBalanceFacadeIT {
 
+	
+	
+	
 }

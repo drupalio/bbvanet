@@ -9,5 +9,5 @@ public interface AccountMovementsResumeFacade {
 
 	GlobalResumeMovementsDto getMovementsResumeByAccount(String accountId, DateRangeDto filter, String fields,
 			String expands, String sort);
-
+	
 }

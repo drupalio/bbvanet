@@ -12,13 +12,13 @@ import javax.servlet.http.HttpSession;
 
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.faces.webflow.FlowFacesContext;
 import org.springframework.webflow.engine.RequestControlContext;
 import org.springframework.webflow.execution.Event;
 import org.springframework.webflow.execution.RequestContextHolder;
 
+import com.bbva.jee.arq.spring.core.log.I18nLog;
+import com.bbva.jee.arq.spring.core.log.I18nLogFactory;
 import com.bbva.net.back.model.globalposition.ProductDto;
 
 /**
@@ -26,13 +26,13 @@ import com.bbva.net.back.model.globalposition.ProductDto;
  */
 public abstract class AbstractBbvaController implements Serializable {
 
-	protected static final Logger LOGGER = LoggerFactory.getLogger(AbstractBbvaController.class);
+	protected static final I18nLog LOGGER = I18nLogFactory.getLogI18n(AbstractBbvaController.class);
 
 	private static final long serialVersionUID = -4820146844257478597L;
 
 	protected String DEFAULT_USER = "12345678";
 
-	protected String DEFAULT_ACCOUNT = "123";
+	protected String DEFAULT_ACCOUNT = "12345678909876543210";
 
 	protected enum SessionParamenterType {
 
@@ -71,6 +71,7 @@ public abstract class AbstractBbvaController implements Serializable {
 
 		final HttpServletRequest request = (HttpServletRequest)FlowFacesContext.getCurrentInstance()
 				.getExternalContext().getRequest();
+
 		return request.getParameter(parameter);
 	}
 

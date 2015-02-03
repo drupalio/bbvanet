@@ -25,13 +25,14 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     private final static QName _Activity_QNAME = new QName("urn:com:bbva:czic:dto:net", "Activity");
-    private final static QName _Email_QNAME = new QName("urn:com:bbva:czic:dto:net", "Email");
     private final static QName _State_QNAME = new QName("urn:com:bbva:czic:dto:net", "State");
+    private final static QName _Email_QNAME = new QName("urn:com:bbva:czic:dto:net", "Email");
     private final static QName _ContactInfo_QNAME = new QName("urn:com:bbva:czic:dto:net", "ContactInfo");
     private final static QName _Office_QNAME = new QName("urn:com:bbva:czic:dto:net", "Office");
     private final static QName _MonthlyBalances_QNAME = new QName("urn:com:bbva:czic:dto:net", "MonthlyBalances");
     private final static QName _Check_QNAME = new QName("urn:com:bbva:czic:dto:net", "Check");
     private final static QName _Product_QNAME = new QName("urn:com:bbva:czic:dto:net", "Product");
+    private final static QName _Extracto_QNAME = new QName("urn:com:bbva:czic:dto:net", "Extracto");
     private final static QName _Function_QNAME = new QName("urn:com:bbva:czic:dto:net", "Function");
     private final static QName _Location_QNAME = new QName("urn:com:bbva:czic:dto:net", "Location");
     private final static QName _PhoneNumber_QNAME = new QName("urn:com:bbva:czic:dto:net", "PhoneNumber");
@@ -122,6 +123,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Extracto }
+     * 
+     */
+    public Extracto createExtracto() {
+        return new Extracto();
+    }
+
+    /**
      * Create an instance of {@link Function }
      * 
      */
@@ -186,19 +195,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Email }
-     * 
-     */
-    public Email createEmail() {
-        return new Email();
-    }
-
-    /**
      * Create an instance of {@link State }
      * 
      */
     public State createState() {
         return new State();
+    }
+
+    /**
+     * Create an instance of {@link Email }
+     * 
+     */
+    public Email createEmail() {
+        return new Email();
     }
 
     /**
@@ -235,21 +244,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Email }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "urn:com:bbva:czic:dto:net", name = "Email")
-    public JAXBElement<Email> createEmail(Email value) {
-        return new JAXBElement<Email>(_Email_QNAME, Email.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link State }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "urn:com:bbva:czic:dto:net", name = "State")
     public JAXBElement<State> createState(State value) {
         return new JAXBElement<State>(_State_QNAME, State.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Email }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "urn:com:bbva:czic:dto:net", name = "Email")
+    public JAXBElement<Email> createEmail(Email value) {
+        return new JAXBElement<Email>(_Email_QNAME, Email.class, null, value);
     }
 
     /**
@@ -295,6 +304,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "urn:com:bbva:czic:dto:net", name = "Product")
     public JAXBElement<Product> createProduct(Product value) {
         return new JAXBElement<Product>(_Product_QNAME, Product.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Extracto }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "urn:com:bbva:czic:dto:net", name = "Extracto")
+    public JAXBElement<Extracto> createExtracto(Extracto value) {
+        return new JAXBElement<Extracto>(_Extracto_QNAME, Extracto.class, null, value);
     }
 
     /**

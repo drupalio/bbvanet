@@ -11,15 +11,18 @@
                 </xs:sequence>
             </xs:complexType>
             <xs:simpleType name="EnumCardChargeCategory">
-                <xs:restriction base="xs:string">
-                    <xs:enumeration value="CHANNEL_SALES"/>
-                    <xs:enumeration value="LEISURE"/>
-                    <xs:enumeration value="OTHERS"/>
-                    <xs:enumeration value="BASIC_COMMERCE"/>
-                    <xs:enumeration value="GIFT_BOOK_DISC"/>
-                    <xs:enumeration value="CLOTHING"/>
-                </xs:restriction>
-            </xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="OCIO"/>
+					<xs:enumeration value="REGALOS"/>
+					<xs:enumeration value="LIBROS"/>
+					<xs:enumeration value="DISCOS"/>
+					<xs:enumeration value="COMERCIOBASICO"/>
+					<xs:enumeration value="ROPA"/>
+					<xs:enumeration value="CALZADOPERSONAL"/>
+					<xs:enumeration value="VARIOS"/>
+					<xs:enumeration value="COMPRASPORCANALES"/>
+				</xs:restriction>
+			</xs:simpleType>
         </xs:schema>
         <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:com:bbva:jee:arq:spring:core:servicing:utils" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:com:bbva:jee:arq:spring:core:servicing:utils">
             <xs:element name="money" type="tns:money"/>

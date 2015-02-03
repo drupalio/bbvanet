@@ -13,6 +13,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.bbva.net.back.facade.QuotaDetailFacade;
+import com.bbva.net.back.model.quota.QuotaDetailDto;
 
 @Profile("integration")
 @ContextConfiguration(locations = "classpath:spring-test-context.xml")
@@ -22,29 +23,31 @@ public class QuotaDetailFacadeIT {
 	@Resource(name = "quotaDetailFacade")
 	private QuotaDetailFacade quotaDetailFacade;
 
-	@Test(expected = ServiceUnavailableException.class)
+	@Test
 	public void checkGetQuotaRotaryOK() throws Exception {
-		try {
-			Assert.assertNotNull(this.quotaDetailFacade
-					.getDetailRotaryQuota("00130073005054466407"));
-		} catch (Exception e) {
-			throw e;
-		}
+		final QuotaDetailDto quotaDetailDto = this.quotaDetailFacade
+				.getDetailRotaryQuota("00130073005054466407");
+		Assert.assertNotNull(quotaDetailDto);
 	}
+
 	@Test(expected = ServiceUnavailableException.class)
 	public void checkGetQuotaRotaryNotId() throws Exception {
 		try {
 			this.quotaDetailFacade.getDetailRotaryQuota(StringUtils.EMPTY);
-		} catch (Exception e) {
-			throw e;
+		} catch (final ServiceUnavailableException notFoundException) {
+			Assert.assertEquals(notFoundException.getMessage(),
+					"HTTP 503 Service Unavailable");
+			throw notFoundException;
 		}
 	}
 	@Test(expected = BadRequestException.class)
 	public void checkGetGlobalProdctsUserNoExist() throws Exception {
 		try {
 			this.quotaDetailFacade.getDetailRotaryQuota(null);
-		} catch (Exception e) {
-			throw e;
+		} catch (final BadRequestException notFoundException) {
+			Assert.assertEquals(notFoundException.getMessage(),
+					"HTTP 400 Bad Request");
+			throw notFoundException;
 		}
 	}
 }

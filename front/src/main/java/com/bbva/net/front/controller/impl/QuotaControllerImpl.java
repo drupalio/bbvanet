@@ -33,7 +33,7 @@ public class QuotaControllerImpl extends AbstractBbvaController implements Quota
 
 	private static final String CONCRETE_DATE = "Fecha concreta";
 
-	private static final String DEFAULT_IDLOAN = "9500-01-40-2606-9499";
+	private static final String DEFAULT_IDLOAN = "00130073005054466407";
 
 	private MovementCriteriaDto movementCriteria = new MovementCriteriaDto();
 
@@ -54,8 +54,9 @@ public class QuotaControllerImpl extends AbstractBbvaController implements Quota
 
 	@Override
 	public TermsAccountsDto getAllConditions() {
-		TermsAccountsDto detalle = this.detallesCuenta.getAllConditions("numCuenta", "usuario");
-		detalle.getInformacionProducto().getAlias();
+
+		TermsAccountsDto detalle = this.detallesCuenta.getAllConditions(super.getSelectedProduct().getProductId());
+
 		return detalle;
 	}
 

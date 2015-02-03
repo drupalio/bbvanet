@@ -26,14 +26,14 @@ public interface GlobalPositionService {
     @Consumes("application/json")
     @Produces("application/json")
     @Path("/{idProduct}/setProductOperability")
-    void updateProductOperability(@PathParam("idProduct") String idProduct, Product product);
+    Response updateProductOperability(@PathParam("idProduct") String idProduct, Product product);
 
     
     @PUT
     @Consumes("application/json")
     @Produces("application/json")
     @Path("/{idProduct}/setProductVisibility")
-	void updateProductVisibility(@PathParam("idProduct") String idProduct,
+    Response updateProductVisibility(@PathParam("idProduct") String idProduct,
 			Product product);
 
 }

@@ -24,6 +24,7 @@
 
 <composite:interface>
 	<composite:attribute name="title" type="String" />
+	<composite:attribute name="alias" type="String" />
 	<composite:attribute name="numCuenta" type="String" />
 	<composite:attribute name="tipo" type="String" />
 </composite:interface>
@@ -36,7 +37,7 @@
 			<bbvaAcc:termsAccountsPanelInfoItemTitle date="#{msg['text.alias']}:"
 				val="4" />
 			<bbvaAcc:termsAccountsPanelInfoItemData
-				date="#{allConditions.informacionProducto.alias}" val="7" />
+				date="#{cc.attrs.alias}" val="7" />
 			<bbvaAcc:termsAccountsPanelInfoItemTitle
 				date="#{msg['text.account.number']}:" val="4" />
 			<bbvaAcc:termsAccountsPanelInfoItemData
