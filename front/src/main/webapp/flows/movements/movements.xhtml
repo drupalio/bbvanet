@@ -94,7 +94,7 @@
 					</aside>
 				</div>
 			</div>
-
+</div>
 
 			<bbvaDetAcc:tabMenu id="tabMenu">
 				<ul class="nav nav-pills nav-operation-options"
@@ -133,17 +133,11 @@
 
 				</div>
 			</bbvaDetAcc:tabMenu>
-
-			<div class="table-tabs">
-				<bbvaDetailMotion:detailMovesTable id="detailAccounts"
-					listAccounts="#{customerAccounts}" listChecks="#{checkList}" />
-			</div>
-		</bbvaDetAcc:tabMenu>
-
 		<div class="table-tabs">
 			<bbvaDetailMotion:detailMovesTable id="detailAccounts"
 				listAccounts="#{customerAccounts}" listChecks="#{checkBookController.checkList}"/>
 		</div>
+		
 	</ui:define>
 
 	<ui:define name="contentRight">
