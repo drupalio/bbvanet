@@ -7,7 +7,7 @@
 <application>
 
      <display-name>BBVA Net</display-name>
-      <module>
+      <module id="WebModule">
          <web>
             <web-uri>kqco_mult_web_front-01.war</web-uri>
             <context-root>/kqco</context-root>
