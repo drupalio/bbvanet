@@ -15,6 +15,7 @@
 
 	<context:property-placeholder location="classpath*:*.properties" />
 
+	<!-- 
 	<beans profile="dev">
 	
 		<jdbc:embedded-database id="dataSource" type="HSQL">
@@ -62,13 +63,13 @@
 	
 
 	<beans profile="prod">
-
+	 -->
 		<bean id="dataSource" class="oracle.jdbc.pool.OracleDataSource">
 			<property name="dataSourceName" value="ds" />
 			<property name="URL"
-				value="${com.bbva.net.oracle.jdbc.url}" />
-			<property name="user" value="${com.bbva.net.oracle.jdbc.user}" />
-			<property name="password" value="${com.bbva.net.oracle.jdbc.password}" />
+				value="jdbc:oracle:thin:@82.250.88.109:1528:db11ges" />
+			<property name="user" value="BDSPRING" />
+			<property name="password" value="BDSPRING2014" />
 		</bean>
 
 		<bean id="transactionManager"
@@ -100,6 +101,8 @@
 			</property>
 		</bean>
 		
+	<!-- 	
 	</beans>
-	
+	 -->
+	 
 </beans>
