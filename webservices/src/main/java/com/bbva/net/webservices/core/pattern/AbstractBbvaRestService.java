@@ -15,7 +15,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
+import com.bbva.jee.arq.spring.core.log.I18nLog;
+import com.bbva.jee.arq.spring.core.log.I18nLogFactory;
+
 public abstract class AbstractBbvaRestService {
+
+	protected static final I18nLog LOGGER = I18nLogFactory.getLogI18n(AbstractBbvaRestService.class);
 
 	@Resource(name = "restTemplate")
 	protected RestTemplate restTemplate;
