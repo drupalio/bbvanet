@@ -14,67 +14,83 @@
 </composite:interface>
 
 <composite:implementation>
-<h:form id="cards" >
+	<h:form id="cards">
 		<div align="center">
 			<span
-					style="color:#274b6d;font-size:16px;font:bold 16px Trebuchet MS, Arial, sans-serif;fill:#274b6d;width:232px;">
-					#{cc.attrs.pieConfigUI.headerCenter}</span>			
+				style="color: #274b6d; font-size: 16px; font: bold 16px Trebuchet MS, Arial, sans-serif; fill: #274b6d; width: 232px;">
+				#{cc.attrs.pieConfigUI.headerCenter}</span>
 		</div>
-		<div class="chart-cheese" id="cardG" 
-			data-highcharts-chart="3">
+		<div class="chart-cheese" id="cardG" data-highcharts-chart="3">
 			<div id="chart2_2" class="c3"></div>
 		</div>
 
-	<script>
-		//function initChart() {
+		<script>
+			//function initChart() {
 
 			var totalColums = [];
 			var colorsLegend = [];
 			var label;
 			var colums;
 			var values;
+			var currency;
 			var color;
 			var colors;
+			var totalporcentaje = 0;
 
 			<c:forEach var="pieItemUI" items="${cc.attrs.pieConfigUI.pieItemUIList}">
 			label = ("${pieItemUI.textLegend}");
+			currency = ("${pieItemUI.currency}");
 			values = ("${pieItemUI.value}");
 			colums = [ [ label ], [ values ] ];
 			totalColums.push(colums);
-
+			totalporcentaje += parseInt(values);
 			color = ("${pieItemUI.color}");
 			colorsLegend.push(color);
 			</c:forEach>
 
 			var chart = c3.generate({
-				bindto: '#chart2_2',
-				
-				padding: {
-			        top: 30,
-			        right: 100,
-			        bottom: 40,
-			        left: 100,
-			    },
+				bindto : '#chart2_2',
+
+				padding : {
+					top : 30,
+					right : 100,
+					bottom : 40,
+					left : 100,
+				},
 				data : {
-					
-					size: { height: 240, width: 480 },
+
+					size : {
+						height : 240,
+						width : 480
+					},
 					columns : totalColums,
 
 					type : 'pie',
+					empty : {
+						label : {
+							text : "No Data"
+						}
+					},
 				},
-			    pie: {
-			    	  label: {
-			    	    show: false
-			    	  }
-			    	}
-// 				color : {
-// 					pattern : colorsLegend
-// 				},
+				pie : {
+					label : {
+						show : false
+					}
+				},
+// 				tooltip: {
+// 				      contents: function (d, defaultTitleFormat, defaultValueFormat, color) {
+// 				        var text;
+// 				          return "<table><tr><th style='text-align:left'>Hola"+d[0].value+"/"+d[0].name+"/"+d[0].id+"/"+"</th></tr></table>";
+// 				      }
+// 				  },
+			// 				color : {
+			// 					pattern : colorsLegend
+			// 				},
 			});
 
-		//};
-	</script>
+			//};
+		</script>
 
-</h:form>
+	</h:form>
 </composite:implementation>
 </html>

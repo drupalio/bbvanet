@@ -39,35 +39,13 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 		final PieConfigUI assetPie = new PieConfigUI();
 		assetPie.setHeaderCenter("Pesos ($)");
 		final List<PieItemUI> assetPieItems = new ArrayList<PieItemUI>();
+		for (int i = 0; i < cardsCharges.size(); i++) {
 
-		final PieItemUI leisurePieItem = new PieItemUI("el color",
-				MessagesHelper.INSTANCE.getString("categorie.leisure"), cardsCharges.get(0).getAmmount().getAmount());
-		final PieItemUI giftsPieItem = new PieItemUI("el color", MessagesHelper.INSTANCE.getString("categorie.gifts"),
-				cardsCharges.get(1).getAmmount().getAmount());
-		final PieItemUI booksPieItem = new PieItemUI("el color", MessagesHelper.INSTANCE.getString("categorie.books"),
-				cardsCharges.get(2).getAmmount().getAmount());
-		final PieItemUI diskPieItem = new PieItemUI("el color", MessagesHelper.INSTANCE.getString("categorie.disk"),
-				cardsCharges.get(3).getAmmount().getAmount());
-		final PieItemUI commercePieItem = new PieItemUI("el color",
-				MessagesHelper.INSTANCE.getString("categorie.commerce"), cardsCharges.get(4).getAmmount().getAmount());
-		final PieItemUI clothesPieItem = new PieItemUI("el color",
-				MessagesHelper.INSTANCE.getString("categorie.clothes"), cardsCharges.get(5).getAmmount().getAmount());
-		final PieItemUI choosePieItem = new PieItemUI("el color",
-				MessagesHelper.INSTANCE.getString("categorie.choose"), cardsCharges.get(6).getAmmount().getAmount());
-		final PieItemUI othersPieItem = new PieItemUI("el color",
-				MessagesHelper.INSTANCE.getString("categorie.others"), cardsCharges.get(7).getAmmount().getAmount());
-		final PieItemUI shoppingPieItem = new PieItemUI("el color",
-				MessagesHelper.INSTANCE.getString("categorie.shopping"), cardsCharges.get(8).getAmmount().getAmount());
-
-		assetPieItems.add(leisurePieItem);
-		assetPieItems.add(giftsPieItem);
-		assetPieItems.add(booksPieItem);
-		assetPieItems.add(diskPieItem);
-		assetPieItems.add(commercePieItem);
-		assetPieItems.add(clothesPieItem);
-		assetPieItems.add(choosePieItem);
-		assetPieItems.add(othersPieItem);
-		assetPieItems.add(shoppingPieItem);
+			final PieItemUI chargeItem = new PieItemUI("el color",
+					MessagesHelper.INSTANCE.getCategoryPrefix(cardsCharges.get(i).getCategorie()), cardsCharges.get(i)
+							.getAmmount().getAmount());
+			assetPieItems.add(chargeItem);
+		}
 		assetPie.setPieItemUIList(assetPieItems);
 
 		return assetPie;

@@ -8,8 +8,6 @@ import com.bbva.net.back.model.commons.Money;
 
 public class CardsChargesDto implements Dto {
 
-
-
 	/**
 	 * 
 	 */
@@ -42,8 +40,7 @@ public class CardsChargesDto implements Dto {
 	@Override
 	public boolean equals(Object obj) {
 		return (obj instanceof CardsChargesDto) && this.getCategorie().equals(((CardsChargesDto)obj).getCategorie())
-				&& this.getAmmount().equals(
-						((CardsChargesDto) obj).getAmmount());
+				&& this.getAmmount().equals(((CardsChargesDto)obj).getAmmount());
 	}
 
 	@Override

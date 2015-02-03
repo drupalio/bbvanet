@@ -32,9 +32,7 @@ import com.bbva.net.front.ui.pie.PieConfigUI;
  * @author Entelgy
  */
 
-public class GlobalPositionControllerImpl extends AbstractBbvaController
-		implements
-			GlobalPositionController {
+public class GlobalPositionControllerImpl extends AbstractBbvaController implements GlobalPositionController {
 
 	/**
 	 * 
@@ -153,40 +151,34 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController
 		LOGGER.info("STARTING BBVA NET .................");
 
 		// Get GlobalProductsDTO by currentUser (visibles and hidden)
-		this.globalProductsDTO = this.globalPositionFacade
-				.getGlobalProductsByUser(getCurrentUser());
+		this.globalProductsDTO = this.globalPositionFacade.getGlobalProductsByUser(getCurrentUser());
 
 		// Obtiene la lista de resumen de movimientos del serivico REST
-		this.globalResumeMovementsDTO = this.movementsResumeFacade
-				.getMovementsResumeByCustomer(getCurrentUser(), null);
+		this.globalResumeMovementsDTO = this.movementsResumeFacade.getMovementsResumeByCustomer(getCurrentUser(), null);
 
 		// Calculate situation graphics panels
-		this.situationGraphicPieUI = graphicPieDelegate
-				.getSituationGlobalProducts(this.globalProductsDTO);
+		this.situationGraphicPieUI = graphicPieDelegate.getSituationGlobalProducts(this.globalProductsDTO);
 
 		// Calculate investmentFunds graphics panels
-		this.graphicPieInvestmentFunds = graphicPieDelegate
-				.getAccountsfundsProducts(globalProductsDTO);
+		this.graphicPieInvestmentFunds = graphicPieDelegate.getAccountsfundsProducts(globalProductsDTO);
 
 		// Calculate cards graphics panel
 
-		this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade
-				.getCardsChargesByUser(getCurrentUser(), null));
+		this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(getCurrentUser(),
+				null));
 
 		// Calculate totals
-		this.totalsProducts = this.globalPositionFacade
-				.getTotalsByProduct(globalProductsDTO);
+		this.totalsProducts = this.globalPositionFacade.getTotalsByProduct(globalProductsDTO);
 
 		// Calculate income, output and balance by Account Graphic
 		// Acualmente obtiene el objeto Ui quemado en el delegate
-		this.accountGraphicBarLineUI = this.graphicBarLineDelegate
-				.getInOutBalanceAccount(globalResumeMovementsDTO);
+		this.accountGraphicBarLineUI = this.graphicBarLineDelegate.getInOutBalanceAccount(globalResumeMovementsDTO);
 
 		// Get names of products
-		this.namesProducts = globalPositionFacade
-				.getNamesProducts(globalProductsDTO);
+		this.namesProducts = globalPositionFacade.getNamesProducts(globalProductsDTO);
 
 	}
+
 	/**
 	 * 
 	 */
@@ -200,8 +192,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController
 	 */
 	@Override
 	public GlobalProductsDto getCustomerProducts() {
-		return this.globalPositionFacade
-				.getGlobalProductsVisibles(globalProductsDTO);
+		return this.globalPositionFacade.getGlobalProductsVisibles(globalProductsDTO);
 	}
 
 	/**
@@ -209,8 +200,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController
 	 */
 	@Override
 	public GlobalProductsDto getCustomerProductsHidden() {
-		return this.globalPositionFacade
-				.getGlobalProductsHidden(globalProductsDTO);
+		return this.globalPositionFacade.getGlobalProductsHidden(globalProductsDTO);
 	}
 
 	/**
@@ -277,8 +267,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController
 	}
 
 	/**
-	 * @param selectedLike
-	 *            the selectedLike to set
+	 * @param selectedLike the selectedLike to set
 	 */
 	public void setSelectedLike(final String selectedLike) {
 		this.selectedLike = selectedLike;
@@ -322,25 +311,19 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController
 
 		EnumPeriodType periodType = null;
 		if (!this.periodCardSelected.isEmpty()) {
-			periodType = EnumPeriodType.valueOf(Integer
-					.parseInt(this.periodCardSelected));
+			periodType = EnumPeriodType.valueOf(Integer.parseInt(this.periodCardSelected));
 		} else {
-			periodType = EnumPeriodType
-					.valueOf(EnumPeriodType.LAST_TWELVE_MONTH.getPeriodId());
+			periodType = EnumPeriodType.valueOf(EnumPeriodType.LAST_TWELVE_MONTH.getPeriodId());
 		}
-		DateRangeDto dateRange = new DateFilterServiceImpl()
-				.getPeriodFilter(periodType);
+		DateRangeDto dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
 
-		if (MessagesHelper.INSTANCE.getString("text.allCards").equals(
-				cardSelected)) {
-			this.graphicPieCards = graphicPieDelegate
-					.getCardGraphic(cardsFacade.getCardsChargesByUser(
-							getCurrentUser(), dateRange));
+		if (MessagesHelper.INSTANCE.getString("text.allCards").equals(cardSelected) || cardSelected.isEmpty()) {
+			cardSelected = MessagesHelper.INSTANCE.getString("text.allCards");
+			this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(
+					getCurrentUser(), dateRange));
 		} else {
-			System.out.println("cards ");
-			this.graphicPieCards = graphicPieDelegate
-					.getCardGraphic(cardsFacade.getCardsChargesFilter(
-							cardSelected, dateRange));
+			this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesFilter(cardSelected,
+					dateRange));
 		}
 	}
 
@@ -349,36 +332,27 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController
 	 */
 	public void onComboSelectedAccountGraphic() {
 
-		final EnumPeriodType periodType = StringUtils
-				.isNotEmpty(periodAccountSelected) ? EnumPeriodType
+		final EnumPeriodType periodType = StringUtils.isNotEmpty(periodAccountSelected) ? EnumPeriodType
 				.valueOf(Integer.parseInt(this.periodAccountSelected)) : null;
 
-		final DateRangeDto dateRange = new DateFilterServiceImpl()
-				.getPeriodFilter(periodType);
+		final DateRangeDto dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
 
 		// Consume Servicio Accounts
 		if (!StringUtils.isEmpty(accountSelected)
-				&& !MessagesHelper.INSTANCE.getString("text.allAccounts")
-						.equals(accountSelected)) {
+				&& !MessagesHelper.INSTANCE.getString("text.allAccounts").equals(accountSelected)) {
 
-			this.globalResumeMovementsDTO = this.movementsResumeFacade
-					.getMovementsResumeByAccount(DEFAULT_ACCOUNT, dateRange,
-							StringUtils.EMPTY, StringUtils.EMPTY,
-							StringUtils.EMPTY);
+			this.globalResumeMovementsDTO = this.movementsResumeFacade.getMovementsResumeByAccount(DEFAULT_ACCOUNT,
+					dateRange, StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY);
 			// this.globalResumeMovementsDTO =
 			// this.movementsResumeFacade.getMovementsResumeByAccount(accountSelected);
-			this.accountGraphicBarLineUI = this.graphicBarLineDelegate
-					.getInOutBalanceAccount(globalResumeMovementsDTO);
+			this.accountGraphicBarLineUI = this.graphicBarLineDelegate.getInOutBalanceAccount(globalResumeMovementsDTO);
 		}
 		// Cosume Servicio Customer
 		if (!StringUtils.isEmpty(periodAccountSelected)
-				&& MessagesHelper.INSTANCE.getString("text.allAccounts")
-						.equals(accountSelected)) {
+				&& MessagesHelper.INSTANCE.getString("text.allAccounts").equals(accountSelected)) {
 
-			this.accountGraphicBarLineUI = this.graphicBarLineDelegate
-					.getInOutBalanceAccount(movementsResumeFacade
-							.getMovementsResumeByCustomer(getCurrentUser(),
-									dateRange));
+			this.accountGraphicBarLineUI = this.graphicBarLineDelegate.getInOutBalanceAccount(movementsResumeFacade
+					.getMovementsResumeByCustomer(getCurrentUser(), dateRange));
 
 		}
 
@@ -389,24 +363,21 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController
 	/**
 	 * @param globalPositionFacade
 	 */
-	public void setGlobalPositionFacade(
-			final GlobalPositionFacade globalPositionFacade) {
+	public void setGlobalPositionFacade(final GlobalPositionFacade globalPositionFacade) {
 		this.globalPositionFacade = globalPositionFacade;
 	}
 
 	/**
 	 * @param graphicPieDelegate
 	 */
-	public void setGraphicPieDelegate(
-			final GraphicPieDelegate graphicPieDelegate) {
+	public void setGraphicPieDelegate(final GraphicPieDelegate graphicPieDelegate) {
 		this.graphicPieDelegate = graphicPieDelegate;
 	}
 
 	/**
 	 * @param graphicBarLineDelegate
 	 */
-	public void setGraphicBarLineDelegate(
-			final GraphicBarLineDelegate graphicBarLineDelegate) {
+	public void setGraphicBarLineDelegate(final GraphicBarLineDelegate graphicBarLineDelegate) {
 		this.graphicBarLineDelegate = graphicBarLineDelegate;
 	}
 
@@ -416,11 +387,11 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController
 	public PieConfigUI getGraphicPieInvestmentFunds() {
 		return graphicPieInvestmentFunds;
 	}
+
 	/**
 	 * @param graphicPieInvestmentFunds
 	 */
-	public void setGraphicPieInvestmentFunds(
-			final PieConfigUI graphicPieInvestmentFunds) {
+	public void setGraphicPieInvestmentFunds(final PieConfigUI graphicPieInvestmentFunds) {
 		this.graphicPieInvestmentFunds = graphicPieInvestmentFunds;
 
 	}
@@ -428,8 +399,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController
 	/**
 	 * @param movementsResumeFacade
 	 */
-	public void setMovementsResumeFacade(
-			final AccountMovementsResumeFacade movementsResumeFacade) {
+	public void setMovementsResumeFacade(final AccountMovementsResumeFacade movementsResumeFacade) {
 		this.movementsResumeFacade = movementsResumeFacade;
 	}
 
