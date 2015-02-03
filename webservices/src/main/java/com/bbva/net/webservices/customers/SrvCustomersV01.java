@@ -10,9 +10,15 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
+import com.bbva.czic.dto.net.Customer;
 
 @Path("/V01")
 public interface SrvCustomersV01 {
+
+    @GET
+    @Produces("application/json")
+    @Path("/{customerId}")
+    Customer getCustomer(@PathParam("customerId") String customerId);
 
     @GET
     @Produces("application/json")

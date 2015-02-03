@@ -2,11 +2,14 @@ package com.bbva.net.webservices.accounts.impl;
 
 import java.util.List;
 
+import org.apache.cxf.common.util.StringUtils;
 import org.apache.cxf.jaxrs.client.WebClient;
+import org.springframework.beans.factory.annotation.Value;
 
 import com.bbva.czic.dto.net.AccMovementsResume;
 import com.bbva.czic.dto.net.Account;
 import com.bbva.czic.dto.net.Check;
+import com.bbva.czic.dto.net.Checkbook;
 import com.bbva.czic.dto.net.MonthlyBalances;
 import com.bbva.net.webservices.accounts.AccountsService;
 import com.bbva.net.webservices.core.pattern.AbstractBbvaRestService;
@@ -15,33 +18,74 @@ import com.bbva.net.webservices.core.stereotype.RestService;
 @RestService(value = "accountsService")
 public class AccountsServiceImpl extends AbstractBbvaRestService implements AccountsService {
 
+	@Value("${fiql.filter.parameter}")
+	private String FILTER;
+
+	@Value("${rest.checkBooks.url}")
+	private String URL_CHECKBOOK;
+
+	@Value("${rest.check.url}")
+	protected String URL_CHECK;
+
 	@Override
-	public Account getAccount(String id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Account getAccount(String accountId) {
+		WebClient wc = getJsonWebClient(URL_BASE_ACCOUNTS + accountId);
+		return wc.get(Account.class);
 	}
 
 	@Override
-	public List<Check> listCheck(String accountId, String $filter, String $status, String $paginationKey,
-			String $pageSize) {
-		// TODO Auto-generated method stub
-		return null;
+	public Check getCheck(String accountId, String checkId) {
+		WebClient wc = getJsonWebClient(URL_BASE_ACCOUNTS + accountId + URL_CHECK + checkId);
+		if (accountId != null && checkId != null) {
+			wc.query("checkbookId", checkId);
+			wc.query("accountId", accountId);
+		}
+		return wc.get(Check.class);
 	}
 
-	// Pinta Grafica Cupo rotaativo
 	@Override
-	public List<MonthlyBalances> getAccountMonthlyBalance(String id, String $filter, String $fields, String $expands,
-			String $sort) {
-		// TODO Auto-generated method stub
-		return null;
+	public Checkbook getCheckbook(String accountId, String checkbookId) {
+		WebClient wc = getJsonWebClient(URL_BASE_ACCOUNTS + accountId + URL_CHECKBOOK + checkbookId);
+
+		if (accountId != null && checkbookId != null) {
+			wc.query("checkbookId", checkbookId);
+			wc.query("accountId", accountId);
+		}
+		return wc.get(Checkbook.class);
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<AccMovementsResume> getAccMovementResume(String id, String $filter, String $fields, String $expands,
+	public List<Check> listCheck(String accountId, String filter, Integer paginationKey, Integer pageSize) {
+
+		WebClient wc = getJsonWebClient(URL_BASE_ACCOUNTS + accountId + URL_CHECK_LIST);
+		if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
+
+		if (paginationKey != null && pageSize != null) {
+			wc.query("paginationKey", paginationKey);
+			wc.query("pageSize", pageSize);
+		}
+
+		return (List<Check>)wc.getCollection(Check.class);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<MonthlyBalances> getAccountMonthlyBalance(String accountId, String filter, String fields,
+			String expands, String sort) {
+		WebClient wc = getJsonWebClient(URL_BASE_ACCOUNTS + accountId + URL_MOUNTHBALANCE);
+		if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
+		if (!StringUtils.isEmpty(fields)) wc.query(FILTER, fields);
+
+		return (List<MonthlyBalances>)wc.getCollection(MonthlyBalances.class);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<AccMovementsResume> getAccMovementResume(String id, String filter, String $fields, String $expands,
 			String $sort) {
 		WebClient wc = getJsonWebClient(URL_BASE_ACCOUNTS + id + URL_ACCOUNTS);
-		wc.query("filtro", $filter);
+		if (!StringUtils.isEmpty(filter)) wc.query("$filter", filter);
 		return (List<AccMovementsResume>)wc.getCollection(AccMovementsResume.class);
 	}
 

@@ -10,14 +10,12 @@ import javax.faces.event.ComponentSystemEvent;
 import org.apache.commons.lang.StringUtils;
 import org.primefaces.event.SelectEvent;
 
-import com.bbva.net.back.facade.CardsFacade;
-import com.bbva.net.back.facade.FundsTypeFacade;
-import com.bbva.net.back.facade.GlobalPositionFacade;
 import com.bbva.net.back.facade.AccountMovementsResumeFacade;
+import com.bbva.net.back.facade.CardsFacade;
+import com.bbva.net.back.facade.GlobalPositionFacade;
 import com.bbva.net.back.model.comboFilter.EnumPeriodType;
 import com.bbva.net.back.model.commons.DateRangeDto;
 import com.bbva.net.back.model.globalposition.BalanceDto;
-import com.bbva.net.back.model.globalposition.FundDto;
 import com.bbva.net.back.model.globalposition.GlobalProductsDto;
 import com.bbva.net.back.model.movements.GlobalResumeMovementsDto;
 import com.bbva.net.back.service.impl.DateFilterServiceImpl;
@@ -55,12 +53,6 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	/**
 	 * 
 	 */
-	@Resource(name = "fundsTypeFacade")
-	private transient FundsTypeFacade fundsTypeFacade;
-
-	/**
-	 * 
-	 */
 	@Resource(name = "cardsFacade")
 	private transient CardsFacade cardsFacade;
 
@@ -86,11 +78,6 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	 * 
 	 */
 	private GlobalProductsDto globalProductsDTO;
-
-	/**
-	 * 
-	 */
-	private List<FundDto> fundDTOs;
 
 	/**
 	 * 
@@ -166,8 +153,6 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		// Get GlobalProductsDTO by currentUser (visibles and hidden)
 		this.globalProductsDTO = this.globalPositionFacade.getGlobalProductsByUser(getCurrentUser());
 
-		this.fundDTOs = this.fundsTypeFacade.getFundsDataGraphic(getCurrentUser());
-
 		// Obtiene la lista de resumen de movimientos del serivico REST
 		this.globalResumeMovementsDTO = this.movementsResumeFacade.getMovementsResumeByCustomer(getCurrentUser(), null);
 
@@ -175,12 +160,12 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		this.situationGraphicPieUI = graphicPieDelegate.getSituationGlobalProducts(this.globalProductsDTO);
 
 		// Calculate investmentFunds graphics panels
-		this.graphicPieInvestmentFunds = graphicPieDelegate.getAccountsfundsProducts(this.fundDTOs);
+		this.graphicPieInvestmentFunds = graphicPieDelegate.getAccountsfundsProducts(globalProductsDTO);
 
 		// Calculate cards graphics panel
 
-		this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(getCurrentUser(),
-				null));
+		// this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(getCurrentUser(),
+		// null));
 
 		// Calculate totals
 		this.totalsProducts = this.globalPositionFacade.getTotalsByProduct(globalProductsDTO);
@@ -358,7 +343,8 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 			this.globalResumeMovementsDTO = this.movementsResumeFacade.getMovementsResumeByAccount(DEFAULT_ACCOUNT,
 					dateRange, StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY);
-			// this.globalResumeMovementsDTO = this.movementsResumeFacade.getMovementsResumeByAccount(accountSelected);
+			// this.globalResumeMovementsDTO =
+			// this.movementsResumeFacade.getMovementsResumeByAccount(accountSelected);
 			this.accountGraphicBarLineUI = this.graphicBarLineDelegate.getInOutBalanceAccount(globalResumeMovementsDTO);
 		}
 		// Cosume Servicio Customer
@@ -403,20 +389,6 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	}
 
 	/**
-	 * @return the fundDTOs
-	 */
-	public List<FundDto> getFundDTOs() {
-		return fundDTOs;
-	}
-
-	/**
-	 * @param fundDTOs the fundDTOs to set
-	 */
-	public void setFundDTOs(List<FundDto> fundDTOs) {
-		this.fundDTOs = fundDTOs;
-	}
-
-	/**
 	 * @param graphicPieInvestmentFunds
 	 */
 	public void setGraphicPieInvestmentFunds(final PieConfigUI graphicPieInvestmentFunds) {
@@ -429,20 +401,6 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	 */
 	public void setMovementsResumeFacade(final AccountMovementsResumeFacade movementsResumeFacade) {
 		this.movementsResumeFacade = movementsResumeFacade;
-	}
-
-	/**
-	 * @return the fundsTypeFacade
-	 */
-	public FundsTypeFacade getFundsTypeFacade() {
-		return fundsTypeFacade;
-	}
-
-	/**
-	 * @param fundsTypeFacade the fundsTypeFacade to set
-	 */
-	public void setFundsTypeFacade(final FundsTypeFacade fundsTypeFacade) {
-		this.fundsTypeFacade = fundsTypeFacade;
 	}
 
 	/**

@@ -1,7 +1,6 @@
 package com.bbva.net.front.controller;
 
 import javax.faces.event.ActionEvent;
-
 import javax.faces.event.AjaxBehaviorEvent;
 
 import com.bbva.net.back.model.personalize.PersonalizeAccountDto;
@@ -26,12 +25,14 @@ public interface PersonalizeProductAccountController {
 
 	void successful(ActionEvent event);
 
-	void operKey();
+	void operKey() throws Exception;
 
 	boolean isMenOperationKey();
 
 	boolean isMenSuccessful();
 
-	void offMessage(AjaxBehaviorEvent event);
+	void offMessageSuccesful(AjaxBehaviorEvent event);
+
+	void offMessageOpenKey(AjaxBehaviorEvent event);
 
 }

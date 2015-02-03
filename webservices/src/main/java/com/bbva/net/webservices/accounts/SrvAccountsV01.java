@@ -11,6 +11,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 import com.bbva.czic.dto.net.Account;
+import com.bbva.czic.dto.net.Check;
 import com.bbva.czic.dto.net.Checkbook;
 
 @Path("/V01")
@@ -20,6 +21,11 @@ public interface SrvAccountsV01 {
     @Produces("application/json")
     @Path("/{accountId}/checkbooks/{checkbookId}")
     Checkbook getCheckbook(@PathParam("checkbookId") String checkbookId, @PathParam("accountId") String accountId);
+
+    @GET
+    @Produces("application/json")
+    @Path("/{accountId}/checks/{checkId}")
+    Check getCheck(@PathParam("accountId") String accountId, @PathParam("checkId") String checkId);
 
     @GET
     @Produces("application/json")

@@ -32,6 +32,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="conditions" type="{urn:com:bbva:czic:dto:net}Conditions" minOccurs="0"/>
  *         &lt;element name="movement" type="{urn:com:bbva:czic:dto:net}Movement" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="contract" type="{urn:com:bbva:czic:dto:net}Contract" minOccurs="0"/>
+ *         &lt;element name="extracts" type="{urn:com:bbva:czic:dto:net}Extracto" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -53,7 +54,8 @@ import javax.xml.bind.annotation.XmlType;
     "contactInfo",
     "conditions",
     "movement",
-    "contract"
+    "contract",
+    "extracts"
 })
 @XmlSeeAlso({
     Account.class
@@ -73,6 +75,8 @@ public class Product {
     @XmlElement(nillable = true)
     protected List<Movement> movement;
     protected Contract contract;
+    @XmlElement(nillable = true)
+    protected List<Extracto> extracts;
 
     /**
      * Gets the value of the id property.
@@ -365,6 +369,35 @@ public class Product {
      */
     public void setContract(Contract value) {
         this.contract = value;
+    }
+
+    /**
+     * Gets the value of the extracts property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the extracts property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getExtracts().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link Extracto }
+     * 
+     * 
+     */
+    public List<Extracto> getExtracts() {
+        if (extracts == null) {
+            extracts = new ArrayList<Extracto>();
+        }
+        return this.extracts;
     }
 
 }

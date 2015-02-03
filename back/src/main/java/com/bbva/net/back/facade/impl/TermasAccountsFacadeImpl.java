@@ -25,7 +25,7 @@ public class TermasAccountsFacadeImpl extends AbstractBbvaFacade implements Term
 	private ConditionsMapper mapper;
 
 	@Override
-	public TermsAccountsDto getAllConditions(String numCuenta, String usuario) {
+	public TermsAccountsDto getAllConditions(String numCuenta) {
 
 		// TermsAccountsDto prueba = new TermsAccountsDto();
 		//
@@ -40,7 +40,8 @@ public class TermasAccountsFacadeImpl extends AbstractBbvaFacade implements Term
 		// prueba.setDetalleCondiciones(detalleCondiciones);
 		// prueba.setIntervinientes(intervinientes);
 		// prueba.setDireccionPostal(direccionPostal);
-
+		// Se quema numero para realizar prueba
+		// numCuenta = "00130073000296247953";
 		final Conditions condiciones = this.productsService.getConditions(numCuenta);
 
 		return mapper.map(condiciones);

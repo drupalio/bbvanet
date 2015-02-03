@@ -12,6 +12,6 @@ public interface LoginController {
 	 * @param identification
 	 * @param identificationType
 	 */
-	void login(String user, String password, String identification, String identificationType);
+	void login();
 
 }

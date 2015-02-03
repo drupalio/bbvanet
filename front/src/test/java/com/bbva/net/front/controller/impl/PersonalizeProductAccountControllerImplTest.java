@@ -6,7 +6,6 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import com.bbva.net.back.facade.PersonalizeProductFacade;
-import com.bbva.net.back.model.personalize.PersonalizeAccountDto;
 
 public class PersonalizeProductAccountControllerImplTest {
 
@@ -19,12 +18,14 @@ public class PersonalizeProductAccountControllerImplTest {
 	private PersonalizeProductFacade personalizeProductAccountFacade;
 
 	@Before
-	public void init() {
+	public void init() throws Exception {
 		this.personalizeProductAccountControllerImpl = new PersonalizeProductAccountControllerImpl();
 
 		this.personalizeProductAccountControllerImpl.operKey();
 
-		this.personalizeProductAccountControllerImpl.offMessage(null);
+		this.personalizeProductAccountControllerImpl.offMessageSuccesful(null);
+
+		this.personalizeProductAccountControllerImpl.offMessageOpenKey(null);
 
 		this.personalizeProductAccountControllerImpl.successful(null);
 

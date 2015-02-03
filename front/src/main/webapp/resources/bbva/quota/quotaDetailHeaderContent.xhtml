@@ -20,10 +20,9 @@
 
 	<bbvaQuotaHeader:quotaDetail>
 		<bbvaQuotaHeader:quotaDetailHeader>
-			<bbvaQuotaHeader:quotaDetailHeaderLeft
-				alias="#{msg['title.quotaAlias']}"
-				numCuenta="#{quotaController.quotaDetailDto.id}"
-				tipoPrestamo="#{msg['title.rotaryQuota']}" />
+			<bbvaQuotaHeader:quotaDetailHeaderLeft alias="#{product.alias}"
+				numCuenta="#{product.productId}"
+				tipoPrestamo=" #{product.productName}" />
 			<bbvaQuotaHeader:quotaDetailGraphic
 				textUp="#{msg['text.outstandingBalance']}"
 				valueUp="#{quotaController.quotaDetailDto.outstandingBalance}"

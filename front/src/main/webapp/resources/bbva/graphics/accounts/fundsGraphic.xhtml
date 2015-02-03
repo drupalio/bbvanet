@@ -49,7 +49,7 @@
 		<c:forEach var="pieItemUI" items="${cc.attrs.pieConfigUI.pieItemUIList}">
 		label = ("${pieItemUI.textLegend}");
 		values = ("${pieItemUI.value}");
-		colums = [ [ label ], [ values ] ];
+		colums = [[label], [values]];
 		totalColums.push(colums);
 
 		color = ("${pieItemUI.color}");
@@ -60,6 +60,7 @@
 			bindto : '#chart2_4',
 
 			data : {
+
 				size : {
 					height : 240,
 					width : 480
@@ -67,17 +68,23 @@
 				columns : totalColums,
 
 				type : 'pie',
-				onclick : function(d, i) {
-					console.log("onclick", d, i);
-				},
-				onmouseover : function(d, i) {
-					console.log("onmouseover", d, i);
-				},
-				onmouseout : function(d, i) {
-					console.log("onmouseout", d, i);
+			},
+			pie : {
+				label : {
+					show : false
 				}
 			},
-
+			tooltip : {
+				format : {
+					value : function(value, ratio, id, index) {
+						var format1 = d3.format('$');
+						var format2 = d3.format('%');
+						var data = format1(value).bold() + "  " + '('
+								+ format2(ratio) + ')';
+						return data;
+					}
+				}
+			},
 			color : {
 				pattern : colorsLegend
 			},

@@ -22,42 +22,41 @@
 
 <composite:implementation>
 
-	<div class="row">
-		<div class="form-horizontal">
+	<div class="date-filter-content" style="width: 100% !important;">
 
-			<p:outputPanel id="customPanel">
-				<p:selectOneRadio id="customRadio" layout="custom"
-					value="#{cc.attrs.valueCheck}">
-					<f:selectItem itemLabel="#{msg['text.search.by.number.check']}"
-						itemValue="#{msg['text.search.by.number.check']}" />
-					<f:selectItem itemLabel="#{msg['text.search.by.number.status']}"
-						itemValue="#{msg['text.search.by.number.status']}"
-						noSelectionOption="false" />
-					<f:selectItem itemLabel="#{msg['text.search.by.numberbook']}"
-						itemValue="#{msg['text.search.by.numberbook']}" />
-					<p:ajax process="@this"
-						listener="#{checkBookController.actionState}"
-						update="customPanel, searchButton" />
-				</p:selectOneRadio>
+		<p:outputPanel id="customPanel" style="width: 100% !important;">
+			<p:selectOneRadio id="customRadio" layout="custom"
+				value="#{cc.attrs.valueCheck}">
+				<f:selectItem itemLabel="#{msg['text.search.by.number.check']}"
+					itemValue="#{msg['text.search.by.number.check']}" />
+				<f:selectItem itemLabel="#{msg['text.search.by.number.status']}"
+					itemValue="#{msg['text.search.by.number.status']}"
+					noSelectionOption="false" />
+				<f:selectItem itemLabel="#{msg['text.search.by.numberbook']}"
+					itemValue="#{msg['text.search.by.numberbook']}" />
+				<p:ajax process="@this"
+					listener="#{checkBookController.actionState}"
+					update="customPanel, searchButton" />
+			</p:selectOneRadio>
 
-				<h:panelGrid columns="3" cellpadding="5" id="grilla">
-					<p:radioButton id="opt1" for="customRadio" itemIndex="0" />
-					<h:outputLabel for="opt1"
-						value="#{msg['text.search.by.number.check']}" />
-					<h:inputText id="inputNumberCheck"
-						styleClass="form-control num-cheque number required valid"
-						value="#{cc.attrs.valueCheckNumber}"
-						disabled="#{checkBookController.renderComponents['NUMBERCHECK']}"
-						validatorMessage="Formato Invalido">
-						<f:validateRegex pattern="[0-9]*" />
-					</h:inputText>
+			<h:panelGrid columns="3" cellpadding="5" id="grilla">
+				<p:radioButton id="opt1" for="customRadio" itemIndex="0" />
+				<h:outputLabel for="opt1"
+					value="#{msg['text.search.by.number.check']}" />
+				<h:inputText id="inputNumberCheck"
+					styleClass="form-control num-cheque number required valid"
+					value="#{cc.attrs.valueCheckNumber}"
+					disabled="#{checkBookController.renderComponents['NUMBERCHECK']}"
+					validatorMessage="Formato Invalido">
+					<f:validateRegex pattern="[0-9]*" />
+				</h:inputText>
 
-					<p:radioButton id="opt2" for="customRadio" itemIndex="1" />
-					<h:outputLabel for="opt2"
-						value="#{msg['text.search.by.number.status']}" />
+				<p:radioButton id="opt2" for="customRadio" itemIndex="1" />
+				<h:outputLabel for="opt2"
+					value="#{msg['text.search.by.number.status']}" />
 
-					<h:selectOneMenu id="stateSelect"
-						style=" 
+				<h:selectOneMenu id="stateSelect"
+					style=" 
 						    width: 41px;
 						    height: 38px;
 						    background-position: 13px 12px;					
@@ -74,20 +73,20 @@
 						  	font-size: 0.95em;
 						  	color: #0093e2;
 							"
-						value="#{cc.attrs.valuecheckState}"
-						disabled="#{checkBookController.renderComponents['NUMBERCHECK']}">
-						<f:selectItem itemLabel="#{msg['text.combo.select']}" />
-						<f:selectItems value="#{checkBookController.multiValueList}"
-							var="multiValue" itemValue="#{multiValue.id}"
-							itemLabel="#{msg[multiValue.value]}" />
-					</h:selectOneMenu>
+					value="#{cc.attrs.valuecheckState}"
+					disabled="#{checkBookController.renderComponents['STATUS']}">
+					<f:selectItem itemLabel="#{msg['text.combo.select']}" />
+					<f:selectItems value="#{checkBookController.multiValueList}"
+						var="multiValue" itemValue="#{multiValue.id}"
+						itemLabel="#{msg[multiValue.value]}" />
+				</h:selectOneMenu>
 
-					<p:radioButton id="opt3" for="customRadio" itemIndex="2" />
-					<h:outputLabel for="opt3"
-						value="#{msg['text.search.by.numberbook']}" />
+				<p:radioButton id="opt3" for="customRadio" itemIndex="2" />
+				<h:outputLabel for="opt3"
+					value="#{msg['text.search.by.numberbook']}" />
 
-					<h:selectOneMenu id="numberBook"
-						style=" 
+				<h:selectOneMenu id="numberBook"
+					style=" 
 						    width: 41px;
 						    height: 38px;
 						    background-position: 13px 12px;					
@@ -104,24 +103,28 @@
 						  	font-size: 0.95em;
 						  	color: #0093e2;
 							"
-						value="#{cc.attrs.valueBookNumber}"
-						disabled="#{checkBookController.renderComponents['NUMBERBOOK']}">
-						<f:selectItem itemLabel="#{msg['text.combo.select']}" />
-						<f:selectItem itemLabel="1111-2222" itemValue="1111-2222" />
-						<f:selectItem itemLabel="1111-2222-3333-"
-							itemValue="1111-2222-3333" />
-					</h:selectOneMenu>
+					value="#{cc.attrs.valueBookNumber}"
+					disabled="#{checkBookController.renderComponents['NUMBERBOOK']}">
+					<f:selectItem itemLabel="#{msg['text.combo.select']}" />
+					<f:selectItem itemLabel="1111-2222" itemValue="1111-2222" />
+					<f:selectItem itemLabel="1111-2222-3333"
+						itemValue="1111-2222-3333" />
+				</h:selectOneMenu>
 
-				</h:panelGrid>
-			</p:outputPanel>
-		</div>
+			</h:panelGrid>
+		</p:outputPanel>
 
 
-		<button jsf:id="searchButton"
-			jsf:actionListener="#{checkBookController.setNumberCheckOrBook}"
-			jsf:disabled="#{checkBookController.renderComponents['BUTTONBOOK']}"
-			class="btn small hidden-xs hidden-sm">#{msg['button.confirm']}</button>
+		<p:commandButton id="searchButton"
+			actionListener="#{checkBookController.setNumberCheckOrBook}"
+			ajax="true" update="@form"
+			disabled="#{checkBookController.renderComponents['BUTTONBOOK']}"
+			styleClass="btn small hidden-xs hidden-sm"
+			value="#{msg['button.confirm']}">
+
+		</p:commandButton>
 
 	</div>
+
 </composite:implementation>
 </html>

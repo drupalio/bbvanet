@@ -1,5 +1,6 @@
 package com.bbva.net.back.facade.impl;
 
+import javax.ws.rs.core.Response;
 import javax.annotation.Resource;
 
 import com.bbva.czic.dto.net.Product;
@@ -22,15 +23,23 @@ public class PersonalizeProductFacadeImpl extends AbstractBbvaFacade implements 
 	@Resource(name = "personalizeProductMapper")
 	private PersonalizeAccountProductMapper personalizeAccountProductMapper;
 
+	private Product product;
+
 	@Override
-	public void setUpdate(String idProduct, ProductDto productDto) {
-		Product product = personalizeAccountProductMapper.map(productDto);
-		this.globalPositionService.updateProductOperability(idProduct, product);
-		this.globalPositionService.updateProductVisibility(idProduct, product);
+	public Response updateProductOperability(String idProduct, ProductDto productDto) {
+		this.product = personalizeAccountProductMapper.map(productDto);
+		final Response response = this.globalPositionService.updateProductOperability(idProduct, product);
+		return response;
 	}
 
-	public void setGlobalPositionService(
-			GlobalPositionService globalPositionService) {
+	@Override
+	public Response updateProductVisibility(String idProduct, ProductDto productDto) {
+		this.product = personalizeAccountProductMapper.map(productDto);
+		final Response response = this.globalPositionService.updateProductVisibility(idProduct, product);
+		return response;
+	}
+
+	public void setGlobalPositionService(GlobalPositionService globalPositionService) {
 		this.globalPositionService = globalPositionService;
 	}
 
@@ -38,8 +47,7 @@ public class PersonalizeProductFacadeImpl extends AbstractBbvaFacade implements 
 		return personalizeAccountProductMapper;
 	}
 
-	public void setPersonalizeAccountProductMapper(
-			PersonalizeAccountProductMapper personalizeAccountProductMapper) {
+	public void setPersonalizeAccountProductMapper(PersonalizeAccountProductMapper personalizeAccountProductMapper) {
 		this.personalizeAccountProductMapper = personalizeAccountProductMapper;
 	}
 

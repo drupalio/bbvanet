@@ -22,8 +22,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="firstCheck" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
- *         &lt;element name="lastCheck" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+ *         &lt;element name="firstCheck" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="lastCheck" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="totalCheck" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *         &lt;element name="requestDate" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="deliveryDate" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
@@ -51,8 +51,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
 public class Checkbook {
 
     protected String id;
-    protected Integer firstCheck;
-    protected Integer lastCheck;
+    protected String firstCheck;
+    protected String lastCheck;
     protected Integer totalCheck;
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar requestDate;
@@ -91,10 +91,10 @@ public class Checkbook {
      * 
      * @return
      *     possible object is
-     *     {@link Integer }
+     *     {@link String }
      *     
      */
-    public Integer getFirstCheck() {
+    public String getFirstCheck() {
         return firstCheck;
     }
 
@@ -103,10 +103,10 @@ public class Checkbook {
      * 
      * @param value
      *     allowed object is
-     *     {@link Integer }
+     *     {@link String }
      *     
      */
-    public void setFirstCheck(Integer value) {
+    public void setFirstCheck(String value) {
         this.firstCheck = value;
     }
 
@@ -115,10 +115,10 @@ public class Checkbook {
      * 
      * @return
      *     possible object is
-     *     {@link Integer }
+     *     {@link String }
      *     
      */
-    public Integer getLastCheck() {
+    public String getLastCheck() {
         return lastCheck;
     }
 
@@ -127,10 +127,10 @@ public class Checkbook {
      * 
      * @param value
      *     allowed object is
-     *     {@link Integer }
+     *     {@link String }
      *     
      */
-    public void setLastCheck(Integer value) {
+    public void setLastCheck(String value) {
         this.lastCheck = value;
     }
 

@@ -32,16 +32,16 @@
 		
 		
 		<p:dataTable id="checksTable" styleClass="detail-table-body sortable" emptyMessage="#{msg['text.empty.table']}"
-				value="#{cc.attrs.listAccounts}" var="icuenta" rendered="#{checkBookController.renderComponents['CHECKTABLE']}"
+				value="#{cc.attrs.listChecks}" var="icuenta" rendered="#{checkBookController.renderComponents['CHECKTABLE']}"
 				selectionMode="single"
 				selection="#{customerAccountsPage.selectedAccount}"
-				rowKey="#{icuenta.productId}">
+				rowKey="#{icuenta.id}">
 				<p:column headerText="#{msg['text.table.num.check']}"
 					styleClass="sorted w18 desc"
 					style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
 
 					<h:outputText styleClass="brand" style="font-size: 1.1em"
-						value="#{icuenta.alias}" />
+						value="#{icuenta.id}" />
 				</p:column>
 
 				<p:column headerText="#{msg['text.table.emi.date']}"
@@ -50,10 +50,10 @@
 
 					<h:outputText class="text"
 						style="font-size: 12px;color: #333;text-align: left"
-						value="#{icuenta.alias}" />
-					<h:outputText class="text"
-						style="font-size: 11px;color: #333;font-weight: normal;text-align: left"
-						value="#{icuenta.alias}" />
+						value="#{icuenta.issueDate}" >
+						   <f:convertDateTime pattern="dd/MM/yyyy" /> 
+						  </h:outputText> 
+				
 				</p:column>
 
 				<p:column class="head" headerText="#{msg['text.detailMove.value']}"
@@ -61,7 +61,7 @@
 					style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
 
 					<h:outputText class="currency" style="font-size: 15px;color: #333"
-						value="#{icuenta.totalCash}" />
+						value="#{icuenta.value}" />
 
 				</p:column>
 				<p:column class="head"
@@ -70,7 +70,7 @@
 					style="font-size: 0.7em;color: #333;font-family: Arial;background: none;border-style: none">
 
 					<h:outputText class="currency" style="font-size: 15px;color: #333"
-						value="#{icuenta.totalCash}" />
+						value="#{icuenta.status}" />
 
 				</p:column>
 				
@@ -80,7 +80,7 @@
 					style="font-size: 0.7em;color: #333;font-family: Arial;background: none;border-style: none">
 
 					<h:outputText class="currency" style="font-size: 15px;color: #333"
-						value="#{icuenta.totalCash}" />
+						value="#{icuenta.modifiedDate}" />
 
 				</p:column>
 				

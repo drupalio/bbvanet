@@ -9,15 +9,17 @@
 	xmlns:pm="http://primefaces.org/mobile">
 
 <composite:interface>
-
+	<composite:attribute name="button1" />
+	<composite:attribute name="button2" />
+	<composite:attribute name="button3" />
 </composite:interface>
 
 <composite:implementation>
 
 	<div class="button-container hidden-xs hidden-sm">
-		<bbvaDetailMotion:movementsDetailButton title="Andresito" />
-		<bbvaDetailMotion:movementsDetailButton title="Tolima" />
-		<bbvaDetailMotion:movementsDetailButton title="Goool" />
+		<bbvaDetailMotion:movementsDetailButton title="#{cc.attrs.button1}" />
+		<bbvaDetailMotion:movementsDetailButton title="#{cc.attrs.button2}" />
+		<bbvaDetailMotion:movementsDetailButton title="#{cc.attrs.button3}" />
 	</div>
 
 </composite:implementation>
