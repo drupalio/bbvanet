@@ -11,7 +11,7 @@
 	<on-start>
 		<evaluate expression="checkBookController.getCheckList()" result="requestScope.checkList" />
 		<evaluate expression="accountsController.getCustomerAccounts()" result="flowScope.customerAccounts" />
-		<evaluate expression="accountsController.getAllConditions()" result="flowScope.allConditions" />
+<!-- 		<evaluate expression="accountsController.getAllConditions()" result="flowScope.allConditions" /> -->
 		<evaluate expression="movementsAccountController.getProduct()" result="flowScope.pruduct" />
 	</on-start>
 	
