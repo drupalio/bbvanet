@@ -1,0 +1,93 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+
+<composite:interface>
+	<composite:attribute name="id" type="String" />
+	<composite:attribute name="lineGraphic"
+		type="com.bbva.net.front.ui.line.LineConfigUI" />
+</composite:interface>
+
+<composite:implementation>
+	<div class="hidden-xs col-sm-5 bbva-chart">
+		<div id="savings" class="chart-lines">
+			<div id="chart2_8" class="c3" />
+			<script>
+			var totalColums = [];
+			var title;
+			var colums;
+			var values;
+			
+			<c:forEach var="lineItemUI" items="${cc.attrs.lineConfigUI.lineItemUIList}">
+			title = ("${lineItemUI.label}");
+			values = ("${lineItemUI.value}");
+			colums = [ [ label ], [ values ] ];
+			totalColums.push(colums);
+			</c:forEach>
+			
+			var chart = c3.generate({
+				bindto : '#chart2_8',
+				padding : {
+					top : 0,
+					right : 10,
+					bottom : 250,
+					left : 10,
+				},
+				data : {
+					columns : [ [ 'series 1: ', 5, 12, 23, 5, 3.4, 5 ] ],
+				},
+				legend : {
+					show : false
+				},
+				grid : {
+					y : {
+						lines : [ {
+							value : 0
+						}, {
+							value : 5
+						}, {
+							value : 10
+						}, {
+							value : 15
+						}, {
+							value : 20
+						}, {
+							value : 25
+						}, {
+							value : 30
+						} ],
+					}
+				},
+				axis : {
+					x : {
+						show : false,
+					},
+					y : {
+						show : false,
+					},
+				},
+				tooltip : {
+					format : {
+						title : function(d) {
+							return "<div style='background-color: aqua;'>"+d+"</div>";
+							//return "<table style='fill:#333333'>"+d+"</table>";
+						},
+
+					}
+				},
+				color : function(color, d) {
+					return d3.rgb('#7cb5ec');
+				}
+			});
+			</script>
+		</div>
+		<div style="background-color: aqua;"></div>
+	</div>
+</composite:implementation>
+</html>

@@ -29,65 +29,7 @@
 		<h3>#{checkBookController.title}</h3>
 
 		<div class="table-wrapper">
-		
-		
-		<p:dataTable id="checksTable" styleClass="detail-table-body sortable" emptyMessage="#{msg['text.empty.table']}"
-				value="#{cc.attrs.listChecks}" var="icuenta" rendered="#{checkBookController.renderComponents['CHECKTABLE']}"
-				selectionMode="single"
-				selection="#{customerAccountsPage.selectedAccount}"
-				rowKey="#{icuenta.id}">
-				<p:column headerText="#{msg['text.table.num.check']}"
-					styleClass="sorted w18 desc"
-					style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
 
-					<h:outputText styleClass="brand" style="font-size: 1.1em"
-						value="#{icuenta.id}" />
-				</p:column>
-
-				<p:column headerText="#{msg['text.table.emi.date']}"
-					styleClass="desc w34"
-					style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none;">
-
-					<h:outputText class="text"
-						style="font-size: 12px;color: #333;text-align: left"
-						value="#{icuenta.issueDate}" >
-						   <f:convertDateTime pattern="dd/MM/yyyy" /> 
-						  </h:outputText> 
-				
-				</p:column>
-
-				<p:column class="head" headerText="#{msg['text.detailMove.value']}"
-					styleClass="desc w24"
-					style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
-
-					<h:outputText class="currency" style="font-size: 15px;color: #333"
-						value="#{icuenta.value}" />
-
-				</p:column>
-				<p:column class="head"
-					headerText="#{msg['text.table.status']}"
-					styleClass="desc w24"
-					style="font-size: 0.7em;color: #333;font-family: Arial;background: none;border-style: none">
-
-					<h:outputText class="currency" style="font-size: 15px;color: #333"
-						value="#{icuenta.status}" />
-
-				</p:column>
-				
-				<p:column class="head"
-					headerText="#{msg['text.table.change.date']}"
-					styleClass="desc w24"
-					style="font-size: 0.7em;color: #333;font-family: Arial;background: none;border-style: none">
-
-					<h:outputText class="currency" style="font-size: 15px;color: #333"
-						value="#{icuenta.modifiedDate}" />
-
-				</p:column>
-				
-			</p:dataTable>
-		
-		
-		
 			<p:dataTable id="detalAC" styleClass="detail-table-body sortable" emptyMessage="#{msg['text.empty.table']}"
 				value="#{cc.attrs.listAccounts}" var="icuenta" rendered="#{checkBookController.renderComponents['MOVEMENTSTABLE']}"
 				selectionMode="single"

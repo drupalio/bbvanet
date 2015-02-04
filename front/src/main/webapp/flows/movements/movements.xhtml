@@ -1,149 +1,74 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:bbvaAcc="http://java.sun.com/jsf/composite/bbva/accounts"
-	xmlns:bbvaBody="http://java.sun.com/jsf/composite/bbva/body"
-	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-	xmlns:bbvaDetAcc="http://java.sun.com/jsf/composite/bbva/tab"
-	xmlns:bbvaDetailMotion="http://java.sun.com/jsf/composite/bbva/movementsDetail"
-	xmlns:bbvaSearch="http://java.sun.com/jsf/composite/bbva/filters"
-	xmlns:jsf="http://xmlns.jcp.org/jsf"
-	xmlns:bbvaPersonalize="http://java.sun.com/jsf/composite/bbva/personalize">
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Simple chart with C3 - in 5 minutes! </title>
+  <!-- Here are all the javascripts and css that you need, you can download them or linked them like here -->
+  <script type="text/javascript" src="d3.js"></script>
+  <script type="text/javascript" src="c3.js"></script>
+  <link href="c3.css" rel="stylesheet" type="text/css"/>
+  
+</head>
+<body>
 
+<!-- You need an element with an id called "chart" to set a place where your chart will render-->
+<div id="chart"></div>
+  <script>
+			
+			var chart = c3.generate({
+				bindto : '#chart2_8',
+				padding : {
+					top : 0,
+					right : 10,
+					bottom : 250,
+					left : 10,
+				},
+				data : {
+					columns : [ [ 'series 1: ', 5, 12, 23, 5, 3.4, 5 ] ],
+				},
+				legend : {
+					show : false
+				},
+				grid : {
+					y : {
+						lines : [ {
+							value : 0
+						}, {
+							value : 5
+						}, {
+							value : 10
+						}, {
+							value : 15
+						}, {
+							value : 20
+						}, {
+							value : 25
+						}, {
+							value : 30
+						} ],
+					}
+				},
+				axis : {
+					x : {
+						show : false,
+					},
+					y : {
+						show : false,
+					},
+				},
+				tooltip : {
+					format : {
+						title : function(d) {
+							return "<div style='background-color: aqua;'>"+d+"</div>";
+							//return "<table style='fill:#333333'>"+d+"</table>";
+						},
 
-<ui:composition template="../../templates/defaultLayout.xhtml">
-
-	<ui:define name="bodyTitle">
-		<bbvaBody:title title="#{msg['title.accountsPersonal']}">
-			<bbvaBody:titleOptionProduct
-				optionButttonLeft="#{msg['title.myProducts']}"
-				optionButttonRight="#{msg['title.productCatalog']}" />
-		</bbvaBody:title>
-	</ui:define>
-
-	<ui:define name="contentLeft">
-		<div class="tab-group savingsAccount">
-			<div class="tab-head">
-				<div class="row">
-					<aside class="product-header">
-					<div class="col-xs-6 col-sm-4 left">
-						<p class="accountDescription">Cuenta de José García</p>
-						<p>
-							<strong class="info-numero">0013-0073-00-0200108391</strong>
-						</p>
-						<p>Cuenta ahorro</p>
-					</div>
-					<div class="hidden-xs col-sm-5 bbva-chart">
-						<div id="savings" class="chart-lines">
-						<div id="highcharts-0" class="highcharts-container" style="position: relative; width: auto; height: 90px; text-align: left; line-height: normal; z-index: 0; left: 0.850006px; top: 0.93335px;">
-						<div id="chart2_8" class="c3"/>
-						<script>
-						
-						var chart = c3.generate({
-							bindto : '#chart2_8',
-							padding : {
-								top : 0,
-								right : 0,
-								bottom : 220,
-								left : 0,
-							},
-    data: {
-        columns: [
-            ['data1', 5, 12, 23 , 5, 3.4, 5]
-        ],
-    },
-    grid: {
-        y: {
-            lines: [{value: 0},{value: 5}, {value: 10}, {value: 15}, {value: 20}, {value: 25}, {value: 30}]
-        }
-    },
-    axis : {
-    	x: {
-    		show: false,
-        },
-        y : {
-        	show: false,
-        },
-    },
-    tooltip: {
-        format: {
-            title: function (d) { return 'Data ' + d; },
-            value: function (value, ratio, id) {
-                var format = id === 'data1' ? d3.format(',') : d3.format('$');
-                return format(value);
-            }
-        }
-    }
-});
-						</script>
-						</div>
-						</div>
-					</div>
-					<div class="col-xs-6 col-sm-3 right">
-						<p class="small">DISPONIBLE</p>
-						<p class="balance">$ 12,845,999.35</p>
-						<p>
-							Saldo en canje: &nbsp;&nbsp;<strong class="info-acuerdo">$
-								0,00</strong>
-						</p>
-					</div>
-					</aside>
-				</div>
-			</div>
-</div>
-
-			<bbvaDetAcc:tabMenu id="tabMenu">
-				<ul class="nav nav-pills nav-operation-options"
-					style="display: block;">
-					<bbvaDetAcc:itemTabMenu title="#{msg['text.consult']}"
-						icon="iconFont-611" classLi="tab-left consultas-btn" type="2"
-						role="#tab-consultas" />
-					<bbvaDetAcc:itemTabMenu title="#{msg['text.operations']}"
-						icon="iconFont-015" classLi="tab-left operaciones-btn" type="2" />
-
-					<bbvaDetAcc:itemTabMenu title="#{msg['text.personalized']}"
-						role="#tab-personalizar" classLi="tab-right hidden-xs hidden-sm"
-						type="1" />
-					<bbvaDetAcc:itemTabMenu title="#{msg['text.conditions']}"
-						icon="iconFont-104" classLi="tab-right" type="1"
-						role="#tab-condiciones" />
-					<bbvaDetAcc:itemTabMenu title="#{msg['text.personalized']}"
-						icon="iconFont-217" classLi="tab-right hidden-md hidden-lg"
-						type="1" />
-				</ul>
-
-				<div class="tab-content">
-
-					<!-- Tab Consultar -->
-					<bbvaSearch:tabCriteria id="tabCriteria">
-						<bbvaSearch:personalizedSearchContainer
-							id="personalizedSearchContainer" />
-					</bbvaSearch:tabCriteria>
-
-					<!-- Tab Condiciones -->
-					<bbvaAcc:accountContainer alias="#{pruduct.alias}"
-						numCuenta="#{pruduct.productId}" tipo="#{pruduct.productName}" />
-
-					<!-- Tab Personalizar -->
-					<bbvaPersonalize:personalizeContainer />
-
-				</div>
-			</bbvaDetAcc:tabMenu>
-		<div class="table-tabs">
-			<bbvaDetailMotion:detailMovesTable id="detailAccounts"
-				listAccounts="#{customerAccounts}" listChecks="#{checkBookController.checkList}"/>
-		</div>
-		
-	</ui:define>
-
-	<ui:define name="contentRight">
-
-	</ui:define>
-
-</ui:composition>
-
+					}
+				},
+				color : function(color, d) {
+					return d3.rgb('#7cb5ec');
+				}
+			});
+			</script>
+</body>
 </html>
