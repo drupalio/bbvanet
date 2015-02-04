@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.ws.rs.core.Response;
 
-import org.apache.cxf.jaxrs.client.WebClient;
 import org.springframework.beans.factory.annotation.Value;
 
 import com.bbva.czic.dto.net.Product;

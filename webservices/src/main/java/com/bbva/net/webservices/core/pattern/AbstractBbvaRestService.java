@@ -132,11 +132,4 @@ public abstract class AbstractBbvaRestService {
 		this.factoryBean = factoryBean;
 	}
 
-	/**
-	 * @param URL
-	 */
-	public void setURL_BASE(String URL) {
-		this.URL_BASE = URL;
-	}
-
 }

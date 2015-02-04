@@ -10,8 +10,8 @@
 
 	<context:spring-configured />
 	<context:component-scan base-package="com.bbva.net.back" />
-	<context:property-placeholder location="classpath:*.properties"/>
-	
+	<context:property-placeholder location="classpath*:*.properties" />
+		
 	<bean id="propertyConfigBack"
 			class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="ignoreResourceNotFound" value="true" />
@@ -26,5 +26,5 @@
 		</property>
 	</bean>
 
-
+	
 </beans>   
