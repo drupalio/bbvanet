@@ -12,9 +12,6 @@
 //import com.bbva.czic.dto.net.Check;
 //import com.bbva.czic.dto.net.Checkbook;
 //import com.bbva.czic.dto.net.EnumCheckbookStatus;
-//
-//import com.bbva.czic.dto.net.Product;
-//
 //import com.bbva.jee.arq.spring.core.servicing.utils.Money;
 //import com.google.gson.Gson;
 //
@@ -22,9 +19,9 @@
 //
 //	public static void main(String[] args) {
 //		Gson gson = new Gson();
-//		String checkJSON = gson.toJson(getCheckbook());
+//		String checkJSON = gson.toJson(getCheckList());
 //		System.out.println(checkJSON);
-//		getCheckbook();
+//		getCheckList();
 //	}
 //
 //	public static String dateToSring(Date date) {
@@ -85,7 +82,7 @@
 //
 //		List<Check> checkList = new ArrayList<Check>();
 //
-//		for (int i = 0; i < 10; i++) {
+//		for (int i = 0; i < 30; i++) {
 //			Date start = dataFactory.getDateBetween(minDate, maxDate);
 //			Date end = dataFactory.getDateBetween(start, maxDate);
 //			check = new Check();
