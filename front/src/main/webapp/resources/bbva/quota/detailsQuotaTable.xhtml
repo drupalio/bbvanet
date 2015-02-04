@@ -39,6 +39,9 @@
 					<p:ajax event="rowSelect"
 						listener="#{cc.attrs.controller.onProductSelected}" />
 
+					<p:ajax event="rowToggle"
+						listener="#{quotaMoveController.onRowToggle}" />
+
 					<p:column>
 						<p:rowToggler rendered="true" />
 					</p:column>
@@ -69,11 +72,14 @@
 
 						<h:outputText class="currency" style="font-size: 15px;color: #333"
 							value="#{icuenta.totalCash}" />
-
 					</p:column>
 
-					<p:rowExpansion>
-						<bbvaDetailMotion:tableContent />
+					<p:rowExpansion styleClass="data">
+						<tr class="detail-row">
+							<td class="td-detail" colspan="4"
+								style="padding: 0px !important; overflow: auto !important;"><bbvaDetailMotion:tableContent />
+							</td>
+						</tr>
 					</p:rowExpansion>
 				</p:dataTable>
 			</div>

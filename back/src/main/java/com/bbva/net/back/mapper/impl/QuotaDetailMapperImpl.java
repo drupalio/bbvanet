@@ -10,7 +10,7 @@ import ma.glasnost.orika.MapperFactory;
 import ma.glasnost.orika.impl.ConfigurableMapper;
 
 @Mapper(value = "quotaDetailMapper")
-public class QuotaDetailImplMapper extends ConfigurableMapper
+public class QuotaDetailMapperImpl extends ConfigurableMapper
 		implements
 			QuotaDetailMapper {
 

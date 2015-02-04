@@ -8,13 +8,12 @@
 	xmlns:pm="http://primefaces.org/mobile">
 
 <composite:interface>
-
-	<composite:attribute id="motionDetail" name="motion" />
-
+	<composite:attribute name="detailMovement"
+		type="com.bbva.net.back.model.quota.QuotaMoveDetailDto" />
 </composite:interface>
 
 <composite:implementation>
-	<header class="table-detail-header">
+	<header class="table-detail-header ">
 		<div class="table-tab hidden-xs hidden-sm">
 			<div class="table-detail-border">
 				<a href="#"> <span title="Descargar" class="icon-folder"></span>
@@ -31,17 +30,16 @@
 		<table class="detail">
 			<tbody>
 				<tr>
-					<td style=""><span class="link">05/06/2014</span></td>
-					<td class="text-cell" style="margin-left: 50px"><strong>Comercio
-							Lorem ipsum</strong> <small>PAGO</small></td>
-					<td class="digit-cell" style=""><em> -390.00</em></td>
-					<td class="digit-cell" style=""><em> 12,943,536.35</em></td>
-					<td class="visible-xs" style="display: table-cell;">
+					<td class="brand"><span>#{cc.attrs.detailMovement.transactionDate}</span></td>
+					<td class="text" style="float: left;">#{cc.attrs.detailMovement.concept}</td>
+					<td class="currency"><em>#{cc.attrs.detailMovement.value}</em></td>
+					<td class="smart-view" colspan="3">
 						<div class="left">
-							<a href="#">Abono traspaso Internet 0142738768768</a> <small>27/12/2013</small>
+							<em>#{cc.attrs.detailMovement.transactionDate}</em> <span
+								class="brand">06/06/2014</span>
 						</div>
 						<div class="right">
-							<em>$ 1.348.900</em> <small>$ -75.568</small>
+							<em>#{cc.attrs.detailMovement.value}</em> <span>#{cc.attrs.detailMovement.valueslope}</span>
 						</div>
 					</td>
 				</tr>

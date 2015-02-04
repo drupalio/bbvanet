@@ -28,15 +28,13 @@ public class PersonalizeProductFacadeImpl extends AbstractBbvaFacade implements 
 	@Override
 	public Response updateProductOperability(String idProduct, ProductDto productDto) {
 		this.product = personalizeAccountProductMapper.map(productDto);
-		final Response response = this.globalPositionService.updateProductOperability(idProduct, product);
-		return response;
+		return this.globalPositionService.updateProductOperability(idProduct, product);
 	}
 
 	@Override
 	public Response updateProductVisibility(String idProduct, ProductDto productDto) {
 		this.product = personalizeAccountProductMapper.map(productDto);
-		final Response response = this.globalPositionService.updateProductVisibility(idProduct, product);
-		return response;
+		return this.globalPositionService.updateProductVisibility(idProduct, product);
 	}
 
 	public void setGlobalPositionService(GlobalPositionService globalPositionService) {

@@ -5,6 +5,7 @@
     http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
 	
 	<var name="quotaController" class="com.bbva.net.front.controller.impl.QuotaControllerImpl"/>
+	<var name="quotaMoveController" class="com.bbva.net.front.controller.impl.QuotaMoveControllerImpl"/>
 	<var name="accountsController" class="com.bbva.net.front.controller.impl.AccountsControllerImpl"/>
 	<var name="personalizeProductAccountController" class="com.bbva.net.front.controller.impl.PersonalizeProductAccountControllerImpl"/>
 	

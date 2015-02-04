@@ -15,38 +15,24 @@
 
 <composite:implementation>
 
-	<div class="table-wrapper">
-		<table class="detail-table-body sortable">
-			<tbody>
-				<tr class="detail-row">
-					<td colspan="4" class="td-detail" style="">
-						<div class="detail-content">
-							<div class="table-detail-border">
 
-								<!-- aki va header -->
-								<bbvaDetailMotionQuota:tableHeader />
+	<div class="detail-content">
+		<div class="table-detail-border">
+			<!-- aki va header -->
+			<bbvaDetailMotionQuota:tableHeader
+				detailMovement="#{quotaMoveController.getQuotaMoveDetailDto}" />
 
-								<!-- luego va botones container -->
-								<bbvaDetailMotion:buttonContainer button1="lorem"
-									button2="Lorem ipsum" button3="Lorem ipsum" />
+			<!-- luego va botones container -->
+			<bbvaDetailMotion:buttonContainer button1="lorem"
+				button2="Lorem ipsum" button3="Lorem ipsum" />
 
+			<!-- luego cuerpo del contenido -->
+			<bbvaDetailMotionQuota:tableBody
+				detailMovement="#{quotaMoveController.getQuotaMoveDetailDto}" />
 
-								<!-- luego cuerpo del contenido -->
-								<bbvaDetailMotionQuota:tableBody
-									detailMovement="#{movementDetailController.getDetailMovementByAccount()}" />
-
-
-								<!-- luego va footer archivos asociados -->
-								<bbvaDetailMotion:tableFooterFile />
-
-								<!-- luego va footer notas -->
-								<bbvaDetailMotion:tableFooterNotes />
-							</div>
-						</div>
-					</td>
-				</tr>
-			</tbody>
-		</table>
+			<!-- luego va footer notas -->
+			<bbvaDetailMotion:tableFooterNotes />
+		</div>
 	</div>
 
 </composite:implementation>
