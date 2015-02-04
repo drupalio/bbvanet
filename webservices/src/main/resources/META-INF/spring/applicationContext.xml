@@ -23,6 +23,9 @@
 	<context:spring-configured />
 	<context:component-scan base-package="com.bbva.net.webservices" />
 	<context:property-placeholder location="classpath*:*.properties" />
+	
+	<bean id="requestInterceptor" class="com.bbva.net.front.core.cxf.RequestInterceptor"/>
+	<bean id="responseInterceptor" class="com.bbva.net.front.core.cxf.ResponseInterceptor"/>
 
 
 	<bean id="jacksonObjectMapper" class="org.codehaus.jackson.map.ObjectMapper" />
