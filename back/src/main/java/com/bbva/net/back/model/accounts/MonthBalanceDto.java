@@ -2,7 +2,7 @@ package com.bbva.net.back.model.accounts;
 
 import java.io.Serializable;
 
-import com.bbva.jee.arq.spring.core.servicing.utils.Money;
+import com.bbva.net.back.model.commons.Money;
 
 public class MonthBalanceDto implements Serializable {
 
