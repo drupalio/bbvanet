@@ -22,7 +22,20 @@
 
 	<context:spring-configured />
 	<context:component-scan base-package="com.bbva.net.webservices" />
-	<context:property-placeholder location="classpath*:*.properties" />
+	<context:property-placeholder location="classpath:*.properties"/>
+	
+	<bean id="propertyConfigWebServices"
+			class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="ignoreResourceNotFound" value="true" />
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+		<property name="locations">
+			<list>
+				<value>classpath:/element.properties</value>
+				<value>classpath:/log4j.properties</value>
+				<value>classpath:/rest.properties</value>
+			</list>
+		</property>
+	</bean>
 
 	<bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
 		<property name="messageConverters">
@@ -33,8 +46,5 @@
 			</list>
 		</property>
 	</bean>
-
-
-
 
 </beans>   

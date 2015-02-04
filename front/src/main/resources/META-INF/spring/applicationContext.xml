@@ -22,7 +22,23 @@
 
 	<context:spring-configured />
 	<context:component-scan base-package="com.bbva.net.front" />
-	<context:property-placeholder location="classpath*:*.properties" />
+	<context:property-placeholder location="classpath:*.properties"/>
+	
+	<bean id="propertyConfigFront"
+			class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="ignoreResourceNotFound" value="true" />
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+		<property name="locations">
+			<list>
+				<value>classpath:/element.properties</value>
+				<value>classpath:/i18n_es_CO.properties</value>
+				<value>classpath:/i18n_es_ES.properties</value>
+				<value>classpath:/messages_es_CO.properties</value>
+				<value>classpath:/messages_es_ES.properties</value>
+				<value>classpath:/log4j.properties</value>
+			</list>
+		</property>
+	</bean>
 	
 	<bean id="requestInterceptor" class="com.bbva.net.front.core.cxf.RequestInterceptor"/>
 	<bean id="responseInterceptor" class="com.bbva.net.front.core.cxf.ResponseInterceptor"/>
