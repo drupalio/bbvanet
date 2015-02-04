@@ -317,11 +317,12 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		}
 		DateRangeDto dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
 
-		if (MessagesHelper.INSTANCE.getString("text.allCards").equals(cardSelected)) {
+		if (MessagesHelper.INSTANCE.getString("text.allCards").equals(cardSelected) || cardSelected.isEmpty()) {
+			cardSelected = MessagesHelper.INSTANCE.getString("text.allCards");
 			this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(
 					getCurrentUser(), dateRange));
 		} else {
-			System.out.println("cards ");
+
 			this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesFilter(cardSelected,
 					dateRange));
 		}

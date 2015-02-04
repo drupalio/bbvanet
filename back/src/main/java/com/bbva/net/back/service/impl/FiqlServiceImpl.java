@@ -16,6 +16,8 @@ public class FiqlServiceImpl implements FiqlService {
 
 	private static final String DATE_FORMAT = "yyyy-MM-dd";
 
+	private static final String MONTH_FORMAT = "MM";
+
 	private static final String FIQL_LANGUAGE = "fiql";
 
 	@Override
@@ -30,7 +32,24 @@ public class FiqlServiceImpl implements FiqlService {
 				.notAfter(dateRange.getDateTo()).query();
 
 	}
-	
+
+	/**
+	 * Este método que formatea la fecha a una cadena de mes, solo aplica para el servicio SrvAccounts01 -
+	 * getAccMovementResume
+	 */
+	@Override
+	public String formatMonthByAccMovementResume(final DateRangeDto dateRange, String monthProperty) {
+
+		if (dateRange == null || dateRange.getDateSince() == null || dateRange.getDateTo() == null) {
+			return StringUtils.EMPTY;
+		}
+
+		final SearchConditionBuilder filter = SearchConditionBuilder.instance(FIQL_LANGUAGE);
+
+		return filter.is(monthProperty).lexicalNotBefore(formatMonth(dateRange.getDateTo())).query();
+
+	}
+
 	@Override
 	public String getFiqlQueryByStatus(final String status, String statusProperty) {
 
@@ -78,6 +97,14 @@ public class FiqlServiceImpl implements FiqlService {
 		} catch (ParseException e) {
 			return null;
 		}
+	}
+
+	private String formatMonth(final Date date) {
+
+		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(MONTH_FORMAT);
+		final String strDate = simpleDateFormat.format(date);
+
+		return strDate;
 	}
 
 }

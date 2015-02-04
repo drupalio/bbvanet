@@ -11,11 +11,15 @@ import org.apache.cxf.jaxrs.client.WebClient;
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 public abstract class AbstractBbvaRestService {
+
+	protected static final Logger LOGGER = LoggerFactory.getLogger(AbstractBbvaRestService.class);
 
 	@Resource(name = "restTemplate")
 	protected RestTemplate restTemplate;
