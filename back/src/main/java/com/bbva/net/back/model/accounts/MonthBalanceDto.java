@@ -2,7 +2,6 @@ package com.bbva.net.back.model.accounts;
 
 import java.io.Serializable;
 
-import com.bbva.czic.dto.net.EnumMonth;
 import com.bbva.jee.arq.spring.core.servicing.utils.Money;
 
 public class MonthBalanceDto implements Serializable {
@@ -14,7 +13,7 @@ public class MonthBalanceDto implements Serializable {
 
 	private Money balance;
 
-	private EnumMonth month;
+	private String day;
 
 	private int valueX;
 
@@ -33,17 +32,17 @@ public class MonthBalanceDto implements Serializable {
 	}
 
 	/**
-	 * @return the month
+	 * @return
 	 */
-	public EnumMonth getMonth() {
-		return month;
+	public String getDay() {
+		return day;
 	}
 
 	/**
-	 * @param month the month to set
+	 * @param day
 	 */
-	public void setMonth(EnumMonth month) {
-		this.month = month;
+	public void setDay(String day) {
+		this.day = day;
 	}
 
 	/**

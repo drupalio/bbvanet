@@ -12,7 +12,7 @@ import com.bbva.net.back.core.pattern.facade.AbstractBbvaFacade;
 import com.bbva.net.back.core.stereotype.Facade;
 import com.bbva.net.back.facade.AccountMonthBalanceFacade;
 import com.bbva.net.back.mapper.MonthlyBalanceMapper;
-import com.bbva.net.back.model.accounts.GlobalMonthlyBalance;
+import com.bbva.net.back.model.accounts.GlobalMonthlyBalanceDto;
 import com.bbva.net.back.model.commons.DateRangeDto;
 import com.bbva.net.back.service.FiqlService;
 import com.bbva.net.webservices.accounts.AccountsService;
@@ -35,10 +35,10 @@ public class AccountMonthBalanceFacadeImpl extends AbstractBbvaFacade implements
 	private MonthlyBalanceMapper monthlyBalanceMapper;
 
 	@Override
-	public GlobalMonthlyBalance getAccountMonthlyBalance(String accountId, DateRangeDto dateRange, String fields,
+	public GlobalMonthlyBalanceDto getAccountMonthlyBalance(String accountId, DateRangeDto dateRange, String fields,
 			String expands, String sort) {
 
-		GlobalMonthlyBalance globalMonthlyBalance = new GlobalMonthlyBalance();
+		GlobalMonthlyBalanceDto globalMonthlyBalance = new GlobalMonthlyBalanceDto();
 
 		String filter = dateRange == null ? StringUtils.EMPTY : fiqlService.getFiqlQueryByDateRange(dateRange, DATE,
 				DATE);

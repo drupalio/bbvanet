@@ -14,7 +14,7 @@ import com.bbva.net.back.facade.AccountMonthBalanceFacade;
 import com.bbva.net.back.facade.AccountMovementsResumeFacade;
 import com.bbva.net.back.facade.CardsFacade;
 import com.bbva.net.back.facade.GlobalPositionFacade;
-import com.bbva.net.back.model.accounts.GlobalMonthlyBalance;
+import com.bbva.net.back.model.accounts.GlobalMonthlyBalanceDto;
 import com.bbva.net.back.model.comboFilter.EnumPeriodType;
 import com.bbva.net.back.model.commons.DateRangeDto;
 import com.bbva.net.back.model.globalposition.BalanceDto;
@@ -124,7 +124,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	/**
 	 * 
 	 */
-	private GlobalMonthlyBalance globalMonthlyBalance;
+	private GlobalMonthlyBalanceDto globalMonthlyBalance;
 
 	/**
 	 * 
@@ -183,10 +183,11 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		this.globalResumeMovementsDTO = this.movementsResumeFacade.getMovementsResumeByCustomer(getCurrentUser(), null);
 
 		// Obtiene la lista de datos para pintar la grafica Deposito electrónico
-		// this.globalMonthlyBalance = this.accountMonthBalanceFacade.getAccountMonthlyBalance(DEFAULT_ACCOUNT, null,
-		// StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY);
+		this.globalMonthlyBalance = this.accountMonthBalanceFacade.getAccountMonthlyBalance(DEFAULT_ACCOUNT, null,
+				StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY);
 
 		// Delegate construye UI grafica Depositos Electrónicos
+		// this.lineConfigUI = this.graphicLineDelegate.getMonthlyBalance(globalMonthlyBalance);
 
 		// Calculate situation graphics panels
 		this.situationGraphicPieUI = graphicPieDelegate.getSituationGlobalProducts(this.globalProductsDTO);
@@ -195,7 +196,6 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		this.graphicPieInvestmentFunds = graphicPieDelegate.getAccountsfundsProducts(globalProductsDTO);
 
 		// Calculate cards graphics panel
-
 		this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(getCurrentUser(),
 				null));
 
@@ -203,7 +203,6 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		this.totalsProducts = this.globalPositionFacade.getTotalsByProduct(globalProductsDTO);
 
 		// Calculate income, output and balance by Account Graphic
-		// Acualmente obtiene el objeto Ui quemado en el delegate
 		this.accountGraphicBarLineUI = this.graphicBarLineDelegate.getInOutBalanceAccount(globalResumeMovementsDTO);
 
 		// Get names of products
@@ -520,7 +519,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		this.accountMonthBalanceFacade = accountMonthBalanceFacade;
 	}
 
-	public GlobalMonthlyBalance getGlobalMonthlyBalance() {
+	public GlobalMonthlyBalanceDto getGlobalMonthlyBalance() {
 		return globalMonthlyBalance;
 	}
 

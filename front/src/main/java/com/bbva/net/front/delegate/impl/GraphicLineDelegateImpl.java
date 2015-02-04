@@ -1,6 +1,6 @@
 package com.bbva.net.front.delegate.impl;
 
-import com.bbva.net.back.model.accounts.GlobalMonthlyBalance;
+import com.bbva.net.back.model.accounts.GlobalMonthlyBalanceDto;
 import com.bbva.net.front.core.stereotype.Delegate;
 import com.bbva.net.front.delegate.GraphicLineDelegate;
 import com.bbva.net.front.ui.line.LineConfigUI;
@@ -9,7 +9,7 @@ import com.bbva.net.front.ui.line.LineConfigUI;
 public class GraphicLineDelegateImpl implements GraphicLineDelegate {
 
 	@Override
-	public LineConfigUI getMonthlyBalance(GlobalMonthlyBalance globalMonthlyBalance) {
+	public LineConfigUI getMonthlyBalance(GlobalMonthlyBalanceDto globalMonthlyBalance) {
 
 		LineConfigUI lineConfigUI = new LineConfigUI();
 
