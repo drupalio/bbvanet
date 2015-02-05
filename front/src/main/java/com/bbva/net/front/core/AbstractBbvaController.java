@@ -12,22 +12,21 @@ import javax.servlet.http.HttpSession;
 
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.faces.webflow.FlowFacesContext;
 import org.springframework.webflow.engine.RequestControlContext;
 import org.springframework.webflow.execution.Event;
 import org.springframework.webflow.execution.RequestContextHolder;
 
+import com.bbva.jee.arq.spring.core.log.I18nLog;
+import com.bbva.jee.arq.spring.core.log.I18nLogFactory;
 import com.bbva.net.back.model.globalposition.ProductDto;
-import com.bbva.net.webservices.core.pattern.AbstractBbvaRestService;
 
 /**
  * @author Entelgy
  */
 public abstract class AbstractBbvaController implements Serializable {
 
-	protected static final Logger LOGGER = LoggerFactory.getLogger(AbstractBbvaRestService.class);
+	protected static final I18nLog LOGGER = I18nLogFactory.getLogI18n(AbstractBbvaController.class);
 
 	private static final long serialVersionUID = -4820146844257478597L;
 
@@ -37,7 +36,7 @@ public abstract class AbstractBbvaController implements Serializable {
 
 	protected enum SessionParamenterType {
 
-		SELECTED_PRODUCT, TSEC
+		SELECTED_PRODUCT, AUTHENTICATION_STATE
 	}
 
 	/**
@@ -70,10 +69,19 @@ public abstract class AbstractBbvaController implements Serializable {
 	 */
 	protected String getRequestParameter(final String parameter) {
 
+		final HttpServletRequest request = this.getRequest();
+		return request.getParameter(parameter);
+	}
+
+	/**
+	 * @return HttpServletRequest
+	 */
+	protected HttpServletRequest getRequest() {
+
 		final HttpServletRequest request = (HttpServletRequest)FlowFacesContext.getCurrentInstance()
 				.getExternalContext().getRequest();
 
-		return request.getParameter(parameter);
+		return request;
 	}
 
 	/**
@@ -114,6 +122,13 @@ public abstract class AbstractBbvaController implements Serializable {
 	 */
 	protected void putVarInFlow(final String var, final Object object) {
 		getWebFlowRequestContext().getFlashScope().put(var, object);
+	}
+
+	/**
+	 * @param defaultUser
+	 */
+	public void setDefaultUser(String defaultUser) {
+		DEFAULT_USER = defaultUser;
 	}
 
 	/**

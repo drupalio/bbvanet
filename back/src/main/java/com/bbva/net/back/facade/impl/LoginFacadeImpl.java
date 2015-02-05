@@ -2,6 +2,7 @@ package com.bbva.net.back.facade.impl;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 
 import com.bbva.net.back.core.pattern.facade.AbstractBbvaFacade;
@@ -10,6 +11,7 @@ import com.bbva.net.back.facade.LoginFacade;
 import com.bbva.net.webservices.grantingticket.SrvCOGrantingTicket;
 import com.bbva.saz.co.grantingticket.v01.Authentication;
 import com.bbva.saz.co.grantingticket.v01.AuthenticationData;
+import com.bbva.saz.co.grantingticket.v01.AuthenticationState;
 import com.bbva.saz.co.grantingticket.v01.ConsumerContext;
 import com.bbva.saz.co.grantingticket.v01.UserPreferences;
 
@@ -29,13 +31,17 @@ public class LoginFacadeImpl extends AbstractBbvaFacade implements LoginFacade {
 	@Value("${granting.language}")
 	private String LANGUAGE;
 
+	@Value("${granting.ivTicketId}")
+	private String IV_TICKET_SERVICE;
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 6609387805859744761L;
 
 	@Override
-	public String login(String user, String password, String identification, String identificationType) {
+	public AuthenticationState login(String ivTicket, String user, String password, String identification,
+			String identificationType) {
 
 		ConsumerContext consumerContext = new ConsumerContext();
 		Authentication acutentication = new Authentication();
@@ -43,14 +49,18 @@ public class LoginFacadeImpl extends AbstractBbvaFacade implements LoginFacade {
 		AuthenticationData authenticationData = new AuthenticationData();
 
 		// Authentication-Data
-		authenticationData.setIdAuthenticationData("");
+		authenticationData.setIdAuthenticationData(IV_TICKET_SERVICE);
+		authenticationData.getAuthenticationData().add(ivTicket);
 
 		// Authentication
-		acutentication.setAccessCode(identification);
+		/**
+		 * Concatenaciópn de Nick Usuario (identificación) + Tipo de documento (identificationType) + Usuario de acceso
+		 */
+		acutentication.setAccessCode(identification + identificationType + user);
 		acutentication.setAuthenticationType(AUTH_TYPE);
 		acutentication.setClient(null);
 		acutentication.setConsumerId(CONSUMER);
-		acutentication.setUserId(user);
+		acutentication.setUserId(StringUtils.EMPTY);
 
 		// UserPreferences
 
@@ -63,7 +73,7 @@ public class LoginFacadeImpl extends AbstractBbvaFacade implements LoginFacade {
 		consumerContext.setUserPreferences(userPreferences);
 		consumerContext.setAuthentication(acutentication);
 
-		return this.grantingTicket.createTicket(consumerContext).getAuthenticationState();
+		return this.grantingTicket.createTicket(consumerContext);
 	}
 
 	public void setGrantingTicket(SrvCOGrantingTicket grantingTicket) {

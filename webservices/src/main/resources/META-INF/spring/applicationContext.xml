@@ -21,6 +21,7 @@
 		http://bbva.com/arq-spring-servicing http://bbva.com/arq-spring-servicing/servicing.xsd">
 
 	<context:spring-configured />
+	<context:annotation-config/>
 	<context:component-scan base-package="com.bbva.net.webservices" />
 	<context:property-placeholder location="classpath*:*.properties" />
 	
