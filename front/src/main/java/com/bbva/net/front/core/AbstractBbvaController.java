@@ -20,19 +20,20 @@ import org.springframework.webflow.execution.Event;
 import org.springframework.webflow.execution.RequestContextHolder;
 
 import com.bbva.net.back.model.globalposition.ProductDto;
+import com.bbva.net.webservices.core.pattern.AbstractBbvaRestService;
 
 /**
  * @author Entelgy
  */
 public abstract class AbstractBbvaController implements Serializable {
 
-	protected static final Logger LOGGER = LoggerFactory.getLogger(AbstractBbvaController.class);
+	protected static final Logger LOGGER = LoggerFactory.getLogger(AbstractBbvaRestService.class);
 
 	private static final long serialVersionUID = -4820146844257478597L;
 
 	protected String DEFAULT_USER = "12345678";
 
-	protected String DEFAULT_ACCOUNT = "123";
+	protected String DEFAULT_ACCOUNT = "12345678909876543210";
 
 	protected enum SessionParamenterType {
 

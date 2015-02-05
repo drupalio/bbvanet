@@ -38,7 +38,7 @@ public class AccountMovementsResumeFacadeImpl extends AbstractBbvaFacade impleme
 
 	@Resource(name = "globalResumeMovementsMapper")
 	private GlobalResumeMovementsMapper globalResumeMovementsMapper;
-	
+
 	@Resource(name = "fiqlService")
 	private FiqlService fiqlService;
 
@@ -69,7 +69,7 @@ public class AccountMovementsResumeFacadeImpl extends AbstractBbvaFacade impleme
 
 		GlobalResumeMovementsDto globalMovements = new GlobalResumeMovementsDto();
 
-		String filter = dateRange == null ? StringUtils.EMPTY : fiqlService.getFiqlQueryByDateRange(dateRange, DATE,
+		String filter = dateRange == null ? StringUtils.EMPTY : fiqlService.formatMonthByAccMovementResume(dateRange,
 				DATE);
 
 		final List<AccMovementsResume> response = this.accountsService.getAccMovementResume(accountId, filter, fields,
@@ -78,7 +78,6 @@ public class AccountMovementsResumeFacadeImpl extends AbstractBbvaFacade impleme
 
 		return globalMovements;
 	}
-
 
 	/********************************** DEPENDENCY INJECTIONS ***********************************/
 	public void setCustomerService(final CustomerService customerService) {

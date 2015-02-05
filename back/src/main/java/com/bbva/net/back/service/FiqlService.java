@@ -12,4 +12,6 @@ public interface FiqlService {
 
 	String getFiqlQueryByStatus(String status, String statusProperty);
 
+	String formatMonthByAccMovementResume(DateRangeDto dateRange, String monthProperty);
+
 }

@@ -7,7 +7,6 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pm="http://primefaces.org/mobile"
 	xmlns:jsf="http://xmlns.jcp.org/jsf"
-	xmlns:bbvaDetailMovents="http://java.sun.com/jsf/composite/bbva/movementsDetailQuota"
 	xmlns:bbvaDetailMotion="http://java.sun.com/jsf/composite/bbva/movementsDetailQuota">
 
 <composite:interface>
@@ -18,7 +17,7 @@
 
 <composite:implementation>
 
-	<h:form id="#{cc.attrs.id}">	
+	<h:form id="#{cc.attrs.id}">
 		<article class="detail-table-group">
 
 			<div class="utility-icons">
@@ -33,16 +32,16 @@
 
 			<div class="table-wrapper">
 				<p:dataTable id="detalAC" styleClass="detail-table-body sortable"
-					value="#{cc.attrs.listAccounts}" var="icuenta" widgetVar="dataTableWV"
-					selectionMode="single" rowKey="#{icuenta.productId}"
-					rowIndexVar="rowIndex">
+					value="#{cc.attrs.listAccounts}" var="icuenta"
+					widgetVar="dataTableWV" selectionMode="single"
+					rowKey="#{icuenta.productId}" rowIndexVar="rowIndex">
 
 					<p:ajax event="rowSelect"
 						listener="#{cc.attrs.controller.onProductSelected}" />
 
-					 <p:column>
-      					<p:rowToggler rendered="true" />
-   					 </p:column>
+					<p:column>
+						<p:rowToggler rendered="true" />
+					</p:column>
 
 					<p:column headerText="#{msg['title.quotaNumber']}"
 						styleClass="sorted w18 desc"

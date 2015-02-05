@@ -11,11 +11,15 @@ import org.apache.cxf.jaxrs.client.WebClient;
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 public abstract class AbstractBbvaRestService {
+
+	protected static final Logger LOGGER = LoggerFactory.getLogger(AbstractBbvaRestService.class);
 
 	@Resource(name = "restTemplate")
 	protected RestTemplate restTemplate;
@@ -25,6 +29,9 @@ public abstract class AbstractBbvaRestService {
 
 	@Value("${rest.base.url}")
 	protected String URL_BASE;
+
+	@Value("${rest.global.base}")
+	protected String URL_GLOBAL_BASE;
 
 	@Value("${rest.base.customer.url}")
 	protected String URL_BASE_CUSTOMER;
@@ -52,6 +59,9 @@ public abstract class AbstractBbvaRestService {
 
 	@Value("${rest.list.check.url}")
 	protected String URL_CHECK_LIST;
+
+	@Value("${rest.mounthBalance.url}")
+	protected String URL_MOUNTHBALANCE;
 
 	@Value("${rest.granting.url}")
 	protected String URL_GRANTING;

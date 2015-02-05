@@ -40,7 +40,6 @@ public class CustomerServiceImpl extends AbstractBbvaRestService implements Cust
 	public List<CardCharge> listCreditCardsCharges(String customerId, String filter) {
 		WebClient wc = getJsonWebClient(URL_BASE_CUSTOMER + customerId + URL_CARDCHARGES);
 		if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
-		System.out.println(URL_BASE_CUSTOMER + customerId + URL_CARDCHARGES + filter);
 		return (List<CardCharge>)wc.getCollection(CardCharge.class);
 
 	}

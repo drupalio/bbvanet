@@ -30,28 +30,28 @@ public class AccountsServiceImpl extends AbstractBbvaRestService implements Acco
 	@Override
 	public Account getAccount(String accountId) {
 		WebClient wc = getJsonWebClient(URL_BASE_ACCOUNTS + accountId);
-		return (Account)wc.get(Account.class);
+		return wc.get(Account.class);
 	}
 
 	@Override
 	public Check getCheck(String accountId, String checkId) {
 		WebClient wc = getJsonWebClient(URL_BASE_ACCOUNTS + accountId + URL_CHECK + checkId);
-		if(accountId!= null && checkId!=null){
+		if (accountId != null && checkId != null) {
 			wc.query("checkbookId", checkId);
 			wc.query("accountId", accountId);
-			}
-		return (Check)wc.get(Check.class);
+		}
+		return wc.get(Check.class);
 	}
 
 	@Override
 	public Checkbook getCheckbook(String accountId, String checkbookId) {
-		WebClient wc = getJsonWebClient(URL_BASE_ACCOUNTS + accountId + URL_CHECKBOOK + checkbookId);		
-		
-		if(accountId!= null && checkbookId!=null){
-		wc.query("checkbookId", checkbookId);
-		wc.query("accountId", accountId);
+		WebClient wc = getJsonWebClient(URL_BASE_ACCOUNTS + accountId + URL_CHECKBOOK + checkbookId);
+
+		if (accountId != null && checkbookId != null) {
+			wc.query("checkbookId", checkbookId);
+			wc.query("accountId", accountId);
 		}
-		return (Checkbook)wc.get(Checkbook.class);
+		return wc.get(Checkbook.class);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -59,30 +59,33 @@ public class AccountsServiceImpl extends AbstractBbvaRestService implements Acco
 	public List<Check> listCheck(String accountId, String filter, Integer paginationKey, Integer pageSize) {
 
 		WebClient wc = getJsonWebClient(URL_BASE_ACCOUNTS + accountId + URL_CHECK_LIST);
-		if (!StringUtils.isEmpty(filter)) 	wc.query(FILTER, filter);
-			
-		if(paginationKey!= null && pageSize!=null){
+		if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
+
+		if (paginationKey != null && pageSize != null) {
 			wc.query("paginationKey", paginationKey);
 			wc.query("pageSize", pageSize);
 		}
-		
-		return (List<Check>)wc.getCollection(Check.class);
-	}
 
-	// Pinta Grafica Cupo rotaativo
-	@Override
-	public List<MonthlyBalances> getAccountMonthlyBalance(String id, String $filter, String $fields, String $expands,
-			String $sort) {
-		// TODO Auto-generated method stub
-		return null;
+		return (List<Check>)wc.getCollection(Check.class);
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<AccMovementsResume> getAccMovementResume(String id, String $filter, String $fields, String $expands,
+	public List<MonthlyBalances> getAccountMonthlyBalance(String accountId, String filter, String fields,
+			String expands, String sort) {
+		WebClient wc = getJsonWebClient(URL_BASE_ACCOUNTS + accountId + URL_MOUNTHBALANCE);
+		if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
+		if (!StringUtils.isEmpty(fields)) wc.query(FILTER, fields);
+
+		return (List<MonthlyBalances>)wc.getCollection(MonthlyBalances.class);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<AccMovementsResume> getAccMovementResume(String id, String filter, String $fields, String $expands,
 			String $sort) {
 		WebClient wc = getJsonWebClient(URL_BASE_ACCOUNTS + id + URL_ACCOUNTS);
-		wc.query("filtro", $filter);
+		if (!StringUtils.isEmpty(filter)) wc.query("$filter", filter);
 		return (List<AccMovementsResume>)wc.getCollection(AccMovementsResume.class);
 	}
 
