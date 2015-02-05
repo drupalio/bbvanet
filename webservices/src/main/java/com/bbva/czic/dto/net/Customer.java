@@ -1,4 +1,3 @@
-
 package com.bbva.czic.dto.net;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -7,11 +6,11 @@ import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.datatype.XMLGregorianCalendar;
 
-
 /**
- * <p>Clase Java para Customer complex type.
- * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>
+ * Clase Java para Customer complex type.
+ * <p>
+ * El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="Customer">
@@ -36,354 +35,272 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Customer", propOrder = {
-    "id",
-    "document",
-    "username",
-    "name",
-    "segment",
-    "contactInfo",
-    "homeLocation",
-    "stratum",
-    "residenceYears",
-    "homeMembers",
-    "dwelingType",
-    "officeLocation",
-    "lastAccessDate"
-})
+@XmlType(name = "Customer", propOrder = { "id", "document", "username", "name", "segment", "contactInfo",
+		"homeLocation", "stratum", "residenceYears", "homeMembers", "dwelingType", "officeLocation", "lastAccessDate" })
 public class Customer {
 
-    protected String id;
-    protected Document document;
-    protected String username;
-    protected String name;
-    @XmlSchemaType(name = "string")
-    protected EnumSegmentType segment;
-    protected ContactInfo contactInfo;
-    protected Place homeLocation;
-    protected Integer stratum;
-    protected Integer residenceYears;
-    protected Integer homeMembers;
-    @XmlSchemaType(name = "string")
-    protected EnumDwelingType dwelingType;
-    protected Place officeLocation;
-    @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar lastAccessDate;
+	protected String id;
 
-    /**
-     * Obtiene el valor de la propiedad id.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getId() {
-        return id;
-    }
+	protected Document document;
 
-    /**
-     * Define el valor de la propiedad id.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setId(String value) {
-        this.id = value;
-    }
+	protected String username;
 
-    /**
-     * Obtiene el valor de la propiedad document.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Document }
-     *     
-     */
-    public Document getDocument() {
-        return document;
-    }
+	protected String name;
 
-    /**
-     * Define el valor de la propiedad document.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Document }
-     *     
-     */
-    public void setDocument(Document value) {
-        this.document = value;
-    }
+	@XmlSchemaType(name = "string")
+	protected EnumSegmentType segment;
 
-    /**
-     * Obtiene el valor de la propiedad username.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getUsername() {
-        return username;
-    }
+	protected ContactInfo contactInfo;
 
-    /**
-     * Define el valor de la propiedad username.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setUsername(String value) {
-        this.username = value;
-    }
+	protected Place homeLocation;
 
-    /**
-     * Obtiene el valor de la propiedad name.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getName() {
-        return name;
-    }
+	protected Integer stratum;
 
-    /**
-     * Define el valor de la propiedad name.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setName(String value) {
-        this.name = value;
-    }
+	protected Integer residenceYears;
 
-    /**
-     * Obtiene el valor de la propiedad segment.
-     * 
-     * @return
-     *     possible object is
-     *     {@link EnumSegmentType }
-     *     
-     */
-    public EnumSegmentType getSegment() {
-        return segment;
-    }
+	protected Integer homeMembers;
 
-    /**
-     * Define el valor de la propiedad segment.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link EnumSegmentType }
-     *     
-     */
-    public void setSegment(EnumSegmentType value) {
-        this.segment = value;
-    }
+	@XmlSchemaType(name = "string")
+	protected EnumDwelingType dwelingType;
 
-    /**
-     * Obtiene el valor de la propiedad contactInfo.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ContactInfo }
-     *     
-     */
-    public ContactInfo getContactInfo() {
-        return contactInfo;
-    }
+	protected Place officeLocation;
 
-    /**
-     * Define el valor de la propiedad contactInfo.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ContactInfo }
-     *     
-     */
-    public void setContactInfo(ContactInfo value) {
-        this.contactInfo = value;
-    }
+	protected String lastAccessDate;
 
-    /**
-     * Obtiene el valor de la propiedad homeLocation.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Place }
-     *     
-     */
-    public Place getHomeLocation() {
-        return homeLocation;
-    }
+	/**
+	 * Obtiene el valor de la propiedad id.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getId() {
+		return id;
+	}
 
-    /**
-     * Define el valor de la propiedad homeLocation.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Place }
-     *     
-     */
-    public void setHomeLocation(Place value) {
-        this.homeLocation = value;
-    }
+	/**
+	 * Define el valor de la propiedad id.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setId(String value) {
+		this.id = value;
+	}
 
-    /**
-     * Obtiene el valor de la propiedad stratum.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Integer }
-     *     
-     */
-    public Integer getStratum() {
-        return stratum;
-    }
+	/**
+	 * Obtiene el valor de la propiedad document.
+	 * 
+	 * @return possible object is {@link Document }
+	 */
+	public Document getDocument() {
+		return document;
+	}
 
-    /**
-     * Define el valor de la propiedad stratum.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Integer }
-     *     
-     */
-    public void setStratum(Integer value) {
-        this.stratum = value;
-    }
+	/**
+	 * Define el valor de la propiedad document.
+	 * 
+	 * @param value allowed object is {@link Document }
+	 */
+	public void setDocument(Document value) {
+		this.document = value;
+	}
 
-    /**
-     * Obtiene el valor de la propiedad residenceYears.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Integer }
-     *     
-     */
-    public Integer getResidenceYears() {
-        return residenceYears;
-    }
+	/**
+	 * Obtiene el valor de la propiedad username.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getUsername() {
+		return username;
+	}
 
-    /**
-     * Define el valor de la propiedad residenceYears.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Integer }
-     *     
-     */
-    public void setResidenceYears(Integer value) {
-        this.residenceYears = value;
-    }
+	/**
+	 * Define el valor de la propiedad username.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setUsername(String value) {
+		this.username = value;
+	}
 
-    /**
-     * Obtiene el valor de la propiedad homeMembers.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Integer }
-     *     
-     */
-    public Integer getHomeMembers() {
-        return homeMembers;
-    }
+	/**
+	 * Obtiene el valor de la propiedad name.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getName() {
+		return name;
+	}
 
-    /**
-     * Define el valor de la propiedad homeMembers.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Integer }
-     *     
-     */
-    public void setHomeMembers(Integer value) {
-        this.homeMembers = value;
-    }
+	/**
+	 * Define el valor de la propiedad name.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setName(String value) {
+		this.name = value;
+	}
 
-    /**
-     * Obtiene el valor de la propiedad dwelingType.
-     * 
-     * @return
-     *     possible object is
-     *     {@link EnumDwelingType }
-     *     
-     */
-    public EnumDwelingType getDwelingType() {
-        return dwelingType;
-    }
+	/**
+	 * Obtiene el valor de la propiedad segment.
+	 * 
+	 * @return possible object is {@link EnumSegmentType }
+	 */
+	public EnumSegmentType getSegment() {
+		return segment;
+	}
 
-    /**
-     * Define el valor de la propiedad dwelingType.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link EnumDwelingType }
-     *     
-     */
-    public void setDwelingType(EnumDwelingType value) {
-        this.dwelingType = value;
-    }
+	/**
+	 * Define el valor de la propiedad segment.
+	 * 
+	 * @param value allowed object is {@link EnumSegmentType }
+	 */
+	public void setSegment(EnumSegmentType value) {
+		this.segment = value;
+	}
 
-    /**
-     * Obtiene el valor de la propiedad officeLocation.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Place }
-     *     
-     */
-    public Place getOfficeLocation() {
-        return officeLocation;
-    }
+	/**
+	 * Obtiene el valor de la propiedad contactInfo.
+	 * 
+	 * @return possible object is {@link ContactInfo }
+	 */
+	public ContactInfo getContactInfo() {
+		return contactInfo;
+	}
 
-    /**
-     * Define el valor de la propiedad officeLocation.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Place }
-     *     
-     */
-    public void setOfficeLocation(Place value) {
-        this.officeLocation = value;
-    }
+	/**
+	 * Define el valor de la propiedad contactInfo.
+	 * 
+	 * @param value allowed object is {@link ContactInfo }
+	 */
+	public void setContactInfo(ContactInfo value) {
+		this.contactInfo = value;
+	}
 
-    /**
-     * Obtiene el valor de la propiedad lastAccessDate.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
-     */
-    public XMLGregorianCalendar getLastAccessDate() {
-        return lastAccessDate;
-    }
+	/**
+	 * Obtiene el valor de la propiedad homeLocation.
+	 * 
+	 * @return possible object is {@link Place }
+	 */
+	public Place getHomeLocation() {
+		return homeLocation;
+	}
 
-    /**
-     * Define el valor de la propiedad lastAccessDate.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
-     */
-    public void setLastAccessDate(XMLGregorianCalendar value) {
-        this.lastAccessDate = value;
-    }
+	/**
+	 * Define el valor de la propiedad homeLocation.
+	 * 
+	 * @param value allowed object is {@link Place }
+	 */
+	public void setHomeLocation(Place value) {
+		this.homeLocation = value;
+	}
+
+	/**
+	 * Obtiene el valor de la propiedad stratum.
+	 * 
+	 * @return possible object is {@link Integer }
+	 */
+	public Integer getStratum() {
+		return stratum;
+	}
+
+	/**
+	 * Define el valor de la propiedad stratum.
+	 * 
+	 * @param value allowed object is {@link Integer }
+	 */
+	public void setStratum(Integer value) {
+		this.stratum = value;
+	}
+
+	/**
+	 * Obtiene el valor de la propiedad residenceYears.
+	 * 
+	 * @return possible object is {@link Integer }
+	 */
+	public Integer getResidenceYears() {
+		return residenceYears;
+	}
+
+	/**
+	 * Define el valor de la propiedad residenceYears.
+	 * 
+	 * @param value allowed object is {@link Integer }
+	 */
+	public void setResidenceYears(Integer value) {
+		this.residenceYears = value;
+	}
+
+	/**
+	 * Obtiene el valor de la propiedad homeMembers.
+	 * 
+	 * @return possible object is {@link Integer }
+	 */
+	public Integer getHomeMembers() {
+		return homeMembers;
+	}
+
+	/**
+	 * Define el valor de la propiedad homeMembers.
+	 * 
+	 * @param value allowed object is {@link Integer }
+	 */
+	public void setHomeMembers(Integer value) {
+		this.homeMembers = value;
+	}
+
+	/**
+	 * Obtiene el valor de la propiedad dwelingType.
+	 * 
+	 * @return possible object is {@link EnumDwelingType }
+	 */
+	public EnumDwelingType getDwelingType() {
+		return dwelingType;
+	}
+
+	/**
+	 * Define el valor de la propiedad dwelingType.
+	 * 
+	 * @param value allowed object is {@link EnumDwelingType }
+	 */
+	public void setDwelingType(EnumDwelingType value) {
+		this.dwelingType = value;
+	}
+
+	/**
+	 * Obtiene el valor de la propiedad officeLocation.
+	 * 
+	 * @return possible object is {@link Place }
+	 */
+	public Place getOfficeLocation() {
+		return officeLocation;
+	}
+
+	/**
+	 * Define el valor de la propiedad officeLocation.
+	 * 
+	 * @param value allowed object is {@link Place }
+	 */
+	public void setOfficeLocation(Place value) {
+		this.officeLocation = value;
+	}
+
+	/**
+	 * Obtiene el valor de la propiedad lastAccessDate.
+	 * 
+	 * @return possible object is {@link XMLGregorianCalendar }
+	 */
+	public String getLastAccessDate() {
+		return lastAccessDate;
+	}
+
+	/**
+	 * Define el valor de la propiedad lastAccessDate.
+	 * 
+	 * @param value allowed object is {@link XMLGregorianCalendar }
+	 */
+	public void setLastAccessDate(String value) {
+		this.lastAccessDate = value;
+	}
 
 }
