@@ -9,4 +9,12 @@ public class QuotaMoveDetailDtoTest extends AbstractBbvaDTOTest<QuotaMoveDetailD
 		return new QuotaMoveDetailDto();
 	}
 
+	/**
+	 * Invoke Equals Method
+	 */
+	@Override
+	public void checkEqualsMethod() {
+
+	}
+
 }

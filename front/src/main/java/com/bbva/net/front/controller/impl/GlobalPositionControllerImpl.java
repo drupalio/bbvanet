@@ -304,6 +304,12 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	}
 
+	@Override
+	public void onProductLoanSelected(final SelectEvent selectEvent) {
+		super.onProductSelected(selectEvent);
+		this.sendAction("loanSelected");
+	}
+
 	/**
 	 * Filter combo of Graphic Cards
 	 */

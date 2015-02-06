@@ -1,5 +1,7 @@
 package com.bbva.net.back.model.quota;
 
+import java.util.Date;
+
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
@@ -7,8 +9,9 @@ import com.bbva.net.back.core.pattern.dto.Dto;
 import com.bbva.net.back.model.accounts.ProductInformationDto;
 import com.bbva.net.back.model.commons.Money;
 import com.bbva.net.back.model.globalposition.ProductDto;
+import com.bbva.net.back.model.globalposition.RotatingAccountDto;
 
-public class QuotaDetailDto extends ProductDto implements Dto {
+public class QuotaDetailDto extends RotatingAccountDto implements Dto {
 
 	/**
 	 * 
@@ -21,11 +24,11 @@ public class QuotaDetailDto extends ProductDto implements Dto {
 
 	private int numberOfShares;
 
-	private String dateMaturity;
+	private Date dateMaturity;
 
-	private String datePayment;
+	private Date datePayment;
 
-	private String datePrevious;
+	private Date datePrevious;
 
 	private String state;
 
@@ -59,11 +62,9 @@ public class QuotaDetailDto extends ProductDto implements Dto {
 	 * @param balancePrevious
 	 */
 
-	public QuotaDetailDto(ProductInformationDto informacion, String id,
-			Money outstandingBalance, Money amountRequested,
-			int numberOfShares, String state, Money minimumPayment,
-			Money feeCollection, Money availableBalance, Money balancePrevious,
-			String dateMaturity, String datePayment, String datePrevious) {
+	public QuotaDetailDto(ProductInformationDto informacion, String id, Money outstandingBalance,
+			Money amountRequested, int numberOfShares, String state, Money minimumPayment, Money feeCollection,
+			Money availableBalance, Money balancePrevious, Date dateMaturity, Date datePayment, Date datePrevious) {
 
 		this.informacion = informacion;
 		this.id = id;
@@ -96,8 +97,7 @@ public class QuotaDetailDto extends ProductDto implements Dto {
 	}
 
 	/**
-	 * @param id
-	 *            the id to set
+	 * @param id the id to set
 	 */
 	public void setId(String id) {
 		this.id = id;
@@ -170,104 +170,81 @@ public class QuotaDetailDto extends ProductDto implements Dto {
 	/**
 	 * @return the dateMaturity
 	 */
-	public String getDateMaturity() {
+	public Date getDateMaturity() {
 		return dateMaturity;
 	}
 
 	/**
-	 * @param dateMaturity
-	 *            the dateMaturity to set
+	 * @param dateMaturity the dateMaturity to set
 	 */
-	public void setDateMaturity(String dateMaturity) {
+	public void setDateMaturity(Date dateMaturity) {
 		this.dateMaturity = dateMaturity;
 	}
 
 	/**
 	 * @return the datePayment
 	 */
-	public String getDatePayment() {
+	public Date getDatePayment() {
 		return datePayment;
 	}
 
 	/**
-	 * @param datePayment
-	 *            the datePayment to set
+	 * @param datePayment the datePayment to set
 	 */
-	public void setDatePayment(String datePayment) {
+	public void setDatePayment(Date datePayment) {
 		this.datePayment = datePayment;
 	}
 
 	/**
 	 * @return the datePrevious
 	 */
-	public String getDatePrevious() {
+	public Date getDatePrevious() {
 		return datePrevious;
 	}
 
 	/**
-	 * @param datePrevious
-	 *            the datePrevious to set
+	 * @param datePrevious the datePrevious to set
 	 */
-	public void setDatePrevious(String datePrevious) {
+	public void setDatePrevious(Date datePrevious) {
 		this.datePrevious = datePrevious;
 	}
 
 	@Override
 	public String toString() {
-		return new ToStringBuilder(this)
-				.append("informacion", getInformacion()).append("id", getId())
-				.append("outstandingBalance", getOutstandingBalance())
-				.append("amountRequested", getAmountRequested())
-				.append("numberOfShares", getNumberOfShares())
-				.append("dateMaturity", getDateMaturity())
-				.append("datePayment", getDatePayment())
-				.append("datePrevious", getDatePrevious())
-				.append("state", getState())
-				.append("minimumPayment", getMinimumPayment())
-				.append("feeCollection", getFeeCollection())
-				.append("availableBalance", getAvailableBalance())
+		return new ToStringBuilder(this).append("informacion", getInformacion()).append("id", getId())
+				.append("outstandingBalance", getOutstandingBalance()).append("amountRequested", getAmountRequested())
+				.append("numberOfShares", getNumberOfShares()).append("dateMaturity", getDateMaturity())
+				.append("datePayment", getDatePayment()).append("datePrevious", getDatePrevious())
+				.append("state", getState()).append("minimumPayment", getMinimumPayment())
+				.append("feeCollection", getFeeCollection()).append("availableBalance", getAvailableBalance())
 				.append("balancePrevious", getBalancePrevious()).toString();
 	}
 
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder().append(getInformacion()).append(getId())
-				.append(getOutstandingBalance()).append(getAmountRequested())
-				.append(getNumberOfShares()).append(getDatePrevious())
-				.append(getDateMaturity()).append(getDatePayment())
-				.append(getState()).append(getMinimumPayment())
-				.append(getFeeCollection()).append(getAvailableBalance())
-				.append(getBalancePrevious()).toHashCode();
+		return new HashCodeBuilder().append(getInformacion()).append(getId()).append(getOutstandingBalance())
+				.append(getAmountRequested()).append(getNumberOfShares()).append(getDatePrevious())
+				.append(getDateMaturity()).append(getDatePayment()).append(getState()).append(getMinimumPayment())
+				.append(getFeeCollection()).append(getAvailableBalance()).append(getBalancePrevious()).toHashCode();
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 
 		return (obj instanceof QuotaDetailDto)
-				&& this.getAmountRequested().equals(
-						((QuotaDetailDto) obj).getAmountRequested())
-				&& this.getInformacion().equals(
-						((QuotaDetailDto) obj).getInformacion())
-				&& this.getId() == (((QuotaDetailDto) obj).getId())
-				&& this.getOutstandingBalance().equals(
-						((QuotaDetailDto) obj).getOutstandingBalance())
-				&& this.getNumberOfShares() == (((QuotaDetailDto) obj)
-						.getNumberOfShares())
-				&& this.getDateMaturity().equals(
-						((QuotaDetailDto) obj).getDateMaturity())
-				&& this.getDatePayment().equals(
-						((QuotaDetailDto) obj).getDatePayment())
-				&& this.getDatePrevious().equals(
-						((QuotaDetailDto) obj).getDatePrevious())
-				&& this.getState().equals(((QuotaDetailDto) obj).getState())
-				&& this.getMinimumPayment().equals(
-						((QuotaDetailDto) obj).getMinimumPayment())
-				&& this.getFeeCollection().equals(
-						((QuotaDetailDto) obj).getFeeCollection())
-				&& this.getAvailableBalance().equals(
-						((QuotaDetailDto) obj).getAvailableBalance())
-				&& this.getBalancePrevious().equals(
-						((QuotaDetailDto) obj).getBalancePrevious());
+				&& this.getAmountRequested().equals(((QuotaDetailDto)obj).getAmountRequested())
+				&& this.getInformacion().equals(((QuotaDetailDto)obj).getInformacion())
+				&& this.getId() == (((QuotaDetailDto)obj).getId())
+				&& this.getOutstandingBalance().equals(((QuotaDetailDto)obj).getOutstandingBalance())
+				&& this.getNumberOfShares() == (((QuotaDetailDto)obj).getNumberOfShares())
+				&& this.getDateMaturity().equals(((QuotaDetailDto)obj).getDateMaturity())
+				&& this.getDatePayment().equals(((QuotaDetailDto)obj).getDatePayment())
+				&& this.getDatePrevious().equals(((QuotaDetailDto)obj).getDatePrevious())
+				&& this.getState().equals(((QuotaDetailDto)obj).getState())
+				&& this.getMinimumPayment().equals(((QuotaDetailDto)obj).getMinimumPayment())
+				&& this.getFeeCollection().equals(((QuotaDetailDto)obj).getFeeCollection())
+				&& this.getAvailableBalance().equals(((QuotaDetailDto)obj).getAvailableBalance())
+				&& this.getBalancePrevious().equals(((QuotaDetailDto)obj).getBalancePrevious());
 
 	}
 

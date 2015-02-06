@@ -8,8 +8,7 @@
 	xmlns:pm="http://primefaces.org/mobile">
 
 <composite:interface>
-	<composite:attribute name="detailMovement"
-		type="com.bbva.net.back.model.quota.QuotaMoveDetailDto" />
+	<composite:attribute name="controller" />
 </composite:interface>
 
 <composite:implementation>
@@ -21,13 +20,14 @@
 		</div>
 		<div class="definitions" style="width: 100%;">
 			<dl class="no-border border-mobile">
-				<dd>#{msg['text.numberofQuota']}</dd>
-				<dt>#{cc.attrs.detailMovement.numbersOfQuota} #{msg['text.de']}
-					#{cc.attrs.detailMovement.remainingQuotas}</dt>
+				<dd class="no-border">#{msg['text.numberofQuota']}</dd>
+				<dt class="no-border">#{cc.attrs.controller.quotaMoveDetailDto.numbersOfQuota}
+					#{msg['text.de']}
+					#{cc.attrs.controller.quotaMoveDetailDto.remainingQuotas}</dt>
 			</dl>
 			<dl class="no-border">
-				<dd>#{msg['text.slope']}</dd>
-				<dt>#{cc.attrs.detailMovement.valueslope}</dt>
+				<dd class="no-border">#{msg['text.slope']}</dd>
+				<dt class="no-border">#{cc.attrs.controller.quotaMoveDetailDto.valueslope}</dt>
 			</dl>
 		</div>
 	</div>

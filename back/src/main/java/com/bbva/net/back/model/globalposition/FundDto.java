@@ -4,8 +4,9 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 import com.bbva.czic.dto.net.EnumFundsType;
+import com.bbva.net.back.core.pattern.dto.Dto;
 
-public class FundDto extends ProductDto {
+public class FundDto extends ProductDto implements Dto{
 
 	private final static long serialVersionUID = 1L;
 

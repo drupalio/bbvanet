@@ -8,7 +8,7 @@ import com.bbva.net.back.model.personalize.PersonalizeAccountDto;
 /**
  * @author Entelgy
  */
-public interface PersonalizeProductAccountController {
+public interface PersonalizeProductController {
 
 	/**
 	 * Metodo que retorna el PersonalizeAccountDTO
@@ -25,7 +25,7 @@ public interface PersonalizeProductAccountController {
 
 	void successful(ActionEvent event);
 
-	void operKey() throws Exception;
+	void operKey();
 
 	boolean isMenOperationKey();
 

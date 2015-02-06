@@ -33,14 +33,15 @@
 			<div class="table-wrapper">
 				<p:dataTable id="detalAC" styleClass="detail-table-body sortable"
 					value="#{cc.attrs.listAccounts}" var="icuenta"
+					style="font-family: Arial; font-size: 12px;"
 					widgetVar="dataTableWV" selectionMode="single"
 					rowKey="#{icuenta.productId}" rowIndexVar="rowIndex">
 
 					<p:ajax event="rowSelect"
-						listener="#{cc.attrs.controller.onProductSelected}" />
+						listener="#{cc.attrs.controller.visibleMov}" />
 
 					<p:ajax event="rowToggle"
-						listener="#{quotaMoveController.onRowToggle}" />
+						listener="#{cc.attrs.controller.onRowToggle}" />
 
 					<p:column>
 						<p:rowToggler rendered="true" />
@@ -74,12 +75,9 @@
 							value="#{icuenta.totalCash}" />
 					</p:column>
 
-					<p:rowExpansion styleClass="data">
-						<tr class="detail-row">
-							<td class="td-detail" colspan="4"
-								style="padding: 0px !important; overflow: auto !important;"><bbvaDetailMotion:tableContent />
-							</td>
-						</tr>
+					<p:rowExpansion styleClass="detail-row"
+						rendered="#{cc.attrs.controller.movement}">
+						<bbvaDetailMotion:tableContent controller="#{cc.attrs.controller}" />
 					</p:rowExpansion>
 				</p:dataTable>
 			</div>

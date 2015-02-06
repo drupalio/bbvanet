@@ -8,38 +8,40 @@
 	xmlns:pm="http://primefaces.org/mobile">
 
 <composite:interface>
-	<composite:attribute name="detailMovement"
-		type="com.bbva.net.back.model.quota.QuotaMoveDetailDto" />
+	<composite:attribute name="controller" />
 </composite:interface>
 
 <composite:implementation>
 	<header class="table-detail-header ">
-		<div class="table-tab hidden-xs hidden-sm">
+		<div class="table-tab hidden-xs hidden-sm"
+			style="right: 0.1px !important; top: -16.2% !important;">
 			<div class="table-detail-border">
 				<a href="#"> <span title="Descargar" class="icon-folder"></span>
 				</a> <a href="#"> <span title="Enviar" class="icon-send-by-email"></span>
 				</a> <a href="#"> <span title="Imprimir" class="icon-printer"></span>
 				</a>
 				<div class="table-detail-close">
-					<a href="#"> <span class="close-text">#{msg['text.close']}</span>
+					<a href="#"> <span class="close-text"
+						style="color: #003F8D !important;">#{msg['text.close']}</span>
 						<button class="close-icon" type="button"></button>
 					</a>
 				</div>
 			</div>
 		</div>
-		<table class="detail">
+		<table class="detail"
+			style="border-bottom: 1px solid #C4D7E5 !important;">
 			<tbody>
 				<tr>
-					<td class="brand"><span>#{cc.attrs.detailMovement.transactionDate}</span></td>
-					<td class="text" style="float: left;">#{cc.attrs.detailMovement.concept}</td>
-					<td class="currency"><em>#{cc.attrs.detailMovement.value}</em></td>
+					<td class="brand"><span>#{cc.attrs.controller.quotaMoveDetailDto.transactionDate}</span></td>
+					<td class="text" style="float: left;">#{cc.attrs.controller.quotaMoveDetailDto.concept}</td>
+					<td class="currency">#{cc.attrs.controller.quotaMoveDetailDto.value}</td>
 					<td class="smart-view" colspan="3">
 						<div class="left">
-							<em>#{cc.attrs.detailMovement.transactionDate}</em> <span
+							#{cc.attrs.controller.quotaMoveDetailDto.transactionDate} <span
 								class="brand">06/06/2014</span>
 						</div>
 						<div class="right">
-							<em>#{cc.attrs.detailMovement.value}</em> <span>#{cc.attrs.detailMovement.valueslope}</span>
+							#{cc.attrs.controller.quotaMoveDetailDto.value} <span>#{cc.attrs.controller.quotaMoveDetailDto.valueslope}</span>
 						</div>
 					</td>
 				</tr>

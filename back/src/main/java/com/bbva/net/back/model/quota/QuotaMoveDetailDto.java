@@ -1,9 +1,14 @@
 package com.bbva.net.back.model.quota;
 
+import java.util.Date;
+
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
+
 import com.bbva.net.back.core.pattern.dto.Dto;
 import com.bbva.net.back.model.commons.Money;
 
-public class QuotaMoveDetailDto implements Dto {
+public class QuotaMoveDetailDto extends QuotaDetailDto implements Dto {
 
 	private static final long serialVersionUID = 1L;
 
@@ -13,7 +18,7 @@ public class QuotaMoveDetailDto implements Dto {
 
 	private String concept;
 
-	private String transactionDate;
+	private Date transactionDate;
 
 	private String status;
 
@@ -28,7 +33,7 @@ public class QuotaMoveDetailDto implements Dto {
 	public QuotaMoveDetailDto() {
 	}
 
-	public QuotaMoveDetailDto(String id, String description, String concept, String transactionDate, String status,
+	public QuotaMoveDetailDto(String id, String description, String concept, Date transactionDate, String status,
 			Money value, Money valueslope, String numbersOfQuota, String remainingQuotas) {
 		super();
 		this.id = id;
@@ -87,14 +92,14 @@ public class QuotaMoveDetailDto implements Dto {
 	/**
 	 * @return the transactionDate
 	 */
-	public String getTransactionDate() {
+	public Date getTransactionDate() {
 		return transactionDate;
 	}
 
 	/**
 	 * @param transactionDate the transactionDate to set
 	 */
-	public void setTransactionDate(String transactionDate) {
+	public void setTransactionDate(Date transactionDate) {
 		this.transactionDate = transactionDate;
 	}
 
@@ -173,6 +178,37 @@ public class QuotaMoveDetailDto implements Dto {
 	 */
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	@Override
+	public String toString() {
+		return new ToStringBuilder(this).append("id", getId()).append("description", getDescription())
+				.append("concept", getConcept()).append("transactionDate", getTransactionDate())
+				.append("status", getStatus()).append("value", getValue()).append("valueslope", getValueslope())
+				.append("numbersOfQuota", getNumbersOfQuota()).append("remainingQuotas", getRemainingQuotas())
+				.toString();
+	}
+
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder().append(getId()).append(getDescription()).append(getConcept())
+				.append(getTransactionDate()).append(getStatus()).append(getValue()).append(getValueslope())
+				.append(getNumbersOfQuota()).append(getRemainingQuotas()).toHashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+
+		return (obj instanceof QuotaDetailDto) && this.getId().equals(((QuotaMoveDetailDto)obj).getId())
+				&& this.getDescription().equals(((QuotaMoveDetailDto)obj).getDescription())
+				&& this.getConcept() == (((QuotaMoveDetailDto)obj).getConcept())
+				&& this.getTransactionDate().equals(((QuotaMoveDetailDto)obj).getTransactionDate())
+				&& this.getStatus() == (((QuotaMoveDetailDto)obj).getStatus())
+				&& this.getValue().equals(((QuotaMoveDetailDto)obj).getValue())
+				&& this.getValueslope().equals(((QuotaMoveDetailDto)obj).getValueslope())
+				&& this.getNumbersOfQuota().equals(((QuotaMoveDetailDto)obj).getNumbersOfQuota())
+				&& this.getRemainingQuotas().equals(((QuotaMoveDetailDto)obj).getRemainingQuotas());
+
 	}
 
 }

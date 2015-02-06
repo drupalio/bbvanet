@@ -1,6 +1,7 @@
 package com.bbva.net.back.facade.impl;
 
 import javax.ws.rs.core.Response;
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
 import com.bbva.czic.dto.net.Product;
@@ -24,6 +25,11 @@ public class PersonalizeProductFacadeImpl extends AbstractBbvaFacade implements 
 	private PersonalizeAccountProductMapper personalizeAccountProductMapper;
 
 	private Product product;
+
+	@PostConstruct
+	public void init() {
+		this.product = new Product();
+	}
 
 	@Override
 	public Response updateProductOperability(String idProduct, ProductDto productDto) {
