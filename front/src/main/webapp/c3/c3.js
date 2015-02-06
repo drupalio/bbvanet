@@ -3289,18 +3289,18 @@
             text, i, title, value, name, bgcolor;
         for (i = 0; i < d.length; i++) {
             if (! (d[i] && (d[i].value || d[i].value === 0))) { continue; }
-
-            if (! text) {
-                title = titleFormat ? titleFormat(d[i].x) : d[i].x;
-                text = "<table class='" + CLASS.tooltip + "'>" + (title || title === 0 ? "<tr><th colspan='2'>" + title + "</th></tr>" : "");
-            }
-
+            
             name = nameFormat(d[i].name);
             value = valueFormat(d[i].value, d[i].ratio, d[i].id, d[i].index);
             bgcolor = $$.levelColor ? $$.levelColor(d[i].value) : color(d[i].id);
+            
+            if (! text) {
+                title = titleFormat ? titleFormat(d[i].x) : d[i].x;
+                text = "<table class='" + CLASS.tooltip + "' style=border-color:"+bgcolor+";>" + (title || title === 0 ? "<tr><th colspan='2'>"+title + "</th></tr>" : "");
+            }
 
-            text += "<tr class='" + CLASS.tooltipName + "-" + d[i].id + "'>";
-            text += "<td class='name'><span style='background-color:" + bgcolor + "'></span>" + name + "</td>";
+            text += "<tr>";
+            text += "<td class='name'>" + name + "</td>";
             text += "<td class='value'>" + value + "</td>";
             text += "</tr>";
         }
