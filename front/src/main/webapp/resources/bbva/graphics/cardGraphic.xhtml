@@ -74,8 +74,7 @@
 				},
 				tooltip:{
 			        format:{
-			        	title: function (x) { return "title "+x; },
-			        	name: function (name, ratio, id, index) { return name; },
+			        	name: function (name, ratio, id, index) { return "<tr><td style='font-size: 8px;'>"+name+"</td></tr>"; },
 			            value: function (value, ratio, id) {
 			                var format = d3.format(',');			                
 			                return "<B>"+currency+" "+format(value)+"</B> ("+((value*100)/totalporcentaje).toFixed(1)+"%)";
