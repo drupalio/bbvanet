@@ -7,7 +7,8 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.bbva.net.back.facade.HeaderFacade;
-import com.bbva.net.back.model.executive.ExecutiveDto;
+import com.bbva.net.back.model.header.CustomerDto;
+import com.bbva.net.back.model.header.ExecutiveDto;
 import com.bbva.net.front.controller.HeaderController;
 import com.bbva.net.front.core.AbstractBbvaController;
 
@@ -23,10 +24,13 @@ public class HeaderControllerImpl extends AbstractBbvaController implements Head
 	 */
 	private ExecutiveDto ejecutivo;
 
+	private CustomerDto cliente;
+
 	private static final long serialVersionUID = 5284952254890332374L;
 
 	@PostConstruct
 	public void init() {
+		this.cliente = this.getCustomer();
 		this.ejecutivo = this.getExecutive();
 	}
 
@@ -37,6 +41,19 @@ public class HeaderControllerImpl extends AbstractBbvaController implements Head
 
 	public ExecutiveDto getEjecutivo() {
 		return ejecutivo;
+	}
+
+	public CustomerDto getCliente() {
+
+		return cliente;
+	}
+
+	@Override
+	public CustomerDto getCustomer() {
+		String user = getCurrentUser();
+		// para prueba
+		user = "12345678";
+		return executive.getCustomer(user);
 	}
 
 }

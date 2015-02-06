@@ -6687,4 +6687,463 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	},
 	"status": "HABILITADO",
 	"modifiedDate": "12/10/2014"
-}]</con:responseContent><con:header><con:name>tsec</con:name><con:value>dafasdfdsfadsfda29873492347dsfjkh</con:value></con:header></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
+}]</con:responseContent><con:header><con:name>tsec</con:name><con:value>dafasdfdsfadsfda29873492347dsfjkh</con:value></con:header></con:response></con:restMockAction><con:restMockAction name="/czic/accounts/V01/12345678909876543210/monthlyBalances" method="GET" resourcePath="/czic/accounts/V01/12345678909876543210/monthlyBalances"><con:settings/><con:defaultResponse xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
+	"balance": {
+		"amount": 64859,
+		"currency": "$"
+	},
+	"month": "1"
+},
+{
+	"balance": {
+		"amount": 58159,
+		"currency": "$"
+	},
+	"month": "2"
+},
+{
+	"balance": {
+		"amount": 984391,
+		"currency": "$"
+	},
+	"month": "3"
+},
+{
+	"balance": {
+		"amount": 162057,
+		"currency": "$"
+	},
+	"month": "4"
+},
+{
+	"balance": {
+		"amount": 285706,
+		"currency": "$"
+	},
+	"month": "5"
+},
+{
+	"balance": {
+		"amount": 779371,
+		"currency": "$"
+	},
+	"month": "6"
+},
+{
+	"balance": {
+		"amount": 389538,
+		"currency": "$"
+	},
+	"month": "7"
+},
+{
+	"balance": {
+		"amount": 466062,
+		"currency": "$"
+	},
+	"month": "8"
+},
+{
+	"balance": {
+		"amount": 898808,
+		"currency": "$"
+	},
+	"month": "9"
+},
+{
+	"balance": {
+		"amount": 72734,
+		"currency": "$"
+	},
+	"month": "10"
+},
+{
+	"balance": {
+		"amount": 622265,
+		"currency": "$"
+	},
+	"month": "11"
+},
+{
+	"balance": {
+		"amount": 818720,
+		"currency": "$"
+	},
+	"month": "12"
+},
+{
+	"balance": {
+		"amount": 720238,
+		"currency": "$"
+	},
+	"month": "13"
+},
+{
+	"balance": {
+		"amount": 926894,
+		"currency": "$"
+	},
+	"month": "14"
+},
+{
+	"balance": {
+		"amount": 181843,
+		"currency": "$"
+	},
+	"month": "15"
+},
+{
+	"balance": {
+		"amount": 162874,
+		"currency": "$"
+	},
+	"month": "16"
+},
+{
+	"balance": {
+		"amount": 284582,
+		"currency": "$"
+	},
+	"month": "17"
+},
+{
+	"balance": {
+		"amount": 623979,
+		"currency": "$"
+	},
+	"month": "18"
+},
+{
+	"balance": {
+		"amount": 772957,
+		"currency": "$"
+	},
+	"month": "19"
+},
+{
+	"balance": {
+		"amount": 105752,
+		"currency": "$"
+	},
+	"month": "20"
+},
+{
+	"balance": {
+		"amount": 709528,
+		"currency": "$"
+	},
+	"month": "21"
+},
+{
+	"balance": {
+		"amount": 688451,
+		"currency": "$"
+	},
+	"month": "22"
+},
+{
+	"balance": {
+		"amount": 611793,
+		"currency": "$"
+	},
+	"month": "23"
+},
+{
+	"balance": {
+		"amount": 160421,
+		"currency": "$"
+	},
+	"month": "24"
+},
+{
+	"balance": {
+		"amount": 491861,
+		"currency": "$"
+	},
+	"month": "25"
+},
+{
+	"balance": {
+		"amount": 393666,
+		"currency": "$"
+	},
+	"month": "26"
+},
+{
+	"balance": {
+		"amount": 243436,
+		"currency": "$"
+	},
+	"month": "27"
+},
+{
+	"balance": {
+		"amount": 386307,
+		"currency": "$"
+	},
+	"month": "28"
+},
+{
+	"balance": {
+		"amount": 76999,
+		"currency": "$"
+	},
+	"month": "29"
+},
+{
+	"balance": {
+		"amount": 912527,
+		"currency": "$"
+	},
+	"month": "30"
+}]</con:responseContent><con:header><con:name>tsec</con:name><con:value>dsdfdsfdsgdsgfsfffg0099dfdksdfknksd</con:value></con:header></con:response></con:restMockAction><con:restMockAction name="/czic/customers/V01/12345678" method="GET" resourcePath="/czic/customers/V01/12345678"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{"name":"Cliente del Bbva","lastAccessDate":"05/05/2014"}
+</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/products/V01/00130073000296247953/movements" method="GET" resourcePath="/czic/products/V01/00130073000296247953/movements"><con:settings/><con:defaultResponse>listMovements response</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="listMovements response" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
+	"id": "1871173807",
+	"concept": "TRANSFERENCIA",
+	"operationDate": "13/07/2014",
+	"value": {
+		"amount": 1055812062,
+		"currency": "COP"
+	},
+	"balance": {
+		"amount": 1055812062,
+		"currency": "COP"
+	}
+},
+{
+	"id": "620314617",
+	"concept": "TRANSFERENCIA",
+	"operationDate": "27/03/2014",
+	"value": {
+		"amount": 385792110,
+		"currency": "COP"
+	},
+	"balance": {
+		"amount": 385792110,
+		"currency": "COP"
+	}
+},
+{
+	"id": "20196372",
+	"concept": "TRANSFERENCIA",
+	"operationDate": "16/12/2014",
+	"value": {
+		"amount": 323555556,
+		"currency": "COP"
+	},
+	"balance": {
+		"amount": 323555556,
+		"currency": "COP"
+	}
+},
+{
+	"id": "752072241",
+	"concept": "TRANSFERENCIA",
+	"operationDate": "07/05/2014",
+	"value": {
+		"amount": 1210100482,
+		"currency": "COP"
+	},
+	"balance": {
+		"amount": 1210100482,
+		"currency": "COP"
+	}
+},
+{
+	"id": "467266110",
+	"concept": "TRANSFERENCIA",
+	"operationDate": "27/01/2014",
+	"value": {
+		"amount": 814286631,
+		"currency": "COP"
+	},
+	"balance": {
+		"amount": 814286631,
+		"currency": "COP"
+	}
+},
+{
+	"id": "1786185339",
+	"concept": "TRANSFERENCIA",
+	"operationDate": "06/05/2014",
+	"value": {
+		"amount": 1999581417,
+		"currency": "COP"
+	},
+	"balance": {
+		"amount": 1999581417,
+		"currency": "COP"
+	}
+},
+{
+	"id": "1774518634",
+	"concept": "TRANSFERENCIA",
+	"operationDate": "16/06/2014",
+	"value": {
+		"amount": 1153811389,
+		"currency": "COP"
+	},
+	"balance": {
+		"amount": 1153811389,
+		"currency": "COP"
+	}
+},
+{
+	"id": "356434618",
+	"concept": "TRANSFERENCIA",
+	"operationDate": "17/10/2014",
+	"value": {
+		"amount": 682208023,
+		"currency": "COP"
+	},
+	"balance": {
+		"amount": 682208023,
+		"currency": "COP"
+	}
+},
+{
+	"id": "1396233022",
+	"concept": "TRANSFERENCIA",
+	"operationDate": "07/05/2014",
+	"value": {
+		"amount": 397401891,
+		"currency": "COP"
+	},
+	"balance": {
+		"amount": 397401891,
+		"currency": "COP"
+	}
+},
+{
+	"id": "990877332",
+	"concept": "TRANSFERENCIA",
+	"operationDate": "08/07/2014",
+	"value": {
+		"amount": 1577796455,
+		"currency": "COP"
+	},
+	"balance": {
+		"amount": 1577796455,
+		"currency": "COP"
+	}
+}]</con:responseContent></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

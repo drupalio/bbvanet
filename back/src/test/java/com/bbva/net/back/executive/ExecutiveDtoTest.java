@@ -1,6 +1,6 @@
 package com.bbva.net.back.executive;
 
-import com.bbva.net.back.model.executive.ExecutiveDto;
+import com.bbva.net.back.model.header.ExecutiveDto;
 import com.bbva.net.core.test.AbstractBbvaDTOTest;
 
 public class ExecutiveDtoTest extends AbstractBbvaDTOTest<ExecutiveDto> {
