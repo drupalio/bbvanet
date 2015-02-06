@@ -15,73 +15,136 @@
 </composite:interface>
 
 <composite:implementation>
-	<h:form id="#{cc.attrs.id}">
-	<article class="detail-table-group">
+	<h:form id="formu">
 
-		<div class="utility-icons">
-			<a href="#"><span class="icon-excel-file"
-				title="Exportar a excel"></span></a> <a href="#"><span
-				class="icon-pdf-file" title="Descargar pdf"></span></a> <a href="#"><span
-				class="icon-send-by-email" title="Enviar"></span></a> <a href="#"><span
-				class="icon-printer" title="Imprimir"></span></a>
-		</div>
+		<article class="detail-table-group">
 
-		<h3>#{checkBookController.title}</h3>
+			<div class="utility-icons">
+				<a href="#"><span class="icon-excel-file"
+					title="Exportar a excel"></span></a> <a href="#"><span
+					class="icon-pdf-file" title="Descargar pdf"></span></a> <a href="#"><span
+					class="icon-send-by-email" title="Enviar"></span></a> <a href="#"><span
+					class="icon-printer" title="Imprimir"></span></a>
+			</div>
 
-		<div class="table-wrapper">
+			<h3>#{checkBookController.title}</h3>
 
-			<p:dataTable id="detalAC" styleClass="detail-table-body sortable" emptyMessage="#{msg['text.empty.table']}"
-				value="#{cc.attrs.listAccounts}" var="icuenta" rendered="#{checkBookController.renderComponents['MOVEMENTSTABLE']}"
-				selectionMode="single"
-				selection="#{customerAccountsPage.selectedAccount}"
-				rowKey="#{icuenta.productId}">
-				<p:column headerText="#{msg['text.detailMove.date']}"
-					styleClass="sorted w18 desc"
-					style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
+			<div class="table-wrapper">
+				<p:dataTable id="checksTable"
+					styleClass="detail-table-body sortable"
+					emptyMessage="#{msg['text.empty.table']}"
+					value="#{cc.attrs.listChecks}" var="icuenta"
+					rendered="#{checkBookController.renderComponents['CHECKTABLE']}"
+					rowKey="#{icuenta.id}">
+					<p:column headerText="#{msg['text.table.num.check']}"
+						styleClass="sorted w18 desc"
+						style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
 
-					<h:outputText styleClass="brand" style="font-size: 1.1em"
-						value="#{icuenta.alias}" />
-				</p:column>
+						<h:outputText styleClass="brand" style="font-size: 1.1em"
+							value="#{icuenta.id}" />
+					</p:column>
 
-				<p:column headerText="#{msg['text.detailMove.concep']}"
-					styleClass="desc w34"
-					style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none;">
+					<p:column headerText="#{msg['text.table.emi.date']}"
+						styleClass="desc w34"
+						style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none;">
 
-					<h:outputText class="text"
-						style="font-size: 12px;color: #333;text-align: left"
-						value="#{icuenta.alias}" />
-					<h:outputText class="text"
-						style="font-size: 11px;color: #333;font-weight: normal;text-align: left"
-						value="#{icuenta.alias}" />
-				</p:column>
+						<h:outputText class="text"
+							style="font-size: 12px;color: #333;text-align: left"
+							value="#{icuenta.movementDetailDTO.operationDate}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
 
-				<p:column class="head" headerText="#{msg['text.detailMove.value']}"
-					styleClass="desc w24"
-					style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
+					</p:column>
 
-					<h:outputText class="currency" style="font-size: 15px;color: #333"
-						value="#{icuenta.totalCash}" />
+					<p:column class="head" headerText="#{msg['text.detailMove.value']}"
+						styleClass="desc w24"
+						style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
 
-				</p:column>
-				<p:column class="head"
-					headerText="#{msg['text.detailMove.balance']}"
-					styleClass="desc w24"
-					style="font-size: 0.7em;color: #333;font-family: Arial;background: none;border-style: none">
+						<h:outputText class="currency" style="font-size: 15px;color: #333"
+							value="#{icuenta.value}" />
 
-					<h:outputText class="currency" style="font-size: 15px;color: #333"
-						value="#{icuenta.totalCash}" />
+					</p:column>
+					<p:column class="head" headerText="#{msg['text.table.status']}"
+						styleClass="desc w24"
+						style="font-size: 0.7em;color: #333;font-family: Arial;background: none;border-style: none">
 
-				</p:column>
-			</p:dataTable>
-		</div>
-		<footer class="detail-table-footer">
+						<h:outputText class="currency" style="font-size: 15px;color: #333"
+							value="#{icuenta.status}" />
 
-			<button id="nextPagebLink" class="btn btn-more-results"
-				value="More Results" jsf:action="next">
-				<f:ajax execute="@form" render="@form :detalMoves" />
-				<span>#{msg['text.detailMove.footer']}</span>
-			</button>
-		</footer>
+					</p:column>
+
+					<p:column class="head"
+						headerText="#{msg['text.table.change.date']}"
+						styleClass="desc w24"
+						style="font-size: 0.7em;color: #333;font-family: Arial;background: none;border-style: none">
+
+						<h:outputText class="currency" style="font-size: 15px;color: #333"
+							value="#{icuenta.modifiedDate}" />
+
+					</p:column>
+				</p:dataTable>
+				
+			<p:dataTable id="detalMov" styleClass="detail-table-body sortable"
+					emptyMessage="#{msg['text.empty.table']}"
+					value="#{cc.attrs.listAccounts}" var="icuenta"
+					rendered="#{checkBookController.renderComponents['MOVEMENTSTABLE']}"
+					rowKey="#{icuenta.productId}">
+					<p:column headerText="#{msg['text.detailMove.date']}"
+						styleClass="sorted w18 desc"
+						style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
+
+						<h:outputText styleClass="brand" style="font-size: 1.1em"
+							value="#{icuenta.movementDate}" />
+					</p:column>
+
+					<p:column headerText="#{msg['text.detailMove.concep']}"
+						styleClass="desc w34"
+						style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none;">
+
+						<h:outputText class="text"
+							style="font-size: 12px;color: #333;text-align: left"
+							value="#{icuenta.movementConcept}" />
+						<h:outputText class="text"
+							style="font-size: 11px;color: #333;font-weight: normal;text-align: left"
+							value="#{icuenta.movementConcept}" />
+					</p:column>
+
+					<p:column class="head" headerText="#{msg['text.detailMove.value']}"
+						styleClass="desc w24"
+						style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
+
+						<h:outputText class="currency" style="font-size: 15px;color: #333"
+							value="#{icuenta.movementValue}" />
+
+					</p:column>
+					<p:column class="head"
+						headerText="#{msg['text.detailMove.balance']}"
+						styleClass="desc w24"
+						style="font-size: 0.7em;color: #333;font-family: Arial;background: none;border-style: none">
+
+						<h:outputText class="currency" style="font-size: 15px;color: #333"
+							value="#{icuenta.totalBalance}" />
+
+					</p:column>
+				</p:dataTable>
+				
+
+
+			</div>
+			<footer class="detail-table-footer">
+				<button id="moreCheks" class="btn btn-more-results" jsf:update="formu:checksTable"
+					value="Más Resultados" jsf:rendered="#{checkBookController.renderComponents['CHECKTABLE']}"
+					jsf:actionListener="#{checkBookController.nextPage}">										
+					<span>#{msg['text.detailMove.footer']}</span>
+				</button>
+				
+				<button id="moreMovs" class="btn btn-more-results" jsf:update="formu:detalMov"
+					value="Más Resultados" jsf:rendered="#{checkBookController.renderComponents['MOVEMENTSTABLE']}"
+					jsf:actionListener="#{checkBookController.nextPage}">										
+					<span>#{msg['text.detailMove.footer']}</span>
+				</button>
+				
+			</footer>
 		</article>
 	</h:form>
 

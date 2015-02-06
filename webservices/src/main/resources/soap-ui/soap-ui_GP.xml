@@ -6936,7 +6936,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		"currency": "$"
 	},
 	"month": "30"
-}]</con:responseContent><con:header><con:name>tsec</con:name><con:value>dsdfdsfdsgdsgfsfffg0099dfdksdfknksd</con:value></con:header></con:response></con:restMockAction><con:restMockAction name="/czic/customers/V01/12345678" method="GET" resourcePath="/czic/customers/V01/12345678"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+}]</con:responseContent><con:header><con:name>tsec</con:name><con:value>dsdfdsfdsgdsgfsfffg0099dfdksdfknksd</con:value></con:header></con:response></con:restMockAction><con:restMockAction name="/czic/customers/V01/12345678" method="GET" resourcePath="/czic/customers/V01/12345678"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Examples showing how to match based on path, query param and header
 // Match based on path
 def requestPath = mockRequest.getPath()
@@ -6977,4 +6977,173 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 
 */
 </con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{"name":"Cliente del Bbva","lastAccessDate":"05/05/2014"}
-</con:responseContent></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
+</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/products/V01/00130073000296247953/movements" method="GET" resourcePath="/czic/products/V01/00130073000296247953/movements"><con:settings/><con:defaultResponse>listMovements response</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="listMovements response" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
+	"id": "1871173807",
+	"concept": "TRANSFERENCIA",
+	"operationDate": "13/07/2014",
+	"value": {
+		"amount": 1055812062,
+		"currency": "COP"
+	},
+	"balance": {
+		"amount": 1055812062,
+		"currency": "COP"
+	}
+},
+{
+	"id": "620314617",
+	"concept": "TRANSFERENCIA",
+	"operationDate": "27/03/2014",
+	"value": {
+		"amount": 385792110,
+		"currency": "COP"
+	},
+	"balance": {
+		"amount": 385792110,
+		"currency": "COP"
+	}
+},
+{
+	"id": "20196372",
+	"concept": "TRANSFERENCIA",
+	"operationDate": "16/12/2014",
+	"value": {
+		"amount": 323555556,
+		"currency": "COP"
+	},
+	"balance": {
+		"amount": 323555556,
+		"currency": "COP"
+	}
+},
+{
+	"id": "752072241",
+	"concept": "TRANSFERENCIA",
+	"operationDate": "07/05/2014",
+	"value": {
+		"amount": 1210100482,
+		"currency": "COP"
+	},
+	"balance": {
+		"amount": 1210100482,
+		"currency": "COP"
+	}
+},
+{
+	"id": "467266110",
+	"concept": "TRANSFERENCIA",
+	"operationDate": "27/01/2014",
+	"value": {
+		"amount": 814286631,
+		"currency": "COP"
+	},
+	"balance": {
+		"amount": 814286631,
+		"currency": "COP"
+	}
+},
+{
+	"id": "1786185339",
+	"concept": "TRANSFERENCIA",
+	"operationDate": "06/05/2014",
+	"value": {
+		"amount": 1999581417,
+		"currency": "COP"
+	},
+	"balance": {
+		"amount": 1999581417,
+		"currency": "COP"
+	}
+},
+{
+	"id": "1774518634",
+	"concept": "TRANSFERENCIA",
+	"operationDate": "16/06/2014",
+	"value": {
+		"amount": 1153811389,
+		"currency": "COP"
+	},
+	"balance": {
+		"amount": 1153811389,
+		"currency": "COP"
+	}
+},
+{
+	"id": "356434618",
+	"concept": "TRANSFERENCIA",
+	"operationDate": "17/10/2014",
+	"value": {
+		"amount": 682208023,
+		"currency": "COP"
+	},
+	"balance": {
+		"amount": 682208023,
+		"currency": "COP"
+	}
+},
+{
+	"id": "1396233022",
+	"concept": "TRANSFERENCIA",
+	"operationDate": "07/05/2014",
+	"value": {
+		"amount": 397401891,
+		"currency": "COP"
+	},
+	"balance": {
+		"amount": 397401891,
+		"currency": "COP"
+	}
+},
+{
+	"id": "990877332",
+	"concept": "TRANSFERENCIA",
+	"operationDate": "08/07/2014",
+	"value": {
+		"amount": 1577796455,
+		"currency": "COP"
+	},
+	"balance": {
+		"amount": 1577796455,
+		"currency": "COP"
+	}
+}]</con:responseContent></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

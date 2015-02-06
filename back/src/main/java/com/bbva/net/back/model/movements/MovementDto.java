@@ -18,24 +18,19 @@ public class MovementDto implements Dto {
 	private static final long serialVersionUID = -1141791691031997221L;
 
 	/** data general the movement Account */
-
-	private String movementID;
+	private String movementId;
 
 	private Date movementDate;
 
 	private String movementConcept;
-
-	private String movementType;
-
+	
 	private Money movementValue;
 
 	private Money totalBalance;
-
+	
 	/** instance detail movement Account */
 
 	private MovementDetailDto movementDetailDTO;
-
-	private MovementDetailOperationDto movementDetailOperationDTO;
 
 	/** data general the loans */
 
@@ -46,21 +41,23 @@ public class MovementDto implements Dto {
 	private Money slopeValue;
 
 	private Date dateConsignment;
-
+		
 	/**
-	 * @return the movementID
+	 * @return the movementId
 	 */
-	public String getMovementID() {
-		return movementID;
+	public String getMovementId() {
+		return movementId;
 	}
 
+	
 	/**
-	 * @param movementID the movementID to set
+	 * @param movementId the movementId to set
 	 */
-	public void setMovementID(String movementID) {
-		this.movementID = movementID;
+	public void setMovementId(String movementId) {
+		this.movementId = movementId;
 	}
 
+	
 	/**
 	 * @return the movementDate
 	 */
@@ -68,6 +65,7 @@ public class MovementDto implements Dto {
 		return movementDate;
 	}
 
+	
 	/**
 	 * @param movementDate the movementDate to set
 	 */
@@ -75,6 +73,7 @@ public class MovementDto implements Dto {
 		this.movementDate = movementDate;
 	}
 
+	
 	/**
 	 * @return the movementConcept
 	 */
@@ -82,6 +81,7 @@ public class MovementDto implements Dto {
 		return movementConcept;
 	}
 
+	
 	/**
 	 * @param movementConcept the movementConcept to set
 	 */
@@ -89,20 +89,7 @@ public class MovementDto implements Dto {
 		this.movementConcept = movementConcept;
 	}
 
-	/**
-	 * @return the movementType
-	 */
-	public String getMovementType() {
-		return movementType;
-	}
-
-	/**
-	 * @param movementType the movementType to set
-	 */
-	public void setMovementType(String movementType) {
-		this.movementType = movementType;
-	}
-
+	
 	/**
 	 * @return the movementValue
 	 */
@@ -110,6 +97,7 @@ public class MovementDto implements Dto {
 		return movementValue;
 	}
 
+	
 	/**
 	 * @param movementValue the movementValue to set
 	 */
@@ -117,6 +105,7 @@ public class MovementDto implements Dto {
 		this.movementValue = movementValue;
 	}
 
+	
 	/**
 	 * @return the totalBalance
 	 */
@@ -124,6 +113,7 @@ public class MovementDto implements Dto {
 		return totalBalance;
 	}
 
+	
 	/**
 	 * @param totalBalance the totalBalance to set
 	 */
@@ -131,34 +121,23 @@ public class MovementDto implements Dto {
 		this.totalBalance = totalBalance;
 	}
 
+	
 	/**
 	 * @return the movementDetailDTO
 	 */
-	public MovementDetailDto getMovementDetailDto() {
+	public MovementDetailDto getMovementDetailDTO() {
 		return movementDetailDTO;
 	}
 
+	
 	/**
 	 * @param movementDetailDTO the movementDetailDTO to set
 	 */
-	public void setMovementDetailDto(MovementDetailDto movementDetailDTO) {
+	public void setMovementDetailDTO(MovementDetailDto movementDetailDTO) {
 		this.movementDetailDTO = movementDetailDTO;
 	}
 
-	/**
-	 * @return the movementDetailOperationDTO
-	 */
-	public MovementDetailOperationDto getMovementDetailOperationDto() {
-		return movementDetailOperationDTO;
-	}
-
-	/**
-	 * @param movementDetailOperationDTO the movementDetailOperationDTO to set
-	 */
-	public void setMovementDetailOperationDto(MovementDetailOperationDto movementDetailOperationDTO) {
-		this.movementDetailOperationDTO = movementDetailOperationDTO;
-	}
-
+	
 	/**
 	 * @return the quotaNumber
 	 */
@@ -166,6 +145,7 @@ public class MovementDto implements Dto {
 		return quotaNumber;
 	}
 
+	
 	/**
 	 * @param quotaNumber the quotaNumber to set
 	 */
@@ -173,6 +153,7 @@ public class MovementDto implements Dto {
 		this.quotaNumber = quotaNumber;
 	}
 
+	
 	/**
 	 * @return the quotaNextValue
 	 */
@@ -180,6 +161,7 @@ public class MovementDto implements Dto {
 		return quotaNextValue;
 	}
 
+	
 	/**
 	 * @param quotaNextValue the quotaNextValue to set
 	 */
@@ -187,6 +169,7 @@ public class MovementDto implements Dto {
 		this.quotaNextValue = quotaNextValue;
 	}
 
+	
 	/**
 	 * @return the slopeValue
 	 */
@@ -194,6 +177,7 @@ public class MovementDto implements Dto {
 		return slopeValue;
 	}
 
+	
 	/**
 	 * @param slopeValue the slopeValue to set
 	 */
@@ -201,6 +185,7 @@ public class MovementDto implements Dto {
 		this.slopeValue = slopeValue;
 	}
 
+	
 	/**
 	 * @return the dateConsignment
 	 */
@@ -208,6 +193,7 @@ public class MovementDto implements Dto {
 		return dateConsignment;
 	}
 
+	
 	/**
 	 * @param dateConsignment the dateConsignment to set
 	 */
@@ -217,14 +203,14 @@ public class MovementDto implements Dto {
 
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder().append(getMovementID()).append(getQuotaNumber()).append(getQuotaNextValue())
+		return new HashCodeBuilder().append(getQuotaNumber()).append(getQuotaNextValue())
 				.append(getSlopeValue()).append(getDateConsignment()).toHashCode();
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 
-		return (obj instanceof MovementDto) && this.getMovementID().equals(((MovementDto)obj).getMovementID())
+		return (obj instanceof MovementDto) 
 				&& this.getQuotaNumber().equals(((MovementDto)obj).getQuotaNumber())
 				&& this.getQuotaNextValue().equals(((MovementDto)obj).getQuotaNextValue())
 				&& this.getSlopeValue().equals(((MovementDto)obj).getSlopeValue())
@@ -233,7 +219,7 @@ public class MovementDto implements Dto {
 
 	@Override
 	public String toString() {
-		return new ToStringBuilder(this).append("movementID", getMovementID()).append("quotaNumber", getQuotaNumber())
+		return new ToStringBuilder(this).append("quotaNumber", getQuotaNumber())
 				.append("quotaNextValue", getQuotaNextValue()).append("slopeValue", getSlopeValue())
 				.append("dateConsignment", getDateConsignment()).toString();
 	}
