@@ -117,7 +117,7 @@
 
 		<p:commandButton id="searchButton"
 			actionListener="#{checkBookController.setNumberCheckOrBook}"
-			ajax="true" update="@form"
+			update=":#{p:component('formCheckBook')}"
 			disabled="#{checkBookController.renderComponents['BUTTONBOOK']}"
 			styleClass="btn small hidden-xs hidden-sm"
 			value="#{msg['button.confirm']}">

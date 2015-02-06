@@ -65,6 +65,9 @@ public abstract class AbstractBbvaRestService {
 
 	@Value("${rest.granting.url}")
 	protected String URL_GRANTING;
+		
+	@Value("${rest.movements.url}")
+	protected String URL_MOVEMENTS;
 
 	/**
 	 * @param response

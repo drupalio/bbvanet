@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:bbvaHeader="http://java.sun.com/jsf/composite/bbva/header"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<composite:interface>
+
+	<composite:attribute name="name" type="String" />
+	<composite:attribute name="date" type="String" />
+	<composite:attribute name="hour" type="String" />
+</composite:interface>
+
+<composite:implementation>
+
+<li class="user-settings-dropdown"><a
+				class="avatar dropdown-toggle" data-toggle="dropdown"> <span
+					class="header-sprite avatar-medium-icon"></span> <span>#{cc.attrs.name}</span>
+			</a> <!-- client profile -->
+				<div style="" class="top-menu-client-profile info-box dropdown-menu">
+					<div class="arrow-top"></div>
+					<div class="header">
+						<span class="header-sprite avatar-big-icon"></span> <span
+							class="client-name">#{cc.attrs.name}</span> <span
+							class="client-profile"><a href="#"
+							class="btn white small profile-btn">Editar mi perfil</a> </span>
+					</div>
+					<ul>
+						<li><a class="virtual-email" href="#">Correspondencia
+								virtual</a></li>
+						<li><a class="monthly-report" href="#">Informe mensual</a></li>
+						<li><a class="contact" href="#">Contactos</a></li>
+						<li><a class="security" href="#">Seguridad y claves</a></li>
+						<li class="user-last-option"><a href="#">Notificaciones y
+								alertas</a></li>
+					</ul>
+					<div class="footer">
+						<span>Última conexión:</span> <span>#{cc.attrs.date} a las #{cc.attrs.hour}h</span>
+					</div>
+				</div></li>
+
+</composite:implementation>
+
+</html>
