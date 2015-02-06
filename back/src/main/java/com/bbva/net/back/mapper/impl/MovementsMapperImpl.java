@@ -19,26 +19,29 @@ public class MovementsMapperImpl extends ConfigurableMapper implements Movements
 	protected void configure(final MapperFactory factory) {
 		// Add Money Converter
 		factory.getConverterFactory().registerConverter(new MoneyConverter());
-		
+
 		// Map Check DTO
-		factory.classMap(Movement.class, MovementDto.class).field("id", "movementId").field("concept", "movementConcept")
-				.field("transactionDate", "movementDate").field("operationDate", "movementDetailDTO.operationDate").field("operation.code", "movementDetailDTO.operationCode").field("operation.description", "movementDetailDTO.operationDescription")
-				.field("office.name", "movementDetailDTO.plaza").field("office.location", "movementDetailDTO.originCenterMovement").field("status", "movementDetailDTO.state").field("value", "movementValue")
-				.field("balance", "totalBalance").field("numberOfQuotas", "quotaNumber").byDefault().register();
+		factory.classMap(Movement.class, MovementDto.class).field("id", "movementId")
+				.field("concept", "movementConcept").field("transactionDate", "movementDate")
+				.field("operationDate", "movementDetailDTO.operationDate")
+				.field("operation.code", "movementDetailDTO.operationCode")
+				.field("operation.description", "movementDetailDTO.operationDescription")
+				.field("office.name", "movementDetailDTO.plaza")
+				.field("office.location", "movementDetailDTO.originCenterMovement")
+				.field("status", "movementDetailDTO.state").field("value", "movementValue")
+				.field("balance", "totalBalance").byDefault().register();
 	}
-	
 
 	@Override
 	public MovementDetailDto mapMovement(Movement movement) {
 		final MovementDetailDto movementDetailDto = map(movement, MovementDetailDto.class);
 		return movementDetailDto;
 	}
-	
+
 	@Override
 	public List<MovementDto> mapMovementDtoList(List<Movement> movementList) {
 		final List<MovementDto> movementDtoList = mapAsList(movementList, MovementDto.class);
 		return movementDtoList;
 	}
-	
 
 }

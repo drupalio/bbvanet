@@ -13,8 +13,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.bbva.net.back.facade.QuotaDetailFacade;
+import com.bbva.net.back.model.movements.MovementDetailDto;
 import com.bbva.net.back.model.quota.QuotaDetailDto;
-import com.bbva.net.back.model.quota.QuotaMoveDetailDto;
 
 @Profile("integration")
 @ContextConfiguration(locations = "classpath:spring-test-context.xml")
@@ -60,7 +60,7 @@ public class QuotaDetailFacadeIT {
 
 	@Test
 	public void checkGetQuotaDetailRotaryOK() throws Exception {
-		final QuotaMoveDetailDto quotaMoveDetailDto = this.quotaDetailFacade.getRotaryQuotaMovement(DEFAULT_ID,
+		final MovementDetailDto quotaMoveDetailDto = this.quotaDetailFacade.getRotaryQuotaMovement(DEFAULT_ID,
 				DEFAULT_ID_MOV);
 		Assert.assertNotNull(quotaMoveDetailDto);
 	}

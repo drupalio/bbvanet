@@ -18,8 +18,8 @@ import com.bbva.net.back.facade.TermasAccountsFacade;
 import com.bbva.net.back.model.accounts.TermsAccountsDto;
 import com.bbva.net.back.model.citeriaMovements.MovementCriteriaDto;
 import com.bbva.net.back.model.globalposition.ProductDto;
+import com.bbva.net.back.model.movements.MovementDetailDto;
 import com.bbva.net.back.model.quota.QuotaDetailDto;
-import com.bbva.net.back.model.quota.QuotaMoveDetailDto;
 import com.bbva.net.front.controller.QuotaController;
 import com.bbva.net.front.core.AbstractBbvaController;
 
@@ -43,7 +43,7 @@ public class QuotaControllerImpl extends AbstractBbvaController implements Quota
 
 	private QuotaDetailDto quotaDetailDto = new QuotaDetailDto();
 
-	private QuotaMoveDetailDto quotaMoveDetailDto = new QuotaMoveDetailDto();
+	private MovementDetailDto quotaMoveDetailDto = new MovementDetailDto();
 
 	private ProductDto productDto = new ProductDto();
 
@@ -69,24 +69,13 @@ public class QuotaControllerImpl extends AbstractBbvaController implements Quota
 
 	@Override
 	public TermsAccountsDto getAllConditions() {
-		TermsAccountsDto detalle = this.detallesCuenta.getAllConditions(this.productDto.getProductId());
+		TermsAccountsDto detalle = this.detallesCuenta.getAllConditions("00130073000296247953");
 		return detalle;
 	}
 
 	public void onRowToggle(ToggleEvent toggeEvent) {
 		System.out.println("data onRowToggle");
-		this.quotaMoveDetailDto = this.quotaDetailFacade.getRotaryQuotaMovement(productDto.getProductId(),
-				getSelectedMovement().getId());
-	}
-
-	@Override
-	public void setSelectedMovement(QuotaMoveDetailDto selectedProduct) {
-		super.setSelectedProduct(selectedProduct);
-	}
-
-	@Override
-	public QuotaMoveDetailDto getSelectedMovement() {
-		return (QuotaMoveDetailDto)super.getSelectedProduct();
+		this.quotaMoveDetailDto = this.quotaDetailFacade.getRotaryQuotaMovement(productDto.getProductId(), "556475");
 	}
 
 	/***
@@ -198,14 +187,14 @@ public class QuotaControllerImpl extends AbstractBbvaController implements Quota
 	/**
 	 * @return the quotaMoveDetailDto
 	 */
-	public QuotaMoveDetailDto getQuotaMoveDetailDto() {
+	public MovementDetailDto getQuotaMoveDetailDto() {
 		return quotaMoveDetailDto;
 	}
 
 	/**
 	 * @param quotaMoveDetailDto the quotaMoveDetailDto to set
 	 */
-	public void setQuotaMoveDetailDto(QuotaMoveDetailDto quotaMoveDetailDto) {
+	public void setQuotaMoveDetailDto(MovementDetailDto quotaMoveDetailDto) {
 		this.quotaMoveDetailDto = quotaMoveDetailDto;
 	}
 

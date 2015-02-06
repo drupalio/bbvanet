@@ -7,8 +7,8 @@ import org.mockito.Mockito;
 
 import com.bbva.net.back.facade.QuotaDetailFacade;
 import com.bbva.net.back.model.globalposition.ProductDto;
+import com.bbva.net.back.model.movements.MovementDetailDto;
 import com.bbva.net.back.model.quota.QuotaDetailDto;
-import com.bbva.net.back.model.quota.QuotaMoveDetailDto;
 
 public class QuotaControllerImplTest {
 
@@ -24,7 +24,7 @@ public class QuotaControllerImplTest {
 
 	private ProductDto productDto;
 
-	private QuotaMoveDetailDto quotaMoveDetailDto;
+	private MovementDetailDto quotaMoveDetailDto;
 
 	@Before
 	public void init() {
@@ -54,7 +54,7 @@ public class QuotaControllerImplTest {
 	@Test
 	public void chekGetDetailMovementsQuota() {
 		Mockito.when(quotaDetailFacade.getRotaryQuotaMovement(DEFAULT_ID, DEFAULT_ID_MOV)).thenReturn(
-				new QuotaMoveDetailDto());
+				new MovementDetailDto());
 		quotaMoveDetailDto = quotaDetailFacade.getRotaryQuotaMovement(DEFAULT_ID, DEFAULT_ID_MOV);
 		Assert.assertNotNull(quotaMoveDetailDto);
 		Mockito.verify(this.quotaDetailFacade, Mockito.atLeastOnce())

@@ -8,7 +8,6 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import com.bbva.net.back.core.pattern.dto.Dto;
 import com.bbva.net.back.model.accounts.ProductInformationDto;
 import com.bbva.net.back.model.commons.Money;
-import com.bbva.net.back.model.globalposition.ProductDto;
 import com.bbva.net.back.model.globalposition.RotatingAccountDto;
 
 public class QuotaDetailDto extends RotatingAccountDto implements Dto {

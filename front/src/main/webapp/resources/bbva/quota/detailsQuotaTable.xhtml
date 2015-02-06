@@ -37,9 +37,6 @@
 					widgetVar="dataTableWV" selectionMode="single"
 					rowKey="#{icuenta.productId}" rowIndexVar="rowIndex">
 
-					<p:ajax event="rowSelect"
-						listener="#{cc.attrs.controller.visibleMov}" />
-
 					<p:ajax event="rowToggle"
 						listener="#{cc.attrs.controller.onRowToggle}" />
 
@@ -75,8 +72,7 @@
 							value="#{icuenta.totalCash}" />
 					</p:column>
 
-					<p:rowExpansion styleClass="detail-row"
-						rendered="#{cc.attrs.controller.movement}">
+					<p:rowExpansion styleClass="detail-row position">
 						<bbvaDetailMotion:tableContent controller="#{cc.attrs.controller}" />
 					</p:rowExpansion>
 				</p:dataTable>

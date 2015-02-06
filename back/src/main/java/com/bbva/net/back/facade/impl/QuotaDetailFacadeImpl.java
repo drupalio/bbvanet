@@ -8,8 +8,8 @@ import com.bbva.net.back.core.pattern.facade.AbstractBbvaFacade;
 import com.bbva.net.back.core.stereotype.Facade;
 import com.bbva.net.back.facade.QuotaDetailFacade;
 import com.bbva.net.back.mapper.QuotaDetailMapper;
+import com.bbva.net.back.model.movements.MovementDetailDto;
 import com.bbva.net.back.model.quota.QuotaDetailDto;
-import com.bbva.net.back.model.quota.QuotaMoveDetailDto;
 import com.bbva.net.webservices.loan.LoanService;
 
 @Facade(value = "quotaDetailFacade")
@@ -34,7 +34,7 @@ public class QuotaDetailFacadeImpl extends AbstractBbvaFacade implements QuotaDe
 	}
 
 	@Override
-	public QuotaMoveDetailDto getRotaryQuotaMovement(String idLoan, String idMovement) {
+	public MovementDetailDto getRotaryQuotaMovement(String idLoan, String idMovement) {
 		final RotaryQuotaMove response = this.loanService.getRotaryQuotaMovement(idLoan, idMovement);
 		return mapper.mapQuotaMove(response);
 	}

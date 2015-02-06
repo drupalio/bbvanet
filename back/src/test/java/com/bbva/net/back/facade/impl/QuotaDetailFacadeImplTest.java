@@ -10,8 +10,8 @@ import org.mockito.Mockito;
 import com.bbva.czic.dto.net.Loan;
 import com.bbva.czic.dto.net.RotaryQuotaMove;
 import com.bbva.net.back.mapper.QuotaDetailMapper;
+import com.bbva.net.back.model.movements.MovementDetailDto;
 import com.bbva.net.back.model.quota.QuotaDetailDto;
-import com.bbva.net.back.model.quota.QuotaMoveDetailDto;
 import com.bbva.net.webservices.loan.LoanService;
 
 public class QuotaDetailFacadeImplTest {
@@ -29,7 +29,7 @@ public class QuotaDetailFacadeImplTest {
 
 	private QuotaDetailDto quotaDetailDto;
 
-	private QuotaMoveDetailDto quotaMoveDetailDto;
+	private MovementDetailDto quotaMoveDetailDto;
 
 	@Before
 	public void init() {
@@ -57,7 +57,7 @@ public class QuotaDetailFacadeImplTest {
 	public void checkGetDetailMovemenRotaryQuota() {
 		RotaryQuotaMove rotaryQuotaMove = new RotaryQuotaMove();
 
-		quotaMoveDetailDto = Mockito.mock(QuotaMoveDetailDto.class);
+		quotaMoveDetailDto = Mockito.mock(MovementDetailDto.class);
 		Mockito.when(loanService.getRotaryQuotaMovement(DEFAULT_ID, "544356")).thenReturn(rotaryQuotaMove);
 		Mockito.when(mapper.mapQuotaMove(rotaryQuotaMove)).thenReturn(quotaMoveDetailDto);
 		quotaMoveDetailDto = quotaDetailFacede.getRotaryQuotaMovement(DEFAULT_ID, "544356");

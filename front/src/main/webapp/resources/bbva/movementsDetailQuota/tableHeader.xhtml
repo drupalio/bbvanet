@@ -14,7 +14,7 @@
 <composite:implementation>
 	<header class="table-detail-header ">
 		<div class="table-tab hidden-xs hidden-sm"
-			style="right: 0.1px !important; top: -16.2% !important;">
+			style="right: 0.1px !important; top: -40% !important;">
 			<div class="table-detail-border">
 				<a href="#"> <span title="Descargar" class="icon-folder"></span>
 				</a> <a href="#"> <span title="Enviar" class="icon-send-by-email"></span>
@@ -32,12 +32,12 @@
 			style="border-bottom: 1px solid #C4D7E5 !important;">
 			<tbody>
 				<tr>
-					<td class="brand"><span>#{cc.attrs.controller.quotaMoveDetailDto.transactionDate}</span></td>
+					<td class="brand"><span>#{cc.attrs.controller.quotaMoveDetailDto.operationDate}</span></td>
 					<td class="text" style="float: left;">#{cc.attrs.controller.quotaMoveDetailDto.concept}</td>
 					<td class="currency">#{cc.attrs.controller.quotaMoveDetailDto.value}</td>
 					<td class="smart-view" colspan="3">
 						<div class="left">
-							#{cc.attrs.controller.quotaMoveDetailDto.transactionDate} <span
+							#{cc.attrs.controller.quotaMoveDetailDto.operationDate} <span
 								class="brand">06/06/2014</span>
 						</div>
 						<div class="right">
