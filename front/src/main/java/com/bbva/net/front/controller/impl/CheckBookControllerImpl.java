@@ -53,9 +53,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	private Date sinceDate, toDate;
 
 	private String actionState, checkState, checkBookNumber, sinceDatestr, toDatestr, leftTitle, rightTitle,
-			titleState;
-
-	private Integer paginationKey;
+			titleState;	
 
 	private String title = MessagesHelper.INSTANCE.getString("text.last.movments");
 
@@ -183,9 +181,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 
 	@Override
 	public void showResults(final ActionEvent event) {
-		System.out.println("showResults");
-
-		paginationKey = 1;
+		System.out.println("showResults");		
 
 		if (renderComponents.get(RenderAttributes.FILTERCHECKBOOK.toString())) {
 			// Filter by checkId

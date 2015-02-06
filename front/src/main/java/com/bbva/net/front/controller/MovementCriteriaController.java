@@ -3,8 +3,12 @@
  */
 package com.bbva.net.front.controller;
 
+import java.util.List;
+
 import javax.faces.event.ActionEvent;
 import javax.faces.event.ComponentSystemEvent;
+
+import com.bbva.net.back.model.movements.MovementDto;
 
 /**
  * @author User
@@ -61,5 +65,7 @@ public interface MovementCriteriaController {
 	 * @param event
 	 */
 	void setCustomDate(ActionEvent event);
+
+	List<MovementDto> getAllMovements();
 
 }

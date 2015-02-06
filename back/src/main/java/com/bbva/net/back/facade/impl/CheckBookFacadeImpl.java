@@ -40,7 +40,7 @@ public class CheckBookFacadeImpl extends AbstractBbvaFacade implements CheckBook
 	@Resource(name = "fiqlService")
 	private FiqlService fiqlService;
 
-	@Value("${fiql.accountMovement.date}")
+	@Value("${fiql.checkbook.date}")
 	private String DATE;
 
 	@Value("${fiql.accountMovement.status}")
