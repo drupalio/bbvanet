@@ -2161,7 +2161,7 @@
   <rootContext xmi:id="_ZfCv6Y93EeSpJKf4VWfyEQ" elementId="org.springsource.ide.eclipse.commons.launch.actionSet" name="Auto::org.springsource.ide.eclipse.commons.launch.actionSet"/>
   <rootContext xmi:id="_ZfCv6o93EeSpJKf4VWfyEQ" elementId="com.springsource.sts.ide.ui.actionSet.workbench" name="Auto::com.springsource.sts.ide.ui.actionSet.workbench"/>
   <rootContext xmi:id="_ZfCv6493EeSpJKf4VWfyEQ" elementId="com.mountainminds.eclemma.ui.CoverageActionSet" name="Auto::com.mountainminds.eclemma.ui.CoverageActionSet"/>
-  <rootContext xmi:id="_ZfCv7I93EeSpJKf4VWfyEQ" elementId="net.sourceforge.eclipsejetty.launchConfigurationType.internal.org.eclipse.debug.ui.DebugPerspective" name="Auto::net.sourceforge.eclipsejetty.launchConfigurationType.internal.org.eclipse.debug.ui.DebugPerspective"/>
+  <rootContext xmi:id="_ZfCv7I93EeSpJKf4VWfyEQ" elementId="net.sourceforge.eclipse.launchConfigurationType.internal.org.eclipse.debug.ui.DebugPerspective" name="Auto::net.sourceforge.eclipse.launchConfigurationType.internal.org.eclipse.debug.ui.DebugPerspective"/>
   <descriptors xmi:id="_ZfCv7Y93EeSpJKf4VWfyEQ" elementId="org.eclipse.e4.ui.compatibility.editor" allowMultiple="true" category="org.eclipse.e4.primaryDataStack" closeable="true" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor">
     <tags>Editor</tags>
   </descriptors>

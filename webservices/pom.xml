@@ -19,17 +19,13 @@
 	</properties>
 	<repositories />
 	<pluginRepositories />
-	<dependencies>
-		<!-- General dependencies for standard applications <dependency> <groupId>com.bbva.jee.arq.spring.core</groupId> 
-			<artifactId>arq-spring-core</artifactId> <version>${arq-spring-core.version}</version> 
-			</dependency> -->
 
+	<dependencies>
 		<dependency>
 			<groupId>com.bbva.net.core</groupId>
 			<artifactId>kqco_mult_web_core</artifactId>
 			<version>01</version>
 		</dependency>
-
 
 		<dependency>
 			<groupId>junit</groupId>
@@ -78,7 +74,6 @@
 			</exclusions>
 		</dependency>
 
-		<!-- Dependency library for client CFX -->
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-wadl2java-plugin</artifactId>
@@ -129,34 +124,28 @@
 
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
-			<artifactId>cxf-rt-transports-http-jetty</artifactId>
-			<version>3.0.3</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-testutils</artifactId>
 			<version>3.0.3</version>
 		</dependency>
 
-		<!-- jackson 2 -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-core</artifactId>
 			<version>2.5.0</version>
 		</dependency>
+
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 			<version>2.5.0</version>
 		</dependency>
+
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-annotations</artifactId>
 			<version>2.5.0</version>
 		</dependency>
 
-		<!-- jackson 2 -->
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
@@ -181,22 +170,15 @@
 			<version>1.9.13</version>
 		</dependency>
 
-
-
-		<!-- Mapeador de Objetos Orika -->
 		<dependency>
 			<groupId>ma.glasnost.orika</groupId>
 			<artifactId>orika-eclipse-tools</artifactId>
 			<version>1.4.5</version>
 		</dependency>
-
-
 	</dependencies>
 
 	<build>
 		<plugins>
-
-			<!-- Maven Plugin for client CFX -->
 			<plugin>
 				<groupId>org.apache.cxf</groupId>
 				<artifactId>cxf-wadl2java-plugin</artifactId>
@@ -208,16 +190,11 @@
 						<configuration>
 							<sourceRoot>src/main/java</sourceRoot>
 							<wadlOptions>
-
-								<!-- PILAS NO DEJAR HABILITADA LA EJECUCIÓN DE CUALQUIER WADL, HA 
-									PASODO QUE SE GENERAN CLASES QUE YA ESTABAN ESTABLES Y NOS PETA TODO EN ESTOS 
-									AJUSTES PERDEMOS TIEMPO. -->
-								<!-- <wadlOption>
+								<wadlOption>
 									<impl>false</impl>
 									<wadl>src/main/resources/wadl/account.wadl</wadl>
 									<packagename>com.bbva.net.webservices.accounts</packagename>
-								</wadlOption> --> 
-
+								</wadlOption>
 							</wadlOptions>
 						</configuration>
 						<goals>
@@ -270,7 +247,6 @@
 			</plugin>
 		</plugins>
 
-		<!-- Versiones de plugins de Maven para Frontend Spring -->
 		<pluginManagement>
 			<plugins>
 				<plugin>

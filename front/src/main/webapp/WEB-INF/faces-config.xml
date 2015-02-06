@@ -16,9 +16,6 @@
 			<var>i18</var>
 		</resource-bundle>
 
-		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver
-		</el-resolver>
-
 		<locale-config>
 			<default-locale>es</default-locale>
 			<supported-locale>en</supported-locale>

@@ -19,13 +19,13 @@
 &lt;ul&gt;
   &lt;li&gt;&lt;a href="https://github.com/spring-projects/spring-xd/wiki/Application-Configuration#kafka"&gt;Kafka based Message Bus&lt;/a&gt;. If Kafka is your middleware du jour, you will feel right at home.&lt;/li&gt;
   &lt;li&gt;&lt;a href="https://github.com/spring-projects/spring-xd/wiki/Application-Configuration#rabbitmq"&gt;Batching and compression support for RabbitMQ&lt;/a&gt; provides significantly increased effective message rate throughput.&lt;/li&gt;
-  &lt;li&gt;Develop Processor modules using &lt;a href="https://github.com/reactor/reactor"&gt;Project Reactor’s&lt;/a&gt; Stream API. The &lt;a href="https://reactor.github.io/docs/api/2.0.0.M2/reactor/rx/Stream.html"&gt;Stream API&lt;/a&gt; is based on the &lt;a href="http://www.reactive-streams.org/"&gt;Reactive Streams specification&lt;/a&gt; that provides a standard for asynchronous stream processing with non-blocking backpressure. This allows you to use a functional programming model as the basis for processing event streams. Combined with XD’s support for &lt;a href="https://github.com/spring-projects/spring-xd/wiki/Deployment#stream-partitioning"&gt;Data Partitioning on the Message Bus&lt;/a&gt;, you can create very powerful distributed stream processing solutions.&lt;/li&gt;
+  &lt;li&gt;Develop Processor modules using &lt;a href="https://github.com/reactor/reactor"&gt;Project Reactorï¿½s&lt;/a&gt; Stream API. The &lt;a href="https://reactor.github.io/docs/api/2.0.0.M2/reactor/rx/Stream.html"&gt;Stream API&lt;/a&gt; is based on the &lt;a href="http://www.reactive-streams.org/"&gt;Reactive Streams specification&lt;/a&gt; that provides a standard for asynchronous stream processing with non-blocking backpressure. This allows you to use a functional programming model as the basis for processing event streams. Combined with XDï¿½s support for &lt;a href="https://github.com/spring-projects/spring-xd/wiki/Deployment#stream-partitioning"&gt;Data Partitioning on the Message Bus&lt;/a&gt;, you can create very powerful distributed stream processing solutions.&lt;/li&gt;
   &lt;li&gt;&lt;a href="https://github.com/spring-projects/spring-xd/wiki/Modules#module-packaging"&gt;Easily develop, test, and package custom modules&lt;/a&gt;. A parent pom bootstraps all the dependencies required for building a custom module and bundles your module and dependencies into a single uberjar file. There is also support for &lt;a href="https://github.com/spring-projects/spring-xd/wiki/Creating-a-Processor-Module#write-a-test"&gt;integration testing your module&lt;/a&gt; with JUnit using an embedded single node server.&lt;/li&gt;
   &lt;li&gt;&lt;a href="https://github.com/spring-projects/spring-xd/wiki/Creating-a-Processor-Module#register-the-module"&gt;Upload custom modules&lt;/a&gt; to the admin server over HTTP.&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://github.com/spring-projects/spring-xd/wiki/Application-Configuration#customizing-authorization"&gt;Role based authorization of REST endpoints&lt;/a&gt; give you control over “who can do what”.&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://github.com/spring-projects/spring-xd/wiki/Application-Configuration#customizing-authorization"&gt;Role based authorization of REST endpoints&lt;/a&gt; give you control over ï¿½who can do whatï¿½.&lt;/li&gt;
   &lt;li&gt;&lt;a href="https://github.com/spring-projects/spring-xd/wiki/Application-Configuration#file-based-authentication"&gt;File based authentication&lt;/a&gt; as a simple alternative to LDAP.&lt;/li&gt;
   &lt;li&gt;&lt;a href="https://github.com/spring-projects/spring-xd/wiki/Batch-Jobs#running-sqoop-as-a-batch-job-sqoop"&gt;Sqoop Batch job integration&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;p&gt;Please see the &lt;a href="https://github.com/spring-projects/spring-xd-samples/tree/master/reactor-moving-average"&gt;reactor-moving-average project&lt;/a&gt; for an example of using Reactor’s Stream API and the &lt;a href="https://github.com/spring-projects/spring-xd-samples/tree/master/si-dsl-module"&gt;si-dsl-module&lt;/a&gt; for a complete example of developing a custom module.&lt;/p&gt;&lt;p&gt;Of note for the next release of Spring XD 1.1 RC1 we will be including support for&lt;/p&gt;
+&lt;/ul&gt;&lt;p&gt;Please see the &lt;a href="https://github.com/spring-projects/spring-xd-samples/tree/master/reactor-moving-average"&gt;reactor-moving-average project&lt;/a&gt; for an example of using Reactorï¿½s Stream API and the &lt;a href="https://github.com/spring-projects/spring-xd-samples/tree/master/si-dsl-module"&gt;si-dsl-module&lt;/a&gt; for a complete example of developing a custom module.&lt;/p&gt;&lt;p&gt;Of note for the next release of Spring XD 1.1 RC1 we will be including support for&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;Processor modules that use Spark Streaming&lt;/li&gt;
   &lt;li&gt;Processor modules that use RxJava&lt;/li&gt;
@@ -309,7 +309,7 @@
 &lt;h2&gt;
 &lt;a id="user-content-servlet-31" class="anchor" href="#servlet-31" aria-hidden="true"&gt;&lt;span class="octicon octicon-link"&gt;&lt;/span&gt;&lt;/a&gt;Servlet 3.1&lt;/h2&gt;
 
-&lt;p&gt;Spring Boot now uses Servlet 3.1 when running with an embedded servlet container. Tomcat 8, Jetty 9 and Undertow 1.1 are all supported options. In addition, WebSocket support has been improved and is now automatically configured for all supported servers. If you need to stick to Servlet 3.0, Tomcat 7 and Jetty 8 are still supported.&lt;/p&gt;
+&lt;p&gt;Spring Boot now uses Servlet 3.1 when running with an embedded servlet container. Tomcat 8. In addition, WebSocket support has been improved and is now automatically configured for all supported servers. If you need to stick to Servlet 3.0, Tomcat 7 is still supported.&lt;/p&gt;
 
 &lt;h2&gt;
 &lt;a id="user-content-springbootapplication" class="anchor" href="#springbootapplication" aria-hidden="true"&gt;&lt;span class="octicon octicon-link"&gt;&lt;/span&gt;&lt;/a&gt;@SpringBootApplication&lt;/h2&gt;
@@ -326,7 +326,7 @@
 &lt;h2&gt;
 &lt;a id="user-content-jackson-customization" class="anchor" href="#jackson-customization" aria-hidden="true"&gt;&lt;span class="octicon octicon-link"&gt;&lt;/span&gt;&lt;/a&gt;Jackson customization&lt;/h2&gt;
 
-&lt;p&gt;Jackson configuration has been greatly improved with Spring Boot 1.2. You can now configure most Jackson options from your &lt;code&gt;application.properties&lt;/code&gt; file. See this &lt;a href="http://spring.io/blog/2014/12/02/latest-jackson-integration-improvements-in-spring"&gt;excellent blog post&lt;/a&gt; from &lt;a href="http://spring.io/team/sdeleuze"&gt;Sébastien Deleuze&lt;/a&gt; for more background on Spring's general support for Jackson.&lt;/p&gt;
+&lt;p&gt;Jackson configuration has been greatly improved with Spring Boot 1.2. You can now configure most Jackson options from your &lt;code&gt;application.properties&lt;/code&gt; file. See this &lt;a href="http://spring.io/blog/2014/12/02/latest-jackson-integration-improvements-in-spring"&gt;excellent blog post&lt;/a&gt; from &lt;a href="http://spring.io/team/sdeleuze"&gt;Sï¿½bastien Deleuze&lt;/a&gt; for more background on Spring's general support for Jackson.&lt;/p&gt;
 
 &lt;h2&gt;
 &lt;a id="user-content-jms-support" class="anchor" href="#jms-support" aria-hidden="true"&gt;&lt;span class="octicon octicon-link"&gt;&lt;/span&gt;&lt;/a&gt;JMS Support&lt;/h2&gt;
@@ -396,7 +396,7 @@
 
 &lt;p&gt;Slides:&lt;a href="https://speakerdeck.com/smaldini/introduction-to-reactor-and-reactive-streams"&gt;https://speakerdeck.com/smaldini/introduction-to-reactor-and-reactive-streams&lt;/a&gt; &lt;/p&gt;
 
-&lt;p&gt;What is the role of asynchronous, non-blocking style-communication in microservices? Join Stephane Maldini for a revealing look at why reactive components are so important in an eventually-consistent approach like microservice architecture. When services own their data and are completely independent, having a (reactive) abstraction layer can perform a variety of roles. Being able to parallelize resources a microservice owns is an important technique. Another might be as an event bus, pulling state data from various micro services dynamically, checking against the cached, fairly up-to-date local copy. While a microservice has “all” the data it needs from other services to respond to a request, this data is not necessarily up-to-date—an important constraint to be prepared to accept. Stephane will also discuss other async use cases outside of microservices and how &lt;a href="http://www.reactive-streams.org"&gt;www.reactive-streams.org&lt;/a&gt; protocol support allows levels of portability across vendor implementations.&lt;/p&gt;
+&lt;p&gt;What is the role of asynchronous, non-blocking style-communication in microservices? Join Stephane Maldini for a revealing look at why reactive components are so important in an eventually-consistent approach like microservice architecture. When services own their data and are completely independent, having a (reactive) abstraction layer can perform a variety of roles. Being able to parallelize resources a microservice owns is an important technique. Another might be as an event bus, pulling state data from various micro services dynamically, checking against the cached, fairly up-to-date local copy. While a microservice has ï¿½allï¿½ the data it needs from other services to respond to a request, this data is not necessarily up-to-dateï¿½an important constraint to be prepared to accept. Stephane will also discuss other async use cases outside of microservices and how &lt;a href="http://www.reactive-streams.org"&gt;www.reactive-streams.org&lt;/a&gt; protocol support allows levels of portability across vendor implementations.&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;&lt;iframe width="560" height="315" src="//www.youtube.com/embed/bn1zZDMyFpI" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;</content>
   </entry>
@@ -432,7 +432,7 @@
     <link rel="alternate" href="https://spring.io/blog/2014/12/09/spring-framework-4-1-3-released" />
     <category term="releases" label="Releases" />
     <author>
-      <name>Stéphane Nicoll</name>
+      <name>Stï¿½phane Nicoll</name>
     </author>
     <id>tag:spring.io,2014-12-09:1877</id>
     <updated>2014-12-09T13:14:00Z</updated>
