@@ -9,18 +9,87 @@
 
 
 <composite:interface>
-	<composite:attribute name="id" type="String" />
-	<composite:attribute name="pieConfigGUI" />
+	<composite:attribute name="LineUIList"
+		type="com.bbva.net.front.ui.line.LineConfigUI" />
 </composite:interface>
 
 <composite:implementation>
 	<h:form id="eDeposit">
 
-		<div class="col-md-12">
+<div id="chart1_99"></div>
+<div class="col-md-12">
+	<script>
+		
 
-			<!-- insertar grafica C3.js -->
+			
+			
+			
+var chart1_99 = c3.generate({
+	bindto: '#chart1_99',
+  legend: {
+  show: false
+},
+padding: {
+    top: 0,
+    right: 30,
+    bottom: 0,
+    left: 30,
+},
+    data: {
+      
+        columns: [
+            ['data1',0, 100, 10, 10, 200, 20, 20,30, 300, 30, 40, 40, 400, 20,200, 20, 25, 25, 225, 15, 115,15, 30, 300, 30, 400, 40, 40, 400,40]
+            
+        ],
+        regions: {
+            'data1': [{'start':0, 'end':1, 'style':'dashed'},{'start':2, 'end':3},{'start':4}] // currently 'dashed' style only
+            
+        }
+    },
+  			grid: {
+			  y: {
+			    //lines: [{value: 20},{value: 40},{value: 60},{value: 80},{value: 0},{value: -20},{value: -40},{value: -60},{value: -80}]
+			  }
+			},
+		  
+		    axis: {
+		        x: {
+		        type: 'categorized' 
+		        },
+		      
+		        y: {
+		          show:false,
+		            label: {
+		                text: '$ (miles)',
+		                position: 'outer-middle'
+		            }
+		        },
+		        y2: {
+		            show: false,
+		            label: {
+		                text: 'Y2 Label',
+		                position: 'outer-middle'
+		            }
+		        }
+		    }
+});
 
-			<div class="chart-lines"
+			
+			
+</script>		
+			
+			
+	</div>		
+			
+			
+			
+			
+			
+			
+			
+			
+
+			<!-- <div class="chart-lines"
 				data-json="assets/js/graphycs/data/depositos.json"
 				data-highcharts-chart="17">
 				<div class="highcharts-container" id="highcharts-121"
@@ -270,14 +339,12 @@
 							style="cursor:pointer;color:#909090;font-size:9px;fill:#909090;">
 						<tspan x="617">Highcharts.com</tspan></text></svg>
 				</div>
-			</div>
+			</div>  -->
 
 
 
-			<!-- Fin grafica C3.js -->
 
-
-		</div>
+		
 
 
 

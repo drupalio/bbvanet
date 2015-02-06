@@ -107,4 +107,17 @@ public class FiqlServiceImpl implements FiqlService {
 		return strDate;
 	}
 
+	@Override
+	public String getFiqlQueryMonthlyByDateRange(DateRangeDto dateRange, String startProperty, String endProperty) {
+
+		if (dateRange == null || dateRange.getDateSince() == null || dateRange.getDateTo() == null) {
+			return StringUtils.EMPTY;
+		}
+
+		final SearchConditionBuilder filter = SearchConditionBuilder.instance(FIQL_LANGUAGE);
+		return filter.is(startProperty).lexicalNotBefore(formatMonth(dateRange.getDateSince())).and().is(endProperty)
+				.lexicalNotAfter(formatMonth(dateRange.getDateTo())).query();
+
+	}
+
 }

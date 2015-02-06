@@ -32,7 +32,7 @@ public class LineItemUI implements Serializable {
 	/**
 	 * 
 	 */
-	private String month;
+	private String day;
 
 	/**
 	 * @return
@@ -76,18 +76,12 @@ public class LineItemUI implements Serializable {
 		this.label = label;
 	}
 
-	/**
-	 * @return
-	 */
-	public String getMonth() {
-		return month;
+	public String getDay() {
+		return day;
 	}
 
-	/**
-	 * @param month
-	 */
-	public void setMonth(final String month) {
-		this.month = month;
+	public void setDay(String day) {
+		this.day = day;
 	}
 
 }

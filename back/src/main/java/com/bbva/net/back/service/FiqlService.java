@@ -12,6 +12,23 @@ public interface FiqlService {
 
 	String getFiqlQueryByStatus(String status, String statusProperty);
 
+	/**
+	 * Filtro utilizado en la invocación al Servicio SrvCustomersV01 / SrvAccountsV01 -> listAccountsMovementsResume
+	 * 
+	 * @param dateRange
+	 * @param monthProperty
+	 * @return
+	 */
 	String formatMonthByAccMovementResume(DateRangeDto dateRange, String monthProperty);
+
+	/**
+	 * Filtro utilizado en la invocación al Servicio SrvAccountsV01 -> getAccountMonthlyBalance
+	 * 
+	 * @param dateRange
+	 * @param startProperty
+	 * @param endProperty
+	 * @return
+	 */
+	String getFiqlQueryMonthlyByDateRange(final DateRangeDto dateRange, String startProperty, String endProperty);
 
 }

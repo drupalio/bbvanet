@@ -10,15 +10,15 @@ import org.springframework.beans.factory.annotation.Value;
 import com.bbva.czic.dto.net.MonthlyBalances;
 import com.bbva.net.back.core.pattern.facade.AbstractBbvaFacade;
 import com.bbva.net.back.core.stereotype.Facade;
-import com.bbva.net.back.facade.AccountMonthBalanceFacade;
+import com.bbva.net.back.facade.MonthBalanceFacade;
 import com.bbva.net.back.mapper.MonthlyBalanceMapper;
 import com.bbva.net.back.model.accounts.GlobalMonthlyBalanceDto;
 import com.bbva.net.back.model.commons.DateRangeDto;
 import com.bbva.net.back.service.FiqlService;
 import com.bbva.net.webservices.accounts.AccountsService;
 
-@Facade(value = "accountMonthBalanceFacade")
-public class AccountMonthBalanceFacadeImpl extends AbstractBbvaFacade implements AccountMonthBalanceFacade {
+@Facade(value = "monthBalanceFacade")
+public class MonthBalanceFacadeImpl extends AbstractBbvaFacade implements MonthBalanceFacade {
 
 	private static final long serialVersionUID = 1L;
 
@@ -40,8 +40,8 @@ public class AccountMonthBalanceFacadeImpl extends AbstractBbvaFacade implements
 
 		GlobalMonthlyBalanceDto globalMonthlyBalance = new GlobalMonthlyBalanceDto();
 
-		String filter = dateRange == null ? StringUtils.EMPTY : fiqlService.getFiqlQueryByDateRange(dateRange, DATE,
-				DATE);
+		String filter = dateRange == null ? StringUtils.EMPTY : fiqlService.getFiqlQueryMonthlyByDateRange(dateRange,
+				DATE, DATE);
 
 		final List<MonthlyBalances> response = this.accountsService.getAccountMonthlyBalance(accountId, filter, fields,
 				expands, sort);
