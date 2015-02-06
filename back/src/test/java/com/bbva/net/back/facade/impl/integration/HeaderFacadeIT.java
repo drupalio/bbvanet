@@ -2,6 +2,7 @@ package com.bbva.net.back.facade.impl.integration;
 
 import javax.annotation.Resource;
 import javax.ws.rs.BadRequestException;
+import javax.ws.rs.ServiceUnavailableException;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -22,18 +23,53 @@ public class HeaderFacadeIT {
 
 	@Test(expected = BadRequestException.class)
 	public void checkGetENotUser() {
-		this.headerfacade.getExecutive(null);
+		try {
+			this.headerfacade.getExecutive(null);
+		} catch (final BadRequestException badRequestException) {
+			Assert.assertEquals(badRequestException.getMessage(), "HTTP 400 Bad Request");
+			throw badRequestException;
+		}
 	}
 
 	@Test(expected = BadRequestException.class)
-	public void checkGetEUserEmpty() {
-		this.headerfacade.getExecutive("");
+	public void checkGetEUserEmpty() throws Exception {
+		try {
+			this.headerfacade.getExecutive("");
+		} catch (final BadRequestException badRequestException) {
+			Assert.assertEquals(badRequestException.getMessage(), "HTTP 400 Bad Request");
+			throw badRequestException;
+		}
 	}
 
 	@Test
 	public void checkGetExecutiveByUserOK() {
-		//
 		Assert.assertNotNull(this.headerfacade.getExecutive("123"));
+	}
+
+	@Test
+	public void checkGetCustomerByUserOK() {
+
+		Assert.assertNotNull(this.headerfacade.getCustomer("12345678"));
+	}
+
+	@Test(expected = BadRequestException.class)
+	public void checkGetENotCustomer() {
+		try {
+			this.headerfacade.getCustomer(null);
+		} catch (final BadRequestException badRequestException) {
+			Assert.assertEquals(badRequestException.getMessage(), "HTTP 400 Bad Request");
+			throw badRequestException;
+		}
+	}
+
+	@Test(expected = ServiceUnavailableException.class)
+	public void checkGetEmptyCustomer() {
+		try {
+			this.headerfacade.getCustomer("");
+		} catch (final ServiceUnavailableException notFoundException) {
+			Assert.assertEquals(notFoundException.getMessage(), "HTTP 503 Service Unavailable");
+			throw notFoundException;
+		}
 	}
 
 }
