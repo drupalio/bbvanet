@@ -74,8 +74,7 @@ public class AccountsServiceImpl extends AbstractBbvaRestService implements Acco
 	public List<MonthlyBalances> getAccountMonthlyBalance(String accountId, String filter, String fields,
 			String expands, String sort) {
 		WebClient wc = getJsonWebClient(URL_BASE_ACCOUNTS + accountId + URL_MOUNTHBALANCE);
-		if (!StringUtils.isEmpty(filter)) wc.query("$filter", filter);
-		// if (!StringUtils.isEmpty(fields)) wc.query(FILTER, fields);
+		if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
 
 		List<MonthlyBalances> res = (List<MonthlyBalances>)wc.getCollection(MonthlyBalances.class);
 
@@ -87,7 +86,7 @@ public class AccountsServiceImpl extends AbstractBbvaRestService implements Acco
 	public List<AccMovementsResume> getAccMovementResume(String id, String filter, String $fields, String $expands,
 			String $sort) {
 		WebClient wc = getJsonWebClient(URL_BASE_ACCOUNTS + id + URL_ACCOUNTS);
-		if (!StringUtils.isEmpty(filter)) wc.query("$filter", filter);
+		if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
 		return (List<AccMovementsResume>)wc.getCollection(AccMovementsResume.class);
 	}
 

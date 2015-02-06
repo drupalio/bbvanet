@@ -13,7 +13,9 @@ import com.bbva.net.back.core.stereotype.Facade;
 import com.bbva.net.back.facade.MonthBalanceFacade;
 import com.bbva.net.back.mapper.MonthlyBalanceMapper;
 import com.bbva.net.back.model.accounts.GlobalMonthlyBalanceDto;
+import com.bbva.net.back.model.comboFilter.EnumPeriodType;
 import com.bbva.net.back.model.commons.DateRangeDto;
+import com.bbva.net.back.service.DateFilterService;
 import com.bbva.net.back.service.FiqlService;
 import com.bbva.net.webservices.accounts.AccountsService;
 
@@ -28,6 +30,9 @@ public class MonthBalanceFacadeImpl extends AbstractBbvaFacade implements MonthB
 	@Resource(name = "fiqlService")
 	private FiqlService fiqlService;
 
+	@Resource(name = "dateFilterService")
+	private DateFilterService dateFilterService;
+
 	@Value("${fiql.accountMovement.date}")
 	private String DATE;
 
@@ -40,8 +45,8 @@ public class MonthBalanceFacadeImpl extends AbstractBbvaFacade implements MonthB
 
 		GlobalMonthlyBalanceDto globalMonthlyBalance = new GlobalMonthlyBalanceDto();
 
-		String filter = dateRange == null ? StringUtils.EMPTY : fiqlService.getFiqlQueryMonthlyByDateRange(dateRange,
-				DATE, DATE);
+		String filter = dateRange == null ? StringUtils.EMPTY : fiqlService.getFiqlQueryMonthlyByDateRange(
+				dateFilterService.getPeriodFilter(EnumPeriodType.LAST_MONTH), DATE, DATE);
 
 		final List<MonthlyBalances> response = this.accountsService.getAccountMonthlyBalance(accountId, filter, fields,
 				expands, sort);

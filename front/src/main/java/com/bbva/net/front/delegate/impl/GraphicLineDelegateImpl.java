@@ -26,7 +26,7 @@ public class GraphicLineDelegateImpl implements GraphicLineDelegate {
 
 		LineConfigUI lineConfigUI = new LineConfigUI();
 
-		List<LineItemUI> pieItemUIList = new ArrayList<LineItemUI>();
+		List<LineItemUI> lineItemUIList = new ArrayList<LineItemUI>();
 
 		if (!CollectionUtils.isEmpty(globalMonthlyBalance.getMonthlyBalanceList())) {
 
@@ -36,12 +36,11 @@ public class GraphicLineDelegateImpl implements GraphicLineDelegate {
 				lineItemUI.setDay(monthly.getDay());
 				lineItemUI.setValue(monthly.getBalance());
 				lineItemUI.setLabel("Saldo");
-				lineItemUI.setValueX(monthly.getValueX());
 
-				pieItemUIList.add(lineItemUI);
+				lineItemUIList.add(lineItemUI);
 
 			}
-			lineConfigUI.setPieItemUIList(pieItemUIList);
+			lineConfigUI.setLineDepositItemUIList(lineItemUIList);
 
 		}
 

@@ -17,11 +17,6 @@ public class LineItemUI implements Serializable {
 	/**
 	 * 
 	 */
-	private int valueX;
-
-	/**
-	 * 
-	 */
 	private Money value;
 
 	/**
@@ -33,20 +28,6 @@ public class LineItemUI implements Serializable {
 	 * 
 	 */
 	private String day;
-
-	/**
-	 * @return
-	 */
-	public int getValueX() {
-		return valueX;
-	}
-
-	/**
-	 * @param valueX
-	 */
-	public void setValueX(final int valueX) {
-		this.valueX = valueX;
-	}
 
 	/**
 	 * @return
