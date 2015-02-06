@@ -72,12 +72,16 @@
 						show : false
 					}
 				},
-// 				tooltip: {
-// 				      contents: function (d, defaultTitleFormat, defaultValueFormat, color) {
-// 				        var text;
-// 				          return "<table><tr><th style='text-align:left'>Hola"+d[0].value+"/"+d[0].name+"/"+d[0].id+"/"+"</th></tr></table>";
-// 				      }
-// 				  },
+				tooltip:{
+			        format:{
+			        	title: function (x) { return "title "+x; },
+			        	name: function (name, ratio, id, index) { return name; },
+			            value: function (value, ratio, id) {
+			                var format = d3.format(',');			                
+			                return "<B>"+currency+" "+format(value)+"</B> ("+((value*100)/totalporcentaje).toFixed(1)+"%)";
+						 }
+			        }
+			    }
 			// 				color : {
 			// 					pattern : colorsLegend
 			// 				},
