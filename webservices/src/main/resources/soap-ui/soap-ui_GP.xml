@@ -6887,4 +6887,163 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	},
 	"status": "HABILITADO",
 	"modifiedDate": "12/09/2014"
-}]</con:responseContent><con:header><con:name>tsec</con:name><con:value>dafasdfdsfadsfda29873492347dsfjkh</con:value></con:header></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
+}]</con:responseContent><con:header><con:name>tsec</con:name><con:value>dafasdfdsfadsfda29873492347dsfjkh</con:value></con:header></con:response></con:restMockAction><con:restMockAction name="/czic/products/V01/00130073000296247953/movements" method="GET" resourcePath="/czic/products/V01/00130073000296247953/movements"><con:settings/><con:defaultResponse>movementsList</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="movementsList" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
+	"id": "806736",
+	"concept": "TRANSFERENCIA",
+	"value": {
+		"amount": 2045246077,
+		"currency": "COP"
+	},
+	"balance": {
+		"amount": 2045246077,
+		"currency": "COP"
+	}
+},
+{
+	"id": "403545507",
+	"concept": "TRANSFERENCIA",
+	"value": {
+		"amount": 61611826,
+		"currency": "COP"
+	},
+	"balance": {
+		"amount": 61611826,
+		"currency": "COP"
+	}
+},
+{
+	"id": "257456678",
+	"concept": "TRANSFERENCIA",
+	"value": {
+		"amount": 1054464025,
+		"currency": "COP"
+	},
+	"balance": {
+		"amount": 1054464025,
+		"currency": "COP"
+	}
+},
+{
+	"id": "1755868932",
+	"concept": "TRANSFERENCIA",
+	"value": {
+		"amount": 1645838409,
+		"currency": "COP"
+	},
+	"balance": {
+		"amount": 1645838409,
+		"currency": "COP"
+	}
+},
+{
+	"id": "2063491002",
+	"concept": "TRANSFERENCIA",
+	"value": {
+		"amount": 934052943,
+		"currency": "COP"
+	},
+	"balance": {
+		"amount": 934052943,
+		"currency": "COP"
+	}
+},
+{
+	"id": "1011779883",
+	"concept": "TRANSFERENCIA",
+	"value": {
+		"amount": 1241667351,
+		"currency": "COP"
+	},
+	"balance": {
+		"amount": 1241667351,
+		"currency": "COP"
+	}
+},
+{
+	"id": "2102165928",
+	"concept": "TRANSFERENCIA",
+	"value": {
+		"amount": 140708373,
+		"currency": "COP"
+	},
+	"balance": {
+		"amount": 140708373,
+		"currency": "COP"
+	}
+},
+{
+	"id": "347518569",
+	"concept": "TRANSFERENCIA",
+	"value": {
+		"amount": 1916640337,
+		"currency": "COP"
+	},
+	"balance": {
+		"amount": 1916640337,
+		"currency": "COP"
+	}
+},
+{
+	"id": "691207429",
+	"concept": "TRANSFERENCIA",
+	"value": {
+		"amount": 15788397,
+		"currency": "COP"
+	},
+	"balance": {
+		"amount": 15788397,
+		"currency": "COP"
+	}
+},
+{
+	"id": "1305851459",
+	"concept": "TRANSFERENCIA",
+	"value": {
+		"amount": 1061543569,
+		"currency": "COP"
+	},
+	"balance": {
+		"amount": 1061543569,
+		"currency": "COP"
+	}
+}]</con:responseContent></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

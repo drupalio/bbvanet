@@ -12,6 +12,7 @@
 //import com.bbva.czic.dto.net.Check;
 //import com.bbva.czic.dto.net.Checkbook;
 //import com.bbva.czic.dto.net.EnumCheckbookStatus;
+//import com.bbva.czic.dto.net.Movement;
 //import com.bbva.jee.arq.spring.core.servicing.utils.Money;
 //import com.google.gson.Gson;
 //
@@ -19,9 +20,9 @@
 //
 //	public static void main(String[] args) {
 //		Gson gson = new Gson();
-//		String checkJSON = gson.toJson(getCheckList());
+//		String checkJSON = gson.toJson(getMovementList());
 //		System.out.println(checkJSON);
-//		getCheckList();
+//		getMovementList();
 //	}
 //
 //	public static String dateToSring(Date date) {
@@ -69,6 +70,25 @@
 //
 //		return check;
 //
+//	}
+//	
+//	public static <E> List<Movement> getMovementList() {
+//		List<Movement> movementList = new ArrayList<Movement>();
+//		Movement movement;
+//		Money money;
+//		for (int i = 0; i < 10; i++) {
+//			movement = new Movement();
+//			money = new Money();
+//			movement.setId(new Random().nextInt(Integer.MAX_VALUE) + "");
+//			movement.setConcept("TRANSFERENCIA");
+//			money.setAmount(new BigDecimal(new Random().nextInt(Integer.MAX_VALUE) + ""));
+//			money.setCurrency("COP");
+//			movement.setValue(money);
+//			movement.setBalance(money);
+//			movementList.add(movement);
+//			
+//		}
+//		return movementList;
 //	}
 //
 //	public static <E> List<Check> getCheckList() {

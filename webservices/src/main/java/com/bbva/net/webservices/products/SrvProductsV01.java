@@ -9,8 +9,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Response;
 import com.bbva.czic.dto.net.Conditions;
-import com.bbva.czic.dto.net.Extract;
 
 @Path("/V01")
 public interface SrvProductsV01 {
@@ -22,7 +22,17 @@ public interface SrvProductsV01 {
 
     @GET
     @Produces("application/json")
-    @Path("/{productId}/extracts")
-    Extract listExtracts(@PathParam("productId") String productId, @QueryParam("$filter") @DefaultValue("null") String $filter, @QueryParam("paginationKey") @DefaultValue("null") Integer paginationKey, @QueryParam("pageSize") @DefaultValue("null") Integer pageSize);
+    @Path("/{productId}/listExtracts")
+    Response listExtracts(@PathParam("productId") String productId, @QueryParam("$filter") @DefaultValue("null") String $filter, @QueryParam("paginationKey") @DefaultValue("null") Integer paginationKey, @QueryParam("pageSize") @DefaultValue("null") Integer pageSize);
+
+    @GET
+    @Produces("application/json")
+    @Path("/{productId}/movements")
+    Response listMovements(@PathParam("productId") String productId, @QueryParam("$filter") @DefaultValue("null") String $filter, @QueryParam("paginationKey") @DefaultValue("null") Integer paginationKey, @QueryParam("pageSize") @DefaultValue("null") Integer pageSize);
+
+    @GET
+    @Produces("application/json")
+    @Path("/{productId}/movements/{movementId}")
+    Response getMovement(@PathParam("productId") String productId, @PathParam("movementId") String movementId, @QueryParam("$filter") @DefaultValue("null") String $filter);
 
 }

@@ -8,6 +8,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.cxf.jaxrs.ext.search.client.SearchConditionBuilder;
 import org.springframework.stereotype.Service;
 
+import com.bbva.net.back.model.commons.BalanceRangeDto;
 import com.bbva.net.back.model.commons.DateRangeDto;
 import com.bbva.net.back.service.FiqlService;
 
@@ -19,7 +20,8 @@ public class FiqlServiceImpl implements FiqlService {
 	private static final String FIQL_LANGUAGE = "fiql";
 
 	@Override
-	public String getFiqlQueryByDateRange(final DateRangeDto dateRange, String startProperty, String endProperty) {
+	public String getFiqlQueryByDateRange(final DateRangeDto dateRange, final String startProperty,
+			final String endProperty) {
 
 		if (dateRange == null || dateRange.getDateSince() == null || dateRange.getDateTo() == null) {
 			return StringUtils.EMPTY;
@@ -30,7 +32,30 @@ public class FiqlServiceImpl implements FiqlService {
 				.notAfter(dateRange.getDateTo()).query();
 
 	}
-	
+
+	@Override
+	public String getFiqlQueryByCustomerIdAndProductType(final String customerId, final String productType,
+			final String startProperty, final String endProperty) {
+		if (productType == null || customerId == null) {
+			return StringUtils.EMPTY;
+		}
+		final SearchConditionBuilder filter = SearchConditionBuilder.instance(FIQL_LANGUAGE);
+
+		return filter.is(startProperty).equalTo(customerId).and().is(endProperty).equalTo(productType).query();
+	}
+
+	@Override
+	public String getFiqlQueryByBalanceRange(final BalanceRangeDto balanceRange, String startProperty,
+			String endProperty) {
+
+		if (balanceRange == null || balanceRange.getBalanceSince() == null || balanceRange.getBalanceTo() == null) {
+			return StringUtils.EMPTY;
+		}
+		final SearchConditionBuilder filter = SearchConditionBuilder.instance(FIQL_LANGUAGE);
+		return filter.is(startProperty).greaterOrEqualTo(balanceRange.getBalanceSince().intValueExact()).and()
+				.is(endProperty).lessOrEqualTo(balanceRange.getBalanceTo().intValueExact()).query();
+	}
+
 	@Override
 	public String getFiqlQueryByStatus(final String status, String statusProperty) {
 
