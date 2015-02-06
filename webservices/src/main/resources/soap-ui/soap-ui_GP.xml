@@ -1779,7 +1779,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	}]
 },
 {
-	"id": "2032",
+	"id": "1234567890123456",
 	"type": "TC",
 	"name": "Cuenta",
 	"alias": "Mi Cuenta A12",
@@ -6589,302 +6589,392 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 
 */
 </con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
-	"id": "8529788371",
-	"issueDate": "12/07/2014",
+	"id": "12834063921",
+	"issueDate": "09/07/2014",
 	"value": {
-		"amount": 20931881751,
+		"amount": 12130896651,
 		"currency": "COP"
 	},
 	"status": "HABILITADO",
-	"modifiedDate": "24/08/2014"
+	"modifiedDate": "21/08/2014"
 },
 {
-	"id": "6724568881",
-	"issueDate": "13/12/2014",
+	"id": "16833592681",
+	"issueDate": "08/12/2014",
 	"value": {
-		"amount": 3091688221,
+		"amount": 7339147361,
 		"currency": "COP"
 	},
 	"status": "HABILITADO",
-	"modifiedDate": "29/12/2014"
+	"modifiedDate": "24/12/2014"
 },
 {
-	"id": "2549422131",
-	"issueDate": "27/01/2014",
+	"id": "13467431131",
+	"issueDate": "26/01/2014",
 	"value": {
-		"amount": 9311222581,
+		"amount": 11287877941,
 		"currency": "COP"
 	},
 	"status": "HABILITADO",
-	"modifiedDate": "23/05/2014"
+	"modifiedDate": "21/05/2014"
 },
 {
-	"id": "9671874031",
-	"issueDate": "15/06/2014",
+	"id": "20995245941",
+	"issueDate": "12/06/2014",
 	"value": {
-		"amount": 6987177761,
+		"amount": 13882319691,
 		"currency": "COP"
 	},
 	"status": "HABILITADO",
-	"modifiedDate": "29/11/2014"
+	"modifiedDate": "25/11/2014"
 },
 {
-	"id": "19341590901",
-	"issueDate": "06/05/2014",
+	"id": "20970305661",
+	"issueDate": "05/05/2014",
 	"value": {
-		"amount": 15512343271,
-		"currency": "COP"
-	},
-	"status": "HABILITADO",
-	"modifiedDate": "11/09/2014"
-},
-{
-	"id": "8718588931",
-	"issueDate": "08/05/2014",
-	"value": {
-		"amount": 8134545031,
-		"currency": "COP"
-	},
-	"status": "HABILITADO",
-	"modifiedDate": "25/10/2014"
-},
-{
-	"id": "909871911",
-	"issueDate": "19/04/2014",
-	"value": {
-		"amount": 4983366691,
-		"currency": "COP"
-	},
-	"status": "HABILITADO",
-	"modifiedDate": "01/07/2014"
-},
-{
-	"id": "12258109121",
-	"issueDate": "26/08/2014",
-	"value": {
-		"amount": 1393497991,
-		"currency": "COP"
-	},
-	"status": "HABILITADO",
-	"modifiedDate": "29/09/2014"
-},
-{
-	"id": "19948016321",
-	"issueDate": "22/03/2014",
-	"value": {
-		"amount": 9541256381,
-		"currency": "COP"
-	},
-	"status": "HABILITADO",
-	"modifiedDate": "28/09/2014"
-},
-{
-	"id": "21440680591",
-	"issueDate": "08/08/2014",
-	"value": {
-		"amount": 293578481,
-		"currency": "COP"
-	},
-	"status": "HABILITADO",
-	"modifiedDate": "15/10/2014"
-},
-{
-	"id": "9627893281",
-	"issueDate": "04/01/2015",
-	"value": {
-		"amount": 12853698101,
-		"currency": "COP"
-	},
-	"status": "HABILITADO",
-	"modifiedDate": "30/01/2015"
-},
-{
-	"id": "6410141871",
-	"issueDate": "11/02/2014",
-	"value": {
-		"amount": 872532511,
-		"currency": "COP"
-	},
-	"status": "HABILITADO",
-	"modifiedDate": "18/12/2014"
-},
-{
-	"id": "14508082861",
-	"issueDate": "27/05/2014",
-	"value": {
-		"amount": 13733664881,
-		"currency": "COP"
-	},
-	"status": "HABILITADO",
-	"modifiedDate": "30/11/2014"
-},
-{
-	"id": "3423382211",
-	"issueDate": "21/01/2014",
-	"value": {
-		"amount": 2687362501,
-		"currency": "COP"
-	},
-	"status": "HABILITADO",
-	"modifiedDate": "22/03/2014"
-},
-{
-	"id": "12626491061",
-	"issueDate": "08/04/2014",
-	"value": {
-		"amount": 1877381221,
-		"currency": "COP"
-	},
-	"status": "HABILITADO",
-	"modifiedDate": "03/10/2014"
-},
-{
-	"id": "13953789921",
-	"issueDate": "14/04/2014",
-	"value": {
-		"amount": 9964794881,
-		"currency": "COP"
-	},
-	"status": "HABILITADO",
-	"modifiedDate": "19/05/2014"
-},
-{
-	"id": "3701535761",
-	"issueDate": "10/12/2014",
-	"value": {
-		"amount": 13934630571,
-		"currency": "COP"
-	},
-	"status": "HABILITADO",
-	"modifiedDate": "15/01/2015"
-},
-{
-	"id": "5565406091",
-	"issueDate": "22/01/2014",
-	"value": {
-		"amount": 15308022681,
-		"currency": "COP"
-	},
-	"status": "HABILITADO",
-	"modifiedDate": "01/07/2014"
-},
-{
-	"id": "14765756591",
-	"issueDate": "05/08/2014",
-	"value": {
-		"amount": 18632015091,
-		"currency": "COP"
-	},
-	"status": "HABILITADO",
-	"modifiedDate": "11/08/2014"
-},
-{
-	"id": "7057074291",
-	"issueDate": "03/05/2014",
-	"value": {
-		"amount": 16973585861,
+		"amount": 119919931,
 		"currency": "COP"
 	},
 	"status": "HABILITADO",
 	"modifiedDate": "07/09/2014"
 },
 {
-	"id": "17277690741",
-	"issueDate": "30/07/2014",
+	"id": "9588743601",
+	"issueDate": "06/05/2014",
 	"value": {
-		"amount": 19568460051,
+		"amount": 4632088631,
 		"currency": "COP"
 	},
 	"status": "HABILITADO",
-	"modifiedDate": "26/11/2014"
+	"modifiedDate": "21/10/2014"
 },
 {
-	"id": "12903842891",
-	"issueDate": "29/04/2014",
+	"id": "12105069811",
+	"issueDate": "18/04/2014",
 	"value": {
-		"amount": 6475293511,
+		"amount": 20168793791,
 		"currency": "COP"
 	},
 	"status": "HABILITADO",
-	"modifiedDate": "12/09/2014"
+	"modifiedDate": "29/06/2014"
 },
 {
-	"id": "9519968091",
-	"issueDate": "09/02/2014",
+	"id": "10371239671",
+	"issueDate": "23/08/2014",
 	"value": {
-		"amount": 4666888841,
+		"amount": 7372037151,
 		"currency": "COP"
 	},
 	"status": "HABILITADO",
-	"modifiedDate": "19/10/2014"
+	"modifiedDate": "26/09/2014"
 },
 {
-	"id": "21264266801",
-	"issueDate": "12/01/2015",
+	"id": "19909233301",
+	"issueDate": "21/03/2014",
 	"value": {
-		"amount": 6763532261,
+		"amount": 8697652971,
 		"currency": "COP"
 	},
 	"status": "HABILITADO",
-	"modifiedDate": "19/01/2015"
+	"modifiedDate": "25/09/2014"
 },
 {
-	"id": "114305061",
-	"issueDate": "22/04/2014",
+	"id": "21301260731",
+	"issueDate": "05/08/2014",
 	"value": {
-		"amount": 3174602071,
+		"amount": 11112267021,
 		"currency": "COP"
 	},
 	"status": "HABILITADO",
-	"modifiedDate": "18/08/2014"
+	"modifiedDate": "12/10/2014"
+}]</con:responseContent><con:header><con:name>tsec</con:name><con:value>dafasdfdsfadsfda29873492347dsfjkh</con:value></con:header></con:response></con:restMockAction><con:restMockAction name="/czic/accounts/V01/12345678909876543210/monthlyBalances" method="GET" resourcePath="/czic/accounts/V01/12345678909876543210/monthlyBalances"><con:settings/><con:defaultResponse xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
+	"balance": {
+		"amount": 64859,
+		"currency": "$"
+	},
+	"month": "1"
 },
 {
-	"id": "8017977751",
-	"issueDate": "08/01/2015",
-	"value": {
-		"amount": 17635457881,
-		"currency": "COP"
+	"balance": {
+		"amount": 58159,
+		"currency": "$"
 	},
-	"status": "HABILITADO",
-	"modifiedDate": "22/01/2015"
+	"month": "2"
 },
 {
-	"id": "19870159401",
-	"issueDate": "22/10/2014",
-	"value": {
-		"amount": 3422672041,
-		"currency": "COP"
+	"balance": {
+		"amount": 984391,
+		"currency": "$"
 	},
-	"status": "HABILITADO",
-	"modifiedDate": "12/11/2014"
+	"month": "3"
 },
 {
-	"id": "3787417291",
-	"issueDate": "14/02/2014",
-	"value": {
-		"amount": 12177395181,
-		"currency": "COP"
+	"balance": {
+		"amount": 162057,
+		"currency": "$"
 	},
-	"status": "HABILITADO",
-	"modifiedDate": "14/12/2014"
+	"month": "4"
 },
 {
-	"id": "4293124011",
-	"issueDate": "21/05/2014",
-	"value": {
-		"amount": 13252902531,
-		"currency": "COP"
+	"balance": {
+		"amount": 285706,
+		"currency": "$"
 	},
-	"status": "HABILITADO",
-	"modifiedDate": "19/09/2014"
+	"month": "5"
 },
 {
-	"id": "8745722411",
-	"issueDate": "06/09/2014",
-	"value": {
-		"amount": 15159401731,
-		"currency": "COP"
+	"balance": {
+		"amount": 779371,
+		"currency": "$"
 	},
-	"status": "HABILITADO",
-	"modifiedDate": "12/09/2014"
-}]</con:responseContent><con:header><con:name>tsec</con:name><con:value>dafasdfdsfadsfda29873492347dsfjkh</con:value></con:header></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
+	"month": "6"
+},
+{
+	"balance": {
+		"amount": 389538,
+		"currency": "$"
+	},
+	"month": "7"
+},
+{
+	"balance": {
+		"amount": 466062,
+		"currency": "$"
+	},
+	"month": "8"
+},
+{
+	"balance": {
+		"amount": 898808,
+		"currency": "$"
+	},
+	"month": "9"
+},
+{
+	"balance": {
+		"amount": 72734,
+		"currency": "$"
+	},
+	"month": "10"
+},
+{
+	"balance": {
+		"amount": 622265,
+		"currency": "$"
+	},
+	"month": "11"
+},
+{
+	"balance": {
+		"amount": 818720,
+		"currency": "$"
+	},
+	"month": "12"
+},
+{
+	"balance": {
+		"amount": 720238,
+		"currency": "$"
+	},
+	"month": "13"
+},
+{
+	"balance": {
+		"amount": 926894,
+		"currency": "$"
+	},
+	"month": "14"
+},
+{
+	"balance": {
+		"amount": 181843,
+		"currency": "$"
+	},
+	"month": "15"
+},
+{
+	"balance": {
+		"amount": 162874,
+		"currency": "$"
+	},
+	"month": "16"
+},
+{
+	"balance": {
+		"amount": 284582,
+		"currency": "$"
+	},
+	"month": "17"
+},
+{
+	"balance": {
+		"amount": 623979,
+		"currency": "$"
+	},
+	"month": "18"
+},
+{
+	"balance": {
+		"amount": 772957,
+		"currency": "$"
+	},
+	"month": "19"
+},
+{
+	"balance": {
+		"amount": 105752,
+		"currency": "$"
+	},
+	"month": "20"
+},
+{
+	"balance": {
+		"amount": 709528,
+		"currency": "$"
+	},
+	"month": "21"
+},
+{
+	"balance": {
+		"amount": 688451,
+		"currency": "$"
+	},
+	"month": "22"
+},
+{
+	"balance": {
+		"amount": 611793,
+		"currency": "$"
+	},
+	"month": "23"
+},
+{
+	"balance": {
+		"amount": 160421,
+		"currency": "$"
+	},
+	"month": "24"
+},
+{
+	"balance": {
+		"amount": 491861,
+		"currency": "$"
+	},
+	"month": "25"
+},
+{
+	"balance": {
+		"amount": 393666,
+		"currency": "$"
+	},
+	"month": "26"
+},
+{
+	"balance": {
+		"amount": 243436,
+		"currency": "$"
+	},
+	"month": "27"
+},
+{
+	"balance": {
+		"amount": 386307,
+		"currency": "$"
+	},
+	"month": "28"
+},
+{
+	"balance": {
+		"amount": 76999,
+		"currency": "$"
+	},
+	"month": "29"
+},
+{
+	"balance": {
+		"amount": 912527,
+		"currency": "$"
+	},
+	"month": "30"
+}]</con:responseContent><con:header><con:name>tsec</con:name><con:value>dsdfdsfdsgdsgfsfffg0099dfdksdfknksd</con:value></con:header></con:response></con:restMockAction><con:restMockAction name="/czic/customers/V01/12345678" method="GET" resourcePath="/czic/customers/V01/12345678"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{"name":"Cliente del Bbva","lastAccessDate":"05/05/2014"}
+</con:responseContent></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

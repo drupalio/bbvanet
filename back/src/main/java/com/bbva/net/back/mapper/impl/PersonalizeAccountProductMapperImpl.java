@@ -10,15 +10,13 @@ import com.bbva.net.back.mapper.converter.MoneyConverter;
 import com.bbva.net.back.model.globalposition.ProductDto;
 
 @Mapper(value = "personalizeProductMapper")
-public class PersonalizeAccountProductMapperImpl extends ConfigurableMapper
-		implements
-			PersonalizeAccountProductMapper {
+public class PersonalizeAccountProductMapperImpl extends ConfigurableMapper implements PersonalizeAccountProductMapper {
 
 	public Product map(final ProductDto productDto) {
-		Product product = new Product();
-		product = map(productDto, Product.class);
+		final Product product = map(productDto, Product.class);
 		return product;
 	}
+
 	/**
 	 *
 	 */
@@ -26,12 +24,9 @@ public class PersonalizeAccountProductMapperImpl extends ConfigurableMapper
 	protected void configure(MapperFactory factory) {
 
 		factory.getConverterFactory().registerConverter(new MoneyConverter());
-		// Map Loan QuotaDetailDto
 
 		// Map parent Product DTO
-		factory.classMap(ProductDto.class, Product.class)
-				.field("alias", "alias").field("productId", "id")
-				.field("operationOnline", "operable")
+		factory.classMap(ProductDto.class, Product.class).field("productId", "id").field("operationOnline", "operable")
 				.field("visible", "visible").byDefault().register();
 	}
 }

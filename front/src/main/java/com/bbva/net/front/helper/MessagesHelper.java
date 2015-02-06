@@ -21,8 +21,7 @@ public enum MessagesHelper {
 		final FacesContext facesContext = FlowFacesContext.getCurrentInstance();
 		return facesContext.getApplication().getResourceBundle(facesContext, "msg");
 	}
-	
-	
+
 	/**
 	 * @return
 	 */
@@ -39,7 +38,7 @@ public enum MessagesHelper {
 	public String getString(final String key) {
 		return getMessages().getString(key);
 	}
-	
+
 	/**
 	 * @param key
 	 * @return
@@ -54,6 +53,14 @@ public enum MessagesHelper {
 	 */
 	public String getMonthPrefix(final EnumMonth month) {
 		return getString("month." + StringUtils.lowerCase(month.name()) + ".prefix");
+	}
+
+	/**
+	 * @param charge
+	 * @return
+	 */
+	public String getCategoryPrefix(String charge) {
+		return getString("categoryCards." + StringUtils.lowerCase(charge.toString()));
 	}
 
 }

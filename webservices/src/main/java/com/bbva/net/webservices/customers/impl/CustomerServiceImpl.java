@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 
 import com.bbva.czic.dto.net.AccMovementsResume;
 import com.bbva.czic.dto.net.CardCharge;
+import com.bbva.czic.dto.net.Customer;
 import com.bbva.net.webservices.core.pattern.AbstractBbvaRestService;
 import com.bbva.net.webservices.core.stereotype.RestService;
 import com.bbva.net.webservices.customers.CustomerService;
@@ -39,9 +40,14 @@ public class CustomerServiceImpl extends AbstractBbvaRestService implements Cust
 	public List<CardCharge> listCreditCardsCharges(String customerId, String filter) {
 		WebClient wc = getJsonWebClient(URL_BASE_CUSTOMER + customerId + URL_CARDCHARGES);
 		if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
-		System.out.println(URL_BASE_CUSTOMER + customerId + URL_CARDCHARGES + filter);
 		return (List<CardCharge>)wc.getCollection(CardCharge.class);
 
+	}
+
+	@Override
+	public Customer getCustomer(String customerId) {
+		WebClient wc = getJsonWebClient(URL_BASE_CUSTOMER + customerId);
+		return wc.get(Customer.class);
 	}
 
 }

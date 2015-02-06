@@ -11,7 +11,7 @@ public class ProductsServiceImpl extends AbstractBbvaRestService implements Prod
 
 	@Override
 	public Conditions getConditions(String productId) {
-		final Conditions conditions = restTemplate.getForObject(URL_BASE_PRODUCTS + productId + URL_PRODUCTS,
+		final Conditions conditions = getJsonWebClient(URL_BASE_PRODUCTS + productId + URL_PRODUCTS).get(
 				Conditions.class);
 		return conditions;
 	}

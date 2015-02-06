@@ -1,4 +1,4 @@
-package com.bbva.net.back.model.executive;
+package com.bbva.net.back.model.header;
 
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
