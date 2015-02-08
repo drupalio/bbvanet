@@ -14,10 +14,10 @@
 		
 
 	<context:spring-configured />
+	<context:annotation-config/>
+	<context:property-placeholder location="classpath*:*.properties" />
 	<context:component-scan base-package="com.bbva.net.webservices" />
-	<util:properties id="rest" location="classpath:rest.properties" />
-	
-	
+	<util:properties id="rest" location="classpath:rest.properties" />	
 	<bean id="requestInterceptor" class="com.bbva.net.front.core.cxf.RequestInterceptor" />
 	<bean id="responseInterceptor" class="com.bbva.net.front.core.cxf.ResponseInterceptor" />
 

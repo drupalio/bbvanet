@@ -10,9 +10,11 @@ import javax.faces.event.ComponentSystemEvent;
 import org.apache.commons.lang.StringUtils;
 import org.primefaces.event.SelectEvent;
 
+import com.bbva.net.back.facade.AccountMonthBalanceFacade;
 import com.bbva.net.back.facade.AccountMovementsResumeFacade;
 import com.bbva.net.back.facade.CardsFacade;
 import com.bbva.net.back.facade.GlobalPositionFacade;
+import com.bbva.net.back.model.accounts.GlobalMonthlyBalanceDto;
 import com.bbva.net.back.model.comboFilter.EnumPeriodType;
 import com.bbva.net.back.model.commons.DateRangeDto;
 import com.bbva.net.back.model.globalposition.BalanceDto;
@@ -22,10 +24,12 @@ import com.bbva.net.back.service.impl.DateFilterServiceImpl;
 import com.bbva.net.front.controller.GlobalPositionController;
 import com.bbva.net.front.core.AbstractBbvaController;
 import com.bbva.net.front.delegate.GraphicBarLineDelegate;
+import com.bbva.net.front.delegate.GraphicLineDelegate;
 import com.bbva.net.front.delegate.GraphicPieDelegate;
 import com.bbva.net.front.helper.MessagesHelper;
 import com.bbva.net.front.ui.globalposition.AccountBarLineUI;
 import com.bbva.net.front.ui.globalposition.SituationPiesUI;
+import com.bbva.net.front.ui.line.LineConfigUI;
 import com.bbva.net.front.ui.pie.PieConfigUI;
 
 /**
@@ -65,6 +69,12 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	/**
 	 * 
 	 */
+	@Resource(name = "accountMonthBalanceFacade")
+	private transient AccountMonthBalanceFacade accountMonthBalanceFacade;
+
+	/**
+	 * 
+	 */
 	@Resource(name = "graphicPieDelegate")
 	private transient GraphicPieDelegate graphicPieDelegate;
 
@@ -73,6 +83,12 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	 */
 	@Resource(name = "graphicBarLineDelegate")
 	private transient GraphicBarLineDelegate graphicBarLineDelegate;
+
+	/**
+	 * 
+	 */
+	@Resource(name = "graphicLineDelegate")
+	private transient GraphicLineDelegate graphicLineDelegate;
 
 	/**
 	 * 
@@ -104,6 +120,16 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	 * 
 	 */
 	private PieConfigUI graphicPieCards;
+
+	/**
+	 * 
+	 */
+	private GlobalMonthlyBalanceDto globalMonthlyBalance;
+
+	/**
+	 * 
+	 */
+	private LineConfigUI lineConfigUI;
 
 	/**
 	 * 
@@ -156,6 +182,13 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		// Obtiene la lista de resumen de movimientos del serivico REST
 		this.globalResumeMovementsDTO = this.movementsResumeFacade.getMovementsResumeByCustomer(getCurrentUser(), null);
 
+		// Obtiene la lista de datos para pintar la grafica Deposito electrónico
+		this.globalMonthlyBalance = this.accountMonthBalanceFacade.getAccountMonthlyBalance(DEFAULT_ACCOUNT, null,
+				StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY);
+
+		// Delegate construye UI grafica Depositos Electrónicos
+		// this.lineConfigUI = this.graphicLineDelegate.getMonthlyBalance(globalMonthlyBalance);
+
 		// Calculate situation graphics panels
 		this.situationGraphicPieUI = graphicPieDelegate.getSituationGlobalProducts(this.globalProductsDTO);
 
@@ -163,15 +196,13 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		this.graphicPieInvestmentFunds = graphicPieDelegate.getAccountsfundsProducts(globalProductsDTO);
 
 		// Calculate cards graphics panel
-
-		// this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(getCurrentUser(),
-		// null));
+		this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(getCurrentUser(),
+				null));
 
 		// Calculate totals
 		this.totalsProducts = this.globalPositionFacade.getTotalsByProduct(globalProductsDTO);
 
 		// Calculate income, output and balance by Account Graphic
-		// Acualmente obtiene el objeto Ui quemado en el delegate
 		this.accountGraphicBarLineUI = this.graphicBarLineDelegate.getInOutBalanceAccount(globalResumeMovementsDTO);
 
 		// Get names of products
@@ -317,11 +348,12 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		}
 		DateRangeDto dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
 
-		if (MessagesHelper.INSTANCE.getString("text.allCards").equals(cardSelected)) {
+		if (MessagesHelper.INSTANCE.getString("text.allCards").equals(cardSelected) || cardSelected.isEmpty()) {
+			cardSelected = MessagesHelper.INSTANCE.getString("text.allCards");
 			this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(
 					getCurrentUser(), dateRange));
 		} else {
-			System.out.println("cards ");
+
 			this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesFilter(cardSelected,
 					dateRange));
 		}
@@ -379,6 +411,13 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	 */
 	public void setGraphicBarLineDelegate(final GraphicBarLineDelegate graphicBarLineDelegate) {
 		this.graphicBarLineDelegate = graphicBarLineDelegate;
+	}
+
+	/**
+	 * @param graphicLineDelegate
+	 */
+	public void setGraphicLineDelegate(final GraphicLineDelegate graphicLineDelegate) {
+		this.graphicLineDelegate = graphicLineDelegate;
 	}
 
 	/**
@@ -471,6 +510,21 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	 */
 	public void setAccountSelected(final String accountSelected) {
 		this.accountSelected = accountSelected;
+	}
+
+	/**
+	 * @param accountMonthBalanceFacade
+	 */
+	public void setAccountMonthBalanceFacade(final AccountMonthBalanceFacade accountMonthBalanceFacade) {
+		this.accountMonthBalanceFacade = accountMonthBalanceFacade;
+	}
+
+	public GlobalMonthlyBalanceDto getGlobalMonthlyBalance() {
+		return globalMonthlyBalance;
+	}
+
+	public LineConfigUI getLineConfigUI() {
+		return lineConfigUI;
 	}
 
 }

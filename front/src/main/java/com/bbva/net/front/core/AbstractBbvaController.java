@@ -10,23 +10,24 @@ import javax.faces.event.ComponentSystemEvent;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.logging.Log;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.faces.webflow.FlowFacesContext;
 import org.springframework.webflow.engine.RequestControlContext;
 import org.springframework.webflow.execution.Event;
 import org.springframework.webflow.execution.RequestContextHolder;
 
+import com.bbva.jee.arq.spring.core.log.I18nLogFactory;
 import com.bbva.net.back.model.globalposition.ProductDto;
+import com.bbva.net.webservices.core.pattern.AbstractBbvaRestService;
 
 /**
  * @author Entelgy
  */
 public abstract class AbstractBbvaController implements Serializable {
 
-	protected static final Logger LOGGER = LoggerFactory.getLogger(AbstractBbvaController.class);
+	protected static final Log LOGGER = I18nLogFactory.getLog(AbstractBbvaRestService.class);
 
 	private static final long serialVersionUID = -4820146844257478597L;
 
@@ -36,7 +37,7 @@ public abstract class AbstractBbvaController implements Serializable {
 
 	protected enum SessionParamenterType {
 
-		SELECTED_PRODUCT, TSEC
+		SELECTED_PRODUCT, AUTHENTICATION_STATE
 	}
 
 	/**
@@ -69,10 +70,19 @@ public abstract class AbstractBbvaController implements Serializable {
 	 */
 	protected String getRequestParameter(final String parameter) {
 
+		final HttpServletRequest request = this.getRequest();
+		return request.getParameter(parameter);
+	}
+
+	/**
+	 * @return HttpServletRequest
+	 */
+	protected HttpServletRequest getRequest() {
+
 		final HttpServletRequest request = (HttpServletRequest)FlowFacesContext.getCurrentInstance()
 				.getExternalContext().getRequest();
 
-		return request.getParameter(parameter);
+		return request;
 	}
 
 	/**
@@ -116,10 +126,17 @@ public abstract class AbstractBbvaController implements Serializable {
 	}
 
 	/**
+	 * @param defaultUser
+	 */
+	public void setDefaultUser(String defaultUser) {
+		DEFAULT_USER = defaultUser;
+	}
+
+	/**
 	 * @return
 	 */
 	protected String getCurrentUser() {
-		return DEFAULT_USER;
+		return "00816641";
 	}
 
 	/**

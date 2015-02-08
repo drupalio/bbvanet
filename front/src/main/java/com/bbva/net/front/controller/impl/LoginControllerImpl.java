@@ -3,11 +3,13 @@ package com.bbva.net.front.controller.impl;
 import javax.annotation.Resource;
 import javax.faces.context.FacesContext;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.faces.webflow.FlowFacesContext;
 
 import com.bbva.net.back.facade.LoginFacade;
 import com.bbva.net.front.controller.LoginController;
 import com.bbva.net.front.core.AbstractBbvaController;
+import com.bbva.saz.co.grantingticket.v01.AuthenticationState;
 
 public class LoginControllerImpl extends AbstractBbvaController implements LoginController {
 
@@ -16,22 +18,34 @@ public class LoginControllerImpl extends AbstractBbvaController implements Login
 	@Resource(name = "loginFacade")
 	private LoginFacade loginFacade;
 
+	@Value("${granting.ivTicketId}")
+	private String IV_TICKET_SERVICE;
+
 	@Override
 	public void login() {
 
+		LOGGER.info("LOGIN BBVA NET .................");
 		// 1 Create Session;
 		final FacesContext facesContext = FlowFacesContext.getCurrentInstance();
 		facesContext.getExternalContext().getSession(true);
 
-		// 2. Invocar al GrantingTicket y recuperar tsec
-		final String tsec = this.loginFacade.login(getRequestParameter("usuario"), getRequestParameter("password2"),
-				getRequestParameter("NumeroId"), getRequestParameter("TipoId"));
+		LOGGER.info("Leyendo de cabecera ... " + IV_TICKET_SERVICE);
+		// 2. Get iv_ticketService from header
+		final String ivTicketValue = getRequest().getHeader("iv_ticketService");
 
-		// 3. Almacenar tsec en la session
-		this.getSession().setAttribute(SessionParamenterType.TSEC.name(), tsec);
+		// 3. Set CurrentUser
+		final String user = getRequestParameter("usuario");
+		this.setDefaultUser(user);
 
-		// 3. Redirigir a Posición global
-		// this.initFlow("globalPosition");
+		LOGGER.info("Login with User: " + user);
+		LOGGER.info("iv_ticketService: " + ivTicketValue);
+
+		// 4. Invocar al GrantingTicket y almacenar AuthenticationState
+		final AuthenticationState authenticationState = this.loginFacade.login(ivTicketValue, user,
+				getRequestParameter("password2"), getRequestParameter("NumeroId"), getRequestParameter("TipoId"));
+
+		// 5. Put in Session
+		this.getSession().setAttribute(SessionParamenterType.AUTHENTICATION_STATE.name(), authenticationState);
 
 	}
 }
