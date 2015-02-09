@@ -2672,7 +2672,7 @@ pre code {
 
 	/* line 35, ../../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/mixins/_grid-framework.scss */
 	.col-md-3 {
-		width: 25% !important;
+		width: 25%;
 	}
 
 	/* line 35, ../../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/mixins/_grid-framework.scss */
@@ -13579,7 +13579,7 @@ header .utility-icons a {
 		.banner-select footer.body-footer .footer-menu>.form-group .col-md-3,
 		footer.body-footer .footer-menu>.button-table .col-md-3 {
 		padding: 0 !important;
-		background: #999999 !important;
+		background: #999999
 	}
 	/* line 132, ../../../assets/scss/partials/layout/_footer.scss */
 	footer.body-footer .footer-menu .menu-trigger {
