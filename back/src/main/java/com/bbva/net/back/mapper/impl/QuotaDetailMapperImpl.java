@@ -1,12 +1,19 @@
 package com.bbva.net.back.mapper.impl;
 
+import java.util.Date;
+import java.util.List;
+
+import com.bbva.czic.dto.net.Balance;
 import com.bbva.czic.dto.net.Loan;
+import com.bbva.czic.dto.net.Movement;
 import com.bbva.czic.dto.net.RotaryQuotaMove;
 import com.bbva.net.back.mapper.converter.DateToStringConverter;
 import com.bbva.net.back.core.stereotype.Mapper;
 import com.bbva.net.back.mapper.QuotaDetailMapper;
 import com.bbva.net.back.mapper.converter.MoneyConverter;
+import com.bbva.net.back.model.commons.Money;
 import com.bbva.net.back.model.movements.MovementDetailDto;
+import com.bbva.net.back.model.movements.MovementDto;
 import com.bbva.net.back.model.quota.QuotaDetailDto;
 
 import ma.glasnost.orika.MapperFactory;
@@ -40,6 +47,11 @@ public class QuotaDetailMapperImpl extends ConfigurableMapper implements QuotaDe
 				.field("balance.availableBalance", "valueslope").field("numbersOfQuota", "numbersOfQuota")
 				.field("remainingQuotas", "remainingQuotas").byDefault().register();
 
+		factory.classMap(Movement.class, MovementDto.class).field("id", "movementId")
+				.field("concept", "movementConcept").field("transactionDate", "movementDate")
+				.field("balance", "totalBalance").field("value", "movementValue").field("status", "status").byDefault()
+				.register();
+
 	}
 
 	@Override
@@ -52,5 +64,12 @@ public class QuotaDetailMapperImpl extends ConfigurableMapper implements QuotaDe
 	public MovementDetailDto mapQuotaMove(final RotaryQuotaMove rotaryQuotaMove) {
 		final MovementDetailDto quotaMoveDetailDto = map(rotaryQuotaMove, MovementDetailDto.class);
 		return quotaMoveDetailDto;
+
+	}
+
+	@Override
+	public List<MovementDto> listRotaryQuotaMovements(final List<Movement> movement) {
+		final List<MovementDto> quotaMovementsDto = mapAsList(movement, MovementDto.class);
+		return quotaMovementsDto;
 	}
 }

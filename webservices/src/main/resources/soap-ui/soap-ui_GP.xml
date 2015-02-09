@@ -7146,7 +7146,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		"amount": 1577796455,
 		"currency": "COP"
 	}
-}]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/loan/V01/rotaryQuota/00130443000200009410/movement/" method="GET" resourcePath="/czic/loan/V01/rotaryQuota/00130443000200009410/movement/"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+}]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/loan/V01/rotaryQuota/00130443000200009410/movement/" method="GET" resourcePath="/czic/loan/V01/rotaryQuota/00130443000200009410/movement/"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Examples showing how to match based on path, query param and header
 // Match based on path
 def requestPath = mockRequest.getPath()

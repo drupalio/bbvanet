@@ -144,5 +144,4 @@ public class FiqlServiceImpl implements FiqlService {
 				.lexicalNotAfter(formatMonth(dateRange.getDateTo())).query();
 
 	}
-
 }

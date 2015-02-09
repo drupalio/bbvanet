@@ -28,6 +28,8 @@ public class MovementDto implements Dto {
 
 	private Money totalBalance;
 
+	private String status;
+
 	/** instance detail movement Account */
 
 	private MovementDetailDto movementDetailDTO;
@@ -102,6 +104,14 @@ public class MovementDto implements Dto {
 		this.totalBalance = totalBalance;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	/**
 	 * @return the movementDetailDTO
 	 */
@@ -125,6 +135,7 @@ public class MovementDto implements Dto {
 		hashCodeBuielder.append(getMovementDate()).toHashCode();
 		hashCodeBuielder.append(getMovementValue()).toHashCode();
 		hashCodeBuielder.append(getTotalBalance()).toHashCode();
+		hashCodeBuielder.append(getStatus()).hashCode();
 		return hashCodeBuielder.hashCode();
 	}
 
@@ -135,6 +146,7 @@ public class MovementDto implements Dto {
 				&& this.getMovementConcept().equals(((MovementDto)obj).getMovementConcept())
 				&& this.getMovementDate().equals(((MovementDto)obj).getMovementDate())
 				&& this.getMovementValue().equals(((MovementDto)obj).getMovementValue())
+				&& this.getStatus().equals(((MovementDto)obj).getStatus())
 				&& this.getTotalBalance() == (((MovementDto)obj).getTotalBalance());
 	}
 
@@ -146,6 +158,7 @@ public class MovementDto implements Dto {
 		toStringBuilder.append("value", getMovementValue()).toString();
 		toStringBuilder.append("money", getTotalBalance());
 		toStringBuilder.append("id", getMovementId());
+		toStringBuilder.append("status", getStatus());
 		return toStringBuilder.toString();
 	}
 
