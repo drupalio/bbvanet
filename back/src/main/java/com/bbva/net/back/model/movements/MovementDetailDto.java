@@ -19,6 +19,8 @@ public class MovementDetailDto implements Dto {
 
 	// Movement Account
 
+	private Date operationDate;
+
 	private Date operationHour;
 
 	private String operationCode;
@@ -34,8 +36,6 @@ public class MovementDetailDto implements Dto {
 	private String state;
 
 	// Shared
-
-	private Date operationDate;
 
 	private Money value;
 

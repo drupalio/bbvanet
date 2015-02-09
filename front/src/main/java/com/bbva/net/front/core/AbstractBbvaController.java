@@ -20,6 +20,7 @@ import org.springframework.webflow.execution.Event;
 import org.springframework.webflow.execution.RequestContextHolder;
 
 import com.bbva.net.back.model.globalposition.ProductDto;
+import com.bbva.net.back.model.movements.MovementDto;
 import com.bbva.net.webservices.core.pattern.AbstractBbvaRestService;
 
 /**
@@ -37,7 +38,7 @@ public abstract class AbstractBbvaController implements Serializable {
 
 	protected enum SessionParamenterType {
 
-		SELECTED_PRODUCT, TSEC
+		SELECTED_PRODUCT, SELECTED_MOVEMENT, TSEC
 	}
 
 	/**
@@ -151,6 +152,29 @@ public abstract class AbstractBbvaController implements Serializable {
 	 */
 	public void onProductSelected(final SelectEvent selectEvent) {
 		this.setSelectedProduct((ProductDto)selectEvent.getObject());
+		System.out.print("ON productSelected\n");
+	}
+	
+	
+	/**
+	 * @return
+	 */
+	public MovementDto getSelectedMovements() {		
+		return (MovementDto)getSession().getAttribute(SessionParamenterType.SELECTED_MOVEMENT.name());
+	}
+
+	/**
+	 * @param selectedProduct
+	 */
+	public void setSelectedMovements(final MovementDto selectedProduct) {
+		getSession().setAttribute(SessionParamenterType.SELECTED_MOVEMENT.name(), selectedProduct);
+	}
+	
+	/**
+	 * @param selectEvent
+	 */
+	public void onMovementSelected(final SelectEvent selectEvent) {
+		this.setSelectedMovements((MovementDto)selectEvent.getObject());
 		System.out.print("ON productSelected\n");
 	}
 }

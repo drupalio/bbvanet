@@ -22,6 +22,12 @@
 			<set name="flowScope.menuActive" value="'ACCOUNTS'" />
 			<evaluate expression="new java.lang.String()"/>
 		</on-entry>
+		<transition to="detailMovement" on="movementSelected"></transition>
+	</view-state>
+	
+		<view-state id="detailMovement" view="externalRedirect:movements">
 	</view-state>
 	
 </flow>
+
+

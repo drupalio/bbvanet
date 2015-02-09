@@ -30,7 +30,49 @@ public class MovementDto implements Dto {
 
 	/** instance detail movement Account */
 
-	private MovementDetailDto movementDetailDTO;
+	private MovementDetailDto movementDetailDto;
+
+	/** data general the loans */
+
+	private String quotaNumber;
+
+	private Money quotaNextValue;
+
+	private Money slopeValue;
+
+	private Date dateConsignment;
+
+	public MovementDto() {
+
+	}
+
+	/**
+	 * @param movementId
+	 * @param movementDate
+	 * @param movementConcept
+	 * @param movementValue
+	 * @param totalBalance
+	 * @param movementDetailDto
+	 * @param quotaNumber
+	 * @param quotaNextValue
+	 * @param slopeValue
+	 * @param dateConsignment
+	 */
+	public MovementDto(String movementId, Date movementDate, String movementConcept, Money movementValue,
+			Money totalBalance, MovementDetailDto movementDetailDto, String quotaNumber, Money quotaNextValue,
+			Money slopeValue, Date dateConsignment) {
+		super();
+		this.movementId = movementId;
+		this.movementDate = movementDate;
+		this.movementConcept = movementConcept;
+		this.movementValue = movementValue;
+		this.totalBalance = totalBalance;
+		this.movementDetailDto = movementDetailDto;
+		this.quotaNumber = quotaNumber;
+		this.quotaNextValue = quotaNextValue;
+		this.slopeValue = slopeValue;
+		this.dateConsignment = dateConsignment;
+	}
 
 	/**
 	 * @return the movementId
@@ -103,39 +145,90 @@ public class MovementDto implements Dto {
 	}
 
 	/**
-	 * @return the movementDetailDTO
+	 * @return the movementDetailDto
 	 */
-	public MovementDetailDto getMovementDetailDTO() {
-		return movementDetailDTO;
+	public MovementDetailDto getMovementDetailDto() {
+		return movementDetailDto;
 	}
 
 	/**
-	 * @param movementDetailDTO the movementDetailDTO to set
+	 * @param movementDetailDto the movementDetailDto to set
 	 */
-	public void setMovementDetailDTO(MovementDetailDto movementDetailDTO) {
-		this.movementDetailDTO = movementDetailDTO;
+	public void setMovementDetailDto(MovementDetailDto movementDetailDto) {
+		this.movementDetailDto = movementDetailDto;
+	}
+
+	/**
+	 * @return the quotaNumber
+	 */
+	public String getQuotaNumber() {
+		return quotaNumber;
+	}
+
+	/**
+	 * @param quotaNumber the quotaNumber to set
+	 */
+	public void setQuotaNumber(String quotaNumber) {
+		this.quotaNumber = quotaNumber;
+	}
+
+	/**
+	 * @return the quotaNextValue
+	 */
+	public Money getQuotaNextValue() {
+		return quotaNextValue;
+	}
+
+	/**
+	 * @param quotaNextValue the quotaNextValue to set
+	 */
+	public void setQuotaNextValue(Money quotaNextValue) {
+		this.quotaNextValue = quotaNextValue;
+	}
+
+	/**
+	 * @return the slopeValue
+	 */
+	public Money getSlopeValue() {
+		return slopeValue;
+	}
+
+	/**
+	 * @param slopeValue the slopeValue to set
+	 */
+	public void setSlopeValue(Money slopeValue) {
+		this.slopeValue = slopeValue;
+	}
+
+	/**
+	 * @return the dateConsignment
+	 */
+	public Date getDateConsignment() {
+		return dateConsignment;
+	}
+
+	/**
+	 * @param dateConsignment the dateConsignment to set
+	 */
+	public void setDateConsignment(Date dateConsignment) {
+		this.dateConsignment = dateConsignment;
 	}
 
 	@Override
 	public int hashCode() {
+		return new HashCodeBuilder().append(getQuotaNumber()).append(getQuotaNextValue()).append(getSlopeValue())
+				.append(getDateConsignment()).toHashCode();
 
-		HashCodeBuilder hashCodeBuielder = new HashCodeBuilder();
-		hashCodeBuielder.append(getMovementId()).toHashCode();
-		hashCodeBuielder.append(getMovementConcept()).toHashCode();
-		hashCodeBuielder.append(getMovementDate()).toHashCode();
-		hashCodeBuielder.append(getMovementValue()).toHashCode();
-		hashCodeBuielder.append(getTotalBalance()).toHashCode();
-		return hashCodeBuielder.hashCode();
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 
-		return (obj instanceof MovementDto) && this.getMovementId().equals(((MovementDto)obj).getMovementId())
-				&& this.getMovementConcept().equals(((MovementDto)obj).getMovementConcept())
-				&& this.getMovementDate().equals(((MovementDto)obj).getMovementDate())
-				&& this.getMovementValue().equals(((MovementDto)obj).getMovementValue())
-				&& this.getTotalBalance() == (((MovementDto)obj).getTotalBalance());
+		return (obj instanceof MovementDto) && this.getMovementId().equals(((MovementDto)obj).getMovementId());
+		// && this.getQuotaNextValue().equals(((MovementDto)obj).getQuotaNextValue())
+		// && this.getSlopeValue().equals(((MovementDto)obj).getSlopeValue())
+		// && this.getDateConsignment().equals(((MovementDto)obj).getDateConsignment());
+
 	}
 
 	@Override
