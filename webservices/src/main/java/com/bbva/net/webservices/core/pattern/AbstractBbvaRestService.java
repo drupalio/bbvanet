@@ -37,8 +37,11 @@ public abstract class AbstractBbvaRestService {
 	@Value("${rest.base.customer.url}")
 	protected String URL_BASE_CUSTOMER;
 
-	@Value("${rest.rotaryQuota.base}")
+	@Value("${rest.rotaryQuota.base.url}")
 	protected String URL_BASE_ROTARYQUOTA;
+
+	@Value("${rest.rotaryQuota.move.url}")
+	protected String URL_ROTARYQUOTA_MOVE;
 
 	@Value("${rest.base.executive.url}")
 	protected String URL_BASE_EXECUTIVE;
@@ -66,6 +69,9 @@ public abstract class AbstractBbvaRestService {
 
 	@Value("${rest.granting.url}")
 	protected String URL_GRANTING;
+
+	@Value("${rest.movements.url}")
+	protected String URL_MOVEMENTS;
 
 	/**
 	 * @param response
@@ -131,6 +137,13 @@ public abstract class AbstractBbvaRestService {
 	 */
 	public void setFactoryBean(JAXRSClientFactoryBean factoryBean) {
 		this.factoryBean = factoryBean;
+	}
+
+	/**
+	 * @param URL
+	 */
+	public void setURL_BASE(String URL) {
+		this.URL_BASE = URL;
 	}
 
 }

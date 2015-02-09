@@ -6,7 +6,7 @@ import ma.glasnost.orika.impl.ConfigurableMapper;
 import com.bbva.czic.dto.net.Executive;
 import com.bbva.net.back.core.stereotype.Mapper;
 import com.bbva.net.back.mapper.ExecutiveMapper;
-import com.bbva.net.back.model.executive.ExecutiveDto;
+import com.bbva.net.back.model.header.ExecutiveDto;
 
 @Mapper(value = "executiveMapper")
 public class ExecutiveMapperImpl extends ConfigurableMapper implements ExecutiveMapper {

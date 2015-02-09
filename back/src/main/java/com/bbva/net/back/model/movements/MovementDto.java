@@ -18,14 +18,11 @@ public class MovementDto implements Dto {
 	private static final long serialVersionUID = -1141791691031997221L;
 
 	/** data general the movement Account */
-
-	private String movementID;
+	private String movementId;
 
 	private Date movementDate;
 
 	private String movementConcept;
-
-	private String movementType;
 
 	private Money movementValue;
 
@@ -35,30 +32,18 @@ public class MovementDto implements Dto {
 
 	private MovementDetailDto movementDetailDTO;
 
-	private MovementDetailOperationDto movementDetailOperationDTO;
-
-	/** data general the loans */
-
-	private String quotaNumber;
-
-	private Money quotaNextValue;
-
-	private Money slopeValue;
-
-	private Date dateConsignment;
-
 	/**
-	 * @return the movementID
+	 * @return the movementId
 	 */
-	public String getMovementID() {
-		return movementID;
+	public String getMovementId() {
+		return movementId;
 	}
 
 	/**
-	 * @param movementID the movementID to set
+	 * @param movementId the movementId to set
 	 */
-	public void setMovementID(String movementID) {
-		this.movementID = movementID;
+	public void setMovementId(String movementId) {
+		this.movementId = movementId;
 	}
 
 	/**
@@ -87,20 +72,6 @@ public class MovementDto implements Dto {
 	 */
 	public void setMovementConcept(String movementConcept) {
 		this.movementConcept = movementConcept;
-	}
-
-	/**
-	 * @return the movementType
-	 */
-	public String getMovementType() {
-		return movementType;
-	}
-
-	/**
-	 * @param movementType the movementType to set
-	 */
-	public void setMovementType(String movementType) {
-		this.movementType = movementType;
 	}
 
 	/**
@@ -134,107 +105,48 @@ public class MovementDto implements Dto {
 	/**
 	 * @return the movementDetailDTO
 	 */
-	public MovementDetailDto getMovementDetailDto() {
+	public MovementDetailDto getMovementDetailDTO() {
 		return movementDetailDTO;
 	}
 
 	/**
 	 * @param movementDetailDTO the movementDetailDTO to set
 	 */
-	public void setMovementDetailDto(MovementDetailDto movementDetailDTO) {
+	public void setMovementDetailDTO(MovementDetailDto movementDetailDTO) {
 		this.movementDetailDTO = movementDetailDTO;
-	}
-
-	/**
-	 * @return the movementDetailOperationDTO
-	 */
-	public MovementDetailOperationDto getMovementDetailOperationDto() {
-		return movementDetailOperationDTO;
-	}
-
-	/**
-	 * @param movementDetailOperationDTO the movementDetailOperationDTO to set
-	 */
-	public void setMovementDetailOperationDto(MovementDetailOperationDto movementDetailOperationDTO) {
-		this.movementDetailOperationDTO = movementDetailOperationDTO;
-	}
-
-	/**
-	 * @return the quotaNumber
-	 */
-	public String getQuotaNumber() {
-		return quotaNumber;
-	}
-
-	/**
-	 * @param quotaNumber the quotaNumber to set
-	 */
-	public void setQuotaNumber(String quotaNumber) {
-		this.quotaNumber = quotaNumber;
-	}
-
-	/**
-	 * @return the quotaNextValue
-	 */
-	public Money getQuotaNextValue() {
-		return quotaNextValue;
-	}
-
-	/**
-	 * @param quotaNextValue the quotaNextValue to set
-	 */
-	public void setQuotaNextValue(Money quotaNextValue) {
-		this.quotaNextValue = quotaNextValue;
-	}
-
-	/**
-	 * @return the slopeValue
-	 */
-	public Money getSlopeValue() {
-		return slopeValue;
-	}
-
-	/**
-	 * @param slopeValue the slopeValue to set
-	 */
-	public void setSlopeValue(Money slopeValue) {
-		this.slopeValue = slopeValue;
-	}
-
-	/**
-	 * @return the dateConsignment
-	 */
-	public Date getDateConsignment() {
-		return dateConsignment;
-	}
-
-	/**
-	 * @param dateConsignment the dateConsignment to set
-	 */
-	public void setDateConsignment(Date dateConsignment) {
-		this.dateConsignment = dateConsignment;
 	}
 
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder().append(getMovementID()).append(getQuotaNumber()).append(getQuotaNextValue())
-				.append(getSlopeValue()).append(getDateConsignment()).toHashCode();
+
+		HashCodeBuilder hashCodeBuielder = new HashCodeBuilder();
+		hashCodeBuielder.append(getMovementId()).toHashCode();
+		hashCodeBuielder.append(getMovementConcept()).toHashCode();
+		hashCodeBuielder.append(getMovementDate()).toHashCode();
+		hashCodeBuielder.append(getMovementValue()).toHashCode();
+		hashCodeBuielder.append(getTotalBalance()).toHashCode();
+		return hashCodeBuielder.hashCode();
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 
-		return (obj instanceof MovementDto) && this.getMovementID().equals(((MovementDto)obj).getMovementID())
-				&& this.getQuotaNumber().equals(((MovementDto)obj).getQuotaNumber())
-				&& this.getQuotaNextValue().equals(((MovementDto)obj).getQuotaNextValue())
-				&& this.getSlopeValue().equals(((MovementDto)obj).getSlopeValue())
-				&& this.getDateConsignment().equals(((MovementDto)obj).getDateConsignment());
+		return (obj instanceof MovementDto) && this.getMovementId().equals(((MovementDto)obj).getMovementId())
+				&& this.getMovementConcept().equals(((MovementDto)obj).getMovementConcept())
+				&& this.getMovementDate().equals(((MovementDto)obj).getMovementDate())
+				&& this.getMovementValue().equals(((MovementDto)obj).getMovementValue())
+				&& this.getTotalBalance() == (((MovementDto)obj).getTotalBalance());
 	}
 
 	@Override
 	public String toString() {
-		return new ToStringBuilder(this).append("movementID", getMovementID()).append("quotaNumber", getQuotaNumber())
-				.append("quotaNextValue", getQuotaNextValue()).append("slopeValue", getSlopeValue())
-				.append("dateConsignment", getDateConsignment()).toString();
+		ToStringBuilder toStringBuilder = new ToStringBuilder(this);
+		toStringBuilder.append("concept", getMovementConcept()).toString();
+		toStringBuilder.append("Date", getMovementDate()).toString();
+		toStringBuilder.append("value", getMovementValue()).toString();
+		toStringBuilder.append("money", getTotalBalance());
+		toStringBuilder.append("id", getMovementId());
+		return toStringBuilder.toString();
 	}
+
 }

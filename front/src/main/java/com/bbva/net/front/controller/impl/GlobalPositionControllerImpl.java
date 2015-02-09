@@ -10,10 +10,10 @@ import javax.faces.event.ComponentSystemEvent;
 import org.apache.commons.lang.StringUtils;
 import org.primefaces.event.SelectEvent;
 
-import com.bbva.net.back.facade.AccountMonthBalanceFacade;
 import com.bbva.net.back.facade.AccountMovementsResumeFacade;
 import com.bbva.net.back.facade.CardsFacade;
 import com.bbva.net.back.facade.GlobalPositionFacade;
+import com.bbva.net.back.facade.MonthBalanceFacade;
 import com.bbva.net.back.model.accounts.GlobalMonthlyBalanceDto;
 import com.bbva.net.back.model.comboFilter.EnumPeriodType;
 import com.bbva.net.back.model.commons.DateRangeDto;
@@ -69,8 +69,8 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	/**
 	 * 
 	 */
-	@Resource(name = "accountMonthBalanceFacade")
-	private transient AccountMonthBalanceFacade accountMonthBalanceFacade;
+	@Resource(name = "monthBalanceFacade")
+	private transient MonthBalanceFacade accountMonthBalanceFacade;
 
 	/**
 	 * 
@@ -174,6 +174,9 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	@PostConstruct
 	public void init() {
 
+		Long a = null;
+		a.longValue();
+
 		LOGGER.info("STARTING BBVA NET .................");
 
 		// Get GlobalProductsDTO by currentUser (visibles and hidden)
@@ -183,11 +186,11 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		this.globalResumeMovementsDTO = this.movementsResumeFacade.getMovementsResumeByCustomer(getCurrentUser(), null);
 
 		// Obtiene la lista de datos para pintar la grafica Deposito electrónico
-		this.globalMonthlyBalance = this.accountMonthBalanceFacade.getAccountMonthlyBalance(DEFAULT_ACCOUNT, null,
-				StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY);
+		this.globalMonthlyBalance = this.accountMonthBalanceFacade.getAccountMonthlyBalance(DEFAULT_ACCOUNT,
+				new DateRangeDto(), StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY);
 
 		// Delegate construye UI grafica Depositos Electrónicos
-		// this.lineConfigUI = this.graphicLineDelegate.getMonthlyBalance(globalMonthlyBalance);
+		this.lineConfigUI = this.graphicLineDelegate.getMonthlyBalance(globalMonthlyBalance);
 
 		// Calculate situation graphics panels
 		this.situationGraphicPieUI = graphicPieDelegate.getSituationGlobalProducts(this.globalProductsDTO);
@@ -333,6 +336,12 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		super.onProductSelected(selectEvent);
 		this.sendAction("accountSelected");
 
+	}
+
+	@Override
+	public void onProductLoanSelected(final SelectEvent selectEvent) {
+		super.onProductSelected(selectEvent);
+		this.sendAction("loanSelected");
 	}
 
 	/**
@@ -515,7 +524,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	/**
 	 * @param accountMonthBalanceFacade
 	 */
-	public void setAccountMonthBalanceFacade(final AccountMonthBalanceFacade accountMonthBalanceFacade) {
+	public void setAccountMonthBalanceFacade(final MonthBalanceFacade accountMonthBalanceFacade) {
 		this.accountMonthBalanceFacade = accountMonthBalanceFacade;
 	}
 

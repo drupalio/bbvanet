@@ -3,9 +3,10 @@ package com.bbva.net.back.model.globalposition;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
+import com.bbva.net.back.core.pattern.dto.Dto;
 import com.bbva.net.back.model.commons.Money;
 
-public class AccountDto extends ProductDto {
+public class AccountDto extends ProductDto implements Dto{
 
 	private final static long serialVersionUID = 1L;
 

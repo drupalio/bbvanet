@@ -18,7 +18,7 @@ import org.slf4j.LoggerFactory;
 public class BbvaExceptionHandler extends ExceptionHandlerWrapper {
 
 	protected static final Logger LOGGER = LoggerFactory.getLogger(BbvaExceptionHandler.class);
-	
+
 	private final ExceptionHandler wrapped;
 
 	public BbvaExceptionHandler(ExceptionHandler wrapped) {
@@ -28,25 +28,23 @@ public class BbvaExceptionHandler extends ExceptionHandlerWrapper {
 	@Override
 	public ExceptionHandler getWrapped() {
 		return this.wrapped;
-
 	}
 
+	@Override
 	public void handle() throws FacesException {
-		
-		final Iterator<ExceptionQueuedEvent> i = getUnhandledExceptionQueuedEvents()
-				.iterator();
+
+		final Iterator<ExceptionQueuedEvent> i = getUnhandledExceptionQueuedEvents().iterator();
 
 		while (i.hasNext()) {
 			ExceptionQueuedEvent event = i.next();
-			ExceptionQueuedEventContext context = (ExceptionQueuedEventContext) event
-					.getSource();
+			ExceptionQueuedEventContext context = (ExceptionQueuedEventContext)event.getSource();
 			// get the exception from context
 			Throwable t = context.getException();
 			final FacesContext fc = FacesContext.getCurrentInstance();
 			final ExternalContext externalContext = fc.getExternalContext();
 			final Map<String, Object> requestMap = fc.getExternalContext().getRequestMap();
-			final ConfigurableNavigationHandler nav = 
-					(ConfigurableNavigationHandler) fc.getApplication().getNavigationHandler();
+			final ConfigurableNavigationHandler nav = (ConfigurableNavigationHandler)fc.getApplication()
+					.getNavigationHandler();
 			// here you do what ever you want with exception
 			try {
 				// log error ?
@@ -68,4 +66,8 @@ public class BbvaExceptionHandler extends ExceptionHandlerWrapper {
 		getWrapped().handle();
 	}
 
+	protected String handleUnexpected(FacesContext facesContext, final Throwable t) {
+
+		return "jsftoolkit.exception.UncheckedException";
+	}
 }

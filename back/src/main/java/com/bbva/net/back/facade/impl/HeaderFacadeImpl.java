@@ -2,13 +2,17 @@ package com.bbva.net.back.facade.impl;
 
 import javax.annotation.Resource;
 
+import com.bbva.czic.dto.net.Customer;
 import com.bbva.czic.dto.net.Executive;
 import com.bbva.net.back.core.pattern.facade.AbstractBbvaFacade;
 import com.bbva.net.back.core.stereotype.Facade;
 import com.bbva.net.back.facade.HeaderFacade;
+import com.bbva.net.back.mapper.CustomerMapper;
 import com.bbva.net.back.mapper.ExecutiveMapper;
-import com.bbva.net.back.model.executive.ExecutiveDto;
+import com.bbva.net.back.model.header.CustomerDto;
+import com.bbva.net.back.model.header.ExecutiveDto;
 import com.bbva.net.back.service.FiqlService;
+import com.bbva.net.webservices.customers.CustomerService;
 import com.bbva.net.webservices.executives.ExecutiveService;
 
 @Facade(value = "headerFacade")
@@ -22,8 +26,14 @@ public class HeaderFacadeImpl extends AbstractBbvaFacade implements HeaderFacade
 	@Resource(name = "executiveService")
 	private ExecutiveService executiveService;
 
+	@Resource(name = "customerService")
+	private CustomerService customerService;
+
 	@Resource(name = "executiveMapper")
 	private ExecutiveMapper mapper;
+
+	@Resource(name = "customerMapper")
+	private CustomerMapper mapperCustomer;
 
 	@Resource(name = "fiqlService")
 	private FiqlService fiqlService;
@@ -40,4 +50,9 @@ public class HeaderFacadeImpl extends AbstractBbvaFacade implements HeaderFacade
 		this.executiveService = executiveService;
 	}
 
+	@Override
+	public CustomerDto getCustomer(String user) {
+		final Customer customer = this.customerService.getCustomer(user);
+		return mapperCustomer.map(customer);
+	}
 }

@@ -39,20 +39,15 @@ function checkFilled(btnW, inputId) {
 
 }
 
-// no sirve .... // metodo que hacia los cambios de vista
-// del registro de correos de adquiriencia
+// metodo que abre y cierra el div de detalle de movimiento
+// function divMovement() {
+//
+// var styles = document.getElementById("rowExpansion").style.display;
+//
+// if (styles == 'none')
+// document.getElementById("rowExpansion").style.display = "block";
+// else
+// document.getElementById("rowExpansion").style.display = "none";
+// }
 
-function checkAdd(btnAdd, btnUp, divId, label, inputOri, inputNew) {
-	var button = document.getElementsByName(btnAdd.name)[0].id;
-	var valor = inputOri.value;
-	if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3,4})+$/.test(inputOri)) {
-		alert("La dirección de email " + valor + " es correcta.");
-		document.getElementById(button).disabled = true;
-		document.getElementById(divId).style.visibility = "visible";
-		document.getElementById(btnUp).style.visibility = "visible";
-		document.getElementById(inputNew).value = valor;
-	} else {
-		alert("La dirección de email es incorrecta.");
-		document.getElementById(label).style.visibility = "visible";
-	}
-}
+

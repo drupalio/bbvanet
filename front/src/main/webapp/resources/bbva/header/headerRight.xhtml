@@ -6,6 +6,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:bbvaHeader="http://java.sun.com/jsf/composite/bbva/header"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <composite:interface>
@@ -76,32 +77,9 @@
 						</a></li>
 					</ul>
 				</div></li>
-			<li class="user-settings-dropdown"><a
-				class="avatar dropdown-toggle" data-toggle="dropdown"> <span
-					class="header-sprite avatar-medium-icon"></span> <span>Martina
-						Ruiz Bravo</span>
-			</a> <!-- client profile -->
-				<div style="" class="top-menu-client-profile info-box dropdown-menu">
-					<div class="arrow-top"></div>
-					<div class="header">
-						<span class="header-sprite avatar-big-icon"></span> <span
-							class="client-name">Martina Ruiz</span> <span
-							class="client-profile"><a href="#"
-							class="btn white small profile-btn">Editar mi perfil</a> </span>
-					</div>
-					<ul>
-						<li><a class="virtual-email" href="#">Correspondencia
-								virtual</a></li>
-						<li><a class="monthly-report" href="#">Informe mensual</a></li>
-						<li><a class="contact" href="#">Contactos</a></li>
-						<li><a class="security" href="#">Seguridad y claves</a></li>
-						<li class="user-last-option"><a href="#">Notificaciones y
-								alertas</a></li>
-					</ul>
-					<div class="footer">
-						<span>Última conexión:</span> <span>27/11/2013 a las 13:34h</span>
-					</div>
-				</div></li>
+			
+			
+			<bbvaHeader:customerInf name="#{headerController.getCustomer().nombre}" date="2015-02-02" hour="13:00"/>
 			<li class="logout"><a href="index.html"
 				class="btn small warning"> <span>Desconectar</span> <span
 					class="icon-logout"></span>

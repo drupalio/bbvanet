@@ -3,15 +3,14 @@ package com.bbva.net.back.model.globalposition;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
+import com.bbva.net.back.core.pattern.dto.Dto;
 import com.bbva.net.back.model.commons.Money;
 
-public class CreditCardDto extends ProductDto {
+public class CreditCardDto extends ProductDto implements Dto{
 
 	private final static long serialVersionUID = 1L;
 
 	private Money bin;
-
-	private QuotaDto quota;
 
 	public Money getBin() {
 		return bin;
@@ -23,18 +22,6 @@ public class CreditCardDto extends ProductDto {
 
 	public boolean isSetBin() {
 		return (this.bin != null);
-	}
-
-	public QuotaDto getQuota() {
-		return quota;
-	}
-
-	public void setQuota(final QuotaDto value) {
-		this.quota = value;
-	}
-
-	public boolean isSetQuota() {
-		return (this.quota != null);
 	}
 
 	@Override
