@@ -32,8 +32,6 @@ public class MovementDto implements Dto {
 
 	private MovementDetailDto movementDetailDto;
 
-<<<<<<< HEAD
-=======
 	/** data general the loans */
 
 	private String quotaNumber;
@@ -43,7 +41,7 @@ public class MovementDto implements Dto {
 	private Money slopeValue;
 
 	private Date dateConsignment;
-	
+
 	public MovementDto() {
 
 	}
@@ -76,7 +74,6 @@ public class MovementDto implements Dto {
 		this.dateConsignment = dateConsignment;
 	}
 
->>>>>>> 64_Pagination
 	/**
 	 * @return the movementId
 	 */
@@ -161,18 +158,6 @@ public class MovementDto implements Dto {
 		this.movementDetailDto = movementDetailDto;
 	}
 
-<<<<<<< HEAD
-	@Override
-	public int hashCode() {
-
-		HashCodeBuilder hashCodeBuielder = new HashCodeBuilder();
-		hashCodeBuielder.append(getMovementId()).toHashCode();
-		hashCodeBuielder.append(getMovementConcept()).toHashCode();
-		hashCodeBuielder.append(getMovementDate()).toHashCode();
-		hashCodeBuielder.append(getMovementValue()).toHashCode();
-		hashCodeBuielder.append(getTotalBalance()).toHashCode();
-		return hashCodeBuielder.hashCode();
-=======
 	/**
 	 * @return the quotaNumber
 	 */
@@ -233,24 +218,17 @@ public class MovementDto implements Dto {
 	public int hashCode() {
 		return new HashCodeBuilder().append(getQuotaNumber()).append(getQuotaNextValue()).append(getSlopeValue())
 				.append(getDateConsignment()).toHashCode();
->>>>>>> 64_Pagination
+
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 
-<<<<<<< HEAD
-		return (obj instanceof MovementDto) && this.getMovementId().equals(((MovementDto)obj).getMovementId())
-				&& this.getMovementConcept().equals(((MovementDto)obj).getMovementConcept())
-				&& this.getMovementDate().equals(((MovementDto)obj).getMovementDate())
-				&& this.getMovementValue().equals(((MovementDto)obj).getMovementValue())
-				&& this.getTotalBalance() == (((MovementDto)obj).getTotalBalance());
-=======
 		return (obj instanceof MovementDto) && this.getMovementId().equals(((MovementDto)obj).getMovementId());
-//				&& this.getQuotaNextValue().equals(((MovementDto)obj).getQuotaNextValue())
-//				&& this.getSlopeValue().equals(((MovementDto)obj).getSlopeValue())
-//				&& this.getDateConsignment().equals(((MovementDto)obj).getDateConsignment());
->>>>>>> 64_Pagination
+		// && this.getQuotaNextValue().equals(((MovementDto)obj).getQuotaNextValue())
+		// && this.getSlopeValue().equals(((MovementDto)obj).getSlopeValue())
+		// && this.getDateConsignment().equals(((MovementDto)obj).getDateConsignment());
+
 	}
 
 	@Override
