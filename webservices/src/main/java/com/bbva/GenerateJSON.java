@@ -71,6 +71,30 @@
 //		return check;
 //
 //	}
+//	public static <E> Movement getMovementDetail() {
+//		
+//		Movement movementDetail = new Movement();
+//		
+//		DataFactory dataFactory = new DataFactory();
+//		Date minDate = dataFactory.getDate(2014, 1, 1);
+//		
+//		Money money;
+//		
+//		movementDetail.setBalance(value);
+//		movementDetail.setConcept(value);
+//		movementDetail.setDestinationReference(value);
+//		movementDetail.setNumberOfQuotas(value);
+//		movementDetail.setOffice(value);
+//		movementDetail.set
+//		movementDetail.set
+//		movementDetail.set
+//		movementDetail.set
+//		movementDetail.set
+//		
+//		return movementDetail;
+//	}
+//	
+//	
 //	
 //	public static <E> List<Movement> getMovementList() {
 //		List<Movement> movementList = new ArrayList<Movement>();

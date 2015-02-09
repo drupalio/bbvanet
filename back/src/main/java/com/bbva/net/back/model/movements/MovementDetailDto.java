@@ -15,23 +15,23 @@ import com.bbva.net.back.core.pattern.dto.Dto;
 public class MovementDetailDto implements Dto {
 
 	private static final long serialVersionUID = 4629186550492617188L;
-	
+
 	private Date operationDate;
-	
+
 	private Date operationHour;
-	
+
 	private String operationCode;
-	
+
 	private String operationDescription;
-	
+
 	private String observations;
-	
+
 	private String originCenterMovement;
-	
+
 	private String plaza;
-	
-	private String state;	
-			
+
+	private String state;
+
 	/**
 	 * @return the operationDate
 	 */
@@ -39,7 +39,6 @@ public class MovementDetailDto implements Dto {
 		return operationDate;
 	}
 
-	
 	/**
 	 * @param operationDate the operationDate to set
 	 */
@@ -47,7 +46,6 @@ public class MovementDetailDto implements Dto {
 		this.operationDate = operationDate;
 	}
 
-	
 	/**
 	 * @return the operationHour
 	 */
@@ -55,7 +53,6 @@ public class MovementDetailDto implements Dto {
 		return operationHour;
 	}
 
-	
 	/**
 	 * @param operationHour the operationHour to set
 	 */
@@ -63,7 +60,6 @@ public class MovementDetailDto implements Dto {
 		this.operationHour = operationHour;
 	}
 
-	
 	/**
 	 * @return the operationCode
 	 */
@@ -71,7 +67,6 @@ public class MovementDetailDto implements Dto {
 		return operationCode;
 	}
 
-	
 	/**
 	 * @param operationCode the operationCode to set
 	 */
@@ -79,7 +74,6 @@ public class MovementDetailDto implements Dto {
 		this.operationCode = operationCode;
 	}
 
-	
 	/**
 	 * @return the operationDescription
 	 */
@@ -87,7 +81,6 @@ public class MovementDetailDto implements Dto {
 		return operationDescription;
 	}
 
-	
 	/**
 	 * @param operationDescription the operationDescription to set
 	 */
@@ -95,7 +88,6 @@ public class MovementDetailDto implements Dto {
 		this.operationDescription = operationDescription;
 	}
 
-	
 	/**
 	 * @return the observations
 	 */
@@ -103,7 +95,6 @@ public class MovementDetailDto implements Dto {
 		return observations;
 	}
 
-	
 	/**
 	 * @param observations the observations to set
 	 */
@@ -111,7 +102,6 @@ public class MovementDetailDto implements Dto {
 		this.observations = observations;
 	}
 
-	
 	/**
 	 * @return the originCenterMovement
 	 */
@@ -119,7 +109,6 @@ public class MovementDetailDto implements Dto {
 		return originCenterMovement;
 	}
 
-	
 	/**
 	 * @param originCenterMovement the originCenterMovement to set
 	 */
@@ -127,7 +116,6 @@ public class MovementDetailDto implements Dto {
 		this.originCenterMovement = originCenterMovement;
 	}
 
-	
 	/**
 	 * @return the plaza
 	 */
@@ -135,7 +123,6 @@ public class MovementDetailDto implements Dto {
 		return plaza;
 	}
 
-	
 	/**
 	 * @param plaza the plaza to set
 	 */
@@ -143,7 +130,6 @@ public class MovementDetailDto implements Dto {
 		this.plaza = plaza;
 	}
 
-	
 	/**
 	 * @return the state
 	 */
@@ -151,7 +137,6 @@ public class MovementDetailDto implements Dto {
 		return state;
 	}
 
-	
 	/**
 	 * @param state the state to set
 	 */

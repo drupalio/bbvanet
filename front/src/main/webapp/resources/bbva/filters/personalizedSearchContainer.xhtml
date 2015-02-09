@@ -30,8 +30,8 @@
 					value="#{movementsCriteriaController.selectDate}"
 					valueDateSince="#{movementsCriteriaController.sinceDate}"
 					valueDateTo="#{movementsCriteriaController.toDate}"
-					disabledButton="#{movementsCriteriaController.disabledButtonDate}"
-					disabledCalendar="#{movementsCriteriaController.disabledCalendar}"
+					disabledButton="#{movementsCriteriaController.renderComponents['BUTTONDATE']}"
+					disabledCalendar="#{movementsCriteriaController.renderComponents['CALENDAR']}"
 					actionListenerDate="#{movementsCriteriaController.setCustomDate}"
 					listenerDate="#{movementsCriteriaController}" />
 			</bbvaSearch:customSearchList>
