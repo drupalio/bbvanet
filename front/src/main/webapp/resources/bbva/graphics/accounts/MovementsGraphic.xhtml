@@ -18,18 +18,22 @@
 	<div class="hidden-xs col-sm-5 bbva-chart">
 		<div id="savings" class="chart-lines">
 			<div id="chart2_8" class="c3" />
+	<P style="text-align: left;"/>
 			<script>
-			var totalColums = [];
 			var title;
-			var colums;
+			var xColumns = [];
 			var values;
+			var label;
+			var currency;
+			xColumns.push("Series 1: ");
 			
-			<c:forEach var="lineItemUI" items="${cc.attrs.lineConfigUI.lineItemUIList}">
+			<c:forEach var="lineItemUI" items="${cc.attrs.lineConfigUI.lineItemUIList}" varStatus="status">
 			title = ("${lineItemUI.label}");
-			values = ("${lineItemUI.value}");
-			colums = [ [ label ], [ values ] ];
-			totalColums.push(colums);
+			currency= "$";
+			label = ("${lineItemUI.label}");
+			xColumns.push("${lineItemUI.value.amount}");
 			</c:forEach>
+			
 			
 			var chart = c3.generate({
 				bindto : '#chart2_8',
@@ -40,7 +44,7 @@
 					left : 10,
 				},
 				data : {
-					columns : [ [ 'series 1: ', 5, 12, 23, 5, 3.4, 5 ] ],
+					columns : [ xColumns ],
 				},
 				legend : {
 					show : false
@@ -50,18 +54,26 @@
 						lines : [ {
 							value : 0
 						}, {
-							value : 5
+							value : 500000000
 						}, {
-							value : 10
+							value : 1000000000
 						}, {
-							value : 15
+							value : 1500000000
 						}, {
-							value : 20
+							value : 2000000000
 						}, {
-							value : 25
+							value : 2500000000
 						}, {
-							value : 30
-						} ],
+							value : 3000000000
+						}, {
+							value : 3500000000
+						}, {
+							value : 4000000000
+						}, {
+							value : 4500000000
+						}, {
+							value : 5000000000
+						},],
 					}
 				},
 				axis : {
@@ -74,10 +86,11 @@
 				},
 				tooltip : {
 					format : {
-						title : function(d) {
-							return d;
-							//return "<table style='fill:#333333'>"+d+"</table>";
-						},
+						name: function (name, ratio, id, index) { return "Serie 1: "; },
+						value: function (value, ratio, id) {
+			                var format = d3.format(',');			                
+			                return "<B>"+currency+" "+format(value)+"</B>";
+						 }
 
 					}
 				},
