@@ -17,7 +17,11 @@ public class MovementDetailDto implements Dto {
 
 	private static final long serialVersionUID = 4629186550492617188L;
 
+<<<<<<< HEAD
 	// Movement Account
+=======
+	private Date operationDate;
+>>>>>>> 64_Pagination
 
 	private Date operationHour;
 
@@ -33,6 +37,7 @@ public class MovementDetailDto implements Dto {
 
 	private String state;
 
+<<<<<<< HEAD
 	// Shared
 
 	private Date operationDate;
@@ -55,6 +60,8 @@ public class MovementDetailDto implements Dto {
 
 	private String remainingQuotas;
 
+=======
+>>>>>>> 64_Pagination
 	/**
 	 * @return the operationDate
 	 */
