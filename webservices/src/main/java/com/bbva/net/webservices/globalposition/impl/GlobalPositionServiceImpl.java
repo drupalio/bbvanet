@@ -31,13 +31,11 @@ public class GlobalPositionServiceImpl extends AbstractBbvaRestService implement
 
 	@Override
 	public Response updateProductOperability(String idProduct, Product product) {
-		Response response = getJsonWebClient(URL_GLOBAL_BASE + idProduct + URL_OPERABILITY).put(product);
-		return response;
+		return getJsonWebClient(URL_GLOBAL_BASE + idProduct + URL_OPERABILITY).put(product);
 	}
 
 	@Override
 	public Response updateProductVisibility(String idProduct, Product product) {
-		Response response = getJsonWebClient(URL_GLOBAL_BASE + idProduct + URL_VISIBILITY).put(product);
-		return response;
+		return getJsonWebClient(URL_GLOBAL_BASE + idProduct + URL_VISIBILITY).put(product);
 	}
 }

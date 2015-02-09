@@ -6,7 +6,7 @@
 	
 	<var name="quotaController" class="com.bbva.net.front.controller.impl.QuotaControllerImpl"/>
 	<var name="accountsController" class="com.bbva.net.front.controller.impl.AccountsControllerImpl"/>
-	<var name="personalizeProductAccountController" class="com.bbva.net.front.controller.impl.PersonalizeProductAccountControllerImpl"/>
+	<var name="personalizeProductAccountController" class="com.bbva.net.front.controller.impl.PersonalizeProductControllerImpl"/>
 	
 	<on-start>
 		<evaluate expression="accountsController.getCustomerAccounts()" result="flowScope.customerAccounts" />	

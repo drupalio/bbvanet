@@ -52,9 +52,9 @@ public class LoanControllerImpl extends AbstractBbvaController implements LoanCo
 	public List<LoanDto> getCustomerLoanHidden() {
 		return this.loanFacade.getLoansByUserHidden(getCurrentUser());
 	}
-	
+
 	@Override
-	public void onProductSelected(SelectEvent selectEvent) {
+	public void onProductLoanSelected(SelectEvent selectEvent) {
 		super.onProductSelected(selectEvent);
 		this.sendAction("accountQuotaSelected");
 

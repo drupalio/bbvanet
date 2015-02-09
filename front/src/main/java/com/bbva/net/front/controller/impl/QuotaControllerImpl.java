@@ -3,19 +3,22 @@
  */
 package com.bbva.net.front.controller.impl;
 
+import java.text.SimpleDateFormat;
+
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.AjaxBehaviorEvent;
 
 import org.primefaces.event.SelectEvent;
+import org.primefaces.event.ToggleEvent;
 
 import com.bbva.net.back.facade.QuotaDetailFacade;
 import com.bbva.net.back.facade.TermasAccountsFacade;
 import com.bbva.net.back.model.accounts.TermsAccountsDto;
 import com.bbva.net.back.model.citeriaMovements.MovementCriteriaDto;
-import com.bbva.net.back.model.globalposition.RotatingAccountDto;
-import com.bbva.net.back.model.personalize.PersonalizeAccountDto;
+import com.bbva.net.back.model.globalposition.ProductDto;
+import com.bbva.net.back.model.movements.MovementDetailDto;
 import com.bbva.net.back.model.quota.QuotaDetailDto;
 import com.bbva.net.front.controller.QuotaController;
 import com.bbva.net.front.core.AbstractBbvaController;
@@ -34,13 +37,15 @@ public class QuotaControllerImpl extends AbstractBbvaController implements Quota
 
 	private static final String CONCRETE_DATE = "Fecha concreta";
 
-	private static final String DEFAULT_IDLOAN = "00130073005054466407";
+	private boolean movement;
 
 	private MovementCriteriaDto movementCriteria = new MovementCriteriaDto();
 
-	private PersonalizeAccountDto personalizeAccountDto = new PersonalizeAccountDto();
-
 	private QuotaDetailDto quotaDetailDto = new QuotaDetailDto();
+
+	private MovementDetailDto quotaMoveDetailDto = new MovementDetailDto();
+
+	private ProductDto productDto = new ProductDto();
 
 	@Resource(name = "TermsFacade")
 	private transient TermasAccountsFacade detallesCuenta;
@@ -48,27 +53,29 @@ public class QuotaControllerImpl extends AbstractBbvaController implements Quota
 	@Resource(name = "quotaDetailFacade")
 	private transient QuotaDetailFacade quotaDetailFacade;
 
+	SimpleDateFormat dateFormat = new SimpleDateFormat();
+
 	@PostConstruct
 	public void init() {
-		this.quotaDetailDto = this.quotaDetailFacade.getDetailRotaryQuota(DEFAULT_IDLOAN);
+		this.movement = false;
+		this.productDto = super.getSelectedProduct();
+		this.quotaDetailDto = this.quotaDetailFacade.getDetailRotaryQuota(this.productDto.getProductId());
+	}
+
+	@Override
+	public void setSelectedProduct(ProductDto selectedProduct) {
+		super.setSelectedProduct(selectedProduct);
 	}
 
 	@Override
 	public TermsAccountsDto getAllConditions() {
-		TermsAccountsDto detalle = this.detallesCuenta.getAllConditions(super.getSelectedProduct().getProductId());
+		TermsAccountsDto detalle = this.detallesCuenta.getAllConditions("00130073000296247953");
 		return detalle;
 	}
 
-	@Override
-	public void setCriteriaDate(ActionEvent event) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void searchQuotaMovement(ActionEvent event) {
-		// TODO Auto-generated method stub
-
+	public void onRowToggle(ToggleEvent event) {
+		System.out.println("data onRowToggle");
+		this.quotaMoveDetailDto = this.quotaDetailFacade.getRotaryQuotaMovement(productDto.getProductId(), "556475");
 	}
 
 	/***
@@ -98,20 +105,28 @@ public class QuotaControllerImpl extends AbstractBbvaController implements Quota
 		}
 	}
 
-	@Override
-	public void onProductSelected(SelectEvent selectEvent) {
-		super.onProductSelected(selectEvent);
+	public void visibleMov(SelectEvent selectEvent) {
+		System.out.println("dat");
+		if (this.movement == false) {
+			this.movement = true;
+		} else {
+			this.movement = false;
+		}
 	}
 
 	@Override
-	public RotatingAccountDto getSelectedProduct() {
-		return (RotatingAccountDto)super.getSelectedProduct();
+	public void setCriteriaDate(ActionEvent event) {
+		// TODO Auto-generated method stub
+
 	}
 
-	// @Override
-	// public List<QuotaRotatingDto> getQuotaRotary() {
-	// return this.LoanFacade.getCustomerRotatingAccount(getCurrentUser());
-	// }
+	@Override
+	public void searchQuotaMovement(ActionEvent event) {
+		// TODO Auto-generated method stub
+
+	}
+
+	// Setters And Getters
 
 	/**
 	 * @return the disabledCalendar
@@ -139,7 +154,6 @@ public class QuotaControllerImpl extends AbstractBbvaController implements Quota
 	 */
 	public void setDisabledButtonDate(boolean disabledButtonDate) {
 		this.disabledButtonDate = disabledButtonDate;
-
 	}
 
 	/**
@@ -157,29 +171,86 @@ public class QuotaControllerImpl extends AbstractBbvaController implements Quota
 	}
 
 	/**
-	 * @return the personalizeAccountDto
-	 */
-	@Override
-	public PersonalizeAccountDto getPersonalizeAccountDto() {
-		return personalizeAccountDto;
-	}
-
-	/**
-	 * @param personalizeAccountDto the personalizeAccountDto to set
-	 */
-	public void setPersonalizeAccountDto(PersonalizeAccountDto personalizeAccountDto) {
-		this.personalizeAccountDto = personalizeAccountDto;
-	}
-
-	@Override
-	public QuotaDetailDto getQuotaDetail() {
-		return new QuotaDetailDto();
-	}
-
-	/**
 	 * @return the quotaDetailDto
 	 */
 	public QuotaDetailDto getQuotaDetailDto() {
 		return quotaDetailDto;
+	}
+
+	/**
+	 * @param quotaDetailDto the quotaDetailDto to set
+	 */
+	public void setQuotaDetailDto(QuotaDetailDto quotaDetailDto) {
+		this.quotaDetailDto = quotaDetailDto;
+	}
+
+	/**
+	 * @return the quotaMoveDetailDto
+	 */
+	public MovementDetailDto getQuotaMoveDetailDto() {
+		return quotaMoveDetailDto;
+	}
+
+	/**
+	 * @param quotaMoveDetailDto the quotaMoveDetailDto to set
+	 */
+	public void setQuotaMoveDetailDto(MovementDetailDto quotaMoveDetailDto) {
+		this.quotaMoveDetailDto = quotaMoveDetailDto;
+	}
+
+	/**
+	 * @return the productDto
+	 */
+	public ProductDto getProductDto() {
+		return productDto;
+	}
+
+	/**
+	 * @param productDto the productDto to set
+	 */
+	public void setProductDto(ProductDto productDto) {
+		this.productDto = productDto;
+	}
+
+	/**
+	 * @return the detallesCuenta
+	 */
+	public TermasAccountsFacade getDetallesCuenta() {
+		return detallesCuenta;
+	}
+
+	/**
+	 * @param detallesCuenta the detallesCuenta to set
+	 */
+	public void setDetallesCuenta(TermasAccountsFacade detallesCuenta) {
+		this.detallesCuenta = detallesCuenta;
+	}
+
+	/**
+	 * @return the quotaDetailFacade
+	 */
+	public QuotaDetailFacade getQuotaDetailFacade() {
+		return quotaDetailFacade;
+	}
+
+	/**
+	 * @param quotaDetailFacade the quotaDetailFacade to set
+	 */
+	public void setQuotaDetailFacade(QuotaDetailFacade quotaDetailFacade) {
+		this.quotaDetailFacade = quotaDetailFacade;
+	}
+
+	/**
+	 * @return the movement
+	 */
+	public boolean isMovement() {
+		return movement;
+	}
+
+	/**
+	 * @param movement the movement to set
+	 */
+	public void setMovement(boolean movement) {
+		this.movement = movement;
 	}
 }

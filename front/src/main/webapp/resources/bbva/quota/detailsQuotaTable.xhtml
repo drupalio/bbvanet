@@ -17,6 +17,18 @@
 
 <composite:implementation>
 
+	<script>
+		function divMovement() {
+
+			var styles = document.getElementById('|').style.display;
+
+			if (styles == 'none')
+				document.getElementById('rowExpansion').style.display = "block";
+			else
+				document.getElementById('rowExpansion').style.display = "none";
+		}
+	</script>
+
 	<h:form id="#{cc.attrs.id}">
 		<article class="detail-table-group">
 
@@ -33,11 +45,14 @@
 			<div class="table-wrapper">
 				<p:dataTable id="detalAC" styleClass="detail-table-body sortable"
 					value="#{cc.attrs.listAccounts}" var="icuenta"
+					style="font-family: Arial; font-size: 12px;"
 					widgetVar="dataTableWV" selectionMode="single"
 					rowKey="#{icuenta.productId}" rowIndexVar="rowIndex">
 
-					<p:ajax event="rowSelect"
-						listener="#{cc.attrs.controller.onProductSelected}" />
+					<p:ajax event="rowSelect" onstart="divMovement()" update="detalAC" />
+
+					<p:ajax event="rowToggle"
+						listener="#{cc.attrs.controller.onRowToggle}" />
 
 					<p:column>
 						<p:rowToggler rendered="true" />
@@ -69,12 +84,12 @@
 
 						<h:outputText class="currency" style="font-size: 15px;color: #333"
 							value="#{icuenta.totalCash}" />
-
 					</p:column>
 
-					<p:rowExpansion>
-						<bbvaDetailMotion:tableContent />
+					<p:rowExpansion styleClass="detail-row position">
+						<bbvaDetailMotion:tableContent controller="#{cc.attrs.controller}" />
 					</p:rowExpansion>
+
 				</p:dataTable>
 			</div>
 
