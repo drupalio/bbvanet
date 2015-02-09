@@ -9,9 +9,6 @@ import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
 
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Controller;
-
 import com.bbva.net.back.facade.MovementsAccountFacade;
 import com.bbva.net.back.facade.MultiValueGroupFacade;
 import com.bbva.net.back.model.citeriaMovements.MovementCriteriaDto;
@@ -28,8 +25,7 @@ import com.bbva.net.front.ui.line.LineConfigUI;
 /**
  * @author User
  */
-@Controller(value = "movementsCriteriaController")
-@Scope(value = "globalSession")
+
 public class MovementCriteriaControllerImpl extends AbstractBbvaController implements MovementCriteriaController {
 
 	private static final long serialVersionUID = 1L;
@@ -85,7 +81,7 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 		if (movementsList == null) {
 			getAllMovements();
 		}
-		this.graphicLineMovements = graphicLineDelegate.getMovementAccount(getAllMovements());
+		this.graphicLineMovements = graphicLineDelegate.getMovementAccount(movementsList);
 	}
 
 	@Override
@@ -459,5 +455,21 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 	 */
 	public void setMovementsList(List<MovementDto> movementsList) {
 		this.movementsList = movementsList;
+	}
+
+	public GraphicLineDelegate getGraphicLineDelegate() {
+		return graphicLineDelegate;
+	}
+
+	public void setGraphicLineDelegate(GraphicLineDelegate graphicLineDelegate) {
+		this.graphicLineDelegate = graphicLineDelegate;
+	}
+
+	public LineConfigUI getGraphicLineMovements() {
+		return graphicLineMovements;
+	}
+
+	public void setGraphicLineMovements(LineConfigUI graphicLineMovements) {
+		this.graphicLineMovements = graphicLineMovements;
 	}
 }
