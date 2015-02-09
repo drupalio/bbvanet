@@ -296,3 +296,32 @@ input.ui-state-hover {
 .nonee {
 	display: none;
 }
+
+/*Detalle del movimiento para el titulo información del movimiento*/
+.array {
+	display: block !important;
+	padding: 0px !important;
+	margin: 0px !important;
+	border: 0px none !important;
+	vertical-align: initial !important;
+	position: initial !important;
+	top: 0px !important;
+}
+
+/* Detalle de movimiento cabecera Utils (visible)*/
+.ui-expanded-row-content .ui-widget-content .detail-row .ui-datatable thead th,
+	.ui-datatable tbody td, .ui-datatable tfoot td {
+	overflow: visible !important;
+}
+
+/* no borde bootom de atributos del detalle de movimiento*/
+.no-border {
+	border-bottom: none !important;
+}
+
+/*Detalle de movimiento position*/
+.position {
+	margin-top: -17.5% !important;
+	width: 116.8%;
+	margin-left: -3% !important;
+}

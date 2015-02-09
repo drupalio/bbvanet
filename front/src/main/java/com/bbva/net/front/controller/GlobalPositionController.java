@@ -2,6 +2,8 @@ package com.bbva.net.front.controller;
 
 import java.util.Map;
 
+import org.primefaces.event.SelectEvent;
+
 import com.bbva.net.back.model.globalposition.BalanceDto;
 import com.bbva.net.back.model.globalposition.GlobalProductsDto;
 
@@ -39,5 +41,11 @@ public interface GlobalPositionController {
 	 * @return
 	 */
 	Map<String, BalanceDto> getTotalsProducts();
+
+	/**
+	 * @param selectEvent
+	 */
+
+	void onProductLoanSelected(SelectEvent selectEvent);
 
 }

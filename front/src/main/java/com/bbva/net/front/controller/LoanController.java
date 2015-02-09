@@ -2,6 +2,8 @@ package com.bbva.net.front.controller;
 
 import java.util.List;
 
+import org.primefaces.event.SelectEvent;
+
 import com.bbva.net.back.model.globalposition.LeasingDto;
 import com.bbva.net.back.model.globalposition.LoanDto;
 import com.bbva.net.back.model.globalposition.RotatingAccountDto;
@@ -40,5 +42,7 @@ public interface LoanController {
 	 * @return
 	 */
 	List<LoanDto> getCustomerLoanHidden();
+
+	void onProductLoanSelected(SelectEvent selectEvent);
 
 }

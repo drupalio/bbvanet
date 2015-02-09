@@ -58,7 +58,7 @@ import javax.xml.bind.annotation.XmlType;
     "extracts"
 })
 @XmlSeeAlso({
-    Account.class
+    Loan.class
 })
 public class Product {
 

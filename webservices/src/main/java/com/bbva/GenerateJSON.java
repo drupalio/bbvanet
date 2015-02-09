@@ -9,20 +9,50 @@
 //
 // import org.fluttercode.datafactory.impl.DataFactory;
 //
+// import com.bbva.czic.dto.net.Balance;
 // import com.bbva.czic.dto.net.Check;
 // import com.bbva.czic.dto.net.Checkbook;
 // import com.bbva.czic.dto.net.EnumCheckbookStatus;
 // import com.bbva.czic.dto.net.Movement;
+// import com.bbva.czic.dto.net.Operation;
+// import com.bbva.czic.dto.net.RotaryQuotaMove;
 // import com.bbva.jee.arq.spring.core.servicing.utils.Money;
 // import com.google.gson.Gson;
+
 //
 // public class GenerateJSON {
 //
 // public static void main(String[] args) {
 // Gson gson = new Gson();
-// String checkJSON = gson.toJson(getMovementList());
+// String checkJSON = gson.toJson(getMovementLoan());
 // System.out.println(checkJSON);
-// getMovementList();
+// }
+//
+// public static <E> RotaryQuotaMove getMovementLoan() {
+// RotaryQuotaMove rotaryQuotaMove = new RotaryQuotaMove();
+//
+// Balance balance = new Balance();
+// Money money = new Money();
+// money.setAmount(new BigDecimal(0));
+// money.setCurrency("$");
+// balance.setAvailableBalance(money);
+// balance.setTotal(money);
+//
+// rotaryQuotaMove.setBalance(balance);
+// rotaryQuotaMove.setConcept("Cupo rotativo");
+// rotaryQuotaMove.setId("00130443000200009410");
+// rotaryQuotaMove.setNumbersOfQuota(2);
+// Operation operation = new Operation();
+// operation.setCode("000000");
+// operation.setDescription("cupo");
+// rotaryQuotaMove.setOperation(operation);
+// rotaryQuotaMove.setRemainingQuotas(3);
+// rotaryQuotaMove.setStatus("Activa");
+// rotaryQuotaMove.setTransactionDate("22-05-2015");
+// rotaryQuotaMove.setValue(money);
+//
+// return rotaryQuotaMove;
+//
 // }
 //
 // public static String dateToSring(Date date) {

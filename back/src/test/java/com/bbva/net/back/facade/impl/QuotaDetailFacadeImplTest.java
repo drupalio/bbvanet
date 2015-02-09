@@ -8,13 +8,16 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import com.bbva.czic.dto.net.Loan;
+import com.bbva.czic.dto.net.RotaryQuotaMove;
 import com.bbva.net.back.mapper.QuotaDetailMapper;
+import com.bbva.net.back.model.movements.MovementDetailDto;
 import com.bbva.net.back.model.quota.QuotaDetailDto;
 import com.bbva.net.webservices.loan.LoanService;
 
 public class QuotaDetailFacadeImplTest {
 
-	private static final String DEFAULT_ID = "9500-01-40-2606-9499";
+	private static final String DEFAULT_ID = "9500014026069499";
+
 	private QuotaDetailFacadeImpl quotaDetailFacede;
 
 	// CLIENTE REST
@@ -25,6 +28,8 @@ public class QuotaDetailFacadeImplTest {
 	private QuotaDetailMapper mapper;
 
 	private QuotaDetailDto quotaDetailDto;
+
+	private MovementDetailDto quotaMoveDetailDto;
 
 	@Before
 	public void init() {
@@ -38,15 +43,25 @@ public class QuotaDetailFacadeImplTest {
 	@Test
 	public void checkGetDetailRotaryQuota() {
 		Loan loan = new Loan();
-		quotaDetailDto = Mockito.mock(QuotaDetailDto.class);
-		// preparando el test
-		Mockito.when(loanService.getRotaryQuota(DEFAULT_ID)).thenReturn(loan);
-		Mockito.when(mapper.map(loan)).thenReturn(quotaDetailDto);
 
+		quotaDetailDto = Mockito.mock(QuotaDetailDto.class);
+		Mockito.when(loanService.getRotaryQuota(DEFAULT_ID)).thenReturn(loan);
+		Mockito.when(mapper.mapQuota(loan)).thenReturn(quotaDetailDto);
 		quotaDetailDto = quotaDetailFacede.getDetailRotaryQuota(DEFAULT_ID);
 		Assert.assertNotNull(quotaDetailDto);
+		Mockito.verify(this.loanService, Mockito.atLeastOnce()).getRotaryQuota(DEFAULT_ID);
 
-		Mockito.verify(this.loanService, Mockito.atLeastOnce()).getRotaryQuota(
-				DEFAULT_ID);
+	}
+
+	@Test
+	public void checkGetDetailMovemenRotaryQuota() {
+		RotaryQuotaMove rotaryQuotaMove = new RotaryQuotaMove();
+
+		quotaMoveDetailDto = Mockito.mock(MovementDetailDto.class);
+		Mockito.when(loanService.getRotaryQuotaMovement(DEFAULT_ID, "544356")).thenReturn(rotaryQuotaMove);
+		Mockito.when(mapper.mapQuotaMove(rotaryQuotaMove)).thenReturn(quotaMoveDetailDto);
+		quotaMoveDetailDto = quotaDetailFacede.getRotaryQuotaMovement(DEFAULT_ID, "544356");
+		Assert.assertNotNull(quotaMoveDetailDto);
+		Mockito.verify(this.loanService, Mockito.atLeastOnce()).getRotaryQuotaMovement(DEFAULT_ID, "544356");
 	}
 }

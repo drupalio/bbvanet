@@ -208,7 +208,6 @@
 						<configuration>
 							<sourceRoot>src/main/java</sourceRoot>
 							<wadlOptions>
-
 								<!-- PILAS NO DEJAR HABILITADA LA EJECUCIÓN DE CUALQUIER WADL, HA 
 									PASODO QUE SE GENERAN CLASES QUE YA ESTABAN ESTABLES Y NOS PETA TODO EN ESTOS 
 									AJUSTES PERDEMOS TIEMPO. -->
@@ -217,7 +216,6 @@
 									<wadl>src/main/resources/wadl/products.wadl</wadl>
 									<packagename>com.bbva.net.webservices.products</packagename>
 								</wadlOption> -->  
-
 							</wadlOptions>
 						</configuration>
 						<goals>
