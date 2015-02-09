@@ -7,6 +7,7 @@ import org.apache.commons.collections.CollectionUtils;
 
 import com.bbva.net.back.model.accounts.GlobalMonthlyBalanceDto;
 import com.bbva.net.back.model.accounts.MonthBalanceDto;
+import com.bbva.net.back.model.movements.MovementDto;
 import com.bbva.net.front.core.stereotype.Delegate;
 import com.bbva.net.front.delegate.GraphicLineDelegate;
 import com.bbva.net.front.ui.line.LineConfigUI;
@@ -44,6 +45,26 @@ public class GraphicLineDelegateImpl implements GraphicLineDelegate {
 
 		}
 
+		return lineConfigUI;
+	}
+
+	@Override
+	public LineConfigUI getMovementAccount(List<MovementDto> globalResumeMovements) {
+
+		LineConfigUI lineConfigUI = new LineConfigUI();
+
+		final List<LineItemUI> lineItemUIList = new ArrayList<LineItemUI>();
+		if (!CollectionUtils.isEmpty(globalResumeMovements)) {
+
+			for (MovementDto mov : globalResumeMovements) {
+				LineItemUI lineItemUI = new LineItemUI();
+				lineItemUI.setLabel("Serie 1: ");
+				lineItemUI.setValue(mov.getMovementValue());
+				lineItemUIList.add(lineItemUI);
+			}
+
+		}
+		lineConfigUI.setLineItemUIList(lineItemUIList);
 		return lineConfigUI;
 	}
 

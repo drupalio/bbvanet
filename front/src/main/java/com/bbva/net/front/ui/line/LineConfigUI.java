@@ -13,9 +13,8 @@ public class LineConfigUI implements Serializable {
 	 */
 	private static final long serialVersionUID = 9160587224886207443L;
 
-	/**
-	 * 
-	 */
+	private List<LineItemUI> lineItemUIList;
+
 	private List<LineItemUI> lineDepositItemUIList;
 
 	/**
@@ -32,4 +31,11 @@ public class LineConfigUI implements Serializable {
 		this.lineDepositItemUIList = lineDepositItemUIList;
 	}
 
+	public List<LineItemUI> getLineItemUIList() {
+		return lineItemUIList;
+	}
+
+	public void setLineItemUIList(List<LineItemUI> lineItemUIList) {
+		this.lineItemUIList = lineItemUIList;
+	}
 }

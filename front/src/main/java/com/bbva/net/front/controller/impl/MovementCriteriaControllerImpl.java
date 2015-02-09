@@ -9,9 +9,6 @@ import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
 
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Controller;
-
 import com.bbva.net.back.facade.MovementsAccountFacade;
 import com.bbva.net.back.facade.MultiValueGroupFacade;
 import com.bbva.net.back.model.citeriaMovements.MovementCriteriaDto;
@@ -21,13 +18,14 @@ import com.bbva.net.back.model.globalposition.ProductDto;
 import com.bbva.net.back.model.movements.MovementDto;
 import com.bbva.net.front.controller.MovementCriteriaController;
 import com.bbva.net.front.core.AbstractBbvaController;
+import com.bbva.net.front.delegate.GraphicLineDelegate;
 import com.bbva.net.front.helper.MessagesHelper;
+import com.bbva.net.front.ui.line.LineConfigUI;
 
 /**
  * @author User
  */
-@Controller(value = "movementsCriteriaController")
-@Scope(value = "globalSession")
+
 public class MovementCriteriaControllerImpl extends AbstractBbvaController implements MovementCriteriaController {
 
 	private static final long serialVersionUID = 1L;
@@ -70,24 +68,30 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 	@Resource(name = "movementsAccountFacade")
 	private transient MovementsAccountFacade movementsFacade;
 
-	private List<MovementDto> movementsList=null;
-	
+	private List<MovementDto> movementsList = null;
+
+	@Resource(name = "graphicLineDelegate")
+	private transient GraphicLineDelegate graphicLineDelegate;
+
+	private LineConfigUI graphicLineMovements;
+
 	@PostConstruct
 	public void init() {
 		LOGGER.info("Initialize MovementesAccountController");
-		if(movementsList == null){
+		if (movementsList == null) {
 			getAllMovements();
 		}
+		this.graphicLineMovements = graphicLineDelegate.getMovementAccount(movementsList);
 	}
-	
+
 	@Override
 	public List<MovementDto> getAllMovements() {
 		movementsList = new ArrayList<MovementDto>();
-		movementsList = this.movementsFacade.listMovements("00130073000296247953"/*getProduct().getProductId()*/	, getCurrentUser(), null, null, null, 1, 10);
+		movementsList = this.movementsFacade.listMovements("00130073000296247953"/* getProduct().getProductId() */,
+				getCurrentUser(), null, null, null, 1, 10);
 		return movementsList;
 	}
-	
-	
+
 	@Override
 	public void setSelectedProduct(ProductDto selectedProduct) {
 		super.setSelectedProduct(selectedProduct);
@@ -190,12 +194,12 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 		this.dateRange.setDateSince(getSinceDate());
 		this.dateRange.setDateTo(getToDate());
 		movementCriteria.setDateRange(dateRange);
-		if (! (getSinceDate()==(null)) && ! (getToDate()==(null))) {
-			sinceDatestr = "Desde: "+dateFormat.format(getSinceDate());
-			toDatestr = "Hasta: "+dateFormat.format(getToDate());
-		}else{
-			sinceDatestr =getSelectDate();
-		}		
+		if (!(getSinceDate() == (null)) && !(getToDate() == (null))) {
+			sinceDatestr = "Desde: " + dateFormat.format(getSinceDate());
+			toDatestr = "Hasta: " + dateFormat.format(getToDate());
+		} else {
+			sinceDatestr = getSelectDate();
+		}
 		System.out.println(movementCriteria.getSelectDate());
 		System.out.println(sinceDatestr);
 		System.out.println(toDatestr);
@@ -425,7 +429,6 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 		this.multiValueGroupFacade = multiValueGroupFacade;
 	}
 
-	
 	/**
 	 * @return the movementsFacade
 	 */
@@ -433,7 +436,6 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 		return movementsFacade;
 	}
 
-	
 	/**
 	 * @param movementsFacade the movementsFacade to set
 	 */
@@ -441,7 +443,6 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 		this.movementsFacade = movementsFacade;
 	}
 
-	
 	/**
 	 * @return the movementsList
 	 */
@@ -449,11 +450,26 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 		return movementsList;
 	}
 
-	
 	/**
 	 * @param movementsList the movementsList to set
 	 */
 	public void setMovementsList(List<MovementDto> movementsList) {
 		this.movementsList = movementsList;
+	}
+
+	public GraphicLineDelegate getGraphicLineDelegate() {
+		return graphicLineDelegate;
+	}
+
+	public void setGraphicLineDelegate(GraphicLineDelegate graphicLineDelegate) {
+		this.graphicLineDelegate = graphicLineDelegate;
+	}
+
+	public LineConfigUI getGraphicLineMovements() {
+		return graphicLineMovements;
+	}
+
+	public void setGraphicLineMovements(LineConfigUI graphicLineMovements) {
+		this.graphicLineMovements = graphicLineMovements;
 	}
 }

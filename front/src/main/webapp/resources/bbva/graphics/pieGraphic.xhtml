@@ -52,11 +52,13 @@
 			var label;
 			var colums;
 			var values;
-
+			var totalporcentaje = 0;
+			
 			<c:forEach var="pieItemUI" items="${cc.attrs.pieConfigUI.pieItemUIList}">
 			label = ("${pieItemUI.textLegend}");
 			values = ("${pieItemUI.value}");
 			colums = [ [ label ], [ values ] ];
+			totalporcentaje += parseInt(values);
 			totalColums.push(colums);
 			</c:forEach>
 
@@ -89,7 +91,16 @@
 			    	  label: {
 			    	    show: false
 			    	  }
-			    	}
+			    	},
+					tooltip:{
+				        format:{
+				        	name: function (name, ratio, id, index) { return "<tr><td >"+name+"</td></tr>"; },
+				            value: function (value, ratio, id) {
+				                var format = d3.format(',');			                
+				                return "<B>"+currency+" "+format(value)+"</B> ("+((value*100)/totalporcentaje).toFixed(1)+"%)";
+							 }
+				        }
+				    }
 			
 			});
 		};
