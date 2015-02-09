@@ -73,7 +73,7 @@ public class QuotaControllerImpl extends AbstractBbvaController implements Quota
 		return detalle;
 	}
 
-	public void onRowToggle(ToggleEvent toggeEvent) {
+	public void onRowToggle(ToggleEvent event) {
 		System.out.println("data onRowToggle");
 		this.quotaMoveDetailDto = this.quotaDetailFacade.getRotaryQuotaMovement(productDto.getProductId(), "556475");
 	}

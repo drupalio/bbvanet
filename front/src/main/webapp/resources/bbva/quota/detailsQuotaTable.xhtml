@@ -17,6 +17,18 @@
 
 <composite:implementation>
 
+	<script>
+		function divMovement() {
+
+			var styles = document.getElementById('|').style.display;
+
+			if (styles == 'none')
+				document.getElementById('rowExpansion').style.display = "block";
+			else
+				document.getElementById('rowExpansion').style.display = "none";
+		}
+	</script>
+
 	<h:form id="#{cc.attrs.id}">
 		<article class="detail-table-group">
 
@@ -36,6 +48,8 @@
 					style="font-family: Arial; font-size: 12px;"
 					widgetVar="dataTableWV" selectionMode="single"
 					rowKey="#{icuenta.productId}" rowIndexVar="rowIndex">
+
+					<p:ajax event="rowSelect" onstart="divMovement()" update="detalAC" />
 
 					<p:ajax event="rowToggle"
 						listener="#{cc.attrs.controller.onRowToggle}" />
@@ -75,6 +89,7 @@
 					<p:rowExpansion styleClass="detail-row position">
 						<bbvaDetailMotion:tableContent controller="#{cc.attrs.controller}" />
 					</p:rowExpansion>
+
 				</p:dataTable>
 			</div>
 

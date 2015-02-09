@@ -131,7 +131,7 @@ public class MovementDto implements Dto {
 	@Override
 	public boolean equals(Object obj) {
 
-		return (obj instanceof MovementDetailDto) && this.getMovementId().equals(((MovementDto)obj).getMovementId())
+		return (obj instanceof MovementDto) && this.getMovementId().equals(((MovementDto)obj).getMovementId())
 				&& this.getMovementConcept().equals(((MovementDto)obj).getMovementConcept())
 				&& this.getMovementDate().equals(((MovementDto)obj).getMovementDate())
 				&& this.getMovementValue().equals(((MovementDto)obj).getMovementValue())
