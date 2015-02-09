@@ -136,7 +136,7 @@ public abstract class AbstractBbvaController implements Serializable {
 	 * @return
 	 */
 	protected String getCurrentUser() {
-		return "00816641";
+		return DEFAULT_USER;
 	}
 
 	/**
