@@ -53,7 +53,7 @@ public class ProductsServiceImpl extends AbstractBbvaRestService implements Prod
 	@Override
 	public Movement getMovement(String productId, String movementId, String $filter) {
 
-		WebClient wc = getJsonWebClient(URL_BASE_PRODUCTS + productId + URL_MOVEMENTS + movementId);
+		WebClient wc = getJsonWebClient(URL_BASE_PRODUCTS + productId + URL_MOVEMENTS +"/"+ movementId);
 		if (!StringUtils.isEmpty($filter)) wc.query(FILTER, $filter);
 		if (productId != null && movementId != null) {
 			wc.query("productId", productId);

@@ -6,9 +6,13 @@ package com.bbva.net.front.core;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
+
+import com.bbva.net.back.model.enums.RenderAttributes;
 
 /**
  * Controller to pagination tables
@@ -26,6 +30,8 @@ public abstract class PaginationController<T extends Serializable> extends Abstr
 	private static final int PAGE_SIZE = 10;
 
 	private Integer paginationKey;
+	
+	private Map<String, Boolean> renderComponents = new HashMap<String, Boolean>();
 
 	protected abstract List<T> getNextPage(int paginantionKey, int psize);
 
@@ -33,6 +39,8 @@ public abstract class PaginationController<T extends Serializable> extends Abstr
 	public void init() {
 		this.currentList = new ArrayList<T>();
 		this.paginationKey = 1;
+		renderComponents.put(RenderAttributes.MOVEMENTSTABLE.toString(), true);
+		renderComponents.put(RenderAttributes.CHECKTABLE.toString(), false);
 	}
 
 	public void next() {

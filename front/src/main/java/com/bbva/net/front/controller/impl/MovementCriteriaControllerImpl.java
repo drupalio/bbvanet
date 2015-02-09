@@ -3,21 +3,29 @@ package com.bbva.net.front.controller.impl;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
+import javax.ws.rs.HEAD;
+
+import org.primefaces.event.SelectEvent;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
 
 import com.bbva.net.back.facade.MovementsAccountFacade;
 import com.bbva.net.back.facade.MultiValueGroupFacade;
 import com.bbva.net.back.model.citeriaMovements.MovementCriteriaDto;
 import com.bbva.net.back.model.commons.BalanceRangeDto;
 import com.bbva.net.back.model.commons.DateRangeDto;
+import com.bbva.net.back.model.enums.RenderAttributes;
 import com.bbva.net.back.model.globalposition.ProductDto;
+import com.bbva.net.back.model.movements.MovementDetailDto;
 import com.bbva.net.back.model.movements.MovementDto;
 import com.bbva.net.front.controller.MovementCriteriaController;
-import com.bbva.net.front.core.AbstractBbvaController;
 import com.bbva.net.front.delegate.GraphicLineDelegate;
 import com.bbva.net.front.helper.MessagesHelper;
 import com.bbva.net.front.ui.line.LineConfigUI;
@@ -26,35 +34,27 @@ import com.bbva.net.front.ui.line.LineConfigUI;
  * @author User
  */
 
-public class MovementCriteriaControllerImpl extends AbstractBbvaController implements MovementCriteriaController {
+@Controller(value = "movementsCriteriaController")
+@Scope(value = "globalSession")
+public class MovementCriteriaControllerImpl extends MovementPaginatedController implements MovementCriteriaController {
 
 	private static final long serialVersionUID = 1L;
 
 	private static final String CONCRETE_DATE = MessagesHelper.INSTANCE.getString("select.radio.concret.date");
 
+	private static final String BALANCE_TITLE = MessagesHelper.INSTANCE.getString("msg.message.balance");
+
+	private static final String SINCE_TITLE = MessagesHelper.INSTANCE.getString("text.since");
+
+	private static final String TO_TITLE = MessagesHelper.INSTANCE.getString("text.to");
+
 	SimpleDateFormat dateFormat = new SimpleDateFormat(MessagesHelper.INSTANCE.getStringI18("date.pattner.dd.mm.yyyy"));
-
-	private boolean disabledButtonBalance = true;
-
-	private boolean disabledCalendar = true;
-
-	private boolean disabledButtonDate = true;
 
 	private StringBuilder messageBalance;
 
-	private String sinceText;
+	private String sinceText, toText, selectDate, sinceDatestr, toDatestr;
 
-	private String toText;
-
-	private String selectDate;
-
-	private String sinceDatestr;
-
-	private String toDatestr;
-
-	private Date sinceDate;
-
-	private Date toDate;
+	private Date sinceDate, toDate;
 
 	private MovementCriteriaDto movementCriteria = new MovementCriteriaDto();
 
@@ -75,58 +75,73 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 
 	private LineConfigUI graphicLineMovements;
 
+	private MovementDetailDto movementDetail = null;
+
+	private Map<String, Boolean> renderComponents = new HashMap<String, Boolean>();
+
 	@PostConstruct
 	public void init() {
 		LOGGER.info("Initialize MovementesAccountController");
 		if (movementsList == null) {
 			getAllMovements();
 		}
+
 		this.graphicLineMovements = graphicLineDelegate.getMovementAccount(movementsList);
+		cleanFilters();
+
 	}
 
 	@Override
 	public List<MovementDto> getAllMovements() {
 		movementsList = new ArrayList<MovementDto>();
-		movementsList = this.movementsFacade.listMovements("00130073000296247953"/* getProduct().getProductId() */,
-				getCurrentUser(), null, null, null, 1, 10);
+		movementsList = this.movementsFacade.listMovements(
+				"00130073000296247953"/* getSelectedProduct().getProductId() */, getCurrentUser(), null, null, null, 1,
+				10);
 		return movementsList;
 	}
 
 	@Override
-	public void setSelectedProduct(ProductDto selectedProduct) {
-		super.setSelectedProduct(selectedProduct);
+	public void onMovementSelected(SelectEvent selectEvent) {
+		super.onMovementSelected(selectEvent);
+		movementDetail = new MovementDetailDto();
+		movementDetail = this.movementsFacade.getMovement(getSelectedProduct().getProductId(), getCurrentUser(),
+				getSelectedProduct().getTypeProd().value(), getSelectedMovements().getMovementId());
+		System.out.println("mov id selected: " + getSelectedMovements().getMovementId());
 	}
 
-	public ProductDto getProduct() {
-		return super.getSelectedProduct();
-	}
-
-	/***
-	 * @param event
-	 */
 	@Override
 	public void searchMovementByFilter(final ActionEvent event) {
 		System.out.println("Movimeintos x criteria \n");
-		System.out.println("Ingresos o gastos " + movementCriteria.getIncomesOrExpenses());
-		System.out.println(" selectDate " + movementCriteria.getSelectDate());
-		System.out.println("Since " + movementCriteria.getBalanceRange().getBalanceSince());
-		System.out.println("To " + movementCriteria.getBalanceRange().getBalanceTo());
+
+		if (renderComponents.get(RenderAttributes.FILTERDATE.toString())) {
+			System.out.println(" selectDate " + movementCriteria.getSelectDate());
+		} else if (renderComponents.get(RenderAttributes.BALANCEFILTER.toString())) {
+			System.out.println("Ingresos o gastos " + movementCriteria.getIncomesOrExpenses());
+
+			System.out.println("Since " + movementCriteria.getBalanceRange().getBalanceSince());
+			System.out.println("To " + movementCriteria.getBalanceRange().getBalanceTo());
+		} else if (renderComponents.get(RenderAttributes.INCOMEOREXPENSESFILTER.toString())) {
+
+		} else if (renderComponents.get(RenderAttributes.MOVEMENTSFILTER.toString())) {
+
+		}
+
 	}
 
-	/***
-	 *
-	 */
 	@Override
 	public void oneSelectDate() {
 		System.out.println("Method oneSelectDate");
+
+		renderComponents.put(RenderAttributes.FILTERDATE.toString(), true);
+
 		if (getSelectDate().equals(CONCRETE_DATE)) {
-			setDisabledCalendar(false);
-			setDisabledButtonDate(false);
-			System.out.println("if " + isDisabledCalendar() + isDisabledButtonDate());
+			renderComponents.put(RenderAttributes.CALENDAR.toString(), false);
+			renderComponents.put(RenderAttributes.BUTTONDATE.toString(), false);
+
 		} else {
-			setDisabledCalendar(true);
-			setDisabledButtonDate(false);
-			System.out.println("else" + isDisabledCalendar() + isDisabledButtonDate());
+			renderComponents.put(RenderAttributes.CALENDAR.toString(), true);
+			renderComponents.put(RenderAttributes.BUTTONDATE.toString(), false);
+
 		}
 	}
 
@@ -136,31 +151,38 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 	@Override
 	public void setBalanceRange(final ActionEvent event) {
 		System.out.println("Method setBalance");
-		setSinceText("Desde: ");
-		setToText("Hasta: ");
-		System.out.println("Since " + movementCriteria.getBalanceRange().getBalanceSince());
-		System.out.println("To " + movementCriteria.getBalanceRange().getBalanceTo());
+		renderComponents.put(RenderAttributes.BALANCEFILTER.toString(), true);
+		setSinceText(SINCE_TITLE + ": ");
+		setToText(TO_TITLE + ": ");
+		System.out.println(SINCE_TITLE + movementCriteria.getBalanceRange().getBalanceSince());
+		System.out.println(TO_TITLE + ": " + movementCriteria.getBalanceRange().getBalanceTo());
 	}
 
-	/***
-	 * @param event
-	 */
 	@Override
 	public void setIncomeExpensesFilter(final ActionEvent event) {
 		System.out.println("Method searchINcome expenses filter");
+		renderComponents.put(RenderAttributes.INCOMEOREXPENSESFILTER.toString(), true);
 		System.out.println(movementCriteria.getIncomesOrExpenses());
 	}
 
 	@Override
 	public void cleanFilters() {
-		System.out.println("Clean");
+		System.out.println("limpias");
 		movementCriteria = new MovementCriteriaDto();
+		renderComponents.put(RenderAttributes.CALENDAR.toString(), true);
+		renderComponents.put(RenderAttributes.BUTTONDATE.toString(), true);
+		renderComponents.put(RenderAttributes.BUTTONBALANCE.toString(), true);
+		// Filtros
+		renderComponents.put(RenderAttributes.FILTERDATE.toString(), false);
+		renderComponents.put(RenderAttributes.BALANCEFILTER.toString(), false);
+		renderComponents.put(RenderAttributes.INCOMEOREXPENSESFILTER.toString(), false);
+		renderComponents.put(RenderAttributes.MOVEMENTSFILTER.toString(), false);
 
 	}
 
 	@Override
 	public void buildMessage() {
-		messageBalance = new StringBuilder("Se mostrarán los resultados mayores de ");
+		messageBalance = new StringBuilder(BALANCE_TITLE);
 		messageBalance.append(movementCriteria.getBalanceRange().getBalanceSince() + "$");
 	}
 
@@ -173,13 +195,13 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 			if (movementCriteria.getBalanceRange().getBalanceSince()
 					.compareTo(movementCriteria.getBalanceRange().getBalanceTo()) == -1) {
 
-				setDisabledButtonBalance(false);
+				renderComponents.put(RenderAttributes.BUTTONBALANCE.toString(), false);
 				messageBalance = new StringBuilder("Se mostrarán los resultados mayores de "
 						+ movementCriteria.getBalanceRange().getBalanceSince() + "$" + " y menores de "
 						+ movementCriteria.getBalanceRange().getBalanceTo() + "$");
 
 			} else {
-				setDisabledButtonBalance(true);
+				renderComponents.put(RenderAttributes.BUTTONBALANCE.toString(), true);
 				buildMessage();
 			}
 		} else {
@@ -190,19 +212,16 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 	@Override
 	public void setCustomDate(final ActionEvent event) {
 		System.out.println("setCustomDate");
-		movementCriteria.setSelectDate(getSelectDate());
+		renderComponents.put(RenderAttributes.INCOMEOREXPENSESFILTER.toString(), true);
+
 		this.dateRange.setDateSince(getSinceDate());
 		this.dateRange.setDateTo(getToDate());
-		movementCriteria.setDateRange(dateRange);
 		if (!(getSinceDate() == (null)) && !(getToDate() == (null))) {
-			sinceDatestr = "Desde: " + dateFormat.format(getSinceDate());
-			toDatestr = "Hasta: " + dateFormat.format(getToDate());
+			sinceDatestr = SINCE_TITLE + ": " + dateFormat.format(getSinceDate());
+			toDatestr = TO_TITLE + ": " + dateFormat.format(getToDate());
 		} else {
 			sinceDatestr = getSelectDate();
 		}
-		System.out.println(movementCriteria.getSelectDate());
-		System.out.println(sinceDatestr);
-		System.out.println(toDatestr);
 	}
 
 	/**
@@ -217,48 +236,6 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 	 */
 	public void setDateFormat(SimpleDateFormat dateFormat) {
 		this.dateFormat = dateFormat;
-	}
-
-	/**
-	 * @return the disabledButtonBalance
-	 */
-	public boolean isDisabledButtonBalance() {
-		return disabledButtonBalance;
-	}
-
-	/**
-	 * @param disabledButtonBalance the disabledButtonBalance to set
-	 */
-	public void setDisabledButtonBalance(boolean disabledButtonBalance) {
-		this.disabledButtonBalance = disabledButtonBalance;
-	}
-
-	/**
-	 * @return the disabledCalendar
-	 */
-	public boolean isDisabledCalendar() {
-		return disabledCalendar;
-	}
-
-	/**
-	 * @param disabledCalendar the disabledCalendar to set
-	 */
-	public void setDisabledCalendar(boolean disabledCalendar) {
-		this.disabledCalendar = disabledCalendar;
-	}
-
-	/**
-	 * @return the disabledButtonDate
-	 */
-	public boolean isDisabledButtonDate() {
-		return disabledButtonDate;
-	}
-
-	/**
-	 * @param disabledButtonDate the disabledButtonDate to set
-	 */
-	public void setDisabledButtonDate(boolean disabledButtonDate) {
-		this.disabledButtonDate = disabledButtonDate;
 	}
 
 	/**
@@ -471,5 +448,33 @@ public class MovementCriteriaControllerImpl extends AbstractBbvaController imple
 
 	public void setGraphicLineMovements(LineConfigUI graphicLineMovements) {
 		this.graphicLineMovements = graphicLineMovements;
+	}
+
+	/**
+	 * @return the renderComponents
+	 */
+	public Map<String, Boolean> getRenderComponents() {
+		return renderComponents;
+	}
+
+	/**
+	 * @param renderComponents the renderComponents to set
+	 */
+	public void setRenderComponents(Map<String, Boolean> renderComponents) {
+		this.renderComponents = renderComponents;
+	}
+
+	/**
+	 * @return the movementDetail
+	 */
+	public MovementDetailDto getMovementDetail() {
+		return movementDetail;
+	}
+
+	/**
+	 * @param movementDetail the movementDetail to set
+	 */
+	public void setMovementDetail(MovementDetailDto movementDetail) {
+		this.movementDetail = movementDetail;
 	}
 }
