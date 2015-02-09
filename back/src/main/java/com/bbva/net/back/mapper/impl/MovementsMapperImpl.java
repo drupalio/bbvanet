@@ -20,16 +20,17 @@ public class MovementsMapperImpl extends ConfigurableMapper implements Movements
 		// Add Money Converter
 		factory.getConverterFactory().registerConverter(new MoneyConverter());
 
-		// Map Check DTO
+		// Map Movement DTO
 		factory.classMap(Movement.class, MovementDto.class).field("id", "movementId")
 				.field("concept", "movementConcept").field("transactionDate", "movementDate")
-				.field("operationDate", "movementDetailDTO.operationDate")
-				.field("operation.code", "movementDetailDTO.operationCode")
-				.field("operation.description", "movementDetailDTO.operationDescription")
-				.field("office.name", "movementDetailDTO.plaza")
-				.field("office.location", "movementDetailDTO.originCenterMovement")
-				.field("status", "movementDetailDTO.state").field("value", "movementValue")
-				.field("balance", "totalBalance").byDefault().register();
+				.field("operationDate", "movementDetailDto.operationDate")
+				.field("operation.code", "movementDetailDto.operationCode")
+				.field("operation.description", "movementDetailDto.operationDescription")
+				.field("office.name", "movementDetailDto.plaza")
+				.field("office.location", "movementDetailDto.originCenterMovement")
+				.field("status", "movementDetailDto.state").field("value", "movementValue")
+				.field("balance", "totalBalance").field("numberOfQuotas", "quotaNumber").byDefault().register();
+
 	}
 
 	@Override

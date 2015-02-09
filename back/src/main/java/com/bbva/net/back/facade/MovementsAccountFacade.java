@@ -34,7 +34,7 @@ public interface MovementsAccountFacade {
 	 * @param $filter
 	 * @return MovementDetailDto
 	 */
-	MovementDetailDto getMovement(String productId, String movementId, String $filter);
+	MovementDetailDto getMovement(String productId, String customerId,String productType, String movementId);
 	
 
 

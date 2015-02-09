@@ -29,19 +29,20 @@
 
 			<h3>#{checkBookController.title}</h3>
 
+			<!-- Tabla de Cheques -->
 			<div class="table-wrapper">
 				<p:dataTable id="checksTable"
 					styleClass="detail-table-body sortable"
 					emptyMessage="#{msg['text.empty.table']}"
-					value="#{cc.attrs.listChecks}" var="icuenta"
+					value="#{cc.attrs.listChecks}" var="cheks"
 					rendered="#{checkBookController.renderComponents['CHECKTABLE']}"
-					rowKey="#{icuenta.id}">
+					rowKey="#{cheks.id}">
 					<p:column headerText="#{msg['text.table.num.check']}"
 						styleClass="sorted w18 desc"
 						style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
 
 						<h:outputText styleClass="brand" style="font-size: 1.1em"
-							value="#{icuenta.id}" />
+							value="#{cheks.id}" />
 					</p:column>
 
 					<p:column headerText="#{msg['text.table.emi.date']}"
@@ -50,7 +51,7 @@
 
 						<h:outputText class="text"
 							style="font-size: 12px;color: #333;text-align: left"
-							value="#{icuenta.movementDetailDTO.operationDate}">
+							value="#{cheks.issueDate}">
 							<f:convertDateTime pattern="dd/MM/yyyy" />
 						</h:outputText>
 
@@ -61,7 +62,7 @@
 						style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
 
 						<h:outputText class="currency" style="font-size: 15px;color: #333"
-							value="#{icuenta.value}" />
+							value="#{cheks.value}" />
 
 					</p:column>
 					<p:column class="head" headerText="#{msg['text.table.status']}"
@@ -69,7 +70,7 @@
 						style="font-size: 0.7em;color: #333;font-family: Arial;background: none;border-style: none">
 
 						<h:outputText class="currency" style="font-size: 15px;color: #333"
-							value="#{icuenta.status}" />
+							value="#{cheks.status}" />
 
 					</p:column>
 
@@ -79,22 +80,28 @@
 						style="font-size: 0.7em;color: #333;font-family: Arial;background: none;border-style: none">
 
 						<h:outputText class="currency" style="font-size: 15px;color: #333"
-							value="#{icuenta.modifiedDate}" />
+							value="#{cheks.modifiedDate}" />
 
 					</p:column>
 				</p:dataTable>
-				
-			<p:dataTable id="detalMov" styleClass="detail-table-body sortable"
+				<!-- Tabla Movimiento -->
+				<p:dataTable id="detalMov" styleClass="detail-table-body sortable"
 					emptyMessage="#{msg['text.empty.table']}"
-					value="#{cc.attrs.listAccounts}" var="icuenta"
+					value="#{cc.attrs.listAccounts}" var="moves"
+					selectionMode="single" 
 					rendered="#{checkBookController.renderComponents['MOVEMENTSTABLE']}"
-					rowKey="#{icuenta.productId}">
+					rowKey="#{moves.movementId}">
+					<p:ajax event="rowSelect"
+					listener="#{movementsCriteriaController.onMovementSelected}" />
+					
 					<p:column headerText="#{msg['text.detailMove.date']}"
 						styleClass="sorted w18 desc"
 						style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
 
 						<h:outputText styleClass="brand" style="font-size: 1.1em"
-							value="#{icuenta.movementDate}" />
+							value="#{moves.movementDetailDto.operationDate}" >
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>	
 					</p:column>
 
 					<p:column headerText="#{msg['text.detailMove.concep']}"
@@ -103,10 +110,10 @@
 
 						<h:outputText class="text"
 							style="font-size: 12px;color: #333;text-align: left"
-							value="#{icuenta.movementConcept}" />
+							value="#{moves.movementConcept}" />
 						<h:outputText class="text"
 							style="font-size: 11px;color: #333;font-weight: normal;text-align: left"
-							value="#{icuenta.movementConcept}" />
+							value="#{moves.movementConcept}" />
 					</p:column>
 
 					<p:column class="head" headerText="#{msg['text.detailMove.value']}"
@@ -114,7 +121,7 @@
 						style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
 
 						<h:outputText class="currency" style="font-size: 15px;color: #333"
-							value="#{icuenta.movementValue}" />
+							value="#{moves.movementValue}" />
 
 					</p:column>
 					<p:column class="head"
@@ -123,27 +130,29 @@
 						style="font-size: 0.7em;color: #333;font-family: Arial;background: none;border-style: none">
 
 						<h:outputText class="currency" style="font-size: 15px;color: #333"
-							value="#{icuenta.totalBalance}" />
+							value="#{moves.totalBalance}" />
 
 					</p:column>
 				</p:dataTable>
-				
+
 
 
 			</div>
 			<footer class="detail-table-footer">
-				<button id="moreCheks" class="btn btn-more-results" jsf:update="formu:checksTable"
-					value="Más Resultados" jsf:rendered="#{checkBookController.renderComponents['CHECKTABLE']}"
-					jsf:actionListener="#{checkBookController.nextPage}">										
+				<button id="moreCheks" class="btn btn-more-results"
+					jsf:update="formu:checksTable" value="Más Resultados"
+					jsf:rendered="#{checkBookController.renderComponents['CHECKTABLE']}"
+					jsf:actionListener="#{checkBookController.nextPage}">
 					<span>#{msg['text.detailMove.footer']}</span>
 				</button>
-				
-				<button id="moreMovs" class="btn btn-more-results" jsf:update="formu:detalMov"
-					value="Más Resultados" jsf:rendered="#{checkBookController.renderComponents['MOVEMENTSTABLE']}"
-					jsf:actionListener="#{checkBookController.nextPage}">										
+
+				<button id="moreMovs" class="btn btn-more-results"
+					jsf:update="formu:detalMov" value="Más Resultados"
+					jsf:rendered="#{checkBookController.renderComponents['MOVEMENTSTABLE']}"
+					jsf:actionListener="#{checkBookController.nextPage}">
 					<span>#{msg['text.detailMove.footer']}</span>
 				</button>
-				
+
 			</footer>
 		</article>
 	</h:form>
