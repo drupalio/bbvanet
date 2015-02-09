@@ -5,7 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import com.bbva.net.back.facade.AccountMonthBalanceFacade;
+import com.bbva.net.back.facade.MonthBalanceFacade;
 import com.bbva.net.back.facade.AccountMovementsResumeFacade;
 import com.bbva.net.back.facade.CardsFacade;
 import com.bbva.net.back.facade.GlobalPositionFacade;
@@ -15,6 +15,7 @@ import com.bbva.net.back.model.globalposition.GlobalProductsDto;
 import com.bbva.net.back.model.movements.GlobalResumeMovementsDto;
 import com.bbva.net.back.service.impl.DateFilterServiceImpl;
 import com.bbva.net.front.delegate.GraphicBarLineDelegate;
+import com.bbva.net.front.delegate.GraphicLineDelegate;
 import com.bbva.net.front.delegate.GraphicPieDelegate;
 import com.bbva.net.front.ui.pie.PieConfigUI;
 
@@ -36,9 +37,11 @@ public class GlobalPositionControllerImplTest {
 
 	private GraphicBarLineDelegate graphicBarLineDelegate;
 
+	private GraphicLineDelegate graphicLineDelegate;
+
 	private AccountMovementsResumeFacade globalMovementsFacade;
 
-	private AccountMonthBalanceFacade accountMonthBalanceFacade;
+	private MonthBalanceFacade accountMonthBalanceFacade;
 
 	DateRangeDto dateRange;
 
@@ -51,16 +54,20 @@ public class GlobalPositionControllerImplTest {
 
 		globalPositionFacade = Mockito.mock(GlobalPositionFacade.class);
 		graphicPieDelegate = Mockito.mock(GraphicPieDelegate.class);
+		graphicLineDelegate = Mockito.mock(GraphicLineDelegate.class);
+
 		cardsFacade = Mockito.mock(CardsFacade.class);
 		periodType = EnumPeriodType.valueOf(Integer.parseInt("11"));
 		dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
 		globalMovementsFacade = Mockito.mock(AccountMovementsResumeFacade.class);
 
-		accountMonthBalanceFacade = Mockito.mock(AccountMonthBalanceFacade.class);
+		accountMonthBalanceFacade = Mockito.mock(MonthBalanceFacade.class);
 		graphicBarLineDelegate = Mockito.mock(GraphicBarLineDelegate.class);
 		globalPositionController.setGlobalPositionFacade(globalPositionFacade);
 		globalPositionController.setGraphicPieDelegate(graphicPieDelegate);
 		globalPositionController.setGraphicBarLineDelegate(graphicBarLineDelegate);
+		globalPositionController.setGraphicLineDelegate(graphicLineDelegate);
+
 		globalPositionController.setCardsFacade(cardsFacade);
 
 		globalPositionController.setMovementsResumeFacade(globalMovementsFacade);

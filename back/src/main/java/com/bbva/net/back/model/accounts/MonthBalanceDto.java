@@ -15,8 +15,6 @@ public class MonthBalanceDto implements Serializable {
 
 	private String day;
 
-	private int valueX;
-
 	/**
 	 * @return the balance
 	 */
@@ -43,20 +41,6 @@ public class MonthBalanceDto implements Serializable {
 	 */
 	public void setDay(String day) {
 		this.day = day;
-	}
-
-	/**
-	 * @return
-	 */
-	public int getValueX() {
-		return valueX;
-	}
-
-	/**
-	 * @param valueX
-	 */
-	public void setValueX(final int valueX) {
-		this.valueX = valueX;
 	}
 
 }
