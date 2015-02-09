@@ -29,15 +29,6 @@ public class QuotaControllerImplTest {
 	@Before
 	public void init() {
 		this.quotaControllerImpl = new QuotaControllerImpl();
-		// productDto = Mockito.mock(ProductDto.class);
-		// productDto.setProductId(DEFAULT_ID);
-		// this.quotaControllerImpl.setSelectedProduct(this.productDto);
-		// quotaMoveDetailDto = Mockito.mock(QuotaMoveDetailDto.class);
-		// quotaMoveDetailDto.setId(DEFAULT_ID_MOV);
-		// this.quotaControllerImpl.setSelectedMovement(this.quotaMoveDetailDto);
-		// this.quotaControllerImpl.init();
-		// this.quotaControllerImpl.getAllConditions();
-		// this.quotaControllerImpl.onRowToggle(null);
 		this.quotaDetailFacade = Mockito.mock(QuotaDetailFacade.class);
 	}
 

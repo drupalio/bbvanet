@@ -7,7 +7,6 @@ import javax.annotation.Resource;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 
-import com.bbva.czic.dto.net.Check;
 import com.bbva.czic.dto.net.Loan;
 import com.bbva.czic.dto.net.Movement;
 import com.bbva.czic.dto.net.RotaryQuotaMove;
@@ -15,7 +14,6 @@ import com.bbva.net.back.core.pattern.facade.AbstractBbvaFacade;
 import com.bbva.net.back.core.stereotype.Facade;
 import com.bbva.net.back.facade.QuotaDetailFacade;
 import com.bbva.net.back.mapper.QuotaDetailMapper;
-import com.bbva.net.back.model.checkbook.CheckDto;
 import com.bbva.net.back.model.commons.DateRangeDto;
 import com.bbva.net.back.model.movements.MovementDetailDto;
 import com.bbva.net.back.model.movements.MovementDto;

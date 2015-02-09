@@ -72,7 +72,6 @@ public class QuotaControllerImpl extends CheckPaginatedController implements Quo
 
 	@PostConstruct
 	public void init() {
-		super.init();
 		this.productDto = super.getSelectedProduct();
 		this.quotaDetailDto = this.quotaDetailFacade.getDetailRotaryQuota(this.productDto.getProductId());
 		renderComponents.put(RenderAttributes.MOVEMENTSTABLE.toString(), true);

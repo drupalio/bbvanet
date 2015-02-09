@@ -2,14 +2,10 @@ package com.bbva.net.webservices.loan.impl;
 
 import java.util.List;
 
-import javax.ws.rs.core.Response;
-
 import org.apache.cxf.common.util.StringUtils;
 import org.apache.cxf.jaxrs.client.WebClient;
 import org.springframework.beans.factory.annotation.Value;
 
-import com.bbva.czic.dto.net.CardCharge;
-import com.bbva.czic.dto.net.Check;
 import com.bbva.czic.dto.net.Loan;
 import com.bbva.czic.dto.net.Movement;
 import com.bbva.czic.dto.net.RotaryQuotaMove;
