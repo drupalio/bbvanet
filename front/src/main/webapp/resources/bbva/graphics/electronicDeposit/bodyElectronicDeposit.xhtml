@@ -15,8 +15,8 @@
 		
 		<div class="row">
 
-				<!--Inserta compoente Grafica-->
-				<bbvaEDesposit:electronicDepositGraphic/>				
+				<!--Inserta compoente Grafica y se le pasa la lista cargada en GP-->
+				<bbvaEDesposit:electronicDepositGraphic graphicLine = "#{globalPositionController.lineConfigUI}"/>				
 			
 		</div>
 	</h:form>

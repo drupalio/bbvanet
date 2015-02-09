@@ -16,20 +16,20 @@ public class LineConfigUI implements Serializable {
 	/**
 	 * 
 	 */
-	private List<LineItemUI> pieItemUIList;
+	private List<LineItemUI> lineDepositItemUIList;
 
 	/**
 	 * @return
 	 */
-	public List<LineItemUI> getPieItemUIList() {
-		return pieItemUIList;
+	public List<LineItemUI> getLineDepositItemUIList() {
+		return lineDepositItemUIList;
 	}
 
 	/**
-	 * @param pieItemUIList
+	 * @param lineDepositItemUIList
 	 */
-	public void setPieItemUIList(final List<LineItemUI> pieItemUIList) {
-		this.pieItemUIList = pieItemUIList;
+	public void setLineDepositItemUIList(List<LineItemUI> lineDepositItemUIList) {
+		this.lineDepositItemUIList = lineDepositItemUIList;
 	}
 
 }
