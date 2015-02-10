@@ -10,7 +10,6 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
-import javax.ws.rs.HEAD;
 
 import org.primefaces.event.SelectEvent;
 import org.springframework.context.annotation.Scope;
@@ -22,7 +21,6 @@ import com.bbva.net.back.model.citeriaMovements.MovementCriteriaDto;
 import com.bbva.net.back.model.commons.BalanceRangeDto;
 import com.bbva.net.back.model.commons.DateRangeDto;
 import com.bbva.net.back.model.enums.RenderAttributes;
-import com.bbva.net.back.model.globalposition.ProductDto;
 import com.bbva.net.back.model.movements.MovementDetailDto;
 import com.bbva.net.back.model.movements.MovementDto;
 import com.bbva.net.front.controller.MovementCriteriaController;
@@ -79,6 +77,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 	private Map<String, Boolean> renderComponents = new HashMap<String, Boolean>();
 
+	@Override
 	@PostConstruct
 	public void init() {
 		LOGGER.info("Initialize MovementesAccountController");
@@ -95,8 +94,9 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	public List<MovementDto> getAllMovements() {
 		movementsList = new ArrayList<MovementDto>();
 		movementsList = this.movementsFacade.listMovements(
-				"00130073000296247953"/* getSelectedProduct().getProductId() */, getCurrentUser(), null, null, null, 1,
-				10);
+				"00130073000296247953"/* getSelectedProduct().getProductId() */, getCurrentUser(), getSelectedProduct()
+						.getSubTypeProd(), null, null, 1, 10);
+
 		return movementsList;
 	}
 
