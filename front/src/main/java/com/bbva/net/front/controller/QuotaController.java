@@ -3,9 +3,12 @@
  */
 package com.bbva.net.front.controller;
 
+import java.util.List;
+
 import javax.faces.event.ActionEvent;
 
 import com.bbva.net.back.model.accounts.TermsAccountsDto;
+import com.bbva.net.back.model.movements.MovementDto;
 
 /**
  * @author User
@@ -30,6 +33,14 @@ public interface QuotaController {
 	/**
 	 * Method to set partial customdate
 	 */
-	void clean();
+	void searchQuotaByFilter(final ActionEvent event);
+
+	/**
+	 * Method to get all movements of quota
+	 * 
+	 * @return
+	 */
+
+	List<MovementDto> getAllQuotamovenDtos();
 
 }

@@ -20,7 +20,7 @@
 	<script>
 		function divMovement() {
 
-			var styles = document.getElementById('|').style.display;
+			var styles = document.getElementById('rowExpansion').style.display;
 
 			if (styles == 'none')
 				document.getElementById('rowExpansion').style.display = "block";
@@ -44,46 +44,47 @@
 
 			<div class="table-wrapper">
 				<p:dataTable id="detalAC" styleClass="detail-table-body sortable"
-					value="#{cc.attrs.listAccounts}" var="icuenta"
-					style="font-family: Arial; font-size: 12px;"
-					widgetVar="dataTableWV" selectionMode="single"
-					rowKey="#{icuenta.productId}" rowIndexVar="rowIndex">
+					emptyMessage="#{msg['text.empty.table']}"
+					value="#{cc.attrs.listAccounts}" var="moves" selectionMode="single"
+					rowKey="#{moves.movementId}">
 
 					<p:ajax event="rowSelect" onstart="divMovement()" update="detalAC" />
 
 					<p:ajax event="rowToggle"
 						listener="#{cc.attrs.controller.onRowToggle}" />
 
-					<p:column>
+					<p:column width="5px">
 						<p:rowToggler rendered="true" />
 					</p:column>
 
-					<p:column headerText="#{msg['title.quotaNumber']}"
+					<p:column headerText="#{msg['text.detailMove.date']}"
 						styleClass="sorted w18 desc"
 						style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
 
 						<h:outputText styleClass="brand" style="font-size: 1.1em"
-							value="#{icuenta.alias}" />
+							value="#{moves.movementDate}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
 					</p:column>
 
-					<p:column headerText="#{msg['title.nextQuota']}"
+					<p:column headerText="#{msg['text.detailMove.concep']}"
 						styleClass="desc w34"
 						style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none;">
 
 						<h:outputText class="text"
 							style="font-size: 12px;color: #333;text-align: left"
-							value="#{icuenta.alias}" />
+							value="#{moves.movementConcept}" />
 						<h:outputText class="text"
 							style="font-size: 11px;color: #333;font-weight: normal;text-align: left"
-							value="#{icuenta.alias}" />
+							value="#{moves.movementConcept}" />
 					</p:column>
 
 					<p:column class="head" headerText="#{msg['title.slope']}"
 						styleClass="desc w24"
-						style="font-size: 0.7em;color: #333;font-family: Arial;background: none;border-style: none">
+						style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
 
 						<h:outputText class="currency" style="font-size: 15px;color: #333"
-							value="#{icuenta.totalCash}" />
+							value="#{moves.movementValue}" />
 					</p:column>
 
 					<p:rowExpansion styleClass="detail-row position">

@@ -325,3 +325,8 @@ input.ui-state-hover {
 	width: 116.8%;
 	margin-left: -3% !important;
 }
+/* tipo de letra del detalle*/
+.textSize {
+	font-family: Arial !important;
+	font-size: 12px !important;
+}

@@ -31,8 +31,6 @@ public class QuotaDetailMapperImpl extends ConfigurableMapper implements QuotaDe
 		factory.getConverterFactory().registerConverter(new MoneyConverter());
 		// Map Loan QuotaDetailDto
 
-		factory.getConverterFactory().registerConverter(new DateToStringConverter("yyyy-MM-dd"));
-
 		factory.classMap(Loan.class, QuotaDetailDto.class).field("payment.numbersOfQuota", "numberOfShares")
 				.field("id", "id").field("payment.shortDate", "datePrevious").field("payment.dueDate", "dateMaturity")
 				.field("payment.paymentDate", "datePayment").field("status", "state")
@@ -41,16 +39,17 @@ public class QuotaDetailMapperImpl extends ConfigurableMapper implements QuotaDe
 				.field("debt.availableBalance", "outstandingBalance").field("debt.total", "amountRequested")
 				.byDefault().register();
 
-		factory.classMap(RotaryQuotaMove.class, MovementDetailDto.class).field("id", "id")
-				.field("operation.description", "description").field("concept", "concept")
-				.field("transactionDate", "operationDate").field("status", "status").field("value", "value")
-				.field("balance.availableBalance", "valueslope").field("numbersOfQuota", "numbersOfQuota")
-				.field("remainingQuotas", "remainingQuotas").byDefault().register();
+		factory.classMap(RotaryQuotaMove.class, MovementDetailDto.class).field("id", "id").field("concept", "concept")
+				.field("transactionDate", "operationDate").field("balance.availableBalance", "valueslope")
+				.field("numbersOfQuota", "numbersOfQuota").field("remainingQuotas", "remainingQuotas").byDefault()
+				.register();
 
 		factory.classMap(Movement.class, MovementDto.class).field("id", "movementId")
 				.field("concept", "movementConcept").field("transactionDate", "movementDate")
-				.field("balance", "totalBalance").field("value", "movementValue").field("status", "status").byDefault()
-				.register();
+				.field("operation.code", "movementDetailDto.operationCode")
+				.field("operation.description", "movementDetailDto.operationDescription").field("status", "status")
+				.field("value", "movementValue").field("balance", "totalBalance")
+				.field("numberOfQuotas", "quotaNumber").byDefault().register();
 
 	}
 
