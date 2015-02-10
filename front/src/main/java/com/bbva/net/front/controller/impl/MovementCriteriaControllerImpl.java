@@ -79,6 +79,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 	private Map<String, Boolean> renderComponents = new HashMap<String, Boolean>();
 
+	@Override
 	@PostConstruct
 	public void init() {
 		super.init();
@@ -115,6 +116,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		movementsList = this.movementsFacade.listMovements(
 				"00130073000296247953"/* getSelectedProduct().getProductId() */, getCurrentUser(), getSelectedProduct()
 						.getSubTypeProd(), null, null, 1, 10);
+
 		return movementsList;
 	}
 
