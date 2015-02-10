@@ -10,9 +10,9 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
 import org.apache.commons.io.FileUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.commons.logging.Log;
 
+import com.bbva.jee.arq.spring.core.log.I18nLogFactory;
 import com.google.gson.Gson;
 
 /**
@@ -23,7 +23,7 @@ public final class FileBbvaUtils {
 	private FileBbvaUtils() {
 	}
 
-	protected static final Logger LOGGER = LoggerFactory.getLogger(FileBbvaUtils.class);
+	protected static final Log LOGGER = I18nLogFactory.getLog(FileBbvaUtils.class);
 
 	/**
 	 * @param object

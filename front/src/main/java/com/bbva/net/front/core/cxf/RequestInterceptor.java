@@ -36,7 +36,8 @@ public class RequestInterceptor extends AbstractOutDatabindingInterceptor {
 		try {
 
 			final FacesContext facesContext = FlowFacesContext.getCurrentInstance();
-			LOGGER.info("INTERCEPTANDO PETICION: " + facesContext.getExternalContext().getRequestServletPath());
+
+			LOGGER.info("INTERCEPTANDO PETICION: " + facesContext.getExternalContext().getRequest().toString());
 			final HttpSession session = (HttpSession)facesContext.getExternalContext().getSession(false);
 			final Map<String, List<String>> headers = (Map<String, List<String>>)outMessage
 					.get(Message.PROTOCOL_HEADERS);
@@ -46,7 +47,7 @@ public class RequestInterceptor extends AbstractOutDatabindingInterceptor {
 			tsecHeader.add(tsec);
 			headers.put(TSecType.tsec.name(), tsecHeader);
 		} catch (final Exception exception) {
-			LOGGER.info("ERROR REQUEST INTERCEPTOR");
+			LOGGER.info("ERROR REQUEST INTERCEPTOR: " + exception.getMessage());
 		}
 
 	}

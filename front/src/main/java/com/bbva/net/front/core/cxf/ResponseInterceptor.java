@@ -44,7 +44,7 @@ public class ResponseInterceptor extends AbstractInDatabindingInterceptor {
 			LOGGER.info("Recogiendo TSEC y añadiendo a sesión:" + tsec);
 			session.setAttribute(TSecType.tsec.name(), tsec);
 		} catch (final Exception exception) {
-			LOGGER.info("ERROR RESPONSE INTERCEPTOR");
+			LOGGER.info("ERROR RESPONSE INTERCEPTOR: " + exception.getCause());
 		}
 
 	}

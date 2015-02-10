@@ -6,8 +6,11 @@ import ma.glasnost.orika.MapperFactory;
 import ma.glasnost.orika.impl.ConfigurableMapper;
 import ma.glasnost.orika.metadata.TypeFactory;
 
+import org.apache.commons.logging.Log;
+
 import com.bbva.czic.dto.net.EnumProductType;
 import com.bbva.czic.dto.net.Product;
+import com.bbva.jee.arq.spring.core.log.I18nLogFactory;
 import com.bbva.net.back.command.ProductVisitorCommand;
 import com.bbva.net.back.core.stereotype.Mapper;
 import com.bbva.net.back.mapper.GlobalPositionMapper;
@@ -25,9 +28,12 @@ import com.bbva.net.back.model.globalposition.LeasingDto;
 import com.bbva.net.back.model.globalposition.LoanDto;
 import com.bbva.net.back.model.globalposition.ProductDto;
 import com.bbva.net.back.model.globalposition.RotatingAccountDto;
+import com.bbva.net.webservices.core.pattern.AbstractBbvaRestService;
 
 @Mapper(value = "globalPositionMapper")
 public class GlobalPositionMapperImpl extends ConfigurableMapper implements GlobalPositionMapper {
+
+	protected static final Log LOGGER = I18nLogFactory.getLog(AbstractBbvaRestService.class);
 
 	/**
 	 * 

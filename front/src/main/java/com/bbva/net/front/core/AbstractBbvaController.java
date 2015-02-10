@@ -21,14 +21,13 @@ import org.springframework.webflow.execution.RequestContextHolder;
 import com.bbva.jee.arq.spring.core.log.I18nLogFactory;
 import com.bbva.net.back.model.globalposition.ProductDto;
 import com.bbva.net.back.model.movements.MovementDto;
-import com.bbva.net.webservices.core.pattern.AbstractBbvaRestService;
 
 /**
  * @author Entelgy
  */
 public abstract class AbstractBbvaController implements Serializable {
 
-	protected static final Log LOGGER = I18nLogFactory.getLog(AbstractBbvaRestService.class);
+	protected static final Log LOGGER = I18nLogFactory.getLog(AbstractBbvaController.class);
 
 	private static final long serialVersionUID = -4820146844257478597L;
 
@@ -170,12 +169,11 @@ public abstract class AbstractBbvaController implements Serializable {
 		this.setSelectedProduct((ProductDto)selectEvent.getObject());
 		System.out.print("ON productSelected\n");
 	}
-	
-	
+
 	/**
 	 * @return
 	 */
-	public MovementDto getSelectedMovements() {		
+	public MovementDto getSelectedMovements() {
 		return (MovementDto)getSession().getAttribute(SessionParamenterType.SELECTED_MOVEMENT.name());
 	}
 
@@ -185,7 +183,7 @@ public abstract class AbstractBbvaController implements Serializable {
 	public void setSelectedMovements(final MovementDto selectedProduct) {
 		getSession().setAttribute(SessionParamenterType.SELECTED_MOVEMENT.name(), selectedProduct);
 	}
-	
+
 	/**
 	 * @param selectEvent
 	 */
