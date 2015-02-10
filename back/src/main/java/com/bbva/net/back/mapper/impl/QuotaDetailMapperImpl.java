@@ -1,9 +1,7 @@
 package com.bbva.net.back.mapper.impl;
 
-import java.util.Date;
 import java.util.List;
 
-import com.bbva.czic.dto.net.Balance;
 import com.bbva.czic.dto.net.Loan;
 import com.bbva.czic.dto.net.Movement;
 import com.bbva.czic.dto.net.RotaryQuotaMove;
@@ -11,7 +9,6 @@ import com.bbva.net.back.mapper.converter.DateToStringConverter;
 import com.bbva.net.back.core.stereotype.Mapper;
 import com.bbva.net.back.mapper.QuotaDetailMapper;
 import com.bbva.net.back.mapper.converter.MoneyConverter;
-import com.bbva.net.back.model.commons.Money;
 import com.bbva.net.back.model.movements.MovementDetailDto;
 import com.bbva.net.back.model.movements.MovementDto;
 import com.bbva.net.back.model.quota.QuotaDetailDto;
@@ -30,6 +27,8 @@ public class QuotaDetailMapperImpl extends ConfigurableMapper implements QuotaDe
 
 		factory.getConverterFactory().registerConverter(new MoneyConverter());
 		// Map Loan QuotaDetailDto
+
+		factory.getConverterFactory().registerConverter(new DateToStringConverter("dd/MM/yyyy"));
 
 		factory.classMap(Loan.class, QuotaDetailDto.class).field("payment.numbersOfQuota", "numberOfShares")
 				.field("id", "id").field("payment.shortDate", "datePrevious").field("payment.dueDate", "dateMaturity")

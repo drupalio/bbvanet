@@ -35,11 +35,11 @@ public class MovementDetailDto implements Dto {
 
 	// Shared
 
-	private Date operationDate;
-
 	private Money value;
 
 	private String id;
+
+	private Date operationDate;
 
 	// Movement Quota
 

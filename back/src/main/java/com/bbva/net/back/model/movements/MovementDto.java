@@ -17,7 +17,7 @@ public class MovementDto implements Dto {
 
 	private static final long serialVersionUID = -1141791691031997221L;
 
-	/** data general the movement Account */
+	/** data general the movement Account/Quota */
 	private String movementId;
 
 	private Date movementDate;
@@ -28,35 +28,9 @@ public class MovementDto implements Dto {
 
 	private Money totalBalance;
 
-	private String status;
+	/** instance detail movement Account/Quota */
 
-	/** instance detail movement Account */
-
-	private MovementDetailDto movementDetailDto;
-
-	public MovementDto() {
-
-	}
-
-	/**
-	 * @param movementId
-	 * @param movementDate
-	 * @param movementConcept
-	 * @param movementValue
-	 * @param totalBalance
-	 * @param movementDetailDto
-	 */
-	public MovementDto(String movementId, Date movementDate, String movementConcept, Money movementValue,
-			Money totalBalance, MovementDetailDto movementDetailDto, String quotaNumber, Money quotaNextValue,
-			Money slopeValue, Date dateConsignment) {
-		super();
-		this.movementId = movementId;
-		this.movementDate = movementDate;
-		this.movementConcept = movementConcept;
-		this.movementValue = movementValue;
-		this.totalBalance = totalBalance;
-		this.movementDetailDto = movementDetailDto;
-	}
+	private MovementDetailDto movementDetailDTO;
 
 	/**
 	 * @return the movementId
@@ -128,26 +102,18 @@ public class MovementDto implements Dto {
 		this.totalBalance = totalBalance;
 	}
 
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
+	/**
+	 * @return the movementDetailDTO
+	 */
+	public MovementDetailDto getMovementDetailDTO() {
+		return movementDetailDTO;
 	}
 
 	/**
-	 * @return the movementDetailDto
+	 * @param movementDetailDTO the movementDetailDTO to set
 	 */
-	public MovementDetailDto getMovementDetailDto() {
-		return movementDetailDto;
-	}
-
-	/**
-	 * @param movementDetailDto the movementDetailDto to set
-	 */
-	public void setMovementDetailDto(MovementDetailDto movementDetailDto) {
-		this.movementDetailDto = movementDetailDto;
+	public void setMovementDetailDTO(MovementDetailDto movementDetailDTO) {
+		this.movementDetailDTO = movementDetailDTO;
 	}
 
 	@Override
@@ -159,7 +125,6 @@ public class MovementDto implements Dto {
 		hashCodeBuielder.append(getMovementDate()).toHashCode();
 		hashCodeBuielder.append(getMovementValue()).toHashCode();
 		hashCodeBuielder.append(getTotalBalance()).toHashCode();
-		hashCodeBuielder.append(getStatus()).hashCode();
 		return hashCodeBuielder.hashCode();
 	}
 
@@ -170,7 +135,6 @@ public class MovementDto implements Dto {
 				&& this.getMovementConcept().equals(((MovementDto)obj).getMovementConcept())
 				&& this.getMovementDate().equals(((MovementDto)obj).getMovementDate())
 				&& this.getMovementValue().equals(((MovementDto)obj).getMovementValue())
-				&& this.getStatus().equals(((MovementDto)obj).getStatus())
 				&& this.getTotalBalance() == (((MovementDto)obj).getTotalBalance());
 	}
 
@@ -182,7 +146,6 @@ public class MovementDto implements Dto {
 		toStringBuilder.append("value", getMovementValue()).toString();
 		toStringBuilder.append("money", getTotalBalance());
 		toStringBuilder.append("id", getMovementId());
-		toStringBuilder.append("status", getStatus());
 		return toStringBuilder.toString();
 	}
 
