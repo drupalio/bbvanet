@@ -10,7 +10,6 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
-import javax.ws.rs.HEAD;
 
 import org.primefaces.event.SelectEvent;
 import org.springframework.context.annotation.Scope;
@@ -19,12 +18,13 @@ import org.springframework.stereotype.Controller;
 import com.bbva.net.back.facade.MovementsAccountFacade;
 import com.bbva.net.back.facade.MultiValueGroupFacade;
 import com.bbva.net.back.model.citeriaMovements.MovementCriteriaDto;
+import com.bbva.net.back.model.comboFilter.EnumPeriodType;
 import com.bbva.net.back.model.commons.BalanceRangeDto;
 import com.bbva.net.back.model.commons.DateRangeDto;
 import com.bbva.net.back.model.enums.RenderAttributes;
-import com.bbva.net.back.model.globalposition.ProductDto;
 import com.bbva.net.back.model.movements.MovementDetailDto;
 import com.bbva.net.back.model.movements.MovementDto;
+import com.bbva.net.back.service.impl.DateFilterServiceImpl;
 import com.bbva.net.front.controller.MovementCriteriaController;
 import com.bbva.net.front.delegate.GraphicLineDelegate;
 import com.bbva.net.front.helper.MessagesHelper;
@@ -58,9 +58,9 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 	private MovementCriteriaDto movementCriteria = new MovementCriteriaDto();
 
-	private BalanceRangeDto balanceRange = new BalanceRangeDto();
+	private BalanceRangeDto balanceRange = null;
 
-	private DateRangeDto dateRange = new DateRangeDto();
+	private DateRangeDto dateRange = null;
 
 	@Resource(name = "multiValueGroupFacade")
 	private transient MultiValueGroupFacade multiValueGroupFacade;
@@ -81,22 +81,40 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 	@PostConstruct
 	public void init() {
+		super.init();
 		LOGGER.info("Initialize MovementesAccountController");
 		if (movementsList == null) {
 			getAllMovements();
 		}
-
 		this.graphicLineMovements = graphicLineDelegate.getMovementAccount(movementsList);
 		cleanFilters();
+	}
 
+	public void criteriaSearch() {
+
+		if (this.dateRange != null) {
+			setDateRangePc(this.dateRange);
+		}
+		if (this.balanceRange != null) {
+			setBalanceRangePc(this.balanceRange);
+		}
+		setUserPc(getCurrentUser());
+		setProductTypePc(getSelectedProduct().getSubTypeProd());
+		setProductIdPc(getSelectedProduct().getProductId());
+		search();
+		this.movementsList = getCurrentList();
+	}
+
+	public void nextPage(ActionEvent event) {
+		criteriaSearch();
 	}
 
 	@Override
 	public List<MovementDto> getAllMovements() {
 		movementsList = new ArrayList<MovementDto>();
 		movementsList = this.movementsFacade.listMovements(
-				"00130073000296247953"/* getSelectedProduct().getProductId() */, getCurrentUser(), null, null, null, 1,
-				10);
+				"00130073000296247953"/* getSelectedProduct().getProductId() */, getCurrentUser(), getSelectedProduct()
+						.getSubTypeProd(), null, null, 1, 10);
 		return movementsList;
 	}
 
@@ -115,6 +133,13 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 		if (renderComponents.get(RenderAttributes.FILTERDATE.toString())) {
 			System.out.println(" selectDate " + movementCriteria.getSelectDate());
+			EnumPeriodType periodType = EnumPeriodType.valueOfLabel(this.getSelectDate());
+			if (!(periodType == (null))) {
+				dateRange = new DateRangeDto();
+				dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
+			}
+			criteriaSearch();
+
 		} else if (renderComponents.get(RenderAttributes.BALANCEFILTER.toString())) {
 			System.out.println("Ingresos o gastos " + movementCriteria.getIncomesOrExpenses());
 
