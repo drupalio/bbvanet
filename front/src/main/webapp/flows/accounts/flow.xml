@@ -9,6 +9,8 @@
 	
 	<on-start>
 		<evaluate expression="globalPositionController.getCustomerProducts()" result="flowScope.customerProducts" />
+		<evaluate expression="globalPositionController.getCustomerProductsHidden()"
+			result="flowScope.customerProductsHidden" />
 		<evaluate expression="accountsController.getCustomerAccounts()" result="flowScope.customerAccounts" />
 		<evaluate expression="accountsController.getCustomerAccountsHidden()" result="flowScope.customerAccountsHidden" />
 	</on-start>
