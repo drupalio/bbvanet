@@ -82,8 +82,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	@PostConstruct
 	public void init() {
 		super.init();
-		renderComponents.put(RenderAttributes.MOVEMENTSTABLE.toString(), true);
-		renderComponents.put(RenderAttributes.CHECKTABLE.toString(), false);
+		
 		if (checkBookList == null) {
 			//initCheckBookList();
 		}
@@ -189,8 +188,10 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			// TODO DEFAULT_ACCOUNT accountId
 			this.check = checkBookFacade.getCheckById(getSelectedProduct().getProductId(), check.getId());
 			setTitle(new String(MessagesHelper.INSTANCE.getString("tex.check.status")));
-			renderComponents.put(RenderAttributes.MOVEMENTSTABLE.toString(), false);
-			renderComponents.put(RenderAttributes.CHECKTABLE.toString(), true);
+			
+			getRenderTable().put(RenderAttributes.MOVEMENTSTABLE.toString(), false);
+			getRenderTable().put(RenderAttributes.CHECKTABLE.toString(), true);
+					
 			clean();
 
 		} else if (renderComponents.get(RenderAttributes.FILTERSTATUS.toString())) {

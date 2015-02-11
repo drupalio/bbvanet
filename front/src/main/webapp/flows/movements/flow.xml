@@ -3,31 +3,38 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/webflow 
     http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
-	
-	<var name="movementsCriteriaController" class="com.bbva.net.front.controller.impl.MovementCriteriaControllerImpl"/>
-	<var name="checkBookController" class="com.bbva.net.front.controller.impl.CheckBookControllerImpl"/>
-	<var name="accountsController" class="com.bbva.net.front.controller.impl.AccountsControllerImpl"/>
+
+	<var name="movementsCriteriaController"
+		class="com.bbva.net.front.controller.impl.MovementCriteriaControllerImpl" />
+	<var name="checkBookController"
+		class="com.bbva.net.front.controller.impl.CheckBookControllerImpl" />
+	<var name="accountsController"
+		class="com.bbva.net.front.controller.impl.AccountsControllerImpl" />
 
 	<on-start>
-		<evaluate expression="checkBookController.getCheckList()" result="requestScope.checkList" />
-		<evaluate expression="accountsController.getCustomerAccounts()" result="flowScope.customerAccounts" />
+		<evaluate expression="checkBookController.getCheckList()"
+			result="requestScope.checkList" />
+		<evaluate expression="accountsController.getCustomerAccounts()"
+			result="flowScope.customerAccounts" />
 
-<!-- 		<evaluate expression="accountsController.getAllConditions()" result="flowScope.allConditions" /> -->
-		<evaluate expression="movementsCriteriaController.getAllMovements()" result="flowScope.movements" />
+		<!-- <evaluate expression="accountsController.getAllConditions()" result="flowScope.allConditions" 
+			/> -->
+		<evaluate expression="movementsCriteriaController.getAllMovements()"
+			result="flowScope.movements" />
 
 	</on-start>
-	
+
 	<view-state id="movements">
 		<on-entry>
 			<set name="flowScope.menuActive" value="'ACCOUNTS'" />
-			<evaluate expression="new java.lang.String()"/>
+			<evaluate expression="new java.lang.String()" />
 		</on-entry>
 		<transition to="detailMovement" on="movementSelected"></transition>
 	</view-state>
-	
-		<view-state id="detailMovement" view="externalRedirect:movements">
+
+	<view-state id="detailMovement" view="externalRedirect:movements">
 	</view-state>
-	
+
 </flow>
 
 
