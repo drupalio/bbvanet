@@ -37,7 +37,7 @@ public abstract class AbstractBbvaController implements Serializable {
 
 	protected enum SessionParamenterType {
 
-		SELECTED_PRODUCT, AUTHENTICATION_STATE
+		SELECTED_PRODUCT, AUTHENTICATION_STATE, LAST_REQUEST_URI
 	}
 
 	/**
