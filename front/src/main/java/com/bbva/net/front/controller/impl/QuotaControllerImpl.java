@@ -26,7 +26,6 @@ import com.bbva.net.front.core.AbstractBbvaController;
 /**
  * @author User
  */
-
 public class QuotaControllerImpl extends AbstractBbvaController implements QuotaController {
 
 	private static final long serialVersionUID = 1L;

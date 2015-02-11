@@ -3,6 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/webflow 
     http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+<<<<<<< HEAD
 
 	<var name="movementsCriteriaController"
 		class="com.bbva.net.front.controller.impl.MovementCriteriaControllerImpl" />
@@ -10,6 +11,13 @@
 		class="com.bbva.net.front.controller.impl.CheckBookControllerImpl" />
 	<var name="accountsController"
 		class="com.bbva.net.front.controller.impl.AccountsControllerImpl" />
+=======
+	
+	<var name="movementsCriteriaController" class="com.bbva.net.front.controller.impl.MovementCriteriaControllerImpl"/>
+	<var name="checkBookController" class="com.bbva.net.front.controller.impl.CheckBookControllerImpl"/>
+	<var name="accountsController" class="com.bbva.net.front.controller.impl.AccountsControllerImpl"/>
+	
+>>>>>>> 647599e16a7b8d7a3132b38e1e7dc059878c568a
 
 	<on-start>
 		<evaluate expression="checkBookController.getCheckList()"

@@ -12,8 +12,6 @@ import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
 
 import org.primefaces.event.SelectEvent;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Controller;
 
 import com.bbva.net.back.facade.MovementsAccountFacade;
 import com.bbva.net.back.facade.MultiValueGroupFacade;
@@ -33,9 +31,6 @@ import com.bbva.net.front.ui.line.LineConfigUI;
 /**
  * @author User
  */
-
-@Controller(value = "movementsCriteriaController")
-@Scope(value = "globalSession")
 public class MovementCriteriaControllerImpl extends MovementPaginatedController implements MovementCriteriaController {
 
 	private static final long serialVersionUID = 1L;

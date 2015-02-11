@@ -14,9 +14,6 @@ import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
 
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Controller;
-
 import com.bbva.net.back.entity.MultiValueGroup;
 import com.bbva.net.back.facade.CheckBookFacade;
 import com.bbva.net.back.facade.MultiValueGroupFacade;
@@ -36,8 +33,6 @@ import com.bbva.net.front.helper.MessagesHelper;
  * @author User
  */
 
-@Controller(value = "checkBookController")
-@Scope(value = "globalSession")
 public class CheckBookControllerImpl extends CheckPaginatedController implements CheckBookController {
 
 	private static final long serialVersionUID = 1L;
@@ -64,8 +59,6 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 
 	private Map<String, Boolean> renderComponents = new HashMap<String, Boolean>();
 
-	private List<MultiValueGroup> multiValueList = new ArrayList<MultiValueGroup>();
-
 	private CheckbookDto checkBook = new CheckbookDto();
 
 	private List<CheckDto> checkList = new ArrayList<CheckDto>();
@@ -86,8 +79,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 
 	@PostConstruct
 	public void init() {
-		super.init();
-		this.multiValueList = this.getListMultiValueChecks();
+		super.init();		
 		if (checkBookList == null) {
 			initCheckBookList();
 		}
@@ -190,10 +182,10 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			// TODO DEFAULT_ACCOUNT accountId
 			this.check = checkBookFacade.getCheckById(getSelectedProduct().getProductId(), check.getId());
 			setTitle(new String(MessagesHelper.INSTANCE.getString("tex.check.status")));
-			
+
 			getRenderTable().put(RenderAttributes.MOVEMENTSTABLE.toString(), false);
 			getRenderTable().put(RenderAttributes.CHECKTABLE.toString(), true);
-					
+
 			clean();
 
 		} else if (renderComponents.get(RenderAttributes.FILTERSTATUS.toString())) {
@@ -400,20 +392,6 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	 */
 	public void setRenderComponents(Map<String, Boolean> renderComponents) {
 		this.renderComponents = renderComponents;
-	}
-
-	/**
-	 * @return the multiValueList
-	 */
-	public List<MultiValueGroup> getMultiValueList() {
-		return multiValueList;
-	}
-
-	/**
-	 * @param multiValueList the multiValueList to set
-	 */
-	public void setMultiValueList(List<MultiValueGroup> multiValueList) {
-		this.multiValueList = multiValueList;
 	}
 
 	/**
