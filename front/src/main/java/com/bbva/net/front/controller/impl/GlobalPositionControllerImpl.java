@@ -3,7 +3,6 @@ package com.bbva.net.front.controller.impl;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.faces.event.ComponentSystemEvent;
 
@@ -171,7 +170,6 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	/**
 	 * 
 	 */
-	@PostConstruct
 	public void init() {
 
 		LOGGER.info("STARTING BBVA GLOBAL POSITION .................");

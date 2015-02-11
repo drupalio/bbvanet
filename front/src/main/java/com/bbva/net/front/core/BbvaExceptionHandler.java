@@ -56,13 +56,13 @@ public class BbvaExceptionHandler extends ExceptionHandlerWrapper {
 					.getNavigationHandler();
 			// here you do what ever you want with exception
 			try {
-				// log error ?
+				//
 				// LOGGER.error("Severe Exception Occured");
 				// // log.log(Level.SEVERE, "Critical Exception!", t);
 				// // redirect error page
 				// requestMap.put("exceptionMessage", t.getMessage());
 				// nav.performNavigation("/TestPRoject/error.xhtml");
-				// fc.renderResponse();
+				fc.renderResponse();
 				// remove the comment below if you want to report the error in a
 				// jsf error message
 				// JsfUtil.addErrorMessage(t.getMessage());
