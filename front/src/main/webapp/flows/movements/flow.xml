@@ -7,6 +7,7 @@
 	<var name="movementsCriteriaController" class="com.bbva.net.front.controller.impl.MovementCriteriaControllerImpl"/>
 	<var name="checkBookController" class="com.bbva.net.front.controller.impl.CheckBookControllerImpl"/>
 	<var name="accountsController" class="com.bbva.net.front.controller.impl.AccountsControllerImpl"/>
+	
 
 	<on-start>
 		<evaluate expression="checkBookController.getCheckList()" result="requestScope.checkList" />

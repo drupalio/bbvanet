@@ -76,7 +76,7 @@
 					value="#{cc.attrs.valuecheckState}"
 					disabled="#{checkBookController.renderComponents['STATUS']}">
 					<f:selectItem itemLabel="#{msg['text.combo.select']}" />
-					<f:selectItems value="#{checkBookController.multiValueList}"
+					<f:selectItems value="#{comboCriteriaController.multiValueList}"
 						var="multiValue" itemValue="#{multiValue.id}"
 						itemLabel="#{msg[multiValue.value]}" />
 				</h:selectOneMenu>

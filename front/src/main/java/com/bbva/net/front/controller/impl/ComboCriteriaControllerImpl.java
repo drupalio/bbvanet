@@ -11,7 +11,7 @@ import org.springframework.stereotype.Controller;
 import com.bbva.net.back.entity.MultiValueGroup;
 import com.bbva.net.back.facade.MultiValueGroupFacade;
 import com.bbva.net.back.model.comboFilter.EnumPeriodType;
-import com.bbva.net.front.controller.PeriodFilterCriteriaController;
+import com.bbva.net.front.controller.ComboCriteriaController;
 import com.bbva.net.front.core.AbstractBbvaController;
 
 /**
@@ -19,15 +19,19 @@ import com.bbva.net.front.core.AbstractBbvaController;
  * 
  * @author Entelgy
  */
-@Controller(value = "periodFilterCriteriaController")
+@Controller(value = "comboCriteriaController")
 @Scope(value = "globalSession")
-public class PeriodFilterCriteriaControllerImpl extends AbstractBbvaController implements
-		PeriodFilterCriteriaController {
+public class ComboCriteriaControllerImpl extends AbstractBbvaController implements ComboCriteriaController {
 
 	/**
 	 * 
 	 */
 	private static final Integer LIST_CHECK_STATUS = 3;
+
+	/**
+	 * 
+	 */
+	private static final Integer LIST_CHECKBOOK_STATUS = 2;
 
 	/**
 	 * 
@@ -42,6 +46,11 @@ public class PeriodFilterCriteriaControllerImpl extends AbstractBbvaController i
 	/**
 	 * 
 	 */
+	private List<MultiValueGroup> multiValueList;
+
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = -8550174788177930813L;
 
 	/**
@@ -50,9 +59,13 @@ public class PeriodFilterCriteriaControllerImpl extends AbstractBbvaController i
 	@Resource(name = "multiValueGroupFacade")
 	private transient MultiValueGroupFacade multiValueGroupFacade;
 
+	/**
+	 * Inicialización de Combos
+	 */
 	@PostConstruct
 	public void init() {
 		this.multiValuePeriod = this.getListMultiValuePeriod();
+		this.multiValueList = this.getListMultiValueChecks();
 	}
 
 	/**
@@ -64,24 +77,35 @@ public class PeriodFilterCriteriaControllerImpl extends AbstractBbvaController i
 	}
 
 	/**
-	 * @return
+	 * Método que obtiene los items del combo en cheques
 	 */
-	public EnumPeriodType getPeriod() {
-		return period;
+	@Override
+	public List<MultiValueGroup> getListMultiValueChecks() {
+		return this.multiValueGroupFacade.getMultiValueTypes(LIST_CHECKBOOK_STATUS);
 	}
 
-	/**
-	 * @param period
-	 */
-	public void setPeriod(final EnumPeriodType period) {
-		this.period = period;
-	}
+	// ************* Getters Methods *************
 
 	/**
 	 * @return
 	 */
 	public List<MultiValueGroup> getMultiValuePeriod() {
 		return multiValuePeriod;
+	}
+
+	/**
+	 * @return
+	 */
+
+	public List<MultiValueGroup> getMultiValueList() {
+		return multiValueList;
+	}
+
+	/**
+	 * @return
+	 */
+	public EnumPeriodType getPeriod() {
+		return period;
 	}
 
 }
