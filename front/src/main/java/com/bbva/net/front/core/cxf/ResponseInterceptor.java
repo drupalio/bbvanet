@@ -34,13 +34,17 @@ public class ResponseInterceptor extends AbstractInDatabindingInterceptor {
 	public void handleMessage(final Message outMessage) throws Fault {
 
 		try {
+
 			final FacesContext facesContext = FlowFacesContext.getCurrentInstance();
+			LOGGER.info("INTERCEPTANDO RESPUESTA : " + facesContext.getExternalContext().getRequestServletPath());
 			final HttpSession session = (HttpSession)facesContext.getExternalContext().getSession(false);
 			final Map<String, List<String>> headers = (Map<String, List<String>>)outMessage
 					.get(Message.PROTOCOL_HEADERS);
-			session.setAttribute(TSecType.tsec.name(), headers.get(TSecType.tsec.name()).get(0));
+			final String tsec = headers.get(TSecType.tsec.name()).get(0);
+			LOGGER.info("Recogiendo TSEC y añadiendo a sesión:" + tsec);
+			session.setAttribute(TSecType.tsec.name(), tsec);
 		} catch (final Exception exception) {
-			LOGGER.info("ERROR RESPONSE INTERCEPTOR");
+			LOGGER.info("ERROR RESPONSE INTERCEPTOR: " + exception.getCause());
 		}
 
 	}

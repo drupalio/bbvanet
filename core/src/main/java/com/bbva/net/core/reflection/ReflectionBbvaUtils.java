@@ -2,12 +2,13 @@ package com.bbva.net.core.reflection;
 
 import java.lang.reflect.Method;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.commons.logging.Log;
+
+import com.bbva.jee.arq.spring.core.log.I18nLogFactory;
 
 public final class ReflectionBbvaUtils {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(ReflectionBbvaUtils.class);
+	protected static final Log LOGGER = I18nLogFactory.getLog(ReflectionBbvaUtils.class);
 
 	private ReflectionBbvaUtils() {
 	}

@@ -94,8 +94,9 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	public List<MovementDto> getAllMovements() {
 		movementsList = new ArrayList<MovementDto>();
 		movementsList = this.movementsFacade.listMovements(
-				"00130073000296247953"/* getSelectedProduct().getProductId() */, getCurrentUser(), null, null, null, 1,
-				10);
+				"00130073000296247953"/* getSelectedProduct().getProductId() */, getCurrentUser(), getSelectedProduct()
+						.getSubTypeProd(), null, null, 1, 10);
+
 		return movementsList;
 	}
 

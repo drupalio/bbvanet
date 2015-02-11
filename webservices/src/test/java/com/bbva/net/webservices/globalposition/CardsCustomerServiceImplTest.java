@@ -30,7 +30,7 @@ public class CardsCustomerServiceImplTest {
 
 		restTemplate = Mockito.mock(RestTemplate.class);
 		customerServiceImpl.setRestTemplate(restTemplate);
-		customerServiceImpl.setURL_BASE("http://localhost:8099/GlobalPosition/V01");
+		// customerServiceImpl.setURL_BASE("http://localhost:8099/GlobalPosition/V01");
 
 	}
 

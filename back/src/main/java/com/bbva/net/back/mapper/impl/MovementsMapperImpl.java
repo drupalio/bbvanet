@@ -8,6 +8,7 @@ import ma.glasnost.orika.impl.ConfigurableMapper;
 import com.bbva.czic.dto.net.Movement;
 import com.bbva.net.back.core.stereotype.Mapper;
 import com.bbva.net.back.mapper.MovementsMapper;
+import com.bbva.net.back.mapper.converter.DateToStringConverter;
 import com.bbva.net.back.mapper.converter.MoneyConverter;
 import com.bbva.net.back.model.movements.MovementDetailDto;
 import com.bbva.net.back.model.movements.MovementDto;
@@ -19,6 +20,8 @@ public class MovementsMapperImpl extends ConfigurableMapper implements Movements
 	protected void configure(final MapperFactory factory) {
 		// Add Money Converter
 		factory.getConverterFactory().registerConverter(new MoneyConverter());
+		// Add Date Converter
+		factory.getConverterFactory().registerConverter(new DateToStringConverter("yyyy-MM-dd'T'HH:mm:ss.SSSZ"));
 
 		// Map Movement DTO
 		factory.classMap(Movement.class, MovementDto.class).field("id", "movementId")
@@ -27,7 +30,7 @@ public class MovementsMapperImpl extends ConfigurableMapper implements Movements
 				.field("operation.code", "movementDetailDto.operationCode")
 				.field("operation.description", "movementDetailDto.operationDescription")
 				.field("office.name", "movementDetailDto.plaza")
-				.field("office.location", "movementDetailDto.originCenterMovement")
+				.field("office.location.city.name", "movementDetailDto.originCenterMovement")
 				.field("status", "movementDetailDto.state").field("value", "movementValue")
 				.field("balance", "totalBalance").field("numberOfQuotas", "quotaNumber").byDefault().register();
 
@@ -41,8 +44,7 @@ public class MovementsMapperImpl extends ConfigurableMapper implements Movements
 
 	@Override
 	public List<MovementDto> mapMovementDtoList(List<Movement> movementList) {
-		final List<MovementDto> movementDtoList = mapAsList(movementList, MovementDto.class);
-		return movementDtoList;
+		return mapAsList(movementList, MovementDto.class);
 	}
 
 }

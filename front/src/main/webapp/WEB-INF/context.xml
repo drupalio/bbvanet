@@ -1,0 +1,6 @@
+<Context path="" docBase="kqco_mult_web_front-01">
+
+  <!-- Default set of monitored resources -->
+  <WatchedResource>WEB-INF/web.xml</WatchedResource>
+
+</Context>

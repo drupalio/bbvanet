@@ -34,15 +34,20 @@ public class RequestInterceptor extends AbstractOutDatabindingInterceptor {
 	@Override
 	public void handleMessage(Message outMessage) throws Fault {
 		try {
+
 			final FacesContext facesContext = FlowFacesContext.getCurrentInstance();
+
+			LOGGER.info("INTERCEPTANDO PETICION: " + facesContext.getExternalContext().getRequest().toString());
 			final HttpSession session = (HttpSession)facesContext.getExternalContext().getSession(false);
 			final Map<String, List<String>> headers = (Map<String, List<String>>)outMessage
 					.get(Message.PROTOCOL_HEADERS);
 			final List<String> tsecHeader = new ArrayList<String>();
-			tsecHeader.add((String)session.getAttribute(TSecType.tsec.name()));
+			String tsec = (String)session.getAttribute(TSecType.tsec.name());
+			LOGGER.info("Recogiendo TSEC de la Sesión y añadiendo a cabecera:" + tsec);
+			tsecHeader.add(tsec);
 			headers.put(TSecType.tsec.name(), tsecHeader);
 		} catch (final Exception exception) {
-			LOGGER.info("ERROR REQUEST INTERCEPTOR");
+			LOGGER.info("ERROR REQUEST INTERCEPTOR: " + exception.getMessage());
 		}
 
 	}
