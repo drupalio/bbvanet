@@ -31,9 +31,9 @@
 		<div class="tab-group savingsAccount">
 			<bbvaHeader:quotaDetail>
 				<bbvaHeader:quotaDetailHeader>
-					<bbvaHeader:quotaDetailHeaderLeft alias="Cuenta de José García"
-				numCuenta="0013-0073-00-0200108391"
-				tipoPrestamo="Cuenta ahorro"/>
+					<bbvaHeader:quotaDetailHeaderLeft alias="Hola"
+				numCuenta="#{movementsCriteriaController.getSelectedProduct().getProductNumber()}"
+				tipoPrestamo="#{movementsCriteriaController.getSelectedProduct().getSubTypeProd()}"/>
 					<bbvaGraphic:MovementsGraphic lineConfigUI="#{movementsCriteriaController.graphicLineMovements}"/>
 					<bbvaHeader:quotaDetailHeaderRight textUp="#{msg['text.available']}"
 				valueUp="$ 12,845,999.35"

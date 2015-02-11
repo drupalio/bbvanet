@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:bbvaOperationFav="http://java.sun.com/jsf/composite/bbva/favoriteOperations">
+
+<composite:interface>
+	<composite:attribute name="id" type="String" />
+</composite:interface>
+
+<composite:implementation>
+
+	<section class="links dated favoritas editable" id="preferredOperations">
+	<bbvaOperationFav:operationsHeader/>
+    <article>
+        <ul>
+            <li class="operation">
+                <a class="mini-triangled" href="#">
+                    <span class="dateText">Última vez realizada: 12-07-2014</span>
+                    Transferencia de $ 1.000
+                    <span class="dateText-foot">Cuenta Corriente
+                     - Cuenta Ahorro</span>
+                </a>
+            </li>
+            
+            <li class="operation">
+                <a class="mini-triangled" href="#">
+                    <span class="dateText">Última vez realizada: 12-07-2014</span>
+                    Transferencia de $ 1.000
+                    <span class="dateText-foot">Cuenta Corriente
+                     - Cuenta Ahorro</span>
+                </a>
+            </li>
+            <li class="operation">
+                <a class="mini-triangled" href="#">
+                    <span class="dateText">Última vez realizada: 12-07-2014</span>
+                    Transferencia de $ 1.000
+                    <span class="dateText-foot">Cuenta Corriente
+                     - Cuenta Ahorro</span>
+                </a>
+            </li>
+            <!-- contenido oculto -->
+            <li class="operation hiddenElement" style="display: none;">
+                <a class="mini-triangled" href="#">
+                    <span class="dateText">Última vez realizada: 12-07-2014</span>
+                    Transferencia de $ 1.000
+                    <span class="dateText-foot">Cuenta Corriente
+                     - Cuenta Ahorro</span>
+                </a>
+            </li>
+            <li class="operation hiddenElement" style="display: none;">
+
+                <a class="mini-triangled" href="#">
+                    <span class="dateText">Última vez realizada: 12-07-2014</span>
+                    Transferencia de $ 1.000
+                    <span class="dateText-foot">Cuenta Corriente
+                     - Cuenta Ahorro</span>
+                </a>
+            </li>
+        </ul>
+    </article>
+    <footer>
+        <button type="button" class="btn small seeMore">Ver más</button>
+    </footer>
+</section>
+
+
+</composite:implementation>
+
+</html>

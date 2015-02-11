@@ -18,7 +18,6 @@
 	<div class="hidden-xs col-sm-5 bbva-chart">
 		<div id="savings" class="chart-lines">
 			<div id="chart2_8" class="c3" />
-	<P style="text-align: left;"/>
 			<script>
 			var title;
 			var xColumns = [];
@@ -29,7 +28,7 @@
 			
 			<c:forEach var="lineItemUI" items="${cc.attrs.lineConfigUI.lineItemUIList}" varStatus="status">
 			title = ("${lineItemUI.label}");
-			currency= "$";
+			currency= ("${lineItemUI.value.currency}");
 			label = ("${lineItemUI.label}");
 			xColumns.push("${lineItemUI.value.amount}");
 			</c:forEach>
