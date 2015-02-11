@@ -4,7 +4,6 @@ import javax.annotation.Resource;
 
 import org.junit.Test;
 import org.junit.Assert;
-
 import org.junit.runner.RunWith;
 import org.springframework.context.annotation.Profile;
 import org.springframework.test.context.ContextConfiguration;

@@ -6338,9 +6338,9 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		}
 	},
 	"payment": {
-		"dueDate": "19/01/2015",
-		"paymentDate": "14/01/2015",
-		"shortDate": "01/01/2015",
+		"dueDate": "2015-19-01",
+		"paymentDate": "2015-14-01",
+		"shortDate": "2015-01-01",
 		"fees": {
 			"amount": 200,
 			"currency": "$"
@@ -6376,7 +6376,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		"alias": "conditions",
 		"category": "2",
 		"description": "ninguna",
-		"openingDate": "12/05/2014",
+		"openingDate": "2014-12-05",
 		"commission": "ninguna",
 		"office": {
 			"code": "12345",
@@ -7211,7 +7211,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	},
 	"numbersOfQuota": 2,
 	"remainingQuotas": 3
-}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/loan/V01/rotaryQuota/00130073000296247953/movement/" method="GET" resourcePath="/czic/loan/V01/rotaryQuota/00130073000296247953/movement/"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/loan/V01/rotaryQuota/00130073000296247953/movement/" method="GET" resourcePath="/czic/loan/V01/rotaryQuota/00130073000296247953/movement/"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Examples showing how to match based on path, query param and header
 // Match based on path
 def requestPath = mockRequest.getPath()

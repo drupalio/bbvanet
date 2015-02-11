@@ -37,10 +37,10 @@ public abstract class AbstractBbvaRestService {
 	@Value("${rest.base.customer.url}")
 	protected String URL_BASE_CUSTOMER;
 
-	@Value("${rest.rotaryQuota.base.url}")
+	@Value("${rest.quotaRotary.base.url}")
 	protected String URL_BASE_ROTARYQUOTA;
 
-	@Value("${rest.rotaryQuota.move.url}")
+	@Value("${rest.quotaRotary.move.url}")
 	protected String URL_ROTARYQUOTA_MOVE;
 
 	@Value("${rest.base.executive.url}")
