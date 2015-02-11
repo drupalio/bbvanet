@@ -14,6 +14,7 @@ import com.bbva.czic.dto.net.MonthlyBalances;
 import com.bbva.net.webservices.accounts.AccountsService;
 import com.bbva.net.webservices.core.pattern.AbstractBbvaRestService;
 import com.bbva.net.webservices.core.stereotype.RestService;
+import com.google.gson.Gson;
 
 @RestService(value = "accountsService")
 public class AccountsServiceImpl extends AbstractBbvaRestService implements AccountsService {
@@ -74,10 +75,18 @@ public class AccountsServiceImpl extends AbstractBbvaRestService implements Acco
 	public List<MonthlyBalances> getAccountMonthlyBalance(String accountId, String filter, String fields,
 			String expands, String sort) {
 		WebClient wc = getJsonWebClient(URL_BASE_ACCOUNTS + accountId + URL_MOUNTHBALANCE);
+
+		LOGGER.info("PETICION: " + wc.getCurrentURI());
 		if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
 		if (!StringUtils.isEmpty(fields)) wc.query(FILTER, fields);
 
-		return (List<MonthlyBalances>)wc.getCollection(MonthlyBalances.class);
+		List<MonthlyBalances> result = (List<MonthlyBalances>)wc.getCollection(MonthlyBalances.class);
+
+		final Gson gson = new Gson();
+		String json = gson.toJson(result);
+		LOGGER.info("JSON ACCOUNT MONTHLY BALANCE: " + json);
+
+		return result;
 	}
 
 	@SuppressWarnings("unchecked")

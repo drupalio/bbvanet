@@ -38,6 +38,7 @@ public class ResponseInterceptor extends AbstractInDatabindingInterceptor {
 			final FacesContext facesContext = FlowFacesContext.getCurrentInstance();
 			LOGGER.info("INTERCEPTANDO RESPUESTA : " + facesContext.getExternalContext().getRequestServletPath());
 			final HttpSession session = (HttpSession)facesContext.getExternalContext().getSession(false);
+
 			final Map<String, List<String>> headers = (Map<String, List<String>>)outMessage
 					.get(Message.PROTOCOL_HEADERS);
 			final String tsec = headers.get(TSecType.tsec.name()).get(0);

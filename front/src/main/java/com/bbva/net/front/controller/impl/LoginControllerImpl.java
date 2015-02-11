@@ -35,6 +35,13 @@ public class LoginControllerImpl extends AbstractBbvaController implements Login
 
 		// 3. Set CurrentUser
 		final String user = getRequestParameter("usuario");
+
+		// ÑAPA QUE QUITAR
+		final String clientId = getRequestParameter("clientId");
+
+		LOGGER.info("Seteando CLIENT_ID a sesion" + clientId);
+		this.getSession().setAttribute("CLIENT_ID", clientId);
+
 		this.setDefaultUser(user);
 
 		LOGGER.info("Login with User: " + user);

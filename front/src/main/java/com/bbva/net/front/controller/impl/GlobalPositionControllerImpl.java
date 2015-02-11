@@ -174,39 +174,50 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	@PostConstruct
 	public void init() {
 
-		LOGGER.info("STARTING BBVA NET .................");
+		try {
 
-		// Get GlobalProductsDTO by currentUser (visibles and hidden)
-		this.globalProductsDTO = this.globalPositionFacade.getGlobalProductsByUser(getCurrentUser());
+			LOGGER.info("STARTING BBVA NET .................");
 
-		// Obtiene la lista de resumen de movimientos del serivico REST
-		this.globalResumeMovementsDTO = this.movementsResumeFacade.getMovementsResumeByCustomer(getCurrentUser(), null);
+			LOGGER.info("Obteniendo Posición Global ................");
+			// Get GlobalProductsDTO by currentUser (visibles and hidden)
+			this.globalProductsDTO = this.globalPositionFacade.getGlobalProductsByUser(getCurrentUser());
 
-		// Obtiene la lista de datos para pintar la grafica Deposito electrónico
-		this.globalMonthlyBalance = this.accountMonthBalanceFacade.getAccountMonthlyBalance(DEFAULT_ACCOUNT, null,
-				StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY);
+			LOGGER.info("Obteniendo la lista de resumen de movimientos................");
+			// Obtiene la lista de resumen de movimientos del serivico REST
+			this.globalResumeMovementsDTO = this.movementsResumeFacade.getMovementsResumeByCustomer(getCurrentUser(),
+					null);
 
-		// Delegate construye UI grafica Depositos Electrónicos
-		// this.lineConfigUI = this.graphicLineDelegate.getMonthlyBalance(globalMonthlyBalance);
+			LOGGER.info("Obteniendo Monthly Balances ................");
+			// Obtiene la lista de datos para pintar la grafica Deposito electrónico
+			this.globalMonthlyBalance = this.accountMonthBalanceFacade.getAccountMonthlyBalance(DEFAULT_ACCOUNT, null,
+					StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY);
 
-		// Calculate situation graphics panels
-		this.situationGraphicPieUI = graphicPieDelegate.getSituationGlobalProducts(this.globalProductsDTO);
+			// Delegate construye UI grafica Depositos Electrónicos
+			// this.lineConfigUI = this.graphicLineDelegate.getMonthlyBalance(globalMonthlyBalance);
 
-		// Calculate investmentFunds graphics panels
-		this.graphicPieInvestmentFunds = graphicPieDelegate.getAccountsfundsProducts(globalProductsDTO);
+			// Calculate situation graphics panels
+			this.situationGraphicPieUI = graphicPieDelegate.getSituationGlobalProducts(this.globalProductsDTO);
 
-		// Calculate cards graphics panel
-		this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(getCurrentUser(),
-				null));
+			// Calculate investmentFunds graphics panels
+			this.graphicPieInvestmentFunds = graphicPieDelegate.getAccountsfundsProducts(globalProductsDTO);
 
-		// Calculate totals
-		this.totalsProducts = this.globalPositionFacade.getTotalsByProduct(globalProductsDTO);
+			LOGGER.info("Obteniendo Tarjetas ................");
+			// Calculate cards graphics panel
+			this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(
+					getCurrentUser(), null));
 
-		// Calculate income, output and balance by Account Graphic
-		this.accountGraphicBarLineUI = this.graphicBarLineDelegate.getInOutBalanceAccount(globalResumeMovementsDTO);
+			// Calculate totals
+			this.totalsProducts = this.globalPositionFacade.getTotalsByProduct(globalProductsDTO);
 
-		// Get names of products
-		this.namesProducts = globalPositionFacade.getNamesProducts(globalProductsDTO);
+			// Calculate income, output and balance by Account Graphic
+			this.accountGraphicBarLineUI = this.graphicBarLineDelegate.getInOutBalanceAccount(globalResumeMovementsDTO);
+
+			LOGGER.info("Nombre Productos  ................");
+			this.namesProducts = globalPositionFacade.getNamesProducts(globalProductsDTO);
+
+		} catch (final Exception exception) {
+			LOGGER.info("HA HABIDO UNA EXCEPTION EN GLOBAL POSITION");
+		}
 
 	}
 
