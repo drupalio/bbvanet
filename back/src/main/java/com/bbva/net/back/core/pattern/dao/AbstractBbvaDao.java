@@ -2,39 +2,38 @@ package com.bbva.net.back.core.pattern.dao;
 
 import java.io.Serializable;
 
+import org.apache.commons.logging.Log;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.bbva.jee.arq.spring.core.log.I18nLogFactory;
+
 /**
- * 
  * @author Entelgy
- *
- * @param <T> Entity 
+ * @param <T> Entity
  */
 @Transactional
 public abstract class AbstractBbvaDao<T extends Serializable> implements CrudDao<T> {
-	
-	protected static final Logger LOG = LoggerFactory.getLogger(AbstractBbvaDao.class);
-		
+
+	protected static final Log LOGGER = I18nLogFactory.getLog(AbstractBbvaDao.class);
+
 	@Autowired
 	protected SessionFactory sessionFactory;
-	
+
 	@Override
 	@SuppressWarnings("unchecked")
-	public T getByID(Long id , Class<T> entityClass) {
-		return (T) getSession().get(entityClass, id);
+	public T getByID(Long id, Class<T> entityClass) {
+		return (T)getSession().get(entityClass, id);
 	}
-	
-	protected Session getSession(){
+
+	protected Session getSession() {
 		return this.sessionFactory.getCurrentSession();
 	}
-	
+
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
-	}	
+	}
 
 }
