@@ -6,7 +6,6 @@ import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
 import org.primefaces.event.SelectEvent;
-import org.springframework.stereotype.Controller;
 
 import com.bbva.net.back.facade.AccountsFacade;
 import com.bbva.net.back.facade.TermasAccountsFacade;

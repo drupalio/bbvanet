@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package com.bbva.net.front.controller.impl;
 
 import java.text.SimpleDateFormat;
@@ -25,6 +28,8 @@ import com.bbva.net.back.model.commons.DateRangeDto;
 import com.bbva.net.back.model.enums.RenderAttributes;
 import com.bbva.net.back.service.impl.DateFilterServiceImpl;
 import com.bbva.net.front.controller.CheckBookController;
+import com.bbva.net.front.core.AbstractBbvaController;
+import com.bbva.net.front.core.PaginationController;
 import com.bbva.net.front.helper.MessagesHelper;
 
 /**
@@ -53,19 +58,19 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	private Date sinceDate, toDate;
 
 	private String actionState, checkState, checkBookNumber, sinceDatestr, toDatestr, leftTitle, rightTitle,
-			titleState;	
+			titleState;
 
 	private String title = MessagesHelper.INSTANCE.getString("text.last.movments");
 
 	private Map<String, Boolean> renderComponents = new HashMap<String, Boolean>();
 
-	private List<MultiValueGroup> multiValueList = null;
+	private List<MultiValueGroup> multiValueList = new ArrayList<MultiValueGroup>();
 
 	private CheckbookDto checkBook = new CheckbookDto();
 
 	private List<CheckDto> checkList = new ArrayList<CheckDto>();
 
-	private List<CheckbookDto> checkBookList = null;
+	private List<CheckbookDto> checkBookList = new ArrayList<CheckbookDto>();
 
 	private CheckDto check = new CheckDto();
 
@@ -82,12 +87,9 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	@PostConstruct
 	public void init() {
 		super.init();
-		
+		this.multiValueList = this.getListMultiValueChecks();
 		if (checkBookList == null) {
-			//initCheckBookList();
-		}
-		if (this.multiValueList == null) {
-			this.multiValueList = this.getListMultiValueChecks();
+			initCheckBookList();
 		}
 		clean();
 	}
@@ -180,7 +182,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 
 	@Override
 	public void showResults(final ActionEvent event) {
-		System.out.println("showResults");		
+		System.out.println("showResults");
 
 		if (renderComponents.get(RenderAttributes.FILTERCHECKBOOK.toString())) {
 			// Filter by checkId
@@ -198,11 +200,8 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			// Filter by status
 			System.out.println(" estado: " + titleState);
 			// TODO DEFAULT_ACCOUNT accountId
-			// this.checkList = checkBookFacade.getCheckByStatusOrDate(getSelectedProduct().getProductId(), null, titleState,
-			// paginationKey, paginationSize);
-			this.dateRange = null;
-			criteriaSearch();
-
+			this.checkList = checkBookFacade.getCheckByStatusOrDate(getSelectedProduct().getProductId(), null,
+					titleState, 1, 10);
 			setTitle(MessagesHelper.INSTANCE.getString("tex.check.status"));
 			renderComponents.put(RenderAttributes.MOVEMENTSTABLE.toString(), false);
 			renderComponents.put(RenderAttributes.CHECKTABLE.toString(), true);
@@ -226,9 +225,10 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			if (!(periodType == (null))) {
 				dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
 			}
-			// this.checkList = checkBookFacade.getCheckByStatusOrDate(getSelectedProduct().getProductId(), this.dateRange, null, paginationKey, paginationSize);
-			this.titleState = null;
-			criteriaSearch();
+			// TODO DEFAULT_ACCOUNT accountId
+			this.checkList = checkBookFacade.getCheckByStatusOrDate(getSelectedProduct().getProductId(),
+					this.dateRange, null, 1, 10);
+
 			setTitle(MessagesHelper.INSTANCE.getString("tex.check.status"));
 			renderComponents.put(RenderAttributes.MOVEMENTSTABLE.toString(), false);
 			renderComponents.put(RenderAttributes.CHECKTABLE.toString(), true);
@@ -237,23 +237,6 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 		} else {
 			System.out.println("sin filtros");
 		}
-	}
-
-	public void criteriaSearch() {
-		
-		if (this.dateRange != null) {
-			setDateRangePControl(this.dateRange);
-		}
-		if (this.titleState != null) {
-			setStatusPControl(titleState);
-		}
-		setProductIdPControl(getSelectedProduct().getProductId());
-		search();
-		this.checkList = getCurrentList();
-	}
-
-	public void nextPage(ActionEvent event) {
-		criteriaSearch();
 	}
 
 	@Override

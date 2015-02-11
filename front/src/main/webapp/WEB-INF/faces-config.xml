@@ -25,8 +25,11 @@
 			<supported-locale>es</supported-locale>
 		</locale-config>
 
-		<!-- <factory> <exception-handler-factory> com.common.exceptions.CustomExceptionHandlerFactory 
-			</exception-handler-factory> </factory> -->
+		<factory>
+			<exception-handler-factory>
+				com.bbva.net.front.core.BbvaExceptionHandlerFactory
+			</exception-handler-factory>
+		</factory>
 
 	</application>
 

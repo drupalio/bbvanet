@@ -43,9 +43,9 @@ public class MonthBalanceFacadeImpl extends AbstractBbvaFacade implements MonthB
 	public GlobalMonthlyBalanceDto getAccountMonthlyBalance(String accountId, DateRangeDto dateRange, String fields,
 			String expands, String sort) {
 
-		GlobalMonthlyBalanceDto globalMonthlyBalance = new GlobalMonthlyBalanceDto();
+		final GlobalMonthlyBalanceDto globalMonthlyBalance = new GlobalMonthlyBalanceDto();
 
-		String filter = dateRange == null ? StringUtils.EMPTY : fiqlService.getFiqlQueryMonthlyByDateRange(
+		final String filter = dateRange == null ? StringUtils.EMPTY : fiqlService.getFiqlQueryMonthlyByDateRange(
 				dateFilterService.getPeriodFilter(EnumPeriodType.LAST_MONTH), DATE, DATE);
 
 		final List<MonthlyBalances> response = this.accountsService.getAccountMonthlyBalance(accountId, filter, fields,

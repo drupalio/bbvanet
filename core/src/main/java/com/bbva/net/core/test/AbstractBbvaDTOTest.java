@@ -7,10 +7,12 @@ import java.util.Collections;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.logging.Log;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.bbva.jee.arq.spring.core.log.I18nLogFactory;
 import com.bbva.net.core.collection.BbvaPredicate;
 import com.bbva.net.core.pattern.VisitorCommand;
 import com.bbva.net.core.reflection.BeanBbvaUtils;
@@ -23,6 +25,8 @@ import com.bbva.net.core.reflection.ReflectionBbvaUtils;
  * @param <T>
  */
 public abstract class AbstractBbvaDTOTest<T extends Serializable> {
+
+	protected static final Log LOGGER = I18nLogFactory.getLog(AbstractBbvaDTOTest.class);
 
 	private T dto;
 
