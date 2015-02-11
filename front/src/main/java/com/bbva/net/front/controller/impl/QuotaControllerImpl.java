@@ -34,17 +34,9 @@ import com.bbva.net.front.helper.MessagesHelper;
  * @author User
  */
 
-@Controller(value = "quotaController")
-@Scope(value = "globalSession")
 public class QuotaControllerImpl extends CheckPaginatedController implements QuotaController {
 
 	private static final long serialVersionUID = 1L;
-
-	private static final String CONCRETE_DATE = MessagesHelper.INSTANCE.getString("select.radio.concret.date");
-
-	private static final String SINCE_TITLE = MessagesHelper.INSTANCE.getString("text.since");
-
-	private static final String TO_TITLE = MessagesHelper.INSTANCE.getString("text.to");
 
 	private QuotaDetailDto quotaDetailDto = new QuotaDetailDto();
 
@@ -63,7 +55,13 @@ public class QuotaControllerImpl extends CheckPaginatedController implements Quo
 	private String sinceText, toText, sinceDatestr, toDatestr, selectDate, moveDate, maturityDate, previousDate,
 			paymentDate;
 
-	SimpleDateFormat dateFormat = new SimpleDateFormat(MessagesHelper.INSTANCE.getStringI18("date.pattner.dd.mm.yyyy"));
+	SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+	private static final String CONCRETE_DATE = MessagesHelper.INSTANCE.getString("select.radio.concret.date");
+
+	private static final String SINCE_TITLE = MessagesHelper.INSTANCE.getString("text.since");
+
+	private static final String TO_TITLE = MessagesHelper.INSTANCE.getString("text.to");
 
 	@Resource(name = "TermsFacade")
 	private transient TermasAccountsFacade detallesCuenta;
@@ -73,8 +71,11 @@ public class QuotaControllerImpl extends CheckPaginatedController implements Quo
 
 	@PostConstruct
 	public void init() {
+		LOGGER.info("Initialize QuotaController");
+
 		this.productDto = super.getSelectedProduct();
-		this.quotaDetailDto = this.quotaDetailFacade.getDetailRotaryQuota("00130073000296247953");
+
+		this.quotaDetailDto = this.quotaDetailFacade.getDetailRotaryQuota(this.productDto.getProductId());
 		maturityDate = dateFormat.format(this.quotaDetailDto.getDateMaturity());
 		previousDate = dateFormat.format(this.quotaDetailDto.getDatePrevious());
 		paymentDate = dateFormat.format(this.quotaDetailDto.getDatePayment());
@@ -88,8 +89,8 @@ public class QuotaControllerImpl extends CheckPaginatedController implements Quo
 
 	@Override
 	public List<MovementDto> getAllQuotamovenDtos() {
-		System.out.println("llenando los movimientos");
-		this.quotamovenDtos = this.quotaDetailFacade.listRotaryQuotaMovements("00130073000296247953", null, 1, 10);
+		this.quotamovenDtos = this.quotaDetailFacade.listRotaryQuotaMovements(this.productDto.getProductId(), null, 1,
+				10);
 		return quotamovenDtos;
 	}
 
@@ -106,7 +107,8 @@ public class QuotaControllerImpl extends CheckPaginatedController implements Quo
 
 	public void onRowToggle(ToggleEvent event) {
 		System.out.println("data onRowToggle");
-		this.quotaMoveDetailDto = this.quotaDetailFacade.getRotaryQuotaMovement("00130073000296247953", "556475");
+		this.quotaMoveDetailDto = this.quotaDetailFacade.getRotaryQuotaMovement(this.productDto.getProductId(), super
+				.getSelectedMovements().getMovementId());
 		this.moveDate = dateFormat.format(this.quotaMoveDetailDto.getOperationDate());
 	}
 
@@ -132,8 +134,6 @@ public class QuotaControllerImpl extends CheckPaginatedController implements Quo
 	public void setCustomDate(final ActionEvent event) {
 
 		System.out.println("setCustomDate de quota");
-
-		renderComponents.put(RenderAttributes.INCOMEOREXPENSESFILTER.toString(), true);
 
 		this.dateRange.setDateSince(getSinceDate());
 		this.dateRange.setDateTo(getToDate());

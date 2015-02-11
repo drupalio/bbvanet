@@ -28,9 +28,13 @@ public class MovementDto implements Dto {
 
 	private Money totalBalance;
 
+	private String status;
+
+	private String quotaNumber;
+
 	/** instance detail movement Account/Quota */
 
-	private MovementDetailDto movementDetailDTO;
+	private MovementDetailDto movementDetailDto;
 
 	/**
 	 * @return the movementId
@@ -105,15 +109,43 @@ public class MovementDto implements Dto {
 	/**
 	 * @return the movementDetailDTO
 	 */
-	public MovementDetailDto getMovementDetailDTO() {
-		return movementDetailDTO;
+	public MovementDetailDto getMovementDetailDto() {
+		return movementDetailDto;
 	}
 
 	/**
 	 * @param movementDetailDTO the movementDetailDTO to set
 	 */
-	public void setMovementDetailDTO(MovementDetailDto movementDetailDTO) {
-		this.movementDetailDTO = movementDetailDTO;
+	public void setMovementDetailDto(MovementDetailDto movementDetailDto) {
+		this.movementDetailDto = movementDetailDto;
+	}
+
+	/**
+	 * @return the status
+	 */
+	public String getStatus() {
+		return status;
+	}
+
+	/**
+	 * @param status the status to set
+	 */
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	/**
+	 * @return the quotaNumber
+	 */
+	public String getQuotaNumber() {
+		return quotaNumber;
+	}
+
+	/**
+	 * @param quotaNumber the quotaNumber to set
+	 */
+	public void setQuotaNumber(String quotaNumber) {
+		this.quotaNumber = quotaNumber;
 	}
 
 	@Override
@@ -148,5 +180,4 @@ public class MovementDto implements Dto {
 		toStringBuilder.append("id", getMovementId());
 		return toStringBuilder.toString();
 	}
-
 }

@@ -27,6 +27,15 @@
 			else
 				document.getElementById('rowExpansion').style.display = "none";
 		}
+
+		//Funciona Cierra los demas detalles cuando se abre uno
+		function test() {
+			var i = $('.ui-row-toggler.ui-icon-circle-triangle-s').length;
+			if (i == 1) {
+				return;
+			}
+			$('.ui-row-toggler.ui-icon-circle-triangle-s').trigger('click');
+		}
 	</script>
 
 	<h:form id="#{cc.attrs.id}">
@@ -44,16 +53,17 @@
 
 			<div class="table-wrapper">
 				<p:dataTable id="detalAC" styleClass="detail-table-body sortable"
-					emptyMessage="#{msg['text.empty.table']}"
+					emptyMessage="#{msg['text.empty.table']}" rowSelectMode="single"
 					value="#{cc.attrs.listAccounts}" var="moves" selectionMode="single"
 					rowKey="#{moves.movementId}">
 
-					<p:ajax event="rowSelect" onstart="divMovement()" update="detalAC" />
+					<f:ajax event="rowSelect" render="detalAC" />
+					<f:ajax event="rowUnselect" render="detalAC" />
 
-					<p:ajax event="rowToggle"
+					<p:ajax event="rowToggle" onstart="test()"
 						listener="#{cc.attrs.controller.onRowToggle}" />
 
-					<p:column width="5px">
+					<p:column style="z-index: 2 !important; width:5px; ">
 						<p:rowToggler rendered="true" />
 					</p:column>
 
@@ -73,9 +83,6 @@
 
 						<h:outputText class="text"
 							style="font-size: 12px;color: #333;text-align: left"
-							value="#{moves.movementConcept}" />
-						<h:outputText class="text"
-							style="font-size: 11px;color: #333;font-weight: normal;text-align: left"
 							value="#{moves.movementConcept}" />
 					</p:column>
 

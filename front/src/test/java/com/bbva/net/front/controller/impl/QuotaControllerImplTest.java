@@ -6,7 +6,6 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import com.bbva.net.back.facade.QuotaDetailFacade;
-import com.bbva.net.back.model.globalposition.ProductDto;
 import com.bbva.net.back.model.movements.MovementDetailDto;
 import com.bbva.net.back.model.quota.QuotaDetailDto;
 
@@ -22,14 +21,13 @@ public class QuotaControllerImplTest {
 
 	private QuotaDetailDto quotaDetailDto;
 
-	private ProductDto productDto;
-
 	private MovementDetailDto quotaMoveDetailDto;
 
 	@Before
 	public void init() {
 		this.quotaControllerImpl = new QuotaControllerImpl();
 		this.quotaDetailFacade = Mockito.mock(QuotaDetailFacade.class);
+		this.quotaControllerImpl.setQuotaDetailFacade(quotaDetailFacade);
 	}
 
 	@Test
