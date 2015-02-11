@@ -4,8 +4,6 @@ import java.util.List;
 
 import javax.faces.event.ActionEvent;
 
-import org.springframework.stereotype.Controller;
-
 import com.bbva.net.back.facade.NewsAlertsFacade;
 import com.bbva.net.back.model.newsAlerts.NewsAlertsDto;
 import com.bbva.net.front.controller.NewsAlertsController;
@@ -14,7 +12,6 @@ import com.bbva.net.front.core.AbstractBbvaController;
 /**
  * @author Entelgy
  */
-@Controller
 public class NewsAlertsControllerImpl extends AbstractBbvaController implements NewsAlertsController {
 
 	private static final long serialVersionUID = 7099605458774926871L;

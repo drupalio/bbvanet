@@ -1,11 +1,9 @@
 package com.bbva.net.front.controller.impl;
 
-import javax.faces.event.ActionEvent;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
+import javax.faces.event.ActionEvent;
 import javax.faces.event.AjaxBehaviorEvent;
-
-import org.springframework.stereotype.Controller;
 
 import com.bbva.net.back.facade.PersonalizeProductFacade;
 import com.bbva.net.back.model.globalposition.ProductDto;
@@ -13,7 +11,9 @@ import com.bbva.net.back.model.personalize.PersonalizeAccountDto;
 import com.bbva.net.front.controller.PersonalizeProductController;
 import com.bbva.net.front.core.AbstractBbvaController;
 
-@Controller(value = "personalizeProductAccountController")
+/**
+ * @author Entelgy
+ */
 public class PersonalizeProductControllerImpl extends AbstractBbvaController implements PersonalizeProductController {
 
 	private static final long serialVersionUID = 4372849387340418649L;
@@ -46,6 +46,7 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 	}
 
 	// inicializar valores para mostrar en la vista
+	@Override
 	public ProductDto getSelectedProduct() {
 		this.productDto = super.getSelectedProduct();
 		setSearch(productDto.isVisible());
@@ -114,6 +115,7 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 	 * Metodo que retona el estado de visibilidad del divOperationKey
 	 */
 
+	@Override
 	public boolean isMenOperationKey() {
 		return menOperationKey;
 	}
@@ -121,6 +123,7 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 	/**
 	 * @return the personalizeProductAccountDto
 	 */
+	@Override
 	public PersonalizeAccountDto getPersonalizeProductAccountDto() {
 		return personalizeProductAccountDto;
 	}

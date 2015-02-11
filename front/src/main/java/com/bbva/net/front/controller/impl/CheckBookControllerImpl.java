@@ -14,9 +14,6 @@ import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
 
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Controller;
-
 import com.bbva.net.back.entity.MultiValueGroup;
 import com.bbva.net.back.facade.CheckBookFacade;
 import com.bbva.net.back.facade.MultiValueGroupFacade;
@@ -29,15 +26,14 @@ import com.bbva.net.back.model.enums.RenderAttributes;
 import com.bbva.net.back.service.impl.DateFilterServiceImpl;
 import com.bbva.net.front.controller.CheckBookController;
 import com.bbva.net.front.core.AbstractBbvaController;
+import com.bbva.net.front.core.PaginationController;
 import com.bbva.net.front.helper.MessagesHelper;
 
 /**
  * @author User
  */
 
-@Controller(value = "checkBookController")
-@Scope(value = "globalSession")
-public class CheckBookControllerImpl extends AbstractBbvaController implements CheckBookController {
+public class CheckBookControllerImpl extends CheckPaginatedController implements CheckBookController {
 
 	private static final long serialVersionUID = 1L;
 
@@ -63,8 +59,6 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 
 	private Map<String, Boolean> renderComponents = new HashMap<String, Boolean>();
 
-	private List<MultiValueGroup> multiValueList = new ArrayList<MultiValueGroup>();
-
 	private CheckbookDto checkBook = new CheckbookDto();
 
 	private List<CheckDto> checkList = new ArrayList<CheckDto>();
@@ -85,9 +79,7 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 
 	@PostConstruct
 	public void init() {
-		this.multiValueList = this.getListMultiValueChecks();
-		renderComponents.put(RenderAttributes.MOVEMENTSTABLE.toString(), true);
-		renderComponents.put(RenderAttributes.CHECKTABLE.toString(), false);
+		super.init();		
 		if (checkBookList == null) {
 			initCheckBookList();
 		}
@@ -190,8 +182,10 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 			// TODO DEFAULT_ACCOUNT accountId
 			this.check = checkBookFacade.getCheckById(getSelectedProduct().getProductId(), check.getId());
 			setTitle(new String(MessagesHelper.INSTANCE.getString("tex.check.status")));
-			renderComponents.put(RenderAttributes.MOVEMENTSTABLE.toString(), false);
-			renderComponents.put(RenderAttributes.CHECKTABLE.toString(), true);
+
+			getRenderTable().put(RenderAttributes.MOVEMENTSTABLE.toString(), false);
+			getRenderTable().put(RenderAttributes.CHECKTABLE.toString(), true);
+
 			clean();
 
 		} else if (renderComponents.get(RenderAttributes.FILTERSTATUS.toString())) {
@@ -398,20 +392,6 @@ public class CheckBookControllerImpl extends AbstractBbvaController implements C
 	 */
 	public void setRenderComponents(Map<String, Boolean> renderComponents) {
 		this.renderComponents = renderComponents;
-	}
-
-	/**
-	 * @return the multiValueList
-	 */
-	public List<MultiValueGroup> getMultiValueList() {
-		return multiValueList;
-	}
-
-	/**
-	 * @param multiValueList the multiValueList to set
-	 */
-	public void setMultiValueList(List<MultiValueGroup> multiValueList) {
-		this.multiValueList = multiValueList;
 	}
 
 	/**
