@@ -7,9 +7,14 @@
 	<var name="globalPositionController" class="com.bbva.net.front.controller.impl.GlobalPositionControllerImpl" />
 
 	<on-start>
-		<evaluate expression="globalPositionController.getCustomerProducts()" result="flowScope.customerProducts" />
-		<evaluate expression="globalPositionController.getCustomerProductsHidden()" result="flowScope.customerProductsHidden" />
-		<evaluate expression="applicationController.getLikes()" result="flowScope.likes" />
+		<evaluate expression="globalPositionController.init()"/>
+		<evaluate expression="globalPositionController.getCustomerProducts()"
+			result="flowScope.customerProducts" />
+		<evaluate expression="globalPositionController.getCustomerProductsHidden()"
+			result="flowScope.customerProductsHidden" />
+		<evaluate expression="applicationController.getLikes()"
+			result="flowScope.likes" />
+
 	</on-start>
 
 	<view-state id="globalPosition">
@@ -26,5 +31,7 @@
 
 	<view-state id="detailAccount" view="externalRedirect:movements">
 	</view-state>
+	
+	<exception-handler bean="restClientViewExceptionHandler"/>
 
 </flow>
