@@ -19,11 +19,11 @@
 
 	<h:form id="#{cc.attrs.id}">
 		<p:dataTable id="#{cc.attrs.id}" var="iproduct" rowIndexVar="findex"
-			selectionMode="single"
-			rowKey="#{iproduct.productId}" value="#{cc.attrs.listQuota}">
+			selectionMode="single" rowKey="#{iproduct.productId}"
+			value="#{cc.attrs.listQuota}">
 
 			<p:ajax event="rowSelect"
-				listener="#{cc.attrs.controller.onProductSelected}" />
+				listener="#{cc.attrs.controller.onProductLoanSelected}" />
 			<p:ajax event="rowUnselect" />
 
 			<p:column class="head" headerText="#{msg['text.quota']}"
@@ -41,12 +41,12 @@
 			</p:column>
 
 			<p:column class="head" headerText="#{msg['text.quotaTotal']}"
-				styleClass="head col-xs-6 col-md-4"
+				styleClass="hidden-xs hidden-sm col-sm-4"
 				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
 
 
 				<h:outputText style="font-size: 1.5em; font-weight:bold"
-					styleClass="balance" value="#{iproduct.quota.totalQuotaDebt}" />
+					styleClass="balance hidden-xs hidden-sm" value="#{iproduct.totalCash}" />
 
 				<p class="sublabel"></p>
 
@@ -58,7 +58,7 @@
 
 
 				<h:outputText style="font-size: 1.5em; font-weight:bold"
-					styleClass="balance" value="#{iproduct.quota.availableQuota}" />
+					styleClass="balance" value="#{iproduct.cashAvailable}" />
 
 				<p class="sublabel"></p>
 

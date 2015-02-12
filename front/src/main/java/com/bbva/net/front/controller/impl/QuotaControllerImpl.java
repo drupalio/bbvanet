@@ -3,43 +3,63 @@
  */
 package com.bbva.net.front.controller.impl;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
-import javax.faces.event.AjaxBehaviorEvent;
 
-import org.primefaces.event.SelectEvent;
+import org.primefaces.event.ToggleEvent;
 
 import com.bbva.net.back.facade.QuotaDetailFacade;
 import com.bbva.net.back.facade.TermasAccountsFacade;
 import com.bbva.net.back.model.accounts.TermsAccountsDto;
-import com.bbva.net.back.model.citeriaMovements.MovementCriteriaDto;
-import com.bbva.net.back.model.globalposition.RotatingAccountDto;
-import com.bbva.net.back.model.personalize.PersonalizeAccountDto;
+import com.bbva.net.back.model.comboFilter.EnumPeriodType;
+import com.bbva.net.back.model.commons.DateRangeDto;
+import com.bbva.net.back.model.enums.RenderAttributes;
+import com.bbva.net.back.model.globalposition.ProductDto;
+import com.bbva.net.back.model.movements.MovementDetailDto;
+import com.bbva.net.back.model.movements.MovementDto;
 import com.bbva.net.back.model.quota.QuotaDetailDto;
+import com.bbva.net.back.service.impl.DateFilterServiceImpl;
 import com.bbva.net.front.controller.QuotaController;
-import com.bbva.net.front.core.AbstractBbvaController;
 
 /**
  * @author User
  */
-public class QuotaControllerImpl extends AbstractBbvaController implements QuotaController {
+
+public class QuotaControllerImpl extends CheckPaginatedController implements QuotaController {
 
 	private static final long serialVersionUID = 1L;
 
-	private boolean disabledCalendar = true;
-
-	private boolean disabledButtonDate = true;
-
-	private static final String CONCRETE_DATE = "Fecha concreta";
-
-	private static final String DEFAULT_IDLOAN = "00130073005054466407";
-
-	private MovementCriteriaDto movementCriteria = new MovementCriteriaDto();
-
-	private PersonalizeAccountDto personalizeAccountDto = new PersonalizeAccountDto();
-
 	private QuotaDetailDto quotaDetailDto = new QuotaDetailDto();
+
+	private MovementDetailDto quotaMoveDetailDto = new MovementDetailDto();
+
+	private ProductDto productDto = new ProductDto();
+
+	private Map<String, Boolean> renderComponents = new HashMap<String, Boolean>();
+
+	private List<MovementDto> quotamovenDtos;
+
+	private DateRangeDto dateRange = new DateRangeDto();
+
+	private Date sinceDate, toDate;
+
+	private String sinceText, toText, sinceDatestr, toDatestr, selectDate, moveDate, maturityDate, previousDate,
+			paymentDate;
+
+	SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+	// private static final String CONCRETE_DATE = MessagesHelper.INSTANCE.getString("select.radio.concret.date");
+	//
+	// private static final String SINCE_TITLE = MessagesHelper.INSTANCE.getString("text.since");
+	//
+	// private static final String TO_TITLE = MessagesHelper.INSTANCE.getString("text.to");
 
 	@Resource(name = "TermsFacade")
 	private transient TermasAccountsFacade detallesCuenta;
@@ -47,140 +67,256 @@ public class QuotaControllerImpl extends AbstractBbvaController implements Quota
 	@Resource(name = "quotaDetailFacade")
 	private transient QuotaDetailFacade quotaDetailFacade;
 
+	@Override
 	@PostConstruct
 	public void init() {
-		this.quotaDetailDto = this.quotaDetailFacade.getDetailRotaryQuota(DEFAULT_IDLOAN);
+		LOGGER.info("Initialize QuotaController");
+
+		if (super.getSelectedProduct() != null) {
+			this.productDto = super.getSelectedProduct();
+		} else {
+			this.productDto = new ProductDto();
+		}
+
+		this.quotaDetailDto = this.quotaDetailFacade.getDetailRotaryQuota(this.productDto.getProductId());
+		maturityDate = dateFormat.format(this.quotaDetailDto.getDateMaturity());
+		previousDate = dateFormat.format(this.quotaDetailDto.getDatePrevious());
+		paymentDate = dateFormat.format(this.quotaDetailDto.getDatePayment());
+
+		if (quotamovenDtos == null) {
+			getAllQuotamovenDtos();
+		}
+
+		clean();
+	}
+
+	public DateRangeDto calculateQuotaFilters(String date) {
+		DateRangeDto dateRangeInit = new DateRangeDto();
+		EnumPeriodType periodTypeFilter = EnumPeriodType.valueOfLabel(date);
+		if (!(periodTypeFilter == null)) {
+			dateRangeInit = new DateFilterServiceImpl().getPeriodFilter(periodTypeFilter);
+		}
+		return dateRangeInit;
+	}
+
+	@Override
+	public List<MovementDto> getAllQuotamovenDtos() {
+		DateRangeDto dateRanget = calculateQuotaFilters("Último mes");
+		this.quotamovenDtos = this.quotaDetailFacade.listRotaryQuotaMovements(this.productDto.getProductId(),
+				dateRanget, 1, 10);
+		return quotamovenDtos;
+	}
+
+	@Override
+	public void setSelectedProduct(ProductDto selectedProduct) {
+		super.setSelectedProduct(selectedProduct);
 	}
 
 	@Override
 	public TermsAccountsDto getAllConditions() {
 
 		TermsAccountsDto detalle = this.detallesCuenta.getAllConditions(super.getSelectedProduct().getProductId());
-
 		return detalle;
 	}
 
-	@Override
-	public void setCriteriaDate(ActionEvent event) {
-		// TODO Auto-generated method stub
-
+	public void onRowToggle(ToggleEvent event) {
+		System.out.println("data onRowToggle");
+		this.quotaMoveDetailDto = this.quotaDetailFacade.getRotaryQuotaMovement(this.productDto.getProductId(), super
+				.getSelectedMovements().getMovementId());
+		this.moveDate = dateFormat.format(this.quotaMoveDetailDto.getOperationDate());
 	}
 
 	@Override
-	public void searchQuotaMovement(ActionEvent event) {
-		// TODO Auto-generated method stub
+	public void oneSelectDate() {
 
-	}
+		System.out.println("onSelecDate de Quota");
 
-	/***
-	 * @param event
-	 */
-	@Override
-	public void searchMovementByFilter(final ActionEvent event) {
-		System.out.println("Movimeintos x criteria \n");
-		System.out.println(" selectDate " + movementCriteria.getSelectDate());
-	}
-
-	/***
-	 * @param event
-	 */
-
-	@Override
-	public void oneSelectDate(AjaxBehaviorEvent event) {
-		System.out.println("Method oneSelectDate");
-		if (movementCriteria.getSelectDate().equals(CONCRETE_DATE)) {
-			setDisabledCalendar(false);
-			setDisabledButtonDate(false);
-			System.out.println("if " + isDisabledCalendar() + isDisabledButtonDate());
-		} else {
-			setDisabledCalendar(true);
-			setDisabledButtonDate(false);
-			System.out.println("else" + isDisabledCalendar() + isDisabledButtonDate());
-		}
+		// renderComponents.put(RenderAttributes.FILTERDATE.toString(), true);
+		//
+		// if (getSelectDate().equals(CONCRETE_DATE)) {
+		// renderComponents.put(RenderAttributes.CALENDAR.toString(), false);
+		// renderComponents.put(RenderAttributes.BUTTONDATE.toString(), false);
+		//
+		// } else {
+		// renderComponents.put(RenderAttributes.CALENDAR.toString(), true);
+		// renderComponents.put(RenderAttributes.BUTTONDATE.toString(), false);
+		//
+		// }
 	}
 
 	@Override
-	public void onProductSelected(SelectEvent selectEvent) {
-		super.onProductSelected(selectEvent);
+	public void setCustomDate(final ActionEvent event) {
+
+		System.out.println("setCustomDate de quota");
+		//
+		// this.dateRange.setDateSince(getSinceDate());
+		// this.dateRange.setDateTo(getToDate());
+		// if (!(getSinceDate() == (null)) && !(getToDate() == (null))) {
+		// this.sinceText = SINCE_TITLE + ": ";
+		// this.toText = TO_TITLE + ": ";
+		// this.sinceDatestr = dateFormat.format(getSinceDate());
+		// this.toDatestr = dateFormat.format(getToDate());
+		// } else {
+		// sinceDatestr = getSelectDate();
+		// }
 	}
 
 	@Override
-	public RotatingAccountDto getSelectedProduct() {
-		return (RotatingAccountDto)super.getSelectedProduct();
+	public void searchQuotaByFilter(final ActionEvent event) {
+
+		System.out.println("searchQuotaByFilter");
+
+		renderComponents.get(RenderAttributes.FILTERDATE.toString());
 	}
 
-	// @Override
-	// public List<QuotaRotatingDto> getQuotaRotary() {
-	// return this.LoanFacade.getCustomerRotatingAccount(getCurrentUser());
-	// }
-
-	/**
-	 * @return the disabledCalendar
-	 */
-	public boolean isDisabledCalendar() {
-		return disabledCalendar;
+	private void clean() {
+		renderComponents.put(RenderAttributes.CALENDAR.toString(), true);
+		renderComponents.put(RenderAttributes.BUTTONDATE.toString(), true);
 	}
 
-	/**
-	 * @param disabledCalendar the disabledCalendar to set
-	 */
-	public void setDisabledCalendar(boolean disabledCalendar) {
-		this.disabledCalendar = disabledCalendar;
-	}
+	// Setters and Getters
 
-	/**
-	 * @return the disabledButtonDate
-	 */
-	public boolean isDisabledButtonDate() {
-		return disabledButtonDate;
-	}
-
-	/**
-	 * @param disabledButtonDate the disabledButtonDate to set
-	 */
-	public void setDisabledButtonDate(boolean disabledButtonDate) {
-		this.disabledButtonDate = disabledButtonDate;
-
-	}
-
-	/**
-	 * @return the movementCriteria
-	 */
-	public MovementCriteriaDto getMovementCriteria() {
-		return movementCriteria;
-	}
-
-	/**
-	 * @param movementCriteria the movementCriteria to set
-	 */
-	public void setMovementCriteria(MovementCriteriaDto movementCriteria) {
-		this.movementCriteria = movementCriteria;
-	}
-
-	/**
-	 * @return the personalizeAccountDto
-	 */
-	@Override
-	public PersonalizeAccountDto getPersonalizeAccountDto() {
-		return personalizeAccountDto;
-	}
-
-	/**
-	 * @param personalizeAccountDto the personalizeAccountDto to set
-	 */
-	public void setPersonalizeAccountDto(PersonalizeAccountDto personalizeAccountDto) {
-		this.personalizeAccountDto = personalizeAccountDto;
-	}
-
-	@Override
-	public QuotaDetailDto getQuotaDetail() {
-		return new QuotaDetailDto();
-	}
-
-	/**
-	 * @return the quotaDetailDto
-	 */
 	public QuotaDetailDto getQuotaDetailDto() {
 		return quotaDetailDto;
+	}
+
+	public void setQuotaDetailDto(QuotaDetailDto quotaDetailDto) {
+		this.quotaDetailDto = quotaDetailDto;
+	}
+
+	public MovementDetailDto getQuotaMoveDetailDto() {
+		return quotaMoveDetailDto;
+	}
+
+	public void setQuotaMoveDetailDto(MovementDetailDto quotaMoveDetailDto) {
+		this.quotaMoveDetailDto = quotaMoveDetailDto;
+	}
+
+	public ProductDto getProductDto() {
+		return productDto;
+	}
+
+	public void setProductDto(ProductDto productDto) {
+		this.productDto = productDto;
+	}
+
+	public Map<String, Boolean> getRenderComponents() {
+		return renderComponents;
+	}
+
+	public void setRenderComponents(Map<String, Boolean> renderComponents) {
+		this.renderComponents = renderComponents;
+	}
+
+	public List<MovementDto> getQuotamovenDtos() {
+		return quotamovenDtos;
+	}
+
+	public void setQuotamovenDtos(List<MovementDto> quotamovenDtos) {
+		this.quotamovenDtos = quotamovenDtos;
+	}
+
+	public DateRangeDto getDateRange() {
+		return dateRange;
+	}
+
+	public void setDateRange(DateRangeDto dateRange) {
+		this.dateRange = dateRange;
+	}
+
+	public Date getSinceDate() {
+		return sinceDate;
+	}
+
+	public void setSinceDate(Date sinceDate) {
+		this.sinceDate = sinceDate;
+	}
+
+	public Date getToDate() {
+		return toDate;
+	}
+
+	public void setToDate(Date toDate) {
+		this.toDate = toDate;
+	}
+
+	public String getSinceDatestr() {
+		return sinceDatestr;
+	}
+
+	public void setSinceDatestr(String sinceDatestr) {
+		this.sinceDatestr = sinceDatestr;
+	}
+
+	public String getToDatestr() {
+		return toDatestr;
+	}
+
+	public void setToDatestr(String toDatestr) {
+		this.toDatestr = toDatestr;
+	}
+
+	public String getSelectDate() {
+		return selectDate;
+	}
+
+	public void setSelectDate(String selectDate) {
+		this.selectDate = selectDate;
+	}
+
+	public String getSinceText() {
+		return sinceText;
+	}
+
+	public void setSinceText(String sinceText) {
+		this.sinceText = sinceText;
+	}
+
+	public String getToText() {
+		return toText;
+	}
+
+	public void setToText(String toText) {
+		this.toText = toText;
+	}
+
+	public QuotaDetailFacade getQuotaDetailFacade() {
+		return quotaDetailFacade;
+	}
+
+	public void setQuotaDetailFacade(QuotaDetailFacade quotaDetailFacade) {
+		this.quotaDetailFacade = quotaDetailFacade;
+	}
+
+	public String getMoveDate() {
+		return moveDate;
+	}
+
+	public void setMoveDate(String moveDate) {
+		this.moveDate = moveDate;
+	}
+
+	public String getMaturityDate() {
+		return maturityDate;
+	}
+
+	public void setMaturityDate(String maturityDate) {
+		this.maturityDate = maturityDate;
+	}
+
+	public String getPreviousDate() {
+		return previousDate;
+	}
+
+	public void setPreviousDate(String previousDate) {
+		this.previousDate = previousDate;
+	}
+
+	public String getPaymentDate() {
+		return paymentDate;
+	}
+
+	public void setPaymentDate(String paymentDate) {
+		this.paymentDate = paymentDate;
 	}
 }

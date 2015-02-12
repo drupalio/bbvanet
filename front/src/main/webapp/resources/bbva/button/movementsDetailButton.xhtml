@@ -4,8 +4,7 @@
 	xmlns:composite="http://java.sun.com/jsf/composite"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui" 
-	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:p="http://primefaces.org/ui" xmlns:jsf="http://xmlns.jcp.org/jsf"
 	xmlns:pm="http://primefaces.org/mobile">
 
 <composite:interface>
@@ -15,8 +14,10 @@
 </composite:interface>
 
 <composite:implementation>
-	
-		<button class="btn btn-default" type="button">#{cc.attrs.title}</button>
+
+	<button class="btn btn-default" style="font-size: 12px;" type="button">
+		<STRONG>#{cc.attrs.title}</STRONG>
+	</button>
 
 </composite:implementation>
 </html>

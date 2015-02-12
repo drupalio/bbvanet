@@ -1,12 +1,15 @@
 package com.bbva.net.front.controller.impl;
 
 import java.util.List;
+import java.util.Map;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
 import org.primefaces.event.SelectEvent;
 
 import com.bbva.net.back.facade.LoanFacade;
+import com.bbva.net.back.model.globalposition.BalanceDto;
 import com.bbva.net.back.model.globalposition.LeasingDto;
 import com.bbva.net.back.model.globalposition.LoanDto;
 import com.bbva.net.back.model.globalposition.RotatingAccountDto;
@@ -22,6 +25,14 @@ public class LoanControllerImpl extends AbstractBbvaController implements LoanCo
 
 	@Resource(name = "loanFacade")
 	private transient LoanFacade loanFacade;
+
+	private Map<String, BalanceDto> totalsProducts;
+
+	@PostConstruct
+	public void init() {
+		// Calculate totals
+		this.totalsProducts = this.loanFacade.getLoanTotals(getCurrentUser());
+	}
 
 	@Override
 	public List<RotatingAccountDto> getCustomerRotatingAccount() {
@@ -52,9 +63,9 @@ public class LoanControllerImpl extends AbstractBbvaController implements LoanCo
 	public List<LoanDto> getCustomerLoanHidden() {
 		return this.loanFacade.getLoansByUserHidden(getCurrentUser());
 	}
-	
+
 	@Override
-	public void onProductSelected(SelectEvent selectEvent) {
+	public void onProductLoanSelected(SelectEvent selectEvent) {
 		super.onProductSelected(selectEvent);
 		this.sendAction("accountQuotaSelected");
 
@@ -64,6 +75,14 @@ public class LoanControllerImpl extends AbstractBbvaController implements LoanCo
 
 	public void setLoanFacade(final LoanFacade loanFacade) {
 		this.loanFacade = loanFacade;
+	}
+
+	public Map<String, BalanceDto> getTotalsProducts() {
+		return totalsProducts;
+	}
+
+	public void setTotalsProducts(Map<String, BalanceDto> totalsProducts) {
+		this.totalsProducts = totalsProducts;
 	}
 
 }

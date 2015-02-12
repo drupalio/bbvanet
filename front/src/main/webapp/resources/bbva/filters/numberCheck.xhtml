@@ -76,7 +76,7 @@
 					value="#{cc.attrs.valuecheckState}"
 					disabled="#{checkBookController.renderComponents['STATUS']}">
 					<f:selectItem itemLabel="#{msg['text.combo.select']}" />
-					<f:selectItems value="#{checkBookController.multiValueList}"
+					<f:selectItems value="#{comboCriteriaController.multiValueList}"
 						var="multiValue" itemValue="#{multiValue.id}"
 						itemLabel="#{msg[multiValue.value]}" />
 				</h:selectOneMenu>
@@ -117,7 +117,7 @@
 
 		<p:commandButton id="searchButton"
 			actionListener="#{checkBookController.setNumberCheckOrBook}"
-			ajax="true" update="@form"
+			update=":#{p:component('formCheckBook')}"
 			disabled="#{checkBookController.renderComponents['BUTTONBOOK']}"
 			styleClass="btn small hidden-xs hidden-sm"
 			value="#{msg['button.confirm']}">

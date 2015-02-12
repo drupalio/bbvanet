@@ -1,53 +1,68 @@
 package com.bbva.net.back.facade.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import javax.ws.rs.core.Response;
+
 import com.bbva.czic.dto.net.Product;
-import com.bbva.net.back.mapper.impl.GlobalPositionMapperImpl;
-import com.bbva.net.back.model.globalposition.GlobalProductsDto;
+import com.bbva.net.back.mapper.PersonalizeAccountProductMapper;
+import com.bbva.net.back.mapper.impl.PersonalizeAccountProductMapperImpl;
+import com.bbva.net.back.model.globalposition.ProductDto;
 import com.bbva.net.webservices.globalposition.GlobalPositionService;
 
 public class PersonalizeProductFacadeImplTest {
 
 	private PersonalizeProductFacadeImpl productFacadeImpl;
-	private GlobalPositionFacadeImpl globalPositionFacadeImpl;
+
+	private PersonalizeAccountProductMapper personalizeAccountProductMapper;
+
 	private GlobalPositionService globalPositionService;
-	private static final String DEFAULT_USER = "123";
-	private GlobalPositionMapperImpl globalPositionMapper;
+
+	private Product product;
+
+	private ProductDto productDto;
+
+	private static final String DEFAULT_ID = "00130073005054466407";
 
 	@Before
 	public void init() {
-		this.globalPositionFacadeImpl = new GlobalPositionFacadeImpl();
 		this.productFacadeImpl = new PersonalizeProductFacadeImpl();
-		this.globalPositionMapper = Mockito
-				.mock(GlobalPositionMapperImpl.class);
+		this.personalizeAccountProductMapper = Mockito.mock(PersonalizeAccountProductMapperImpl.class);
 		this.globalPositionService = Mockito.mock(GlobalPositionService.class);
-		// this.productFacadeImpl
-		// .setGlobalPositionFacade(globalPositionFacadeImpl);
-		// this.productFacadeImpl.setGlobalPositionService(globalPositionService);
-		// this.productFacadeImpl.setGlobalPositionMapper(globalPositionMapper);
+		this.productFacadeImpl.setGlobalPositionService(globalPositionService);
+		this.productFacadeImpl.setPersonalizeAccountProductMapper(personalizeAccountProductMapper);
+		this.product = Mockito.mock(Product.class);
+		this.productDto = Mockito.mock(ProductDto.class);
+		this.productDto.setProductId("00130073005054466407");
+		this.productDto.setVisible(true);
+		this.productDto.setOperationOnline(false);
+
 	}
 
 	@Test
-	public void checkGetPersonalizeAccountDto() {
-		// GlobalProductsDto globalProducts =
-		// Mockito.mock(GlobalProductsDto.class);
-		// List<Product> products = new ArrayList<Product>();
-		// Mockito.when(globalPositionService.getExtractGlobalBalance(DEFAULT_USER,
-		// null,null,null,null)).thenReturn(products);
-		// Mockito.when(globalPositionMapper.map(products)).thenReturn(globalProducts);
-		//
-		// globalProducts =
-		// globalPositionFacadeImpl.getGlobalProductsByUser(DEFAULT_USER);
-		// Assert.assertNotNull(globalProducts);
-		// Mockito.verify(this.globalPositionService,
-		// Mockito.atLeastOnce()).getExtractGlobalBalance(DEFAULT_USER, null,
-		// null, null, null);
+	public void checkGetPersonalizeUpdateOperability() {
+		boolean response;
+		Response responseService = Mockito.mock(Response.class);
+
+		Mockito.when(globalPositionService.updateProductOperability(DEFAULT_ID, product)).thenReturn(responseService);
+		Mockito.when(personalizeAccountProductMapper.map(this.productDto)).thenReturn(product);
+		response = productFacadeImpl.updateProductOperability(DEFAULT_ID, this.productDto);
+		Assert.assertNotNull(response);
+		Mockito.verify(this.globalPositionService, Mockito.atLeastOnce()).updateProductOperability(DEFAULT_ID, product);
 	}
+
+	@Test
+	public void checkGetPersonalizeUpdateVisibility() {
+		boolean response;
+		Response responseService = Mockito.mock(Response.class);
+		Mockito.when(globalPositionService.updateProductVisibility(DEFAULT_ID, product)).thenReturn(responseService);
+		Mockito.when(personalizeAccountProductMapper.map(this.productDto)).thenReturn(product);
+		response = productFacadeImpl.updateProductVisibility(DEFAULT_ID, this.productDto);
+		Assert.assertNotNull(response);
+		Mockito.verify(this.globalPositionService, Mockito.atLeastOnce()).updateProductVisibility(DEFAULT_ID, product);
+	}
+
 }

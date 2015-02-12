@@ -42,6 +42,7 @@ public class ResponseInterceptor extends AbstractInDatabindingInterceptor {
 			final FacesContext facesContext = FlowFacesContext.getCurrentInstance();
 
 			LOGGER.info("INTERCEPTANDO RESPUESTA : " + uri);
+
 			final HttpSession session = (HttpSession)facesContext.getExternalContext().getSession(false);
 			final Map<String, List<String>> headers = (Map<String, List<String>>)outMessage
 					.get(Message.PROTOCOL_HEADERS);
@@ -52,6 +53,7 @@ public class ResponseInterceptor extends AbstractInDatabindingInterceptor {
 
 		} catch (final Exception exception) {
 			LOGGER.info("ERROR RESPONSE INTERCEPTOR CON URI: " + uri);
+
 		}
 
 	}

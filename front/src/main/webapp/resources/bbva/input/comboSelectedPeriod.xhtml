@@ -19,7 +19,7 @@
 <composite:implementation>
     <div style="display: inline-block; width: 60% !important">
         <h:selectOneMenu id="periodo" value="#{cc.attrs.valueMenu}"  >
-            <f:selectItems value="#{periodFilterCriteriaController.multiValuePeriod}" 
+            <f:selectItems value="#{comboCriteriaController.multiValuePeriod}" 
             var="multiValue" itemLabel="#{msg[multiValue.value]}" itemValue="#{multiValue.id}" />
             <f:ajax listener="#{cc.attrs.listener}" event="valueChange" execute="@this" render="#{cc.attrs.render}"/>
        </h:selectOneMenu>

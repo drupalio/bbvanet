@@ -4,6 +4,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/webflow
         http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
 
+	<var name="restClientViewExceptionHandler" class="com.bbva.net.front.core.exception.RestClientViewExceptionHandler"/>
 
 	<input name="tab" value="flowScope.tab" required="false" />
 

@@ -1,0 +1,105 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+
+<composite:interface>
+	<composite:attribute name="id" type="String" />
+	<composite:attribute name="lineConfigUI"
+		type="com.bbva.net.front.ui.line.LineConfigUI" />
+</composite:interface>
+
+<composite:implementation>
+	<div class="hidden-xs col-sm-5 bbva-chart">
+		<div id="savings" class="chart-lines">
+			<div id="chart2_8" class="c3" />
+	<P style="text-align: left;"/>
+			<script>
+			var title;
+			var xColumns = [];
+			var values;
+			var label;
+			var currency;
+			xColumns.push("Series 1: ");
+			
+			<c:forEach var="lineItemUI" items="${cc.attrs.lineConfigUI.lineItemUIList}" varStatus="status">
+			title = ("${lineItemUI.label}");
+			currency= "$";
+			label = ("${lineItemUI.label}");
+			xColumns.push("${lineItemUI.value.amount}");
+			</c:forEach>
+			
+			
+			var chart = c3.generate({
+				bindto : '#chart2_8',
+				padding : {
+					top : 0,
+					right : 10,
+					bottom : 250,
+					left : 10,
+				},
+				data : {
+					columns : [ xColumns ],
+				},
+				legend : {
+					show : false
+				},
+				grid : {
+					y : {
+						lines : [ {
+							value : 0
+						}, {
+							value : 500000000
+						}, {
+							value : 1000000000
+						}, {
+							value : 1500000000
+						}, {
+							value : 2000000000
+						}, {
+							value : 2500000000
+						}, {
+							value : 3000000000
+						}, {
+							value : 3500000000
+						}, {
+							value : 4000000000
+						}, {
+							value : 4500000000
+						}, {
+							value : 5000000000
+						},],
+					}
+				},
+				axis : {
+					x : {
+						show : false,
+					},
+					y : {
+						show : false,
+					},
+				},
+				tooltip : {
+					format : {
+						name: function (name, ratio, id, index) { return "Serie 1: "; },
+						value: function (value, ratio, id) {
+			                var format = d3.format(',');			                
+			                return "<B>"+currency+" "+format(value)+"</B>";
+						 }
+
+					}
+				},
+				color : function(color, d) {
+					return d3.rgb('#7cb5ec');
+				}
+			});
+			</script>
+		</div>
+	</div>
+</composite:implementation>
+</html>

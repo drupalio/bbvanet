@@ -17,11 +17,23 @@
 <composite:implementation>
 
 
-	<footer class="hidden-xs hidden-sm">
-		<h2>Notas</h2>
+	<footer class="footer-notes hidden-xs hidden-sm">
+		<h2 style="font-size: 18px;">Notas</h2>
 		<div class="notes">
 			<input type="text" class="form-control" placeholder="Añadir nota" />
-			<button class="btn small" type="button">Añadir nota</button>
+			<button class="btn small" style="font-size: 12px;" type="button">
+				<STRONG>Añadir nota</STRONG>
+			</button>
+		</div>
+
+		<span class="hidden-text"></span>
+
+		<div class="note-btn-container">
+			<a href="#" title="Editar nota" class="pencil-container"> <span
+				class="pencil-icon blue"></span>
+			</a> <a href="#" title="Eliminar nota" class="trash-container"> <span
+				class="trash-icon blue"></span>
+			</a>
 		</div>
 	</footer>
 

@@ -8,30 +8,28 @@
 	xmlns:pm="http://primefaces.org/mobile">
 
 <composite:interface>
-
-	<composite:attribute id="tableBody" name="detailMovement"
-		type="com.bbva.net.back.model.movements.MovementDto" />
-
+	<composite:attribute name="controller" />
 </composite:interface>
 
 <composite:implementation>
-	<div class="table-content">
-		<div class="title-container">
-			<button class="close-icon hidden-md hidden-lg close-button"
-				type="button"></button>
-			<h3>#{msg['text.moventInformation']}</h3>
+	<div class="table-content" style="display: block !important;">
+		<div class="table-detail-close array">
+			<button type="button"
+				class="close-icon hidden-md hidden-lg close-button"></button>
+			<h3 style="font-size: 18px;">#{msg['text.moventInformation']}</h3>
 		</div>
-		<div class="definitions">
-			<dl>
-				<dd class="border-desktop border-mobile">#{msg['text.numberofQuota']}</dd>
-				<dt>#{cc.attrs.detailMovement.movementID}</dt>
+		<div class="definitions textSize" style="width: 100%;">
+			<dl class="no-border border-mobile">
+				<dd class="no-border">#{msg['text.numberofQuota']}</dd>
+				<dt class="no-border">#{cc.attrs.controller.quotaMoveDetailDto.numbersOfQuota}
+					#{msg['text.de']}
+					#{cc.attrs.controller.quotaMoveDetailDto.remainingQuotas}</dt>
 			</dl>
-			<dl>
-				<dd class="border-desktop border-mobile">#{msg['text.slope']}</dd>
-				<dt>18/06/2014</dt>
+			<dl class="no-border">
+				<dd class="no-border">#{msg['text.slope']}</dd>
+				<dt class="no-border">#{cc.attrs.controller.quotaMoveDetailDto.valueslope}</dt>
 			</dl>
 		</div>
 	</div>
-
 </composite:implementation>
 </html>

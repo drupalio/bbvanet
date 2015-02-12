@@ -34,11 +34,12 @@
 	</ui:define>
 
 	<ui:define name="contentLeft">
+
 		<bbvaQuotaHeader:quotaDetailContent>
 
 			<bbvaQuotaHeader:quotaDetailHeaderContent />
 
-			<bbvaDetAcc:tabMenu>
+			<bbvaDetAcc:tabMenu id="tabMenu">
 				<ul class="nav nav-pills nav-operation-options"
 					style="display: block;">
 					<bbvaDetAcc:itemTabMenu title="#{msg['text.consult']}"
@@ -61,13 +62,14 @@
 				<div class="tab-content">
 
 					<!-- Tab Consultar -->
-					<bbvaSearch:tabCriteria>
-						<bbvaSearch:personalizedSearchDate />
+					<bbvaSearch:tabCriteria id="tabCriteria">
+						<bbvaSearch:personalizedSearchDate
+							id="personalizedSearchContainer" />
 					</bbvaSearch:tabCriteria>
 
 					<!-- Tab Condiciones -->
-					<bbvaAcc:accountContainer  alias= "#{product.alias}" numCuenta="#{product.productId}"
-						tipo="#{product.productName}" />
+					<bbvaAcc:accountContainer alias="#{pruduct.alias}"
+						numCuenta="#{pruduct.productId}" tipo="#{pruduct.productName}" />
 
 					<!-- Tab Personalizar -->
 					<bbvaPersonalize:personalizeContainer />
@@ -76,10 +78,9 @@
 			</bbvaDetAcc:tabMenu>
 
 			<div class="table-tabs">
-				<bbvaQuota:detailsQuotaTable id="quotaRotative"
-					listAccounts="#{customerAccounts}" controller="#{quotaController}" />
+				<bbvaDetailMotion:detailsQuotaTable id="detailAccounts"
+					listAccounts="#{quotaMovements}" controller="#{quotaController}" />
 			</div>
-
 		</bbvaQuotaHeader:quotaDetailContent>
 
 	</ui:define>

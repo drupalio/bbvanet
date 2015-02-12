@@ -62,6 +62,7 @@ public class GlobalPositionMapperImpl extends ConfigurableMapper implements Glob
 				LOGGER.info("Mapeando Loan: " + loan.getId());
 
 				LoanDto product = map(loan, RotatingAccountDto.class);
+
 				product.setTypeProd(EnumProductType.LO);
 				globalProducts.getLoan().add(product);
 			}
@@ -157,18 +158,6 @@ public class GlobalPositionMapperImpl extends ConfigurableMapper implements Glob
 				.field("financialState", "asset").field("type", "subTypeProd").field("visible", "visible").byDefault()
 				.register();
 
-		// Map Loan DTO
-		factory.classMap(Product.class, LoanDto.class).field("balance.availableBalance", "totalDue")
-				.field("balance.total", "totalDebt").byDefault().register();
-
-		// Map RotatingAccount DTO
-		factory.classMap(Product.class, RotatingAccountDto.class)
-				.field("balance.availableBalance", "quota.availableQuota")
-				.field("balance.total", "quota.totalQuotaDebt").byDefault().register();
-
-		// Map CreditCard DTO
-		factory.classMap(Product.class, CreditCardDto.class).field("balance.availableBalance", "quota.availableQuota")
-				.field("balance.total", "quota.totalQuotaDebt").byDefault().register();
 	}
 
 }

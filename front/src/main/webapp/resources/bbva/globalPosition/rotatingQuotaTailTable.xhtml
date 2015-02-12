@@ -25,7 +25,7 @@
 				emptyMessage="#{msg['mssg.list.empty']}">
 
 				<p:ajax event="rowSelect"
-					listener="#{cc.attrs.controller.onProductSelected}" />
+					listener="#{cc.attrs.controller.onProductLoanSelected}" />
 				<p:ajax event="rowUnselect" />
 
 				<p:column class="head" styleClass="head col-xs-6 col-md-4"
@@ -43,13 +43,13 @@
 
 				</p:column>
 
-				<p:column class="head" styleClass="head col-xs-6 col-md-4"
+				<p:column class="head" styleClass="head hidden-xs hidden-sm col-sm-4"
 					style="font-size: 0.7em;color: #434A58;border-style: solid none;
 					font-family: Arial;background: none;border-radius: 4px;border: 2px solid #DBDCDF;
 					background-color: #F3F5F7;margin-bottom: 14px;">
 
 					<h:outputText style="font-size: 1.5em; font-weight:bold"
-						styleClass="balance" value="#{iprodcut.quota.totalQuotaDebt}" />
+						styleClass="balance hidden-xs hidden-sm" value="#{iproduct.totalCash}" />
 
 					<p class="sublabel"></p>
 
@@ -61,7 +61,7 @@
 					background-color: #F3F5F7;margin-bottom: 14px;">
 
 					<h:outputText style="font-size: 1.5em; font-weight:bold"
-						styleClass="balance" value="#{iprodcut.quota.availableQuota}" />
+						styleClass="balance" value="#{iproduct.cashAvailable}" />
 					<p class="sublabel"></p>
 
 				</p:column>

@@ -4,8 +4,10 @@ import java.util.List;
 
 import com.bbva.net.back.entity.MultiValueGroup;
 
-public interface PeriodFilterCriteriaController {
+public interface ComboCriteriaController {
 
 	List<MultiValueGroup> getListMultiValuePeriod();
+
+	List<MultiValueGroup> getListMultiValueChecks();
 
 }

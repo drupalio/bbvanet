@@ -1,6 +1,6 @@
 package com.bbva.net.back.facade.impl;
 
-import javax.ws.rs.core.Response;
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
 import com.bbva.czic.dto.net.Product;
@@ -25,18 +25,29 @@ public class PersonalizeProductFacadeImpl extends AbstractBbvaFacade implements 
 
 	private Product product;
 
-	@Override
-	public Response updateProductOperability(String idProduct, ProductDto productDto) {
-		this.product = personalizeAccountProductMapper.map(productDto);
-		final Response response = this.globalPositionService.updateProductOperability(idProduct, product);
-		return response;
+	@PostConstruct
+	public void init() {
+		this.product = new Product();
 	}
 
 	@Override
-	public Response updateProductVisibility(String idProduct, ProductDto productDto) {
+	public Boolean updateProductOperability(String idProduct, ProductDto productDto) {
+		boolean respuesta = false;
 		this.product = personalizeAccountProductMapper.map(productDto);
-		final Response response = this.globalPositionService.updateProductVisibility(idProduct, product);
-		return response;
+		if (this.globalPositionService.updateProductOperability(idProduct, product).getStatus() == 200) {
+			respuesta = true;
+		}
+		return respuesta;
+	}
+
+	@Override
+	public Boolean updateProductVisibility(String idProduct, ProductDto productDto) {
+		boolean respuesta = false;
+		this.product = personalizeAccountProductMapper.map(productDto);
+		if (this.globalPositionService.updateProductVisibility(idProduct, product).getStatus() == 200) {
+			respuesta = true;
+		}
+		return respuesta;
 	}
 
 	public void setGlobalPositionService(GlobalPositionService globalPositionService) {

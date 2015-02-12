@@ -8,40 +8,42 @@
 	xmlns:pm="http://primefaces.org/mobile">
 
 <composite:interface>
-
-	<composite:attribute id="motionDetail" name="motion" />
-
+	<composite:attribute name="controller" />
 </composite:interface>
 
 <composite:implementation>
-	<header class="table-detail-header">
-		<div class="table-tab hidden-xs hidden-sm">
-			<div class="table-detail-border">
+	<header class="table-detail-header ">
+		<div class="table-tab hidden-xs hidden-sm"
+			style="right: 0.1px !important; top: -35% !important;">
+			<div class="table-detail-border"
+				style="padding-bottom: 2% !important;">
 				<a href="#"> <span title="Descargar" class="icon-folder"></span>
 				</a> <a href="#"> <span title="Enviar" class="icon-send-by-email"></span>
 				</a> <a href="#"> <span title="Imprimir" class="icon-printer"></span>
 				</a>
 				<div class="table-detail-close">
-					<a href="#"> <span class="close-text">#{msg['text.close']}</span>
-						<button class="close-icon" type="button"></button>
+
+					<a href="#"> <span class="close-text"
+						style="color: #003F8D !important;">#{msg['text.close']}</span>
+						<button class="close-icon" type="button" onclick=""></button>
 					</a>
 				</div>
 			</div>
 		</div>
-		<table class="detail">
+		<table class="detail"
+			style="border-bottom: 1px solid #C4D7E5 !important;">
 			<tbody>
-				<tr>
-					<td style=""><span class="link">05/06/2014</span></td>
-					<td class="text-cell" style="margin-left: 50px"><strong>Comercio
-							Lorem ipsum</strong> <small>PAGO</small></td>
-					<td class="digit-cell" style=""><em> -390.00</em></td>
-					<td class="digit-cell" style=""><em> 12,943,536.35</em></td>
-					<td class="visible-xs" style="display: table-cell;">
-						<div class="left">
-							<a href="#">Abono traspaso Internet 0142738768768</a> <small>27/12/2013</small>
+				<tr class="textSize">
+					<td class="brand"><span>#{cc.attrs.controller.moveDate}</span></td>
+					<td class="text" style="float: left;">#{cc.attrs.controller.quotaMoveDetailDto.concept}</td>
+					<td class="currency">#{cc.attrs.controller.quotaMoveDetailDto.value}</td>
+					<td class="smart-view" colspan="3">
+						<div class="left textSize">
+							#{cc.attrs.controller.quotaMoveDetailDto.operationDate} <span
+								class="brand">06/06/2014</span>
 						</div>
-						<div class="right">
-							<em>$ 1.348.900</em> <small>$ -75.568</small>
+						<div class="right textSize">
+							#{cc.attrs.controller.quotaMoveDetailDto.value} <span>#{cc.attrs.controller.quotaMoveDetailDto.valueslope}</span>
 						</div>
 					</td>
 				</tr>

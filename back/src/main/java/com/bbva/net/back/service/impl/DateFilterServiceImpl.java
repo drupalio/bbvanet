@@ -14,7 +14,7 @@ import com.bbva.net.back.service.DateFilterService;
  * 
  * @author Entelgy
  */
-@Service(value = "DateFilterService")
+@Service(value = "dateFilterService")
 public class DateFilterServiceImpl implements DateFilterService {
 
 	/**

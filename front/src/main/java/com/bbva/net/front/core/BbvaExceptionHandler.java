@@ -14,12 +14,19 @@ import javax.faces.event.ExceptionQueuedEventContext;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.faces.webflow.FlowFacesContext;
+
+import com.bbva.net.front.core.exception.RestClientViewExceptionHandler;
 
 public class BbvaExceptionHandler extends ExceptionHandlerWrapper {
 
 	protected static final Logger LOGGER = LoggerFactory.getLogger(BbvaExceptionHandler.class);
-	
+
 	private final ExceptionHandler wrapped;
+
+	@Autowired
+	private RestClientViewExceptionHandler restClientViewExceptionHandler;
 
 	public BbvaExceptionHandler(ExceptionHandler wrapped) {
 		this.wrapped = wrapped;
@@ -28,33 +35,33 @@ public class BbvaExceptionHandler extends ExceptionHandlerWrapper {
 	@Override
 	public ExceptionHandler getWrapped() {
 		return this.wrapped;
-
 	}
 
+	@Override
 	public void handle() throws FacesException {
-		
-		final Iterator<ExceptionQueuedEvent> i = getUnhandledExceptionQueuedEvents()
-				.iterator();
+
+		FlowFacesContext.getCurrentInstance().getExceptionHandler();
+
+		final Iterator<ExceptionQueuedEvent> i = getUnhandledExceptionQueuedEvents().iterator();
 
 		while (i.hasNext()) {
 			ExceptionQueuedEvent event = i.next();
-			ExceptionQueuedEventContext context = (ExceptionQueuedEventContext) event
-					.getSource();
+			ExceptionQueuedEventContext context = (ExceptionQueuedEventContext)event.getSource();
 			// get the exception from context
 			Throwable t = context.getException();
 			final FacesContext fc = FacesContext.getCurrentInstance();
 			final ExternalContext externalContext = fc.getExternalContext();
 			final Map<String, Object> requestMap = fc.getExternalContext().getRequestMap();
-			final ConfigurableNavigationHandler nav = 
-					(ConfigurableNavigationHandler) fc.getApplication().getNavigationHandler();
+			final ConfigurableNavigationHandler nav = (ConfigurableNavigationHandler)fc.getApplication()
+					.getNavigationHandler();
 			// here you do what ever you want with exception
 			try {
-				// log error ?
-				LOGGER.error("Severe Exception Occured");
-				// log.log(Level.SEVERE, "Critical Exception!", t);
-				// redirect error page
-				requestMap.put("exceptionMessage", t.getMessage());
-				nav.performNavigation("/TestPRoject/error.xhtml");
+				//
+				// LOGGER.error("Severe Exception Occured");
+				// // log.log(Level.SEVERE, "Critical Exception!", t);
+				// // redirect error page
+				// requestMap.put("exceptionMessage", t.getMessage());
+				// nav.performNavigation("/TestPRoject/error.xhtml");
 				fc.renderResponse();
 				// remove the comment below if you want to report the error in a
 				// jsf error message
@@ -68,4 +75,8 @@ public class BbvaExceptionHandler extends ExceptionHandlerWrapper {
 		getWrapped().handle();
 	}
 
+	protected String handleUnexpected(FacesContext facesContext, final Throwable t) {
+
+		return "jsftoolkit.exception.UncheckedException";
+	}
 }

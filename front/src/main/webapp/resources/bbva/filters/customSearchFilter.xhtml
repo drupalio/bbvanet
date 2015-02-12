@@ -19,7 +19,8 @@
 	<composite:attribute name="valueDateTo" />
 	<composite:attribute name="disabledButton" />
 	<composite:attribute name="disabledCalendar" />
-	<composite:attribute name="actionListenerDate" method-signature="void actionlistener(javax.faces.event.ActionEvent)"/>
+	<composite:attribute name="actionListenerDate"
+		method-signature="void actionlistener(javax.faces.event.ActionEvent)" />
 </composite:interface>
 
 <composite:implementation>
@@ -106,7 +107,7 @@
 			<div>
 				<div class="col-xs-12 col-md-6">
 					<div class="form-group">
-						<div class="col-xs-2 col-md-12">						
+						<div class="col-xs-2 col-md-12">
 							<label for="calendarSinceWV">Desde:</label>
 						</div>
 						<div class="col-xs-10 col-md-12 input-control">
@@ -132,10 +133,11 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div>		
 		<button jsf:id="dateButton" class="btn small hidden-xs hidden-sm"
 			jsf:disabled="#{cc.attrs.disabledButton}"
 			jsf:actionListener="#{cc.attrs.actionListenerDate}">#{msg['button.confirm']}</button>
+
 	</div>
 
 </composite:implementation>

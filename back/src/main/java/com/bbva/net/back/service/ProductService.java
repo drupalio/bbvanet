@@ -82,7 +82,13 @@ public interface ProductService {
 
 	Map<String, List<String>> getProductsName(GlobalProductsDto globalProducts);
 
-	Money getTotalProductsBySubType(List<ProductDto> products,
-			String subProductType);
+	Money getTotalProductsBySubType(List<ProductDto> products, String subProductType);
+
+	/**
+	 * @param globalProducts
+	 * @return
+	 */
+
+	Map<String, BalanceDto> getLoanTotals(final GlobalProductsDto globalProducts);
 
 }

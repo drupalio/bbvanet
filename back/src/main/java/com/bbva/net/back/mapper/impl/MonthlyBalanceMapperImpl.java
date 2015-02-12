@@ -23,7 +23,7 @@ public class MonthlyBalanceMapperImpl extends ConfigurableMapper implements Mont
 		factory.getConverterFactory().registerConverter(new MoneyConverter());
 
 		factory.classMap(MonthlyBalances.class, MonthBalanceDto.class).field("balance", "balance")
-				.field("month", "day").field("month", "valueX").byDefault().register();
+				.field("month", "day").byDefault().register();
 	}
 
 	@Override
