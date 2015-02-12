@@ -55,9 +55,11 @@ public class HeaderControllerImpl extends AbstractBbvaController implements Head
 	@Override
 	public CustomerDto getCustomer() {
 		String user = getCurrentUser();
-		// para prueba
-		user = "12345678";
-		return executive.getCustomer(user);
-	}
+		try {
+			return executive.getCustomer(user);
+		} catch (final Exception exception) {
+		}
+		return new CustomerDto();
 
+	}
 }
