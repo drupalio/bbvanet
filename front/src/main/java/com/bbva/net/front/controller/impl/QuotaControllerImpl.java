@@ -13,6 +13,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
 
+import org.primefaces.event.SelectEvent;
 import org.primefaces.event.ToggleEvent;
 
 import com.bbva.net.back.facade.QuotaDetailFacade;
@@ -41,6 +42,8 @@ public class QuotaControllerImpl extends CheckPaginatedController implements Quo
 	private MovementDetailDto quotaMoveDetailDto = new MovementDetailDto();
 
 	private ProductDto productDto = new ProductDto();
+
+	private MovementDto quotaMove = new MovementDto();
 
 	private Map<String, Boolean> renderComponents = new HashMap<String, Boolean>();
 
@@ -117,10 +120,11 @@ public class QuotaControllerImpl extends CheckPaginatedController implements Quo
 		return detalle;
 	}
 
-	public void onRowToggle(ToggleEvent event) {
+	public void onRowToggle(SelectEvent event) {
 		System.out.println("data onRowToggle");
-		this.quotaMoveDetailDto = this.quotaDetailFacade.getRotaryQuotaMovement(this.productDto.getProductId(), super
-				.getSelectedMovements().getMovementId());
+
+		this.quotaMoveDetailDto = this.quotaDetailFacade.getRotaryQuotaMovement(this.productDto.getProductId(),
+				getSelectedMovements().getMovementId());
 		this.moveDate = dateFormat.format(this.quotaMoveDetailDto.getOperationDate());
 	}
 
@@ -316,5 +320,19 @@ public class QuotaControllerImpl extends CheckPaginatedController implements Quo
 
 	public void setPaymentDate(String paymentDate) {
 		this.paymentDate = paymentDate;
+	}
+
+	/**
+	 * @return the quotaMove
+	 */
+	public MovementDto getQuotaMove() {
+		return quotaMove;
+	}
+
+	/**
+	 * @param quotaMove the quotaMove to set
+	 */
+	public void setQuotaMove(MovementDto quotaMove) {
+		this.quotaMove = quotaMove;
 	}
 }

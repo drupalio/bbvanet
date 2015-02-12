@@ -18,6 +18,7 @@
 <composite:implementation>
 
 	<script>
+
 		function divMovement() {
 
 			var styles = document.getElementById('rowExpansion').style.display;
@@ -30,11 +31,15 @@
 
 		//Funciona Cierra los demas detalles cuando se abre uno
 		function test() {
+			
 			var i = $('.ui-row-toggler.ui-icon-circle-triangle-s').length;
 			if (i == 1) {
 				return;
 			}
-			$('.ui-row-toggler.ui-icon-circle-triangle-s').trigger('click');
+			.on('click.datatable-expansion', '> tr', null, function() {
+		         //toggle the current row the old toggler
+		         $this.toggleExpansion($(this).find('.ui-row-toggler.ui-icon-circle-triangle-s'));
+		       });
 		}
 	</script>
 
@@ -57,15 +62,9 @@
 					value="#{cc.attrs.listAccounts}" var="moves" selectionMode="single"
 					rowKey="#{moves.movementId}">
 
-					<f:ajax event="rowSelect" render="detalAC" />
-					<f:ajax event="rowUnselect" render="detalAC" />
-
-					<p:ajax event="rowToggle" onstart="test()"
+					<p:ajax event="rowSelect" onsuccess="test()"
 						listener="#{cc.attrs.controller.onRowToggle}" />
-
-					<p:column style="z-index: 2 !important; width:5px; ">
-						<p:rowToggler rendered="true" />
-					</p:column>
+					<p:ajax event="rowUnselect" />
 
 					<p:column headerText="#{msg['text.detailMove.date']}"
 						styleClass="sorted w18 desc"
