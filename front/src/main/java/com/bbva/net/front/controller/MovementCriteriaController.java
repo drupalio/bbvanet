@@ -68,4 +68,6 @@ public interface MovementCriteriaController {
 
 	List<MovementDto> getAllMovements();
 
+	void cleanFilters(ActionEvent event);
+
 }

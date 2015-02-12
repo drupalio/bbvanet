@@ -23,7 +23,6 @@ public class ApplicationControllerImpl extends AbstractBbvaController implements
 	// private GraphicUI graphicUI;
 	private static final Integer LIKE_LIST = 1;
 
-	private ItemMenu menuActive = ItemMenu.PG;
 
 	@Resource(name = "multiValueGroupFacade")
 	private transient MultiValueGroupFacade multiValueGroupFacade;
@@ -60,16 +59,5 @@ public class ApplicationControllerImpl extends AbstractBbvaController implements
 		return likes;
 	}
 
-	/**
-	 * 
-	 */
-	@Override
-	public void setMenuActive(final ItemMenu menuActive) {
-		this.menuActive = menuActive;
-	}
 
-	@Override
-	public String getMenuActive() {
-		return this.menuActive.name();
-	}
 }

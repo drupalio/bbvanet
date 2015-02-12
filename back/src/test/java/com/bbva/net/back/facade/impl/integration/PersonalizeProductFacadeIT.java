@@ -4,9 +4,6 @@ import javax.annotation.Resource;
 
 import org.junit.Test;
 import org.junit.Assert;
-
-import javax.ws.rs.core.Response;
-
 import org.junit.runner.RunWith;
 import org.springframework.context.annotation.Profile;
 import org.springframework.test.context.ContextConfiguration;
@@ -30,8 +27,8 @@ public class PersonalizeProductFacadeIT {
 		ProductDto productDto = new ProductDto();
 		productDto.setProductId("00130073005054466407");
 		productDto.setVisible(true);
-		Assert.assertEquals(this.personalizeProductFacade
-				.updateProductVisibility(productDto.getProductId(), productDto).getStatus(), 200);
+		Assert.assertEquals(
+				this.personalizeProductFacade.updateProductVisibility(productDto.getProductId(), productDto), true);
 	}
 
 	// 500 Error interno del servidor.
@@ -39,8 +36,8 @@ public class PersonalizeProductFacadeIT {
 	@Test
 	public void checkVisibilityNull() {
 		ProductDto productDto = new ProductDto();
-		Assert.assertEquals(this.personalizeProductFacade.updateProductVisibility(productDto.getProductId(), null)
-				.getStatus(), 500);
+		Assert.assertEquals(this.personalizeProductFacade.updateProductVisibility(productDto.getProductId(), null),
+				false);
 	}
 
 	// 400 Petición incorrecta.
@@ -49,8 +46,8 @@ public class PersonalizeProductFacadeIT {
 	public void checkVisibilityProductNoId() {
 		ProductDto productDto = new ProductDto();
 		productDto.setVisible(false);
-		Assert.assertEquals(this.personalizeProductFacade
-				.updateProductVisibility(productDto.getProductId(), productDto).getStatus(), 400);
+		Assert.assertEquals(
+				this.personalizeProductFacade.updateProductVisibility(productDto.getProductId(), productDto), false);
 	}
 
 	// 409 Artibutos obligatorios vacíos.
@@ -59,8 +56,8 @@ public class PersonalizeProductFacadeIT {
 	public void checkVisibilityProductNoData() {
 		ProductDto productDto = new ProductDto();
 		productDto.setProductId("00130073005054466407");
-		Assert.assertEquals(this.personalizeProductFacade
-				.updateProductVisibility(productDto.getProductId(), productDto).getStatus(), 409);
+		Assert.assertEquals(
+				this.personalizeProductFacade.updateProductVisibility(productDto.getProductId(), productDto), false);
 	}
 
 	// test de updateOperability.
@@ -70,9 +67,9 @@ public class PersonalizeProductFacadeIT {
 		ProductDto productDto = new ProductDto();
 		productDto.setProductId("00130073005054466407");
 		productDto.setOperationOnline(true);
-		Response response = this.personalizeProductFacade.updateProductOperability(productDto.getProductId(),
-				productDto);
-		Assert.assertEquals(response.getStatus(), 200);
+		Boolean response = this.personalizeProductFacade
+				.updateProductOperability(productDto.getProductId(), productDto);
+		Assert.assertEquals(response, true);
 	}
 
 	// 500 Error interno del servidor.
@@ -80,8 +77,8 @@ public class PersonalizeProductFacadeIT {
 	@Test
 	public void checkOperabilityNull() {
 		ProductDto productDto = new ProductDto();
-		Response response = this.personalizeProductFacade.updateProductOperability(productDto.getProductId(), null);
-		Assert.assertEquals(response.getStatus(), 500);
+		Boolean response = this.personalizeProductFacade.updateProductOperability(productDto.getProductId(), null);
+		Assert.assertEquals(response, false);
 	}
 
 	// 400 Petición incorrecta.
@@ -90,7 +87,7 @@ public class PersonalizeProductFacadeIT {
 	public void checkOperabilityProductNoId() {
 		ProductDto productDto = new ProductDto();
 		productDto.setVisible(false);
-		Assert.assertEquals(this.personalizeProductFacade.updateProductOperability(null, productDto).getStatus(), 400);
+		Assert.assertEquals(this.personalizeProductFacade.updateProductOperability(null, productDto), false);
 	}
 
 	// 409 Artibutos obligatorios vacíos.
@@ -99,7 +96,7 @@ public class PersonalizeProductFacadeIT {
 	public void checkOperabilityProductNoData() {
 		ProductDto productDto = new ProductDto();
 		productDto.setProductId("00130073005054466407");
-		Assert.assertEquals(this.personalizeProductFacade.updateProductOperability("00130073005054466407", productDto)
-				.getStatus(), 409);
+		Assert.assertEquals(this.personalizeProductFacade.updateProductOperability("00130073005054466407", productDto),
+				false);
 	}
 }
