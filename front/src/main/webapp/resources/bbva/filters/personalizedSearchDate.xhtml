@@ -18,24 +18,29 @@
 <composite:implementation>
 
 	<h:form id="customSearch">
-		<bbvaSearch:personalizedSearchTabBody
+		<bbvaSearch:personalizedSearchTabBody id="perTabBody"
 			title="#{msg['text.title.personalized.search']}">
-			<bbvaSearch:customSearchList classList="date-filter customSearch"
-				classSpan="arrow-left-smaller" classSpanFilter="filter"
-				title="#{msg['text.date']}">
-				<bbvaSearch:customSearchFilter
-					value="#{quotaController.movementCriteria.selectDate}"
-					valueSince="#{quotaController.movementCriteria.dateRange.dateSince}"
-					valueTo="#{quotaController.movementCriteria.dateRange.dateTo}"
-					disabledButton="#{quotaController.disabledButtonDate}"
-					disabledCalendar="#{quotaController.disabledCalendar}"
+			<bbvaSearch:customSearchList id="customList"
+				classList="date-filter customSearch" classSpan="arrow-left-smaller"
+				classSpanFilter="filter" title="#{msg['text.date']}"
+				filterTitle="#{quotaController.sinceText}"
+				filterTitle2="#{quotaController.toText}"
+				filterMessage="#{quotaController.sinceDatestr}"
+				filterMessage2="#{quotaController.toDatestr}">
+
+				<bbvaSearch:customSearchFilter id="customDate"
+					value="#{quotaController.selectDate}"
+					valueDateSince="#{quotaController.sinceDate}"
+					valueDateTo="#{quotaController.toDate}"
+					disabledButton="#{quotaController.renderComponents['BUTTONDATE']}"
+					disabledCalendar="#{quotaController.renderComponents['CALENDAR']}"
 					actionListenerDate="#{quotaController.setCustomDate}"
-					listenerDate="#{quotaController.oneSelectDate}" />
+					listenerDate="#{quotaController}" />
 			</bbvaSearch:customSearchList>
 
 			<bbvaSearch:searchButtonList show="true"
-				actionListenerRemove="#{quotaController.searchMovementByFilter}"
-				actionListenerShow="#{quotaController.searchMovementByFilter}" />
+				actionListenerRemove="#{quotaController.searchQuotaByFilter}"
+				actionListenerShow="#{quotaController.searchQuotaByFilter}" />
 		</bbvaSearch:personalizedSearchTabBody>
 	</h:form>
 </composite:implementation>

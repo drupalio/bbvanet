@@ -217,7 +217,7 @@
 									<impl>false</impl>
 									<wadl>src/main/resources/wadl/products.wadl</wadl>
 									<packagename>com.bbva.net.webservices.products</packagename>
-								</wadlOption> -->  
+								</wadlOption>-->
 							</wadlOptions>
 						</configuration>
 						<goals>

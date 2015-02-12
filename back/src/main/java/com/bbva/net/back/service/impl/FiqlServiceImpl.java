@@ -23,7 +23,7 @@ public class FiqlServiceImpl implements FiqlService {
 
 	@Override
 	public String getFiqlQueryByDateRange(final DateRangeDto dateRange, final String startProperty,
-			final String endProperty) {
+			final String endProperty)  {
 
 		if (dateRange == null || dateRange.getDateSince() == null || dateRange.getDateTo() == null) {
 			return StringUtils.EMPTY;
@@ -144,5 +144,4 @@ public class FiqlServiceImpl implements FiqlService {
 				.lexicalNotAfter(formatMonth(dateRange.getDateTo())).query();
 
 	}
-
 }

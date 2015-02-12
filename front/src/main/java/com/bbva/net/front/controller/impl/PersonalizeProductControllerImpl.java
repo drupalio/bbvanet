@@ -1,12 +1,9 @@
 package com.bbva.net.front.controller.impl;
 
-import javax.faces.event.ActionEvent;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
+import javax.faces.event.ActionEvent;
 import javax.faces.event.AjaxBehaviorEvent;
-import javax.ws.rs.core.Response;
-
-import org.springframework.stereotype.Controller;
 
 import com.bbva.net.back.facade.PersonalizeProductFacade;
 import com.bbva.net.back.model.globalposition.ProductDto;
@@ -14,7 +11,9 @@ import com.bbva.net.back.model.personalize.PersonalizeAccountDto;
 import com.bbva.net.front.controller.PersonalizeProductController;
 import com.bbva.net.front.core.AbstractBbvaController;
 
-@Controller(value = "personalizeProductAccountController")
+/**
+ * @author Entelgy
+ */
 public class PersonalizeProductControllerImpl extends AbstractBbvaController implements PersonalizeProductController {
 
 	private static final long serialVersionUID = 4372849387340418649L;
@@ -47,6 +46,7 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 	}
 
 	// inicializar valores para mostrar en la vista
+	@Override
 	public ProductDto getSelectedProduct() {
 		this.productDto = super.getSelectedProduct();
 		setSearch(productDto.isVisible());
@@ -63,16 +63,14 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 	public void operKey() {
 		productDto.setVisible(isSearch());
 		productDto.setOperationOnline(isOperation());
-
-		Response responseVisi = this.personalizeProductAccountFacade.updateProductVisibility(productDto.getProductId(),
+		Boolean responseVisi = this.personalizeProductAccountFacade.updateProductVisibility(productDto.getProductId(),
 				productDto);
-		Response responseOpe = this.personalizeProductAccountFacade.updateProductOperability(productDto.getProductId(),
+		Boolean responseOpe = this.personalizeProductAccountFacade.updateProductOperability(productDto.getProductId(),
 				productDto);
-
-		if (responseVisi.equals(Response.ok()) && responseOpe.equals(Response.ok())) {
-			this.menOperationKey = true;
+		if (responseVisi == true && responseOpe == true) {
+			setMenOperationKey(true);
 		} else {
-
+			System.out.println("error");
 		}
 	}
 
@@ -117,6 +115,7 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 	 * Metodo que retona el estado de visibilidad del divOperationKey
 	 */
 
+	@Override
 	public boolean isMenOperationKey() {
 		return menOperationKey;
 	}
@@ -124,6 +123,7 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 	/**
 	 * @return the personalizeProductAccountDto
 	 */
+	@Override
 	public PersonalizeAccountDto getPersonalizeProductAccountDto() {
 		return personalizeProductAccountDto;
 	}
@@ -175,5 +175,12 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 	 */
 	public void setSearch(boolean search) {
 		this.search = search;
+	}
+
+	/**
+	 * @param menOperationKey the menOperationKey to set
+	 */
+	public void setMenOperationKey(boolean menOperationKey) {
+		this.menOperationKey = menOperationKey;
 	}
 }

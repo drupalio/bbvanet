@@ -40,7 +40,8 @@
 			</div>
 			<div class="row afterTable">
 				<bbvaGP:productFooter listProduct="#{customerRotatingAccountHidden}" />
-				<bbvaGP:totalBalance />
+				<bbvaGP:totalBalance
+					total="#{loanController.totalsProducts['RQ'].total}" />
 			</div>
 		</bbvaContainer:productPanel>
 
@@ -51,12 +52,11 @@
 					controller="#{loanController}" />
 				<bbvaGP:leasingTailTable listLeasing="#{customerLeasingHidden}"
 					controller="#{loanController}" />
-
-
 			</div>
 			<div class="row afterTable">
 				<bbvaGP:productFooter listProduct="#{customerLeasingHidden}" />
-				<bbvaGP:totalBalance />
+				<bbvaGP:totalBalance
+					total="#{loanController.totalsProducts['LI'].total}" />
 			</div>
 		</bbvaContainer:productPanel>
 
@@ -69,7 +69,8 @@
 			</div>
 			<div class="row afterTable">
 				<bbvaGP:productFooter listProduct="#{customerLoanHidden}" />
-				<bbvaGP:totalBalance />
+				<bbvaGP:totalBalance
+					total="#{loanController.totalsProducts['LO'].total}" />
 			</div>
 		</bbvaContainer:productPanel>
 

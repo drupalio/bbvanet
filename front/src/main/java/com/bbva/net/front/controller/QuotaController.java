@@ -3,10 +3,12 @@
  */
 package com.bbva.net.front.controller;
 
+import java.util.List;
+
 import javax.faces.event.ActionEvent;
-import javax.faces.event.AjaxBehaviorEvent;
 
 import com.bbva.net.back.model.accounts.TermsAccountsDto;
+import com.bbva.net.back.model.movements.MovementDto;
 
 /**
  * @author User
@@ -19,30 +21,26 @@ public interface QuotaController {
 	TermsAccountsDto getAllConditions();
 
 	/***
-	 * Method to set criteria parameters
-	 * 
-	 * @param event
+	 * Method to select the date type is called when you click on the date oneRadio menu component
 	 */
-	void setCriteriaDate(ActionEvent event);
+	void oneSelectDate();
 
-	/***
-	 * Method to search quota movements by personalized date*
-	 * 
-	 * @param event
+	/**
+	 * Method to set partial customdate
 	 */
-	void searchQuotaMovement(ActionEvent event);
+	void setCustomDate(ActionEvent event);
 
-	/***
-	 * Method to flag select date
-	 * 
-	 * @param event
+	/**
+	 * Method to set partial customdate
 	 */
-	void oneSelectDate(AjaxBehaviorEvent event);
+	void searchQuotaByFilter(final ActionEvent event);
 
-	// show Results.... moved MovementCriteriaControllerImpl
+	/**
+	 * Method to get all movements of quota
+	 * 
+	 * @return
+	 */
 
-	void searchMovementByFilter(final ActionEvent event);
-
-	// List<QuotaRotatingDto> getQuotaRotary();
+	List<MovementDto> getAllQuotamovenDtos();
 
 }
