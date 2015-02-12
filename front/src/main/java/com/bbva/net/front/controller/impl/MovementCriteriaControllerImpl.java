@@ -11,6 +11,8 @@ import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
 
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections.PredicateUtils;
 import org.primefaces.event.SelectEvent;
 
 import com.bbva.net.back.facade.MovementsAccountFacade;
@@ -20,8 +22,10 @@ import com.bbva.net.back.model.comboFilter.EnumPeriodType;
 import com.bbva.net.back.model.commons.BalanceRangeDto;
 import com.bbva.net.back.model.commons.DateRangeDto;
 import com.bbva.net.back.model.enums.RenderAttributes;
+import com.bbva.net.back.model.globalposition.ProductDto;
 import com.bbva.net.back.model.movements.MovementDetailDto;
 import com.bbva.net.back.model.movements.MovementDto;
+import com.bbva.net.back.predicate.AssetPredicated;
 import com.bbva.net.back.service.impl.DateFilterServiceImpl;
 import com.bbva.net.front.controller.MovementCriteriaController;
 import com.bbva.net.front.delegate.GraphicLineDelegate;
@@ -170,6 +174,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		System.out.println("mov id selected: " + getSelectedMovements().getMovementId());
 	}
 
+	@SuppressWarnings("unused")
 	@Override
 	public void searchMovementByFilter(final ActionEvent event) {
 		System.out.println("Movimeintos x criteria \n");
@@ -186,6 +191,10 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			System.out.println("To " + movementCriteria.getBalanceRange().getBalanceTo());
 			criteriaSearch();
 		} else if (renderComponents.get(RenderAttributes.INCOMEOREXPENSESFILTER.toString())) {
+			
+			// Get only movements by income or expenses
+			final List<MovementDto> assetsProduct = (List<MovementDto>)CollectionUtils.select(this.movementsList,
+					PredicateUtils.notPredicate(new AssetPredicated()));
 
 		} else if (renderComponents.get(RenderAttributes.MOVEMENTSFILTER.toString())) {
 
