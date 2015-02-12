@@ -12,7 +12,7 @@ import com.bbva.net.front.controller.HeaderController;
 import com.bbva.net.front.core.AbstractBbvaController;
 
 @Controller(value = "headerController")
-@Scope(value = "globalSession")
+@Scope(value = "session")
 public class HeaderControllerImpl extends AbstractBbvaController implements HeaderController {
 
 	@Resource(name = "headerFacade")
@@ -32,7 +32,11 @@ public class HeaderControllerImpl extends AbstractBbvaController implements Head
 
 	@Override
 	public ExecutiveDto getExecutive() {
-		return executive.getExecutive(getCurrentUser());
+		try {
+			return executive.getExecutive(getCurrentUser());
+		} catch (final Exception exception) {
+		}
+		return new ExecutiveDto();
 	}
 
 	public ExecutiveDto getEjecutivo() {

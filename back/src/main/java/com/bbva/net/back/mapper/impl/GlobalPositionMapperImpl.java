@@ -6,8 +6,11 @@ import ma.glasnost.orika.MapperFactory;
 import ma.glasnost.orika.impl.ConfigurableMapper;
 import ma.glasnost.orika.metadata.TypeFactory;
 
+import org.apache.commons.logging.Log;
+
 import com.bbva.czic.dto.net.EnumProductType;
 import com.bbva.czic.dto.net.Product;
+import com.bbva.jee.arq.spring.core.log.I18nLogFactory;
 import com.bbva.net.back.command.ProductVisitorCommand;
 import com.bbva.net.back.core.stereotype.Mapper;
 import com.bbva.net.back.mapper.GlobalPositionMapper;
@@ -29,12 +32,16 @@ import com.bbva.net.back.model.globalposition.RotatingAccountDto;
 @Mapper(value = "globalPositionMapper")
 public class GlobalPositionMapperImpl extends ConfigurableMapper implements GlobalPositionMapper {
 
+	protected static final Log LOGGER = I18nLogFactory.getLog(GlobalPositionMapperImpl.class);
+
 	/**
 	 * 
 	 * 
 	 */
 	@Override
 	public GlobalProductsDto map(final List<Product> products) {
+
+		LOGGER.info("MAPEANDO PRODUCTOS: " + products.size());
 
 		final GlobalProductsDto globalProducts = new GlobalProductsDto();
 
@@ -43,6 +50,7 @@ public class GlobalPositionMapperImpl extends ConfigurableMapper implements Glob
 			@Override
 			public void executeRotatingAccount(final Product rotatingAccount) {
 
+				LOGGER.info("Mapeando Rotating Account: " + rotatingAccount.getId());
 				RotatingAccountDto product = map(rotatingAccount, RotatingAccountDto.class);
 				product.setTypeProd(EnumProductType.RQ);
 				globalProducts.getRotatingAccounts().add(product);
@@ -51,6 +59,8 @@ public class GlobalPositionMapperImpl extends ConfigurableMapper implements Glob
 			@Override
 			public void executeLoan(final Product loan) {
 
+				LOGGER.info("Mapeando Loan: " + loan.getId());
+
 				LoanDto product = map(loan, RotatingAccountDto.class);
 				product.setTypeProd(EnumProductType.LO);
 				globalProducts.getLoan().add(product);
@@ -58,6 +68,9 @@ public class GlobalPositionMapperImpl extends ConfigurableMapper implements Glob
 
 			@Override
 			public void executeLeasing(final Product leasing) {
+
+				LOGGER.info("Mapeando Leasing: " + leasing.getId());
+
 				LeasingDto product = map(leasing, LeasingDto.class);
 				product.setTypeProd(EnumProductType.LI);
 				globalProducts.getLeasings().add(product);
@@ -65,6 +78,9 @@ public class GlobalPositionMapperImpl extends ConfigurableMapper implements Glob
 
 			@Override
 			public void executeFund(final Product fund) {
+
+				LOGGER.info("Mapeando Fund: " + fund.getId());
+
 				FundDto product = map(fund, FundDto.class);
 				product.setTypeProd(EnumProductType.SI);
 				globalProducts.getFunds().add(product);
@@ -73,6 +89,9 @@ public class GlobalPositionMapperImpl extends ConfigurableMapper implements Glob
 
 			@Override
 			public void executeDeposit(final Product deposit) {
+
+				LOGGER.info("Mapeando Deposit: " + deposit.getId());
+
 				DepositDto product = map(deposit, DepositDto.class);
 				product.setTypeProd(EnumProductType.ED);
 				globalProducts.getElectronicDeposits().add(product);
@@ -81,6 +100,9 @@ public class GlobalPositionMapperImpl extends ConfigurableMapper implements Glob
 
 			@Override
 			public void executeCredictCard(final Product creditCard) {
+
+				LOGGER.info("Mapeando CreditCard: " + creditCard.getId());
+
 				CreditCardDto product = map(creditCard, CreditCardDto.class);
 				product.setTypeProd(EnumProductType.TC);
 				globalProducts.getCreditCards().add(product);
@@ -90,6 +112,8 @@ public class GlobalPositionMapperImpl extends ConfigurableMapper implements Glob
 			@Override
 			public void executeAdquirenceAccount(final Product adquirenceAccount) {
 
+				LOGGER.info("Mapeando Adquiriencia: " + adquirenceAccount.getId());
+
 				AdquirenceAccountDto product = map(adquirenceAccount, AdquirenceAccountDto.class);
 				product.setTypeProd(EnumProductType.AQ);
 				globalProducts.getAdquirencia().add(product);
@@ -98,6 +122,8 @@ public class GlobalPositionMapperImpl extends ConfigurableMapper implements Glob
 
 			@Override
 			public void executeAccount(final Product account) {
+
+				LOGGER.info("Mapeando Account: " + account.getId());
 
 				AccountDto product = map(account, AccountDto.class);
 				product.setTypeProd(EnumProductType.PC);

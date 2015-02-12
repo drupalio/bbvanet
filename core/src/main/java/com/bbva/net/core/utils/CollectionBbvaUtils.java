@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.beanutils.PropertyUtils;
+import org.apache.commons.collections.CollectionUtils;
 
 /**
  * @author Entelgy
@@ -26,22 +27,24 @@ public final class CollectionBbvaUtils {
 
 		double totalValue = 0d;
 
-		for (Iterator<T> iterator = list.iterator(); iterator.hasNext();) {
-			T object = iterator.next();
-			totalValue = totalValue + getValueByEL(object, expressionLenguage);
+		if (!CollectionUtils.isEmpty(list)) {
+			for (Iterator<T> iterator = list.iterator(); iterator.hasNext();) {
+				T object = iterator.next();
+				totalValue = totalValue + getValueByEL(object, expressionLenguage);
+			}
 		}
 
 		return BigDecimal.valueOf(totalValue);
 	}
+
 	/**
-	 * 
 	 * @param list
 	 * @param expressionLenguage
 	 * @return
 	 */
 	public static <T extends Serializable> List<String> nameProduct(List<T> list, final String expressionLenguage) {
 
-		List<String> names= new ArrayList<String>();
+		List<String> names = new ArrayList<String>();
 		for (Iterator<T> iterator = list.iterator(); iterator.hasNext();) {
 			T object = iterator.next();
 			names.add(getNameByEL(object, expressionLenguage));
@@ -49,6 +52,7 @@ public final class CollectionBbvaUtils {
 
 		return names;
 	}
+
 	/**
 	 * @param object
 	 * @param expressionLenguage
@@ -63,8 +67,8 @@ public final class CollectionBbvaUtils {
 			return 0;
 		}
 	}
+
 	/**
-	 * 
 	 * @param object
 	 * @param expressionLenguage
 	 * @return
@@ -72,7 +76,7 @@ public final class CollectionBbvaUtils {
 	public static String getNameByEL(final Serializable object, final String expressionLenguage) {
 
 		try {
-			return (String) PropertyUtils.getProperty(object, expressionLenguage);
+			return (String)PropertyUtils.getProperty(object, expressionLenguage);
 		} catch (final Exception exception) {
 			return "";
 		}

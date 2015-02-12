@@ -42,9 +42,11 @@ public class GlobalPositionFacadeImpl extends AbstractBbvaFacade implements Glob
 
 		final List<Product> response = this.globalPositionService.getExtractGlobalBalance(user, StringUtils.EMPTY);
 
+		LOGGER.info("Mapeando Posición Global ...........");
 		// return globalPositionMapper.map(response);
-		return globalPositionMapper.map(response);
-
+		final GlobalProductsDto result = globalPositionMapper.map(response);
+		LOGGER.info("GlobalProduts in Facade is Null: " + (result == null));
+		return result;
 	}
 
 	@Override

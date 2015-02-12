@@ -20,9 +20,8 @@
 		</el-resolver>
 
 		<locale-config>
-			<default-locale>es</default-locale>
-			<supported-locale>en</supported-locale>
-			<supported-locale>es</supported-locale>
+			<default-locale>es_CO</default-locale>
+			<supported-locale>es_ES</supported-locale>
 		</locale-config>
 
 		<!-- <factory> <exception-handler-factory> com.common.exceptions.CustomExceptionHandlerFactory 

@@ -10,7 +10,6 @@ import com.bbva.czic.dto.net.Product;
 import com.bbva.net.webservices.core.pattern.AbstractBbvaRestService;
 import com.bbva.net.webservices.core.stereotype.RestService;
 import com.bbva.net.webservices.globalposition.GlobalPositionService;
-import com.google.gson.Gson;
 
 @RestService(value = "globalPositionService")
 public class GlobalPositionServiceImpl extends AbstractBbvaRestService implements GlobalPositionService {
@@ -28,12 +27,7 @@ public class GlobalPositionServiceImpl extends AbstractBbvaRestService implement
 	public List<Product> getExtractGlobalBalance(String customerId, String $filter) {
 		LOGGER.info("PETICION: " + URL_BASE + customerId + URL_GLOBAL_POSITION);
 		final List<Product> result = getJsonCollection(URL_BASE + customerId + URL_GLOBAL_POSITION, Product.class);
-		try {
-			final Gson gson = new Gson();
-			String json = gson.toJson(result);
-			LOGGER.info("JSON EXTRACT GLOBAL BALANCE: " + json);
-		} catch (final Exception exception) {
-		}
+		LOGGER.info("NUMERO DE PRODUCTOS:" + result.size());
 		return result;
 	}
 

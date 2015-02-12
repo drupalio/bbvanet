@@ -10,9 +10,11 @@ import java.util.Map;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.PredicateUtils;
+import org.apache.commons.logging.Log;
 import org.springframework.stereotype.Service;
 
 import com.bbva.czic.dto.net.EnumProductType;
+import com.bbva.jee.arq.spring.core.log.I18nLogFactory;
 import com.bbva.net.back.model.commons.Money;
 import com.bbva.net.back.model.globalposition.AccountDto;
 import com.bbva.net.back.model.globalposition.AdquirenceAccountDto;
@@ -38,6 +40,8 @@ import com.bbva.net.core.utils.CollectionBbvaUtils;
 @Service(value = "productService")
 public class ProductServiceImpl implements ProductService {
 
+	protected static final Log LOGGER = I18nLogFactory.getLog(ProductServiceImpl.class);
+
 	@Override
 	public <T extends ProductDto> Money getTotal(final List<T> products) {
 		return new Money(CollectionBbvaUtils.calculateTotal(products, "totalCash.amount"));
@@ -57,10 +61,12 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public Money getTotalAssets(final List<ProductDto> products) {
 
+		LOGGER.info("Calculate assets list: " + products.size());
 		// Get only asset productos
 		final List<ProductDto> assetsProduct = (List<ProductDto>)CollectionUtils
 				.select(products, new AssetPredicated());
 
+		LOGGER.info("Assets Products: " + assetsProduct.size());
 		// Calculate total cash from asset products
 		return getTotal(assetsProduct);
 
@@ -157,6 +163,8 @@ public class ProductServiceImpl implements ProductService {
 	public GlobalProductsDto select(final GlobalProductsDto globalProducts, final BbvaPredicate<ProductDto> predicate) {
 
 		final GlobalProductsDto result = new GlobalProductsDto();
+
+		LOGGER.info("GlobalProduts is NULL: " + (globalProducts == null));
 
 		result.setAccounts((List<AccountDto>)CollectionUtils.select(globalProducts.getAccounts(), predicate));
 		result.setAdquirencia((List<AdquirenceAccountDto>)CollectionUtils.select(globalProducts.getAdquirencia(),
