@@ -11,6 +11,5 @@
 	<context:component-scan base-package="com.bbva.net.front" />
 	<context:property-placeholder location="classpath*:*.properties" />
 
-	
 
 </beans>   

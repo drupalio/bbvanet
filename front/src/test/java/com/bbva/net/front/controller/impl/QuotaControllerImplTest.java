@@ -27,7 +27,7 @@ public class QuotaControllerImplTest {
 	public void init() {
 		this.quotaControllerImpl = new QuotaControllerImpl();
 		this.quotaDetailFacade = Mockito.mock(QuotaDetailFacade.class);
-		this.quotaControllerImpl.setQuotaDetailFacade(quotaDetailFacade);
+		// this.quotaControllerImpl.setQuotaDetailFacade(quotaDetailFacade);
 	}
 
 	@Test
