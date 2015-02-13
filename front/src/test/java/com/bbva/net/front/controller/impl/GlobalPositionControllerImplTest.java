@@ -5,10 +5,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import com.bbva.net.back.facade.MonthBalanceFacade;
 import com.bbva.net.back.facade.AccountMovementsResumeFacade;
 import com.bbva.net.back.facade.CardsFacade;
 import com.bbva.net.back.facade.GlobalPositionFacade;
+import com.bbva.net.back.facade.MonthBalanceFacade;
 import com.bbva.net.back.model.comboFilter.EnumPeriodType;
 import com.bbva.net.back.model.commons.DateRangeDto;
 import com.bbva.net.back.model.globalposition.GlobalProductsDto;
@@ -90,7 +90,7 @@ public class GlobalPositionControllerImplTest {
 		final GlobalProductsDto globalProducts = this.globalPositionController.getCustomerProducts();
 
 		final GlobalResumeMovementsDto globalResumeMovementsDTO = this.globalMovementsFacade
-				.getMovementsResumeByCustomer(DEFAULT_USER, null);
+				.getMovementsResumeByCustomer(null);
 		// Comprobar resultados
 		// Assert.assertNotNull(globalProducts);
 		Mockito.verify(this.globalPositionFacade, Mockito.atLeastOnce()).getGlobalProductsByUser(DEFAULT_USER);
@@ -100,8 +100,7 @@ public class GlobalPositionControllerImplTest {
 		// Mockito.atLeastOnce()).getInOutBalanceByAccount(
 		// globalResumeMovementsDTO);
 
-		Mockito.verify(this.globalMovementsFacade, Mockito.atLeastOnce()).getMovementsResumeByCustomer(DEFAULT_USER,
-				null);
+		Mockito.verify(this.globalMovementsFacade, Mockito.atLeastOnce()).getMovementsResumeByCustomer(null);
 	}
 
 	@Test
@@ -146,7 +145,7 @@ public class GlobalPositionControllerImplTest {
 		PieConfigUI prueba = Mockito.mock(PieConfigUI.class);
 		globalPositionController.setCardSelected("Todas las tarjetas");
 		// Mockito.when(MessagesHelper.INSTANCE.getString("text.allCards")).thenReturn("Todas las tarjetas");
-		Mockito.when(graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(DEFAULT_USER, dateRange)))
+		Mockito.when(graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(dateRange)))
 				.thenReturn(prueba);
 		// Mockito.verify(graphicPieDelegate,
 		// Mockito.atLeastOnce()).getCardGraphic(

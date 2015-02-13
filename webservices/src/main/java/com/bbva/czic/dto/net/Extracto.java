@@ -7,16 +7,15 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for Extracto complex type.
+ * <p>Clase Java para Extracto complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="Extracto">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="externalCode" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="month" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="year" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="generationDate" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -31,7 +30,6 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Extracto", propOrder = {
-    "externalCode",
     "month",
     "year",
     "generationDate",
@@ -39,38 +37,13 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class Extracto {
 
-    protected String externalCode;
     protected String month;
     protected String year;
     protected String generationDate;
     protected String url;
 
     /**
-     * Gets the value of the externalCode property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getExternalCode() {
-        return externalCode;
-    }
-
-    /**
-     * Sets the value of the externalCode property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setExternalCode(String value) {
-        this.externalCode = value;
-    }
-
-    /**
-     * Gets the value of the month property.
+     * Obtiene el valor de la propiedad month.
      * 
      * @return
      *     possible object is
@@ -82,7 +55,7 @@ public class Extracto {
     }
 
     /**
-     * Sets the value of the month property.
+     * Define el valor de la propiedad month.
      * 
      * @param value
      *     allowed object is
@@ -94,7 +67,7 @@ public class Extracto {
     }
 
     /**
-     * Gets the value of the year property.
+     * Obtiene el valor de la propiedad year.
      * 
      * @return
      *     possible object is
@@ -106,7 +79,7 @@ public class Extracto {
     }
 
     /**
-     * Sets the value of the year property.
+     * Define el valor de la propiedad year.
      * 
      * @param value
      *     allowed object is
@@ -118,7 +91,7 @@ public class Extracto {
     }
 
     /**
-     * Gets the value of the generationDate property.
+     * Obtiene el valor de la propiedad generationDate.
      * 
      * @return
      *     possible object is
@@ -130,7 +103,7 @@ public class Extracto {
     }
 
     /**
-     * Sets the value of the generationDate property.
+     * Define el valor de la propiedad generationDate.
      * 
      * @param value
      *     allowed object is
@@ -142,7 +115,7 @@ public class Extracto {
     }
 
     /**
-     * Gets the value of the url property.
+     * Obtiene el valor de la propiedad url.
      * 
      * @return
      *     possible object is
@@ -154,7 +127,7 @@ public class Extracto {
     }
 
     /**
-     * Sets the value of the url property.
+     * Define el valor de la propiedad url.
      * 
      * @param value
      *     allowed object is
