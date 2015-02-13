@@ -1,13 +1,16 @@
 package com.bbva.net.back.facade.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
+import com.bbva.czic.dto.net.EnumProductType;
 import com.bbva.net.back.core.pattern.facade.AbstractBbvaFacade;
 import com.bbva.net.back.core.stereotype.Facade;
 import com.bbva.net.back.facade.GlobalPositionFacade;
 import com.bbva.net.back.facade.LoanFacade;
+import com.bbva.net.back.model.globalposition.BalanceDto;
 import com.bbva.net.back.model.globalposition.GlobalProductsDto;
 import com.bbva.net.back.model.globalposition.LeasingDto;
 import com.bbva.net.back.model.globalposition.LoanDto;
@@ -43,6 +46,12 @@ public class LoanFacadeImpl extends AbstractBbvaFacade implements LoanFacade {
 	}
 
 	@Override
+	public Map<String, BalanceDto> getLoanTotals(final String user) {
+		final GlobalProductsDto globalProducts = this.globalPositionFacade.getGlobalProductsByUser(user);
+		return productService.getLoanTotals(globalProducts);
+	}
+
+	@Override
 	public List<RotatingAccountDto> getRotatingAccountByUserHidden(final String user) {
 		final GlobalProductsDto globalProducts = this.globalPositionFacade.getGlobalProductsByUser(user);
 		return productService.select(globalProducts, new HiddenProductPredicate()).getRotatingAccounts();
@@ -73,9 +82,8 @@ public class LoanFacadeImpl extends AbstractBbvaFacade implements LoanFacade {
 		this.globalPositionFacade = globalPositionFacade;
 	}
 
-	
 	public void setProductService(ProductService productService) {
 		this.productService = productService;
 	}
-	
+
 }

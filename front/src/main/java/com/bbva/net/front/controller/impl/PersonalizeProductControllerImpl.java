@@ -4,7 +4,6 @@ import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.AjaxBehaviorEvent;
-import javax.ws.rs.core.Response;
 
 import com.bbva.net.back.facade.PersonalizeProductFacade;
 import com.bbva.net.back.model.globalposition.ProductDto;
@@ -64,16 +63,14 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 	public void operKey() {
 		productDto.setVisible(isSearch());
 		productDto.setOperationOnline(isOperation());
-
-		Response responseVisi = this.personalizeProductAccountFacade.updateProductVisibility(productDto.getProductId(),
+		Boolean responseVisi = this.personalizeProductAccountFacade.updateProductVisibility(productDto.getProductId(),
 				productDto);
-		Response responseOpe = this.personalizeProductAccountFacade.updateProductOperability(productDto.getProductId(),
+		Boolean responseOpe = this.personalizeProductAccountFacade.updateProductOperability(productDto.getProductId(),
 				productDto);
-
-		if (responseVisi.equals(Response.ok()) && responseOpe.equals(Response.ok())) {
-			this.menOperationKey = true;
+		if (responseVisi == true && responseOpe == true) {
+			setMenOperationKey(true);
 		} else {
-
+			System.out.println("error");
 		}
 	}
 
@@ -178,5 +175,12 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 	 */
 	public void setSearch(boolean search) {
 		this.search = search;
+	}
+
+	/**
+	 * @param menOperationKey the menOperationKey to set
+	 */
+	public void setMenOperationKey(boolean menOperationKey) {
+		this.menOperationKey = menOperationKey;
 	}
 }

@@ -11,10 +11,9 @@
 	<var name="accountsController"
 		class="com.bbva.net.front.controller.impl.AccountsControllerImpl" />
 
-
 	<on-start>
-		<evaluate expression="checkBookController.getCheckList()"
-			result="requestScope.checkList" />
+		<!-- <evaluate expression="checkBookController.initCheckBookList()"
+			result="requestScope.checkBookList" /> -->
 		<evaluate expression="accountsController.getCustomerAccounts()"
 			result="flowScope.customerAccounts" />
 

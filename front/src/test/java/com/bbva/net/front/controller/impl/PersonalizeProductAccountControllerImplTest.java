@@ -1,7 +1,5 @@
 package com.bbva.net.front.controller.impl;
 
-import javax.ws.rs.core.Response;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -37,24 +35,22 @@ public class PersonalizeProductAccountControllerImplTest {
 
 	@Test
 	public void checkGetPersonalizeUpdateOperability() {
-		Response response = Mockito.mock(Response.class);
-
+		boolean response = true;
 		Mockito.when(personalizeProductAccountFacade.updateProductOperability(DEFAULT_ID, productDto)).thenReturn(
 				response);
 		response = personalizeProductAccountFacade.updateProductOperability(DEFAULT_ID, this.productDto);
-		Assert.assertNotNull(response);
+		Assert.assertEquals(response, true);
 		Mockito.verify(this.personalizeProductAccountFacade, Mockito.atLeastOnce()).updateProductOperability(
 				DEFAULT_ID, productDto);
 	}
 
 	@Test
 	public void checkGetPersonalizeUpdateVisibility() {
-		Response response = Mockito.mock(Response.class);
-
+		boolean response = true;
 		Mockito.when(personalizeProductAccountFacade.updateProductVisibility(DEFAULT_ID, productDto)).thenReturn(
 				response);
 		response = personalizeProductAccountFacade.updateProductVisibility(DEFAULT_ID, this.productDto);
-		Assert.assertNotNull(response);
+		Assert.assertEquals(response, true);
 		Mockito.verify(this.personalizeProductAccountFacade, Mockito.atLeastOnce()).updateProductVisibility(DEFAULT_ID,
 				productDto);
 	}
