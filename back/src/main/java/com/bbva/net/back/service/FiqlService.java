@@ -31,10 +31,20 @@ public interface FiqlService {
 	 * @return
 	 */
 	String getFiqlQueryMonthlyByDateRange(final DateRangeDto dateRange, String startProperty, String endProperty);
-
+	/***
+	 * Method to create a filter by balance
+	 * @param balanceRange
+	 * @param startProperty
+	 * @param endProperty
+	 * @return
+	 */
 	String getFiqlQueryByBalanceRange(BalanceRangeDto balanceRange, String startProperty, String endProperty);
-
-	String getFiqlQueryByCustomerIdAndProductType(String customerId, String productType, String startProperty,
-			String endProperty);
+	/***
+	 * 
+	 * @param productType
+	 * @param startProperty
+	 * @return
+	 */
+	String getFiqlQueryByCustomerIdAndProductType(String productType, String startProperty);
 
 }
