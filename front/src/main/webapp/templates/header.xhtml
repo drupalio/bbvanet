@@ -59,12 +59,12 @@
 		<bbvaMenu:menu>
 
 			<bbvaMenu:itemMenu href="./globalPosition" value="Posición global"
-				title="Ir a Posición global" icon="posicionglobal" liclass="active"
+				title="Ir a Posición global" icon="posicionglobal"
 				rendered="#{menuActive == 'PG'}" />
 
 			<bbvaMenu:itemMenu href="./globalPosition" value="Posición global"
 				title="Ir a Posición global" icon="posicionglobal"
-				rendered="#{menuActive != 'PG'}" />
+				liclass="more-width" rendered="#{menuActive != 'PG'}" />
 
 			<bbvaMenu:itemMenu href="./accounts" value="Cuentas"
 				title="Ir a Cuentas" icon="account-icon" liclass="active"
@@ -97,9 +97,6 @@
 			<bbvaMenu:itemMenu href="./saveInvest" value="Ahorros e inversión"
 				title="Ir a ahorros e inversión" icon="investment-icon"
 				liclass="more-width" rendered="#{menuActive != 'SAVEINVEST'}" />
-
-			<bbvaMenu:itemMenu href="./detailAccounts" value="detailAccounts"
-				title="Ir a Seguros" icon="insurance-icon" />
 
 			<bbvaMenu:itemSearch />
 

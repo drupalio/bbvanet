@@ -52,14 +52,13 @@ public class FiqlServiceImpl implements FiqlService {
 	}
 
 	@Override
-	public String getFiqlQueryByCustomerIdAndProductType(final String customerId, final String productType,
-			final String startProperty, final String endProperty) {
-		if (productType == null || customerId == null) {
+	public String getFiqlQueryByCustomerIdAndProductType(final String productType, final String startProperty) {
+		if (productType == null ) {
 			return StringUtils.EMPTY;
 		}
 		final SearchConditionBuilder filter = SearchConditionBuilder.instance(FIQL_LANGUAGE);
 
-		return filter.is(startProperty).equalTo(customerId).and().is(endProperty).equalTo(productType).query();
+		return filter.is(startProperty).equalTo(productType).query();
 	}
 
 	@Override
