@@ -59,7 +59,7 @@ public class GraphicLineDelegateImpl implements GraphicLineDelegate {
 			for (MovementDto mov : globalResumeMovements) {
 				LineItemUI lineItemUI = new LineItemUI();
 				lineItemUI.setLabel("Serie 1: ");
-				lineItemUI.setValue(mov.getMovementValue());
+				lineItemUI.setValue(mov.getTotalBalance());
 				lineItemUIList.add(lineItemUI);
 			}
 
