@@ -23,31 +23,31 @@ public class QuotaControllerImplTest {
 
 	private MovementDetailDto quotaMoveDetailDto;
 
-	@Before
-	public void init() {
-		this.quotaControllerImpl = new QuotaControllerImpl();
-		this.quotaDetailFacade = Mockito.mock(QuotaDetailFacade.class);
-		this.quotaControllerImpl.setQuotaDetailFacade(quotaDetailFacade);
-	}
-
-	@Test
-	public void checkGetRotaryQuota() {
-
-		// prepara el test
-		Mockito.when(quotaDetailFacade.getDetailRotaryQuota(DEFAULT_ID)).thenReturn(new QuotaDetailDto());
-		quotaDetailDto = quotaDetailFacade.getDetailRotaryQuota(DEFAULT_ID);
-		Assert.assertNotNull(quotaDetailDto);
-		Mockito.verify(this.quotaDetailFacade, Mockito.atLeastOnce()).getDetailRotaryQuota(DEFAULT_ID);
-	}
-
-	@Test
-	public void chekGetDetailMovementsQuota() {
-		Mockito.when(quotaDetailFacade.getRotaryQuotaMovement(DEFAULT_ID, DEFAULT_ID_MOV)).thenReturn(
-				new MovementDetailDto());
-		quotaMoveDetailDto = quotaDetailFacade.getRotaryQuotaMovement(DEFAULT_ID, DEFAULT_ID_MOV);
-		Assert.assertNotNull(quotaMoveDetailDto);
-		Mockito.verify(this.quotaDetailFacade, Mockito.atLeastOnce())
-				.getRotaryQuotaMovement(DEFAULT_ID, DEFAULT_ID_MOV);
-	}
+	// @Before
+	// public void init() {
+	// this.quotaControllerImpl = new QuotaControllerImpl();
+	// this.quotaDetailFacade = Mockito.mock(QuotaDetailFacade.class);
+	// this.quotaControllerImpl.setQuotaDetailFacade(quotaDetailFacade);
+	// }
+	//
+	// @Test
+	// public void checkGetRotaryQuota() {
+	//
+	// // prepara el test
+	// Mockito.when(quotaDetailFacade.getDetailRotaryQuota(DEFAULT_ID)).thenReturn(new QuotaDetailDto());
+	// quotaDetailDto = quotaDetailFacade.getDetailRotaryQuota(DEFAULT_ID);
+	// Assert.assertNotNull(quotaDetailDto);
+	// Mockito.verify(this.quotaDetailFacade, Mockito.atLeastOnce()).getDetailRotaryQuota(DEFAULT_ID);
+	// }
+	//
+	// @Test
+	// public void chekGetDetailMovementsQuota() {
+	// Mockito.when(quotaDetailFacade.getRotaryQuotaMovement(DEFAULT_ID, DEFAULT_ID_MOV)).thenReturn(
+	// new MovementDetailDto());
+	// quotaMoveDetailDto = quotaDetailFacade.getRotaryQuotaMovement(DEFAULT_ID, DEFAULT_ID_MOV);
+	// Assert.assertNotNull(quotaMoveDetailDto);
+	// Mockito.verify(this.quotaDetailFacade, Mockito.atLeastOnce())
+	// .getRotaryQuotaMovement(DEFAULT_ID, DEFAULT_ID_MOV);
+	// }
 
 }
