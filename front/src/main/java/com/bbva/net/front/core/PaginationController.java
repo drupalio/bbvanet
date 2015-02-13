@@ -17,7 +17,7 @@ import com.bbva.net.back.model.enums.RenderAttributes;
 /**
  * Controller to pagination tables
  * 
- * @author User
+ * @author Entelgy
  */
 public abstract class PaginationController<T extends Serializable> extends AbstractBbvaController {
 
@@ -30,8 +30,8 @@ public abstract class PaginationController<T extends Serializable> extends Abstr
 	private static final int PAGE_SIZE = 10;
 
 	private Integer paginationKey;
-	
-	private Map<String, Boolean> renderComponents = new HashMap<String, Boolean>();
+
+	private Map<String, Boolean> renderTable = new HashMap<String, Boolean>();
 
 	protected abstract List<T> getNextPage(int paginantionKey, int psize);
 
@@ -39,13 +39,13 @@ public abstract class PaginationController<T extends Serializable> extends Abstr
 	public void init() {
 		this.currentList = new ArrayList<T>();
 		this.paginationKey = 1;
-		renderComponents.put(RenderAttributes.MOVEMENTSTABLE.toString(), true);
-		renderComponents.put(RenderAttributes.CHECKTABLE.toString(), false);
+		renderTable.put(RenderAttributes.MOVEMENTSTABLE.toString(), true);
+		renderTable.put(RenderAttributes.CHECKTABLE.toString(), false);
 	}
 
 	public void next() {
 		final List<T> currentPage = getNextPage(paginationKey, PAGE_SIZE);
-		System.out.println(" Vagination "+paginationKey);
+		System.out.println(" Vagination " + paginationKey);
 		if (currentPage.size() < PAGE_SIZE) {
 			hasMorePages = false;
 		}
@@ -64,5 +64,19 @@ public abstract class PaginationController<T extends Serializable> extends Abstr
 
 	public List<T> getCurrentList() {
 		return this.currentList;
+	}
+
+	/**
+	 * @return the renderTable
+	 */
+	public Map<String, Boolean> getRenderTable() {
+		return renderTable;
+	}
+
+	/**
+	 * @param renderTable the renderTable to set
+	 */
+	public void setRenderTable(Map<String, Boolean> renderTable) {
+		this.renderTable = renderTable;
 	}
 }

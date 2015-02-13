@@ -1,6 +1,9 @@
 package com.bbva.net.core.collection;
 
 import org.apache.commons.collections.Predicate;
+import org.apache.commons.logging.Log;
+
+import com.bbva.jee.arq.spring.core.log.I18nLogFactory;
 
 /**
  * Predicate to avoid casting in evaluate Predicate methods
@@ -9,6 +12,8 @@ import org.apache.commons.collections.Predicate;
  * @param <T>
  */
 public abstract class BbvaPredicate<T> implements Predicate {
+
+	protected static final Log LOGGER = I18nLogFactory.getLog(BbvaPredicate.class);
 
 	/**
 	 * @param object

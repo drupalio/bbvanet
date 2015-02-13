@@ -6338,9 +6338,9 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		}
 	},
 	"payment": {
-		"dueDate": "19/01/2015",
-		"paymentDate": "14/01/2015",
-		"shortDate": "01/01/2015",
+		"dueDate": "2015-19-01",
+		"paymentDate": "2015-14-01",
+		"shortDate": "2015-01-01",
 		"fees": {
 			"amount": 200,
 			"currency": "$"
@@ -6376,7 +6376,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		"alias": "conditions",
 		"category": "2",
 		"description": "ninguna",
-		"openingDate": "12/05/2014",
+		"openingDate": "2014-12-05",
 		"commission": "ninguna",
 		"office": {
 			"code": "12345",
@@ -7146,7 +7146,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		"amount": 1577796455,
 		"currency": "COP"
 	}
-}]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/loan/V01/rotaryQuota/00130443000200009410/movement/" method="GET" resourcePath="/czic/loan/V01/rotaryQuota/00130443000200009410/movement/"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+}]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/loan/V01/rotaryQuota/00130073000296247953/movement/556475" method="GET" resourcePath="/czic/loan/V01/rotaryQuota/00130073000296247953/movement/556475"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Examples showing how to match based on path, query param and header
 // Match based on path
 def requestPath = mockRequest.getPath()
@@ -7193,7 +7193,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		"description": "cupo"
 	},
 	"concept": "Cupo rotativo",
-	"transactionDate": "22-05-2015",
+	"transactionDate": "22/05/2015",
 	"status": "Activa",
 	"value": {
 		"amount": 0,
@@ -7211,7 +7211,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	},
 	"numbersOfQuota": 2,
 	"remainingQuotas": 3
-}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/agileOperations/V01" method="GET" resourcePath="/czic/agileOperations/V01"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/loan/V01/rotaryQuota/00130073000296247953/movement/" method="GET" resourcePath="/czic/loan/V01/rotaryQuota/00130073000296247953/movement/"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Examples showing how to match based on path, query param and header
 // Match based on path
 def requestPath = mockRequest.getPath()
@@ -7252,122 +7252,132 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 
 */
 </con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
-	"contractId":"37812111",
-	"id":"9302",
-	"origin":{
-		"ccc":{
-			"bankCode":"0074",
-			"branchCode":"5047",
-			"controlDigit":"00",
-			"accountNumber":"0176972847"
-			}
-		},
-	"destination":{
-		"creditNumber":{
-			"number":"044669179387"
-			}
+	"id": "394133994",
+	"concept": "Pago cupo rotativo",
+	"transactionDate": "15/07/2014",
+	"value": {
+		"amount": 439944006,
+		"currency": "COP"
 	},
-	"amount":{
-		"amount":100000.0,
-		"currency":"$"
-		},
-	"name":"BANCOMER",
-	"transactionDate":"2015-02-05 10:40:47:613000",
-	"transactionReference":"987384744"
+	"balance": {
+		"amount": 439944006,
+		"currency": "COP"
+	}
 },
 {
-	"contractId":"37812111",
-	"id":"9302",
-	"origin":{
-		"ccc":{
-			"bankCode":"0074",
-			"branchCode":"5047",
-			"controlDigit":"00",
-			"accountNumber":"0176972847"
-			}
-		},
-	"destination":{
-		"creditNumber":{
-			"number":"044669179387"
-			}
+	"id": "822244850",
+	"concept": "Pago cupo rotativo",
+	"transactionDate": "28/03/2014",
+	"value": {
+		"amount": 1620620982,
+		"currency": "COP"
 	},
-	"amount":{
-		"amount":200000.0,
-		"currency":"$"
-		},
-	"name":"BANCOMER",
-	"transactionDate":"2015-02-05 10:40:47:613000",
-	"transactionReference":"987384744"
+	"balance": {
+		"amount": 1620620982,
+		"currency": "COP"
+	}
 },
 {
-	"contractId":"37812111",
-	"id":"9302",
-	"origin":{
-		"ccc":{
-			"bankCode":"0074",
-			"branchCode":"5047",
-			"controlDigit":"00",
-			"accountNumber":"0176972847"
-			}
-		},
-	"destination":{
-		"creditNumber":{
-			"number":"044669179387"
-			}
+	"id": "1641997532",
+	"concept": "Pago cupo rotativo",
+	"transactionDate": "19/12/2014",
+	"value": {
+		"amount": 685235109,
+		"currency": "COP"
 	},
-	"amount":{
-		"amount":300000.0,
-		"currency":"$"
-		},
-	"name":"BANCOMER",
-	"transactionDate":"2015-02-05 10:40:47:613000",
-	"transactionReference":"987384744"
+	"balance": {
+		"amount": 685235109,
+		"currency": "COP"
+	}
 },
 {
-	"contractId":"37812111",
-	"id":"9302",
-	"origin":{
-		"ccc":{
-			"bankCode":"0074",
-			"branchCode":"5047",
-			"controlDigit":"00",
-			"accountNumber":"0176972847"
-			}
-		},
-	"destination":{
-		"creditNumber":{
-			"number":"044669179387"
-			}
+	"id": "1643775697",
+	"concept": "Pago cupo rotativo",
+	"transactionDate": "08/05/2014",
+	"value": {
+		"amount": 1566671178,
+		"currency": "COP"
 	},
-	"amount":{
-		"amount":400000.0,
-		"currency":"$"
-		},
-	"name":"BANCOMER",
-	"transactionDate":"2015-02-05 10:40:47:613000",
-	"transactionReference":"987384744"
+	"balance": {
+		"amount": 1566671178,
+		"currency": "COP"
+	}
 },
 {
-	"contractId":"37812111",
-	"id":"9302",
-	"origin":{
-		"ccc":{
-			"bankCode":"0074",
-			"branchCode":"5047",
-			"controlDigit":"00",
-			"accountNumber":"0176972847"
-			}
-		},
-	"destination":{
-		"creditNumber":{
-			"number":"044669179387"
-			}
+	"id": "1583615454",
+	"concept": "Pago cupo rotativo",
+	"transactionDate": "27/01/2014",
+	"value": {
+		"amount": 1309582292,
+		"currency": "COP"
 	},
-	"amount":{
-		"amount":500000.0,
-		"currency":"$"
-		},
-	"name":"BANCOMER",
-	"transactionDate":"2015-02-05 10:40:47:613000",
-	"transactionReference":"987384744"
+	"balance": {
+		"amount": 1309582292,
+		"currency": "COP"
+	}
+},
+{
+	"id": "335112113",
+	"concept": "Pago cupo rotativo",
+	"transactionDate": "08/05/2014",
+	"value": {
+		"amount": 1670298888,
+		"currency": "COP"
+	},
+	"balance": {
+		"amount": 1670298888,
+		"currency": "COP"
+	}
+},
+{
+	"id": "1698785630",
+	"concept": "Pago cupo rotativo",
+	"transactionDate": "18/06/2014",
+	"value": {
+		"amount": 1697322433,
+		"currency": "COP"
+	},
+	"balance": {
+		"amount": 1697322433,
+		"currency": "COP"
+	}
+},
+{
+	"id": "800973250",
+	"concept": "Pago cupo rotativo",
+	"transactionDate": "20/10/2014",
+	"value": {
+		"amount": 206829003,
+		"currency": "COP"
+	},
+	"balance": {
+		"amount": 206829003,
+		"currency": "COP"
+	}
+},
+{
+	"id": "1762391792",
+	"concept": "Pago cupo rotativo",
+	"transactionDate": "09/05/2014",
+	"value": {
+		"amount": 1211699540,
+		"currency": "COP"
+	},
+	"balance": {
+		"amount": 1211699540,
+		"currency": "COP"
+	}
+},
+{
+	"id": "940851639",
+	"concept": "Pago cupo rotativo",
+	"transactionDate": "10/07/2014",
+	"value": {
+		"amount": 2075976648,
+		"currency": "COP"
+	},
+	"balance": {
+		"amount": 2075976648,
+		"currency": "COP"
+	}
 }]</con:responseContent></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

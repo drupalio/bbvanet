@@ -117,13 +117,10 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 		final PieItemUI depositPieItem = new PieItemUI("el color", "Depósitos", this.productService
 				.getTotalProductsByType(products, EnumProductType.ED).getAmount());
 
-		final PieItemUI rotatingAccountPieItem = new PieItemUI("el color", "Cupo Rotativo", this.productService
-				.getTotalProductsByType(products, EnumProductType.RQ).getAmount());
-
 		assetPieItems.add(accountPieItem);
 		assetPieItems.add(fundPieItem);
 		assetPieItems.add(depositPieItem);
-		assetPieItems.add(rotatingAccountPieItem);
+
 		assetPie.setPieItemUIList(assetPieItems);
 
 		return assetPie;
@@ -156,9 +153,13 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 		final PieItemUI fundsPieItem = new PieItemUI("el color", "Préstamos", this.productService
 				.getTotalProductsByType(products, EnumProductType.LO).getAmount());
 
+		final PieItemUI rotatingAccountPieItem = new PieItemUI("el color", "Cupo Rotativo", this.productService
+				.getTotalProductsByType(products, EnumProductType.RQ).getAmount());
+
 		financiationPieItems.add(cardsPieItem);
 		financiationPieItems.add(leasingPieItem);
 		financiationPieItems.add(fundsPieItem);
+		financiationPieItems.add(rotatingAccountPieItem);
 		financiationPie.setPieItemUIList(financiationPieItems);
 
 		return financiationPie;

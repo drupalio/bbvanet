@@ -321,7 +321,13 @@ input.ui-state-hover {
 
 /*Detalle de movimiento position*/
 .position {
-	margin-top: -17.5% !important;
+	margin-top: -13% !important;
 	width: 116.8%;
 	margin-left: -3% !important;
+	margin-bottom: -3.7% !important;
+}
+/* tipo de letra del detalle*/
+.textSize {
+	font-family: Arial !important;
+	font-size: 12px !important;
 }

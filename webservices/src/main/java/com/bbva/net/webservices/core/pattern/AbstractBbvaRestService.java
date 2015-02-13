@@ -6,20 +6,21 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.ws.rs.core.Response;
 
+import org.apache.commons.logging.Log;
 import org.apache.cxf.jaxrs.client.JAXRSClientFactoryBean;
 import org.apache.cxf.jaxrs.client.WebClient;
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
+import com.bbva.jee.arq.spring.core.log.I18nLogFactory;
+
 public abstract class AbstractBbvaRestService {
 
-	protected static final Logger LOGGER = LoggerFactory.getLogger(AbstractBbvaRestService.class);
+	protected static final Log LOGGER = I18nLogFactory.getLog(AbstractBbvaRestService.class);
 
 	@Resource(name = "restTemplate")
 	protected RestTemplate restTemplate;
@@ -36,10 +37,10 @@ public abstract class AbstractBbvaRestService {
 	@Value("${rest.base.customer.url}")
 	protected String URL_BASE_CUSTOMER;
 
-	@Value("${rest.rotaryQuota.base.url}")
+	@Value("${rest.quotaRotary.base.url}")
 	protected String URL_BASE_ROTARYQUOTA;
 
-	@Value("${rest.rotaryQuota.move.url}")
+	@Value("${rest.quotaRotary.move.url}")
 	protected String URL_ROTARYQUOTA_MOVE;
 
 	@Value("${rest.base.executive.url}")
@@ -68,7 +69,7 @@ public abstract class AbstractBbvaRestService {
 
 	@Value("${rest.granting.url}")
 	protected String URL_GRANTING;
-		
+
 	@Value("${rest.movements.url}")
 	protected String URL_MOVEMENTS;
 

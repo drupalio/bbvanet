@@ -4,12 +4,17 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Modifier;
 
+import org.apache.commons.logging.Log;
 import org.junit.Assert;
+
+import com.bbva.jee.arq.spring.core.log.I18nLogFactory;
 
 /**
  * @author Entelgy
  */
 public abstract class TestUtils {
+
+	protected static final Log LOGGER = I18nLogFactory.getLog(TestUtils.class);
 
 	/**
 	 * @param enumClass

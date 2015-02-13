@@ -38,11 +38,8 @@ public class ProductsServiceImpl extends AbstractBbvaRestService implements Prod
 	public List<Movement> listMovements(String productId, String $filter, Integer paginationKey, Integer pageSize) {
 		WebClient wc = getJsonWebClient(URL_BASE_PRODUCTS + productId + URL_MOVEMENTS);
 		if (!StringUtils.isEmpty($filter)) wc.query(FILTER, $filter);
-		
-		if (productId != null) {
-			wc.query("productId", productId);
-		}
-		if(paginationKey!= null && pageSize!=null){
+
+		if (paginationKey != null && pageSize != null) {
 			wc.query("paginationKey", paginationKey);
 			wc.query("pageSize", pageSize);
 		}
@@ -53,14 +50,9 @@ public class ProductsServiceImpl extends AbstractBbvaRestService implements Prod
 	@Override
 	public Movement getMovement(String productId, String movementId, String $filter) {
 
-		WebClient wc = getJsonWebClient(URL_BASE_PRODUCTS + productId + URL_MOVEMENTS +"/"+ movementId);
+		WebClient wc = getJsonWebClient(URL_BASE_PRODUCTS + productId + URL_MOVEMENTS + "/" + movementId);
 		if (!StringUtils.isEmpty($filter)) wc.query(FILTER, $filter);
-		if (productId != null && movementId != null) {
-			wc.query("productId", productId);
-			wc.query("movementId", movementId);
-		}
 
 		return (Movement)wc.get(Movement.class);
 	}
-
 }

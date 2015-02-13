@@ -1,8 +1,0 @@
-M	front/src/main/resources/messages_es_CO.properties
-M	front/src/main/resources/messages_es_ES.properties
-M	front/src/main/webapp/flows/detailAccounts/detailAccounts.xhtml
-M	front/src/main/webapp/flows/detailAccounts/flow.xml
-M	front/src/main/webapp/resources/bbva/button/comboButtons.xhtml
-M	front/src/main/webapp/resources/bbva/button/iconButton.xhtml
-M	front/src/main/webapp/resources/bbva/input/inputButton.xhtml
-D	front/src/main/webapp/resources/bbva/messages/messageExitoso.xhtml

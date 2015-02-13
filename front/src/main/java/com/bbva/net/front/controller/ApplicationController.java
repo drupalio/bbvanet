@@ -15,14 +15,6 @@ public interface ApplicationController {
 	 */
 	List<MultiValueGroup> getListMultiValueLikes();
 
-	/**
-	 * @param itemMenu
-	 */
-	void setMenuActive(ItemMenu itemMenu);
-
-	/**
-	 * @return
-	 */
-	String getMenuActive();
+	
 
 }
