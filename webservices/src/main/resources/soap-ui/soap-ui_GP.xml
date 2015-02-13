@@ -7211,7 +7211,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	},
 	"numbersOfQuota": 2,
 	"remainingQuotas": 3
-}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/loan/V01/rotaryQuota/00130073000296247953/movement/" method="GET" resourcePath="/czic/loan/V01/rotaryQuota/00130073000296247953/movement/"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/loan/V01/rotaryQuota/00130073000296247953/movements/" method="GET" resourcePath="/czic/loan/V01/rotaryQuota/00130073000296247953/movements/"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Examples showing how to match based on path, query param and header
 // Match based on path
 def requestPath = mockRequest.getPath()

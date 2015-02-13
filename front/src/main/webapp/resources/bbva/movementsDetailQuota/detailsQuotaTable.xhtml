@@ -18,29 +18,7 @@
 <composite:implementation>
 
 	<script>
-
-		function divMovement() {
-
-			var styles = document.getElementById('rowExpansion').style.display;
-
-			if (styles == 'none')
-				document.getElementById('rowExpansion').style.display = "block";
-			else
-				document.getElementById('rowExpansion').style.display = "none";
-		}
-
-		//Funciona Cierra los demas detalles cuando se abre uno
-		function test() {
-			
-			var i = $('.ui-row-toggler.ui-icon-circle-triangle-s').length;
-			if (i == 1) {
-				return;
-			}
-			.on('click.datatable-expansion', '> tr', null, function() {
-		         //toggle the current row the old toggler
-		         $this.toggleExpansion($(this).find('.ui-row-toggler.ui-icon-circle-triangle-s'));
-		       });
-		}
+		
 	</script>
 
 	<h:form id="#{cc.attrs.id}">
@@ -54,17 +32,20 @@
 					class="icon-printer" title="Imprimir"></span></a>
 			</div>
 
-			<h3>Últimos movimientos</h3>
+			<h3>#{msg['text.last.movments']}</h3>
 
 			<div class="table-wrapper">
 				<p:dataTable id="detalAC" styleClass="detail-table-body sortable"
 					emptyMessage="#{msg['text.empty.table']}" rowSelectMode="single"
 					value="#{cc.attrs.listAccounts}" var="moves" selectionMode="single"
-					rowKey="#{moves.movementId}">
+					rowKey="#{moves.movementId}" widgetVar="detailMoves">
 
-					<p:ajax event="rowSelect" onsuccess="test()"
+					<p:ajax event="rowSelect" onsuccess="checkRowClick()"
 						listener="#{cc.attrs.controller.onRowToggle}" />
-					<p:ajax event="rowUnselect" />
+
+					<p:column width="3% !important" style="z-index: 2 !important;">
+						<p:rowToggler rendered="true" />
+					</p:column>
 
 					<p:column headerText="#{msg['text.detailMove.date']}"
 						styleClass="sorted w18 desc"

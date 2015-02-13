@@ -36,6 +36,7 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 	// inicializar mensajes
 	@PostConstruct
 	public void init() {
+		LOGGER.info("Inicialize ProductAccountController");
 		this.menOperationKey = false;
 		this.menSuccessful = false;
 	}
@@ -49,8 +50,14 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 	@Override
 	public ProductDto getSelectedProduct() {
 		this.productDto = super.getSelectedProduct();
-		setSearch(productDto.isVisible());
-		setOperation(productDto.getOperationOnline());
+		if (productDto != null) {
+			LOGGER.info("Datos del producto Seleccionado Terminado " + " Product Id: " + productDto.getProductId());
+			setSearch(productDto.isVisible());
+			setOperation(productDto.getOperationOnline());
+		} else {
+			this.productDto = new ProductDto();
+			LOGGER.info("Datos del producto Seleccionado Vacio (null)");
+		}
 		return productDto;
 	}
 
@@ -61,16 +68,24 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 	 */
 	@Override
 	public void operKey() {
+		LOGGER.info("Método operKey -> llenando datos de vista");
 		productDto.setVisible(isSearch());
 		productDto.setOperationOnline(isOperation());
+
+		LOGGER.info("Llamando updateProductVisibility del facade");
 		Boolean responseVisi = this.personalizeProductAccountFacade.updateProductVisibility(productDto.getProductId(),
 				productDto);
+		LOGGER.info("Dato visible de la cuenta: " + this.productDto.getProductId() + " actualizado: " + responseVisi);
+
+		LOGGER.info("Llamando updateProductOperability del facade");
 		Boolean responseOpe = this.personalizeProductAccountFacade.updateProductOperability(productDto.getProductId(),
 				productDto);
+		LOGGER.info("Dato operable de la cuenta: " + this.productDto.getProductId() + " actualizado: " + responseOpe);
+
 		if (responseVisi == true && responseOpe == true) {
 			setMenOperationKey(true);
 		} else {
-			System.out.println("error");
+			LOGGER.info("Error de actulización");
 		}
 	}
 
