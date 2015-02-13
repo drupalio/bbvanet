@@ -36,9 +36,9 @@
 				tipoPrestamo="#{movementsCriteriaController.getSelectedProduct().getSubTypeProd()}"/>
 					<bbvaGraphic:MovementsGraphic lineConfigUI="#{movementsCriteriaController.graphicLineMovements}"/>
 					<bbvaHeader:quotaDetailHeaderRight textUp="#{msg['text.available']}"
-				valueUp="$ 12,845,999.35"
+				valueUp="#{movementsCriteriaController.getSelectedProduct().getTotalCash()}"
 				textDown="#{msg['text.tradeBalance']}"
-				valueDown="$ 0,00" />
+				valueDown="#{movementsCriteriaController.getSelectedProduct().getCashAvailable()}" />
 				</bbvaHeader:quotaDetailHeader>
 			</bbvaHeader:quotaDetail>
 		

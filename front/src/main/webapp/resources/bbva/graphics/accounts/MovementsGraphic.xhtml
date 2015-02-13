@@ -85,10 +85,11 @@
 				},
 				tooltip : {
 					format : {
+						title:function (x){return "";},
 						name: function (name, ratio, id, index) { return "Serie 1: "; },
 						value: function (value, ratio, id) {
-			                //var format = d3.format(',');			                
-			                return "<B>"+currency+" "+value+"</B>";
+			                var format = d3.format(',');			                
+			                return "<B>"+currency+" "+format(value)+"</B>";
 						 }
 
 					}
