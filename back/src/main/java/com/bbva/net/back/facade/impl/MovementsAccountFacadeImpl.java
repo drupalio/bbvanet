@@ -29,40 +29,44 @@ public class MovementsAccountFacadeImpl extends AbstractBbvaFacade implements Mo
 
 	@Resource(name = "movementsMapper")
 	private MovementsMapper movementMapper;
-	
+
 	@Resource(name = "fiqlService")
 	private FiqlService fiqlService;
-	
+
 	@Value("${fiql.productMovements.date}")
 	private String DATE;
 
 	@Value("${fiql.productMovements.date}")
 	private String VALUE;
-	
+
 	@Value("${fiql.productMovements.customerId}")
 	private String CUSTOMERID;
-	
+
 	@Value("${fiql.productMovements.productType}")
 	private String PRODUCTTYPE;
-	
+
 	@Override
-	public List<MovementDto> listMovements(String productId, String customerId, String productType, DateRangeDto dateRange,BalanceRangeDto balanceRange, Integer paginationKey, Integer pageSize) {
+	public List<MovementDto> listMovements(String productId, String productType, DateRangeDto dateRange,
+			BalanceRangeDto balanceRange, Integer paginationKey, Integer pageSize) {
 		String filter;
-		if(dateRange == null & balanceRange == null){
-			filter = fiqlService.getFiqlQueryByCustomerIdAndProductType(customerId, productType, CUSTOMERID, PRODUCTTYPE);
-		}else		
-		 filter = dateRange == null ? fiqlService.getFiqlQueryByCustomerIdAndProductType(customerId, productType, CUSTOMERID, PRODUCTTYPE)+fiqlService.getFiqlQueryByBalanceRange(balanceRange, VALUE, VALUE) :
-			fiqlService.getFiqlQueryByCustomerIdAndProductType(customerId, productType, CUSTOMERID, PRODUCTTYPE)+fiqlService.getFiqlQueryByDateRange(dateRange, DATE, DATE);
-		
-		final List<Movement> movementList = this.productsService.listMovements(productId, filter, paginationKey, pageSize);
+		if (dateRange == null & balanceRange == null) {
+			filter = fiqlService.getFiqlQueryByCustomerIdAndProductType(productType, PRODUCTTYPE);
+		} else
+			filter = dateRange == null ? fiqlService.getFiqlQueryByCustomerIdAndProductType(productType, PRODUCTTYPE)
+					+ fiqlService.getFiqlQueryByBalanceRange(balanceRange, VALUE, VALUE) : fiqlService
+					.getFiqlQueryByCustomerIdAndProductType(productType, PRODUCTTYPE)
+					+ fiqlService.getFiqlQueryByDateRange(dateRange, DATE, DATE);
+
+		final List<Movement> movementList = this.productsService.listMovements(productId, filter, paginationKey,
+				pageSize);
 		return movementMapper.mapMovementDtoList(movementList);
 	}
 
 	@Override
-	public MovementDetailDto getMovement(String productId, String customerId,String productType, String movementId) {
+	public MovementDetailDto getMovement(String productId, String productType, String movementId) {
 		String filter;
-		filter =  fiqlService.getFiqlQueryByCustomerIdAndProductType(customerId, productType, CUSTOMERID, PRODUCTTYPE);
+		filter = fiqlService.getFiqlQueryByCustomerIdAndProductType(productType, PRODUCTTYPE);
 		Movement movement = this.productsService.getMovement(productId, movementId, filter);
-		return movementMapper.mapMovement(movement);			
+		return movementMapper.mapMovement(movement);
 	}
 }

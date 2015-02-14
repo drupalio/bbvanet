@@ -20,6 +20,10 @@ public class QuotaPaginatedControllerImpl extends PaginationController<MovementD
 	@Resource(name = "quotaDetailFacade")
 	private transient QuotaDetailFacade quotaDetailFacade;
 
+	public void search() {
+		super.next();
+	}
+
 	@Override
 	protected List<MovementDto> getNextPage(int paginantionKey, int psize) {
 		return quotaDetailFacade.listRotaryQuotaMovements(productIdPControl, dateRangePControl, paginantionKey, psize);

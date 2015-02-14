@@ -9,6 +9,7 @@ import javax.ws.rs.core.Response;
 import org.apache.commons.logging.Log;
 import org.apache.cxf.jaxrs.client.JAXRSClientFactoryBean;
 import org.apache.cxf.jaxrs.client.WebClient;
+import org.bouncycastle.asn1.cmp.ProtectedPart;
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -42,6 +43,9 @@ public abstract class AbstractBbvaRestService {
 
 	@Value("${rest.quotaRotary.move.url}")
 	protected String URL_ROTARYQUOTA_MOVE;
+
+	@Value("${rest.quotaRotary.moves.url}")
+	protected String URL_ROTARYQUOTA_MOVES;
 
 	@Value("${rest.base.executive.url}")
 	protected String URL_BASE_EXECUTIVE;

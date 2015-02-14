@@ -44,22 +44,31 @@ public class QuotaDetailFacadeImpl extends AbstractBbvaFacade implements QuotaDe
 
 	@Override
 	public QuotaDetailDto getDetailRotaryQuota(String idLoan) {
+		LOGGER.debug("Llamando al servicio de getRotaryQuota" + " Loan Id: " + idLoan);
 		final Loan response = this.loanService.getRotaryQuota(idLoan);
+		LOGGER.info("Comenzando mapeo del servicio getRotaryQuota (Loan -> QuotaDetailDto)");
 		return mapper.mapQuota(response);
 	}
 
 	@Override
 	public MovementDetailDto getRotaryQuotaMovement(String idLoan, String idMovement) {
+		LOGGER.info("Llamando al servicio de getRotaryQuotaMovement" + " Loan Id: " + idLoan + " Movement Id: "
+				+ idMovement);
 		final RotaryQuotaMove response = this.loanService.getRotaryQuotaMovement(idLoan, idMovement);
+		LOGGER.info("Comenzando mapeo del servicio getRotaryQuotaMovement (RotaryQuotaMove -> MovementDetailDto)");
 		return mapper.mapQuotaMove(response);
 	}
 
 	public List<MovementDto> listRotaryQuotaMovements(String loanId, DateRangeDto dateRange, Integer paginationKey,
 			Integer pageSize) {
+		LOGGER.info("Creando fql dateRange" + " DateSince: " + dateRange.getDateSince() + " DateTo: "
+				+ dateRange.getDateTo());
 		String filter = dateRange != null ? fiqlService.getFiqlQueryByDateRange(dateRange, transaccionDate,
 				transaccionDate) : StringUtils.EMPTY;
+		LOGGER.info("Llamando al servicio de listRotaryQuotaMovements" + " Loan Id: " + loanId + " Filtro: " + filter);
 		final List<Movement> response = this.loanService.listRotaryQuotaMovements(loanId, paginationKey, pageSize,
 				filter);
+		LOGGER.info("Comenzando mapeo del servicio listRotaryQuotaMovements (List<Movement> -> List<MovementDto>)");
 		return mapper.listRotaryQuotaMovements(response);
 	}
 
