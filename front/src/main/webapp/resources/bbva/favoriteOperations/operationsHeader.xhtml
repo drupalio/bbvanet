@@ -11,16 +11,18 @@
 
 <composite:interface>
 	<composite:attribute name="title" type="String" />
+	<composite:attribute name="msgInfo" type="String" />
 </composite:interface>
 
 <composite:implementation>
 	<header>
 		<span class="icon-star"></span>
-		<h1>Operaciones favoritas</h1>
+		<h1>#{cc.attrs.title}</h1>
 		<span
-			data-original-title="Puedes añadirlas en los procesos de cada operativa."
-			data-trigger="hover" title="" class="icon-info-blue"></span> <span
-			class="edit-gray"></span>
+			data-original-title="#{cc.attrs.msgInfo}"
+			data-toggle="tooltip" title="" class="icon-info-blue">
+		</span> 
+		<span class="edit-gray"></span>
 	</header>
 
 </composite:implementation>

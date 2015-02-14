@@ -79,6 +79,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 	private Map<String, Boolean> renderComponents = new HashMap<String, Boolean>();
 
+	@Override
 	@PostConstruct
 	public void init() {
 		super.init();
@@ -194,26 +195,26 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		} else if (renderComponents.get(RenderAttributes.INCOMEOREXPENSESFILTER.toString())) {
 			// Get only movements by income or expenses
 			System.out.println(movementCriteria.getIncomesOrExpenses());
-			if(movementCriteria.getIncomesOrExpenses()=="1"){
-				final List<MovementDto> incomeMovements = (List<MovementDto>)CollectionUtils.select(
-						this.movementsList, new IncomesPredicate());
+			if (movementCriteria.getIncomesOrExpenses() == "1") {
+				final List<MovementDto> incomeMovements = (List<MovementDto>)CollectionUtils.select(this.movementsList,
+						new IncomesPredicate());
 				this.movementsList = incomeMovements;
 			}
-			
-			if(movementCriteria.getIncomesOrExpenses()=="2"){
+
+			if (movementCriteria.getIncomesOrExpenses() == "2") {
 				final List<MovementDto> expensesMovements = (List<MovementDto>)CollectionUtils.select(
 						this.movementsList, new ExpensesPredicate());
 				this.movementsList = expensesMovements;
-			}	
-				
+			}
+
 			getRenderTable().put(RenderAttributes.MOVEMENTSTABLE.toString(), true);
 			getRenderTable().put(RenderAttributes.CHECKTABLE.toString(), false);
 			setTitle(MessagesHelper.INSTANCE.getString("text.last.movments"));
 
 		} else if (renderComponents.get(RenderAttributes.MOVEMENTSFILTER.toString())) {
 			// Get only movements by concept
-			final List<MovementDto> movementsByConcept = (List<MovementDto>)CollectionUtils.select(
-					this.movementsList, new ConceptMovementPredicate(movementCriteria.getMovement()));
+			final List<MovementDto> movementsByConcept = (List<MovementDto>)CollectionUtils.select(this.movementsList,
+					new ConceptMovementPredicate(movementCriteria.getMovement()));
 			this.movementsList = movementsByConcept;
 			getRenderTable().put(RenderAttributes.MOVEMENTSTABLE.toString(), true);
 			getRenderTable().put(RenderAttributes.CHECKTABLE.toString(), false);
@@ -255,9 +256,12 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	public void setIncomeExpensesFilter(final ActionEvent event) {
 		System.out.println("set IncomeOrExpensesFilter");
 		renderComponents.put(RenderAttributes.INCOMEOREXPENSESFILTER.toString(), true);
-		if(movementCriteria.getIncomesOrExpenses()=="1") setTitleInOrExp( MessagesHelper.INSTANCE.getString("select.radio.in"));
-		else if(movementCriteria.getIncomesOrExpenses()=="2")setTitleInOrExp( MessagesHelper.INSTANCE.getString("select.radio.out"));
-		else setTitleInOrExp( MessagesHelper.INSTANCE.getString("select.radio.in.out"));
+		if (movementCriteria.getIncomesOrExpenses() == "1")
+			setTitleInOrExp(MessagesHelper.INSTANCE.getString("select.radio.in"));
+		else if (movementCriteria.getIncomesOrExpenses() == "2")
+			setTitleInOrExp(MessagesHelper.INSTANCE.getString("select.radio.out"));
+		else
+			setTitleInOrExp(MessagesHelper.INSTANCE.getString("select.radio.in.out"));
 		System.out.println(movementCriteria.getIncomesOrExpenses());
 	}
 
@@ -410,7 +414,6 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		this.toDatestr = toDatestr;
 	}
 
-	
 	/**
 	 * @return the titleInOrExp
 	 */
@@ -418,7 +421,6 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		return titleInOrExp;
 	}
 
-	
 	/**
 	 * @param titleInOrExp the titleInOrExp to set
 	 */
@@ -513,6 +515,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	/**
 	 * @return the movementsFacade
 	 */
+	@Override
 	public MovementsAccountFacade getMovementsFacade() {
 		return movementsFacade;
 	}
@@ -520,6 +523,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	/**
 	 * @param movementsFacade the movementsFacade to set
 	 */
+	@Override
 	public void setMovementsFacade(MovementsAccountFacade movementsFacade) {
 		this.movementsFacade = movementsFacade;
 	}
@@ -527,6 +531,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	/**
 	 * @return the movementsList
 	 */
+	@Override
 	public List<MovementDto> getMovementsList() {
 		return movementsList;
 	}
@@ -534,6 +539,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	/**
 	 * @param movementsList the movementsList to set
 	 */
+	@Override
 	public void setMovementsList(List<MovementDto> movementsList) {
 		this.movementsList = movementsList;
 	}

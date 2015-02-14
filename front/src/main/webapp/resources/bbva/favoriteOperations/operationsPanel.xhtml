@@ -11,63 +11,20 @@
 
 <composite:interface>
 	<composite:attribute name="id" type="String" />
+	<composite:attribute name="msgInfo" type="String" />
+	<composite:attribute name="list" type="java.util.List" />
 </composite:interface>
 
 <composite:implementation>
 
 	<section class="links dated favoritas editable" id="preferredOperations">
-	<bbvaOperationFav:operationsHeader/>
-    <article>
-        <ul>
-            <li class="operation">
-                <a class="mini-triangled" href="#">
-                    <span class="dateText">Última vez realizada: 12-07-2014</span>
-                    Transferencia de $ 1.000
-                    <span class="dateText-foot">Cuenta Corriente
-                     - Cuenta Ahorro</span>
-                </a>
-            </li>
-            
-            <li class="operation">
-                <a class="mini-triangled" href="#">
-                    <span class="dateText">Última vez realizada: 12-07-2014</span>
-                    Transferencia de $ 1.000
-                    <span class="dateText-foot">Cuenta Corriente
-                     - Cuenta Ahorro</span>
-                </a>
-            </li>
-            <li class="operation">
-                <a class="mini-triangled" href="#">
-                    <span class="dateText">Última vez realizada: 12-07-2014</span>
-                    Transferencia de $ 1.000
-                    <span class="dateText-foot">Cuenta Corriente
-                     - Cuenta Ahorro</span>
-                </a>
-            </li>
-            <!-- contenido oculto -->
-            <li class="operation hiddenElement" style="display: none;">
-                <a class="mini-triangled" href="#">
-                    <span class="dateText">Última vez realizada: 12-07-2014</span>
-                    Transferencia de $ 1.000
-                    <span class="dateText-foot">Cuenta Corriente
-                     - Cuenta Ahorro</span>
-                </a>
-            </li>
-            <li class="operation hiddenElement" style="display: none;">
-
-                <a class="mini-triangled" href="#">
-                    <span class="dateText">Última vez realizada: 12-07-2014</span>
-                    Transferencia de $ 1.000
-                    <span class="dateText-foot">Cuenta Corriente
-                     - Cuenta Ahorro</span>
-                </a>
-            </li>
-        </ul>
-    </article>
-    <footer>
-        <button type="button" class="btn small seeMore">Ver más</button>
-    </footer>
-</section>
+		<bbvaOperationFav:operationsHeader title="#{msg['text.favoriteOperations']}" msgInfo="#{msg['msg.info.favoriteOperations']}"/>
+	 	<bbvaOperationFav:operationsBody list="#{favoriteOperationsController.getListFavoriteOperations()}" sclass="operation"/>
+	 	<bbvaOperationFav:operationsBody list="#{favoriteOperationsController.getListFavoriteOperationsHidden()}" sclass="operation hiddenElement"/>
+	    <footer>
+	        <button type="button" class="btn small seeMore">#{msg['button.see.More']}</button>
+	    </footer>
+	</section>
 
 
 </composite:implementation>
