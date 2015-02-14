@@ -13,7 +13,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
 
-import org.primefaces.event.ToggleEvent;
+import org.primefaces.event.SelectEvent;
 
 import com.bbva.net.back.facade.QuotaDetailFacade;
 import com.bbva.net.back.facade.TermasAccountsFacade;
@@ -41,6 +41,8 @@ public class QuotaControllerImpl extends CheckPaginatedController implements Quo
 	private MovementDetailDto quotaMoveDetailDto = new MovementDetailDto();
 
 	private ProductDto productDto = new ProductDto();
+
+	private MovementDto quotaMove = new MovementDto();
 
 	private Map<String, Boolean> renderComponents = new HashMap<String, Boolean>();
 
@@ -70,17 +72,20 @@ public class QuotaControllerImpl extends CheckPaginatedController implements Quo
 	@PostConstruct
 	public void init() {
 		LOGGER.info("Initialize QuotaController");
-
-		if (super.getSelectedProduct() != null) {
-			this.productDto = super.getSelectedProduct();
+		this.productDto = super.getSelectedProduct();
+		if (productDto != null) {
+			LOGGER.info("Datos del producto Seleccionado Terminado " + " Product Id: " + productDto.getProductId());
 		} else {
 			this.productDto = new ProductDto();
+			LOGGER.info("Datos del producto Seleccionado Vacio (null)");
 		}
 
 		this.quotaDetailDto = this.quotaDetailFacade.getDetailRotaryQuota(this.productDto.getProductId());
+		LOGGER.info("Datos del quotaDetailDto Terminados" + " Product Id: " + quotaDetailDto.getId());
 		maturityDate = dateFormat.format(this.quotaDetailDto.getDateMaturity());
 		previousDate = dateFormat.format(this.quotaDetailDto.getDatePrevious());
 		paymentDate = dateFormat.format(this.quotaDetailDto.getDatePayment());
+		LOGGER.info("Finalizado formateo de fechas del producto");
 
 		if (quotamovenDtos == null) {
 			getAllQuotamovenDtos();
@@ -91,9 +96,12 @@ public class QuotaControllerImpl extends CheckPaginatedController implements Quo
 
 	public DateRangeDto calculateQuotaFilters(String date) {
 		DateRangeDto dateRangeInit = new DateRangeDto();
+		LOGGER.info("Buscando el EnumPeriodType: " + date);
 		EnumPeriodType periodTypeFilter = EnumPeriodType.valueOfLabel(date);
 		if (!(periodTypeFilter == null)) {
 			dateRangeInit = new DateFilterServiceImpl().getPeriodFilter(periodTypeFilter);
+			LOGGER.info("Realizado el rango de fechas: " + " DateSince: " + dateRangeInit.getDateSince() + " DateTo: "
+					+ dateRangeInit.getDateTo());
 		}
 		return dateRangeInit;
 	}
@@ -103,6 +111,7 @@ public class QuotaControllerImpl extends CheckPaginatedController implements Quo
 		DateRangeDto dateRanget = calculateQuotaFilters("Último mes");
 		this.quotamovenDtos = this.quotaDetailFacade.listRotaryQuotaMovements(this.productDto.getProductId(),
 				dateRanget, 1, 10);
+		LOGGER.info("Datos de los movimientos llenos ");
 		return quotamovenDtos;
 	}
 
@@ -114,20 +123,23 @@ public class QuotaControllerImpl extends CheckPaginatedController implements Quo
 	@Override
 	public TermsAccountsDto getAllConditions() {
 		TermsAccountsDto detalle = this.detallesCuenta.getAllConditions("00130073000296247953");
+		LOGGER.info("Datos del detalle de la cuenta: " + this.productDto.getProductId() + " Llenos");
 		return detalle;
 	}
 
-	public void onRowToggle(ToggleEvent event) {
-		System.out.println("data onRowToggle");
-		this.quotaMoveDetailDto = this.quotaDetailFacade.getRotaryQuotaMovement(this.productDto.getProductId(), super
-				.getSelectedMovements().getMovementId());
+	public void onRowToggle(SelectEvent event) {
+		super.onMovementSelected(event);
+		this.quotaMoveDetailDto = this.quotaDetailFacade.getRotaryQuotaMovement(this.productDto.getProductId(),
+				getSelectedMovements().getMovementId());
+		LOGGER.info("Movimiento Seleccionado " + quotaMoveDetailDto.getId());
 		this.moveDate = dateFormat.format(this.quotaMoveDetailDto.getOperationDate());
+		LOGGER.info("Finalizado formateo de fechas del movimiento");
 	}
 
 	@Override
 	public void oneSelectDate() {
 
-		System.out.println("onSelecDate de Quota");
+		LOGGER.info("Método oneSelectDate");
 
 		// renderComponents.put(RenderAttributes.FILTERDATE.toString(), true);
 		//
@@ -145,7 +157,7 @@ public class QuotaControllerImpl extends CheckPaginatedController implements Quo
 	@Override
 	public void setCustomDate(final ActionEvent event) {
 
-		System.out.println("setCustomDate de quota");
+		LOGGER.info("Método setCustomDate");
 		//
 		// this.dateRange.setDateSince(getSinceDate());
 		// this.dateRange.setDateTo(getToDate());
@@ -162,12 +174,13 @@ public class QuotaControllerImpl extends CheckPaginatedController implements Quo
 	@Override
 	public void searchQuotaByFilter(final ActionEvent event) {
 
-		System.out.println("searchQuotaByFilter");
+		LOGGER.info("Método searchQuotaByFilter");
 
 		renderComponents.get(RenderAttributes.FILTERDATE.toString());
 	}
 
 	private void clean() {
+		LOGGER.info("Método clean");
 		renderComponents.put(RenderAttributes.CALENDAR.toString(), true);
 		renderComponents.put(RenderAttributes.BUTTONDATE.toString(), true);
 	}
@@ -316,5 +329,19 @@ public class QuotaControllerImpl extends CheckPaginatedController implements Quo
 
 	public void setPaymentDate(String paymentDate) {
 		this.paymentDate = paymentDate;
+	}
+
+	/**
+	 * @return the quotaMove
+	 */
+	public MovementDto getQuotaMove() {
+		return quotaMove;
+	}
+
+	/**
+	 * @param quotaMove the quotaMove to set
+	 */
+	public void setQuotaMove(MovementDto quotaMove) {
+		this.quotaMove = quotaMove;
 	}
 }

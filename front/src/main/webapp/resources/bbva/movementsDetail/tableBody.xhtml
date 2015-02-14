@@ -19,64 +19,55 @@
 		<div class="title-container">
 			<button class="close-icon hidden-md hidden-lg close-button"
 				type="button"></button>
-			<h3>Información del movimiento</h3>
+			<h3>#{msg['text.moventInformation']}</h3>
 		</div>
 		<div class="definitions">
 			<dl>
-				<dd>Nº de movimiento</dd>
+				<dd>#{msg['text.moveNumber']}</dd>
 				<dt>#{cc.attrs.detailMovement.movementID}</dt>
 			</dl>
 			<dl>
-				<dd>Fecha de operación</dd>
+				<dd>#{msg['text.operationDate']}</dd>
 				<dt>18/06/2014</dt>
 			</dl>
 			<dl>
-				<dd>Fecha valor</dd>
-				<!-- 				<dt>18/06/2014</dt> -->
+				<dd>#{msg['text.valueDate']}</dd>
 				<dt>#{cc.attrs.detailMovement.movementDate}</dt>
 			</dl>
 			<dl>
-				<dd>Hora Operación</dd>
+				<dd>#{msg['text.operationHour']}</dd>
 				<dt>9.35 hrs.</dt>
 			</dl>
 			<dl>
-				<dd>Valor</dd>
-				<!-- 				<dt>$ 390.00</dt> -->
+				<dd>#{msg['text.valueMin']}</dd>
 				<dt>#{cc.attrs.detailMovement.movementValue}</dt>
 			</dl>
 			<dl>
-				<dd>Saldo después de movimiento</dd>
-				<!-- 				<dt>$ 12,943,536.35</dt> -->
+				<dd>#{msg['text.moveAfterSald']}</dd>
 				<dt>#{cc.attrs.detailMovement.totalBalance}</dt>
 			</dl>
 			<dl>
-				<dd>Código de operación</dd>
-				<!-- 				<dt>056</dt> -->
+				<dd>#{msg['text.operationCode']}</dd>
 				<dt>#{cc.attrs.detailMovement.movementDetailOperationDto.operationID}</dt>
 			</dl>
 			<dl>
-				<dd>Descripción de la operación</dd>
-				<!-- 				<dt>TRANSFERENCIA</dt> -->
+				<dd>#{msg['text.operationDescription']}</dd>
 				<dt>#{cc.attrs.detailMovement.movementDetailOperationDto.operationDescription}</dt>
 			</dl>
 			<dl>
-				<dd>Observaciones</dd>
-				<!-- 				<dt>Lorem ipsum dolor sir amet, consectetur</dt> -->
+				<dd>#{msg['text.observations']}</dd>
 				<dt>#{cc.attrs.detailMovement.movementDetailDto.observations}</dt>
 			</dl>
 			<dl>
-				<dd>Centro origen del movimiento</dd>
-				<!-- 				<dt>0136 CHAPINERO</dt> -->
+				<dd>#{msg['text.originCenterOfMontion']}</dd>
 				<dt>#{cc.attrs.detailMovement.movementDetailDto.centralSourceMovement}</dt>
 			</dl>
 			<dl>
-				<dd class="border-desktop">Plaza</dd>
-				<!-- 				<dt class="border-desktop">BOGOTA(CUNDIMARCA)</dt> -->
+				<dd class="border-desktop">#{msg['text.plaza']}</dd>
 				<dt>#{cc.attrs.detailMovement.movementDetailDto.plaza}</dt>
 			</dl>
 			<dl>
-				<dd class="border-desktop border-mobile">Estado</dd>
-				<!-- 				<dt class="border-desktop border-mobile">Enviada</dt> -->
+				<dd class="border-desktop border-mobile">#{msg['text.search.by.number.status']}</dd>
 				<dt>#{cc.attrs.detailMovement.movementDetailDto.state}</dt>
 			</dl>
 		</div>

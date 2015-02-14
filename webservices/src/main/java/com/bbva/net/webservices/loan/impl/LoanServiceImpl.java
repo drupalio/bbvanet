@@ -37,7 +37,7 @@ public class LoanServiceImpl extends AbstractBbvaRestService implements LoanServ
 	public List<Movement> listRotaryQuotaMovements(String loanId, Integer paginationKey, Integer pageSize,
 			String $filter) {
 
-		WebClient wc = getJsonWebClient(URL_BASE_ROTARYQUOTA + loanId + URL_ROTARYQUOTA_MOVE);
+		WebClient wc = getJsonWebClient(URL_BASE_ROTARYQUOTA + loanId + URL_ROTARYQUOTA_MOVES);
 		if (!StringUtils.isEmpty($filter)) wc.query(FILTER, $filter);
 
 		if (paginationKey != null && pageSize != null) {

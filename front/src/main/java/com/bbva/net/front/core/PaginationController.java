@@ -32,7 +32,7 @@ public abstract class PaginationController<T extends Serializable> extends Abstr
 
 	private Integer paginationKey;
 	
-	private String title = MessagesHelper.INSTANCE.getString("text.last.movments");
+	private String title;
 
 	private Map<String, Boolean> renderTable = new HashMap<String, Boolean>();
 

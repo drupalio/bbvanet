@@ -39,15 +39,15 @@ function checkFilled(btnW, inputId) {
 
 }
 
-// metodo que abre y cierra el div de detalle de movimiento
-// function divMovement() {
-//
-// var styles = document.getElementById("rowExpansion").style.display;
-//
-// if (styles == 'none')
-// document.getElementById("rowExpansion").style.display = "block";
-// else
-// document.getElementById("rowExpansion").style.display = "none";
-// }
+function checkRowClick() {
 
+	$('.ui-datatable-data .ui-widget-content').click(function() {
 
+		var i = $('.ui-row-toggler.ui-icon-circle-triangle-s').length;
+		if (i == 1) {
+			return;
+		}
+		$('.ui-row-toggler.ui-icon-circle-triangle-s').trigger('click');
+		$('.ui-row-toggler.ui-icon-circle-triangle-s').click();
+	});
+}
