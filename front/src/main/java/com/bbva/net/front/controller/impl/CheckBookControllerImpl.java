@@ -168,28 +168,23 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	@Override
 	public void showResults(final ActionEvent event) {
 		System.out.println("showResults");
-
+		setTitle(new String(MessagesHelper.INSTANCE.getString("tex.check.status")));
+		renderComponents.put(RenderAttributes.MOVEMENTSTABLE.toString(), false);
+		renderComponents.put(RenderAttributes.CHECKTABLE.toString(), true);
+		
 		if (renderComponents.get(RenderAttributes.FILTERCHECKBOOK.toString())) {
 			// Filter by checkId
 			System.out.println("check num: " + check.getId());
 			// TODO DEFAULT_ACCOUNT accountId
 			this.check = checkBookFacade.getCheckById(getSelectedProduct().getProductId(), check.getId());
-			setTitle(new String(MessagesHelper.INSTANCE.getString("tex.check.status")));
-			renderComponents.put(RenderAttributes.MOVEMENTSTABLE.toString(), false);
-			renderComponents.put(RenderAttributes.CHECKTABLE.toString(), true);
+			
 			clean();
 
 		} else if (renderComponents.get(RenderAttributes.FILTERSTATUS.toString())) {
 			// Filter by status
 			System.out.println(" estado: " + titleState);
-			// TODO DEFAULT_ACCOUNT accountId
-			// this.checkList = checkBookFacade.getCheckByStatusOrDate(getSelectedProduct().getProductId(), null, titleState,
-			// paginationKey, paginationSize);
 			this.dateRange = null;
-			criteriaSearch();
-			setTitle(MessagesHelper.INSTANCE.getString("tex.check.status"));
-			getRenderTable().put(RenderAttributes.MOVEMENTSTABLE.toString(), false);
-			getRenderTable().put(RenderAttributes.CHECKTABLE.toString(), true);
+			criteriaSearch();			
 			clean();
 		}
 
@@ -197,26 +192,17 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			// Filter by talonario
 			System.out.println("checkbook num: " + getCheckBookNumber());
 			// TODO DEFAULT_ACCOUNT accountId
-			this.checkBook = checkBookFacade.getCheckBookByAccountId(getSelectedProduct().getProductId(),
-					getCheckBookNumber());
-			setTitle(MessagesHelper.INSTANCE.getString("tex.check.status"));
-			getRenderTable().put(RenderAttributes.MOVEMENTSTABLE.toString(), false);
-			getRenderTable().put(RenderAttributes.CHECKTABLE.toString(), true);
+			this.checkBook = checkBookFacade.getCheckBookByAccountId(getSelectedProduct().getProductId(), getCheckBookNumber());
 			clean();
 
 		} else if (renderComponents.get(RenderAttributes.FILTERDATE.toString())) {
-
+			// Filter by date
 			EnumPeriodType periodType = EnumPeriodType.valueOfLabel(this.getSelectDate());
 			if (!(periodType == (null))) {
 				dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
-			}
-			// this.checkList = checkBookFacade.getCheckByStatusOrDate(getSelectedProduct().getProductId(), this.dateRange,
-			// null, paginationKey, paginationSize);
+			}	
 			this.titleState = null;
-			criteriaSearch();
-			setTitle(MessagesHelper.INSTANCE.getString("tex.check.status"));
-			getRenderTable().put(RenderAttributes.MOVEMENTSTABLE.toString(), false);
-			getRenderTable().put(RenderAttributes.CHECKTABLE.toString(), true);
+			criteriaSearch();			
 			clean();
 
 		} else {
@@ -235,7 +221,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 		setProductIdPControl(getSelectedProduct().getProductId());
 		search();
 		this.checkList = getCurrentList();
-		if(this.checkList.size()>=10)getRenderTable().put(RenderAttributes.FOOTERTABLECHEKS.toString(), true);	else getRenderTable().put(RenderAttributes.FOOTERTABLECHEKS.toString(), false);
+		if(this.checkList.size()>=10)getRenderTable().put(RenderAttributes.FOOTERTABLECHEKS.toString(), true);	else getRenderTable().put(RenderAttributes.FOOTERTABLECHEKS.toString(), false);		
 	}
 
 	public void nextPage(ActionEvent event) {

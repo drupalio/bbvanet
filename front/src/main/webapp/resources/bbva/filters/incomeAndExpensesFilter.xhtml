@@ -23,16 +23,16 @@
 
 				<h:selectOneRadio value="#{cc.attrs.value}">
 					<div class="col-xs-4 col-md-4">
-						<f:selectItem id="inflow" itemLabel="Entradas"
-							itemValue="#{msg['select.radio.in']}" />
+						<f:selectItem id="inflow" itemLabel="#{msg['select.radio.in']}"
+							itemValue="1" />
 					</div>
 					<div class="col-xs-4 col-md-4">
-						<f:selectItem id="outflow" itemLabel="Salidas"
-							itemValue="#{msg['select.radio.out']}" />
+						<f:selectItem id="outflow" itemLabel="#{msg['select.radio.out']}"
+							itemValue="2" />
 					</div>
 					<div class="col-xs-4 col-md-4">
-						<f:selectItem id="bothflow" itemLabel="Entradas/Salidas"
-							itemValue="#{msg['select.radio.in.out']}" />
+						<f:selectItem id="bothflow" itemLabel="#{msg['select.radio.in.out']}"
+							itemValue="3" />
 					</div>
 				</h:selectOneRadio>
 
