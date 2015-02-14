@@ -84,7 +84,7 @@ public class GlobalPositionControllerImplTest {
 		globalPositionController.setGraphicPieDelegate(graphicPieDelegate);
 
 		// prepara el test
-		Mockito.when(globalPositionFacade.getGlobalProductsByUser(DEFAULT_USER)).thenReturn(new GlobalProductsDto());
+		Mockito.when(globalPositionFacade.getGlobalProductsByUser()).thenReturn(new GlobalProductsDto());
 
 		// invoca metodo a probar
 		final GlobalProductsDto globalProducts = this.globalPositionController.getCustomerProducts();
@@ -93,7 +93,7 @@ public class GlobalPositionControllerImplTest {
 				.getMovementsResumeByCustomer(null);
 		// Comprobar resultados
 		// Assert.assertNotNull(globalProducts);
-		Mockito.verify(this.globalPositionFacade, Mockito.atLeastOnce()).getGlobalProductsByUser(DEFAULT_USER);
+		Mockito.verify(this.globalPositionFacade, Mockito.atLeastOnce()).getGlobalProductsByUser();
 		// graphicPieUI = Mockito.mock(GraphicPieUI.class);
 
 		// Mockito.verify(this.graphicBarLineDelegate,

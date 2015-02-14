@@ -175,7 +175,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		LOGGER.info("STARTING BBVA GLOBAL POSITION .................");
 
 		// Get GlobalProductsDTO by currentUser (visibles and hidden)
-		this.globalProductsDTO = this.globalPositionFacade.getGlobalProductsByUser(getCurrentUser());
+		this.globalProductsDTO = this.globalPositionFacade.getGlobalProductsByUser();
 
 		// Obtiene la lista de resumen de movimientos del serivico REST
 		this.globalResumeMovementsDTO = this.movementsResumeFacade.getMovementsResumeByCustomer(null);

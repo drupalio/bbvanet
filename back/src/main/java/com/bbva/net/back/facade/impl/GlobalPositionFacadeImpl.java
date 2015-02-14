@@ -38,9 +38,9 @@ public class GlobalPositionFacadeImpl extends AbstractBbvaFacade implements Glob
 	private ProductService productService;
 
 	@Override
-	public GlobalProductsDto getGlobalProductsByUser(final String user) throws RestClientException {
+	public GlobalProductsDto getGlobalProductsByUser() throws RestClientException {
 
-		final List<Product> response = this.globalPositionService.getExtractGlobalBalance(user, StringUtils.EMPTY);
+		final List<Product> response = this.globalPositionService.getExtractGlobalBalance(StringUtils.EMPTY);
 
 		// return globalPositionMapper.map(response);
 		return globalPositionMapper.map(response);

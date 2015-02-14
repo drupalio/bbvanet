@@ -15,7 +15,7 @@ public interface GlobalPositionFacade {
 	 * @param user
 	 * @return
 	 */
-	GlobalProductsDto getGlobalProductsByUser(String user);
+	GlobalProductsDto getGlobalProductsByUser();
 
 	/**
 	 * @return
@@ -32,9 +32,8 @@ public interface GlobalPositionFacade {
 	 * @return
 	 */
 	Map<String, BalanceDto> getTotalsByProduct(GlobalProductsDto globalProductsDTO);
-	
+
 	/**
-	 * 
 	 * @param globalProducts
 	 * @return
 	 */

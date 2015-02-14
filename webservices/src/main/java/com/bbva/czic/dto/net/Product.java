@@ -1,19 +1,19 @@
-
 package com.bbva.czic.dto.net;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Clase Java para Product complex type.
- * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>
+ * Clase Java para Product complex type.
+ * <p>
+ * El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="Product">
@@ -38,366 +38,281 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Product", propOrder = {
-    "id",
-    "type",
-    "name",
-    "alias",
-    "financialState",
-    "visible",
-    "operable",
-    "balance",
-    "contactInfo",
-    "conditions",
-    "movement",
-    "contract",
-    "extracts"
-})
-@XmlSeeAlso({
-    Card.class
-})
+@XmlType(name = "Product", propOrder = { "id", "type", "name", "alias", "financialState", "visible", "operable",
+		"balance", "contactInfo", "conditions", "movement", "contract", "extracts" })
+@XmlSeeAlso({ Card.class })
 public class Product {
 
-    protected String id;
-    protected String type;
-    protected String name;
-    protected String alias;
-    protected String financialState;
-    protected Boolean visible;
-    protected Boolean operable;
-    protected Balance balance;
-    protected ContactInfo contactInfo;
-    protected Conditions conditions;
-    @XmlElement(nillable = true)
-    protected List<Movement> movement;
-    protected Contract contract;
-    @XmlElement(nillable = true)
-    protected List<Extracto> extracts;
+	protected String id;
 
-    /**
-     * Obtiene el valor de la propiedad id.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getId() {
-        return id;
-    }
+	protected String type;
 
-    /**
-     * Define el valor de la propiedad id.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setId(String value) {
-        this.id = value;
-    }
+	protected String name;
 
-    /**
-     * Obtiene el valor de la propiedad type.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getType() {
-        return type;
-    }
+	protected String alias;
 
-    /**
-     * Define el valor de la propiedad type.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setType(String value) {
-        this.type = value;
-    }
+	protected String financialState;
 
-    /**
-     * Obtiene el valor de la propiedad name.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getName() {
-        return name;
-    }
+	protected Boolean visible;
 
-    /**
-     * Define el valor de la propiedad name.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setName(String value) {
-        this.name = value;
-    }
+	protected Boolean operable;
 
-    /**
-     * Obtiene el valor de la propiedad alias.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getAlias() {
-        return alias;
-    }
+	protected Balance balance;
 
-    /**
-     * Define el valor de la propiedad alias.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setAlias(String value) {
-        this.alias = value;
-    }
+	protected ContactInfo contactInfo;
 
-    /**
-     * Obtiene el valor de la propiedad financialState.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getFinancialState() {
-        return financialState;
-    }
+	protected Conditions conditions;
 
-    /**
-     * Define el valor de la propiedad financialState.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setFinancialState(String value) {
-        this.financialState = value;
-    }
+	@XmlElement(nillable = true)
+	protected List<Movement> movement;
 
-    /**
-     * Obtiene el valor de la propiedad visible.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Boolean }
-     *     
-     */
-    public Boolean isVisible() {
-        return visible;
-    }
+	protected Contract contract;
 
-    /**
-     * Define el valor de la propiedad visible.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Boolean }
-     *     
-     */
-    public void setVisible(Boolean value) {
-        this.visible = value;
-    }
+	@XmlElement(nillable = true)
+	protected List<Extracto> extracts;
 
-    /**
-     * Obtiene el valor de la propiedad operable.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Boolean }
-     *     
-     */
-    public Boolean isOperable() {
-        return operable;
-    }
+	/**
+	 * Obtiene el valor de la propiedad id.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getId() {
+		return id;
+	}
 
-    /**
-     * Define el valor de la propiedad operable.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Boolean }
-     *     
-     */
-    public void setOperable(Boolean value) {
-        this.operable = value;
-    }
+	/**
+	 * Define el valor de la propiedad id.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setId(String value) {
+		this.id = value;
+	}
 
-    /**
-     * Obtiene el valor de la propiedad balance.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Balance }
-     *     
-     */
-    public Balance getBalance() {
-        return balance;
-    }
+	/**
+	 * Obtiene el valor de la propiedad type.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getType() {
+		return type;
+	}
 
-    /**
-     * Define el valor de la propiedad balance.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Balance }
-     *     
-     */
-    public void setBalance(Balance value) {
-        this.balance = value;
-    }
+	/**
+	 * Define el valor de la propiedad type.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setType(String value) {
+		this.type = value;
+	}
 
-    /**
-     * Obtiene el valor de la propiedad contactInfo.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ContactInfo }
-     *     
-     */
-    public ContactInfo getContactInfo() {
-        return contactInfo;
-    }
+	/**
+	 * Obtiene el valor de la propiedad name.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getName() {
+		return name;
+	}
 
-    /**
-     * Define el valor de la propiedad contactInfo.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ContactInfo }
-     *     
-     */
-    public void setContactInfo(ContactInfo value) {
-        this.contactInfo = value;
-    }
+	/**
+	 * Define el valor de la propiedad name.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setName(String value) {
+		this.name = value;
+	}
 
-    /**
-     * Obtiene el valor de la propiedad conditions.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Conditions }
-     *     
-     */
-    public Conditions getConditions() {
-        return conditions;
-    }
+	/**
+	 * Obtiene el valor de la propiedad alias.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getAlias() {
+		return alias;
+	}
 
-    /**
-     * Define el valor de la propiedad conditions.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Conditions }
-     *     
-     */
-    public void setConditions(Conditions value) {
-        this.conditions = value;
-    }
+	/**
+	 * Define el valor de la propiedad alias.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setAlias(String value) {
+		this.alias = value;
+	}
 
-    /**
-     * Gets the value of the movement property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the movement property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getMovement().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link Movement }
-     * 
-     * 
-     */
-    public List<Movement> getMovement() {
-        if (movement == null) {
-            movement = new ArrayList<Movement>();
-        }
-        return this.movement;
-    }
+	/**
+	 * Obtiene el valor de la propiedad financialState.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getFinancialState() {
+		return financialState;
+	}
 
-    /**
-     * Obtiene el valor de la propiedad contract.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Contract }
-     *     
-     */
-    public Contract getContract() {
-        return contract;
-    }
+	/**
+	 * Define el valor de la propiedad financialState.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setFinancialState(String value) {
+		this.financialState = value;
+	}
 
-    /**
-     * Define el valor de la propiedad contract.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Contract }
-     *     
-     */
-    public void setContract(Contract value) {
-        this.contract = value;
-    }
+	/**
+	 * Obtiene el valor de la propiedad visible.
+	 * 
+	 * @return possible object is {@link Boolean }
+	 */
+	public Boolean isVisible() {
+		return visible;
+	}
 
-    /**
-     * Gets the value of the extracts property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the extracts property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getExtracts().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link Extracto }
-     * 
-     * 
-     */
-    public List<Extracto> getExtracts() {
-        if (extracts == null) {
-            extracts = new ArrayList<Extracto>();
-        }
-        return this.extracts;
-    }
+	/**
+	 * Define el valor de la propiedad visible.
+	 * 
+	 * @param value allowed object is {@link Boolean }
+	 */
+	public void setVisible(Boolean value) {
+		this.visible = value;
+	}
+
+	/**
+	 * Obtiene el valor de la propiedad operable.
+	 * 
+	 * @return possible object is {@link Boolean }
+	 */
+	public Boolean isOperable() {
+		return operable;
+	}
+
+	/**
+	 * Define el valor de la propiedad operable.
+	 * 
+	 * @param value allowed object is {@link Boolean }
+	 */
+	public void setOperable(Boolean value) {
+		this.operable = value;
+	}
+
+	/**
+	 * Obtiene el valor de la propiedad balance.
+	 * 
+	 * @return possible object is {@link Balance }
+	 */
+	public Balance getBalance() {
+		return balance;
+	}
+
+	/**
+	 * Define el valor de la propiedad balance.
+	 * 
+	 * @param value allowed object is {@link Balance }
+	 */
+	public void setBalance(Balance value) {
+		this.balance = value;
+	}
+
+	/**
+	 * Obtiene el valor de la propiedad contactInfo.
+	 * 
+	 * @return possible object is {@link ContactInfo }
+	 */
+	public ContactInfo getContactInfo() {
+		return contactInfo;
+	}
+
+	/**
+	 * Define el valor de la propiedad contactInfo.
+	 * 
+	 * @param value allowed object is {@link ContactInfo }
+	 */
+	public void setContactInfo(ContactInfo value) {
+		this.contactInfo = value;
+	}
+
+	/**
+	 * Obtiene el valor de la propiedad conditions.
+	 * 
+	 * @return possible object is {@link Conditions }
+	 */
+	public Conditions getConditions() {
+		return conditions;
+	}
+
+	/**
+	 * Define el valor de la propiedad conditions.
+	 * 
+	 * @param value allowed object is {@link Conditions }
+	 */
+	public void setConditions(Conditions value) {
+		this.conditions = value;
+	}
+
+	/**
+	 * Gets the value of the movement property.
+	 * <p>
+	 * This accessor method returns a reference to the live list, not a snapshot. Therefore any modification you make to the
+	 * returned list will be present inside the JAXB object. This is why there is not a <CODE>set</CODE> method for the
+	 * movement property.
+	 * <p>
+	 * For example, to add a new item, do as follows:
+	 * 
+	 * <pre>
+	 * getMovement().add(newItem);
+	 * </pre>
+	 * <p>
+	 * Objects of the following type(s) are allowed in the list {@link Movement }
+	 */
+	public List<Movement> getMovement() {
+		if (movement == null) {
+			movement = new ArrayList<Movement>();
+		}
+		return this.movement;
+	}
+
+	/**
+	 * Obtiene el valor de la propiedad contract.
+	 * 
+	 * @return possible object is {@link Contract }
+	 */
+	public Contract getContract() {
+		return contract;
+	}
+
+	/**
+	 * Define el valor de la propiedad contract.
+	 * 
+	 * @param value allowed object is {@link Contract }
+	 */
+	public void setContract(Contract value) {
+		this.contract = value;
+	}
+
+	/**
+	 * Gets the value of the extracts property.
+	 * <p>
+	 * This accessor method returns a reference to the live list, not a snapshot. Therefore any modification you make to the
+	 * returned list will be present inside the JAXB object. This is why there is not a <CODE>set</CODE> method for the
+	 * extracts property.
+	 * <p>
+	 * For example, to add a new item, do as follows:
+	 * 
+	 * <pre>
+	 * getExtracts().add(newItem);
+	 * </pre>
+	 * <p>
+	 * Objects of the following type(s) are allowed in the list {@link Extracto }
+	 */
+	public List<Extracto> getExtracts() {
+		if (extracts == null) {
+			extracts = new ArrayList<Extracto>();
+		}
+		return this.extracts;
+	}
 
 }
