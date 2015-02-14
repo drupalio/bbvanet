@@ -1251,21 +1251,21 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	}
 },
 {
-	"category": "REGALOS",
+	"category": "REGALOS_LIBROS_DISCOS",
 	"amount": {
 		"currency": "COP",
 		"amount": 1157973
 	}
 },
 {
-	"category": "LIBROS",
+	"category": "REGALOS_LIBROS_DISCOS",
 	"amount": {
 		"currency": "COP",
 		"amount": 775172
 	}
 },
 {
-	"category": "DISCOS",
+	"category": "REGALOS_LIBROS_DISCOS",
 	"amount": {
 		"currency": "COP",
 		"amount": 3989589
@@ -1279,14 +1279,14 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	}
 },
 {
-	"category": "ROPA",
+	"category": "ROPA_CALZADO_PERSONAL",
 	"amount": {
 		"currency": "COP",
 		"amount": 2659567
 	}
 },
 {
-	"category": "CALZADOPERSONAL",
+	"category": "ROPA_CALZADO_PERSONAL",
 	"amount": {
 		"currency": "COP",
 		"amount": 2207488
@@ -1377,21 +1377,21 @@ if( requestMock.contains("filter") )
 		}
 },
 {
-	"category":"REGALOS",
+	"category":"REGALOS_LIBROS_DISCOS",
 	"amount":{
 		"amount":800000.0,
 		"currency":"$"
 		}
 },
 {
-	"category":"LIBROS",
+	"category":"REGALOS_LIBROS_DISCOS",
 	"amount":{
 		"amount":700000.0,
 		"currency":"$"
 		}
 },
 {
-	"category":"DISCOS",
+	"category":"REGALOS_LIBROS_DISCOS",
 	"amount":{
 		"amount":600000.0,
 		"currency":"$"
@@ -1405,14 +1405,14 @@ if( requestMock.contains("filter") )
 		}
 },
 {
-	"category":"ROPA",
+	"category":"ROPA_CALZADO_PERSONAL",
 	"amount":{
 		"amount":400000.0,
 		"currency":"$"
 		}
 },
 {
-	"category":"CALZADOPERSONAL",
+	"category":"ROPA_CALZADO_PERSONAL",
 	"amount":{
 		"amount":300000.0,
 		"currency":"$"
@@ -2480,7 +2480,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		"amount": 2075976648,
 		"currency": "COP"
 	}
-}]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/executives/V01" method="GET" resourcePath="/czic/executives/V01"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+}]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/executives/V01" method="GET" resourcePath="/czic/executives/V01"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Examples showing how to match based on path, query param and header
 // Match based on path
 def requestPath = mockRequest.getPath()
@@ -2528,7 +2528,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		"name": "Calle 93 - 15"
 	},
 	"email": "Jhon00021@gmail.com"
-}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/customers/V01" method="GET" resourcePath="/czic/customers/V01"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/customers/V01" method="GET" resourcePath="/czic/customers/V01"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Examples showing how to match based on path, query param and header
 // Match based on path
 def requestPath = mockRequest.getPath()

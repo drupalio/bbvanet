@@ -31,17 +31,17 @@ public class LoanControllerImpl extends AbstractBbvaController implements LoanCo
 	@PostConstruct
 	public void init() {
 		// Calculate totals
-		this.totalsProducts = this.loanFacade.getLoanTotals(getCurrentUser());
+		this.totalsProducts = this.loanFacade.getLoanTotals();
 	}
 
 	@Override
 	public List<RotatingAccountDto> getCustomerRotatingAccount() {
-		return this.loanFacade.getRotatingAccountByUser(getCurrentUser());
+		return this.loanFacade.getRotatingAccountByUser();
 	}
 
 	@Override
 	public List<RotatingAccountDto> getCustomerRotatingAccountHidden() {
-		return this.loanFacade.getRotatingAccountByUserHidden(getCurrentUser());
+		return this.loanFacade.getRotatingAccountByUserHidden();
 	}
 
 	@Override
@@ -51,17 +51,17 @@ public class LoanControllerImpl extends AbstractBbvaController implements LoanCo
 
 	@Override
 	public List<LeasingDto> getCustomerLeasingHidden() {
-		return this.loanFacade.getLeasingByUserHidden(getCurrentUser());
+		return this.loanFacade.getLeasingByUserHidden();
 	}
 
 	@Override
 	public List<LoanDto> getCustomerLoan() {
-		return this.loanFacade.getLoansByUser(getCurrentUser());
+		return this.loanFacade.getLoansByUser();
 	}
 
 	@Override
 	public List<LoanDto> getCustomerLoanHidden() {
-		return this.loanFacade.getLoansByUserHidden(getCurrentUser());
+		return this.loanFacade.getLoansByUserHidden();
 	}
 
 	@Override

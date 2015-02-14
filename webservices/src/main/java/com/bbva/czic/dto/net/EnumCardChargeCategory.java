@@ -31,15 +31,34 @@ import javax.xml.bind.annotation.XmlType;
 @XmlEnum
 public enum EnumCardChargeCategory {
 
-    OCIO,
-    REGALOS,
-    LIBROS,
-    DISCOS,
-    COMERCIOBASICO,
-    ROPA,
-    CALZADOPERSONAL,
-    VARIOS,
-    COMPRASPORCANALES;
+	OCIO("OCIO                               "), 
+	REGALOS_LIBROS_DISCOS("REGALOS, LIBROS, DISCOS            "), 
+	COMERCIOBASICO("COMERCIO BASICO				     "), 
+	ROPA_CALZADO_PERSONAL("ROPA, CALZADO PERSONAL             "), 
+	VARIOS("VARIOS							 "), 
+	COMPRASPORCANALES("COMPRAS POR CANALES				 ")
+	;
+
+	private String text;
+
+	private EnumCardChargeCategory(String text) {
+		this.text = text;
+	}
+	
+	public String getText() {
+		return this.text;
+	}
+	
+	public static EnumCardChargeCategory fromString(String text) {
+	    if (text != null) {
+	      for (EnumCardChargeCategory cardChargeCategory : EnumCardChargeCategory.values()) {
+	        if (text.equalsIgnoreCase(cardChargeCategory.text)) {
+	          return cardChargeCategory;
+	        }
+	      }
+	    }
+	    return null;
+	}
 
     public String value() {
         return name();
