@@ -49,14 +49,14 @@ public class AccountMovementsResumeFacadeImpl extends AbstractBbvaFacade impleme
 	 * Método que implementa el cliente REST para obtener el resumend de movimientos en las cuentas de un usuario
 	 */
 	@Override
-	public GlobalResumeMovementsDto getMovementsResumeByCustomer(final String customerId, final DateRangeDto dateRange)
+	public GlobalResumeMovementsDto getMovementsResumeByCustomer(final DateRangeDto dateRange)
 			throws RestClientException {
 		GlobalResumeMovementsDto globalMovements = new GlobalResumeMovementsDto();
 
 		String filter = dateRange == null ? StringUtils.EMPTY : fiqlService.getFiqlQueryByDateRange(dateRange, DATE,
 				DATE);
 
-		final List<AccMovementsResume> response = this.customerService.listAccountsMovementsResume(customerId, filter);
+		final List<AccMovementsResume> response = this.customerService.listAccountsMovementsResume("", filter);
 		globalMovements.setMovementsResumeDto(globalResumeMovementsMapper.map(response));
 
 		return globalMovements;

@@ -29,7 +29,7 @@ public class CustomerServiceImpl extends AbstractBbvaRestService implements Cust
 	@Override
 	public List<AccMovementsResume> listAccountsMovementsResume(String customerId, String filter) {
 
-		WebClient wc = getJsonWebClient(URL_BASE_CUSTOMER + customerId + URL_CUSTOMER);
+		WebClient wc = getJsonWebClient(URL_BASE_CUSTOMER + URL_CUSTOMER);
 		if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
 
 		return (List<AccMovementsResume>)wc.getCollection(AccMovementsResume.class);
@@ -38,7 +38,7 @@ public class CustomerServiceImpl extends AbstractBbvaRestService implements Cust
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<CardCharge> listCreditCardsCharges(String customerId, String filter) {
-		WebClient wc = getJsonWebClient(URL_BASE_CUSTOMER + customerId + URL_CARDCHARGES);
+		WebClient wc = getJsonWebClient(URL_BASE_CUSTOMER + URL_CARDCHARGES);
 		if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
 		return (List<CardCharge>)wc.getCollection(CardCharge.class);
 

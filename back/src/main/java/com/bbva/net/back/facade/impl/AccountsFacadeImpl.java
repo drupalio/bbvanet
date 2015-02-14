@@ -26,15 +26,15 @@ public class AccountsFacadeImpl extends AbstractBbvaFacade implements AccountsFa
 	private ProductService productService;
 
 	@Override
-	public List<AccountDto> getAccountsByUser(String user) {
+	public List<AccountDto> getAccountsByUser() {
 
-		final GlobalProductsDto globalProductsDTO = this.globalPositionFacade.getGlobalProductsByUser(user);
+		final GlobalProductsDto globalProductsDTO = this.globalPositionFacade.getGlobalProductsByUser();
 		return productService.select(globalProductsDTO, new VisibleProductPredicate()).getAccounts();
 	}
 
 	@Override
-	public List<AccountDto> getAccountsByUserHidden(String user) {
-		final GlobalProductsDto globalProductsDTO = this.globalPositionFacade.getGlobalProductsByUser(user);
+	public List<AccountDto> getAccountsByUserHidden() {
+		final GlobalProductsDto globalProductsDTO = this.globalPositionFacade.getGlobalProductsByUser();
 		return productService.select(globalProductsDTO, new HiddenProductPredicate()).getAccounts();
 	}
 

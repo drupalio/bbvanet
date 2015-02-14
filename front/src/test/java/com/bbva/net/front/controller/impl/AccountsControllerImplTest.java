@@ -41,14 +41,14 @@ public class AccountsControllerImplTest {
 
 		// prepara el test
 		List<AccountDto> h = new ArrayList<AccountDto>();
-		Mockito.when(accountsFacade.getAccountsByUser(DEFAULT_USER)).thenReturn(h);
+		Mockito.when(accountsFacade.getAccountsByUser()).thenReturn(h);
 
 		// invoca metodo a probar
 		final List<AccountDto> customerAccounts = this.accountsController.getCustomerAccounts();
 
 		// Comprobar resultados
 		Assert.assertNotNull(customerAccounts);
-		Mockito.verify(this.accountsFacade, Mockito.atLeastOnce()).getAccountsByUser(DEFAULT_USER);
+		Mockito.verify(this.accountsFacade, Mockito.atLeastOnce()).getAccountsByUser();
 
 	}
 
@@ -59,7 +59,7 @@ public class AccountsControllerImplTest {
 	public void checkGetCustomerAccounts_NO_OK() {
 
 		// Creación del mock
-		Mockito.when(accountsFacade.getAccountsByUser(DEFAULT_USER)).thenThrow(new RestClientException(""));
+		Mockito.when(accountsFacade.getAccountsByUser()).thenThrow(new RestClientException(""));
 
 		// Invocación al método
 		final List<AccountDto> customerAccounts = this.accountsController.getCustomerAccounts();

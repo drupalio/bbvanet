@@ -24,8 +24,8 @@ public class GlobalPositionServiceImpl extends AbstractBbvaRestService implement
 	private String URL_VISIBILITY;
 
 	@Override
-	public List<Product> getExtractGlobalBalance(String customerId, String $filter) {
-		return getJsonCollection(URL_BASE + customerId + URL_GLOBAL_POSITION, Product.class);
+	public List<Product> getExtractGlobalBalance(String $filter) {
+		return getJsonCollection(URL_BASE + URL_GLOBAL_POSITION, Product.class);
 	}
 
 	@Override

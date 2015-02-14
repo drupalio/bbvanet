@@ -4,7 +4,6 @@
 package com.bbva.net.webservices.globalposition;
 
 import javax.ws.rs.Consumes;
-import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -19,8 +18,8 @@ public interface SrvGlobalPositionV01 {
 
     @GET
     @Produces("application/json")
-    @Path("/customers/{customerId}/products")
-    Response getExtractGlobalBalance(@PathParam("customerId") String customerId, @QueryParam("$filter") @DefaultValue("null") String $filter);
+    @Path("/customers/products")
+    Response getExtractGlobalBalance(@QueryParam("$filter") String $filter);
 
     @PUT
     @Consumes("application/json")
