@@ -51,12 +51,7 @@ public class ProductsServiceImpl extends AbstractBbvaRestService implements Prod
 
 		WebClient wc = getJsonWebClient(URL_BASE_PRODUCTS + productId + URL_MOVEMENTS + "/" + movementId);
 		if (!StringUtils.isEmpty($filter)) wc.query(FILTER, $filter);
-		if (productId != null && movementId != null) {
-			wc.query("productId", productId);
-			wc.query("movementId", movementId);
-		}
 
-		return wc.get(Movement.class);
+		return (Movement)wc.get(Movement.class);
 	}
-
 }

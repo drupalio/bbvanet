@@ -68,4 +68,18 @@ public interface MovementCriteriaController {
 
 	List<MovementDto> getAllMovements();
 
+	/***
+	 * Method to clean filters
+	 * 
+	 * @param event
+	 */
+	void cleanFilters(ActionEvent event);
+
+	/***
+	 * Method to set a movement conecept
+	 * 
+	 * @param event
+	 */
+	void setMovementConcept(ActionEvent event);
+
 }

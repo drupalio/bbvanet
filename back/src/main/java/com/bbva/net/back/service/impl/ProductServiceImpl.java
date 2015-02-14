@@ -112,6 +112,24 @@ public class ProductServiceImpl implements ProductService {
 
 	}
 
+	@Override
+	public Map<String, BalanceDto> getLoanTotals(final GlobalProductsDto globalProducts) {
+
+		final Map<String, BalanceDto> totals = new HashMap<String, BalanceDto>();
+
+		totals.put(EnumProductType.RQ.name(), new BalanceDto(getTotalAvailable(globalProducts.getRotatingAccounts()),
+				getTotal(globalProducts.getRotatingAccounts())));
+
+		totals.put(EnumProductType.LI.name(), new BalanceDto(getTotalAvailable(globalProducts.getLeasings()),
+				getTotal(globalProducts.getLeasings())));
+
+		totals.put(EnumProductType.LO.name(), new BalanceDto(getTotalAvailable(globalProducts.getLoan()),
+				getTotal(globalProducts.getLoan())));
+
+		return totals;
+
+	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public Money getTotalProductsByType(final List<ProductDto> products, final EnumProductType productType) {

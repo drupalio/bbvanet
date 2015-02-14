@@ -11,7 +11,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.Response;
 
 import com.bbva.czic.dto.net.Loan;
 import com.bbva.czic.dto.net.Movement;
@@ -35,7 +34,7 @@ public interface LoanService {
 	@Produces("application/json")
 	@Path("/rotaryQuota/{loanId}/movements")
 	List<Movement> listRotaryQuotaMovements(@PathParam("loanId") String loanId,
-			@QueryParam("paginationKey") String paginationKey, @QueryParam("pageSize") String pageSize,
+			@QueryParam("paginationKey") Integer paginationKey, @QueryParam("pageSize") Integer pageSize,
 			@QueryParam("$filter") @DefaultValue("null") String $filter);
 
 }

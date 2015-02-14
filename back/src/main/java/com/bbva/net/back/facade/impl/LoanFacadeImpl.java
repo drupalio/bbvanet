@@ -1,6 +1,7 @@
 package com.bbva.net.back.facade.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -8,6 +9,7 @@ import com.bbva.net.back.core.pattern.facade.AbstractBbvaFacade;
 import com.bbva.net.back.core.stereotype.Facade;
 import com.bbva.net.back.facade.GlobalPositionFacade;
 import com.bbva.net.back.facade.LoanFacade;
+import com.bbva.net.back.model.globalposition.BalanceDto;
 import com.bbva.net.back.model.globalposition.GlobalProductsDto;
 import com.bbva.net.back.model.globalposition.LeasingDto;
 import com.bbva.net.back.model.globalposition.LoanDto;
@@ -28,9 +30,9 @@ public class LoanFacadeImpl extends AbstractBbvaFacade implements LoanFacade {
 	private ProductService productService;
 
 	@Override
-	public List<LeasingDto> getLeasingByUser(final String user) {
+	public List<LeasingDto> getLeasingByUser() {
 
-		final GlobalProductsDto globalProducts = this.globalPositionFacade.getGlobalProductsByUser(user);
+		final GlobalProductsDto globalProducts = this.globalPositionFacade.getGlobalProductsByUser();
 		return productService.select(globalProducts, new VisibleProductPredicate()).getLeasings();
 
 	}
@@ -38,32 +40,38 @@ public class LoanFacadeImpl extends AbstractBbvaFacade implements LoanFacade {
 	@Override
 	public List<RotatingAccountDto> getRotatingAccountByUser(final String user) {
 
-		final GlobalProductsDto globalProducts = this.globalPositionFacade.getGlobalProductsByUser(user);
+		final GlobalProductsDto globalProducts = this.globalPositionFacade.getGlobalProductsByUser();
 		return productService.select(globalProducts, new VisibleProductPredicate()).getRotatingAccounts();
 	}
 
 	@Override
+	public Map<String, BalanceDto> getLoanTotals(final String user) {
+		final GlobalProductsDto globalProducts = this.globalPositionFacade.getGlobalProductsByUser();
+		return productService.getLoanTotals(globalProducts);
+	}
+
+	@Override
 	public List<RotatingAccountDto> getRotatingAccountByUserHidden(final String user) {
-		final GlobalProductsDto globalProducts = this.globalPositionFacade.getGlobalProductsByUser(user);
+		final GlobalProductsDto globalProducts = this.globalPositionFacade.getGlobalProductsByUser();
 		return productService.select(globalProducts, new HiddenProductPredicate()).getRotatingAccounts();
 	}
 
 	@Override
 	public List<LoanDto> getLoansByUser(final String user) {
-		final GlobalProductsDto globalProducts = this.globalPositionFacade.getGlobalProductsByUser(user);
+		final GlobalProductsDto globalProducts = this.globalPositionFacade.getGlobalProductsByUser();
 		return productService.select(globalProducts, new VisibleProductPredicate()).getLoan();
 	}
 
 	@Override
 	public List<LeasingDto> getLeasingByUserHidden(final String user) {
 
-		final GlobalProductsDto globalProducts = this.globalPositionFacade.getGlobalProductsByUser(user);
+		final GlobalProductsDto globalProducts = this.globalPositionFacade.getGlobalProductsByUser();
 		return productService.select(globalProducts, new HiddenProductPredicate()).getLeasings();
 	}
 
 	@Override
 	public List<LoanDto> getLoansByUserHidden(final String user) {
-		final GlobalProductsDto globalProducts = this.globalPositionFacade.getGlobalProductsByUser(user);
+		final GlobalProductsDto globalProducts = this.globalPositionFacade.getGlobalProductsByUser();
 		return productService.select(globalProducts, new HiddenProductPredicate()).getLoan();
 	}
 
@@ -73,9 +81,8 @@ public class LoanFacadeImpl extends AbstractBbvaFacade implements LoanFacade {
 		this.globalPositionFacade = globalPositionFacade;
 	}
 
-	
 	public void setProductService(ProductService productService) {
 		this.productService = productService;
 	}
-	
+
 }

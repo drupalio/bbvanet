@@ -213,11 +213,13 @@
 								<!-- PILAS NO DEJAR HABILITADA LA EJECUCIÓN DE CUALQUIER WADL, HA 
 									PASODO QUE SE GENERAN CLASES QUE YA ESTABAN ESTABLES Y NOS PETA TODO EN ESTOS 
 									AJUSTES PERDEMOS TIEMPO. -->
-								 <!-- <wadlOption>
+
+								 <!--  <wadlOption>
 									<impl>false</impl>
-									<wadl>src/main/resources/wadl/products.wadl</wadl>
-									<packagename>com.bbva.net.webservices.products</packagename>
-								</wadlOption>  -->
+									<wadl>src/main/resources/wadl/globalposition.wadl</wadl>
+									<packagename>com.bbva.net.webservices.globalposition</packagename>
+								</wadlOption> -->
+
 							</wadlOptions>
 						</configuration>
 						<goals>

@@ -52,10 +52,8 @@
 				<p:commandButton id="#{cc.attrs.idButton}"
 					value="#{cc.attrs.valueButton}"
 					style="margin-top:6px !important; padding: 3px 1px;"
-					styleClass="btn btn-default"
-					actionListener="#{cc.attrs.actionListenerCom}">
-					<f:ajax render="@form" />
-				</p:commandButton>
+					styleClass="btn btn-default" process="@form" update="@form"
+					actionListener="#{cc.attrs.actionListenerCom}" />
 			</c:if>
 		</div>
 	</div>

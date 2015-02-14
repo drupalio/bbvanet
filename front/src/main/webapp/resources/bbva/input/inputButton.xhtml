@@ -35,6 +35,10 @@
 
 <composite:implementation>
 
+	<script>
+
+</script>
+
 
 	<fieldset class="input">
 		<p:inputText id="#{cc.attrs.idInput}" type="#{cc.attrs.typeInput}"
@@ -44,13 +48,12 @@
 		</p:inputText>
 	</fieldset>
 
-	<button class="#{cc.attrs.classButton}" disabled="true"
-		type="#{cc.attrs.typeButton}" jsf:id="#{cc.attrs.idButton}"
+	<button class="#{cc.attrs.classButton}" disabled="true" type="button"
+		jsf:id="#{cc.attrs.idButton}" onsubmit="callJavaServlet()"
 		jsf:actionListener="#{cc.attrs.actionListener}"
 		name="#{cc.attrs.nameButton}" jsf:style="#{cc.attrs.styleButton}"
 		jsf:onclick="#{cc.attrs.onclickButton}">
 		<span class="#{cc.attrs.iconButton}" /> #{cc.attrs.valueButton}
-		<f:ajax execute="@form" render="@form" />
 	</button>
 
 </composite:implementation>

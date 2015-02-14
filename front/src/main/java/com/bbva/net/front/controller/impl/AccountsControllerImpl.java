@@ -35,12 +35,12 @@ public class AccountsControllerImpl extends AbstractBbvaController implements Ac
 
 	@Override
 	public List<AccountDto> getCustomerAccounts() {
-		return this.accountsFacade.getAccountsByUser(getCurrentUser());
+		return this.accountsFacade.getAccountsByUser();
 	}
 
 	@Override
 	public List<AccountDto> getCustomerAccountsHidden() {
-		return this.accountsFacade.getAccountsByUserHidden(getCurrentUser());
+		return this.accountsFacade.getAccountsByUserHidden();
 	}
 
 	@Override

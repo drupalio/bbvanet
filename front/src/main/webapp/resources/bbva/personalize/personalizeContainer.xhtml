@@ -61,10 +61,14 @@
 
 		<p:commandButton id="buttonThree" value="#{msg['button.save']}"
 			style="margin: -6px 20px 20px !important; padding: 3px 1px;"
-			styleClass="btn btn-default"
-			actionListener="#{personalizeProductAccountController.operKey}">
-			<f:ajax render="@form" />
-		</p:commandButton>
+			styleClass="btn btn-default" onstart="PF('statusDialog').show()"
+			onsuccess="PF('statusDialog').hide()" process="@form" update="@form"
+			actionListener="#{personalizeProductAccountController.operKey}" />
+
+		<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
+			closable="false" resizable="false" showHeader="false">
+			<p:graphicImage name="../resources/loader.gif" />
+		</p:dialog>
 
 		<bbvaMessage:divOperationKey idComfirm="buttonFour" idInput="inputTwo"
 			nameB="buttonConfirm" idInputDiv="divClass"

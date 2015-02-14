@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:bbvaDetAcc="http://java.sun.com/jsf/composite/bbva/tab">
+
+<composite:interface>
+</composite:interface>
+
+<composite:implementation>
+
+	<ul class="nav nav-pills nav-operation-options" style="display: block;">
+		<bbvaDetAcc:itemTabMenu title="#{msg['text.consult']}"
+			icon="iconFont-611" classLi="tab-left consultas-btn" type="2"
+			role="#tab-consultas" />
+		<bbvaDetAcc:itemTabMenu title="#{msg['text.operations']}"
+			icon="iconFont-015" classLi="tab-left operaciones-btn" type="2" />
+
+		<bbvaDetAcc:itemTabMenu title="#{msg['text.personalized']}"
+			role="#tab-personalizar" classLi="tab-right hidden-xs hidden-sm"
+			type="1" />
+		<bbvaDetAcc:itemTabMenu title="#{msg['text.personalized']}"
+			role="#tab-personalizar" icon="iconFont-217"
+			classLi="tab-right hidden-md hidden-lg" type="2" />
+
+		<bbvaDetAcc:itemTabMenu title="#{msg['text.conditions']}"
+			role="#tab-condiciones" classLi="tab-right hidden-xs hidden-sm"
+			type="1" />
+		<bbvaDetAcc:itemTabMenu title="#{msg['text.conditions']}"
+			icon="iconFont-104" role="#tab-condiciones"
+			classLi="tab-right hidden-md hidden-lg" type="2" />
+	</ul>
+
+</composite:implementation>
+
+</html>

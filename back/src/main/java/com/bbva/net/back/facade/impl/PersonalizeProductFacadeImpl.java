@@ -1,6 +1,5 @@
 package com.bbva.net.back.facade.impl;
 
-import javax.ws.rs.core.Response;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
@@ -28,19 +27,36 @@ public class PersonalizeProductFacadeImpl extends AbstractBbvaFacade implements 
 
 	@PostConstruct
 	public void init() {
+		LOGGER.info("inicialize PersonalizeAccountController");
 		this.product = new Product();
 	}
 
 	@Override
-	public Response updateProductOperability(String idProduct, ProductDto productDto) {
+	public Boolean updateProductOperability(String idProduct, ProductDto productDto) {
+		boolean respuesta = false;
+		LOGGER.info("Comenzando mapeo del servicio de updateProductOperability (ProductoDto -> Product)"
+				+ " ProductId: " + idProduct);
 		this.product = personalizeAccountProductMapper.map(productDto);
-		return this.globalPositionService.updateProductOperability(idProduct, product);
+		LOGGER.info("Llamando al servicio de updateProductOperability" + " product Id: " + product.getId());
+		if (this.globalPositionService.updateProductOperability(idProduct, product).getStatus() == 200) {
+			respuesta = true;
+		}
+		LOGGER.info("finalizando llamado de updateProductOperability" + " " + respuesta);
+		return respuesta;
 	}
 
 	@Override
-	public Response updateProductVisibility(String idProduct, ProductDto productDto) {
+	public Boolean updateProductVisibility(String idProduct, ProductDto productDto) {
+		boolean respuesta = false;
+		LOGGER.info("Comenzando mapeo del servicio de updateProductVisibility (ProductoDto -> Product)"
+				+ " ProductId: " + idProduct);
 		this.product = personalizeAccountProductMapper.map(productDto);
-		return this.globalPositionService.updateProductVisibility(idProduct, product);
+		LOGGER.info("Llamando al servicio de updateProductVisibility" + " product Id: " + product.getId());
+		if (this.globalPositionService.updateProductVisibility(idProduct, product).getStatus() == 200) {
+			respuesta = true;
+		}
+		LOGGER.info("finalizando llamado de updateProductVisibility" + " " + respuesta);
+		return respuesta;
 	}
 
 	public void setGlobalPositionService(GlobalPositionService globalPositionService) {

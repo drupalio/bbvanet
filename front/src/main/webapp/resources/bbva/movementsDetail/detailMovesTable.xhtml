@@ -30,12 +30,12 @@
 			<h3>#{checkBookController.title}</h3>
 
 			<!-- Tabla de Cheques -->
-			<div class="table-wrapper">
+			<div class="table-wrapper detail-table-body sortable">
 				<p:dataTable id="checksTable"
 					styleClass="detail-table-body sortable"
 					emptyMessage="#{msg['text.empty.table']}"
 					value="#{cc.attrs.listChecks}" var="cheks"
-					rendered="#{checkBookController.renderComponents['CHECKTABLE']}"
+					rendered="#{checkBookController.renderTable['CHECKTABLE']}"
 					rowKey="#{cheks.id}">
 					<p:column headerText="#{msg['text.table.num.check']}"
 						styleClass="sorted w18 desc"
@@ -89,7 +89,7 @@
 					emptyMessage="#{msg['text.empty.table']}"
 					value="#{cc.attrs.listAccounts}" var="moves"
 					selectionMode="single" 
-					rendered="#{checkBookController.renderComponents['MOVEMENTSTABLE']}"
+					rendered="#{movementsCriteriaController.renderTable['MOVEMENTSTABLE']}"
 					rowKey="#{moves.movementId}">
 					<p:ajax event="rowSelect"
 					listener="#{movementsCriteriaController.onMovementSelected}" />
@@ -99,7 +99,7 @@
 						style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
 
 						<h:outputText styleClass="brand" style="font-size: 1.1em"
-							value="#{moves.movementDetailDto.operationDate}" >
+							value="#{moves.movementDate}" >
 							<f:convertDateTime pattern="dd/MM/yyyy" />
 						</h:outputText>	
 					</p:column>
@@ -141,15 +141,15 @@
 			<footer class="detail-table-footer">
 				<button id="moreCheks" class="btn btn-more-results"
 					jsf:update="formu:checksTable" value="Más Resultados"
-					jsf:rendered="#{checkBookController.renderComponents['CHECKTABLE']}"
+					jsf:rendered="#{checkBookController.renderTable['FOOTERTABLECHEKS']}"
 					jsf:actionListener="#{checkBookController.nextPage}">
 					<span>#{msg['text.detailMove.footer']}</span>
 				</button>
 
 				<button id="moreMovs" class="btn btn-more-results"
 					jsf:update="formu:detalMov" value="Más Resultados"
-					jsf:rendered="#{checkBookController.renderComponents['MOVEMENTSTABLE']}"
-					jsf:actionListener="#{checkBookController.nextPage}">
+					jsf:rendered="#{movementsCriteriaController.renderTable['FOOTERTABLEMOVEMENT']}"
+					jsf:actionListener="#{movementsCriteriaController.nextPage}">
 					<span>#{msg['text.detailMove.footer']}</span>
 				</button>
 

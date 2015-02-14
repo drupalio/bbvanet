@@ -14,7 +14,7 @@ public interface CardsFacade {
 	 * @param customerId
 	 * @return
 	 */
-	List<CardsChargesDto> getCardsChargesByUser(String customerId, DateRangeDto dateRange);
+	List<CardsChargesDto> getCardsChargesByUser(DateRangeDto dateRange);
 
 	/**
 	 * @param customerId

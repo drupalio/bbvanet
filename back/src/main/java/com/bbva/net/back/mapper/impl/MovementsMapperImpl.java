@@ -8,7 +8,7 @@ import ma.glasnost.orika.impl.ConfigurableMapper;
 import com.bbva.czic.dto.net.Movement;
 import com.bbva.net.back.core.stereotype.Mapper;
 import com.bbva.net.back.mapper.MovementsMapper;
-import com.bbva.net.back.mapper.converter.DateToStringConverter;
+import com.bbva.net.back.mapper.converter.StringToDateConverter;
 import com.bbva.net.back.mapper.converter.MoneyConverter;
 import com.bbva.net.back.model.movements.MovementDetailDto;
 import com.bbva.net.back.model.movements.MovementDto;
@@ -21,7 +21,7 @@ public class MovementsMapperImpl extends ConfigurableMapper implements Movements
 		// Add Money Converter
 		factory.getConverterFactory().registerConverter(new MoneyConverter());
 		// Add Date Converter
-		factory.getConverterFactory().registerConverter(new DateToStringConverter("yyyy-MM-dd'T'HH:mm:ss.SSSZ"));
+		factory.getConverterFactory().registerConverter(new StringToDateConverter("yyyy-MM-dd'T'HH:mm:ss.SSSZ"));
 
 		// Map Movement DTO
 		factory.classMap(Movement.class, MovementDto.class).field("id", "movementId")

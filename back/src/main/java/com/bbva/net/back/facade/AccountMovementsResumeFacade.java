@@ -5,9 +5,9 @@ import com.bbva.net.back.model.movements.GlobalResumeMovementsDto;
 
 public interface AccountMovementsResumeFacade {
 
-	GlobalResumeMovementsDto getMovementsResumeByCustomer(String customerId, DateRangeDto dateRange);
+	GlobalResumeMovementsDto getMovementsResumeByCustomer(DateRangeDto dateRange);
 
 	GlobalResumeMovementsDto getMovementsResumeByAccount(String accountId, DateRangeDto filter, String fields,
 			String expands, String sort);
-	
+
 }

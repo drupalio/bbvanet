@@ -3,13 +3,14 @@ package com.bbva.czic.dto.net;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for PhoneNumber complex type.
+ * <p>Clase Java para PhoneNumber complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="PhoneNumber">
@@ -43,16 +44,18 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class PhoneNumber {
 
+    @XmlSchemaType(name = "string")
     protected EnumContactSourceType contactSource;
     protected String countryCode;
     protected String regionalCode;
     protected String number;
+    @XmlSchemaType(name = "string")
     protected EnumPhoneNumberType type;
     protected Boolean primary;
     protected Boolean active;
 
     /**
-     * Gets the value of the contactSource property.
+     * Obtiene el valor de la propiedad contactSource.
      * 
      * @return
      *     possible object is
@@ -64,7 +67,7 @@ public class PhoneNumber {
     }
 
     /**
-     * Sets the value of the contactSource property.
+     * Define el valor de la propiedad contactSource.
      * 
      * @param value
      *     allowed object is
@@ -76,7 +79,7 @@ public class PhoneNumber {
     }
 
     /**
-     * Gets the value of the countryCode property.
+     * Obtiene el valor de la propiedad countryCode.
      * 
      * @return
      *     possible object is
@@ -88,7 +91,7 @@ public class PhoneNumber {
     }
 
     /**
-     * Sets the value of the countryCode property.
+     * Define el valor de la propiedad countryCode.
      * 
      * @param value
      *     allowed object is
@@ -100,7 +103,7 @@ public class PhoneNumber {
     }
 
     /**
-     * Gets the value of the regionalCode property.
+     * Obtiene el valor de la propiedad regionalCode.
      * 
      * @return
      *     possible object is
@@ -112,7 +115,7 @@ public class PhoneNumber {
     }
 
     /**
-     * Sets the value of the regionalCode property.
+     * Define el valor de la propiedad regionalCode.
      * 
      * @param value
      *     allowed object is
@@ -124,7 +127,7 @@ public class PhoneNumber {
     }
 
     /**
-     * Gets the value of the number property.
+     * Obtiene el valor de la propiedad number.
      * 
      * @return
      *     possible object is
@@ -136,7 +139,7 @@ public class PhoneNumber {
     }
 
     /**
-     * Sets the value of the number property.
+     * Define el valor de la propiedad number.
      * 
      * @param value
      *     allowed object is
@@ -148,7 +151,7 @@ public class PhoneNumber {
     }
 
     /**
-     * Gets the value of the type property.
+     * Obtiene el valor de la propiedad type.
      * 
      * @return
      *     possible object is
@@ -160,7 +163,7 @@ public class PhoneNumber {
     }
 
     /**
-     * Sets the value of the type property.
+     * Define el valor de la propiedad type.
      * 
      * @param value
      *     allowed object is
@@ -172,7 +175,7 @@ public class PhoneNumber {
     }
 
     /**
-     * Gets the value of the primary property.
+     * Obtiene el valor de la propiedad primary.
      * 
      * @return
      *     possible object is
@@ -184,7 +187,7 @@ public class PhoneNumber {
     }
 
     /**
-     * Sets the value of the primary property.
+     * Define el valor de la propiedad primary.
      * 
      * @param value
      *     allowed object is
@@ -196,7 +199,7 @@ public class PhoneNumber {
     }
 
     /**
-     * Gets the value of the active property.
+     * Obtiene el valor de la propiedad active.
      * 
      * @return
      *     possible object is
@@ -208,7 +211,7 @@ public class PhoneNumber {
     }
 
     /**
-     * Sets the value of the active property.
+     * Define el valor de la propiedad active.
      * 
      * @param value
      *     allowed object is

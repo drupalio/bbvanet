@@ -7,9 +7,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for Extracto complex type.
+ * <p>Clase Java para Extracto complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="Extracto">
@@ -46,6 +46,7 @@ public class Extracto {
     protected String url;
 
     /**
+<<<<<<< HEAD
      * Gets the value of the externalCode property.
      * 
      * @return
@@ -71,6 +72,9 @@ public class Extracto {
 
     /**
      * Gets the value of the month property.
+=======
+     * Obtiene el valor de la propiedad month.
+>>>>>>> CambiosUser
      * 
      * @return
      *     possible object is
@@ -82,7 +86,7 @@ public class Extracto {
     }
 
     /**
-     * Sets the value of the month property.
+     * Define el valor de la propiedad month.
      * 
      * @param value
      *     allowed object is
@@ -94,7 +98,7 @@ public class Extracto {
     }
 
     /**
-     * Gets the value of the year property.
+     * Obtiene el valor de la propiedad year.
      * 
      * @return
      *     possible object is
@@ -106,7 +110,7 @@ public class Extracto {
     }
 
     /**
-     * Sets the value of the year property.
+     * Define el valor de la propiedad year.
      * 
      * @param value
      *     allowed object is
@@ -118,7 +122,7 @@ public class Extracto {
     }
 
     /**
-     * Gets the value of the generationDate property.
+     * Obtiene el valor de la propiedad generationDate.
      * 
      * @return
      *     possible object is
@@ -130,7 +134,7 @@ public class Extracto {
     }
 
     /**
-     * Sets the value of the generationDate property.
+     * Define el valor de la propiedad generationDate.
      * 
      * @param value
      *     allowed object is
@@ -142,7 +146,7 @@ public class Extracto {
     }
 
     /**
-     * Gets the value of the url property.
+     * Obtiene el valor de la propiedad url.
      * 
      * @return
      *     possible object is
@@ -154,7 +158,7 @@ public class Extracto {
     }
 
     /**
-     * Sets the value of the url property.
+     * Define el valor de la propiedad url.
      * 
      * @param value
      *     allowed object is

@@ -1,201 +1,372 @@
 <application xmlns="http://wadl.dev.java.net/2009/02" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:prefix1="urn:com:bbva:czic:dto:net">
-<grammars>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="urn:com:bbva:jee:arq:spring:core:servicing:utils" xmlns:tns="urn:com:bbva:czic:dto:net" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:com:bbva:czic:dto:net">
-<xs:import namespace="urn:com:bbva:jee:arq:spring:core:servicing:utils"/>
-<xs:element name="AccMovementsResume" type="tns:AccMovementsResume"/>
-<xs:element name="CardCharge" type="tns:CardCharge"/>
-<xs:element name="ContactInfo" type="tns:ContactInfo"/>
-<xs:element name="Customer" type="tns:Customer"/>
-<xs:element name="Document" type="tns:Document"/>
-<xs:element name="Email" type="tns:Email"/>
-<xs:element name="EnumCardChargeCategory" type="tns:EnumCardChargeCategory"/>
-<xs:element name="EnumContactSourceType" type="tns:EnumContactSourceType"/>
-<xs:element name="EnumDocumentType" type="tns:EnumDocumentType"/>
-<xs:element name="EnumDwelingType" type="tns:EnumDwelingType"/>
-<xs:element name="EnumMonth" type="tns:EnumMonth"/>
-<xs:element name="EnumPhoneNumberType" type="tns:EnumPhoneNumberType"/>
-<xs:element name="EnumSegmentType" type="tns:EnumSegmentType"/>
-<xs:element name="PhoneNumber" type="tns:PhoneNumber"/>
-<xs:element name="Place" type="tns:Place"/>
-<xs:complexType name="CardCharge">
-<xs:sequence>
-<xs:element minOccurs="0" name="category" type="tns:EnumCardChargeCategory"/>
-<xs:element minOccurs="0" name="amount" type="ns1:money"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="AccMovementsResume">
-<xs:sequence>
-<xs:element minOccurs="0" name="income" type="ns1:money"/>
-<xs:element minOccurs="0" name="outcome" type="ns1:money"/>
-<xs:element minOccurs="0" name="balance" type="ns1:money"/>
-<xs:element minOccurs="0" name="month" type="tns:EnumMonth"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="Customer">
-<xs:sequence>
-<xs:element minOccurs="0" name="id" type="xs:string"/>
-<xs:element minOccurs="0" name="document" type="tns:Document"/>
-<xs:element minOccurs="0" name="username" type="xs:string"/>
-<xs:element minOccurs="0" name="name" type="xs:string"/>
-<xs:element minOccurs="0" name="segment" type="tns:EnumSegmentType"/>
-<xs:element minOccurs="0" name="contactInfo" type="tns:ContactInfo"/>
-<xs:element minOccurs="0" name="homeLocation" type="tns:Place"/>
-<xs:element minOccurs="0" name="stratum" type="xs:int"/>
-<xs:element minOccurs="0" name="residenceYears" type="xs:int"/>
-<xs:element minOccurs="0" name="homeMembers" type="xs:int"/>
-<xs:element minOccurs="0" name="dwelingType" type="tns:EnumDwelingType"/>
-<xs:element minOccurs="0" name="officeLocation" type="tns:Place"/>
-<xs:element minOccurs="0" name="lastAccessDate" type="xs:dateTime"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="Document">
-<xs:sequence>
-<xs:element minOccurs="0" name="number" type="xs:string"/>
-<xs:element minOccurs="0" name="type" type="tns:EnumDocumentType"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="ContactInfo">
-<xs:sequence>
-<xs:element maxOccurs="unbounded" minOccurs="0" name="phoneNumbers" nillable="true" type="tns:PhoneNumber"/>
-<xs:element maxOccurs="unbounded" minOccurs="0" name="emails" nillable="true" type="tns:Email"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="PhoneNumber">
-<xs:sequence>
-<xs:element minOccurs="0" name="contactSource" type="tns:EnumContactSourceType"/>
-<xs:element minOccurs="0" name="countryCode" type="xs:string"/>
-<xs:element minOccurs="0" name="regionalCode" type="xs:string"/>
-<xs:element minOccurs="0" name="number" type="xs:string"/>
-<xs:element minOccurs="0" name="type" type="tns:EnumPhoneNumberType"/>
-<xs:element minOccurs="0" name="primary" type="xs:boolean"/>
-<xs:element minOccurs="0" name="active" type="xs:boolean"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="Email">
-<xs:sequence>
-<xs:element minOccurs="0" name="source" type="tns:EnumContactSourceType"/>
-<xs:element minOccurs="0" name="address" type="xs:string"/>
-<xs:element minOccurs="0" name="primary" type="xs:boolean"/>
-<xs:element minOccurs="0" name="active" type="xs:boolean"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="Place">
-<xs:sequence>
-<xs:element minOccurs="0" name="cityName" type="xs:string"/>
-<xs:element minOccurs="0" name="countryName" type="xs:string"/>
-<xs:element minOccurs="0" name="stateName" type="xs:string"/>
-<xs:element minOccurs="0" name="postalAddress" type="xs:string"/>
-</xs:sequence>
-</xs:complexType>
-<xs:simpleType name="EnumCardChargeCategory">
-<xs:restriction base="xs:string">
-<xs:enumeration value="OCIO"/>
-<xs:enumeration value="REGALOS"/>
-<xs:enumeration value="LIBROS"/>
-<xs:enumeration value="DISCOS"/>
-<xs:enumeration value="COMERCIOBASICO"/>
-<xs:enumeration value="ROPA"/>
-<xs:enumeration value="CALZADOPERSONAL"/>
-<xs:enumeration value="VARIOS"/>
-<xs:enumeration value="COMPRASPORCANALES"/>
-</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="EnumMonth">
-<xs:restriction base="xs:string">
-<xs:enumeration value="JANUARY"/>
-<xs:enumeration value="FEBRUARY"/>
-<xs:enumeration value="MARCH"/>
-<xs:enumeration value="APRIL"/>
-<xs:enumeration value="MAY"/>
-<xs:enumeration value="JUNE"/>
-<xs:enumeration value="JULY"/>
-<xs:enumeration value="AUGUST"/>
-<xs:enumeration value="SEPTEMBER"/>
-<xs:enumeration value="OCTOBER"/>
-<xs:enumeration value="NOVEMBER"/>
-<xs:enumeration value="DECEMBER"/>
-</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="EnumDocumentType">
-<xs:restriction base="xs:string">
-<xs:enumeration value="CEDULACIUDADANIA"/>
-<xs:enumeration value="CEDULAEXTRANJERIA"/>
-<xs:enumeration value="TARJETAIDENTIDAD"/>
-<xs:enumeration value="PASAPORTE"/>
-<xs:enumeration value="IDENTIFICACIONPERSONAL"/>
-</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="EnumSegmentType">
-<xs:restriction base="xs:string">
-<xs:enumeration value="PERSONA"/>
-<xs:enumeration value="JURIDICA"/>
-<xs:enumeration value="CORPORATIVO"/>
-<xs:enumeration value="OTRO"/>
-</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="EnumContactSourceType">
-<xs:restriction base="xs:string">
-<xs:enumeration value="MOBILE"/>
-<xs:enumeration value="WEB"/>
-<xs:enumeration value="THIRD_PARTY"/>
-</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="EnumPhoneNumberType">
-<xs:restriction base="xs:string">
-<xs:enumeration value="MOBILE"/>
-<xs:enumeration value="LANDLINE"/>
-<xs:enumeration value="FAX"/>
-</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="EnumDwelingType">
-<xs:restriction base="xs:string">
-<xs:enumeration value="VALIDAR"/>
-</xs:restriction>
-</xs:simpleType>
-</xs:schema>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:com:bbva:jee:arq:spring:core:servicing:utils" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:com:bbva:jee:arq:spring:core:servicing:utils">
-<xs:element name="money" type="tns:money"/>
-<xs:complexType name="money">
-<xs:sequence>
-<xs:element minOccurs="0" name="amount" type="xs:decimal"/>
-<xs:element minOccurs="0" name="currency" type="xs:string"/>
-</xs:sequence>
-</xs:complexType>
-</xs:schema>
-</grammars>
-<resources base="http://localhost:8080/czic/customers">
-<resource path="/V01" id="com.bbva.czic.customers.facade.v01.impl.SrvCustomersV01">
-<resource path="/{customerId}">
-<param name="customerId" style="template" type="xs:string"/>
-<method name="GET" id="getCustomer">
-<request/>
-<response>
-<representation mediaType="application/json" element="prefix1:Customer"/>
-</response>
-</method>
-</resource>
-<resource path="/{customerId}/accounts/movementsResume">
-<param name="customerId" style="template" type="xs:string"/>
-<method name="GET" id="listAccountsMovementsResume">
-<request>
-<param name="$filter" style="query" default="null" type="xs:string"/>
-</request>
-<response>
-<representation mediaType="application/json"/>
-</response>
-</method>
-</resource>
-<resource path="/{customerId}/creditCard/cardCharges">
-<param name="customerId" style="template" type="xs:string"/>
-<method name="GET" id="listCreditCardsCharges">
-<request>
-<param name="$filter" style="query" default="null" type="xs:string"/>
-</request>
-<response>
-<representation mediaType="application/json"/>
-</response>
-</method>
-</resource>
-</resource>
-</resources>
+	<grammars>
+		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:com:bbva:jee:arq:spring:core:servicing:utils" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:com:bbva:jee:arq:spring:core:servicing:utils">
+			<xs:element name="money" type="tns:money"/>
+			<xs:complexType name="money">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="amount" type="xs:decimal"/>
+					<xs:element minOccurs="0" name="currency" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:schema>
+		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="urn:com:bbva:jee:arq:spring:core:servicing:utils" xmlns:tns="urn:com:bbva:czic:dto:net" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:com:bbva:czic:dto:net">
+			<xs:import namespace="urn:com:bbva:jee:arq:spring:core:servicing:utils"/>
+			<xs:element name="AccMovementsResume" type="tns:AccMovementsResume"/>
+			<xs:element name="Activity" type="tns:Activity"/>
+			<xs:element name="Balance" type="tns:Balance"/>
+			<xs:element name="Card" type="tns:Card"/>
+			<xs:element name="CardCharge" type="tns:CardCharge"/>
+			<xs:element name="City" type="tns:City"/>
+			<xs:element name="Conditions" type="tns:Conditions"/>
+			<xs:element name="ContactInfo" type="tns:ContactInfo"/>
+			<xs:element name="Contract" type="tns:Contract"/>
+			<xs:element name="Country" type="tns:Country"/>
+			<xs:element name="Customer" type="tns:Customer"/>
+			<xs:element name="CustomerOperation" type="tns:CustomerOperation"/>
+			<xs:element name="Document" type="tns:Document"/>
+			<xs:element name="Email" type="tns:Email"/>
+			<xs:element name="EnumCardChargeCategory" type="tns:EnumCardChargeCategory"/>
+			<xs:element name="EnumContactSourceType" type="tns:EnumContactSourceType"/>
+			<xs:element name="EnumDocumentType" type="tns:EnumDocumentType"/>
+			<xs:element name="EnumDwelingType" type="tns:EnumDwelingType"/>
+			<xs:element name="EnumMonth" type="tns:EnumMonth"/>
+			<xs:element name="EnumPhoneNumberType" type="tns:EnumPhoneNumberType"/>
+			<xs:element name="EnumSegmentType" type="tns:EnumSegmentType"/>
+			<xs:element name="Extracto" type="tns:Extracto"/>
+			<xs:element name="Function" type="tns:Function"/>
+			<xs:element name="Location" type="tns:Location"/>
+			<xs:element name="Movement" type="tns:Movement"/>
+			<xs:element name="Office" type="tns:Office"/>
+			<xs:element name="Operation" type="tns:Operation"/>
+			<xs:element name="PhoneNumber" type="tns:PhoneNumber"/>
+			<xs:element name="Place" type="tns:Place"/>
+			<xs:element name="Product" type="tns:Product"/>
+			<xs:element name="State" type="tns:State"/>
+			<xs:complexType name="Customer">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="id" type="xs:string"/>
+					<xs:element minOccurs="0" name="document" type="tns:Document"/>
+					<xs:element minOccurs="0" name="username" type="xs:string"/>
+					<xs:element minOccurs="0" name="name" type="xs:string"/>
+					<xs:element minOccurs="0" name="segment" type="tns:EnumSegmentType"/>
+					<xs:element minOccurs="0" name="contactInfo" type="tns:ContactInfo"/>
+					<xs:element minOccurs="0" name="homeLocation" type="tns:Place"/>
+					<xs:element minOccurs="0" name="stratum" type="xs:int"/>
+					<xs:element minOccurs="0" name="residenceYears" type="xs:int"/>
+					<xs:element minOccurs="0" name="homeMembers" type="xs:int"/>
+					<xs:element minOccurs="0" name="dwelingType" type="tns:EnumDwelingType"/>
+					<xs:element minOccurs="0" name="officeLocation" type="tns:Place"/>
+					<xs:element minOccurs="0" name="lastAccessDate" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Document">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="number" type="xs:string"/>
+					<xs:element minOccurs="0" name="type" type="tns:EnumDocumentType"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ContactInfo">
+				<xs:sequence>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="phoneNumbers" nillable="true" type="tns:PhoneNumber"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="emails" nillable="true" type="tns:Email"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="PhoneNumber">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="contactSource" type="tns:EnumContactSourceType"/>
+					<xs:element minOccurs="0" name="countryCode" type="xs:string"/>
+					<xs:element minOccurs="0" name="regionalCode" type="xs:string"/>
+					<xs:element minOccurs="0" name="number" type="xs:string"/>
+					<xs:element minOccurs="0" name="type" type="tns:EnumPhoneNumberType"/>
+					<xs:element minOccurs="0" name="primary" type="xs:boolean"/>
+					<xs:element minOccurs="0" name="active" type="xs:boolean"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Email">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="source" type="tns:EnumContactSourceType"/>
+					<xs:element minOccurs="0" name="address" type="xs:string"/>
+					<xs:element minOccurs="0" name="primary" type="xs:boolean"/>
+					<xs:element minOccurs="0" name="active" type="xs:boolean"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Place">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="cityName" type="xs:string"/>
+					<xs:element minOccurs="0" name="countryName" type="xs:string"/>
+					<xs:element minOccurs="0" name="stateName" type="xs:string"/>
+					<xs:element minOccurs="0" name="postalAddress" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="AccMovementsResume">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="income" type="ns1:money"/>
+					<xs:element minOccurs="0" name="outcome" type="ns1:money"/>
+					<xs:element minOccurs="0" name="balance" type="ns1:money"/>
+					<xs:element minOccurs="0" name="month" type="tns:EnumMonth"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="CardCharge">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="category" type="tns:EnumCardChargeCategory"/>
+					<xs:element minOccurs="0" name="amount" type="ns1:money"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="CustomerOperation">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="card" type="tns:Card"/>
+					<xs:element minOccurs="0" name="operation" type="tns:Operation"/>
+					<xs:element minOccurs="0" name="customer" type="tns:Customer"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Card">
+				<xs:complexContent>
+					<xs:extension base="tns:Product">
+						<xs:sequence>
+							<xs:element minOccurs="0" name="cardNumber" type="xs:string"/>
+							<xs:element minOccurs="0" name="nip" type="xs:string"/>
+						</xs:sequence>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:complexType name="Product">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="id" type="xs:string"/>
+					<xs:element minOccurs="0" name="type" type="xs:string"/>
+					<xs:element minOccurs="0" name="name" type="xs:string"/>
+					<xs:element minOccurs="0" name="alias" type="xs:string"/>
+					<xs:element minOccurs="0" name="financialState" type="xs:string"/>
+					<xs:element minOccurs="0" name="visible" type="xs:boolean"/>
+					<xs:element minOccurs="0" name="operable" type="xs:boolean"/>
+					<xs:element minOccurs="0" name="balance" type="tns:Balance"/>
+					<xs:element minOccurs="0" name="contactInfo" type="tns:ContactInfo"/>
+					<xs:element minOccurs="0" name="conditions" type="tns:Conditions"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="movement" nillable="true" type="tns:Movement"/>
+					<xs:element minOccurs="0" name="contract" type="tns:Contract"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="extracts" nillable="true" type="tns:Extracto"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Balance">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="total" type="ns1:money"/>
+					<xs:element minOccurs="0" name="availableBalance" type="ns1:money"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Conditions">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="alias" type="xs:string"/>
+					<xs:element minOccurs="0" name="category" type="xs:string"/>
+					<xs:element minOccurs="0" name="description" type="xs:string"/>
+					<xs:element minOccurs="0" name="openingDate" type="xs:string"/>
+					<xs:element minOccurs="0" name="commission" type="xs:string"/>
+					<xs:element minOccurs="0" name="office" type="tns:Office"/>
+					<xs:element minOccurs="0" name="mobilizationConditions" type="xs:string"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="activities" nillable="true" type="tns:Activity"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Office">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="code" type="xs:string"/>
+					<xs:element minOccurs="0" name="name" type="xs:string"/>
+					<xs:element minOccurs="0" name="location" type="tns:Location"/>
+					<xs:element minOccurs="0" name="postalAddress" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Location">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="city" type="tns:City"/>
+					<xs:element minOccurs="0" name="country" type="tns:Country"/>
+					<xs:element minOccurs="0" name="state" type="tns:State"/>
+					<xs:element minOccurs="0" name="postalAddress" type="xs:string"/>
+					<xs:element minOccurs="0" name="category" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="City">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="id" type="xs:string"/>
+					<xs:element minOccurs="0" name="name" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Country">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="id" type="xs:string"/>
+					<xs:element minOccurs="0" name="name" type="xs:string"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="states" nillable="true" type="tns:State"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="State">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="id" type="xs:string"/>
+					<xs:element minOccurs="0" name="name" type="xs:string"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="cities" nillable="true" type="tns:City"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Activity">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="operationDate" type="xs:string"/>
+					<xs:element minOccurs="0" name="executionDate" type="xs:string"/>
+					<xs:element minOccurs="0" name="function" type="tns:Function"/>
+					<xs:element minOccurs="0" name="amount" type="ns1:money"/>
+					<xs:element minOccurs="0" name="reference" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Function">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="id" type="xs:string"/>
+					<xs:element minOccurs="0" name="type" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Movement">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="id" type="xs:string"/>
+					<xs:element minOccurs="0" name="concept" type="xs:string"/>
+					<xs:element minOccurs="0" name="transactionDate" type="xs:string"/>
+					<xs:element minOccurs="0" name="operationDate" type="xs:string"/>
+					<xs:element minOccurs="0" name="sourceReference" type="xs:string"/>
+					<xs:element minOccurs="0" name="destinationReference" type="xs:string"/>
+					<xs:element minOccurs="0" name="operation" type="tns:Operation"/>
+					<xs:element minOccurs="0" name="office" type="tns:Office"/>
+					<xs:element minOccurs="0" name="status" type="xs:string"/>
+					<xs:element minOccurs="0" name="value" type="ns1:money"/>
+					<xs:element minOccurs="0" name="balance" type="ns1:money"/>
+					<xs:element minOccurs="0" name="numberOfQuotas" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Operation">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="code" type="xs:string"/>
+					<xs:element minOccurs="0" name="description" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Contract">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="number" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Extracto">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="month" type="xs:string"/>
+					<xs:element minOccurs="0" name="year" type="xs:string"/>
+					<xs:element minOccurs="0" name="generationDate" type="xs:string"/>
+					<xs:element minOccurs="0" name="url" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:simpleType name="EnumDocumentType">
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="CEDULACIUDADANIA"/>
+					<xs:enumeration value="CEDULAEXTRANJERIA"/>
+					<xs:enumeration value="TARJETAIDENTIDAD"/>
+					<xs:enumeration value="PASAPORTE"/>
+					<xs:enumeration value="IDENTIFICACIONPERSONAL"/>
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:simpleType name="EnumSegmentType">
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="PERSONA"/>
+					<xs:enumeration value="JURIDICA"/>
+					<xs:enumeration value="CORPORATIVO"/>
+					<xs:enumeration value="OTRO"/>
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:simpleType name="EnumContactSourceType">
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="MOBILE"/>
+					<xs:enumeration value="WEB"/>
+					<xs:enumeration value="THIRD_PARTY"/>
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:simpleType name="EnumPhoneNumberType">
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="MOBILE"/>
+					<xs:enumeration value="LANDLINE"/>
+					<xs:enumeration value="FAX"/>
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:simpleType name="EnumDwelingType">
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="VALIDAR"/>
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:simpleType name="EnumMonth">
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="JANUARY"/>
+					<xs:enumeration value="FEBRUARY"/>
+					<xs:enumeration value="MARCH"/>
+					<xs:enumeration value="APRIL"/>
+					<xs:enumeration value="MAY"/>
+					<xs:enumeration value="JUNE"/>
+					<xs:enumeration value="JULY"/>
+					<xs:enumeration value="AUGUST"/>
+					<xs:enumeration value="SEPTEMBER"/>
+					<xs:enumeration value="OCTOBER"/>
+					<xs:enumeration value="NOVEMBER"/>
+					<xs:enumeration value="DECEMBER"/>
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:simpleType name="EnumCardChargeCategory">
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="OCIO"/>
+					<xs:enumeration value="REGALOS"/>
+					<xs:enumeration value="LIBROS"/>
+					<xs:enumeration value="DISCOS"/>
+					<xs:enumeration value="COMERCIOBASICO"/>
+					<xs:enumeration value="ROPA"/>
+					<xs:enumeration value="CALZADOPERSONAL"/>
+					<xs:enumeration value="VARIOS"/>
+					<xs:enumeration value="COMPRASPORCANALES"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:schema>
+	</grammars>
+	<resources base="http://localhost:8080/czic/customers">
+		<resource path="/V01" id="com.bbva.czic.customers.facade.v01.impl.SrvCustomersV01">
+			<resource path="/accounts/movementsResume">
+				<method name="GET" id="listAccountsMovementsResume">
+					<request>
+						<param name="$filter" style="query" type="xs:string"/>
+					</request>
+					<response>
+						<representation mediaType="application/json"/>
+					</response>
+				</method>
+			</resource>
+			<resource path="/creditCard/cardCharges">
+				<method name="GET" id="listCreditCardsCharges">
+					<request>
+						<param name="$filter" style="query" type="xs:string"/>
+					</request>
+					<response>
+						<representation mediaType="application/json"/>
+					</response>
+				</method>
+			</resource>
+			<resource path="/customerChannels/{channelId}/verifyCustomer">
+				<param name="channelId" style="template" type="xs:string"/>
+				<method name="POST" id="verifyCustomer">
+					<request>
+						<representation mediaType="application/json"/>
+					</request>
+					<response>
+						<representation mediaType="application/json"/>
+					</response>
+				</method>
+			</resource>
+			<resource path="/custommerChannels/{channelId}">
+				<param name="channelId" style="template" type="xs:string"/>
+				<method name="PUT" id="addChannel">
+					<request/>
+					<response>
+						<representation mediaType="application/json"/>
+					</response>
+				</method>
+			</resource>
+			<resource path="/getCustomer">
+				<method name="GET" id="getCustomer">
+					<response>
+						<representation mediaType="application/json"/>
+					</response>
+				</method>
+			</resource>
+		</resource>
+	</resources>
 </application>

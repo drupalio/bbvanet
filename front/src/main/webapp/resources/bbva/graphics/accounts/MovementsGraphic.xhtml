@@ -15,10 +15,9 @@
 </composite:interface>
 
 <composite:implementation>
-	<div class="hidden-xs col-sm-5 bbva-chart">
+	<div class="hidden-xs col-sm-4 bbva-chart">
 		<div id="savings" class="chart-lines">
 			<div id="chart2_8" class="c3" />
-	<P style="text-align: left;"/>
 			<script>
 			var title;
 			var xColumns = [];
@@ -29,7 +28,7 @@
 			
 			<c:forEach var="lineItemUI" items="${cc.attrs.lineConfigUI.lineItemUIList}" varStatus="status">
 			title = ("${lineItemUI.label}");
-			currency= "$";
+			currency= ("${lineItemUI.value.currency}");
 			label = ("${lineItemUI.label}");
 			xColumns.push("${lineItemUI.value.amount}");
 			</c:forEach>
@@ -49,33 +48,33 @@
 				legend : {
 					show : false
 				},
-				grid : {
-					y : {
-						lines : [ {
-							value : 0
-						}, {
-							value : 500000000
-						}, {
-							value : 1000000000
-						}, {
-							value : 1500000000
-						}, {
-							value : 2000000000
-						}, {
-							value : 2500000000
-						}, {
-							value : 3000000000
-						}, {
-							value : 3500000000
-						}, {
-							value : 4000000000
-						}, {
-							value : 4500000000
-						}, {
-							value : 5000000000
-						},],
-					}
-				},
+// 				grid : {
+// 					y : {
+// 						lines : [ {
+// 							value : 0
+// 						}, {
+// 							value : 500000000
+// 						}, {
+// 							value : 1000000000
+// 						}, {
+// 							value : 1500000000
+// 						}, {
+// 							value : 2000000000
+// 						}, {
+// 							value : 2500000000
+// 						}, {
+// 							value : 3000000000
+// 						}, {
+// 							value : 3500000000
+// 						}, {
+// 							value : 4000000000
+// 						}, {
+// 							value : 4500000000
+// 						}, {
+// 							value : 5000000000
+// 						},],
+// 					}
+// 				},
 				axis : {
 					x : {
 						show : false,
@@ -86,6 +85,7 @@
 				},
 				tooltip : {
 					format : {
+						title:function (x){return "";},
 						name: function (name, ratio, id, index) { return "Serie 1: "; },
 						value: function (value, ratio, id) {
 			                var format = d3.format(',');			                

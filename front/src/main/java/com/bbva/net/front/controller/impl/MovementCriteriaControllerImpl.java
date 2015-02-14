@@ -11,16 +11,23 @@ import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
 
+import org.apache.commons.collections.CollectionUtils;
+import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
 
 import com.bbva.net.back.facade.MovementsAccountFacade;
 import com.bbva.net.back.facade.MultiValueGroupFacade;
 import com.bbva.net.back.model.citeriaMovements.MovementCriteriaDto;
+import com.bbva.net.back.model.comboFilter.EnumPeriodType;
 import com.bbva.net.back.model.commons.BalanceRangeDto;
 import com.bbva.net.back.model.commons.DateRangeDto;
 import com.bbva.net.back.model.enums.RenderAttributes;
 import com.bbva.net.back.model.movements.MovementDetailDto;
 import com.bbva.net.back.model.movements.MovementDto;
+import com.bbva.net.back.predicate.ConceptMovementPredicate;
+import com.bbva.net.back.predicate.ExpensesPredicate;
+import com.bbva.net.back.predicate.IncomesPredicate;
+import com.bbva.net.back.service.impl.DateFilterServiceImpl;
 import com.bbva.net.front.controller.MovementCriteriaController;
 import com.bbva.net.front.delegate.GraphicLineDelegate;
 import com.bbva.net.front.helper.MessagesHelper;
@@ -45,15 +52,15 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 	private StringBuilder messageBalance;
 
-	private String sinceText, toText, selectDate, sinceDatestr, toDatestr;
+	private String sinceText, toText, selectDate, sinceDatestr, toDatestr, titleInOrExp;
 
 	private Date sinceDate, toDate;
 
 	private MovementCriteriaDto movementCriteria = new MovementCriteriaDto();
 
-	private BalanceRangeDto balanceRange = new BalanceRangeDto();
+	private BalanceRangeDto balanceRange = null;
 
-	private DateRangeDto dateRange = new DateRangeDto();
+	private DateRangeDto dateRange = null;
 
 	@Resource(name = "multiValueGroupFacade")
 	private transient MultiValueGroupFacade multiValueGroupFacade;
@@ -75,50 +82,144 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	@Override
 	@PostConstruct
 	public void init() {
+		super.init();
+		setTitle(MessagesHelper.INSTANCE.getString("text.last.movments"));
 		LOGGER.info("Initialize MovementesAccountController");
-		if (movementsList == null) {
-			getAllMovements();
-		}
-
-		this.graphicLineMovements = graphicLineDelegate.getMovementAccount(movementsList);
 		cleanFilters();
+	}
+
+	@Override
+	public void cleanFilters() {
+		System.out.println("limpias");
+
+		renderComponents.put(RenderAttributes.CALENDAR.toString(), true);
+		renderComponents.put(RenderAttributes.BUTTONDATE.toString(), true);
+		renderComponents.put(RenderAttributes.BUTTONBALANCE.toString(), true);
+		// Filtros
+		renderComponents.put(RenderAttributes.FILTERDATE.toString(), false);
+		renderComponents.put(RenderAttributes.BALANCEFILTER.toString(), false);
+		renderComponents.put(RenderAttributes.INCOMEOREXPENSESFILTER.toString(), false);
+		renderComponents.put(RenderAttributes.MOVEMENTSFILTER.toString(), false);
 
 	}
 
 	@Override
-	public List<MovementDto> getAllMovements() {
-		movementsList = new ArrayList<MovementDto>();
-		movementsList = this.movementsFacade.listMovements(
-				"00130073000296247953"/* getSelectedProduct().getProductId() */, getCurrentUser(), getSelectedProduct()
-						.getSubTypeProd(), null, null, 1, 10);
+	public void cleanFilters(ActionEvent event) {
+		movementCriteria = new MovementCriteriaDto();
+		movementCriteria.setBalanceRange(new BalanceRangeDto());
+		movementCriteria.setDateRange(new DateRangeDto());
+		setSinceText(new String());
+		setToText(new String());
+		setSinceDatestr(new String());
+		setToDatestr(new String());
+		messageBalance = new StringBuilder();
+		sinceDate = new Date();
+		toDate = new Date();
+		selectDate = new String();
+		cleanFilters();
+	}
 
-		return movementsList;
+	public void criteriaSearch() {
+
+		if (this.dateRange != null) {
+			setDateRangePc(this.dateRange);
+		}
+		if (this.balanceRange != null) {
+			setBalanceRangePc(this.balanceRange);
+		}
+		setProductTypePc(getSelectedProduct().getSubTypeProd());
+		setProductIdPc(getSelectedProduct().getProductId());
+		search();
+		this.movementsList = getCurrentList();
+		setTitle(MessagesHelper.INSTANCE.getString("text.last.movments"));
+		getRenderTable().put(RenderAttributes.MOVEMENTSTABLE.toString(), true);
+		getRenderTable().put(RenderAttributes.CHECKTABLE.toString(), false);
+	}
+
+	public void nextPage(ActionEvent event) {
+		criteriaSearch();
+	}
+
+	public DateRangeDto calculateDate(String date) {
+		EnumPeriodType periodType = EnumPeriodType.valueOfLabel(date);
+		if (!(periodType == (null))) {
+			this.dateRange = new DateRangeDto();
+			this.dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
+		}
+		return dateRange;
+	}
+
+	@Override
+	public List<MovementDto> getAllMovements() {
+		this.movementsList = new ArrayList<MovementDto>();
+		dateRange = calculateDate("Último mes");
+
+		// TODO oroductId
+		this.movementsList = this.movementsFacade.listMovements(
+				"00130073000296247953"/* getSelectedProduct().getProductId() */, getSelectedProduct().getSubTypeProd(),
+				dateRange, null, 1, 10);
+		if (this.movementsList.size() >= 10)
+			getRenderTable().put(RenderAttributes.FOOTERTABLEMOVEMENT.toString(), true);
+		else
+			getRenderTable().put(RenderAttributes.FOOTERTABLEMOVEMENT.toString(), false);
+		this.graphicLineMovements = graphicLineDelegate.getMovementAccount(this.movementsList);
+		return this.movementsList;
 	}
 
 	@Override
 	public void onMovementSelected(SelectEvent selectEvent) {
 		super.onMovementSelected(selectEvent);
 		movementDetail = new MovementDetailDto();
-		movementDetail = this.movementsFacade.getMovement(getSelectedProduct().getProductId(), getCurrentUser(),
-				getSelectedProduct().getTypeProd().value(), getSelectedMovements().getMovementId());
+		movementDetail = this.movementsFacade.getMovement(getSelectedProduct().getProductId(), getSelectedProduct()
+				.getTypeProd().value(), getSelectedMovements().getMovementId());
 		System.out.println("mov id selected: " + getSelectedMovements().getMovementId());
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void searchMovementByFilter(final ActionEvent event) {
 		System.out.println("Movimeintos x criteria \n");
 
 		if (renderComponents.get(RenderAttributes.FILTERDATE.toString())) {
-			System.out.println(" selectDate " + movementCriteria.getSelectDate());
+			this.dateRange = calculateDate(this.getSelectDate());
+			criteriaSearch();
+
 		} else if (renderComponents.get(RenderAttributes.BALANCEFILTER.toString())) {
-			System.out.println("Ingresos o gastos " + movementCriteria.getIncomesOrExpenses());
+			this.balanceRange = new BalanceRangeDto();
+			this.balanceRange.setBalanceSince(movementCriteria.getBalanceRange().getBalanceSince());
+			this.balanceRange.setBalanceTo(movementCriteria.getBalanceRange().getBalanceTo());
 
 			System.out.println("Since " + movementCriteria.getBalanceRange().getBalanceSince());
 			System.out.println("To " + movementCriteria.getBalanceRange().getBalanceTo());
+			criteriaSearch();
 		} else if (renderComponents.get(RenderAttributes.INCOMEOREXPENSESFILTER.toString())) {
+			// Get only movements by income or expenses
+			System.out.println(movementCriteria.getIncomesOrExpenses());
+			if (movementCriteria.getIncomesOrExpenses() == "1") {
+				final List<MovementDto> incomeMovements = (List<MovementDto>)CollectionUtils.select(this.movementsList,
+						new IncomesPredicate());
+				this.movementsList = incomeMovements;
+			}
+
+			if (movementCriteria.getIncomesOrExpenses() == "2") {
+				final List<MovementDto> expensesMovements = (List<MovementDto>)CollectionUtils.select(
+						this.movementsList, new ExpensesPredicate());
+				this.movementsList = expensesMovements;
+			}
+
+			getRenderTable().put(RenderAttributes.MOVEMENTSTABLE.toString(), true);
+			getRenderTable().put(RenderAttributes.CHECKTABLE.toString(), false);
+			setTitle(MessagesHelper.INSTANCE.getString("text.last.movments"));
 
 		} else if (renderComponents.get(RenderAttributes.MOVEMENTSFILTER.toString())) {
-
+			// Get only movements by concept
+			final List<MovementDto> movementsByConcept = (List<MovementDto>)CollectionUtils.select(this.movementsList,
+					new ConceptMovementPredicate(movementCriteria.getMovement()));
+			this.movementsList = movementsByConcept;
+			getRenderTable().put(RenderAttributes.MOVEMENTSTABLE.toString(), true);
+			getRenderTable().put(RenderAttributes.CHECKTABLE.toString(), false);
+			setTitle(MessagesHelper.INSTANCE.getString("text.last.movments"));
+			RequestContext.getCurrentInstance().update(":detailAccounts:formu:detalMov");
 		}
 
 	}
@@ -149,29 +250,25 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		renderComponents.put(RenderAttributes.BALANCEFILTER.toString(), true);
 		setSinceText(SINCE_TITLE + ": ");
 		setToText(TO_TITLE + ": ");
-		System.out.println(SINCE_TITLE + movementCriteria.getBalanceRange().getBalanceSince());
-		System.out.println(TO_TITLE + ": " + movementCriteria.getBalanceRange().getBalanceTo());
 	}
 
 	@Override
 	public void setIncomeExpensesFilter(final ActionEvent event) {
-		System.out.println("Method searchINcome expenses filter");
+		System.out.println("set IncomeOrExpensesFilter");
 		renderComponents.put(RenderAttributes.INCOMEOREXPENSESFILTER.toString(), true);
+		if (movementCriteria.getIncomesOrExpenses() == "1")
+			setTitleInOrExp(MessagesHelper.INSTANCE.getString("select.radio.in"));
+		else if (movementCriteria.getIncomesOrExpenses() == "2")
+			setTitleInOrExp(MessagesHelper.INSTANCE.getString("select.radio.out"));
+		else
+			setTitleInOrExp(MessagesHelper.INSTANCE.getString("select.radio.in.out"));
 		System.out.println(movementCriteria.getIncomesOrExpenses());
 	}
 
 	@Override
-	public void cleanFilters() {
-		System.out.println("limpias");
-		movementCriteria = new MovementCriteriaDto();
-		renderComponents.put(RenderAttributes.CALENDAR.toString(), true);
-		renderComponents.put(RenderAttributes.BUTTONDATE.toString(), true);
-		renderComponents.put(RenderAttributes.BUTTONBALANCE.toString(), true);
-		// Filtros
-		renderComponents.put(RenderAttributes.FILTERDATE.toString(), false);
-		renderComponents.put(RenderAttributes.BALANCEFILTER.toString(), false);
-		renderComponents.put(RenderAttributes.INCOMEOREXPENSESFILTER.toString(), false);
-		renderComponents.put(RenderAttributes.MOVEMENTSFILTER.toString(), false);
+	public void setMovementConcept(final ActionEvent event) {
+		System.out.println("Movement concept");
+		renderComponents.put(RenderAttributes.MOVEMENTSFILTER.toString(), true);
 
 	}
 
@@ -207,8 +304,8 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	@Override
 	public void setCustomDate(final ActionEvent event) {
 		System.out.println("setCustomDate");
-		renderComponents.put(RenderAttributes.INCOMEOREXPENSESFILTER.toString(), true);
-
+		renderComponents.put(RenderAttributes.FILTERDATE.toString(), true);
+		this.dateRange = new DateRangeDto();
 		this.dateRange.setDateSince(getSinceDate());
 		this.dateRange.setDateTo(getToDate());
 		if (!(getSinceDate() == (null)) && !(getToDate() == (null))) {
@@ -257,7 +354,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	/**
 	 * @param sinceText the sinceText to set
 	 */
-	public void setSinceText(String sinceText) {
+	public void setSinceText(final String sinceText) {
 		this.sinceText = sinceText;
 	}
 
@@ -313,8 +410,22 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	/**
 	 * @param toDatestr the toDatestr to set
 	 */
-	public void setToDatestr(String toDatestr) {
+	public void setToDatestr(final String toDatestr) {
 		this.toDatestr = toDatestr;
+	}
+
+	/**
+	 * @return the titleInOrExp
+	 */
+	public String getTitleInOrExp() {
+		return titleInOrExp;
+	}
+
+	/**
+	 * @param titleInOrExp the titleInOrExp to set
+	 */
+	public void setTitleInOrExp(String titleInOrExp) {
+		this.titleInOrExp = titleInOrExp;
 	}
 
 	/**
@@ -404,6 +515,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	/**
 	 * @return the movementsFacade
 	 */
+	@Override
 	public MovementsAccountFacade getMovementsFacade() {
 		return movementsFacade;
 	}
@@ -411,6 +523,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	/**
 	 * @param movementsFacade the movementsFacade to set
 	 */
+	@Override
 	public void setMovementsFacade(MovementsAccountFacade movementsFacade) {
 		this.movementsFacade = movementsFacade;
 	}
@@ -418,6 +531,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	/**
 	 * @return the movementsList
 	 */
+	@Override
 	public List<MovementDto> getMovementsList() {
 		return movementsList;
 	}
@@ -425,6 +539,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	/**
 	 * @param movementsList the movementsList to set
 	 */
+	@Override
 	public void setMovementsList(List<MovementDto> movementsList) {
 		this.movementsList = movementsList;
 	}

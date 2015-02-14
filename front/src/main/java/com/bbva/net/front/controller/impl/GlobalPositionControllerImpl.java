@@ -3,7 +3,6 @@ package com.bbva.net.front.controller.impl;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.faces.event.ComponentSystemEvent;
 
@@ -171,16 +170,15 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	/**
 	 * 
 	 */
-	@PostConstruct
 	public void init() {
 
 		LOGGER.info("STARTING BBVA GLOBAL POSITION .................");
 
 		// Get GlobalProductsDTO by currentUser (visibles and hidden)
-		this.globalProductsDTO = this.globalPositionFacade.getGlobalProductsByUser(getCurrentUser());
+		this.globalProductsDTO = this.globalPositionFacade.getGlobalProductsByUser();
 
 		// Obtiene la lista de resumen de movimientos del serivico REST
-		this.globalResumeMovementsDTO = this.movementsResumeFacade.getMovementsResumeByCustomer(getCurrentUser(), null);
+		this.globalResumeMovementsDTO = this.movementsResumeFacade.getMovementsResumeByCustomer(null);
 
 		// Obtiene la lista de datos para pintar la grafica Deposito electrónico
 		this.globalMonthlyBalance = this.accountMonthBalanceFacade.getAccountMonthlyBalance(DEFAULT_ACCOUNT,
@@ -196,8 +194,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		this.graphicPieInvestmentFunds = graphicPieDelegate.getAccountsfundsProducts(globalProductsDTO);
 
 		// Calculate cards graphics panel
-		this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(getCurrentUser(),
-				null));
+		this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(null));
 
 		// Calculate totals
 		this.totalsProducts = this.globalPositionFacade.getTotalsByProduct(globalProductsDTO);
@@ -356,8 +353,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 		if (MessagesHelper.INSTANCE.getString("text.allCards").equals(cardSelected) || cardSelected.isEmpty()) {
 			cardSelected = MessagesHelper.INSTANCE.getString("text.allCards");
-			this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(
-					getCurrentUser(), dateRange));
+			this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(dateRange));
 		} else {
 
 			this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesFilter(cardSelected,
@@ -390,7 +386,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 				&& MessagesHelper.INSTANCE.getString("text.allAccounts").equals(accountSelected)) {
 
 			this.accountGraphicBarLineUI = this.graphicBarLineDelegate.getInOutBalanceAccount(movementsResumeFacade
-					.getMovementsResumeByCustomer(getCurrentUser(), dateRange));
+					.getMovementsResumeByCustomer(dateRange));
 
 		}
 
