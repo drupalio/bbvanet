@@ -17,7 +17,7 @@ public interface LoanFacade {
 	 * @param user
 	 * @return
 	 */
-	List<LeasingDto> getLeasingByUser(String user);
+	List<LeasingDto> getLeasingByUser();
 
 	/**
 	 * @param user

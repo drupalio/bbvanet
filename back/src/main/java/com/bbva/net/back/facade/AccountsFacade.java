@@ -13,12 +13,12 @@ public interface AccountsFacade {
 	 * @param user
 	 * @return
 	 */
-	List<AccountDto> getAccountsByUser(String user);
+	List<AccountDto> getAccountsByUser();
 
 	/**
 	 * @param user
 	 * @return
 	 */
-	List<AccountDto> getAccountsByUserHidden(String user);
+	List<AccountDto> getAccountsByUserHidden();
 
 }

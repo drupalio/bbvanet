@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<composite:interface>
+	<composite:attribute name="list" type="java.util.List" />
+	<composite:attribute name="sclass" />
+</composite:interface>
+
+<composite:implementation>
+
+	<article>
+		<ul>
+			<p:dataTable id="favoriteOperations" widgetVar="favoriteOperations"
+				var="iOperations" rowIndexVar="findex" value="#{cc.attrs.list}" >
+				<p:column class="head" styleClass="operation" style="font-size: 0.9em;border: 1px solid #D5E2EE !important">
+					<li class="#{cc.attrs.sclass}">
+						<a class="mini-triangled" href="#">
+							<span class="dateText">#{msg['text.favoriteOperations.lastTime']} #{favoriteOperationsController.getDate(iOperations.transactionDate)}</span> 
+							<span style="color: #0065b7;margin-top: 2px !important">#{msg['text.favoriteOperations.tranfer']} #{iOperations.ammount} </span>
+							<span class="dateText-foot" style="margin-top: 1px !important">#{iOperations.origin} - #{iOperations.destination}</span>
+						</a>
+					</li>					
+				</p:column>
+			</p:dataTable>
+		</ul>
+	</article>
+
+</composite:implementation>
+
+</html>

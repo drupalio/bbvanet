@@ -46,7 +46,7 @@ public class LoanControllerImpl extends AbstractBbvaController implements LoanCo
 
 	@Override
 	public List<LeasingDto> getCustomerLeasing() {
-		return this.loanFacade.getLeasingByUser(getCurrentUser());
+		return this.loanFacade.getLeasingByUser();
 	}
 
 	@Override

@@ -55,7 +55,7 @@ public class CardsFacadeImplTest {
 	}
 
 	@Test
-	public void checkgetCardsChargesByUser() {
+	public void checkgetCardsChargesByFilter() {
 		dateRange = new DateRangeDto();
 		Date a = new Date();
 		dateRange.setDateSince(a);
@@ -63,33 +63,14 @@ public class CardsFacadeImplTest {
 
 		Mockito.when(fiqlService.getFiqlQueryByDateRange(dateRange, null, null)).thenReturn("");
 		List<CardCharge> cardCharge = new ArrayList<CardCharge>();
-		Mockito.when(cardsCustomerService.listCreditCardsCharges(DEFAULT_USER, "")).thenReturn(cardCharge);
+		Mockito.when(cardsCustomerService.listCreditCardsCharges("")).thenReturn(cardCharge);
 
 		Mockito.when(cardsMapper.map(cardCharge)).thenReturn(new ArrayList<CardsChargesDto>());
 
-		List<CardsChargesDto> value = cardsFacade.getCardsChargesByUser(DEFAULT_USER, dateRange);
+		List<CardsChargesDto> value = cardsFacade.getCardsChargesByUser(dateRange);
 		Assert.assertNotNull(value);
-		Mockito.verify(this.cardsCustomerService, Mockito.atLeastOnce()).listCreditCardsCharges(DEFAULT_USER, "");
+		Mockito.verify(this.cardsCustomerService, Mockito.atLeastOnce()).listCreditCardsCharges("");
 
 	}
 
-	@Test
-	public void checkgetCardsChargesFilter() {
-		dateRange = new DateRangeDto();
-		Date a = new Date();
-		dateRange.setDateSince(a);
-		dateRange.setDateTo(a);
-
-		Mockito.when(fiqlService.getFiqlQueryByDateRange(dateRange, null, null)).thenReturn("");
-		List<CardCharge> cardCharge = new ArrayList<CardCharge>();
-		Mockito.when(cardChargeService.getCreditCardCharges(DEFAULT_USER, "", "", "", "")).thenReturn(cardCharge);
-
-		Mockito.when(cardsMapper.map(cardCharge)).thenReturn(new ArrayList<CardsChargesDto>());
-
-		List<CardsChargesDto> value = cardsFacade.getCardsChargesFilter(DEFAULT_USER, dateRange);
-		Assert.assertNotNull(value);
-		Mockito.verify(this.cardChargeService, Mockito.atLeastOnce())
-				.getCreditCardCharges(DEFAULT_USER, "", "", "", "");
-
-	}
 }

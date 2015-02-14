@@ -1,6 +1,5 @@
 package com.bbva.net.webservices.executives.impl;
 
-import org.apache.commons.lang.StringUtils;
 import org.apache.cxf.jaxrs.client.WebClient;
 
 import com.bbva.czic.dto.net.Executive;
@@ -15,7 +14,6 @@ public class ExecutiveServiceImpl extends AbstractBbvaRestService implements Exe
 	public Executive getExecutive(String filter, String $fields, String $expands, String $sort) {
 
 		WebClient wc = getJsonWebClient(URL_BASE_EXECUTIVE);
-		if (!StringUtils.isEmpty(filter)) wc.query("$filter", filter);
 		return wc.get(Executive.class);
 	}
 
