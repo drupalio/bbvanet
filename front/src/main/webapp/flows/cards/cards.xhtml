@@ -38,8 +38,9 @@
 			<div class="row afterTable">
 				<bbvaGP:productFooter
 					listProduct="#{customerProductsHidden.creditCards}" />
-				<bbvaGP:totalBalance util="#{msg['text.used']}" currency="$"
-					total="1234" subtotal="567" />
+				<bbvaGP:totalBalance util="#{msg['text.used']}"
+					total="#{globalPositionController.totalsProducts['TC'].total}"
+					subtotal="#{globalPositionController.totalsProducts['TC'].available}" />
 			</div>
 
 		</bbvaContainer:productCardGraphic>

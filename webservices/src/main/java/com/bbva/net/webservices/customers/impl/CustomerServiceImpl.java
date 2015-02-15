@@ -2,6 +2,8 @@ package com.bbva.net.webservices.customers.impl;
 
 import java.util.List;
 
+import javax.ws.rs.core.Response;
+
 import org.apache.cxf.common.util.StringUtils;
 import org.apache.cxf.jaxrs.client.WebClient;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,33 +30,41 @@ public class CustomerServiceImpl extends AbstractBbvaRestService implements Cust
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<AccMovementsResume> listAccountsMovementsResume(String customerId, String filter) {
+	public List<AccMovementsResume> listAccountsMovementsResume(String filter) {
 
-		WebClient wc = getJsonWebClient(URL_BASE_CUSTOMER + customerId + URL_CUSTOMER);
+
+		WebClient wc = getJsonWebClient(URL_BASE_CUSTOMER + URL_CUSTOMER);
 		LOGGER.info("PETICION: " + wc.getCurrentURI());
 		if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
-
-		final List<AccMovementsResume> result = (List<AccMovementsResume>)wc.getCollection(AccMovementsResume.class);
-		final Gson gson = new Gson();
-		String json = gson.toJson(result);
-		LOGGER.info("JSON ASCCOUNT MOVEMENTS RESUME: " + json);
-
-		return result;
+		return (List<AccMovementsResume>)wc.getCollection(AccMovementsResume.class);
+		
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<CardCharge> listCreditCardsCharges(String customerId, String filter) {
-		WebClient wc = getJsonWebClient(URL_BASE_CUSTOMER + customerId + URL_CARDCHARGES);
+	public List<CardCharge> listCreditCardsCharges(String filter) {
+		WebClient wc = getJsonWebClient(URL_BASE_CUSTOMER + URL_CARDCHARGES);
 		if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
 		return (List<CardCharge>)wc.getCollection(CardCharge.class);
 
 	}
 
 	@Override
-	public Customer getCustomer(String customerId) {
-		WebClient wc = getJsonWebClient(URL_BASE_CUSTOMER + customerId);
+	public Customer getCustomer() {
+		WebClient wc = getJsonWebClient(URL_BASE_CUSTOMER);
 		return wc.get(Customer.class);
+	}
+
+	@Override
+	public Response verifyCustomer(String channelId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Response addChannel(String channelId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

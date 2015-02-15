@@ -8,6 +8,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:bbvaGP="http://java.sun.com/jsf/composite/bbva/globalPosition"
 	xmlns:bbvaSituation="http://java.sun.com/jsf/composite/bbva/graphics/situation"
+	xmlns:bbvaOperationFav="http://java.sun.com/jsf/composite/bbva/favoriteOperations"
 	xmlns:bbvaAlert="http://java.sun.com/jsf/composite/bbva/alert"
 	xmlns:bbvaBody="http://java.sun.com/jsf/composite/bbva/body"
 	xmlns:bbvaContainer="http://java.sun.com/jsf/composite/bbva/container"
@@ -170,6 +171,8 @@
 	<ui:define name="contentRight">
 
 		<bbvaSituation:globalSituationPanel />
+		<bbvaOperationFav:operationsPanel list="#{operations}"/>
+
 
 	</ui:define>
 

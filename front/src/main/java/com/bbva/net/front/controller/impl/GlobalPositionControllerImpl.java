@@ -176,7 +176,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 			LOGGER.info("STARTING BBVA GLOBAL POSITION .................");
 			// Get GlobalProductsDTO by currentUser (visibles and hidden)
-			this.globalProductsDTO = this.globalPositionFacade.getGlobalProductsByUser(getCurrentUser());
+			this.globalProductsDTO = this.globalPositionFacade.getGlobalProductsByUser();
 
 			LOGGER.info("Calculando totales................");
 			// Calculate totals
@@ -197,8 +197,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 			try {
 				// Calculate cards graphics panel
-				this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(
-						getCurrentUser(), null));
+				this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(null));
 			} catch (final Exception exception) {
 				exception.printStackTrace();
 			}
@@ -206,8 +205,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 			try {
 				// Obtiene la lista de resumen de movimientos del serivico REST
-				this.globalResumeMovementsDTO = this.movementsResumeFacade.getMovementsResumeByCustomer(
-						getCurrentUser(), null);
+				this.globalResumeMovementsDTO = this.movementsResumeFacade.getMovementsResumeByCustomer(null);
 			} catch (final Exception exception) {
 				exception.printStackTrace();
 			}
@@ -230,6 +228,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 			LOGGER.info("Calculando gráfica de cuentas ................");
 			// Calculate income, output and balance by Account Graphic
 			this.accountGraphicBarLineUI = this.graphicBarLineDelegate.getInOutBalanceAccount(globalResumeMovementsDTO);
+
 
 		} catch (final Exception exception) {
 			LOGGER.info("HA HABIDO UNA EXCEPTION EN GLOBAL POSITION");
@@ -384,8 +383,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 		if (MessagesHelper.INSTANCE.getString("text.allCards").equals(cardSelected) || cardSelected.isEmpty()) {
 			cardSelected = MessagesHelper.INSTANCE.getString("text.allCards");
-			this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(
-					getCurrentUser(), dateRange));
+			this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(dateRange));
 		} else {
 
 			this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesFilter(cardSelected,
@@ -418,7 +416,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 				&& MessagesHelper.INSTANCE.getString("text.allAccounts").equals(accountSelected)) {
 
 			this.accountGraphicBarLineUI = this.graphicBarLineDelegate.getInOutBalanceAccount(movementsResumeFacade
-					.getMovementsResumeByCustomer(getCurrentUser(), dateRange));
+					.getMovementsResumeByCustomer(dateRange));
 
 		}
 

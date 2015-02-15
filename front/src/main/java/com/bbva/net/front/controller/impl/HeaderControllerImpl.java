@@ -37,10 +37,11 @@ public class HeaderControllerImpl extends AbstractBbvaController implements Head
 	@Override
 	public ExecutiveDto getExecutive() {
 		try {
-			return executive.getExecutive(getCurrentUser());
+			return executive.getExecutive();
 		} catch (final Exception exception) {
 		}
 		return new ExecutiveDto();
+
 	}
 
 	public ExecutiveDto getEjecutivo() {
@@ -54,12 +55,10 @@ public class HeaderControllerImpl extends AbstractBbvaController implements Head
 
 	@Override
 	public CustomerDto getCustomer() {
-		String user = getCurrentUser();
 		try {
-			return executive.getCustomer(user);
+			return executive.getCustomer();
 		} catch (final Exception exception) {
 		}
 		return new CustomerDto();
-
 	}
 }

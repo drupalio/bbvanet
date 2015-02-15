@@ -134,31 +134,10 @@ public class CardsFacadeIT {
 		}
 	}
 
-	@Test
-	public void checkGetCardsChargesByUserOK() throws Exception {
-		Assert.assertNotNull(this.cardsFacade.getCardsChargesByUser("12345678", dateRange));
-	}
-
 	@Test(expected = BadRequestException.class)
-	public void checkGetCardsChargesByUserSmall() throws Exception {
+	public void checkGetCardsChargesByFilterOk() throws Exception {
 		try {
-			Assert.assertNotNull(this.cardsFacade.getCardsChargesByUser("10", dateRange));
-		} catch (final BadRequestException notFoundException) {
-			Assert.assertEquals(notFoundException.getMessage(), "HTTP 400 Bad Request");
-			throw notFoundException;
-		}
-	}
-
-	@Test
-	public void checkGetCardsChargesByUserNotFilterOK() throws Exception {
-		Assert.assertNotNull(this.cardsFacade.getCardsChargesByUser("12345678", null));
-
-	}
-
-	@Test(expected = BadRequestException.class)
-	public void checkGetCardsChargesByUserNotUser() throws Exception {
-		try {
-			this.cardsFacade.getCardsChargesByUser(null, dateRange);
+			this.cardsFacade.getCardsChargesByUser(dateRange);
 		} catch (final BadRequestException notFoundException) {
 			Assert.assertEquals(notFoundException.getMessage(), "HTTP 400 Bad Request");
 			throw notFoundException;
@@ -166,26 +145,12 @@ public class CardsFacadeIT {
 	}
 
 	@Test(expected = BadRequestException.class)
-	public void checkGetCardsChargesByUserNull() throws Exception {
+	public void checkGetCardsChargesByFilterNull() throws Exception {
 		try {
-			this.cardsFacade.getCardsChargesByUser(null, null);
+			this.cardsFacade.getCardsChargesByUser(null);
 		} catch (final BadRequestException notFoundException) {
 			Assert.assertEquals(notFoundException.getMessage(), "HTTP 400 Bad Request");
 			throw notFoundException;
 		}
 	}
-
-	/**
-	 * @throws Exception
-	 */
-	@Test(expected = ServiceUnavailableException.class)
-	public void checkGetCardsChargesByUserEmpty() throws Exception {
-		try {
-			this.cardsFacade.getCardsChargesByUser(StringUtils.EMPTY, dateRange);
-		} catch (final ServiceUnavailableException notFoundException) {
-			Assert.assertEquals(notFoundException.getMessage(), "HTTP 503 Service Unavailable");
-			throw notFoundException;
-		}
-	}
-
 }

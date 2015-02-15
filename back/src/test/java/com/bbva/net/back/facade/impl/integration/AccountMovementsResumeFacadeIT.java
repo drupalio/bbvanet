@@ -38,8 +38,8 @@ public class AccountMovementsResumeFacadeIT {
 	public void checkMovementsResumeByCustomerOk() {
 
 		// SrvCustomersV01 -> listAccountsMovementsResume
-		final GlobalResumeMovementsDto resume = this.accountMovementsFacade.getMovementsResumeByCustomer(DEFAULT_USER,
-				new DateRangeDto(new Date(), new Date()));
+		final GlobalResumeMovementsDto resume = this.accountMovementsFacade
+				.getMovementsResumeByCustomer(new DateRangeDto(new Date(), new Date()));
 
 		Assert.assertNotNull(resume);
 		Assert.assertNotNull(resume.getMovementsResumeDto().get(0));
@@ -50,47 +50,22 @@ public class AccountMovementsResumeFacadeIT {
 	public void checkMovementsResumeByCustomerOkWhitoutFilter() {
 
 		// SrvCustomersV01 -> listAccountsMovementsResume
-		final GlobalResumeMovementsDto resume = this.accountMovementsFacade.getMovementsResumeByCustomer(DEFAULT_USER,
-				null);
+		final GlobalResumeMovementsDto resume = this.accountMovementsFacade.getMovementsResumeByCustomer(null);
 
 		Assert.assertNotNull(resume);
 		Assert.assertNotNull(resume.getMovementsResumeDto().get(0));
 
-	}
-
-	@Test(expected = BadRequestException.class)
-	public void checkMovementsResumeByCustomerNotUser() {
-		// SrvCustomersV01 -> listAccountsMovementsResume
-		try {
-			this.accountMovementsFacade.getMovementsResumeByCustomer(null, new DateRangeDto(new Date(), new Date()));
-		} catch (final BadRequestException notFoundException) {
-			Assert.assertEquals(notFoundException.getMessage(), "HTTP 400 Bad Request");
-			throw notFoundException;
-		}
 	}
 
 	@Test()
 	public void checkMovementsResumeByCustomerNotDate() {
 
 		// SrvCustomersV01 -> listAccountsMovementsResume
-		final GlobalResumeMovementsDto resume = this.accountMovementsFacade.getMovementsResumeByCustomer(DEFAULT_USER,
-				new DateRangeDto(null, null));
+		final GlobalResumeMovementsDto resume = this.accountMovementsFacade
+				.getMovementsResumeByCustomer(new DateRangeDto(null, null));
 		Assert.assertNotNull(resume);
 		Assert.assertNotNull(resume.getMovementsResumeDto().get(0));
 
-	}
-
-	@Test(expected = BadRequestException.class)
-	public void checkMovementsResumeByBadCustomer() {
-
-		// SrvCustomersV01 -> listAccountsMovementsResume
-		try {
-			this.accountMovementsFacade
-					.getMovementsResumeByCustomer(BAD_USER, new DateRangeDto(new Date(), new Date()));
-		} catch (final BadRequestException notFoundException) {
-			Assert.assertEquals(notFoundException.getMessage(), "HTTP 400 Bad Request");
-			throw notFoundException;
-		}
 	}
 
 	// ***************** Accounts Interface *****************

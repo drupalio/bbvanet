@@ -19,7 +19,7 @@ public class MovementPaginatedController extends PaginationController<MovementDt
 	
 	private BalanceRangeDto balanceRangePc;
 
-	private String productIdPc, productTypePc, userPc;
+	private String productIdPc, productTypePc;
 
 	
 	List<MovementDto> movementsList = null;
@@ -30,7 +30,7 @@ public class MovementPaginatedController extends PaginationController<MovementDt
 	@Override
 	protected List<MovementDto> getNextPage(int paginantionKey, int psize) {
 		movementsList = new ArrayList<MovementDto>();
-		movementsList = this.movementsFacade.listMovements(productIdPc, userPc, productTypePc, dateRangePc, balanceRangePc, paginantionKey,psize);
+		movementsList = this.movementsFacade.listMovements(productIdPc,  productTypePc, dateRangePc, balanceRangePc, paginantionKey,psize);
 
 		return movementsList;
 	}
@@ -102,23 +102,6 @@ public class MovementPaginatedController extends PaginationController<MovementDt
 	public void setProductTypePc(String productTypePc) {
 		this.productTypePc = productTypePc;
 	}
-
-	
-	/**
-	 * @return the userPc
-	 */
-	public String getUserPc() {
-		return userPc;
-	}
-
-	
-	/**
-	 * @param userPc the userPc to set
-	 */
-	public void setUserPc(String userPc) {
-		this.userPc = userPc;
-	}
-
 	
 	/**
 	 * @return the movementsList
