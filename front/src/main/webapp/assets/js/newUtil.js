@@ -8,6 +8,7 @@ function enableDisableButton(inputId, btn) {
 	var valor = inputId.value;
 	if (valor.length != 0) {
 		document.getElementById(button).disabled = false;
+		document.getElementById(button).classList.remove('ui-state-disabled');
 	} else {
 		document.getElementById(button).disabled = true;
 	}
@@ -23,6 +24,7 @@ function enableDisable(inputId, btnW) {
 	var valor = inputId.value;
 	if (valor.length == 4) {
 		document.getElementById(button).disabled = false;
+		document.getElementById(button).classList.remove('ui-state-disabled');
 	} else {
 		document.getElementById(button).disabled = true;
 	}

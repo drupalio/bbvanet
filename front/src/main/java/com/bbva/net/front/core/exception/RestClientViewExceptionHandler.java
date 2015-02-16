@@ -11,7 +11,6 @@ import org.springframework.webflow.execution.FlowExecutionException;
 
 import com.bbva.jee.arq.spring.core.log.I18nLogFactory;
 
-@Component(value = "restClientViewExceptionHandler")
 public class RestClientViewExceptionHandler implements FlowExecutionExceptionHandler {
 
 	protected static final Log LOGGER = I18nLogFactory.getLog(RestClientViewExceptionHandler.class);

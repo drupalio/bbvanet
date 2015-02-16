@@ -48,30 +48,41 @@
 					</p:column>
 
 					<p:column headerText="#{msg['text.detailMove.date']}"
-						styleClass="sorted w18 desc"
-						style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
+						styleClass="styleColum sorted w18 desc">
 
-						<h:outputText styleClass="brand" style="font-size: 1.1em"
+						<h:outputText styleClass="brand styleLeft"
 							value="#{moves.movementDate}">
 							<f:convertDateTime pattern="dd/MM/yyyy" />
 						</h:outputText>
 					</p:column>
 
 					<p:column headerText="#{msg['text.detailMove.concep']}"
-						styleClass="desc w34"
-						style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none;">
+						styleClass="styleColum desc w34">
 
-						<h:outputText class="text"
-							style="font-size: 12px;color: #333;text-align: left"
+						<h:outputText class="text styleLeft"
 							value="#{moves.movementConcept}" />
 					</p:column>
 
 					<p:column class="head" headerText="#{msg['title.slope']}"
-						styleClass="desc w24"
-						style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
+						styleClass="styleColum desc w24">
 
-						<h:outputText class="currency" style="font-size: 15px;color: #333"
+						<h:outputText class="currency styleCurrent"
 							value="#{moves.movementValue}" />
+					</p:column>
+
+					<p:column styleClass="hidden-md hidden-lg smart-view">
+						<div class="left">
+							<h:outputText class="text styleLeft"
+								value="#{moves.movementConcept}" />
+							<h:outputText styleClass="brand styleLeft"
+								value="#{moves.movementDate}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</div>
+						<div class="right">
+							<h:outputText class="currency styleCurrent"
+								value="#{moves.movementValue}" />
+						</div>
 					</p:column>
 
 					<p:rowExpansion styleClass="detail-row position">
