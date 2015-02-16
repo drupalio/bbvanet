@@ -33,6 +33,4 @@
 	<view-state id="detailAccount" view="externalRedirect:movements">
 	</view-state>
 	
-	<exception-handler bean="restClientViewExceptionHandler"/>
-
 </flow>

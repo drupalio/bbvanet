@@ -14,46 +14,38 @@ import com.bbva.net.back.model.globalposition.RotatingAccountDto;
 public interface LoanFacade {
 
 	/**
-	 * @param user
 	 * @return
 	 */
 	List<LeasingDto> getLeasingByUser();
 
 	/**
-	 * @param user
 	 * @return
 	 */
-	List<LeasingDto> getLeasingByUserHidden(String user);
+	List<LeasingDto> getLeasingByUserHidden();
 
 	/**
-	 * @param user
 	 * @return
 	 */
-	List<RotatingAccountDto> getRotatingAccountByUserHidden(String user);
+	List<RotatingAccountDto> getRotatingAccountByUserHidden();
 
 	/**
-	 * @param user
 	 * @return
 	 */
-	List<RotatingAccountDto> getRotatingAccountByUser(String user);
+	List<RotatingAccountDto> getRotatingAccountByUser();
 
 	/**
-	 * @param user
 	 * @return
 	 */
-	List<LoanDto> getLoansByUser(String user);
+	List<LoanDto> getLoansByUser();
 
 	/**
-	 * @param user
 	 * @return
 	 */
-	List<LoanDto> getLoansByUserHidden(String user);
+	List<LoanDto> getLoansByUserHidden();
 
 	/**
-	 * @param user
 	 * @return
 	 */
-
-	Map<String, BalanceDto> getLoanTotals(final String user);
+	Map<String, BalanceDto> getLoanTotals();
 
 }
