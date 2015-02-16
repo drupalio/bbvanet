@@ -9,7 +9,6 @@ import javax.ws.rs.core.Response;
 import org.apache.commons.logging.Log;
 import org.apache.cxf.jaxrs.client.JAXRSClientFactoryBean;
 import org.apache.cxf.jaxrs.client.WebClient;
-import org.bouncycastle.asn1.cmp.ProtectedPart;
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
