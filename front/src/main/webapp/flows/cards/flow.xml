@@ -9,8 +9,10 @@
 
 	<on-start>
 		<evaluate expression="globalPositionController.init()"/>
-		<evaluate expression="globalPositionController.getCustomerProducts()" result="flowScope.customerProducts" />
-		<evaluate expression="accountsController.getCustomerAccounts()" result="flowScope.customerAccounts" />
+		<evaluate expression="globalPositionController.getCustomerProducts()"
+			result="flowScope.customerProducts" />
+		<evaluate expression="globalPositionController.getCustomerProductsHidden()"
+			result="flowScope.customerProductsHidden" />
 	</on-start>
 
 	<view-state id="cards">		

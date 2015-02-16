@@ -34,7 +34,7 @@
 					<bbvaHeader:quotaDetailHeaderLeft alias="Hola"
 				numCuenta="#{movementsCriteriaController.getSelectedProduct().getProductNumber()}"
 				tipoPrestamo="#{movementsCriteriaController.getSelectedProduct().getSubTypeProd()}"/>
-					<bbvaGraphic:MovementsGraphic lineConfigUI="#{movementsCriteriaController.graphicLineMovements}"/>
+					<bbvaGraphic:MovementsGraphic lineConfigUI="#{movementsCriteriaController.graphicLineMovements}" values="#{movementsCriteriaController.valuesLinesGraphic}"/>
 					<bbvaHeader:quotaDetailHeaderRight textUp="#{msg['text.available']}"
 				valueUp="#{movementsCriteriaController.getSelectedProduct().getTotalCash()}"
 				textDown="#{msg['text.tradeBalance']}"
