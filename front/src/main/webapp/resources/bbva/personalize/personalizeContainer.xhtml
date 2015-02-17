@@ -31,6 +31,8 @@
 			divClass="customize-product-name" nameButton="buttonAdd"
 			valueLabel="#{msg['text.nameProduct']}" idButton="buttonUpdate"
 			idInput="inputName" valueButton="#{msg['button.save']}"
+			classButton="btn btn-default"
+			styleButton="margin-top: 6px !important; padding: 2px 0px; font-size: 12px !important;"
 			valueInput="#{personalizeProductAccountController.personalizeProductAccountDto.alias}" />
 		<span class="separator"></span>
 
@@ -60,7 +62,7 @@
 			value="#{personalizeProductAccountController.operation}" />
 
 		<p:commandButton id="buttonThree" value="#{msg['button.save']}"
-			style="margin: -6px 20px 20px !important; padding: 3px 1px;"
+			style="margin: -6px 20px 20px !important; padding: 2px 0px; font-size: 12px !important;"
 			styleClass="btn btn-default" onstart="PF('statusDialog').show()"
 			onsuccess="PF('statusDialog').hide()" process="@form" update="@form"
 			actionListener="#{personalizeProductAccountController.operKey}" />

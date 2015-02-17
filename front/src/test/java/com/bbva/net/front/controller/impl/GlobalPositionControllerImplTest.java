@@ -1,5 +1,8 @@
 package com.bbva.net.front.controller.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,6 +14,7 @@ import com.bbva.net.back.facade.GlobalPositionFacade;
 import com.bbva.net.back.facade.MonthBalanceFacade;
 import com.bbva.net.back.model.comboFilter.EnumPeriodType;
 import com.bbva.net.back.model.commons.DateRangeDto;
+import com.bbva.net.back.model.globalposition.DepositDto;
 import com.bbva.net.back.model.globalposition.GlobalProductsDto;
 import com.bbva.net.back.model.movements.GlobalResumeMovementsDto;
 import com.bbva.net.back.service.impl.DateFilterServiceImpl;
@@ -73,6 +77,15 @@ public class GlobalPositionControllerImplTest {
 		globalPositionController.setMovementsResumeFacade(globalMovementsFacade);
 
 		globalPositionController.setAccountMonthBalanceFacade(accountMonthBalanceFacade);
+
+		GlobalProductsDto globalProductsDto = new GlobalProductsDto();
+		DepositDto deposit = new DepositDto();
+		List<DepositDto> electronicDeposits = new ArrayList<DepositDto>();
+
+		electronicDeposits.add(deposit);
+		globalProductsDto.setElectronicDeposits(electronicDeposits);
+
+		Mockito.when(globalPositionFacade.getGlobalProductsByUser()).thenReturn(globalProductsDto);
 
 		globalPositionController.init();
 

@@ -154,7 +154,9 @@
       <xs:enumeration value="SI"/>
     </xs:restriction>
   </xs:simpleType>
-</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://Entelgy-107:8080/</con:endpoint><con:endpoint>http://localhost:8080</con:endpoint></con:endpoints><con:resource name="/V01" path="/V01"><con:settings/><con:parameters/><con:resource name="/customers/{customerId}/products" path="/customers/{customerId}/products"><con:settings/><con:parameters><con:parameter><con:name>customerId</con:name><con:value xsi:nil="true"/><con:style>TEMPLATE</con:style><con:default xsi:nil="true"/></con:parameter></con:parameters><con:method name="GET - getExtractGlobalBalance" method="GET"><con:settings/><con:parameters><con:parameter><con:name>$filter</con:name><con:value>(productType=={productType})</con:value><con:style>QUERY</con:style><con:default>(productType=={productType})</con:default></con:parameter><con:parameter><con:name>$fields</con:name><con:value>null</con:value><con:style>QUERY</con:style><con:default>null</con:default></con:parameter><con:parameter><con:name>$expands</con:name><con:value>null</con:value><con:style>QUERY</con:style><con:default>null</con:default></con:parameter><con:parameter><con:name>$sort</con:name><con:value>null</con:value><con:style>QUERY</con:style><con:default>null</con:default></con:parameter></con:parameters><con:representation type="RESPONSE" id=""><con:mediaType>application/json</con:mediaType><con:params/><con:element xsi:nil="true"/><con:description xsi:nil="true"/></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:9001</con:endpoint><con:request/><con:originalUri>http://localhost/czic/GlobalPosition/V01/customers//products</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource><con:resource name="/{idProduct}" path="/{idProduct}"><con:settings/><con:parameters><con:parameter><con:name>idProduct</con:name><con:value xsi:nil="true"/><con:style>TEMPLATE</con:style><con:default xsi:nil="true"/></con:parameter></con:parameters><con:method name="PUT - update" method="PUT"><con:settings/><con:parameters/><con:representation type="REQUEST" id=""><con:mediaType>application/json</con:mediaType><con:params/><con:element xsi:nil="true"/><con:description xsi:nil="true"/></con:representation><con:representation type="RESPONSE" id=""><con:mediaType>application/json</con:mediaType><con:params/><con:element xsi:nil="true"/><con:description xsi:nil="true"/></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings/><con:endpoint>http://localhost:8080</con:endpoint><con:parameters/></con:request></con:method></con:resource></con:resource></con:interface><con:restMockService port="8099" path="/" host="localhost" name="MockService_GlobalPosition" docroot=""><con:settings/><con:properties/><con:restMockAction name="/czic/GlobalPosition/V01/customers/products" method="GET" resourcePath="/czic/GlobalPosition/V01/customers/products"><con:settings/><con:defaultResponse xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://Entelgy-107:8080/</con:endpoint><con:endpoint>http://localhost:8080</con:endpoint></con:endpoints><con:resource name="/V01" path="/V01"><con:settings/><con:parameters/><con:resource name="/customers/{customerId}/products" path="/customers/{customerId}/products"><con:settings/><con:parameters><con:parameter><con:name>customerId</con:name><con:value xsi:nil="true"/><con:style>TEMPLATE</con:style><con:default xsi:nil="true"/></con:parameter></con:parameters><con:method name="GET - getExtractGlobalBalance" method="GET"><con:settings/><con:parameters><con:parameter><con:name>$filter</con:name><con:value>(productType=={productType})</con:value><con:style>QUERY</con:style><con:default>(productType=={productType})</con:default></con:parameter><con:parameter><con:name>$fields</con:name><con:value>null</con:value><con:style>QUERY</con:style><con:default>null</con:default></con:parameter><con:parameter><con:name>$expands</con:name><con:value>null</con:value><con:style>QUERY</con:style><con:default>null</con:default></con:parameter><con:parameter><con:name>$sort</con:name><con:value>null</con:value><con:style>QUERY</con:style><con:default>null</con:default></con:parameter></con:parameters><con:representation type="RESPONSE" id=""><con:mediaType>application/json</con:mediaType><con:params/><con:element xsi:nil="true"/><con:description xsi:nil="true"/></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:9001</con:endpoint><con:request/><con:originalUri>http://localhost/czic/GlobalPosition/V01/customers//products</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource><con:resource name="/{idProduct}" path="/{idProduct}"><con:settings/><con:parameters><con:parameter><con:name>idProduct</con:name><con:value xsi:nil="true"/><con:style>TEMPLATE</con:style><con:default xsi:nil="true"/></con:parameter></con:parameters><con:method name="PUT - update" method="PUT"><con:settings/><con:parameters/><con:representation type="REQUEST" id=""><con:mediaType>application/json</con:mediaType><con:params/><con:element xsi:nil="true"/><con:description xsi:nil="true"/></con:representation><con:representation type="RESPONSE" id=""><con:mediaType>application/json</con:mediaType><con:params/><con:element xsi:nil="true"/><con:description xsi:nil="true"/></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings/><con:endpoint>http://localhost:8080</con:endpoint><con:parameters/></con:request></con:method></con:resource></con:resource></con:interface><con:restMockService port="8099" path="/" host="localhost" name="MockService_GlobalPosition" docroot=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.panels.mock.WsdlMockServiceDesktopPanel$LogListModel@maxSize">100</con:setting></con:settings><con:startScript>
+
+</con:startScript><con:properties><con:property><con:name>idLoan</con:name><con:value>00130443000200009410</con:value></con:property><con:property><con:name>id1</con:name><con:value>00130443000200009418</con:value></con:property><con:property><con:name>id2</con:name><con:value>00130443000200009425</con:value></con:property></con:properties><con:restMockAction name="/czic/GlobalPosition/V01/customers/products" method="GET" resourcePath="/czic/GlobalPosition/V01/customers/products"><con:settings/><con:defaultResponse xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Examples showing how to match based on path, query param and header
 // Match based on path
 def requestPath = mockRequest.getPath()
@@ -2246,7 +2248,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		"amount": 1577796455,
 		"currency": "COP"
 	}
-}]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/loan/V01/rotaryQuota/00130073000296247953/movement/556475" method="GET" resourcePath="/czic/loan/V01/rotaryQuota/00130073000296247953/movement/556475"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+}]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/loan/V01/rotaryQuota/00130443000200009410/movement/556475" method="GET" resourcePath="/czic/loan/V01/rotaryQuota/00130443000200009410/movement/556475"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Examples showing how to match based on path, query param and header
 // Match based on path
 def requestPath = mockRequest.getPath()
@@ -2311,176 +2313,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	},
 	"numbersOfQuota": 2,
 	"remainingQuotas": 3
-}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/loan/V01/rotaryQuota/00130073000296247953/movements/" method="GET" resourcePath="/czic/loan/V01/rotaryQuota/00130443000200009410/movements/"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
-// Examples showing how to match based on path, query param and header
-// Match based on path
-def requestPath = mockRequest.getPath()
-log.info "Path: "+ requestPath
-
-if( requestPath.contains("json") )
-{
-    // return the name of the response you want to dispatch
-    return "JSON Response"
-}
-
-
-// Match based on query parameter
-def queryString = mockRequest.getRequest().getQueryString()
-log.info "QueryString: " + queryString
-
-if( queryString.contains("stockholm") )
-{
-    // return the name of the response you want to dispatch
-    return "Response Stockholm"
-}
-else if( queryString.contains("london") )
-{
-    // return the name of the response you want to dispatch
-    return "Response London"
-}
-
-
-// Match based on header
-def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
-log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
-
-if( acceptEncodingHeadeList.contains("gzip,deflate") )
-{
-    // return the name of the response you want to dispatch
-    return "GZiped Response"
-}
-
-*/
-</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
-	"id": "394133994",
-	"concept": "Pago cupo rotativo",
-	"transactionDate": "15/07/2014",
-	"value": {
-		"amount": 439944006,
-		"currency": "COP"
-	},
-	"balance": {
-		"amount": 439944006,
-		"currency": "COP"
-	}
-},
-{
-	"id": "822244850",
-	"concept": "Pago cupo rotativo",
-	"transactionDate": "28/03/2014",
-	"value": {
-		"amount": 1620620982,
-		"currency": "COP"
-	},
-	"balance": {
-		"amount": 1620620982,
-		"currency": "COP"
-	}
-},
-{
-	"id": "1641997532",
-	"concept": "Pago cupo rotativo",
-	"transactionDate": "19/12/2014",
-	"value": {
-		"amount": 685235109,
-		"currency": "COP"
-	},
-	"balance": {
-		"amount": 685235109,
-		"currency": "COP"
-	}
-},
-{
-	"id": "1643775697",
-	"concept": "Pago cupo rotativo",
-	"transactionDate": "08/05/2014",
-	"value": {
-		"amount": 1566671178,
-		"currency": "COP"
-	},
-	"balance": {
-		"amount": 1566671178,
-		"currency": "COP"
-	}
-},
-{
-	"id": "1583615454",
-	"concept": "Pago cupo rotativo",
-	"transactionDate": "27/01/2014",
-	"value": {
-		"amount": 1309582292,
-		"currency": "COP"
-	},
-	"balance": {
-		"amount": 1309582292,
-		"currency": "COP"
-	}
-},
-{
-	"id": "335112113",
-	"concept": "Pago cupo rotativo",
-	"transactionDate": "08/05/2014",
-	"value": {
-		"amount": 1670298888,
-		"currency": "COP"
-	},
-	"balance": {
-		"amount": 1670298888,
-		"currency": "COP"
-	}
-},
-{
-	"id": "1698785630",
-	"concept": "Pago cupo rotativo",
-	"transactionDate": "18/06/2014",
-	"value": {
-		"amount": 1697322433,
-		"currency": "COP"
-	},
-	"balance": {
-		"amount": 1697322433,
-		"currency": "COP"
-	}
-},
-{
-	"id": "800973250",
-	"concept": "Pago cupo rotativo",
-	"transactionDate": "20/10/2014",
-	"value": {
-		"amount": 206829003,
-		"currency": "COP"
-	},
-	"balance": {
-		"amount": 206829003,
-		"currency": "COP"
-	}
-},
-{
-	"id": "1762391792",
-	"concept": "Pago cupo rotativo",
-	"transactionDate": "09/05/2014",
-	"value": {
-		"amount": 1211699540,
-		"currency": "COP"
-	},
-	"balance": {
-		"amount": 1211699540,
-		"currency": "COP"
-	}
-},
-{
-	"id": "940851639",
-	"concept": "Pago cupo rotativo",
-	"transactionDate": "10/07/2014",
-	"value": {
-		"amount": 2075976648,
-		"currency": "COP"
-	},
-	"balance": {
-		"amount": 2075976648,
-		"currency": "COP"
-	}
-}]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/executives/V01" method="GET" resourcePath="/czic/executives/V01"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/executives/V01" method="GET" resourcePath="/czic/executives/V01"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Examples showing how to match based on path, query param and header
 // Match based on path
 def requestPath = mockRequest.getPath()
@@ -2588,7 +2421,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		"stateName": "Cox",
 		"postalAddress": "644 Galway Circle"
 	}
-}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/loan/V01/rotaryQuota/00130443000200009410/movements/" method="GET" resourcePath="/czic/loan/V01/rotaryQuota//movements/"><con:settings/><con:defaultResponse xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/loan/V01/rotaryQuota/00130443000200009410/movements/" method="GET" resourcePath="/czic/loan/V01/rotaryQuota/00130443000200009410/movements/"><con:settings/><con:defaultResponse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Examples showing how to match based on path, query param and header
 // Match based on path
 def requestPath = mockRequest.getPath()
@@ -2628,10 +2461,13 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 }
 
 */
+
+ if(pathInfo.startsWith( mockRunner.getMockService().getPath()))
+
 </con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
 	"id": "394133994",
 	"concept": "Pago cupo rotativo",
-	"transactionDate": "15/07/2014",
+	"transactionDate": "2014-07-15",
 	"value": {
 		"amount": 439944006,
 		"currency": "COP"
@@ -2644,7 +2480,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 {
 	"id": "822244850",
 	"concept": "Pago cupo rotativo",
-	"transactionDate": "28/03/2014",
+	"transactionDate": "2014-03-28",
 	"value": {
 		"amount": 1620620982,
 		"currency": "COP"
@@ -2657,7 +2493,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 {
 	"id": "1641997532",
 	"concept": "Pago cupo rotativo",
-	"transactionDate": "19/12/2014",
+	"transactionDate": "2014-12-19",
 	"value": {
 		"amount": 685235109,
 		"currency": "COP"
@@ -2670,7 +2506,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 {
 	"id": "1643775697",
 	"concept": "Pago cupo rotativo",
-	"transactionDate": "08/05/2014",
+	"transactionDate": "2014-05-08",
 	"value": {
 		"amount": 1566671178,
 		"currency": "COP"
@@ -2683,7 +2519,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 {
 	"id": "1583615454",
 	"concept": "Pago cupo rotativo",
-	"transactionDate": "27/01/2014",
+	"transactionDate": "2014-01-27",
 	"value": {
 		"amount": 1309582292,
 		"currency": "COP"
@@ -2696,7 +2532,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 {
 	"id": "335112113",
 	"concept": "Pago cupo rotativo",
-	"transactionDate": "08/05/2014",
+	"transactionDate": "2014-05-08",
 	"value": {
 		"amount": 1670298888,
 		"currency": "COP"
@@ -2709,7 +2545,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 {
 	"id": "1698785630",
 	"concept": "Pago cupo rotativo",
-	"transactionDate": "18/06/2014",
+	"transactionDate": "2014-06-18",
 	"value": {
 		"amount": 1697322433,
 		"currency": "COP"
@@ -2722,7 +2558,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 {
 	"id": "800973250",
 	"concept": "Pago cupo rotativo",
-	"transactionDate": "20/10/2014",
+	"transactionDate": "2014-05-20",
 	"value": {
 		"amount": 206829003,
 		"currency": "COP"
@@ -2735,7 +2571,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 {
 	"id": "1762391792",
 	"concept": "Pago cupo rotativo",
-	"transactionDate": "09/05/2014",
+	"transactionDate": "2014-05-09",
 	"value": {
 		"amount": 1211699540,
 		"currency": "COP"
@@ -2748,7 +2584,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 {
 	"id": "940851639",
 	"concept": "Pago cupo rotativo",
-	"transactionDate": "10/07/2014",
+	"transactionDate": "2014-07-10",
 	"value": {
 		"amount": 2075976648,
 		"currency": "COP"
@@ -2757,4 +2593,84 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		"amount": 2075976648,
 		"currency": "COP"
 	}
-}]</con:responseContent></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
+}]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/GlobalPosition/V01/00130443000200009410/setProductOperability" method="PUT" resourcePath="/czic/GlobalPosition/V01/00130443000200009410/setProductOperability"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200"><con:settings/><con:responseContent/></con:response></con:restMockAction><con:restMockAction name="/czic/GlobalPosition/V01/00130443000200009410/setProductVisibility" method="PUT" resourcePath="/czic/GlobalPosition/V01/00130443000200009410/setProductVisibility"><con:settings/><con:defaultResponse xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200"><con:settings/><con:responseContent/></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
