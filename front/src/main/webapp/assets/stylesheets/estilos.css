@@ -404,24 +404,6 @@ input.ui-state-hover {
 	margin-left: -3% !important;
 }
 
-/*Boton de Extractos*/
-.extract-search-button {
-	padding-left: 35px;
-	font-size: 12px;
-	line-height: 12px;
-	padding: 8px 10px;
-	outline: none;
-	display: inline-block;
-	margin: 0;
-	color: #FFFFFF;
-	font-family: "BBVA Web Medium", Arial, sans-serif;
-	position: relative;
-	border: 1px solid #00559D;
-	background: -webkit-linear-gradient(bottom, #00559d 0%, #0075c2 100%);
-	border-radius: 4px;
-	cursor: pointer;
-	margin-bottom: -3.7% !important;
-}
 /* tipo de letra del detalle*/
 .textSize {
 	font-family: Arial !important;

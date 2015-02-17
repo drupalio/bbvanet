@@ -26,16 +26,19 @@
 	<div class="panel-tab-body">
 		<div class="filters consultas descarga hidden-xs hidden-sm">
 			<div class="download-extract container">
+				<!-- <form id="extractDownload"> -->
+					<h1>Descargar extracto electrónico</h1>
+					<div class="first-part-download">
+						<small>Selecciona el año y el mes del extracto que quieres
+							consultar <i class="iconFont-412"></i>
+						</small>
 
-				<h1>Descargar extracto electrónico</h1>
-				<small>Selecciona el año y el mes del extracto que quieres
-					consultar</small>
-
-				<div class="row filteroptions">
-					<div class="col-md-3">
-						<!-- COMBO AÑOS -->
-						<h:selectOneMenu id="stateYear"
-							style=" 
+						<div class="row filteroptions">
+							<div class="col-md-3">
+								<div class="btn-group bootstrap-select">
+									<!-- COMBO AÑOS -->
+									<h:selectOneMenu id="stateYear"
+										style=" 
 						    width: 41px;
 						    height: 38px;
 						    background-position: 13px 12px;					
@@ -52,20 +55,23 @@
 						  	font-size: 0.95em;
 						  	color: #0093e2;
 							"
-							value="#{cc.attrs.valuecheckState}"
-							disabled="#{checkBookController.renderComponents['STATUS']}">
-							<f:selectItem itemLabel="Año" />
-							<!-- <f:selectItem itemLabel="#{msg['text.combo.select']}" /> -->
-							<f:selectItems value="#{comboCriteriaController.multiValueList}"
-								var="multiValue" itemValue="#{multiValue.id}"
-								itemLabel="#{msg[multiValue.value]}" />
-						</h:selectOneMenu>
-					</div>
+										value="#{cc.attrs.valuecheckState}"
+										disabled="#{checkBookController.renderComponents['STATUS']}">
+										<f:selectItem itemLabel="Año" />
+										<!-- <f:selectItem itemLabel="#{msg['text.combo.select']}" /> -->
+										<f:selectItems
+											value="#{comboCriteriaController.multiValueList}"
+											var="multiValue" itemValue="#{multiValue.id}"
+											itemLabel="#{msg[multiValue.value]}" />
+									</h:selectOneMenu>
+								</div>
+							</div>
 
-					<!-- COMBO MESES -->
-					<div class="col-md-3">
-						<h:selectOneMenu id="stateMonth"
-							style=" 
+							<!-- COMBO MESES -->
+							<div class="col-md-3">
+								<div class="btn-group bootstrap-select">
+									<h:selectOneMenu id="stateMonth"
+										style=" 
 						    width: 41px;
 						    height: 38px;
 						    background-position: 13px 12px;					
@@ -82,41 +88,41 @@
 						  	font-size: 0.95em;
 						  	color: #0093e2;
 							"
-							value="#{cc.attrs.valuecheckState}"
-							disabled="#{checkBookController.renderComponents['STATUS']}">
-							<f:selectItem itemLabel="Mes" />
-							<!-- <f:selectItem itemLabel="#{msg['text.combo.select']}" /> -->
-							<f:selectItems value="#{comboCriteriaController.multiValueList}"
-								var="multiValue" itemValue="#{multiValue.id}"
-								itemLabel="#{msg[multiValue.value]}" />
-						</h:selectOneMenu>
+										value="#{cc.attrs.valuecheckState}"
+										disabled="#{checkBookController.renderComponents['STATUS']}">
+										<f:selectItem itemLabel="Mes" />
+										<!-- <f:selectItem itemLabel="#{msg['text.combo.select']}" /> -->
+										<f:selectItems
+											value="#{comboCriteriaController.multiValueList}"
+											var="multiValue" itemValue="#{multiValue.id}"
+											itemLabel="#{msg[multiValue.value]}" />
+									</h:selectOneMenu>
+								</div>
+							</div>
 
+							<!-- BOTON DESCARGA -->
+							<div class="col-md-5">
+								
+									<bbvaButton:iconButton id="searchExtract" icon="icon pdf"
+										value="Descargar extracto" show="true"
+										classButton="stable-button medium icon-left ext-message"
+										actionListener="#{cc.attrs.actionListenerRemove}">
+									</bbvaButton:iconButton>
+								
+							</div>
+						</div>
 					</div>
-
-					<!-- BOTON DESCARGA -->
-
-					<bbvaButton:iconButton id="searchExtract" icon="icon pdf"
-						value="Descargar extracto" show="true"
-						classButton="extract-search-button"
-						actionListener="#{cc.attrs.actionListenerRemove}">
-					</bbvaButton:iconButton>
-					
-					<!-- <div class="col-md-5">
-						<bbvaButton:iconButton id="searchExtract" icon="icon pdf"
-							value="#{msg['button.clean.filters']}" show="#{cc.attrs.show}"
-							classButton="btn btn-default hidden-xs hidden-sm"
-							actionListener="#{cc.attrs.actionListenerRemove}">
-						</bbvaButton:iconButton>
-					</div> -->
-
-					<!-- TEXTO INFERIOR -->
-					<!-- <div class="system-message info">
-						<span class="icon"></span>
-
-					</div> -->
-
+				<!-- </form> -->
+				<!-- TEXTO INFERIOR -->
+				<div class="system-message info">
+					<span class="icon"></span>
+					<p>Estás inscrito para recibir vía email el extracto
+						electrónico mensual con el mail "marisa@bbva.com".</p>
+					<p>Si deseas modificar este correo electrónico o dejar de
+						recibir notificaciones periódicas, dirígete al área personal.</p>
 
 				</div>
+
 			</div>
 		</div>
 	</div>
