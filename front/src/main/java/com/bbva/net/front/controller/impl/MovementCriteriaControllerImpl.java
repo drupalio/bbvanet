@@ -10,6 +10,7 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -318,6 +319,8 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		} else {
 			sinceDatestr = getSelectDate();
 		}
+		
+		RequestContext.getCurrentInstance().update("customSearch");
 	}
 
 	/**

@@ -66,7 +66,8 @@
 				actionListenerRemove="#{movementsCriteriaController.cleanFilters}"
 				actionListenerShow="#{movementsCriteriaController.searchMovementByFilter}" />
 		</bbvaSearch:personalizedSearchTabBody>
-
+		</h:form>
+		
 		<h:form id="formCheckBook">
 			<bbvaSearch:personalizedSearchTabBody id="checkSearchTab"
 				title="#{msg['text.title.search.book']}">
@@ -95,6 +96,6 @@
 				<!--  <bbvaSearch:searchExtract /> -->
 			</bbvaSearch:personalizedSearchExtract>
 		</h:form>
-	</h:form>
+	
 </composite:implementation>
 </html>

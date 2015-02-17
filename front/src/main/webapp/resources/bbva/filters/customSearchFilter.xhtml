@@ -25,8 +25,7 @@
 
 <composite:implementation>
 
-
-	<div class="date-filter-content" style="width: 100% !important;">
+	<div class="date-filter-content">
 
 		<div class="form-horizontal">
 			<div class="row">
@@ -54,7 +53,6 @@
 					tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:calendarSince
 					tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:calendarTo
 					tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:dateButton
-					
 					tabMenu:tabCriteria:personalizedSearchContainer:customSearch:formCheckBook:checkSearchTab:checkContainer:customCheckList:customDate:calendarSince
 					tabMenu:tabCriteria:personalizedSearchContainer:customSearch:formCheckBook:checkSearchTab:checkContainer:customCheckList:customDate:calendarTo
 					tabMenu:tabCriteria:personalizedSearchContainer:customSearch:formCheckBook:checkSearchTab:checkContainer:customCheckList:customDate:dateButton
@@ -127,18 +125,20 @@
 							<p:calendar widgetVar="calendarToSinceWV" id="calendarTo"
 								value="#{cc.attrs.valueDateTo}"
 								disabled="#{cc.attrs.disabledCalendar}" />
-
-
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>		
-		<button jsf:id="dateButton" class="btn small hidden-xs hidden-sm"
-			jsf:disabled="#{cc.attrs.disabledButton}"
-			jsf:actionListener="#{cc.attrs.actionListenerDate}">#{msg['button.confirm']}</button>
+		</div>
+
+		<button jsf:id="dateButton" class="btn small hidden-xs hidden-sm" 
+			type="button" jsf:disabled="#{cc.attrs.disabledButton}" 
+			jsf:actionListener="#{cc.attrs.actionListenerDate}">
+			#{msg['button.confirm']}
+			<p:ajax execute="@form" update="@form" immediate="true" partialSubmit="true"/>
+		</button>
 
 	</div>
-
+	
 </composite:implementation>
 </html>
