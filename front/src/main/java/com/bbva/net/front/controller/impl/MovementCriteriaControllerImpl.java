@@ -134,6 +134,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		setTitle(MessagesHelper.INSTANCE.getString("text.last.movments"));
 		getRenderTable().put(RenderAttributes.MOVEMENTSTABLE.toString(), true);
 		getRenderTable().put(RenderAttributes.CHECKTABLE.toString(), false);
+		RequestContext.getCurrentInstance().update(":detailAccounts:formu:detalMov");
 	}
 
 	public void nextPage(ActionEvent event) {
@@ -219,7 +220,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			getRenderTable().put(RenderAttributes.MOVEMENTSTABLE.toString(), true);
 			getRenderTable().put(RenderAttributes.CHECKTABLE.toString(), false);
 			setTitle(MessagesHelper.INSTANCE.getString("text.last.movments"));
-			RequestContext.getCurrentInstance().update(":detailAccounts:formu:detalMov");
+			
 		}
 
 	}
@@ -314,6 +315,8 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		} else {
 			sinceDatestr = getSelectDate();
 		}
+		
+		RequestContext.getCurrentInstance().update("customSearch");
 	}
 
 	/**
