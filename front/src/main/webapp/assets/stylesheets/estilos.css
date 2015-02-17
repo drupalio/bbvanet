@@ -22,12 +22,19 @@
 .leftLabel {
 	color: #0078D2 !important;
 	font-family: "BBVA Web Light", Arial, sans-serif !important;
-	font-size: 19.25px !important;
+	font-size: 18.8px !important;
 	font-weight: 100 !important;
 	line-height: 21.1833px !important;
 	margin-bottom: 10px !important margin-top: 0px !important;
 	width: 25% !important;
 	display: inline-block !important;
+}
+
+@media ( max-width : 389px) {
+	.leftLabel {
+		width: 100% !important;
+		height: 25px !important;
+	}
 }
 
 /* Personalizar */
@@ -48,13 +55,19 @@
 	position: relative !important;
 }
 
+@media ( max-width : 389px) {
+	.rigthDiv {
+		width: 100% !important;
+	}
+}
+
 /* para los botones del personalizar */
 .yourStyleClass div.ui-state-active {
 	color: #005098 !important;
 	cursor: pointer;
 	font-family: "BBVA Web Medium", arial, sans-serif !important;
 	font-weight: bold !important;
-	font-size: 15px;
+	font-size: 100% !important;
 	line-height: 13px;
 	text-align: center;
 	width: 50% !important;
@@ -69,7 +82,6 @@
 	cursor: pointer !important;
 	outline-color: #0078D2 !important;
 	z-index: 2 !important;
-	min-width: 128px !important;
 }
 
 /* para los botones del personalizar */
@@ -92,6 +104,7 @@
 	border-bottom-left-radius: 4px;
 	border-bottom-right-radius: 4px;
 	cursor: pointer;
+	font-size: 100% !important;
 	font-family: "BBVA Web Medium", arial, sans-serif;
 	font-weight: bold !important;
 	height: 100% !important;
@@ -100,7 +113,6 @@
 	margin-left: 0px;
 	width: 50% !important;
 	background-color: transparent;
-	min-width: 128px !important;
 }
 
 /* para los botones del personalizar */
@@ -113,20 +125,84 @@
 	background-color: white !important;
 	border-color: #cccccc !important;
 }
-
 /* el selectOneButton con boton */
-.smallCombo {
-	float: left !important;
-	width: 75% !important;
-	height: 42px !important;
-	margin: 0% 0% 0% 6% !important;
+@media ( min-width : 769px) {
+	.smallCombo {
+		float: left !important;
+		width: 75% !important;
+		height: 42px !important;
+		margin: 0% 0% 0% 6% !important;
+	}
 }
+
+@media ( max-width : 768px) {
+	.smallCombo {
+		width: 80% !important;
+		height: 42px !important;
+		float: left !important;
+	}
+}
+
+@media ( max-width : 615px) {
+	.smallCombo {
+		float: right !important;
+		width: 80% !important;
+		height: 42px !important;
+	}
+}
+
+@media ( max-width : 389px) {
+	.smallCombo {
+		width: 100% !important;
+		height: 42px !important;
+	}
+}
+
 /* el selectOneButton sin boton */
 .bigCombo {
-	float: left !important;;
-	width: 100% !important;
 	height: 42px !important;
+	width: 100% !important;
+	float: left !important;
 }
+
+@media ( max-width : 389px) {
+	.bigCombo {
+		width: 100% !important;
+		height: 42px !important;
+	}
+}
+
+/* Response */
+
+/*Buttons del personalizar*/
+.save {
+	margin: 7px 0px 0px 0px !important;
+	padding: 2px 0px !important;
+	font-size: 12px !important;
+}
+
+@media ( max-width : 615px) {
+	.save {
+		margin: 10px 0px 0px 0px !important;
+		padding: 2px 0px !important;
+		font-size: 12px !important;
+	}
+}
+
+.saveAlias {
+	margin: 0px 0px 0px 0px !important;
+	padding: 2px 0px !important;
+	font-size: 12px !important;
+}
+
+@media ( max-width : 615px) {
+	.saveAlias {
+		margin: 10px 0px 10px 0px !important;
+		padding: 2px 0px !important;
+		font-size: 12px !important;
+	}
+}
+/* Response */
 
 /* quita la linea blanca de arriba del boton y pone en el centro el texto */
 button.ui-state-default {
@@ -377,4 +453,5 @@ input.ui-state-hover {
 		font-size: 16px;
 		color: #333
 	}
+}
 }

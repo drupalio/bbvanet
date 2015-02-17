@@ -169,8 +169,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	public void showResults(final ActionEvent event) {
 		System.out.println("showResults");
 		setTitle(new String(MessagesHelper.INSTANCE.getString("tex.check.status")));
-		renderComponents.put(RenderAttributes.MOVEMENTSTABLE.toString(), false);
-		renderComponents.put(RenderAttributes.CHECKTABLE.toString(), true);
+		
 		
 		if (renderComponents.get(RenderAttributes.FILTERCHECKBOOK.toString())) {
 			// Filter by checkId
@@ -221,7 +220,10 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 		setProductIdPControl(getSelectedProduct().getProductId());
 		search();
 		this.checkList = getCurrentList();
-		if(this.checkList.size()>=10)getRenderTable().put(RenderAttributes.FOOTERTABLECHEKS.toString(), true);	else getRenderTable().put(RenderAttributes.FOOTERTABLECHEKS.toString(), false);		
+		if(this.checkList.size()>=10)getRenderTable().put(RenderAttributes.FOOTERTABLECHEKS.toString(), true);	else getRenderTable().put(RenderAttributes.FOOTERTABLECHEKS.toString(), false);
+		getRenderTable().put(RenderAttributes.CHECKTABLE.toString(), true);
+		getRenderTable().put(RenderAttributes.MOVEMENTSTABLE.toString(), false);
+		
 	}
 
 	public void nextPage(ActionEvent event) {

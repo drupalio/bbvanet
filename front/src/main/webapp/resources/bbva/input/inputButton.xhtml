@@ -49,11 +49,11 @@
 	</fieldset>
 
 	<p:commandButton id="#{cc.attrs.idButton}" disabled="true"
-		onsubmit="callJavaServlet()" pt:name="#{cc.attrs.nameButton}"
-		value="#{cc.attrs.valueButton}" style="#{cc.attrs.styleButton}"
-		styleClass="#{cc.attrs.classButton}"
+		style="#{cc.attrs.styleButton}" pt:name="#{cc.attrs.nameButton}"
+		value="#{cc.attrs.valueButton}" styleClass="#{cc.attrs.classButton}"
+		process="@form" update="@form"
 		actionListener="#{cc.attrs.actionListener}"
-		onclick="#{cc.attrs.onclickButton}" icon="#{cc.attrs.iconButton}" />
+		onclick="#{cc.attrs.onclickButton}" />
 
 </composite:implementation>
 
