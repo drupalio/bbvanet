@@ -42,7 +42,6 @@ function checkFilled(btnW, inputId) {
 }
 
 function checkRowClick() {
-
 	$('.ui-datatable-data .ui-widget-content').click(function() {
 
 		var i = $('.ui-row-toggler.ui-icon-circle-triangle-s').length;
@@ -53,3 +52,11 @@ function checkRowClick() {
 		$('.ui-row-toggler.ui-icon-circle-triangle-s').click();
 	});
 }
+
+// Cerrar de los tab operation Quota y Movements
+$(document).ready(function() {
+	$('.close-button').click(function() {
+		var parent = $(this).parents('.operation-tabs');
+		parent.find('.active').removeClass('active');
+	});
+});

@@ -40,8 +40,9 @@
 					value="#{cc.attrs.listAccounts}" var="moves" selectionMode="single"
 					rowKey="#{moves.movementId}" widgetVar="detailMoves">
 
-					<p:ajax event="rowSelect" onsuccess="checkRowClick()"
-						listener="#{cc.attrs.controller.onRowToggle}" />
+					<p:ajax event="rowSelect"
+						listener="#{cc.attrs.controller.onMovementSelected}" />
+					<p:ajax event="rowUnselect" />
 
 					<p:column width="3% !important" style="z-index: 2 !important;">
 						<p:rowToggler rendered="true" />
