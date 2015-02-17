@@ -30,11 +30,11 @@
 			header="#{msg['graphicCard.tittle']}" id="cardPie"
 			pieGraphic="#{globalPositionController.graphicPieCards}">
 			<div class="table-tabs">
-				<bbvaGP:cardHeadTable listCards="#{customerProducts.creditCards}" />
-				<bbvaGP:cardTailTable
+				<bbvaGP:cardHeadTable controller="#{globalPositionController}"
+					listCards="#{customerProducts.creditCards}" />
+				<bbvaGP:cardTailTable controller="#{globalPositionController}"
 					listCards="#{customerProductsHidden.creditCards}" />
 			</div>
-
 			<div class="row afterTable">
 				<bbvaGP:productFooter
 					listProduct="#{customerProductsHidden.creditCards}" />

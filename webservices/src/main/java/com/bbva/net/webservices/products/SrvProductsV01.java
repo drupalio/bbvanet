@@ -22,8 +22,8 @@ public interface SrvProductsV01 {
 
     @GET
     @Produces("application/json")
-    @Path("/{productId}/listExtracts")
-    Response listExtracts(@PathParam("productId") String productId, @QueryParam("$filter") @DefaultValue("null") String $filter, @QueryParam("paginationKey") @DefaultValue("null") Integer paginationKey, @QueryParam("pageSize") @DefaultValue("null") Integer pageSize);
+    @Path("/{productId}/extracts")
+    Response listExtracts(@PathParam("productId") String productId, @QueryParam("$filter") @DefaultValue("null") String $filter);
 
     @GET
     @Produces("application/json")

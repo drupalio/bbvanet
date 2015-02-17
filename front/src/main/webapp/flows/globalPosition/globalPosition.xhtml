@@ -41,8 +41,8 @@
 			title="#{msg['title.accountsPersonal']}">
 			<div class="table-tabs">
 				<bbvaGP:accountSearch listAccounts="#{customerProducts.accounts}"
-					listAccountsAdquirencia="#{customerProducts.accounts}"
-					listAccountsMore="#{customerProducts.accounts}" />
+					listAccountsAdquirencia="#{customerProducts.adquirencia}"
+					listAccountsMore="#{customerProductsHidden.accounts}" />
 				<bbvaGP:accountHeadTable listAccounts="#{customerProducts.accounts}"
 					controller="#{globalPositionController}" />
 

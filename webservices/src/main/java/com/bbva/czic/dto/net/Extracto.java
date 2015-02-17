@@ -16,6 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
+ *         &lt;element name="externalCode" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="month" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="year" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="generationDate" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -30,6 +31,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Extracto", propOrder = {
+    "externalCode",
     "month",
     "year",
     "generationDate",
@@ -37,13 +39,42 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class Extracto {
 
+    protected String externalCode;
     protected String month;
     protected String year;
     protected String generationDate;
     protected String url;
 
     /**
+<<<<<<< HEAD
+     * Gets the value of the externalCode property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getExternalCode() {
+        return externalCode;
+    }
+
+    /**
+     * Sets the value of the externalCode property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setExternalCode(String value) {
+        this.externalCode = value;
+    }
+
+    /**
+     * Gets the value of the month property.
+=======
      * Obtiene el valor de la propiedad month.
+>>>>>>> CambiosUser
      * 
      * @return
      *     possible object is

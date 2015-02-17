@@ -32,44 +32,47 @@
 			<bbvaHeader:quotaDetail>
 				<bbvaHeader:quotaDetailHeader>
 					<bbvaHeader:quotaDetailHeaderLeft alias="Hola"
-				numCuenta="#{movementsCriteriaController.getSelectedProduct().getProductNumber()}"
-				tipoPrestamo="#{movementsCriteriaController.getSelectedProduct().getSubTypeProd()}"/>
-					<bbvaGraphic:MovementsGraphic lineConfigUI="#{movementsCriteriaController.graphicLineMovements}"/>
-					<bbvaHeader:quotaDetailHeaderRight textUp="#{msg['text.available']}"
-				valueUp="#{movementsCriteriaController.getSelectedProduct().getTotalCash()}"
-				textDown="#{msg['text.tradeBalance']}"
-				valueDown="#{movementsCriteriaController.getSelectedProduct().getCashAvailable()}" />
+						numCuenta="#{movementsCriteriaController.getSelectedProduct().getProductNumber()}"
+						tipoPrestamo="#{movementsCriteriaController.getSelectedProduct().getSubTypeProd()}" />
+					<bbvaGraphic:MovementsGraphic
+						lineConfigUI="#{movementsCriteriaController.graphicLineMovements}"
+						values="#{movementsCriteriaController.valuesLinesGraphic}" />
+					<bbvaHeader:quotaDetailHeaderRight
+						textUp="#{msg['text.available']}"
+						valueUp="#{movementsCriteriaController.getSelectedProduct().getTotalCash()}"
+						textDown="#{msg['text.tradeBalance']}"
+						valueDown="#{movementsCriteriaController.getSelectedProduct().getCashAvailable()}" />
 				</bbvaHeader:quotaDetailHeader>
 			</bbvaHeader:quotaDetail>
-		
 
-		<bbvaDetAcc:tabMenu id="tabMenu">
 
-			<bbvaDetAcc:menuMovements />
+			<bbvaDetAcc:tabMenu id="tabMenu">
 
-			<div class="tab-content">
+				<bbvaDetAcc:menuMovements />
 
-				<!-- Tab Consultar -->
-				<bbvaSearch:tabCriteria id="tabCriteria">
-					<bbvaSearch:personalizedSearchContainer
-						id="personalizedSearchContainer" />
-				</bbvaSearch:tabCriteria>
+				<div class="tab-content">
 
-				<!-- Tab Condiciones -->
-				<bbvaAcc:accountContainer alias="#{pruduct.alias}"
-					numCuenta="#{pruduct.productId}" tipo="#{pruduct.productName}" />
+					<!-- Tab Consultar -->
+					<bbvaSearch:tabCriteria id="tabCriteria">
+						<bbvaSearch:personalizedSearchContainer
+							id="personalizedSearchContainer" />
+					</bbvaSearch:tabCriteria>
 
-				<!-- Tab Personalizar -->
-				<bbvaPersonalize:personalizeContainer />
+					<!-- Tab Condiciones -->
+					<bbvaAcc:accountContainer alias="#{pruduct.alias}"
+						numCuenta="#{pruduct.productId}" tipo="#{pruduct.productName}" />
 
+					<!-- Tab Personalizar -->
+					<bbvaPersonalize:personalizeContainer />
+
+				</div>
+			</bbvaDetAcc:tabMenu>
+			<div class="table-tabs" id="#{cc.clientId}">
+				<bbvaDetailMotion:detailMovesTable id="detailAccounts"
+					listAccounts="#{movements}"
+					listChecks="#{checkBookController.checkList}" />
 			</div>
-		</bbvaDetAcc:tabMenu>
-		<div class="table-tabs" id="#{cc.clientId}">
-			<bbvaDetailMotion:detailMovesTable id="detailAccounts"
-				listAccounts="#{movements}"
-				listChecks="#{checkBookController.checkList}" />
 		</div>
-</div>
 	</ui:define>
 
 	<ui:define name="contentRight">
