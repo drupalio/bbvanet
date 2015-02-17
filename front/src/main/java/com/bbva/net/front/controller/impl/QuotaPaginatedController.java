@@ -1,6 +1,5 @@
 package com.bbva.net.front.controller.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -14,11 +13,9 @@ public class QuotaPaginatedController extends PaginationController<MovementDto> 
 
 	private static final long serialVersionUID = 1L;
 
-	private DateRangeDto dateRangePc;
+	private DateRangeDto dateRangePControl;
 
-	private String productIdPc;
-
-	private List<MovementDto> quotamovenDtos = null;
+	private String productIdPControl;
 
 	@Resource(name = "quotaDetailFacade")
 	private transient QuotaDetailFacade quotaDetailFacade;
@@ -29,64 +26,29 @@ public class QuotaPaginatedController extends PaginationController<MovementDto> 
 
 	@Override
 	protected List<MovementDto> getNextPage(int paginantionKey, int psize) {
-		this.quotamovenDtos = new ArrayList<MovementDto>();
-		this.quotamovenDtos = this.quotaDetailFacade.listRotaryQuotaMovements(productIdPc, dateRangePc, paginantionKey,
-				psize);
-		return quotamovenDtos;
+		return quotaDetailFacade.listRotaryQuotaMovements(productIdPControl, dateRangePControl, paginantionKey, psize);
 	}
 
-	/**
-	 * @return the dateRangePc
-	 */
-	public DateRangeDto getDateRangePc() {
-		return dateRangePc;
+	public DateRangeDto getDateRangePControl() {
+		return dateRangePControl;
 	}
 
-	/**
-	 * @param dateRangePc the dateRangePc to set
-	 */
-	public void setDateRangePc(DateRangeDto dateRangePc) {
-		this.dateRangePc = dateRangePc;
+	public void setDateRangePControl(DateRangeDto dateRangePControl) {
+		this.dateRangePControl = dateRangePControl;
 	}
 
-	/**
-	 * @return the productIdPc
-	 */
-	public String getProductIdPc() {
-		return productIdPc;
+	public String getProductIdPControl() {
+		return productIdPControl;
 	}
 
-	/**
-	 * @param productIdPc the productIdPc to set
-	 */
-	public void setProductIdPc(String productIdPc) {
-		this.productIdPc = productIdPc;
+	public void setProductIdPControl(String productIdPControl) {
+		this.productIdPControl = productIdPControl;
 	}
 
-	/**
-	 * @return the quotamovenDtos
-	 */
-	public List<MovementDto> getQuotamovenDtos() {
-		return quotamovenDtos;
-	}
-
-	/**
-	 * @param quotamovenDtos the quotamovenDtos to set
-	 */
-	public void setQuotamovenDtos(List<MovementDto> quotamovenDtos) {
-		this.quotamovenDtos = quotamovenDtos;
-	}
-
-	/**
-	 * @return the quotaDetailFacade
-	 */
 	public QuotaDetailFacade getQuotaDetailFacade() {
 		return quotaDetailFacade;
 	}
 
-	/**
-	 * @param quotaDetailFacade the quotaDetailFacade to set
-	 */
 	public void setQuotaDetailFacade(QuotaDetailFacade quotaDetailFacade) {
 		this.quotaDetailFacade = quotaDetailFacade;
 	}

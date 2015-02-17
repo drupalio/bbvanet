@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -82,7 +83,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 	private List valuesLinesGraphic;
 
-	@Override
+	
 	@PostConstruct
 	public void init() {
 		super.init();
@@ -135,9 +136,19 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		search();
 		this.movementsList = getCurrentList();
 		setTitle(MessagesHelper.INSTANCE.getString("text.last.movments"));
+		RequestContext.getCurrentInstance().update("detailAccounts:formu");
 		getRenderTable().put(RenderAttributes.MOVEMENTSTABLE.toString(), true);
+		RequestContext.getCurrentInstance().update("detailAccounts:formu:detalMov");
 		getRenderTable().put(RenderAttributes.CHECKTABLE.toString(), false);
-		RequestContext.getCurrentInstance().update(":detailAccounts:formu:detalMov");
+		RequestContext.getCurrentInstance().update("detailAccounts:formu:checksTable");
+		
+		Iterator it = getRenderTable().entrySet().iterator();
+		
+		while (it.hasNext()) {
+			Map.Entry e = (Map.Entry)it.next();
+			System.out.println("--------------------"+" LLAVEEE "+e.getKey() + " ----------VALOOOOR----------" + e.getValue()+"--------------------");
+		}
+		
 	}
 
 	public void nextPage(ActionEvent event) {
@@ -160,7 +171,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 		// TODO oroductId
 		this.movementsList = this.movementsFacade.listMovements(
-				"00130073000296247953"/* getSelectedProduct().getProductId() */, getSelectedProduct().getSubTypeProd(),
+			 getSelectedProduct().getProductId(), getSelectedProduct().getSubTypeProd(),
 				dateRange, null, 1, 10);
 		if (this.movementsList.size() >= 10)
 			getRenderTable().put(RenderAttributes.FOOTERTABLEMOVEMENT.toString(), true);

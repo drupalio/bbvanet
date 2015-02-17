@@ -13,6 +13,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
 
+import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
 
 import com.bbva.net.back.facade.QuotaDetailFacade;
@@ -57,7 +58,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 
 	private MovementCriteriaDto movementCriteria = new MovementCriteriaDto();
 
-	SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+	SimpleDateFormat dateFormat = new SimpleDateFormat(MessagesHelper.INSTANCE.getStringI18("date.pattner.dd.mm.yyyy"));
 
 	private static final String CONCRETE_DATE = MessagesHelper.INSTANCE.getString("select.radio.concret.date");
 
@@ -70,6 +71,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 
 	@PostConstruct
 	public void init() {
+		super.init();
 		LOGGER.info("Initialize QuotaController");
 		super.init();
 		this.productDto = getSelectProduct();
@@ -85,10 +87,6 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 		previousDate = dateFormat.format(this.quotaDetailDto.getDatePrevious());
 		paymentDate = dateFormat.format(this.quotaDetailDto.getDatePayment());
 		LOGGER.info("Finalizado formateo de fechas del producto");
-
-		if (quotamovenDtos == null) {
-			getAllQuotamovenDtos();
-		}
 
 		setTitle(MessagesHelper.INSTANCE.getString("text.last.movments"));
 		cleanFilters();
@@ -149,6 +147,10 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 		}
 
 		LOGGER.info("Datos de los movimientos llenos ");
+		if (this.quotamovenDtos.size() >= 10)
+			getRenderTable().put(RenderAttributes.FOOTERTABLEQUOTA.toString(), true);
+		else
+			getRenderTable().put(RenderAttributes.FOOTERTABLEQUOTA.toString(), false);
 		return quotamovenDtos;
 	}
 
@@ -157,8 +159,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 		super.setSelectedProduct(selectedProduct);
 	}
 
-	@Override
-	public void onMovementSelected(SelectEvent event) {
+	public void onRowToggle(SelectEvent event) {
 		super.onMovementSelected(event);
 		this.quotaMoveDetailDto = this.quotaDetailFacade.getRotaryQuotaMovement(this.productDto.getProductId(),
 				getSelectedMovements().getMovementId());
@@ -169,8 +170,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 
 	@Override
 	public void oneSelectDate() {
-
-		LOGGER.info("Método oneSelectDate Quota");
+		System.out.println("Method oneSelectDate");
 
 		renderComponents.put(RenderAttributes.FILTERDATE.toString(), true);
 
@@ -188,9 +188,9 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 	@Override
 	public void setCustomDate(final ActionEvent event) {
 
-		LOGGER.info("Método setCustomDate Quota");
+		LOGGER.info("Método setCustomDate");
 		renderComponents.put(RenderAttributes.FILTERDATE.toString(), true);
-		this.dateRange = new DateRangeDto();
+
 		this.dateRange.setDateSince(getSinceDate());
 		this.dateRange.setDateTo(getToDate());
 		if (!(getSinceDate() == (null)) && !(getToDate() == (null))) {
@@ -220,15 +220,19 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 	}
 
 	public void criteriaSearch() {
-		LOGGER.info("Estableciendo filtro");
+
 		if (this.dateRange != null) {
-			setDateRangePc(this.dateRange);
+			setDateRangePControl(this.dateRange);
 		}
-		setProductIdPc(getSelectedProduct().getProductId());
-		LOGGER.info("Super Pagina Siguiente");
+		setProductIdPControl(getSelectedProduct().getProductId());
 		search();
 		this.quotamovenDtos = getCurrentList();
+		if (this.quotamovenDtos.size() >= 10)
+			getRenderTable().put(RenderAttributes.FOOTERTABLEQUOTA.toString(), true);
+		else
+			getRenderTable().put(RenderAttributes.FOOTERTABLEQUOTA.toString(), false);
 		setTitle(MessagesHelper.INSTANCE.getString("text.last.movments"));
+		RequestContext.getCurrentInstance().update("quotaDetail:detailAccounts:detailAccounts:detailmovesAC");
 	}
 
 	// Setters and Getters

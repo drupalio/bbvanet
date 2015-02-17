@@ -35,14 +35,14 @@
 			<h3>#{msg['text.last.movments']}</h3>
 
 			<div class="table-wrapper">
-				<p:dataTable id="detalAC" styleClass="detail-table-body sortable"
+				<p:dataTable id="detailmovesAC"  widgetVar="detailmovesAC"
+				styleClass="detail-table-body sortable"
 					emptyMessage="#{msg['text.empty.table']}" rowSelectMode="single"
 					value="#{cc.attrs.listAccounts}" var="moves" selectionMode="single"
-					rowKey="#{moves.movementId}" widgetVar="detailMoves">
+					rowKey="#{moves.movementId}" >
 
 					<p:ajax event="rowSelect"
-						listener="#{cc.attrs.controller.onMovementSelected}" />
-					<p:ajax event="rowUnselect" />
+						listener="#{cc.attrs.controller.onRowToggle}" />
 
 					<p:column width="3% !important" style="z-index: 2 !important;">
 						<p:rowToggler rendered="true" />
@@ -94,9 +94,10 @@
 			</div>
 
 			<footer class="detail-table-footer">
-				<button id="nextPagebLink" class="btn btn-more-results"
-					value="More Results" jsf:action="next">
-					<f:ajax execute="@form" render="@form :detalMoves" />
+				<button id="moreMovs" class="btn btn-more-results"
+					jsf:update="quotaDetail:detailAccounts:detailAccounts:detailmovesAC" value="Más Resultados"
+					jsf:rendered="#{quotaController.renderTable['FOOTERTABLEQUOTA']}"
+					jsf:actionListener="#{quotaController.nextPage}">
 					<span>#{msg['text.detailMove.footer']}</span>
 				</button>
 			</footer>
