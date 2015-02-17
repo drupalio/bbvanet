@@ -85,7 +85,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	public List<CheckbookDto> initCheckBookList() {
 		this.checkBookList = new ArrayList<CheckbookDto>();
 		// TODO accountId
-		this.checkBookList = checkBookFacade.getCheckBooksById("12345678");
+		this.checkBookList = checkBookFacade.getCheckBooksById(getSelectedProduct().getProductId());
 		return this.checkBookList;
 	}
 

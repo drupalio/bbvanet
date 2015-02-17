@@ -171,7 +171,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 		// TODO oroductId
 		this.movementsList = this.movementsFacade.listMovements(
-				"00130073000296247953"/* getSelectedProduct().getProductId() */, getSelectedProduct().getSubTypeProd(),
+			 getSelectedProduct().getProductId(), getSelectedProduct().getSubTypeProd(),
 				dateRange, null, 1, 10);
 		if (this.movementsList.size() >= 10)
 			getRenderTable().put(RenderAttributes.FOOTERTABLEMOVEMENT.toString(), true);
