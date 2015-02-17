@@ -14,7 +14,6 @@ import com.bbva.czic.dto.net.Customer;
 import com.bbva.net.webservices.core.pattern.AbstractBbvaRestService;
 import com.bbva.net.webservices.core.stereotype.RestService;
 import com.bbva.net.webservices.customers.CustomerService;
-import com.google.gson.Gson;
 
 @RestService(value = "customerService")
 public class CustomerServiceImpl extends AbstractBbvaRestService implements CustomerService {
