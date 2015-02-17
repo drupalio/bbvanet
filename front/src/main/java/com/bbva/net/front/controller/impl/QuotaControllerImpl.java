@@ -13,6 +13,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
 
+import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
 
 import com.bbva.net.back.facade.QuotaDetailFacade;
@@ -27,12 +28,13 @@ import com.bbva.net.back.model.movements.MovementDto;
 import com.bbva.net.back.model.quota.QuotaDetailDto;
 import com.bbva.net.back.service.impl.DateFilterServiceImpl;
 import com.bbva.net.front.controller.QuotaController;
+import com.bbva.net.front.helper.MessagesHelper;
 
 /**
  * @author User
  */
 
-public class QuotaControllerImpl extends CheckPaginatedController implements QuotaController {
+public class QuotaControllerImpl extends QuotaPaginatedController implements QuotaController {
 
 	private static final long serialVersionUID = 1L;
 
@@ -55,13 +57,13 @@ public class QuotaControllerImpl extends CheckPaginatedController implements Quo
 	private String sinceText, toText, sinceDatestr, toDatestr, selectDate, moveDate, maturityDate, previousDate,
 			paymentDate;
 
-	SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+	SimpleDateFormat dateFormat = new SimpleDateFormat(MessagesHelper.INSTANCE.getStringI18("date.pattner.dd.mm.yyyy"));
 
-	// private static final String CONCRETE_DATE = MessagesHelper.INSTANCE.getString("select.radio.concret.date");
-	//
-	// private static final String SINCE_TITLE = MessagesHelper.INSTANCE.getString("text.since");
-	//
-	// private static final String TO_TITLE = MessagesHelper.INSTANCE.getString("text.to");
+	private static final String CONCRETE_DATE = MessagesHelper.INSTANCE.getString("select.radio.concret.date");
+
+	private static final String SINCE_TITLE = MessagesHelper.INSTANCE.getString("text.since");
+
+	private static final String TO_TITLE = MessagesHelper.INSTANCE.getString("text.to");
 
 	@Resource(name = "TermsFacade")
 	private transient TermasAccountsFacade detallesCuenta;
@@ -71,6 +73,7 @@ public class QuotaControllerImpl extends CheckPaginatedController implements Quo
 
 	@PostConstruct
 	public void init() {
+		super.init();
 		LOGGER.info("Initialize QuotaController");
 		this.productDto = super.getSelectedProduct();
 		if (productDto != null) {
@@ -86,10 +89,6 @@ public class QuotaControllerImpl extends CheckPaginatedController implements Quo
 		previousDate = dateFormat.format(this.quotaDetailDto.getDatePrevious());
 		paymentDate = dateFormat.format(this.quotaDetailDto.getDatePayment());
 		LOGGER.info("Finalizado formateo de fechas del producto");
-
-		if (quotamovenDtos == null) {
-			getAllQuotamovenDtos();
-		}
 
 		clean();
 	}
@@ -112,6 +111,10 @@ public class QuotaControllerImpl extends CheckPaginatedController implements Quo
 		this.quotamovenDtos = this.quotaDetailFacade.listRotaryQuotaMovements(this.productDto.getProductId(),
 				dateRanget, 1, 10);
 		LOGGER.info("Datos de los movimientos llenos ");
+		if (this.quotamovenDtos.size() >= 10)
+			getRenderTable().put(RenderAttributes.FOOTERTABLEQUOTA.toString(), true);
+		else
+			getRenderTable().put(RenderAttributes.FOOTERTABLEQUOTA.toString(), false);
 		return quotamovenDtos;
 	}
 
@@ -122,8 +125,9 @@ public class QuotaControllerImpl extends CheckPaginatedController implements Quo
 
 	@Override
 	public TermsAccountsDto getAllConditions() {
-		TermsAccountsDto detalle = this.detallesCuenta.getAllConditions("00130073000296247953");
-		LOGGER.info("Datos del detalle de la cuenta: " + this.productDto.getProductId() + " Llenos");
+		//
+		TermsAccountsDto detalle = this.detallesCuenta.getAllConditions(getSelectedProduct().getProductId());
+		LOGGER.info("Datos del detalle de la cuenta: " + this.productDto.getProductId());
 		return detalle;
 	}
 
@@ -138,51 +142,74 @@ public class QuotaControllerImpl extends CheckPaginatedController implements Quo
 
 	@Override
 	public void oneSelectDate() {
+		System.out.println("Method oneSelectDate");
 
-		LOGGER.info("Método oneSelectDate");
+		renderComponents.put(RenderAttributes.FILTERDATE.toString(), true);
 
-		// renderComponents.put(RenderAttributes.FILTERDATE.toString(), true);
-		//
-		// if (getSelectDate().equals(CONCRETE_DATE)) {
-		// renderComponents.put(RenderAttributes.CALENDAR.toString(), false);
-		// renderComponents.put(RenderAttributes.BUTTONDATE.toString(), false);
-		//
-		// } else {
-		// renderComponents.put(RenderAttributes.CALENDAR.toString(), true);
-		// renderComponents.put(RenderAttributes.BUTTONDATE.toString(), false);
-		//
-		// }
+		if (getSelectDate().equals(CONCRETE_DATE)) {
+			renderComponents.put(RenderAttributes.CALENDAR.toString(), false);
+			renderComponents.put(RenderAttributes.BUTTONDATE.toString(), false);
+
+		} else {
+			renderComponents.put(RenderAttributes.CALENDAR.toString(), true);
+			renderComponents.put(RenderAttributes.BUTTONDATE.toString(), false);
+
+		}
 	}
 
 	@Override
 	public void setCustomDate(final ActionEvent event) {
 
 		LOGGER.info("Método setCustomDate");
-		//
-		// this.dateRange.setDateSince(getSinceDate());
-		// this.dateRange.setDateTo(getToDate());
-		// if (!(getSinceDate() == (null)) && !(getToDate() == (null))) {
-		// this.sinceText = SINCE_TITLE + ": ";
-		// this.toText = TO_TITLE + ": ";
-		// this.sinceDatestr = dateFormat.format(getSinceDate());
-		// this.toDatestr = dateFormat.format(getToDate());
-		// } else {
-		// sinceDatestr = getSelectDate();
-		// }
+		renderComponents.put(RenderAttributes.FILTERDATE.toString(), true);
+		this.dateRange.setDateSince(getSinceDate());
+		this.dateRange.setDateTo(getToDate());
+		if (!(getSinceDate() == (null)) && !(getToDate() == (null))) {
+			this.sinceText = SINCE_TITLE + ": ";
+			this.toText = TO_TITLE + ": ";
+			this.sinceDatestr = dateFormat.format(getSinceDate());
+			this.toDatestr = dateFormat.format(getToDate());
+		} else {
+			sinceDatestr = getSelectDate();
+		}
+	}
+
+	@Override
+	public void criteriaSearch() {
+
+		if (this.dateRange != null) {
+			setDateRangePControl(this.dateRange);
+		}
+		setProductIdPControl(getSelectedProduct().getProductId());
+		search();
+		this.quotamovenDtos = getCurrentList();
+		if (this.quotamovenDtos.size() >= 10)
+			getRenderTable().put(RenderAttributes.FOOTERTABLEQUOTA.toString(), true);
+		else
+			getRenderTable().put(RenderAttributes.FOOTERTABLEQUOTA.toString(), false);
+		setTitle(MessagesHelper.INSTANCE.getString("text.last.movments"));
+		RequestContext.getCurrentInstance().update("quotaDetail:detailAccounts:detailAccounts:detailmovesAC");
+	}
+
+	public void nextPage(ActionEvent event) {
+		criteriaSearch();
 	}
 
 	@Override
 	public void searchQuotaByFilter(final ActionEvent event) {
-
 		LOGGER.info("Método searchQuotaByFilter");
+		if (renderComponents.get(RenderAttributes.FILTERDATE.toString())) {
+			this.dateRange = calculateQuotaFilters(this.getSelectDate());
+			criteriaSearch();
+		}
 
-		renderComponents.get(RenderAttributes.FILTERDATE.toString());
 	}
 
 	private void clean() {
 		LOGGER.info("Método clean");
 		renderComponents.put(RenderAttributes.CALENDAR.toString(), true);
 		renderComponents.put(RenderAttributes.BUTTONDATE.toString(), true);
+		renderComponents.put(RenderAttributes.FILTERDATE.toString(), false);
 	}
 
 	// Setters and Getters

@@ -43,4 +43,6 @@ public interface QuotaController {
 
 	List<MovementDto> getAllQuotamovenDtos();
 
+	void criteriaSearch();
+
 }

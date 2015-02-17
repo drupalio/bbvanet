@@ -7,12 +7,15 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
+
+import org.primefaces.context.RequestContext;
 
 import com.bbva.net.back.entity.MultiValueGroup;
 import com.bbva.net.back.facade.CheckBookFacade;
@@ -220,9 +223,20 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 		setProductIdPControl(getSelectedProduct().getProductId());
 		search();
 		this.checkList = getCurrentList();
+		RequestContext.getCurrentInstance().update("detailAccounts:formu");
+		
 		if(this.checkList.size()>=10)getRenderTable().put(RenderAttributes.FOOTERTABLECHEKS.toString(), true);	else getRenderTable().put(RenderAttributes.FOOTERTABLECHEKS.toString(), false);
 		getRenderTable().put(RenderAttributes.CHECKTABLE.toString(), true);
+		RequestContext.getCurrentInstance().update("detailAccounts:formu:checksTable");
 		getRenderTable().put(RenderAttributes.MOVEMENTSTABLE.toString(), false);
+		RequestContext.getCurrentInstance().update("detailAccounts:formu:detalMov");
+		
+	Iterator it = getRenderTable().entrySet().iterator();
+		
+		while (it.hasNext()) {
+			Map.Entry e = (Map.Entry)it.next();
+			System.out.println("--------------------"+" LLAVEEE "+e.getKey() + " ----------VALOOOOR----------" + e.getValue()+"--------------------");
+		}
 		
 	}
 
