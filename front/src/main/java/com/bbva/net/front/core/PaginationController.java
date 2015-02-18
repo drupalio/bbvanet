@@ -48,8 +48,7 @@ public abstract class PaginationController<T extends Serializable> extends Abstr
 	}
 
 	public void next() {
-		final List<T> currentPage = getNextPage(paginationKey, PAGE_SIZE);
-		System.out.println(" Vagination " + paginationKey);
+		final List<T> currentPage = getNextPage(paginationKey, PAGE_SIZE);		
 		if (currentPage.size() < PAGE_SIZE) {
 			hasMorePages = false;
 		}

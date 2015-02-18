@@ -7,18 +7,13 @@ import java.util.List;
 
 import javax.faces.event.ActionEvent;
 
-import com.bbva.net.back.model.accounts.TermsAccountsDto;
+import com.bbva.net.back.model.globalposition.ProductDto;
 import com.bbva.net.back.model.movements.MovementDto;
 
 /**
  * @author User
  */
 public interface QuotaController {
-
-	/**
-	 * Method to get all conditions of a quota
-	 */
-	TermsAccountsDto getAllConditions();
 
 	/***
 	 * Method to select the date type is called when you click on the date oneRadio menu component
@@ -42,5 +37,37 @@ public interface QuotaController {
 	 */
 
 	List<MovementDto> getAllQuotamovenDtos();
+
+	/**
+	 * Method to reset to "render" of quota with click
+	 * 
+	 * @param event
+	 */
+	void cleanFilters(ActionEvent event);
+
+	/**
+	 * Method to reset filters of quota
+	 */
+
+	void cleanFilters();
+
+	/**
+	 * Method nextPage movements
+	 * 
+	 * @param event
+	 */
+
+	void nextPage(ActionEvent event);
+
+	/**
+	 * Product Data
+	 * 
+	 * @return
+	 */
+
+	ProductDto getSelectProduct();
+
+	void criteriaSearch();
+
 
 }

@@ -9,42 +9,35 @@
 	xmlns:pm="http://primefaces.org/mobile">
 
 <composite:interface>
-
+	<composite:attribute name="controller" />
 </composite:interface>
 
 <composite:implementation>
 
-	<div class="table-wrapper">
-		<table class="detail-table-body sortable">
-			<tbody>
-				<tr class="detail-row">
-					<td colspan="4" class="td-detail" style="">
-						<div class="detail-content">
-							<div class="table-detail-border">
+	<div class="td-detail position" style="margin-top: -15% !important;">
+		<div class="detail-content" style="border: 5px solid #EAEAEA;">
+			<div class="table-detail-border">
 
-								<!-- aki va header -->
- 								<bbvaDetailMotion:tableHeader />
+				<!-- aki va header -->
+				<bbvaDetailMotion:tableHeader />
 
-								<!-- luego va botones container -->
-								<bbvaDetailMotion:buttonContainer />
+				<!-- luego va botones container -->
+				<bbvaDetailMotion:buttonContainer button1="Lorem"
+					button2="Lorem ipsum" button3="Lorem ipsum" />
 
 
-								<!-- luego cuerpo del contenido -->
-								<bbvaDetailMotion:tableBody detailMovement="#{movementDetailController.getDetailMovementByAccount()}"/>
+				<!-- luego cuerpo del contenido -->
+				<bbvaDetailMotion:tableBody controller="#{cc.attrs.controller}" />
 
 
-								<!-- luego va footer archivos asociados -->
-								<bbvaDetailMotion:tableFooterFile />
+				<!-- luego va footer archivos asociados -->
+				<bbvaDetailMotion:tableFooterFile />
 
-								<!-- luego va footer notas -->
-								<bbvaDetailMotion:tableFooterNotes />
+				<!-- luego va footer notas -->
+				<bbvaDetailMotion:tableFooterNotes />
 
-							</div>
-						</div>
-					</td>
-				</tr>
-			</tbody>
-		</table>
+			</div>
+		</div>
 	</div>
 
 </composite:implementation>

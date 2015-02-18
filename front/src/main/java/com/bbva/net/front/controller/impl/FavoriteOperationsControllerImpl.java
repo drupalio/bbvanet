@@ -8,6 +8,8 @@ import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
 import org.primefaces.event.SelectEvent;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
 
 import com.bbva.net.back.facade.FavoriteOperationsFacade;
 import com.bbva.net.back.model.favoriteOperations.FavoriteOperationDto;
@@ -18,6 +20,8 @@ import com.bbva.net.front.helper.MessagesHelper;
 /**
  * @author Entelgy
  */
+@Controller(value = "favoriteOperationsController")
+@Scope(value = "globalSession")
 public class FavoriteOperationsControllerImpl extends AbstractBbvaController implements FavoriteOperationsController {
 
 	/**

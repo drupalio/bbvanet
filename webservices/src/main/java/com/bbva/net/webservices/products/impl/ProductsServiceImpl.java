@@ -2,13 +2,12 @@ package com.bbva.net.webservices.products.impl;
 
 import java.util.List;
 
-import javax.ws.rs.core.Response;
-
 import org.apache.cxf.common.util.StringUtils;
 import org.apache.cxf.jaxrs.client.WebClient;
 import org.springframework.beans.factory.annotation.Value;
 
 import com.bbva.czic.dto.net.Conditions;
+import com.bbva.czic.dto.net.Extracto;
 import com.bbva.czic.dto.net.Movement;
 import com.bbva.net.webservices.core.pattern.AbstractBbvaRestService;
 import com.bbva.net.webservices.core.stereotype.RestService;
@@ -28,7 +27,7 @@ public class ProductsServiceImpl extends AbstractBbvaRestService implements Prod
 	}
 
 	@Override
-	public Response listExtracts(String productId, String $filter, Integer paginationKey, Integer pageSize) {
+	public List<Extracto> listExtracts(String productId, String $filter) {
 		// TODO Auto-generated method stub
 		return null;
 	}

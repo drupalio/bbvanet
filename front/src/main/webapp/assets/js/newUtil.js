@@ -8,6 +8,7 @@ function enableDisableButton(inputId, btn) {
 	var valor = inputId.value;
 	if (valor.length != 0) {
 		document.getElementById(button).disabled = false;
+		document.getElementById(button).classList.remove('ui-state-disabled');
 	} else {
 		document.getElementById(button).disabled = true;
 	}
@@ -23,6 +24,7 @@ function enableDisable(inputId, btnW) {
 	var valor = inputId.value;
 	if (valor.length == 4) {
 		document.getElementById(button).disabled = false;
+		document.getElementById(button).classList.remove('ui-state-disabled');
 	} else {
 		document.getElementById(button).disabled = true;
 	}
@@ -39,9 +41,10 @@ function checkFilled(btnW, inputId) {
 
 }
 
-function checkRowClick() {
-
+$(document).ready(function() {
 	$('.ui-datatable-data .ui-widget-content').click(function() {
+
+		var children = $('.ui-datatable-data .ui-widget-content').children();
 
 		var i = $('.ui-row-toggler.ui-icon-circle-triangle-s').length;
 		if (i == 1) {
@@ -50,4 +53,12 @@ function checkRowClick() {
 		$('.ui-row-toggler.ui-icon-circle-triangle-s').trigger('click');
 		$('.ui-row-toggler.ui-icon-circle-triangle-s').click();
 	});
-}
+});
+
+// Cerrar de los tab operation Quota y Movements
+$(document).ready(function() {
+	$('.close-button').click(function() {
+		var parent = $(this).parents('.operation-tabs');
+		parent.find('.active').removeClass('active');
+	});
+});

@@ -181,8 +181,9 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		this.globalResumeMovementsDTO = this.movementsResumeFacade.getMovementsResumeByCustomer(null);
 
 		// Obtiene la lista de datos para pintar la grafica Deposito electrónico
-		this.globalMonthlyBalance = this.accountMonthBalanceFacade.getAccountMonthlyBalance(DEFAULT_ACCOUNT,
-				new DateRangeDto(), StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY);
+		this.globalMonthlyBalance = this.accountMonthBalanceFacade.getAccountMonthlyBalance(globalProductsDTO
+				.getElectronicDeposits().get(0).getProductNumber(), new DateRangeDto(), StringUtils.EMPTY,
+				StringUtils.EMPTY, StringUtils.EMPTY);
 
 		// Delegate construye UI grafica Depositos Electrónicos
 		this.lineConfigUI = this.graphicLineDelegate.getMonthlyBalance(globalMonthlyBalance);
