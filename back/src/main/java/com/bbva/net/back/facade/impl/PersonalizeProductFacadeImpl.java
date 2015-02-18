@@ -54,8 +54,9 @@ public class PersonalizeProductFacadeImpl extends AbstractBbvaFacade implements 
 		LOGGER.info("Llamando al servicio de updateProductVisibility" + " product Id: " + product.getId());
 		if (this.globalPositionService.updateProductVisibility(idProduct, product).getStatus() == 200) {
 			respuesta = true;
+			LOGGER.info("finalizando llamado de updateProductVisibility" + " " + respuesta);
 		}
-		LOGGER.info("finalizando llamado de updateProductVisibility" + " " + respuesta);
+
 		return respuesta;
 	}
 

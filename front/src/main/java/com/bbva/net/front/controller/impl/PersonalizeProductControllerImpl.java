@@ -5,6 +5,8 @@ import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.AjaxBehaviorEvent;
 
+import org.primefaces.event.SelectEvent;
+
 import com.bbva.net.back.facade.PersonalizeProductFacade;
 import com.bbva.net.back.model.globalposition.ProductDto;
 import com.bbva.net.back.model.personalize.PersonalizeAccountDto;
@@ -39,16 +41,7 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 		LOGGER.info("Inicialize ProductAccountController");
 		this.menOperationKey = false;
 		this.menSuccessful = false;
-	}
 
-	@Override
-	public void setSelectedProduct(ProductDto selectedProduct) {
-		super.setSelectedProduct(selectedProduct);
-	}
-
-	// inicializar valores para mostrar en la vista
-	@Override
-	public ProductDto getSelectedProduct() {
 		this.productDto = super.getSelectedProduct();
 		if (productDto != null) {
 			LOGGER.info("Datos del producto Seleccionado Terminado " + " Product Id: " + productDto.getProductId());
@@ -58,7 +51,12 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 			this.productDto = new ProductDto();
 			LOGGER.info("Datos del producto Seleccionado Vacio (null)");
 		}
-		return productDto;
+
+	}
+
+	@Override
+	public void setSelectedProduct(ProductDto selectedProduct) {
+		super.setSelectedProduct(selectedProduct);
 	}
 
 	/**
@@ -73,13 +71,13 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 		productDto.setOperationOnline(isOperation());
 
 		LOGGER.info("Llamando updateProductVisibility del facade");
-		Boolean responseVisi = this.personalizeProductAccountFacade.updateProductVisibility(productDto.getProductId(),
-				productDto);
+		Boolean responseVisi = this.personalizeProductAccountFacade.updateProductVisibility(
+				this.productDto.getProductId(), productDto);
 		LOGGER.info("Dato visible de la cuenta: " + this.productDto.getProductId() + " actualizado: " + responseVisi);
 
 		LOGGER.info("Llamando updateProductOperability del facade");
-		Boolean responseOpe = this.personalizeProductAccountFacade.updateProductOperability(productDto.getProductId(),
-				productDto);
+		Boolean responseOpe = this.personalizeProductAccountFacade.updateProductOperability(
+				this.productDto.getProductId(), productDto);
 		LOGGER.info("Dato operable de la cuenta: " + this.productDto.getProductId() + " actualizado: " + responseOpe);
 
 		if (responseVisi == true && responseOpe == true) {

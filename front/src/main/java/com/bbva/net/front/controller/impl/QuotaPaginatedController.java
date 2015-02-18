@@ -9,7 +9,7 @@ import com.bbva.net.back.model.commons.DateRangeDto;
 import com.bbva.net.back.model.movements.MovementDto;
 import com.bbva.net.front.core.PaginationController;
 
-public class QuotaPaginatedControllerImpl extends PaginationController<MovementDto> {
+public class QuotaPaginatedController extends PaginationController<MovementDto> {
 
 	private static final long serialVersionUID = 1L;
 
