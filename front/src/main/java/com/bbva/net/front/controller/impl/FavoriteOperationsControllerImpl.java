@@ -15,6 +15,9 @@ import com.bbva.net.front.controller.FavoriteOperationsController;
 import com.bbva.net.front.core.AbstractBbvaController;
 import com.bbva.net.front.helper.MessagesHelper;
 
+/**
+ * @author Entelgy
+ */
 public class FavoriteOperationsControllerImpl extends AbstractBbvaController implements FavoriteOperationsController {
 
 	/**
@@ -30,6 +33,7 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
 	@PostConstruct
 	public void init() {
 		favoriteOperations = favoriteOperationsFacade.getListFavoriteOperations();
+		getNames();
 	}
 
 	@Override
@@ -40,25 +44,43 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
 
 	@Override
 	public List<FavoriteOperationDto> getListFavoriteOperations() {
-		if (favoriteOperations.size() <= 3)
+
+		if (favoriteOperations.size() <= 3) {
 			return favoriteOperations;
-		else
+		} else {
 			return favoriteOperations.subList(0, 3);
+		}
 	}
 
 	@Override
 	public List<FavoriteOperationDto> getListFavoriteOperationsHidden() {
 
-		if (favoriteOperations.size() <= 3)
+		if (favoriteOperations.size() <= 3) {
 			return favoriteOperations;
-		else
+		} else {
 			return favoriteOperations.subList(3, favoriteOperations.size());
+		}
 	}
 
 	public String getDate(Date transactionDate) {
-		SimpleDateFormat dateFormat = new SimpleDateFormat(
+		final SimpleDateFormat dateFormat = new SimpleDateFormat(
 				MessagesHelper.INSTANCE.getStringI18("date.pattner.dd-mm-yyyy"));
 		return dateFormat.format(transactionDate);
+
+	}
+
+	/**
+     * 
+     */
+	public void getNames() {
+		for (int i = 0; i < favoriteOperations.size(); i++) {
+			final String origen = MessagesHelper.INSTANCE.getFavOperationsPrefix(this.favoriteOperations.get(i)
+					.getOrigin());
+			final String destino = MessagesHelper.INSTANCE.getFavOperationsPrefix(this.favoriteOperations.get(i)
+					.getDestination());
+			this.favoriteOperations.get(i).setOrigin(origen);
+			this.favoriteOperations.get(i).setDestination(destino);
+		}
 
 	}
 
