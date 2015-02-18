@@ -227,7 +227,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 		setProductIdPControl(getSelectedProduct().getProductId());
 		search();
 		this.quotamovenDtos = getCurrentList();
-		if (this.quotamovenDtos.size() >= 10)
+		if (this.quotamovenDtos.size() > 10)
 			getRenderTable().put(RenderAttributes.FOOTERTABLEQUOTA.toString(), true);
 		else
 			getRenderTable().put(RenderAttributes.FOOTERTABLEQUOTA.toString(), false);
