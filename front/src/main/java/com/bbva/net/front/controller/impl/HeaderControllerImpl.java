@@ -17,40 +17,40 @@ import com.bbva.net.front.core.AbstractBbvaController;
 public class HeaderControllerImpl extends AbstractBbvaController implements HeaderController {
 
 	@Resource(name = "headerFacade")
-	private transient HeaderFacade executive;
+	private transient HeaderFacade headerFacade;
 
 	/**
 	 * 
 	 */
-	private ExecutiveDto ejecutivo;
+	private ExecutiveDto executiveDto;
 
-	private CustomerDto cliente;
+	private CustomerDto customerDto;
 
 	private static final long serialVersionUID = 5284952254890332374L;
 
 	@PostConstruct
 	public void init() {
-		this.cliente = this.getCustomer();
-		this.ejecutivo = this.getExecutive();
+		this.customerDto = this.getCustomer();
+		this.executiveDto = this.getExecutive();
 	}
 
 	@Override
 	public ExecutiveDto getExecutive() {
-		return executive.getExecutive();
+		return executiveDto;
 	}
 
 	public ExecutiveDto getEjecutivo() {
-		return ejecutivo;
+		return executiveDto;
 	}
 
 	public CustomerDto getCliente() {
 
-		return cliente;
+		return customerDto;
 	}
 
 	@Override
 	public CustomerDto getCustomer() {
-		return executive.getCustomer();
+		return customerDto;
 	}
 
 }
