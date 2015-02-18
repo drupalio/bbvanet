@@ -17,7 +17,7 @@ public class FavoriteOperationDto implements Dto {
 
 	private Date transactionDate;
 
-	private Money ammount;
+	private Money amount;
 
 	private String origin;
 
@@ -26,6 +26,10 @@ public class FavoriteOperationDto implements Dto {
 	private String contractId;
 
 	private String idOperation;
+
+	private String name;
+
+	private String transactionReference;
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
@@ -39,12 +43,12 @@ public class FavoriteOperationDto implements Dto {
 		this.transactionDate = transactionDate;
 	}
 
-	public Money getAmmount() {
-		return ammount;
+	public Money getAmount() {
+		return amount;
 	}
 
-	public void setAmmount(Money ammount) {
-		this.ammount = ammount;
+	public void setAmount(Money amount) {
+		this.amount = amount;
 	}
 
 	public String getOrigin() {
@@ -79,22 +83,42 @@ public class FavoriteOperationDto implements Dto {
 		this.idOperation = idOperation;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getTransactionReference() {
+		return transactionReference;
+	}
+
+	public void setTransactionReference(String transactionReference) {
+		this.transactionReference = transactionReference;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		return (obj instanceof FavoriteOperationDto)
 				&& this.getTransactionDate().equals(((FavoriteOperationDto)obj).getTransactionDate())
-				&& this.getAmmount().equals(((FavoriteOperationDto)obj).getAmmount());
+				&& this.getAmount().equals(((FavoriteOperationDto)obj).getAmount());
 	}
 
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder().append(getTransactionDate()).append(getAmmount()).toHashCode();
+		return new HashCodeBuilder().append(getTransactionDate()).append(getAmount()).append(getOrigin())
+				.append(getDestination()).append(getContractId()).append(getIdOperation()).append(getName())
+				.append(getTransactionReference()).toHashCode();
 	}
 
 	@Override
 	public String toString() {
-		return new ToStringBuilder(this).append("transactionDate", getTransactionDate())
-				.append("ammount", getAmmount()).toString();
+		return new ToStringBuilder(this).append("transactionDate", getTransactionDate()).append("ammount", getAmount())
+				.append("origin", getOrigin()).append("destination", getDestination())
+				.append("contractId", getContractId()).append("idOperation", getIdOperation())
+				.append("name", getName()).append("transactionReference", getTransactionReference()).toString();
 	}
 
 }

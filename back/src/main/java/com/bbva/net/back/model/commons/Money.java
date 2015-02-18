@@ -25,6 +25,24 @@ public class Money implements Dto {
 		super();
 	}
 
+	public Money(String arg0) {
+		String[] temp;
+
+		/* delimiter */
+		String delimiter = " ";
+
+		if (arg0 != null) {
+
+			/* given string will be split by the argument delimiter provided. */
+			temp = arg0.split(delimiter);
+
+			if (temp != null && temp.length == 2) {
+				setAmount(new BigDecimal(temp[0]));
+				setCurrency(temp[1]);
+			}
+		}
+	}
+
 	public Money(BigDecimal amount) {
 		this.amount = amount;
 	}

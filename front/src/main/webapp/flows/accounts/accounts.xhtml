@@ -9,7 +9,8 @@
 	xmlns:bbvaGP="http://java.sun.com/jsf/composite/bbva/globalPosition"
 	xmlns:bbvaAlert="http://java.sun.com/jsf/composite/bbva/alert"
 	xmlns:bbvaBody="http://java.sun.com/jsf/composite/bbva/body"
-	xmlns:bbvaContainer="http://java.sun.com/jsf/composite/bbva/container"
+	xmlns:bbvaContainer="http://java.sun.com/jsf/composite/bbva/container"	
+	xmlns:bbvaOperationFav="http://java.sun.com/jsf/composite/bbva/favoriteOperations"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:jsf="http://xmlns.jcp.org/jsf">
 
@@ -53,7 +54,7 @@
 	</ui:define>
 
 	<ui:define name="contentRight">
-
+		<bbvaOperationFav:operationsPanel list="#{operations}"/>
 
 	</ui:define>
 
