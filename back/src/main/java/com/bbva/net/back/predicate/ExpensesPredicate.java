@@ -11,14 +11,13 @@ import com.bbva.net.core.collection.BbvaPredicate;
  */
 public class ExpensesPredicate extends BbvaPredicate<MovementDto> {
 
-	public ExpensesPredicate() {
-
-	}
+	private static final int EXPENSE =-1; 
+		
 
 	@Override
 	protected boolean eval(MovementDto movementDto) {
 
-		return (movementDto.getMovementValue().getAmount().signum()) == -1;
+		return (movementDto.getMovementValue().getAmount().signum()) == EXPENSE;
 	}
 
 }

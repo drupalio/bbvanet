@@ -10,7 +10,6 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
-import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -38,7 +37,8 @@ import com.bbva.net.front.ui.line.LineConfigUI;
 /**
  * @author User
  */
-public class MovementCriteriaControllerImpl extends MovementPaginatedController implements MovementCriteriaController {
+public class MovementCriteriaControllerImpl
+ extends MovementPaginatedController implements MovementCriteriaController {
 
 	private static final long serialVersionUID = 1L;
 
@@ -138,6 +138,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		setTitle(MessagesHelper.INSTANCE.getString("text.last.movments"));
 		getRenderTable().put(RenderAttributes.MOVEMENTSTABLE.toString(), true);
 		getRenderTable().put(RenderAttributes.CHECKTABLE.toString(), false);
+		RequestContext.getCurrentInstance().update(":detailAccounts:formu:detalMov");
 	}
 
 	public void nextPage(ActionEvent event) {
@@ -224,7 +225,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			getRenderTable().put(RenderAttributes.MOVEMENTSTABLE.toString(), true);
 			getRenderTable().put(RenderAttributes.CHECKTABLE.toString(), false);
 			setTitle(MessagesHelper.INSTANCE.getString("text.last.movments"));
-			RequestContext.getCurrentInstance().update(":detailAccounts:formu:detalMov");
+			
 		}
 
 	}
@@ -320,7 +321,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			sinceDatestr = getSelectDate();
 		}
 		
-		RequestContext.getCurrentInstance().update("customSearch");
+//		RequestContext.getCurrentInstance().update("customSearch");
 	}
 
 	/**

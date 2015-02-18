@@ -25,7 +25,7 @@
 
 <composite:implementation>
 
-	<div class="date-filter-content">
+	<div id="dateFilterContent" class="date-filter-content">
 
 		<div class="form-horizontal">
 			<div class="row">
@@ -52,10 +52,10 @@
 						render="
 					tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:calendarSince
 					tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:calendarTo
-					tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:dateButton
-					tabMenu:tabCriteria:personalizedSearchContainer:customSearch:formCheckBook:checkSearchTab:checkContainer:customCheckList:customDate:calendarSince
-					tabMenu:tabCriteria:personalizedSearchContainer:customSearch:formCheckBook:checkSearchTab:checkContainer:customCheckList:customDate:calendarTo
-					tabMenu:tabCriteria:personalizedSearchContainer:customSearch:formCheckBook:checkSearchTab:checkContainer:customCheckList:customDate:dateButton
+					tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:dateButton										
+					tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:checkContainer:customCheckList:customDate:calendarSince
+					tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:checkContainer:customCheckList:customDate:calendarTo
+					tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:checkContainer:customCheckList:customDate:dateButton
 					"
 						listener="#{cc.attrs.listenerDate.oneSelectDate}" />
 
@@ -132,13 +132,17 @@
 		</div>
 
 		<button jsf:id="dateButton" class="btn small hidden-xs hidden-sm" 
-			type="button" jsf:disabled="#{cc.attrs.disabledButton}" 
+			type="button" jsf:disabled="false" 
 			jsf:actionListener="#{cc.attrs.actionListenerDate}">
 			#{msg['button.confirm']}
-			<p:ajax execute="@form" update="@form" immediate="true" partialSubmit="true"/>
+			<p:ajax update=":tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:hola:hola:hola" 
+					process="@form" immediate="true"/>
 		</button>
-
+		
 	</div>
+	
+	
+	
 	
 </composite:implementation>
 </html>
