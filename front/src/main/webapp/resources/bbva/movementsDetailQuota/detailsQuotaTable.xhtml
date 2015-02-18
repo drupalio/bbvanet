@@ -41,7 +41,7 @@
 					value="#{cc.attrs.listAccounts}" var="moves" selectionMode="single"
 					rowKey="#{moves.movementId}">
 
-					<p:ajax event="rowSelect"
+					<p:ajax event="rowSelect" onstart="checkFilled()"
 						listener="#{cc.attrs.controller.onRowToggle}" />
 
 					<p:column style="z-index: 2 !important;">
@@ -86,7 +86,7 @@
 						</div>
 					</p:column>
 
-					<p:rowExpansion styleClass="detail-row position">
+					<p:rowExpansion styleClass="detail-row position" id="roiuy">
 						<bbvaDetailMotion:tableContent controller="#{cc.attrs.controller}" />
 					</p:rowExpansion>
 
