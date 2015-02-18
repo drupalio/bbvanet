@@ -5,8 +5,6 @@ import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.AjaxBehaviorEvent;
 
-import org.primefaces.event.SelectEvent;
-
 import com.bbva.net.back.facade.PersonalizeProductFacade;
 import com.bbva.net.back.model.globalposition.ProductDto;
 import com.bbva.net.back.model.personalize.PersonalizeAccountDto;
