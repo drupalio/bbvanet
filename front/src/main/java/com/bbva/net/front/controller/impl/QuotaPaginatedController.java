@@ -9,7 +9,7 @@ import com.bbva.net.back.model.commons.DateRangeDto;
 import com.bbva.net.back.model.movements.MovementDto;
 import com.bbva.net.front.core.PaginationController;
 
-public class QuotaPaginatedControllerImpl extends PaginationController<MovementDto> {
+public class QuotaPaginatedController extends PaginationController<MovementDto> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -19,6 +19,10 @@ public class QuotaPaginatedControllerImpl extends PaginationController<MovementD
 
 	@Resource(name = "quotaDetailFacade")
 	private transient QuotaDetailFacade quotaDetailFacade;
+
+	public void search() {
+		super.next();
+	}
 
 	@Override
 	protected List<MovementDto> getNextPage(int paginantionKey, int psize) {

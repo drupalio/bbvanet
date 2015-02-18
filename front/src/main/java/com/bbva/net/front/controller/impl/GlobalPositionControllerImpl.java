@@ -175,16 +175,21 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		try {
 			LOGGER.info("STARTING BBVA GLOBAL POSITION .................");
 
-			LOGGER.info("Calculando totales................");
-			// Calculate totals
-			this.totalsProducts = this.globalPositionFacade.getTotalsByProduct(globalProductsDTO);
+			LOGGER.info("Obteniendo la lista de productos de posición global................");
+			// Get GlobalProductsDTO by currentUser (visibles and hidden)
+			this.globalProductsDTO = this.globalPositionFacade.getGlobalProductsByUser();
 
-			// Delegate construye UI grafica Depositos Electrónicos
-			// this.lineConfigUI = this.graphicLineDelegate.getMonthlyBalance(globalMonthlyBalance);
+			LOGGER.info("Obteniendo la lista de resumen de movimientos................");
+			// Obtiene la lista de resumen de movimientos del serivico REST
+			this.globalResumeMovementsDTO = this.movementsResumeFacade.getMovementsResumeByCustomer(null);
+
+			LOGGER.info("Obteniendo la lista de Depósitos Electrónicos................");
 			// Obtiene la lista de datos para pintar la grafica Deposito electrónico
-			this.globalMonthlyBalance = this.accountMonthBalanceFacade.getAccountMonthlyBalance(DEFAULT_ACCOUNT,
-					new DateRangeDto(), StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY);
+			this.globalMonthlyBalance = this.accountMonthBalanceFacade.getAccountMonthlyBalance(globalProductsDTO
+					.getElectronicDeposits().get(0).getProductNumber(), new DateRangeDto(), StringUtils.EMPTY,
+					StringUtils.EMPTY, StringUtils.EMPTY);
 
+			LOGGER.info("Calculando Gráfica Depositos Electrónicos ................");
 			// Delegate construye UI grafica Depositos Electrónicos
 			this.lineConfigUI = this.graphicLineDelegate.getMonthlyBalance(globalMonthlyBalance);
 
@@ -199,20 +204,13 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 			LOGGER.info("Nombre Productos  ................");
 			this.namesProducts = globalPositionFacade.getNamesProducts(globalProductsDTO);
 
-			LOGGER.info("Obteniendo Monthly Balances ................");
-			// Obtiene la lista de datos para pintar la grafica Deposito electrónico
-			this.globalMonthlyBalance = this.accountMonthBalanceFacade.getAccountMonthlyBalance(DEFAULT_ACCOUNT, null,
-					StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY);
+			LOGGER.info("Calculando totales................");
+			// Calculate totals
+			this.totalsProducts = this.globalPositionFacade.getTotalsByProduct(globalProductsDTO);
 
 			LOGGER.info("Obteniendo Tarjetas y calculando gráfica ................");
 			// Calculate cards graphics panel
-			this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(
-					getCurrentUser(), null));
-
-			LOGGER.info("Obteniendo la lista de resumen de movimientos................");
-			// Obtiene la lista de resumen de movimientos del serivico REST
-			this.globalResumeMovementsDTO = this.movementsResumeFacade.getMovementsResumeByCustomer(getCurrentUser(),
-					null);
+			this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(null));
 
 			LOGGER.info("Calculando gráfica de cuentas ................");
 			// Calculate income, output and balance by Account Graphic
@@ -371,8 +369,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 		if (MessagesHelper.INSTANCE.getString("text.allCards").equals(cardSelected) || cardSelected.isEmpty()) {
 			cardSelected = MessagesHelper.INSTANCE.getString("text.allCards");
-			this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(
-					getCurrentUser(), dateRange));
+			this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(dateRange));
 		} else {
 
 			this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesFilter(cardSelected,
@@ -405,7 +402,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 				&& MessagesHelper.INSTANCE.getString("text.allAccounts").equals(accountSelected)) {
 
 			this.accountGraphicBarLineUI = this.graphicBarLineDelegate.getInOutBalanceAccount(movementsResumeFacade
-					.getMovementsResumeByCustomer(getCurrentUser(), dateRange));
+					.getMovementsResumeByCustomer(dateRange));
 
 		}
 

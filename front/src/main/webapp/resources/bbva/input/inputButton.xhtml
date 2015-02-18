@@ -35,23 +35,25 @@
 
 <composite:implementation>
 
+	<script>
+
+</script>
+
 
 	<fieldset class="input">
 		<p:inputText id="#{cc.attrs.idInput}" type="#{cc.attrs.typeInput}"
 			value="#{cc.attrs.valueInput}" maxlength="#{cc.attrs.maxlength}"
 			onkeyup="enableDisableButton(this, #{cc.attrs.nameButton})"
-			style="#{cc.attrs.styleInput}" styleClass="form-control">
+			style="#{cc.attrs.styleInput}" styleClass="form-control required">
 		</p:inputText>
 	</fieldset>
 
-	<button class="#{cc.attrs.classButton}" disabled="true"
-		type="#{cc.attrs.typeButton}" jsf:id="#{cc.attrs.idButton}"
-		jsf:actionListener="#{cc.attrs.actionListener}"
-		name="#{cc.attrs.nameButton}" jsf:style="#{cc.attrs.styleButton}"
-		jsf:onclick="#{cc.attrs.onclickButton}">
-		<span class="#{cc.attrs.iconButton}" /> #{cc.attrs.valueButton}
-		<f:ajax execute="@form" render="@form" />
-	</button>
+	<p:commandButton id="#{cc.attrs.idButton}" disabled="true"
+		style="#{cc.attrs.styleButton}" pt:name="#{cc.attrs.nameButton}"
+		value="#{cc.attrs.valueButton}" styleClass="#{cc.attrs.classButton}"
+		process="@form" update="@form"
+		actionListener="#{cc.attrs.actionListener}"
+		onclick="#{cc.attrs.onclickButton}" />
 
 </composite:implementation>
 

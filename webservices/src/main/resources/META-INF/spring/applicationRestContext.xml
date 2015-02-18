@@ -40,7 +40,7 @@
 		</property>
 	</bean>
 
-	<bean id="factoryBean" class="org.apache.cxf.jaxrs.client.JAXRSClientFactoryBean">
+	<bean id="factoryBean" class="org.apache.cxf.jaxrs.client.JAXRSClientFactoryBean" primary="false" >
 		<aop:scoped-proxy />
 		<property name="providers">
 			<list>

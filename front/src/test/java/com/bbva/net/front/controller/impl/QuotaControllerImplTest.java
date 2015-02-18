@@ -1,4 +1,4 @@
-package com.bbva.net.front.controller.impl;
+/*package com.bbva.net.front.controller.impl;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -51,3 +51,4 @@ public class QuotaControllerImplTest {
 	}
 
 }
+*/

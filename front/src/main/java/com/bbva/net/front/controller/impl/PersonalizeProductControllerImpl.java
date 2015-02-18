@@ -5,6 +5,8 @@ import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.AjaxBehaviorEvent;
 
+import org.primefaces.event.SelectEvent;
+
 import com.bbva.net.back.facade.PersonalizeProductFacade;
 import com.bbva.net.back.model.globalposition.ProductDto;
 import com.bbva.net.back.model.personalize.PersonalizeAccountDto;
@@ -36,22 +38,25 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 	// inicializar mensajes
 	@PostConstruct
 	public void init() {
+		LOGGER.info("Inicialize ProductAccountController");
 		this.menOperationKey = false;
 		this.menSuccessful = false;
+
+		this.productDto = super.getSelectedProduct();
+		if (productDto != null) {
+			LOGGER.info("Datos del producto Seleccionado Terminado " + " Product Id: " + productDto.getProductId());
+			setSearch(productDto.isVisible());
+			setOperation(productDto.getOperationOnline());
+		} else {
+			this.productDto = new ProductDto();
+			LOGGER.info("Datos del producto Seleccionado Vacio (null)");
+		}
+
 	}
 
 	@Override
 	public void setSelectedProduct(ProductDto selectedProduct) {
 		super.setSelectedProduct(selectedProduct);
-	}
-
-	// inicializar valores para mostrar en la vista
-	@Override
-	public ProductDto getSelectedProduct() {
-		this.productDto = super.getSelectedProduct();
-		setSearch(productDto.isVisible());
-		setOperation(productDto.getOperationOnline());
-		return productDto;
 	}
 
 	/**
@@ -61,16 +66,24 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 	 */
 	@Override
 	public void operKey() {
+		LOGGER.info("Método operKey -> llenando datos de vista");
 		productDto.setVisible(isSearch());
 		productDto.setOperationOnline(isOperation());
-		Boolean responseVisi = this.personalizeProductAccountFacade.updateProductVisibility(productDto.getProductId(),
-				productDto);
-		Boolean responseOpe = this.personalizeProductAccountFacade.updateProductOperability(productDto.getProductId(),
-				productDto);
+
+		LOGGER.info("Llamando updateProductVisibility del facade");
+		Boolean responseVisi = this.personalizeProductAccountFacade.updateProductVisibility(
+				this.productDto.getProductId(), productDto);
+		LOGGER.info("Dato visible de la cuenta: " + this.productDto.getProductId() + " actualizado: " + responseVisi);
+
+		LOGGER.info("Llamando updateProductOperability del facade");
+		Boolean responseOpe = this.personalizeProductAccountFacade.updateProductOperability(
+				this.productDto.getProductId(), productDto);
+		LOGGER.info("Dato operable de la cuenta: " + this.productDto.getProductId() + " actualizado: " + responseOpe);
+
 		if (responseVisi == true && responseOpe == true) {
 			setMenOperationKey(true);
 		} else {
-			System.out.println("error");
+			LOGGER.info("Error de actulización");
 		}
 	}
 

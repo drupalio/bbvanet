@@ -27,26 +27,36 @@ public class PersonalizeProductFacadeImpl extends AbstractBbvaFacade implements 
 
 	@PostConstruct
 	public void init() {
+		LOGGER.info("inicialize PersonalizeAccountController");
 		this.product = new Product();
 	}
 
 	@Override
 	public Boolean updateProductOperability(String idProduct, ProductDto productDto) {
 		boolean respuesta = false;
+		LOGGER.info("Comenzando mapeo del servicio de updateProductOperability (ProductoDto -> Product)"
+				+ " ProductId: " + idProduct);
 		this.product = personalizeAccountProductMapper.map(productDto);
+		LOGGER.info("Llamando al servicio de updateProductOperability" + " product Id: " + product.getId());
 		if (this.globalPositionService.updateProductOperability(idProduct, product).getStatus() == 200) {
 			respuesta = true;
 		}
+		LOGGER.info("finalizando llamado de updateProductOperability" + " " + respuesta);
 		return respuesta;
 	}
 
 	@Override
 	public Boolean updateProductVisibility(String idProduct, ProductDto productDto) {
 		boolean respuesta = false;
+		LOGGER.info("Comenzando mapeo del servicio de updateProductVisibility (ProductoDto -> Product)"
+				+ " ProductId: " + idProduct);
 		this.product = personalizeAccountProductMapper.map(productDto);
+		LOGGER.info("Llamando al servicio de updateProductVisibility" + " product Id: " + product.getId());
 		if (this.globalPositionService.updateProductVisibility(idProduct, product).getStatus() == 200) {
 			respuesta = true;
+			LOGGER.info("finalizando llamado de updateProductVisibility" + " " + respuesta);
 		}
+
 		return respuesta;
 	}
 

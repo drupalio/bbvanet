@@ -18,24 +18,7 @@
 <composite:implementation>
 
 	<script>
-		function divMovement() {
-
-			var styles = document.getElementById('rowExpansion').style.display;
-
-			if (styles == 'none')
-				document.getElementById('rowExpansion').style.display = "block";
-			else
-				document.getElementById('rowExpansion').style.display = "none";
-		}
-
-		//Funciona Cierra los demas detalles cuando se abre uno
-		function test() {
-			var i = $('.ui-row-toggler.ui-icon-circle-triangle-s').length;
-			if (i == 1) {
-				return;
-			}
-			$('.ui-row-toggler.ui-icon-circle-triangle-s').trigger('click');
-		}
+		
 	</script>
 
 	<h:form id="#{cc.attrs.id}">
@@ -49,49 +32,58 @@
 					class="icon-printer" title="Imprimir"></span></a>
 			</div>
 
-			<h3>Últimos movimientos</h3>
+			<h3>#{msg['text.last.movments']}</h3>
 
 			<div class="table-wrapper">
-				<p:dataTable id="detalAC" styleClass="detail-table-body sortable"
+				<p:dataTable id="detailmovesAC"  widgetVar="detailmovesAC"
+				styleClass="detail-table-body sortable"
 					emptyMessage="#{msg['text.empty.table']}" rowSelectMode="single"
 					value="#{cc.attrs.listAccounts}" var="moves" selectionMode="single"
-					rowKey="#{moves.movementId}">
+					rowKey="#{moves.movementId}" >
 
-					<f:ajax event="rowSelect" render="detalAC" />
-					<f:ajax event="rowUnselect" render="detalAC" />
-
-					<p:ajax event="rowToggle" onstart="test()"
+					<p:ajax event="rowSelect"
 						listener="#{cc.attrs.controller.onRowToggle}" />
 
-					<p:column style="z-index: 2 !important; width:5px; ">
+					<p:column width="3% !important" style="z-index: 2 !important;">
 						<p:rowToggler rendered="true" />
 					</p:column>
 
 					<p:column headerText="#{msg['text.detailMove.date']}"
-						styleClass="sorted w18 desc"
-						style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
+						styleClass="styleColum sorted w18 desc">
 
-						<h:outputText styleClass="brand" style="font-size: 1.1em"
+						<h:outputText styleClass="brand styleLeft"
 							value="#{moves.movementDate}">
 							<f:convertDateTime pattern="dd/MM/yyyy" />
 						</h:outputText>
 					</p:column>
 
 					<p:column headerText="#{msg['text.detailMove.concep']}"
-						styleClass="desc w34"
-						style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none;">
+						styleClass="styleColum desc w34">
 
-						<h:outputText class="text"
-							style="font-size: 12px;color: #333;text-align: left"
+						<h:outputText class="text styleLeft"
 							value="#{moves.movementConcept}" />
 					</p:column>
 
 					<p:column class="head" headerText="#{msg['title.slope']}"
-						styleClass="desc w24"
-						style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
+						styleClass="styleColum desc w24">
 
-						<h:outputText class="currency" style="font-size: 15px;color: #333"
+						<h:outputText class="currency styleCurrent"
 							value="#{moves.movementValue}" />
+					</p:column>
+
+					<p:column styleClass="hidden-md hidden-lg smart-view">
+						<div class="left">
+							<h:outputText class="text styleLeft"
+								value="#{moves.movementConcept}" />
+							<h:outputText styleClass="brand styleLeft"
+								value="#{moves.movementDate}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</div>
+						<div class="right">
+							<h:outputText class="currency styleCurrent"
+								value="#{moves.movementValue}" />
+						</div>
 					</p:column>
 
 					<p:rowExpansion styleClass="detail-row position">
@@ -102,9 +94,10 @@
 			</div>
 
 			<footer class="detail-table-footer">
-				<button id="nextPagebLink" class="btn btn-more-results"
-					value="More Results" jsf:action="next">
-					<f:ajax execute="@form" render="@form :detalMoves" />
+				<button id="moreMovs" class="btn btn-more-results"
+					jsf:update="quotaDetail:detailAccounts:detailAccounts:detailmovesAC" value="Más Resultados"
+					jsf:rendered="#{quotaController.renderTable['FOOTERTABLEQUOTA']}"
+					jsf:actionListener="#{quotaController.nextPage}">
 					<span>#{msg['text.detailMove.footer']}</span>
 				</button>
 			</footer>

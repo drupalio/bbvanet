@@ -53,11 +53,15 @@
 						render="
 					tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:calendarSince
 					tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:calendarTo
-					tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:dateButton
+					tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:dateButton										
 					
-					tabMenu:tabCriteria:personalizedSearchContainer:customSearch:formCheckBook:checkSearchTab:checkContainer:customCheckList:customDate:calendarSince
-					tabMenu:tabCriteria:personalizedSearchContainer:customSearch:formCheckBook:checkSearchTab:checkContainer:customCheckList:customDate:calendarTo
-					tabMenu:tabCriteria:personalizedSearchContainer:customSearch:formCheckBook:checkSearchTab:checkContainer:customCheckList:customDate:dateButton
+					tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:checkContainer:customCheckList:customDate:calendarSince
+					tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:checkContainer:customCheckList:customDate:calendarTo
+					tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:checkContainer:customCheckList:customDate:dateButton
+					
+					quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:calendarSince
+					quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:calendarTo
+					quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:dateButton	
 					"
 						listener="#{cc.attrs.listenerDate.oneSelectDate}" />
 
@@ -133,11 +137,15 @@
 					</div>
 				</div>
 			</div>
-		</div>		
-		<button jsf:id="dateButton" class="btn small hidden-xs hidden-sm"
-			jsf:disabled="#{cc.attrs.disabledButton}"
-			jsf:actionListener="#{cc.attrs.actionListenerDate}">#{msg['button.confirm']}</button>
-
+		</div>
+		
+		<p:commandButton 
+		id="dateButton" class="btn small hidden-xs hidden-sm"
+			disabled="#{cc.attrs.disabledButton}"
+			actionListener="#{cc.attrs.actionListenerDate}"
+			value="#{msg['button.confirm']}" update="@this @form"		
+		/>		
+		
 	</div>
 
 </composite:implementation>

@@ -38,13 +38,13 @@
 							onkeyup="enableDisable(this, #{cc.attrs.nameB})" />
 					</div>
 					<div class="col-xs-3 col-md-4 btn-control">
-						<button class="btn btn-default btn-confirm" disabled="true"
-							jsf:id="#{cc.attrs.idComfirm}" name="#{cc.attrs.nameB}"
-							jsf:actionListener="#{cc.attrs.actionListener}"
-							onclick="checkFilled(this, #{cc.attrs.idInputDiv})">
-							#{msg['text.comfirm']}
-							<f:ajax execute="@form" render="@form" />
-						</button>
+
+						<p:commandButton id="#{cc.attrs.idComfirm}" disabled="true"
+							pt:name="#{cc.attrs.nameB}" value="#{msg['text.comfirm']}"
+							style="padding: 3px 1px;"
+							styleClass="btn btn-default btn-confirm"
+							actionListener="#{cc.attrs.actionListener}"
+							onclick="checkFilled(this, #{cc.attrs.idInputDiv})" />
 					</div>
 				</div>
 			</div>

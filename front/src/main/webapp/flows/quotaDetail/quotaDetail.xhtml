@@ -35,30 +35,14 @@
 
 	<ui:define name="contentLeft">
 
-		<bbvaQuotaHeader:quotaDetailContent>
+		<bbvaQuotaHeader:quotaDetailContent id="quotaDetail">
 
 			<bbvaQuotaHeader:quotaDetailHeaderContent />
 
 			<bbvaDetAcc:tabMenu id="tabMenu">
-				<ul class="nav nav-pills nav-operation-options"
-					style="display: block;">
-					<bbvaDetAcc:itemTabMenu title="#{msg['text.consult']}"
-						icon="iconFont-611" classLi="tab-left consultas-btn" type="2"
-						role="#tab-consultas" />
 
-					<bbvaDetAcc:itemTabMenu title="#{msg['text.operations']}"
-						icon="iconFont-015" classLi="tab-left operaciones-btn" type="2" />
+				<bbvaDetAcc:menuMovements />
 
-					<bbvaDetAcc:itemTabMenu title="#{msg['text.personalized']}"
-						role="#tab-personalizar" classLi="tab-right hidden-xs hidden-sm"
-						type="1" />
-					<bbvaDetAcc:itemTabMenu title="#{msg['text.conditions']}"
-						role="#tab-condiciones" classLi="tab-right hidden-xs hidden-sm"
-						type="1" />
-					<bbvaDetAcc:itemTabMenu title="#{msg['text.personalized']}"
-						icon="iconFont-217" classLi="tab-right hidden-md hidden-lg"
-						type="1" />
-				</ul>
 				<div class="tab-content">
 
 					<!-- Tab Consultar -->
@@ -68,8 +52,8 @@
 					</bbvaSearch:tabCriteria>
 
 					<!-- Tab Condiciones -->
-					<bbvaAcc:accountContainer alias="#{pruduct.alias}"
-						numCuenta="#{pruduct.productId}" tipo="#{pruduct.productName}" />
+					<bbvaAcc:accountContainer alias="#{product.alias}"
+						numCuenta="#{product.productId}" tipo="#{product.productName}" />
 
 					<!-- Tab Personalizar -->
 					<bbvaPersonalize:personalizeContainer />

@@ -31,7 +31,7 @@
 
 			<!-- Tabla de Cheques -->
 			<div class="table-wrapper">
-				<p:dataTable id="checksTable"
+				<p:dataTable id="checksTable" widgetVar="checksTable"
 					styleClass="detail-table-body sortable"
 					emptyMessage="#{msg['text.empty.table']}"
 					value="#{cc.attrs.listChecks}" var="cheks"
@@ -39,15 +39,15 @@
 					rowKey="#{cheks.id}">
 					<p:column headerText="#{msg['text.table.num.check']}"
 						styleClass="sorted w18 desc"
-						style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
+						style="font-size: 0.9em;color: #434A58;font-family: Arial;background: none;border-style: none">
 
 						<h:outputText styleClass="brand" style="font-size: 1.1em"
 							value="#{cheks.id}" />
 					</p:column>
 
 					<p:column headerText="#{msg['text.table.emi.date']}"
-						styleClass="desc w34"
-						style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none;">
+						styleClass="desc w24"
+						style="font-size: 0.9em;color: #434A58;font-family: Arial;background: none;border-style: none;">
 
 						<h:outputText class="text"
 							style="font-size: 12px;color: #333;text-align: left"
@@ -85,7 +85,7 @@
 					</p:column>
 				</p:dataTable>
 				<!-- Tabla Movimiento -->
-				<p:dataTable id="detalMov" styleClass="detail-table-body sortable"
+				<p:dataTable id="detalMov" widgetVar="detalMov" styleClass="detail-table-body sortable"
 					emptyMessage="#{msg['text.empty.table']}"
 					value="#{cc.attrs.listAccounts}" var="moves"
 					selectionMode="single" 
@@ -96,7 +96,7 @@
 					
 					<p:column headerText="#{msg['text.detailMove.date']}"
 						styleClass="sorted w18 desc"
-						style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
+						style="font-size: 0.9em;color: #434A58;font-family: Arial;background: none;border-style: none">
 
 						<h:outputText styleClass="brand" style="font-size: 1.1em"
 							value="#{moves.movementDate}" >
@@ -133,6 +133,27 @@
 							value="#{moves.totalBalance}" />
 
 					</p:column>
+					
+					<p:column headerText="#{msg['text.detailMove.concep']}"
+						styleClass="smart-view"
+						style="font-size: 1.1em;color: #434A58;font-family: Arial;background: none;border-style: none;">
+
+						<h:outputText class="text"
+							style="font-size: 1.2em;color: #333;text-align: left"
+							value="#{moves.movementConcept}" />				
+						
+						<h:outputText styleClass="brand" style="font-size: 1.1em;text-align: left"
+							value="#{moves.movementDate}" >
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>	
+						
+						<h:outputText class="currency" style="font-size: 15px;color: #333;text-align: right"
+							value="#{moves.movementValue}" />
+							
+						<h:outputText class="currency" style="font-size: 15px;color: #333;text-align: right"
+							value="#{moves.totalBalance}" />
+					</p:column>
+					
 				</p:dataTable>
 
 
@@ -141,7 +162,7 @@
 			<footer class="detail-table-footer">
 				<button id="moreCheks" class="btn btn-more-results"
 					jsf:update="formu:checksTable" value="Más Resultados"
-					jsf:rendered="#{movementsCriteriaController.renderTable['FOOTERTABLECHEKS']}"
+					jsf:rendered="#{checkBookController.renderTable['FOOTERTABLECHEKS']}"
 					jsf:actionListener="#{checkBookController.nextPage}">
 					<span>#{msg['text.detailMove.footer']}</span>
 				</button>

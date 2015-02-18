@@ -7,30 +7,10 @@
 	xmlns:bbvaMenu="http://java.sun.com/jsf/composite/bbva/menu"
 	xmlns:bbvaHeader="http://java.sun.com/jsf/composite/bbva/header"
 	xmlns:p="http://primefaces.org/ui">
-<h:head>
-
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<title>BBVA :: Colombia :: Posición Global</title>
-	<h:outputScript library="primefaces" name="jquery/jquery.js" />
-	<f:metadata>
-	</f:metadata>
-	<!--  
-	<script type="text/javascript">
-		function handleMessage(facesmessage) {
-
-			var chatContent = $(PrimeFaces
-					.escapeClientId('forma:numberMessages'));
-			chatContent.text(facesmessage.summary);
-		}
-	</script>
-	-->
-</h:head>
-
-<h:body>
 
 	<!--mobile header -->
 	<bbvaHeader:mobileHeader />
-
+	
 	<div class="container container-header">
 		<div class="row main-header logged">
 
@@ -59,12 +39,12 @@
 		<bbvaMenu:menu>
 
 			<bbvaMenu:itemMenu href="./globalPosition" value="Posición global"
-				title="Ir a Posición global" icon="posicionglobal" liclass="active"
+				title="Ir a Posición global" icon="posicionglobal" style="border-bottom-left-radius: 5px;border-top-left-radius:5px;" liclass="active"
 				rendered="#{menuActive == 'PG'}" />
 
 			<bbvaMenu:itemMenu href="./globalPosition" value="Posición global"
-				title="Ir a Posición global" icon="posicionglobal"
-				rendered="#{menuActive != 'PG'}" />
+				title="Ir a Posición global" icon="posicionglobal" style="border-bottom-left-radius: 5px;border-top-left-radius:5px;"
+				liclass="more-width" rendered="#{menuActive != 'PG'}" />
 
 			<bbvaMenu:itemMenu href="./accounts" value="Cuentas"
 				title="Ir a Cuentas" icon="account-icon" liclass="active"
@@ -98,9 +78,6 @@
 				title="Ir a ahorros e inversión" icon="investment-icon"
 				liclass="more-width" rendered="#{menuActive != 'SAVEINVEST'}" />
 
-			<bbvaMenu:itemMenu href="./detailAccounts" value="detailAccounts"
-				title="Ir a Seguros" icon="insurance-icon" />
-
 			<bbvaMenu:itemSearch />
 
 		</bbvaMenu:menu>
@@ -108,5 +85,4 @@
 
 	</div>
 
-</h:body>
 </html>

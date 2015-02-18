@@ -26,6 +26,7 @@ public class ExecutiveServiceImpl extends AbstractBbvaRestService implements Exe
 		LOGGER.info("JSON EXECUTIVE: " + json);
 
 		return executive;
+
 	}
 
 }

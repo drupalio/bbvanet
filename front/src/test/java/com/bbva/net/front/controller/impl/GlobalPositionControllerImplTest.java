@@ -1,16 +1,20 @@
 package com.bbva.net.front.controller.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import com.bbva.net.back.facade.MonthBalanceFacade;
 import com.bbva.net.back.facade.AccountMovementsResumeFacade;
 import com.bbva.net.back.facade.CardsFacade;
 import com.bbva.net.back.facade.GlobalPositionFacade;
+import com.bbva.net.back.facade.MonthBalanceFacade;
 import com.bbva.net.back.model.comboFilter.EnumPeriodType;
 import com.bbva.net.back.model.commons.DateRangeDto;
+import com.bbva.net.back.model.globalposition.DepositDto;
 import com.bbva.net.back.model.globalposition.GlobalProductsDto;
 import com.bbva.net.back.model.movements.GlobalResumeMovementsDto;
 import com.bbva.net.back.service.impl.DateFilterServiceImpl;
@@ -74,6 +78,15 @@ public class GlobalPositionControllerImplTest {
 
 		globalPositionController.setAccountMonthBalanceFacade(accountMonthBalanceFacade);
 
+		GlobalProductsDto globalProductsDto = new GlobalProductsDto();
+		DepositDto deposit = new DepositDto();
+		List<DepositDto> electronicDeposits = new ArrayList<DepositDto>();
+
+		electronicDeposits.add(deposit);
+		globalProductsDto.setElectronicDeposits(electronicDeposits);
+
+		Mockito.when(globalPositionFacade.getGlobalProductsByUser()).thenReturn(globalProductsDto);
+
 		globalPositionController.init();
 
 	}
@@ -84,24 +97,23 @@ public class GlobalPositionControllerImplTest {
 		globalPositionController.setGraphicPieDelegate(graphicPieDelegate);
 
 		// prepara el test
-		Mockito.when(globalPositionFacade.getGlobalProductsByUser(DEFAULT_USER)).thenReturn(new GlobalProductsDto());
+		Mockito.when(globalPositionFacade.getGlobalProductsByUser()).thenReturn(new GlobalProductsDto());
 
 		// invoca metodo a probar
 		final GlobalProductsDto globalProducts = this.globalPositionController.getCustomerProducts();
 
 		final GlobalResumeMovementsDto globalResumeMovementsDTO = this.globalMovementsFacade
-				.getMovementsResumeByCustomer(DEFAULT_USER, null);
+				.getMovementsResumeByCustomer(null);
 		// Comprobar resultados
 		// Assert.assertNotNull(globalProducts);
-		Mockito.verify(this.globalPositionFacade, Mockito.atLeastOnce()).getGlobalProductsByUser(DEFAULT_USER);
+		Mockito.verify(this.globalPositionFacade, Mockito.atLeastOnce()).getGlobalProductsByUser();
 		// graphicPieUI = Mockito.mock(GraphicPieUI.class);
 
 		// Mockito.verify(this.graphicBarLineDelegate,
 		// Mockito.atLeastOnce()).getInOutBalanceByAccount(
 		// globalResumeMovementsDTO);
 
-		Mockito.verify(this.globalMovementsFacade, Mockito.atLeastOnce()).getMovementsResumeByCustomer(DEFAULT_USER,
-				null);
+		Mockito.verify(this.globalMovementsFacade, Mockito.atLeastOnce()).getMovementsResumeByCustomer(null);
 	}
 
 	@Test
@@ -146,7 +158,7 @@ public class GlobalPositionControllerImplTest {
 		PieConfigUI prueba = Mockito.mock(PieConfigUI.class);
 		globalPositionController.setCardSelected("Todas las tarjetas");
 		// Mockito.when(MessagesHelper.INSTANCE.getString("text.allCards")).thenReturn("Todas las tarjetas");
-		Mockito.when(graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(DEFAULT_USER, dateRange)))
+		Mockito.when(graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(dateRange)))
 				.thenReturn(prueba);
 		// Mockito.verify(graphicPieDelegate,
 		// Mockito.atLeastOnce()).getCardGraphic(

@@ -8,6 +8,7 @@ function enableDisableButton(inputId, btn) {
 	var valor = inputId.value;
 	if (valor.length != 0) {
 		document.getElementById(button).disabled = false;
+		document.getElementById(button).classList.remove('ui-state-disabled');
 	} else {
 		document.getElementById(button).disabled = true;
 	}
@@ -23,6 +24,7 @@ function enableDisable(inputId, btnW) {
 	var valor = inputId.value;
 	if (valor.length == 4) {
 		document.getElementById(button).disabled = false;
+		document.getElementById(button).classList.remove('ui-state-disabled');
 	} else {
 		document.getElementById(button).disabled = true;
 	}
@@ -39,15 +41,22 @@ function checkFilled(btnW, inputId) {
 
 }
 
-// metodo que abre y cierra el div de detalle de movimiento
-// function divMovement() {
-//
-// var styles = document.getElementById("rowExpansion").style.display;
-//
-// if (styles == 'none')
-// document.getElementById("rowExpansion").style.display = "block";
-// else
-// document.getElementById("rowExpansion").style.display = "none";
-// }
+function checkRowClick() {
+	$('.ui-datatable-data .ui-widget-content').click(function() {
 
+		var i = $('.ui-row-toggler.ui-icon-circle-triangle-s').length;
+		if (i == 1) {
+			return;
+		}
+		$('.ui-row-toggler.ui-icon-circle-triangle-s').trigger('click');
+		$('.ui-row-toggler.ui-icon-circle-triangle-s').click();
+	});
+}
 
+// Cerrar de los tab operation Quota y Movements
+$(document).ready(function() {
+	$('.close-button').click(function() {
+		var parent = $(this).parents('.operation-tabs');
+		parent.find('.active').removeClass('active');
+	});
+});

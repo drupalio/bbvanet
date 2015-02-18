@@ -9,6 +9,7 @@ import javax.faces.event.ActionEvent;
 import javax.faces.event.ComponentSystemEvent;
 
 import com.bbva.net.back.model.movements.MovementDto;
+import com.bbva.net.front.ui.line.LineConfigUI;
 
 /**
  * @author User
@@ -68,6 +69,22 @@ public interface MovementCriteriaController {
 
 	List<MovementDto> getAllMovements();
 
+	/***
+	 * Method to clean filters
+	 * 
+	 * @param event
+	 */
 	void cleanFilters(ActionEvent event);
 
+	/***
+	 * Method to set a movement conecept
+	 * 
+	 * @param event
+	 */
+	void setMovementConcept(ActionEvent event);
+
+	/**
+	 * Method lines of graphics Movements
+	 */
+	List valuesLinesGraphic(LineConfigUI valuesLines);
 }

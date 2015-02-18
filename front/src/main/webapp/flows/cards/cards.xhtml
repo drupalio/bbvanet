@@ -30,16 +30,17 @@
 			header="#{msg['graphicCard.tittle']}" id="cardPie"
 			pieGraphic="#{globalPositionController.graphicPieCards}">
 			<div class="table-tabs">
-				<bbvaGP:cardHeadTable listCards="#{customerProducts.creditCards}" />
-				<bbvaGP:cardTailTable
+				<bbvaGP:cardHeadTable controller="#{globalPositionController}"
+					listCards="#{customerProducts.creditCards}" />
+				<bbvaGP:cardTailTable controller="#{globalPositionController}"
 					listCards="#{customerProductsHidden.creditCards}" />
 			</div>
-
 			<div class="row afterTable">
 				<bbvaGP:productFooter
 					listProduct="#{customerProductsHidden.creditCards}" />
-				<bbvaGP:totalBalance util="#{msg['text.used']}" currency="$"
-					total="1234" subtotal="567" />
+				<bbvaGP:totalBalance util="#{msg['text.used']}"
+					total="#{globalPositionController.totalsProducts['TC'].total}"
+					subtotal="#{globalPositionController.totalsProducts['TC'].available}" />
 			</div>
 
 		</bbvaContainer:productCardGraphic>

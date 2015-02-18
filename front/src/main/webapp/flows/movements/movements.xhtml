@@ -31,60 +31,48 @@
 		<div class="tab-group savingsAccount">
 			<bbvaHeader:quotaDetail>
 				<bbvaHeader:quotaDetailHeader>
-					<bbvaHeader:quotaDetailHeaderLeft alias="Cuenta de José García"
-				numCuenta="0013-0073-00-0200108391"
-				tipoPrestamo="Cuenta ahorro"/>
-					<bbvaGraphic:MovementsGraphic lineConfigUI="#{movementsCriteriaController.graphicLineMovements}"/>
-					<bbvaHeader:quotaDetailHeaderRight textUp="#{msg['text.available']}"
-				valueUp="$ 12,845,999.35"
-				textDown="#{msg['text.tradeBalance']}"
-				valueDown="$ 0,00" />
+					<bbvaHeader:quotaDetailHeaderLeft alias="Hola"
+						numCuenta="#{movementsCriteriaController.getSelectedProduct().getProductNumber()}"
+						tipoPrestamo="#{movementsCriteriaController.getSelectedProduct().getSubTypeProd()}" />
+					<bbvaGraphic:MovementsGraphic
+						lineConfigUI="#{movementsCriteriaController.graphicLineMovements}"
+						values="#{movementsCriteriaController.valuesLinesGraphic}" />
+					<bbvaHeader:quotaDetailHeaderRight
+						textUp="#{msg['text.available']}"
+						valueUp="#{movementsCriteriaController.getSelectedProduct().getTotalCash()}"
+						textDown="#{msg['text.tradeBalance']}"
+						valueDown="#{movementsCriteriaController.getSelectedProduct().getCashAvailable()}" />
 				</bbvaHeader:quotaDetailHeader>
 			</bbvaHeader:quotaDetail>
-		</div>
 
-		<bbvaDetAcc:tabMenu id="tabMenu">
-			<ul class="nav nav-pills nav-operation-options"
-				style="display: block;">
-				<bbvaDetAcc:itemTabMenu title="#{msg['text.consult']}"
-					icon="iconFont-611" classLi="tab-left consultas-btn" type="2"
-					role="#tab-consultas" />
-				<bbvaDetAcc:itemTabMenu title="#{msg['text.operations']}"
-					icon="iconFont-015" classLi="tab-left operaciones-btn" type="2" />
 
-				<bbvaDetAcc:itemTabMenu title="#{msg['text.personalized']}"
-					role="#tab-personalizar" classLi="tab-right hidden-xs hidden-sm"
-					type="1" />
-				<bbvaDetAcc:itemTabMenu title="#{msg['text.conditions']}"
-					icon="iconFont-104" classLi="tab-right" type="1"
-					role="#tab-condiciones" />
-				<bbvaDetAcc:itemTabMenu title="#{msg['text.personalized']}"
-					icon="iconFont-217" classLi="tab-right hidden-md hidden-lg"
-					type="1" />
-			</ul>
+			<bbvaDetAcc:tabMenu id="tabMenu">
 
-			<div class="tab-content">
+				<bbvaDetAcc:menuMovements />
 
-				<!-- Tab Consultar -->
-				<bbvaSearch:tabCriteria id="tabCriteria">
-					<bbvaSearch:personalizedSearchContainer
-						id="personalizedSearchContainer" />
-				</bbvaSearch:tabCriteria>
+				<div class="tab-content">
 
-				<!-- Tab Condiciones -->
-				<bbvaAcc:accountContainer alias="#{pruduct.alias}"
-					numCuenta="#{pruduct.productId}" tipo="#{pruduct.productName}" />
+					<!-- Tab Consultar -->
+					<bbvaSearch:tabCriteria id="tabCriteria">
+						<bbvaSearch:personalizedSearchContainer
+							id="personalizedSearchContainer" />
+					</bbvaSearch:tabCriteria>
 
-				<!-- Tab Personalizar -->
-				<bbvaPersonalize:personalizeContainer />
+					<!-- Tab Condiciones -->
+					<bbvaAcc:accountContainer alias="#{pruduct.alias}"
+						numCuenta="#{pruduct.productId}" tipo="#{pruduct.productName}" />
 
+					<!-- Tab Personalizar -->
+					<bbvaPersonalize:personalizeContainer />
+
+				</div>
+			</bbvaDetAcc:tabMenu>
+			<div class="table-tabs" id="#{cc.clientId}">
+				<bbvaDetailMotion:detailMovesTable id="detailAccounts"
+					listAccounts="#{movements}"
+					listChecks="#{checkBookController.checkList}" />
 			</div>
-		</bbvaDetAcc:tabMenu>
-		<div class="table-tabs">
-			<bbvaDetailMotion:detailMovesTable id="detailAccounts"
-				listAccounts="#{movements}" listChecks="#{checkBookController.checkList}"/>
 		</div>
-
 	</ui:define>
 
 	<ui:define name="contentRight">

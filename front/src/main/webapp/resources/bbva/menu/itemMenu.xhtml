@@ -15,12 +15,13 @@
 	<composite:attribute name="icon"      type="String"/>
 	<composite:attribute name="liclass"   type="String"/>
 	<composite:attribute name="spanclass" type="String"/>
+	<composite:attribute name="style" type="String"/>
 </composite:interface>
 
 <composite:implementation>
 
-	<li class="item item-menu #{cc.attrs.liclass}">
-		<a href="#{cc.attrs.href}" title="#{cc.attrs.title}">
+	<li class="item item-menu #{cc.attrs.liclass}" >
+		<a href="#{cc.attrs.href}" title="#{cc.attrs.title}" style="#{cc.attrs.style}">
 			<span class="nav-icon icon-hide #{cc.attrs.spanclass} #{cc.attrs.icon}"></span >
 			#{cc.attrs.value}
 		</a>

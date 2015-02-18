@@ -55,11 +55,15 @@ public class GraphicLineDelegateImpl implements GraphicLineDelegate {
 
 		final List<LineItemUI> lineItemUIList = new ArrayList<LineItemUI>();
 		if (!CollectionUtils.isEmpty(globalResumeMovements)) {
-
-			for (MovementDto mov : globalResumeMovements) {
+			int size = 0;
+			if (globalResumeMovements.size() < 8)
+				size = globalResumeMovements.size();
+			else
+				size = 8;
+			for (int i = 0; i < size; i++) {
 				LineItemUI lineItemUI = new LineItemUI();
 				lineItemUI.setLabel("Serie 1: ");
-				lineItemUI.setValue(mov.getMovementValue());
+				lineItemUI.setValue(globalResumeMovements.get(i).getTotalBalance());
 				lineItemUIList.add(lineItemUI);
 			}
 

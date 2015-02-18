@@ -2,14 +2,11 @@ package com.bbva.net.front.controller.impl;
 
 import javax.annotation.Resource;
 
-import org.springframework.stereotype.Controller;
-
 import com.bbva.net.back.facade.TermasAccountsFacade;
 import com.bbva.net.back.model.accounts.TermsAccountsDto;
 import com.bbva.net.front.controller.TermsController;
 import com.bbva.net.front.core.AbstractBbvaController;
 
-@Controller(value = "TermsController")
 public class TermsControllerImpl extends AbstractBbvaController implements TermsController {
 
 	/**
