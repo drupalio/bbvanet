@@ -29,8 +29,7 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
 
 	@PostConstruct
 	public void init() {
-		favoriteOperations = favoriteOperationsFacade.getListFavoriteOperations(getCurrentUser());
-
+		favoriteOperations = favoriteOperationsFacade.getListFavoriteOperations();
 	}
 
 	@Override
@@ -41,12 +40,19 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
 
 	@Override
 	public List<FavoriteOperationDto> getListFavoriteOperations() {
-		return favoriteOperations.subList(0, 3);
+		if (favoriteOperations.size() <= 3)
+			return favoriteOperations;
+		else
+			return favoriteOperations.subList(0, 3);
 	}
 
 	@Override
 	public List<FavoriteOperationDto> getListFavoriteOperationsHidden() {
-		return favoriteOperations.subList(3, favoriteOperations.size());
+
+		if (favoriteOperations.size() <= 3)
+			return favoriteOperations;
+		else
+			return favoriteOperations.subList(3, favoriteOperations.size());
 	}
 
 	public String getDate(Date transactionDate) {
@@ -62,6 +68,14 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
 
 	public void setFavoriteOperations(List<FavoriteOperationDto> favoriteOperations) {
 		this.favoriteOperations = favoriteOperations;
+	}
+
+	public FavoriteOperationsFacade getFavoriteOperationsFacade() {
+		return favoriteOperationsFacade;
+	}
+
+	public void setFavoriteOperationsFacade(FavoriteOperationsFacade favoriteOperationsFacade) {
+		this.favoriteOperationsFacade = favoriteOperationsFacade;
 	}
 
 }
