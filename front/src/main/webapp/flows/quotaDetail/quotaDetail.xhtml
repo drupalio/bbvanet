@@ -35,7 +35,7 @@
 
 	<ui:define name="contentLeft">
 
-		<bbvaQuotaHeader:quotaDetailContent>
+		<bbvaQuotaHeader:quotaDetailContent id="quotaDetail">
 
 			<bbvaQuotaHeader:quotaDetailHeaderContent />
 
@@ -52,8 +52,8 @@
 					</bbvaSearch:tabCriteria>
 
 					<!-- Tab Condiciones -->
-					<bbvaAcc:accountContainer alias="#{pruduct.alias}"
-						numCuenta="#{pruduct.productId}" tipo="#{pruduct.productName}" />
+					<bbvaAcc:accountContainer alias="#{product.alias}"
+						numCuenta="#{product.productId}" tipo="#{product.productName}" />
 
 					<!-- Tab Personalizar -->
 					<bbvaPersonalize:personalizeContainer />

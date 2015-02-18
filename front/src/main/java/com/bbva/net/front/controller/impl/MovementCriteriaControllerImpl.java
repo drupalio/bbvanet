@@ -1,9 +1,11 @@
 package com.bbva.net.front.controller.impl;
 
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -79,7 +81,9 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 	private Map<String, Boolean> renderComponents = new HashMap<String, Boolean>();
 
-	@Override
+	private List valuesLinesGraphic;
+
+	
 	@PostConstruct
 	public void init() {
 		super.init();
@@ -132,8 +136,19 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		search();
 		this.movementsList = getCurrentList();
 		setTitle(MessagesHelper.INSTANCE.getString("text.last.movments"));
+		RequestContext.getCurrentInstance().update("detailAccounts:formu");
 		getRenderTable().put(RenderAttributes.MOVEMENTSTABLE.toString(), true);
+		RequestContext.getCurrentInstance().update("detailAccounts:formu:detalMov");
 		getRenderTable().put(RenderAttributes.CHECKTABLE.toString(), false);
+		RequestContext.getCurrentInstance().update("detailAccounts:formu:checksTable");
+		
+		Iterator it = getRenderTable().entrySet().iterator();
+		
+		while (it.hasNext()) {
+			Map.Entry e = (Map.Entry)it.next();
+			System.out.println("--------------------"+" LLAVEEE "+e.getKey() + " ----------VALOOOOR----------" + e.getValue()+"--------------------");
+		}
+		
 	}
 
 	public void nextPage(ActionEvent event) {
@@ -156,13 +171,14 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 		// TODO oroductId
 		this.movementsList = this.movementsFacade.listMovements(
-				"00130073000296247953"/* getSelectedProduct().getProductId() */, getSelectedProduct().getSubTypeProd(),
+			 getSelectedProduct().getProductId(), getSelectedProduct().getSubTypeProd(),
 				dateRange, null, 1, 10);
 		if (this.movementsList.size() >= 10)
 			getRenderTable().put(RenderAttributes.FOOTERTABLEMOVEMENT.toString(), true);
 		else
 			getRenderTable().put(RenderAttributes.FOOTERTABLEMOVEMENT.toString(), false);
 		this.graphicLineMovements = graphicLineDelegate.getMovementAccount(this.movementsList);
+		this.valuesLinesGraphic = valuesLinesGraphic(graphicLineMovements);
 		return this.movementsList;
 	}
 
@@ -219,7 +235,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			getRenderTable().put(RenderAttributes.MOVEMENTSTABLE.toString(), true);
 			getRenderTable().put(RenderAttributes.CHECKTABLE.toString(), false);
 			setTitle(MessagesHelper.INSTANCE.getString("text.last.movments"));
-			RequestContext.getCurrentInstance().update(":detailAccounts:formu:detalMov");
+			
 		}
 
 	}
@@ -314,6 +330,8 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		} else {
 			sinceDatestr = getSelectDate();
 		}
+		
+		RequestContext.getCurrentInstance().update("customSearch");
 	}
 
 	/**
@@ -586,5 +604,36 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	 */
 	public void setMovementDetail(MovementDetailDto movementDetail) {
 		this.movementDetail = movementDetail;
+	}
+
+	public List getValuesLinesGraphic() {
+		return valuesLinesGraphic;
+	}
+
+	public void setValuesLinesGraphic(List valuesLinesGraphic) {
+		this.valuesLinesGraphic = valuesLinesGraphic;
+	}
+
+	@Override
+	public List<BigDecimal> valuesLinesGraphic(LineConfigUI valuesLines) {
+		BigDecimal menor = new BigDecimal(0);
+		BigDecimal mayor = new BigDecimal(0);
+		BigDecimal total = new BigDecimal(0);
+		List<BigDecimal> values = new ArrayList<BigDecimal>();
+		menor = valuesLines.getLineItemUIList().get(0).getValue().getAmount();
+		for (int i = 0; i < valuesLines.getLineItemUIList().size(); i++) {
+			if (valuesLines.getLineItemUIList().get(i).getValue().getAmount().compareTo(menor) == -1)
+				menor = valuesLines.getLineItemUIList().get(i).getValue().getAmount();
+			if (valuesLines.getLineItemUIList().get(i).getValue().getAmount().compareTo(mayor) == 1)
+				mayor = valuesLines.getLineItemUIList().get(i).getValue().getAmount();
+			total = total.add(valuesLines.getLineItemUIList().get(i).getValue().getAmount());
+		}
+		total = (mayor.subtract(menor)).divide(new BigDecimal(8));
+		for (int i = 0; i <= 8; i++) {
+			values.add(menor);
+			menor = menor.add(total);
+		}
+		values.add(menor);
+		return values;
 	}
 }

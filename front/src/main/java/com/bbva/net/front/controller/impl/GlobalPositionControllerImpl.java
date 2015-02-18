@@ -230,6 +230,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 			this.accountGraphicBarLineUI = this.graphicBarLineDelegate.getInOutBalanceAccount(globalResumeMovementsDTO);
 
 
+
 		} catch (final Exception exception) {
 			LOGGER.info("HA HABIDO UNA EXCEPTION EN GLOBAL POSITION");
 			exception.printStackTrace();

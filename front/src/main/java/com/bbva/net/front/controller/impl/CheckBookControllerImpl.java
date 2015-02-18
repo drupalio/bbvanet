@@ -7,12 +7,15 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
+
+import org.primefaces.context.RequestContext;
 
 import com.bbva.net.back.entity.MultiValueGroup;
 import com.bbva.net.back.facade.CheckBookFacade;
@@ -82,7 +85,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	public List<CheckbookDto> initCheckBookList() {
 		this.checkBookList = new ArrayList<CheckbookDto>();
 		// TODO accountId
-		this.checkBookList = checkBookFacade.getCheckBooksById("12345678");
+		this.checkBookList = checkBookFacade.getCheckBooksById(getSelectedProduct().getProductId());
 		return this.checkBookList;
 	}
 
@@ -169,8 +172,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	public void showResults(final ActionEvent event) {
 		System.out.println("showResults");
 		setTitle(new String(MessagesHelper.INSTANCE.getString("tex.check.status")));
-		renderComponents.put(RenderAttributes.MOVEMENTSTABLE.toString(), false);
-		renderComponents.put(RenderAttributes.CHECKTABLE.toString(), true);
+		
 		
 		if (renderComponents.get(RenderAttributes.FILTERCHECKBOOK.toString())) {
 			// Filter by checkId
@@ -221,7 +223,21 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 		setProductIdPControl(getSelectedProduct().getProductId());
 		search();
 		this.checkList = getCurrentList();
-		if(this.checkList.size()>=10)getRenderTable().put(RenderAttributes.FOOTERTABLECHEKS.toString(), true);	else getRenderTable().put(RenderAttributes.FOOTERTABLECHEKS.toString(), false);		
+		RequestContext.getCurrentInstance().update("detailAccounts:formu");
+		
+		if(this.checkList.size()>=10)getRenderTable().put(RenderAttributes.FOOTERTABLECHEKS.toString(), true);	else getRenderTable().put(RenderAttributes.FOOTERTABLECHEKS.toString(), false);
+		getRenderTable().put(RenderAttributes.CHECKTABLE.toString(), true);
+		RequestContext.getCurrentInstance().update("detailAccounts:formu:checksTable");
+		getRenderTable().put(RenderAttributes.MOVEMENTSTABLE.toString(), false);
+		RequestContext.getCurrentInstance().update("detailAccounts:formu:detalMov");
+		
+	Iterator it = getRenderTable().entrySet().iterator();
+		
+		while (it.hasNext()) {
+			Map.Entry e = (Map.Entry)it.next();
+			System.out.println("--------------------"+" LLAVEEE "+e.getKey() + " ----------VALOOOOR----------" + e.getValue()+"--------------------");
+		}
+		
 	}
 
 	public void nextPage(ActionEvent event) {
