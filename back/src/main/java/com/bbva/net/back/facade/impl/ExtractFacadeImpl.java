@@ -48,4 +48,12 @@ public class ExtractFacadeImpl extends AbstractBbvaFacade implements ExtractFaca
 		return this.extractMapper.map(response);
 	}
 
+	public void setProductsService(ProductsService productsService) {
+		this.productsService = productsService;
+	}
+
+	public void setExtractMapper(ExtractMapper extractMapper) {
+		this.extractMapper = extractMapper;
+	}
+
 }

@@ -8,13 +8,15 @@
 	<var name="checkBookController" class="com.bbva.net.front.controller.impl.CheckBookControllerImpl" />
 	<var name="accountsController" class="com.bbva.net.front.controller.impl.AccountsControllerImpl" />
 	<var name="personalizeProductAccountController" class="com.bbva.net.front.controller.impl.PersonalizeProductControllerImpl"/>
+	<var name="extractController" class="com.bbva.net.front.controller.impl.ExtractControllerImpl"/>
 
 	<on-start>
+		<evaluate expression="extractController.init()"/>
 		<!-- <evaluate expression="checkBookController.initCheckBookList()" result="requestScope.checkBookList" /> -->
 		<evaluate expression="accountsController.getCustomerAccounts()" result="flowScope.customerAccounts" />
 		<!-- <evaluate expression="accountsController.getAllConditions()" result="flowScope.allConditions" /> -->
 		<evaluate expression="movementsCriteriaController.getAllMovements()" result="flowScope.movements" />
-
+		
 	</on-start>
 
 	<view-state id="movements">
