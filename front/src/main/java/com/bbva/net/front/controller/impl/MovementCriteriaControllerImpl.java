@@ -9,7 +9,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
 
@@ -75,6 +74,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	@Resource(name = "graphicLineDelegate")
 	private transient GraphicLineDelegate graphicLineDelegate;
 
+	// Gráfica Lineal de cuentas en la opción de Cuentas
 	private LineConfigUI graphicLineMovements;
 
 	private MovementDetailDto movementDetail = null;
@@ -84,7 +84,6 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	private List valuesLinesGraphic;
 
 	
-	@PostConstruct
 	public void init() {
 		super.init();
 		setTitle(MessagesHelper.INSTANCE.getString("text.last.movments"));
@@ -620,6 +619,11 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		BigDecimal mayor = new BigDecimal(0);
 		BigDecimal total = new BigDecimal(0);
 		List<BigDecimal> values = new ArrayList<BigDecimal>();
+		
+		if(CollectionUtils.isEmpty(valuesLines.getLineDepositItemUIList())){
+			return values;
+		}
+		
 		menor = valuesLines.getLineItemUIList().get(0).getValue().getAmount();
 		for (int i = 0; i < valuesLines.getLineItemUIList().size(); i++) {
 			if (valuesLines.getLineItemUIList().get(i).getValue().getAmount().compareTo(menor) == -1)

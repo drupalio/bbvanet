@@ -66,4 +66,7 @@ public enum MessagesHelper {
 		return getString("categoryCards." + StringUtils.lowerCase(charge.toString()));
 	}
 
+	public String getFavOperationsPrefix(String type) {
+		return getString("fav." + type.toString());
+	}
 }

@@ -6,10 +6,14 @@
 
 	<var name="movementsCriteriaController" class="com.bbva.net.front.controller.impl.MovementCriteriaControllerImpl" />
 	<var name="checkBookController" class="com.bbva.net.front.controller.impl.CheckBookControllerImpl" />
-	<var name="accountsController" class="com.bbva.net.front.controller.impl.AccountsControllerImpl" />
 	<var name="personalizeProductAccountController" class="com.bbva.net.front.controller.impl.PersonalizeProductControllerImpl"/>
 
 	<on-start>
+		
+		<evaluate expression="movementsCriteriaController.init()"></evaluate>
+		<evaluate expression="checkBookController.init()"></evaluate>
+		<evaluate expression="personalizeProductAccountController.init()"></evaluate>
+		
 		<!-- <evaluate expression="checkBookController.initCheckBookList()" result="requestScope.checkBookList" /> -->
 		<evaluate expression="accountsController.getCustomerAccounts()" result="flowScope.customerAccounts" />
 		<!-- <evaluate expression="accountsController.getAllConditions()" result="flowScope.allConditions" /> -->

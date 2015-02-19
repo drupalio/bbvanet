@@ -166,8 +166,14 @@ public abstract class AbstractBbvaController implements Serializable {
 	 * @param selectEvent
 	 */
 	public void onProductSelected(final SelectEvent selectEvent) {
-		this.setSelectedProduct((ProductDto)selectEvent.getObject());
-		System.out.print("ON productSelected\n");
+		
+		final ProductDto productDto = (ProductDto)selectEvent.getObject();
+		LOGGER.info("ON productSelected Id: " + productDto.getProductId());
+		LOGGER.info("ON productSelected Name: " + productDto.getProductName());
+		LOGGER.info("ON productSelected Number: " + productDto.getProductNumber());
+		this.setSelectedProduct(productDto);
+		
+		
 	}
 
 	/**

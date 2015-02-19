@@ -33,23 +33,21 @@ public class LoginControllerImpl extends AbstractBbvaController implements Login
 		// 2. Get iv_ticketService from header
 		final String ivTicketValue = getRequest().getHeader("iv_ticketService");
 
-		// 3. Set CurrentUser
-		final String user = getRequestParameter("usuario");
-
-		// ÑAPA QUE QUITAR
-		final String clientId = getRequestParameter("clientId");
-
+		// 3. Get codigo cliente and iv-user
+		final String clientId = getRequest().getHeader("codigo_cliente");
+		final String ivUser =  getRequest().getHeader("iv-user");
+		
+		
 		LOGGER.info("Seteando CLIENT_ID a sesion" + clientId);
 		this.getSession().setAttribute("CLIENT_ID", clientId);
 
-		this.setDefaultUser(user);
+		this.setDefaultUser(clientId);
 
-		LOGGER.info("Login with User: " + user);
+		LOGGER.info("Login with Codigo Cliente: " +  clientId);
 		LOGGER.info("iv_ticketService: " + ivTicketValue);
 
 		// 4. Invocar al GrantingTicket y almacenar AuthenticationState
-		final AuthenticationState authenticationState = this.loginFacade.login(ivTicketValue, user,
-				getRequestParameter("password2"), getRequestParameter("NumeroId"), getRequestParameter("TipoId"));
+		final AuthenticationState authenticationState = this.loginFacade.login(ivTicketValue, ivUser);
 
 		// 5. Put in Session
 		this.getSession().setAttribute(SessionParamenterType.AUTHENTICATION_STATE.name(), authenticationState);

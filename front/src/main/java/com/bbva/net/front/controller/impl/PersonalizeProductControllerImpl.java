@@ -1,6 +1,5 @@
 package com.bbva.net.front.controller.impl;
 
-import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.AjaxBehaviorEvent;
@@ -34,18 +33,18 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 	private transient PersonalizeProductFacade personalizeProductAccountFacade;
 
 	// inicializar mensajes
-	@PostConstruct
 	public void init() {
 		LOGGER.info("Inicialize ProductAccountController");
 		this.menOperationKey = false;
 		this.menSuccessful = false;
-
 		this.productDto = super.getSelectedProduct();
+		LOGGER.info("PRODUCT SELECTED IN PERSONALIZE CONTROLLER IS NULL" + (this.productDto==null));
 		if (productDto != null) {
 			LOGGER.info("Datos del producto Seleccionado Terminado " + " Product Id: " + productDto.getProductId());
 			setSearch(productDto.isVisible());
 			setOperation(productDto.getOperationOnline());
 		} else {
+			LOGGER.info("CREANDO PRODUCT DTO IN PERSONALIZE CONTROLLER");
 			this.productDto = new ProductDto();
 			LOGGER.info("Datos del producto Seleccionado Vacio (null)");
 		}
