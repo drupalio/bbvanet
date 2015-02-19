@@ -9,7 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
 
@@ -69,24 +68,29 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 	@Resource(name = "quotaDetailFacade")
 	private transient QuotaDetailFacade quotaDetailFacade;
 
-	@PostConstruct
 	public void init() {
 		super.init();
 		LOGGER.info("Initialize QuotaController");
-		super.init();
 		this.productDto = getSelectProduct();
-		if (productDto != null) {
+		if (productDto != null && productDto.getProductId() != null) {
 			LOGGER.info("Datos del producto Seleccionado Terminado " + " Product Id: " + productDto.getProductId());
+			this.quotaDetailDto = this.quotaDetailFacade.getDetailRotaryQuota(this.productDto.getProductId());
+			LOGGER.info("Datos del quotaDetailDto Terminados" + " Product Id: " + quotaDetailDto.getId());
 		} else {
-			this.productDto = new ProductDto();
 			LOGGER.info("Datos del producto Seleccionado Vacio (null)");
 		}
-		this.quotaDetailDto = this.quotaDetailFacade.getDetailRotaryQuota(this.productDto.getProductId());
-		LOGGER.info("Datos del quotaDetailDto Terminados" + " Product Id: " + quotaDetailDto.getId());
-		maturityDate = dateFormat.format(this.quotaDetailDto.getDateMaturity());
-		previousDate = dateFormat.format(this.quotaDetailDto.getDatePrevious());
-		paymentDate = dateFormat.format(this.quotaDetailDto.getDatePayment());
-		LOGGER.info("Finalizado formateo de fechas del producto");
+
+		if (quotaDetailDto.getDateMaturity() != null && quotaDetailDto.getDatePayment() != null
+				&& quotaDetailDto.getDatePrevious() != null) {
+			maturityDate = dateFormat.format(this.quotaDetailDto.getDateMaturity());
+			previousDate = dateFormat.format(this.quotaDetailDto.getDatePrevious());
+			paymentDate = dateFormat.format(this.quotaDetailDto.getDatePayment());
+			LOGGER.info("Finalizado formateo de fechas del producto");
+		} else {
+			LOGGER.info("Error datos nulos " + "Fecha de vencimento  " + quotaDetailDto.getDateMaturity()
+					+ " Fecha de pago " + quotaDetailDto.getDatePayment() + " Fecha de corte anterior "
+					+ quotaDetailDto.getDatePrevious());
+		}
 
 		setTitle(MessagesHelper.INSTANCE.getString("text.last.movments"));
 		cleanFilters();
@@ -140,17 +144,13 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 		this.quotamovenDtos = this.quotaDetailFacade.listRotaryQuotaMovements(this.productDto.getProductId(),
 				dateRanget, 1, 10);
 
-		if (this.quotamovenDtos.size() >= 10) {
+		if (this.quotamovenDtos.size() > 10) {
 			getRenderTable().put(RenderAttributes.FOOTERTABLEMOVEMENT.toString(), true);
 		} else {
 			getRenderTable().put(RenderAttributes.FOOTERTABLEMOVEMENT.toString(), false);
 		}
 
-		LOGGER.info("Datos de los movimientos llenos ");
-		if (this.quotamovenDtos.size() >= 10)
-			getRenderTable().put(RenderAttributes.FOOTERTABLEQUOTA.toString(), true);
-		else
-			getRenderTable().put(RenderAttributes.FOOTERTABLEQUOTA.toString(), false);
+		LOGGER.info("Datos de los movimientos llenos " + quotamovenDtos.size());
 		return quotamovenDtos;
 	}
 
@@ -227,10 +227,11 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 		setProductIdPControl(getSelectedProduct().getProductId());
 		search();
 		this.quotamovenDtos = getCurrentList();
-		if (this.quotamovenDtos.size() > 10)
+		if (this.quotamovenDtos.size() > 10) {
 			getRenderTable().put(RenderAttributes.FOOTERTABLEQUOTA.toString(), true);
-		else
+		} else {
 			getRenderTable().put(RenderAttributes.FOOTERTABLEQUOTA.toString(), false);
+		}
 		setTitle(MessagesHelper.INSTANCE.getString("text.last.movments"));
 		RequestContext.getCurrentInstance().update("quotaDetail:detailAccounts:detailAccounts:detailmovesAC");
 	}
