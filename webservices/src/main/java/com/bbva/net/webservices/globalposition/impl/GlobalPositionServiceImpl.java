@@ -25,11 +25,12 @@ public class GlobalPositionServiceImpl extends AbstractBbvaRestService implement
 
 	@Override
 	public List<Product> getExtractGlobalBalance(String $filter) {
-		
-		LOGGER.info("PETICION: " + URL_BASE +  URL_GLOBAL_POSITION);
+
+		LOGGER.info("PETICION: " + URL_BASE + URL_GLOBAL_POSITION);
 		final List<Product> result = getJsonCollection(URL_BASE + URL_GLOBAL_POSITION, Product.class);
 		LOGGER.info("NUMERO DE PRODUCTOS:" + result.size());
 		return result;
+
 	}
 
 	@Override

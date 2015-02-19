@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.faces.event.ComponentSystemEvent;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.primefaces.event.SelectEvent;
 
@@ -213,14 +214,19 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 			LOGGER.info("Obteniendo Monthly Balances ................");
 
 			try {
-				// Delegate construye UI grafica Depositos Electrónicos
-				// this.lineConfigUI = this.graphicLineDelegate.getMonthlyBalance(globalMonthlyBalance);
-				// Obtiene la lista de datos para pintar la grafica Deposito electrónico
-				this.globalMonthlyBalance = this.accountMonthBalanceFacade.getAccountMonthlyBalance(DEFAULT_ACCOUNT,
-						new DateRangeDto(), StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY);
 
-				// Delegate construye UI grafica Depositos Electrónicos
-				this.lineConfigUI = this.graphicLineDelegate.getMonthlyBalance(globalMonthlyBalance);
+				if (!CollectionUtils.isEmpty(globalProductsDTO.getElectronicDeposits())) {
+
+					// Delegate construye UI grafica Depositos Electrónicos
+					// this.lineConfigUI = this.graphicLineDelegate.getMonthlyBalance(globalMonthlyBalance);
+					// Obtiene la lista de datos para pintar la grafica Deposito electrónico
+					this.globalMonthlyBalance = this.accountMonthBalanceFacade.getAccountMonthlyBalance(
+							globalProductsDTO.getElectronicDeposits().get(0).getProductId(), new DateRangeDto(),
+							StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY);
+
+					// Delegate construye UI grafica Depositos Electrónicos
+					this.lineConfigUI = this.graphicLineDelegate.getMonthlyBalance(globalMonthlyBalance);
+				}
 
 			} catch (final Exception exception) {
 				exception.printStackTrace();
@@ -228,8 +234,6 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 			LOGGER.info("Calculando gráfica de cuentas ................");
 			// Calculate income, output and balance by Account Graphic
 			this.accountGraphicBarLineUI = this.graphicBarLineDelegate.getInOutBalanceAccount(globalResumeMovementsDTO);
-
-
 
 		} catch (final Exception exception) {
 			LOGGER.info("HA HABIDO UNA EXCEPTION EN GLOBAL POSITION");

@@ -160,7 +160,6 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 		super.setSelectedProduct(selectedProduct);
 	}
 
-	
 	public void onRowToggle(SelectEvent event) {
 		super.onMovementSelected(event);
 		this.quotaMoveDetailDto = this.quotaDetailFacade.getRotaryQuotaMovement(this.productDto.getProductId(),
@@ -221,6 +220,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 		criteriaSearch();
 	}
 
+	@Override
 	public void criteriaSearch() {
 
 		if (this.dateRange != null) {
@@ -343,10 +343,12 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 		this.toText = toText;
 	}
 
+	@Override
 	public QuotaDetailFacade getQuotaDetailFacade() {
 		return quotaDetailFacade;
 	}
 
+	@Override
 	public void setQuotaDetailFacade(QuotaDetailFacade quotaDetailFacade) {
 		this.quotaDetailFacade = quotaDetailFacade;
 	}

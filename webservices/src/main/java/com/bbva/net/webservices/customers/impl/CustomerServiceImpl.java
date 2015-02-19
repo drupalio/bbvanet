@@ -31,12 +31,11 @@ public class CustomerServiceImpl extends AbstractBbvaRestService implements Cust
 	@Override
 	public List<AccMovementsResume> listAccountsMovementsResume(String filter) {
 
-
 		WebClient wc = getJsonWebClient(URL_BASE_CUSTOMER + URL_CUSTOMER);
 		LOGGER.info("PETICION: " + wc.getCurrentURI());
 		if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
 		return (List<AccMovementsResume>)wc.getCollection(AccMovementsResume.class);
-		
+
 	}
 
 	@SuppressWarnings("unchecked")
