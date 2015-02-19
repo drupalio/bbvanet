@@ -29,7 +29,7 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
 
 	@PostConstruct
 	public void init() {
-		favoriteOperations = favoriteOperationsFacade.getListFavoriteOperations(getCurrentUser());
+		favoriteOperations = favoriteOperationsFacade.getListFavoriteOperations();
 
 	}
 

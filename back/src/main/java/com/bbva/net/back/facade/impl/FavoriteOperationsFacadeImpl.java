@@ -20,7 +20,7 @@ public class FavoriteOperationsFacadeImpl extends AbstractBbvaFacade implements 
 	private static final long serialVersionUID = 4324772858898315010L;
 
 	@Override
-	public List<FavoriteOperationDto> getListFavoriteOperations(String contractId) {
+	public List<FavoriteOperationDto> getListFavoriteOperations() {
 		List<FavoriteOperationDto> favoriteOperations;
 		favoriteOperations = new ArrayList<FavoriteOperationDto>();
 		FavoriteOperationDto favorite = new FavoriteOperationDto();
