@@ -8,43 +8,32 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:composite="http://java.sun.com/jsf/composite"
 	xmlns:bbvaAcc="http://java.sun.com/jsf/composite/bbva/accounts"
-	xmlns:bbvaGP="http://java.sun.com/jsf/composite/bbva/globalPosition"
-	xmlns:bbvaAlert="http://java.sun.com/jsf/composite/bbva/alert"
-	xmlns:bbvaBody="http://java.sun.com/jsf/composite/bbva/body"
-	xmlns:bbvaContainer="http://java.sun.com/jsf/composite/bbva/container"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-	xmlns:bbvaDetAcc="http://java.sun.com/jsf/composite/bbva/tab"
-	xmlns:bbvaCalendar="http://java.sun.com/jsf/composite/bbva/calendar"
-	xmlns:bbvaDetailMotion="http://java.sun.com/jsf/composite/bbva/movementsDetail"
-	xmlns:bbvaSearch="http://java.sun.com/jsf/composite/bbva/filters"
-	xmlns:jsf="http://xmlns.jcp.org/jsf"
-	xmlns:bbvaMessage="http://java.sun.com/jsf/composite/bbva/messages"
-	xmlns:bbvaPersonalize="http://java.sun.com/jsf/composite/bbva/personalize"
-	xmlns:bbvaButton="http://java.sun.com/jsf/composite/bbva/button">
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
 
 <composite:interface>
 	<composite:attribute name="title" type="String" />
 	<composite:attribute name="alias" type="String" />
-	<composite:attribute name="numCuenta" type="String" />
-	<composite:attribute name="tipo" type="String" />
+	<composite:attribute name="number" type="String" />
+	<composite:attribute name="type" type="String" />
 </composite:interface>
 <composite:implementation>
 
 	<bbvaAcc:termsAccounts>
 		<bbvaAcc:termsAccountsPanelInfo title="Información del Producto">
-		
+
 			<bbvaAcc:termsAccountsPanelInfoItemTitle date="#{msg['text.alias']}:"
 				val="4" />
-			<bbvaAcc:termsAccountsPanelInfoItemData
-				date="#{cc.attrs.alias}" val="7" />
+			<bbvaAcc:termsAccountsPanelInfoItemData date="#{cc.attrs.alias}"
+				val="7" />
 			<bbvaAcc:termsAccountsPanelInfoItemTitle
 				date="#{msg['text.account.number']}:" val="4" />
-			<bbvaAcc:termsAccountsPanelInfoItemData
-				date="#{cc.attrs.numCuenta}" val="7" />
+			<bbvaAcc:termsAccountsPanelInfoItemData date="#{cc.attrs.number}"
+				val="7" />
 			<bbvaAcc:termsAccountsPanelInfoItemTitle
 				date="#{msg['text.account.type']}:" val="4" />
-			<bbvaAcc:termsAccountsPanelInfoItemData
-				date="#{cc.attrs.tipo}" val="7" />
+			<bbvaAcc:termsAccountsPanelInfoItemData date="#{cc.attrs.type}"
+				val="7" />
 		</bbvaAcc:termsAccountsPanelInfo>
 
 		<bbvaAcc:termsAccountsPanelInfoItemBody title="Intervinientes">

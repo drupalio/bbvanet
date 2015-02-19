@@ -24,6 +24,7 @@ import com.bbva.net.back.model.comboFilter.EnumPeriodType;
 import com.bbva.net.back.model.commons.BalanceRangeDto;
 import com.bbva.net.back.model.commons.DateRangeDto;
 import com.bbva.net.back.model.enums.RenderAttributes;
+import com.bbva.net.back.model.globalposition.ProductDto;
 import com.bbva.net.back.model.movements.MovementDetailDto;
 import com.bbva.net.back.model.movements.MovementDto;
 import com.bbva.net.back.predicate.ConceptMovementPredicate;
@@ -83,7 +84,6 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 	private List valuesLinesGraphic;
 
-	
 	@PostConstruct
 	public void init() {
 		super.init();
@@ -141,14 +141,15 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		RequestContext.getCurrentInstance().update("detailAccounts:formu:detalMov");
 		getRenderTable().put(RenderAttributes.CHECKTABLE.toString(), false);
 		RequestContext.getCurrentInstance().update("detailAccounts:formu:checksTable");
-		
+
 		Iterator it = getRenderTable().entrySet().iterator();
-		
+
 		while (it.hasNext()) {
 			Map.Entry e = (Map.Entry)it.next();
-			System.out.println("--------------------"+" LLAVEEE "+e.getKey() + " ----------VALOOOOR----------" + e.getValue()+"--------------------");
+			System.out.println("--------------------" + " LLAVEEE " + e.getKey() + " ----------VALOOOOR----------"
+					+ e.getValue() + "--------------------");
 		}
-		
+
 	}
 
 	public void nextPage(ActionEvent event) {
@@ -170,9 +171,8 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		dateRange = calculateDate("Último mes");
 
 		// TODO oroductId
-		this.movementsList = this.movementsFacade.listMovements(
-			 getSelectedProduct().getProductId(), getSelectedProduct().getSubTypeProd(),
-				dateRange, null, 1, 10);
+		this.movementsList = this.movementsFacade.listMovements(getSelectedProduct().getProductId(),
+				getSelectedProduct().getSubTypeProd(), dateRange, null, 1, 10);
 		if (this.movementsList.size() >= 10)
 			getRenderTable().put(RenderAttributes.FOOTERTABLEMOVEMENT.toString(), true);
 		else
@@ -235,7 +235,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			getRenderTable().put(RenderAttributes.MOVEMENTSTABLE.toString(), true);
 			getRenderTable().put(RenderAttributes.CHECKTABLE.toString(), false);
 			setTitle(MessagesHelper.INSTANCE.getString("text.last.movments"));
-			
+
 		}
 
 	}
@@ -330,8 +330,13 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		} else {
 			sinceDatestr = getSelectDate();
 		}
-		
+
 		RequestContext.getCurrentInstance().update("customSearch");
+	}
+
+	@Override
+	public ProductDto getSelectedProduct() {
+		return super.getSelectedProduct();
 	}
 
 	/**

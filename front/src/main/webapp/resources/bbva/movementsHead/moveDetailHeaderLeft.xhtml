@@ -14,8 +14,8 @@
 
 <composite:interface>
 	<composite:attribute name="alias" type="String" />
-	<composite:attribute name="numCuenta" type="String" />
-	<composite:attribute name="tipoPrestamo" type="String" />
+	<composite:attribute name="number" type="String" />
+	<composite:attribute name="type" type="String" />
 </composite:interface>
 
 
@@ -23,9 +23,9 @@
 	<div class="col-xs-6 col-sm-4 col-md-4 left">
 		<p class="accountDescription">#{cc.attrs.alias}</p>
 		<p>
-			<strong class="info-numero">#{cc.attrs.numCuenta}</strong>
+			<strong class="info-numero">#{cc.attrs.number}</strong>
 		</p>
-		<p>#{cc.attrs.tipoPrestamo}</p>
+		<p>#{cc.attrs.type}</p>
 	</div>
 
 </composite:implementation>

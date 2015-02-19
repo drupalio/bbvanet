@@ -6,16 +6,17 @@
 
 	<var name="movementsCriteriaController" class="com.bbva.net.front.controller.impl.MovementCriteriaControllerImpl" />
 	<var name="checkBookController" class="com.bbva.net.front.controller.impl.CheckBookControllerImpl" />
+	<var name="termsController" class="com.bbva.net.front.controller.impl.TermsControllerImpl"/>
 	<var name="accountsController" class="com.bbva.net.front.controller.impl.AccountsControllerImpl" />
 	<var name="personalizeProductAccountController" class="com.bbva.net.front.controller.impl.PersonalizeProductControllerImpl"/>
 
 	<on-start>
 		<evaluate expression="personalizeProductAccountController.init()"/>
+		<evaluate expression="termsController.getAllConditions()" result="flowScope.allConditions" />
 		<!-- <evaluate expression="checkBookController.initCheckBookList()" result="requestScope.checkBookList" /> -->
 		<evaluate expression="accountsController.getCustomerAccounts()" result="flowScope.customerAccounts" />
-		<!-- <evaluate expression="accountsController.getAllConditions()" result="flowScope.allConditions" /> -->
+		<evaluate expression="movementsCriteriaController.getSelectedProduct()" result="flowScope.product" />
 		<evaluate expression="movementsCriteriaController.getAllMovements()" result="flowScope.movements" />
-
 	</on-start>
 
 	<view-state id="movements">
