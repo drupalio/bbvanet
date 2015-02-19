@@ -2,6 +2,8 @@ package com.bbva.net.back.facade.impl.integration;
 
 import javax.annotation.Resource;
 
+import org.junit.Assert;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.context.annotation.Profile;
 import org.springframework.test.context.ContextConfiguration;
@@ -17,18 +19,9 @@ public class FavoriteOperationsFacadeIT {
 	@Resource(name = "favoriteOperationsFacade")
 	private FavoriteOperationsFacade favoriteOperationsFacade;
 
-	// @Test
-	// public void checkGetOperationsOK() {
-	// Assert.assertNotNull(this.favoriteOperationsFacade.getListFavoriteOperations("12345678"));
-	// }
-	//
-	// @Test
-	// public void checkGetOperationsNotFilter() {
-	// Assert.assertNotNull(this.favoriteOperationsFacade.getListFavoriteOperations(null));
-	// }
-	//
-	// @Test
-	// public void checkGetOperationsEmptyFilter() {
-	// Assert.assertNotNull(this.favoriteOperationsFacade.getListFavoriteOperations(StringUtils.EMPTY));
-	// }
+	@Test
+	public void checkGetOperationsOK() {
+		Assert.assertNotNull(this.favoriteOperationsFacade.getListFavoriteOperations());
+	}
+
 }
