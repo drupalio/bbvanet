@@ -144,7 +144,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 		this.quotamovenDtos = this.quotaDetailFacade.listRotaryQuotaMovements(this.productDto.getProductId(),
 				dateRanget, 1, 10);
 
-		if (this.quotamovenDtos.size() > 10) {
+		if (this.quotamovenDtos.size() >= 10) {
 			getRenderTable().put(RenderAttributes.FOOTERTABLEMOVEMENT.toString(), true);
 		} else {
 			getRenderTable().put(RenderAttributes.FOOTERTABLEMOVEMENT.toString(), false);
