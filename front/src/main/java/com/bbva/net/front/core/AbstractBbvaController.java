@@ -126,6 +126,14 @@ public abstract class AbstractBbvaController implements Serializable {
 	}
 
 	/**
+	 * @param var
+	 * @return
+	 */
+	protected Object getVarInFlow(final String var) {
+		return getWebFlowRequestContext().getFlashScope().get(var);
+	}
+
+	/**
 	 * @param defaultUser
 	 */
 	public void setDefaultUser(String defaultUser) {
@@ -166,14 +174,13 @@ public abstract class AbstractBbvaController implements Serializable {
 	 * @param selectEvent
 	 */
 	public void onProductSelected(final SelectEvent selectEvent) {
-		
+
 		final ProductDto productDto = (ProductDto)selectEvent.getObject();
 		LOGGER.info("ON productSelected Id: " + productDto.getProductId());
 		LOGGER.info("ON productSelected Name: " + productDto.getProductName());
 		LOGGER.info("ON productSelected Number: " + productDto.getProductNumber());
 		this.setSelectedProduct(productDto);
-		
-		
+
 	}
 
 	/**
