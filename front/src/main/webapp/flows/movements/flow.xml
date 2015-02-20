@@ -15,7 +15,6 @@
 		<evaluate expression="personalizeProductAccountController.init()"></evaluate>
 		
 		<!-- <evaluate expression="checkBookController.initCheckBookList()" result="requestScope.checkBookList" /> -->
-		<evaluate expression="accountsController.getCustomerAccounts()" result="flowScope.customerAccounts" />
 		<!-- <evaluate expression="accountsController.getAllConditions()" result="flowScope.allConditions" /> -->
 		<evaluate expression="movementsCriteriaController.getAllMovements()" result="flowScope.movements" />
 
