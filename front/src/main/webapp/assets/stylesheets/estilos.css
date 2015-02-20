@@ -1,6 +1,6 @@
 @CHARSET "ISO-8859-1";
 
-/* Personalizar */
+/* Personalizar*/
 .leftDiv {
 	float: left !important;
 	box-sizing: border-box !important;
@@ -30,13 +30,6 @@
 	display: inline-block !important;
 }
 
-@media ( max-width : 389px) {
-	.leftLabel {
-		width: 100% !important;
-		height: 25px !important;
-	}
-}
-
 /* Personalizar */
 .rigthDiv {
 	box-sizing: border-box !important;
@@ -55,13 +48,7 @@
 	position: relative !important;
 }
 
-@media ( max-width : 389px) {
-	.rigthDiv {
-		width: 100% !important;
-	}
-}
-
-/* para los botones del personalizar */
+/* Personalizar para los botones del personalizar */
 .yourStyleClass div.ui-state-active {
 	color: #005098 !important;
 	cursor: pointer;
@@ -84,7 +71,7 @@
 	z-index: 2 !important;
 }
 
-/* para los botones del personalizar */
+/* Personalizar para los botones del personalizar */
 .yourStyleClass div.ui-corner-all {
 	border-radius: 8px !important;
 	float: left !important;
@@ -94,7 +81,7 @@
 	float: right !important;
 }
 
-/* para los botones del personalizar */
+/* Personalizar para los botones del personalizar */
 .yourStyleClass div.ui-state-default {
 	color: #0078D2;
 	background-color: transparent;
@@ -115,17 +102,58 @@
 	background-color: transparent;
 }
 
-/* para los botones del personalizar */
+/* Personalizar para los botones del personalizar */
 .yourStyleClass div.button-text-only {
 	font-size: 13px;
 }
 
-/* para los botones del personalizar */
+/* Personalizar el selectOneButton sin boton */
+.bigCombo {
+	height: 42px !important;
+	width: 100% !important;
+	float: left !important;
+}
+
+/* Personalizar para los botones del personalizar */
 .yourStyleClass div.ui-button {
 	background-color: white !important;
 	border-color: #cccccc !important;
 }
-/* el selectOneButton con boton */
+
+/* Personalizar botones save del personalizar */
+.save {
+	margin: 7px 0px 0px 0px !important;
+	padding: 2px 0px !important;
+	font-size: 12px !important;
+}
+
+/* Personalizar botones save del personalizar */
+.saveAlias {
+	margin: 0px 0px 0px 0px !important;
+	padding: 2px 0px !important;
+	font-size: 12px !important;
+}
+
+/*Response Personalizar*/
+@media ( max-width : 389px) {
+	.leftLabel {
+		width: 100% !important;
+		height: 25px !important;
+	}
+	.rigthDiv {
+		width: 100% !important;
+	}
+	.smallCombo {
+		width: 100% !important;
+		height: 42px !important;
+	}
+	.bigCombo {
+		width: 100% !important;
+		height: 42px !important;
+	}
+}
+
+/*Response Personalizar el selectOneButton con boton */
 @media ( min-width : 769px) {
 	.smallCombo {
 		float: left !important;
@@ -135,6 +163,7 @@
 	}
 }
 
+/*Response Personalizar el selectOneButton con boton*/
 @media ( max-width : 768px) {
 	.smallCombo {
 		width: 80% !important;
@@ -143,66 +172,24 @@
 	}
 }
 
+/*Response Personalizar*/
 @media ( max-width : 615px) {
 	.smallCombo {
 		float: right !important;
 		width: 80% !important;
 		height: 42px !important;
 	}
-}
-
-@media ( max-width : 389px) {
-	.smallCombo {
-		width: 100% !important;
-		height: 42px !important;
-	}
-}
-
-/* el selectOneButton sin boton */
-.bigCombo {
-	height: 42px !important;
-	width: 100% !important;
-	float: left !important;
-}
-
-@media ( max-width : 389px) {
-	.bigCombo {
-		width: 100% !important;
-		height: 42px !important;
-	}
-}
-
-/* Response */
-
-/*Buttons del personalizar*/
-.save {
-	margin: 7px 0px 0px 0px !important;
-	padding: 2px 0px !important;
-	font-size: 12px !important;
-}
-
-@media ( max-width : 615px) {
 	.save {
 		margin: 10px 0px 0px 0px !important;
 		padding: 2px 0px !important;
 		font-size: 12px !important;
 	}
-}
-
-.saveAlias {
-	margin: 0px 0px 0px 0px !important;
-	padding: 2px 0px !important;
-	font-size: 12px !important;
-}
-
-@media ( max-width : 615px) {
 	.saveAlias {
 		margin: 10px 0px 10px 0px !important;
 		padding: 2px 0px !important;
 		font-size: 12px !important;
 	}
 }
-/* Response */
 
 /* quita la linea blanca de arriba del boton y pone en el centro el texto */
 button.ui-state-default {
@@ -402,6 +389,7 @@ input.ui-state-hover {
 	margin-top: -13% !important;
 	width: 116.8%;
 	margin-left: -3% !important;
+	margin-bottom: -3% !important;
 }
 
 /* tipo de letra del detalle*/
@@ -428,6 +416,11 @@ input.ui-state-hover {
 		text-align: left;
 		color: #333;
 	}
+	/*Estilos letra currency columna*/
+	.styleCurrent {
+		font-size: 15px;
+		color: #333
+	}
 }
 
 @media ( max-width : 769px) {
@@ -438,20 +431,34 @@ input.ui-state-hover {
 		text-align: left;
 		color: #333;
 	}
-}
-
-/*Estilos letra currency columna*/
-@media ( min-width : 769px) {
-	.styleCurrent {
-		font-size: 15px;
-		color: #333
-	}
-}
-
-@media ( max-width : 769px) {
+	/*Estilos letra currency columna*/
 	.styleCurrent {
 		font-size: 16px;
 		color: #333
 	}
 }
+
+/*alinear condiciones*/
+.group {
+	display: inline-block;
+	width: 100%;
+}
+
+/* Response Menu Operations y condiciones*/
+@media ( max-width : 769px) {
+	/* margin cabecera de movimientos y condiciones*/
+	.marginRow {
+		margin: 0px 3% 3% 3%;
+	}
+	/* padding product-header de cabecera de movimientos*/
+	.marginProduct {
+		padding-left: 0px !important;
+		padding-right: 0px !important;
+	}
+	.marginConRow {
+		margin: 0px 0% 0% 0%;
+	}
+	.menuResponse {
+		margin-left: 3% !important;
+	}
 }

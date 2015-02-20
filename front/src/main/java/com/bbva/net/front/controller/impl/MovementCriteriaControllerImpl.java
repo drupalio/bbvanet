@@ -20,6 +20,7 @@ import com.bbva.net.back.model.comboFilter.EnumPeriodType;
 import com.bbva.net.back.model.commons.BalanceRangeDto;
 import com.bbva.net.back.model.commons.DateRangeDto;
 import com.bbva.net.back.model.enums.RenderAttributes;
+import com.bbva.net.back.model.globalposition.ProductDto;
 import com.bbva.net.back.model.movements.MovementDetailDto;
 import com.bbva.net.back.model.movements.MovementDto;
 import com.bbva.net.back.predicate.ConceptMovementPredicate;
@@ -154,7 +155,6 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		LOGGER.info("MovementsAccountController getAllMovements productId:  " + getSelectedProduct().getProductId());
 		this.movementsList = this.movementsFacade.listMovements(getSelectedProduct().getProductId(),
 				getSelectedProduct().getSubTypeProd(), dateRange, null, 1, 10);
-
 		this.graphicLineMovements = graphicLineDelegate.getMovementAccount(this.movementsList);
 		this.valuesLinesGraphic = valuesLinesGraphic(graphicLineMovements);
 
@@ -234,6 +234,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			this.movementsList = movementsByConcept;
 			setShowMoreStatus();
 			getRenderComponents().put(RenderAttributes.MOVEMENTSTABLE.toString(), true);
+
 		}
 
 	}
@@ -325,6 +326,11 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		} else {
 			sinceDatestr = getSelectDate();
 		}
+	}
+
+	@Override
+	public ProductDto getSelectedProduct() {
+		return super.getSelectedProduct();
 	}
 
 	/**

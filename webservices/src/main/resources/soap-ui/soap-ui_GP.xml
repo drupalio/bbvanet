@@ -2079,7 +2079,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 
 */
 </con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{"name":"Cliente del Bbva","lastAccessDate":"05/05/2014"}
-</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/products/V01/00130073000296247953/movements" method="GET" resourcePath="/czic/products/V01/00130443000200009416/movements"><con:settings/><con:defaultResponse>listMovements response</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/products/V01/00130443000200009416/movements" method="GET" resourcePath="/czic/products/V01/00130443000200009416/movements"><con:settings/><con:defaultResponse>listMovements response</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Examples showing how to match based on path, query param and header
 // Match based on path
 def requestPath = mockRequest.getPath()
@@ -2248,7 +2248,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		"amount": 1577796455,
 		"currency": "COP"
 	}
-}]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/loan/V01/rotaryQuota/00130443000200009410/movement/556475" method="GET" resourcePath="/czic/loan/V01/rotaryQuota/00130443000200009410/movement/556475"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+}]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/loan/V01/rotaryQuota/00130443000200009410/movement/394133994" method="GET" resourcePath="/czic/loan/V01/rotaryQuota/00130443000200009410/movement/394133994"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Examples showing how to match based on path, query param and header
 // Match based on path
 def requestPath = mockRequest.getPath()
@@ -2289,30 +2289,25 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 
 */
 </con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
-	"id": "00130443000200009410",
+	"id": "394133994",
 	"operation": {
-		"code": "000000",
-		"description": "cupo"
+		"description": "Descripcion"
 	},
-	"concept": "Cupo rotativo",
-	"transactionDate": "22/05/2015",
-	"status": "Activa",
+	"concept": "12345",
+	"transactionDate": "2015-02-18",
+	"status": "Acti",
 	"value": {
-		"amount": 0,
-		"currency": "$"
+		"currency": "COP",
+		"amount": 0.00
 	},
 	"balance": {
-		"total": {
-			"amount": 0,
-			"currency": "$"
-		},
 		"availableBalance": {
-			"amount": 0,
-			"currency": "$"
+			"currency": "COP",
+			"amount": 0.00
 		}
 	},
-	"numbersOfQuota": 2,
-	"remainingQuotas": 3
+	"numbersOfQuota": 1,
+	"remainingQuotas": 0
 }</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/executives/V01" method="GET" resourcePath="/czic/executives/V01"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Examples showing how to match based on path, query param and header
 // Match based on path
@@ -2753,4 +2748,168 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 }
 
 */
-</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200"><con:settings/><con:responseContent/></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
+</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200"><con:settings/><con:responseContent/></con:response></con:restMockAction><con:restMockAction name="/czic/agileOperations/V01" method="GET" resourcePath="/czic/agileOperations/V01"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
+	"contractId":"37812111",
+	"id":"9302",
+	"origin":{
+		"ccc":{
+			"bankCode":"0074",
+			"branchCode":"5047",
+			"controlDigit":"00",
+			"accountNumber":"0176972847"
+		}
+	},
+	"destination":{
+		"creditNumber":{
+			"number":"044669179387"
+		}
+	},
+	"amount":"100000.00 COP",
+	"name":"BANCOMER",
+	"transactionDate":"2015-02-05 10:40:47:613000",
+	"transactionReference":"987384744"
+},
+{
+	"contractId":"37812111",
+	"id":"9302",
+	"origin":{
+		"clabe":{
+			"bankCode":"0074",
+			"branchCode":"5047",
+			"controlDigit":"00",
+			"accountNumber":"0176972847"
+		}
+	},
+	"destination":{
+		"cardNumber":{
+			"number":"044669179387"
+		}
+	},
+	"amount":"36757000.00 COP",
+	"name":"BANCOMER",
+	"transactionDate":"2013-11-23 10:40:47:613000",
+	"transactionReference":"987384744"
+},
+{
+	"contractId":"37812111",
+	"id":"9302",
+	"origin":{
+		"clabe":{
+			"bankCode":"0074",
+			"branchCode":"5047",
+			"controlDigit":"00",
+			"accountNumber":"0176972847"
+		}
+	},
+	"destination":{
+		"creditNumber":{
+			"number":"044669179387"
+		}
+	},
+	"amount":"336000.00 COP",
+	"name":"BANCOMER",
+	"transactionDate":"2014-12-04 10:40:47:613000",
+	"transactionReference":"987384744"
+},
+{
+	"contractId":"37812111",
+	"id":"9302",
+	"origin":{
+		"ccc":{
+			"bankCode":"0074",
+			"branchCode":"5047",
+			"controlDigit":"00",
+			"accountNumber":"0176972847"
+		}
+	},
+	"destination":{
+		"cardNumber":{
+			"number":"044669179387"
+		}
+	},
+	"amount":"368000.00 COP",
+	"name":"BANCOMER",
+	"transactionDate":"2012-08-15 10:40:47:613000",
+	"transactionReference":"987384744"
+}]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/products/V01/00130443000200009416/conditions" method="GET" resourcePath="/czic/products/V01/00130443000200009416/conditions"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{"category":"Categoria producto","description":"Descripcion del producto","openingDate":"Fecha de apertura","commission":"commison producto","office":{"code":"0073","name":"BBVA 23247","location":{"city":{"id":"123","name":"Bogota"},"country":{"id":"12","name":"Colombia"},"state":{"id":"123456","name":"Cundinamarca"},"postalAddress":"Direccion posta","category":"Kennedy"},"postalAddress":"Calle 36"},"mobilizationConditions":"Consiciones de movilizacion"}
+</con:responseContent></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

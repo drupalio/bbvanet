@@ -13,5 +13,5 @@ public interface FavoriteOperationsFacade {
 	 * @param contractId
 	 * @return List favorite operations by contractId
 	 */
-	List<FavoriteOperationDto> getListFavoriteOperations(String contractId);
+	List<FavoriteOperationDto> getListFavoriteOperations();
 }

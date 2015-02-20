@@ -2,7 +2,6 @@ package com.bbva.net.front.controller;
 
 import java.util.List;
 
-import com.bbva.net.back.model.accounts.TermsAccountsDto;
 import com.bbva.net.back.model.globalposition.AccountDto;
 
 /**
@@ -20,5 +19,4 @@ public interface AccountsController {
 	 */
 	List<AccountDto> getCustomerAccountsHidden();
 
-	TermsAccountsDto getAllConditions();
 }

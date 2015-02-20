@@ -41,8 +41,10 @@ function checkFilled(btnW, inputId) {
 
 }
 
-function checkRowClick() {
+$(document).ready(function() {
 	$('.ui-datatable-data .ui-widget-content').click(function() {
+
+		var children = $('.ui-datatable-data .ui-widget-content').children();
 
 		var i = $('.ui-row-toggler.ui-icon-circle-triangle-s').length;
 		if (i == 1) {
@@ -51,7 +53,16 @@ function checkRowClick() {
 		$('.ui-row-toggler.ui-icon-circle-triangle-s').trigger('click');
 		$('.ui-row-toggler.ui-icon-circle-triangle-s').click();
 	});
-}
+});
+
+$(document).ready(function() {
+	var i = $('.ui-row-toggler.ui-icon-circle-triangle-s').length;
+	if (i == 1) {
+		return;
+	}
+	$('.ui-row-toggler.ui-icon-circle-triangle-s').trigger('click');
+	$('.ui-row-toggler.ui-icon-circle-triangle-s').click();
+});
 
 // Cerrar de los tab operation Quota y Movements
 $(document).ready(function() {

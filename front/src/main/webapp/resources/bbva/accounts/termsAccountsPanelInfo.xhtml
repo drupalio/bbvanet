@@ -16,30 +16,28 @@
 
 <composite:implementation>
 
-	   <div class="col-sm-12 more-margin-bottom">
-            <div class="condiciones-list first">
-                <div class="row">
-                    <div class="col-sm-6">
-                       <h3>#{cc.attrs.title}</h3>
-                    </div>
-                     <div class="col-sm-6">
-                        <div class="box">
-                            <div class="utility-icons">
-                                <a href="#">
-                                    <span class="icon-16 gray l01-pdf" title="Descargar pdf"></span>
-                                </a>
-                                <a href="#">
-                                    <span class="icon-16 gray m07-correspondenciavirtual" title="Enviar"></span>
-                                </a>
-                                <a href="#">
-                                    <span class="icon-16 gray n01-imprimir" title="Imprimir"></span>
-                                </a>
-                            </div>
-                        </div>
-                    </div> 
-                    <div class="group">
-						<composite:insertChildren></composite:insertChildren>
+	<div class="col-xs-12 col-sm-12 more-margin-bottom">
+		<div class="condiciones-list first">
+			<div class="row">
+				<div class="col-xs-12 col-sm-6">
+					<h3>#{cc.attrs.title}</h3>
+				</div>
+				<div class="hidden-xs col-sm-6">
+					<div class="box">
+						<div class="utility-icons">
+							<a href="#"> <span class="icon-16 gray l01-pdf"
+								title="Descargar pdf"></span>
+							</a> <a href="#"> <span
+								class="icon-16 gray m07-correspondenciavirtual" title="Enviar"></span>
+							</a> <a href="#"> <span class="icon-16 gray n01-imprimir"
+								title="Imprimir"></span>
+							</a>
+						</div>
 					</div>
+				</div>
+				<div class="group">
+					<composite:insertChildren></composite:insertChildren>
+				</div>
 			</div>
 		</div>
 	</div>

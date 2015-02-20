@@ -10,31 +10,28 @@
 	xmlns:pm="http://primefaces.org/mobile"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:cc="http://jsflive.at/taglib"
-	xmlns:bbvaQuotaHeader="http://java.sun.com/jsf/composite/bbva/quota">
+	xmlns:bbvaGraphic="http://java.sun.com/jsf/composite/bbva/graphics/loan"
+	xmlns:bbvaQuotaHeader="http://java.sun.com/jsf/composite/bbva/movementsHead">
 
 <composite:interface>
-
 </composite:interface>
-
 <composite:implementation>
-
-	<bbvaQuotaHeader:quotaDetail>
-		<bbvaQuotaHeader:quotaDetailHeader>
-			<bbvaQuotaHeader:quotaDetailHeaderLeft alias="#{product.alias}"
-				numCuenta="#{product.productId}"
-				tipoPrestamo=" #{product.productName}" />
-			<bbvaQuotaHeader:quotaDetailGraphic
+	<bbvaQuotaHeader:moveDetailContainer>
+		<bbvaQuotaHeader:moveContainerHeader>
+			<bbvaQuotaHeader:moveDetailHeaderLeft alias="#{product.alias}"
+				number="#{product.productId}" type=" #{product.productName}" />
+			<bbvaGraphic:quotaDetailGraphic
 				textUp="#{msg['text.outstandingBalance']}"
 				valueUp="#{quotaController.quotaDetailDto.outstandingBalance}"
 				textDown="#{msg['text.amountRequested']}"
 				valueDown="#{quotaController.quotaDetailDto.amountRequested}"
 				valueGrphic="10" />
-			<bbvaQuotaHeader:quotaDetailHeaderRight
+			<bbvaQuotaHeader:moveDetailHeaderRight
 				textUp="#{msg['text.outstandingBalance']}"
 				valueUp="#{quotaController.quotaDetailDto.outstandingBalance}"
 				textDown="#{msg['text.amountRequested']}"
 				valueDown="#{quotaController.quotaDetailDto.amountRequested}" />
-		</bbvaQuotaHeader:quotaDetailHeader>
+		</bbvaQuotaHeader:moveContainerHeader>
 		<bbvaQuotaHeader:quotaDetailHeaderBody>
 			<bbvaQuotaHeader:quotaDetailHeaderBodyContainer type="left">
 				<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem
@@ -68,6 +65,6 @@
 					value="#{quotaController.quotaDetailDto.balancePrevious}" />
 			</bbvaQuotaHeader:quotaDetailHeaderBodyContainer>
 		</bbvaQuotaHeader:quotaDetailHeaderBody>
-	</bbvaQuotaHeader:quotaDetail>
+	</bbvaQuotaHeader:moveDetailContainer>
 </composite:implementation>
 </html>

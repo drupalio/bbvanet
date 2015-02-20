@@ -32,22 +32,25 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 	@Resource(name = "personalizeProductAccountFacade")
 	private transient PersonalizeProductFacade personalizeProductAccountFacade;
 
-	// inicializar mensajes
 	public void init() {
-		LOGGER.info("Inicialize ProductAccountController");
+		LOGGER.debug("Inicialize ProductAccountController");
 		this.menOperationKey = false;
 		this.menSuccessful = false;
 
 		this.productDto = super.getSelectedProduct();
-		if (productDto != null) {
+		if (productDto != null && productDto.getOperationOnline() != null && productDto.isVisible() != null) {
 			LOGGER.info("Datos del producto Seleccionado Terminado " + " Product Id: " + productDto.getProductId());
 			setSearch(productDto.isVisible());
+			LOGGER.info("el producto id: " + productDto.getProductId() + " visible: " + productDto.isVisible());
 			setOperation(productDto.getOperationOnline());
-		} else {
-			this.productDto = new ProductDto();
-			LOGGER.info("Datos del producto Seleccionado Vacio (null)");
-		}
+			LOGGER.info("el producto id: " + productDto.getProductId() + " Operable: "
+					+ productDto.getOperationOnline());
 
+		} else {
+			LOGGER.info("Datos del producto Seleccionado Vacio (null)" + " operable: "
+					+ productDto.getOperationOnline() + " visible: " + productDto.isVisible());
+			this.productDto = new ProductDto();
+		}
 	}
 
 	@Override
@@ -69,14 +72,17 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 		LOGGER.info("Llamando updateProductVisibility del facade");
 		Boolean responseVisi = this.personalizeProductAccountFacade.updateProductVisibility(
 				this.productDto.getProductId(), productDto);
-		LOGGER.info("Dato visible de la cuenta: " + this.productDto.getProductId() + " actualizado: " + responseVisi);
+		LOGGER.info("Dato visible de la cuenta: " + this.productDto.getProductId() + " visible: "
+				+ productDto.isVisible() + " actualizado: " + responseVisi);
 
 		LOGGER.info("Llamando updateProductOperability del facade");
 		Boolean responseOpe = this.personalizeProductAccountFacade.updateProductOperability(
 				this.productDto.getProductId(), productDto);
-		LOGGER.info("Dato operable de la cuenta: " + this.productDto.getProductId() + " actualizado: " + responseOpe);
+		LOGGER.info("Dato operable de la cuenta: " + this.productDto.getProductId() + " operable: "
+				+ productDto.getOperationOnline() + " actualizado: " + responseOpe);
 
 		if (responseVisi == true && responseOpe == true) {
+			LOGGER.info("mostrando mensaje de operaciones Exitoso");
 			setMenOperationKey(true);
 		} else {
 			LOGGER.info("Error de actulización");
