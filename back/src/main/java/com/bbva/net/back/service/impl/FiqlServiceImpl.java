@@ -23,7 +23,7 @@ public class FiqlServiceImpl implements FiqlService {
 
 	@Override
 	public String getFiqlQueryByDateRange(final DateRangeDto dateRange, final String startProperty,
-			final String endProperty)  {
+			final String endProperty) {
 
 		if (dateRange == null || dateRange.getDateSince() == null || dateRange.getDateTo() == null) {
 			return StringUtils.EMPTY;
@@ -53,7 +53,7 @@ public class FiqlServiceImpl implements FiqlService {
 
 	@Override
 	public String getFiqlQueryByCustomerIdAndProductType(final String productType, final String startProperty) {
-		if (productType == null ) {
+		if (productType == null) {
 			return StringUtils.EMPTY;
 		}
 		final SearchConditionBuilder filter = SearchConditionBuilder.instance(FIQL_LANGUAGE);
@@ -96,12 +96,12 @@ public class FiqlServiceImpl implements FiqlService {
 	}
 
 	@Override
-	public String getCustomerFiql(String user) {
+	public String getExecutiveFiql(String user) {
 		if (StringUtils.isEmpty(user)) {
 			return StringUtils.EMPTY;
 		}
 		final SearchConditionBuilder filter = SearchConditionBuilder.instance(FIQL_LANGUAGE);
-		return filter.is("id").equalTo(user).and().is("type").equalTo("CUSTOMER").query();
+		return filter.is("type").equalTo("CUSTOMER").query();
 	}
 
 	/**
@@ -143,4 +143,15 @@ public class FiqlServiceImpl implements FiqlService {
 				.lexicalNotAfter(formatMonth(dateRange.getDateTo())).query();
 
 	}
+
+	@Override
+	public String getFiqlQueryCustomer(String userName, String docTypeUser, String docIdUser) {
+		if (userName == null || docTypeUser == null || docIdUser == null) {
+			return StringUtils.EMPTY;
+		}
+		final SearchConditionBuilder filter = SearchConditionBuilder.instance(FIQL_LANGUAGE);
+		return filter.is("document").equalTo(docIdUser).and().is("username").equalTo(userName).and("documentType")
+				.equalTo(docTypeUser).query();
+	}
+
 }

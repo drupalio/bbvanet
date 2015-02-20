@@ -39,9 +39,9 @@ public class HeaderFacadeImpl extends AbstractBbvaFacade implements HeaderFacade
 	private FiqlService fiqlService;
 
 	@Override
-	public ExecutiveDto getExecutive() {
-
-		final Executive executive = this.executiveService.getExecutive(null, null, null, null);
+	public ExecutiveDto getExecutive(String user) {
+		final String filter = fiqlService.getExecutiveFiql(user);
+		final Executive executive = this.executiveService.getExecutive(filter, null, null, null);
 		return mapper.map(executive);
 	}
 
@@ -50,7 +50,8 @@ public class HeaderFacadeImpl extends AbstractBbvaFacade implements HeaderFacade
 	}
 
 	@Override
-	public CustomerDto getCustomer() {
+	public CustomerDto getCustomer(String userName, String docTypeUser, String docIdUser) {
+		final String filter = fiqlService.getFiqlQueryCustomer(userName, docTypeUser, docIdUser);
 		final Customer customer = this.customerService.getCustomer();
 		return mapperCustomer.map(customer);
 	}

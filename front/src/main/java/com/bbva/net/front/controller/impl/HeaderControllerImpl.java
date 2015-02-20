@@ -30,13 +30,14 @@ public class HeaderControllerImpl extends AbstractBbvaController implements Head
 
 	@PostConstruct
 	public void init() {
+
 		this.cliente = this.getCustomer();
 		this.ejecutivo = this.getExecutive();
 	}
 
 	@Override
 	public ExecutiveDto getExecutive() {
-		return executive.getExecutive();
+		return executive.getExecutive("1234");
 	}
 
 	public ExecutiveDto getEjecutivo() {
@@ -50,7 +51,12 @@ public class HeaderControllerImpl extends AbstractBbvaController implements Head
 
 	@Override
 	public CustomerDto getCustomer() {
-		return executive.getCustomer();
+		String user = "Nerly   CC123456789012345";
+		return executive.getCustomer(user.substring(0, 8), user.substring(8, 10), user.substring(10, 25));
+
+		// return executive.getCustomer(getSession().getAttribute("userName").toString(),
+		// getSession().getAttribute("docTypeUser").toString(), getSession().getAttribute("docIdUser").toString());
+
 	}
 
 }

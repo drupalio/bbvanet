@@ -13,8 +13,8 @@ public interface HeaderFacade {
 	/**
 	 * @return
 	 */
-	ExecutiveDto getExecutive();
+	ExecutiveDto getExecutive(String user);
 
-	CustomerDto getCustomer();
+	CustomerDto getCustomer(String userName, String docTypeUser, String docIdUser);
 
 }
