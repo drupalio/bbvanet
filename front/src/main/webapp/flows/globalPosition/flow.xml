@@ -7,7 +7,6 @@
 	<var name="globalPositionController" class="com.bbva.net.front.controller.impl.GlobalPositionControllerImpl" />
 
 	<on-start>
-		<evaluate expression="favoriteOperationsController.init()"/>
 		<evaluate expression="globalPositionController.init()"/>
 		<evaluate expression="globalPositionController.getCustomerProducts()"
 			result="flowScope.customerProducts" />
