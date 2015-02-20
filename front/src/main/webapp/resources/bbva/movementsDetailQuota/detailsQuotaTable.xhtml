@@ -36,7 +36,7 @@
 
 			<div class="table-wrapper">
 				<p:dataTable id="detailmovesAC" widgetVar="detailmovesAC"
-					styleClass="detail-table-body sortable"
+					styleClass="detail-table-body sortable" rowIndexVar="rowIndex"
 					emptyMessage="#{msg['text.empty.table']}" rowSelectMode="single"
 					value="#{cc.attrs.listAccounts}" var="moves" selectionMode="single"
 					rowKey="#{moves.movementId}">

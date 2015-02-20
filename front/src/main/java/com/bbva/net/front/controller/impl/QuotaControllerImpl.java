@@ -68,6 +68,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 	@Resource(name = "quotaDetailFacade")
 	private transient QuotaDetailFacade quotaDetailFacade;
 
+	@Override
 	public void init() {
 		super.init();
 		LOGGER.info("Initialize QuotaController");
@@ -229,6 +230,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 		criteriaSearch();
 	}
 
+	@Override
 	public void criteriaSearch() {
 
 		LOGGER.info("Method criteriaSearch");
@@ -358,10 +360,12 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 		this.toText = toText;
 	}
 
+	@Override
 	public QuotaDetailFacade getQuotaDetailFacade() {
 		return quotaDetailFacade;
 	}
 
+	@Override
 	public void setQuotaDetailFacade(QuotaDetailFacade quotaDetailFacade) {
 		this.quotaDetailFacade = quotaDetailFacade;
 	}

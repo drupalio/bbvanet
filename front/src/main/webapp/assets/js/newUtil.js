@@ -39,15 +39,20 @@ function checkFilled(btnW, inputId) {
 	inputId.className = "col-xs-9 col-md-8 input-control pass-valid";
 }
 
-function checkFilled() {
-	$(document).ready(function() {
-		var selected = $(this).find('tr.ui-widget-content.ui-datatable-odd ui-datatable-selectable ui-state-highlight');
-		var i = $('.ui-row-toggler').length;
-		if (i == 1) {
-			return;
-		}
-		$('.ui-row-toggler').click();
+$(document).ready(function() {
+	$('.ui-datatable-data .ui-widget-content').click(function() {
+		var ev = $(this).attr("data-ri");
+		callback($(ev));
 	});
+});
+
+var callback = function(index) {
+	var selected = index.selector;
+	var i = ('.ui-row-toggler').eq(selected).length;
+	if (i == 1) {
+		return;
+	}
+	$('.ui-row-toggler').eq(selected).click();
 }
 
 // Cerrar de los tab operation Quota y Movements
