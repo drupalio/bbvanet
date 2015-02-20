@@ -32,11 +32,11 @@
 				style="font-size: 10px;color: #434A58;font-family: Arial;background: none;border-style: none">
 
 				<h:outputText styleClass="title-label"
-					style="font-size: 1.1em; font-weight:bold; color:#0078d2"
+					style="font-size: 1.2em; font-weight:bold; color:#0078d2"
 					escape="false" value="#{iproduct.alias}" />
-				<h:outputText style="font-size: 1em" escape="false"
+				<h:outputText style="display:block;font-size: 1.1em;margin-bottom:-8px;margin-top:-8px;color:#71777f" escape="false"
 					value="&lt;br /&gt; #{iproduct.productId}"></h:outputText>
-				<h:outputText styleClass="sublabel" style="font-size: 1em"
+				<h:outputText styleClass="sublabel" style="font-size: 1.1em;font-weight:bold;color:#71777f"
 					escape="false" value="&lt;br /&gt; #{iproduct.productName}" />
 
 
@@ -46,10 +46,10 @@
 				styleClass="col-xs-6 col-md-4"
 				style="font-size: 10px;color: #434A58;font-family: Arial;background: none;border-style: none">
 
-				<h:outputText style="font-size: 1.5em; font-weight:bold"
+				<h:outputText style="font-size: 1.6em; font-weight:bold"
 					styleClass="balance" value="#{iproduct.totalCash}" />
 				<h:outputText styleClass="ui-datatable-selectable"
-					style="font-size:1em" escape="false"
+					style="font-size:1em;color:#71777f" escape="false"
 					value="&lt;br /&gt; #{msg['text.account.balance.label']} #{currency}#{iproduct.cashAvailable.amount}" />
 
 			</p:column>
