@@ -95,8 +95,8 @@
 					rendered="#{movementsCriteriaController.renderTable['MOVEMENTSTABLE']}"
 					rowKey="#{moves.movementId}">
 
-					<p:ajax event="rowSelect"
-						listener="#{cc.attrs.controller.onMovementSelected}" />
+					<p:ajax event="rowSelect" onsuccess="checkFilled()"
+						listener="#{movementsCriteriaController.onMovementSelected}" />
 
 					<p:column style="z-index: 2 !important;">
 						<p:rowToggler rendered="true" />
