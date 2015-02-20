@@ -9,12 +9,12 @@
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:jsf="http://xmlns.jcp.org/jsf"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
-	xmlns:cc="http://jsflive.at/taglib"
-	xmlns:bbvaButton="http://java.sun.com/jsf/composite/bbva/button"
-	xmlns:bbvaCalendar="http://java.sun.com/jsf/composite/bbva/calendar">
+	xmlns:cc="http://jsflive.at/taglib">
 
 <composite:interface>
 	<composite:attribute name="value" />
+	<composite:attribute name="showQuota" />
+	<composite:attribute name="showMovements" />
 	<composite:attribute name="valueDateSince" />
 	<composite:attribute name="valueDateTo" />
 	<composite:attribute name="disabledButton" />
@@ -53,15 +53,15 @@
 						render="
 					tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:calendarSince
 					tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:calendarTo
-					tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:dateButton										
+					tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:dateButtonMovements										
 					
 					tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:checkContainer:customCheckList:customDate:calendarSince
 					tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:checkContainer:customCheckList:customDate:calendarTo
-					tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:checkContainer:customCheckList:customDate:dateButton
+					tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:checkContainer:customCheckList:customDate:dateButtonMovements
 					
 					quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:calendarSince
 					quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:calendarTo
-					quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:dateButton	
+					quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:dateButtonQuota																						
 					"
 						listener="#{cc.attrs.listenerDate.oneSelectDate}" />
 
@@ -139,13 +139,30 @@
 			</div>
 		</div>
 		
-		<p:commandButton 
-		id="dateButton" class="btn small hidden-xs hidden-sm"
-			disabled="#{cc.attrs.disabledButton}"
-			actionListener="#{cc.attrs.actionListenerDate}"
-			value="#{msg['button.confirm']}" update="@this @form"		
-		/>		
+		<button jsf:id="dateButtonMovements" class="btn small hidden-xs hidden-sm"
+			jsf:disabled="#{cc.attrs.disabledButton}"
+			jsf:rendered="#{cc.attrs.showMovements}"
+			jsf:actionListener="#{cc.attrs.actionListenerDate}">
+			#{msg['button.confirm']}
+			<p:ajax 
+			update="
+			:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:QUEPASA
+			:tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:checkContainer:customCheckList:QUEPASA
+			" />
+		</button>
 		
+		
+		<button jsf:id="dateButtonQuota" class="btn small hidden-xs hidden-sm"
+			jsf:rendered="#{cc.attrs.showQuota}"
+			jsf:disabled="#{cc.attrs.disabledButton}"
+			jsf:actionListener="#{cc.attrs.actionListenerDate}">
+			#{msg['button.confirm']}
+			<p:ajax 
+			update="
+			:quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:QUEPASA
+			" />
+		</button>
+				
 	</div>
 
 </composite:implementation>

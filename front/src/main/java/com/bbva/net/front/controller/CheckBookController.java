@@ -5,9 +5,9 @@ import java.util.List;
 import javax.faces.event.ActionEvent;
 
 import com.bbva.net.back.entity.MultiValueGroup;
+import com.bbva.net.back.model.checkbook.CheckDto;
 
 public interface CheckBookController {
-	
 
 	/***
 	 * Method to select the date type is called when you click on the date oneRadio menu component
@@ -37,15 +37,17 @@ public interface CheckBookController {
 	 * Method to set partial customdate
 	 */
 	void setCustomDate(ActionEvent event);
-	
-	/**
-	 * Method to set partial customdate
-	 */
-	void clean();
 
 	/**
 	 * Method to search checks or checksbooks
 	 */
 	void showResults(ActionEvent event);
+
+	/****
+	 * Method to
+	 * 
+	 * @param List<CheckDto> cheksList
+	 */
+	void hasMoreElements(List<CheckDto> cheksList);
 
 }

@@ -1,11 +1,8 @@
 package com.bbva.net.front.controller.impl;
 
-import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.AjaxBehaviorEvent;
-
-import org.primefaces.event.SelectEvent;
 
 import com.bbva.net.back.facade.PersonalizeProductFacade;
 import com.bbva.net.back.model.globalposition.ProductDto;
@@ -36,7 +33,6 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 	private transient PersonalizeProductFacade personalizeProductAccountFacade;
 
 	// inicializar mensajes
-	@PostConstruct
 	public void init() {
 		LOGGER.info("Inicialize ProductAccountController");
 		this.menOperationKey = false;

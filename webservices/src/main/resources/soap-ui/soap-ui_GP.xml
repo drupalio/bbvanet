@@ -1736,7 +1736,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		"currency": "COP"
 	},
 	"month": "JULY"
-}]</con:responseContent><con:header><con:name>tsec</con:name><con:value>fadsfdfdfdsafdasfdsafa324132432143</con:value></con:header></con:response></con:restMockAction><con:restMockAction name="/czic/accounts/V01/listChecks" method="GET" resourcePath="/czic/accounts/V01/12345678/listChecks"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+}]</con:responseContent><con:header><con:name>tsec</con:name><con:value>fadsfdfdfdsafdasfdsafa324132432143</con:value></con:header></con:response></con:restMockAction><con:restMockAction name="/czic/accounts/V01/listChecks" method="GET" resourcePath="/czic/accounts/V01/00130443000200009416/listChecks"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Examples showing how to match based on path, query param and header
 // Match based on path
 def requestPath = mockRequest.getPath()

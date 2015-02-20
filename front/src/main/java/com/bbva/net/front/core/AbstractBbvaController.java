@@ -121,8 +121,45 @@ public abstract class AbstractBbvaController implements Serializable {
 	 * @param var
 	 * @param object
 	 */
-	protected void putVarInFlow(final String var, final Object object) {
+	protected void putViewVar(final String var, final Object object) {
+		getWebFlowRequestContext().getViewScope().put(var, object);
+	}
+
+	/***
+	 * @param var
+	 */
+	protected Object getViewVarView(final String var) {
+		return getWebFlowRequestContext().getViewScope().get(var);
+	}
+
+	/**
+	 * @param var
+	 * @param object
+	 */
+	protected void putFlashVar(final String var, final Object object) {
 		getWebFlowRequestContext().getFlashScope().put(var, object);
+	}
+
+	/***
+	 * @param var
+	 */
+	protected Object getFlashVar(final String var) {
+		return getWebFlowRequestContext().getFlashScope().get(var);
+	}
+
+	/**
+	 * @param var
+	 * @param object
+	 */
+	protected void putFlowVar(final String var, final Object object) {
+		getWebFlowRequestContext().getFlowScope().put(var, object);
+	}
+
+	/***
+	 * @param var
+	 */
+	protected Object getFlowVar(final String var) {
+		return getWebFlowRequestContext().getFlowScope().get(var);
 	}
 
 	/**

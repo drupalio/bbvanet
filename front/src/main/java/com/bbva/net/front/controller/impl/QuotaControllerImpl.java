@@ -69,11 +69,11 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 	@Resource(name = "quotaDetailFacade")
 	private transient QuotaDetailFacade quotaDetailFacade;
 
+	@Override
 	@PostConstruct
 	public void init() {
 		super.init();
 		LOGGER.info("Initialize QuotaController");
-		super.init();
 		this.productDto = getSelectProduct();
 		if (productDto != null) {
 			LOGGER.info("Datos del producto Seleccionado Terminado " + " Product Id: " + productDto.getProductId());
@@ -88,7 +88,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 		paymentDate = dateFormat.format(this.quotaDetailDto.getDatePayment());
 		LOGGER.info("Finalizado formateo de fechas del producto");
 
-		setTitle(MessagesHelper.INSTANCE.getString("text.last.movments"));
+		// setTitle(MessagesHelper.INSTANCE.getString("text.last.movments"));
 		cleanFilters();
 	}
 
@@ -122,7 +122,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 		cleanFilters();
 	}
 
-	public DateRangeDto calculateQuotaFilters(String date) {
+	private DateRangeDto calculateQuotaFilters(final String date) {
 		DateRangeDto dateRangeInit = new DateRangeDto();
 		LOGGER.info("Buscando el EnumPeriodType: " + date);
 		EnumPeriodType periodTypeFilter = EnumPeriodType.valueOfLabel(date);
@@ -134,23 +134,21 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 		return dateRangeInit;
 	}
 
+	private void setShowMoreStatus(final List<MovementCriteriaDto> movementsList) {
+		if (movementsList.size() >= 10)
+			getRenderComponents().put(RenderAttributes.FOOTERTABLEQUOTA.toString(), true);
+		else
+			getRenderComponents().put(RenderAttributes.FOOTERTABLEQUOTA.toString(), false);
+	}
+
 	@Override
 	public List<MovementDto> getAllQuotamovenDtos() {
-		DateRangeDto dateRanget = calculateQuotaFilters("Último mes");
+		DateRangeDto dateRanget = calculateQuotaFilters(MessagesHelper.INSTANCE.getString("select.radio.last.month"));
 		this.quotamovenDtos = this.quotaDetailFacade.listRotaryQuotaMovements(this.productDto.getProductId(),
 				dateRanget, 1, 10);
 
-		if (this.quotamovenDtos.size() >= 10) {
-			getRenderTable().put(RenderAttributes.FOOTERTABLEMOVEMENT.toString(), true);
-		} else {
-			getRenderTable().put(RenderAttributes.FOOTERTABLEMOVEMENT.toString(), false);
-		}
-
 		LOGGER.info("Datos de los movimientos llenos ");
-		if (this.quotamovenDtos.size() >= 10)
-			getRenderTable().put(RenderAttributes.FOOTERTABLEQUOTA.toString(), true);
-		else
-			getRenderTable().put(RenderAttributes.FOOTERTABLEQUOTA.toString(), false);
+
 		return quotamovenDtos;
 	}
 
@@ -219,6 +217,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 		criteriaSearch();
 	}
 
+	@Override
 	public void criteriaSearch() {
 
 		if (this.dateRange != null) {
@@ -227,11 +226,8 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 		setProductIdPControl(getSelectedProduct().getProductId());
 		search();
 		this.quotamovenDtos = getCurrentList();
-		if (this.quotamovenDtos.size() >= 10)
-			getRenderTable().put(RenderAttributes.FOOTERTABLEQUOTA.toString(), true);
-		else
-			getRenderTable().put(RenderAttributes.FOOTERTABLEQUOTA.toString(), false);
-		setTitle(MessagesHelper.INSTANCE.getString("text.last.movments"));
+
+		// setTitle(MessagesHelper.INSTANCE.getString("text.last.movments"));
 		RequestContext.getCurrentInstance().update("quotaDetail:detailAccounts:detailAccounts:detailmovesAC");
 	}
 
@@ -341,10 +337,12 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 		this.toText = toText;
 	}
 
+	@Override
 	public QuotaDetailFacade getQuotaDetailFacade() {
 		return quotaDetailFacade;
 	}
 
+	@Override
 	public void setQuotaDetailFacade(QuotaDetailFacade quotaDetailFacade) {
 		this.quotaDetailFacade = quotaDetailFacade;
 	}
