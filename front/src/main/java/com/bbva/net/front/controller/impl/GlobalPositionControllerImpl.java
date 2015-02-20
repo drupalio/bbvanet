@@ -155,8 +155,14 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	 */
 	private String accountSelected = StringUtils.EMPTY;
 
+	/**
+	 * periodo selecionado en grafica de tarjetas
+	 */
 	private String periodCardSelected = StringUtils.EMPTY;
 
+	/**
+	 * producto seleccionado en grafica de tarjetas
+	 */
 	private String cardSelected = StringUtils.EMPTY;
 
 	/**
@@ -408,6 +414,21 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	}
 
+	/**
+	 * Enmascara el número de tarjeta
+	 * 
+	 * @param number
+	 * @return
+	 */
+	public String maskCardsNumber(final String number) {
+		String mask = "";
+		for (int i = 0; i < number.length() - 4; i++) {
+			if (i % 4 == 0) mask += " ";
+			mask += "*";
+		}
+		return mask + " " + number.substring(number.length() - 4, number.length());
+	}
+
 	/************************************* SETTER BEANS **************************************/
 
 	/**
@@ -537,10 +558,16 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		this.accountMonthBalanceFacade = accountMonthBalanceFacade;
 	}
 
+	/**
+	 * @return globalMonthlyBalance
+	 */
 	public GlobalMonthlyBalanceDto getGlobalMonthlyBalance() {
 		return globalMonthlyBalance;
 	}
 
+	/**
+	 * @return lineConfigUI
+	 */
 	public LineConfigUI getLineConfigUI() {
 		return lineConfigUI;
 	}
