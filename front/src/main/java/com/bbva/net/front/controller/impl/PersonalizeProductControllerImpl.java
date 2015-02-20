@@ -38,7 +38,7 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 		this.menOperationKey = false;
 		this.menSuccessful = false;
 		this.productDto = super.getSelectedProduct();
-		LOGGER.info("PRODUCT SELECTED IN PERSONALIZE CONTROLLER IS NULL" + (this.productDto==null));
+		LOGGER.info("PRODUCT SELECTED IN PERSONALIZE CONTROLLER IS NULL: " + (this.productDto == null));
 		if (productDto != null) {
 			LOGGER.info("Datos del producto Seleccionado Terminado " + " Product Id: " + productDto.getProductId());
 			setSearch(productDto.isVisible());
