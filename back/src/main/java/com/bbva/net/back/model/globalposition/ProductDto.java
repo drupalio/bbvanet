@@ -19,9 +19,9 @@ public class ProductDto implements Dto {
 
 	private Boolean asset = true;
 
-	private Boolean operationOnline;
+	private Boolean operationOnline = true;
 
-	private Boolean visible;
+	private Boolean visible = true;
 
 	private String alias;
 

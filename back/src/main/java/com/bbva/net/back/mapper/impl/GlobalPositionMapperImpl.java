@@ -152,12 +152,12 @@ public class GlobalPositionMapperImpl extends ConfigurableMapper implements Glob
 		factory.getConverterFactory().registerConverter(new AssetConverter());
 
 		// Map parent Product DTO
-		factory.classMap(Product.class, ProductDto.class).field("alias", "alias").field("operable", "operationOnline")
+		factory.classMap(Product.class, ProductDto.class).mapNulls(false).mapNullsInReverse(false)
+				.field("alias", "alias").field("operable", "operationOnline")
 				.field("balance.availableBalance", "cashAvailable").field("id", "productId")
 				.field("name", "productName").field("id", "productNumber").field("balance.total", "totalCash")
 				.field("financialState", "asset").field("type", "subTypeProd").field("visible", "visible").byDefault()
 				.register();
 
 	}
-
 }
