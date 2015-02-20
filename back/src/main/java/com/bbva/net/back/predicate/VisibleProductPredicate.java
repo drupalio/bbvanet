@@ -7,7 +7,7 @@ public class VisibleProductPredicate extends BbvaPredicate<ProductDto> {
 
 	@Override
 	protected boolean eval(ProductDto productDTO) {
-		return productDTO.isVisible();
+		return productDTO ==null || productDTO.isVisible()==null || productDTO.isVisible();
 	}
 
 }

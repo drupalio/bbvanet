@@ -9,7 +9,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
 
@@ -75,6 +74,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	@Resource(name = "graphicLineDelegate")
 	private transient GraphicLineDelegate graphicLineDelegate;
 
+	// Gráfica Lineal de cuentas en la opción de Cuentas
 	private LineConfigUI graphicLineMovements;
 
 	private MovementDetailDto movementDetail = null;
@@ -83,13 +83,18 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 	private List valuesLinesGraphic;
 
-	
-	@PostConstruct
+	protected enum FlowVar {
+
+		RENDER_COMPONENTES
+	}
+
+	@Override
 	public void init() {
 		super.init();
 		setTitle(MessagesHelper.INSTANCE.getString("text.last.movments"));
 		LOGGER.info("Initialize MovementesAccountController");
 		cleanFilters();
+
 	}
 
 	@Override
@@ -141,14 +146,15 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		RequestContext.getCurrentInstance().update("detailAccounts:formu:detalMov");
 		getRenderTable().put(RenderAttributes.CHECKTABLE.toString(), false);
 		RequestContext.getCurrentInstance().update("detailAccounts:formu:checksTable");
-		
+
 		Iterator it = getRenderTable().entrySet().iterator();
-		
+
 		while (it.hasNext()) {
 			Map.Entry e = (Map.Entry)it.next();
-			System.out.println("--------------------"+" LLAVEEE "+e.getKey() + " ----------VALOOOOR----------" + e.getValue()+"--------------------");
+			System.out.println("--------------------" + " LLAVEEE " + e.getKey() + " ----------VALOOOOR----------"
+					+ e.getValue() + "--------------------");
 		}
-		
+
 	}
 
 	public void nextPage(ActionEvent event) {
@@ -170,9 +176,8 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		dateRange = calculateDate("Último mes");
 
 		// TODO oroductId
-		this.movementsList = this.movementsFacade.listMovements(
-			 getSelectedProduct().getProductId(), getSelectedProduct().getSubTypeProd(),
-				dateRange, null, 1, 10);
+		this.movementsList = this.movementsFacade.listMovements(getSelectedProduct().getProductId(),
+				getSelectedProduct().getSubTypeProd(), dateRange, null, 1, 10);
 		if (this.movementsList.size() >= 10)
 			getRenderTable().put(RenderAttributes.FOOTERTABLEMOVEMENT.toString(), true);
 		else
@@ -235,7 +240,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			getRenderTable().put(RenderAttributes.MOVEMENTSTABLE.toString(), true);
 			getRenderTable().put(RenderAttributes.CHECKTABLE.toString(), false);
 			setTitle(MessagesHelper.INSTANCE.getString("text.last.movments"));
-			
+
 		}
 
 	}
@@ -330,7 +335,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		} else {
 			sinceDatestr = getSelectDate();
 		}
-		
+
 		RequestContext.getCurrentInstance().update("customSearch");
 	}
 
@@ -620,6 +625,11 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		BigDecimal mayor = new BigDecimal(0);
 		BigDecimal total = new BigDecimal(0);
 		List<BigDecimal> values = new ArrayList<BigDecimal>();
+
+		if (CollectionUtils.isEmpty(valuesLines.getLineDepositItemUIList())) {
+			return values;
+		}
+
 		menor = valuesLines.getLineItemUIList().get(0).getValue().getAmount();
 		for (int i = 0; i < valuesLines.getLineItemUIList().size(); i++) {
 			if (valuesLines.getLineItemUIList().get(i).getValue().getAmount().compareTo(menor) == -1)

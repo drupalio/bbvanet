@@ -9,7 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
 
@@ -70,7 +69,6 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 	private transient QuotaDetailFacade quotaDetailFacade;
 
 	@Override
-	@PostConstruct
 	public void init() {
 		super.init();
 		LOGGER.info("Initialize QuotaController");

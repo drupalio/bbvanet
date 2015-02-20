@@ -3,7 +3,6 @@ package com.bbva.net.front.controller.impl;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
 import org.primefaces.event.SelectEvent;
@@ -28,7 +27,6 @@ public class LoanControllerImpl extends AbstractBbvaController implements LoanCo
 
 	private Map<String, BalanceDto> totalsProducts;
 
-	@PostConstruct
 	public void init() {
 		// Calculate totals
 		this.totalsProducts = this.loanFacade.getLoanTotals();

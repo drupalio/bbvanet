@@ -5,15 +5,18 @@
     http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
 	
 	<var name="quotaController" class="com.bbva.net.front.controller.impl.QuotaControllerImpl"/>
-	<var name="accountsController" class="com.bbva.net.front.controller.impl.AccountsControllerImpl"/>
 	<var name="termsController" class="com.bbva.net.front.controller.impl.TermsControllerImpl"/>
 	<var name="personalizeProductAccountController" class="com.bbva.net.front.controller.impl.PersonalizeProductControllerImpl"/>
 	
 	<on-start>
-		<evaluate expression="accountsController.getCustomerAccounts()" result="flowScope.customerAccounts" />	
-		<evaluate expression="termsController.getAllConditions()" result="flowScope.allConditions" />
+	
+		<evaluate expression="quotaController.init()"></evaluate>
+		<evaluate expression="personalizeProductAccountController.init()"></evaluate>
+		
 		<evaluate expression="quotaController.getAllQuotamovenDtos()" result="flowScope.quotaMovements" />
 		<evaluate expression="quotaController.getSelectProduct()" result="flowScope.product"/>
+		<evaluate expression="termsController.getAllConditions()" result="flowScope.allConditions" />
+		
 	</on-start>
 	
 	<view-state id="quotaDetail">

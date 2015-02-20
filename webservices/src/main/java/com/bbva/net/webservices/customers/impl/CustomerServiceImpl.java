@@ -14,7 +14,6 @@ import com.bbva.czic.dto.net.Customer;
 import com.bbva.net.webservices.core.pattern.AbstractBbvaRestService;
 import com.bbva.net.webservices.core.stereotype.RestService;
 import com.bbva.net.webservices.customers.CustomerService;
-import com.google.gson.Gson;
 
 @RestService(value = "customerService")
 public class CustomerServiceImpl extends AbstractBbvaRestService implements CustomerService {
@@ -33,15 +32,10 @@ public class CustomerServiceImpl extends AbstractBbvaRestService implements Cust
 	public List<AccMovementsResume> listAccountsMovementsResume(String filter) {
 
 		WebClient wc = getJsonWebClient(URL_BASE_CUSTOMER + URL_CUSTOMER);
-
+		LOGGER.info("PETICION: " + wc.getCurrentURI());
 		if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
+		return (List<AccMovementsResume>)wc.getCollection(AccMovementsResume.class);
 
-		final List<AccMovementsResume> result = (List<AccMovementsResume>)wc.getCollection(AccMovementsResume.class);
-		final Gson gson = new Gson();
-		String json = gson.toJson(result);
-		LOGGER.info("JSON ASCCOUNT MOVEMENTS RESUME: " + json);
-
-		return result;
 	}
 
 	@SuppressWarnings("unchecked")

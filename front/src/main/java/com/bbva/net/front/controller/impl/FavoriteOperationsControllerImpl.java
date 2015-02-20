@@ -4,7 +4,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
 import org.primefaces.event.SelectEvent;
@@ -36,7 +35,7 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
 
 	public void init() {
 		favoriteOperations = favoriteOperationsFacade.getListFavoriteOperations();
-
+		getNames();
 	}
 
 	@Override

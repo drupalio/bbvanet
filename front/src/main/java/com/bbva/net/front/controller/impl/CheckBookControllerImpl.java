@@ -11,7 +11,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
 
@@ -33,7 +32,6 @@ import com.bbva.net.front.helper.MessagesHelper;
 /**
  * @author User
  */
-
 public class CheckBookControllerImpl extends CheckPaginatedController implements CheckBookController {
 
 	private static final long serialVersionUID = 1L;
@@ -76,7 +74,6 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 
 	SimpleDateFormat dateFormat = new SimpleDateFormat(MessagesHelper.INSTANCE.getStringI18("date.pattner.dd.mm.yyyy"));
 
-	@PostConstruct
 	public void init() {
 		super.init();
 		clean();
