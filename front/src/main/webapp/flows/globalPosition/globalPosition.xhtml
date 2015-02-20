@@ -38,7 +38,7 @@
 		<c:set var="currency" value="$" />
 
 		<bbvaContainer:productPanelAccountGraphic id="AccountGP"
-			title="#{msg['title.accountsPersonal']}">
+			title="#{msg['title.accountsPersonal']}" graphic="#{customerProducts.accounts.size()==0 &amp;&amp; customerProducts.adquirencia.size()==0 &amp;&amp; customerProductsHidden.accounts.size()==0 ? 'none' : 'block'}">
 			<div class="table-tabs">
 				<bbvaGP:accountSearch listAccounts="#{customerProducts.accounts}"
 					listAccountsAdquirencia="#{customerProducts.adquirencia}"
@@ -62,8 +62,10 @@
 			</div>
 		</bbvaContainer:productPanelAccountGraphic>
 
-		<bbvaContainer:productCardGraphic id="cardPieGP" title="#{msg['title.cards']}" 
-				header="#{msg['graphicCard.tittle']}" pieGraphic="#{globalPositionController.graphicPieCards}">
+		<bbvaContainer:productCardGraphic id="cardPieGP"
+			title="#{msg['title.cards']}" header="#{msg['graphicCard.tittle']}"
+			graphic="#{customerProducts.creditCards.size()==0 &amp;&amp; customerProductsHidden.creditCards.size()==0? 'none' : 'block'}"
+			pieGraphic="#{globalPositionController.graphicPieCards}">
 
 			<div class="table-tabs">
 				<bbvaGP:cardHeadTable controller="#{globalPositionController}"
@@ -129,7 +131,7 @@
 		</bbvaContainer:productPanel>
 
 		<bbvaContainer:productPanelLineGraphic
-			title="#{msg['title.electronicDeposit']}">
+			title="#{msg['title.electronicDeposit']}" graphic="#{customerProducts.electronicDeposits.size()==0 &amp;&amp; customerProductsHidden.electronicDeposits.size()==0? 'none' : 'block'}">
 			<div class="table-tabs">
 				<bbvaGP:depositHeadTable controller="#{globalPositionController}"
 					listDeposit="#{customerProducts.electronicDeposits}" />
@@ -148,6 +150,7 @@
 		<bbvaContainer:productPanelFundsGraphic id="fundsPieGP"
 			title="#{msg['title.investmentFunds']}"
 			header="#{msg['graphicFunds.tittle']}"
+			graphic="#{customerProducts.funds.size()==0 &amp;&amp; customerProductsHidden.funds.size()==0? 'none' : 'block'}"
 			pieGraphic="#{globalPositionController.graphicPieInvestmentFunds}">
 
 			<div class="table-tabs">
