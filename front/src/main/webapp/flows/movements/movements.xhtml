@@ -31,9 +31,9 @@
 		<div class="tab-group savingsAccount">
 			<bbvaHeader:quotaDetail>
 				<bbvaHeader:quotaDetailHeader>
-					<bbvaHeader:quotaDetailHeaderLeft alias="Hola"
+					<bbvaHeader:quotaDetailHeaderLeft alias="#{movementsCriteriaController.getSelectedProduct().getAlias()}"
 						numCuenta="#{movementsCriteriaController.getSelectedProduct().getProductNumber()}"
-						tipoPrestamo="#{movementsCriteriaController.getSelectedProduct().getSubTypeProd()}" />
+						tipoPrestamo="#{movementsCriteriaController.getSelectedProduct().getProductName()}" />
 					<bbvaGraphic:MovementsGraphic
 						lineConfigUI="#{movementsCriteriaController.graphicLineMovements}"
 						values="#{movementsCriteriaController.valuesLinesGraphic}" />

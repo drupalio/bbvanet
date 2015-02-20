@@ -27,24 +27,24 @@
 
 			<p:column class="head" headerText="#{msg['text.card.name']}"
 				styleClass="col-xs-6 col-md-4"
-				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
+				style="font-size: 10px;color: #434A58;font-family: Arial;background: none;border-style: none">
 
 
 				<h:outputText styleClass="title-label"
-					style="font-size: 1.1em; font-weight:bold; color:#0078d2"
+					style="font-size: 1.2em; font-weight:bold; color:#0078d2"
 					escape="false" value="#{iproduct.alias}" />
-				<h:outputText style="font-size: 1em" escape="false"
-					value="&lt;br /&gt; #{iproduct.productId}" />
-				<h:outputText styleClass="sublabel" style="font-size: 1em"
+				<h:outputText style="display:block;font-size: 1.1em;margin-bottom:-8px;margin-top:-8px;color:#71777f" escape="false"
+					value="&lt;br /&gt; #{globalPositionController.maskCardsNumber(iproduct.productId)}" />
+				<h:outputText styleClass="sublabel" style="font-size: 1.1em;font-weight:bold;color:#71777f"
 					escape="false" value="&lt;br /&gt; #{iproduct.productName}" />
 
 			</p:column>
 			<p:column class="head" headerText="#{msg['text.card.balanceTotal']}"
 				styleClass="hidden-xs hidden-sm col-sm-4"
-				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
+				style="font-size: 10px;color: #434A58;font-family: Arial;background: none;border-style: none">
 
 
-				<h:outputText style="font-size: 1.5em; font-weight:bold"
+				<h:outputText style="font-size: 1.6em; font-weight:bold"
 					styleClass="balance hidden-xs hidden-sm" value="#{iproduct.totalCash}" />
 
 				<p class="sublabel"></p>
@@ -53,9 +53,9 @@
 			<p:column class="head"
 				headerText="#{msg['text.card.balanceAvailable']}"
 				styleClass="col-xs-6 col-md-4"
-				style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
+				style="font-size: 10px;color: #434A58;font-family: Arial;background: none;border-style: none">
 
-				<h:outputText style="font-size: 1.5em; font-weight:bold"
+				<h:outputText style="font-size: 1.6em; font-weight:bold"
 					styleClass="balance" value="#{iproduct.cashAvailable}" />
 
 				<p class="sublabel"></p>
@@ -63,6 +63,7 @@
 			</p:column>
 		</p:dataTable>
 	</h:form>
+	
 </composite:implementation>
 
 </html>
