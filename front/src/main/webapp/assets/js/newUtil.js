@@ -28,7 +28,6 @@ function enableDisable(inputId, btnW) {
 	} else {
 		document.getElementById(button).disabled = true;
 	}
-
 }
 
 // Metodo que cambia el estilo del divOperationkey
@@ -38,31 +37,18 @@ function checkFilled(btnW, inputId) {
 	var button = document.getElementsByName(btnW.name)[0].id;
 	document.getElementById(button).style.visibility = "hidden";
 	inputId.className = "col-xs-9 col-md-8 input-control pass-valid";
-
 }
 
-$(document).ready(function() {
-	$('.ui-datatable-data .ui-widget-content').click(function() {
-
-		var children = $('.ui-datatable-data .ui-widget-content').children();
-
-		var i = $('.ui-row-toggler.ui-icon-circle-triangle-s').length;
+function checkFilled() {
+	$(document).ready(function() {
+		var selected = $(this).find('tr.ui-widget-content.ui-datatable-odd ui-datatable-selectable ui-state-highlight');
+		var i = $('.ui-row-toggler').length;
 		if (i == 1) {
 			return;
 		}
-		$('.ui-row-toggler.ui-icon-circle-triangle-s').trigger('click');
-		$('.ui-row-toggler.ui-icon-circle-triangle-s').click();
+		$('.ui-row-toggler').click();
 	});
-});
-
-$(document).ready(function() {
-	var i = $('.ui-row-toggler.ui-icon-circle-triangle-s').length;
-	if (i == 1) {
-		return;
-	}
-	$('.ui-row-toggler.ui-icon-circle-triangle-s').trigger('click');
-	$('.ui-row-toggler.ui-icon-circle-triangle-s').click();
-});
+}
 
 // Cerrar de los tab operation Quota y Movements
 $(document).ready(function() {

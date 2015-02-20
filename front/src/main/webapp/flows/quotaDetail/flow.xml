@@ -9,6 +9,7 @@
 	<var name="personalizeProductAccountController" class="com.bbva.net.front.controller.impl.PersonalizeProductControllerImpl"/>
 	
 	<on-start>
+		<evaluate expression="quotaController.init()"/>	
 		<evaluate expression="personalizeProductAccountController.init()"/>	
 		<evaluate expression="termsController.getAllConditions()" result="flowScope.allConditions" />
 		<evaluate expression="quotaController.getAllQuotamovenDtos()" result="flowScope.quotaMovements" />

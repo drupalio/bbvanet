@@ -41,7 +41,7 @@
 					value="#{cc.attrs.listAccounts}" var="moves" selectionMode="single"
 					rowKey="#{moves.movementId}">
 
-					<p:ajax event="rowSelect" onstart="checkFilled()"
+					<p:ajax event="rowSelect" onsuccess="checkFilled()"
 						listener="#{cc.attrs.controller.onRowToggle}" />
 
 					<p:column style="z-index: 2 !important;">
