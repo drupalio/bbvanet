@@ -20,8 +20,12 @@ public class TermsControllerImpl extends AbstractBbvaController implements Terms
 	@Override
 	public TermsAccountsDto getAllConditions() {
 
-		TermsAccountsDto detalle = this.detallesCuenta.getAllConditions(super.getSelectedProduct().getProductId());
-		return detalle;
+		try {
+			TermsAccountsDto detalle = this.detallesCuenta.getAllConditions(super.getSelectedProduct().getProductId());
+			return detalle;
+		} catch (final Exception exception) {
+			return new TermsAccountsDto();
+		}
 	}
 
 }
