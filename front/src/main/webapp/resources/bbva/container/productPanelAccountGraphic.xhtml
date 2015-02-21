@@ -16,7 +16,7 @@
 <composite:interface>
 	<composite:attribute name="id" type="String" />
 	<composite:attribute name="title" type="String" />
-
+	<composite:attribute name="graphic" type="String"/>
 </composite:interface>
 
 <composite:implementation>
@@ -28,7 +28,7 @@
 				<button data-tabletab="tab-lines"
 					class="btn btn-first lines-global active"></button>
 				<button id="charButton" data-tabletab="tab-bars"
-					class="btn char-global" />
+					class="btn char-global" style="display: #{cc.attrs.graphic}"/>
 				<button data-tabletab="tab-hide" class="btn btn-last arrow-global"></button>
 			</div>
 		</div>

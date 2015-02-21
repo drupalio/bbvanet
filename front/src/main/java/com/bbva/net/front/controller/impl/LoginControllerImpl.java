@@ -46,6 +46,8 @@ public class LoginControllerImpl extends AbstractBbvaController implements Login
 
 		// 5. Put in Session
 		this.getSession().setAttribute(SessionParamenterType.AUTHENTICATION_STATE.name(), authenticationState);
-
+		this.getSession().setAttribute("userName", user.substring(0, 8));
+		this.getSession().setAttribute("docTypeUser", user.substring(8, 10));
+		this.getSession().setAttribute("docIdUser", user.substring(10, 25));
 	}
 }

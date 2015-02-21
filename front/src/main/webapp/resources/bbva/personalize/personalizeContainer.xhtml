@@ -33,6 +33,9 @@
 			idInput="inputName" valueButton="#{msg['button.save']}"
 			classButton="btn btn-default saveAlias"
 			valueInput="#{personalizeProductAccountController.personalizeProductAccountDto.alias}" />
+
+		<bbvaMessage:messageCheck
+			render="#{personalizeProductAccountController.menSuccessful}" />
 		<span class="separator"></span>
 
 		<bbvaPersonalize:personalizeCombo size="bigCombo yourStyleClass"
