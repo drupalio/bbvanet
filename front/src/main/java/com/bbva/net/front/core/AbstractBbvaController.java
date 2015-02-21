@@ -31,9 +31,7 @@ public abstract class AbstractBbvaController implements Serializable {
 
 	private static final long serialVersionUID = -4820146844257478597L;
 
-	protected String DEFAULT_USER = "12345678";
-
-	protected String DEFAULT_ACCOUNT = "12345678909876543210";
+	protected String DEFAULT_USER;
 
 	protected enum SessionParamenterType {
 
@@ -204,7 +202,7 @@ public abstract class AbstractBbvaController implements Serializable {
 	 */
 	public void onProductSelected(final SelectEvent selectEvent) {
 		this.setSelectedProduct((ProductDto)selectEvent.getObject());
-		System.out.print("ON productSelected\n");
+		LOGGER.info("ON productSelected\n: " + ((ProductDto)selectEvent.getObject()).getProductId());
 	}
 
 	/**
