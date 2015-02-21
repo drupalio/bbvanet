@@ -22,35 +22,35 @@ public class HeaderControllerImpl extends AbstractBbvaController implements Head
 	/**
 	 * 
 	 */
-	private ExecutiveDto executiveDto;
+	private ExecutiveDto ejecutivo;
 
-	private CustomerDto customerDto;
+	private CustomerDto cliente;
 
 	private static final long serialVersionUID = 5284952254890332374L;
 
 	@PostConstruct
 	public void init() {
-		this.customerDto = this.getCustomer();
-		this.executiveDto = this.getExecutive();
+		this.cliente = this.getCustomer();
+		this.ejecutivo = this.getExecutive();
 	}
 
 	@Override
 	public ExecutiveDto getExecutive() {
-		return executiveDto;
+		return headerFacade.getExecutive();
 	}
 
 	public ExecutiveDto getEjecutivo() {
-		return executiveDto;
+		return ejecutivo;
 	}
 
 	public CustomerDto getCliente() {
 
-		return customerDto;
+		return cliente;
 	}
 
 	@Override
 	public CustomerDto getCustomer() {
-		return customerDto;
+		return headerFacade.getCustomer();
 	}
 
 }

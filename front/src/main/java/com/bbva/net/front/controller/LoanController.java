@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.primefaces.event.SelectEvent;
 
+import com.bbva.net.back.model.globalposition.GlobalProductsDto;
 import com.bbva.net.back.model.globalposition.LeasingDto;
 import com.bbva.net.back.model.globalposition.LoanDto;
 import com.bbva.net.back.model.globalposition.RotatingAccountDto;

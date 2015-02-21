@@ -35,17 +35,6 @@
 			valueInput="#{personalizeProductAccountController.personalizeProductAccountDto.alias}" />
 		<span class="separator"></span>
 
-		<bbvaPersonalize:personalizeCombo size="smallCombo yourStyleClass"
-			idCombo="comboOne" divClass="customize-virtual"
-			valueButton="#{msg['button.save']}" idButton="buttonComboOne"
-			valueLabel="#{msg['text.virtualCorresp']}"
-			actionListenerCom="#{personalizeProductAccountController.successful}"
-			ajaxCom="#{personalizeProductAccountController.offMessageSuccesful}"
-			value="#{personalizeProductAccountController.personalizeProductAccountDto.virtualMail}" />
-		<bbvaMessage:messageCheck
-			render="#{personalizeProductAccountController.menSuccessful}" />
-		<span class="separator"></span>
-
 		<bbvaPersonalize:personalizeCombo size="bigCombo yourStyleClass"
 			idCombo="comboTwo" divClass="customize-online"
 			classIcon="icon-info-blue" valueLabel="#{msg['text.consult']}"

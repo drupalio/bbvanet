@@ -15,6 +15,10 @@ public interface HeaderFacade {
 	 */
 	ExecutiveDto getExecutive();
 
+	/**
+	 * 
+	 * @return
+	 */
 	CustomerDto getCustomer();
 
 }

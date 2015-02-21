@@ -9,6 +9,7 @@
 
 	<on-start>
 		<evaluate expression="globalPositionController.init()"/>
+		<evaluate expression="loanController.init()"/>		
 		<evaluate expression="loanController.getCustomerRotatingAccount()" result="flowScope.customerRotatingAccount" />
 		<evaluate expression="loanController.getCustomerRotatingAccountHidden()" result="flowScope.customerRotatingAccountHidden" />
 		<evaluate expression="loanController.getCustomerLeasing()" result="flowScope.customerLeasing" />

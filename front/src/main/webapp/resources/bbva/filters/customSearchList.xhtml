@@ -13,11 +13,13 @@
 	xmlns:bbvaContainer="http://java.sun.com/jsf/composite/bbva/container"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:bbvaDetAcc="http://java.sun.com/jsf/composite/bbva/tab"
-	xmlns:bbvaCalendar="http://java.sun.com/jsf/composite/bbva/calendar"
 	xmlns:bbvaSearch="http://java.sun.com/jsf/composite/bbva/filters"
+	xmlns:bbvaOutput="http://java.sun.com/jsf/composite/bbva/output"
 	xmlns:jsf="http://xmlns.jcp.org/jsf">
 
 <composite:interface>
+
+	<composite:attribute name="idList" type="String" />
 	<composite:attribute name="classList" type="String" />
 	<composite:attribute name="classSpan" type="String" />
 	<composite:attribute name="classSpanFilter" type="String" />
@@ -29,14 +31,22 @@
 </composite:interface>
 
 <composite:implementation>
-	<li class="#{cc.attrs.classList}"><a class="header"> 
-	<span class="#{cc.attrs.classSpan}"> 
-		<span class="#{cc.attrs.classSpanFilter}">#{cc.attrs.title}</span>
-		<span class="filter"><span class="filter-title">#{cc.attrs.filterTitle}</span><span class="filter-message">#{cc.attrs.filterMessage}</span> </span>
-		<span class="filter"><span class="filter-title">#{cc.attrs.filterTitle2}</span><span class="filter-message">#{cc.attrs.filterMessage2}</span> </span>
-		
-	</span>
-	</a> <composite:insertChildren></composite:insertChildren></li>
 
+	<li class="#{cc.attrs.classList}">
+	<a class="header"> 
+		<p:outputPanel id="QUEPASA">
+			<span class="#{cc.attrs.classSpan}"> 
+				<span class="#{cc.attrs.classSpanFilter}">#{cc.attrs.title}</span> 
+				<span class="filter"><span class="filter-title">#{cc.attrs.filterTitle}</span>
+					<span class="filter-message">#{cc.attrs.filterMessage}</span> 
+				</span> 
+				<span class="filter"><span class="filter-title">#{cc.attrs.filterTitle2}</span>
+					<span class="filter-message">#{cc.attrs.filterMessage2}</span>
+				</span>
+			</span><
+		</p:outputPanel>
+	</a> 
+	<composite:insertChildren></composite:insertChildren> 
+	</li>
 </composite:implementation>
 </html>

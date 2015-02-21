@@ -21,6 +21,7 @@ public class QuotaPaginatedController extends PaginationController<MovementDto> 
 	private transient QuotaDetailFacade quotaDetailFacade;
 
 	public void search() {
+		LOGGER.info("Llamando el método next del super");
 		super.next();
 	}
 

@@ -19,7 +19,8 @@
 	<composite:attribute name="valueDateTo" />
 	<composite:attribute name="disabledButton" />
 	<composite:attribute name="disabledCalendar" />
-	<composite:attribute name="actionListenerDate" method-signature="void actionlistener(javax.faces.event.ActionEvent)" />
+	<composite:attribute name="actionListenerDate"
+		method-signature="void actionlistener(javax.faces.event.ActionEvent)" />
 	<composite:attribute name="listenerDate" />
 
 
@@ -33,14 +34,13 @@
 
 <composite:implementation>
 
-	<bbvaSearch:customSearchList id="customCheckList" 
-				classList="date-filter customSearch" classSpan="arrow-left-smaller"
-				classSpanFilter="filter" title="#{msg['text.date']}"
-				
-				filterTitle="#{checkBookController.sinceDatestr}"
-				filterMessage="#{checkBookController.toDatestr}">
-		<bbvaSearch:customSearchFilter id="customDate"
-			value="#{cc.attrs.value}"
+	<bbvaSearch:customSearchList id="customCheckList"
+		classList="date-filter customSearch" classSpan="arrow-left-smaller"
+		classSpanFilter="filter" title="#{msg['text.date']}"
+		filterTitle="#{checkBookController.sinceDatestr}"
+		filterMessage="#{checkBookController.toDatestr}">
+		<bbvaSearch:customSearchFilter id="customDate" showQuota="false"
+			showMovements="true" value="#{cc.attrs.value}"
 			valueDateSince="#{cc.attrs.valueDateSince}"
 			valueDateTo="#{cc.attrs.valueDateTo}"
 			disabledButton="#{cc.attrs.disabledButton}"
@@ -49,11 +49,9 @@
 			listenerDate="#{cc.attrs.listenerDate}" />
 	</bbvaSearch:customSearchList>
 
-
-<bbvaSearch:customSearchList  id="checkList"
-		classList="date-filter customSearch"
-		classSpan="arrow-left-smaller" classSpanFilter="filter"
-		title="#{msg['text.number.check.books']}"
+	<bbvaSearch:customSearchList id="checkList"
+		classList="date-filter customSearch" classSpan="arrow-left-smaller"
+		classSpanFilter="filter" title="#{msg['text.number.check.books']}"
 		filterTitle="#{checkBookController.leftTitle}"
 		filterMessage="#{checkBookController.rightTitle}">
 		<bbvaSearch:numberCheck id="numberCheck"
