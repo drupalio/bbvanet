@@ -21,7 +21,7 @@ public class HeaderFacadeIT {
 
 	@Test
 	public void checkGetExecutiveByUserOK() {
-		Assert.assertNotNull(this.headerfacade.getExecutive("123456789"));
+		Assert.assertNotNull(this.headerfacade.getExecutive());
 	}
 
 }

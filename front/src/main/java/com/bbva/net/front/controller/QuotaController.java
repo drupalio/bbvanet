@@ -69,5 +69,4 @@ public interface QuotaController {
 
 	void criteriaSearch();
 
-
 }

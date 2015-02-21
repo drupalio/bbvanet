@@ -96,10 +96,7 @@ public class FiqlServiceImpl implements FiqlService {
 	}
 
 	@Override
-	public String getExecutiveFiql(String user) {
-		if (StringUtils.isEmpty(user)) {
-			return StringUtils.EMPTY;
-		}
+	public String getExecutiveFiql() {
 		final SearchConditionBuilder filter = SearchConditionBuilder.instance(FIQL_LANGUAGE);
 		return filter.is("type").equalTo("CUSTOMER").query();
 	}

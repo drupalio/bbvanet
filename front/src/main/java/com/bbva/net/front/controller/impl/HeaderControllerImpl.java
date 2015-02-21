@@ -18,7 +18,7 @@ import com.bbva.net.front.core.AbstractBbvaController;
 public class HeaderControllerImpl extends AbstractBbvaController implements HeaderController {
 
 	@Resource(name = "headerFacade")
-	private transient HeaderFacade executive;
+	private transient HeaderFacade headerFacade;
 
 	/**
 	 * 
@@ -38,7 +38,8 @@ public class HeaderControllerImpl extends AbstractBbvaController implements Head
 
 	@Override
 	public ExecutiveDto getExecutive() {
-		return executive.getExecutive("1234");
+
+		return headerFacade.getExecutive();
 	}
 
 	public ExecutiveDto getEjecutivo() {
@@ -59,6 +60,6 @@ public class HeaderControllerImpl extends AbstractBbvaController implements Head
 				: getSession().getAttribute("docTypeUser").toString();
 		final String docIdUser = (getSession().getAttribute("docIdUser") == null) ? StringUtils.EMPTY : getSession()
 				.getAttribute("docIdUser").toString();
-		return executive.getCustomer(userName, docTypeUser, docIdUser);
+		return headerFacade.getCustomer(userName, docTypeUser, docIdUser);
 	}
 }

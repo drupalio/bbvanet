@@ -34,6 +34,7 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
 	@Resource(name = "favoriteOperationsFacade")
 	private transient FavoriteOperationsFacade favoriteOperationsFacade;
 
+	@PostConstruct
 	public void init() {
 		favoriteOperations = favoriteOperationsFacade.getListFavoriteOperations();
 		getNames();

@@ -4,17 +4,14 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/webflow 
     http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
 
-	<var name="globalPositionController" class="com.bbva.net.front.controller.impl.GlobalPositionControllerImpl" />
+	<var name="globalPositionController"
+		class="com.bbva.net.front.controller.impl.GlobalPositionControllerImpl" />
 
 	<on-start>
-		<evaluate expression="favoriteOperationsController.init()"/>
-		<evaluate expression="globalPositionController.init()"/>
-		<evaluate expression="globalPositionController.getCustomerProducts()"
-			result="flowScope.customerProducts" />
-		<evaluate expression="globalPositionController.getCustomerProductsHidden()"
-			result="flowScope.customerProductsHidden" />
-		<evaluate expression="applicationController.getLikes()"
-			result="flowScope.likes" />
+		<evaluate expression="globalPositionController.init()" />
+		<evaluate expression="globalPositionController.getCustomerProducts()" result="flowScope.customerProducts" />
+		<evaluate expression="globalPositionController.getCustomerProductsHidden()" result="flowScope.customerProductsHidden" />
+		<evaluate expression="applicationController.getLikes()" result="flowScope.likes" />
 
 	</on-start>
 
@@ -32,5 +29,5 @@
 
 	<view-state id="detailAccount" view="externalRedirect:movements">
 	</view-state>
-	
+
 </flow>

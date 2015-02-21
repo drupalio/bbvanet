@@ -9,11 +9,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
 
-import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
 
 import com.bbva.net.back.facade.QuotaDetailFacade;
@@ -69,26 +67,32 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 	@Resource(name = "quotaDetailFacade")
 	private transient QuotaDetailFacade quotaDetailFacade;
 
-	@PostConstruct
+	@Override
 	public void init() {
 		super.init();
 		LOGGER.info("Initialize QuotaController");
-		super.init();
 		this.productDto = getSelectProduct();
-		if (productDto != null) {
+		if (productDto != null && productDto.getProductId() != null) {
 			LOGGER.info("Datos del producto Seleccionado Terminado " + " Product Id: " + productDto.getProductId());
+			this.quotaDetailDto = this.quotaDetailFacade.getDetailRotaryQuota(this.productDto.getProductId());
+			LOGGER.info("Datos del quotaDetailDto Terminados" + " Product Id: " + quotaDetailDto.getId());
 		} else {
-			this.productDto = new ProductDto();
 			LOGGER.info("Datos del producto Seleccionado Vacio (null)");
 		}
-		this.quotaDetailDto = this.quotaDetailFacade.getDetailRotaryQuota(this.productDto.getProductId());
-		LOGGER.info("Datos del quotaDetailDto Terminados" + " Product Id: " + quotaDetailDto.getId());
-		maturityDate = dateFormat.format(this.quotaDetailDto.getDateMaturity());
-		previousDate = dateFormat.format(this.quotaDetailDto.getDatePrevious());
-		paymentDate = dateFormat.format(this.quotaDetailDto.getDatePayment());
-		LOGGER.info("Finalizado formateo de fechas del producto");
 
-		setTitle(MessagesHelper.INSTANCE.getString("text.last.movments"));
+		if (quotaDetailDto.getDateMaturity() != null && quotaDetailDto.getDatePayment() != null
+				&& quotaDetailDto.getDatePrevious() != null) {
+			maturityDate = dateFormat.format(this.quotaDetailDto.getDateMaturity());
+			previousDate = dateFormat.format(this.quotaDetailDto.getDatePrevious());
+			paymentDate = dateFormat.format(this.quotaDetailDto.getDatePayment());
+			LOGGER.info("Finalizado formateo de fechas del producto");
+		} else {
+			LOGGER.info("Error datos nulos " + "Fecha de vencimento  " + quotaDetailDto.getDateMaturity()
+					+ " Fecha de pago " + quotaDetailDto.getDatePayment() + " Fecha de corte anterior "
+					+ quotaDetailDto.getDatePrevious());
+		}
+
+		// setTitle(MessagesHelper.INSTANCE.getString("text.last.movments"));
 		cleanFilters();
 	}
 
@@ -122,7 +126,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 		cleanFilters();
 	}
 
-	public DateRangeDto calculateQuotaFilters(String date) {
+	private DateRangeDto calculateQuotaFilters(final String date) {
 		DateRangeDto dateRangeInit = new DateRangeDto();
 		LOGGER.info("Buscando el EnumPeriodType: " + date);
 		EnumPeriodType periodTypeFilter = EnumPeriodType.valueOfLabel(date);
@@ -134,23 +138,19 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 		return dateRangeInit;
 	}
 
+	private void setShowMoreStatus(final List<MovementCriteriaDto> movementsList) {
+		if (movementsList.size() >= 10)
+			getRenderComponents().put(RenderAttributes.FOOTERTABLEQUOTA.toString(), true);
+		else
+			getRenderComponents().put(RenderAttributes.FOOTERTABLEQUOTA.toString(), false);
+	}
+
 	@Override
 	public List<MovementDto> getAllQuotamovenDtos() {
-		DateRangeDto dateRanget = calculateQuotaFilters("Último mes");
+		DateRangeDto dateRanget = calculateQuotaFilters(MessagesHelper.INSTANCE.getString("select.radio.last.month"));
 		this.quotamovenDtos = this.quotaDetailFacade.listRotaryQuotaMovements(this.productDto.getProductId(),
 				dateRanget, 1, 10);
-
-		if (this.quotamovenDtos.size() >= 10) {
-			getRenderTable().put(RenderAttributes.FOOTERTABLEMOVEMENT.toString(), true);
-		} else {
-			getRenderTable().put(RenderAttributes.FOOTERTABLEMOVEMENT.toString(), false);
-		}
-
 		LOGGER.info("Datos de los movimientos llenos ");
-		if (this.quotamovenDtos.size() >= 10)
-			getRenderTable().put(RenderAttributes.FOOTERTABLEQUOTA.toString(), true);
-		else
-			getRenderTable().put(RenderAttributes.FOOTERTABLEQUOTA.toString(), false);
 		return quotamovenDtos;
 	}
 
@@ -164,24 +164,33 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 		this.quotaMoveDetailDto = this.quotaDetailFacade.getRotaryQuotaMovement(this.productDto.getProductId(),
 				getSelectedMovements().getMovementId());
 		LOGGER.info("Movimiento Seleccionado " + quotaMoveDetailDto.getId());
-		this.moveDate = dateFormat.format(this.quotaMoveDetailDto.getOperationDate());
-		LOGGER.info("Finalizado formateo de fechas del movimiento");
+
+		if (!(quotaMoveDetailDto.getOperationDate() == null)) {
+			this.moveDate = dateFormat.format(this.quotaMoveDetailDto.getOperationDate());
+			LOGGER.info("Finalizado formateo de fechas del movimiento");
+		} else {
+			LOGGER.info("Error en formateo de fechas del movimiento " + quotaMoveDetailDto.getOperationDate());
+		}
 	}
 
 	@Override
 	public void oneSelectDate() {
-		System.out.println("Method oneSelectDate");
+		LOGGER.info("Method oneSelectDate");
 
 		renderComponents.put(RenderAttributes.FILTERDATE.toString(), true);
 
 		if (getSelectDate().equals(CONCRETE_DATE)) {
 			renderComponents.put(RenderAttributes.CALENDAR.toString(), false);
 			renderComponents.put(RenderAttributes.BUTTONDATE.toString(), false);
+			LOGGER.info("Fecha Concreta: " + " Calendar: " + renderComponents.get(RenderAttributes.CALENDAR.toString())
+					+ " Boton: " + renderComponents.get(RenderAttributes.BUTTONDATE.toString()));
 
 		} else {
 			renderComponents.put(RenderAttributes.CALENDAR.toString(), true);
 			renderComponents.put(RenderAttributes.BUTTONDATE.toString(), false);
 
+			LOGGER.info("Radio Button: " + " Calendar: " + renderComponents.get(RenderAttributes.CALENDAR.toString())
+					+ " Boton: " + renderComponents.get(RenderAttributes.BUTTONDATE.toString()));
 		}
 	}
 
@@ -198,8 +207,10 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 			this.toText = TO_TITLE + ": ";
 			this.sinceDatestr = dateFormat.format(getSinceDate());
 			this.toDatestr = dateFormat.format(getToDate());
+			LOGGER.info(SINCE_TITLE + " " + sinceDatestr + " " + TO_TITLE + " " + toDatestr);
 		} else {
 			sinceDatestr = getSelectDate();
+			LOGGER.info("RadioButton escogido: " + getSelectDate());
 		}
 	}
 
@@ -219,20 +230,19 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 		criteriaSearch();
 	}
 
+	@Override
 	public void criteriaSearch() {
+
+		LOGGER.info("Method criteriaSearch");
 
 		if (this.dateRange != null) {
 			setDateRangePControl(this.dateRange);
+			LOGGER.info("date Range: " + " sinceDate: " + this.dateRange.getDateSince() + " toDate: "
+					+ this.dateRange.getDateTo());
 		}
 		setProductIdPControl(getSelectedProduct().getProductId());
 		search();
 		this.quotamovenDtos = getCurrentList();
-		if (this.quotamovenDtos.size() > 10)
-			getRenderTable().put(RenderAttributes.FOOTERTABLEQUOTA.toString(), true);
-		else
-			getRenderTable().put(RenderAttributes.FOOTERTABLEQUOTA.toString(), false);
-		setTitle(MessagesHelper.INSTANCE.getString("text.last.movments"));
-		RequestContext.getCurrentInstance().update("quotaDetail:detailAccounts:detailAccounts:detailmovesAC");
 	}
 
 	// Setters and Getters
@@ -341,10 +351,12 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 		this.toText = toText;
 	}
 
+	@Override
 	public QuotaDetailFacade getQuotaDetailFacade() {
 		return quotaDetailFacade;
 	}
 
+	@Override
 	public void setQuotaDetailFacade(QuotaDetailFacade quotaDetailFacade) {
 		this.quotaDetailFacade = quotaDetailFacade;
 	}
@@ -381,16 +393,10 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 		this.paymentDate = paymentDate;
 	}
 
-	/**
-	 * @return the quotaMove
-	 */
 	public MovementDto getQuotaMove() {
 		return quotaMove;
 	}
 
-	/**
-	 * @param quotaMove the quotaMove to set
-	 */
 	public void setQuotaMove(MovementDto quotaMove) {
 		this.quotaMove = quotaMove;
 	}

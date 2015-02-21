@@ -39,8 +39,8 @@ public class HeaderFacadeImpl extends AbstractBbvaFacade implements HeaderFacade
 	private FiqlService fiqlService;
 
 	@Override
-	public ExecutiveDto getExecutive(String user) {
-		final String filter = fiqlService.getExecutiveFiql(user);
+	public ExecutiveDto getExecutive() {
+		final String filter = fiqlService.getExecutiveFiql();
 		final Executive executive = this.executiveService.getExecutive(filter, null, null, null);
 		return mapper.map(executive);
 	}

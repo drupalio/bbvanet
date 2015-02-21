@@ -22,16 +22,19 @@
 			<button type="button"
 				class="close-icon hidden-xs hidden-sm  close-button"></button>
 		</div>
-		<div class="condiciones-tab visible-sm visible-md visible-lg">
-
-			<div class="consultas content-condiciones container">
-				<div class="row">
-					<composite:insertChildren></composite:insertChildren>
+		<div
+			class="condiciones-tab visible-xs visible-sm visible-md visible-lg">
+			<div id="conditions" class="tab-pane"
+				style="background: none repeat scroll 0% 0% #FFF; border: none;">
+				<h3 class="visible-xs" style="margin-left: 5%">Condiciones</h3>
+				<div class="consultas content-condiciones container">
+					<div class="row marginConRow">
+						<composite:insertChildren></composite:insertChildren>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
 </composite:implementation>
 
 </html>
