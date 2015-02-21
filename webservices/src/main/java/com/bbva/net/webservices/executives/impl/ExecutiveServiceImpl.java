@@ -16,14 +16,12 @@ public class ExecutiveServiceImpl extends AbstractBbvaRestService implements Exe
 	public Executive getExecutive(String filter, String $fields, String $expands, String $sort) {
 
 		WebClient wc = getJsonWebClient(URL_BASE_EXECUTIVE);
-
 		LOGGER.info("PETICION: " + wc.getCurrentURI());
 		if (!StringUtils.isEmpty(filter)) wc.query("$filter", filter);
 		final Executive executive = wc.get(Executive.class);
 		final Gson gson = new Gson();
 		String json = gson.toJson(executive);
 		LOGGER.info("JSON EXECUTIVE: " + json);
-
 		return executive;
 
 	}

@@ -3,6 +3,7 @@ package com.bbva.net.front.controller.impl;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -30,6 +31,7 @@ public class HeaderControllerImpl extends AbstractBbvaController implements Head
 
 	@PostConstruct
 	public void init() {
+
 		this.cliente = this.getCustomer();
 		this.ejecutivo = this.getExecutive();
 	}
@@ -44,22 +46,6 @@ public class HeaderControllerImpl extends AbstractBbvaController implements Head
 			return new ExecutiveDto();
 		}
 		return ejecutivo;
-
-	}
-
-	@Override
-	public CustomerDto getCustomer() {
-
-		if (cliente == null) {
-			try {
-				return headerFacade.getCustomer();
-			} catch (final Exception exception) {
-			}
-			return new CustomerDto();
-		}
-
-		return cliente;
-
 	}
 
 	public ExecutiveDto getEjecutivo() {
@@ -70,4 +56,21 @@ public class HeaderControllerImpl extends AbstractBbvaController implements Head
 		return cliente;
 	}
 
+	@Override
+	public CustomerDto getCustomer() {
+
+		final String userName = (getSession().getAttribute("userName") == null) ? StringUtils.EMPTY : getSession()
+				.getAttribute("userName").toString();
+		final String docTypeUser = (getSession().getAttribute("docTypeUser") == null) ? StringUtils.EMPTY
+				: getSession().getAttribute("docTypeUser").toString();
+		final String docIdUser = (getSession().getAttribute("docIdUser") == null) ? StringUtils.EMPTY : getSession()
+				.getAttribute("docIdUser").toString();
+
+		try {
+			return headerFacade.getCustomer(userName, docTypeUser, docIdUser);
+		} catch (final Exception exception) {
+		}
+		return new CustomerDto();
+
+	}
 }

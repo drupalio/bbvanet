@@ -15,10 +15,6 @@ public interface HeaderFacade {
 	 */
 	ExecutiveDto getExecutive();
 
-	/**
-	 * 
-	 * @return
-	 */
-	CustomerDto getCustomer();
+	CustomerDto getCustomer(String userName, String docTypeUser, String docIdUser);
 
 }

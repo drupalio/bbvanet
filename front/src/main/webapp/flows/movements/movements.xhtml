@@ -8,6 +8,7 @@
 	xmlns:bbvaGraphic="http://java.sun.com/jsf/composite/bbva/graphics/accounts"
 	xmlns:bbvaAcc="http://java.sun.com/jsf/composite/bbva/accounts"
 	xmlns:bbvaHeader="http://java.sun.com/jsf/composite/bbva/movementsHead"
+	xmlns:bbvaGraphic="http://java.sun.com/jsf/composite/bbva/graphics/accounts"
 	xmlns:bbvaBody="http://java.sun.com/jsf/composite/bbva/body"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:bbvaDetAcc="http://java.sun.com/jsf/composite/bbva/tab"
@@ -29,22 +30,22 @@
 
 	<ui:define name="contentLeft">
 		<div class="tab-group savingsAccount">
-		
-			<bbvaHeader:quotaDetail>
-				<bbvaHeader:quotaDetailHeader>
-					<bbvaHeader:quotaDetailHeaderLeft alias="#{movementsCriteriaController.selectedProduct.alias}"
-						numCuenta="#{movementsCriteriaController.selectedProduct.productId}"
-						tipoPrestamo="#{movementsCriteriaController.selectedProduct.productName}" />
+
+			<bbvaHeader:moveDetailContainer>
+				<bbvaHeader:moveContainerHeader>
+					<bbvaHeader:moveDetailHeaderLeft alias="#{movementsCriteriaController.getSelectedProduct().getAlias()}"
+						numCuenta="#{movementsCriteriaController.getSelectedProduct().getProductNumber()}"
+						tipoPrestamo="#{movementsCriteriaController.getSelectedProduct().getProductName()}" />
 					<bbvaGraphic:MovementsGraphic
 						lineConfigUI="#{movementsCriteriaController.graphicLineMovements}"
 						values="#{movementsCriteriaController.valuesLinesGraphic}" />
-					<bbvaHeader:quotaDetailHeaderRight
+					<bbvaHeader:moveDetailHeaderRight
 						textUp="#{msg['text.available']}"
-						valueUp="#{movementsCriteriaController.selectedProduct.totalCash}"
+						valueUp="#{movementsCriteriaController.getSelectedProduct().getTotalCash()}"
 						textDown="#{msg['text.tradeBalance']}"
-						valueDown="#{movementsCriteriaController.selectedProduct.cashAvailable}" />
-				</bbvaHeader:quotaDetailHeader>
-			</bbvaHeader:quotaDetail>
+						valueDown="#{movementsCriteriaController.getSelectedProduct().getCashAvailable()}" />
+				</bbvaHeader:moveContainerHeader>
+			</bbvaHeader:moveDetailContainer>
 
 			<bbvaHeader:accountsDetailHeaderContent />
 
