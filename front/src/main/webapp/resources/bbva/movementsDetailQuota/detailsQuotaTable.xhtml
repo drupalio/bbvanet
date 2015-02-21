@@ -17,92 +17,93 @@
 
 <composite:implementation>
 
-	<script>
-		
-	</script>
 
 	<h:form id="#{cc.attrs.id}">
-		<article class="detail-table-group">
+		<p:outputPanel id="perrasCheks">
+			<article class="detail-table-group">
 
-			<div class="utility-icons">
-				<a href="#"><span class="icon-excel-file"
-					title="Exportar a excel"></span></a> <a href="#"><span
-					class="icon-pdf-file" title="Descargar pdf"></span></a> <a href="#"><span
-					class="icon-send-by-email" title="Enviar"></span></a> <a href="#"><span
-					class="icon-printer" title="Imprimir"></span></a>
-			</div>
+				<div class="utility-icons">
+					<a href="#"><span class="icon-excel-file"
+						title="Exportar a excel"></span></a> <a href="#"><span
+						class="icon-pdf-file" title="Descargar pdf"></span></a> <a href="#"><span
+						class="icon-send-by-email" title="Enviar"></span></a> <a href="#"><span
+						class="icon-printer" title="Imprimir"></span></a>
+				</div>
 
-			<h3>#{msg['text.last.movments']}</h3>
+				<h3>#{msg['text.last.movments']}</h3>
+						
+				<div class="table-wrapper">
+					<p:dataTable id="detailmovesAC" widgetVar="detailmovesAC"
+						styleClass="detail-table-body sortable"
+						emptyMessage="#{msg['text.empty.table']}" rowSelectMode="single"
+						value="#{cc.attrs.listAccounts}" var="moves"
+						selectionMode="single" rowKey="#{moves.movementId}">
 
-			<div class="table-wrapper">
-				<p:dataTable id="detailmovesAC" widgetVar="detailmovesAC"
-					styleClass="detail-table-body sortable" rowIndexVar="rowIndex"
-					emptyMessage="#{msg['text.empty.table']}" rowSelectMode="single"
-					value="#{cc.attrs.listAccounts}" var="moves" selectionMode="single"
-					rowKey="#{moves.movementId}">
+						<p:ajax event="rowSelect"
+							listener="#{cc.attrs.controller.onRowToggle}" />
 
-					<p:ajax event="rowSelect" onsuccess="checkFilled()"
-						listener="#{cc.attrs.controller.onRowToggle}" />
 
-					<p:column style="z-index: 2 !important;">
-						<p:rowToggler rendered="true" />
-					</p:column>
+						<p:column width="3% !important" style="z-index: 2 !important;">
+							<p:rowToggler rendered="true" />
+						</p:column>
 
-					<p:column headerText="#{msg['text.detailMove.date']}"
-						styleClass="styleColum sorted w18 desc">
+						<p:column headerText="#{msg['text.detailMove.date']}"
+							styleClass="styleColum sorted w18 desc">
 
-						<h:outputText styleClass="brand styleLeft"
-							value="#{moves.movementDate}">
-							<f:convertDateTime pattern="dd/MM/yyyy" />
-						</h:outputText>
-					</p:column>
-
-					<p:column headerText="#{msg['text.detailMove.concep']}"
-						styleClass="styleColum desc w34">
-
-						<h:outputText class="text styleLeft"
-							value="#{moves.movementConcept}" />
-					</p:column>
-
-					<p:column class="head" headerText="#{msg['title.slope']}"
-						styleClass="styleColum desc w24">
-
-						<h:outputText class="currency styleCurrent"
-							value="#{moves.movementValue}" />
-					</p:column>
-
-					<p:column styleClass="hidden-md hidden-lg smart-view">
-						<div class="left">
-							<h:outputText class="text styleLeft"
-								value="#{moves.movementConcept}" />
 							<h:outputText styleClass="brand styleLeft"
 								value="#{moves.movementDate}">
 								<f:convertDateTime pattern="dd/MM/yyyy" />
 							</h:outputText>
-						</div>
-						<div class="right">
+						</p:column>
+
+						<p:column headerText="#{msg['text.detailMove.concep']}"
+							styleClass="styleColum desc w34">
+
+							<h:outputText class="text styleLeft"
+								value="#{moves.movementConcept}" />
+						</p:column>
+
+						<p:column class="head" headerText="#{msg['title.slope']}"
+							styleClass="styleColum desc w24">
+
 							<h:outputText class="currency styleCurrent"
 								value="#{moves.movementValue}" />
-						</div>
-					</p:column>
+						</p:column>
 
-					<p:rowExpansion styleClass="detail-row position" id="roiuy">
-						<bbvaDetailMotion:tableContent controller="#{cc.attrs.controller}" />
-					</p:rowExpansion>
+						<p:column styleClass="hidden-md hidden-lg smart-view">
+							<div class="left">
+								<h:outputText class="text styleLeft"
+									value="#{moves.movementConcept}" />
+								<h:outputText styleClass="brand styleLeft"
+									value="#{moves.movementDate}">
+									<f:convertDateTime pattern="dd/MM/yyyy" />
+								</h:outputText>
+							</div>
+							<div class="right">
+								<h:outputText class="currency styleCurrent"
+									value="#{moves.movementValue}" />
+							</div>
+						</p:column>
 
-				</p:dataTable>
-			</div>
+						<p:rowExpansion styleClass="detail-row position">
+							<bbvaDetailMotion:tableContent
+								controller="#{cc.attrs.controller}" />
+						</p:rowExpansion>
 
-			<footer class="detail-table-footer">
-				<button id="moreMovs" class="btn btn-more-results"
-					jsf:update="quotaDetail:detailAccounts:detailAccounts:detailmovesAC"
-					value="Más Resultados"
-					jsf:rendered="#{quotaController.renderTable['FOOTERTABLEQUOTA']}"
-					jsf:actionListener="#{quotaController.nextPage}">
-					<span>#{msg['text.detailMove.footer']}</span>
-				</button>
-			</footer>
-		</article>
+					</p:dataTable>
+				</div>
+
+				<footer class="detail-table-footer">
+					<button id="moreMovs" class="btn btn-more-results"
+						jsf:update="quotaDetail:detailAccounts:detailAccounts:detailmovesAC"
+						value="Más Resultados"
+						jsf:rendered="#{quotaController.renderComponents['FOOTERTABLEQUOTA']}"
+						jsf:actionListener="#{quotaController.nextPage}">
+						<span>#{msg['text.detailMove.footer']}</span>
+					</button>
+				</footer>
+			</article>
+		</p:outputPanel>
 	</h:form>
 </composite:implementation>
 

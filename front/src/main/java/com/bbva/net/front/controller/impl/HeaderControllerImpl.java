@@ -17,7 +17,7 @@ import com.bbva.net.front.core.AbstractBbvaController;
 public class HeaderControllerImpl extends AbstractBbvaController implements HeaderController {
 
 	@Resource(name = "headerFacade")
-	private transient HeaderFacade executive;
+	private transient HeaderFacade headerFacade;
 
 	/**
 	 * 
@@ -36,7 +36,7 @@ public class HeaderControllerImpl extends AbstractBbvaController implements Head
 
 	@Override
 	public ExecutiveDto getExecutive() {
-		return executive.getExecutive();
+		return headerFacade.getExecutive();
 	}
 
 	public ExecutiveDto getEjecutivo() {
@@ -50,7 +50,7 @@ public class HeaderControllerImpl extends AbstractBbvaController implements Head
 
 	@Override
 	public CustomerDto getCustomer() {
-		return executive.getCustomer();
+		return headerFacade.getCustomer();
 	}
 
 }

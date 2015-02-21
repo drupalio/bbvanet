@@ -12,7 +12,6 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
 
-import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
 
 import com.bbva.net.back.facade.QuotaDetailFacade;
@@ -93,7 +92,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 					+ quotaDetailDto.getDatePrevious());
 		}
 
-		setTitle(MessagesHelper.INSTANCE.getString("text.last.movments"));
+		// setTitle(MessagesHelper.INSTANCE.getString("text.last.movments"));
 		cleanFilters();
 	}
 
@@ -127,7 +126,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 		cleanFilters();
 	}
 
-	public DateRangeDto calculateQuotaFilters(String date) {
+	private DateRangeDto calculateQuotaFilters(final String date) {
 		DateRangeDto dateRangeInit = new DateRangeDto();
 		LOGGER.info("Buscando el EnumPeriodType: " + date);
 		EnumPeriodType periodTypeFilter = EnumPeriodType.valueOfLabel(date);
@@ -139,18 +138,19 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 		return dateRangeInit;
 	}
 
+	private void setShowMoreStatus(final List<MovementCriteriaDto> movementsList) {
+		if (movementsList.size() >= 10)
+			getRenderComponents().put(RenderAttributes.FOOTERTABLEQUOTA.toString(), true);
+		else
+			getRenderComponents().put(RenderAttributes.FOOTERTABLEQUOTA.toString(), false);
+	}
+
 	@Override
 	public List<MovementDto> getAllQuotamovenDtos() {
-		DateRangeDto dateRanget = calculateQuotaFilters("Último mes");
+		DateRangeDto dateRanget = calculateQuotaFilters(MessagesHelper.INSTANCE.getString("select.radio.last.month"));
 		this.quotamovenDtos = this.quotaDetailFacade.listRotaryQuotaMovements(this.productDto.getProductId(),
 				dateRanget, 1, 10);
-
-		if (this.quotamovenDtos.size() >= 10)
-			getRenderTable().put(RenderAttributes.FOOTERTABLEMOVEMENT.toString(), true);
-		else
-			getRenderTable().put(RenderAttributes.FOOTERTABLEMOVEMENT.toString(), false);
-
-		LOGGER.info("Datos de los movimientos llenos " + quotamovenDtos.size());
+		LOGGER.info("Datos de los movimientos llenos ");
 		return quotamovenDtos;
 	}
 
@@ -243,15 +243,6 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 		setProductIdPControl(getSelectedProduct().getProductId());
 		search();
 		this.quotamovenDtos = getCurrentList();
-		if (this.quotamovenDtos.size() > 10)
-			getRenderTable().put(RenderAttributes.FOOTERTABLEQUOTA.toString(), true);
-		else
-			getRenderTable().put(RenderAttributes.FOOTERTABLEQUOTA.toString(), false);
-
-		LOGGER.info("Datos de los movimientos llenos " + quotamovenDtos.size());
-
-		setTitle(MessagesHelper.INSTANCE.getString("text.last.movments"));
-		RequestContext.getCurrentInstance().update("quotaDetail:detailAccounts:detailAccounts:detailmovesAC");
 	}
 
 	// Setters and Getters

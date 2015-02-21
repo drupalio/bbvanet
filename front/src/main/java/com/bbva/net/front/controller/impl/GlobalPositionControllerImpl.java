@@ -376,7 +376,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		if (!StringUtils.isEmpty(accountSelected)
 				&& !MessagesHelper.INSTANCE.getString("text.allAccounts").equals(accountSelected)) {
 
-			this.globalResumeMovementsDTO = this.movementsResumeFacade.getMovementsResumeByAccount(DEFAULT_ACCOUNT,
+			this.globalResumeMovementsDTO = this.movementsResumeFacade.getMovementsResumeByAccount(accountSelected,
 					dateRange, StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY);
 			// this.globalResumeMovementsDTO =
 			// this.movementsResumeFacade.getMovementsResumeByAccount(accountSelected);

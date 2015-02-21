@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.bbva.net.front.controller;
 
 import java.util.List;
@@ -43,11 +40,6 @@ public interface MovementCriteriaController {
 	void setIncomeExpensesFilter(ActionEvent event);
 
 	/**
-	 * Method to clean filters
-	 */
-	void cleanFilters();
-
-	/**
 	 * Method to buil a message for balanceFilter
 	 */
 	void buildMessage();
@@ -63,6 +55,8 @@ public interface MovementCriteriaController {
 	void preRender(ComponentSystemEvent event);
 
 	/**
+	 * Method to set a date
+	 * 
 	 * @param event
 	 */
 	void setCustomDate(ActionEvent event);
@@ -85,6 +79,10 @@ public interface MovementCriteriaController {
 
 	/**
 	 * Method lines of graphics Movements
+	 * 
+	 * @param valuesLines
+	 * @return
 	 */
 	List valuesLinesGraphic(LineConfigUI valuesLines);
+
 }
