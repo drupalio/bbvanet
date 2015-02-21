@@ -41,19 +41,23 @@ function checkFilled(btnW, inputId) {
 
 $(document).ready(function() {
 	$('.ui-datatable-data .ui-widget-content').click(function() {
-		var ev = $(this).attr("data-ri");
-		callback($(ev));
+
+		var selected = $(this).attr('data-ri');
+
+		var i = $('.ui-row-toggler').length;
+		if (i == 1) {
+			return;
+		} else {
+			dat($(select));
+		}
+
 	});
 });
 
-var callback = function(index) {
-	var selected = index.selector;
-	var i = ('.ui-row-toggler').eq(selected).length;
-	if (i == 1) {
-		return;
-	}
-	$('.ui-row-toggler').eq(selected).click();
-}
+var dat = function(selected) {
+	$('.ui-datatable-data .ui-state-highlight').find('.ui-row-toggler').eq(
+			selected.selector).click()
+};
 
 // Cerrar de los tab operation Quota y Movements
 $(document).ready(function() {
