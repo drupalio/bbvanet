@@ -52,7 +52,7 @@ public class HeaderFacadeImpl extends AbstractBbvaFacade implements HeaderFacade
 	@Override
 	public CustomerDto getCustomer(String userName, String docTypeUser, String docIdUser) {
 		final String filter = fiqlService.getFiqlQueryCustomer(userName, docTypeUser, docIdUser);
-		final Customer customer = this.customerService.getCustomer();
+		final Customer customer = this.customerService.getCustomer(filter);
 		return mapperCustomer.map(customer);
 	}
 }
