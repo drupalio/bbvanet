@@ -13,20 +13,15 @@
 
 
 <composite:interface>
-	<composite:attribute name="alias" type="String" />
-	<composite:attribute name="numCuenta" type="String" />
-	<composite:attribute name="tipoPrestamo" type="String" />
+
 </composite:interface>
 
-
 <composite:implementation>
-	<div class="col-xs-6 col-sm-4 col-md-4 left">
-		<p class="accountDescription">#{cc.attrs.alias}</p>
-		<p>
-			<strong class="info-numero">#{cc.attrs.numCuenta}</strong>
-		</p>
-		<p>#{cc.attrs.tipoPrestamo}</p>
-	</div>
+
+	<aside class="product-header marginProduct">
+		<composite:insertChildren></composite:insertChildren>
+	</aside>
+
 
 </composite:implementation>
 

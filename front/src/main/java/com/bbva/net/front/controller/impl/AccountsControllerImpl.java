@@ -8,8 +8,6 @@ import javax.annotation.Resource;
 import org.primefaces.event.SelectEvent;
 
 import com.bbva.net.back.facade.AccountsFacade;
-import com.bbva.net.back.facade.TermasAccountsFacade;
-import com.bbva.net.back.model.accounts.TermsAccountsDto;
 import com.bbva.net.back.model.globalposition.AccountDto;
 import com.bbva.net.front.controller.AccountsController;
 import com.bbva.net.front.core.AbstractBbvaController;
@@ -17,9 +15,6 @@ import com.bbva.net.front.core.AbstractBbvaController;
 public class AccountsControllerImpl extends AbstractBbvaController implements AccountsController {
 
 	private static final long serialVersionUID = 5726824668267606699L;
-
-	@Resource(name = "TermsFacade")
-	private transient TermasAccountsFacade detallesCuenta;
 
 	@Resource(name = "accountsFacade")
 	private transient AccountsFacade accountsFacade;
@@ -47,12 +42,6 @@ public class AccountsControllerImpl extends AbstractBbvaController implements Ac
 	public void onProductSelected(SelectEvent selectEvent) {
 		super.onProductSelected(selectEvent);
 		this.sendAction("accountSelected");
-	}
-
-	@Override
-	public TermsAccountsDto getAllConditions() {
-		TermsAccountsDto detalle = this.detallesCuenta.getAllConditions(super.getSelectedProduct().getProductId());
-		return detalle;
 	}
 
 }

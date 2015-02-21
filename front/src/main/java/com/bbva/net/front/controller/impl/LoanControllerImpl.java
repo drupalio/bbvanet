@@ -3,13 +3,13 @@ package com.bbva.net.front.controller.impl;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
 import org.primefaces.event.SelectEvent;
 
 import com.bbva.net.back.facade.LoanFacade;
 import com.bbva.net.back.model.globalposition.BalanceDto;
+import com.bbva.net.back.model.globalposition.GlobalProductsDto;
 import com.bbva.net.back.model.globalposition.LeasingDto;
 import com.bbva.net.back.model.globalposition.LoanDto;
 import com.bbva.net.back.model.globalposition.RotatingAccountDto;
@@ -28,40 +28,42 @@ public class LoanControllerImpl extends AbstractBbvaController implements LoanCo
 
 	private Map<String, BalanceDto> totalsProducts;
 
-	@PostConstruct
+	private GlobalProductsDto globalProductsDto;
+
 	public void init() {
-		// Calculate totals
-		this.totalsProducts = this.loanFacade.getLoanTotals();
+
+		this.globalProductsDto = this.loanFacade.getLoanProducts();
+		this.totalsProducts = this.loanFacade.getLoanTotals(globalProductsDto);
 	}
 
 	@Override
 	public List<RotatingAccountDto> getCustomerRotatingAccount() {
-		return this.loanFacade.getRotatingAccountByUser();
+		return this.loanFacade.getRotatingAccountByUser(globalProductsDto);
 	}
 
 	@Override
 	public List<RotatingAccountDto> getCustomerRotatingAccountHidden() {
-		return this.loanFacade.getRotatingAccountByUserHidden();
+		return this.loanFacade.getRotatingAccountByUserHidden(globalProductsDto);
 	}
 
 	@Override
 	public List<LeasingDto> getCustomerLeasing() {
-		return this.loanFacade.getLeasingByUser();
+		return this.loanFacade.getLeasingByUser(globalProductsDto);
 	}
 
 	@Override
 	public List<LeasingDto> getCustomerLeasingHidden() {
-		return this.loanFacade.getLeasingByUserHidden();
+		return this.loanFacade.getLeasingByUserHidden(globalProductsDto);
 	}
 
 	@Override
 	public List<LoanDto> getCustomerLoan() {
-		return this.loanFacade.getLoansByUser();
+		return this.loanFacade.getLoansByUser(globalProductsDto);
 	}
 
 	@Override
 	public List<LoanDto> getCustomerLoanHidden() {
-		return this.loanFacade.getLoansByUserHidden();
+		return this.loanFacade.getLoansByUserHidden(globalProductsDto);
 	}
 
 	@Override
@@ -83,6 +85,20 @@ public class LoanControllerImpl extends AbstractBbvaController implements LoanCo
 
 	public void setTotalsProducts(Map<String, BalanceDto> totalsProducts) {
 		this.totalsProducts = totalsProducts;
+	}
+
+	/**
+	 * @return the globalProductsDto
+	 */
+	public GlobalProductsDto getGlobalProductsDto() {
+		return globalProductsDto;
+	}
+
+	/**
+	 * @param globalProductsDto the globalProductsDto to set
+	 */
+	public void setGlobalProductsDto(GlobalProductsDto globalProductsDto) {
+		this.globalProductsDto = globalProductsDto;
 	}
 
 }

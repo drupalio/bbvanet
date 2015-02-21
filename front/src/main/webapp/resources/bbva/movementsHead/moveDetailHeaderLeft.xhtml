@@ -13,25 +13,21 @@
 
 
 <composite:interface>
-
+	<composite:attribute name="alias" type="String" />
+	<composite:attribute name="number" type="String" />
+	<composite:attribute name="type" type="String" />
 </composite:interface>
 
+
 <composite:implementation>
-	<div class="container">
-		<div class="tab-pane-phone">
-			<div class="tab-content">
-				<section class="row tab-pane active" id="products">
-					<div class="section-content col-xs-12 col-md-8"
-						style="margin-top: -3.5%">
-						<div class="tab-group cupo">
-							<composite:insertChildren></composite:insertChildren>
-						</div>
-					</div>
-				</section>
-				<section class="tab-pane" id="catalogo">...</section>
-			</div>
-		</div>
+	<div class="col-xs-6 col-sm-4 col-md-4 left">
+		<p class="accountDescription">#{cc.attrs.alias}</p>
+		<p>
+			<strong class="info-numero">#{cc.attrs.number}</strong>
+		</p>
+		<p>#{cc.attrs.type}</p>
 	</div>
+
 </composite:implementation>
 
 </html>
