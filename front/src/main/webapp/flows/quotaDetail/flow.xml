@@ -12,7 +12,6 @@
 	
 		<evaluate expression="quotaController.init()"></evaluate>
 		<evaluate expression="personalizeProductAccountController.init()"></evaluate>
-		
 		<evaluate expression="quotaController.getAllQuotamovenDtos()" result="flowScope.quotaMovements" />
 		<evaluate expression="quotaController.getSelectProduct()" result="flowScope.product"/>
 		<evaluate expression="termsController.getAllConditions()" result="flowScope.allConditions" />

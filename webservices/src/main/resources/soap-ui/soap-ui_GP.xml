@@ -2568,7 +2568,6 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 }
 
 */
-<<<<<<< HEAD
 </con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
 	"id": "61828450",
 	"name": "Tucker Gymnasium",
@@ -2590,6 +2589,3 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		"postalAddress": "644 Galway Circle"
 	}
 }</con:responseContent></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
-=======
-</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200"><con:settings/><con:responseContent/></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
->>>>>>> 5cf5e3942c7bd71bdeacdab2951a65cdf203434b

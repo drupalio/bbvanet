@@ -59,6 +59,7 @@ public class HeaderControllerImpl extends AbstractBbvaController implements Head
 		}
 
 		return cliente;
+
 	}
 
 	public ExecutiveDto getEjecutivo() {

@@ -3,28 +3,39 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/webflow 
     http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+    
+	<var name="movementsCriteriaController"
+		class="com.bbva.net.front.controller.impl.MovementCriteriaControllerImpl" />
+		
+	<var name="checkBookController"
+		class="com.bbva.net.front.controller.impl.CheckBookControllerImpl" />
 
-	<var name="movementsCriteriaController" class="com.bbva.net.front.controller.impl.MovementCriteriaControllerImpl" />
-	<var name="checkBookController" class="com.bbva.net.front.controller.impl.CheckBookControllerImpl" />
-	<var name="personalizeProductAccountController" class="com.bbva.net.front.controller.impl.PersonalizeProductControllerImpl"/>
+	<var name="personalizeProductAccountController"
+		class="com.bbva.net.front.controller.impl.PersonalizeProductControllerImpl" />
+		
+	<var name="renderViewMovementsUI"
+		class="com.bbva.net.front.ui.movements.RenderViewMovementsUI" />
+		
 
 	<on-start>
-		
-		<evaluate expression="movementsCriteriaController.init()"></evaluate>
-		<evaluate expression="checkBookController.init()"></evaluate>
-		<evaluate expression="personalizeProductAccountController.init()"></evaluate>
-		
-		<!-- <evaluate expression="checkBookController.initCheckBookList()" result="requestScope.checkBookList" /> -->
-		<!-- <evaluate expression="accountsController.getAllConditions()" result="flowScope.allConditions" /> -->
-		<evaluate expression="movementsCriteriaController.getAllMovements()" result="flowScope.movements" />
 
+		<evaluate expression="movementsCriteriaController.init()" />
+		<evaluate expression="movementsCriteriaController.getAllMovements()" result="flowScope.movements" />
+		<evaluate expression="checkBookController.init()" />
+		<evaluate expression="personalizeProductAccountController.init()"></evaluate>
+								
 	</on-start>
 
 	<view-state id="movements">
 		<on-entry>
 			<set name="flowScope.menuActive" value="'ACCOUNTS'" />
 			<evaluate expression="new java.lang.String()" />
+			<evaluate expression="renderViewMovementsUI.init()" />
 		</on-entry>
+		<on-render>
+			<evaluate expression="renderViewMovementsUI.getRenderComponents()" result="viewScope.renderComponents"/>				
+		</on-render>
+
 		<transition to="detailMovement" on="movementSelected"></transition>
 	</view-state>
 
@@ -32,5 +43,3 @@
 	</view-state>
 
 </flow>
-
-

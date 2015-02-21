@@ -5,13 +5,13 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:bbvaAcc="http://java.sun.com/jsf/composite/bbva/accounts"
 	xmlns:bbvaGraphic="http://java.sun.com/jsf/composite/bbva/graphics/accounts"
+	xmlns:bbvaAcc="http://java.sun.com/jsf/composite/bbva/accounts"
+	xmlns:bbvaHeader="http://java.sun.com/jsf/composite/bbva/movementsHead"
 	xmlns:bbvaBody="http://java.sun.com/jsf/composite/bbva/body"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:bbvaDetAcc="http://java.sun.com/jsf/composite/bbva/tab"
 	xmlns:bbvaDetailMotion="http://java.sun.com/jsf/composite/bbva/movementsDetail"
-	xmlns:bbvaHeader="http://java.sun.com/jsf/composite/bbva/quota/"
 	xmlns:bbvaSearch="http://java.sun.com/jsf/composite/bbva/filters"
 	xmlns:jsf="http://xmlns.jcp.org/jsf"
 	xmlns:bbvaPersonalize="http://java.sun.com/jsf/composite/bbva/personalize">
@@ -29,22 +29,24 @@
 
 	<ui:define name="contentLeft">
 		<div class="tab-group savingsAccount">
+		
 			<bbvaHeader:quotaDetail>
 				<bbvaHeader:quotaDetailHeader>
-					<bbvaHeader:quotaDetailHeaderLeft alias="#{movementsCriteriaController.getSelectedProduct().getAlias()}"
-						numCuenta="#{movementsCriteriaController.getSelectedProduct().getProductNumber()}"
-						tipoPrestamo="#{movementsCriteriaController.getSelectedProduct().getProductName()}" />
+					<bbvaHeader:quotaDetailHeaderLeft alias="#{movementsCriteriaController.selectedProduct.alias}"
+						numCuenta="#{movementsCriteriaController.selectedProduct.productId}"
+						tipoPrestamo="#{movementsCriteriaController.selectedProduct.productName}" />
 					<bbvaGraphic:MovementsGraphic
 						lineConfigUI="#{movementsCriteriaController.graphicLineMovements}"
 						values="#{movementsCriteriaController.valuesLinesGraphic}" />
 					<bbvaHeader:quotaDetailHeaderRight
 						textUp="#{msg['text.available']}"
-						valueUp="#{movementsCriteriaController.getSelectedProduct().getTotalCash()}"
+						valueUp="#{movementsCriteriaController.selectedProduct.totalCash}"
 						textDown="#{msg['text.tradeBalance']}"
-						valueDown="#{movementsCriteriaController.getSelectedProduct().getCashAvailable()}" />
+						valueDown="#{movementsCriteriaController.selectedProduct.cashAvailable}" />
 				</bbvaHeader:quotaDetailHeader>
 			</bbvaHeader:quotaDetail>
 
+			<bbvaHeader:accountsDetailHeaderContent />
 
 			<bbvaDetAcc:tabMenu id="tabMenu">
 
@@ -59,15 +61,17 @@
 					</bbvaSearch:tabCriteria>
 
 					<!-- Tab Condiciones -->
-					<bbvaAcc:accountContainer alias="#{pruduct.alias}"
-						numCuenta="#{pruduct.productId}" tipo="#{pruduct.productName}" />
+					<bbvaAcc:accountContainer alias="#{product.alias}"
+						number="#{product.productId}" type="#{product.productName}" />
 
 					<!-- Tab Personalizar -->
 					<bbvaPersonalize:personalizeContainer />
 
 				</div>
 			</bbvaDetAcc:tabMenu>
-			<div class="table-tabs" id="#{cc.clientId}">
+
+
+			<div class="table-tabs">
 				<bbvaDetailMotion:detailMovesTable id="detailAccounts"
 					listAccounts="#{movements}"
 					listChecks="#{checkBookController.checkList}" />

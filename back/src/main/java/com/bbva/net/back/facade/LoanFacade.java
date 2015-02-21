@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.bbva.net.back.model.globalposition.BalanceDto;
+import com.bbva.net.back.model.globalposition.GlobalProductsDto;
 import com.bbva.net.back.model.globalposition.LeasingDto;
 import com.bbva.net.back.model.globalposition.LoanDto;
 import com.bbva.net.back.model.globalposition.RotatingAccountDto;
@@ -16,36 +17,41 @@ public interface LoanFacade {
 	/**
 	 * @return
 	 */
-	List<LeasingDto> getLeasingByUser();
+	public GlobalProductsDto getLoanProducts();
 
 	/**
 	 * @return
 	 */
-	List<LeasingDto> getLeasingByUserHidden();
+	List<LeasingDto> getLeasingByUser(final GlobalProductsDto globalProducts);
 
 	/**
 	 * @return
 	 */
-	List<RotatingAccountDto> getRotatingAccountByUserHidden();
+	List<LeasingDto> getLeasingByUserHidden(final GlobalProductsDto globalProducts);
 
 	/**
 	 * @return
 	 */
-	List<RotatingAccountDto> getRotatingAccountByUser();
+	List<RotatingAccountDto> getRotatingAccountByUserHidden(final GlobalProductsDto globalProducts);
 
 	/**
 	 * @return
 	 */
-	List<LoanDto> getLoansByUser();
+	List<RotatingAccountDto> getRotatingAccountByUser(final GlobalProductsDto globalProducts);
 
 	/**
 	 * @return
 	 */
-	List<LoanDto> getLoansByUserHidden();
+	List<LoanDto> getLoansByUser(final GlobalProductsDto globalProducts);
 
 	/**
 	 * @return
 	 */
-	Map<String, BalanceDto> getLoanTotals();
+	List<LoanDto> getLoansByUserHidden(final GlobalProductsDto globalProducts);
+
+	/**
+	 * @return
+	 */
+	Map<String, BalanceDto> getLoanTotals(final GlobalProductsDto globalProducts);
 
 }

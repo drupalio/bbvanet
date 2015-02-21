@@ -16,18 +16,22 @@
 </composite:interface>
 
 <composite:implementation>
-
+	
+	<p:outputPanel id="outputPanel">   
 	<h:form id="customSearch">
-
+	
 		<bbvaSearch:personalizedSearchTabBody id="perTabBody"
 			title="#{msg['text.title.personalized.search']}">
-			<bbvaSearch:customSearchList id="customList"
+			
+			<bbvaSearch:customSearchList id="hola" 
 				classList="date-filter customSearch" classSpan="arrow-left-smaller"
 				classSpanFilter="filter" title="#{msg['text.date']}"
 				filterTitle="#{movementsCriteriaController.sinceDatestr}"
 				filterMessage="#{movementsCriteriaController.toDatestr}">
 
 				<bbvaSearch:customSearchFilter id="customDate"
+					showQuota="false"
+					showMovements="true"
 					value="#{movementsCriteriaController.selectDate}"
 					valueDateSince="#{movementsCriteriaController.sinceDate}"
 					valueDateTo="#{movementsCriteriaController.toDate}"
@@ -68,6 +72,8 @@
 				actionListenerShow="#{movementsCriteriaController.searchMovementByFilter}" />
 		</bbvaSearch:personalizedSearchTabBody>
 	</h:form>
+	</p:outputPanel>
+
 	<h:form id="formCheckBook">
 		<bbvaSearch:personalizedSearchTabBody id="checkSearchTab"
 			title="#{msg['text.title.search.book']}">
@@ -76,8 +82,8 @@
 				value="#{checkBookController.selectDate}"
 				valueDateSince="#{checkBookController.sinceDate}"
 				valueDateTo="#{checkBookController.toDate}"
-				disabledButton="#{checkBookController.renderComponents['BUTTONDATE']}"
-				disabledCalendar="#{checkBookController.renderComponents['CALENDAR']}"
+				disabledButton="#{checkBookController.renderComponents['BUTTONDATECHECK']}"
+				disabledCalendar="#{checkBookController.renderComponents['CALENDARCHECK']}"
 				actionListenerDate="#{checkBookController.setCustomDate}"
 				listenerDate="#{checkBookController}"
 				valueCheck="#{checkBookController.actionState}"

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+<composite:interface>
+	<composite:attribute name="id" type="String" />
+	<composite:attribute name="listAccounts" type="java.util.List" />
+</composite:interface>
+
+<composite:implementation>
+	<h:form id="formMovesDetail">
+<p:outputPanel id="movAccount"></p:outputPanel>
+
+		<div class="table-wrapper">
+			<!-- Tabla Movimiento -->
+			<p:dataTable id="detalMov" widgetVar="detalMov"
+				styleClass="detail-table-body sortable"
+				emptyMessage="#{msg['text.empty.table']}"
+				value="#{cc.attrs.listAccounts}" var="moves" selectionMode="single"
+				rendered="#{renderComponents['MOVEMENTSTABLE']}"
+				rowKey="#{moves.movementId}">
+				<p:ajax event="rowSelect"
+					listener="#{movementsCriteriaController.onMovementSelected}" />
+
+				<p:column headerText="#{msg['text.detailMove.date']}"
+					styleClass="sorted asc w18"
+					style="font-size: 0.9em;color: #434A58;font-family: Arial;background: none;border-style: none">
+
+					<h:outputText styleClass="brand" style="font-size: 1.1em"
+						value="#{moves.movementDate}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+				</p:column>
+
+				<p:column headerText="#{msg['text.detailMove.concep']}"
+					styleClass="desc w34"
+					style="font-size: 0.9em;color: #434A58;font-family: Arial;background: none;border-style: none;">
+
+					<h:outputText class="text"
+						style="font-size: 12px;color: #333;text-align: left"
+						value="#{moves.movementConcept}" />
+					<h:outputText class="text"
+						style="font-size: 11px;color: #333;font-weight: normal;text-align: left"
+						value="#{moves.movementConcept}" />
+				</p:column>
+
+				<p:column class="head" headerText="#{msg['text.detailMove.value']}"
+					styleClass="desc w24"
+					style="font-size: 0.9em;color: #434A58;font-family: Arial;background: none;border-style: none">
+
+					<h:outputText class="currency" style="font-size: 15px;color: #333"
+						value="#{moves.movementValue}" />
+
+				</p:column>
+				<p:column class="head"
+					headerText="#{msg['text.detailMove.balance']}"
+					styleClass="desc w24"
+					style="font-size: 0.9em;color: #333;font-family: Arial;background: none;border-style: none">
+
+					<h:outputText class="currency" style="font-size: 15px;color: #333"
+						value="#{moves.totalBalance}" />
+
+				</p:column>
+
+				<p:column headerText="#{msg['text.detailMove.concep']}"
+					styleClass="smart-view"
+					style="font-size: 1.1em;color: #434A58;font-family: Arial;background: none;border-style: none;">
+
+					<h:outputText class="text"
+						style="font-size: 1.2em;color: #333;text-align: left"
+						value="#{moves.movementConcept}" />
+
+					<h:outputText styleClass="brand"
+						style="font-size: 1.1em;text-align: left"
+						value="#{moves.movementDate}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+
+					<h:outputText class="currency"
+						style="font-size: 15px;color: #333;text-align: right"
+						value="#{moves.movementValue}" />
+
+					<h:outputText class="currency"
+						style="font-size: 15px;color: #333;text-align: right"
+						value="#{moves.totalBalance}" />
+				</p:column>
+
+			</p:dataTable>
+
+
+
+		</div>
+		<footer class="detail-table-footer">
+
+			<button id="moreMovs" class="btn btn-more-results"
+				jsf:update=":detailAccounts:tableMovements:formMovesDetail:detalMov" value="Más Resultados"
+				jsf:rendered="#{renderComponents['FOOTERTABLEMOVEMENT']}"
+				jsf:actionListener="#{movementsCriteriaController.nextPage}">
+				<span>#{msg['text.detailMove.footer']}</span>
+			</button>
+
+		</footer>
+
+	</h:form>
+
+</composite:implementation>
+</html>

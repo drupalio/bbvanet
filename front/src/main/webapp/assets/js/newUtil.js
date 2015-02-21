@@ -55,6 +55,15 @@ $(document).ready(function() {
 	});
 });
 
+$(document).ready(function() {
+	var i = $('.ui-row-toggler.ui-icon-circle-triangle-s').length;
+	if (i == 1) {
+		return;
+	}
+	$('.ui-row-toggler.ui-icon-circle-triangle-s').trigger('click');
+	$('.ui-row-toggler.ui-icon-circle-triangle-s').click();
+});
+
 // Cerrar de los tab operation Quota y Movements
 $(document).ready(function() {
 	$('.close-button').click(function() {
