@@ -44,12 +44,7 @@ public class ExtractControllerImpl extends AbstractBbvaController implements Ext
 		this.yearAvailable = (List<String>)CollectionUtils.collect(extractList, new BeanToPropertyValueTransformer(
 				"year"));
 
-		this.monthAvailable = (List<String>)CollectionUtils.collect(extractList, new BeanToPropertyValueTransformer(
-				"month"));
-
 		yearAvailable = new ArrayList<String>(new LinkedHashSet<String>(yearAvailable));
-
-		monthAvailable = new ArrayList<String>(new LinkedHashSet<String>(monthAvailable));
 
 		return yearAvailable;
 	}
@@ -59,7 +54,12 @@ public class ExtractControllerImpl extends AbstractBbvaController implements Ext
 		getExtractMontAvailable();
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<String> getExtractMontAvailable() {
+
+		this.monthAvailable = (List<String>)CollectionUtils.collect(extractList, new BeanToPropertyValueTransformer(
+				"month"));
+		monthAvailable = new ArrayList<String>(new LinkedHashSet<String>(monthAvailable));
 
 		return monthAvailable;
 	}
