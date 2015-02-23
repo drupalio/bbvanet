@@ -4,22 +4,20 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/webflow 
     http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
 
-
 	<var name="movementsCriteriaController"
 		class="com.bbva.net.front.controller.impl.MovementCriteriaControllerImpl" />
-
 	<var name="checkBookController"
 		class="com.bbva.net.front.controller.impl.CheckBookControllerImpl" />
-
 	<var name="personalizeProductAccountController"
 		class="com.bbva.net.front.controller.impl.PersonalizeProductControllerImpl" />
-
 	<var name="renderViewMovementsUI" class="com.bbva.net.front.ui.movements.RenderViewMovementsUI" />
-
 	<var name="termsController" class="com.bbva.net.front.controller.impl.TermsControllerImpl" />
+	<var name="extractController"
+		class="com.bbva.net.front.controller.impl.ExtractControllerImpl" />
 
 	<on-start>
 		<evaluate expression="checkBookController.init()" />
+		<evaluate expression="extractController.init()" />
 		<evaluate expression="personalizeProductAccountController.init()" />
 		<evaluate expression="movementsCriteriaController.init()" />
 		<evaluate expression="movementsCriteriaController.getSelectedProduct()"
