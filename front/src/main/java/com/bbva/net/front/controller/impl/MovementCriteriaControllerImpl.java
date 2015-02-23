@@ -91,6 +91,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		setToText(new String());
 		setSinceDatestr(new String());
 		setToDatestr(new String());
+		setTitleInOrExp(new String());
 		messageBalance = new StringBuilder();
 		sinceDate = new Date();
 		toDate = new Date();
@@ -280,7 +281,6 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	public void setMovementConcept(final ActionEvent event) {
 		LOGGER.info("MovementsAccountController setMovementConcept");
 		getRenderComponents().put(RenderAttributes.MOVEMENTSFILTER.toString(), true);
-
 	}
 
 	@Override
