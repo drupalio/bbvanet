@@ -85,4 +85,6 @@ public interface MovementCriteriaController {
 	 */
 	List valuesLinesGraphic(LineConfigUI valuesLines);
 
+	void clean();
+
 }

@@ -11,6 +11,7 @@ import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
 
 import com.bbva.net.back.facade.MovementsAccountFacade;
@@ -78,12 +79,12 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	@Override
 	public void init() {
 		super.init();
+		clean();
 		LOGGER.info("Initialize MovementsAccountController");
 	}
 
 	@Override
-	public void cleanFilters(ActionEvent event) {
-		LOGGER.info("MovementsAccountController clean Filters");
+	public void clean() {
 		movementCriteria = new MovementCriteriaDto();
 		movementCriteria.setBalanceRange(new BalanceRangeDto());
 		movementCriteria.setDateRange(new DateRangeDto());
@@ -91,18 +92,27 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		setToText(new String());
 		setSinceDatestr(new String());
 		setToDatestr(new String());
+		setTitleInOrExp(new String());
 		messageBalance = new StringBuilder();
-		sinceDate = new Date();
-		toDate = new Date();
+		sinceDate = null;
+		toDate = null;
 		selectDate = new String();
+		dateRange = null;
+		balanceRange = null;
+	}
+
+	@Override
+	public void cleanFilters(ActionEvent event) {
+		LOGGER.info("MovementsAccountController clean Filters");
+		clean();
 	}
 
 	public void criteriaSearch() {
 		LOGGER.info("MovementsAccountController criteriaSearch");
-		if (this.dateRange != null) {
+		if (getRenderComponents().get(RenderAttributes.FILTERDATE.toString())) {
 			setDateRangePc(this.dateRange);
 		}
-		if (this.balanceRange != null) {
+		if (getRenderComponents().get(RenderAttributes.BALANCEFILTER.toString())) {
 			setBalanceRangePc(this.balanceRange);
 		}
 		setProductTypePc(getSelectedProduct().getSubTypeProd());
@@ -112,6 +122,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		search();
 		this.movementsList = getCurrentList();
 		setShowMoreStatus();
+		RequestContext.getCurrentInstance().update("detailAccounts:tableMovements:formMovesDetail:movAccount");
 
 	}
 
@@ -225,7 +236,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 				setShowMoreStatus();
 
 			}
-
+			RequestContext.getCurrentInstance().update(":detailAccounts:tableMovements:formMovesDetail:movAccount");
 		} else if (getRenderComponents().get(RenderAttributes.MOVEMENTSFILTER.toString())) {
 			LOGGER.info("MovementsAccountController searchMovementByMovementFilter");
 			// Get only movements by concept
@@ -236,6 +247,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			getRenderComponents().put(RenderAttributes.MOVEMENTSTABLE.toString(), true);
 
 		}
+		clean();
 
 	}
 
@@ -280,7 +292,6 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	public void setMovementConcept(final ActionEvent event) {
 		LOGGER.info("MovementsAccountController setMovementConcept");
 		getRenderComponents().put(RenderAttributes.MOVEMENTSFILTER.toString(), true);
-
 	}
 
 	@Override
@@ -326,6 +337,12 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		} else {
 			sinceDatestr = getSelectDate();
 		}
+	}
+
+	public void onDateSelect(SelectEvent event) {
+		setSinceDate((Date)event.getObject());
+		setToDate((Date)event.getObject());
+
 	}
 
 	@Override
