@@ -36,7 +36,7 @@ public class MovementsAccountFacadeImpl extends AbstractBbvaFacade implements Mo
 	@Value("${fiql.productMovements.date}")
 	private String DATE;
 
-	@Value("${fiql.productMovements.date}")
+	@Value("${fiql.productMovements.value}")
 	private String VALUE;
 
 	@Value("${fiql.productMovements.customerId}")
@@ -53,8 +53,9 @@ public class MovementsAccountFacadeImpl extends AbstractBbvaFacade implements Mo
 			filter = fiqlService.getFiqlQueryByCustomerIdAndProductType(productType, PRODUCTTYPE);
 		} else
 			filter = dateRange == null ? fiqlService.getFiqlQueryByCustomerIdAndProductType(productType, PRODUCTTYPE)
-					+ fiqlService.getFiqlQueryByBalanceRange(balanceRange, VALUE, VALUE) : fiqlService
+					+ ";" + fiqlService.getFiqlQueryByBalanceRange(balanceRange, VALUE, VALUE) : fiqlService
 					.getFiqlQueryByCustomerIdAndProductType(productType, PRODUCTTYPE)
+					+ ";"
 					+ fiqlService.getFiqlQueryByDateRange(dateRange, DATE, DATE);
 
 		final List<Movement> movementList = this.productsService.listMovements(productId, filter, paginationKey,
