@@ -19,7 +19,7 @@
 	
 	<p:outputPanel id="outputPanel">   
 	<h:form id="customSearch">
-	 	<p:growl id="growl" life="2000" />
+	
 		<bbvaSearch:personalizedSearchTabBody id="perTabBody"
 			title="#{msg['text.title.personalized.search']}">
 			
@@ -30,9 +30,13 @@
 				filterMessage="#{movementsCriteriaController.toDatestr}">
 
 				<bbvaSearch:customSearchFilter id="customDate"
+					showQuota="false"
+					showMovements="true"
 					value="#{movementsCriteriaController.selectDate}"
 					valueDateSince="#{movementsCriteriaController.sinceDate}"
 					valueDateTo="#{movementsCriteriaController.toDate}"
+					disabledButton="#{movementsCriteriaController.renderComponents['BUTTONDATE']}"
+					disabledCalendar="#{movementsCriteriaController.renderComponents['CALENDAR']}"
 					actionListenerDate="#{movementsCriteriaController.setCustomDate}"
 					listenerDate="#{movementsCriteriaController}" />
 			</bbvaSearch:customSearchList>
@@ -83,7 +87,7 @@
 				actionListenerDate="#{checkBookController.setCustomDate}"
 				listenerDate="#{checkBookController}"
 				valueCheck="#{checkBookController.actionState}"
-				valueCheckNumber="#{checkBookController.check.id}"
+				valueCheckNumber="#{checkBookController.checkNumber}"
 				valuecheckState="#{checkBookController.checkState}"
 				valueBookNumber="#{checkBookController.checkBookNumber}"
 				actionListenerCheck="#{checkBookController.rightTitle}" />
