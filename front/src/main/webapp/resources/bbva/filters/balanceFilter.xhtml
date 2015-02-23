@@ -66,9 +66,16 @@
 				id="out" value="#{movementsCriteriaController.messageBalance}"
 				style="color: #777777;" />
 		</small>		
-		<button jsf:id="balanceButton" jsf:update="@form: customSearch"
+		<button jsf:id="balanceButton" 			
 			jsf:actionListener="#{movementsCriteriaController.setBalanceRange}"
-			class="btn small hidden-xs hidden-sm">#{msg['button.confirm']}</button>
+			class="btn small hidden-xs hidden-sm"
+			>#{msg['button.confirm']}
+			<p:ajax 
+			update="
+			:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:balanceList:componentList
+			" />
+			
+			</button>
 
 
 	</div>

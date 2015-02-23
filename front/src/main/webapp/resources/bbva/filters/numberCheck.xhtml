@@ -114,17 +114,17 @@
 			</h:panelGrid>
 		</p:outputPanel>
 
-
-		<p:commandButton id="searchButton"
-			actionListener="#{checkBookController.setNumberCheckOrBook}"
-			update=":#{p:component('formCheckBook')}"
-			disabled="#{checkBookController.renderComponents['BUTTONBOOK']}"
-			styleClass="btn small hidden-xs hidden-sm"
-			value="#{msg['button.confirm']}">
-
-		</p:commandButton>
+		<button jsf:id="searchButton"
+			jsf:disabled="#{checkBookController.renderComponents['BUTTONBOOK']}"
+			class="btn small hidden-xs hidden-sm"
+			jsf:actionListener="#{checkBookController.setNumberCheckOrBook}">
+			#{msg['button.confirm']}
+			<p:ajax 
+			update="
+			:tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:checkContainer:checkList:componentList
+			" />
+			</button>
 
 	</div>
-
 </composite:implementation>
 </html>

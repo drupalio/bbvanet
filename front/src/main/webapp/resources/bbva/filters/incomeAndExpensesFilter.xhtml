@@ -39,9 +39,14 @@
 			</h:panelGrid>
 
 		</div>
-		<button jsf:id="balanceButton" type="submit"
+		<button jsf:id="balanceButton"
 			jsf:actionListener="#{movementsCriteriaController.setIncomeExpensesFilter}"
-			class="btn small hidden-xs hidden-sm">#{msg['button.confirm']}</button>
+			class="btn small hidden-xs hidden-sm">#{msg['button.confirm']}
+			<p:ajax 
+			update="
+			:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:incomeOrExpenseList:componentList		
+			" />
+			</button>
 	</div>
 </composite:implementation>
 </html>
