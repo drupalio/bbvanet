@@ -390,6 +390,49 @@ input.ui-state-hover {
 	width: 116.8%;
 	margin-left: -3% !important;
 	margin-bottom: -3% !important;
+	z-index: -1;
+}
+
+.positionHeadMove {
+	right: 0.1px !important;
+	top: -20.5% !important;
+}
+
+.positionHead {
+	right: 0.1px !important;
+	top: -34% !important;
+}
+
+@media ( max-width : 769px ) {
+	.ui-expanded-row-content>td {
+		display: table !important;
+		margin-top: -3.2% !important;
+	}
+	.position {
+		padding-left: -6% !important;
+	}
+	.align {
+		margin-right: 3% !important;
+		margin-left: 1% !important;
+	}
+}
+
+@media ( max-width : 769px ) {
+	.responseTable {
+		display: table-cell !important;
+	}
+	.tableOri {
+		display: none !important;
+	}
+}
+
+@media ( min-width : 769px ) {
+	.tableOri {
+		display: table-cell !important;
+	}
+	.responseTable {
+		display: none !important;
+	}
 }
 
 /* tipo de letra del detalle*/
@@ -442,6 +485,16 @@ input.ui-state-hover {
 .group {
 	display: inline-block;
 	width: 100%;
+}
+
+@media ( max-width : 768px) {
+	.visible {
+		display: none !important;
+	}
+}
+
+.largeColumn {
+	margin-bottom: -100px !important;
 }
 
 /* Response Menu Operations y condiciones*/

@@ -3,7 +3,6 @@ package com.bbva.net.back.facade.impl;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
 import com.bbva.net.back.core.pattern.facade.AbstractBbvaFacade;
@@ -30,6 +29,7 @@ public class LoanFacadeImpl extends AbstractBbvaFacade implements LoanFacade {
 	@Resource(name = "productService")
 	private ProductService productService;
 
+	@Override
 	public GlobalProductsDto getLoanProducts() {
 		final GlobalProductsDto globalProductDto = this.globalPositionFacade.getGlobalProductsByUser();
 		return globalProductDto;

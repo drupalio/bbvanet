@@ -6,7 +6,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pm="http://primefaces.org/mobile"
-	xmlns:jsf="http://xmlns.jcp.org/jsf">
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:bbvaDetailMotion="http://java.sun.com/jsf/composite/bbva/movementsDetail">
 
 <composite:interface>
 	<composite:attribute name="id" type="String" />
@@ -25,8 +26,13 @@
 					value="#{cc.attrs.listAccounts}" var="moves" selectionMode="single"
 					rendered="#{renderComponents['MOVEMENTSTABLE']}"
 					rowKey="#{moves.movementId}">
-					<p:ajax event="rowSelect"
+
+					<p:ajax event="rowSelect" onsuccess="clickMove()"
 						listener="#{movementsCriteriaController.onMovementSelected}" />
+
+					<p:column width="0% !important;" style="z-index: -1 !important">
+						<p:rowToggler rendered="true" />
+					</p:column>
 
 					<p:column headerText="#{msg['text.detailMove.date']}"
 						styleClass="sorted asc w18"
@@ -90,6 +96,11 @@
 							style="font-size: 15px;color: #333;text-align: right"
 							value="#{moves.totalBalance}" />
 					</p:column>
+
+					<p:rowExpansion styleClass="detail-row position">
+						<bbvaDetailMotion:tableContent
+							controller="movementsCriteriaController" />
+					</p:rowExpansion>
 
 				</p:dataTable>
 

@@ -59,18 +59,20 @@ public class HeaderControllerImpl extends AbstractBbvaController implements Head
 	@Override
 	public CustomerDto getCustomer() {
 
-		final String userName = (getSession().getAttribute("userName") == null) ? StringUtils.EMPTY : getSession()
-				.getAttribute("userName").toString();
-		final String docTypeUser = (getSession().getAttribute("docTypeUser") == null) ? StringUtils.EMPTY
-				: getSession().getAttribute("docTypeUser").toString();
-		final String docIdUser = (getSession().getAttribute("docIdUser") == null) ? StringUtils.EMPTY : getSession()
-				.getAttribute("docIdUser").toString();
+		if (this.cliente == null) {
+			final String userName = (getSession().getAttribute("userName") == null) ? StringUtils.EMPTY : getSession()
+					.getAttribute("userName").toString();
+			final String docTypeUser = (getSession().getAttribute("docTypeUser") == null) ? StringUtils.EMPTY
+					: getSession().getAttribute("docTypeUser").toString();
+			final String docIdUser = (getSession().getAttribute("docIdUser") == null) ? StringUtils.EMPTY
+					: getSession().getAttribute("docIdUser").toString();
 
-		try {
-			return headerFacade.getCustomer(userName, docTypeUser, docIdUser);
-		} catch (final Exception exception) {
+			try {
+				this.cliente = headerFacade.getCustomer(userName, docTypeUser, docIdUser);
+			} catch (final Exception exception) {
+				this.cliente = new CustomerDto();
+			}
 		}
-		return new CustomerDto();
-
+		return this.cliente;
 	}
 }

@@ -34,15 +34,16 @@
 
 				<div class="table-wrapper">
 					<p:dataTable id="detailmovesAC" widgetVar="detailmovesAC"
-						styleClass="detail-table-body sortable"
+						styleClass="detail-table-body sortable tableOri"
 						emptyMessage="#{msg['text.empty.table']}" rowSelectMode="single"
 						value="#{cc.attrs.listAccounts}" var="moves"
 						selectionMode="single" rowKey="#{moves.movementId}">
 
-						<p:ajax event="rowSelect"
+						<p:ajax event="rowSelect" onsuccess="clickMove()"
 							listener="#{cc.attrs.controller.onRowToggle}" />
 
-						<p:column width="3% !important" style="z-index: 2 !important;">
+
+						<p:column width="0% !important;" style="z-index: -1 !important">
 							<p:rowToggler rendered="true" />
 						</p:column>
 
@@ -69,7 +70,28 @@
 								value="#{moves.movementValue}" />
 						</p:column>
 
-						<p:column styleClass="hidden-md hidden-lg smart-view">
+						<p:rowExpansion styleClass="detail-row position">
+							<bbvaDetailMotion:tableContent
+								controller="#{cc.attrs.controller}" />
+						</p:rowExpansion>
+
+					</p:dataTable>
+
+					<p:dataTable id="detailmovesLO" widgetVar="detailmovesLO"
+						styleClass="detail-table-body sortable responseTable"
+						emptyMessage="#{msg['text.empty.table']}" rowSelectMode="single"
+						value="#{cc.attrs.listAccounts}" var="moves"
+						selectionMode="single" rowKey="#{moves.movementId}">
+
+						<p:ajax event="rowSelect" onsuccess="clickMove()"
+							listener="#{cc.attrs.controller.onRowToggle}" />
+
+
+						<p:column width="0% !important;" style="z-index: -1 !important">
+							<p:rowToggler rendered="true" />
+						</p:column>
+
+						<p:column styleClass="smart-view">
 							<div class="left">
 								<h:outputText class="text styleLeft"
 									value="#{moves.movementConcept}" />
@@ -90,6 +112,7 @@
 						</p:rowExpansion>
 
 					</p:dataTable>
+
 				</div>
 
 				<footer class="detail-table-footer">

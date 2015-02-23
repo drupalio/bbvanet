@@ -17,27 +17,30 @@
 
 <composite:implementation>
 
-		<article class="detail-table-group">
+	<article class="detail-table-group">
 
-			<div class="utility-icons">
-				<a href="#"><span class="icon-excel-file"
-					title="Exportar a excel"></span></a> <a href="#"><span
-					class="icon-pdf-file" title="Descargar pdf"></span></a> <a href="#"><span
-					class="icon-send-by-email" title="Enviar"></span></a> <a href="#"><span
-					class="icon-printer" title="Imprimir"></span></a>
-			</div>
+		<div class="utility-icons">
+			<a href="#"><span class="icon-excel-file"
+				title="Exportar a excel"></span></a> <a href="#"><span
+				class="icon-pdf-file" title="Descargar pdf"></span></a> <a href="#"><span
+				class="icon-send-by-email" title="Enviar"></span></a> <a href="#"><span
+				class="icon-printer" title="Imprimir"></span></a>
+		</div>
 
-			<h3>
-				<h:outputLabel id="labelMovements" value="#{msg['text.last.movments']}"   rendered="#{renderComponents['TITLEMOVES']}"/>
-				<h:outputLabel id="labelChecks" value="#{msg['tex.check.status']}"   rendered="#{renderComponents['TITLECHECKS']}"/>
-			</h3>
+		<h3>
+			<h:outputLabel id="labelMovements"
+				value="#{msg['text.last.movments']}"
+				rendered="#{renderComponents['TITLEMOVES']}" />
+			<h:outputLabel id="labelChecks" value="#{msg['tex.check.status']}"
+				rendered="#{renderComponents['TITLECHECKS']}" />
+		</h3>
 
-			<bbvaTablesAcc:accountMovementsTable id="tableMovements"
-				listAccounts="#{cc.attrs.listAccounts}" />
-			<bbvaTablesAcc:checkAccountTable id="checkTable"
-				listChecks="#{cc.attrs.listChecks}" />
+		<bbvaTablesAcc:accountMovementsTable id="tableMovements"
+			listAccounts="#{cc.attrs.listAccounts}" />
+		<bbvaTablesAcc:checkAccountTable id="checkTable"
+			listChecks="#{cc.attrs.listChecks}" />
 
-		</article>	
+	</article>
 
 </composite:implementation>
 </html>
