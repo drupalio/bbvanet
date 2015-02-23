@@ -86,14 +86,12 @@
 						  	font-size: 0.95em;
 						  	color: #0093e2;
 							"
-										value="#{cc.attrs.valuecheckState}"
-										disabled="#{checkBookController.renderComponents['STATUS']}">
+										value = "#{extractController.selectedMonth}">
+										<!-- disabled="#{extractController.enableMonth}"> -->
 										<f:selectItem itemLabel="Mes" />
 										<!-- <f:selectItem itemLabel="#{msg['text.combo.select']}" /> -->
 										<f:selectItems
-											value="#{comboCriteriaController.multiValueList}"
-											var="multiValue" itemValue="#{multiValue.id}"
-											itemLabel="#{msg[multiValue.value]}" />
+											value="#{extractController.monthAvailable}"/>
 									</h:selectOneMenu>
 								</div>
 							</div>
@@ -114,10 +112,8 @@
 				<!-- TEXTO INFERIOR -->
 				<div class="system-message info">
 					<span class="icon"></span>
-					<p>Estás inscrito para recibir vía email el extracto
-						electrónico mensual con el mail "marisa@bbva.com".</p>
-					<p>Si deseas modificar este correo electrónico o dejar de
-						recibir notificaciones periódicas, dirígete al área personal.</p>
+					<p>#{msg['msg.info.extract.part1']}</p>
+					<p>#{msg['msg.info.extract.part2']}</p>
 
 				</div>
 
