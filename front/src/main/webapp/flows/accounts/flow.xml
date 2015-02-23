@@ -9,7 +9,7 @@
 	
 	
 	<on-start>
-		
+		<evaluate expression="globalPositionController.init()" />
 		<evaluate expression="globalPositionController.getCustomerProducts()" result="flowScope.customerProducts" />
 		<evaluate expression="globalPositionController.getCustomerProductsHidden()"
 			result="flowScope.customerProductsHidden" />

@@ -468,3 +468,8 @@ input.ui-state-hover {
 	box-shadow: none;
     cursor: not-allowed;
 }
+#imgLOAD {
+  position: absolute;
+  top: calc(50% - 99px);
+  left: calc(50% - 66px);
+}
