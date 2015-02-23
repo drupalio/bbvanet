@@ -25,7 +25,7 @@
 
 					<a href="#"> <span class="close-text"
 						style="color: #003F8D !important;">#{msg['text.close']}</span>
-						<button class="close-icon" type="button"></button>
+						<button class="close-icon" type="button" onclick="clickMove()" />
 					</a>
 				</div>
 			</div>
@@ -33,7 +33,7 @@
 		<table class="detail"
 			style="border-bottom: 1px solid #C4D7E5 !important;">
 			<tbody>
-				<tr class="textSize">
+				<tr class="textSize" onclick="clickMove()">
 					<td class="brand"><span>#{cc.attrs.controller.moveDate}</span></td>
 					<td class="text" style="float: left;">#{cc.attrs.controller.quotaMoveDetailDto.concept}</td>
 					<td class="currency">#{cc.attrs.controller.quotaMoveDetailDto.value}</td>

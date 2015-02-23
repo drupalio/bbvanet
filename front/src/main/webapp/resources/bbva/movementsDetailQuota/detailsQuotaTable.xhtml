@@ -39,11 +39,11 @@
 						value="#{cc.attrs.listAccounts}" var="moves"
 						selectionMode="single" rowKey="#{moves.movementId}">
 
-						<p:ajax event="rowSelect"
+						<p:ajax event="rowSelect" onsuccess="clickMove()"
 							listener="#{cc.attrs.controller.onRowToggle}" />
 
 
-						<p:column width="3% !important" style="z-index: 2 !important;">
+						<p:column width="0% !important;" style="z-index: -1 !important">
 							<p:rowToggler rendered="true" />
 						</p:column>
 
@@ -70,7 +70,7 @@
 								value="#{moves.movementValue}" />
 						</p:column>
 
-						<p:column styleClass="hidden-md hidden-lg smart-view">
+						<p:column styleClass="hidden-md hidden-lg visible">
 							<div class="left">
 								<h:outputText class="text styleLeft"
 									value="#{moves.movementConcept}" />

@@ -390,6 +390,7 @@ input.ui-state-hover {
 	width: 116.8%;
 	margin-left: -3% !important;
 	margin-bottom: -3% !important;
+	z-index: -1
 }
 
 /* tipo de letra del detalle*/
@@ -442,6 +443,16 @@ input.ui-state-hover {
 .group {
 	display: inline-block;
 	width: 100%;
+}
+
+@media ( max-width : 768px) {
+	.visible {
+		display: none !important;
+	}
+}
+
+.largeColumn {
+	margin-bottom: -100px !important;
 }
 
 /* Response Menu Operations y condiciones*/

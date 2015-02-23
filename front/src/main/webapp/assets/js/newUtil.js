@@ -39,25 +39,31 @@ function checkFilled(btnW, inputId) {
 	inputId.className = "col-xs-9 col-md-8 input-control pass-valid";
 }
 
-$(document).ready(function() {
-	$('.ui-datatable-data .ui-widget-content').click(function() {
+// Para abrir y cerrar los detalles de movimientos.
+function clickMove() {
+	$(document).ready(function() {
+		var index;
+		var next;
+		var same;
+		$('.ui-datatable-data').children().each(function() {
+			var selected = $(this).attr('aria-selected');
+			if (selected === 'true') {
+				index = $(this).attr('data-ri');
+				same = $('.ui-expanded-row').eq(index).length;
+				next = $(this).next('.ui-expanded-row-content').length;
+				return false;
+			}
+		});
 
-		var selected = $(this).attr('data-ri');
-
-		var i = $('.ui-row-toggler').length;
+		var i = $('.ui-row-toggler.ui-icon-circle-triangle-s').length;
 		if (i == 1) {
-			return;
-		} else {
-			dat($(select));
+			$('.ui-expanded-row').find('.ui-row-toggler').click();
 		}
-
+		if (same == 0 && next == 0) {
+			$('.ui-datatable-data').find('.ui-row-toggler').eq(index).click();
+		}
 	});
-});
-
-var dat = function(selected) {
-	$('.ui-datatable-data .ui-state-highlight').find('.ui-row-toggler').eq(
-			selected.selector).click()
-};
+}
 
 // Cerrar de los tab operation Quota y Movements
 $(document).ready(function() {
