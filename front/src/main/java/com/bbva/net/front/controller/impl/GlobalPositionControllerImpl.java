@@ -189,6 +189,9 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 			// Calculate totals
 			this.totalsProducts = this.globalPositionFacade.getTotalsByProduct(globalProductsDTO);
 
+			// Obtiene la lista de resumen de movimientos del serivico REST
+			this.globalResumeMovementsDTO = this.movementsResumeFacade.getMovementsResumeByCustomer(new DateRangeDto());
+
 			LOGGER.info("Calculando Gráfica Tu Situación ................");
 			// Calculate situation graphics panels
 			this.situationGraphicPieUI = graphicPieDelegate.getSituationGlobalProducts(this.globalProductsDTO);

@@ -106,9 +106,9 @@
 					value="#{cc.attrs.valueBookNumber}"
 					disabled="#{checkBookController.renderComponents['NUMBERBOOK']}">
 					<f:selectItem itemLabel="#{msg['text.combo.select']}" />
-					<f:selectItem itemLabel="1111-2222" itemValue="1111-2222" />
-					<f:selectItem itemLabel="1111-2222-3333"
-						itemValue="1111-2222-3333" />
+					<f:selectItems value="#{checkBookController.checkBooks}"
+						var="multiValue" itemValue="#{multiValue.id}"
+						itemLabel="#{msg[multiValue.value]}" />
 				</h:selectOneMenu>
 
 			</h:panelGrid>

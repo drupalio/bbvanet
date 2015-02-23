@@ -114,9 +114,11 @@
 							<label for="calendarSinceWV">Desde:</label>
 						</div>
 						<div class="col-xs-10 col-md-12 input-control">
-							<p:calendar widgetVar="calendarSinceWV" id="calendarSince"
+							<p:calendar widgetVar="calendarSinceWV" id="calendarSince" 
 								value="#{cc.attrs.valueDateSince}"
-								disabled="#{cc.attrs.disabledCalendar}" />
+								disabled="#{cc.attrs.disabledCalendar}" >
+								 
+							</p:calendar>	
 
 						</div>
 					</div>
@@ -129,7 +131,9 @@
 						<div class="col-xs-10 col-md-12 input-control">
 							<p:calendar widgetVar="calendarToSinceWV" id="calendarTo"
 								value="#{cc.attrs.valueDateTo}"
-								disabled="#{cc.attrs.disabledCalendar}" />
+								disabled="#{cc.attrs.disabledCalendar}" >
+								
+								</p:calendar>
 						</div>
 					</div>
 				</div>
