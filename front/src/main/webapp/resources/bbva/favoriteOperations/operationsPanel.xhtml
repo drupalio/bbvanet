@@ -19,8 +19,8 @@
 
 	<section class="links dated favoritas editable" id="preferredOperations">
 		<bbvaOperationFav:operationsHeader title="#{msg['text.favoriteOperations']}" msgInfo="#{msg['msg.info.favoriteOperations']}"/>
-	 	<bbvaOperationFav:operationsBody list="#{favoriteOperationsController.getListFavoriteOperations()}" sclass="operation"/>
-	 	<bbvaOperationFav:operationsBody list="#{favoriteOperationsController.getListFavoriteOperationsHidden()}" sclass="operation hiddenElement"/>
+	 	<bbvaOperationFav:operationsBody list="#{favoriteOperationsController.listFavoriteOperations}" sclass="operation"/>
+	 	<bbvaOperationFav:operationsBody list="#{favoriteOperationsController.listFavoriteOperationsHidden}" sclass="operation hiddenElement"/>
 	    <footer>
 	        <button type="button" class="btn small seeMore">#{msg['button.see.More']}</button>
 	    </footer>

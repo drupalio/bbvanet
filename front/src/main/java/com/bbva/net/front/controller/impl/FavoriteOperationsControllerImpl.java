@@ -4,9 +4,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
-import org.primefaces.event.SelectEvent;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -20,7 +20,7 @@ import com.bbva.net.front.helper.MessagesHelper;
  * @author Entelgy
  */
 @Controller(value = "favoriteOperationsController")
-@Scope(value = "globalSession")
+@Scope(value = "session")
 public class FavoriteOperationsControllerImpl extends AbstractBbvaController implements FavoriteOperationsController {
 
 	/**
@@ -33,15 +33,10 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
 	@Resource(name = "favoriteOperationsFacade")
 	private transient FavoriteOperationsFacade favoriteOperationsFacade;
 
+	@PostConstruct
 	public void init() {
 		favoriteOperations = favoriteOperationsFacade.getListFavoriteOperations();
 		getNames();
-	}
-
-	@Override
-	public void onProductSelected(SelectEvent selectEvent) {
-		super.onProductSelected(selectEvent);
-		this.sendAction("accountSelected");
 	}
 
 	@Override

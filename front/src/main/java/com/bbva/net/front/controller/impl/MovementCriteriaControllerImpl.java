@@ -150,11 +150,14 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		LOGGER.info("MovementsAccountController getAllMovements");
 		this.movementsList = new ArrayList<MovementDto>();
 		dateRange = calculateDate(MessagesHelper.INSTANCE.getString("select.radio.last.month"));
-
 		// TODO oroductId
 		LOGGER.info("MovementsAccountController getAllMovements productId:  " + getSelectedProduct().getProductId());
-		this.movementsList = this.movementsFacade.listMovements(getSelectedProduct().getProductId(),
-				getSelectedProduct().getSubTypeProd(), dateRange, null, 1, 10);
+
+		try {
+			this.movementsList = this.movementsFacade.listMovements(getSelectedProduct().getProductId(),
+					getSelectedProduct().getSubTypeProd(), dateRange, null, 1, 10);
+		} catch (final Exception ex) {
+		}
 		this.graphicLineMovements = graphicLineDelegate.getMovementAccount(this.movementsList);
 		this.valuesLinesGraphic = valuesLinesGraphic(graphicLineMovements);
 
@@ -589,6 +592,10 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		BigDecimal mayor = new BigDecimal(0);
 		BigDecimal total = new BigDecimal(0);
 		List<BigDecimal> values = new ArrayList<BigDecimal>();
+
+		if (CollectionUtils.isEmpty(valuesLines.getLineItemUIList())) {
+			return values;
+		}
 		menor = valuesLines.getLineItemUIList().get(0).getValue().getAmount();
 		for (int i = 0; i < valuesLines.getLineItemUIList().size(); i++) {
 			if (valuesLines.getLineItemUIList().get(i).getValue().getAmount().compareTo(menor) == -1)

@@ -4,6 +4,7 @@
 package com.bbva.net.front.controller.impl;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -149,8 +150,12 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 	public List<MovementDto> getAllQuotamovenDtos() {
 
 		DateRangeDto dateRanget = calculateQuotaFilters(MessagesHelper.INSTANCE.getString("select.radio.last.month"));
-		this.quotamovenDtos = this.quotaDetailFacade.listRotaryQuotaMovements(this.productDto.getProductId(),
-				dateRanget, 1, 10);
+		try {
+			this.quotamovenDtos = this.quotaDetailFacade.listRotaryQuotaMovements(this.productDto.getProductId(),
+					dateRanget, 1, 10);
+		} catch (final Exception e) {
+			return new ArrayList<MovementDto>();
+		}
 		LOGGER.info("Datos de los movimientos llenos ");
 		return quotamovenDtos;
 	}
