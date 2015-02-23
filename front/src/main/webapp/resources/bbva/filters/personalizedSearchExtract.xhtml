@@ -37,7 +37,7 @@
 							<div class="col-md-3">
 								<div class="btn-group bootstrap-select">
 									<!-- COMBO AÑOS -->
-									<h:selectOneMenu id="stateYear"
+									<h:selectOneMenu id="stateYear" value = "#{extractController.selectedYear}"
 										style=" 
 						    width: 41px;
 						    height: 38px;
@@ -55,14 +55,12 @@
 						  	font-size: 0.95em;
 						  	color: #0093e2;
 							"
-										value="#{cc.attrs.valuecheckState}"
-										disabled="#{checkBookController.renderComponents['STATUS']}">
+										
+										disabled="">
 										<f:selectItem itemLabel="Año" />
 										<!-- <f:selectItem itemLabel="#{msg['text.combo.select']}" /> -->
 										<f:selectItems
-											value="#{comboCriteriaController.multiValueList}"
-											var="multiValue" itemValue="#{multiValue.id}"
-											itemLabel="#{msg[multiValue.value]}" />
+											value="#{extractController.yearAvailable}" />
 									</h:selectOneMenu>
 								</div>
 							</div>

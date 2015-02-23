@@ -28,7 +28,6 @@ public class MonthlyBalanceMapperImpl extends ConfigurableMapper implements Mont
 
 	@Override
 	public List<MonthBalanceDto> map(final List<MonthlyBalances> monthlyBalance) {
-		// TODO Auto-generated method stub
 		return mapAsList(monthlyBalance, MonthBalanceDto.class);
 	}
 

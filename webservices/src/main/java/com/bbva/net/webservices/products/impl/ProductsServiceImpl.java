@@ -19,6 +19,9 @@ public class ProductsServiceImpl extends AbstractBbvaRestService implements Prod
 	@Value("${fiql.filter.parameter}")
 	private String FILTER;
 
+	@Value("${rest.extract.url}")
+	private String EXTRACT;
+
 	@Override
 	public Conditions getConditions(String productId) {
 		final Conditions conditions = getJsonWebClient(URL_BASE_PRODUCTS + productId + URL_PRODUCTS).get(
@@ -26,10 +29,14 @@ public class ProductsServiceImpl extends AbstractBbvaRestService implements Prod
 		return conditions;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public List<Extracto> listExtracts(String productId, String $filter) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Extracto> listExtracts(String productId, String filter) {
+
+		WebClient wc = getJsonWebClient(URL_BASE_PRODUCTS + productId + EXTRACT);
+		if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
+
+		return (List<Extracto>)wc.getCollection(Extracto.class);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -52,6 +59,6 @@ public class ProductsServiceImpl extends AbstractBbvaRestService implements Prod
 		WebClient wc = getJsonWebClient(URL_BASE_PRODUCTS + productId + URL_MOVEMENTS + "/" + movementId);
 		if (!StringUtils.isEmpty($filter)) wc.query(FILTER, $filter);
 
-		return (Movement)wc.get(Movement.class);
+		return wc.get(Movement.class);
 	}
 }
