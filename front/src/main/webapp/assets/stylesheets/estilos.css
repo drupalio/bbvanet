@@ -390,6 +390,45 @@ input.ui-state-hover {
 	width: 116.8%;
 	margin-left: -3% !important;
 	margin-bottom: -3% !important;
+	z-index: -1;
+}
+
+.positionHeadMove {
+	right: 0.1px !important;
+	top: -20.5% !important;
+}
+
+.positionHead {
+	right: 0.1px !important;
+	top: -34% !important;
+}
+
+@media ( max-width : 769px ) {
+	.ui-expanded-row-content>td {
+		display: table !important;
+		margin-top: -3.2% !important;
+	}
+	.position {
+		padding-left: -6% !important;
+	}
+	.align {
+		margin-right: 3% !important;
+		margin-left: 1% !important;
+	}
+}
+
+@media ( max-width : 769px ) {
+	.responseTable {
+		display: table-cell !important;
+	}
+}
+
+@media ( min-width : 769px ) {
+	.responseTable {
+		display: none !important;
+		z-index: -1 !important;
+		width: 0% !important;
+	}
 }
 
 /* tipo de letra del detalle*/
@@ -444,6 +483,16 @@ input.ui-state-hover {
 	width: 100%;
 }
 
+@media ( max-width : 768px) {
+	.visible {
+		display: none !important;
+	}
+}
+
+.largeColumn {
+	margin-bottom: -100px !important;
+}
+
 /* Response Menu Operations y condiciones*/
 @media ( max-width : 769px) {
 	/* margin cabecera de movimientos y condiciones*/
@@ -462,9 +511,10 @@ input.ui-state-hover {
 		margin-left: 3% !important;
 	}
 }
-.buttonDisabled{
+
+.buttonDisabled {
 	opacity: 0.65;
 	pointer-events: none;
 	box-shadow: none;
-    cursor: not-allowed;
+	cursor: not-allowed;
 }
