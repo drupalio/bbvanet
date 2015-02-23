@@ -23,7 +23,7 @@
 		<bbvaSearch:personalizedSearchTabBody id="perTabBody"
 			title="#{msg['text.title.personalized.search']}">
 			
-			<bbvaSearch:customSearchList id="hola" 
+			<bbvaSearch:customSearchList id="customList" 
 				classList="date-filter customSearch" classSpan="arrow-left-smaller"
 				classSpanFilter="filter" title="#{msg['text.date']}"
 				filterTitle="#{movementsCriteriaController.sinceDatestr}"
@@ -41,7 +41,7 @@
 					listenerDate="#{movementsCriteriaController}" />
 			</bbvaSearch:customSearchList>
 
-			<bbvaSearch:customSearchList classList="balance-filter"
+			<bbvaSearch:customSearchList id="balanceList" classList="balance-filter"
 				classSpan="arrow-left-smaller" classSpanFilter="filter"
 				title="#{msg['text.balance']}"
 				filterTitle="#{movementsCriteriaController.sinceText}"
@@ -53,7 +53,7 @@
 					valueTo="#{movementsCriteriaController.movementCriteria.balanceRange.balanceTo}" />
 			</bbvaSearch:customSearchList>
 
-			<bbvaSearch:customSearchList classList="incomeAndExpenses-filter"
+			<bbvaSearch:customSearchList id="incomeOrExpenseList" classList="incomeAndExpenses-filter"
 				classSpan="arrow-left-smaller" classSpanFilter="filter"
 				title="#{msg['text.entry.expediture']}"
 				filterMessage="#{movementsCriteriaController.titleInOrExp}">
@@ -61,7 +61,7 @@
 					value="#{movementsCriteriaController.movementCriteria.incomesOrExpenses}" />
 			</bbvaSearch:customSearchList>
 
-			<bbvaSearch:customSearchList classList="movements-filter"
+			<bbvaSearch:customSearchList id="movementList" classList="movements-filter"
 				classSpan="arrow-left-smaller" classSpanFilter="filter"
 				title="#{msg['text.movement']}">
 				<bbvaSearch:movementsFilter />
@@ -87,7 +87,7 @@
 				actionListenerDate="#{checkBookController.setCustomDate}"
 				listenerDate="#{checkBookController}"
 				valueCheck="#{checkBookController.actionState}"
-				valueCheckNumber="#{checkBookController.check.id}"
+				valueCheckNumber="#{checkBookController.checkNumber}"
 				valuecheckState="#{checkBookController.checkState}"
 				valueBookNumber="#{checkBookController.checkBookNumber}"
 				actionListenerCheck="#{checkBookController.rightTitle}" />

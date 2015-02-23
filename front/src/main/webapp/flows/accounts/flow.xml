@@ -7,8 +7,9 @@
 	<var name="accountsController" class="com.bbva.net.front.controller.impl.AccountsControllerImpl"/>
 	<var name="globalPositionController" class="com.bbva.net.front.controller.impl.GlobalPositionControllerImpl"/>
 	
+	
 	<on-start>
-		<evaluate expression="globalPositionController.init()"/>
+		
 		<evaluate expression="globalPositionController.getCustomerProducts()" result="flowScope.customerProducts" />
 		<evaluate expression="globalPositionController.getCustomerProductsHidden()"
 			result="flowScope.customerProductsHidden" />

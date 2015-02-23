@@ -56,4 +56,20 @@ public class MonthBalanceFacadeImpl extends AbstractBbvaFacade implements MonthB
 		return globalMonthlyBalance;
 	}
 
+	public void setAccountsService(AccountsService accountsService) {
+		this.accountsService = accountsService;
+	}
+
+	public void setFiqlService(FiqlService fiqlService) {
+		this.fiqlService = fiqlService;
+	}
+
+	public void setDateFilterService(DateFilterService dateFilterService) {
+		this.dateFilterService = dateFilterService;
+	}
+
+	public void setMonthlyBalanceMapper(MonthlyBalanceMapper monthlyBalanceMapper) {
+		this.monthlyBalanceMapper = monthlyBalanceMapper;
+	}
+
 }

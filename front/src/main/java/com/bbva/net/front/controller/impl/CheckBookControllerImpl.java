@@ -51,8 +51,8 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 
 	private Date sinceDate, toDate;
 
-	private String actionState, checkState, checkBookNumber, sinceDatestr, toDatestr, leftTitle, rightTitle,
-			titleState;
+	private String actionState, checkState, checkNumber, checkBookNumber, sinceDatestr, toDatestr, leftTitle,
+			rightTitle, titleState;
 
 	private CheckbookDto checkBook = new CheckbookDto();
 
@@ -239,7 +239,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 
 	@Override
 	public void setNumberCheckOrBook(final ActionEvent event) {
-		System.out.println("setNumberCheckOrBook");
+		LOGGER.info(" CheckBookControllerImpl setNumberCheckOrBook ");
 
 		if (getRenderComponents().get(RenderAttributes.FILTERNUMBERCHECK.toString())) {
 			leftTitle = " Talonario: " + getCheckBookNumber();
@@ -250,7 +250,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			leftTitle = " Estado " + titleState;
 
 		} else {
-			leftTitle = " Nº Cheque " + check.getId();
+			leftTitle = " Nº Cheque " + getCheckNumber();
 		}
 
 	}
@@ -492,6 +492,20 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	 */
 	public void setRightTitle(String rightTitle) {
 		this.rightTitle = rightTitle;
+	}
+
+	/**
+	 * @return the checkNumber
+	 */
+	public String getCheckNumber() {
+		return checkNumber;
+	}
+
+	/**
+	 * @param checkNumber the checkNumber to set
+	 */
+	public void setCheckNumber(String checkNumber) {
+		this.checkNumber = checkNumber;
 	}
 
 }
