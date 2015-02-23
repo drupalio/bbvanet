@@ -31,21 +31,17 @@
 		<div class="tab-group savingsAccount">
 			<bbvaHeader:moveDetailContainer>
 				<bbvaHeader:moveContainerHeader>
-					<bbvaHeader:moveDetailHeaderLeft alias="#{movementsCriteriaController.getSelectedProduct().getAlias()}"
-						numCuenta="#{movementsCriteriaController.getSelectedProduct().getProductNumber()}"
-						tipoPrestamo="#{movementsCriteriaController.getSelectedProduct().getProductName()}" />
+					<bbvaHeader:moveDetailHeaderLeft alias="#{product.alias}"
+						number="#{product.productId}" type=" #{product.productName}" />
 					<bbvaGraphic:MovementsGraphic
 						lineConfigUI="#{movementsCriteriaController.graphicLineMovements}"
 						values="#{movementsCriteriaController.valuesLinesGraphic}" />
-					<bbvaHeader:moveDetailHeaderRight
-						textUp="#{msg['text.available']}"
-						valueUp="#{movementsCriteriaController.getSelectedProduct().getTotalCash()}"
+					<bbvaHeader:moveDetailHeaderRight textUp="#{msg['text.available']}"
+						valueUp="#{product.totalCash}"
 						textDown="#{msg['text.tradeBalance']}"
-						valueDown="#{movementsCriteriaController.getSelectedProduct().getCashAvailable()}" />
+						valueDown="#{product.cashAvailable}" />
 				</bbvaHeader:moveContainerHeader>
 			</bbvaHeader:moveDetailContainer>
-
-			<bbvaHeader:accountsDetailHeaderContent />
 
 			<bbvaDetAcc:tabMenu id="tabMenu">
 
