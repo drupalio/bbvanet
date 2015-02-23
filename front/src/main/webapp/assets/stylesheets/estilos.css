@@ -462,3 +462,9 @@ input.ui-state-hover {
 		margin-left: 3% !important;
 	}
 }
+.buttonDisabled{
+	opacity: 0.65;
+	pointer-events: none;
+	box-shadow: none;
+    cursor: not-allowed;
+}

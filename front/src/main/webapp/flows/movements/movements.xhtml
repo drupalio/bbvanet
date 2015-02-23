@@ -32,8 +32,8 @@
 			<bbvaHeader:moveDetailContainer>
 				<bbvaHeader:moveContainerHeader>
 					<bbvaHeader:moveDetailHeaderLeft alias="#{movementsCriteriaController.getSelectedProduct().getAlias()}"
-						numCuenta="#{movementsCriteriaController.getSelectedProduct().getProductNumber()}"
-						tipoPrestamo="#{movementsCriteriaController.getSelectedProduct().getProductName()}" />
+						number="#{movementsCriteriaController.getSelectedProduct().getProductNumber()}"
+						type="#{movementsCriteriaController.getSelectedProduct().getProductName()}" />
 					<bbvaGraphic:MovementsGraphic
 						lineConfigUI="#{movementsCriteriaController.graphicLineMovements}"
 						values="#{movementsCriteriaController.valuesLinesGraphic}" />
@@ -45,7 +45,6 @@
 				</bbvaHeader:moveContainerHeader>
 			</bbvaHeader:moveDetailContainer>
 
-			<bbvaHeader:accountsDetailHeaderContent />
 
 			<bbvaDetAcc:tabMenu id="tabMenu">
 
@@ -71,6 +70,7 @@
 
 
 			<div class="table-tabs">
+
 				<bbvaDetailMotion:detailMovesTable id="detailAccounts"
 					listAccounts="#{movements}"
 					listChecks="#{checkBookController.checkList}" />
