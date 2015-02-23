@@ -12,9 +12,8 @@
 </composite:interface>
 
 <composite:implementation>
-	<header class="table-detail-header ">
-		<div class="table-tab hidden-xs hidden-sm"
-			style="right: 0.1px !important; top: -34% !important;">
+	<header class="table-detail-header">
+		<div class="table-tab positionHead hidden-xs hidden-sm">
 			<div class="table-detail-border"
 				style="padding-bottom: 2% !important;">
 				<a href="#"> <span title="Descargar" class="icon-folder"></span>
@@ -33,16 +32,17 @@
 		<table class="detail"
 			style="border-bottom: 1px solid #C4D7E5 !important;">
 			<tbody>
-				<tr class="textSize" onclick="clickMove()">
+				<tr class="textSize align" onclick="clickMove()">
 					<td class="brand"><span>#{cc.attrs.controller.moveDate}</span></td>
 					<td class="text" style="float: left;">#{cc.attrs.controller.quotaMoveDetailDto.concept}</td>
 					<td class="currency">#{cc.attrs.controller.quotaMoveDetailDto.value}</td>
 					<td class="smart-view" colspan="3">
-						<div class="left textSize">
+						<div class="left textSize" style="width: 48% !important;">
 							#{cc.attrs.controller.quotaMoveDetailDto.operationDate} <span
 								class="brand">06/06/2014</span>
 						</div>
-						<div class="right textSize">
+						<div class="right textSize"
+							style="width: 48% !important; margin-right: 3% !important;">
 							#{cc.attrs.controller.quotaMoveDetailDto.value} <span>#{cc.attrs.controller.quotaMoveDetailDto.valueslope}</span>
 						</div>
 					</td>

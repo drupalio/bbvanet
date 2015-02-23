@@ -15,7 +15,7 @@
 
 <composite:implementation>
 	<h:form id="formMovesDetail">
-<p:outputPanel id="movAccount"></p:outputPanel>
+		<p:outputPanel id="movAccount"></p:outputPanel>
 
 		<div class="table-wrapper">
 			<!-- Tabla Movimiento -->
@@ -25,7 +25,8 @@
 				value="#{cc.attrs.listAccounts}" var="moves" selectionMode="single"
 				rendered="#{renderComponents['MOVEMENTSTABLE']}"
 				rowKey="#{moves.movementId}">
-				<p:ajax event="rowSelect"
+
+				<p:ajax event="rowSelect" onsuccess="clickMove()"
 					listener="#{movementsCriteriaController.onMovementSelected}" />
 
 				<p:column headerText="#{msg['text.detailMove.date']}"
@@ -99,7 +100,8 @@
 		<footer class="detail-table-footer">
 
 			<button id="moreMovs" class="btn btn-more-results"
-				jsf:update=":detailAccounts:tableMovements:formMovesDetail:detalMov" value="Más Resultados"
+				jsf:update=":detailAccounts:tableMovements:formMovesDetail:detalMov"
+				value="Más Resultados"
 				jsf:rendered="#{renderComponents['FOOTERTABLEMOVEMENT']}"
 				jsf:actionListener="#{movementsCriteriaController.nextPage}">
 				<span>#{msg['text.detailMove.footer']}</span>
