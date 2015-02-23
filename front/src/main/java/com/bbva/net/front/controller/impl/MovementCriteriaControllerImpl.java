@@ -48,7 +48,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 	private StringBuilder messageBalance;
 
-	private String sinceText, toText, selectDate, sinceDatestr, toDatestr, titleInOrExp;
+	private String sinceText, toText, selectDate = "3", sinceDatestr, toDatestr, titleInOrExp;
 
 	private Date sinceDate, toDate;
 
