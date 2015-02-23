@@ -117,6 +117,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	}
 
 	public void nextPage(ActionEvent event) {
+		LOGGER.info("MovementsAccountController nextPage");
 		getRenderComponents().put(RenderAttributes.TITLEMOVES.name(), true);
 		getRenderComponents().put(RenderAttributes.MOVEMENTSTABLE.toString(), true);
 		setFalseCheckComponents();
@@ -155,6 +156,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		LOGGER.info("MovementsAccountController getAllMovements productId:  " + getSelectedProduct().getProductId());
 
 		try {
+			LOGGER.info("MovementsAccountController Invoking MovementsFacade...");
 			this.movementsList = this.movementsFacade.listMovements(getSelectedProduct().getProductId(),
 					getSelectedProduct().getSubTypeProd(), dateRange, null, 1, 10);
 		} catch (final Exception ex) {
