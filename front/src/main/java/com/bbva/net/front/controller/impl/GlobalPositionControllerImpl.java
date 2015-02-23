@@ -19,6 +19,7 @@ import com.bbva.net.back.model.commons.DateRangeDto;
 import com.bbva.net.back.model.globalposition.BalanceDto;
 import com.bbva.net.back.model.globalposition.GlobalProductsDto;
 import com.bbva.net.back.model.movements.GlobalResumeMovementsDto;
+import com.bbva.net.back.service.DateFilterService;
 import com.bbva.net.back.service.impl.DateFilterServiceImpl;
 import com.bbva.net.front.controller.GlobalPositionController;
 import com.bbva.net.front.core.AbstractBbvaController;
@@ -165,6 +166,9 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	 */
 	private String cardSelected = StringUtils.EMPTY;
 
+	@Resource(name = "dateFilterService")
+	private transient DateFilterService dateFilterService;
+
 	/**
 	 * @author Entelgy
 	 */
@@ -183,8 +187,10 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		// Get GlobalProductsDTO by currentUser (visibles and hidden)
 		this.globalProductsDTO = this.globalPositionFacade.getGlobalProductsByUser();
 
+		EnumPeriodType periodType = EnumPeriodType.valueOf(EnumPeriodType.LAST_SIX_MONTH.getPeriodId());
+		DateRangeDto dateRange = dateFilterService.getPeriodFilter(periodType);
 		// Obtiene la lista de resumen de movimientos del serivico REST
-		this.globalResumeMovementsDTO = this.movementsResumeFacade.getMovementsResumeByCustomer(null);
+		this.globalResumeMovementsDTO = this.movementsResumeFacade.getMovementsResumeByCustomer(dateRange);
 
 		// Obtiene la lista de datos para pintar la grafica Deposito electrónico
 		this.globalMonthlyBalance = this.accountMonthBalanceFacade.getAccountMonthlyBalance(globalProductsDTO

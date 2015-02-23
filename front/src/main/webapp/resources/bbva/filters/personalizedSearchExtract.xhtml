@@ -38,29 +38,15 @@
 								<div class="btn-group bootstrap-select">
 									<!-- COMBO AÑOS -->
 									<h:selectOneMenu id="stateYear" value = "#{extractController.selectedYear}"
-										style=" 
-						    width: 41px;
-						    height: 38px;
-						    background-position: 13px 12px;					
-							background: white;
-						  	background: -moz-linear-gradient(top, #ffffff 40%, #e1e1e1 200%);
-						  	background: -o-linear-gradient(top, #ffffff 40%, #e1e1e1 200%);
-						  	background: -webkit-linear-gradient(top, #ffffff 40%, #e1e1e1 200%);
-						  	background: linear-gradient(to bottom, #ffffff 40%, #e1e1e1 200%);
-						  	border-color: #d5e2ee;
-						  	width: 100%;
-						  	padding: 6.5px;
-						  	padding-left: 6px;
-						  	padding-right: 32px;
-						  	font-size: 0.95em;
-						  	color: #0093e2;
-							"
-										
+										style=""
 										disabled="">
 										<f:selectItem itemLabel="Año" />
 										<!-- <f:selectItem itemLabel="#{msg['text.combo.select']}" /> -->
 										<f:selectItems
 											value="#{extractController.yearAvailable}" />
+											<p:ajax process="@this"
+											listener="#{extractController.actionState}"
+											update="stateMonth" />
 									</h:selectOneMenu>
 								</div>
 							</div>
@@ -69,23 +55,7 @@
 							<div class="col-md-3">
 								<div class="btn-group bootstrap-select">
 									<h:selectOneMenu id="stateMonth"
-										style=" 
-						    width: 41px;
-						    height: 38px;
-						    background-position: 13px 12px;					
-							background: white;
-						  	background: -moz-linear-gradient(top, #ffffff 40%, #e1e1e1 200%);
-						  	background: -o-linear-gradient(top, #ffffff 40%, #e1e1e1 200%);
-						  	background: -webkit-linear-gradient(top, #ffffff 40%, #e1e1e1 200%);
-						  	background: linear-gradient(to bottom, #ffffff 40%, #e1e1e1 200%);
-						  	border-color: #d5e2ee;
-						  	width: 100%;
-						  	padding: 6.5px;
-						  	padding-left: 6px;
-						  	padding-right: 32px;
-						  	font-size: 0.95em;
-						  	color: #0093e2;
-							"
+										styleClass="btn-group bootstrap-select"
 										value = "#{extractController.selectedMonth}">
 										<!-- disabled="#{extractController.enableMonth}"> -->
 										<f:selectItem itemLabel="Mes" />
