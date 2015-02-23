@@ -7,7 +7,7 @@ public interface FiqlService {
 
 	String getFiqlEqual(String parameter, String value);
 
-	String getCustomerFiql(String user);
+	String getExecutiveFiql();
 
 	String getFiqlQueryByDateRange(DateRangeDto dateRange, String startProperty, String endProperty);
 
@@ -31,20 +31,30 @@ public interface FiqlService {
 	 * @return
 	 */
 	String getFiqlQueryMonthlyByDateRange(final DateRangeDto dateRange, String startProperty, String endProperty);
+
 	/***
 	 * Method to create a filter by balance
+	 * 
 	 * @param balanceRange
 	 * @param startProperty
 	 * @param endProperty
 	 * @return
 	 */
 	String getFiqlQueryByBalanceRange(BalanceRangeDto balanceRange, String startProperty, String endProperty);
+
 	/***
-	 * 
 	 * @param productType
 	 * @param startProperty
 	 * @return
 	 */
 	String getFiqlQueryByCustomerIdAndProductType(String productType, String startProperty);
+
+	/**
+	 * @param userName
+	 * @param docTypeUser
+	 * @param docIdUser
+	 * @return
+	 */
+	String getFiqlQueryCustomer(String userName, String docTypeUser, String docIdUser);
 
 }

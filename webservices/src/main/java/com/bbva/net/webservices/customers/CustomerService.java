@@ -46,6 +46,6 @@ public interface CustomerService {
 	@GET
 	@Produces("application/json")
 	@Path("/getCustomer")
-	Customer getCustomer();
+	Customer getCustomer(@QueryParam("$filter") String $filter);
 
 }
