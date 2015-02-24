@@ -13,6 +13,7 @@ public class RenderViewMovementsUI implements Serializable {
 	private Map<String, Boolean> renderComponents = new HashMap<String, Boolean>();
 
 	public void init() {
+		renderComponents = new HashMap<String, Boolean>();
 		// Tables check and movements
 		getRenderComponents().put(RenderAttributes.CHECKTABLE.name(), false);
 		getRenderComponents().put(RenderAttributes.MOVEMENTSTABLE.name(), true);
