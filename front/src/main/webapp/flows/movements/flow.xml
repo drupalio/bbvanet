@@ -17,6 +17,7 @@
 
 	<on-start>
 		<evaluate expression="checkBookController.init()" />
+		<evaluate expression="checkBookController.initCheckBookList()" result="flowScope.listcheckBooks" />
 		<evaluate expression="extractController.init()" />
 		<evaluate expression="personalizeProductAccountController.init()" />
 		<evaluate expression="movementsCriteriaController.init()" />

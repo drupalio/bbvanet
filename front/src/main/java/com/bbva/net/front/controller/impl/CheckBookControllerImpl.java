@@ -92,7 +92,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 
 		checkBooks = new ArrayList<SelectItem>(checkBookList.size());
 		for (CheckbookDto value : checkBookList) {
-			checkBooks.add(new SelectItem(value));
+			checkBooks.add(new SelectItem(value.getId()));
 		}
 	}
 

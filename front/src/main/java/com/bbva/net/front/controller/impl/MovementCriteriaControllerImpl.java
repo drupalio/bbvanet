@@ -340,6 +340,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	}
 
 	public void onDateSelect(SelectEvent event) {
+
 		setSinceDate((Date)event.getObject());
 		setToDate((Date)event.getObject());
 
