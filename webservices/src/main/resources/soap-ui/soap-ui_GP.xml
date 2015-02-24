@@ -422,7 +422,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 },
 {
 	"id": "00130443000200009407",
-	"type": "ED",
+	"type": "DE",
 	"name": "Robbins",
 	"alias": "Antoinette",
 	"financialState": "P",
@@ -590,7 +590,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 },
 {
 	"id": "00130443000200009413",
-	"type": "ED",
+	"type": "DE",
 	"name": "Rivers",
 	"alias": "Estelle",
 	"financialState": "A",
