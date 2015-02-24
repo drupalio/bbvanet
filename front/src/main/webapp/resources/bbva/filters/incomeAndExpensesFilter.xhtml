@@ -42,7 +42,8 @@
 		<button jsf:id="balanceButton"
 			jsf:actionListener="#{movementsCriteriaController.setIncomeExpensesFilter}"
 			class="btn small hidden-xs hidden-sm">#{msg['button.confirm']}
-			<p:ajax 
+			<p:ajax process="@form"
+			oncomplete="document.getElementById('tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:incomeOrExpenseList:componentList').click();"
 			update="
 			:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:incomeOrExpenseList:componentList		
 			" />

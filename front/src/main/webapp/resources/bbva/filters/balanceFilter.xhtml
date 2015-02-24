@@ -70,7 +70,8 @@
 			jsf:actionListener="#{movementsCriteriaController.setBalanceRange}"
 			class="btn small hidden-xs hidden-sm"
 			>#{msg['button.confirm']}
-			<p:ajax 
+			<p:ajax process="@form" 
+			oncomplete="document.getElementById('tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:balanceList:componentList').click();"
 			update="
 			:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:balanceList:componentList
 			" />
