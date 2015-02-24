@@ -11,6 +11,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
+import javax.faces.model.SelectItem;
 
 import com.bbva.net.back.entity.MultiValueGroup;
 import com.bbva.net.back.facade.CheckBookFacade;
@@ -52,8 +53,8 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 
 	private Date sinceDate, toDate;
 
-	private String actionState, checkState, checkBookNumber, sinceDatestr, toDatestr, leftTitle, rightTitle,
-			titleState;
+	private String actionState, checkState, checkNumber, checkBookNumber, sinceDatestr, toDatestr, leftTitle,
+			rightTitle, titleState;
 
 	private CheckbookDto checkBook = new CheckbookDto();
 
@@ -64,6 +65,8 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	private CheckDto check = new CheckDto();
 
 	private DateRangeDto dateRange = new DateRangeDto();
+
+	private List<SelectItem> checkBooks;
 
 	@Resource(name = "checkBookFacade")
 	private transient CheckBookFacade checkBookFacade;
@@ -80,13 +83,17 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 
 	}
 
-	public List<CheckbookDto> initCheckBookList() {
+	public void initCheckBookList() {
 		LOGGER.info(" CheckBookControllerImpl initCheckBookList ");
 		this.checkBookList = new ArrayList<CheckbookDto>();
 		// TODO accountId
 		LOGGER.info(" CheckBookControllerImpl initCheckBookList productId: " + getSelectedProduct().getProductId());
 		this.checkBookList = checkBookFacade.getCheckBooksById(getSelectedProduct().getProductId());
-		return this.checkBookList;
+
+		checkBooks = new ArrayList<SelectItem>(checkBookList.size());
+		for (CheckbookDto value : checkBookList) {
+			checkBooks.add(new SelectItem(value));
+		}
 	}
 
 	@Override
@@ -239,7 +246,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 
 	@Override
 	public void setNumberCheckOrBook(final ActionEvent event) {
-		System.out.println("setNumberCheckOrBook");
+		LOGGER.info(" CheckBookControllerImpl setNumberCheckOrBook ");
 
 		if (getRenderComponents().get(RenderAttributes.FILTERNUMBERCHECK.toString())) {
 			leftTitle = " Talonario: " + getCheckBookNumber();
@@ -250,7 +257,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			leftTitle = " Estado " + titleState;
 
 		} else {
-			leftTitle = " Nº Cheque " + check.getId();
+			leftTitle = " Nº Cheque " + getCheckNumber();
 		}
 
 	}
@@ -492,6 +499,34 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	 */
 	public void setRightTitle(String rightTitle) {
 		this.rightTitle = rightTitle;
+	}
+
+	/**
+	 * @return the checkNumber
+	 */
+	public String getCheckNumber() {
+		return checkNumber;
+	}
+
+	/**
+	 * @param checkNumber the checkNumber to set
+	 */
+	public void setCheckNumber(String checkNumber) {
+		this.checkNumber = checkNumber;
+	}
+
+	/**
+	 * @return the checkBooks
+	 */
+	public List<SelectItem> getCheckBooks() {
+		return checkBooks;
+	}
+
+	/**
+	 * @param checkBooks the checkBooks to set
+	 */
+	public void setCheckBooks(List<SelectItem> checkBooks) {
+		this.checkBooks = checkBooks;
 	}
 
 }

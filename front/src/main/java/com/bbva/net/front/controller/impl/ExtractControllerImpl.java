@@ -12,6 +12,7 @@ import org.apache.commons.lang.StringUtils;
 
 import com.bbva.net.back.facade.ExtractFacade;
 import com.bbva.net.back.model.extract.ExtractDto;
+import com.bbva.net.back.predicate.ExtractPeriodPredicate;
 import com.bbva.net.front.controller.ExtractController;
 import com.bbva.net.front.core.AbstractBbvaController;
 
@@ -37,33 +38,6 @@ public class ExtractControllerImpl extends AbstractBbvaController implements Ext
 
 	private boolean enableMonth = true;
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<String> getExtractAvailablePeriod() {
-
-		this.yearAvailable = (List<String>)CollectionUtils.collect(extractList, new BeanToPropertyValueTransformer(
-				"year"));
-
-		this.monthAvailable = (List<String>)CollectionUtils.collect(extractList, new BeanToPropertyValueTransformer(
-				"month"));
-
-		yearAvailable = new ArrayList<String>(new LinkedHashSet<String>(yearAvailable));
-
-		monthAvailable = new ArrayList<String>(new LinkedHashSet<String>(monthAvailable));
-
-		return yearAvailable;
-	}
-
-	public void actionState() {
-		enableMonth = true;
-		getExtractMontAvailable();
-	}
-
-	public List<String> getExtractMontAvailable() {
-
-		return monthAvailable;
-	}
-
 	public void init() {
 
 		this.extractList = this.extractFacade.getExtractAvailablePeriod(super.getSelectedProduct().getProductNumber(),
@@ -71,6 +45,37 @@ public class ExtractControllerImpl extends AbstractBbvaController implements Ext
 
 		getExtractAvailablePeriod();
 
+	}
+
+	public void actionState() {
+		enableMonth = true;
+		getExtractMontAvailable();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<String> getExtractAvailablePeriod() {
+
+		this.yearAvailable = (List<String>)CollectionUtils.collect(extractList, new BeanToPropertyValueTransformer(
+				"year"));
+
+		yearAvailable = new ArrayList<String>(new LinkedHashSet<String>(yearAvailable));
+
+		return yearAvailable;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<String> getExtractMontAvailable() {
+
+		@SuppressWarnings("unused")
+		final List<String> monthByYear = (List<String>)CollectionUtils.select(extractList, new ExtractPeriodPredicate(
+				selectedYear));
+
+		this.monthAvailable = (List<String>)CollectionUtils.collect(monthByYear, new BeanToPropertyValueTransformer(
+				"month"));
+		monthAvailable = new ArrayList<String>(new LinkedHashSet<String>(monthAvailable));
+
+		return monthAvailable;
 	}
 
 	public String getSelectedYear() {

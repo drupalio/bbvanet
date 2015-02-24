@@ -37,18 +37,18 @@
 		<div class="chart-cheese" id="tu-situacion-grafico"
 			data-highcharts-chart="3">
 
-			<div id="chart2_1"></div>
+			<div id="chart2_1">
+			<div id="imgLOAD" class="imgLOAD" align="center">
+				<IMG src="/assets/img/loader.gif" />
+			</div>
+			</div>
 		</div>
 
 	</h:form>
 
 
-<!-- 	<div id="imgLOAD" class="imgLOAD"> -->
-<!-- 		<img -->
-<!-- 			src="http://lh6.googleusercontent.com/-asEn6MqN96c/UMeOyt0klxI/AAAAAAAAILU/vnjTGoFywZk/s44/loading-blue.gif" />			 -->
+				
 		<script>
-		///assets/img/logo/ajax-loader.gif
-		//http://lh6.googleusercontent.com/-asEn6MqN96c/UMeOyt0klxI/AAAAAAAAILU/vnjTGoFywZk/s44/loading-blue.gif
 			function initChart() {
 				var totalColums = [];
 				var label;
@@ -63,7 +63,6 @@
 				totalporcentaje += parseInt(values);
 				totalColums.push(colums);
 				</c:forEach>
-				//document.getElementById("imgLOAD").style.display = "none";
 				var chart2_1 = c3.generate({
 					bindto : '#chart2_1',
 					//size: { height: 330, width: 270 },
@@ -115,7 +114,6 @@
 				});
 			};
 		</script>
-<!-- 	</div> -->
 
 </composite:implementation>
 </html>

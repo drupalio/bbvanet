@@ -1,5 +1,6 @@
 package com.bbva.net.webservices.products.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.cxf.common.util.StringUtils;
@@ -36,7 +37,12 @@ public class ProductsServiceImpl extends AbstractBbvaRestService implements Prod
 		WebClient wc = getJsonWebClient(URL_BASE_PRODUCTS + productId + EXTRACT);
 		if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
 
-		return (List<Extracto>)wc.getCollection(Extracto.class);
+		try {
+			return (List<Extracto>)wc.getCollection(Extracto.class);
+		} catch (Exception ex) {
+			LOGGER.info("[Servicio Product No respondió al obtener Lista de Extractos] " + ex.getMessage());
+			return new ArrayList<Extracto>();
+		}
 	}
 
 	@SuppressWarnings("unchecked")

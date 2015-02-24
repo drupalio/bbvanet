@@ -40,7 +40,7 @@
 					listProduct="#{customerProductsHidden.creditCards}" />
 				<bbvaGP:totalBalance util="#{msg['text.used']}"
 					total="#{globalPositionController.totalsProducts['TC'].total}"
-					subtotal="#{globalPositionController.totalsProducts['TC'].available}" />
+					subtotal="#{globalPositionController.getTotalUsedAccount(globalPositionController.totalsProducts['TC'].total,globalPositionController.totalsProducts['TC'].available)}" />
 			</div>
 
 		</bbvaContainer:productCardGraphic>

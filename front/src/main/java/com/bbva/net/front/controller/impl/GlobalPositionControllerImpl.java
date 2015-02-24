@@ -16,6 +16,7 @@ import com.bbva.net.back.facade.MonthBalanceFacade;
 import com.bbva.net.back.model.accounts.GlobalMonthlyBalanceDto;
 import com.bbva.net.back.model.comboFilter.EnumPeriodType;
 import com.bbva.net.back.model.commons.DateRangeDto;
+import com.bbva.net.back.model.commons.Money;
 import com.bbva.net.back.model.globalposition.BalanceDto;
 import com.bbva.net.back.model.globalposition.GlobalProductsDto;
 import com.bbva.net.back.model.movements.GlobalResumeMovementsDto;
@@ -184,7 +185,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		this.globalProductsDTO = this.globalPositionFacade.getGlobalProductsByUser();
 
 		// Obtiene la lista de resumen de movimientos del serivico REST
-		this.globalResumeMovementsDTO = this.movementsResumeFacade.getMovementsResumeByCustomer(null);
+		this.globalResumeMovementsDTO = this.movementsResumeFacade.getMovementsResumeByCustomer(new DateRangeDto());
 
 		// Obtiene la lista de datos para pintar la grafica Deposito electrónico
 		this.globalMonthlyBalance = this.accountMonthBalanceFacade.getAccountMonthlyBalance(globalProductsDTO
@@ -414,6 +415,12 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		return mask + " " + number.substring(number.length() - 4, number.length());
 	}
 
+	public Money getTotalUsedAccount(Money total, Money available) {
+
+		Money totalUsed = new Money(total.getAmount().subtract(available.getAmount()));
+		return totalUsed;
+	}
+
 	/************************************* SETTER BEANS **************************************/
 
 	/**
@@ -556,5 +563,4 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	public LineConfigUI getLineConfigUI() {
 		return lineConfigUI;
 	}
-
 }

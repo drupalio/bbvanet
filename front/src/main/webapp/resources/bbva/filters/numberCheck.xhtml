@@ -106,25 +106,25 @@
 					value="#{cc.attrs.valueBookNumber}"
 					disabled="#{checkBookController.renderComponents['NUMBERBOOK']}">
 					<f:selectItem itemLabel="#{msg['text.combo.select']}" />
-					<f:selectItem itemLabel="1111-2222" itemValue="1111-2222" />
-					<f:selectItem itemLabel="1111-2222-3333"
-						itemValue="1111-2222-3333" />
+					<f:selectItems value="#{checkBookController.checkBooks}"
+						var="multiValue" itemValue="#{multiValue.id}"
+						itemLabel="#{msg[multiValue.value]}" />
 				</h:selectOneMenu>
 
 			</h:panelGrid>
 		</p:outputPanel>
 
-
-		<p:commandButton id="searchButton"
-			actionListener="#{checkBookController.setNumberCheckOrBook}"
-			update=":#{p:component('formCheckBook')}"
-			disabled="#{checkBookController.renderComponents['BUTTONBOOK']}"
-			styleClass="btn small hidden-xs hidden-sm"
-			value="#{msg['button.confirm']}">
-
-		</p:commandButton>
+		<button jsf:id="searchButton"
+			jsf:disabled="#{checkBookController.renderComponents['BUTTONBOOK']}"
+			class="btn small hidden-xs hidden-sm"
+			jsf:actionListener="#{checkBookController.setNumberCheckOrBook}">
+			#{msg['button.confirm']}
+			<p:ajax 
+			update="
+			:tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:checkContainer:checkList:componentList
+			" />
+			</button>
 
 	</div>
-
 </composite:implementation>
 </html>

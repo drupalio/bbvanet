@@ -4,29 +4,34 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/webflow 
     http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
 
-	<var name="accountsController" class="com.bbva.net.front.controller.impl.AccountsControllerImpl"/>
-	<var name="globalPositionController" class="com.bbva.net.front.controller.impl.GlobalPositionControllerImpl"/>
-	
-	
+	<var name="accountsController"
+		class="com.bbva.net.front.controller.impl.AccountsControllerImpl" />
+	<var name="globalPositionController"
+		class="com.bbva.net.front.controller.impl.GlobalPositionControllerImpl" />
+
+
 	<on-start>
 		<evaluate expression="globalPositionController.init()" />
-		<evaluate expression="globalPositionController.getCustomerProducts()" result="flowScope.customerProducts" />
+		<evaluate expression="globalPositionController.getCustomerProducts()"
+			result="flowScope.customerProducts" />
 		<evaluate expression="globalPositionController.getCustomerProductsHidden()"
 			result="flowScope.customerProductsHidden" />
-		<evaluate expression="accountsController.getCustomerAccounts()" result="flowScope.customerAccounts" />
-		<evaluate expression="accountsController.getCustomerAccountsHidden()" result="flowScope.customerAccountsHidden" />
+		<evaluate expression="accountsController.getCustomerAccounts()"
+			result="flowScope.customerAccounts" />
+		<evaluate expression="accountsController.getCustomerAccountsHidden()"
+			result="flowScope.customerAccountsHidden" />
 	</on-start>
 
-	<view-state id="accounts">		
-	
+	<view-state id="accounts">
+
 		<on-entry>
 			<set name="flowScope.menuActive" value="'ACCOUNTS'" />
-			<evaluate expression="new java.lang.String()"/>
+			<evaluate expression="new java.lang.String()" />
 		</on-entry>
 
 		<transition on="accountSelected" to="movementsAccount"></transition>
 	</view-state>
-	
+
 	<view-state id="movementsAccount" view="externalRedirect:movements">
 	</view-state>
 
