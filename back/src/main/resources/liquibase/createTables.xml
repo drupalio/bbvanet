@@ -78,6 +78,13 @@
 			<column name="VALUE">text.combo.cheks.requested</column>
 			<column name="TYPE_ID">2</column>
 		</insert>
+		
+		<!-- <insert tableName="MULTIVALUEGROUP">
+			<column name="ID">11</column>
+			<column name="VALUE">text.combo.period.lasttwelve</column>
+			<column name="TYPE_ID">3</column>
+		</insert> -->
+		
 
 		<insert tableName="MULTIVALUEGROUP">
 			<column name="ID">12</column>
