@@ -6,7 +6,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pm="http://primefaces.org/mobile"
-	xmlns:jsf="http://xmlns.jcp.org/jsf">
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:bbvaButton="http://java.sun.com/jsf/composite/bbva/button">
 
 <composite:interface>
 	<composite:attribute name="id" type="String" />
@@ -74,13 +75,20 @@
 				</p:dataTable>
 			</div>
 			<footer class="detail-table-footer">
-				<button id="moreCheks" class="btn btn-more-results"
-					jsf:update=":detailAccounts:checkTable:formCheks:checksTable" value="Más Resultados"
-					jsf:rendered="#{checkBookController.renderComponents['FOOTERTABLECHEKS']}"
-					jsf:actionListener="#{checkBookController.nextPage}">
-					<span>#{msg['text.detailMove.footer']}</span>
-				</button>
+			
+				<button id="moreCheks" class="btn btn-more-results" type="button" 
+                    jsf:update=":detailAccounts:checkTable:formCheks:checksTable" value="Más Resultados"
+                    jsf:rendered="#{checkBookController.renderComponents['FOOTERTABLECHEKS']}"
+                    jsf:actionListener="#{checkBookController.nextPage}">
+                    <span>#{msg['text.detailMove.footer']}</span>
+                </button>
 			</footer>
+			
+			<p:dialog widgetVar="statusDialogCheck" modal="true" draggable="false"
+				closable="false" resizable="false" showHeader="false">
+				<p:outputLabel value="Un momento porfavor" />
+			</p:dialog>
+			
 		</p:outputPanel>
 	</h:form>
 

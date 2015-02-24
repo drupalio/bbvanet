@@ -32,12 +32,15 @@
 				<bbvaSearch:customSearchFilter id="customDate"
 					showQuota="false"
 					showMovements="true"
+					showChecks="false"
 					value="#{movementsCriteriaController.selectDate}"
 					valueDateSince="#{movementsCriteriaController.sinceDate}"
 					valueDateTo="#{movementsCriteriaController.toDate}"
 					disabledButton="#{movementsCriteriaController.renderComponents['BUTTONDATE']}"
 					disabledCalendar="#{movementsCriteriaController.renderComponents['CALENDAR']}"
 					actionListenerDate="#{movementsCriteriaController.setCustomDate}"
+					actionListenerSince="#{movementsCriteriaController.selectDateSince}"
+					actionListenerTo="#{movementsCriteriaController.selectDateTo}"
 					listenerDate="#{movementsCriteriaController}" />
 			</bbvaSearch:customSearchList>
 
@@ -67,7 +70,9 @@
 				<bbvaSearch:movementsFilter />
 			</bbvaSearch:customSearchList>
 
-			<bbvaSearch:searchButtonList show="true"
+			<bbvaSearch:searchButtonList show="true" showChecks="false"
+				showQuota="false"
+				showMovements="true"
 				actionListenerRemove="#{movementsCriteriaController.cleanFilters}"
 				actionListenerShow="#{movementsCriteriaController.searchMovementByFilter}" />
 		</bbvaSearch:personalizedSearchTabBody>
@@ -85,6 +90,8 @@
 				disabledButton="#{checkBookController.renderComponents['BUTTONDATECHECK']}"
 				disabledCalendar="#{checkBookController.renderComponents['CALENDARCHECK']}"
 				actionListenerDate="#{checkBookController.setCustomDate}"
+				actionListenerSince="#{movementsCriteriaController.onSelectDateSince}"
+				actionListenerTo="#{movementsCriteriaController.onSelectDateTo}"
 				listenerDate="#{checkBookController}"
 				valueCheck="#{checkBookController.actionState}"
 				valueCheckNumber="#{checkBookController.checkNumber}"
@@ -92,7 +99,8 @@
 				valueBookNumber="#{checkBookController.checkBookNumber}"
 				actionListenerCheck="#{checkBookController.rightTitle}" />
 
-			<bbvaSearch:searchButtonList show="false"
+			<bbvaSearch:searchButtonList show="false" showQuota="false" showChecks="true"
+				showMovements="false"
 				actionListenerShow="#{checkBookController.showResults}" />
 		</bbvaSearch:personalizedSearchTabBody>
 	</h:form>

@@ -22,8 +22,10 @@
 	<composite:attribute name="actionListenerDate"
 		method-signature="void actionlistener(javax.faces.event.ActionEvent)" />
 	<composite:attribute name="listenerDate" />
-
-
+	<composite:attribute name ="actionListenerSince"
+		method-signature="void actionlistener(org.primefaces.event.SelectEvent)"/>
+	<composite:attribute name="actionListenerTo"
+		method-signature="void actionlistener(org.primefaces.event.SelectEvent)"/>
 	<composite:attribute name="valueCheck" />
 	<composite:attribute name="valueCheckNumber" />
 	<composite:attribute name="valuecheckState" />
@@ -40,12 +42,14 @@
 		filterTitle="#{checkBookController.sinceDatestr}"
 		filterMessage="#{checkBookController.toDatestr}">
 		<bbvaSearch:customSearchFilter id="customDate" showQuota="false"
-			showMovements="true" value="#{cc.attrs.value}"
+			showMovements="false" showChecks="true" value="#{cc.attrs.value}"
 			valueDateSince="#{cc.attrs.valueDateSince}"
 			valueDateTo="#{cc.attrs.valueDateTo}"
 			disabledButton="#{cc.attrs.disabledButton}"
 			disabledCalendar="#{cc.attrs.disabledCalendar}"
 			actionListenerDate="#{cc.attrs.actionListenerDate}"
+			actionListenerSince="#{movementsCriteriaController.onSelectDateSince}"
+			actionListenerTo="#{movementsCriteriaController.onSelectDateTo}"
 			listenerDate="#{cc.attrs.listenerDate}" />
 	</bbvaSearch:customSearchList>
 
