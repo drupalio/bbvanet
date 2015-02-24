@@ -3,14 +3,13 @@ package com.bbva.czic.dto.net;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para ThirdParty complex type.
+ * <p>Java class for ThirdParty complex type.
  * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="ThirdParty">
@@ -35,11 +34,10 @@ import javax.xml.bind.annotation.XmlType;
 public class ThirdParty {
 
     protected User customerId;
-    @XmlSchemaType(name = "string")
     protected EnumThirdPartyType type;
 
     /**
-     * Obtiene el valor de la propiedad customerId.
+     * Gets the value of the customerId property.
      * 
      * @return
      *     possible object is
@@ -51,7 +49,7 @@ public class ThirdParty {
     }
 
     /**
-     * Define el valor de la propiedad customerId.
+     * Sets the value of the customerId property.
      * 
      * @param value
      *     allowed object is
@@ -63,7 +61,7 @@ public class ThirdParty {
     }
 
     /**
-     * Obtiene el valor de la propiedad type.
+     * Gets the value of the type property.
      * 
      * @return
      *     possible object is
@@ -75,7 +73,7 @@ public class ThirdParty {
     }
 
     /**
-     * Define el valor de la propiedad type.
+     * Sets the value of the type property.
      * 
      * @param value
      *     allowed object is

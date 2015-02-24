@@ -25,7 +25,7 @@ public class MovementsMapperImpl extends ConfigurableMapper implements Movements
 
 		// Map Movement DTO
 		factory.classMap(Movement.class, MovementDto.class).field("id", "movementId")
-				.field("id", "movementDetailDto.id").field("concept", "concept")
+				.field("id", "movementDetailDto.id").field("concept", "movementConcept")
 				.field("concept", "movementDetailDto.concept").field("transactionDate", "movementDate")
 				.field("transactionDate", "movementDetailDto.transactionDate").field("operationDate", "operationDate")
 				.field("operationDate", "movementDetailDto.operationDate")
@@ -37,6 +37,12 @@ public class MovementsMapperImpl extends ConfigurableMapper implements Movements
 				.field("value", "movementDetailDto.operationValue").field("balance", "movementDetailDto.valueslope")
 				.field("balance", "totalBalance").byDefault().register();
 
+		factory.classMap(Movement.class, MovementDetailDto.class).field("id", "id").field("concept", "concept")
+				.field("transactionDate", "transactionDate").field("operationDate", "operationDate")
+				.field("operation.code", "operationCode").field("operation.description", "operationDescription")
+				.field("office.name", "originCenterMovement").field("office.location.city.name", "plaza")
+				.field("status", "state").field("value", "operationValue").field("balance", "valueslope").byDefault()
+				.register();
 	}
 
 	@Override

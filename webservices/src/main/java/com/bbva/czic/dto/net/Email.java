@@ -3,21 +3,20 @@ package com.bbva.czic.dto.net;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para Email complex type.
+ * <p>Java class for Email complex type.
  * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="Email">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="source" type="{urn:com:bbva:czic:dto:net}EnumContactSourceType" minOccurs="0"/>
+ *         &lt;element name="source" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="address" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="primary" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *         &lt;element name="active" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
@@ -38,38 +37,37 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class Email {
 
-    @XmlSchemaType(name = "string")
-    protected EnumContactSourceType source;
+    protected String source;
     protected String address;
     protected Boolean primary;
     protected Boolean active;
 
     /**
-     * Obtiene el valor de la propiedad source.
+     * Gets the value of the source property.
      * 
      * @return
      *     possible object is
-     *     {@link EnumContactSourceType }
+     *     {@link String }
      *     
      */
-    public EnumContactSourceType getSource() {
+    public String getSource() {
         return source;
     }
 
     /**
-     * Define el valor de la propiedad source.
+     * Sets the value of the source property.
      * 
      * @param value
      *     allowed object is
-     *     {@link EnumContactSourceType }
+     *     {@link String }
      *     
      */
-    public void setSource(EnumContactSourceType value) {
+    public void setSource(String value) {
         this.source = value;
     }
 
     /**
-     * Obtiene el valor de la propiedad address.
+     * Gets the value of the address property.
      * 
      * @return
      *     possible object is
@@ -81,7 +79,7 @@ public class Email {
     }
 
     /**
-     * Define el valor de la propiedad address.
+     * Sets the value of the address property.
      * 
      * @param value
      *     allowed object is
@@ -93,7 +91,7 @@ public class Email {
     }
 
     /**
-     * Obtiene el valor de la propiedad primary.
+     * Gets the value of the primary property.
      * 
      * @return
      *     possible object is
@@ -105,7 +103,7 @@ public class Email {
     }
 
     /**
-     * Define el valor de la propiedad primary.
+     * Sets the value of the primary property.
      * 
      * @param value
      *     allowed object is
@@ -117,7 +115,7 @@ public class Email {
     }
 
     /**
-     * Obtiene el valor de la propiedad active.
+     * Gets the value of the active property.
      * 
      * @return
      *     possible object is
@@ -129,7 +127,7 @@ public class Email {
     }
 
     /**
-     * Define el valor de la propiedad active.
+     * Sets the value of the active property.
      * 
      * @param value
      *     allowed object is

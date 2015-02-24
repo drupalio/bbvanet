@@ -3101,7 +3101,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"externalCode": "150058636",
 	"month": "7",
 	"year": "2012"
-}]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/products/V01/00130443000200009416/movements/" method="GET" resourcePath="/czic/products/V01/00130443000200009416/movements/"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+}]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/products/V01/00130443000200009416/movements/" method="GET" resourcePath="/czic/products/V01/00130443000200009416/movements/"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Examples showing how to match based on path, query param and header
 // Match based on path
 def requestPath = mockRequest.getPath()
@@ -3142,29 +3142,15 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 
 */
 </con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
-	id:"000100987333"
-	concept:"1000"
-	transactionDate:"2014-03-11T00:00:00.000-0500"
-	operationDate:"2014-05-12T00:00:00.000-0500"
-	
-	operation:{
-		code:"A"description:"ABC"
-	}
-	office:{
-	name:"2000"
-	
-	location:{
-			city:{
-				name:"NORTE"
-			}
-			state:{
-				name:"NORTE"
-			}
-			
-		}
-		postalAddress:"CHILE CENTRO"
-	}
-	value:"30.00 COP"balance:"10.00 COP"originValue:{
-		currency:"COP"amount:20
-	}
+id: "1871173807"
+concept: "TRANSFERENCIA"
+operationDate: "2014-07-14"
+value: {
+amount: 1055812062
+currency: "COP"
+}
+balance: {
+amount: 1055812062
+currency: "COP"
+}
 }</con:responseContent></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

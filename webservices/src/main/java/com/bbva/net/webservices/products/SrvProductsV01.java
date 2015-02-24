@@ -10,6 +10,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
+import com.bbva.czic.dto.net.AccMoveDetail;
 import com.bbva.czic.dto.net.Conditions;
 
 @Path("/V01")
@@ -23,7 +24,7 @@ public interface SrvProductsV01 {
     @GET
     @Produces("application/json")
     @Path("/{productId}/extracts")
-    Response listExtracts(@PathParam("productId") String productId, @QueryParam("$filter") @DefaultValue("null") String $filter);
+    Response listExtracts(@PathParam("productId") String productId, @QueryParam("$filter") String $filter);
 
     @GET
     @Produces("application/json")
@@ -33,6 +34,6 @@ public interface SrvProductsV01 {
     @GET
     @Produces("application/json")
     @Path("/{productId}/movements/{movementId}")
-    Response getMovement(@PathParam("productId") String productId, @PathParam("movementId") String movementId, @QueryParam("$filter") @DefaultValue("null") String $filter);
+    AccMoveDetail getMovement(@PathParam("productId") String productId, @PathParam("movementId") String movementId, @QueryParam("$filter") @DefaultValue("null") String $filter);
 
 }
