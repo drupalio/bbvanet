@@ -22,6 +22,8 @@ public class MovementDto implements Dto {
 
 	private Date movementDate;
 
+	private Date operationDate;
+
 	private String movementConcept;
 
 	private Money movementValue;
@@ -146,6 +148,14 @@ public class MovementDto implements Dto {
 	 */
 	public void setQuotaNumber(String quotaNumber) {
 		this.quotaNumber = quotaNumber;
+	}
+
+	public Date getOperationDate() {
+		return operationDate;
+	}
+
+	public void setOperationDate(Date operationDate) {
+		this.operationDate = operationDate;
 	}
 
 	@Override

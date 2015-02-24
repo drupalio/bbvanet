@@ -8,8 +8,8 @@ import ma.glasnost.orika.impl.ConfigurableMapper;
 import com.bbva.czic.dto.net.Movement;
 import com.bbva.net.back.core.stereotype.Mapper;
 import com.bbva.net.back.mapper.MovementsMapper;
-import com.bbva.net.back.mapper.converter.StringToDateConverter;
 import com.bbva.net.back.mapper.converter.MoneyConverter;
+import com.bbva.net.back.mapper.converter.StringToDateConverter;
 import com.bbva.net.back.model.movements.MovementDetailDto;
 import com.bbva.net.back.model.movements.MovementDto;
 
@@ -25,14 +25,17 @@ public class MovementsMapperImpl extends ConfigurableMapper implements Movements
 
 		// Map Movement DTO
 		factory.classMap(Movement.class, MovementDto.class).field("id", "movementId")
-				.field("id", "movementDetailDto.id").field("concept", "movementConcept")
-				.field("transactionDate", "movementDate").field("operationDate", "movementDetailDto.operationDate")
+				.field("id", "movementDetailDto.id").field("concept", "concept")
+				.field("concept", "movementDetailDto.concept").field("transactionDate", "movementDate")
+				.field("transactionDate", "movementDetailDto.transactionDate").field("operationDate", "operationDate")
+				.field("operationDate", "movementDetailDto.operationDate")
 				.field("operation.code", "movementDetailDto.operationCode")
 				.field("operation.description", "movementDetailDto.operationDescription")
-				.field("office.name", "movementDetailDto.plaza")
-				.field("office.location.city.name", "movementDetailDto.originCenterMovement")
+				.field("office.name", "movementDetailDto.originCenterMovement")
+				.field("office.location.city.name", "movementDetailDto.plaza")
 				.field("status", "movementDetailDto.state").field("value", "movementValue")
-				.field("balance", "totalBalance").field("numberOfQuotas", "quotaNumber").byDefault().register();
+				.field("value", "movementDetailDto.operationValue").field("balance", "movementDetailDto.valueslope")
+				.field("balance", "totalBalance").byDefault().register();
 
 	}
 
