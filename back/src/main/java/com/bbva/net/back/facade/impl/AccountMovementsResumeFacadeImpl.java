@@ -56,10 +56,15 @@ public class AccountMovementsResumeFacadeImpl extends AbstractBbvaFacade impleme
 	@Override
 	public GlobalResumeMovementsDto getMovementsResumeByCustomer(final DateRangeDto dateRange)
 			throws RestClientException {
-		GlobalResumeMovementsDto globalMovements = new GlobalResumeMovementsDto();
-		EnumPeriodType periodType = EnumPeriodType.valueOf(EnumPeriodType.LAST_SIX_MONTH.getPeriodId());
-		DateRangeDto dateRan = dateFilterService.getPeriodFilter(periodType);
 
+		GlobalResumeMovementsDto globalMovements = new GlobalResumeMovementsDto();
+
+		DateRangeDto dateRan = dateRange;
+		if (dateRange.getDateSince().equals(dateRange.getDateTo())) {
+			EnumPeriodType periodType = EnumPeriodType.valueOf(EnumPeriodType.LAST_SIX_MONTH.getPeriodId());
+			dateRan = dateFilterService.getPeriodFilter(periodType);
+
+		}
 		String filter = dateRange == null ? StringUtils.EMPTY : fiqlService
 				.getFiqlQueryByDateRange(dateRan, DATE, DATE);
 
