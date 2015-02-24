@@ -184,7 +184,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		this.globalProductsDTO = this.globalPositionFacade.getGlobalProductsByUser();
 
 		// Obtiene la lista de resumen de movimientos del serivico REST
-		this.globalResumeMovementsDTO = this.movementsResumeFacade.getMovementsResumeByCustomer(null);
+		this.globalResumeMovementsDTO = this.movementsResumeFacade.getMovementsResumeByCustomer(new DateRangeDto());
 
 		// Obtiene la lista de datos para pintar la grafica Deposito electrónico
 		this.globalMonthlyBalance = this.accountMonthBalanceFacade.getAccountMonthlyBalance(globalProductsDTO
@@ -354,7 +354,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		if (!this.periodCardSelected.isEmpty()) {
 			periodType = EnumPeriodType.valueOf(Integer.parseInt(this.periodCardSelected));
 		} else {
-			periodType = EnumPeriodType.valueOf(EnumPeriodType.LAST_TWELVE_MONTH.getPeriodId());
+			periodType = EnumPeriodType.valueOf(EnumPeriodType.LAST_SIX_MONTH.getPeriodId());
 		}
 		DateRangeDto dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
 
@@ -374,7 +374,8 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	public void onComboSelectedAccountGraphic() {
 
 		final EnumPeriodType periodType = StringUtils.isNotEmpty(periodAccountSelected) ? EnumPeriodType
-				.valueOf(Integer.parseInt(this.periodAccountSelected)) : null;
+				.valueOf(Integer.parseInt(this.periodAccountSelected)) : EnumPeriodType
+				.valueOf(EnumPeriodType.LAST_SIX_MONTH.getPeriodId());
 
 		final DateRangeDto dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
 
@@ -390,7 +391,8 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		}
 		// Cosume Servicio Customer
 		if (!StringUtils.isEmpty(periodAccountSelected)
-				&& MessagesHelper.INSTANCE.getString("text.allAccounts").equals(accountSelected)) {
+				&& (MessagesHelper.INSTANCE.getString("text.allAccounts").equals(accountSelected))
+				|| accountSelected.isEmpty()) {
 
 			this.accountGraphicBarLineUI = this.graphicBarLineDelegate.getInOutBalanceAccount(movementsResumeFacade
 					.getMovementsResumeByCustomer(dateRange));

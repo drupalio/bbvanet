@@ -13,8 +13,10 @@ import com.bbva.net.back.core.pattern.facade.AbstractBbvaFacade;
 import com.bbva.net.back.core.stereotype.Facade;
 import com.bbva.net.back.facade.AccountMovementsResumeFacade;
 import com.bbva.net.back.mapper.GlobalResumeMovementsMapper;
+import com.bbva.net.back.model.comboFilter.EnumPeriodType;
 import com.bbva.net.back.model.commons.DateRangeDto;
 import com.bbva.net.back.model.movements.GlobalResumeMovementsDto;
+import com.bbva.net.back.service.DateFilterService;
 import com.bbva.net.back.service.FiqlService;
 import com.bbva.net.webservices.accounts.AccountsService;
 import com.bbva.net.webservices.customers.CustomerService;
@@ -45,16 +47,26 @@ public class AccountMovementsResumeFacadeImpl extends AbstractBbvaFacade impleme
 	@Value("${fiql.accountMovement.date}")
 	private String DATE;
 
+	@Resource(name = "dateFilterService")
+	private transient DateFilterService dateFilterService;
+
 	/**
 	 * Método que implementa el cliente REST para obtener el resumend de movimientos en las cuentas de un usuario
 	 */
 	@Override
 	public GlobalResumeMovementsDto getMovementsResumeByCustomer(final DateRangeDto dateRange)
 			throws RestClientException {
+
 		GlobalResumeMovementsDto globalMovements = new GlobalResumeMovementsDto();
 
-		String filter = dateRange == null ? StringUtils.EMPTY : fiqlService.getFiqlQueryByDateRange(dateRange, DATE,
-				DATE);
+		DateRangeDto dateRan = dateRange;
+		if (dateRange.getDateSince().equals(dateRange.getDateTo())) {
+			EnumPeriodType periodType = EnumPeriodType.valueOf(EnumPeriodType.LAST_SIX_MONTH.getPeriodId());
+			dateRan = dateFilterService.getPeriodFilter(periodType);
+
+		}
+		String filter = dateRange == null ? StringUtils.EMPTY : fiqlService
+				.getFiqlQueryByDateRange(dateRan, DATE, DATE);
 
 		final List<AccMovementsResume> response = this.customerService.listAccountsMovementsResume(filter);
 		globalMovements.setMovementsResumeDto(globalResumeMovementsMapper.map(response));

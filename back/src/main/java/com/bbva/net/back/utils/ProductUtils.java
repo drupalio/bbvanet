@@ -32,7 +32,7 @@ public final class ProductUtils {
 		List<String> leasingList = Arrays.asList(leasingVect);
 
 		// ToDo: Deposito Electronico
-		String depositElecVect[] = { "ED" };
+		String depositElecVect[] = { "DE" };
 		List<String> depositElecList = Arrays.asList(depositElecVect);
 
 		// ToDo:adquisición
