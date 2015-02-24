@@ -5,18 +5,15 @@ import com.bbva.net.core.collection.BbvaPredicate;
 
 public class ExtractPeriodPredicate extends BbvaPredicate<ExtractDto> {
 
-	private ExtractDto yearAvailable;
+	private String yearAvailable;
 
-	public ExtractPeriodPredicate(final ExtractDto yearAvailable) {
-
-		this.yearAvailable = yearAvailable;
-		// TODO Auto-generated constructor stub
+	public ExtractPeriodPredicate(final String year) {
+		this.yearAvailable = year;
 	}
 
 	@Override
-	protected boolean eval(final ExtractDto extractDto) {
-
-		return extractDto.equals(yearAvailable);
+	protected boolean eval(final ExtractDto productExtract) {
+		return productExtract.getYear().equals(yearAvailable);
 	}
 
 }

@@ -1,6 +1,5 @@
 package com.bbva.net.front.controller.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -21,24 +20,17 @@ public class MovementPaginatedController extends PaginationController<MovementDt
 
 	private String productIdPc, productTypePc;
 
-	List<MovementDto> movementsList = null;
-
 	@Resource(name = "movementsAccountFacade")
 	private transient MovementsAccountFacade movementsFacade;
 
 	@Override
 	protected List<MovementDto> getNextPage(int paginantionKey, int psize) {
 
-		LOGGER.info("MovementPaginatedController.getNextPage");
-		movementsList = new ArrayList<MovementDto>();
-		movementsList = this.movementsFacade.listMovements(productIdPc, productTypePc, dateRangePc, balanceRangePc,
+		return this.movementsFacade.listMovements(productIdPc, productTypePc, dateRangePc, balanceRangePc,
 				paginantionKey, psize);
-		LOGGER.info("MovementList Size : " + movementsList.size());
-		return movementsList;
 	}
 
 	public void search() {
-		LOGGER.info("Serchiing Movements ...");
 		super.next();
 	}
 
@@ -96,20 +88,6 @@ public class MovementPaginatedController extends PaginationController<MovementDt
 	 */
 	public void setProductTypePc(String productTypePc) {
 		this.productTypePc = productTypePc;
-	}
-
-	/**
-	 * @return the movementsList
-	 */
-	public List<MovementDto> getMovementsList() {
-		return movementsList;
-	}
-
-	/**
-	 * @param movementsList the movementsList to set
-	 */
-	public void setMovementsList(List<MovementDto> movementsList) {
-		this.movementsList = movementsList;
 	}
 
 	/**

@@ -13,6 +13,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
 
+import org.apache.commons.lang.StringUtils;
 import org.primefaces.event.SelectEvent;
 
 import com.bbva.net.back.facade.QuotaDetailFacade;
@@ -208,7 +209,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 
 		this.dateRange.setDateSince(getSinceDate());
 		this.dateRange.setDateTo(getToDate());
-		if (!(getSinceDate() == (null)) && !(getToDate() == (null))) {
+		if (!(getSinceDate() == (null)) && !(getToDate() == (null)) && getSelectDate().equals(CONCRETE_DATE)) {
 			this.sinceText = SINCE_TITLE + ": ";
 			this.toText = TO_TITLE + ": ";
 			this.sinceDatestr = dateFormat.format(getSinceDate());
@@ -216,6 +217,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 			LOGGER.info(SINCE_TITLE + " " + sinceDatestr + " " + TO_TITLE + " " + toDatestr);
 		} else {
 			sinceDatestr = getSelectDate();
+			toDatestr = StringUtils.EMPTY;
 			LOGGER.info("RadioButton escogido: " + getSelectDate());
 		}
 	}
@@ -233,7 +235,8 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 	@Override
 	public void nextPage(ActionEvent event) {
 		LOGGER.info("Buscando mas resultados");
-		criteriaSearch();
+		next();
+		this.quotamovenDtos = getCurrentList();
 	}
 
 	@Override
@@ -247,6 +250,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 					+ this.dateRange.getDateTo());
 		}
 		setProductIdPControl(getSelectedProduct().getProductId());
+		super.init();
 		search();
 		this.quotamovenDtos = getCurrentList();
 	}

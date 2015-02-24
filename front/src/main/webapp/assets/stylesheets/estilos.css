@@ -421,17 +421,13 @@ input.ui-state-hover {
 	.responseTable {
 		display: table-cell !important;
 	}
-	.tableOri {
-		display: none !important;
-	}
 }
 
 @media ( min-width : 769px ) {
-	.tableOri {
-		display: table-cell !important;
-	}
 	.responseTable {
 		display: none !important;
+		z-index: -1 !important;
+		width: 0% !important;
 	}
 }
 
@@ -515,9 +511,10 @@ input.ui-state-hover {
 		margin-left: 3% !important;
 	}
 }
-.buttonDisabled{
+
+.buttonDisabled {
 	opacity: 0.65;
 	pointer-events: none;
 	box-shadow: none;
-    cursor: not-allowed;
+	cursor: not-allowed;
 }

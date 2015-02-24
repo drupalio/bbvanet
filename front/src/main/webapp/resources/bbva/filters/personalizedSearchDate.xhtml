@@ -33,13 +33,14 @@
 					valueDateTo="#{quotaController.toDate}"
 					showQuota="true"
 					showMovements="false"
+					showChecks="false"
 					disabledButton="#{quotaController.renderComponents['BUTTONDATE']}"
 					disabledCalendar="#{quotaController.renderComponents['CALENDAR']}"
 					actionListenerDate="#{quotaController.setCustomDate}"
 					listenerDate="#{quotaController}" />
 			</bbvaSearch:customSearchList>
 
-			<bbvaSearch:searchButtonList show="true"
+			<bbvaSearch:searchButtonList show="true" showQuota="true" showMovements="false"
 				actionListenerRemove="#{quotaController.searchQuotaByFilter}"
 				actionListenerShow="#{quotaController.searchQuotaByFilter}" />
 		</bbvaSearch:personalizedSearchTabBody>

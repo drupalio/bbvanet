@@ -20,6 +20,9 @@ public class ConceptMovementPredicate extends BbvaPredicate<MovementDto> {
 	@Override
 	protected boolean eval(final MovementDto movementDto) {
 
+		if (movementDto == null || movementDto.getMovementConcept() == null) {
+			return false;
+		}
 		return movementDto.getMovementConcept().contentEquals(concept);
 	}
 

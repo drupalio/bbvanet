@@ -34,65 +34,35 @@
 
 				<div class="table-wrapper">
 					<p:dataTable id="detailmovesAC" widgetVar="detailmovesAC"
-						styleClass="detail-table-body sortable tableOri"
+						styleClass="detail-table-body sortable"
 						emptyMessage="#{msg['text.empty.table']}" rowSelectMode="single"
 						value="#{cc.attrs.listAccounts}" var="moves"
 						selectionMode="single" rowKey="#{moves.movementId}">
-
 						<p:ajax event="rowSelect" onsuccess="clickMove()"
 							listener="#{cc.attrs.controller.onRowToggle}" />
-
-
 						<p:column width="0% !important;" style="z-index: -1 !important">
 							<p:rowToggler rendered="true" />
 						</p:column>
-
 						<p:column headerText="#{msg['text.detailMove.date']}"
 							styleClass="styleColum sorted w18 desc">
-
 							<h:outputText styleClass="brand styleLeft"
 								value="#{moves.movementDate}">
 								<f:convertDateTime pattern="dd/MM/yyyy" />
 							</h:outputText>
 						</p:column>
-
 						<p:column headerText="#{msg['text.detailMove.concep']}"
 							styleClass="styleColum desc w34">
-
 							<h:outputText class="text styleLeft"
 								value="#{moves.movementConcept}" />
 						</p:column>
-
 						<p:column class="head" headerText="#{msg['title.slope']}"
-							styleClass="styleColum desc w24">
-
+							styleClass="styleColum desc w24" colspan="2">
 							<h:outputText class="currency styleCurrent"
 								value="#{moves.movementValue}" />
 						</p:column>
 
-						<p:rowExpansion styleClass="detail-row position">
-							<bbvaDetailMotion:tableContent
-								controller="#{cc.attrs.controller}" />
-						</p:rowExpansion>
-
-					</p:dataTable>
-
-					<p:dataTable id="detailmovesLO" widgetVar="detailmovesLO"
-						styleClass="detail-table-body sortable responseTable"
-						emptyMessage="#{msg['text.empty.table']}" rowSelectMode="single"
-						value="#{cc.attrs.listAccounts}" var="moves"
-						selectionMode="single" rowKey="#{moves.movementId}">
-
-						<p:ajax event="rowSelect" onsuccess="clickMove()"
-							listener="#{cc.attrs.controller.onRowToggle}" />
-
-
-						<p:column width="0% !important;" style="z-index: -1 !important">
-							<p:rowToggler rendered="true" />
-						</p:column>
-
-						<p:column styleClass="smart-view">
-							<div class="left">
+						<p:column styleClass="smart-view responseTable">
+							<div class="left hidden-lg">
 								<h:outputText class="text styleLeft"
 									value="#{moves.movementConcept}" />
 								<h:outputText styleClass="brand styleLeft"
@@ -100,7 +70,7 @@
 									<f:convertDateTime pattern="dd/MM/yyyy" />
 								</h:outputText>
 							</div>
-							<div class="right">
+							<div class="right hidden-lg">
 								<h:outputText class="currency styleCurrent"
 									value="#{moves.movementValue}" />
 							</div>
@@ -117,7 +87,8 @@
 
 				<footer class="detail-table-footer">
 					<button id="moreMovs" class="btn btn-more-results"
-						jsf:update="quotaDetail:detailAccounts:detailAccounts:detailmovesAC"
+						jsf:update="quotaDetail:detailAccounts:detailAccounts:detailmovesAC 
+						quotaDetail:detailAccounts:detailAccounts:detailsQuotaRespon"
 						value="Más Resultados"
 						jsf:rendered="#{quotaController.renderComponents['FOOTERTABLEQUOTA']}"
 						jsf:actionListener="#{quotaController.nextPage}">

@@ -15,13 +15,14 @@ public final class ProductUtils {
 		String cupoVect[] = { "CR" };
 		List<String> cupoList = Arrays.asList(cupoVect);
 
-		String foundsVect[] = { "FA", "BD", "BF", "PA", "BP", "FN", "FC", "FE", "FZ", "AN","FE", "FG", "MD","FD","FT","CO","CF" ,"FR", "FB" };
+		String foundsVect[] = { "FA", "BD", "BF", "PA", "BP", "FN", "FC", "FE", "FZ", "AN", "FE", "FG", "MD", "FD",
+				"FT", "CO", "CF", "FR", "FB" };
 		List<String> foundList = Arrays.asList(foundsVect);
 
 		String pensionesVect[] = { "FP" };
 		List<String> pensionesList = Arrays.asList(pensionesVect);
 
-		String loanVect[] = { "HI", "CS", "CM", "MC", "CL","J1","J2" };
+		String loanVect[] = { "HI", "CS", "CM", "MC", "CL", "J1", "J2" };
 		List<String> loanList = Arrays.asList(loanVect);
 
 		String cardVect[] = { "TC", "TE", "TO" };
@@ -31,7 +32,7 @@ public final class ProductUtils {
 		List<String> leasingList = Arrays.asList(leasingVect);
 
 		// ToDo: Deposito Electronico
-		String depositElecVect[] = { "ED" };
+		String depositElecVect[] = { "DE" };
 		List<String> depositElecList = Arrays.asList(depositElecVect);
 
 		// ToDo:adquisición

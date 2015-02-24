@@ -2,7 +2,11 @@ package com.bbva.net.back.service.impl;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
+
+import javax.annotation.Resource;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.cxf.jaxrs.ext.search.client.SearchConditionBuilder;
@@ -10,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import com.bbva.net.back.model.commons.BalanceRangeDto;
 import com.bbva.net.back.model.commons.DateRangeDto;
+import com.bbva.net.back.service.DateFilterService;
 import com.bbva.net.back.service.FiqlService;
 
 @Service(value = "fiqlService")
@@ -20,6 +25,9 @@ public class FiqlServiceImpl implements FiqlService {
 	private static final String MONTH_FORMAT = "MM";
 
 	private static final String FIQL_LANGUAGE = "fiql";
+
+	@Resource(name = "dateFilterService")
+	private transient DateFilterService dateFilterService;
 
 	@Override
 	public String getFiqlQueryByDateRange(final DateRangeDto dateRange, final String startProperty,
@@ -47,8 +55,8 @@ public class FiqlServiceImpl implements FiqlService {
 		}
 
 		final SearchConditionBuilder filter = SearchConditionBuilder.instance(FIQL_LANGUAGE);
-
-		return filter.is(monthProperty).lexicalNotBefore(formatMonth(dateRange.getDateTo())).query();
+		// Aki cambiar solo a mes hacia atras
+		return filter.is(monthProperty).lexicalNotBefore(formatOldMont(dateRange.getDateSince())).query();
 	}
 
 	@Override
@@ -126,6 +134,20 @@ public class FiqlServiceImpl implements FiqlService {
 		final String strDate = simpleDateFormat.format(date);
 
 		return strDate;
+	}
+
+	private String formatOldMont(final Date date) {
+
+		final Calendar startCalendar = new GregorianCalendar();
+		startCalendar.setTime(new Date());
+		final Calendar endCalendar = new GregorianCalendar();
+		endCalendar.setTime(date);
+
+		final int diffYear = endCalendar.get(Calendar.YEAR) - startCalendar.get(Calendar.YEAR);
+		final int diffMonth = diffYear * 12 + endCalendar.get(Calendar.MONTH) - startCalendar.get(Calendar.MONTH);
+		final int strD = Math.abs(diffMonth);
+		final String oldDate = strD < 10 ? "0" + String.valueOf(strD) : String.valueOf(strD);
+		return oldDate;
 	}
 
 	@Override
