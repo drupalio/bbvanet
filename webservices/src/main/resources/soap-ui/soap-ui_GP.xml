@@ -422,7 +422,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 },
 {
 	"id": "00130443000200009407",
-	"type": "ED",
+	"type": "DE",
 	"name": "Robbins",
 	"alias": "Antoinette",
 	"financialState": "P",
@@ -590,7 +590,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 },
 {
 	"id": "00130443000200009413",
-	"type": "ED",
+	"type": "DE",
 	"name": "Rivers",
 	"alias": "Estelle",
 	"financialState": "A",
@@ -3101,4 +3101,70 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"externalCode": "150058636",
 	"month": "7",
 	"year": "2012"
-}]</con:responseContent></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
+}]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/products/V01/00130443000200009416/movements/" method="GET" resourcePath="/czic/products/V01/00130443000200009416/movements/"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
+	id:"000100987333"
+	concept:"1000"
+	transactionDate:"2014-03-11T00:00:00.000-0500"
+	operationDate:"2014-05-12T00:00:00.000-0500"
+	
+	operation:{
+		code:"A"description:"ABC"
+	}
+	office:{
+	name:"2000"
+	
+	location:{
+			city:{
+				name:"NORTE"
+			}
+			state:{
+				name:"NORTE"
+			}
+			
+		}
+		postalAddress:"CHILE CENTRO"
+	}
+	value:"30.00 COP"balance:"10.00 COP"originValue:{
+		currency:"COP"amount:20
+	}
+}</con:responseContent></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
