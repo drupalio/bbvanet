@@ -417,7 +417,14 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		return mask + " " + number.substring(number.length() - 4, number.length());
 	}
 
-	public Money getTotalUsedAccount(Money total, Money available) {
+	/**
+	 * Calcula el total utilizado
+	 * 
+	 * @param total
+	 * @param available
+	 * @return
+	 */
+	public Money getTotalUsedCards(Money total, Money available) {
 
 		Money totalUsed = new Money(total.getAmount().subtract(available.getAmount()));
 		return totalUsed;
