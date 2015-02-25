@@ -40,10 +40,14 @@ public class ExtractControllerImpl extends AbstractBbvaController implements Ext
 
 	public void init() {
 
-		this.extractList = this.extractFacade.getExtractAvailablePeriod(super.getSelectedProduct().getProductNumber(),
-				StringUtils.EMPTY);
+		try {
+			this.extractList = this.extractFacade.getExtractAvailablePeriod(super.getSelectedProduct()
+					.getProductNumber(), StringUtils.EMPTY);
 
-		getExtractAvailablePeriod();
+			getExtractAvailablePeriod();
+		} catch (final Exception exception) {
+			exception.printStackTrace();
+		}
 
 	}
 

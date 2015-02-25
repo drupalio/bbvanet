@@ -89,13 +89,18 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	public void initCheckBookList() {
 		LOGGER.info(" CheckBookControllerImpl initCheckBookList ");
 		this.checkBookList = new ArrayList<CheckbookDto>();
-		// TODO accountId
-		LOGGER.info(" CheckBookControllerImpl initCheckBookList productId: " + getSelectedProduct().getProductId());
-		this.checkBookList = checkBookFacade.getCheckBooksById(getSelectedProduct().getProductId());
 
-		checkBooks = new ArrayList<SelectItem>(checkBookList.size());
-		for (CheckbookDto value : checkBookList) {
-			checkBooks.add(new SelectItem(value.getId()));
+		try {
+			// TODO accountId
+			LOGGER.info(" CheckBookControllerImpl initCheckBookList productId: " + getSelectedProduct().getProductId());
+			this.checkBookList = checkBookFacade.getCheckBooksById(getSelectedProduct().getProductId());
+
+			checkBooks = new ArrayList<SelectItem>(checkBookList.size());
+			for (CheckbookDto value : checkBookList) {
+				checkBooks.add(new SelectItem(value.getId()));
+			}
+		} catch (final Exception exception) {
+			exception.printStackTrace();
 		}
 	}
 
