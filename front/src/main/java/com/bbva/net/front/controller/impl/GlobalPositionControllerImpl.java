@@ -17,6 +17,7 @@ import com.bbva.net.back.facade.MonthBalanceFacade;
 import com.bbva.net.back.model.accounts.GlobalMonthlyBalanceDto;
 import com.bbva.net.back.model.comboFilter.EnumPeriodType;
 import com.bbva.net.back.model.commons.DateRangeDto;
+import com.bbva.net.back.model.commons.Money;
 import com.bbva.net.back.model.globalposition.BalanceDto;
 import com.bbva.net.back.model.globalposition.GlobalProductsDto;
 import com.bbva.net.back.model.movements.GlobalResumeMovementsDto;
@@ -451,6 +452,19 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 			mask += "*";
 		}
 		return mask + " " + number.substring(number.length() - 4, number.length());
+	}
+
+	/**
+	 * Calcula el total utilizado
+	 * 
+	 * @param total
+	 * @param available
+	 * @return
+	 */
+	public Money getTotalUsedCards(Money total, Money available) {
+
+		Money totalUsed = new Money(total.getAmount().subtract(available.getAmount()));
+		return totalUsed;
 	}
 
 	/************************************* SETTER BEANS **************************************/

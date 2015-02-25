@@ -14,7 +14,12 @@
 	<f:view locale="es_CO"></f:view>
 	<title><ui:insert name="title">	BBVA :: Colombia :: Posición Global</ui:insert></title>
 	<bbvaScript:assetScripts />
-
+	<script type='text/javascript'>
+		window.onload = detectarCarga;
+		function detectarCarga(){
+			document.getElementById("imgLOAD").style.display="none";
+		}
+	</script>
 </h:head>
 
 
