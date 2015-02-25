@@ -246,6 +246,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 					+ this.dateRange.getDateTo());
 		}
 		setProductIdPControl(getSelectedProduct().getProductId());
+		super.init();
 		search();
 		this.quotamovenDtos = getCurrentList();
 		setShowMoreStatus();
