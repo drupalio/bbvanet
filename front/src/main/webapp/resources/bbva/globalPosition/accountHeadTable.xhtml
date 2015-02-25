@@ -47,6 +47,39 @@
 				<h:outputText styleClass="sublabel" style="font-size: 1.1em;font-weight:bold;color:#71777f"
 					escape="false" value="&lt;br /&gt; #{iproduct.productName}" />
 
+				<div class="select-tab-quiero select-tab-quiero-default btn-group bootstrap-select hidden-xs hidden-sm">
+					<div class="quiero">
+						<button class="btn dropdown-toggle btn-default btn-z2" type="button">
+							<span class="pull-left">Quiero</span>
+							<span class="caret"></span>
+							<span class="background-btn"></span>
+						</button>
+						<div class="dropdown-menu open" style="display: block;">
+							<div class="border">
+								<ul role="menu" class="dropdown-menu inner" style="display: none;">
+									<li class="">
+										<a href="./savingsAccount.html">Ver saldos y movimientos</a>
+									</li>
+									<li class="">
+										<a href="./savingsAccount.html?operacion=make-transfer-1">Realizar transferencias</a>
+									</li>
+									<li class="last-item">
+										<a href="./savingsAccount.html?operacion=managed-transfer-1">Gestionar transferencias</a>
+									</li>
+								</ul>
+								<ul class="dropdown-menu inner last-group" style="display: none;">
+									<li>
+										<a href="javasctipt:void(0)">
+											<span>Ver más opciones</span>
+											<span class="continue">»</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				
 			</p:column>
 
 			<p:column class="head" headerText="#{msg['text.account.balance']}"
