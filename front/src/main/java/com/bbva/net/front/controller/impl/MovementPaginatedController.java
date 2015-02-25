@@ -29,6 +29,11 @@ public class MovementPaginatedController extends PaginationController<MovementDt
 				paginantionKey, psize);
 	}
 
+	@Override
+	protected Integer getNextPaginantionKey(List<MovementDto> lastPage) {
+		return Integer.valueOf(lastPage.get(lastPage.size() - 1).getMovementId());
+	}
+
 	public void search() {
 		super.next();
 	}
@@ -102,4 +107,5 @@ public class MovementPaginatedController extends PaginationController<MovementDt
 	public void setMovementsFacade(MovementsAccountFacade movementsFacade) {
 		this.movementsFacade = movementsFacade;
 	}
+
 }

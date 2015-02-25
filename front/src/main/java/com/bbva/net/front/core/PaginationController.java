@@ -19,11 +19,13 @@ public abstract class PaginationController<T extends Serializable> extends Abstr
 
 	private boolean hasMorePages = true;
 
-	private static final int PAGE_SIZE = 10;
+	protected static final int PAGE_SIZE = 10;
 
 	private Integer paginationKey;
 
 	protected abstract List<T> getNextPage(int paginantionKey, int psize);
+
+	protected abstract Integer getNextPaginantionKey(List<T> lastPage);
 
 	@PostConstruct
 	public void init() {
@@ -38,7 +40,7 @@ public abstract class PaginationController<T extends Serializable> extends Abstr
 		}
 
 		currentList.addAll(currentPage);
-		paginationKey = paginationKey + PAGE_SIZE;
+		paginationKey = getNextPaginantionKey(currentPage);
 
 	}
 
