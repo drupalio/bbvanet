@@ -234,7 +234,8 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 	@Override
 	public void nextPage(final ActionEvent event) {
 		LOGGER.info("QuotaControllerImpl nextPage ");
-		criteriaSearch();
+		next();
+		this.quotamovenDtos = getCurrentList();
 	}
 
 	@Override

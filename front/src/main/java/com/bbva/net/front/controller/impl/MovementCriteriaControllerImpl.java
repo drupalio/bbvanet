@@ -79,7 +79,6 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	@Override
 	public void init() {
 		super.init();
-		clean();
 		LOGGER.info("Initialize MovementsAccountController");
 	}
 

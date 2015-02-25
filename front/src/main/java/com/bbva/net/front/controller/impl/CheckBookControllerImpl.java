@@ -192,6 +192,9 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			// TODO DEFAULT_ACCOUNT accountId
 			this.check = checkBookFacade.getCheckById(getSelectedProduct().getProductId(), getCheckNumber());
 
+			this.checkList = new ArrayList<CheckDto>();
+			this.checkList.add(check);
+
 		} else if (getRenderComponents().get(RenderAttributes.FILTERSTATUS.toString())) {
 			LOGGER.info(" CheckBookControllerImpl showResults filterByStatus ");
 			// Filter by status
