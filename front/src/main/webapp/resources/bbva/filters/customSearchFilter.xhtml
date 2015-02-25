@@ -34,7 +34,7 @@
 
 		<div class="form-horizontal">
 			<div class="row">
-
+				<h:form id="mu">
 				<p:selectOneRadio id="customRadio" layout="custom"
 					value="#{cc.attrs.value}">
 					<f:selectItem itemLabel="#{msg['select.radio.today']}"
@@ -70,7 +70,7 @@
 						listener="#{cc.attrs.listenerDate.oneSelectDate}" />
 
 				</p:selectOneRadio>
-
+				
 				<div class="col-xs-6">
 					<p:radioButton id="customSearch-filter-today" for="customRadio"
 						itemIndex="0" />
@@ -101,6 +101,7 @@
 						itemIndex="5" />
 					<label for="customSearch-filter-two-month">#{msg['select.radio.last.two.months']}</label>
 				</div>
+				</h:form>
 			</div>
 		</div>
 
@@ -145,8 +146,8 @@
 			</div>
 		</div>
 
-		
-		<button jsf:id="dateButtonMovements" class="btn small hidden-xs hidden-sm"
+		<h:form id="muestra">
+		<button jsf:id="dateButtonMovements" class="btn small hidden-xs hidden-sm #{movementsCriteriaController.selectDate=='Hoy' ? 'buttonDisabled': 'none' }"
 			jsf:disabled="#{cc.attrs.disabledButton}"
 			jsf:rendered="#{cc.attrs.showMovements}"
 			jsf:actionListener="#{cc.attrs.actionListenerDate}">
@@ -159,7 +160,7 @@
 			:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:componentList
 			" />
 		</button>
-		
+		</h:form>
 		<button jsf:id="dateButtonChecks" class="btn small hidden-xs hidden-sm"
 			jsf:disabled="#{cc.attrs.disabledButton}"
 			jsf:rendered="#{cc.attrs.showChecks}"

@@ -43,37 +43,660 @@
 				</bbvaHeader:moveContainerHeader>
 			</bbvaHeader:moveDetailContainer>
 
-			<bbvaDetAcc:tabMenu id="tabMenu">
-
-				<bbvaDetAcc:menuMovements />
-
+			<aside class="product-detail product-detail-desktop ">
+			<div class="operation-tabs">
+				<ul class="nav nav-pills nav-quiero holder hidden-md hidden-lg">
+					<li class="activePhone" style="display: none;"><a class="want">Quiero</a></li>
+					<li style="" class="inactivePhone"><a class="return">Volver</a></li>
+				</ul>
+				<ul style="" class="nav nav-pills nav-operation-options">
+					<li class="tab-left consultas-btn active"><a tab-index="0"
+						class="tab-head" role-tab="#tab-consultas">Consultas<span
+							class="iconFont-611 font-white hidden-md hidden-lg"></span><span
+							class="icon-24 c08-consultarextracto hidden-xs hidden-sm"></span></a>
+					</li>
+					<li class="tab-left operaciones-btn inactive"><a tab-index="1"
+						class="tab-head" role-tab="#tab-operaciones">Operaciones<span
+							class="iconFont-015 font-white"></span></a></li>
+					<li class="tab-right hidden-xs hidden-sm inactive"><a
+						tab-index="2" class="tab-head" role-tab="#tab-personalizar">Personalizar</a>
+					</li>
+					<li class="tab-right inactive"><a tab-index="3"
+						class="tab-head" role-tab="#tab-condiciones">Condiciones<span
+							class="iconFont-104 hidden-md hidden-lg"></span></a></li>
+					<li class="tab-right hidden-md hidden-lg inactive"><a
+						tab-index="2" class="tab-head" role-tab="#tab-personalizar">Personalizar<span
+							class="iconFont-217"></span></a></li>
+				</ul>
 				<div class="tab-content">
+					<div id="tab-consultas"
+						class="tab-mobile tab-pane consultas active">
+						<div class="panel-tab-head">
+							<button class="close-icon hidden-xs hidden-sm  close-button"
+								type="button"></button>
+							<h1 class="hidden-xs hidden-sm iwant">Quiero</h1>
+						</div>
 
-					<!-- Tab Consultar -->
-					<bbvaSearch:tabCriteria id="tabCriteria">
-						<bbvaSearch:personalizedSearchContainer
-							id="personalizedSearchContainer" />
-					</bbvaSearch:tabCriteria>
+						<div class="panel-tab-body">
+							<div class="filters custom-search">
+								<h1 class="hidden-xs hidden-sm">Realizar búsqueda
+									personalizada</h1>
+								<h1 class="hidden-md hidden-lg">
+									<span class="iconFont-611 font-white hidden-md hidden-lg"></span>
+									<span>Consultas</span>
+								</h1>
+								<ul class="accordion">
+									<li class="date-filter customSearch"><a class="header"
+										href="#"> <span class="arrow-left-smaller"> Fecha <span
+												class="filter"></span>
+										</span>
+									</a>
+										<div class="date-filter-content always-visible">
+												<div class="form-horizontal">
+													<div class="row">
+														<!-- Fechas -->
+														<h:form id="dateTextQuery">
+															<p:selectOneRadio id="customRadio" layout="custom"
+																value="#{movementsCriteriaController.selectDate}">
+																<f:selectItem itemLabel="#{msg['select.radio.today']}"
+																	itemValue="#{msg['select.radio.today']}" />
+																<f:selectItem
+																	itemLabel="#{msg['select.radio.yesterday']}"
+																	itemValue="#{msg['select.radio.yesterday']}" />
+																<f:selectItem
+																	itemLabel="#{msg['select.radio.last.week']}"
+																	itemValue="#{msg['select.radio.last.week']}" />
 
-					<!-- Tab Condiciones -->
-					<bbvaAcc:accountContainer alias="#{product.alias}"
-						number="#{product.productId}" type="#{product.productName}" />
+																<f:selectItem
+																	itemLabel="#{msg['select.radio.last.two.weeks']}"
+																	itemValue="#{msg['select.radio.last.two.weeks']}" />
+																<f:selectItem
+																	itemLabel="#{msg['select.radio.last.month']}"
+																	itemValue="#{msg['select.radio.last.month']}" />
+																<f:selectItem
+																	itemLabel="#{msg['select.radio.last.two.months']}"
+																	itemValue="#{msg['select.radio.last.two.months']}" />
 
-					<!-- Tab Personalizar -->
-					<bbvaPersonalize:personalizeContainer />
+																<f:selectItem
+																	itemLabel="#{msg['select.radio.concret.date']}"
+																	itemValue="" />
+																<f:ajax event="click" render=":confirmDate"
+																	execute="@this" />
+															</p:selectOneRadio>
 
+															<div class="col-xs-6">
+																<p:radioButton id="customSearch-filter-today"
+																	for="customRadio" itemIndex="0" />
+																<label for="customSearch-filter-today">#{msg['select.radio.today']}</label>
+															</div>
+															<div class="col-xs-6">
+																<p:radioButton id="customSearch-filter-yesterday"
+																	for="customRadio" itemIndex="1" />
+																<label for="customSearch-filter-yesterday">#{msg['select.radio.yesterday']}</label>
+															</div>
+															<div class="col-xs-6">
+																<p:radioButton id="customSearch-filter-week"
+																	for="customRadio" itemIndex="2" />
+																<label for="customSearch-filter-week">#{msg['select.radio.last.week']}</label>
+															</div>
+															<div class="col-xs-6">
+																<p:radioButton id="customSearch-filter-two-week"
+																	for="customRadio" itemIndex="3" />
+																<label for="customSearch-filter-two-week">#{msg['select.radio.last.two.weeks']}</label>
+															</div>
+															<div class="col-xs-6">
+																<p:radioButton id="customSearch-filter-month"
+																	for="customRadio" itemIndex="4" />
+																<label for="customSearch-filter-month">#{msg['select.radio.last.month']}</label>
+															</div>
+															<div class="col-xs-6">
+																<p:radioButton id="customSearch-filter-two-month"
+																	for="customRadio" itemIndex="5" />
+																<label for="customSearch-filter-two-month">#{msg['select.radio.last.two.months']}</label>
+															</div>
+														</h:form>
+													</div>
+												</div>
+											<!-- Calendario -->
+											<h:form id="calendarDate">
+												<div class="date-period radio-group">
+													<div class="form-horizontal date-specific">
+														<p:radioButton id="customSearch-filter-datePeriod" 
+															for=":dateTextQuery:customRadio" itemIndex="6" />
+														<label for="customSearch-filter-datePeriod">#{msg['select.radio.concret.date']}</label>
+													</div>
+													<div>
+														<div class="col-xs-12 col-md-6">
+															<div class="form-group">
+																<div class="col-xs-2 col-md-12">
+																	<label for="calendarSinceWV">Desde:</label>
+																</div>
+																<div class="col-xs-10 col-md-12 input-control">
+
+																	<p:calendar widgetVar="calendarSinceWV"
+																		id="calendarSince" value="#{movementsCriteriaController.sinceDate}"
+																		disabled="false">
+																		<p:ajax event="dateSelect"
+																			listener="#{movementsCriteriaController.handleDateSelect}"
+																			update="calendarTo" />
+																	</p:calendar>
+
+																</div>
+															</div>
+														</div>
+														<div class="col-xs-12 col-md-6">
+															<div class="form-group">
+																<div class="col-xs-2 col-md-12">
+																	<label for="calendarToSinceWV">Hasta:</label>
+																</div>
+																<div class="col-xs-10 col-md-12 input-control">
+																	<p:calendar widgetVar="calendarToSinceWV"
+																		id="calendarTo" mindate="#{movementsCriteriaController.sinceDate}"
+																		value="#{movementsCriteriaController.toDate}"
+																		disabled="false">
+																	</p:calendar>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</h:form>
+											<!-- Confirmar -->
+											<h:form id="confirmDate">
+												<button
+													class="btn small hidden-xs hidden-sm #{movementsCriteriaController.selectDate=='' || movementsCriteriaController.selectDate==null ? 'buttonDisabled': 'none' }">
+													#{msg['button.confirm']}</button>
+											</h:form>
+
+										</div></li>
+									<!-- 									<li class="balance-filter"><a class="header" href="#"> -->
+									<!-- 											<span class="arrow-left-smaller"> Saldo <span -->
+									<!-- 												class="filter"></span> -->
+									<!-- 										</span> -->
+									<!-- 									</a> -->
+									<!-- 										<div class="balance-filter-content always-visible"> -->
+									<!-- 											<form novalidate="novalidate"> -->
+									<!-- 												<div> -->
+									<!-- 													<div class="col-xs-12 col-md-6"> -->
+									<!-- 														<div class="form-group"> -->
+									<!-- 															<div class="col-xs-2 col-md-12"> -->
+									<!-- 																<label for="inputNumberFrom">Desde:</label> -->
+									<!-- 															</div> -->
+									<!-- 															<div class="col-xs-10 col-md-12 balanceFrom"> -->
+									<!-- 																<input type="text" data-filter="Desde:" -->
+									<!-- 																	autocomplete="off" data-max="999999999999" data-min="0" -->
+									<!-- 																	maxlength="12" name="inputNumberFrom" -->
+									<!-- 																	class="form-control dollar" aria-required="true"/> -->
+									<!-- 															</div> -->
+									<!-- 														</div> -->
+									<!-- 													</div> -->
+									<!-- 													<div class="col-xs-12 col-md-6"> -->
+									<!-- 														<div class="form-group"> -->
+									<!-- 															<div class="col-xs-2 col-md-12"> -->
+									<!-- 																<label for="inputNumberTo">Hasta:</label> -->
+									<!-- 															</div> -->
+									<!-- 															<div class="col-xs-10 col-md-12 balanceTo"> -->
+									<!-- 																<input type="text" data-filter="Hasta:" -->
+									<!-- 																	autocomplete="off" data-max="999999999999" data-min="1" -->
+									<!-- 																	maxlength="12" name="inputNumberTo" -->
+									<!-- 																	class="form-control dollar" aria-required="true"/> -->
+									<!-- 															</div> -->
+									<!-- 														</div> -->
+									<!-- 													</div> -->
+									<!-- 												</div> -->
+									<!-- 												<small class="filter-description">Se muestran los -->
+									<!-- 													resultados mayores de 1000$ y menores de 2000$.</small> -->
+									<!-- 												<button class="btn small hidden-xs hidden-sm" type="submit" -->
+									<!-- 													disabled="">Confirmar</button> -->
+									<!-- 											</form> -->
+									<!-- 										</div> -->
+									<!-- 									</li> -->
+									<!-- 									<li class="incomeAndExpenses-filter"><a class="header" -->
+									<!-- 										href="#"> <span class="arrow-left-smaller"> -->
+									<!-- 												Ingresos/Gastos <span class="filter"></span> -->
+									<!-- 										</span> -->
+									<!-- 									</a> -->
+									<!-- 										<div -->
+									<!-- 											class="incomeAndExpenses-filter-content always-visible radio-group"> -->
+									<!-- 											<form novalidate="novalidate"> -->
+									<!-- 												<div class="row form-horizontal"> -->
+									<!-- 													<div class="col-xs-4 col-md-4"> -->
+									<!-- 														<input type="radio" data-filter="Entradas" -->
+									<!-- 															value="Entradas" id="inflow" -->
+									<!-- 															name="sample-radio-incomeAndExpenses" -->
+									<!-- 															aria-required="true"/> <label for="inflow">Entradas</label> -->
+									<!-- 													</div> -->
+									<!-- 													<div class="col-xs-4 col-md-4 all-width-mobile"> -->
+									<!-- 														<input type="radio" data-filter="Salidas" value="Salidas" -->
+									<!-- 															id="outflow" name="sample-radio-incomeAndExpenses"/> -->
+									<!-- 															<label for="outflow">Salidas</label> -->
+									<!-- 													</div> -->
+									<!-- 													<div class="col-xs-4 col-md-4 all-width-mobile"> -->
+									<!-- 														<input type="radio" data-filter="Entradas/Salidas" -->
+									<!-- 															value="Entradas/Salidas" id="bothflow" -->
+									<!-- 															name="sample-radio-incomeAndExpenses"/> <label -->
+									<!-- 															for="bothflow">Entradas/Salidas</label> -->
+									<!-- 													</div> -->
+									<!-- 													<button class="btn small hidden-xs hidden-sm" type="submit" -->
+									<!-- 														disabled="">Confirmar</button> -->
+									<!-- 												</div> -->
+									<!-- 											</form> -->
+									<!-- 										</div></li> -->
+									<!-- 									<li class="movements-filter"><a class="header" href="#"> -->
+									<!-- 											<span class="arrow-left-smaller"> Movimiento <span -->
+									<!-- 												class="filter"></span> -->
+									<!-- 										</span> -->
+									<!-- 									</a> -->
+									<!-- 										<div -->
+									<!-- 											class="scrollable-dropdown-menu movements-filter-content always-visible"> -->
+									<!-- 											<form name="movements-form" role="form" -->
+									<!-- 												class="form form-search search-movements-queries" action="#" -->
+									<!-- 												novalidate="novalidate"> -->
+									<!-- 												<button class="search-icon" type="submit"></button> -->
+									<!-- 												<span class="twitter-typeahead" -->
+									<!-- 													style="position: relative; display: inline-block; direction: ltr;"><input -->
+									<!-- 													type="text" data-filter="" value="" -->
+									<!-- 													class="typeahead form-control tt-hint" -->
+									<!-- 													style="position: absolute; top: 0px; left: 0px; border-color: transparent; box-shadow: none; opacity: 1; background: none repeat scroll 0% 0% rgb(255, 255, 255);" -->
+									<!-- 													readonly="" autocomplete="off" spellcheck="false" -->
+									<!-- 													tabindex="-1"/> -->
+									<!-- 													<input type="text" data-filter="" -->
+									<!-- 														placeholder="Escribe el movimiento" value="" name="search" -->
+									<!-- 														class="typeahead form-control tt-input" autocomplete="off" -->
+									<!-- 														spellcheck="false" style="position: relative; vertical-align: top; background-color: transparent;"	dir="auto"/> -->
+									<!-- 														<pre aria-hidden="true" -->
+									<!-- 																style="position: absolute; visibility: hidden; white-space: pre; font-family: Arial, sans-serif; font-size: 12px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: optimizelegibility; text-transform: none;"></pre><span -->
+									<!-- 															class="tt-dropdown-menu" -->
+									<!-- 															style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none; right: auto;"><div -->
+									<!-- 																	class="tt-dataset-movements"></div></span></span> -->
+									<!-- 											</form> -->
+									<!-- 										</div></li> -->
+									<!-- 									<li class="filter-buttons"> -->
+									<!-- 										<div> -->
+									<!-- 											<button class="btn btn-default hidden-xs hidden-sm"> -->
+									<!-- 												<span class="trash-icon"></span> Borrar filtros -->
+									<!-- 											</button> -->
+									<!-- 											<button class="btn btn-default"> -->
+									<!-- 												<span id="view-queries" class="document-view-icon"></span> -->
+									<!-- 												Ver resultados -->
+									<!-- 											</button> -->
+									<!-- 										</div> -->
+									<!-- 									</li> -->
+								</ul>
+							</div>
+							<!-- beginning /partials/account/savingsAccount/partials/query-operations-panel/_check-books.html -->
+							<div class="filters check-books">
+								<h1 class="hidden-xs hidden-sm">Consultar talonarios</h1>
+								<ul class="accordion">
+									<li class="date-filter checkBooks"><a href="#"
+										class="header"> <span class="arrow-left-smaller">Fecha
+												<span class="filter"></span>
+										</span>
+									</a>
+										<div class="date-filter-content always-visible">
+											<form class="fromToJs" action="#" novalidate="novalidate">
+												<div class="form-horizontal">
+													<div class="row">
+														<div class="col-xs-6">
+															<input type="radio" data-filter="Hoy" value="Hoy"
+																id="checkBooks-filter-today" name="sample-radio-date"
+																aria-required="true" /> <label
+																for="checkBooks-filter-today">Hoy</label>
+														</div>
+														<div class="col-xs-6">
+															<input type="radio" data-filter="Ayer" value="Ayer"
+																id="checkBooks-filter-yesterday"
+																name="sample-radio-date" /> <label
+																for="checkBooks-filter-yesterday">Ayer</label>
+														</div>
+														<div class="col-xs-6">
+															<input type="radio" data-filter="Última semana"
+																value="Última semana" id="checkBooks-filter-week"
+																name="sample-radio-date" /> <label
+																for="checkBooks-filter-week">Última semana</label>
+														</div>
+														<div class="col-xs-6">
+															<input type="radio" data-filter="Últimas dos semanas"
+																value="Últimas dos semanas"
+																id="checkBooks-filter-two-week" name="sample-radio-date" />
+															<label for="checkBooks-filter-two-week">Últimas
+																dos semanas</label>
+														</div>
+														<div class="col-xs-6">
+															<input type="radio" data-filter="Último mes"
+																value="Último mes" id="checkBooks-filter-month"
+																name="sample-radio-date" /> <label
+																for="checkBooks-filter-month">Último mes</label>
+														</div>
+														<div class="col-xs-6">
+															<input type="radio" data-filter="Últimos dos meses"
+																value="Últimos dos meses"
+																id="checkBooks-filter-two-month"
+																name="sample-radio-date" /> <label
+																for="checkBooks-filter-two-month">Últimos dos
+																meses</label>
+														</div>
+													</div>
+												</div>
+
+												<div class="date-period radio-group">
+													<div class="form-horizontal date-specific">
+														<input type="radio" class="filter-period"
+															value="Fecha concreta" id="checkbook-filter-datePeriod"
+															name="sample-radio-date" /> <label
+															for="checkbook-filter-datePeriod">Fecha concreta</label>
+													</div>
+													<div>
+														<div class="col-xs-12 col-md-6">
+															<div class="form-group">
+																<div class="col-xs-2 col-md-12">
+																	<label for="checkbooks-dateFieldFrom">Desde:</label>
+																</div>
+																<div class="col-xs-10 col-md-12 input-control">
+																	<input type="text" data-provide="datepicker-inline"
+																		data-date-format="dd/mm/yyyy" data-filter="Desde:"
+																		autocomplete="off" placeholder="dd/mm/aaaa"
+																		id="checkbooks-dateFieldFrom"
+																		class="form-control dateFieldFrom field-calendar fromToJs-from"
+																		maxlength="10" name="dateFieldFrom" disabled="" />
+																</div>
+															</div>
+														</div>
+														<div class="col-xs-12 col-md-6">
+															<div class="form-group">
+																<div class="col-xs-2 col-md-12">
+																	<label for="checkbooks-dateFieldTo">Hasta:</label>
+																</div>
+																<div class="col-xs-10 col-md-12 input-control">
+																	<input type="text" data-provide="datepicker-inline"
+																		data-format="dd/mm/yyyy" data-filter="Hasta:"
+																		autocomplete="off" placeholder="dd/mm/aaaa"
+																		id="checkbooks-dateFieldTo"
+																		class="form-control dateFieldTo field-calendar fromToJs-to"
+																		maxlength="10" name="dateFieldTo" disabled="" />
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<button
+													class="btn small hidden-xs hidden-sm fromToJs-button"
+													type="submit" disabled="disabled">Confirmar</button>
+											</form>
+										</div></li>
+									<li class="check-books-ticket radio-filter mobile-hidden">
+										<a href="#" class="header"> <span
+											class="arrow-left-smaller">Nº de Cheque o Talonario <span
+												class="filter"></span></span>
+									</a>
+										<form class="radio-filter-content always-visible" action="#"
+											id="checkBookSearch-filter" novalidate="novalidate">
+											<div class="row">
+												<div class="form-horizontal">
+													<div class="col-xs-12 radio-group">
+														<div class="form-group">
+															<input type="radio" value="Busca-num"
+																id="checkBookSearchNum-filter"
+																name="sample-radio-ticket" aria-required="true" /> <label
+																for="checkBookSearchNum-filter">Búsqueda por nº
+																de cheque</label>
+															<div class="input-control">
+																<input type="text" data-filter="Nº Cheque "
+																	autocomplete="off" id="cheque-num-input" maxlength="8"
+																	min="0" class="form-control num-cheque number required"
+																	name="input-num-ticket" aria-required="true"
+																	disabled="" />
+															</div>
+														</div>
+														<div class="hidden-xs hidden-sm form-group">
+															<label for="cheque-num-input">Estado</label>
+															<div class="input-control">
+																<select data-filter="Estado: " style="display: none;"
+																	class="selectpicker" id="cheque-num-input"
+																	name="select-state">
+																	<option value="" data-hidden="true">Seleccionar</option>
+																	<option>Habilitados</option>
+																	<option>Solicitados</option>
+																	<option>Lorem</option>
+																</select>
+																<div class="btn-group bootstrap-select">
+																	<button data-toggle="dropdown"
+																		class="btn dropdown-toggle selectpicker btn-default"
+																		type="button" data-id="cheque-num-input"
+																		title="Seleccionar" disabled="">
+																		<span class="filter-option pull-left">Seleccionar</span>&nbsp;<span
+																			class="caret"></span>
+																	</button>
+																	<div class="dropdown-menu open">
+																		<ul role="menu"
+																			class="dropdown-menu inner selectpicker">
+																			<li class="hide is-hidden selected" rel="0"><a
+																				tabindex="0"></a></li>
+																			<li rel="1"><a style="" class="" tabindex="0"><span
+																					class="text">Habilitados</span><i
+																					class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li>
+																			<li rel="2"><a style="" class="" tabindex="0"><span
+																					class="text">Solicitados</span><i
+																					class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li>
+																			<li rel="3"><a style="" class="" tabindex="0"><span
+																					class="text">Lorem</span><i
+																					class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li>
+																		</ul>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="col-xs-12 radio-group">
+														<div class="form-group group-books">
+															<input type="radio" class="talon-numbered"
+																value="Busca-talon" id="checkBookSearchState-filter"
+																name="sample-radio-ticket" /> <label
+																for="checkBookSearchState-filter">Búsqueda por
+																nº de talonario</label>
+															<div class="input-control">
+																<select data-filter="Talonario: " style="display: none;"
+																	class="selectpicker" id="select-search-book"
+																	name="select-search-checkbook">
+																	<option value="" data-hidden="true">Seleccionar</option>
+																	<option>000000000551-000000000532</option>
+																	<option>001230000551-000000000532</option>
+																	<option>004560000551-000000000532</option>
+																</select>
+																<div class="btn-group bootstrap-select">
+																	<button data-toggle="dropdown"
+																		class="btn dropdown-toggle selectpicker btn-default"
+																		type="button" data-id="select-search-book"
+																		title="Seleccionar" disabled="">
+																		<span class="filter-option pull-left">Seleccionar</span>&nbsp;<span
+																			class="caret"></span>
+																	</button>
+																	<div class="dropdown-menu open">
+																		<ul role="menu"
+																			class="dropdown-menu inner selectpicker">
+																			<li class="hide is-hidden selected" rel="0"><a
+																				tabindex="0"></a></li>
+																			<li rel="1"><a style="" class="" tabindex="0"><span
+																					class="text">000000000551-000000000532</span><i
+																					class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li>
+																			<li rel="2"><a style="" class="" tabindex="0"><span
+																					class="text">001230000551-000000000532</span><i
+																					class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li>
+																			<li rel="3"><a style="" class="" tabindex="0"><span
+																					class="text">004560000551-000000000532</span><i
+																					class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li>
+																		</ul>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<button class="btn small hidden-xs hidden-sm" type="submit"
+													disabled="">Confirmar</button>
+											</div>
+										</form>
+									</li>
+									<li class="filter-buttons">
+										<div>
+											<button class="btn btn-default">
+												<span id="view-checkbooks" class="document-view-icon"></span>
+												Ver resultados
+											</button>
+										</div>
+									</li>
+								</ul>
+							</div>
+							<!-- end /partials/account/savingsAccount/partials/query-operations-panel/_check-books.html -->
+							<div class="filters consultas descarga hidden-xs hidden-sm ">
+								<div class="download-extract container">
+									<form method="post" action="?src=S03-cuentas.php">
+										<h1>Descargar extracto electrónico</h1>
+										<div class="first-part-download">
+											<small>Selecciona el año y el mes del extracto que
+												quieres consultar. <i class="iconFont-412"></i>
+											</small>
+											<div class="row filteroptions">
+												<div class="col-md-3">
+													<select style="display: none;" class="selectpicker">
+														<option value="" data-hidden="true">Año</option>
+														<option>2014</option>
+														<option>2015</option>
+														<option>2016</option>
+													</select>
+													<div class="btn-group bootstrap-select">
+														<button data-toggle="dropdown"
+															class="btn dropdown-toggle selectpicker btn-default"
+															type="button" title="Año">
+															<span class="filter-option pull-left">Año</span>&nbsp;<span
+																class="caret"></span>
+														</button>
+														<div class="dropdown-menu open">
+															<ul role="menu" class="dropdown-menu inner selectpicker">
+																<li class="hide is-hidden selected" rel="0"><a
+																	tabindex="0"></a></li>
+																<li rel="1"><a style="" class="" tabindex="0"><span
+																		class="text">2014</span><i
+																		class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li>
+																<li rel="2"><a style="" class="" tabindex="0"><span
+																		class="text">2015</span><i
+																		class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li>
+																<li rel="3"><a style="" class="" tabindex="0"><span
+																		class="text">2016</span><i
+																		class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li>
+															</ul>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-3">
+													<select style="display: none;" class="selectpicker">
+														<option value="" data-hidden="true">Mes</option>
+														<option>Enero</option>
+														<option>Febrero</option>
+														<option>Marzo</option>
+														<option>Abril</option>
+														<option>Mayo</option>
+														<option>Junio</option>
+														<option>Julio</option>
+														<option>Agosto</option>
+														<option>Septiembre</option>
+														<option>Octubre</option>
+														<option>Noviembre</option>
+														<option>Diciembre</option>
+													</select>
+													<div class="btn-group bootstrap-select">
+														<button data-toggle="dropdown"
+															class="btn dropdown-toggle selectpicker btn-default"
+															type="button" title="Mes">
+															<span class="filter-option pull-left">Mes</span>&nbsp;<span
+																class="caret"></span>
+														</button>
+														<div class="dropdown-menu open">
+															<ul role="menu" class="dropdown-menu inner selectpicker">
+																<li class="hide is-hidden selected" rel="0"><a
+																	tabindex="0"></a></li>
+																<li rel="1"><a style="" class="" tabindex="0"><span
+																		class="text">Enero</span><i
+																		class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li>
+																<li rel="2"><a style="" class="" tabindex="0"><span
+																		class="text">Febrero</span><i
+																		class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li>
+																<li rel="3"><a style="" class="" tabindex="0"><span
+																		class="text">Marzo</span><i
+																		class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li>
+																<li rel="4"><a style="" class="" tabindex="0"><span
+																		class="text">Abril</span><i
+																		class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li>
+																<li rel="5"><a style="" class="" tabindex="0"><span
+																		class="text">Mayo</span><i
+																		class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li>
+																<li rel="6"><a style="" class="" tabindex="0"><span
+																		class="text">Junio</span><i
+																		class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li>
+																<li rel="7"><a style="" class="" tabindex="0"><span
+																		class="text">Julio</span><i
+																		class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li>
+																<li rel="8"><a style="" class="" tabindex="0"><span
+																		class="text">Agosto</span><i
+																		class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li>
+																<li rel="9"><a style="" class="" tabindex="0"><span
+																		class="text">Septiembre</span><i
+																		class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li>
+																<li rel="10"><a style="" class="" tabindex="0"><span
+																		class="text">Octubre</span><i
+																		class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li>
+																<li rel="11"><a style="" class="" tabindex="0"><span
+																		class="text">Noviembre</span><i
+																		class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li>
+																<li rel="12"><a style="" class="" tabindex="0"><span
+																		class="text">Diciembre</span><i
+																		class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li>
+															</ul>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-5">
+													<span class="stable-button medium icon-left ext-message"><span
+														class="icon pdf"></span>Descargar extracto</span>
+												</div>
+											</div>
+										</div>
+										<div class="second-part-download hide">
+											<small>¿Deseas recibir periódicamente los extractos
+												de tus productos a través de nuestra página transaccional?</small>
+											<div class="form-group confirmar">
+												<div class="form-horizontal item first">
+													<label>E-mail</label>
+												</div>
+												<div class="item input-item input-control">
+													<input type="text" disabled="" aria-required="true"
+														autocomplete="off" placeholder="usuario@mail.com"
+														class="form-control required email" id="email-receiver"
+														name="email-receiver" />
+												</div>
+											</div>
+										</div>
+									</form>
+									<div class="system-message info">
+										<span class="icon"></span>
+										<!--p>Si deseas modificar este correo electrónico, dirígete al área personal.</p>
+                <p>Recuerda que la inscripción que vas a realizar suspenderá la impresión y envío de tus extractos a la dirección de correspondencia actual y aplicará a partir del siguiente mes.</p-->
+										<p>Estás inscrito para recibir vía email el extracto
+											electrónico mensual con el mail "marisa@bbva.com".</p>
+										<p>Si deseas modificar este correo electrónico o dejar de
+											recibir notificaciones periódicas, dirígete al área personal.</p>
+									</div>
+									<div class="filter-buttons second-part-download hide">
+										<button class="btn btn-default">Confirmar</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Siguiente div -->
 				</div>
-			</bbvaDetAcc:tabMenu>
-
-
-			<div class="table-tabs">
-
-				<bbvaDetailMotion:detailMovesTable id="detailAccounts"
-					listAccounts="#{movementsCriteriaController.movementsList}"
-					listChecks="#{checkBookController.checkList}" />
 			</div>
-
-
+			</aside>
 		</div>
 	</ui:define>
 

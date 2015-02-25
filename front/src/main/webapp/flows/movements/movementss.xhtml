@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:bbvaAcc="http://java.sun.com/jsf/composite/bbva/accounts"
+	xmlns:bbvaHeader="http://java.sun.com/jsf/composite/bbva/movementsHead"
+	xmlns:bbvaGraphic="http://java.sun.com/jsf/composite/bbva/graphics/accounts"
+	xmlns:bbvaBody="http://java.sun.com/jsf/composite/bbva/body"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:bbvaDetAcc="http://java.sun.com/jsf/composite/bbva/tab"
+	xmlns:bbvaDetailMotion="http://java.sun.com/jsf/composite/bbva/movementsDetail"
+	xmlns:bbvaSearch="http://java.sun.com/jsf/composite/bbva/filters"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:bbvaPersonalize="http://java.sun.com/jsf/composite/bbva/personalize">
+
+
+<ui:composition template="../../templates/defaultLayout.xhtml">
+
+	<ui:define name="bodyTitle">
+		<bbvaBody:title title="#{msg['title.accountsPersonal']}">
+			<bbvaBody:titleOptionProduct
+				optionButttonLeft="#{msg['title.myProducts']}"
+				optionButttonRight="#{msg['title.productCatalog']}" />
+		</bbvaBody:title>
+	</ui:define>
+
+	<ui:define name="contentLeft">
+		<div class="tab-group savingsAccount">
+			<bbvaHeader:moveDetailContainer>
+				<bbvaHeader:moveContainerHeader>
+					<bbvaHeader:moveDetailHeaderLeft alias="#{product.alias}"
+						number="#{product.productId}" type=" #{product.productName}" />
+					<bbvaGraphic:MovementsGraphic
+						lineConfigUI="#{movementsCriteriaController.graphicLineMovements}"
+						values="#{movementsCriteriaController.valuesLinesGraphic}" />
+					<bbvaHeader:moveDetailHeaderRight textUp="#{msg['text.available']}"
+						valueUp="#{product.totalCash}"
+						textDown="#{msg['text.tradeBalance']}"
+						valueDown="#{product.cashAvailable}" />
+				</bbvaHeader:moveContainerHeader>
+			</bbvaHeader:moveDetailContainer>
+<h:form id="mu">
+				<p:selectOneRadio id="console" value="#{movementsCriteriaController.selectDate}">
+		            <f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
+		            <f:selectItem itemLabel="PS4" itemValue="PS+" />
+		            <f:selectItem itemLabel="Wii U" itemValue="Wii U" />
+		            <f:ajax event="valueChange" execute="@this" render=":muestra"/>
+	        	</p:selectOneRadio>
+				</h:form>
+		<h:form id="muestra">
+		Hola  #{movementsCriteriaController.selectDate}
+
+		
+				<button class="btn small hidden-xs hidden-sm #{movementsCriteriaController.selectDate=='Wii U' ? 'buttonDisabled': 'none' }">
+<!-- 			style="#{movementsCriteriaController.selectDate=='Wii U' ? 'none':'disabled'}"> -->
+			#{msg['button.confirm']}
+			
+		</button>
+		</h:form>
+			<bbvaDetAcc:tabMenu id="tabMenu">
+
+				<bbvaDetAcc:menuMovements />
+
+				<div class="tab-content">
+
+					<!-- Tab Consultar -->
+					<bbvaSearch:tabCriteria id="tabCriteria">
+						<bbvaSearch:personalizedSearchContainer
+							id="personalizedSearchContainer" />
+					</bbvaSearch:tabCriteria>
+
+					<!-- Tab Condiciones -->
+					<bbvaAcc:accountContainer alias="#{product.alias}"
+						number="#{product.productId}" type="#{product.productName}" />
+
+					<!-- Tab Personalizar -->
+					<bbvaPersonalize:personalizeContainer />
+
+				</div>
+			</bbvaDetAcc:tabMenu>
+
+
+			<div class="table-tabs">
+
+				<bbvaDetailMotion:detailMovesTable id="detailAccounts"
+					listAccounts="#{movementsCriteriaController.movementsList}"
+					listChecks="#{checkBookController.checkList}" />
+			</div>
+
+
+		</div>
+	</ui:define>
+
+	<ui:define name="contentRight">
+
+	</ui:define>
+
+</ui:composition>
+
+</html>
