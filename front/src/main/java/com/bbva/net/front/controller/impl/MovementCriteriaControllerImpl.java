@@ -116,7 +116,6 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		}
 		setProductTypePc(getSelectedProduct().getSubTypeProd());
 		LOGGER.info("MovementsAccountController criteriaSearch productType:  " + getSelectedProduct().getSubTypeProd());
-		setProductIdPc(getSelectedProduct().getProductId());
 		LOGGER.info("MovementsAccountController criteriaSearch productId:  " + getSelectedProduct().getProductId());
 		super.init();
 		search();
@@ -157,7 +156,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	 * 
 	 * @param movementsList
 	 */
-	private void setShowMoreStatus() {
+	public void setShowMoreStatus() {
 		if (this.movementsList.size() >= 10)
 			getRenderComponents().put(RenderAttributes.FOOTERTABLEMOVEMENT.name(), true);
 		else
@@ -170,10 +169,12 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		this.movementsList = new ArrayList<MovementDto>();
 		dateRange = calculateDate(MessagesHelper.INSTANCE.getString("select.radio.last.month"));
 
+		setDateRangePc(dateRange);
+		setBalanceRangePc(null);
 		// TODO oroductId
 		LOGGER.info("MovementsAccountController getAllMovements productId:  " + getSelectedProduct().getProductId());
-		this.movementsList = this.movementsFacade.listMovements(getSelectedProduct().getProductId(),
-				getSelectedProduct().getSubTypeProd(), dateRange, null, 1, 10);
+		next();
+		this.movementsList = getCurrentList();
 		this.graphicLineMovements = graphicLineDelegate.getMovementAccount(this.movementsList);
 		this.valuesLinesGraphic = valuesLinesGraphic(graphicLineMovements);
 
@@ -228,7 +229,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			LOGGER.info("MovementsAccountController searchMovementByIncomeOrExpensesFilter");
 			getRenderComponents().put(RenderAttributes.MOVEMENTSTABLE.toString(), true);
 
-			if (movementCriteria.getIncomesOrExpenses().equals("1")) {
+			if (movementCriteria.getIncomesOrExpenses() != null && movementCriteria.getIncomesOrExpenses().equals("1")) {
 				// Income Movements
 				LOGGER.info("MovementsAccountController searchMovementByIncomeOrExpensesFilter incomeMovements");
 				final List<MovementDto> incomeMovements = (List<MovementDto>)CollectionUtils.select(this.movementsList,
@@ -237,7 +238,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 				setShowMoreStatus();
 			}
 
-			if (movementCriteria.getIncomesOrExpenses().equals("2")) {
+			if (movementCriteria.getIncomesOrExpenses() != null && movementCriteria.getIncomesOrExpenses().equals("2")) {
 				// Expense Movements
 				LOGGER.info("MovementsAccountController searchMovementByIncomeOrExpensesFilter expensesMovements");
 				final List<MovementDto> expensesMovements = (List<MovementDto>)CollectionUtils.select(

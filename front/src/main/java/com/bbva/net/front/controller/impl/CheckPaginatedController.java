@@ -1,7 +1,9 @@
 package com.bbva.net.front.controller.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
 import com.bbva.net.back.facade.CheckBookFacade;
@@ -25,6 +27,13 @@ public class CheckPaginatedController extends PaginationController<CheckDto> {
 	}
 
 	@Override
+	@PostConstruct
+	public void init() {
+		this.currentList = new ArrayList<CheckDto>();
+		this.paginationKey = 1;
+	}
+
+	@Override
 	protected List<CheckDto> getNextPage(int pagination, int pageSize) {
 
 		return checkBookFacade.getCheckByStatusOrDate(productIdPControl, dateRangePControl, statusPControl, pagination,
@@ -33,7 +42,7 @@ public class CheckPaginatedController extends PaginationController<CheckDto> {
 
 	@Override
 	protected Integer getNextPaginantionKey(List<CheckDto> lastPage) {
-		return getPaginationKey() + PAGE_SIZE;
+		return getPaginationKey() + 1;
 	}
 
 	/**
