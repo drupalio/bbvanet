@@ -15,13 +15,13 @@ public abstract class PaginationController<T extends Serializable> extends Abstr
 
 	private static final long serialVersionUID = 1L;
 
-	private List<T> currentList;
+	protected List<T> currentList;
 
 	private boolean hasMorePages = true;
 
 	protected static final int PAGE_SIZE = 10;
 
-	private Integer paginationKey;
+	protected Integer paginationKey;
 
 	protected abstract List<T> getNextPage(int paginantionKey, int psize);
 
@@ -30,7 +30,7 @@ public abstract class PaginationController<T extends Serializable> extends Abstr
 	@PostConstruct
 	public void init() {
 		this.currentList = new ArrayList<T>();
-		this.paginationKey = 1;
+		this.paginationKey = 0;
 	}
 
 	public void next() {
