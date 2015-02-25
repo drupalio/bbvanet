@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 
 import org.apache.commons.lang.StringUtils;
 
+import com.bbva.net.back.facade.MovementsAccountFacade;
 import com.bbva.net.back.model.citeriaMovements.QueryCriteriaDto;
 import com.bbva.net.back.model.comboFilter.EnumPeriodType;
 import com.bbva.net.back.model.commons.DateRangeDto;
@@ -22,6 +23,9 @@ public class MovementsCriteriaControllerImpl extends MovementPaginatedController
 	 */
 	private static final long serialVersionUID = 1307524207666733630L;
 
+	@Resource(name = "movementsAccountFacade")
+	private transient MovementsAccountFacade movementsFacade;
+
 	@Resource(name = "dateFilterService")
 	private transient DateFilterService dateFilterService;
 
@@ -36,16 +40,29 @@ public class MovementsCriteriaControllerImpl extends MovementPaginatedController
 	private String dateText;
 
 	@Override
-	public void onDateCriteriaQuery() {
+	public void displayResults() {
 
-		if (!fromDate.equals(null) && toDate.equals(null))
+		DateRangeDto dateRange = new DateRangeDto();
+
+		if (!fromDate.equals(null) && toDate.equals(null)) {
 			new DateValidator().validDateRange(fromDate, toDate).validate();
+			dateRange.setDateSince(fromDate);
+			dateRange.setDateTo(toDate);
+		}
 
 		if (!StringUtils.isEmpty(dateText)) {
 			EnumPeriodType periodType = EnumPeriodType.valueOf(dateText);
-			DateRangeDto dateRange = dateFilterService.getPeriodFilter(periodType);
-
+			dateRange = dateFilterService.getPeriodFilter(periodType);
 		}
+
+		this.movementsList = this.movementsFacade.listMovements(getSelectedProduct().getProductId(),
+				getSelectedProduct().getSubTypeProd(), dateRange, null, 1, 10);
+
+	}
+
+	@Override
+	public void onDateCriteriaQuery() {
+
 	}
 
 	@Override
@@ -68,12 +85,6 @@ public class MovementsCriteriaControllerImpl extends MovementPaginatedController
 
 	@Override
 	public void cleanFilters() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void displayResults() {
 		// TODO Auto-generated method stub
 
 	}
