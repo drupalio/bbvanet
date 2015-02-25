@@ -55,9 +55,9 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 	private MovementCriteriaDto movementCriteria = new MovementCriteriaDto();
 
-	private BalanceRangeDto balanceRange = null;
+	private BalanceRangeDto balanceRange;
 
-	private DateRangeDto dateRange = null;
+	private DateRangeDto dateRange;
 
 	@Resource(name = "multiValueGroupFacade")
 	private transient MultiValueGroupFacade multiValueGroupFacade;
@@ -65,14 +65,14 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	@Resource(name = "movementsAccountFacade")
 	private transient MovementsAccountFacade movementsFacade;
 
-	private List<MovementDto> movementsList = null;
+	private List<MovementDto> movementsList;
 
 	@Resource(name = "graphicLineDelegate")
 	private transient GraphicLineDelegate graphicLineDelegate;
 
 	private LineConfigUI graphicLineMovements;
 
-	private MovementDetailDto movementDetail = null;
+	private MovementDetailDto movementDetail;
 
 	private List valuesLinesGraphic;
 
@@ -125,6 +125,13 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		setShowMoreStatus();
 		RequestContext.getCurrentInstance().update("detailAccounts:tableMovements:formMovesDetail:movAccount");
 
+	}
+
+	public void handleDateSelect(final SelectEvent event) {
+		if (event.getObject() != null) {
+			setSinceDate((Date)event.getObject());
+
+		}
 	}
 
 	public void nextPage(ActionEvent event) {
@@ -358,12 +365,6 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			sinceDatestr = getSelectDate();
 			toDatestr = "";
 		}
-	}
-
-	public void onDateSelect(SelectEvent event) {
-		setSinceDate((Date)event.getObject());
-		setToDate((Date)event.getObject());
-
 	}
 
 	@Override
