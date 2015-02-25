@@ -24,7 +24,7 @@
 						styleClass="detail-table-body sortable"
 						emptyMessage="#{msg['text.empty.table']}"
 						value="#{cc.attrs.listAccounts}" var="moves"
-						selectionMode="single" rendered="true"
+						selectionMode="single" rendered="#{renderComponents['MOVEMENTSTABLE']}"
 						rowKey="#{moves.movementId}">
 
 						<p:ajax event="rowSelect" onsuccess="clickMove()"
@@ -98,12 +98,11 @@
 				<footer class="detail-table-footer">
 
 					<button id="moreMovs" class="btn btn-more-results"
+						jsf:update=":detailAccounts:tableMovements:formMovesDetail:movAccount"
 						value="Más Resultados"
 						jsf:rendered="#{renderComponents['FOOTERTABLEMOVEMENT']}"
 						jsf:actionListener="#{movementsCriteriaController.nextPage}">
-						<span>#{msg['text.detailMove.footer']} <p:ajax
-								update="
-							:detailAccounts:tableMovements:formMovesDetail:movAccount" />
+						<span>#{msg['text.detailMove.footer']}
 						</span>
 					</button>
 
