@@ -55,9 +55,9 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 	private MovementCriteriaDto movementCriteria = new MovementCriteriaDto();
 
-	private BalanceRangeDto balanceRange = null;
+	private BalanceRangeDto balanceRange;
 
-	private DateRangeDto dateRange = null;
+	private DateRangeDto dateRange;
 
 	@Resource(name = "multiValueGroupFacade")
 	private transient MultiValueGroupFacade multiValueGroupFacade;
@@ -65,21 +65,20 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	@Resource(name = "movementsAccountFacade")
 	private transient MovementsAccountFacade movementsFacade;
 
-	private List<MovementDto> movementsList = null;
+	private List<MovementDto> movementsList;
 
 	@Resource(name = "graphicLineDelegate")
 	private transient GraphicLineDelegate graphicLineDelegate;
 
 	private LineConfigUI graphicLineMovements;
 
-	private MovementDetailDto movementDetail = null;
+	private MovementDetailDto movementDetail;
 
 	private List valuesLinesGraphic;
 
 	@Override
 	public void init() {
 		super.init();
-		clean();
 		LOGGER.info("Initialize MovementsAccountController");
 	}
 
@@ -117,7 +116,6 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		}
 		setProductTypePc(getSelectedProduct().getSubTypeProd());
 		LOGGER.info("MovementsAccountController criteriaSearch productType:  " + getSelectedProduct().getSubTypeProd());
-		setProductIdPc(getSelectedProduct().getProductId());
 		LOGGER.info("MovementsAccountController criteriaSearch productId:  " + getSelectedProduct().getProductId());
 		super.init();
 		search();
@@ -125,6 +123,13 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		setShowMoreStatus();
 		RequestContext.getCurrentInstance().update("detailAccounts:tableMovements:formMovesDetail:movAccount");
 
+	}
+
+	public void handleDateSelect(final SelectEvent event) {
+		if (event.getObject() != null) {
+			setSinceDate((Date)event.getObject());
+
+		}
 	}
 
 	public void nextPage(ActionEvent event) {
@@ -152,7 +157,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	 * 
 	 * @param movementsList
 	 */
-	private void setShowMoreStatus() {
+	public void setShowMoreStatus() {
 		if (this.movementsList.size() >= 10)
 			getRenderComponents().put(RenderAttributes.FOOTERTABLEMOVEMENT.name(), true);
 		else
@@ -168,11 +173,18 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		LOGGER.info("MovementsAccountController getAllMovements productId:  " + getSelectedProduct().getProductId());
 
 		try {
-			LOGGER.info("MovementsAccountController Invoking MovementsFacade...");
-			this.movementsList = this.movementsFacade.listMovements(getSelectedProduct().getProductId(),
-					getSelectedProduct().getSubTypeProd(), dateRange, null, 1, 10);
+			next();
 		} catch (final Exception ex) {
+			final List<MovementDto> result = new ArrayList<MovementDto>();
+			setCurrentList(result);
 		}
+
+		setDateRangePc(dateRange);
+		setBalanceRangePc(null);
+		// TODO oroductId
+		LOGGER.info("MovementsAccountController getAllMovements productId:  " + getSelectedProduct().getProductId());
+		next();
+		this.movementsList = getCurrentList();
 		this.graphicLineMovements = graphicLineDelegate.getMovementAccount(this.movementsList);
 		this.valuesLinesGraphic = valuesLinesGraphic(graphicLineMovements);
 
@@ -227,7 +239,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			LOGGER.info("MovementsAccountController searchMovementByIncomeOrExpensesFilter");
 			getRenderComponents().put(RenderAttributes.MOVEMENTSTABLE.toString(), true);
 
-			if (movementCriteria.getIncomesOrExpenses().equals("1")) {
+			if (movementCriteria.getIncomesOrExpenses() != null && movementCriteria.getIncomesOrExpenses().equals("1")) {
 				// Income Movements
 				LOGGER.info("MovementsAccountController searchMovementByIncomeOrExpensesFilter incomeMovements");
 				final List<MovementDto> incomeMovements = (List<MovementDto>)CollectionUtils.select(this.movementsList,
@@ -236,7 +248,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 				setShowMoreStatus();
 			}
 
-			if (movementCriteria.getIncomesOrExpenses().equals("2")) {
+			if (movementCriteria.getIncomesOrExpenses() != null && movementCriteria.getIncomesOrExpenses().equals("2")) {
 				// Expense Movements
 				LOGGER.info("MovementsAccountController searchMovementByIncomeOrExpensesFilter expensesMovements");
 				final List<MovementDto> expensesMovements = (List<MovementDto>)CollectionUtils.select(
@@ -363,12 +375,6 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			sinceDatestr = getSelectDate();
 			toDatestr = "";
 		}
-	}
-
-	public void onDateSelect(SelectEvent event) {
-		setSinceDate((Date)event.getObject());
-		setToDate((Date)event.getObject());
-
 	}
 
 	@Override

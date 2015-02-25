@@ -18,7 +18,7 @@ public class MovementPaginatedController extends PaginationController<MovementDt
 
 	private BalanceRangeDto balanceRangePc;
 
-	private String productIdPc, productTypePc;
+	private String productTypePc;
 
 	@Resource(name = "movementsAccountFacade")
 	private transient MovementsAccountFacade movementsFacade;
@@ -26,8 +26,13 @@ public class MovementPaginatedController extends PaginationController<MovementDt
 	@Override
 	protected List<MovementDto> getNextPage(int paginantionKey, int psize) {
 
-		return this.movementsFacade.listMovements(productIdPc, productTypePc, dateRangePc, balanceRangePc,
-				paginantionKey, psize);
+		return this.movementsFacade.listMovements(getSelectedProduct().getProductId(), productTypePc, dateRangePc,
+				balanceRangePc, paginantionKey, psize);
+	}
+
+	@Override
+	protected Integer getNextPaginantionKey(List<MovementDto> lastPage) {
+		return Integer.valueOf(lastPage.get(lastPage.size() - 1).getMovementId());
 	}
 
 	public void search() {
@@ -63,20 +68,6 @@ public class MovementPaginatedController extends PaginationController<MovementDt
 	}
 
 	/**
-	 * @return the productIdPc
-	 */
-	public String getProductIdPc() {
-		return productIdPc;
-	}
-
-	/**
-	 * @param productIdPc the productIdPc to set
-	 */
-	public void setProductIdPc(String productIdPc) {
-		this.productIdPc = productIdPc;
-	}
-
-	/**
 	 * @return the productTypePc
 	 */
 	public String getProductTypePc() {
@@ -103,4 +94,5 @@ public class MovementPaginatedController extends PaginationController<MovementDt
 	public void setMovementsFacade(MovementsAccountFacade movementsFacade) {
 		this.movementsFacade = movementsFacade;
 	}
+
 }

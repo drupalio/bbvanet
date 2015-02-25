@@ -123,6 +123,7 @@
 							<p:calendar widgetVar="calendarSinceWV" id="calendarSince"  
 								value="#{cc.attrs.valueDateSince}"
 								disabled="#{cc.attrs.disabledCalendar}" >
+								<p:ajax event="dateSelect" listener="#{cc.attrs.listenerDate.handleDateSelect}" update="calendarTo" />								
 							</p:calendar>	
 						
 						</div>
@@ -134,7 +135,7 @@
 							<label for="calendarToSinceWV">Hasta:</label>
 						</div>
 						<div class="col-xs-10 col-md-12 input-control">
-							<p:calendar widgetVar="calendarToSinceWV" id="calendarTo"  
+							<p:calendar widgetVar="calendarToSinceWV" id="calendarTo"  mindate="#{cc.attrs.valueDateSince}"
 								value="#{cc.attrs.valueDateTo}"
 								disabled="#{cc.attrs.disabledCalendar}" >
 							</p:calendar>

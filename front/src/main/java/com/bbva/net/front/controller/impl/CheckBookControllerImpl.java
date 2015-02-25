@@ -155,6 +155,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			getRenderComponents().put(RenderAttributes.STATUS.toString(), true);
 			getRenderComponents().put(RenderAttributes.NUMBERBOOK.toString(), false);
 			getRenderComponents().put(RenderAttributes.BUTTONBOOK.toString(), false);
+			getRenderComponents().put(RenderAttributes.MOVEMENTSTABLE.toString(), false);
 
 		} else if (getActionState().equals(SEARCH_BY_NUMBER_CHECK)) {
 
@@ -163,6 +164,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			getRenderComponents().put(RenderAttributes.STATUS.toString(), true);
 			getRenderComponents().put(RenderAttributes.NUMBERBOOK.toString(), true);
 			getRenderComponents().put(RenderAttributes.BUTTONBOOK.toString(), false);
+			getRenderComponents().put(RenderAttributes.MOVEMENTSTABLE.toString(), false);
 
 		} else if (getActionState().equals(SEARCH_BY_STATUS)) {
 
@@ -171,6 +173,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			getRenderComponents().put(RenderAttributes.STATUS.toString(), false);
 			getRenderComponents().put(RenderAttributes.NUMBERBOOK.toString(), true);
 			getRenderComponents().put(RenderAttributes.BUTTONBOOK.toString(), false);
+			getRenderComponents().put(RenderAttributes.MOVEMENTSTABLE.toString(), false);
 		}
 	}
 
@@ -193,6 +196,9 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			LOGGER.info(" CheckBookControllerImpl showResults filterByCheckBook checkId: " + getCheckNumber());
 			// TODO DEFAULT_ACCOUNT accountId
 			this.check = checkBookFacade.getCheckById(getSelectedProduct().getProductId(), getCheckNumber());
+
+			this.checkList = new ArrayList<CheckDto>();
+			this.checkList.add(check);
 
 		} else if (getRenderComponents().get(RenderAttributes.FILTERSTATUS.toString())) {
 			LOGGER.info(" CheckBookControllerImpl showResults filterByStatus ");
