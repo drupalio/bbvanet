@@ -150,6 +150,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			getRenderComponents().put(RenderAttributes.STATUS.toString(), true);
 			getRenderComponents().put(RenderAttributes.NUMBERBOOK.toString(), false);
 			getRenderComponents().put(RenderAttributes.BUTTONBOOK.toString(), false);
+			getRenderComponents().put(RenderAttributes.MOVEMENTSTABLE.toString(), false);
 
 		} else if (getActionState().equals(SEARCH_BY_NUMBER_CHECK)) {
 
@@ -158,6 +159,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			getRenderComponents().put(RenderAttributes.STATUS.toString(), true);
 			getRenderComponents().put(RenderAttributes.NUMBERBOOK.toString(), true);
 			getRenderComponents().put(RenderAttributes.BUTTONBOOK.toString(), false);
+			getRenderComponents().put(RenderAttributes.MOVEMENTSTABLE.toString(), false);
 
 		} else if (getActionState().equals(SEARCH_BY_STATUS)) {
 
@@ -166,6 +168,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			getRenderComponents().put(RenderAttributes.STATUS.toString(), false);
 			getRenderComponents().put(RenderAttributes.NUMBERBOOK.toString(), true);
 			getRenderComponents().put(RenderAttributes.BUTTONBOOK.toString(), false);
+			getRenderComponents().put(RenderAttributes.MOVEMENTSTABLE.toString(), false);
 		}
 	}
 

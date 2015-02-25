@@ -6,7 +6,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pm="http://primefaces.org/mobile"
-	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:bbvaMenu="http://java.sun.com/jsf/composite/bbva/menu">
 
 <composite:interface>
 
@@ -31,28 +32,59 @@
 							</ul>
 						</div>
 					</li>
-					<li><a class="home" href="./globalPosition"
-						title="Ir a Posición Global"> <span
-							class="icon-menu-global-position-blue-light"></span> Posición
-							Global
-					</a></li>
-					<li class="item"><a href="./accounts" title="Ir a Cuentas">
-							<span class="icon-menu-accounts-blue-light"></span> Cuentas
-					</a></li>
-					<li class="item"><a href="./cards" title="Ir a Tarjetas">
-							<span class="icon-menu-cards-blue-light"></span> Tarjetas
-					</a></li>
-					<li class="item"><a href="./loan" title="Ir a Préstamos">
-							<span class="icon-menu-loans-blue-light"></span> Préstamos
-					</a></li>
-					<li class="item"><a href="./saveInvest"
-						title="Ir a Ahorros e inversión"> <span
-							class="icon-menu-investments-blue-light"> </span> Ahorro e
-							Inversiones
-					</a></li>
-					<li class="item"><a href="#" title="Ir a Seguros"> <span
-							class="icon-menu-insurance-blue-light"></span> Seguros
-					</a></li>
+					<bbvaMenu:itemMenuMobile href="./globalPosition"
+						value="Posición global" title="Ir a Posición global"
+						liclass="home active"
+						spanclass="icon-menu-global-position-blue-light"
+						rendered="#{menuActive == 'PG'}" />
+
+					<bbvaMenu:itemMenuMobile href="./globalPosition"
+						value="Posición global" title="Ir a Posición global"
+						liclass="home" spanclass="icon-menu-global-position-blue-light"
+						rendered="#{menuActive != 'PG'}" />
+
+					<bbvaMenu:itemMenuMobile href="./accounts" value="Cuentas"
+						title="Ir a Cuentas" liclass="active"
+						spanclass="icon-menu-accounts-blue-light"
+						rendered="#{menuActive == 'ACCOUNTS'}" />
+
+					<bbvaMenu:itemMenuMobile href="./accounts" value="Cuentas"
+						title="Ir a Cuentas" liclass="item"
+						spanclass="icon-menu-accounts-blue-light"
+						rendered="#{menuActive != 'ACCOUNTS'}" />
+
+					<bbvaMenu:itemMenuMobile href="./cards" value="Tarjetas"
+						title="Ir a Tarjetas" liclass="active"
+						spanclass="icon-menu-cards-blue-light"
+						rendered="#{menuActive == 'CARDS'}" />
+
+					<bbvaMenu:itemMenuMobile href="./cards" value="Tarjetas"
+						title="Ir a Tarjetas" liclass="item"
+						spanclass="icon-menu-cards-blue-light"
+						rendered="#{menuActive != 'CARDS'}" />
+
+					<bbvaMenu:itemMenuMobile href="./loan" value="Préstamos"
+						title="Ir a Préstamos" liclass="active"
+						spanclass="icon-menu-loans-blue-light"
+						rendered="#{menuActive == 'LOANS'}" />
+
+					<bbvaMenu:itemMenuMobile href="./loan" value="Préstamos"
+						title="Ir a Préstamos" liclass="item"
+						spanclass="icon-menu-loans-blue-light"
+						rendered="#{menuActive != 'LOANS'}" />
+
+					<bbvaMenu:itemMenuMobile href="./saveInvest"
+						value="Ahorro e	Inversiones"
+						title="Ir a Ahorros e inversión" liclass="active"
+						spanclass="icon-menu-investments-blue-light"
+						rendered="#{menuActive == 'SAVEINVEST'}" />
+						
+					<bbvaMenu:itemMenuMobile href="./saveInvest"
+						value="Ahorro e	Inversiones"
+						title="Ir a Ahorros e inversión" liclass="item"
+						spanclass="icon-menu-investments-blue-light"
+						rendered="#{menuActive != 'SAVEINVEST'}" />
+
 					<li class="item"><a href="#" title="Ir a Editar perfil"> <span
 							class="icon-menu-user-blue-light"></span> Editar perfil
 					</a></li>

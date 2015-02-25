@@ -26,7 +26,7 @@
 
 	<ui:define name="contentLeft">
 
-		<bbvaContainer:productPanelAccountGraphic id="AccountGP"
+		<bbvaContainer:productPanelAccountGraphic id="AccountGP" graphic="#{customerProducts.accounts.size()==0 &amp;&amp; customerProducts.adquirencia.size()==0 &amp;&amp; customerProductsHidden.accounts.size()==0 ? 'none' : 'block'}"
 			title="#{msg['title.accountsPersonal']}">
 			<div class="table-tabs">
 				<bbvaGP:accountSearch id="accountSearchTable" listAccounts="#{customerProducts.accounts}"
