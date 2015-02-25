@@ -156,8 +156,10 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 	public List<MovementDto> getAllQuotamovenDtos() {
 		LOGGER.info("QuotaControllerImpl getAllQuotamovenDtos ");
 		calculateDate(MessagesHelper.INSTANCE.getString("select.radio.last.month"));
-		this.quotamovenDtos = this.quotaDetailFacade.listRotaryQuotaMovements(this.productDto.getProductId(),
-				this.dateRange, 1, 10);
+
+		setDateRangePControl(this.dateRange);
+		next();
+		this.quotamovenDtos = getCurrentList();
 		LOGGER.info("Datos de los movimientos llenos ");
 		setShowMoreStatus();
 		return quotamovenDtos;
@@ -246,7 +248,6 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 			LOGGER.info("date Range: " + " sinceDate: " + this.dateRange.getDateSince() + " toDate: "
 					+ this.dateRange.getDateTo());
 		}
-		setProductIdPControl(getSelectedProduct().getProductId());
 		super.init();
 		search();
 		this.quotamovenDtos = getCurrentList();
@@ -357,11 +358,6 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 
 	public void setToText(String toText) {
 		this.toText = toText;
-	}
-
-	@Override
-	public QuotaDetailFacade getQuotaDetailFacade() {
-		return quotaDetailFacade;
 	}
 
 	@Override

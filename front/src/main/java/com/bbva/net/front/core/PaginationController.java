@@ -56,6 +56,13 @@ public abstract class PaginationController<T extends Serializable> extends Abstr
 	}
 
 	/**
+	 * @param currentList
+	 */
+	public void setCurrentList(List<T> currentList) {
+		this.currentList = currentList;
+	}
+
+	/**
 	 * @return the paginationKey
 	 */
 	public Integer getPaginationKey() {
