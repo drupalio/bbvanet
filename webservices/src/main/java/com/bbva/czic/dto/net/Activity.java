@@ -8,9 +8,9 @@ import com.bbva.jee.arq.spring.core.servicing.utils.Money;
 
 
 /**
- * <p>Clase Java para Activity complex type.
+ * <p>Java class for Activity complex type.
  * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="Activity">
@@ -47,7 +47,7 @@ public class Activity {
     protected String reference;
 
     /**
-     * Obtiene el valor de la propiedad operationDate.
+     * Gets the value of the operationDate property.
      * 
      * @return
      *     possible object is
@@ -59,7 +59,7 @@ public class Activity {
     }
 
     /**
-     * Define el valor de la propiedad operationDate.
+     * Sets the value of the operationDate property.
      * 
      * @param value
      *     allowed object is
@@ -71,7 +71,7 @@ public class Activity {
     }
 
     /**
-     * Obtiene el valor de la propiedad executionDate.
+     * Gets the value of the executionDate property.
      * 
      * @return
      *     possible object is
@@ -83,7 +83,7 @@ public class Activity {
     }
 
     /**
-     * Define el valor de la propiedad executionDate.
+     * Sets the value of the executionDate property.
      * 
      * @param value
      *     allowed object is
@@ -95,7 +95,7 @@ public class Activity {
     }
 
     /**
-     * Obtiene el valor de la propiedad function.
+     * Gets the value of the function property.
      * 
      * @return
      *     possible object is
@@ -107,7 +107,7 @@ public class Activity {
     }
 
     /**
-     * Define el valor de la propiedad function.
+     * Sets the value of the function property.
      * 
      * @param value
      *     allowed object is
@@ -119,7 +119,7 @@ public class Activity {
     }
 
     /**
-     * Obtiene el valor de la propiedad amount.
+     * Gets the value of the amount property.
      * 
      * @return
      *     possible object is
@@ -131,7 +131,7 @@ public class Activity {
     }
 
     /**
-     * Define el valor de la propiedad amount.
+     * Sets the value of the amount property.
      * 
      * @param value
      *     allowed object is
@@ -143,7 +143,7 @@ public class Activity {
     }
 
     /**
-     * Obtiene el valor de la propiedad reference.
+     * Gets the value of the reference property.
      * 
      * @return
      *     possible object is
@@ -155,7 +155,7 @@ public class Activity {
     }
 
     /**
-     * Define el valor de la propiedad reference.
+     * Sets the value of the reference property.
      * 
      * @param value
      *     allowed object is

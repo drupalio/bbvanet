@@ -10,9 +10,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para Executive complex type.
+ * <p>Java class for Executive complex type.
  * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="Executive">
@@ -53,7 +53,7 @@ public class Executive {
     protected List<ThirdParty> customer;
 
     /**
-     * Obtiene el valor de la propiedad id.
+     * Gets the value of the id property.
      * 
      * @return
      *     possible object is
@@ -65,7 +65,7 @@ public class Executive {
     }
 
     /**
-     * Define el valor de la propiedad id.
+     * Sets the value of the id property.
      * 
      * @param value
      *     allowed object is
@@ -77,7 +77,7 @@ public class Executive {
     }
 
     /**
-     * Obtiene el valor de la propiedad name.
+     * Gets the value of the name property.
      * 
      * @return
      *     possible object is
@@ -89,7 +89,7 @@ public class Executive {
     }
 
     /**
-     * Define el valor de la propiedad name.
+     * Sets the value of the name property.
      * 
      * @param value
      *     allowed object is
@@ -101,7 +101,7 @@ public class Executive {
     }
 
     /**
-     * Obtiene el valor de la propiedad phone.
+     * Gets the value of the phone property.
      * 
      * @return
      *     possible object is
@@ -113,7 +113,7 @@ public class Executive {
     }
 
     /**
-     * Define el valor de la propiedad phone.
+     * Sets the value of the phone property.
      * 
      * @param value
      *     allowed object is
@@ -125,7 +125,7 @@ public class Executive {
     }
 
     /**
-     * Obtiene el valor de la propiedad office.
+     * Gets the value of the office property.
      * 
      * @return
      *     possible object is
@@ -137,7 +137,7 @@ public class Executive {
     }
 
     /**
-     * Define el valor de la propiedad office.
+     * Sets the value of the office property.
      * 
      * @param value
      *     allowed object is
@@ -149,7 +149,7 @@ public class Executive {
     }
 
     /**
-     * Obtiene el valor de la propiedad email.
+     * Gets the value of the email property.
      * 
      * @return
      *     possible object is
@@ -161,7 +161,7 @@ public class Executive {
     }
 
     /**
-     * Define el valor de la propiedad email.
+     * Sets the value of the email property.
      * 
      * @param value
      *     allowed object is

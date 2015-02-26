@@ -6,6 +6,7 @@ import ma.glasnost.orika.impl.ConfigurableMapper;
 import com.bbva.czic.dto.net.Conditions;
 import com.bbva.net.back.core.stereotype.Mapper;
 import com.bbva.net.back.mapper.ConditionsMapper;
+import com.bbva.net.back.mapper.converter.StringToDateConverter;
 import com.bbva.net.back.model.accounts.TermsAccountsDto;
 
 @Mapper(value = "conditionsMapper")
@@ -19,6 +20,10 @@ public class ConditionsMapperImpl extends ConfigurableMapper implements Conditio
 
 	@Override
 	protected void configure(MapperFactory factory) {
+
+		// Add Date Converter
+		factory.getConverterFactory().registerConverter(new StringToDateConverter("yyyy-MM-dd'T'HH:mm:ss.SSSZ"));
+
 		factory.classMap(Conditions.class, TermsAccountsDto.class)
 				.field("mobilizationConditions", "intervinientes.condicionesMovilizacion")
 				.field("category", "detalleCondiciones.categoria")

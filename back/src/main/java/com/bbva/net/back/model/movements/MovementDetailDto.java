@@ -33,23 +33,27 @@ public class MovementDetailDto implements Dto {
 
 	private String state;
 
+	private Money operationValue;
+
 	// Shared
 
 	private Money value;
+
+	private Money valueslope;
 
 	private String id;
 
 	private Date operationDate;
 
+	private Date transactionDate;
+
+	private String concept;
+
 	// Movement Quota
 
 	private String description;
 
-	private String concept;
-
 	private String status;
-
-	private Money valueslope;
 
 	private String numbersOfQuota;
 
@@ -221,6 +225,22 @@ public class MovementDetailDto implements Dto {
 
 	public void setRemainingQuotas(String remainingQuotas) {
 		this.remainingQuotas = remainingQuotas;
+	}
+
+	public Date getTransactionDate() {
+		return transactionDate;
+	}
+
+	public void setTransactionDate(Date transactionDate) {
+		this.transactionDate = transactionDate;
+	}
+
+	public Money getOperationValue() {
+		return operationValue;
+	}
+
+	public void setOperationValue(Money operationValue) {
+		this.operationValue = operationValue;
 	}
 
 	public String getId() {
