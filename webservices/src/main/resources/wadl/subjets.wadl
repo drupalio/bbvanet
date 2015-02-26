@@ -1,0 +1,506 @@
+<application xmlns="http://wadl.dev.java.net/2009/02"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:prefix1="http://bbva.com/zic/subjects/V01"
+	xmlns:prefix2="http://bbva.com/zic/accounts/V01">
+	<grammars>
+		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns:tns="http://bbva.com/eiaq/commons/V01" attributeFormDefault="unqualified"
+			elementFormDefault="unqualified" targetNamespace="http://bbva.com/eiaq/commons/V01">
+			<xs:element name="cardNumber" type="tns:cardNumber" />
+			<xs:element name="ccc" type="tns:ccc" />
+			<xs:element name="money" type="tns:money" />
+			<xs:complexType name="ccc">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="bankCode" type="xs:string" />
+					<xs:element minOccurs="0" name="branchCode" type="xs:string" />
+					<xs:element minOccurs="0" name="controlDigit" type="xs:string" />
+					<xs:element minOccurs="0" name="accountNumber" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="money">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="currency" type="xs:string" />
+					<xs:element minOccurs="0" name="amount" type="xs:decimal" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="cardNumber">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="number" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+		</xs:schema>
+		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns:ns1="http://bbva.com/eiaq/commons/V01" xmlns:ns2="http://bbva.com/zic/commons/V01"
+			xmlns:ns3="http://bbva.com/zic/creditCardBinDetails/V01" xmlns:ns4="http://bbva.com/zic/cards/V01"
+			xmlns:tns="http://bbva.com/zic/subjects/V01" attributeFormDefault="unqualified"
+			elementFormDefault="unqualified" targetNamespace="http://bbva.com/zic/subjects/V01">
+			<xs:import />
+			<xs:import namespace="http://bbva.com/eiaq/commons/V01" />
+			<xs:import namespace="http://bbva.com/zic/commons/V01" />
+			<xs:import namespace="http://bbva.com/zic/creditCardBinDetails/V01" />
+			<xs:import namespace="http://bbva.com/zic/cards/V01" />
+			<xs:element name="subjectAccount" type="tns:subjectAccount" />
+			<xs:element name="subjectCard" type="tns:subjectCard" />
+			<xs:element name="subjectDetail" type="tns:subjectDetail" />
+			<xs:element name="subjectInvestment" type="tns:subjectInvestment" />
+			<xs:element name="subjectInvestmentFund " type="tns:subjectInvestmentFund " />
+			<xs:element name="subjects" type="tns:subjects" />
+			<xs:element name="updateSubjectIn" type="tns:updateSubjectIn" />
+			<xs:element name="updateSubjectOut" type="tns:updateAccountOut" />
+			<xs:complexType name="subjectDetail">
+				<xs:sequence>
+					<xs:element minOccurs="0" ref="subjectDetail" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="subjectAccount">
+				<xs:sequence>
+					<xs:element minOccurs="0" ref="ns2:account" />
+					<xs:element minOccurs="0" name="amountPersonalAccounts"
+						type="ns1:money" />
+					<xs:element minOccurs="0" name="indicatorTaskAccount"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="minimumPayment" type="ns1:money" />
+					<xs:element minOccurs="0" name="statusAccount" type="xs:string" />
+					<xs:element minOccurs="0" name="indicatorAccountEje"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="accountHolder" type="xs:string" />
+					<xs:element minOccurs="0" name="aliasAccount" type="xs:string" />
+					<xs:element minOccurs="0" name="balanceCheckbook" type="ns1:money" />
+					<xs:element minOccurs="0" name="balanceInvestment" type="ns1:money" />
+					<xs:element minOccurs="0" name="balanceUnlessFruition"
+						type="ns1:money" />
+					<xs:element minOccurs="0" name="place" type="xs:string" />
+					<xs:element minOccurs="0" name="statementNotification"
+						type="xs:boolean" />
+					<xs:element minOccurs="0" name="folio" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="subjectCard">
+				<xs:sequence>
+					<xs:element minOccurs="0" ref="ns2:card" />
+					<xs:element minOccurs="0" ref="ns2:balance" />
+					<xs:element minOccurs="0" name="minimumPayment" type="ns1:money" />
+					<xs:element minOccurs="0" name="currency" type="xs:string" />
+					<xs:element minOccurs="0" name="accountHolder" type="xs:string" />
+					<xs:element minOccurs="0" name="aliasAccount" type="xs:string" />
+					<xs:element minOccurs="0" ref="ns3:creditCardBinDetails" />
+					<xs:element minOccurs="0" name="statusCard" type="xs:string" />
+					<xs:element minOccurs="0" name="statementNotification"
+						type="xs:boolean" />
+					<xs:element minOccurs="0" name="folio" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="subjectInvestment">
+				<xs:sequence>
+					<xs:element minOccurs="0" ref="ns2:investment" />
+					<xs:element minOccurs="0" name="balanceCheckbook" type="ns1:money" />
+					<xs:element minOccurs="0" name="balanceInvestment" type="ns1:money" />
+					<xs:element minOccurs="0" name="balanceUnlessFruition"
+						type="ns1:money" />
+					<xs:element minOccurs="0" name="subProduct" type="xs:string" />
+					<xs:element minOccurs="0" name="checkingAccountAssociated"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="serviceCode" type="xs:string" />
+					<xs:element minOccurs="0" name="joint" type="xs:string" />
+					<xs:element minOccurs="0" name="accountHolder" type="xs:string" />
+					<xs:element minOccurs="0" name="aliasAccount" type="xs:string" />
+					<xs:element minOccurs="0" name="statusAccount" type="xs:string" />
+					<xs:element minOccurs="0" name="place" type="xs:string" />
+					<xs:element minOccurs="0" name="statementNotification"
+						type="xs:boolean" />
+					<xs:element minOccurs="0" name="folio" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="subjectInvestmentFund ">
+				<xs:sequence>
+					<xs:element minOccurs="0" ref="ns2:investmentFunds" />
+					<xs:element minOccurs="0" name="subProduct" type="xs:string" />
+					<xs:element minOccurs="0" name="checkingAccountAssociated"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="serviceCode" type="xs:string" />
+					<xs:element minOccurs="0" name="joint" type="xs:string" />
+					<xs:element minOccurs="0" name="accountHolder" type="xs:string" />
+					<xs:element minOccurs="0" name="aliasAccount" type="xs:string" />
+					<xs:element minOccurs="0" name="statusAccount" type="xs:string" />
+					<xs:element minOccurs="0" name="place" type="xs:string" />
+					<xs:element minOccurs="0" name="balance" type="ns1:money" />
+					<xs:element minOccurs="0" name="currentprice" type="ns1:money" />
+					<xs:element minOccurs="0" name="statementNotification"
+						type="xs:boolean" />
+					<xs:element minOccurs="0" name="folio" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="updateSubjectIn">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="userId" type="xs:string" />
+					<xs:element minOccurs="0" name="subjectType" type="enumSubjectType" />
+					<xs:element minOccurs="0" name="subject" type="xs:string" />
+					<xs:element minOccurs="0" name="alias" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="updateAccountOut">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="folio" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="subjects">
+				<xs:sequence>
+					<xs:element maxOccurs="unbounded" minOccurs="0"
+						name="subjectsAccounts" nillable="true" type="tns:subjectAccount" />
+					<xs:element maxOccurs="unbounded" minOccurs="0"
+						name="subjectsCards" nillable="true" type="tns:subjectCard" />
+					<xs:element maxOccurs="unbounded" minOccurs="0"
+						name="subjectsInvestments" nillable="true" type="tns:subjectInvestment" />
+					<xs:element maxOccurs="unbounded" minOccurs="0"
+						name="subjectsInvestmentsFunds" nillable="true"
+						type="tns:subjectInvestmentFund " />
+					<xs:element maxOccurs="unbounded" minOccurs="0"
+						name="subjectsAccountsDollar" nillable="true" type="tns:subjectAccount" />
+					<xs:element maxOccurs="unbounded" minOccurs="0"
+						name="subjectsAccountsCed" nillable="true" type="tns:subjectAccount" />
+					<xs:element maxOccurs="unbounded" minOccurs="0"
+						name="subjectsAgency" nillable="true" type="tns:subjectAccount" />
+				</xs:sequence>
+			</xs:complexType>
+		</xs:schema>
+		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns:ns1="http://bbva.com/eiaq/commons/V01" xmlns:ns2="http://bbva.com/zic/cards/V01"
+			xmlns:tns="http://bbva.com/zic/commons/V01" attributeFormDefault="unqualified"
+			elementFormDefault="unqualified" targetNamespace="http://bbva.com/zic/commons/V01">
+			<xs:import namespace="http://bbva.com/eiaq/commons/V01" />
+			<xs:import />
+			<xs:import namespace="http://bbva.com/zic/cards/V01" />
+			<xs:element name="account" type="tns:account" />
+			<xs:element name="balance" type="tns:balance" />
+			<xs:element name="card" type="tns:card" />
+			<xs:element name="investment" type="tns:investment" />
+			<xs:element name="investmentDollarDetail" type="tns:investmentDollarDetail" />
+			<xs:element name="investmentFunds" type="tns:investmentFunds" />
+			<xs:element name="userId" type="tns:userId" />
+			<xs:complexType name="account">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="id" type="ns1:ccc" />
+					<xs:element minOccurs="0" name="type" type="enumAccountType" />
+					<xs:element minOccurs="0" name="currency" type="xs:string" />
+					<xs:element minOccurs="0" ref="tns:balance" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="balance">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="balance" type="ns1:money" />
+					<xs:element minOccurs="0" name="available" type="ns1:money" />
+					<xs:element minOccurs="0" name="previous" type="ns1:money" />
+					<xs:element minOccurs="0" name="average" type="ns1:money" />
+					<xs:element minOccurs="0" name="due" type="ns1:money" />
+					<xs:element minOccurs="0" name="initial" type="ns1:money" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="card">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="id" type="ns1:cardNumber" />
+					<xs:element minOccurs="0" name="type" type="enumCardType" />
+					<xs:element minOccurs="0" name="currency" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="investment">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="holderNumber" type="xs:string" />
+					<xs:element minOccurs="0" name="creationDate" type="dateTime" />
+					<xs:element minOccurs="0" name="dueDate" type="dateTime" />
+					<xs:element minOccurs="0" ref="ns2:rate" />
+					<xs:element minOccurs="0" name="realTerm" type="xs:string" />
+					<xs:element minOccurs="0" name="interestPaymentInstr"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="capitalPaymentInstr"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="interestPayable" type="ns1:money" />
+					<xs:element minOccurs="0" name="amount" type="ns1:money" />
+					<xs:element minOccurs="0" name="annualGuarantee" type="xs:string" />
+					<xs:element minOccurs="0" name="type" type="enumInvestmentType" />
+					<xs:element minOccurs="0" name="dollarDetail"
+						type="tns:investmentDollarDetail" />
+					<xs:element minOccurs="0" name="instrument" type="xs:string" />
+					<xs:element minOccurs="0" name="currency" type="xs:string" />
+					<xs:element minOccurs="0" ref="tns:balance" />
+					<xs:element minOccurs="0" name="number" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="investmentDollarDetail">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="tikeckNumber" type="xs:string" />
+					<xs:element minOccurs="0" name="totalAmount" type="ns1:money" />
+					<xs:element minOccurs="0" name="operationDate" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="investmentFunds">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="id" type="xs:string" />
+					<xs:element minOccurs="0" name="contractNumber" type="xs:string" />
+					<xs:element minOccurs="0" name="description" type="xs:string" />
+					<xs:element minOccurs="0" name="serialNumber" type="xs:string" />
+					<xs:element minOccurs="0" name="voucher" type="xs:int" />
+					<xs:element minOccurs="0" name="prospect" type="xs:string" />
+					<xs:element minOccurs="0" name="type" type="enumInvestmentType" />
+					<xs:element minOccurs="0" name="currency" type="xs:string" />
+					<xs:element minOccurs="0" ref="tns:balance" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="userId">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="id" type="xs:string" />
+					<xs:element minOccurs="0" name="parentUserId" type="xs:string" />
+					<xs:element minOccurs="0" name="contractId" type="xs:string" />
+					<xs:element minOccurs="0" name="accessMethod" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+		</xs:schema>
+		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns:tns="http://bbva.com/zic/creditCardBinDetails/V01"
+			attributeFormDefault="unqualified" elementFormDefault="unqualified"
+			targetNamespace="http://bbva.com/zic/creditCardBinDetails/V01">
+			<xs:import />
+			<xs:element name="creditCardBinDetails" type="tns:creditCardBinDetails" />
+			<xs:complexType name="creditCardBinDetails">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="tradeMark" type="enumTradeMarkCard" />
+					<xs:element minOccurs="0" name="isGdfPayments" type="xs:boolean" />
+					<xs:element minOccurs="0" name="isMasterBin" type="xs:boolean" />
+					<xs:element minOccurs="0" name="isAzulCard" type="xs:boolean" />
+					<xs:element minOccurs="0" name="isCashWithrawalsAllowed"
+						type="xs:boolean" />
+					<xs:element minOccurs="0" name="isDetailedInformationShown"
+						type="xs:boolean" />
+					<xs:element minOccurs="0" name="isBusinessCard" type="xs:boolean" />
+					<xs:element minOccurs="0" name="isBenefitListShown"
+						type="xs:boolean" />
+					<xs:element minOccurs="0" name="isInterBankTransferAllowed"
+						type="xs:boolean" />
+					<xs:element minOccurs="0" name="isATuMedidaCard" type="xs:boolean" />
+					<xs:element minOccurs="0" name="isShownAtPointsTransfer"
+						type="xs:boolean" />
+					<xs:element minOccurs="0" name="isFDRCard" type="xs:boolean" />
+					<xs:element minOccurs="0" name="hasFrozenStatus" type="xs:boolean" />
+					<xs:element minOccurs="0" name="isExponentialPointsCard"
+						type="xs:boolean" />
+					<xs:element minOccurs="0" name="hasMinimumPayment" type="xs:boolean" />
+					<xs:element minOccurs="0" name="isPrepaidCard" type="xs:boolean" />
+					<xs:element minOccurs="0" name="isNotShowMovements"
+						type="xs:boolean" />
+					<xs:element minOccurs="0" name="isCommissions" type="xs:boolean" />
+				</xs:sequence>
+			</xs:complexType>
+		</xs:schema>
+		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns:ns1="http://bbva.com/zic/commons/V01" xmlns:ns2="http://bbva.com/eiaq/commons/V01"
+			xmlns:ns3="http://bbva.com/zic/subjects/V01" xmlns:ns4="http://bbva.com/zic/creditCardBinDetails/V01"
+			attributeFormDefault="unqualified" elementFormDefault="unqualified"
+			targetNamespace="http://bbva.com/zic/subjects/V01">
+			<xs:import namespace="http://bbva.com/zic/commons/V01" />
+			<xs:import namespace="http://bbva.com/eiaq/commons/V01" />
+			<xs:import namespace="http://bbva.com/zic/subjects/V01" />
+			<xs:import namespace="http://bbva.com/zic/creditCardBinDetails/V01" />
+			<xs:element name="subject" type="adaptedISubject" />
+			<xs:element name="subjectDetail" type="adaptedISubjectDetail" />
+			<xs:complexType name="adaptedISubjectDetail">
+				<xs:sequence>
+					<xs:element minOccurs="0" ref="ns3:subjectAccount" />
+					<xs:element minOccurs="0" ref="ns3:subjectCard" />
+					<xs:element minOccurs="0" ref="ns3:subjectInvestment" />
+					<xs:element minOccurs="0" name="subjectInvestmentFund"
+						type="ns3:subjectInvestmentFund " />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType final="extension restriction" name="dateTime">
+				<xs:complexContent>
+					<xs:extension base="baseDateTime">
+						<xs:sequence />
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:complexType abstract="true" name="baseDateTime">
+				<xs:complexContent>
+					<xs:extension base="abstractDateTime">
+						<xs:sequence />
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:complexType abstract="true" name="abstractDateTime">
+				<xs:complexContent>
+					<xs:extension base="abstractInstant">
+						<xs:sequence />
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:complexType abstract="true" name="abstractInstant">
+				<xs:sequence />
+			</xs:complexType>
+			<xs:complexType name="adaptedISubject">
+				<xs:sequence>
+					<xs:element minOccurs="0" ref="ns1:card" />
+					<xs:element minOccurs="0" ref="ns1:account" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:simpleType name="enumAccountType">
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="CHECKING_ACCOUNT" />
+					<xs:enumeration value="NO_CHECKING_ACCOUNT" />
+					<xs:enumeration value="SAVING" />
+					<xs:enumeration value="LIBRETON" />
+					<xs:enumeration value="AGENCY_ACCOUNT" />
+					<xs:enumeration value="NO_VALUE" />
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:simpleType name="enumCardType">
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="CREDIT" />
+					<xs:enumeration value="DEBIT" />
+					<xs:enumeration value="PREPAID" />
+					<xs:enumeration value="NORMAL" />
+					<xs:enumeration value="COMMERCIAL" />
+					<xs:enumeration value="NO_VALUE" />
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:simpleType name="enumTradeMarkCard">
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="WALMART" />
+					<xs:enumeration value="SORIANA" />
+					<xs:enumeration value="HEB" />
+					<xs:enumeration value="CHEDRAUI" />
+					<xs:enumeration value="SUBURBIA" />
+					<xs:enumeration value="HONDA" />
+					<xs:enumeration value="SAMS" />
+					<xs:enumeration value="NO_VALUE" />
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:simpleType name="enumInvestmentType">
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="INVESTMENT" />
+					<xs:enumeration value="INVESTMENTFUNDS" />
+					<xs:enumeration value="HEDGE_FUND" />
+					<xs:enumeration value="NO_VALUE" />
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:simpleType name="enumSubjectType">
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="CHECK_ACCOUNT" />
+					<xs:enumeration value="SAVING_ACCOUNT" />
+					<xs:enumeration value="LIBRETON" />
+					<xs:enumeration value="CED_ACCOUNT" />
+					<xs:enumeration value="CREDIT_CARD" />
+					<xs:enumeration value="FOURTY_CARD" />
+					<xs:enumeration value="PAYMENT_CARD" />
+					<xs:enumeration value="DESPENSA_CARD" />
+					<xs:enumeration value="DEBIT_CARD" />
+					<xs:enumeration value="INSTANT_LOAN" />
+					<xs:enumeration value="EXPRESS_CARD" />
+					<xs:enumeration value="VISA_TRAVEL_USD_CARD" />
+					<xs:enumeration value="VISA_TRAVEL_EUR_CARD" />
+					<xs:enumeration value="CURRENT_ACCOUNT" />
+					<xs:enumeration value="PREPAID_CARD" />
+					<xs:enumeration value="INVESTMENT" />
+					<xs:enumeration value="INVESTMENT_FUND" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:schema>
+		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns:ns1="http://bbva.com/eiaq/commons/V01" xmlns:tns="http://bbva.com/zic/cards/V01"
+			attributeFormDefault="unqualified" elementFormDefault="unqualified"
+			targetNamespace="http://bbva.com/zic/cards/V01">
+			<xs:import namespace="http://bbva.com/eiaq/commons/V01" />
+			<xs:element name="rate" type="tns:rate" />
+			<xs:complexType name="rate">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="average" type="ns1:money" />
+					<xs:element minOccurs="0" name="annual" type="ns1:money" />
+					<xs:element minOccurs="0" name="applicable" type="xs:decimal" />
+				</xs:sequence>
+			</xs:complexType>
+		</xs:schema>
+		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns:ns1="http://bbva.com/zic/commons/V01" xmlns:tns="http://bbva.com/zic/accounts/V01"
+			attributeFormDefault="unqualified" elementFormDefault="unqualified"
+			targetNamespace="http://bbva.com/zic/accounts/V01">
+			<xs:import namespace="http://bbva.com/zic/commons/V01" />
+			<xs:import />
+			<xs:element name="updateEmailStatementNotification" type="tns:updateEmailStatementNotification" />
+			<xs:element name="updateEmailStatementNotificationOut"
+				type="tns:updateEmailStatementNotificationOut" />
+			<xs:complexType name="updateEmailStatementNotificationOut">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="folio" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="updateEmailStatementNotification">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="user" type="ns1:userId" />
+					<xs:element minOccurs="0" ref="subject" />
+					<xs:element minOccurs="0" name="notificationRequired"
+						type="xs:boolean" />
+					<xs:element minOccurs="0" name="customerName" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+		</xs:schema>
+	</grammars>
+	<resources base="http://localhost:8080/zic/subjects">
+		<resource path="/V01"
+			id="com.bbva.zic.subjects.facade.v01.impl.SrvSubjectsV01">
+			<method name="GET" id="listSubjectsV01">
+				<request>
+					<param name="$filter" style="query" type="xs:string" />
+				</request>
+				<response>
+					<representation mediaType="application/json"
+						element="prefix1:subjects" />
+				</response>
+			</method>
+			<resource path="/emailStatementNotification">
+				<method name="PUT" id="updateMailStatementNotification">
+					<request>
+						<representation mediaType="application/json"
+							element="prefix2:updateEmailStatementNotification" />
+					</request>
+					<response>
+						<representation mediaType="application/json"
+							element="prefix2:updateEmailStatementNotificationOut" />
+					</response>
+				</method>
+			</resource>
+			<resource path="/updateStatementByMail">
+				<method name="PUT" id="updateStatementByMailV01">
+					<request>
+						<representation mediaType="application/json"
+							element="prefix1:subjectDetail" />
+					</request>
+					<response>
+						<representation mediaType="application/json"
+							element="prefix1:subjectDetail" />
+					</response>
+				</method>
+			</resource>
+			<resource path="/{contractNumber}">
+				<param name="contractNumber" style="template" type="xs:string" />
+				<method name="PUT" id="updateSubject">
+					<request>
+						<representation mediaType="application/json"
+							element="prefix1:updateSubjectIn" />
+					</request>
+					<response>
+						<representation mediaType="application/json"
+							element="prefix1:updateSubjectOut" />
+					</response>
+				</method>
+			</resource>
+			<resource path="/{subjectId}/statement/eMailNotification">
+				<param name="subjectId" style="template" type="xs:string" />
+				<method name="GET" id="statementByMail">
+					<request>
+						<param name="$filter" style="query" type="xs:string" />
+					</request>
+					<response>
+						<representation mediaType="application/json"
+							element="prefix1:subjectDetail" />
+					</response>
+				</method>
+			</resource>
+		</resource>
+	</resources>
+</application>
