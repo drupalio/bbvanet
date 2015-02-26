@@ -6,7 +6,6 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 import com.bbva.net.back.core.pattern.dto.Dto;
-import com.bbva.net.back.model.accounts.ProductInformationDto;
 import com.bbva.net.back.model.commons.Money;
 import com.bbva.net.back.model.globalposition.RotatingAccountDto;
 
@@ -16,8 +15,6 @@ public class QuotaDetailDto extends RotatingAccountDto implements Dto {
 	 * 
 	 */
 	private static final long serialVersionUID = -2695099590992664081L;
-
-	private ProductInformationDto informacion;
 
 	private String id;
 
@@ -61,11 +58,10 @@ public class QuotaDetailDto extends RotatingAccountDto implements Dto {
 	 * @param balancePrevious
 	 */
 
-	public QuotaDetailDto(ProductInformationDto informacion, String id, Money outstandingBalance,
-			Money amountRequested, int numberOfShares, String state, Money minimumPayment, Money feeCollection,
-			Money availableBalance, Money balancePrevious, Date dateMaturity, Date datePayment, Date datePrevious) {
+	public QuotaDetailDto(String id, Money outstandingBalance, Money amountRequested, int numberOfShares, String state,
+			Money minimumPayment, Money feeCollection, Money availableBalance, Money balancePrevious,
+			Date dateMaturity, Date datePayment, Date datePrevious) {
 
-		this.informacion = informacion;
 		this.id = id;
 		this.outstandingBalance = outstandingBalance;
 		this.amountRequested = amountRequested;
@@ -78,14 +74,6 @@ public class QuotaDetailDto extends RotatingAccountDto implements Dto {
 		this.feeCollection = feeCollection;
 		this.availableBalance = availableBalance;
 		this.balancePrevious = balancePrevious;
-	}
-
-	public ProductInformationDto getInformacion() {
-		return informacion;
-	}
-
-	public void setInformacion(ProductInformationDto informacion) {
-		this.informacion = informacion;
 	}
 
 	/**
@@ -210,21 +198,21 @@ public class QuotaDetailDto extends RotatingAccountDto implements Dto {
 
 	@Override
 	public String toString() {
-		return new ToStringBuilder(this).append("informacion", getInformacion()).append("id", getId())
-				.append("outstandingBalance", getOutstandingBalance()).append("amountRequested", getAmountRequested())
-				.append("numberOfShares", getNumberOfShares()).append("dateMaturity", getDateMaturity())
-				.append("datePayment", getDatePayment()).append("datePrevious", getDatePrevious())
-				.append("state", getState()).append("minimumPayment", getMinimumPayment())
-				.append("feeCollection", getFeeCollection()).append("availableBalance", getAvailableBalance())
-				.append("balancePrevious", getBalancePrevious()).toString();
+		return new ToStringBuilder(this).append("id", getId()).append("outstandingBalance", getOutstandingBalance())
+				.append("amountRequested", getAmountRequested()).append("numberOfShares", getNumberOfShares())
+				.append("dateMaturity", getDateMaturity()).append("datePayment", getDatePayment())
+				.append("datePrevious", getDatePrevious()).append("state", getState())
+				.append("minimumPayment", getMinimumPayment()).append("feeCollection", getFeeCollection())
+				.append("availableBalance", getAvailableBalance()).append("balancePrevious", getBalancePrevious())
+				.toString();
 	}
 
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder().append(getInformacion()).append(getId()).append(getOutstandingBalance())
-				.append(getAmountRequested()).append(getNumberOfShares()).append(getDatePrevious())
-				.append(getDateMaturity()).append(getDatePayment()).append(getState()).append(getMinimumPayment())
-				.append(getFeeCollection()).append(getAvailableBalance()).append(getBalancePrevious()).toHashCode();
+		return new HashCodeBuilder().append(getId()).append(getOutstandingBalance()).append(getAmountRequested())
+				.append(getNumberOfShares()).append(getDatePrevious()).append(getDateMaturity())
+				.append(getDatePayment()).append(getState()).append(getMinimumPayment()).append(getFeeCollection())
+				.append(getAvailableBalance()).append(getBalancePrevious()).toHashCode();
 	}
 
 	@Override
@@ -232,7 +220,6 @@ public class QuotaDetailDto extends RotatingAccountDto implements Dto {
 
 		return (obj instanceof QuotaDetailDto)
 				&& this.getAmountRequested().equals(((QuotaDetailDto)obj).getAmountRequested())
-				&& this.getInformacion().equals(((QuotaDetailDto)obj).getInformacion())
 				&& this.getId() == (((QuotaDetailDto)obj).getId())
 				&& this.getOutstandingBalance().equals(((QuotaDetailDto)obj).getOutstandingBalance())
 				&& this.getNumberOfShares() == (((QuotaDetailDto)obj).getNumberOfShares())

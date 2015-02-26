@@ -1,5 +1,10 @@
 package com.bbva.net.back.model.accounts;
 
+import java.util.List;
+
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
+
 import com.bbva.net.back.core.pattern.dto.Dto;
 
 public class TermsAccountsDto implements Dto {
@@ -9,29 +14,39 @@ public class TermsAccountsDto implements Dto {
 	 */
 	private static final long serialVersionUID = -991855557764879895L;
 
-	private ProductInformationDto informacionProducto;
-
-	private InvolvedDto intervinientes;
-
 	private DetailConditionsDto detalleCondiciones;
 
 	private PostalAddresDto direccionPostal;
 
-	public ProductInformationDto getInformacionProducto() {
-		return informacionProducto;
+	private List<InvolvedDto> holders;
+
+	private String condicionesMovilizacion;
+
+	@Override
+	public String toString() {
+		return new ToStringBuilder(this).append("detalleCondiciones", getDetalleCondiciones())
+				.append("direccionPostal", getDireccionPostal()).append("holders", getHolders())
+				.append("condicionesMovilizacion", getCondicionesMovilizacion()).toString();
 	}
 
-	public void setInformacionProducto(ProductInformationDto informacionProducto) {
-		this.informacionProducto = informacionProducto;
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder().append(getDetalleCondiciones()).append(getDireccionPostal()).append(getHolders())
+				.append(getCondicionesMovilizacion()).toHashCode();
 	}
 
-	public InvolvedDto getIntervinientes() {
-		return intervinientes;
+	@Override
+	public boolean equals(Object obj) {
+
+		return (obj instanceof TermsAccountsDto)
+				&& this.getDetalleCondiciones().equals(((TermsAccountsDto)obj).getDetalleCondiciones())
+				&& this.getDireccionPostal() == (((TermsAccountsDto)obj).getDireccionPostal())
+				&& this.getCondicionesMovilizacion() == (((TermsAccountsDto)obj).getCondicionesMovilizacion())
+				&& this.getHolders().equals(((TermsAccountsDto)obj).getHolders());
+
 	}
 
-	public void setIntervinientes(InvolvedDto intervinientes) {
-		this.intervinientes = intervinientes;
-	}
+	// Setters and Getters
 
 	public DetailConditionsDto getDetalleCondiciones() {
 		return detalleCondiciones;
@@ -49,26 +64,19 @@ public class TermsAccountsDto implements Dto {
 		this.direccionPostal = direccionPostal;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public List<InvolvedDto> getHolders() {
+		return holders;
 	}
 
-	@Override
-	public boolean equals(Object arg0) {
-		// TODO Auto-generated method stub
-		return super.equals(arg0);
+	public void setHolders(List<InvolvedDto> holders) {
+		this.holders = holders;
 	}
 
-	@Override
-	public int hashCode() {
-		// TODO Auto-generated method stub
-		return super.hashCode();
+	public String getCondicionesMovilizacion() {
+		return condicionesMovilizacion;
 	}
 
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return super.toString();
+	public void setCondicionesMovilizacion(String condicionesMovilizacion) {
+		this.condicionesMovilizacion = condicionesMovilizacion;
 	}
-
 }
