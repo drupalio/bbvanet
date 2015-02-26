@@ -1802,105 +1802,105 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 }
 
 */
-</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
-	"id": "12834063921",
-	"issueDate": "09/07/2014",
+</con:dispatchPath><con:response name="Response byListCheck" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
+	"id": "17415662811",
+	"issueDate": "23/07/2014",
 	"value": {
-		"amount": 12130896651,
+		"amount": 474588671,
 		"currency": "COP"
 	},
-	"status": "HABILITADO",
-	"modifiedDate": "21/08/2014"
-},
-{
-	"id": "16833592681",
-	"issueDate": "08/12/2014",
-	"value": {
-		"amount": 7339147361,
-		"currency": "COP"
-	},
-	"status": "HABILITADO",
-	"modifiedDate": "24/12/2014"
-},
-{
-	"id": "13467431131",
-	"issueDate": "26/01/2014",
-	"value": {
-		"amount": 11287877941,
-		"currency": "COP"
-	},
-	"status": "HABILITADO",
-	"modifiedDate": "21/05/2014"
-},
-{
-	"id": "20995245941",
-	"issueDate": "12/06/2014",
-	"value": {
-		"amount": 13882319691,
-		"currency": "COP"
-	},
-	"status": "HABILITADO",
-	"modifiedDate": "25/11/2014"
-},
-{
-	"id": "20970305661",
-	"issueDate": "05/05/2014",
-	"value": {
-		"amount": 119919931,
-		"currency": "COP"
-	},
-	"status": "HABILITADO",
+	"status": "Solicitados",
 	"modifiedDate": "07/09/2014"
 },
 {
-	"id": "9588743601",
-	"issueDate": "06/05/2014",
+	"id": "273982891",
+	"issueDate": "02/01/2015",
 	"value": {
-		"amount": 4632088631,
+		"amount": 8500978841,
 		"currency": "COP"
 	},
-	"status": "HABILITADO",
-	"modifiedDate": "21/10/2014"
+	"status": "Habilitados",
+	"modifiedDate": "19/01/2015"
 },
 {
-	"id": "12105069811",
-	"issueDate": "18/04/2014",
+	"id": "13423151431",
+	"issueDate": "28/01/2014",
 	"value": {
-		"amount": 20168793791,
+		"amount": 8959051681,
 		"currency": "COP"
 	},
-	"status": "HABILITADO",
-	"modifiedDate": "29/06/2014"
+	"status": "Solicitados",
+	"modifiedDate": "31/05/2014"
 },
 {
-	"id": "10371239671",
-	"issueDate": "23/08/2014",
+	"id": "2622313911",
+	"issueDate": "24/06/2014",
 	"value": {
-		"amount": 7372037151,
+		"amount": 13014696411,
 		"currency": "COP"
 	},
-	"status": "HABILITADO",
-	"modifiedDate": "26/09/2014"
+	"status": "Habilitados",
+	"modifiedDate": "18/12/2014"
 },
 {
-	"id": "19909233301",
-	"issueDate": "21/03/2014",
+	"id": "15954407871",
+	"issueDate": "13/05/2014",
 	"value": {
-		"amount": 8697652971,
+		"amount": 5765244481,
 		"currency": "COP"
 	},
-	"status": "HABILITADO",
+	"status": "Solicitados",
 	"modifiedDate": "25/09/2014"
 },
 {
-	"id": "21301260731",
-	"issueDate": "05/08/2014",
+	"id": "16150774831",
+	"issueDate": "15/05/2014",
 	"value": {
-		"amount": 11112267021,
+		"amount": 9338721551,
 		"currency": "COP"
 	},
-	"status": "HABILITADO",
-	"modifiedDate": "12/10/2014"
+	"status": "Habilitados",
+	"modifiedDate": "11/11/2014"
+},
+{
+	"id": "3931152381",
+	"issueDate": "25/04/2014",
+	"value": {
+		"amount": 17543959791,
+		"currency": "COP"
+	},
+	"status": "Solicitados",
+	"modifiedDate": "11/07/2014"
+},
+{
+	"id": "5297478921",
+	"issueDate": "09/09/2014",
+	"value": {
+		"amount": 2368527281,
+		"currency": "COP"
+	},
+	"status": "Habilitados",
+	"modifiedDate": "15/10/2014"
+},
+{
+	"id": "5988248221",
+	"issueDate": "26/03/2014",
+	"value": {
+		"amount": 19722848051,
+		"currency": "COP"
+	},
+	"status": "Solicitados",
+	"modifiedDate": "14/10/2014"
+},
+{
+	"id": "3342316871",
+	"issueDate": "21/08/2014",
+	"value": {
+		"amount": 7561403271,
+		"currency": "COP"
+	},
+	"status": "Habilitados",
+	"modifiedDate": "01/11/2014"
 }]</con:responseContent><con:header><con:name>tsec</con:name><con:value>dafasdfdsfadsfda29873492347dsfjkh</con:value></con:header></con:response></con:restMockAction><con:restMockAction name="/czic/accounts/V01/00130443000200009407/monthlyBalances" method="GET" resourcePath="/czic/accounts/V01/00130443000200009407/monthlyBalances"><con:settings/><con:defaultResponse xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Examples showing how to match based on path, query param and header
 // Match based on path
@@ -2239,132 +2239,132 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 
 */
 </con:dispatchPath><con:response name="listMovements response" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
-	"id": "1871173807",
-	"concept": "TRANSFERENCIA",
-	"operationDate": "13/07/2014",
+	"id": "1571819683",
+	"concept": "Compra",
+	"operationDate": "23/07/2014",
 	"value": {
-		"amount": 1055812062,
+		"amount": 29902623,
 		"currency": "COP"
 	},
 	"balance": {
-		"amount": 1055812062,
+		"amount": 29902623,
 		"currency": "COP"
 	}
 },
 {
-	"id": "620314617",
-	"concept": "TRANSFERENCIA",
-	"operationDate": "27/03/2014",
+	"id": "1906461748",
+	"concept": "Transferencia",
+	"operationDate": "31/03/2014",
 	"value": {
-		"amount": 385792110,
+		"amount": 1606896419,
 		"currency": "COP"
 	},
 	"balance": {
-		"amount": 385792110,
+		"amount": 1606896419,
 		"currency": "COP"
 	}
 },
 {
-	"id": "20196372",
-	"concept": "TRANSFERENCIA",
-	"operationDate": "16/12/2014",
+	"id": "139856525",
+	"concept": "Compra",
+	"operationDate": "02/01/2015",
 	"value": {
-		"amount": 323555556,
+		"amount": 669040327,
 		"currency": "COP"
 	},
 	"balance": {
-		"amount": 323555556,
+		"amount": 669040327,
 		"currency": "COP"
 	}
 },
 {
-	"id": "752072241",
-	"concept": "TRANSFERENCIA",
-	"operationDate": "07/05/2014",
+	"id": "1661591237",
+	"concept": "Transferencia",
+	"operationDate": "13/05/2014",
 	"value": {
-		"amount": 1210100482,
+		"amount": 1839306919,
 		"currency": "COP"
 	},
 	"balance": {
-		"amount": 1210100482,
+		"amount": 1839306919,
 		"currency": "COP"
 	}
 },
 {
-	"id": "467266110",
-	"concept": "TRANSFERENCIA",
-	"operationDate": "27/01/2014",
+	"id": "444599818",
+	"concept": "Compra",
+	"operationDate": "28/01/2014",
 	"value": {
-		"amount": 814286631,
+		"amount": 709076376,
 		"currency": "COP"
 	},
 	"balance": {
-		"amount": 814286631,
+		"amount": 709076376,
 		"currency": "COP"
 	}
 },
 {
-	"id": "1786185339",
-	"concept": "TRANSFERENCIA",
-	"operationDate": "06/05/2014",
+	"id": "1529953479",
+	"concept": "Transferencia",
+	"operationDate": "12/05/2014",
 	"value": {
-		"amount": 1999581417,
+		"amount": 1251164590,
 		"currency": "COP"
 	},
 	"balance": {
-		"amount": 1999581417,
+		"amount": 1251164590,
 		"currency": "COP"
 	}
 },
 {
-	"id": "1774518634",
-	"concept": "TRANSFERENCIA",
-	"operationDate": "16/06/2014",
+	"id": "678827877",
+	"concept": "Compra",
+	"operationDate": "24/06/2014",
 	"value": {
-		"amount": 1153811389,
+		"amount": 511423795,
 		"currency": "COP"
 	},
 	"balance": {
-		"amount": 1153811389,
+		"amount": 511423795,
 		"currency": "COP"
 	}
 },
 {
-	"id": "356434618",
-	"concept": "TRANSFERENCIA",
-	"operationDate": "17/10/2014",
+	"id": "1350768845",
+	"concept": "Transferencia",
+	"operationDate": "31/10/2014",
 	"value": {
-		"amount": 682208023,
+		"amount": 1182402891,
 		"currency": "COP"
 	},
 	"balance": {
-		"amount": 682208023,
+		"amount": 1182402891,
 		"currency": "COP"
 	}
 },
 {
-	"id": "1396233022",
-	"concept": "TRANSFERENCIA",
-	"operationDate": "07/05/2014",
+	"id": "312493289",
+	"concept": "Compra",
+	"operationDate": "13/05/2014",
 	"value": {
-		"amount": 397401891,
+		"amount": 1516994872,
 		"currency": "COP"
 	},
 	"balance": {
-		"amount": 397401891,
+		"amount": 1516994872,
 		"currency": "COP"
 	}
 },
 {
-	"id": "990877332",
-	"concept": "TRANSFERENCIA",
-	"operationDate": "08/07/2014",
+	"id": "537239459",
+	"concept": "Transferencia",
+	"operationDate": "17/07/2014",
 	"value": {
-		"amount": 1577796455,
+		"amount": 1330753418,
 		"currency": "COP"
 	},
 	"balance": {
-		"amount": 1577796455,
+		"amount": 1330753418,
 		"currency": "COP"
 	}
 }]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/loan/V01/rotaryQuota/00130443000200009410/movement/" method="GET" resourcePath="/czic/loan/V01/rotaryQuota/00130443000200009410/movement/"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
@@ -3404,4 +3404,53 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	{
 		"id": "01347582243988946189"
 	}]
+}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/accounts/V01/00130443000200009416/checks/" method="GET" resourcePath="/czic/accounts/V01/00130443000200009416/checks/"><con:settings/><con:defaultResponse>byCheck</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="byCheck" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
+	"id": "785730295",
+	"issueDate": "23/07/2014",
+	"value": {
+		"amount": 7933656201,
+		"currency": "COP"
+	},
+	"status": "Habilitado",
+	"modifiedDate": "07/09/2014"
 }</con:responseContent></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

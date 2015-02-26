@@ -27,7 +27,13 @@ public class QuotaPaginatedController extends PaginationController<MovementDto> 
 
 	@Override
 	protected List<MovementDto> getNextPage(int paginantionKey, int psize) {
-		return quotaDetailFacade.listRotaryQuotaMovements(productIdPControl, dateRangePControl, paginantionKey, psize);
+		return quotaDetailFacade.listRotaryQuotaMovements(getSelectedProduct().getProductId(), dateRangePControl,
+				paginantionKey, psize);
+	}
+
+	@Override
+	protected Integer getNextPaginantionKey(List<MovementDto> lastPage) {
+		return Integer.valueOf(lastPage.get(lastPage.size() - 1).getMovementId());
 	}
 
 	public DateRangeDto getDateRangePControl() {
@@ -36,18 +42,6 @@ public class QuotaPaginatedController extends PaginationController<MovementDto> 
 
 	public void setDateRangePControl(DateRangeDto dateRangePControl) {
 		this.dateRangePControl = dateRangePControl;
-	}
-
-	public String getProductIdPControl() {
-		return productIdPControl;
-	}
-
-	public void setProductIdPControl(String productIdPControl) {
-		this.productIdPControl = productIdPControl;
-	}
-
-	public QuotaDetailFacade getQuotaDetailFacade() {
-		return quotaDetailFacade;
 	}
 
 	public void setQuotaDetailFacade(QuotaDetailFacade quotaDetailFacade) {

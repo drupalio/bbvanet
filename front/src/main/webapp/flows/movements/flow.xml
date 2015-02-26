@@ -23,8 +23,7 @@
 		<evaluate expression="movementsCriteriaController.init()" />
 		<evaluate expression="movementsCriteriaController.getSelectedProduct()"
 			result="flowScope.product" />
-		<evaluate expression="movementsCriteriaController.getAllMovements()"
-			result="flowScope.movements" />
+		<evaluate expression="movementsCriteriaController.getAllMovements()" result="flowScope.movements" />
 		<evaluate expression="termsController.getAllConditions()"
 			result="flowScope.allConditions" />
 	</on-start>
@@ -38,6 +37,7 @@
 		<on-render>
 			<evaluate expression="renderViewMovementsUI.getRenderComponents()"
 				result="viewScope.renderComponents" />
+			<evaluate expression="movementsCriteriaController.setShowMoreStatus()" />
 		</on-render>
 
 		<transition to="detailMovement" on="movementSelected"></transition>
