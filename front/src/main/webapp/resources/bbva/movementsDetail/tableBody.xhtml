@@ -26,15 +26,25 @@
 			</dl>
 			<dl class="align">
 				<dd>#{msg['text.operationDate']}</dd>
-				<dt>#{cc.attrs.controller.transaccionDate}</dt>
+				<dt>
+					<h:outputText 
+								value="#{cc.attrs.controller.movementDetail.transactionDate}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+				</dt>
 			</dl>
 			<dl class="align">
 				<dd>#{msg['text.valueDate']}</dd>
-				<dt>#{cc.attrs.controller.operationDate}</dt>
+				<dt>
+					<h:outputText 
+								value="#{cc.attrs.controller.movementDetail.operationDate}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+				</dt>
 			</dl>
 			<dl class="align">
 				<dd>#{msg['text.operationHour']}</dd>
-				<dt>#{cc.attrs.controller.operationHour} hrs.</dt>
+				<dt>#{cc.attrs.controller.movementDetail.operationHour} hrs.</dt>
 
 			</dl>
 			<dl class="align">

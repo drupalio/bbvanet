@@ -3057,47 +3057,16 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		"postalAddress": "Calle 36"
 	},
 	"mobilizationConditions": "Consiciones de movilizacion"
-}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/products/V01/00130443000200009416/extracts" method="GET" resourcePath="/czic/products/V01/00130443000200009416/extracts"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
-// Examples showing how to match based on path, query param and header
-// Match based on path
-def requestPath = mockRequest.getPath()
-log.info "Path: "+ requestPath
-
-if( requestPath.contains("json") )
+}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/products/V01/00130443000200009416/extracts" method="GET" resourcePath="/czic/products/V01/00130443000200009416/extracts"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SCRIPT</con:dispatchStyle><con:dispatchPath>def requestMock = mockRequest.getRequest().toString()
+log.info "*** "+requestMock
+if( requestMock.contains("filter") )
 {
-    // return the name of the response you want to dispatch
-    return "JSON Response"
-}
-
-
-// Match based on query parameter
-def queryString = mockRequest.getRequest().getQueryString()
-log.info "QueryString: " + queryString
-
-if( queryString.contains("stockholm") )
-{
-    // return the name of the response you want to dispatch
-    return "Response Stockholm"
-}
-else if( queryString.contains("london") )
-{
-    // return the name of the response you want to dispatch
-    return "Response London"
-}
-
-
-// Match based on header
-def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
-log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
-
-if( acceptEncodingHeadeList.contains("gzip,deflate") )
-{
-    // return the name of the response you want to dispatch
-    return "GZiped Response"
-}
-
-*/
-</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
+	log.info "Ejecutando SIN Filtro "
+    return "Response 1"
+}else{
+	log.info "Ejecutando CON Filtro "
+	return "Response URL"
+}</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
 	"externalCode": "922131073",
 	"month": "12",
 	"year": "2014"
@@ -3246,6 +3215,9 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"externalCode": "150058636",
 	"month": "7",
 	"year": "2012"
+}]</con:responseContent></con:response><con:response name="Response URL" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
+	"externalCode": "922131073",
+	"url": "https://ws1.e-bbva.com.co/extractox/DoxWeb/servlet/FileDownloaderServlet?soli=File20150201065825_KREDOK&amp;fecha=1234&amp;modo=desc"
 }]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/products/V01/00130443000200009416/movements/" method="GET" resourcePath="/czic/products/V01/00130443000200009416/movements/"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Examples showing how to match based on path, query param and header
 // Match based on path
