@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.collections.CollectionUtils;
+
 import com.bbva.net.back.facade.QuotaDetailFacade;
 import com.bbva.net.back.model.commons.DateRangeDto;
 import com.bbva.net.back.model.movements.MovementDto;
@@ -14,8 +16,6 @@ public class QuotaPaginatedController extends PaginationController<MovementDto> 
 	private static final long serialVersionUID = 1L;
 
 	private DateRangeDto dateRangePControl;
-
-	private String productIdPControl;
 
 	@Resource(name = "quotaDetailFacade")
 	private transient QuotaDetailFacade quotaDetailFacade;
@@ -33,6 +33,9 @@ public class QuotaPaginatedController extends PaginationController<MovementDto> 
 
 	@Override
 	protected Integer getNextPaginantionKey(List<MovementDto> lastPage) {
+		if (CollectionUtils.isEmpty(lastPage)) {
+			return 0;
+		}
 		return Integer.valueOf(lastPage.get(lastPage.size() - 1).getMovementId());
 	}
 

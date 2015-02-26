@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.collections.CollectionUtils;
+
 import com.bbva.net.back.facade.MovementsAccountFacade;
 import com.bbva.net.back.model.commons.BalanceRangeDto;
 import com.bbva.net.back.model.commons.DateRangeDto;
@@ -32,6 +34,9 @@ public class MovementPaginatedController extends PaginationController<MovementDt
 
 	@Override
 	protected Integer getNextPaginantionKey(List<MovementDto> lastPage) {
+		if (CollectionUtils.isEmpty(lastPage)) {
+			return 0;
+		}
 		return Integer.valueOf(lastPage.get(lastPage.size() - 1).getMovementId());
 	}
 

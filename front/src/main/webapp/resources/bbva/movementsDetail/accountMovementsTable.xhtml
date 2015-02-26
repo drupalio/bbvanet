@@ -48,8 +48,7 @@
 
 							<h:outputText class="text styleLeft"
 								value="#{moves.movementConcept}" />
-							<h:outputText class="text styleLeft"
-								value="#{moves.movementConcept}" />
+							
 						</p:column>
 
 						<p:column class="head"
@@ -98,7 +97,6 @@
 				<footer class="detail-table-footer">
 
 					<button id="moreMovs" class="btn btn-more-results"
-						jsf:update=":detailAccounts:tableMovements:formMovesDetail:movAccount"
 						value="Más Resultados"
 						jsf:rendered="#{renderComponents['FOOTERTABLEMOVEMENT']}"
 						jsf:actionListener="#{movementsCriteriaController.nextPage}">

@@ -23,7 +23,7 @@
 		<div class="definitions textSize" style="width: 100%;">
 			<dl>
 				<dd>#{msg['text.moveNumber']}</dd>
-				<dt>#{cc.attrs.controller.movementDetail.operationDate}</dt>
+				<dt>#{cc.attrs.controller.selectedMovements.movementId}</dt>
 			</dl>
 			<dl>
 				<dd>#{msg['text.operationDate']}</dd>
@@ -40,11 +40,11 @@
 			</dl>
 			<dl>
 				<dd>#{msg['text.valueMin']}</dd>
-				<dt>#{cc.attrs.controller.movementDetail.value}</dt>
+				<dt>#{cc.attrs.controller.selectedMovements.movementValue}</dt>
 			</dl>
 			<dl>
 				<dd>#{msg['text.moveAfterSald']}</dd>
-				<dt>#{cc.attrs.controller.movementDetail.value}</dt>
+				<dt>#{cc.attrs.controller.selectedMovements.totalBalance}</dt>
 
 			</dl>
 			<dl>
@@ -57,7 +57,7 @@
 			</dl>
 			<dl>
 				<dd>#{msg['text.observations']}</dd>
-				<dt>#{cc.attrs.controller.movementDetail.observations}</dt>
+				<dt>#{cc.attrs.controller.selectedMovements.movementConcept}</dt>
 			</dl>
 			<dl>
 				<dd>#{msg['text.originCenterOfMontion']}</dd>

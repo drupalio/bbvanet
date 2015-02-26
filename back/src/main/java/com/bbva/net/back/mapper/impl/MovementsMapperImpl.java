@@ -5,16 +5,21 @@ import java.util.List;
 import ma.glasnost.orika.MapperFactory;
 import ma.glasnost.orika.impl.ConfigurableMapper;
 
+import org.apache.commons.logging.Log;
+
 import com.bbva.czic.dto.net.Movement;
+import com.bbva.jee.arq.spring.core.log.I18nLogFactory;
 import com.bbva.net.back.core.stereotype.Mapper;
 import com.bbva.net.back.mapper.MovementsMapper;
-import com.bbva.net.back.mapper.converter.StringToDateConverter;
 import com.bbva.net.back.mapper.converter.MoneyConverter;
+import com.bbva.net.back.mapper.converter.StringToDateConverter;
 import com.bbva.net.back.model.movements.MovementDetailDto;
 import com.bbva.net.back.model.movements.MovementDto;
 
 @Mapper(value = "movementsMapper")
 public class MovementsMapperImpl extends ConfigurableMapper implements MovementsMapper {
+
+	protected static final Log LOGGER = I18nLogFactory.getLog(MovementsMapperImpl.class);
 
 	@Override
 	protected void configure(final MapperFactory factory) {
@@ -38,8 +43,9 @@ public class MovementsMapperImpl extends ConfigurableMapper implements Movements
 
 	@Override
 	public MovementDetailDto mapMovement(Movement movement) {
-		final MovementDetailDto movementDetailDto = map(movement, MovementDetailDto.class);
-		return movementDetailDto;
+		final MovementDto movementDto = map(movement, MovementDto.class);
+		LOGGER.info("DETALLE DE MOVIMIENTO CAPTURADO: " + movementDto);
+		return movementDto.getMovementDetailDto();
 	}
 
 	@Override
