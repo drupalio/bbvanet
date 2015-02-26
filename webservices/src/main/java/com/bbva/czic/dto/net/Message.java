@@ -3,9 +3,7 @@ package com.bbva.czic.dto.net;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.datatype.XMLGregorianCalendar;
 import com.bbva.jee.arq.spring.core.servicing.utils.Money;
 
 
@@ -23,7 +21,7 @@ import com.bbva.jee.arq.spring.core.servicing.utils.Money;
  *         &lt;element name="title" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="template" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="reference" type="{urn:com:bbva:czic:dto:net}EnumMessageType" minOccurs="0"/>
- *         &lt;element name="time" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+ *         &lt;element name="time" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="value" type="{urn:com:bbva:jee:arq:spring:core:servicing:utils}money" minOccurs="0"/>
  *         &lt;element name="info" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
@@ -50,8 +48,7 @@ public class Message {
     protected String title;
     protected String template;
     protected EnumMessageType reference;
-    @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar time;
+    protected String time;
     protected Money value;
     protected String info;
 
@@ -156,10 +153,10 @@ public class Message {
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public XMLGregorianCalendar getTime() {
+    public String getTime() {
         return time;
     }
 
@@ -168,10 +165,10 @@ public class Message {
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public void setTime(XMLGregorianCalendar value) {
+    public void setTime(String value) {
         this.time = value;
     }
 

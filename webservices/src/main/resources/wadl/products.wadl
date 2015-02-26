@@ -37,7 +37,7 @@
 					<xs:element minOccurs="0" name="alias" type="xs:string" />
 					<xs:element minOccurs="0" name="category" type="xs:string" />
 					<xs:element minOccurs="0" name="description" type="xs:string" />
-					<xs:element minOccurs="0" name="openingDate" type="xs:dateTime" />
+					<xs:element minOccurs="0" name="openingDate" type="xs:string" />
 					<xs:element minOccurs="0" name="commission" type="xs:string" />
 					<xs:element minOccurs="0" name="office" type="tns:Office" />
 					<xs:element minOccurs="0" name="mobilizationConditions"
@@ -173,7 +173,7 @@
 					<xs:element minOccurs="0" name="title" type="xs:string" />
 					<xs:element minOccurs="0" name="template" type="xs:string" />
 					<xs:element minOccurs="0" name="reference" type="tns:EnumMessageType" />
-					<xs:element minOccurs="0" name="time" type="xs:dateTime" />
+					<xs:element minOccurs="0" name="time" type="xs:string" />
 					<xs:element minOccurs="0" name="value" type="ns1:money" />
 					<xs:element minOccurs="0" name="info" type="xs:string" />
 				</xs:sequence>
