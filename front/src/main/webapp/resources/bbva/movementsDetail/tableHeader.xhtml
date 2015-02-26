@@ -31,7 +31,12 @@
 			style="border-bottom: 1px solid #C4D7E5 !important;">
 			<tbody>
 				<tr class="textSize" onclick="clickMove()">
-					<td style="display: table-cell" class="brand"><span>#{cc.attrs.controller.transaccionDate}</span></td>
+					<td style="display: table-cell" class="brand">
+						<h:outputText styleClass="brand styleLeft"
+								value="#{cc.attrs.controller.movementDetail.transactionDate}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+					</td>
 					<td style="display: table-cell; float: left;" class="text">#{cc.attrs.controller.movementDetail.concept}
 						<small>#{cc.attrs.controller.movementDetail.concept}</small>
 					</td>
