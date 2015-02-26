@@ -23,15 +23,42 @@
 	<li class="filter-buttons">
 
 		<div>
-			<bbvaButton:iconButton id="removeFields" icon="trash-icon" type="button"
+			<bbvaButton:iconButton id="removeFields" icon="trash-icon" type="submit"
 				value="#{msg['button.clean.filters']}" show="#{cc.attrs.show}"
 				classButton="btn btn-default hidden-xs hidden-sm"
 				actionListener="#{cc.attrs.actionListenerRemove}" >
 				</bbvaButton:iconButton>
-			<bbvaButton:iconButton id="showResult" type="button"
-				value="#{msg['button.see.result']}" icon="document-view-icon"
-				classButton="btn btn-default" show="true"
-				actionListener="#{cc.attrs.actionListenerShow}" />
+			
+			<button class="btn btn-default" 
+				jsf:rendered="#{cc.attrs.showMovements}"
+				jsf:actionListener="#{cc.attrs.actionListenerShow}">
+				<span class="document-view-icon" />#{msg['button.see.result']}
+				<p:ajax process="@form" onstart="PF('statusDialogMovement').show()" onsuccess="PF('statusDialogMovement').hide()" 
+						update=":detailAccounts:tableMovements:formMovesDetail
+								:detailAccounts:checkTable:formCheks"/>
+			</button>
+			
+			<button class="btn btn-default" 
+				jsf:rendered="#{cc.attrs.showChecks}"
+				jsf:actionListener="#{cc.attrs.actionListenerShow}">
+				<span class="document-view-icon" />#{msg['button.see.result']}
+				<p:ajax process="@form"  onstart="PF('statusDialogMovement').show()" onsuccess="PF('statusDialogMovement').hide()"  
+						update=":detailAccounts:tableMovements:formMovesDetail
+								:detailAccounts:checkTable:formCheks"/>
+			</button>
+			
+			<button class="btn btn-default" 
+				type="button"  jsf:rendered="#{cc.attrs.showQuota}"
+				jsf:actionListener="#{cc.attrs.actionListenerShow}">
+				<span class="document-view-icon" />#{msg['button.see.result']}
+				<p:ajax process="@form" onstart="PF('statusDialogMovement').show()" onsuccess="PF('statusDialogMovement').hide()" 
+						update=":quotaDetail:detailAccounts:detailAccounts:detailmovesAC" />
+			</button>
+			
+			<p:dialog widgetVar="statusDialogMovement" modal="true" draggable="false"
+				closable="false" resizable="false" showHeader="false">
+				<p:outputLabel value="Un momento porfavor" />
+			</p:dialog>
 		</div>
 	</li>
 </composite:implementation>

@@ -1473,8 +1473,34 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 }
 
 */
-</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{"category":"Categoria producto","description":"Descripcion del producto","openingDate":"Fecha de apertura","commission":"commison producto","office":{"code":"0073","name":"BBVA 23247","location":{"city":{"id":"123","name":"Bogota"},"country":{"id":"12","name":"Colombia"},"state":{"id":"123456","name":"Cundinamarca"},"postalAddress":"Direccion posta","category":"Kennedy"},"postalAddress":"Calle 36"},"mobilizationConditions":"Consiciones de movilizacion"}
-</con:responseContent><con:header><con:name>tsec</con:name><con:value>djfkdjfkdfjdkflskflfjkldfjsldfjsdlkfjdslkfjsdkfjsld</con:value></con:header></con:response></con:restMockAction><con:restMockAction name="/czic/loan/V01/rotaryQuota/" method="GET" resourcePath="/czic/loan/V01/rotaryQuota/"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
+	"category": "Categoria producto",
+	"description": "Descripcion del producto",
+	"openingDate": "2014-09-10",
+	"commission": "commison producto",
+	"office": {
+		"code": "0073",
+		"name": "BBVA 23247",
+		"location": {
+			"city": {
+				"id": "123",
+				"name": "Bogota"
+			},
+			"country": {
+				"id": "12",
+				"name": "Colombia"
+			},
+			"state": {
+				"id": "123456",
+				"name": "Cundinamarca"
+			},
+			"postalAddress": "Direccion posta",
+			"category": "Kennedy"
+		},
+		"postalAddress": "Calle 36"
+	},
+	"mobilizationConditions": "Consiciones de movilizacion"
+}</con:responseContent><con:header><con:name>tsec</con:name><con:value>djfkdjfkdfjdkflskflfjkldfjsldfjsdlkfjdslkfjsdkfjsld</con:value></con:header></con:response></con:restMockAction><con:restMockAction name="/czic/loan/V01/rotaryQuota/" method="GET" resourcePath="/czic/loan/V01/rotaryQuota/"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Examples showing how to match based on path, query param and header
 // Match based on path
 def requestPath = mockRequest.getPath()
@@ -1776,105 +1802,105 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 }
 
 */
-</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
-	"id": "12834063921",
-	"issueDate": "09/07/2014",
+</con:dispatchPath><con:response name="Response byListCheck" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
+	"id": "17415662811",
+	"issueDate": "23/07/2014",
 	"value": {
-		"amount": 12130896651,
+		"amount": 474588671,
 		"currency": "COP"
 	},
-	"status": "HABILITADO",
-	"modifiedDate": "21/08/2014"
-},
-{
-	"id": "16833592681",
-	"issueDate": "08/12/2014",
-	"value": {
-		"amount": 7339147361,
-		"currency": "COP"
-	},
-	"status": "HABILITADO",
-	"modifiedDate": "24/12/2014"
-},
-{
-	"id": "13467431131",
-	"issueDate": "26/01/2014",
-	"value": {
-		"amount": 11287877941,
-		"currency": "COP"
-	},
-	"status": "HABILITADO",
-	"modifiedDate": "21/05/2014"
-},
-{
-	"id": "20995245941",
-	"issueDate": "12/06/2014",
-	"value": {
-		"amount": 13882319691,
-		"currency": "COP"
-	},
-	"status": "HABILITADO",
-	"modifiedDate": "25/11/2014"
-},
-{
-	"id": "20970305661",
-	"issueDate": "05/05/2014",
-	"value": {
-		"amount": 119919931,
-		"currency": "COP"
-	},
-	"status": "HABILITADO",
+	"status": "Solicitados",
 	"modifiedDate": "07/09/2014"
 },
 {
-	"id": "9588743601",
-	"issueDate": "06/05/2014",
+	"id": "273982891",
+	"issueDate": "02/01/2015",
 	"value": {
-		"amount": 4632088631,
+		"amount": 8500978841,
 		"currency": "COP"
 	},
-	"status": "HABILITADO",
-	"modifiedDate": "21/10/2014"
+	"status": "Habilitados",
+	"modifiedDate": "19/01/2015"
 },
 {
-	"id": "12105069811",
-	"issueDate": "18/04/2014",
+	"id": "13423151431",
+	"issueDate": "28/01/2014",
 	"value": {
-		"amount": 20168793791,
+		"amount": 8959051681,
 		"currency": "COP"
 	},
-	"status": "HABILITADO",
-	"modifiedDate": "29/06/2014"
+	"status": "Solicitados",
+	"modifiedDate": "31/05/2014"
 },
 {
-	"id": "10371239671",
-	"issueDate": "23/08/2014",
+	"id": "2622313911",
+	"issueDate": "24/06/2014",
 	"value": {
-		"amount": 7372037151,
+		"amount": 13014696411,
 		"currency": "COP"
 	},
-	"status": "HABILITADO",
-	"modifiedDate": "26/09/2014"
+	"status": "Habilitados",
+	"modifiedDate": "18/12/2014"
 },
 {
-	"id": "19909233301",
-	"issueDate": "21/03/2014",
+	"id": "15954407871",
+	"issueDate": "13/05/2014",
 	"value": {
-		"amount": 8697652971,
+		"amount": 5765244481,
 		"currency": "COP"
 	},
-	"status": "HABILITADO",
+	"status": "Solicitados",
 	"modifiedDate": "25/09/2014"
 },
 {
-	"id": "21301260731",
-	"issueDate": "05/08/2014",
+	"id": "16150774831",
+	"issueDate": "15/05/2014",
 	"value": {
-		"amount": 11112267021,
+		"amount": 9338721551,
 		"currency": "COP"
 	},
-	"status": "HABILITADO",
-	"modifiedDate": "12/10/2014"
+	"status": "Habilitados",
+	"modifiedDate": "11/11/2014"
+},
+{
+	"id": "3931152381",
+	"issueDate": "25/04/2014",
+	"value": {
+		"amount": 17543959791,
+		"currency": "COP"
+	},
+	"status": "Solicitados",
+	"modifiedDate": "11/07/2014"
+},
+{
+	"id": "5297478921",
+	"issueDate": "09/09/2014",
+	"value": {
+		"amount": 2368527281,
+		"currency": "COP"
+	},
+	"status": "Habilitados",
+	"modifiedDate": "15/10/2014"
+},
+{
+	"id": "5988248221",
+	"issueDate": "26/03/2014",
+	"value": {
+		"amount": 19722848051,
+		"currency": "COP"
+	},
+	"status": "Solicitados",
+	"modifiedDate": "14/10/2014"
+},
+{
+	"id": "3342316871",
+	"issueDate": "21/08/2014",
+	"value": {
+		"amount": 7561403271,
+		"currency": "COP"
+	},
+	"status": "Habilitados",
+	"modifiedDate": "01/11/2014"
 }]</con:responseContent><con:header><con:name>tsec</con:name><con:value>dafasdfdsfadsfda29873492347dsfjkh</con:value></con:header></con:response></con:restMockAction><con:restMockAction name="/czic/accounts/V01/00130443000200009407/monthlyBalances" method="GET" resourcePath="/czic/accounts/V01/00130443000200009407/monthlyBalances"><con:settings/><con:defaultResponse xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Examples showing how to match based on path, query param and header
 // Match based on path
@@ -1916,127 +1942,220 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 
 */
 </con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
-	"balance": "1000 COP",
+	"balance": {
+		"currency": "COP",
+		"amount": 1000
+	},
 	"month": "00"
 },
 {
-	"balance": "1000 COP",
+	"balance": {
+		"currency": "COP",
+		"amount": 1000
+	},
 	"month": "01"
 },
 {
-	"balance": "1000 COP",
+	"balance": {
+		"currency": "COP",
+		"amount": 1000
+	},
 	"month": "02"
 },
 {
-	"balance": "1000 COP",
+	"balance": {
+		"currency": "COP",
+		"amount": 1000
+	},
 	"month": "03"
 },
 {
-	"balance": "1000 COP",
+	"balance": {
+		"currency": "COP",
+		"amount": 1000
+	},
 	"month": "04"
 },
 {
-	"balance": "1000 COP",
+	"balance": {
+		"currency": "COP",
+		"amount": 1000
+	},
 	"month": "05"
 },
 {
-	"balance": "1000 COP",
+	"balance": {
+		"currency": "COP",
+		"amount": 1000
+	},
 	"month": "06"
 },
 {
-	"balance": "1000 COP",
+	"balance": {
+		"currency": "COP",
+		"amount": 1000
+	},
 	"month": "07"
 },
 {
-	"balance": "1000 COP",
+	"balance": {
+		"currency": "COP",
+		"amount": 1000
+	},
 	"month": "08"
 },
 {
-	"balance": "1000 COP",
+	"balance": {
+		"currency": "COP",
+		"amount": 1000
+	},
 	"month": "09"
 },
 {
-	"balance": "1000 COP",
+	"balance": {
+		"currency": "COP",
+		"amount": 1000
+	},
 	"month": "10"
 },
 {
-	"balance": "1000 COP",
+	"balance": {
+		"currency": "COP",
+		"amount": 1000
+	},
 	"month": "11"
 },
 {
-	"balance": "1000 COP",
+	"balance": {
+		"currency": "COP",
+		"amount": 1000
+	},
 	"month": "12"
 },
 {
-	"balance": "1000 COP",
+	"balance": {
+		"currency": "COP",
+		"amount": 1000
+	},
 	"month": "13"
 },
 {
-	"balance": "1000 COP",
+	"balance": {
+		"currency": "COP",
+		"amount": 1000
+	},
 	"month": "14"
 },
 {
-	"balance": "1000 COP",
+	"balance": {
+		"currency": "COP",
+		"amount": 1000
+	},
 	"month": "15"
 },
 {
-	"balance": "1000 COP",
+	"balance": {
+		"currency": "COP",
+		"amount": 1000
+	},
 	"month": "16"
 },
 {
-	"balance": "1000 COP",
+	"balance": {
+		"currency": "COP",
+		"amount": 1000
+	},
 	"month": "17"
 },
 {
-	"balance": "1000 COP",
+	"balance": {
+		"currency": "COP",
+		"amount": 1000
+	},
 	"month": "18"
 },
 {
-	"balance": "1000 COP",
+	"balance": {
+		"currency": "COP",
+		"amount": 1000
+	},
 	"month": "19"
 },
 {
-	"balance": "1000 COP",
+	"balance": {
+		"currency": "COP",
+		"amount": 1000
+	},
 	"month": "20"
 },
 {
-	"balance": "1000 COP",
+	"balance": {
+		"currency": "COP",
+		"amount": 1000
+	},
 	"month": "21"
 },
 {
-	"balance": "1000 COP",
+	"balance": {
+		"currency": "COP",
+		"amount": 1000
+	},
 	"month": "22"
 },
 {
-	"balance": "1000 COP",
+	"balance": {
+		"currency": "COP",
+		"amount": 1000
+	},
 	"month": "23"
 },
 {
-	"balance": "1000 COP",
+	"balance": {
+		"currency": "COP",
+		"amount": 1000
+	},
 	"month": "24"
 },
 {
-	"balance": "1000 COP",
+	"balance": {
+		"currency": "COP",
+		"amount": 1000
+	},
 	"month": "25"
 },
 {
-	"balance": "1000 COP",
+	"balance": {
+		"currency": "COP",
+		"amount": 1000
+	},
 	"month": "26"
 },
 {
-	"balance": "1000 COP",
+	"balance": {
+		"currency": "COP",
+		"amount": 1000
+	},
 	"month": "27"
 },
 {
-	"balance": "1000 COP",
+	"balance": {
+		"currency": "COP",
+		"amount": 1000
+	},
 	"month": "28"
 },
 {
-	"balance": "1000 COP",
+	"balance": {
+		"currency": "COP",
+		"amount": 1000
+	},
 	"month": "29"
 },
 {
-	"balance": "1000 COP",
+	"balance": {
+		"currency": "COP",
+		"amount": 1000
+	},
 	"month": "30"
 }]</con:responseContent><con:header><con:name>tsec</con:name><con:value>dsdfdsfdsgdsgfsfffg0099dfdksdfknksd</con:value></con:header></con:response></con:restMockAction><con:restMockAction name="/czic/customers/V01/12345678" method="GET" resourcePath="/czic/customers/V01/12345678"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Examples showing how to match based on path, query param and header
@@ -2120,132 +2239,132 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 
 */
 </con:dispatchPath><con:response name="listMovements response" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
-	"id": "1871173807",
-	"concept": "TRANSFERENCIA",
-	"operationDate": "13/07/2014",
+	"id": "1571819683",
+	"concept": "Compra",
+	"operationDate": "23/07/2014",
 	"value": {
-		"amount": 1055812062,
+		"amount": 29902623,
 		"currency": "COP"
 	},
 	"balance": {
-		"amount": 1055812062,
+		"amount": 29902623,
 		"currency": "COP"
 	}
 },
 {
-	"id": "620314617",
-	"concept": "TRANSFERENCIA",
-	"operationDate": "27/03/2014",
+	"id": "1906461748",
+	"concept": "Transferencia",
+	"operationDate": "31/03/2014",
 	"value": {
-		"amount": 385792110,
+		"amount": 1606896419,
 		"currency": "COP"
 	},
 	"balance": {
-		"amount": 385792110,
+		"amount": 1606896419,
 		"currency": "COP"
 	}
 },
 {
-	"id": "20196372",
-	"concept": "TRANSFERENCIA",
-	"operationDate": "16/12/2014",
+	"id": "139856525",
+	"concept": "Compra",
+	"operationDate": "02/01/2015",
 	"value": {
-		"amount": 323555556,
+		"amount": 669040327,
 		"currency": "COP"
 	},
 	"balance": {
-		"amount": 323555556,
+		"amount": 669040327,
 		"currency": "COP"
 	}
 },
 {
-	"id": "752072241",
-	"concept": "TRANSFERENCIA",
-	"operationDate": "07/05/2014",
+	"id": "1661591237",
+	"concept": "Transferencia",
+	"operationDate": "13/05/2014",
 	"value": {
-		"amount": 1210100482,
+		"amount": 1839306919,
 		"currency": "COP"
 	},
 	"balance": {
-		"amount": 1210100482,
+		"amount": 1839306919,
 		"currency": "COP"
 	}
 },
 {
-	"id": "467266110",
-	"concept": "TRANSFERENCIA",
-	"operationDate": "27/01/2014",
+	"id": "444599818",
+	"concept": "Compra",
+	"operationDate": "28/01/2014",
 	"value": {
-		"amount": 814286631,
+		"amount": 709076376,
 		"currency": "COP"
 	},
 	"balance": {
-		"amount": 814286631,
+		"amount": 709076376,
 		"currency": "COP"
 	}
 },
 {
-	"id": "1786185339",
-	"concept": "TRANSFERENCIA",
-	"operationDate": "06/05/2014",
+	"id": "1529953479",
+	"concept": "Transferencia",
+	"operationDate": "12/05/2014",
 	"value": {
-		"amount": 1999581417,
+		"amount": 1251164590,
 		"currency": "COP"
 	},
 	"balance": {
-		"amount": 1999581417,
+		"amount": 1251164590,
 		"currency": "COP"
 	}
 },
 {
-	"id": "1774518634",
-	"concept": "TRANSFERENCIA",
-	"operationDate": "16/06/2014",
+	"id": "678827877",
+	"concept": "Compra",
+	"operationDate": "24/06/2014",
 	"value": {
-		"amount": 1153811389,
+		"amount": 511423795,
 		"currency": "COP"
 	},
 	"balance": {
-		"amount": 1153811389,
+		"amount": 511423795,
 		"currency": "COP"
 	}
 },
 {
-	"id": "356434618",
-	"concept": "TRANSFERENCIA",
-	"operationDate": "17/10/2014",
+	"id": "1350768845",
+	"concept": "Transferencia",
+	"operationDate": "31/10/2014",
 	"value": {
-		"amount": 682208023,
+		"amount": 1182402891,
 		"currency": "COP"
 	},
 	"balance": {
-		"amount": 682208023,
+		"amount": 1182402891,
 		"currency": "COP"
 	}
 },
 {
-	"id": "1396233022",
-	"concept": "TRANSFERENCIA",
-	"operationDate": "07/05/2014",
+	"id": "312493289",
+	"concept": "Compra",
+	"operationDate": "13/05/2014",
 	"value": {
-		"amount": 397401891,
+		"amount": 1516994872,
 		"currency": "COP"
 	},
 	"balance": {
-		"amount": 397401891,
+		"amount": 1516994872,
 		"currency": "COP"
 	}
 },
 {
-	"id": "990877332",
-	"concept": "TRANSFERENCIA",
-	"operationDate": "08/07/2014",
+	"id": "537239459",
+	"concept": "Transferencia",
+	"operationDate": "17/07/2014",
 	"value": {
-		"amount": 1577796455,
+		"amount": 1330753418,
 		"currency": "COP"
 	},
 	"balance": {
-		"amount": 1577796455,
+		"amount": 1330753418,
 		"currency": "COP"
 	}
 }]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/loan/V01/rotaryQuota/00130443000200009410/movement/" method="GET" resourcePath="/czic/loan/V01/rotaryQuota/00130443000200009410/movement/"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
@@ -2911,8 +3030,34 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 }
 
 */
-</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{"category":"Categoria producto","description":"Descripcion del producto","openingDate":"Fecha de apertura","commission":"commison producto","office":{"code":"0073","name":"BBVA 23247","location":{"city":{"id":"123","name":"Bogota"},"country":{"id":"12","name":"Colombia"},"state":{"id":"123456","name":"Cundinamarca"},"postalAddress":"Direccion posta","category":"Kennedy"},"postalAddress":"Calle 36"},"mobilizationConditions":"Consiciones de movilizacion"}
-</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/products/V01/00130443000200009416/extracts" method="GET" resourcePath="/czic/products/V01/00130443000200009416/extracts"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
+	"category": "Categoria producto",
+	"description": "Descripcion del producto",
+	"openingDate": "2014-08-03",
+	"commission": "commison producto",
+	"office": {
+		"code": "0073",
+		"name": "BBVA 23247",
+		"location": {
+			"city": {
+				"id": "123",
+				"name": "Bogota"
+			},
+			"country": {
+				"id": "12",
+				"name": "Colombia"
+			},
+			"state": {
+				"id": "123456",
+				"name": "Cundinamarca"
+			},
+			"postalAddress": "Direccion posta",
+			"category": "Kennedy"
+		},
+		"postalAddress": "Calle 36"
+	},
+	"mobilizationConditions": "Consiciones de movilizacion"
+}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/products/V01/00130443000200009416/extracts" method="GET" resourcePath="/czic/products/V01/00130443000200009416/extracts"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Examples showing how to match based on path, query param and header
 // Match based on path
 def requestPath = mockRequest.getPath()
@@ -3101,7 +3246,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"externalCode": "150058636",
 	"month": "7",
 	"year": "2012"
-}]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/accounts/V01/00130443000200009416/movementsResumes" method="GET" resourcePath="/czic/accounts/V01/00130443000200009416/movementsResumes"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+}]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/products/V01/00130443000200009416/movements/" method="GET" resourcePath="/czic/products/V01/00130443000200009416/movements/"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Examples showing how to match based on path, query param and header
 // Match based on path
 def requestPath = mockRequest.getPath()
@@ -3141,111 +3286,40 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 }
 
 */
-</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
-	"income": {
-		"amount": 5,
-		"currency": "COP"
+</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
+	"id": "000100987333",
+	"concept": "1000",
+	"transactionDate": "2014-03-11T00:00:00.000-0500",
+	"operationDate": "2014-05-12T00:00:00.000-0500",
+	"operation": {
+		"code": "A",
+		"description": "ABC"
 	},
-	"outcome": {
-		"amount": -10,
-		"currency": "COP"
+	"office": {
+		"name": "2000",
+		"location": {
+			"city": {
+				"name": "NORTE"
+			},
+			"state": {
+				"name": "NORTE"
+			}
+		},
+		"postalAddress": "CHILE CENTRO"
 	},
-	"balance": {
-		"amount": 8,
-		"currency": "COP"
-	},
-	"month": "JANUARY"
-},
-{
-	"income": {
-		"amount": 10,
-		"currency": "COP"
-	},
-	"outcome": {
-		"amount": -10,
-		"currency": "COP"
-	},
-	"balance": {
-		"amount": 0,
-		"currency": "COP"
-	},
-	"month": "FEBRUARY"
-},
-{
-	"income": {
-		"amount": 70,
-		"currency": "COP"
-	},
-	"outcome": {
-		"amount": -60,
-		"currency": "COP"
+	"value": {
+		"currency": "COP",
+		"amount": 30.00
 	},
 	"balance": {
-		"amount": 10,
-		"currency": "COP"
+		"currency": "COP",
+		"amount": 10.00
 	},
-	"month": "MARCH"
-},
-{
-	"income": {
-		"amount": 25,
-		"currency": "COP"
-	},
-	"outcome": {
-		"amount": -10,
-		"currency": "COP"
-	},
-	"balance": {
-		"amount": 15,
-		"currency": "COP"
-	},
-	"month": "APRIL"
-},
-{
-	"income": {
-		"amount": 30,
-		"currency": "COP"
-	},
-	"outcome": {
-		"amount": -20,
-		"currency": "COP"
-	},
-	"balance": {
-		"amount": 10,
-		"currency": "COP"
-	},
-	"month": "MAY"
-},
-{
-	"income": {
-		"amount": 35,
-		"currency": "COP"
-	},
-	"outcome": {
-		"amount": -15,
-		"currency": "COP"
-	},
-	"balance": {
-		"amount": 20,
-		"currency": "COP"
-	},
-	"month": "JUNE"
-},
-{
-	"income": {
-		"amount": 60,
-		"currency": "COP"
-	},
-	"outcome": {
-		"amount": -25,
-		"currency": "COP"
-	},
-	"balance": {
-		"amount": 35,
-		"currency": "COP"
-	},
-	"month": "JULY"
-}]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/accounts/V01/00130443000200009417/movementsResumes" method="GET" resourcePath="/czic/accounts/V01/00130443000200009417/movementsResumes"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+	"originValue": {
+		"currency": "COP",
+		"amount": 20.00
+	}
+}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/accounts/V01/" method="GET" resourcePath="/czic/accounts/V01/"><con:settings/><con:defaultResponse xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Examples showing how to match based on path, query param and header
 // Match based on path
 def requestPath = mockRequest.getPath()
@@ -3285,108 +3359,98 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 }
 
 */
-</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
-	"income": {
-		"amount": 5,
-		"currency": "COP"
-	},
-	"outcome": {
-		"amount": -10,
-		"currency": "COP"
-	},
+</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
+	"id": "53921258839174078423",
+	"type": "AH",
+	"name": "jvjebywyypgqorighfawpftjqevznxclmndaawethajnahzxgx",
 	"balance": {
-		"amount": 8,
-		"currency": "COP"
+		"total": {
+			"currency": "COP",
+			"amount": 9765.57
+		},
+		"availableBalance": {
+			"currency": "COP",
+			"amount": 111.69
+		}
 	},
-	"month": "JANUARY"
-},
+	"movement": [],
+	"checkbooks": [{
+		"id": "6479453313"
+	},
+	{
+		"id": "74947005879559652470"
+	},
+	{
+		"id": "42339563418422948640"
+	},
+	{
+		"id": "41874571022916394439"
+	},
+	{
+		"id": "31350057252275107104"
+	},
+	{
+		"id": "33701263930850459651"
+	},
+	{
+		"id": "72689744648941361518"
+	},
+	{
+		"id": "83407615224107127317"
+	},
+	{
+		"id": "97615931747547112609"
+	},
+	{
+		"id": "01347582243988946189"
+	}]
+}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/accounts/V01/00130443000200009416/checks/" method="GET" resourcePath="/czic/accounts/V01/00130443000200009416/checks/"><con:settings/><con:defaultResponse>byCheck</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
 {
-	"income": {
-		"amount": 10,
-		"currency": "COP"
-	},
-	"outcome": {
-		"amount": -10,
-		"currency": "COP"
-	},
-	"balance": {
-		"amount": 0,
-		"currency": "COP"
-	},
-	"month": "FEBRUARY"
-},
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
 {
-	"income": {
-		"amount": 70,
-		"currency": "COP"
-	},
-	"outcome": {
-		"amount": -60,
-		"currency": "COP"
-	},
-	"balance": {
-		"amount": 10,
-		"currency": "COP"
-	},
-	"month": "MARCH"
-},
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
 {
-	"income": {
-		"amount": 25,
-		"currency": "COP"
-	},
-	"outcome": {
-		"amount": -10,
-		"currency": "COP"
-	},
-	"balance": {
-		"amount": 15,
-		"currency": "COP"
-	},
-	"month": "APRIL"
-},
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
 {
-	"income": {
-		"amount": 30,
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="byCheck" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
+	"id": "785730295",
+	"issueDate": "23/07/2014",
+	"value": {
+		"amount": 7933656201,
 		"currency": "COP"
 	},
-	"outcome": {
-		"amount": -20,
-		"currency": "COP"
-	},
-	"balance": {
-		"amount": 10,
-		"currency": "COP"
-	},
-	"month": "MAY"
-},
-{
-	"income": {
-		"amount": 35,
-		"currency": "COP"
-	},
-	"outcome": {
-		"amount": -15,
-		"currency": "COP"
-	},
-	"balance": {
-		"amount": 20,
-		"currency": "COP"
-	},
-	"month": "JUNE"
-},
-{
-	"income": {
-		"amount": 60,
-		"currency": "COP"
-	},
-	"outcome": {
-		"amount": -25,
-		"currency": "COP"
-	},
-	"balance": {
-		"amount": 35,
-		"currency": "COP"
-	},
-	"month": "JULY"
-}]</con:responseContent></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
+	"status": "Habilitado",
+	"modifiedDate": "07/09/2014"
+}</con:responseContent></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
