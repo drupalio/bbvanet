@@ -6,15 +6,14 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlSchemaType;
+import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
- * <p>Clase Java para User complex type.
+ * <p>Java class for User complex type.
  * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="User">
@@ -25,7 +24,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="contactInfo" type="{urn:com:bbva:czic:dto:net}ContactInfo" minOccurs="0"/>
  *         &lt;element name="salesExecutive" type="{urn:com:bbva:czic:dto:net}Executive" minOccurs="0"/>
- *         &lt;element name="lastAccessDate" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+ *         &lt;element name="lastAccessDate" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="message" type="{urn:com:bbva:czic:dto:net}Message" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="products" type="{urn:com:bbva:czic:dto:net}Product" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
@@ -46,21 +45,23 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "message",
     "products"
 })
+@XmlSeeAlso({
+    Holder.class
+})
 public class User {
 
     protected String customerId;
     protected String name;
     protected ContactInfo contactInfo;
     protected Executive salesExecutive;
-    @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar lastAccessDate;
+    protected String lastAccessDate;
     @XmlElement(nillable = true)
     protected List<Message> message;
     @XmlElement(nillable = true)
     protected List<Product> products;
 
     /**
-     * Obtiene el valor de la propiedad customerId.
+     * Gets the value of the customerId property.
      * 
      * @return
      *     possible object is
@@ -72,7 +73,7 @@ public class User {
     }
 
     /**
-     * Define el valor de la propiedad customerId.
+     * Sets the value of the customerId property.
      * 
      * @param value
      *     allowed object is
@@ -84,7 +85,7 @@ public class User {
     }
 
     /**
-     * Obtiene el valor de la propiedad name.
+     * Gets the value of the name property.
      * 
      * @return
      *     possible object is
@@ -96,7 +97,7 @@ public class User {
     }
 
     /**
-     * Define el valor de la propiedad name.
+     * Sets the value of the name property.
      * 
      * @param value
      *     allowed object is
@@ -108,7 +109,7 @@ public class User {
     }
 
     /**
-     * Obtiene el valor de la propiedad contactInfo.
+     * Gets the value of the contactInfo property.
      * 
      * @return
      *     possible object is
@@ -120,7 +121,7 @@ public class User {
     }
 
     /**
-     * Define el valor de la propiedad contactInfo.
+     * Sets the value of the contactInfo property.
      * 
      * @param value
      *     allowed object is
@@ -132,7 +133,7 @@ public class User {
     }
 
     /**
-     * Obtiene el valor de la propiedad salesExecutive.
+     * Gets the value of the salesExecutive property.
      * 
      * @return
      *     possible object is
@@ -144,7 +145,7 @@ public class User {
     }
 
     /**
-     * Define el valor de la propiedad salesExecutive.
+     * Sets the value of the salesExecutive property.
      * 
      * @param value
      *     allowed object is
@@ -156,26 +157,26 @@ public class User {
     }
 
     /**
-     * Obtiene el valor de la propiedad lastAccessDate.
+     * Gets the value of the lastAccessDate property.
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public XMLGregorianCalendar getLastAccessDate() {
+    public String getLastAccessDate() {
         return lastAccessDate;
     }
 
     /**
-     * Define el valor de la propiedad lastAccessDate.
+     * Sets the value of the lastAccessDate property.
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public void setLastAccessDate(XMLGregorianCalendar value) {
+    public void setLastAccessDate(String value) {
         this.lastAccessDate = value;
     }
 

@@ -1,5 +1,7 @@
 package com.bbva.net.back.model.accounts;
 
+import java.util.Date;
+
 import com.bbva.net.back.core.pattern.dto.Dto;
 
 public class DetailConditionsDto implements Dto {
@@ -8,7 +10,7 @@ public class DetailConditionsDto implements Dto {
 		// TODO Auto-generated constructor stub
 	}
 
-	public DetailConditionsDto(String categoria, String descripcion, String fechaApertura, String comisiones) {
+	public DetailConditionsDto(String categoria, String descripcion, Date fechaApertura, String comisiones) {
 		super();
 		this.categoria = categoria;
 		this.descripcion = descripcion;
@@ -25,7 +27,7 @@ public class DetailConditionsDto implements Dto {
 
 	private String descripcion;
 
-	private String fechaApertura;
+	private Date fechaApertura;
 
 	private String comisiones;
 
@@ -45,11 +47,11 @@ public class DetailConditionsDto implements Dto {
 		this.descripcion = descripcion;
 	}
 
-	public String getFechaApertura() {
+	public Date getFechaApertura() {
 		return fechaApertura;
 	}
 
-	public void setFechaApertura(String fechaApertura) {
+	public void setFechaApertura(Date fechaApertura) {
 		this.fechaApertura = fechaApertura;
 	}
 

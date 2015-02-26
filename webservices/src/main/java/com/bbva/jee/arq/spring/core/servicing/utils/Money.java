@@ -8,9 +8,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>
- * Clase Java para money complex type.
+ * Java class for money complex type.
  * <p>
- * El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="money">
@@ -56,7 +56,7 @@ public class Money {
 	}
 
 	/**
-	 * Obtiene el valor de la propiedad amount.
+	 * Gets the value of the amount property.
 	 * 
 	 * @return possible object is {@link BigDecimal }
 	 */
@@ -65,7 +65,7 @@ public class Money {
 	}
 
 	/**
-	 * Define el valor de la propiedad amount.
+	 * Sets the value of the amount property.
 	 * 
 	 * @param value allowed object is {@link BigDecimal }
 	 */
@@ -74,7 +74,7 @@ public class Money {
 	}
 
 	/**
-	 * Obtiene el valor de la propiedad currency.
+	 * Gets the value of the currency property.
 	 * 
 	 * @return possible object is {@link String }
 	 */
@@ -83,7 +83,7 @@ public class Money {
 	}
 
 	/**
-	 * Define el valor de la propiedad currency.
+	 * Sets the value of the currency property.
 	 * 
 	 * @param value allowed object is {@link String }
 	 */

@@ -3,25 +3,24 @@ package com.bbva.czic.dto.net;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para PhoneNumber complex type.
+ * <p>Java class for PhoneNumber complex type.
  * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="PhoneNumber">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="contactSource" type="{urn:com:bbva:czic:dto:net}EnumContactSourceType" minOccurs="0"/>
+ *         &lt;element name="contactSource" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="countryCode" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="regionalCode" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="number" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="type" type="{urn:com:bbva:czic:dto:net}EnumPhoneNumberType" minOccurs="0"/>
+ *         &lt;element name="type" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="primary" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *         &lt;element name="active" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *       &lt;/sequence>
@@ -44,42 +43,40 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class PhoneNumber {
 
-    @XmlSchemaType(name = "string")
-    protected EnumContactSourceType contactSource;
+    protected String contactSource;
     protected String countryCode;
     protected String regionalCode;
     protected String number;
-    @XmlSchemaType(name = "string")
-    protected EnumPhoneNumberType type;
+    protected String type;
     protected Boolean primary;
     protected Boolean active;
 
     /**
-     * Obtiene el valor de la propiedad contactSource.
+     * Gets the value of the contactSource property.
      * 
      * @return
      *     possible object is
-     *     {@link EnumContactSourceType }
+     *     {@link String }
      *     
      */
-    public EnumContactSourceType getContactSource() {
+    public String getContactSource() {
         return contactSource;
     }
 
     /**
-     * Define el valor de la propiedad contactSource.
+     * Sets the value of the contactSource property.
      * 
      * @param value
      *     allowed object is
-     *     {@link EnumContactSourceType }
+     *     {@link String }
      *     
      */
-    public void setContactSource(EnumContactSourceType value) {
+    public void setContactSource(String value) {
         this.contactSource = value;
     }
 
     /**
-     * Obtiene el valor de la propiedad countryCode.
+     * Gets the value of the countryCode property.
      * 
      * @return
      *     possible object is
@@ -91,7 +88,7 @@ public class PhoneNumber {
     }
 
     /**
-     * Define el valor de la propiedad countryCode.
+     * Sets the value of the countryCode property.
      * 
      * @param value
      *     allowed object is
@@ -103,7 +100,7 @@ public class PhoneNumber {
     }
 
     /**
-     * Obtiene el valor de la propiedad regionalCode.
+     * Gets the value of the regionalCode property.
      * 
      * @return
      *     possible object is
@@ -115,7 +112,7 @@ public class PhoneNumber {
     }
 
     /**
-     * Define el valor de la propiedad regionalCode.
+     * Sets the value of the regionalCode property.
      * 
      * @param value
      *     allowed object is
@@ -127,7 +124,7 @@ public class PhoneNumber {
     }
 
     /**
-     * Obtiene el valor de la propiedad number.
+     * Gets the value of the number property.
      * 
      * @return
      *     possible object is
@@ -139,7 +136,7 @@ public class PhoneNumber {
     }
 
     /**
-     * Define el valor de la propiedad number.
+     * Sets the value of the number property.
      * 
      * @param value
      *     allowed object is
@@ -151,31 +148,31 @@ public class PhoneNumber {
     }
 
     /**
-     * Obtiene el valor de la propiedad type.
+     * Gets the value of the type property.
      * 
      * @return
      *     possible object is
-     *     {@link EnumPhoneNumberType }
+     *     {@link String }
      *     
      */
-    public EnumPhoneNumberType getType() {
+    public String getType() {
         return type;
     }
 
     /**
-     * Define el valor de la propiedad type.
+     * Sets the value of the type property.
      * 
      * @param value
      *     allowed object is
-     *     {@link EnumPhoneNumberType }
+     *     {@link String }
      *     
      */
-    public void setType(EnumPhoneNumberType value) {
+    public void setType(String value) {
         this.type = value;
     }
 
     /**
-     * Obtiene el valor de la propiedad primary.
+     * Gets the value of the primary property.
      * 
      * @return
      *     possible object is
@@ -187,7 +184,7 @@ public class PhoneNumber {
     }
 
     /**
-     * Define el valor de la propiedad primary.
+     * Sets the value of the primary property.
      * 
      * @param value
      *     allowed object is
@@ -199,7 +196,7 @@ public class PhoneNumber {
     }
 
     /**
-     * Obtiene el valor de la propiedad active.
+     * Gets the value of the active property.
      * 
      * @return
      *     possible object is
@@ -211,7 +208,7 @@ public class PhoneNumber {
     }
 
     /**
-     * Define el valor de la propiedad active.
+     * Sets the value of the active property.
      * 
      * @param value
      *     allowed object is

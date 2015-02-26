@@ -81,18 +81,6 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 			LOGGER.info("Datos del producto Seleccionado Vacio (null)");
 		}
 
-		if (quotaDetailDto.getDateMaturity() != null && quotaDetailDto.getDatePayment() != null
-				&& quotaDetailDto.getDatePrevious() != null) {
-			maturityDate = dateFormat.format(this.quotaDetailDto.getDateMaturity());
-			previousDate = dateFormat.format(this.quotaDetailDto.getDatePrevious());
-			paymentDate = dateFormat.format(this.quotaDetailDto.getDatePayment());
-			LOGGER.info("Finalizado formateo de fechas del producto");
-		} else {
-			LOGGER.info("Error datos nulos " + "Fecha de vencimento  " + quotaDetailDto.getDateMaturity()
-					+ " Fecha de pago " + quotaDetailDto.getDatePayment() + " Fecha de corte anterior "
-					+ quotaDetailDto.getDatePrevious());
-		}
-
 		// setTitle(MessagesHelper.INSTANCE.getString("text.last.movments"));
 		cleanFilters();
 	}

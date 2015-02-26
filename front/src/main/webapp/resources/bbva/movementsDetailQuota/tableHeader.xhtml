@@ -21,28 +21,30 @@
 				</a> <a href="#"> <span title="Imprimir" class="icon-printer"></span>
 				</a>
 				<div class="table-detail-close">
-
-					<a href="#"> <span class="close-text"
-						style="color: #003F8D !important;">#{msg['text.close']}</span>
-						<button class="close-icon" type="button" onclick="clickMove()" />
-					</a>
+					<span class="close-text" style="color: #003F8D !important;">#{msg['text.close']}</span>
+					<button class="close-icon" type="button" onclick="clickMove()" />
 				</div>
 			</div>
 		</div>
 		<table class="detail"
 			style="border-bottom: 1px solid #C4D7E5 !important;">
 			<tbody>
-				<tr class="textSize align" onclick="clickMove()">
-					<td class="brand"><span>#{cc.attrs.controller.moveDate}</span></td>
+				<tr class="textSize" onclick="clickMove()">
+					<td><h:outputText styleClass="brand styleLeft"
+							value="#{cc.attrs.controller.quotaMoveDetailDto.operationDate}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText></td>
 					<td class="text" style="float: left;">#{cc.attrs.controller.quotaMoveDetailDto.concept}</td>
 					<td class="currency">#{cc.attrs.controller.quotaMoveDetailDto.value}</td>
-					<td class="smart-view" colspan="3">
-						<div class="left textSize" style="width: 48% !important;">
-							#{cc.attrs.controller.quotaMoveDetailDto.operationDate} <span
-								class="brand">06/06/2014</span>
+					<td class="smart-view" colspan="3" style="width: 98% !important;">
+						<div class="left textSize" style="width: 46% !important;">
+							<span class="text">#{cc.attrs.controller.quotaMoveDetailDto.concept}</span>
+							<h:outputText styleClass="brand styleLeft"
+								value="#{cc.attrs.controller.quotaMoveDetailDto.operationDate}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
 						</div>
-						<div class="right textSize"
-							style="width: 48% !important; margin-right: 3% !important;">
+						<div class="right textSize" style="width: 48% !important;">
 							#{cc.attrs.controller.quotaMoveDetailDto.value} <span>#{cc.attrs.controller.quotaMoveDetailDto.valueslope}</span>
 						</div>
 					</td>
