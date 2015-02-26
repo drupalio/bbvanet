@@ -7,6 +7,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.apache.commons.lang.StringUtils;
+import org.hsqldb.lib.StringUtil;
 
 import com.bbva.czic.dto.net.Extracto;
 import com.bbva.net.back.core.pattern.facade.AbstractBbvaFacade;
@@ -49,10 +50,16 @@ public class ExtractFacadeImpl extends AbstractBbvaFacade implements ExtractFaca
 
 		final String filter = StringUtils.isEmpty($filter) ? StringUtils.EMPTY : "fiqlService.getFiqlQuery";
 		final List<Extracto> monthList = this.productsService.listExtracts(productId, filter);
-		getMonthForInt(monthList);
+		if (!StringUtil.isEmpty(filter)) getMonthForInt(monthList);
 		return this.extractMapper.map(monthList);
 	}
 
+	/**
+	 * convierte la lista de meses que llegan como valores enteros a su correspondiente nombre de mes, para mostrar en el
+	 * combo mes en la vista de extrctos
+	 * 
+	 * @param listMont
+	 */
 	public void getMonthForInt(final List<Extracto> listMont) {
 
 		String[] months = new DateFormatSymbols().getMonths();
@@ -60,6 +67,7 @@ public class ExtractFacadeImpl extends AbstractBbvaFacade implements ExtractFaca
 		for (Extracto extracto : listMont) {
 			extracto.setMonth(months[Integer.parseInt(extracto.getMonth()) - 1]);
 			monthList.add(extracto);
+			System.out.println();
 		}
 	}
 

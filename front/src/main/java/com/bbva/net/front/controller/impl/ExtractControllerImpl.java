@@ -5,6 +5,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.faces.event.ActionListener;
 
 import org.apache.commons.beanutils.BeanToPropertyValueTransformer;
 import org.apache.commons.collections.CollectionUtils;
@@ -44,6 +45,12 @@ public class ExtractControllerImpl extends AbstractBbvaController implements Ext
 				StringUtils.EMPTY);
 
 		getExtractAvailablePeriod();
+
+	}
+
+	public void getDocumentExtract(ActionListener actionListener) {
+
+		LOGGER.info("Consultando extracto..........");
 
 	}
 
