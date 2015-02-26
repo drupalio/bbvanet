@@ -35,7 +35,7 @@ public class InvolvedDto implements Dto {
 
 	@Override
 	public boolean equals(Object obj) {
-		return (obj instanceof TermsAccountsDto) && this.getAlias().equals(((InvolvedDto)obj).getAlias());
+		return (obj instanceof InvolvedDto) && this.getAlias() == (((InvolvedDto)obj).getAlias());
 	}
 
 	// Setters and getters

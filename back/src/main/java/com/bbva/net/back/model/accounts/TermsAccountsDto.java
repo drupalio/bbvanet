@@ -40,9 +40,9 @@ public class TermsAccountsDto implements Dto {
 
 		return (obj instanceof TermsAccountsDto)
 				&& this.getDetalleCondiciones().equals(((TermsAccountsDto)obj).getDetalleCondiciones())
-				&& this.getDireccionPostal() == (((TermsAccountsDto)obj).getDireccionPostal())
-				&& this.getCondicionesMovilizacion() == (((TermsAccountsDto)obj).getCondicionesMovilizacion())
-				&& this.getHolders().equals(((TermsAccountsDto)obj).getHolders());
+				&& this.getDireccionPostal().equals(((TermsAccountsDto)obj).getDireccionPostal())
+				&& this.getCondicionesMovilizacion().equals(((TermsAccountsDto)obj).getCondicionesMovilizacion())
+				&& this.getHolders() == (((TermsAccountsDto)obj).getHolders());
 
 	}
 
