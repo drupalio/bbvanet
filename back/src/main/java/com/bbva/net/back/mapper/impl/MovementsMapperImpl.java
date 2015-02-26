@@ -41,8 +41,7 @@ public class MovementsMapperImpl extends ConfigurableMapper implements Movements
 				.field("transactionDate", "transactionDate").field("operationDate", "operationDate")
 				.field("operation.code", "operationCode").field("operation.description", "operationDescription")
 				.field("office.name", "originCenterMovement").field("office.location.city.name", "plaza")
-				.field("status", "state").field("value", "operationValue").field("balance", "valueslope").byDefault()
-				.register();
+				.field("value", "operationValue").field("balance", "valueslope").byDefault().register();
 	}
 
 	@Override
