@@ -14,11 +14,13 @@
 	<composite:attribute name="id" type="String"/>
 	<composite:attribute name="title" type="String" />
 	<composite:attribute name="render" type="Boolean" />
+	<composite:attribute name="display" type="String" />
 </composite:interface>
 
 <composite:implementation>
 
-	<div class="tab-group">
+	<!-- <div class="tab-group" style="display: #{globalPositionController.globalProductsDTO.rotatingAccounts.size() > '0' || globalPositionController.globalProductsDTO.leasings.size() > '0' ? 'block' : 'none' }"> -->
+		<div class="tab-group" style="display: #{cc.attrs.display}">
 		<div class="tab-head">
 			<span>#{cc.attrs.title}</span>
 			<div class="buttons-group">

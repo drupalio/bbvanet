@@ -6,6 +6,8 @@ import com.bbva.net.back.model.extract.ExtractDto;
 
 public interface ExtractFacade {
 
-	List<ExtractDto> getExtractAvailablePeriod(String productId, String filter);
+	List<ExtractDto> getExtractAvailable(String productId);
+
+	List<ExtractDto> getDocumentExtract(String productId, ExtractDto extract);
 
 }

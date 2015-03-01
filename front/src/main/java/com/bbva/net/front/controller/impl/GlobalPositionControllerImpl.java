@@ -609,4 +609,9 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	public LineConfigUI getLineConfigUI() {
 		return lineConfigUI;
 	}
+
+	public GlobalProductsDto getGlobalProductsDTO() {
+		return globalProductsDTO;
+	}
+
 }
