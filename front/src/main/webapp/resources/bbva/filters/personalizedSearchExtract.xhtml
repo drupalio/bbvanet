@@ -95,6 +95,7 @@
 										<!-- <f:selectItem itemLabel="#{msg['text.combo.select']}" /> -->
 										<f:selectItems
 											value="#{extractController.monthAvailable}"/>
+											<f:ajax event="click" execute="@this" />
 									</h:selectOneMenu>
 								</div>
 							</div>
@@ -105,7 +106,9 @@
 									<bbvaButton:iconButton id="searchExtract" icon="icon pdf"
 										value="Descargar extracto" show="true"
 										classButton="stable-button medium icon-left ext-message"
-										actionListener="#{extractController.getDocumentExtract}">
+										actionListener="#{extractController.documentExtract}">
+										<!-- classButton="stable-button medium icon-left ext-message #{extractController.selectedMonth == '' ? 'buttonDisabled' : 'none' }" -->
+										
 									</bbvaButton:iconButton>
 								
 							</div>

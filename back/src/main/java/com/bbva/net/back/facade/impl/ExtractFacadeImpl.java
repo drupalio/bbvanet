@@ -1,20 +1,20 @@
 package com.bbva.net.back.facade.impl;
 
-import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
 
 import org.apache.commons.lang.StringUtils;
-import org.hsqldb.lib.StringUtil;
 
 import com.bbva.czic.dto.net.Extracto;
 import com.bbva.net.back.core.pattern.facade.AbstractBbvaFacade;
 import com.bbva.net.back.core.stereotype.Facade;
 import com.bbva.net.back.facade.ExtractFacade;
 import com.bbva.net.back.mapper.ExtractMapper;
+import com.bbva.net.back.model.comboFilter.EnumMonthType;
 import com.bbva.net.back.model.extract.ExtractDto;
+import com.bbva.net.back.service.FiqlService;
 import com.bbva.net.webservices.products.ProductsService;
 
 /**
@@ -40,18 +40,33 @@ public class ExtractFacadeImpl extends AbstractBbvaFacade implements ExtractFaca
 	@Resource(name = "extractMapper")
 	protected ExtractMapper extractMapper;
 
-	private List<Extracto> monthList = new ArrayList<Extracto>();
+	/**
+	 * 
+	 */
+	@Resource(name = "fiqlService")
+	protected FiqlService fiqlService;
+
+	private List<ExtractDto> monthList = new ArrayList<ExtractDto>();
 
 	/**
 	 * 
 	 */
 	@Override
-	public List<ExtractDto> getExtractAvailablePeriod(final String productId, final String $filter) {
+	public List<ExtractDto> getExtractAvailable(final String productId) {
 
-		final String filter = StringUtils.isEmpty($filter) ? StringUtils.EMPTY : "fiqlService.getFiqlQuery";
+		final List<Extracto> monthLi = this.productsService.listExtracts(productId, StringUtils.EMPTY);
+		List<ExtractDto> listMapped = this.extractMapper.map(monthLi);
+		getMonthForInt(listMapped);
+		return monthList;
+	}
+
+	@Override
+	public List<ExtractDto> getDocumentExtract(final String productId, final ExtractDto $extract) {
+
+		final String filter = $extract == null ? StringUtils.EMPTY : fiqlService.getFiqlQueryByExtract($extract);
 		final List<Extracto> monthList = this.productsService.listExtracts(productId, filter);
-		if (!StringUtil.isEmpty(filter)) getMonthForInt(monthList);
 		return this.extractMapper.map(monthList);
+
 	}
 
 	/**
@@ -60,15 +75,14 @@ public class ExtractFacadeImpl extends AbstractBbvaFacade implements ExtractFaca
 	 * 
 	 * @param listMont
 	 */
-	public void getMonthForInt(final List<Extracto> listMont) {
+	public void getMonthForInt(final List<ExtractDto> listMont) {
 
-		String[] months = new DateFormatSymbols().getMonths();
-
-		for (Extracto extracto : listMont) {
-			extracto.setMonth(months[Integer.parseInt(extracto.getMonth()) - 1]);
+		for (ExtractDto extracto : listMont) {
+			String monthIn = extracto.getMonth();
+			extracto.setMonth(EnumMonthType.valueOfValue(monthIn).name());
 			monthList.add(extracto);
-			System.out.println();
 		}
+
 	}
 
 	public void setProductsService(ProductsService productsService) {
@@ -77,14 +91,6 @@ public class ExtractFacadeImpl extends AbstractBbvaFacade implements ExtractFaca
 
 	public void setExtractMapper(ExtractMapper extractMapper) {
 		this.extractMapper = extractMapper;
-	}
-
-	public List<Extracto> getMonthList() {
-		return monthList;
-	}
-
-	public void setMonthList(List<Extracto> monthList) {
-		this.monthList = monthList;
 	}
 
 }

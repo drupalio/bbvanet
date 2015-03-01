@@ -2,6 +2,7 @@ package com.bbva.net.back.service;
 
 import com.bbva.net.back.model.commons.BalanceRangeDto;
 import com.bbva.net.back.model.commons.DateRangeDto;
+import com.bbva.net.back.model.extract.ExtractDto;
 
 public interface FiqlService {
 
@@ -12,6 +13,8 @@ public interface FiqlService {
 	String getFiqlQueryByDateRange(DateRangeDto dateRange, String startProperty, String endProperty);
 
 	String getFiqlQueryByStatus(String status, String statusProperty);
+
+	String getFiqlQueryByExtract(ExtractDto extract);
 
 	/**
 	 * Filtro utilizado en la invocación al Servicio SrvCustomersV01 / SrvAccountsV01 -> listAccountsMovementsResume
