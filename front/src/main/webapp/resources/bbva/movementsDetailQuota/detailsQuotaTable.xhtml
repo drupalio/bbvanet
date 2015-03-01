@@ -70,13 +70,13 @@
 									<f:convertDateTime pattern="dd/MM/yyyy" />
 								</h:outputText>
 							</div>
-							<div class="right hidden-lg">
+							<div class="right hidden-lg" style="width: 35% !important;">
 								<h:outputText class="currency styleCurrent"
 									value="#{moves.movementValue}" />
 							</div>
 						</p:column>
 
-						<p:rowExpansion styleClass="detail-row position">
+						<p:rowExpansion styleClass="detail-row">
 							<bbvaDetailMotion:tableContent
 								controller="#{cc.attrs.controller}" />
 						</p:rowExpansion>

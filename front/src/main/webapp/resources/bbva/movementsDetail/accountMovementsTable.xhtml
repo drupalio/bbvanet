@@ -24,7 +24,8 @@
 						styleClass="detail-table-body sortable"
 						emptyMessage="#{msg['text.empty.table']}"
 						value="#{cc.attrs.listAccounts}" var="moves"
-						selectionMode="single" rendered="#{renderComponents['MOVEMENTSTABLE']}"
+						selectionMode="single"
+						rendered="#{renderComponents['MOVEMENTSTABLE']}"
 						rowKey="#{moves.movementId}">
 
 						<p:ajax event="rowSelect" onsuccess="clickMove()"
@@ -78,7 +79,7 @@
 								</h:outputText>
 							</div>
 
-							<div class="right hidden-lg">
+							<div class="right hidden-lg" style="width: 35% !important;">
 								<h:outputText class="currency styleCurrent"
 									value="#{moves.movementValue}" />
 
@@ -87,7 +88,7 @@
 							</div>
 						</p:column>
 
-						<p:rowExpansion styleClass="detail-row position">
+						<p:rowExpansion styleClass="detail-row">
 							<bbvaDetailMotion:tableContent
 								controller="#{movementsCriteriaController}" />
 						</p:rowExpansion>
@@ -100,8 +101,7 @@
 						value="Más Resultados"
 						jsf:rendered="#{renderComponents['FOOTERTABLEMOVEMENT']}"
 						jsf:actionListener="#{movementsCriteriaController.nextPage}">
-						<span>#{msg['text.detailMove.footer']}
-						</span>
+						<span>#{msg['text.detailMove.footer']} </span>
 					</button>
 
 				</footer>

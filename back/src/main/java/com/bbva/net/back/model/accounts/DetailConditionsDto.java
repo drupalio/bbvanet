@@ -6,18 +6,6 @@ import com.bbva.net.back.core.pattern.dto.Dto;
 
 public class DetailConditionsDto implements Dto {
 
-	public DetailConditionsDto() {
-		// TODO Auto-generated constructor stub
-	}
-
-	public DetailConditionsDto(String categoria, String descripcion, Date fechaApertura, String comisiones) {
-		super();
-		this.categoria = categoria;
-		this.descripcion = descripcion;
-		this.fechaApertura = fechaApertura;
-		this.comisiones = comisiones;
-	}
-
 	/**
 	 * 
 	 */
@@ -30,6 +18,17 @@ public class DetailConditionsDto implements Dto {
 	private Date fechaApertura;
 
 	private String comisiones;
+
+	public DetailConditionsDto() {
+	}
+
+	public DetailConditionsDto(String categoria, String descripcion, Date fechaApertura, String comisiones) {
+		super();
+		this.categoria = categoria;
+		this.descripcion = descripcion;
+		this.fechaApertura = fechaApertura;
+		this.comisiones = comisiones;
+	}
 
 	public String getCategoria() {
 		return categoria;

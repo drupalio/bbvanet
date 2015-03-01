@@ -26,6 +26,7 @@ public class TermsControllerImpl extends AbstractBbvaController implements Terms
 		} catch (final Exception exception) {
 			return new TermsAccountsDto();
 		}
+
 	}
 
 }
