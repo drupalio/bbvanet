@@ -15,20 +15,22 @@ public abstract class PaginationController<T extends Serializable> extends Abstr
 
 	private static final long serialVersionUID = 1L;
 
-	private List<T> currentList;
+	protected List<T> currentList;
 
 	private boolean hasMorePages = true;
 
-	private static final int PAGE_SIZE = 10;
+	protected static final int PAGE_SIZE = 9;
 
-	private Integer paginationKey;
+	protected Integer paginationKey;
 
 	protected abstract List<T> getNextPage(int paginantionKey, int psize);
+
+	protected abstract Integer getNextPaginantionKey(List<T> lastPage);
 
 	@PostConstruct
 	public void init() {
 		this.currentList = new ArrayList<T>();
-		this.paginationKey = 1;
+		this.paginationKey = 0;
 	}
 
 	public void next() {
@@ -38,7 +40,7 @@ public abstract class PaginationController<T extends Serializable> extends Abstr
 		}
 
 		currentList.addAll(currentPage);
-		paginationKey = paginationKey + PAGE_SIZE;
+		paginationKey = getNextPaginantionKey(currentPage);
 
 	}
 
@@ -51,6 +53,13 @@ public abstract class PaginationController<T extends Serializable> extends Abstr
 
 	public List<T> getCurrentList() {
 		return this.currentList;
+	}
+
+	/**
+	 * @param currentList
+	 */
+	public void setCurrentList(List<T> currentList) {
+		this.currentList = currentList;
 	}
 
 	/**

@@ -1,9 +1,10 @@
 package com.bbva.net.front.controller.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
+
+import org.apache.commons.collections.CollectionUtils;
 
 import com.bbva.net.back.facade.MovementsAccountFacade;
 import com.bbva.net.back.model.commons.BalanceRangeDto;
@@ -16,30 +17,33 @@ public class MovementPaginatedController extends PaginationController<MovementDt
 	private static final long serialVersionUID = 1L;
 
 	private DateRangeDto dateRangePc;
-	
+
 	private BalanceRangeDto balanceRangePc;
 
-	private String productIdPc, productTypePc;
-
-	
-	List<MovementDto> movementsList = null;
+	private String productTypePc;
 
 	@Resource(name = "movementsAccountFacade")
 	private transient MovementsAccountFacade movementsFacade;
 
 	@Override
 	protected List<MovementDto> getNextPage(int paginantionKey, int psize) {
-		movementsList = new ArrayList<MovementDto>();
-		movementsList = this.movementsFacade.listMovements(productIdPc,  productTypePc, dateRangePc, balanceRangePc, paginantionKey,psize);
 
-		return movementsList;
+		return this.movementsFacade.listMovements(getSelectedProduct().getProductId(), productTypePc, dateRangePc,
+				balanceRangePc, paginantionKey, psize);
 	}
-	
-	public void search(){
+
+	@Override
+	protected Integer getNextPaginantionKey(List<MovementDto> lastPage) {
+		if (CollectionUtils.isEmpty(lastPage)) {
+			return 0;
+		}
+		return Integer.valueOf(lastPage.get(lastPage.size() - 1).getMovementId());
+	}
+
+	public void search() {
 		super.next();
 	}
 
-	
 	/**
 	 * @return the dateRangePc
 	 */
@@ -47,7 +51,6 @@ public class MovementPaginatedController extends PaginationController<MovementDt
 		return dateRangePc;
 	}
 
-	
 	/**
 	 * @param dateRangePc the dateRangePc to set
 	 */
@@ -55,7 +58,6 @@ public class MovementPaginatedController extends PaginationController<MovementDt
 		this.dateRangePc = dateRangePc;
 	}
 
-	
 	/**
 	 * @return the balanceRangePc
 	 */
@@ -63,7 +65,6 @@ public class MovementPaginatedController extends PaginationController<MovementDt
 		return balanceRangePc;
 	}
 
-	
 	/**
 	 * @param balanceRangePc the balanceRangePc to set
 	 */
@@ -71,23 +72,6 @@ public class MovementPaginatedController extends PaginationController<MovementDt
 		this.balanceRangePc = balanceRangePc;
 	}
 
-	
-	/**
-	 * @return the productIdPc
-	 */
-	public String getProductIdPc() {
-		return productIdPc;
-	}
-
-	
-	/**
-	 * @param productIdPc the productIdPc to set
-	 */
-	public void setProductIdPc(String productIdPc) {
-		this.productIdPc = productIdPc;
-	}
-
-	
 	/**
 	 * @return the productTypePc
 	 */
@@ -95,30 +79,13 @@ public class MovementPaginatedController extends PaginationController<MovementDt
 		return productTypePc;
 	}
 
-	
 	/**
 	 * @param productTypePc the productTypePc to set
 	 */
 	public void setProductTypePc(String productTypePc) {
 		this.productTypePc = productTypePc;
 	}
-	
-	/**
-	 * @return the movementsList
-	 */
-	public List<MovementDto> getMovementsList() {
-		return movementsList;
-	}
 
-	
-	/**
-	 * @param movementsList the movementsList to set
-	 */
-	public void setMovementsList(List<MovementDto> movementsList) {
-		this.movementsList = movementsList;
-	}
-
-	
 	/**
 	 * @return the movementsFacade
 	 */
@@ -126,11 +93,11 @@ public class MovementPaginatedController extends PaginationController<MovementDt
 		return movementsFacade;
 	}
 
-	
 	/**
 	 * @param movementsFacade the movementsFacade to set
 	 */
 	public void setMovementsFacade(MovementsAccountFacade movementsFacade) {
 		this.movementsFacade = movementsFacade;
 	}
+
 }

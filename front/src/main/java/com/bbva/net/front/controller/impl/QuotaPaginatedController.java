@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.collections.CollectionUtils;
+
 import com.bbva.net.back.facade.QuotaDetailFacade;
 import com.bbva.net.back.model.commons.DateRangeDto;
 import com.bbva.net.back.model.movements.MovementDto;
@@ -15,8 +17,6 @@ public class QuotaPaginatedController extends PaginationController<MovementDto> 
 
 	private DateRangeDto dateRangePControl;
 
-	private String productIdPControl;
-
 	@Resource(name = "quotaDetailFacade")
 	private transient QuotaDetailFacade quotaDetailFacade;
 
@@ -27,7 +27,16 @@ public class QuotaPaginatedController extends PaginationController<MovementDto> 
 
 	@Override
 	protected List<MovementDto> getNextPage(int paginantionKey, int psize) {
-		return quotaDetailFacade.listRotaryQuotaMovements(productIdPControl, dateRangePControl, paginantionKey, psize);
+		return quotaDetailFacade.listRotaryQuotaMovements(getSelectedProduct().getProductId(), dateRangePControl,
+				paginantionKey, psize);
+	}
+
+	@Override
+	protected Integer getNextPaginantionKey(List<MovementDto> lastPage) {
+		if (CollectionUtils.isEmpty(lastPage)) {
+			return 0;
+		}
+		return Integer.valueOf(lastPage.get(lastPage.size() - 1).getMovementId());
 	}
 
 	public DateRangeDto getDateRangePControl() {
@@ -36,18 +45,6 @@ public class QuotaPaginatedController extends PaginationController<MovementDto> 
 
 	public void setDateRangePControl(DateRangeDto dateRangePControl) {
 		this.dateRangePControl = dateRangePControl;
-	}
-
-	public String getProductIdPControl() {
-		return productIdPControl;
-	}
-
-	public void setProductIdPControl(String productIdPControl) {
-		this.productIdPControl = productIdPControl;
-	}
-
-	public QuotaDetailFacade getQuotaDetailFacade() {
-		return quotaDetailFacade;
 	}
 
 	public void setQuotaDetailFacade(QuotaDetailFacade quotaDetailFacade) {

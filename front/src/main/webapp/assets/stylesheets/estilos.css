@@ -393,16 +393,19 @@ input.ui-state-hover {
 	z-index: -1;
 }
 
+/*Detalle de movimiento position*/
 .positionHeadMove {
 	right: 0.1px !important;
-	top: -20.5% !important;
+	top: -18.5% !important;
 }
 
+/*Detalle de movimiento position*/
 .positionHead {
 	right: 0.1px !important;
 	top: -34% !important;
 }
 
+/*Detalle de movimiento position*/
 @media ( max-width : 769px ) {
 	.ui-expanded-row-content>td {
 		display: table !important;
@@ -412,17 +415,24 @@ input.ui-state-hover {
 		padding-left: -6% !important;
 	}
 	.align {
-		margin-right: 3% !important;
-		margin-left: 1% !important;
+		width: 96% !important;
+		float: left !important;
+	}
+	.positionMove {
+		width: 117% !important;
+		margin-left: -3% !important;
+		z-index: -1;
 	}
 }
 
+/*Response de la tabla de movimientos*/
 @media ( max-width : 769px ) {
 	.responseTable {
 		display: table-cell !important;
 	}
 }
 
+/*Response de la tabla de movimientos*/
 @media ( min-width : 769px ) {
 	.responseTable {
 		display: none !important;
@@ -516,5 +526,10 @@ input.ui-state-hover {
 	opacity: 0.65;
 	pointer-events: none;
 	box-shadow: none;
+	cursor: not-allowed;
+}
+
+#imgLOAD {
+	top: 20% !important;
 	cursor: not-allowed;
 }

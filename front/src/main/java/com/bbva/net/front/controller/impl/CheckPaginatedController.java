@@ -1,7 +1,9 @@
 package com.bbva.net.front.controller.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
 import com.bbva.net.back.facade.CheckBookFacade;
@@ -19,23 +21,30 @@ public class CheckPaginatedController extends PaginationController<CheckDto> {
 
 	@Resource(name = "checkBookFacade")
 	private transient CheckBookFacade checkBookFacade;
-	
 
-
-	public void search(){
+	public void search() {
 		super.next();
 	}
-	
+
+	@Override
+	@PostConstruct
+	public void init() {
+		this.currentList = new ArrayList<CheckDto>();
+		this.paginationKey = 1;
+	}
 
 	@Override
 	protected List<CheckDto> getNextPage(int pagination, int pageSize) {
 
-		return checkBookFacade.getCheckByStatusOrDate(productIdPControl, dateRangePControl,
-				statusPControl, pagination, pageSize);
+		return checkBookFacade.getCheckByStatusOrDate(productIdPControl, dateRangePControl, statusPControl, pagination,
+				pageSize);
 	}
 
+	@Override
+	protected Integer getNextPaginantionKey(List<CheckDto> lastPage) {
+		return getPaginationKey() + 1;
+	}
 
-	
 	/**
 	 * @return the dateRangePControl
 	 */
@@ -43,8 +52,6 @@ public class CheckPaginatedController extends PaginationController<CheckDto> {
 		return dateRangePControl;
 	}
 
-
-	
 	/**
 	 * @param dateRangePControl the dateRangePControl to set
 	 */
@@ -52,8 +59,6 @@ public class CheckPaginatedController extends PaginationController<CheckDto> {
 		this.dateRangePControl = dateRangePControl;
 	}
 
-
-	
 	/**
 	 * @return the statusPControl
 	 */
@@ -61,8 +66,6 @@ public class CheckPaginatedController extends PaginationController<CheckDto> {
 		return statusPControl;
 	}
 
-
-	
 	/**
 	 * @param statusPControl the statusPControl to set
 	 */
@@ -70,8 +73,6 @@ public class CheckPaginatedController extends PaginationController<CheckDto> {
 		this.statusPControl = statusPControl;
 	}
 
-
-	
 	/**
 	 * @return the productIdPControl
 	 */
@@ -79,12 +80,11 @@ public class CheckPaginatedController extends PaginationController<CheckDto> {
 		return productIdPControl;
 	}
 
-
-	
 	/**
 	 * @param productIdPControl the productIdPControl to set
 	 */
 	public void setProductIdPControl(String productIdPControl) {
 		this.productIdPControl = productIdPControl;
 	}
+
 }

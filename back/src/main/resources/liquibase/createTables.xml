@@ -78,6 +78,7 @@
 			<column name="VALUE">text.combo.cheks.requested</column>
 			<column name="TYPE_ID">2</column>
 		</insert>
+
 		
 		<!-- <insert tableName="MULTIVALUEGROUP">
 			<column name="ID">11</column>

@@ -8,9 +8,7 @@
 	xmlns:pm="http://primefaces.org/mobile">
 
 <composite:interface>
-
-	<composite:attribute id="motionDetail" name="motion" />
-
+	<composite:attribute name="controller" />
 </composite:interface>
 
 <composite:implementation>
@@ -23,29 +21,27 @@
 				</a> <a href="#"> <span title="Imprimir" class="icon-printer"></span>
 				</a>
 				<div class="table-detail-close">
-					<a href="#"> <span class="close-text">cerrar</span>
-						<button class="close-icon" type="button"></button>
-					</a>
+					<span class="close-text" style="color: #003F8D !important;">#{msg['text.close']}</span>
+					<button class="close-icon" type="button" onclick="clickMove()" />
 				</div>
 			</div>
 		</div>
+
 		<table class="detail"
 			style="border-bottom: 1px solid #C4D7E5 !important;">
 			<tbody>
-				<tr>
-					<td style=""><span class="link">05/06/2014</span></td>
-					<td class="text-cell" style=""><strong>Comercio Lorem
-							ipsum</strong> <small>PAGO</small></td>
-					<td class="digit-cell" style=""><em>$ -390.00</em></td>
-					<td class="digit-cell" style=""><em>$ 12,943,536</em></td>
-					<td class="visible-xs" style="display: table-cell;">
-						<div class="left">
-							<a href="#">Abono traspaso Internet 0142738768768</a> <small>27/12/2013</small>
-						</div>
-						<div class="right">
-							<em>$ 1.348.900</em> <small>$ -75.568</small>
-						</div>
+				<tr class="textSize" onclick="clickMove()">
+					<td style="display: table-cell" class="brand">
+						<h:outputText styleClass="brand styleLeft"
+								value="#{cc.attrs.controller.movementDetail.transactionDate}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
 					</td>
+					<td style="display: table-cell; float: left;" class="text">#{cc.attrs.controller.movementDetail.concept}
+						<small>#{cc.attrs.controller.movementDetail.concept}</small>
+					</td>
+					<td style="display: table-cell" class="currency">-#{cc.attrs.controller.movementDetail.operationValue}</td>
+					<td style="display: table-cell" class="currency">#{cc.attrs.controller.movementDetail.valueslope}</td>
 				</tr>
 			</tbody>
 		</table>

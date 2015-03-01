@@ -54,15 +54,27 @@
 						<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem
 							text="#{msg['text.numberShares']}"
 							value="#{quotaController.quotaDetailDto.numberOfShares}" />
-						<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem
-							text="#{msg['text.dueDate']}"
-							value="#{quotaController.maturityDate}" />
-						<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem
-							text="#{msg['text.datePayment']}"
-							value="#{quotaController.paymentDate}" />
-						<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem
-							text="#{msg['text.datePreviousCut']}"
-							value="#{quotaController.previousDate}" />
+						<bbvaQuotaHeader:quotaDetailHeaderBodyContainerDate
+							text="#{msg['text.dueDate']}">
+							<h:outputText styleClass="brand styleLeft"
+								value="#{quotaController.quotaDetailDto.dateMaturity}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</bbvaQuotaHeader:quotaDetailHeaderBodyContainerDate>
+						<bbvaQuotaHeader:quotaDetailHeaderBodyContainerDate
+							text="#{msg['text.datePayment']}">
+							<h:outputText styleClass="brand styleLeft"
+								value="#{quotaController.quotaDetailDto.datePayment}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</bbvaQuotaHeader:quotaDetailHeaderBodyContainerDate>
+						<bbvaQuotaHeader:quotaDetailHeaderBodyContainerDate
+							text="#{msg['text.datePreviousCut']}">
+							<h:outputText styleClass="brand styleLeft"
+								value="#{quotaController.quotaDetailDto.datePrevious}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</bbvaQuotaHeader:quotaDetailHeaderBodyContainerDate>
 						<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem
 							text="#{msg['text.search.by.number.status']}"
 							value="#{quotaController.quotaDetailDto.state}" />
@@ -108,7 +120,8 @@
 
 			<div class="table-tabs">
 				<bbvaDetailMotionQuota:detailsQuotaTable id="detailAccounts"
-					listAccounts="#{quotaMovements}" controller="#{quotaController}" />
+					listAccounts="#{quotaController.quotamovenDtos}"
+					controller="#{quotaController}" />
 			</div>
 		</bbvaQuotaHeader:quotaContainer>
 	</ui:define>

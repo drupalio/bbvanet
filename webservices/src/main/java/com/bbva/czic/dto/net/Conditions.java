@@ -10,15 +10,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para Conditions complex type.
+ * <p>Java class for Conditions complex type.
  * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="Conditions">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
+ *         &lt;element name="type" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="alias" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="category" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="description" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -26,7 +27,8 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="commission" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="office" type="{urn:com:bbva:czic:dto:net}Office" minOccurs="0"/>
  *         &lt;element name="mobilizationConditions" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="activities" type="{urn:com:bbva:czic:dto:net}Activity" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="activity" type="{urn:com:bbva:czic:dto:net}Activity" minOccurs="0"/>
+ *         &lt;element name="holders" type="{urn:com:bbva:czic:dto:net}Holder" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -37,6 +39,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Conditions", propOrder = {
+    "type",
     "alias",
     "category",
     "description",
@@ -44,10 +47,12 @@ import javax.xml.bind.annotation.XmlType;
     "commission",
     "office",
     "mobilizationConditions",
-    "activities"
+    "activity",
+    "holders"
 })
 public class Conditions {
 
+    protected String type;
     protected String alias;
     protected String category;
     protected String description;
@@ -55,11 +60,36 @@ public class Conditions {
     protected String commission;
     protected Office office;
     protected String mobilizationConditions;
+    protected Activity activity;
     @XmlElement(nillable = true)
-    protected List<Activity> activities;
+    protected List<Holder> holders;
 
     /**
-     * Obtiene el valor de la propiedad alias.
+     * Gets the value of the type property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getType() {
+        return type;
+    }
+
+    /**
+     * Sets the value of the type property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setType(String value) {
+        this.type = value;
+    }
+
+    /**
+     * Gets the value of the alias property.
      * 
      * @return
      *     possible object is
@@ -71,7 +101,7 @@ public class Conditions {
     }
 
     /**
-     * Define el valor de la propiedad alias.
+     * Sets the value of the alias property.
      * 
      * @param value
      *     allowed object is
@@ -83,7 +113,7 @@ public class Conditions {
     }
 
     /**
-     * Obtiene el valor de la propiedad category.
+     * Gets the value of the category property.
      * 
      * @return
      *     possible object is
@@ -95,7 +125,7 @@ public class Conditions {
     }
 
     /**
-     * Define el valor de la propiedad category.
+     * Sets the value of the category property.
      * 
      * @param value
      *     allowed object is
@@ -107,7 +137,7 @@ public class Conditions {
     }
 
     /**
-     * Obtiene el valor de la propiedad description.
+     * Gets the value of the description property.
      * 
      * @return
      *     possible object is
@@ -119,7 +149,7 @@ public class Conditions {
     }
 
     /**
-     * Define el valor de la propiedad description.
+     * Sets the value of the description property.
      * 
      * @param value
      *     allowed object is
@@ -131,7 +161,7 @@ public class Conditions {
     }
 
     /**
-     * Obtiene el valor de la propiedad openingDate.
+     * Gets the value of the openingDate property.
      * 
      * @return
      *     possible object is
@@ -143,7 +173,7 @@ public class Conditions {
     }
 
     /**
-     * Define el valor de la propiedad openingDate.
+     * Sets the value of the openingDate property.
      * 
      * @param value
      *     allowed object is
@@ -155,7 +185,7 @@ public class Conditions {
     }
 
     /**
-     * Obtiene el valor de la propiedad commission.
+     * Gets the value of the commission property.
      * 
      * @return
      *     possible object is
@@ -167,7 +197,7 @@ public class Conditions {
     }
 
     /**
-     * Define el valor de la propiedad commission.
+     * Sets the value of the commission property.
      * 
      * @param value
      *     allowed object is
@@ -179,7 +209,7 @@ public class Conditions {
     }
 
     /**
-     * Obtiene el valor de la propiedad office.
+     * Gets the value of the office property.
      * 
      * @return
      *     possible object is
@@ -191,7 +221,7 @@ public class Conditions {
     }
 
     /**
-     * Define el valor de la propiedad office.
+     * Sets the value of the office property.
      * 
      * @param value
      *     allowed object is
@@ -203,7 +233,7 @@ public class Conditions {
     }
 
     /**
-     * Obtiene el valor de la propiedad mobilizationConditions.
+     * Gets the value of the mobilizationConditions property.
      * 
      * @return
      *     possible object is
@@ -215,7 +245,7 @@ public class Conditions {
     }
 
     /**
-     * Define el valor de la propiedad mobilizationConditions.
+     * Sets the value of the mobilizationConditions property.
      * 
      * @param value
      *     allowed object is
@@ -227,32 +257,56 @@ public class Conditions {
     }
 
     /**
-     * Gets the value of the activities property.
+     * Gets the value of the activity property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Activity }
+     *     
+     */
+    public Activity getActivity() {
+        return activity;
+    }
+
+    /**
+     * Sets the value of the activity property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Activity }
+     *     
+     */
+    public void setActivity(Activity value) {
+        this.activity = value;
+    }
+
+    /**
+     * Gets the value of the holders property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the activities property.
+     * This is why there is not a <CODE>set</CODE> method for the holders property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getActivities().add(newItem);
+     *    getHolders().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Activity }
+     * {@link Holder }
      * 
      * 
      */
-    public List<Activity> getActivities() {
-        if (activities == null) {
-            activities = new ArrayList<Activity>();
+    public List<Holder> getHolders() {
+        if (holders == null) {
+            holders = new ArrayList<Holder>();
         }
-        return this.activities;
+        return this.holders;
     }
 
 }

@@ -17,6 +17,7 @@ import com.bbva.net.back.facade.MonthBalanceFacade;
 import com.bbva.net.back.model.accounts.GlobalMonthlyBalanceDto;
 import com.bbva.net.back.model.comboFilter.EnumPeriodType;
 import com.bbva.net.back.model.commons.DateRangeDto;
+import com.bbva.net.back.model.commons.Money;
 import com.bbva.net.back.model.globalposition.BalanceDto;
 import com.bbva.net.back.model.globalposition.GlobalProductsDto;
 import com.bbva.net.back.model.movements.GlobalResumeMovementsDto;
@@ -189,9 +190,6 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 			// Calculate totals
 			this.totalsProducts = this.globalPositionFacade.getTotalsByProduct(globalProductsDTO);
 
-			// Obtiene la lista de resumen de movimientos del serivico REST
-			this.globalResumeMovementsDTO = this.movementsResumeFacade.getMovementsResumeByCustomer(new DateRangeDto());
-
 			LOGGER.info("Calculando Gráfica Tu Situación ................");
 			// Calculate situation graphics panels
 			this.situationGraphicPieUI = graphicPieDelegate.getSituationGlobalProducts(this.globalProductsDTO);
@@ -214,8 +212,11 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 			LOGGER.info("Obteniendo la lista de resumen de movimientos................");
 
 			try {
+
 				// Obtiene la lista de resumen de movimientos del serivico REST
-				this.globalResumeMovementsDTO = this.movementsResumeFacade.getMovementsResumeByCustomer(null);
+				this.globalResumeMovementsDTO = this.movementsResumeFacade
+						.getMovementsResumeByCustomer(new DateRangeDto());
+
 			} catch (final Exception exception) {
 				exception.printStackTrace();
 			}
@@ -453,6 +454,19 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		return mask + " " + number.substring(number.length() - 4, number.length());
 	}
 
+	/**
+	 * Calcula el total utilizado
+	 * 
+	 * @param total
+	 * @param available
+	 * @return
+	 */
+	public Money getTotalUsedCards(Money total, Money available) {
+
+		Money totalUsed = new Money(total.getAmount().subtract(available.getAmount()));
+		return totalUsed;
+	}
+
 	/************************************* SETTER BEANS **************************************/
 
 	/**
@@ -595,5 +609,4 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	public LineConfigUI getLineConfigUI() {
 		return lineConfigUI;
 	}
-
 }

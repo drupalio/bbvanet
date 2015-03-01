@@ -15,12 +15,17 @@
 	<composite:attribute name="value" />
 	<composite:attribute name="showQuota" />
 	<composite:attribute name="showMovements" />
+	<composite:attribute name="showChekcs"/>
 	<composite:attribute name="valueDateSince" />
 	<composite:attribute name="valueDateTo" />
 	<composite:attribute name="disabledButton" />
 	<composite:attribute name="disabledCalendar" />
 	<composite:attribute name="actionListenerDate"
 		method-signature="void actionlistener(javax.faces.event.ActionEvent)" />
+	<composite:attribute name ="actionListenerSince"
+		method-signature="void actionlistener(org.primefaces.event.SelectEvent)"/>
+	<composite:attribute name="actionListenerTo"
+		method-signature="void actionlistener(org.primefaces.event.SelectEvent)"/>
 </composite:interface>
 
 <composite:implementation>
@@ -48,7 +53,7 @@
 
 					<f:selectItem itemLabel="#{msg['select.radio.concret.date']}"
 						itemValue="#{msg['select.radio.concret.date']}" />
-					<f:ajax event="click"
+					<f:ajax event="click" 
 						render="
 					tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:calendarSince
 					tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:calendarTo
@@ -56,7 +61,7 @@
 														
 					tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:checkContainer:customCheckList:customDate:calendarSince
 					tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:checkContainer:customCheckList:customDate:calendarTo
-					tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:checkContainer:customCheckList:customDate:dateButtonMovements
+					tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:checkContainer:customCheckList:customDate:dateButtonChecks
 					
 					quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:calendarSince
 					quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:calendarTo
@@ -114,12 +119,13 @@
 							<label for="calendarSinceWV">Desde:</label>
 						</div>
 						<div class="col-xs-10 col-md-12 input-control">
-							<p:calendar widgetVar="calendarSinceWV" id="calendarSince" 
+						
+							<p:calendar widgetVar="calendarSinceWV" id="calendarSince"  
 								value="#{cc.attrs.valueDateSince}"
 								disabled="#{cc.attrs.disabledCalendar}" >
-								 
+								<p:ajax event="dateSelect" listener="#{cc.attrs.listenerDate.handleDateSelect}" update="calendarTo" />								
 							</p:calendar>	
-
+						
 						</div>
 					</div>
 				</div>
@@ -129,11 +135,10 @@
 							<label for="calendarToSinceWV">Hasta:</label>
 						</div>
 						<div class="col-xs-10 col-md-12 input-control">
-							<p:calendar widgetVar="calendarToSinceWV" id="calendarTo"
+							<p:calendar widgetVar="calendarToSinceWV" id="calendarTo"  mindate="#{cc.attrs.valueDateSince}"
 								value="#{cc.attrs.valueDateTo}"
 								disabled="#{cc.attrs.disabledCalendar}" >
-								
-								</p:calendar>
+							</p:calendar>
 						</div>
 					</div>
 				</div>
@@ -146,9 +151,23 @@
 			jsf:rendered="#{cc.attrs.showMovements}"
 			jsf:actionListener="#{cc.attrs.actionListenerDate}">
 			#{msg['button.confirm']}
-			<p:ajax 
+			<p:ajax process="@form" 
+			oncomplete="document.getElementById('tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:componentList').click();"
 			update="
+			:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:calendarSince
+			:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:calendarTo
 			:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:componentList
+			" />
+		</button>
+		
+		<button jsf:id="dateButtonChecks" class="btn small hidden-xs hidden-sm"
+			jsf:disabled="#{cc.attrs.disabledButton}"
+			jsf:rendered="#{cc.attrs.showChecks}"
+			jsf:actionListener="#{cc.attrs.actionListenerDate}">
+			#{msg['button.confirm']}
+			<p:ajax process="@form" 
+			oncomplete="document.getElementById('tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:checkContainer:customCheckList:componentList').click();"
+			update="
 			:tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:checkContainer:customCheckList:componentList
 			" />
 		</button>
@@ -159,8 +178,11 @@
 			jsf:disabled="#{cc.attrs.disabledButton}"
 			jsf:actionListener="#{cc.attrs.actionListenerDate}">
 			#{msg['button.confirm']}
-			<p:ajax 
+			<p:ajax process="@form" 
+			oncomplete="document.getElementById('quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:componentList').click();"
 			update="
+			:quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:calendarSince
+			:quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:calendarTo
 			:quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:componentList
 			" />
 		</button>

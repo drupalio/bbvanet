@@ -59,12 +59,15 @@ public class QuotaDetailFacadeImpl extends AbstractBbvaFacade implements QuotaDe
 		return mapper.mapQuotaMove(response);
 	}
 
+	@Override
 	public List<MovementDto> listRotaryQuotaMovements(String loanId, DateRangeDto dateRange, Integer paginationKey,
 			Integer pageSize) {
-		LOGGER.info("Creando fql dateRange" + " DateSince: " + dateRange.getDateSince() + " DateTo: "
-				+ dateRange.getDateTo());
+
 		String filter = dateRange != null ? fiqlService.getFiqlQueryByDateRange(dateRange, transaccionDate,
 				transaccionDate) : StringUtils.EMPTY;
+		if (dateRange != null)
+			LOGGER.info("Creando fql dateRange" + " DateSince: " + dateRange.getDateSince() + " DateTo: "
+					+ dateRange.getDateTo());
 		LOGGER.info("Llamando al servicio de listRotaryQuotaMovements" + " Loan Id: " + loanId + " Filtro: " + filter);
 		final List<Movement> response = this.loanService.listRotaryQuotaMovements(loanId, paginationKey, pageSize,
 				filter);
