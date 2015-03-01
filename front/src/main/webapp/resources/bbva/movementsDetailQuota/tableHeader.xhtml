@@ -21,21 +21,25 @@
 				</a> <a href="#"> <span title="Imprimir" class="icon-printer"></span>
 				</a>
 				<div class="table-detail-close">
-					<span class="close-text" style="color: #003F8D !important;">#{msg['text.close']}</span>
-					<button class="close-icon" type="button" onclick="clickMove()" />
+					<a onclick="clickMove()"> <span class="close-text"
+						style="color: #003F8D !important;">#{msg['text.close']}</span>
+						<button class="close-icon" type="button" />
+					</a>
 				</div>
 			</div>
 		</div>
 		<table class="detail"
 			style="border-bottom: 1px solid #C4D7E5 !important;">
 			<tbody>
-				<tr class="textSize" onclick="clickMove()">
+				<tr class="textSize visible" onclick="clickMove()">
 					<td><h:outputText styleClass="brand styleLeft"
 							value="#{cc.attrs.controller.quotaMoveDetailDto.operationDate}">
 							<f:convertDateTime pattern="dd/MM/yyyy" />
 						</h:outputText></td>
 					<td class="text" style="float: left;">#{cc.attrs.controller.quotaMoveDetailDto.concept}</td>
-					<td class="currency">#{cc.attrs.controller.quotaMoveDetailDto.value}</td>
+					<td class="currency" style="padding-right: 10px !important;">#{cc.attrs.controller.quotaMoveDetailDto.value}</td>
+				</tr>
+				<tr class="textSize" onclick="clickMove()">
 					<td class="smart-view" colspan="3" style="width: 98% !important;">
 						<div class="left textSize" style="width: 46% !important;">
 							<span class="text">#{cc.attrs.controller.quotaMoveDetailDto.concept}</span>

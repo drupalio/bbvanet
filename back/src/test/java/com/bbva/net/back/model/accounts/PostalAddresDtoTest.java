@@ -1,13 +1,11 @@
-package com.bbva.net.back.accounts;
+package com.bbva.net.back.model.accounts;
 
-import com.bbva.net.back.model.accounts.PostalAddresDto;
 import com.bbva.net.core.test.AbstractBbvaDTOTest;
 
 public class PostalAddresDtoTest extends AbstractBbvaDTOTest<PostalAddresDto> {
 
 	@Override
 	protected PostalAddresDto getInstance() {
-		// TODO Auto-generated method stub
 		return new PostalAddresDto();
 	}
 

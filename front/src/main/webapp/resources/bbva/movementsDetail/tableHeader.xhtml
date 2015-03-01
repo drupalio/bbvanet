@@ -21,8 +21,10 @@
 				</a> <a href="#"> <span title="Imprimir" class="icon-printer"></span>
 				</a>
 				<div class="table-detail-close">
-					<span class="close-text" style="color: #003F8D !important;">#{msg['text.close']}</span>
-					<button class="close-icon" type="button" onclick="clickMove()" />
+					<a onclick="clickMove()"> <span class="close-text"
+						style="color: #003F8D !important;">#{msg['text.close']}</span>
+						<button class="close-icon" type="button" />
+					</a>
 				</div>
 			</div>
 		</div>
@@ -30,18 +32,30 @@
 		<table class="detail"
 			style="border-bottom: 1px solid #C4D7E5 !important;">
 			<tbody>
-				<tr class="textSize" onclick="clickMove()">
-					<td style="display: table-cell" class="brand">
-						<h:outputText styleClass="brand styleLeft"
-								value="#{cc.attrs.controller.movementDetail.transactionDate}">
-								<f:convertDateTime pattern="dd/MM/yyyy" />
-						</h:outputText>
-					</td>
-					<td style="display: table-cell; float: left;" class="text">#{cc.attrs.controller.movementDetail.concept}
+				<tr class="textSize visible" onclick="clickMove()">
+					<td class="brand"><h:outputText styleClass="brand styleLeft"
+							value="#{cc.attrs.controller.movementDetail.transactionDate}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText></td>
+					<td style="float: left;" class="text">#{cc.attrs.controller.movementDetail.concept}
 						<small>#{cc.attrs.controller.movementDetail.concept}</small>
 					</td>
-					<td style="display: table-cell" class="currency">-#{cc.attrs.controller.movementDetail.operationValue}</td>
-					<td style="display: table-cell" class="currency">#{cc.attrs.controller.movementDetail.valueslope}</td>
+					<td class="currency">-#{cc.attrs.controller.movementDetail.operationValue}</td>
+					<td class="currency" style="padding-right: 10px !important;">#{cc.attrs.controller.movementDetail.valueslope}</td>
+				</tr>
+				<tr class="textSize" onclick="clickMove()">
+					<td class="smart-view" colspan="3" style="width: 98% !important;">
+						<div class="left textSize" style="width: 46% !important;">
+							<span class="text">#{cc.attrs.controller.movementDetail.concept}</span>
+							<h:outputText styleClass="brand styleLeft"
+								value="#{cc.attrs.controller.movementDetail.transactionDate}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</div>
+						<div class="right textSize" style="width: 48% !important;">
+							-#{cc.attrs.controller.movementDetail.operationValue} <span>#{cc.attrs.controller.movementDetail.valueslope}</span>
+						</div>
+					</td>
 				</tr>
 			</tbody>
 		</table>

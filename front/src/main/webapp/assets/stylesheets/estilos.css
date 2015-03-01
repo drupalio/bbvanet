@@ -386,43 +386,43 @@ input.ui-state-hover {
 
 /*Detalle de movimiento position*/
 .position {
-	margin-top: -13% !important;
-	width: 116.8%;
-	margin-left: -3% !important;
-	margin-bottom: -3% !important;
-	z-index: -1;
+	margin: -81px -5px -16px -16px !important;
+}
+
+.positionMove {
+	margin: -91px -5px -16px -16px !important;
 }
 
 /*Detalle de movimiento position*/
 .positionHeadMove {
-	right: 0.1px !important;
-	top: -18.5% !important;
+	top: -117px !important;
+	z-index: 1 !important;
 }
 
 /*Detalle de movimiento position*/
 .positionHead {
-	right: 0.1px !important;
-	top: -34% !important;
+	top: -108px !important;
+	z-index: 1 !important;
+}
+/* width 100% */
+.table-tabs table tbody tr.ui-expanded-row-content td {
+	padding: 21px 0px 14px 15px !important;
 }
 
 /*Detalle de movimiento position*/
 @media ( max-width : 769px ) {
-	.ui-expanded-row-content>td {
+	.table-tabs table tbody tr.ui-expanded-row-content td {
+		padding: 21px 0px 14px 15px !important;
 		display: table !important;
-		margin-top: -3.2% !important;
 	}
 	.position {
-		padding-left: -6% !important;
+		margin: -81px -5px -16px -16px !important;
 	}
-	.align {
-		width: 96% !important;
-		float: left !important;
-	}
-	.positionMove {
-		width: 117% !important;
-		margin-left: -3% !important;
-		z-index: -1;
-	}
+}
+
+.align {
+	width: 96% !important;
+	float: left !important;
 }
 
 /*Response de la tabla de movimientos*/
