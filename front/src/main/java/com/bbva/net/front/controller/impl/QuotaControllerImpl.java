@@ -135,7 +135,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 
 	private void setShowMoreStatus() {
 		LOGGER.info("QuotaControllerImpl setShowMoreStatus ");
-		if (this.quotamovenDtos.size() >= 10)
+		if (this.quotamovenDtos.size() >= PAGE_SIZE)
 			getRenderComponents().put(RenderAttributes.FOOTERTABLEQUOTA.toString(), true);
 		else
 			getRenderComponents().put(RenderAttributes.FOOTERTABLEQUOTA.toString(), false);
