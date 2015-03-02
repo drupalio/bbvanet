@@ -430,6 +430,11 @@ input.ui-state-hover {
 	float: left !important;
 }
 
+/*leyenda de pendiente de detalle de quota en el body*/
+.marginDetailQValue {
+	margin-left: 30px !important;
+}
+
 /*Response de la tabla de movimientos*/
 @media ( max-width : 769px ) {
 	.responseTable {
@@ -438,6 +443,9 @@ input.ui-state-hover {
 	.shared {
 		width: 96% !important;
 		float: left !important;
+	}
+	.marginDetailQValue {
+		margin-left: 0px !important;
 	}
 }
 
