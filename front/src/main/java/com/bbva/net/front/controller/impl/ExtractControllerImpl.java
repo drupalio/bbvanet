@@ -5,13 +5,14 @@ import java.util.LinkedHashSet;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.faces.event.ActionEvent;
 
 import org.apache.commons.beanutils.BeanToPropertyValueTransformer;
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang.StringUtils;
 
 import com.bbva.net.back.facade.ExtractFacade;
 import com.bbva.net.back.model.extract.ExtractDto;
+import com.bbva.net.back.predicate.ExtractDocumentPredicate;
 import com.bbva.net.back.predicate.ExtractPeriodPredicate;
 import com.bbva.net.front.controller.ExtractController;
 import com.bbva.net.front.core.AbstractBbvaController;
@@ -27,6 +28,8 @@ public class ExtractControllerImpl extends AbstractBbvaController implements Ext
 
 	private String selectedMonth;
 
+	private String extractId;
+
 	@Resource(name = "extractFacade")
 	private transient ExtractFacade extractFacade;
 
@@ -40,10 +43,21 @@ public class ExtractControllerImpl extends AbstractBbvaController implements Ext
 
 	public void init() {
 
-		this.extractList = this.extractFacade.getExtractAvailablePeriod(super.getSelectedProduct().getProductNumber(),
-				StringUtils.EMPTY);
+		this.extractList = this.extractFacade.getExtractAvailable(super.getSelectedProduct().getProductNumber());
 
 		getExtractAvailablePeriod();
+
+	}
+
+	public void documentExtract(ActionEvent event) {
+
+		LOGGER.info("Consultando extracto..........");
+		final ExtractDto extract = (ExtractDto)CollectionUtils.find(extractList, new ExtractDocumentPredicate(
+				selectedMonth, selectedYear));
+		final List<ExtractDto> extractDocument = this.extractFacade.getDocumentExtract(super.getSelectedProduct()
+				.getProductNumber(), extract);
+		// Hacer Redirect
+		LOGGER.info("Descargar Extracto en : " + extractDocument.get(0).getUrl());
 
 	}
 
@@ -67,7 +81,6 @@ public class ExtractControllerImpl extends AbstractBbvaController implements Ext
 	@SuppressWarnings("unchecked")
 	public List<String> getExtractMontAvailable() {
 
-		@SuppressWarnings("unused")
 		final List<String> monthByYear = (List<String>)CollectionUtils.select(extractList, new ExtractPeriodPredicate(
 				selectedYear));
 
@@ -120,6 +133,14 @@ public class ExtractControllerImpl extends AbstractBbvaController implements Ext
 
 	public void setEnableMonth(boolean enableMonth) {
 		this.enableMonth = enableMonth;
+	}
+
+	public String getExtractId() {
+		return extractId;
+	}
+
+	public void setExtractId(String extractId) {
+		this.extractId = extractId;
 	}
 
 }

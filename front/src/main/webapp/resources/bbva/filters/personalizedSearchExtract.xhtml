@@ -44,6 +44,7 @@
 									<f:selectItem itemLabel="Mes" />
 									<!-- <f:selectItem itemLabel="#{msg['text.combo.select']}" /> -->
 									<f:selectItems value="#{extractController.monthAvailable}" />
+									<f:ajax event="click" execute="@this" />
 								</h:selectOneMenu>
 							</div>
 						</div>

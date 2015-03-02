@@ -188,12 +188,14 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		this.globalResumeMovementsDTO = this.movementsResumeFacade.getMovementsResumeByCustomer(new DateRangeDto());
 
 		// Obtiene la lista de datos para pintar la grafica Deposito electrónico
-		this.globalMonthlyBalance = this.accountMonthBalanceFacade.getAccountMonthlyBalance(globalProductsDTO
-				.getElectronicDeposits().get(0).getProductNumber(), new DateRangeDto(), StringUtils.EMPTY,
-				StringUtils.EMPTY, StringUtils.EMPTY);
+		if (globalProductsDTO.getElectronicDeposits().size() > 0) {
+			this.globalMonthlyBalance = this.accountMonthBalanceFacade.getAccountMonthlyBalance(globalProductsDTO
+					.getElectronicDeposits().get(0).getProductNumber(), new DateRangeDto(), StringUtils.EMPTY,
+					StringUtils.EMPTY, StringUtils.EMPTY);
 
-		// Delegate construye UI grafica Depositos Electrónicos
-		this.lineConfigUI = this.graphicLineDelegate.getMonthlyBalance(globalMonthlyBalance);
+			// Delegate construye UI grafica Depositos Electrónicos
+			this.lineConfigUI = this.graphicLineDelegate.getMonthlyBalance(globalMonthlyBalance);
+		}
 
 		// Calculate situation graphics panels
 		this.situationGraphicPieUI = graphicPieDelegate.getSituationGlobalProducts(this.globalProductsDTO);
@@ -572,4 +574,9 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	public LineConfigUI getLineConfigUI() {
 		return lineConfigUI;
 	}
+
+	public GlobalProductsDto getGlobalProductsDTO() {
+		return globalProductsDTO;
+	}
+
 }
