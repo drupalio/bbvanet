@@ -27,13 +27,7 @@
 				class="icon-printer" title="Imprimir"></span></a>
 		</div>
 
-		<h3>
-			<h:outputLabel id="labelMovements"
-				value="#{msg['text.last.movments']}"
-				rendered="#{renderComponents['TITLEMOVES']}" />
-			<h:outputLabel id="labelChecks" value="#{msg['tex.check.status']}"
-				rendered="#{renderComponents['TITLECHECKS']}" />
-		</h3>
+
 
 		<bbvaTablesAcc:accountMovementsTable id="tableMovements"
 			listAccounts="#{cc.attrs.listAccounts}" />

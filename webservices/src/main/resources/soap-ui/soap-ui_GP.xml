@@ -2432,14 +2432,14 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		"currency": "COP",
 		"amount": 0.00
 	},
-	"balance": {
+	"deb": {
 		"availableBalance": {
 			"currency": "COP",
 			"amount": 0.00
 		}
 	},
-	"numbersOfQuota": 1,
-	"remainingQuotas": 0
+	"numbersOfQuotas": 10,
+	"remainingQuotas": 5
 }</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/executives/V01" method="GET" resourcePath="/czic/executives/V01"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Examples showing how to match based on path, query param and header
 // Match based on path
