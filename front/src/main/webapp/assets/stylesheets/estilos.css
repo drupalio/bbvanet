@@ -530,6 +530,30 @@ input.ui-state-hover {
 }
 
 #imgLOAD {
-	top: 20% !important;
-	cursor: not-allowed;
+  top: 20% !important;
+  cursor: not-allowed;
 }
+.quieros{
+    width: 50% !important;
+    float: right !important;
+}
+
+/*Combos*/
+.selector {
+	width: 41px;
+	height: 38px;
+	background-position: 13px 12px;
+	background: white;
+	background: -moz-linear-gradient(top, #ffffff 40%, #e1e1e1 200%);
+	background: -o-linear-gradient(top, #ffffff 40%, #e1e1e1 200%);
+	background: -webkit-linear-gradient(top, #ffffff 40%, #e1e1e1 200%);
+	background: linear-gradient(to bottom, #ffffff 40%, #e1e1e1 200%);
+	border-color: #d5e2ee;
+	width: 100%;
+	padding: 6.5px;
+	padding-left: 6px;
+	padding-right: 32px;
+	font-size: 0.95em;
+	color: #0093e2;
+}
+
