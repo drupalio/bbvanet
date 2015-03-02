@@ -363,9 +363,11 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 		if (MessagesHelper.INSTANCE.getString("text.allCards").equals(cardSelected) || cardSelected.isEmpty()) {
 			cardSelected = MessagesHelper.INSTANCE.getString("text.allCards");
+			LOGGER.info("Graphic cards Controller carSelected: " + cardSelected + "  dateRange:" + dateRange.toString());
 			this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(dateRange));
-		} else {
 
+		} else {
+			LOGGER.info("Graphic cards Controller carSelected: " + cardSelected + "  dateRange:" + dateRange.toString());
 			this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesFilter(cardSelected,
 					dateRange));
 		}
