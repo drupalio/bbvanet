@@ -158,7 +158,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	 * @param movementsList
 	 */
 	public void setShowMoreStatus() {
-		if (this.movementsList.size() >= 10)
+		if (this.movementsList.size() >= PAGE_SIZE)
 			getRenderComponents().put(RenderAttributes.FOOTERTABLEMOVEMENT.name(), true);
 		else
 			getRenderComponents().put(RenderAttributes.FOOTERTABLEMOVEMENT.name(), false);
