@@ -27,7 +27,7 @@
 			<p:ajax event="rowUnselect" />
 
 			<p:column class="head" headerText="#{msg['text.loan']}"
-				styleClass="head col-xs-6 col-md-4"
+				styleClass="head col-xs-6 col-md-6"
 				style="font-size: 10px;color: #434A58;font-family: Arial;background: none;border-style: none">
 
 				<h:outputText styleClass="title-label"
@@ -37,7 +37,22 @@
 					value="&lt;br /&gt; #{iproduct.productId}"></h:outputText>
 				<h:outputText styleClass="sublabel" style="font-size: 1.1em;font-weight:bold;color:#71777f"
 					escape="false" value="&lt;br /&gt; #{iproduct.productName}" />
+				
+				<!-- Combo quiero -->
+<!-- 				<bbvaInput:selectOneMenu label="Combo quiero"/> -->
+				<h:selectOneMenu id="quieroCombo" styleClass="select-tab-quiero select-tab-quiero-default quieros btn-group bootstrap-select hidden-xs hidden-sm quiero">
+					<f:selectItem itemLabel="Quiero"  itemDisabled="true"/>
+					<f:selectItem itemLabel="Ver movimientos"
+						itemValue="Ver movimientos" />
+					<f:selectItem itemLabel="Pagar préstamo"
+						itemValue="Pagar préstamo" />
+					<f:selectItem itemLabel="Domiciliar préstamos"
+						itemValue="Domiciliar préstamos" />
+					<f:selectItem itemLabel="Ver más opciones >>"
+						itemValue="Ver más opciones" />
 
+				</h:selectOneMenu>
+				
 			</p:column>
 
 			<p:column class="head" headerText="#{msg['txt.owe']}"
