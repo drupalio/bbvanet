@@ -20,8 +20,8 @@
 		<p:dataTable id="#{cc.attrs.id}" var="iproduct" rowIndexVar="findex"
 			selectionMode="single"
 			rowKey="#{iproduct.productId}" value="#{cc.attrs.listCards}">
-
-			<p:ajax event="rowSelect"
+			
+			<p:ajax event="rowSelect" 
 				listener="#{cc.attrs.controller.onProductSelected}" />
 			<p:ajax event="rowUnselect" />
 
@@ -40,19 +40,21 @@
 			
 				<!-- Combo quiero -->
 <!-- 				<bbvaInput:selectOneMenu label="Combo quiero"/> -->
-				<h:selectOneMenu id="quieroCombo" styleClass="select-tab-quiero select-tab-quiero-default quieros btn-group bootstrap-select hidden-xs hidden-sm quiero">
-					<f:selectItem itemLabel="Quiero"  itemDisabled="true"/>
-					<f:selectItem itemLabel="Ver movimientos"
-						itemValue="Ver movimientos" />
-					<f:selectItem itemLabel="Bloquear tarjeta"
-						itemValue="Bloquear tarjeta" />
-					<f:selectItem itemLabel="Pagar compras"
-						itemValue="Pagar compras" />
-					<f:selectItem itemLabel="Ver más opciones >>"
-						itemValue="Ver más opciones" />
-
-				</h:selectOneMenu>
+				<div style="display: block;z-index:5 ; overflow: visible;">
 				
+					<h:selectOneMenu style="z-index: 5;" styleClass="select-tab-quiero select-tab-quiero-default quieros btn-group bootstrap-select hidden-xs hidden-sm">
+						<f:selectItem itemLabel="Quiero"  itemDisabled="true"/>
+						<f:selectItem itemLabel="Ver movimientos"
+							itemValue="Ver movimientos" />
+						<f:selectItem itemLabel="Bloquear tarjeta"
+							itemValue="Bloquear tarjeta" />
+						<f:selectItem itemLabel="Pagar compras"
+							itemValue="Pagar compras" />
+						<f:selectItem itemLabel="Ver más opciones >>"
+							itemValue="Ver más opciones" />
+	
+					</h:selectOneMenu>
+				</div>
 			</p:column>
 			<p:column class="head" headerText="#{msg['text.card.balanceTotal']}"
 				styleClass="hidden-xs hidden-sm col-sm-4"
