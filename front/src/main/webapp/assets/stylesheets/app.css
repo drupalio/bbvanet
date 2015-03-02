@@ -4533,7 +4533,7 @@ tbody.collapse.in {
 /* line 11, ../../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/_button-groups.scss */
 .btn-group>.btn, .btn-group-vertical>.btn {
 	position: relative;
-	float: left;
+	float: right;
 }
 /* line 15, ../../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/_button-groups.scss */
 .btn-group>.btn:hover, .btn-group>.btn:focus, .btn-group>.btn:active,
@@ -17620,7 +17620,7 @@ input.form-control.has-error:-ms-input-placeholder {
 	font-size: 0.85em;
 }
 /* line 317, ../../../assets/scss/partials/table/_table-tabs.scss */
-.table-tabs .select-tab-quiero .filter-option, .item-hidden .select-tab-quiero .filter-option
+.table-tabs .select-tab-quiero , .item-hidden .select-tab-quiero .filter-option
 	{
 	display: none;
 }

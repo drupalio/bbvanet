@@ -530,8 +530,12 @@ input.ui-state-hover {
 }
 
 #imgLOAD {
-	top: 20% !important;
-	cursor: not-allowed;
+  top: 20% !important;
+  cursor: not-allowed;
+}
+.quieros{
+    width: 50% !important;
+    float: right !important;
 }
 
 /*Combos*/
@@ -552,3 +556,4 @@ input.ui-state-hover {
 	font-size: 0.95em;
 	color: #0093e2;
 }
+
