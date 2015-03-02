@@ -536,6 +536,7 @@ input.ui-state-hover {
 .quieros{
     width: 50% !important;
     float: right !important;
+    z-index: 5 !important;
 }
 
 /*Combos*/
