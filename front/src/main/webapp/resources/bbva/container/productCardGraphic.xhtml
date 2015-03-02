@@ -24,7 +24,7 @@
 
 <composite:implementation>
 
-	<div class="tab-group">
+	<div class="tab-group" style="display: #{globalPositionController.globalProductsDTO.creditCards.size() > '0' ? 'block' : 'none' }">
 		<div class="tab-head">
 			<span>#{cc.attrs.title}</span>
 			<div class="buttons-group">

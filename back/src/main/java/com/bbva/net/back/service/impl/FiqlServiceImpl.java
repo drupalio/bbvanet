@@ -6,15 +6,14 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import javax.annotation.Resource;
-
 import org.apache.commons.lang.StringUtils;
 import org.apache.cxf.jaxrs.ext.search.client.SearchConditionBuilder;
 import org.springframework.stereotype.Service;
 
+import com.bbva.net.back.model.comboFilter.EnumMonthType;
 import com.bbva.net.back.model.commons.BalanceRangeDto;
 import com.bbva.net.back.model.commons.DateRangeDto;
-import com.bbva.net.back.service.DateFilterService;
+import com.bbva.net.back.model.extract.ExtractDto;
 import com.bbva.net.back.service.FiqlService;
 
 @Service(value = "fiqlService")
@@ -25,9 +24,6 @@ public class FiqlServiceImpl implements FiqlService {
 	private static final String MONTH_FORMAT = "MM";
 
 	private static final String FIQL_LANGUAGE = "fiql";
-
-	@Resource(name = "dateFilterService")
-	private transient DateFilterService dateFilterService;
 
 	@Override
 	public String getFiqlQueryByDateRange(final DateRangeDto dateRange, final String startProperty,
@@ -173,4 +169,19 @@ public class FiqlServiceImpl implements FiqlService {
 				.equalTo(docTypeUser).query();
 	}
 
+	/**
+	 * Fiql Query que construye el filtro para consultar la URL de descarga para un extracto
+	 */
+	@Override
+	public String getFiqlQueryByExtract(ExtractDto extract) {
+		if (extract == null) {
+			return StringUtils.EMPTY;
+		}
+
+		final SearchConditionBuilder filter = SearchConditionBuilder.instance(FIQL_LANGUAGE);
+
+		return filter.is("extractId").equalTo(extract.getExternalCode()).and().is("month")
+				.equalTo(EnumMonthType.valueOfLabel(extract.getMonth()).getMonthNum()).and().is("year")
+				.equalTo(extract.getYear()).query();
+	}
 }
