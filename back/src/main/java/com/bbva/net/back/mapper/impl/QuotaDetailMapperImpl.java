@@ -2,19 +2,19 @@ package com.bbva.net.back.mapper.impl;
 
 import java.util.List;
 
+import ma.glasnost.orika.MapperFactory;
+import ma.glasnost.orika.impl.ConfigurableMapper;
+
 import com.bbva.czic.dto.net.Loan;
 import com.bbva.czic.dto.net.Movement;
 import com.bbva.czic.dto.net.RotaryQuotaMove;
-import com.bbva.net.back.mapper.converter.StringToDateConverter;
 import com.bbva.net.back.core.stereotype.Mapper;
 import com.bbva.net.back.mapper.QuotaDetailMapper;
 import com.bbva.net.back.mapper.converter.MoneyConverter;
+import com.bbva.net.back.mapper.converter.StringToDateConverter;
 import com.bbva.net.back.model.movements.MovementDetailDto;
 import com.bbva.net.back.model.movements.MovementDto;
 import com.bbva.net.back.model.quota.QuotaDetailDto;
-
-import ma.glasnost.orika.MapperFactory;
-import ma.glasnost.orika.impl.ConfigurableMapper;
 
 @Mapper(value = "quotaDetailMapper")
 public class QuotaDetailMapperImpl extends ConfigurableMapper implements QuotaDetailMapper {
@@ -39,8 +39,8 @@ public class QuotaDetailMapperImpl extends ConfigurableMapper implements QuotaDe
 				.byDefault().register();
 
 		factory.classMap(RotaryQuotaMove.class, MovementDetailDto.class).field("id", "id").field("concept", "concept")
-				.field("transactionDate", "operationDate").field("balance.availableBalance", "valueslope")
-				.field("numbersOfQuota", "numbersOfQuota").field("remainingQuotas", "remainingQuotas").byDefault()
+				.field("transactionDate", "operationDate").field("deb.availableBalance", "valueslope")
+				.field("numbersOfQuotas", "numbersOfQuota").field("remainingQuotas", "remainingQuotas").byDefault()
 				.register();
 
 		factory.classMap(Movement.class, MovementDto.class).field("id", "movementId")

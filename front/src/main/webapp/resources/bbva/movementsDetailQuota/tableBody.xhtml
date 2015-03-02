@@ -1,30 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:composite="http://java.sun.com/jsf/composite"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui" xmlns:jsf="http://xmlns.jcp.org/jsf"
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite" xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui" xmlns:jsf="http://xmlns.jcp.org/jsf"
 	xmlns:pm="http://primefaces.org/mobile">
-
 <composite:interface>
 	<composite:attribute name="controller" />
 </composite:interface>
-
 <composite:implementation>
 	<div class="table-content" style="display: block !important;">
 		<div class="table-detail-close array">
-			<button class="close-icon hidden-lg hidden-md"
-				style="margin-right: 5% !important;" type="button"
+			<button class="close-icon hidden-lg hidden-md" style="margin-right: 5% !important;" type="button"
 				onclick="clickMove()" />
 			<h3 style="font-size: 18px;" class="align">#{msg['text.moventInformation']}</h3>
 		</div>
 		<div class="definitions textSize" style="width: 100%;">
 			<dl class="align">
 				<dd class="border-desktop">#{msg['text.numberofQuota']}</dd>
-				<dt class="border-desktop">#{cc.attrs.controller.quotaMoveDetailDto.numbersOfQuota}
-					#{msg['text.de']}
-					#{cc.attrs.controller.quotaMoveDetailDto.remainingQuotas}</dt>
+				<dt class="border-desktop">#{cc.attrs.controller.quotaMoveDetailDto.remainingQuotas} #{msg['text.de']}
+					#{cc.attrs.controller.quotaMoveDetailDto.numbersOfQuota}</dt>
 			</dl>
 			<dl class="align">
 				<dd class="border-desktop border-mobile">#{msg['text.slope']}</dd>
