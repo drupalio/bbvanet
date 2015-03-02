@@ -425,10 +425,27 @@ input.ui-state-hover {
 	float: left !important;
 }
 
+.shared {
+	width: 46% !important;
+	float: left !important;
+}
+
+/*leyenda de pendiente de detalle de quota en el body*/
+.marginDetailQValue {
+	margin-left: 30px !important;
+}
+
 /*Response de la tabla de movimientos*/
 @media ( max-width : 769px ) {
 	.responseTable {
 		display: table-cell !important;
+	}
+	.shared {
+		width: 96% !important;
+		float: left !important;
+	}
+	.marginDetailQValue {
+		margin-left: 0px !important;
 	}
 }
 
@@ -530,12 +547,13 @@ input.ui-state-hover {
 }
 
 #imgLOAD {
-  top: 20% !important;
-  cursor: not-allowed;
+	top: 20% !important;
+	cursor: not-allowed;
 }
-.quieros{
-    width: 50% !important;
-    float: right !important;
+
+.quieros {
+	width: 50% !important;
+	float: right !important;
 }
 
 /*Combos*/
@@ -556,4 +574,3 @@ input.ui-state-hover {
 	font-size: 0.95em;
 	color: #0093e2;
 }
-
