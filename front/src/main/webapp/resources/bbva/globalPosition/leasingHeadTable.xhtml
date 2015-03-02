@@ -16,7 +16,7 @@
 </composite:interface>
 
 <composite:implementation>
-
+	<div style = "display: #{cc.attrs.listLeasing.size() > '0' ? 'block' : 'none'}" >
 	<h:form id="#{cc.attrs.id}">
 		<p:dataTable id="#{cc.attrs.id}" var="iproduct" rowIndexVar="findex"
 			selectionMode="single" rowKey="#{iproduct.productId}"
@@ -40,7 +40,7 @@
 				
 				<!-- Combo quiero -->
 <!-- 				<bbvaInput:selectOneMenu label="Combo quiero"/> -->
-				<h:selectOneMenu id="quieroCombo" styleClass="select-tab-quiero select-tab-quiero-default quieros btn-group bootstrap-select hidden-xs hidden-sm quiero">
+				<h:selectOneMenu styleClass="select-tab-quiero select-tab-quiero-default quieros btn-group bootstrap-select hidden-xs hidden-sm quiero">
 					<f:selectItem itemLabel="Quiero"  itemDisabled="true"/>
 					<f:selectItem itemLabel="Ver más opciones >>"
 						itemValue="Ver más opciones" />
@@ -72,6 +72,7 @@
 
 		</p:dataTable>
 	</h:form>
+	</div>
 </composite:implementation>
 
 </html>

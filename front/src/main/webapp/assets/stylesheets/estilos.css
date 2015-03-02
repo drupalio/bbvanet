@@ -550,10 +550,9 @@ input.ui-state-hover {
 	top: 20% !important;
 	cursor: not-allowed;
 }
-
-.quieros {
-	width: 50% !important;
-	float: right !important;
+.quieros{
+    width: 50% !important;
+    float: right !important;
 }
 
 /*Combos*/

@@ -12,9 +12,11 @@ import com.bbva.net.back.core.stereotype.Facade;
 import com.bbva.net.back.facade.CardsFacade;
 import com.bbva.net.back.mapper.CardsMapper;
 import com.bbva.net.back.model.cards.CardsChargesDto;
+import com.bbva.net.back.model.comboFilter.EnumPeriodType;
 import com.bbva.net.back.model.commons.DateRangeDto;
 import com.bbva.net.back.service.FiqlService;
 import com.bbva.net.back.service.ProductService;
+import com.bbva.net.back.service.impl.DateFilterServiceImpl;
 import com.bbva.net.webservices.cards.CardService;
 import com.bbva.net.webservices.customers.CustomerService;
 
@@ -57,9 +59,17 @@ public class CardsFacadeImpl extends AbstractBbvaFacade implements CardsFacade {
 	 * Determina si debe crear o no la cadena del filtro
 	 */
 	@Override
-	public List<CardsChargesDto> getCardsChargesByUser(final DateRangeDto dateRange) {
+	public List<CardsChargesDto> getCardsChargesByUser(DateRangeDto dateRange) {
+		EnumPeriodType periodType = null;
+		if (dateRange == null) {
+			periodType = EnumPeriodType.valueOf(EnumPeriodType.LAST_SIX_MONTH.getPeriodId());
+			dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
+		}
+		LOGGER.info("Graphic cards Facade by User dateRange:" + dateRange.toString());
 		String filter = fiqlService.getFiqlQueryByDateRange(dateRange, DATE, DATE);
+		LOGGER.info("Graphic cards Facade by User filter:" + filter);
 		final List<CardCharge> response = cardsCustomerService.listCreditCardsCharges(filter);
+		LOGGER.info("Graphic cards Facade by User Mapper:" + cardsMapper.map(response));
 		return cardsMapper.map(response);
 	}
 
@@ -72,9 +82,11 @@ public class CardsFacadeImpl extends AbstractBbvaFacade implements CardsFacade {
 	 */
 	@Override
 	public List<CardsChargesDto> getCardsChargesFilter(final String productId, final DateRangeDto dateRange) {
+		LOGGER.info("Graphic cards Facade by User product: id :" + productId + " dateRange: " + dateRange.toString());
 		String filter = fiqlService.getFiqlQueryByDateRange(dateRange, DATE, DATE);
-
+		LOGGER.info("Graphic cards Facade by User product:" + filter);
 		final List<CardCharge> response = cardChargeService.getCreditCardCharges(productId, filter, "", "", "");
+		LOGGER.info("Graphic cards Facade by User Mapper:" + cardsMapper.map(response));
 		return cardsMapper.map(response);
 	}
 

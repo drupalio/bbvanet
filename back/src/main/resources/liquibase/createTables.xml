@@ -66,16 +66,35 @@
 			<column name="VALUE">text.combo.likes.do.transfers</column>
 			<column name="TYPE_ID">1</column>
 		</insert>
-
+		
 		<insert tableName="MULTIVALUEGROUP">
 			<column name="ID" autoIncrement="true" />
-			<column name="VALUE">text.combo.cheks.enabled</column>
+			<column name="VALUE">text.combo.cheks.available</column>
 			<column name="TYPE_ID">2</column>
 		</insert>
-
+		
+		<insert tableName="MULTIVALUEGROUP">
+			<column name="ID" autoIncrement="true" /> 
+			<column name="VALUE">text.combo.cheks.canceled</column>
+			<column name="TYPE_ID">2</column>
+		</insert>
+		
 		<insert tableName="MULTIVALUEGROUP">
 			<column name="ID" autoIncrement="true" />
-			<column name="VALUE">text.combo.cheks.requested</column>
+			<column name="VALUE">text.combo.cheks.paid.by.redemption</column>
+			<column name="TYPE_ID">2</column>
+		</insert>
+		
+		
+		<insert tableName="MULTIVALUEGROUP">
+			<column name="ID" autoIncrement="true" />
+			<column name="VALUE">text.combo.cheks.paid.by.window</column>
+			<column name="TYPE_ID">2</column>
+		</insert>
+		
+			<insert tableName="MULTIVALUEGROUP">
+			<column name="ID" autoIncrement="true" />
+			<column name="VALUE">text.combo.cheks.stop.payment</column>
 			<column name="TYPE_ID">2</column>
 		</insert>
 

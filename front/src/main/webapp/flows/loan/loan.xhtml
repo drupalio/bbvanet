@@ -27,7 +27,8 @@
 
 	<ui:define name="contentLeft">
 
-		<bbvaContainer:productPanel title="#{msg['title.rotaryQuota']}">
+		<bbvaContainer:productPanel title="#{msg['title.rotaryQuota']}"
+		display =  "#{customerRotatingAccount.size() > '0' || customerRotatingAccountHidden.size() > '0'  ? 'block' : 'none'}" >
 			<div class="table-tabs">
 
 				<bbvaGP:rotatingQuotaHeadTable
@@ -45,7 +46,8 @@
 			</div>
 		</bbvaContainer:productPanel>
 
-		<bbvaContainer:productPanel title="#{msg['title.Leasing']}">
+		<bbvaContainer:productPanel title="#{msg['title.Leasing']}"
+		display =  "#{customerLeasing.size() > '0' || customerLeasingHidden.size() > '0'  ? 'block' : 'none'}" >
 			<div class="table-tabs">
 
 				<bbvaGP:leasingHeadTable listLeasing="#{customerLeasing}"
@@ -60,7 +62,8 @@
 			</div>
 		</bbvaContainer:productPanel>
 
-		<bbvaContainer:productPanel title="#{msg['title.loans']}">
+		<bbvaContainer:productPanel title="#{msg['title.loans']}"
+		display =  "#{customerLoan.size() > '0' || customerLoanHidden.size() > '0'  ? 'block' : 'none'}" >
 			<div class="table-tabs">
 				<bbvaGP:loanHeadTable listLoan="#{customerLoan}"
 					controller="#{loanController}" />
