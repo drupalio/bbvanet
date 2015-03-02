@@ -45,10 +45,12 @@
 					listAccountsMore="#{customerProductsHidden.accounts}" />
 				<bbvaGP:accountHeadTable listAccounts="#{customerProducts.accounts}"
 					controller="#{globalPositionController}" />
-
+				
 				<bbvaGP:accountAdquirenciaTable
 					controller="#{globalPositionController}"
-					listAccounts="#{customerProducts.adquirencia}" />
+					listAccounts="#{customerProducts.adquirencia}" 
+					display = "#{globalPositionController.globalProductsDTO.adquirencia.size() > '0' ? 'block' : 'none' }"
+					/>
 
 				<bbvaGP:accountTailTable controller="#{globalPositionController}"
 					listAccounts="#{customerProductsHidden.accounts}" />
@@ -82,7 +84,7 @@
 			</div>
 		</bbvaContainer:productCardGraphic>
 
-		<bbvaContainer:productPanel title="#{msg['title.rotaryQuota']}">
+		<bbvaContainer:productPanel title="#{msg['title.rotaryQuota']}" display = "#{globalPositionController.globalProductsDTO.rotatingAccounts.size() > '0' ? 'block' : 'none' }">
 			<div class="table-tabs">
 
 				<bbvaGP:rotatingQuotaHeadTable
@@ -101,7 +103,7 @@
 			</div>
 		</bbvaContainer:productPanel>
 
-		<bbvaContainer:productPanel title="#{msg['title.Leasing']}">
+		<bbvaContainer:productPanel title="#{msg['title.Leasing']}" display = "#{globalPositionController.globalProductsDTO.leasings.size() > '0' ? 'block' : 'none' }">
 			<div class="table-tabs">
 				<bbvaGP:leasingHeadTable controller="#{globalPositionController}"
 					listLeasing="#{customerProducts.leasings}" />
@@ -116,7 +118,7 @@
 			</div>
 		</bbvaContainer:productPanel>
 
-		<bbvaContainer:productPanel title="#{msg['title.loans']}">
+		<bbvaContainer:productPanel title="#{msg['title.loans']}" display = "#{globalPositionController.globalProductsDTO.loan.size() > '0' ? 'block' : 'none' }">
 			<div class="table-tabs">
 				<bbvaGP:loanHeadTable controller="#{globalPositionController}"
 					listLoan="#{customerProducts.loan}" />

@@ -36,19 +36,17 @@
 		</bbvaAcc:termsAccountsPanelInfo>
 
 		<bbvaAcc:termsAccountsPanelInfoItemBody title="Intervinientes">
-			<bbvaAcc:termsAccountsPanelInfoItemTitle date="#{msg['text.holder']}"
-				val="4" />
-			<bbvaAcc:termsAccountsPanelInfoItemData
-				date="#{allConditions.intervinientes.titular1}" val="7" />
-			<bbvaAcc:termsAccountsPanelInfoItemTitle date="#{msg['text.holder']}"
-				val="4" />
-			<bbvaAcc:termsAccountsPanelInfoItemData
-				date="#{allConditions.intervinientes.titular2}" val="7" />
+			<ui:repeat var="holders" varStatus="status"
+				value="#{allConditions.holders}">
+				<bbvaAcc:termsAccountsPanelInfoItemTitle
+					date="#{msg['text.holder']}:" val="4" />
+				<bbvaAcc:termsAccountsPanelInfoItemData date="#{holders.alias}"
+					val="7" />
+			</ui:repeat>
 			<bbvaAcc:termsAccountsPanelInfoItemTitle
-				date="#{msg['text.conditions.mobilization']}" val="4" />
+				date="#{msg['text.conditions.mobilization']}:" val="4" />
 			<bbvaAcc:termsAccountsPanelInfoItemData
-				date="#{allConditions.intervinientes.condicionesMovilizacion}"
-				val="7" />
+				date="#{allConditions.condicionesMovilizacion}" val="7" />
 		</bbvaAcc:termsAccountsPanelInfoItemBody>
 
 		<bbvaAcc:termsAccountsPanelInfoItemBody
@@ -63,8 +61,12 @@
 				date="#{allConditions.detalleCondiciones.descripcion}" val="7" />
 			<bbvaAcc:termsAccountsPanelInfoItemTitle
 				date="#{msg['text.opening.date']}:" val="4" />
-			<bbvaAcc:termsAccountsPanelInfoItemData
-				date="#{allConditions.detalleCondiciones.fechaApertura}" val="7" />
+			<bbvaAcc:termsAccountsPanelInfoItemDate val="7">
+				<h:outputText
+					value="#{allConditions.detalleCondiciones.fechaApertura}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:outputText>
+			</bbvaAcc:termsAccountsPanelInfoItemDate>
 			<bbvaAcc:termsAccountsPanelInfoItemTitle
 				date="#{msg['text.commissions']}:" val="4" />
 			<bbvaAcc:termsAccountsPanelInfoItemData
@@ -74,11 +76,11 @@
 		<bbvaAcc:termsAccountsPanelInfoItemBody
 			title="#{msg['text.postal.addres']}">
 			<bbvaAcc:termsAccountsPanelInfoItemTitle
-				date="#{msg['text.office.name']}" val="4" />
+				date="#{msg['text.office.name']}:" val="4" />
 			<bbvaAcc:termsAccountsPanelInfoItemData
 				date="#{allConditions.direccionPostal.nombreOficina}" val="7" />
 			<bbvaAcc:termsAccountsPanelInfoItemTitle
-				date="#{msg['text.postal.addres']}" val="4" />
+				date="#{msg['text.postal.addres']}:" val="4" />
 			<bbvaAcc:termsAccountsPanelInfoItemData
 				date="#{allConditions.direccionPostal.direccionPostal}" val="7" />
 		</bbvaAcc:termsAccountsPanelInfoItemBody>

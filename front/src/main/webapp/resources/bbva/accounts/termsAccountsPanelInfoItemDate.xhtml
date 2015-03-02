@@ -18,8 +18,10 @@
 
 <composite:implementation>
 	<div class="condiciones-list-element col-xs-6 col-sm-#{cc.attrs.val}"
-		style="float: left; margin-bottom: 10px !important;">
-		<strong>#{cc.attrs.date}</strong>
+		style="float: right;">
+		<p>
+			<composite:insertChildren></composite:insertChildren>
+		</p>
 	</div>
 </composite:implementation>
 
