@@ -530,6 +530,11 @@ input.ui-state-hover {
 }
 
 #imgLOAD {
-	top: 20% !important;
-	cursor: not-allowed;
+  top: 20% !important;
+  cursor: not-allowed;
 }
+.quieros{
+    width: 50% !important;
+    float: right !important;
+}
+
