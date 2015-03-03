@@ -6,7 +6,7 @@ package com.bbva.net.back.model.comboFilter;
 public enum EnumCheckStatus {
 
 	DISPONIBLE(0, "Disponible"), ANULADO(1, "Anulado"), PERDIDO(2, "Perdido"), PAGADO_X_CANJE(3, "Pagado por Canje"), PAGADO_X_VENTANILLA(
-			4, "Pagado por Ventanilla"), ORDEN_NO_PAGO(8, "Orde de no Pago");
+			4, "Pagado por Ventanilla"), ORDEN_NO_PAGO(8, "Orden de no Pago");
 
 	private int statusId;
 
