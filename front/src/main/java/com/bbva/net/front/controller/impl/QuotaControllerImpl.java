@@ -170,16 +170,10 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 	public void onRowToggle(final SelectEvent event) {
 		LOGGER.info("QuotaControllerImpl onRowToggle");
 		super.onMovementSelected(event);
+		this.quotaMove = super.getSelectedMovements();
 		this.quotaMoveDetailDto = this.quotaDetailFacade.getRotaryQuotaMovement(this.productDto.getProductId(),
-				getSelectedMovements().getMovementId());
+				this.quotaMove.getMovementId());
 		LOGGER.info("Movimiento Seleccionado " + quotaMoveDetailDto.getId());
-
-		if (!(quotaMoveDetailDto.getOperationDate() == null)) {
-			this.moveDate = dateFormat.format(this.quotaMoveDetailDto.getOperationDate());
-			LOGGER.info("Finalizado formateo de fechas del movimiento");
-		} else {
-			LOGGER.info("Error en formateo de fechas del movimiento " + quotaMoveDetailDto.getOperationDate());
-		}
 	}
 
 	@Override

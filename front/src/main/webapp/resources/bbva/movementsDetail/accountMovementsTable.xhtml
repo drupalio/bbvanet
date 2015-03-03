@@ -15,7 +15,16 @@
 </composite:interface>
 
 <composite:implementation>
+
+
 	<h:form id="formMovesDetail">
+		<h3>
+			<h:outputLabel id="labelMovements"
+				value="#{msg['text.last.movments']}"
+				rendered="#{renderComponents['TITLEMOVES']}" />
+
+		</h3>
+
 		<p:outputPanel id="movAccount">
 			<article class="detail-table-group">
 				<div class="table-wrapper">
@@ -99,7 +108,7 @@
 
 					<button id="moreMovs" class="btn btn-more-results"
 						value="Más Resultados"
-						jsf:rendered="#{renderComponents['FOOTERTABLEMOVEMENT']}"
+						jsf:rendered="#{renderComponents['FOOTERTABLEMOVEMENT'] and renderComponents['MOVEMENTSTABLE']}"
 						jsf:actionListener="#{movementsCriteriaController.nextPage}">
 						<span>#{msg['text.detailMove.footer']} </span>
 					</button>

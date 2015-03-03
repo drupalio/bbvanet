@@ -15,8 +15,12 @@
 </composite:interface>
 
 <composite:implementation>
-	<h:form id="formCheks">
-		<p:outputPanel id="opCheks">
+	<h:form id="formCheks">			
+		
+		<h3>
+			<h:outputLabel id="labelChecks" value="#{msg['tex.check.status']}"
+				rendered="#{renderComponents['TITLECHECKS']}" />
+		</h3>
 
 			<!-- Tabla de Cheques -->
 			<div class="table-wrapper">
@@ -30,8 +34,8 @@
 						styleClass="sorted w13 desc"
 						style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
 
-						<h:outputText styleClass="brand" style="font-size: 15px;line-height: 17px"
-							value="#{cheks.id}" />
+						<h:outputText styleClass="brand"
+							style="font-size: 15px;line-height: 17px" value="#{cheks.id}" />
 					</p:column>
 
 					<p:column headerText="#{msg['text.table.emi.date']}"
@@ -50,7 +54,8 @@
 						styleClass="desc w18"
 						style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
 
-						<h:outputText class="currency" style="font-size: 15px; padding-top: 12px; text-align: right; white-space: nowrap;color: #333"
+						<h:outputText class="currency"
+							style="font-size: 15px; padding-top: 12px; text-align: right; white-space: nowrap;color: #333"
 							value="#{cheks.value}" />
 
 					</p:column>
@@ -58,7 +63,8 @@
 						styleClass="desc w10"
 						style="font-size: 0.7em;color: #333;font-family: Arial;background: none;border-style: none">
 
-						<h:outputText class="text" style="font-size: 15px;line-height: 17px;color: #333"
+						<h:outputText class="text"
+							style="font-size: 15px;line-height: 17px;color: #333"
 							value="#{cheks.status}" />
 
 					</p:column>
@@ -68,28 +74,31 @@
 						styleClass="desc w21"
 						style="font-size: 0.7em;color: #333;font-family: Arial;background: none;border-style: none">
 
-						<h:outputText class="text" style="font-size: 15px;line-height: 17px;color: #333"
+						<h:outputText class="text"
+							style="font-size: 15px;line-height: 17px;color: #333"
 							value="#{cheks.modifiedDate}" />
 
 					</p:column>
 				</p:dataTable>
 			</div>
 			<footer class="detail-table-footer">
-			
-				<button id="moreCheks" class="btn btn-more-results" 
-                    jsf:update=":detailAccounts:checkTable:formCheks:checksTable" value="Más Resultados"
-                    jsf:rendered="#{checkBookController.renderComponents['FOOTERTABLECHEKS']}"
-                    jsf:actionListener="#{checkBookController.nextPage}">
-                    <span>#{msg['text.detailMove.footer']}</span>
-                </button>
+
+				<button id="moreCheks" class="btn btn-more-results"
+					jsf:update=":detailAccounts:checkTable:formCheks:checksTable"
+					value="Más Resultados"
+					jsf:rendered="#{checkBookController.renderComponents['FOOTERTABLECHEKS']}"
+					jsf:actionListener="#{checkBookController.nextPage}">
+					<span>#{msg['text.detailMove.footer']}</span>
+				</button>
 			</footer>
-			
-			<p:dialog widgetVar="statusDialogCheck" modal="true" draggable="false"
-				closable="false" resizable="false" showHeader="false">
+
+			<p:dialog widgetVar="statusDialogCheck" modal="true"
+				draggable="false" closable="false" resizable="false"
+				showHeader="false">
 				<p:outputLabel value="Un momento porfavor" />
 			</p:dialog>
-			
-		</p:outputPanel>
+
+
 	</h:form>
 
 </composite:implementation>
