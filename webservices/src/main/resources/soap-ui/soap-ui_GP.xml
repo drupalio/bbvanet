@@ -1816,104 +1816,104 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 
 */
 </con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
-	"id": "12834063921",
-	"issueDate": "09/07/2014",
+	"id": "19641131451",
+	"issueDate": "26/07/2014",
 	"value": {
-		"amount": 12130896651,
+		"amount": 17464634881,
 		"currency": "COP"
 	},
-	"status": "HABILITADO",
-	"modifiedDate": "21/08/2014"
+	"status": "8",
+	"modifiedDate": "10/09/2014"
 },
 {
-	"id": "16833592681",
-	"issueDate": "08/12/2014",
+	"id": "3521413981",
+	"issueDate": "07/01/2015",
 	"value": {
-		"amount": 7339147361,
+		"amount": 5483020401,
 		"currency": "COP"
 	},
-	"status": "HABILITADO",
-	"modifiedDate": "24/12/2014"
+	"status": "0",
+	"modifiedDate": "24/01/2015"
 },
 {
-	"id": "13467431131",
-	"issueDate": "26/01/2014",
+	"id": "6848955621",
+	"issueDate": "29/01/2014",
 	"value": {
-		"amount": 11287877941,
+		"amount": 8238971841,
 		"currency": "COP"
 	},
-	"status": "HABILITADO",
-	"modifiedDate": "21/05/2014"
+	"status": "8",
+	"modifiedDate": "03/06/2014"
 },
 {
-	"id": "20995245941",
-	"issueDate": "12/06/2014",
+	"id": "7402219611",
+	"issueDate": "27/06/2014",
 	"value": {
-		"amount": 13882319691,
+		"amount": 18317767541,
 		"currency": "COP"
 	},
-	"status": "HABILITADO",
-	"modifiedDate": "25/11/2014"
+	"status": "0",
+	"modifiedDate": "23/12/2014"
 },
 {
-	"id": "20970305661",
-	"issueDate": "05/05/2014",
+	"id": "11804045281",
+	"issueDate": "15/05/2014",
 	"value": {
-		"amount": 119919931,
+		"amount": 12649480351,
 		"currency": "COP"
 	},
-	"status": "HABILITADO",
-	"modifiedDate": "07/09/2014"
+	"status": "8",
+	"modifiedDate": "29/09/2014"
 },
 {
-	"id": "9588743601",
-	"issueDate": "06/05/2014",
+	"id": "10913573221",
+	"issueDate": "17/05/2014",
 	"value": {
-		"amount": 4632088631,
+		"amount": 20614327151,
 		"currency": "COP"
 	},
-	"status": "HABILITADO",
-	"modifiedDate": "21/10/2014"
+	"status": "0",
+	"modifiedDate": "16/11/2014"
 },
 {
-	"id": "12105069811",
-	"issueDate": "18/04/2014",
+	"id": "21237696991",
+	"issueDate": "27/04/2014",
 	"value": {
-		"amount": 20168793791,
+		"amount": 2616827231,
 		"currency": "COP"
 	},
-	"status": "HABILITADO",
-	"modifiedDate": "29/06/2014"
+	"status": "8",
+	"modifiedDate": "14/07/2014"
 },
 {
-	"id": "10371239671",
-	"issueDate": "23/08/2014",
+	"id": "19788323881",
+	"issueDate": "13/09/2014",
 	"value": {
-		"amount": 7372037151,
+		"amount": 19017966811,
 		"currency": "COP"
 	},
-	"status": "HABILITADO",
-	"modifiedDate": "26/09/2014"
+	"status": "0",
+	"modifiedDate": "19/10/2014"
 },
 {
-	"id": "19909233301",
-	"issueDate": "21/03/2014",
+	"id": "2751940851",
+	"issueDate": "27/03/2014",
 	"value": {
-		"amount": 8697652971,
+		"amount": 12037165961,
 		"currency": "COP"
 	},
-	"status": "HABILITADO",
-	"modifiedDate": "25/09/2014"
+	"status": "8",
+	"modifiedDate": "18/10/2014"
 },
 {
-	"id": "21301260731",
-	"issueDate": "05/08/2014",
+	"id": "6743097721",
+	"issueDate": "24/08/2014",
 	"value": {
-		"amount": 11112267021,
+		"amount": 13847631181,
 		"currency": "COP"
 	},
-	"status": "HABILITADO",
-	"modifiedDate": "12/10/2014"
+	"status": "0",
+	"modifiedDate": "05/11/2014"
 }]</con:responseContent><con:header><con:name>tsec</con:name><con:value>dafasdfdsfadsfda29873492347dsfjkh</con:value></con:header></con:response></con:restMockAction><con:restMockAction name="/czic/accounts/V01/00130443000200009407/monthlyBalances" method="GET" resourcePath="/czic/accounts/V01/00130443000200009407/monthlyBalances"><con:settings/><con:defaultResponse xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Examples showing how to match based on path, query param and header
 // Match based on path
