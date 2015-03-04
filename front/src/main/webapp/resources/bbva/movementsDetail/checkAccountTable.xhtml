@@ -103,14 +103,12 @@
 			</p:dataTable>
 		</div>
 		<footer class="detail-table-footer">
-
-			<button id="moreCheks" class="btn btn-more-results"
-				jsf:update=":detailAccounts:checkTable:formCheks:checksTable"
-				value="Más Resultados"
-				jsf:rendered="#{checkBookController.renderComponents['FOOTERTABLECHEKS']}"
-				jsf:actionListener="#{checkBookController.nextPage}">
-				<span>#{msg['text.detailMove.footer']}</span>
-			</button>
+			<p:commandButton id="moreCheks" value="#{msg['text.detailMove.footer']}"
+				rendered="#{checkBookController.renderComponents['FOOTERTABLECHEKS']}"
+				styleClass="btn btn-more-results"
+				actionListener="#{checkBookController.nextPage}" ajax="true"
+				update=":detailAccounts:checkTable:formCheks:checksTable">
+			</p:commandButton>
 		</footer>
 
 		<p:dialog widgetVar="statusDialogCheck" modal="true" draggable="false"
