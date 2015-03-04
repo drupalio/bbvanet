@@ -39,7 +39,7 @@
 					update="customPanel, searchButton" />
 			</p:selectOneRadio>
 
-			<h:panelGrid columns="3" cellpadding="5" id="grilla">
+			<h:panelGrid columns="3" cellpadding="5" id="grilla" style="width: 100% !important;">
 				<p:radioButton id="opt1" for="customRadio" itemIndex="0" />
 				<h:outputLabel for="opt1"
 					value="#{msg['text.search.by.number.check']}" />
@@ -110,10 +110,10 @@
 						var="multiValue" itemValue="#{multiValue.id}"
 						itemLabel="#{msg[multiValue.value]}" />
 				</h:selectOneMenu>
-
 			</h:panelGrid>
 		</p:outputPanel>
-
+		<p:spacer width="100" height="40" />
+		<p:outputPanel>
 		<button jsf:id="searchButton"
 			jsf:disabled="#{checkBookController.renderComponents['BUTTONBOOK']}"
 			class="btn small hidden-xs hidden-sm"
@@ -124,7 +124,8 @@
 			update="
 			:tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:checkContainer:checkList:componentList
 			" />
-			</button>
+		</button>
+		</p:outputPanel>
 
 	</div>
 </composite:implementation>
