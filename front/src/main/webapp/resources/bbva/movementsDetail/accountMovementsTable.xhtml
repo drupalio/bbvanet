@@ -108,16 +108,13 @@
 
 					</p:dataTable>
 				</div>
-				<footer class="detail-table-footer">
-
-					<button id="moreMovs" class="btn btn-more-results"
-						jsf:update=":detailAccounts:tableMovements:formMovesDetail:movAccount"
-						value="Más Resultados"
-						jsf:rendered="#{renderComponents['FOOTERTABLEMOVEMENT'] and renderComponents['MOVEMENTSTABLE']}"
-						jsf:actionListener="#{movementsCriteriaController.nextPage}">
-						<span>#{msg['text.detailMove.footer']} </span>
-					</button>
-
+				<footer class="detail-table-footer">				
+					<p:commandButton id="moreMovs" value="#{msg['text.detailMove.footer']}"
+						rendered="#{renderComponents['FOOTERTABLEMOVEMENT'] and renderComponents['MOVEMENTSTABLE']}"
+						styleClass="btn btn-more-results"
+						actionListener="#{movementsCriteriaController.nextPage}" ajax="true"
+						update=":detailAccounts:tableMovements:formMovesDetail:movAccount">
+					</p:commandButton>
 				</footer>
 			</article>
 		</p:outputPanel>
