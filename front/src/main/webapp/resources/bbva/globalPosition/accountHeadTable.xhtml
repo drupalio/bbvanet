@@ -29,7 +29,7 @@
 			var="iproduct" rowIndexVar="findex"
 			selectionMode="single"
 			rowKey="#{iproduct.productId}" value="#{cc.attrs.listAccounts}">
-
+			
 			<p:ajax event="rowSelect"
 				listener="#{cc.attrs.controller.onProductSelected}" />
 
@@ -58,7 +58,6 @@
 						itemValue="Gestionar transferencias" />
 					<f:selectItem itemLabel="Ver más opciones >>"
 						itemValue="Ver más opciones" />
-
 				</h:selectOneMenu>
 
 			</p:column>
