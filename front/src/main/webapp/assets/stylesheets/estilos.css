@@ -560,6 +560,7 @@ input.ui-state-hover {
 	background:linear-gradient(to bottom, #ffffff 0%, #eaf1f7 100%) repeat scroll 0 0 white !important;
 	border: 1px solid #d5e2ee !important;
 	width: 70px !important;
+	float: right !important;
 }
 
 /*Combos*/
@@ -602,7 +603,6 @@ input.ui-state-hover {
 	background: none repeat scroll 0% 0% #FFF !important;
 	border: medium none !important;
 	color: #003F8D !important;
-	z-index: 1000;
 	box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.176);
 	font: 12px "BBVA Web Medium", Arial, sans-serif bold !important;
 }
