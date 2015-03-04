@@ -26,51 +26,47 @@
 				rendered="#{checkBookController.renderComponents['CHECKTABLE']}"
 				rowKey="#{cheks.id}">
 				<p:column headerText="#{msg['text.table.num.check']}"
-					styleClass="sorted w13 desc"
-					style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
+					styleClass="sorted w13 desc">
 
 					<h:outputText styleClass="brand"
-						style="font-size: 15px;line-height: 17px" value="#{cheks.id}" />
+						value="#{cheks.id}" />
 				</p:column>
 
 				<p:column headerText="#{msg['text.table.emi.date']}"
 					styleClass="desc w13"
-					style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none;">
+					>
 
 					<h:outputText class="text"
-						style="font-size: 15px;line-height: 17px;color: #333"
+						
 						value="#{cheks.issueDate}">
 						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</h:outputText>
 
 				</p:column>
 
-				<p:column class="head" headerText="#{msg['text.detailMove.value']}"
-					styleClass="desc w18"
-					style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
+				<p:column  headerText="#{msg['text.detailMove.value']}"
+					styleClass="styleColum desc w34"
+					colspan="2">
 
-					<h:outputText class="currency"
-						style="font-size: 15px; padding-top: 12px; text-align: right; white-space: nowrap;color: #333"
+					<h:outputText class="currency styleCurrent"
 						value="#{cheks.value}" />
 
 				</p:column>
 				<p:column class="head" headerText="#{msg['text.table.status']}"
-					styleClass="desc w10"
-					style="font-size: 0.7em;color: #333;font-family: Arial;background: none;border-style: none">
+					styleClass="desc w10">
 
-					<h:outputText class="text"
-						style="font-size: 15px;line-height: 17px;color: #333"
+					<h:outputText class="text"						
 						value="#{cheks.status}" />
 
 				</p:column>
 
 				<p:column class="head" headerText="#{msg['text.table.change.date']}"
-					styleClass="desc w21"
-					style="font-size: 0.7em;color: #333;font-family: Arial;background: none;border-style: none">
+					styleClass="desc w10">
 
 					<h:outputText class="text"
-						style="font-size: 15px;line-height: 17px;color: #333"
-						value="#{cheks.modifiedDate}" />
+						value="#{cheks.modifiedDate}" >
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
 
 				</p:column>
 
