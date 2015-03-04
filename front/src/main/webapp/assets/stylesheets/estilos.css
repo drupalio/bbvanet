@@ -566,7 +566,7 @@ input.ui-state-hover {
 .selectorCombo select {
 	padding: 0.5px 0px 0.5px 1px !important;
 	-ms-height: 31px;
-	background: url("../img/selectCombo.png") no-repeat 98% !important;
+	background: url("../img/selectCombo.png") no-repeat 98% white !important;
 	display: block !important;
 	width: 100%;
 	overflow: hidden;
