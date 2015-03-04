@@ -37,7 +37,8 @@
 
 				<bbvaGP:accountAdquirenciaTable
 					controller="#{globalPositionController}"
-					listAccounts="#{customerProducts.adquirencia}" />
+					listAccounts="#{customerProducts.adquirencia}"
+					display = "#{customerProducts.adquirencia.size() > '0' ? 'block' : 'none'}" />
 
 				<bbvaGP:accountTailTable controller="#{globalPositionController}"
 					listAccounts="#{customerProductsHidden.accounts}" />

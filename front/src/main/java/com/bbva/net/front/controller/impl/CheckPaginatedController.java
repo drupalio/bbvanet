@@ -35,6 +35,7 @@ public class CheckPaginatedController extends PaginationController<CheckDto> {
 
 	@Override
 	protected List<CheckDto> getNextPage(int pagination, int pageSize) {
+		LOGGER.info(" CheckPaginatedController getNextPage ");
 
 		return checkBookFacade.getCheckByStatusOrDate(productIdPControl, dateRangePControl, statusPControl, pagination,
 				pageSize);

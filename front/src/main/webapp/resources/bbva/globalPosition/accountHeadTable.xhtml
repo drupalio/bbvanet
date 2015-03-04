@@ -29,7 +29,7 @@
 			var="iproduct" rowIndexVar="findex"
 			selectionMode="single"
 			rowKey="#{iproduct.productId}" value="#{cc.attrs.listAccounts}">
-
+			
 			<p:ajax event="rowSelect"
 				listener="#{cc.attrs.controller.onProductSelected}" />
 
@@ -46,20 +46,9 @@
 					value="&lt;br /&gt; #{iproduct.productId}"></h:outputText>
 				<h:outputText styleClass="sublabel" style="font-size: 1.1em;font-weight:bold;color:#71777f"
 					escape="false" value="&lt;br /&gt; #{iproduct.productName}" />
+				
 				<!-- Combo quiero -->
-<!-- 				<bbvaInput:selectOneMenu label="Combo quiero"/> -->
-				<h:selectOneMenu styleClass="select-tab-quiero select-tab-quiero-default quieros btn-group bootstrap-select hidden-xs hidden-sm quiero">
-					<f:selectItem itemLabel="Quiero"  itemDisabled="true"/>
-					<f:selectItem itemLabel="Ver saldos y movimientos"
-						itemValue="Ver saldos y movimientos" />
-					<f:selectItem itemLabel="Realizar transferencias"
-						itemValue="Realizar transferencias" />
-					<f:selectItem itemLabel="Gestionar transferencias"
-						itemValue="Gestionar transferencias" />
-					<f:selectItem itemLabel="Ver más opciones >>"
-						itemValue="Ver más opciones" />
-
-				</h:selectOneMenu>
+				<bbvaInput:selectOneMenuLikes valueList="#{comboCriteriaController.getListQuieroAccounts()}"/>
 
 			</p:column>
 

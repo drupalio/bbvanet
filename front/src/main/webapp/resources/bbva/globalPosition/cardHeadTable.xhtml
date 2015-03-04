@@ -6,7 +6,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pm="http://primefaces.org/mobile"
-	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:bbvaInput="http://java.sun.com/jsf/composite/bbva/input">
 
 <composite:interface>
 	<composite:attribute name="id" type="String" />
@@ -21,17 +22,18 @@
 			selectionMode="single"
 			rowKey="#{iproduct.productId}" value="#{cc.attrs.listCards}">
 			
-			<p:ajax event="rowSelect" 
+			<p:ajax event="rowSelect"
 				listener="#{cc.attrs.controller.onProductSelected}" />
+
 			<p:ajax event="rowUnselect" />
 
 			<p:column class="head" headerText="#{msg['text.card.name']}"
 				styleClass="head col-xs-6 col-md-6"
-				style="font-size: 10px;color: #434A58;font-family: Arial;background: none;border-style: none">
+				style="font-size: 10px;color: #434A58;font-family: Arial;background: none;border-style: none;">
 
 
 				<h:outputText styleClass="title-label"
-					style="font-size: 1.2em; font-weight:bold; color:#0078d2"
+					style="font-size: 1.2em; font-weight:bold; color:#0078d2;"
 					escape="false" value="#{iproduct.alias}" />
 				<h:outputText style="display:block;font-size: 1.1em;margin-bottom:-8px;margin-top:-8px;color:#71777f" escape="false"
 					value="&lt;br /&gt; #{globalPositionController.maskCardsNumber(iproduct.productId)}" />
@@ -39,22 +41,7 @@
 					escape="false" value="&lt;br /&gt; #{iproduct.productName}" />
 			
 				<!-- Combo quiero -->
-<!-- 				<bbvaInput:selectOneMenu label="Combo quiero"/> -->
-				<div style="display: block;z-index:5 ; overflow: visible;">
-				
-					<h:selectOneMenu style="z-index: 5;" styleClass="select-tab-quiero select-tab-quiero-default quieros btn-group bootstrap-select hidden-xs hidden-sm">
-						<f:selectItem itemLabel="Quiero"  itemDisabled="true"/>
-						<f:selectItem itemLabel="Ver movimientos"
-							itemValue="Ver movimientos" />
-						<f:selectItem itemLabel="Bloquear tarjeta"
-							itemValue="Bloquear tarjeta" />
-						<f:selectItem itemLabel="Pagar compras"
-							itemValue="Pagar compras" />
-						<f:selectItem itemLabel="Ver más opciones >>"
-							itemValue="Ver más opciones" />
-	
-					</h:selectOneMenu>
-				</div>
+				<bbvaInput:selectOneMenuLikes valueList="#{comboCriteriaController.getListQuieroCards()}"/>
 			</p:column>
 			<p:column class="head" headerText="#{msg['text.card.balanceTotal']}"
 				styleClass="hidden-xs hidden-sm col-sm-4"

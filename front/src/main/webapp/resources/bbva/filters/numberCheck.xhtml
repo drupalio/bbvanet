@@ -39,7 +39,7 @@
 					enabledClass="selectOption" disabledClass="selectOptionDisabled"
 					disabled="#{checkBookController.renderComponents['STATUS']}">
 					<f:selectItem itemLabel="#{msg['text.combo.select']}" />
-					<f:selectItems value="#{comboCriteriaController.multiValueList}" var="multiValue" itemValue="#{multiValue.id}"
+					<f:selectItems value="#{comboCriteriaController.multiValueList}" var="multiValue" itemValue="#{multiValue.valueId}"
 						itemLabel="#{msg[multiValue.value]}" />
 				</h:selectOneMenu>
 			</div>
@@ -56,15 +56,18 @@
 				</h:selectOneMenu>
 			</div>
 		</p:outputPanel>
-		<button jsf:id="searchButton" jsf:disabled="#{checkBookController.renderComponents['BUTTONBOOK']}"
-			class="btn small hidden-xs hidden-sm" jsf:actionListener="#{checkBookController.setNumberCheckOrBook}">
-			#{msg['button.confirm']}
-			<p:ajax process="@form"
-				oncomplete="document.getElementById('tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:checkContainer:checkList:componentList').click();"
-				update="
+		<p:spacer width="100" height="40" />
+		<p:outputPanel>
+			<button jsf:id="searchButton" jsf:disabled="#{checkBookController.renderComponents['BUTTONBOOK']}"
+				class="btn small hidden-xs hidden-sm" jsf:actionListener="#{checkBookController.setNumberCheckOrBook}">
+				#{msg['button.confirm']}
+				<p:ajax process="@form"
+					oncomplete="document.getElementById('tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:checkContainer:checkList:componentList').click();"
+					update="
 			:tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:checkContainer:checkList:componentList
 			" />
-		</button>
+			</button>
+		</p:outputPanel>
 	</div>
 </composite:implementation>
 </html>

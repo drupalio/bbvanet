@@ -5,7 +5,8 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:pm="http://primefaces.org/mobile">
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:bbvaInput="http://java.sun.com/jsf/composite/bbva/input">
 
 <composite:interface>
 	<composite:attribute name="id" type="String" />
@@ -41,19 +42,7 @@
 					escape="false" value="&lt;br /&gt; #{iproduct.productName}" />
 
 				<!-- Combo quiero -->
-<!-- 				<bbvaInput:selectOneMenu label="Combo quiero"/> -->
-				<h:selectOneMenu styleClass="select-tab-quiero select-tab-quiero-default quieros btn-group bootstrap-select hidden-xs hidden-sm quiero">
-					<f:selectItem itemLabel="Quiero"  itemDisabled="true"/>
-					<f:selectItem itemLabel="Ver saldos y movimientos"
-						itemValue="Ver saldos y movimientos" />
-					<f:selectItem itemLabel="Realizar transferencias"
-						itemValue="Realizar transferencias" />
-					<f:selectItem itemLabel="Gestionar transferencias"
-						itemValue="Gestionar transferencias" />
-					<f:selectItem itemLabel="Ver más opciones >>"
-						itemValue="Ver más opciones" />
-
-				</h:selectOneMenu>
+				<bbvaInput:selectOneMenuLikes valueList="#{comboCriteriaController.getListQuieroCards()}"/>
 			</p:column>
 			
 			<p:column class="head" headerText="#{msg['text.account.balance']}"

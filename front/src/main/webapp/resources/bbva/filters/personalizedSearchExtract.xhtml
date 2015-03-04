@@ -28,7 +28,7 @@
 							<!-- COMBO AÑOS -->
 							<h:selectOneMenu id="stateYear" value="#{extractController.selectedYear}" onchange="styles(this)"
 								enabledClass="selectOption" disabledClass="selectOption" style="background-position: 90% !important;">
-								<f:selectItem itemLabel="Año" />
+								<f:selectItem itemLabel="Año" itemDisabled="true" />
 								<f:selectItems value="#{extractController.yearAvailable}" />
 								<p:ajax process="@this" listener="#{extractController.actionState}" update="stateMonth" />
 							</h:selectOneMenu>
@@ -38,7 +38,7 @@
 							<h:selectOneMenu id="stateMonth" value="#{extractController.selectedMonth}" onchange="styles(this)"
 								disabled="#{extractController.enableMonth}" disabledClass="selectOptionDisabled" enabledClass="selectOption"
 								style="background-position: 90% !important;">
-								<f:selectItem itemLabel="Mes" />
+								<f:selectItem itemLabel="Mes" itemDisabled="true" />
 								<f:selectItems value="#{extractController.monthAvailable}" />
 								<p:ajax update="@this" process="@this" />
 							</h:selectOneMenu>
