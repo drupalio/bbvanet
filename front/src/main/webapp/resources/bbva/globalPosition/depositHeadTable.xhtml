@@ -6,7 +6,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pm="http://primefaces.org/mobile"
-	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:bbvaInput="http://java.sun.com/jsf/composite/bbva/input">
 
 <composite:interface>
 	<composite:attribute name="id" type="String" />
@@ -37,21 +38,10 @@
 					value="&lt;br /&gt; #{iproduct.productId}" />
 				<h:outputText styleClass="sublabel" style="font-size: 1.1em;font-weight:bold;color:#71777f"
 					escape="false" value="&lt;br /&gt; #{iproduct.productName}" />
-				
+	
 				<!-- Combo quiero -->
-<!-- 				<bbvaInput:selectOneMenu label="Combo quiero"/> -->
-				<h:selectOneMenu styleClass="select-tab-quiero select-tab-quiero-default quieros btn-group bootstrap-select hidden-xs hidden-sm quiero">
-					<f:selectItem itemLabel="Quiero"  itemDisabled="true"/>
-					<f:selectItem itemLabel="Ver movimientos"
-						itemValue="Ver movimientos" />
-					<f:selectItem itemLabel="Renovar mis depósitos"
-						itemValue="Renovar mis depósitos" />
-					<f:selectItem itemLabel="Rescatar mis depósitos"
-						itemValue="Rescatar mis depósitos" />
-					<f:selectItem itemLabel="Ver más opciones >>"
-						itemValue="Ver más opciones" />
+				<bbvaInput:selectOneMenuLikes valueList="#{comboCriteriaController.getQuieroDeposit()}"/>
 
-				</h:selectOneMenu>
 			</p:column>
 
 			<p:column class="head"

@@ -22,10 +22,10 @@
 			selectionMode="single"
 			rowKey="#{iproduct.productId}" value="#{cc.attrs.listCards}">
 			
-			<p:ajax event="rowSelect" 
+			<p:ajax event="rowSelect"
 				listener="#{cc.attrs.controller.onProductSelected}" />
-<!-- 				<f:ajax event="rowSelect" listener="#{cc.attrs.controller.onProductSelected}"/> -->
-<!-- 			<p:ajax event="rowUnselect" /> -->
+
+			<p:ajax event="rowUnselect" />
 
 			<p:column class="head" headerText="#{msg['text.card.name']}"
 				styleClass="head col-xs-6 col-md-6"
@@ -41,19 +41,7 @@
 					escape="false" value="&lt;br /&gt; #{iproduct.productName}" />
 			
 				<!-- Combo quiero -->
-				<bbvaInput:selectOneMenu label="Combo quiero"/>
-<!-- 					<h:selectOneMenu styleClass="select-tab-quiero select-tab-quiero-default quieros btn-group bootstrap-select hidden-xs hidden-sm"> -->
-<!-- 						<f:selectItem itemLabel="Quiero"  itemDisabled="true"/> -->
-<!-- 						<f:selectItem itemLabel="Ver movimientos"  -->
-<!-- 							itemValue="Ver movimientos" /> -->
-<!-- 						<f:selectItem itemLabel="Bloquear tarjeta" -->
-<!-- 							itemValue="Bloquear tarjeta" /> -->
-<!-- 						<f:selectItem itemLabel="Pagar compras" -->
-<!-- 							itemValue="Pagar compras" /> -->
-<!-- 						<f:selectItem itemLabel="Ver más opciones >>" -->
-<!-- 							itemValue="Ver más opciones" /> -->
-<!-- 						<f:ajax event="valueChange" listener="#{cc.attrs.controller.onProductSelected}" /> -->
-<!-- 					</h:selectOneMenu> -->
+				<bbvaInput:selectOneMenuLikes valueList="#{comboCriteriaController.getListQuieroCards()}"/>
 			</p:column>
 			<p:column class="head" headerText="#{msg['text.card.balanceTotal']}"
 				styleClass="hidden-xs hidden-sm col-sm-4"
