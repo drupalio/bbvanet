@@ -16,7 +16,7 @@
 </composite:interface>
 
 <composite:implementation>
-
+	<div style = "display: #{cc.attrs.listQuota.size() > '0' ? 'block' : 'none'}" >
 	<h:form id="#{cc.attrs.id}">
 		<p:dataTable id="#{cc.attrs.id}" var="iproduct" rowIndexVar="findex"
 			selectionMode="single" rowKey="#{iproduct.productId}"
@@ -78,6 +78,7 @@
 			</p:column>
 		</p:dataTable>
 	</h:form>
+	</div>
 </composite:implementation>
 
 </html>

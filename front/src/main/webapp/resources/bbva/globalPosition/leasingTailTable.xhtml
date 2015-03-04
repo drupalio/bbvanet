@@ -16,7 +16,7 @@
 
 <composite:implementation>
 
-	<div class="item-hidden" style="display: block;">
+	<div class="item-hidden" style ="display: #{cc.attrs.listLeasing.size() > '0' ? 'block' : 'none'}">
 	<h:form id="#{cc.attrs.id}">
 		<p:dataTable id="#{cc.attrs.id}" 
 			var="iproduct" 

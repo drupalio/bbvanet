@@ -15,32 +15,71 @@
 </composite:interface>
 
 <composite:implementation>
-	<h:form id="formCheks">			
-		
-		<h3>
-			<h:outputLabel id="labelChecks" value="#{msg['tex.check.status']}"
-				rendered="#{renderComponents['TITLECHECKS']}" />
-		</h3>
+	<h:form id="formCheks">
 
-			<!-- Tabla de Cheques -->
-			<div class="table-wrapper">
-				<p:dataTable id="checksTable" widgetVar="checksTable"
-					styleClass="detail-table-body sortable"
-					emptyMessage="#{msg['text.empty.table']}"
-					value="#{cc.attrs.listChecks}" var="cheks"
-					rendered="#{checkBookController.renderComponents['CHECKTABLE']}"
-					rowKey="#{cheks.id}">
-					<p:column headerText="#{msg['text.table.num.check']}"
-						styleClass="sorted w13 desc"
-						style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
+		<!-- Tabla de Cheques -->
+		<div class="table-wrapper">
+			<p:dataTable id="checksTable" widgetVar="checksTable"
+				styleClass="detail-table-body sortable"
+				emptyMessage="#{msg['text.empty.table']}"
+				value="#{cc.attrs.listChecks}" var="cheks"
+				rendered="#{checkBookController.renderComponents['CHECKTABLE']}"
+				rowKey="#{cheks.id}">
+				<p:column headerText="#{msg['text.table.num.check']}"
+					styleClass="sorted w13 desc"
+					style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
 
+					<h:outputText styleClass="brand"
+						style="font-size: 15px;line-height: 17px" value="#{cheks.id}" />
+				</p:column>
+
+				<p:column headerText="#{msg['text.table.emi.date']}"
+					styleClass="desc w13"
+					style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none;">
+
+					<h:outputText class="text"
+						style="font-size: 15px;line-height: 17px;color: #333"
+						value="#{cheks.issueDate}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+
+				</p:column>
+
+				<p:column class="head" headerText="#{msg['text.detailMove.value']}"
+					styleClass="desc w18"
+					style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
+
+					<h:outputText class="currency"
+						style="font-size: 15px; padding-top: 12px; text-align: right; white-space: nowrap;color: #333"
+						value="#{cheks.value}" />
+
+				</p:column>
+				<p:column class="head" headerText="#{msg['text.table.status']}"
+					styleClass="desc w10"
+					style="font-size: 0.7em;color: #333;font-family: Arial;background: none;border-style: none">
+
+					<h:outputText class="text"
+						style="font-size: 15px;line-height: 17px;color: #333"
+						value="#{cheks.status}" />
+
+				</p:column>
+
+				<p:column class="head" headerText="#{msg['text.table.change.date']}"
+					styleClass="desc w21"
+					style="font-size: 0.7em;color: #333;font-family: Arial;background: none;border-style: none">
+
+					<h:outputText class="text"
+						style="font-size: 15px;line-height: 17px;color: #333"
+						value="#{cheks.modifiedDate}" />
+
+				</p:column>
+
+				<p:column headerText="#{msg['text.detailMove.concep']}"
+					styleClass="smart-view responseTable">
+
+					<div class="left hidden-lg">
 						<h:outputText styleClass="brand"
 							style="font-size: 15px;line-height: 17px" value="#{cheks.id}" />
-					</p:column>
-
-					<p:column headerText="#{msg['text.table.emi.date']}"
-						styleClass="desc w13"
-						style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none;">
 
 						<h:outputText class="text"
 							style="font-size: 15px;line-height: 17px;color: #333"
@@ -48,55 +87,36 @@
 							<f:convertDateTime pattern="dd/MM/yyyy" />
 						</h:outputText>
 
-					</p:column>
+					</div>
 
-					<p:column class="head" headerText="#{msg['text.detailMove.value']}"
-						styleClass="desc w18"
-						style="font-size: 0.7em;color: #434A58;font-family: Arial;background: none;border-style: none">
-
+					<div class="right hidden-lg" style="width: 35% !important;">
 						<h:outputText class="currency"
 							style="font-size: 15px; padding-top: 12px; text-align: right; white-space: nowrap;color: #333"
 							value="#{cheks.value}" />
 
-					</p:column>
-					<p:column class="head" headerText="#{msg['text.table.status']}"
-						styleClass="desc w10"
-						style="font-size: 0.7em;color: #333;font-family: Arial;background: none;border-style: none">
-
 						<h:outputText class="text"
 							style="font-size: 15px;line-height: 17px;color: #333"
 							value="#{cheks.status}" />
+					</div>
+				</p:column>
 
-					</p:column>
+			</p:dataTable>
+		</div>
+		<footer class="detail-table-footer">
 
-					<p:column class="head"
-						headerText="#{msg['text.table.change.date']}"
-						styleClass="desc w21"
-						style="font-size: 0.7em;color: #333;font-family: Arial;background: none;border-style: none">
+			<button id="moreCheks" class="btn btn-more-results"
+				jsf:update=":detailAccounts:checkTable:formCheks:checksTable"
+				value="Más Resultados"
+				jsf:rendered="#{checkBookController.renderComponents['FOOTERTABLECHEKS']}"
+				jsf:actionListener="#{checkBookController.nextPage}">
+				<span>#{msg['text.detailMove.footer']}</span>
+			</button>
+		</footer>
 
-						<h:outputText class="text"
-							style="font-size: 15px;line-height: 17px;color: #333"
-							value="#{cheks.modifiedDate}" />
-
-					</p:column>
-				</p:dataTable>
-			</div>
-			<footer class="detail-table-footer">
-
-				<button id="moreCheks" class="btn btn-more-results"
-					jsf:update=":detailAccounts:checkTable:formCheks:checksTable"
-					value="Más Resultados"
-					jsf:rendered="#{checkBookController.renderComponents['FOOTERTABLECHEKS']}"
-					jsf:actionListener="#{checkBookController.nextPage}">
-					<span>#{msg['text.detailMove.footer']}</span>
-				</button>
-			</footer>
-
-			<p:dialog widgetVar="statusDialogCheck" modal="true"
-				draggable="false" closable="false" resizable="false"
-				showHeader="false">
-				<p:outputLabel value="Un momento porfavor" />
-			</p:dialog>
+		<p:dialog widgetVar="statusDialogCheck" modal="true" draggable="false"
+			closable="false" resizable="false" showHeader="false">
+			<p:outputLabel value="Un momento porfavor" />
+		</p:dialog>
 
 
 	</h:form>

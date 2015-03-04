@@ -44,6 +44,7 @@
 			</column>
 			<column name="VALUE" type="VARCHAR(40)"></column>
 			<column name="TYPE_ID" type="BIGINT" />
+			<column name="VALUE_ID" type="BIGINT" />
 		</createTable>
 
 		<addForeignKeyConstraint baseColumnNames="TYPE_ID"
@@ -66,17 +67,48 @@
 			<column name="VALUE">text.combo.likes.do.transfers</column>
 			<column name="TYPE_ID">1</column>
 		</insert>
-
+		
 		<insert tableName="MULTIVALUEGROUP">
 			<column name="ID" autoIncrement="true" />
-			<column name="VALUE">text.combo.cheks.enabled</column>
+			<column name="VALUE">text.combo.cheks.available</column>
 			<column name="TYPE_ID">2</column>
+			<column name="VALUE_ID">0</column>
 		</insert>
-
+		
 		<insert tableName="MULTIVALUEGROUP">
 			<column name="ID" autoIncrement="true" />
-			<column name="VALUE">text.combo.cheks.requested</column>
+			<column name="VALUE">text.combo.cheks.canceled</column>
 			<column name="TYPE_ID">2</column>
+			<column name="VALUE_ID">1</column>
+		</insert>
+		
+		<insert tableName="MULTIVALUEGROUP">
+			<column name="ID" autoIncrement="true" />
+			<column name="VALUE">text.combo.cheks.lost</column>
+			<column name="TYPE_ID">2</column>
+			<column name="VALUE_ID">2</column>
+		</insert>
+		
+		<insert tableName="MULTIVALUEGROUP">
+			<column name="ID" autoIncrement="true" />			
+			<column name="VALUE">text.combo.cheks.paid.by.redemption</column>
+			<column name="TYPE_ID">2</column>
+			<column name="VALUE_ID">3</column>
+		</insert>
+		
+		
+		<insert tableName="MULTIVALUEGROUP">
+			<column name="ID" autoIncrement="true" />
+			<column name="VALUE">text.combo.cheks.paid.by.window</column>
+			<column name="TYPE_ID">2</column>
+			<column name="VALUE_ID">4</column>
+		</insert>
+		
+		<insert tableName="MULTIVALUEGROUP">
+			<column name="ID" autoIncrement="true" />
+			<column name="VALUE">text.combo.cheks.stop.payment</column>
+			<column name="TYPE_ID">2</column>
+			<column name="VALUE_ID">8</column>
 		</insert>
 		
 		<!-- <insert tableName="MULTIVALUEGROUP">

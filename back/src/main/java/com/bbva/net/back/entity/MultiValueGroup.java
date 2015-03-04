@@ -29,6 +29,9 @@ public class MultiValueGroup implements Serializable {
 	@Column(name = "TYPE_ID")
 	private Integer typeId;
 
+	@Column(name = "VALUE_ID")
+	private Integer valueId;
+
 	/**
 	 * @return the id
 	 */
@@ -69,6 +72,20 @@ public class MultiValueGroup implements Serializable {
 	 */
 	public void setTypeId(Integer typeId) {
 		this.typeId = typeId;
+	}
+
+	/**
+	 * @return the valueId
+	 */
+	public Integer getValueId() {
+		return valueId;
+	}
+
+	/**
+	 * @param valueId the valueId to set
+	 */
+	public void setValueId(Integer valueId) {
+		this.valueId = valueId;
 	}
 
 }
