@@ -59,10 +59,18 @@
 						rendered="#{quotaController.renderComponents['FOOTERTABLEQUOTA']}" styleClass="btn btn-more-results"
 						actionListener="#{quotaController.nextPage}" ajax="true"
 						update=":quotaDetail:detailAccounts:detailAccounts:detailmovesAC">
+						<p:ajax onstart="PF('moreQuotaDialog').show()" onsuccess="PF('moreQuotaDialog').hide()" />
 					</p:commandButton>
 				</footer>
 			</article>
 		</p:outputPanel>
+		
+		<p:dialog widgetVar="moreQuotaDialog" modal="true" draggable="false"
+			showEffect="fade" hideEffect="fade"
+			closable="false" resizable="false" showHeader="false">
+			<p:outputLabel value="#{msg['please.wait']}" />
+		</p:dialog>
+		
 	</h:form>
 </composite:implementation>
 </html>
