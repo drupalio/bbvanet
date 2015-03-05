@@ -79,3 +79,16 @@ function styles(combo) {
 	$(combo).blur();
     });
 }
+$(document).ready(function() {
+    $('#headerTab').click(function() {
+	$(this).removeClass('setStyle');
+    });
+});
+
+function headerTabS(button) {
+    $(document).ready(function() {
+	var parent = $(button).parents('#dateFilterContent');
+	var li = $(parent).parents('.date-filter').children('#headerTab');
+	$(li).addClass('setStyle');
+    });
+}
