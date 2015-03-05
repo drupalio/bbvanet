@@ -38,7 +38,7 @@
 				<h:selectOneMenu id="stateSelect" styleClass="widthTalo" value="#{cc.attrs.valuecheckState}" onchange="styles(this)"
 					enabledClass="selectOption" disabledClass="selectOptionDisabled"
 					disabled="#{checkBookController.renderComponents['STATUS']}">
-					<f:selectItem itemLabel="#{msg['text.combo.select']}" />
+					<f:selectItem itemLabel="#{msg['text.combo.select']}" itemDisabled="true" />
 					<f:selectItems value="#{comboCriteriaController.multiValueList}" var="multiValue" itemValue="#{multiValue.valueId}"
 						itemLabel="#{msg[multiValue.value]}" />
 				</h:selectOneMenu>
@@ -50,7 +50,7 @@
 				<h:selectOneMenu id="numberBook" value="#{cc.attrs.valueBookNumber}" styleClass="widthTalo"
 					enabledClass="selectOption" disabledClass="selectOptionDisabled" onchange="styles(this)"
 					disabled="#{checkBookController.renderComponents['NUMBERBOOK']}">
-					<f:selectItem itemLabel="#{msg['text.combo.select']}" />
+					<f:selectItem itemLabel="#{msg['text.combo.select']}" itemDisabled="true" />
 					<f:selectItems value="#{checkBookController.checkBooks}" var="multiValue" itemValue="#{multiValue.id}"
 						itemLabel="#{msg[multiValue.value]}" />
 				</h:selectOneMenu>
