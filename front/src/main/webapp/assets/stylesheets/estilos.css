@@ -557,6 +557,15 @@ input.ui-state-hover {
 	z-index: 1000;
 }
 
+.quiero {
+	background: linear-gradient(to bottom, #ffffff 0%, #eaf1f7 100%) repeat
+		scroll 0 0 white !important;
+	border: 1px solid #d5e2ee !important;
+	width: 70px !important;
+	float: right !important;
+	z-index: 1000;
+}
+
 /*Combos*/
 .selectorCombo select {
 	padding: 0.5px 0px 0.5px 1px !important;
@@ -586,16 +595,15 @@ input.ui-state-hover {
 
 /*Combos*/
 .selectorCombo select:focus {
-	border: 1px solid #D5E2EE;
+	outline: none;
 	box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.125) inset !important;
 }
 
 .selectorCombo option {
 	padding: 6px 0px 5px 0.7em !important;
 	background: none repeat scroll 0% 0% #FFF !important;
-	color: #003F8D !important;
-	border: medium none !important;
 	z-index: 1000;
+	outline: none;
 	line-height: 4px !important;
 	font: 12px "BBVA Web Medium", Arial, sans-serif bold !important;
 }
@@ -604,9 +612,8 @@ input.ui-state-hover {
 .selectOption {
 	padding: 6px 0px 5px 0.7em !important;
 	background: none repeat scroll 0% 0% #FFF !important;
-	border: medium none !important;
 	color: #003F8D !important;
-	z-index: 1000;
+	box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.176);
 	line-height: 4px !important;
 	font: 12px "BBVA Web Medium", Arial, sans-serif bold !important;
 }
@@ -614,9 +621,7 @@ input.ui-state-hover {
 .selectOptionDisabled {
 	padding: 6px 0px 5px 0.7em !important;
 	background: none repeat scroll 0% 0% #FFF !important;
-	border: medium none !important;
 	color: #bbe2ff !important;
-	z-index: 1000;
 	font: 12px "BBVA Web Medium", Arial, sans-serif bold !important;
 }
 
@@ -650,4 +655,12 @@ input.ui-state-hover {
 	.widthTalo {
 		width: 100% !important;
 	}
+}
+
+a.header.setStyle span.outStyle {
+	background-image: url("../img/icon-smaller-tick.png") no-repeat 60%;
+}
+
+a.header.setStyle span.arrow-left-smaller {
+	background-image: url("../img/icon-smaller-cross.png") !important;
 }

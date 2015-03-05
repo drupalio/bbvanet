@@ -26,8 +26,10 @@
 			<bbvaSearch:customSearchList id="customList" 
 				classList="date-filter customSearch" classSpan="arrow-left-smaller"
 				classSpanFilter="filter" title="#{msg['text.date']}"
-				filterTitle="#{movementsCriteriaController.sinceDatestr}"
-				filterMessage="#{movementsCriteriaController.toDatestr}">
+				filterTitle="#{movementsCriteriaController.titleDateSince}"
+				filterTitle2="#{movementsCriteriaController.titleDateTo}"
+				filterMessage="#{movementsCriteriaController.sinceDatestr}"
+				filterMessage2="#{movementsCriteriaController.toDatestr}">
 
 				<bbvaSearch:customSearchFilter id="customDate"
 					showQuota="false"
