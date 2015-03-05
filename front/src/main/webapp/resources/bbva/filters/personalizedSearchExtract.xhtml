@@ -1,16 +1,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:composite="http://java.sun.com/jsf/composite" xmlns:p="http://primefaces.org/ui"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:bbvaAcc="http://java.sun.com/jsf/composite/bbva/accounts"
 	xmlns:bbvaAlert="http://java.sun.com/jsf/composite/bbva/alert"
 	xmlns:bbvaBody="http://java.sun.com/jsf/composite/bbva/body"
-	xmlns:bbvaContainer="http://java.sun.com/jsf/composite/bbva/container" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:bbvaContainer="http://java.sun.com/jsf/composite/bbva/container"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:bbvaDetAcc="http://java.sun.com/jsf/composite/bbva/tab"
 	xmlns:bbvaCalendar="http://java.sun.com/jsf/composite/bbva/calendar"
 	xmlns:bbvaSearch="http://java.sun.com/jsf/composite/bbva/filters"
-	xmlns:bbvaButton="http://java.sun.com/jsf/composite/bbva/button" xmlns:jsf="http://xmlns.jcp.org/jsf">
+	xmlns:bbvaButton="http://java.sun.com/jsf/composite/bbva/button"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
 <composite:interface>
 	<composite:attribute name="title" type="String" />
 </composite:interface>
@@ -21,44 +25,47 @@
 				<!-- <form id="extractDownload"> -->
 				<h1>Descargar extracto electrónico</h1>
 				<div class="first-part-download">
-					<small>Selecciona el año y el mes del extracto que quieres consultar <i class="iconFont-412"></i>
+					<small>Selecciona el año y el mes del extracto que quieres
+						consultar <i class="iconFont-412"></i>
 					</small>
-					<div class="row filteroptions">
-						<div class="col-md-3">
-							<div class="btn-group bootstrap-select">
-								<!-- COMBO AÑOS -->
-								<h:selectOneMenu id="stateYear" styleClass="selector" value="#{extractController.selectedYear}" disabled="">
-									<f:selectItem itemLabel="Año" />
-									<!-- <f:selectItem itemLabel="#{msg['text.combo.select']}" /> -->
-									<f:selectItems value="#{extractController.yearAvailable}" />
-									<p:ajax process="@this" listener="#{extractController.actionState}" update="stateMonth" />
-								</h:selectOneMenu>
-							</div>
+					<div id="parentCombo" class="row filteroptions">
+						<div class="col-md-3 selectorCombo">
+							<!-- COMBO AÑOS -->
+							<h:selectOneMenu id="stateYear" value="#{extractController.selectedYear}"
+								onchange="styles(this)" enabledClass="selectOption"
+								disabledClass="selectOptionDisabled"
+								style="background-position: 90% !important;">
+								<f:selectItem itemLabel="#{msg['text.year']}" itemDisabled="true" />
+								<f:selectItems value="#{extractController.yearAvailable}" />
+								<p:ajax process="@this" listener="#{extractController.actionState}"
+									update="stateMonth" />
+							</h:selectOneMenu>
 						</div>
 						<!-- COMBO MESES -->
-						<div class="col-md-3">
-							<div class="btn-group bootstrap-select dropup open">
-								<h:selectOneMenu id="stateMonth" styleClass="filter-option pull-left selector"
-									value="#{extractController.selectedMonth}">
-									<!-- disabled="#{extractController.enableMonth}"> -->
-									<f:selectItem itemLabel="Mes" />
-									<!-- <f:selectItem itemLabel="#{msg['text.combo.select']}" /> -->
-									<f:selectItems value="#{extractController.monthAvailable}" />
-									<f:ajax event="click" execute="@this" />
-								</h:selectOneMenu>
-							</div>
+						<div class="col-md-3 selectorCombo">
+							<h:selectOneMenu id="stateMonth"
+								value="#{extractController.selectedMonth}" onchange="styles(this)"
+								disabled="#{extractController.enableMonth}"
+								disabledClass="selectOptionDisabled" enabledClass="selectOption"
+								style="background-position: 90% !important;">
+								<f:selectItem itemLabel="#{msg['text.mounth']}" itemDisabled="true" />
+								<f:selectItems value="#{extractController.monthAvailable}" />
+								<p:ajax update="@this" process="@this" />
+							</h:selectOneMenu>
 						</div>
 						<!-- BOTON DESCARGA -->
 						<div class="col-md-5">
-							<bbvaButton:iconButton id="searchExtract" icon="icon pdf" value="Descargar extracto" show="true"
-								classButton="stable-button medium icon-left ext-message" actionListener="#{cc.attrs.actionListenerRemove}">
+							<bbvaButton:iconButton id="searchExtract" icon="icon pdf"
+								value="Descargar extracto" show="true"
+								classButton="stable-button medium icon-left ext-message"
+								actionListener="#{extractController.documentExtract}">
 							</bbvaButton:iconButton>
 						</div>
 					</div>
 				</div>
 				<!-- </form> -->
 				<!-- TEXTO INFERIOR -->
-				<div class="system-message info">
+				<div class="system-message info" style="margin-top: 20px !important;">
 					<span class="icon"></span>
 					<p>#{msg['msg.info.extract.part1']}</p>
 					<p>#{msg['msg.info.extract.part2']}</p>

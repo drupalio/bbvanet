@@ -3069,7 +3069,6 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		},
 		"postalAddress": "Calle 36"
 	},
-
 	"mobilizationConditions": "Consiciones de movilizacion",
 	"activity": {
 		"function": {
@@ -3084,7 +3083,6 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		"alias": "Julian"
 		
 	}]
-
 }</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/products/V01/00130443000200009416/extracts" method="GET" resourcePath="/czic/products/V01/00130443000200009416/extracts"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Examples showing how to match based on path, query param and header
 // Match based on path
@@ -3274,9 +3272,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"externalCode": "150058636",
 	"month": "7",
 	"year": "2012"
-
-}]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/products/V01/00130443000200009416/movements/" method="GET" resourcePath="/czic/products/V01/00130443000200009416/movements/"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
-
+}]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/products/V01/00130443000200009416/movements/" method="GET" resourcePath="/czic/products/V01/00130443000200009416/movements/"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Examples showing how to match based on path, query param and header
 // Match based on path
 def requestPath = mockRequest.getPath()

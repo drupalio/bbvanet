@@ -39,13 +39,13 @@ public class ExtractControllerImpl extends AbstractBbvaController implements Ext
 
 	private List<String> monthAvailable;
 
-	private boolean enableMonth = true;
+	private boolean enableMonth;
 
 	public void init() {
 
 		try {
 			this.extractList = this.extractFacade.getExtractAvailable(super.getSelectedProduct().getProductNumber());
-
+			this.enableMonth = true;
 			getExtractAvailablePeriod();
 		} catch (final Exception exception) {
 			exception.printStackTrace();
@@ -66,7 +66,7 @@ public class ExtractControllerImpl extends AbstractBbvaController implements Ext
 	}
 
 	public void actionState() {
-		enableMonth = true;
+		this.enableMonth = false;
 		getExtractMontAvailable();
 	}
 

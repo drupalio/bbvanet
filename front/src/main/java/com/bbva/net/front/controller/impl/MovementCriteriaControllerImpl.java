@@ -49,7 +49,8 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 	private StringBuilder messageBalance;
 
-	private String sinceText, toText, selectDate = "3", sinceDatestr, toDatestr, titleInOrExp;
+	private String sinceText, toText, selectDate = "3", titleDateSince, titleDateTo, sinceDatestr, toDatestr,
+			titleInOrExp;
 
 	private Date sinceDate, toDate;
 
@@ -95,6 +96,8 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		messageBalance = new StringBuilder();
 		sinceDate = null;
 		toDate = null;
+		titleDateSince = "";
+		titleDateTo = "";
 		selectDate = new String();
 		dateRange = null;
 		balanceRange = null;
@@ -369,11 +372,19 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		this.dateRange.setDateSince(getSinceDate());
 		this.dateRange.setDateTo(getToDate());
 		if (!(getSinceDate() == (null)) && !(getToDate() == (null)) && getSelectDate().equals(CONCRETE_DATE)) {
-			sinceDatestr = SINCE_TITLE + ": " + dateFormat.format(getSinceDate());
-			toDatestr = TO_TITLE + ": " + dateFormat.format(getToDate());
+			titleDateSince = SINCE_TITLE + ":";
+			titleDateTo = TO_TITLE + ":";
+
+			sinceDatestr = dateFormat.format(getSinceDate());
+			toDatestr = dateFormat.format(getToDate());
 		} else {
+			titleDateSince = "";
+			titleDateTo = "";
 			sinceDatestr = getSelectDate();
 			toDatestr = "";
+			setSinceDate(null);
+			setToDate(null);
+
 		}
 	}
 
@@ -626,6 +637,34 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 	public void setValuesLinesGraphic(List valuesLinesGraphic) {
 		this.valuesLinesGraphic = valuesLinesGraphic;
+	}
+
+	/**
+	 * @return the titleDateSince
+	 */
+	public String getTitleDateSince() {
+		return titleDateSince;
+	}
+
+	/**
+	 * @param titleDateSince the titleDateSince to set
+	 */
+	public void setTitleDateSince(String titleDateSince) {
+		this.titleDateSince = titleDateSince;
+	}
+
+	/**
+	 * @return the titleDateTo
+	 */
+	public String getTitleDateTo() {
+		return titleDateTo;
+	}
+
+	/**
+	 * @param titleDateTo the titleDateTo to set
+	 */
+	public void setTitleDateTo(String titleDateTo) {
+		this.titleDateTo = titleDateTo;
 	}
 
 	@Override

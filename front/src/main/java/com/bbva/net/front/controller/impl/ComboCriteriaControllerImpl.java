@@ -84,6 +84,62 @@ public class ComboCriteriaControllerImpl extends AbstractBbvaController implemen
 		return this.multiValueGroupFacade.getMultiValueTypes(LIST_CHECKBOOK_STATUS);
 	}
 
+	/**
+	 * Método que obtiene los items del combo quiero de cuentas
+	 */
+	@Override
+	public List<MultiValueGroup> getListQuieroAccounts() {
+		return this.multiValueGroupFacade.getMultiValueTypes(5);
+	}
+
+	/**
+	 * Método que obtiene los items del combo quiero de tarjetas
+	 */
+	@Override
+	public List<MultiValueGroup> getListQuieroCards() {
+		return this.multiValueGroupFacade.getMultiValueTypes(6);
+	}
+
+	/**
+	 * Método que obtiene los items del combo quiero de cupo
+	 */
+	@Override
+	public List<MultiValueGroup> getListQuieroQuota() {
+		return this.multiValueGroupFacade.getMultiValueTypes(7);
+	}
+
+	/**
+	 * Método que obtiene los items del combo quiero de prestamo
+	 */
+	@Override
+	public List<MultiValueGroup> getQuieroLoan() {
+		return this.multiValueGroupFacade.getMultiValueTypes(8);
+	}
+
+	/**
+	 * Método que obtiene los items del combo quiero de despositos
+	 */
+	@Override
+	public List<MultiValueGroup> getQuieroDeposit() {
+		return this.multiValueGroupFacade.getMultiValueTypes(9);
+	}
+
+	/**
+	 * Método que obtiene los items del combo quiero de fondos
+	 */
+	@Override
+	public List<MultiValueGroup> getQuieroFund() {
+		return this.multiValueGroupFacade.getMultiValueTypes(10);
+	}
+
+	/**
+	 * Método que obtiene los items del combo quiero de leasing
+	 */
+	@Override
+	public List<MultiValueGroup> getQuieroLeasing() {
+		return this.multiValueGroupFacade.getMultiValueTypes(11);
+	}
+
 	// ************* Getters Methods *************
 
 	/**
