@@ -24,11 +24,12 @@
 		<table class="detail" style="border-bottom: 1px solid #C4D7E5 !important;">
 			<tbody>
 				<tr class="textSize visible" onclick="clickMove()">
-					<td><h:outputText styleClass="brand styleLeft" value="#{cc.attrs.controller.quotaMoveDetailDto.operationDate}">
+					<td style="width: 23% !important"><h:outputText styleClass="brand styleLeft"
+							value="#{cc.attrs.controller.quotaMoveDetailDto.operationDate}">
 							<f:convertDateTime pattern="dd/MM/yyyy" />
 						</h:outputText></td>
-					<td class="text" style="float: left;">#{cc.attrs.controller.quotaMove.movementConcept}</td>
-					<td class="currency" style="padding-right: 10px !important;">#{cc.attrs.controller.quotaMoveDetailDto.value}</td>
+					<td><span style="float: left !important; display: table-cell !important;" class="text">#{cc.attrs.controller.quotaMove.movementConcept}</span></td>
+					<td style="padding-right: 10px !important;">#{cc.attrs.controller.quotaMoveDetailDto.value}</td>
 				</tr>
 				<tr class="textSize" onclick="clickMove()">
 					<td class="smart-view" colspan="3" style="width: 98% !important;">
@@ -38,7 +39,7 @@
 								<f:convertDateTime pattern="dd/MM/yyyy" />
 							</h:outputText>
 						</div>
-						<div class="right textSize" style="width: 48% !important;">
+						<div class="right textSize" style="width: 48% !important; padding-right: 20px !important;">
 							#{cc.attrs.controller.quotaMoveDetailDto.value} <span>#{cc.attrs.controller.quotaMoveDetailDto.valueslope}</span>
 						</div>
 					</td>
