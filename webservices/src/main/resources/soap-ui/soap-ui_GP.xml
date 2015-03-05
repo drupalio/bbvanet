@@ -3085,7 +3085,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	}]
 }</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/products/V01/00130443000200009416/extracts" method="GET" resourcePath="/czic/products/V01/00130443000200009416/extracts"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SCRIPT</con:dispatchStyle><con:dispatchPath>def requestMock = mockRequest.getRequest().toString()
 log.info "*** "+requestMock
-if( requestMock.contains("filter") )
+if( !requestMock.contains("filter") )
 {
 	log.info "Ejecutando SIN Filtro "
     return "Response 1"
