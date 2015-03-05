@@ -14,7 +14,6 @@ import javax.faces.event.ActionEvent;
 import javax.faces.model.SelectItem;
 
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang.StringUtils;
 import org.primefaces.event.SelectEvent;
 
 import com.bbva.net.back.entity.MultiValueGroup;
@@ -58,8 +57,36 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 
 	private Date sinceDate, toDate;
 
-	private String actionState, checkState, checkNumber, checkBookNumber, sinceDatestr, toDatestr, leftTitle,
-			rightTitle, titleState;
+	private String actionState, checkState, checkNumber, checkBookNumber, titleDateSince, titleDateTo, sinceDatestr,
+			toDatestr, leftTitle, rightTitle, titleState;
+
+	/**
+	 * @return the titleDateTo
+	 */
+	public String getTitleDateTo() {
+		return titleDateTo;
+	}
+
+	/**
+	 * @param titleDateTo the titleDateTo to set
+	 */
+	public void setTitleDateTo(String titleDateTo) {
+		this.titleDateTo = titleDateTo;
+	}
+
+	/**
+	 * @return the titleState
+	 */
+	public String getTitleState() {
+		return titleState;
+	}
+
+	/**
+	 * @param titleState the titleState to set
+	 */
+	public void setTitleState(String titleState) {
+		this.titleState = titleState;
+	}
 
 	private CheckbookDto checkBook = new CheckbookDto();
 
@@ -121,15 +148,24 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	@Override
 	public void setCustomDate(final ActionEvent event) {
 		LOGGER.info(" CheckBookControllerImpl setCustomDate ");
-
+		getRenderComponents().put(RenderAttributes.FILTERDATE.toString(), true);
+		this.dateRange = new DateRangeDto();
 		this.dateRange.setDateSince(getSinceDate());
 		this.dateRange.setDateTo(getToDate());
 		if (!(getSinceDate() == (null)) && !(getToDate() == (null)) && getSelectDate().equals(CONCRETE_DATE)) {
-			sinceDatestr = SINCE_TITLE + ": " + dateFormat.format(getSinceDate());
-			toDatestr = TO_TITLE + ": " + dateFormat.format(getToDate());
+			titleDateSince = SINCE_TITLE + ":";
+			titleDateTo = TO_TITLE + ":";
+
+			sinceDatestr = dateFormat.format(getSinceDate());
+			toDatestr = dateFormat.format(getToDate());
 		} else {
+			titleDateSince = "";
+			titleDateTo = "";
 			sinceDatestr = getSelectDate();
-			toDatestr = StringUtils.EMPTY;
+			toDatestr = "";
+			setSinceDate(null);
+			setToDate(null);
+
 		}
 	}
 
@@ -558,6 +594,20 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	 */
 	public void setCheckBooks(List<SelectItem> checkBooks) {
 		this.checkBooks = checkBooks;
+	}
+
+	/**
+	 * @return the titleDateSince
+	 */
+	public String getTitleDateSince() {
+		return titleDateSince;
+	}
+
+	/**
+	 * @param titleDateSince the titleDateSince to set
+	 */
+	public void setTitleDateSince(String titleDateSince) {
+		this.titleDateSince = titleDateSince;
 	}
 
 }

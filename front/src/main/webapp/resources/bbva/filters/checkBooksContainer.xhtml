@@ -38,9 +38,13 @@
 
 	<bbvaSearch:customSearchList id="customCheckList"
 		classList="date-filter customSearch" classSpan="arrow-left-smaller"
-		classSpanFilter="filter" title="#{msg['text.date']}"
-		filterTitle="#{checkBookController.sinceDatestr}"
-		filterMessage="#{checkBookController.toDatestr}">
+		classSpanFilter="filter" title="#{msg['text.date']}"	
+		filterTitle="#{checkBookController.titleDateSince}"
+		filterTitle2="#{checkBookController.titleDateTo}"
+		filterMessage="#{checkBookController.sinceDatestr}"
+		filterMessage2="#{checkBookController.toDatestr}"
+		
+		>
 		<bbvaSearch:customSearchFilter id="customDate" showQuota="false"
 			showMovements="false" showChecks="true" value="#{cc.attrs.value}"
 			valueDateSince="#{cc.attrs.valueDateSince}"
