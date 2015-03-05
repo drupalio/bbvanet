@@ -600,7 +600,6 @@ input.ui-state-hover {
 	background: none repeat scroll 0% 0% #FFF !important;
 	color: #003F8D !important;
 	border: medium none !important;
-	z-index: 1000;
 	line-height: 4px !important;
 	font: 12px "BBVA Web Medium", Arial, sans-serif bold !important;
 }
