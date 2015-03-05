@@ -23,30 +23,25 @@
 				<div class="first-part-download">
 					<small>Selecciona el año y el mes del extracto que quieres consultar <i class="iconFont-412"></i>
 					</small>
-					<div class="row filteroptions">
-						<div class="col-md-3">
-							<div class="btn-group bootstrap-select">
-								<!-- COMBO AÑOS -->
-								<h:selectOneMenu id="stateYear" styleClass="selector" value="#{extractController.selectedYear}" disabled="">
-									<f:selectItem itemLabel="Año" />
-									<!-- <f:selectItem itemLabel="#{msg['text.combo.select']}" /> -->
-									<f:selectItems value="#{extractController.yearAvailable}" />
-									<p:ajax process="@this" listener="#{extractController.actionState}" update="stateMonth" />
-								</h:selectOneMenu>
-							</div>
+					<div id="parentCombo" class="row filteroptions">
+						<div class="col-md-3 selectorCombo">
+							<!-- COMBO AÑOS -->
+							<h:selectOneMenu id="stateYear" value="#{extractController.selectedYear}" onchange="styles(this)"
+								enabledClass="selectOption" disabledClass="selectOption" style="background-position: 90% !important;">
+								<f:selectItem itemLabel="Año" itemDisabled="true" />
+								<f:selectItems value="#{extractController.yearAvailable}" />
+								<p:ajax process="@this" listener="#{extractController.actionState}" update="stateMonth" />
+							</h:selectOneMenu>
 						</div>
 						<!-- COMBO MESES -->
-						<div class="col-md-3">
-							<div class="btn-group bootstrap-select dropup open">
-								<h:selectOneMenu id="stateMonth" styleClass="filter-option pull-left selector"
-									value="#{extractController.selectedMonth}">
-									<!-- disabled="#{extractController.enableMonth}"> -->
-									<f:selectItem itemLabel="Mes" />
-									<!-- <f:selectItem itemLabel="#{msg['text.combo.select']}" /> -->
-									<f:selectItems value="#{extractController.monthAvailable}" />
-									<f:ajax event="click" execute="@this" />
-								</h:selectOneMenu>
-							</div>
+						<div class="col-md-3 selectorCombo">
+							<h:selectOneMenu id="stateMonth" value="#{extractController.selectedMonth}" onchange="styles(this)"
+								disabled="#{extractController.enableMonth}" disabledClass="selectOptionDisabled" enabledClass="selectOption"
+								style="background-position: 90% !important;">
+								<f:selectItem itemLabel="Mes" itemDisabled="true" />
+								<f:selectItems value="#{extractController.monthAvailable}" />
+								<p:ajax update="@this" process="@this" />
+							</h:selectOneMenu>
 						</div>
 						<!-- BOTON DESCARGA -->
 						<div class="col-md-5">
@@ -58,7 +53,7 @@
 				</div>
 				<!-- </form> -->
 				<!-- TEXTO INFERIOR -->
-				<div class="system-message info">
+				<div class="system-message info" style="margin-top: 20px !important;">
 					<span class="icon"></span>
 					<p>#{msg['msg.info.extract.part1']}</p>
 					<p>#{msg['msg.info.extract.part2']}</p>
