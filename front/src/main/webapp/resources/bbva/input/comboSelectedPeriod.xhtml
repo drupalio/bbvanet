@@ -15,7 +15,7 @@
 <composite:implementation>
 	<div class="selectorCombo" style="display: inline-block; width: 187.517px !important;">
 		<h:selectOneMenu id="periodo" value="#{cc.attrs.valueMenu}" enabledClass="selectOption"
-			disabledClass="selectOptionDisabled" onchange="styles(this)" style="background-position: 95% !important; z-index: 1000;">
+			disabledClass="selectOptionDisabled" onchange="styles(this)" style="background-position: 95% !important;">
 			<f:selectItems value="#{comboCriteriaController.multiValuePeriod}" var="multiValue"
 				itemLabel="#{msg[multiValue.value]}" itemValue="#{multiValue.id}" />
 			<f:ajax listener="#{cc.attrs.listener}" event="valueChange" execute="@this" render="#{cc.attrs.render}" />
