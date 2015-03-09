@@ -162,7 +162,7 @@ public class GlobalPositionControllerImplTest {
 		Mockito.when(graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(dateRange)))
 				.thenReturn(prueba);
 		// Mockito.verify(graphicPieDelegate,
-		// Mockito.atLeastOnce()).getCardGraphic(
+		// Mockito.atLeastOnce())k.getCardGraphic(
 		// globalPositionController.onComboSelectedCard();
 	}
 
@@ -173,6 +173,13 @@ public class GlobalPositionControllerImplTest {
 		// Mockito.when(globalPositionFacade.getGlobalProductsByUser(DEFAULT_USER)).thenThrow(new
 		// RestClientException(""));
 		// this.globalPositionController.getCustomerProducts();
+
+	}
+
+	/**
+	 * 
+	 */
+	public void checkGetTotalUserCards() {
 
 	}
 }
