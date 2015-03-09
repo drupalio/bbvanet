@@ -50,4 +50,12 @@ public class LoginControllerImpl extends AbstractBbvaController implements Login
 		this.getSession().setAttribute("docTypeUser", user.substring(8, 10));
 		this.getSession().setAttribute("docIdUser", user.substring(10, 25));
 	}
+
+	/**
+	 * @param loginFacade
+	 */
+	public void setLoginFacade(LoginFacade loginFacade) {
+		this.loginFacade = loginFacade;
+	}
+
 }
