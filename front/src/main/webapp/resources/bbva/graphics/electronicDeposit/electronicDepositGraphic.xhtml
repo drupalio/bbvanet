@@ -22,7 +22,15 @@
 			</div>
 		</div>
 		<div class="col-md-12">
+		<p:dialog widgetVar="GraphicDeposit" modal="true" draggable="false"
+			position="center" showEffect="fade" hideEffect="fade"
+			closable="false" resizable="false" showHeader="false">
+			<p:outputLabel value="#{msg['please.wait']}" />
+		</p:dialog>
 			<script>
+			$(document).ready(function() {
+				
+				PF('GraphicDeposit').show()
 				var xColumns = [];
 				var xLines = [];
 				xColumns.push("data1");
@@ -91,6 +99,8 @@
 						}
 					}
 				});
+				PF('GraphicDeposit').hide();
+			});
 			</script>
 
 

@@ -22,15 +22,17 @@
 		</div>
 		<div class="chart-cheese" id="cardG" data-highcharts-chart="3">
 			<div id="chart2_2" class="c3">
-			<div id="imgLOAD" class="imgLOAD" align="center">
-				<IMG src="/assets/img/loader.gif" />
-			</div>
-			</div>
 		</div>
-
+		</div>
+		<p:dialog widgetVar="GraphicCard" modal="true" draggable="false"
+			position="center" showEffect="fade" hideEffect="fade"
+			closable="false" resizable="false" showHeader="false">
+			<p:outputLabel value="#{msg['please.wait']}" />
+		</p:dialog>
 		<script>
-			//function initChart() {
-
+		$(document).ready(function() {
+			
+			PF('GraphicCard').show()
 			var totalColums = [];
 			var colorsLegend = [];
 			var label;
@@ -76,21 +78,29 @@
 						show : false
 					}
 				},
-				tooltip:{
-			        format:{
-			        	name: function (name, ratio, id, index) { return "<tr><td >"+name+"</td></tr>"; },
-			            value: function (value, ratio, id) {
-			                var format = d3.format(',');			                
-			                return "<B>"+currency+" "+format(value)+"</B> ("+((value*100)/totalporcentaje).toFixed(1)+"%)";
-						 }
-			        }
-			    }
+				tooltip : {
+					format : {
+						name : function(name, ratio, id, index) {							
+							return "<tr><td >" + name + "</td></tr>";
+						},
+						value : function(value, ratio, id) {
+							var format = d3.format(',');
+							return "<B>"
+									+ currency
+									+ " "
+									+ format(value)
+									+ "</B> ("
+									+ ((value * 100) / totalporcentaje)
+											.toFixed(1) + "%)";
+						}
+					}
+				}
 			// 				color : {
 			// 					pattern : colorsLegend
 			// 				},
 			});
-
-			//};
+			PF('GraphicCard').hide();
+		});
 		</script>
 
 	</h:form>
