@@ -36,9 +36,10 @@
 			<scope>test</scope>
 		</dependency>
 
+		
 		<dependency>
 			<groupId>org.mockito</groupId>
-			<artifactId>mockito-all</artifactId>
+			<artifactId>mockito-core</artifactId>
 			<version>1.9.5</version>
 			<scope>test</scope>
 		</dependency>
@@ -46,7 +47,14 @@
 		<dependency>
 			<groupId>org.powermock</groupId>
 			<artifactId>powermock-api-mockito</artifactId>
-			<version>1.6.0</version>
+			<version>1.6.1</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-module-junit4</artifactId>
+			<version>1.6.1</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -77,7 +85,6 @@
 			<version>1.1</version>
 			<scope>test</scope>
 		</dependency>
-
 
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -254,15 +261,10 @@
 			<artifactId>primefaces</artifactId>
 			<version>5.1</version>
 		</dependency>
-		
-		<!-- 
-		<dependency>
-			<groupId>org.glassfish</groupId>
-			<artifactId>javax.faces</artifactId>
-			<version>2.2.5</version>
-		</dependency>
-		 -->
-		 
+
+		<!-- <dependency> <groupId>org.glassfish</groupId> <artifactId>javax.faces</artifactId> 
+			<version>2.2.5</version> </dependency> -->
+
 	</dependencies>
 
 

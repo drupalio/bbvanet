@@ -599,18 +599,20 @@ input.ui-state-hover {
 	box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.125) inset !important;
 }
 
-.selectorCombo option {
+.selectorCombo select>option {
 	padding: 6px 0px 5px 0.7em !important;
+	width: 100%;
 	background: none repeat scroll 0% 0% #FFF !important;
 	z-index: 1000;
 	outline: none;
 	line-height: 4px !important;
 	font: 12px "BBVA Web Medium", Arial, sans-serif bold !important;
+	background: none repeat scroll 0% 0% #FFF !important;
 }
 
 /*Combos Option*/
 .selectOption {
-	padding: 6px 0px 5px 0.7em !important;
+	*padding: 6px 0px 5px 0.7em !important;
 	background: none repeat scroll 0% 0% #FFF !important;
 	color: #003F8D !important;
 	box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.176);
@@ -622,6 +624,7 @@ input.ui-state-hover {
 	padding: 6px 0px 5px 0.7em !important;
 	background: none repeat scroll 0% 0% #FFF !important;
 	color: #bbe2ff !important;
+	-ms-user-select: none;
 	font: 12px "BBVA Web Medium", Arial, sans-serif bold !important;
 }
 
