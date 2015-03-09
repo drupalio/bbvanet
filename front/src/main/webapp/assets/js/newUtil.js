@@ -44,12 +44,10 @@ function clickMove() {
     $(document).ready(function() {
 	var index;
 	var next;
-	var same;
 	$('.ui-datatable-data').children().each(function() {
 	    var selected = $(this).attr('aria-selected');
 	    if (selected === 'true') {
 		index = $(this).attr('data-ri');
-		same = $('.ui-expanded-row').eq(index).length;
 		next = $(this).next('.ui-expanded-row-content').length;
 		return false;
 	    }
@@ -59,7 +57,7 @@ function clickMove() {
 	if (i == 1) {
 	    $('.ui-expanded-row').find('.ui-row-toggler').click();
 	}
-	if (same == 0 && next == 0) {
+	if (next == 0) {
 	    $('.ui-datatable-data').find('.ui-row-toggler').eq(index).click();
 	}
     });

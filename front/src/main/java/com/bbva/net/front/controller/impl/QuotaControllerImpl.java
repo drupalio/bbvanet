@@ -196,11 +196,17 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 		this.dateRange.setDateSince(getSinceDate());
 		this.dateRange.setDateTo(getToDate());
 		if (!(getSinceDate() == (null)) && !(getToDate() == (null)) && getSelectDate().equals(CONCRETE_DATE)) {
-			sinceDatestr = SINCE_TITLE + ": " + dateFormat.format(getSinceDate());
-			toDatestr = TO_TITLE + ": " + dateFormat.format(getToDate());
+			this.sinceText = SINCE_TITLE + ": ";
+			this.toText = TO_TITLE + ": ";
+			this.sinceDatestr = dateFormat.format(getSinceDate());
+			this.toDatestr = dateFormat.format(getToDate());
 		} else {
-			sinceDatestr = getSelectDate();
-			toDatestr = "";
+			this.sinceText = "";
+			this.toText = "";
+			this.sinceDatestr = getSelectDate();
+			this.toDatestr = "";
+			setSinceDate(null);
+			setToDate(null);
 		}
 	}
 
