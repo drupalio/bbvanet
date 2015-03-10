@@ -11,7 +11,7 @@ import com.bbva.net.back.core.pattern.dto.Dto;
 /**
  * @author Entelgy
  */
-public class Money implements Dto {
+public class Money implements Dto, Comparable<Money> {
 
 	private static final long serialVersionUID = -4589862928168820463L;
 
@@ -81,10 +81,22 @@ public class Money implements Dto {
 		return new HashCodeBuilder().append(getCurrency()).append(getAmount()).toHashCode();
 	}
 
-	// @Override
-	// public boolean equals(Object obj) {
-	// return (obj instanceof Money) && this.getCurrency().equals(((Money)obj).getCurrency())
-	// && this.getAmount().equals(((Money)obj).getAmount());
-	// }
+	@Override
+	public boolean equals(final Object obj) {
+		return (obj instanceof Money) && this.getCurrency().equals(((Money)obj).getCurrency())
+				&& this.getAmount() == (((Money)obj).getAmount());
+	}
+
+	@Override
+	public int compareTo(final Money otherMoney) {
+		int compare = 0;
+		if (this.amount.compareTo(otherMoney.amount) >= 1) compare = 1;
+
+		if (this.amount.compareTo(otherMoney.amount) == 0) compare = 0;
+
+		if (this.amount.compareTo(otherMoney.amount) <= -1) compare = -1;
+
+		return compare;
+	}
 
 }
