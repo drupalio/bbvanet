@@ -29,7 +29,6 @@
 						rendered="#{renderComponents['MOVEMENTSTABLE']}"
 						rowKey="#{moves.movementId}">
 						<p:ajax event="rowSelect" oncomplete="clickMove();"
-							onerror="alert('error mostrando detalle')"
 							listener="#{movementsCriteriaController.onMovementSelected}" />
 						<p:column width="0% !important;" style="z-index: -1 !important">
 							<p:rowToggler rendered="true" />
