@@ -29,7 +29,6 @@
 						value="#{cc.attrs.listAccounts}" var="moves" selectionMode="single"
 						rowKey="#{moves.movementId}">
 						<p:ajax event="rowSelect" oncomplete="clickMove();"
-							onerror="alert('error mostrando detalle')"
 							listener="#{cc.attrs.controller.onRowToggle}" />
 						<p:column width="0% !important;" style="z-index: -1 !important">
 							<p:rowToggler rendered="true" />
