@@ -43,6 +43,27 @@ public class Money implements Dto {
 		}
 	}
 
+	@Override
+	public String toString() {
+		final NumberFormat formatter = NumberFormat.getInstance(new Locale("es_CO"));
+		formatter.setGroupingUsed(true);
+		formatter.setMinimumFractionDigits(2);
+		return symbol + formatter.format(amount);
+	}
+
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder().append(getCurrency()).append(getAmount()).toHashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return (obj != null) && (obj instanceof Money) && this.getCurrency() == (((Money)obj).getCurrency())
+				&& this.getAmount() == (((Money)obj).getAmount());
+	}
+
+	// Setters and getters
+
 	public Money(BigDecimal amount) {
 		this.amount = amount;
 	}
@@ -67,24 +88,4 @@ public class Money implements Dto {
 	public void setAmount(BigDecimal amount) {
 		this.amount = amount;
 	}
-
-	@Override
-	public String toString() {
-		final NumberFormat formatter = NumberFormat.getInstance(new Locale("es_CO"));
-		formatter.setGroupingUsed(true);
-		formatter.setMinimumFractionDigits(2);
-		return symbol + formatter.format(amount);
-	}
-
-	@Override
-	public int hashCode() {
-		return new HashCodeBuilder().append(getCurrency()).append(getAmount()).toHashCode();
-	}
-
-	// @Override
-	// public boolean equals(Object obj) {
-	// return (obj instanceof Money) && this.getCurrency().equals(((Money)obj).getCurrency())
-	// && this.getAmount().equals(((Money)obj).getAmount());
-	// }
-
 }

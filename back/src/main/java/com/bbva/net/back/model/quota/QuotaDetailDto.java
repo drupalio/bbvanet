@@ -41,7 +41,6 @@ public class QuotaDetailDto extends RotatingAccountDto implements Dto {
 	private Money balancePrevious;
 
 	public QuotaDetailDto() {
-
 	}
 
 	/**
@@ -57,7 +56,6 @@ public class QuotaDetailDto extends RotatingAccountDto implements Dto {
 	 * @param availableBalance
 	 * @param balancePrevious
 	 */
-
 	public QuotaDetailDto(String id, Money outstandingBalance, Money amountRequested, int numberOfShares, String state,
 			Money minimumPayment, Money feeCollection, Money availableBalance, Money balancePrevious,
 			Date dateMaturity, Date datePayment, Date datePrevious) {
@@ -76,6 +74,45 @@ public class QuotaDetailDto extends RotatingAccountDto implements Dto {
 		this.balancePrevious = balancePrevious;
 	}
 
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder().append(getId()).append(getOutstandingBalance()).append(getAmountRequested())
+				.append(getNumberOfShares()).append(getDatePrevious()).append(getDateMaturity())
+				.append(getDatePayment()).append(getState()).append(getMinimumPayment()).append(getFeeCollection())
+				.append(getAvailableBalance()).append(getBalancePrevious()).toHashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return (obj != null) && (obj instanceof QuotaDetailDto)
+				&& this.getAmountRequested().equals(((QuotaDetailDto)obj).getAmountRequested())
+				&& (this.getId() != null && ((QuotaDetailDto)obj).getId() != null)
+				&& this.getId().equals(((QuotaDetailDto)obj).getId())
+				&& this.getOutstandingBalance().equals(((QuotaDetailDto)obj).getOutstandingBalance())
+				&& this.getNumberOfShares() == (((QuotaDetailDto)obj).getNumberOfShares())
+				&& this.getDateMaturity().equals(((QuotaDetailDto)obj).getDateMaturity())
+				&& this.getDatePayment().equals(((QuotaDetailDto)obj).getDatePayment())
+				&& this.getDatePrevious().equals(((QuotaDetailDto)obj).getDatePrevious())
+				&& this.getState().equals(((QuotaDetailDto)obj).getState())
+				&& this.getMinimumPayment().equals(((QuotaDetailDto)obj).getMinimumPayment())
+				&& this.getFeeCollection().equals(((QuotaDetailDto)obj).getFeeCollection())
+				&& this.getAvailableBalance().equals(((QuotaDetailDto)obj).getAvailableBalance())
+				&& this.getBalancePrevious().equals(((QuotaDetailDto)obj).getBalancePrevious());
+	}
+
+	@Override
+	public String toString() {
+		return new ToStringBuilder(this).append("id", getId()).append("outstandingBalance", getOutstandingBalance())
+				.append("amountRequested", getAmountRequested()).append("numberOfShares", getNumberOfShares())
+				.append("dateMaturity", getDateMaturity()).append("datePayment", getDatePayment())
+				.append("datePrevious", getDatePrevious()).append("state", getState())
+				.append("minimumPayment", getMinimumPayment()).append("feeCollection", getFeeCollection())
+				.append("availableBalance", getAvailableBalance()).append("balancePrevious", getBalancePrevious())
+				.toString();
+	}
+
+	// Setters and getters
+
 	/**
 	 * @return the id
 	 */
@@ -90,68 +127,18 @@ public class QuotaDetailDto extends RotatingAccountDto implements Dto {
 		this.id = id;
 	}
 
-	public Money getOutstandingBalance() {
-		return outstandingBalance;
-	}
-
-	public void setOutstandingBalance(Money outstandingBalance) {
-		this.outstandingBalance = outstandingBalance;
-	}
-
-	public Money getAmountRequested() {
-		return amountRequested;
-	}
-
-	public void setAmountRequested(Money amountRequested) {
-		this.amountRequested = amountRequested;
-	}
-
+	/**
+	 * @return the numberOfShares
+	 */
 	public int getNumberOfShares() {
 		return numberOfShares;
 	}
 
+	/**
+	 * @param numberOfShares the numberOfShares to set
+	 */
 	public void setNumberOfShares(int numberOfShares) {
 		this.numberOfShares = numberOfShares;
-	}
-
-	public String getState() {
-		return state;
-	}
-
-	public void setState(String state) {
-		this.state = state;
-	}
-
-	public Money getMinimumPayment() {
-		return minimumPayment;
-	}
-
-	public void setMinimumPayment(Money minimumPayment) {
-		this.minimumPayment = minimumPayment;
-	}
-
-	public Money getFeeCollection() {
-		return feeCollection;
-	}
-
-	public void setFeeCollection(Money feeCollection) {
-		this.feeCollection = feeCollection;
-	}
-
-	public Money getAvailableBalance() {
-		return availableBalance;
-	}
-
-	public void setAvailableBalance(Money availableBalance) {
-		this.availableBalance = availableBalance;
-	}
-
-	public Money getBalancePrevious() {
-		return balancePrevious;
-	}
-
-	public void setBalancePrevious(Money balancePrevious) {
-		this.balancePrevious = balancePrevious;
 	}
 
 	/**
@@ -196,42 +183,101 @@ public class QuotaDetailDto extends RotatingAccountDto implements Dto {
 		this.datePrevious = datePrevious;
 	}
 
-	@Override
-	public String toString() {
-		return new ToStringBuilder(this).append("id", getId()).append("outstandingBalance", getOutstandingBalance())
-				.append("amountRequested", getAmountRequested()).append("numberOfShares", getNumberOfShares())
-				.append("dateMaturity", getDateMaturity()).append("datePayment", getDatePayment())
-				.append("datePrevious", getDatePrevious()).append("state", getState())
-				.append("minimumPayment", getMinimumPayment()).append("feeCollection", getFeeCollection())
-				.append("availableBalance", getAvailableBalance()).append("balancePrevious", getBalancePrevious())
-				.toString();
+	/**
+	 * @return the state
+	 */
+	public String getState() {
+		return state;
 	}
 
-	@Override
-	public int hashCode() {
-		return new HashCodeBuilder().append(getId()).append(getOutstandingBalance()).append(getAmountRequested())
-				.append(getNumberOfShares()).append(getDatePrevious()).append(getDateMaturity())
-				.append(getDatePayment()).append(getState()).append(getMinimumPayment()).append(getFeeCollection())
-				.append(getAvailableBalance()).append(getBalancePrevious()).toHashCode();
+	/**
+	 * @param state the state to set
+	 */
+	public void setState(String state) {
+		this.state = state;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-
-		return (obj instanceof QuotaDetailDto)
-				&& this.getAmountRequested().equals(((QuotaDetailDto)obj).getAmountRequested())
-				&& this.getId() == (((QuotaDetailDto)obj).getId())
-				&& this.getOutstandingBalance().equals(((QuotaDetailDto)obj).getOutstandingBalance())
-				&& this.getNumberOfShares() == (((QuotaDetailDto)obj).getNumberOfShares())
-				&& this.getDateMaturity().equals(((QuotaDetailDto)obj).getDateMaturity())
-				&& this.getDatePayment().equals(((QuotaDetailDto)obj).getDatePayment())
-				&& this.getDatePrevious().equals(((QuotaDetailDto)obj).getDatePrevious())
-				&& this.getState().equals(((QuotaDetailDto)obj).getState())
-				&& this.getMinimumPayment().equals(((QuotaDetailDto)obj).getMinimumPayment())
-				&& this.getFeeCollection().equals(((QuotaDetailDto)obj).getFeeCollection())
-				&& this.getAvailableBalance().equals(((QuotaDetailDto)obj).getAvailableBalance())
-				&& this.getBalancePrevious().equals(((QuotaDetailDto)obj).getBalancePrevious());
-
+	/**
+	 * @return the minimumPayment
+	 */
+	public Money getMinimumPayment() {
+		return minimumPayment;
 	}
 
+	/**
+	 * @param minimumPayment the minimumPayment to set
+	 */
+	public void setMinimumPayment(Money minimumPayment) {
+		this.minimumPayment = minimumPayment;
+	}
+
+	/**
+	 * @return the feeCollection
+	 */
+	public Money getFeeCollection() {
+		return feeCollection;
+	}
+
+	/**
+	 * @param feeCollection the feeCollection to set
+	 */
+	public void setFeeCollection(Money feeCollection) {
+		this.feeCollection = feeCollection;
+	}
+
+	/**
+	 * @return the outstandingBalance
+	 */
+	public Money getOutstandingBalance() {
+		return outstandingBalance;
+	}
+
+	/**
+	 * @param outstandingBalance the outstandingBalance to set
+	 */
+	public void setOutstandingBalance(Money outstandingBalance) {
+		this.outstandingBalance = outstandingBalance;
+	}
+
+	/**
+	 * @return the amountRequested
+	 */
+	public Money getAmountRequested() {
+		return amountRequested;
+	}
+
+	/**
+	 * @param amountRequested the amountRequested to set
+	 */
+	public void setAmountRequested(Money amountRequested) {
+		this.amountRequested = amountRequested;
+	}
+
+	/**
+	 * @return the availableBalance
+	 */
+	public Money getAvailableBalance() {
+		return availableBalance;
+	}
+
+	/**
+	 * @param availableBalance the availableBalance to set
+	 */
+	public void setAvailableBalance(Money availableBalance) {
+		this.availableBalance = availableBalance;
+	}
+
+	/**
+	 * @return the balancePrevious
+	 */
+	public Money getBalancePrevious() {
+		return balancePrevious;
+	}
+
+	/**
+	 * @param balancePrevious the balancePrevious to set
+	 */
+	public void setBalancePrevious(Money balancePrevious) {
+		this.balancePrevious = balancePrevious;
+	}
 }

@@ -38,6 +38,60 @@ public class MovementDto implements Dto {
 
 	private MovementDetailDto movementDetailDto;
 
+	public MovementDto() {
+	}
+
+	/**
+	 * @param movementId
+	 * @param movementDate
+	 * @param operationDate
+	 * @param movementConcept
+	 * @param movementValue
+	 * @param totalBalance
+	 * @param status
+	 * @param quotaNumber
+	 * @param movementDetailDto
+	 */
+	public MovementDto(String movementId, Date movementDate, Date operationDate, String movementConcept,
+			Money movementValue, Money totalBalance, String status, String quotaNumber,
+			MovementDetailDto movementDetailDto) {
+		this.movementId = movementId;
+		this.movementDate = movementDate;
+		this.operationDate = operationDate;
+		this.movementConcept = movementConcept;
+		this.movementValue = movementValue;
+		this.totalBalance = totalBalance;
+		this.status = status;
+		this.quotaNumber = quotaNumber;
+		this.movementDetailDto = movementDetailDto;
+	}
+
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder().append(getMovementId()).append(getMovementConcept()).append(getMovementDate())
+				.append(getMovementValue()).append(getTotalBalance()).toHashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return (obj != null) && (obj instanceof MovementDto)
+				&& (this.getMovementId() != null && ((MovementDto)obj).getMovementId() != null)
+				&& this.getMovementId().equals(((MovementDto)obj).getMovementId())
+				&& this.getMovementConcept().equals(((MovementDto)obj).getMovementConcept())
+				&& this.getMovementDate().equals(((MovementDto)obj).getMovementDate())
+				&& this.getMovementValue().equals(((MovementDto)obj).getMovementValue())
+				&& this.getTotalBalance() == (((MovementDto)obj).getTotalBalance());
+	}
+
+	@Override
+	public String toString() {
+		return new ToStringBuilder(this).append("concept", getMovementConcept()).append("Date", getMovementDate())
+				.append("value", getMovementValue()).append("money", getTotalBalance()).append("id", getMovementId())
+				.toString();
+	}
+
+	// Setters and getters
+
 	/**
 	 * @return the movementId
 	 */
@@ -150,44 +204,17 @@ public class MovementDto implements Dto {
 		this.quotaNumber = quotaNumber;
 	}
 
+	/**
+	 * @return the operationDate
+	 */
 	public Date getOperationDate() {
 		return operationDate;
 	}
 
+	/**
+	 * @param operationDate the operationDate to set
+	 */
 	public void setOperationDate(Date operationDate) {
 		this.operationDate = operationDate;
-	}
-
-	@Override
-	public int hashCode() {
-
-		HashCodeBuilder hashCodeBuielder = new HashCodeBuilder();
-		hashCodeBuielder.append(getMovementId()).toHashCode();
-		hashCodeBuielder.append(getMovementConcept()).toHashCode();
-		hashCodeBuielder.append(getMovementDate()).toHashCode();
-		hashCodeBuielder.append(getMovementValue()).toHashCode();
-		hashCodeBuielder.append(getTotalBalance()).toHashCode();
-		return hashCodeBuielder.hashCode();
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-
-		return (obj instanceof MovementDto) && this.getMovementId().equals(((MovementDto)obj).getMovementId())
-				&& this.getMovementConcept().equals(((MovementDto)obj).getMovementConcept())
-				&& this.getMovementDate().equals(((MovementDto)obj).getMovementDate())
-				&& this.getMovementValue().equals(((MovementDto)obj).getMovementValue())
-				&& this.getTotalBalance() == (((MovementDto)obj).getTotalBalance());
-	}
-
-	@Override
-	public String toString() {
-		ToStringBuilder toStringBuilder = new ToStringBuilder(this);
-		toStringBuilder.append("concept", getMovementConcept()).toString();
-		toStringBuilder.append("Date", getMovementDate()).toString();
-		toStringBuilder.append("value", getMovementValue()).toString();
-		toStringBuilder.append("money", getTotalBalance());
-		toStringBuilder.append("id", getMovementId());
-		return toStringBuilder.toString();
 	}
 }
