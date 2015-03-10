@@ -22,14 +22,36 @@ public class BalanceRangeDto implements Dto {
 	private BigDecimal balanceTo;
 
 	public BalanceRangeDto() {
-		super();
 	}
 
+	/**
+	 * @param balanceSince
+	 * @param balanceTo
+	 */
 	public BalanceRangeDto(BigDecimal balanceSince, BigDecimal balanceTo) {
-		super();
 		this.balanceSince = balanceSince;
 		this.balanceTo = balanceTo;
 	}
+
+	@Override
+	public String toString() {
+		return new ToStringBuilder(this).append("balanceSince", getBalanceSince()).append("balanceTo", getBalanceTo())
+				.toString();
+	}
+
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder().append(getBalanceSince()).append(getBalanceTo()).toHashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return (obj != null) && (obj instanceof BalanceRangeDto)
+				&& this.getBalanceSince().equals(((BalanceRangeDto)obj).getBalanceSince())
+				&& this.getBalanceTo().equals(((BalanceRangeDto)obj).getBalanceTo());
+	}
+
+	// Setters and getters
 
 	/**
 	 * @return the balanceSince
@@ -58,22 +80,5 @@ public class BalanceRangeDto implements Dto {
 	public void setBalanceTo(BigDecimal balanceTo) {
 		this.balanceTo = balanceTo;
 	}
-
-	@Override
-	public String toString() {
-		return new ToStringBuilder(this).append("balanceSince", getBalanceSince()).append("balanceTo", getBalanceTo())
-				.toString();
-	}
-
-	@Override
-	public int hashCode() {
-		return new HashCodeBuilder().append(getBalanceSince()).append(getBalanceTo()).toHashCode();
-	}
-
-	// @Override
-	// public boolean equals(Object obj) {
-	// return (obj instanceof ProductDTO) && this.getBalanceSince().equals(((BalanceRangeDto)obj).getBalanceSince())
-	// && this.getBalanceTo().equals(((BalanceRangeDto)obj).getBalanceTo());
-	// }
 
 }

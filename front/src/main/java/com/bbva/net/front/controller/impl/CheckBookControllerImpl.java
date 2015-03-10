@@ -285,11 +285,14 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 
 	}
 
+	@SuppressWarnings("unchecked")
 	public void nextPage(ActionEvent event) {
 		getRenderComponents().put(RenderAttributes.TITLECHECKS.name(), true);
 		getRenderComponents().put(RenderAttributes.CHECKTABLE.toString(), true);
 		next();
-		this.checkList = getCurrentList();
+		final List<CheckDto> cheksByStatus = (List<CheckDto>)CollectionUtils.select(getCurrentList(),
+				new CheckStatusPredicate());
+		this.checkList = cheksByStatus;
 		setFalseMovementsComponents();
 	}
 

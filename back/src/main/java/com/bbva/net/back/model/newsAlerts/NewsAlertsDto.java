@@ -2,6 +2,9 @@ package com.bbva.net.back.model.newsAlerts;
 
 import java.util.Date;
 
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
+
 import com.bbva.net.back.core.pattern.dto.Dto;
 
 public class NewsAlertsDto implements Dto {
@@ -17,6 +20,9 @@ public class NewsAlertsDto implements Dto {
 	private String title;
 
 	private String description;
+
+	public NewsAlertsDto() {
+	}
 
 	/**
 	 * @param idNewsAlerts
@@ -34,9 +40,30 @@ public class NewsAlertsDto implements Dto {
 		this.description = description;
 	}
 
-	public NewsAlertsDto() {
-
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder().append(getIdNewsAlerts()).append(getAlertDate()).append(getType())
+				.append(getTitle()).append(getDescription()).toHashCode();
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return (obj != null) && (obj instanceof NewsAlertsDto)
+				&& this.getIdNewsAlerts().equals(((NewsAlertsDto)obj).getIdNewsAlerts())
+				&& this.getAlertDate().equals(((NewsAlertsDto)obj).getAlertDate())
+				&& this.getType().equals(((NewsAlertsDto)obj).getType())
+				&& this.getTitle().equals(((NewsAlertsDto)obj).getTitle())
+				&& this.getDescription().equals(((NewsAlertsDto)obj).getDescription());
+	}
+
+	@Override
+	public String toString() {
+		return new ToStringBuilder(this).append("idNew", getIdNewsAlerts()).append("Alert", getAlertDate())
+				.append("type", getType()).append("title", getTitle()).append("descripcion", getDescription())
+				.toString();
+	}
+
+	// Setters and getters
 
 	public boolean isEmpty() {
 		return false;

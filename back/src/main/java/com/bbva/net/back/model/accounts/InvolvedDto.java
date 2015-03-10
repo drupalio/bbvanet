@@ -7,25 +7,18 @@ import com.bbva.net.back.core.pattern.dto.Dto;
 
 public class InvolvedDto implements Dto {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 3880054876347057143L;
 
 	private String alias;
 
 	public InvolvedDto() {
-		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * @param alias
+	 */
 	public InvolvedDto(String alias) {
-		super();
 		this.alias = alias;
-	}
-
-	@Override
-	public String toString() {
-		return new ToStringBuilder(this).append("alias", getAlias()).toString();
 	}
 
 	@Override
@@ -35,16 +28,28 @@ public class InvolvedDto implements Dto {
 
 	@Override
 	public boolean equals(Object obj) {
-		return (obj instanceof InvolvedDto) && this.getAlias() == (((InvolvedDto)obj).getAlias());
+		return (obj != null) && (obj instanceof InvolvedDto) && this.getAlias().equals(((InvolvedDto)obj).getAlias());
+	}
+
+	@Override
+	public String toString() {
+		return new ToStringBuilder(this).append("alias", getAlias()).toString();
 	}
 
 	// Setters and getters
 
+	/**
+	 * @return the alias
+	 */
 	public String getAlias() {
 		return alias;
 	}
 
+	/**
+	 * @param alias the alias to set
+	 */
 	public void setAlias(String alias) {
 		this.alias = alias;
 	}
+
 }
