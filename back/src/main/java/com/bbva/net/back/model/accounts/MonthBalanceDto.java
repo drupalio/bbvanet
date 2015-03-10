@@ -1,10 +1,9 @@
 package com.bbva.net.back.model.accounts;
 
-import java.io.Serializable;
-
+import com.bbva.net.back.core.pattern.dto.Dto;
 import com.bbva.net.back.model.commons.Money;
 
-public class MonthBalanceDto implements Serializable {
+public class MonthBalanceDto implements Dto {
 
 	/**
 	 * 

@@ -1,4 +1,4 @@
-package com.bbva.net.utils;
+package com.bbva.net.core.utils;
 
 import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
@@ -9,9 +9,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.bbva.net.core.Foo;
 import com.bbva.net.core.test.TestUtils;
 import com.bbva.net.core.utils.CollectionBbvaUtils;
-import com.bbva.net.test.Foo;
 
 public class CollectionBbvaUtilsTest {
 

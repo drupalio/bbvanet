@@ -1,15 +1,16 @@
-
 package com.bbva.czic.dto.net;
+
+import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for ThirdParty complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * Java class for ThirdParty complex type.
+ * <p>
+ * The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="ThirdParty">
@@ -23,65 +24,51 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ThirdParty", propOrder = {
-    "customerId",
-    "type"
-})
-public class ThirdParty {
+@XmlType(name = "ThirdParty", propOrder = { "customerId", "type" })
+public class ThirdParty implements Serializable {
 
-    protected User customerId;
-    protected EnumThirdPartyType type;
+	private static final long serialVersionUID = -5482888753156779315L;
 
-    /**
-     * Gets the value of the customerId property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link User }
-     *     
-     */
-    public User getCustomerId() {
-        return customerId;
-    }
+	protected User customerId;
 
-    /**
-     * Sets the value of the customerId property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link User }
-     *     
-     */
-    public void setCustomerId(User value) {
-        this.customerId = value;
-    }
+	protected EnumThirdPartyType type;
 
-    /**
-     * Gets the value of the type property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link EnumThirdPartyType }
-     *     
-     */
-    public EnumThirdPartyType getType() {
-        return type;
-    }
+	/**
+	 * Gets the value of the customerId property.
+	 * 
+	 * @return possible object is {@link User }
+	 */
+	public User getCustomerId() {
+		return customerId;
+	}
 
-    /**
-     * Sets the value of the type property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link EnumThirdPartyType }
-     *     
-     */
-    public void setType(EnumThirdPartyType value) {
-        this.type = value;
-    }
+	/**
+	 * Sets the value of the customerId property.
+	 * 
+	 * @param value allowed object is {@link User }
+	 */
+	public void setCustomerId(User value) {
+		this.customerId = value;
+	}
+
+	/**
+	 * Gets the value of the type property.
+	 * 
+	 * @return possible object is {@link EnumThirdPartyType }
+	 */
+	public EnumThirdPartyType getType() {
+		return type;
+	}
+
+	/**
+	 * Sets the value of the type property.
+	 * 
+	 * @param value allowed object is {@link EnumThirdPartyType }
+	 */
+	public void setType(EnumThirdPartyType value) {
+		this.type = value;
+	}
 
 }

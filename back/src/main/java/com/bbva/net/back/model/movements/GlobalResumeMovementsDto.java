@@ -1,9 +1,10 @@
 package com.bbva.net.back.model.movements;
 
-import java.io.Serializable;
 import java.util.List;
 
-public class GlobalResumeMovementsDto implements Serializable {
+import com.bbva.net.back.core.pattern.dto.Dto;
+
+public class GlobalResumeMovementsDto implements Dto {
 
 	/**
 	 * 

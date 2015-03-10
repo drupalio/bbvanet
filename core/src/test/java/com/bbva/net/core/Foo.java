@@ -1,4 +1,4 @@
-package com.bbva.net.test;
+package com.bbva.net.core;
 
 import java.io.Serializable;
 
