@@ -4,6 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.bbva.net.back.entity.MultiValueGroup;
 
+@Ignore
 @ContextConfiguration(locations = "classpath:spring-test-context.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
 public class AbstractBbvaDaoTest {
