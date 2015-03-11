@@ -38,6 +38,11 @@
 			data-highcharts-chart="3">
 
 			<div id="chart2_1">
+				<p:dialog widgetVar="moreGrphic" modal="true" draggable="false"
+					position="center" showEffect="fade" hideEffect="fade"
+					closable="false" resizable="false" showHeader="false">
+					<p:outputLabel value="#{msg['please.wait']}" />
+				</p:dialog>
 			</div>
 		</div>
 
@@ -45,14 +50,10 @@
 	</h:form>
 
 
-	<p:dialog widgetVar="moreGrphic" modal="true" draggable="false"
-		position="center" showEffect="fade" hideEffect="fade" closable="false"
-		resizable="false" showHeader="false">
-		<p:outputLabel value="#{msg['please.wait']}" />
-	</p:dialog>
+
 	<script>
 		function initChart() {
-			PF('moreGrphic').show();
+			//PF('moreGrphic').show();
 			var totalColums = [];
 			var label;
 			var colums;
@@ -115,7 +116,7 @@
 				}
 
 			});
-			PF('moreGrphic').hide()
+			//PF('moreGrphic').hide()
 		};
 	</script>
 
