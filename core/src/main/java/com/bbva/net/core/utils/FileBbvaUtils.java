@@ -38,6 +38,7 @@ public final class FileBbvaUtils {
 			// output pretty printed
 			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 			jaxbMarshaller.marshal(object, file);
+			jaxbMarshaller.marshal(object, System.out);
 
 		} catch (final JAXBException exception) {
 			LOGGER.info(exception.getMessage());
