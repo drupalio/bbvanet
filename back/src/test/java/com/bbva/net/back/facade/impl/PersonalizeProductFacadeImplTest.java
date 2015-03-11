@@ -38,28 +38,27 @@ public class PersonalizeProductFacadeImplTest {
 		this.productDto = Mockito.mock(ProductDto.class);
 	}
 
-	@Test
-	public void checkGetPersonalizeUpdateOperability() {
-		Response responseService = Mockito.mock(Response.class);
-		Mockito.when(personalizeAccountProductMapper.map(this.productDto)).thenReturn(product);
-		Mockito.when(globalPositionService.updateProductOperability(DEFAULT_ID, product)).thenReturn(responseService);
-		Assert.assertNotNull(responseService);
-		this.personalizeFacadeImpl.setStatus(200);
-		Mockito.when(personalizeFacadeImpl.updateProductOperability(DEFAULT_ID, this.productDto)).thenReturn(false);
-		Mockito.verify(this.globalPositionService, Mockito.atLeastOnce()).updateProductOperability(
-				this.productDto.getProductId(), product);
-	}
-
 	// @Test
-	// public void checkGetPersonalizeUpdateVisibility() {
-	// boolean response;
+	// public void checkGetPersonalizeUpdateOperability() {
 	// Response responseService = Mockito.mock(Response.class);
 	// Mockito.when(personalizeAccountProductMapper.map(this.productDto)).thenReturn(product);
-	// this.product = personalizeAccountProductMapper.map(this.productDto);
-	// Mockito.when(globalPositionService.updateProductVisibility(DEFAULT_ID, product)).thenReturn(responseService);
-	// response = productFacadeImpl.updateProductVisibility(DEFAULT_ID, this.productDto);
-	// Assert.assertEquals(response, true);
-	// Mockito.verify(this.globalPositionService, Mockito.atLeastOnce()).updateProductVisibility(DEFAULT_ID, product);
+	// Mockito.when(globalPositionService.updateProductOperability(DEFAULT_ID, product)).thenReturn(responseService);
+	// Assert.assertNotNull(responseService);
+	// this.personalizeFacadeImpl.setStatus(200);
+	// Mockito.verify(this.globalPositionService, Mockito.atLeastOnce()).updateProductOperability(
+	// this.productDto.getProductId(), product);
 	// }
+
+	@Test
+	public void checkGetPersonalizeUpdateVisibility() {
+		boolean response = true;
+		Response responseService = Mockito.mock(Response.class);
+		Mockito.when(personalizeAccountProductMapper.map(this.productDto)).thenReturn(product);
+		this.product = personalizeAccountProductMapper.map(this.productDto);
+		Mockito.when(globalPositionService.updateProductVisibility(DEFAULT_ID, product)).thenReturn(responseService);
+		response = personalizeFacadeImpl.updateProductVisibility(DEFAULT_ID, this.productDto);
+		Assert.assertEquals(response, false);
+		Mockito.verify(this.globalPositionService, Mockito.atLeastOnce()).updateProductVisibility(DEFAULT_ID, product);
+	}
 
 }
