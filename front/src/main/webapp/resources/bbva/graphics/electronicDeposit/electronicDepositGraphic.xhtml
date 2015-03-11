@@ -17,20 +17,18 @@
 	<h:form id="eDeposit">
 
 		<div id="chart1_99">
-		<div id="imgLOAD" class="imgLOAD" align="center">
-				<IMG src="/assets/img/loader.gif" />
-			</div>
-		</div>
-		<div class="col-md-12">
 		<p:dialog widgetVar="GraphicDeposit" modal="true" draggable="false"
 			position="center" showEffect="fade" hideEffect="fade"
 			closable="false" resizable="false" showHeader="false">
 			<p:outputLabel value="#{msg['please.wait']}" />
 		</p:dialog>
+		</div>
+		<div class="col-md-12">
+		
 			<script>
 			$(document).ready(function() {
 				
-				PF('GraphicDeposit').show()
+				//PF('GraphicDeposit').show()
 				var xColumns = [];
 				var xLines = [];
 				xColumns.push("data1");

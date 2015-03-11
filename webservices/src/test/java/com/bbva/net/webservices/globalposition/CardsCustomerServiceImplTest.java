@@ -1,53 +1,44 @@
 package com.bbva.net.webservices.globalposition;
 
+import javax.annotation.Resource;
+
+import org.apache.cxf.jaxrs.client.JAXRSClientFactoryBean;
+import org.apache.cxf.jaxrs.client.WebClient;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
-import org.mockito.invocation.InvocationOnMock;
-import org.mockito.stubbing.Answer;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.client.RestTemplate;
 
-import com.bbva.czic.dto.net.CardCharge;
-import com.bbva.net.webservices.customers.impl.CustomerServiceImpl;
+import com.bbva.net.webservices.cards.impl.CardServiceImpl;
+import com.bbva.net.webservices.core.pattern.AbstractBbvaRestService;
 
-public class CardsCustomerServiceImplTest {
+public class CardsCustomerServiceImplTest extends AbstractBbvaRestService {
 
-	// private GlobalPositionServiceImpl globalpositionServiceImpl;
+	@Value("${rest.cardsCharges.url}")
+	private String URL_CARDCHARGES;
 
-	private RestTemplate restTemplate;
+	@Value("${rest.base.cards.url}")
+	protected String URL_BASE_CARDS;
 
-	private String URL = "http://localhost:8099/GlobalPosition/V01/customers/123";
+	private CardServiceImpl cardChargeServiceImpl;
 
-	CustomerServiceImpl customerServiceImpl;
+	private WebClient wc;
 
-	@Value("${rest.customer.url}")
-	private String URL_CUSTOMER;
+	@Resource(name = "factoryBean")
+	private JAXRSClientFactoryBean factoryBean;
 
 	@Before
 	public void init() {
-		customerServiceImpl = new CustomerServiceImpl();
-
-		restTemplate = Mockito.mock(RestTemplate.class);
-		customerServiceImpl.setRestTemplate(restTemplate);
-		// customerServiceImpl.setURL_BASE("http://localhost:8099/GlobalPosition/V01");
-
+		this.cardChargeServiceImpl = new CardServiceImpl();
+		this.wc = Mockito.mock(WebClient.class);
+		this.factoryBean = Mockito.mock(JAXRSClientFactoryBean.class);
+		this.factoryBean.setAddress(Mockito.anyString());
 	}
 
 	@Test
-	public void checkGetGlobalProducts_OK() {
-		Mockito.when(
-				restTemplate.getForObject("http://localhost:8099/GlobalPosition/V01/" + "123" + URL_CUSTOMER + "",
-						CardCharge[].class)).thenAnswer(new Answer<String>() {
+	public void checkGetCreditCardCharges_OK() {
 
-			@Override
-			public String answer(InvocationOnMock invocation) throws Throwable {
-				Object[] args = invocation.getArguments();
-				return (String)args[0];
-			}
-		});
-
-		// List<CardCharge> lista = customerServiceImpl.listCreditCardsCharges("123", "");
-		// Assert.assertNotNull(lista);
+		// wc = getJsonWebClient(URL_BASE_CARDS + "2032" + URL_CARDCHARGES);
+		// List<CardCharge> lista = cardChargeServiceImpl.getCreditCardCharges("2032", "", "", "", "");
 	}
 }
