@@ -13,17 +13,23 @@ import com.bbva.net.back.mapper.converter.MoneyConverter;
 import com.bbva.net.back.model.cards.CardsChargesDto;
 import com.bbva.net.core.pattern.VisitorCommand;
 
+/**
+ * @author Entelgy
+ */
 @Mapper(value = "cardsMapper")
 public class CardsMapperImpl extends ConfigurableMapper implements CardsMapper {
 
+	/**
+	 * 
+	 */
 	@Override
-	public List<CardsChargesDto> map(List<CardCharge> CardCharges) {
+	public List<CardsChargesDto> map(final List<CardCharge> cardCharges) {
 		final List<CardsChargesDto> cardsCharges = new ArrayList<CardsChargesDto>();
 
-		new VisitorCommand<CardCharge>(CardCharges) {
+		new VisitorCommand<CardCharge>(cardCharges) {
 
 			@Override
-			public void execute(CardCharge product) {
+			public void execute(final CardCharge product) {
 				cardsCharges.add(map(product, CardsChargesDto.class));
 			}
 		};
@@ -34,7 +40,7 @@ public class CardsMapperImpl extends ConfigurableMapper implements CardsMapper {
 	 * 
 	 */
 	@Override
-	protected void configure(MapperFactory factory) {
+	protected void configure(final MapperFactory factory) {
 
 		factory.getConverterFactory().registerConverter(new MoneyConverter());
 		// Map CardsCharges Product DTO

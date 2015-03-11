@@ -1,44 +1,50 @@
 package com.bbva.net.webservices.globalposition;
 
-import javax.annotation.Resource;
+import java.util.List;
 
-import org.apache.cxf.jaxrs.client.JAXRSClientFactoryBean;
-import org.apache.cxf.jaxrs.client.WebClient;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Value;
 
+import com.bbva.czic.dto.net.CardCharge;
 import com.bbva.net.webservices.cards.impl.CardServiceImpl;
 import com.bbva.net.webservices.core.pattern.AbstractBbvaRestService;
+import com.bbva.test.utils.AbstractBbvaRestClientTest;
 
-public class CardsCustomerServiceImplTest extends AbstractBbvaRestService {
+public class CardsCustomerServiceImplTest extends AbstractBbvaRestClientTest {
 
-	@Value("${rest.cardsCharges.url}")
-	private String URL_CARDCHARGES;
-
-	@Value("${rest.base.cards.url}")
-	protected String URL_BASE_CARDS;
-
-	private CardServiceImpl cardChargeServiceImpl;
-
-	private WebClient wc;
-
-	@Resource(name = "factoryBean")
-	private JAXRSClientFactoryBean factoryBean;
+	private CardServiceImpl cardServiceImpl;
 
 	@Before
 	public void init() {
-		this.cardChargeServiceImpl = new CardServiceImpl();
-		this.wc = Mockito.mock(WebClient.class);
-		this.factoryBean = Mockito.mock(JAXRSClientFactoryBean.class);
-		this.factoryBean.setAddress(Mockito.anyString());
+
+		// Invoke to super to initialize Mocks
+		super.setUp();
+
+		// Get GlobalPositionServiceImpl instance
+		cardServiceImpl = (CardServiceImpl)this.restService;
+
+	}
+
+	@Override
+	protected AbstractBbvaRestService getAbstractBbvaRestService() {
+		return new CardServiceImpl();
+	}
+
+	/************************************* TEST METHODS **********************************/
+
+	@Test
+	public void checkGetCreditCardCharges_norFilter() {
+		Mockito.when(webClient.getCollection(CardCharge.class)).thenReturn(Mockito.anyCollection());
+		List<CardCharge> lista = cardServiceImpl.getCreditCardCharges("", "", "", "", "");
+		Mockito.verify(this.webClient, Mockito.atLeastOnce()).getCollection(CardCharge.class);
 	}
 
 	@Test
-	public void checkGetCreditCardCharges_OK() {
-
-		// wc = getJsonWebClient(URL_BASE_CARDS + "2032" + URL_CARDCHARGES);
-		// List<CardCharge> lista = cardChargeServiceImpl.getCreditCardCharges("2032", "", "", "", "");
+	public void checkGetCreditCardCharges_Filter() {
+		Mockito.when(webClient.getCollection(CardCharge.class)).thenReturn(Mockito.anyCollection());
+		List<CardCharge> lista = cardServiceImpl.getCreditCardCharges("123", "filter", "", "", "");
+		Mockito.verify(this.webClient, Mockito.atLeastOnce()).getCollection(CardCharge.class);
 	}
+
 }
