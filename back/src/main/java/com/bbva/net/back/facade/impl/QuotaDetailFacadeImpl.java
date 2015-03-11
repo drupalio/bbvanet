@@ -62,12 +62,12 @@ public class QuotaDetailFacadeImpl extends AbstractBbvaFacade implements QuotaDe
 	@Override
 	public List<MovementDto> listRotaryQuotaMovements(String loanId, DateRangeDto dateRange, Integer paginationKey,
 			Integer pageSize) {
-
 		String filter = dateRange != null ? fiqlService.getFiqlQueryByDateRange(dateRange, transaccionDate,
 				transaccionDate) : StringUtils.EMPTY;
-		if (dateRange != null)
+		if (dateRange != null) {
 			LOGGER.info("Creando fql dateRange" + " DateSince: " + dateRange.getDateSince() + " DateTo: "
 					+ dateRange.getDateTo());
+		}
 		LOGGER.info("Llamando al servicio de listRotaryQuotaMovements" + " Loan Id: " + loanId + " Filtro: " + filter);
 		final List<Movement> response = this.loanService.listRotaryQuotaMovements(loanId, paginationKey, pageSize,
 				filter);
@@ -75,11 +75,33 @@ public class QuotaDetailFacadeImpl extends AbstractBbvaFacade implements QuotaDe
 		return mapper.listRotaryQuotaMovements(response);
 	}
 
+	/********************************** DEPENDENCY INJECTIONS ***********************************/
+
+	/**
+	 * @param mapper the mapper to set
+	 */
 	public void setMapper(QuotaDetailMapper mapper) {
 		this.mapper = mapper;
 	}
 
+	/**
+	 * @param loanService the loanService to set
+	 */
 	public void setLoanService(LoanService loanService) {
 		this.loanService = loanService;
+	}
+
+	/**
+	 * @param fiqlService the fiqlService to set
+	 */
+	public void setFiqlService(FiqlService fiqlService) {
+		this.fiqlService = fiqlService;
+	}
+
+	/**
+	 * @param transaccionDate the transaccionDate to set
+	 */
+	public void setTransaccionDate(String transaccionDate) {
+		this.transaccionDate = transaccionDate;
 	}
 }

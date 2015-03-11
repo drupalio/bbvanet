@@ -45,7 +45,7 @@ public class PersonalizeProductFacadeImplTest {
 		Mockito.when(globalPositionService.updateProductOperability(DEFAULT_ID, product)).thenReturn(responseService);
 		Assert.assertNotNull(responseService);
 		this.personalizeFacadeImpl.setStatus(200);
-		Mockito.when(personalizeFacadeImpl.updateProductOperability(DEFAULT_ID, this.productDto)).thenReturn(true);
+		Mockito.when(personalizeFacadeImpl.updateProductOperability(DEFAULT_ID, this.productDto)).thenReturn(false);
 		Mockito.verify(this.globalPositionService, Mockito.atLeastOnce()).updateProductOperability(
 				this.productDto.getProductId(), product);
 	}
