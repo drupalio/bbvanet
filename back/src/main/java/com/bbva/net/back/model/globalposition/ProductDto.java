@@ -28,7 +28,7 @@ public class ProductDto implements Dto {
 	private Money totalCash;
 
 	private Money cashAvailable;
-	
+
 	private String subTypeProd;
 
 	private EnumProductType typeProd;
@@ -147,7 +147,6 @@ public class ProductDto implements Dto {
 		this.typeProd = typeProd;
 	}
 
-	
 	/**
 	 * @return the subTypeProd
 	 */
@@ -155,7 +154,6 @@ public class ProductDto implements Dto {
 		return subTypeProd;
 	}
 
-	
 	/**
 	 * @param subTypeProd the subTypeProd to set
 	 */
@@ -171,17 +169,15 @@ public class ProductDto implements Dto {
 
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder().append(getProductId())
-				.append(getProductNumber()).toHashCode();
+		return new HashCodeBuilder().append(getProductId()).append(getProductNumber()).toHashCode();
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		return (obj instanceof ProductDto)
-				&& this.getProductId()
-						.equals(((ProductDto) obj).getProductId())
-				&& this.getProductNumber().equals(
-						((ProductDto) obj).getProductNumber());
-	}
 
+		return (obj != null) && (obj instanceof ProductDto)
+				&& (this.getProductId() != null && ((ProductDto)obj).getProductId() != null)
+				&& this.getProductId().equals(((ProductDto)obj).getProductId());
+
+	}
 }

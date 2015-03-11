@@ -1,15 +1,16 @@
-
 package com.bbva.czic.dto.net;
+
+import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for PhoneNumber complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * Java class for PhoneNumber complex type.
+ * <p>
+ * The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="PhoneNumber">
@@ -28,195 +29,152 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "PhoneNumber", propOrder = {
-    "contactSource",
-    "countryCode",
-    "regionalCode",
-    "number",
-    "type",
-    "primary",
-    "active"
-})
-public class PhoneNumber {
+@XmlType(name = "PhoneNumber", propOrder = { "contactSource", "countryCode", "regionalCode", "number", "type",
+		"primary", "active" })
+public class PhoneNumber implements Serializable {
 
-    protected String contactSource;
-    protected String countryCode;
-    protected String regionalCode;
-    protected String number;
-    protected String type;
-    protected Boolean primary;
-    protected Boolean active;
+	private static final long serialVersionUID = -8679578035442416291L;
 
-    /**
-     * Gets the value of the contactSource property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getContactSource() {
-        return contactSource;
-    }
+	protected String contactSource;
 
-    /**
-     * Sets the value of the contactSource property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setContactSource(String value) {
-        this.contactSource = value;
-    }
+	protected String countryCode;
 
-    /**
-     * Gets the value of the countryCode property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getCountryCode() {
-        return countryCode;
-    }
+	protected String regionalCode;
 
-    /**
-     * Sets the value of the countryCode property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setCountryCode(String value) {
-        this.countryCode = value;
-    }
+	protected String number;
 
-    /**
-     * Gets the value of the regionalCode property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getRegionalCode() {
-        return regionalCode;
-    }
+	protected String type;
 
-    /**
-     * Sets the value of the regionalCode property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setRegionalCode(String value) {
-        this.regionalCode = value;
-    }
+	protected Boolean primary;
 
-    /**
-     * Gets the value of the number property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getNumber() {
-        return number;
-    }
+	protected Boolean active;
 
-    /**
-     * Sets the value of the number property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setNumber(String value) {
-        this.number = value;
-    }
+	/**
+	 * Gets the value of the contactSource property.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getContactSource() {
+		return contactSource;
+	}
 
-    /**
-     * Gets the value of the type property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getType() {
-        return type;
-    }
+	/**
+	 * Sets the value of the contactSource property.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setContactSource(String value) {
+		this.contactSource = value;
+	}
 
-    /**
-     * Sets the value of the type property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setType(String value) {
-        this.type = value;
-    }
+	/**
+	 * Gets the value of the countryCode property.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getCountryCode() {
+		return countryCode;
+	}
 
-    /**
-     * Gets the value of the primary property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Boolean }
-     *     
-     */
-    public Boolean isPrimary() {
-        return primary;
-    }
+	/**
+	 * Sets the value of the countryCode property.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setCountryCode(String value) {
+		this.countryCode = value;
+	}
 
-    /**
-     * Sets the value of the primary property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Boolean }
-     *     
-     */
-    public void setPrimary(Boolean value) {
-        this.primary = value;
-    }
+	/**
+	 * Gets the value of the regionalCode property.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getRegionalCode() {
+		return regionalCode;
+	}
 
-    /**
-     * Gets the value of the active property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Boolean }
-     *     
-     */
-    public Boolean isActive() {
-        return active;
-    }
+	/**
+	 * Sets the value of the regionalCode property.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setRegionalCode(String value) {
+		this.regionalCode = value;
+	}
 
-    /**
-     * Sets the value of the active property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Boolean }
-     *     
-     */
-    public void setActive(Boolean value) {
-        this.active = value;
-    }
+	/**
+	 * Gets the value of the number property.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getNumber() {
+		return number;
+	}
+
+	/**
+	 * Sets the value of the number property.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setNumber(String value) {
+		this.number = value;
+	}
+
+	/**
+	 * Gets the value of the type property.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getType() {
+		return type;
+	}
+
+	/**
+	 * Sets the value of the type property.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setType(String value) {
+		this.type = value;
+	}
+
+	/**
+	 * Gets the value of the primary property.
+	 * 
+	 * @return possible object is {@link Boolean }
+	 */
+	public Boolean isPrimary() {
+		return primary;
+	}
+
+	/**
+	 * Sets the value of the primary property.
+	 * 
+	 * @param value allowed object is {@link Boolean }
+	 */
+	public void setPrimary(Boolean value) {
+		this.primary = value;
+	}
+
+	/**
+	 * Gets the value of the active property.
+	 * 
+	 * @return possible object is {@link Boolean }
+	 */
+	public Boolean isActive() {
+		return active;
+	}
+
+	/**
+	 * Sets the value of the active property.
+	 * 
+	 * @param value allowed object is {@link Boolean }
+	 */
+	public void setActive(Boolean value) {
+		this.active = value;
+	}
 
 }
