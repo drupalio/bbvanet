@@ -34,27 +34,27 @@
 							<p:rowToggler rendered="true" />
 						</p:column>
 						<p:column headerText="#{msg['text.detailMove.date']}"
-							styleClass="styleColum desc w34">
+							styleClass="styleColum desc w34"  sortBy="#{moves.movementDate}">
 							<h:outputText styleClass="brand styleLeft" value="#{moves.movementDate}">
 								<f:convertDateTime pattern="dd/MM/yyyy" />
 							</h:outputText>
 						</p:column>
 						<p:column headerText="#{msg['text.detailMove.concep']}"
-							styleClass="styleColum desc w34">
+							styleClass="styleColum desc w34" sortBy="#{moves.movementConcept}">
 							<h:outputText class="text styleLeft" value="#{moves.movementConcept}" />
 							<h:outputText class="text styleLeft" value="#{moves.movementConcept}" />
 						</p:column>
 						<p:column class="head" headerText="#{msg['text.detailMove.value']}"
-							styleClass="styleColum desc w34">
+							styleClass="styleColum desc w34" sortBy="#{moves.movementValue}">
 							<h:outputText class="currency styleCurrent"
 								value="#{moves.movementValue}" />
 						</p:column>
-						<p:column class="head" styleClass="styleColum desc w34"
+						<p:column class="head" styleClass="styleColum desc w34" sortBy="#{moves.totalBalance}"
 							headerText="#{msg['text.detailMove.balance']}" colspan="2">
 							<h:outputText class="currency styleCurrent" value="#{moves.totalBalance}" />
 						</p:column>
-						<p:column headerText="#{msg['text.detailMove.concep']}"
-							styleClass="smart-view">
+						<p:column headerText="#{msg['text.detailMove.concep']}" 
+							styleClass="smart-view"> 
 							<div class="left hidden-lg">
 								<h:outputText class="text styleLeft" value="#{moves.movementConcept}" />
 								<h:outputText styleClass="brand styleLeft" value="#{moves.movementDate}">

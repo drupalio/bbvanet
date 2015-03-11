@@ -29,7 +29,6 @@ public class GlobalProductsDto implements Serializable {
 	private List<LoanDto> loan;
 
 	public GlobalProductsDto() {
-
 		this.accounts = new ArrayList<AccountDto>();
 		this.rotatingAccounts = new ArrayList<RotatingAccountDto>();
 		this.leasings = new ArrayList<LeasingDto>();
@@ -39,6 +38,38 @@ public class GlobalProductsDto implements Serializable {
 		this.adquirencia = new ArrayList<AdquirenceAccountDto>();
 		this.loan = new ArrayList<LoanDto>();
 	}
+
+	@Override
+	public String toString() {
+
+		return new ToStringBuilder(this).append("accounts", getAccounts())
+				.append("rotatingAccounts", getRotatingAccounts()).append("leasings", getLeasings())
+				.append("funds", getFunds()).append("creditCards", getCreditCards())
+				.append("electronicDeposits", getElectronicDeposits()).append("adquirencia", getAdquirencia())
+				.append("loan", getLoan()).toString();
+	}
+
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder().append(getAccounts()).append(getRotatingAccounts()).append(getLeasings())
+				.append(getFunds()).append(getCreditCards()).append(getElectronicDeposits()).append(getAdquirencia())
+				.append(getLoan()).toHashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return (obj != null) && (obj instanceof GlobalProductsDto)
+				&& this.getAccounts() == (((GlobalProductsDto)obj).getAccounts())
+				&& this.getRotatingAccounts() == (((GlobalProductsDto)obj).getRotatingAccounts())
+				&& this.getLeasings() == (((GlobalProductsDto)obj).getLeasings())
+				&& this.getFunds() == (((GlobalProductsDto)obj).getFunds())
+				&& this.getCreditCards() == (((GlobalProductsDto)obj).getCreditCards())
+				&& this.getElectronicDeposits() == (((GlobalProductsDto)obj).getElectronicDeposits())
+				&& this.getAdquirencia() == (((GlobalProductsDto)obj).getAdquirencia())
+				&& this.getLoan() == (((GlobalProductsDto)obj).getLoan());
+	}
+
+	// Setters and getters
 
 	public List<AccountDto> getAccounts() {
 		return this.accounts;
@@ -151,23 +182,4 @@ public class GlobalProductsDto implements Serializable {
 	public void setAdquirencia(List<AdquirenceAccountDto> adquirencia) {
 		this.adquirencia = adquirencia;
 	}
-
-	@Override
-	public String toString() {
-
-		return new ToStringBuilder(this).append("accounts", getAccounts())
-				.append("rotatingAccounts", getRotatingAccounts()).append("leasings", getLeasings())
-				.append("funds", getFunds()).append("creditCards", getCreditCards())
-				.append("electronicDeposits", getElectronicDeposits()).append("adquirencia", getAdquirencia())
-				.append("loan", getLoan()).toString();
-	}
-
-	@Override
-	public int hashCode() {
-
-		return new HashCodeBuilder().append(getAccounts()).append(getRotatingAccounts()).append(getLeasings())
-				.append(getFunds()).append(getCreditCards()).append(getElectronicDeposits()).append(getAdquirencia())
-				.append(getLoan()).toHashCode();
-	}
-
 }

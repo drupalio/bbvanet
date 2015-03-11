@@ -6,22 +6,20 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import com.bbva.net.back.core.pattern.dto.Dto;
 import com.bbva.net.back.model.commons.Money;
 
-public class CreditCardDto extends ProductDto implements Dto{
+public class CreditCardDto extends ProductDto implements Dto {
 
 	private final static long serialVersionUID = 1L;
 
 	private Money bin;
 
-	public Money getBin() {
-		return bin;
+	public CreditCardDto() {
 	}
 
-	public void setBin(final Money value) {
-		this.bin = value;
-	}
-
-	public boolean isSetBin() {
-		return (this.bin != null);
+	/**
+	 * @param bin
+	 */
+	public CreditCardDto(Money bin) {
+		this.bin = bin;
 	}
 
 	@Override
@@ -36,7 +34,30 @@ public class CreditCardDto extends ProductDto implements Dto{
 
 	@Override
 	public boolean equals(Object obj) {
-		return (obj instanceof CreditCardDto) && this.getBin().equals(((CreditCardDto)obj).getBin());
+		return (obj != null) && (obj instanceof CreditCardDto) && this.getBin().equals(((CreditCardDto)obj).getBin());
+	}
+
+	// Setters and getters
+
+	/**
+	 * @return the bin
+	 */
+	public Money getBin() {
+		return bin;
+	}
+
+	/**
+	 * @param bin the bin to set
+	 */
+	public void setBin(Money bin) {
+		this.bin = bin;
+	}
+
+	/**
+	 * @return
+	 */
+	public boolean isSetBin() {
+		return (this.bin != null);
 	}
 
 }

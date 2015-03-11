@@ -46,6 +46,30 @@ public class CheckDto implements Dto {
 		this.id = id;
 	}
 
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder().append(getModifiedDate()).append(getStatus()).append(getValue())
+				.append(getIssueDate()).append(getId()).toHashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return (obj != null) && (obj instanceof CheckDto)
+				&& this.getModifiedDate().equals(((CheckDto)obj).getModifiedDate())
+				&& this.getStatus().equals(((CheckDto)obj).getStatus())
+				&& this.getValue().equals(((CheckDto)obj).getValue())
+				&& this.getIssueDate().equals(((CheckDto)obj).getIssueDate())
+				&& this.getId().equals(((CheckDto)obj).getId());
+	}
+
+	@Override
+	public String toString() {
+		return new ToStringBuilder(this).append("modifiedDate", getModifiedDate()).append("status", getStatus())
+				.append("value", getValue()).append("issueDate", getIssueDate()).append("id", getId()).toString();
+	}
+
+	// Setters and getters
+
 	/**
 	 * @return the modifiedDate
 	 */
@@ -114,34 +138,5 @@ public class CheckDto implements Dto {
 	 */
 	public void setId(String id) {
 		this.id = id;
-	}
-
-	/**
-	 * @param modifiedDate
-	 * @param status
-	 * @param value
-	 * @param issueDate
-	 * @param id
-	 */
-	@Override
-	public String toString() {
-		return new ToStringBuilder(this).append("modifiedDate", getModifiedDate()).append("status", getStatus())
-				.append("value", getValue()).append("issueDate", getIssueDate()).append("id", getId()).toString();
-	}
-
-	@Override
-	public int hashCode() {
-		return new HashCodeBuilder().append(getModifiedDate()).append(getStatus()).append(getValue())
-				.append(getIssueDate()).append(getId()).toHashCode();
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-
-		return (obj instanceof CheckDto) && this.getModifiedDate().equals(((CheckDto)obj).getModifiedDate())
-				&& this.getStatus().equals(((CheckDto)obj).getStatus())
-				&& this.getValue().equals(((CheckDto)obj).getValue())
-				&& this.getIssueDate().equals(((CheckDto)obj).getIssueDate())
-				&& this.getId().equals(((CheckDto)obj).getId());
 	}
 }
