@@ -97,11 +97,4 @@ public class QuotaDetailFacadeImpl extends AbstractBbvaFacade implements QuotaDe
 	public void setFiqlService(FiqlService fiqlService) {
 		this.fiqlService = fiqlService;
 	}
-
-	/**
-	 * @param transaccionDate the transaccionDate to set
-	 */
-	public void setTransaccionDate(String transaccionDate) {
-		this.transaccionDate = transaccionDate;
-	}
 }

@@ -51,7 +51,6 @@ public class QuotaDetailFacadeImplTest {
 		this.quotaDetailFacede.setLoanService(loanService);
 		this.quotaDetailFacede.setMapper(mapper);
 		this.quotaDetailFacede.setFiqlService(fiqlService);
-		this.quotaDetailFacede.setTransaccionDate("transaccionDate");
 	}
 
 	@Test
@@ -60,7 +59,7 @@ public class QuotaDetailFacadeImplTest {
 		quotaDetailDto = Mockito.mock(QuotaDetailDto.class);
 		Mockito.when(loanService.getRotaryQuota(DEFAULT_ID)).thenReturn(loan);
 		Mockito.when(mapper.mapQuota(loan)).thenReturn(quotaDetailDto);
-		quotaDetailDto = quotaDetailFacede.getDetailRotaryQuota(DEFAULT_ID);
+		Mockito.when(quotaDetailFacede.getDetailRotaryQuota(DEFAULT_ID)).thenReturn(quotaDetailDto);
 		Assert.assertNotNull(quotaDetailDto);
 		Mockito.verify(this.loanService, Mockito.atLeastOnce()).getRotaryQuota(DEFAULT_ID);
 	}
@@ -69,10 +68,9 @@ public class QuotaDetailFacadeImplTest {
 	public void checkGetDetailMovemenRotaryQuota() {
 		RotaryQuotaMove rotaryQuotaMove = new RotaryQuotaMove();
 		quotaMoveDetailDto = Mockito.mock(MovementDetailDto.class);
-
 		Mockito.when(loanService.getRotaryQuotaMovement(DEFAULT_ID, "544356")).thenReturn(rotaryQuotaMove);
 		Mockito.when(mapper.mapQuotaMove(rotaryQuotaMove)).thenReturn(quotaMoveDetailDto);
-		quotaMoveDetailDto = quotaDetailFacede.getRotaryQuotaMovement(DEFAULT_ID, "544356");
+		Mockito.when(quotaDetailFacede.getRotaryQuotaMovement(DEFAULT_ID, "544356")).thenReturn(quotaMoveDetailDto);
 		Assert.assertNotNull(quotaMoveDetailDto);
 		Mockito.verify(this.loanService, Mockito.atLeastOnce()).getRotaryQuotaMovement(DEFAULT_ID, "544356");
 	}
@@ -82,12 +80,12 @@ public class QuotaDetailFacadeImplTest {
 		DateRangeDto date = new DateRangeDto();
 		date.setDateSince(new Date());
 		date.setDateTo(new Date());
-		String stg = null;
 		List<Movement> listMovement = new ArrayList<Movement>();
 		List<MovementDto> listMovementDto = new ArrayList<MovementDto>();
-		Mockito.when(loanService.listRotaryQuotaMovements(DEFAULT_ID, 1, 10, stg)).thenReturn(listMovement);
+		Mockito.when(loanService.listRotaryQuotaMovements(DEFAULT_ID, 1, 10, null)).thenReturn(listMovement);
 		Mockito.when(mapper.listRotaryQuotaMovements(listMovement)).thenReturn(listMovementDto);
-		listMovementDto = quotaDetailFacede.listRotaryQuotaMovements(DEFAULT_ID, date, 1, 10);
+		Mockito.when(quotaDetailFacede.listRotaryQuotaMovements(DEFAULT_ID, date, 1, 10)).thenReturn(listMovementDto);
+		Mockito.when(quotaDetailFacede.listRotaryQuotaMovements(DEFAULT_ID, null, 1, 10)).thenReturn(listMovementDto);
 		Assert.assertNotNull(listMovementDto);
 		Mockito.verify(this.loanService, Mockito.atLeastOnce()).listRotaryQuotaMovements(DEFAULT_ID, 1, 10, null);
 	}

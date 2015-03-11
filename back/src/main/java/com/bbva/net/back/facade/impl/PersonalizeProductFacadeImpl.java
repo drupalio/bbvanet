@@ -22,8 +22,6 @@ public class PersonalizeProductFacadeImpl extends AbstractBbvaFacade implements 
 	@Resource(name = "personalizeProductMapper")
 	private PersonalizeAccountProductMapper personalizeAccountProductMapper;
 
-	private Integer status;
-
 	private Product product;
 
 	@Override
@@ -33,30 +31,31 @@ public class PersonalizeProductFacadeImpl extends AbstractBbvaFacade implements 
 				+ " ProductId: " + idProduct);
 		this.product = personalizeAccountProductMapper.map(productDto);
 		LOGGER.info("Llamando al servicio de updateProductOperability" + " product Id: " + product.getId());
-		this.status = this.globalPositionService.updateProductOperability(idProduct, product).getStatus();
-		if (getStatus() == 200) {
+
+		if (this.globalPositionService.updateProductOperability(idProduct, product).getStatus() == 200) {
 			LOGGER.info("finalizando llamado de updateProductOperability" + " " + "true");
 			return true;
+		} else {
+			LOGGER.info("Error llamado de updateProductOperability" + " " + "false");
+			return false;
 		}
-		LOGGER.info("Error llamado de updateProductOperability" + " " + "false");
-		return false;
 	}
 
 	@Override
 	public Boolean updateProductVisibility(String idProduct, ProductDto productDto) {
-		this.status = null;
 		this.product = new Product();
 		LOGGER.info("Comenzando mapeo del servicio de updateProductVisibility (ProductoDto -> Product)"
 				+ " ProductId: " + idProduct);
 		this.product = personalizeAccountProductMapper.map(productDto);
 		LOGGER.info("Llamando al servicio de updateProductVisibility" + " product Id: " + product.getId());
-		this.status = this.globalPositionService.updateProductVisibility(idProduct, product).getStatus();
-		if (getStatus() == 200) {
+
+		if (this.globalPositionService.updateProductVisibility(idProduct, product).getStatus() == 200) {
 			LOGGER.info("finalizando llamado de updateProductOperability" + " " + "true");
 			return true;
+		} else {
+			LOGGER.info("Error llamado de updateProductOperability" + " " + "false");
+			return false;
 		}
-		LOGGER.info("Error llamado de updateProductOperability" + " " + "false");
-		return false;
 	}
 
 	/********************************** DEPENDENCY INJECTIONS ***********************************/
@@ -74,19 +73,4 @@ public class PersonalizeProductFacadeImpl extends AbstractBbvaFacade implements 
 	public void setPersonalizeAccountProductMapper(PersonalizeAccountProductMapper personalizeAccountProductMapper) {
 		this.personalizeAccountProductMapper = personalizeAccountProductMapper;
 	}
-
-	/**
-	 * @return the status
-	 */
-	public Integer getStatus() {
-		return status;
-	}
-
-	/**
-	 * @param status the status to set
-	 */
-	public void setStatus(Integer status) {
-		this.status = status;
-	}
-
 }
