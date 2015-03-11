@@ -20,7 +20,7 @@ public class ProductTypePredicate extends BbvaPredicate<ProductDto> {
 
 	@Override
 	protected boolean eval(final ProductDto product) {
-		return product.getTypeProd().equals(productType);
+		return product != null && product.getTypeProd() != null && product.getTypeProd().equals(productType);
 	}
 
 }

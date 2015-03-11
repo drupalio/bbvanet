@@ -7,6 +7,9 @@ import com.bbva.czic.dto.net.EnumProductType;
 
 public final class ProductUtils {
 
+	private ProductUtils() {
+	}
+
 	public static EnumProductType getEnumProductTypeBySubType(final String subType) {
 
 		String cuentasVect[] = { "CC", "AH", "CT", "CD", "CE" };

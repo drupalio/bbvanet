@@ -11,7 +11,6 @@ import org.junit.Test;
 
 import com.bbva.net.core.Foo;
 import com.bbva.net.core.test.TestUtils;
-import com.bbva.net.core.utils.CollectionBbvaUtils;
 
 public class CollectionBbvaUtilsTest {
 
@@ -52,6 +51,19 @@ public class CollectionBbvaUtilsTest {
 
 		double descriptionValue = CollectionBbvaUtils.getValueByEL(foo, "description");
 		Assert.assertTrue(0.0 == descriptionValue);
+
+	}
+
+	@Test
+	public void checkgetListFieldsByEL() {
+
+		List<String> result = CollectionBbvaUtils.getListFieldsByEL(this.foos, "value");
+		Assert.assertNotNull(result);
+		Assert.assertFalse(result.isEmpty());
+
+		result = CollectionBbvaUtils.getListFieldsByEL(this.foos, "description");
+		Assert.assertNotNull(result);
+		Assert.assertFalse(result.isEmpty());
 
 	}
 

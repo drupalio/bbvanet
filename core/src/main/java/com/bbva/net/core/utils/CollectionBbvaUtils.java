@@ -39,7 +39,7 @@ public final class CollectionBbvaUtils {
 	 * @param expressionLenguage
 	 * @return
 	 */
-	public static <T extends Serializable> List<String> nameProduct(List<T> list, final String expressionLenguage) {
+	public static <T extends Serializable> List<String> getListFieldsByEL(List<T> list, final String expressionLenguage) {
 
 		List<String> names= new ArrayList<String>();
 		for (Iterator<T> iterator = list.iterator(); iterator.hasNext();) {

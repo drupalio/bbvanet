@@ -12,6 +12,9 @@ public class Foo implements Serializable {
 
 	private String description;
 
+	public Foo() {
+	}
+
 	public Foo(Long quantity, Integer value, String description) {
 		super();
 		this.quantity = quantity;

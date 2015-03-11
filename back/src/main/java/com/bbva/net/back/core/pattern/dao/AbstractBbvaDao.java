@@ -28,7 +28,7 @@ public abstract class AbstractBbvaDao<T extends Serializable> implements CrudDao
 		return (T)getSession().get(entityClass, id);
 	}
 
-	protected Session getSession() {
+	public Session getSession() {
 		return this.sessionFactory.getCurrentSession();
 	}
 

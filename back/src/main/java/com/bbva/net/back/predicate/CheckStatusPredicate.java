@@ -17,23 +17,17 @@ public class CheckStatusPredicate extends BbvaPredicate<CheckDto> {
 
 		if (checkDto == null || checkDto.getId() == null) {
 			return false;
-		}
-		if (checkDto.getStatus().contentEquals("0")) {
+		} else if (checkDto.getStatus().contentEquals("0")) {
 			checkDto.setStatus(EnumCheckStatus.valueOf(Integer.parseInt("0")).getValue());
-		}
-		if (checkDto.getStatus().contentEquals("1")) {
+		} else if (checkDto.getStatus().contentEquals("1")) {
 			checkDto.setStatus(EnumCheckStatus.valueOf(Integer.parseInt("1")).getValue());
-		}
-		if (checkDto.getStatus().contentEquals("2")) {
+		} else if (checkDto.getStatus().contentEquals("2")) {
 			checkDto.setStatus(EnumCheckStatus.valueOf(Integer.parseInt("2")).getValue());
-		}
-		if (checkDto.getStatus().contentEquals("3")) {
+		} else if (checkDto.getStatus().contentEquals("3")) {
 			checkDto.setStatus(EnumCheckStatus.valueOf(Integer.parseInt("3")).getValue());
-		}
-		if (checkDto.getStatus().contentEquals("4")) {
+		} else if (checkDto.getStatus().contentEquals("4")) {
 			checkDto.setStatus(EnumCheckStatus.valueOf(Integer.parseInt("4")).getValue());
-		}
-		if (checkDto.getStatus().contentEquals("8")) {
+		} else if (checkDto.getStatus().contentEquals("8")) {
 			checkDto.setStatus(EnumCheckStatus.valueOf(Integer.parseInt("8")).getValue());
 		}
 
