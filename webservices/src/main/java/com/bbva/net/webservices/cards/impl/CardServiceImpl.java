@@ -28,10 +28,10 @@ public class CardServiceImpl extends AbstractBbvaRestService implements CardServ
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<CardCharge> getCreditCardCharges(final String id, final String filter, final String fields,
+	public List<CardCharge> getCreditCardCharges(final String idProduct, final String filter, final String fields,
 			final String expands, final String sort) {
-		final String filterParam = filter.equals("") ? "" : "$filter";
-		final WebClient webC = getJsonWebClient(URL_BASE_CARDS + id + urlCardcharges);
+		final String filterParam = !filter.equals("") ? "$filter" : "";
+		final WebClient webC = getJsonWebClient(URL_BASE_CARDS + idProduct + urlCardcharges);
 		webC.query(filterParam, filter);
 		return (List<CardCharge>)webC.getCollection(CardCharge.class);
 	}

@@ -28,9 +28,6 @@ public class CardsMapperImpl extends ConfigurableMapper implements CardsMapper {
 
 		new VisitorCommand<CardCharge>(cardCharges) {
 
-			/**
-			 * 
-			 */
 			@Override
 			public void execute(final CardCharge product) {
 				cardsCharges.add(map(product, CardsChargesDto.class));
