@@ -19,8 +19,9 @@ import com.bbva.net.back.service.FiqlService;
 import com.bbva.net.webservices.cards.CardService;
 import com.bbva.net.webservices.customers.CustomerService;
 
-// import com.bbva.net.webservices.globalposition.GlobalPositionService;
-
+/**
+ * @author Entelgy
+ */
 public class CardsFacadeImplTest {
 
 	private static final String DEFAULT_USER = "123";
@@ -55,7 +56,7 @@ public class CardsFacadeImplTest {
 	}
 
 	@Test
-	public void checkgetCardsChargesByFilter() {
+	public void checkgetCardsChargesByUser() {
 		dateRange = new DateRangeDto();
 		Date a = new Date();
 		dateRange.setDateSince(a);
@@ -70,6 +71,25 @@ public class CardsFacadeImplTest {
 		List<CardsChargesDto> value = cardsFacade.getCardsChargesByUser(dateRange);
 		Assert.assertNotNull(value);
 		Mockito.verify(this.cardsCustomerService, Mockito.atLeastOnce()).listCreditCardsCharges("");
+
+	}
+
+	@Test
+	public void checkgetCardsChargesByFilterId() {
+		dateRange = new DateRangeDto();
+		Date a = new Date();
+		dateRange.setDateSince(a);
+		dateRange.setDateTo(a);
+
+		Mockito.when(fiqlService.getFiqlQueryByDateRange(dateRange, null, null)).thenReturn("");
+		List<CardCharge> cardCharge = new ArrayList<CardCharge>();
+		Mockito.when(cardChargeService.getCreditCardCharges("2032", "", "", "", "")).thenReturn(cardCharge);
+
+		Mockito.when(cardsMapper.map(cardCharge)).thenReturn(new ArrayList<CardsChargesDto>());
+
+		List<CardsChargesDto> value = cardsFacade.getCardsChargesFilter("2032", dateRange);
+		Assert.assertNotNull(value);
+		Mockito.verify(this.cardChargeService, Mockito.atLeastOnce()).getCreditCardCharges("2032", "", "", "", "");
 
 	}
 
