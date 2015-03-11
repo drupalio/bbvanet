@@ -22,49 +22,71 @@ public class PersonalizeProductFacadeImpl extends AbstractBbvaFacade implements 
 	@Resource(name = "personalizeProductMapper")
 	private PersonalizeAccountProductMapper personalizeAccountProductMapper;
 
+	private Integer status;
+
 	private Product product;
 
 	@Override
 	public Boolean updateProductOperability(String idProduct, ProductDto productDto) {
-		boolean respuesta = false;
 		this.product = new Product();
 		LOGGER.info("Comenzando mapeo del servicio de updateProductOperability (ProductoDto -> Product)"
 				+ " ProductId: " + idProduct);
 		this.product = personalizeAccountProductMapper.map(productDto);
 		LOGGER.info("Llamando al servicio de updateProductOperability" + " product Id: " + product.getId());
-		if (this.globalPositionService.updateProductOperability(idProduct, product).getStatus() == 200) {
-			respuesta = true;
+		this.status = this.globalPositionService.updateProductOperability(idProduct, product).getStatus();
+		if (getStatus() == 200) {
+			LOGGER.info("finalizando llamado de updateProductOperability" + " " + "true");
+			return true;
 		}
-		LOGGER.info("finalizando llamado de updateProductOperability" + " " + respuesta);
-		return respuesta;
+		LOGGER.info("Error llamado de updateProductOperability" + " " + "false");
+		return false;
 	}
 
 	@Override
 	public Boolean updateProductVisibility(String idProduct, ProductDto productDto) {
-		boolean respuesta = false;
+		this.status = null;
 		this.product = new Product();
 		LOGGER.info("Comenzando mapeo del servicio de updateProductVisibility (ProductoDto -> Product)"
 				+ " ProductId: " + idProduct);
 		this.product = personalizeAccountProductMapper.map(productDto);
 		LOGGER.info("Llamando al servicio de updateProductVisibility" + " product Id: " + product.getId());
-		if (this.globalPositionService.updateProductVisibility(idProduct, product).getStatus() == 200) {
-			respuesta = true;
-			LOGGER.info("finalizando llamado de updateProductVisibility" + " " + respuesta);
+		this.status = this.globalPositionService.updateProductVisibility(idProduct, product).getStatus();
+		if (getStatus() == 200) {
+			LOGGER.info("finalizando llamado de updateProductOperability" + " " + "true");
+			return true;
 		}
-
-		return respuesta;
+		LOGGER.info("Error llamado de updateProductOperability" + " " + "false");
+		return false;
 	}
 
+	/********************************** DEPENDENCY INJECTIONS ***********************************/
+
+	/**
+	 * @param globalPositionService
+	 */
 	public void setGlobalPositionService(GlobalPositionService globalPositionService) {
 		this.globalPositionService = globalPositionService;
 	}
 
-	public PersonalizeAccountProductMapper getPersonalizeAccountProductMapper() {
-		return personalizeAccountProductMapper;
-	}
-
+	/**
+	 * @param personalizeAccountProductMapper
+	 */
 	public void setPersonalizeAccountProductMapper(PersonalizeAccountProductMapper personalizeAccountProductMapper) {
 		this.personalizeAccountProductMapper = personalizeAccountProductMapper;
+	}
+
+	/**
+	 * @return the status
+	 */
+	public Integer getStatus() {
+		return status;
+	}
+
+	/**
+	 * @param status the status to set
+	 */
+	public void setStatus(Integer status) {
+		this.status = status;
 	}
 
 }
