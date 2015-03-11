@@ -35,11 +35,11 @@ public class PersonalizeProductAccountControllerImplTest {
 
 	@Test
 	public void checkGetPersonalizeUpdateOperability() {
-		boolean response = true;
+		boolean response = false;
 		Mockito.when(personalizeProductAccountFacade.updateProductOperability(DEFAULT_ID, productDto)).thenReturn(
 				response);
 		response = personalizeProductAccountFacade.updateProductOperability(DEFAULT_ID, this.productDto);
-		Assert.assertEquals(response, true);
+		Assert.assertEquals(true, response);
 		Mockito.verify(this.personalizeProductAccountFacade, Mockito.atLeastOnce()).updateProductOperability(
 				DEFAULT_ID, productDto);
 	}
@@ -50,7 +50,7 @@ public class PersonalizeProductAccountControllerImplTest {
 		Mockito.when(personalizeProductAccountFacade.updateProductVisibility(DEFAULT_ID, productDto)).thenReturn(
 				response);
 		response = personalizeProductAccountFacade.updateProductVisibility(DEFAULT_ID, this.productDto);
-		Assert.assertEquals(response, true);
+		Assert.assertEquals(true, response);
 		Mockito.verify(this.personalizeProductAccountFacade, Mockito.atLeastOnce()).updateProductVisibility(DEFAULT_ID,
 				productDto);
 	}
