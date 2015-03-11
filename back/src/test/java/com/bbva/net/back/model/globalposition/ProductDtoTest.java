@@ -6,7 +6,7 @@ public class ProductDtoTest extends AbstractBbvaDTOTest<ProductDto> {
 
 	@Override
 	protected ProductDto getInstance() {
-		return new DepositDto();
+		return new ProductDto();
 	}
 
 }

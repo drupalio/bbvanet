@@ -8,39 +8,22 @@ import com.bbva.net.back.model.commons.Money;
 
 public class CardsChargesDto implements Dto {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 4343825249261438191L;
 
 	private String categorie;
 
 	private Money ammount;
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public CardsChargesDto() {
 	}
 
-	public String getCategorie() {
-		return categorie;
-	}
-
-	public void setCategorie(String categorie) {
+	/**
+	 * @param categorie
+	 * @param ammount
+	 */
+	public CardsChargesDto(String categorie, Money ammount) {
 		this.categorie = categorie;
-	}
-
-	public Money getAmmount() {
-		return ammount;
-	}
-
-	public void setAmmount(Money ammount) {
 		this.ammount = ammount;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		return (obj instanceof CardsChargesDto) && this.getCategorie().equals(((CardsChargesDto)obj).getCategorie())
-				&& this.getAmmount().equals(((CardsChargesDto)obj).getAmmount());
 	}
 
 	@Override
@@ -49,8 +32,45 @@ public class CardsChargesDto implements Dto {
 	}
 
 	@Override
+	public boolean equals(Object obj) {
+		return (obj != null) && (obj instanceof CardsChargesDto)
+				&& this.getCategorie().equals(((CardsChargesDto)obj).getCategorie())
+				&& this.getAmmount().equals(((CardsChargesDto)obj).getAmmount());
+	}
+
+	@Override
 	public String toString() {
-		return new ToStringBuilder(this).append("categorie", getCategorie()).append("ammount", getAmmount()).toString();
+		return new ToStringBuilder(this).append("categoria", getCategorie()).append("ammount", getAmmount()).toString();
+	}
+
+	// Setters and getters
+
+	/**
+	 * @return the categorie
+	 */
+	public String getCategorie() {
+		return categorie;
+	}
+
+	/**
+	 * @param categorie the categorie to set
+	 */
+	public void setCategorie(String categorie) {
+		this.categorie = categorie;
+	}
+
+	/**
+	 * @return the ammount
+	 */
+	public Money getAmmount() {
+		return ammount;
+	}
+
+	/**
+	 * @param ammount the ammount to set
+	 */
+	public void setAmmount(Money ammount) {
+		this.ammount = ammount;
 	}
 
 }

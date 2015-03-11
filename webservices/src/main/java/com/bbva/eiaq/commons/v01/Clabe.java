@@ -1,15 +1,16 @@
-
 package com.bbva.eiaq.commons.v01;
+
+import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Clase Java para clabe complex type.
- * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>
+ * Clase Java para clabe complex type.
+ * <p>
+ * El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="clabe">
@@ -25,117 +26,91 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "clabe", propOrder = {
-    "bankCode",
-    "regionCode",
-    "accountNumber",
-    "controlDigit"
-})
-public class Clabe {
+@XmlType(name = "clabe", propOrder = { "bankCode", "regionCode", "accountNumber", "controlDigit" })
+public class Clabe implements Serializable {
 
-    protected String bankCode;
-    protected String regionCode;
-    protected String accountNumber;
-    protected String controlDigit;
+	private static final long serialVersionUID = -1875083002523455907L;
 
-    /**
-     * Obtiene el valor de la propiedad bankCode.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getBankCode() {
-        return bankCode;
-    }
+	protected String bankCode;
 
-    /**
-     * Define el valor de la propiedad bankCode.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setBankCode(String value) {
-        this.bankCode = value;
-    }
+	protected String regionCode;
 
-    /**
-     * Obtiene el valor de la propiedad regionCode.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getRegionCode() {
-        return regionCode;
-    }
+	protected String accountNumber;
 
-    /**
-     * Define el valor de la propiedad regionCode.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setRegionCode(String value) {
-        this.regionCode = value;
-    }
+	protected String controlDigit;
 
-    /**
-     * Obtiene el valor de la propiedad accountNumber.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getAccountNumber() {
-        return accountNumber;
-    }
+	/**
+	 * Obtiene el valor de la propiedad bankCode.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getBankCode() {
+		return bankCode;
+	}
 
-    /**
-     * Define el valor de la propiedad accountNumber.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setAccountNumber(String value) {
-        this.accountNumber = value;
-    }
+	/**
+	 * Define el valor de la propiedad bankCode.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setBankCode(String value) {
+		this.bankCode = value;
+	}
 
-    /**
-     * Obtiene el valor de la propiedad controlDigit.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getControlDigit() {
-        return controlDigit;
-    }
+	/**
+	 * Obtiene el valor de la propiedad regionCode.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getRegionCode() {
+		return regionCode;
+	}
 
-    /**
-     * Define el valor de la propiedad controlDigit.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setControlDigit(String value) {
-        this.controlDigit = value;
-    }
+	/**
+	 * Define el valor de la propiedad regionCode.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setRegionCode(String value) {
+		this.regionCode = value;
+	}
+
+	/**
+	 * Obtiene el valor de la propiedad accountNumber.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getAccountNumber() {
+		return accountNumber;
+	}
+
+	/**
+	 * Define el valor de la propiedad accountNumber.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setAccountNumber(String value) {
+		this.accountNumber = value;
+	}
+
+	/**
+	 * Obtiene el valor de la propiedad controlDigit.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getControlDigit() {
+		return controlDigit;
+	}
+
+	/**
+	 * Define el valor de la propiedad controlDigit.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setControlDigit(String value) {
+		this.controlDigit = value;
+	}
 
 }

@@ -6,7 +6,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import com.bbva.czic.dto.net.EnumFundsType;
 import com.bbva.net.back.core.pattern.dto.Dto;
 
-public class FundDto extends ProductDto implements Dto{
+public class FundDto extends ProductDto implements Dto {
 
 	private final static long serialVersionUID = 1L;
 
@@ -22,6 +22,23 @@ public class FundDto extends ProductDto implements Dto{
 		this.typefunds = typefunds;
 	}
 
+	@Override
+	public String toString() {
+		return new ToStringBuilder(this).append("typefunds", getProductId()).toString();
+	}
+
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder().append(getTypefunds()).toHashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return (obj != null) && (obj instanceof FundDto) && this.getTypefunds().equals(((FundDto)obj).getTypefunds());
+	}
+
+	// Setters and getters
+
 	/**
 	 * @return the typefunds
 	 */
@@ -35,20 +52,4 @@ public class FundDto extends ProductDto implements Dto{
 	public void setTypefunds(EnumFundsType typefunds) {
 		this.typefunds = typefunds;
 	}
-
-	@Override
-	public String toString() {
-		return new ToStringBuilder(this).append("typefunds", getProductId()).toString();
-	}
-
-	@Override
-	public int hashCode() {
-		return new HashCodeBuilder().append(getTypefunds()).toHashCode();
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		return (obj instanceof FundDto) && this.getTypefunds().equals(((FundDto)obj).getTypefunds());
-	}
-
 }

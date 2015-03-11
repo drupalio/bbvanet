@@ -26,10 +26,33 @@ public class DateRangeDto implements Dto {
 		this.dateTo = new Date();
 	}
 
+	/**
+	 * @param dateSince
+	 * @param dateTo
+	 */
 	public DateRangeDto(Date dateSince, Date dateTo) {
 		this.dateSince = dateSince;
 		this.dateTo = dateTo;
 	}
+
+	@Override
+	public String toString() {
+		return new ToStringBuilder(this).append("dateSince", getDateSince()).append("dateTo", getDateTo()).toString();
+	}
+
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder().append(getDateSince()).append(getDateTo()).toHashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return (obj != null) && (obj instanceof DateRangeDto)
+				&& this.getDateSince().equals(((DateRangeDto)obj).getDateSince())
+				&& this.getDateTo().equals(((DateRangeDto)obj).getDateTo());
+	}
+
+	// Setters and getters
 
 	/**
 	 * @return the dateSince
@@ -57,21 +80,5 @@ public class DateRangeDto implements Dto {
 	 */
 	public void setDateTo(Date dateTo) {
 		this.dateTo = dateTo;
-	}
-
-	@Override
-	public String toString() {
-		return new ToStringBuilder(this).append("dateSince", getDateSince()).append("dateTo", getDateTo()).toString();
-	}
-
-	@Override
-	public int hashCode() {
-		return new HashCodeBuilder().append(getDateSince()).append(getDateTo()).toHashCode();
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		return (obj instanceof DateRangeDto) && this.getDateSince().equals(((DateRangeDto)obj).getDateSince())
-				&& this.getDateTo().equals(((DateRangeDto)obj).getDateTo());
 	}
 }

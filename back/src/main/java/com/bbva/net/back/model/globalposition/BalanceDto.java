@@ -24,46 +24,61 @@ public class BalanceDto implements Dto {
 	private Money total;
 
 	public BalanceDto() {
-		super();
 	}
 
+	/**
+	 * @param available
+	 * @param total
+	 */
 	public BalanceDto(Money available, Money total) {
-		super();
 		this.available = available;
-		this.total = total;
-	}
-
-	public Money getAvailable() {
-		return available;
-	}
-
-	public void setAvailable(Money available) {
-		this.available = available;
-	}
-
-	public Money getTotal() {
-		return total;
-	}
-
-	public void setTotal(Money total) {
 		this.total = total;
 	}
 
 	@Override
 	public String toString() {
-
 		return new ToStringBuilder(this).append("available", getAvailable()).append("total", getTotal()).toString();
 	}
 
 	@Override
 	public int hashCode() {
-
 		return new HashCodeBuilder().append(getAvailable()).append(getTotal()).hashCode();
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		return (obj instanceof BalanceDto) && this.getAvailable().equals(((BalanceDto)obj).getAvailable())
+		return (obj != null) && (obj instanceof BalanceDto)
+				&& this.getAvailable().equals(((BalanceDto)obj).getAvailable())
 				&& this.getTotal().equals(((BalanceDto)obj).getTotal());
+	}
+
+	// Setters and getters
+
+	/**
+	 * @return the available
+	 */
+	public Money getAvailable() {
+		return available;
+	}
+
+	/**
+	 * @param available the available to set
+	 */
+	public void setAvailable(Money available) {
+		this.available = available;
+	}
+
+	/**
+	 * @return the total
+	 */
+	public Money getTotal() {
+		return total;
+	}
+
+	/**
+	 * @param total the total to set
+	 */
+	public void setTotal(Money total) {
+		this.total = total;
 	}
 }

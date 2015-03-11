@@ -26,14 +26,14 @@
 				rendered="#{checkBookController.renderComponents['CHECKTABLE']}"
 				rowKey="#{cheks.id}">
 				<p:column headerText="#{msg['text.table.num.check']}"
-					styleClass="sorted w13 desc">
+					styleClass="sorted w13 desc" sortBy="#{cheks.id}">
 
 					<h:outputText styleClass="brand"
 						value="#{cheks.id}" />
 				</p:column>
 
 				<p:column headerText="#{msg['text.table.emi.date']}"
-					styleClass="desc w13"
+					styleClass="desc w13" sortBy="#{cheks.issueDate}"
 					>
 
 					<h:outputText class="text"
@@ -45,7 +45,7 @@
 				</p:column>
 
 				<p:column  headerText="#{msg['text.detailMove.value']}"
-					styleClass="styleColum desc w34"
+					styleClass="styleColum desc w34" sortBy="#{cheks.value}"
 					colspan="2">
 
 					<h:outputText class="currency styleCurrent"
@@ -53,7 +53,7 @@
 
 				</p:column>
 				<p:column class="head" headerText="#{msg['text.table.status']}"
-					styleClass="desc w10">
+					styleClass="desc w10" sortBy="#{cheks.status}">
 
 					<h:outputText class="text"						
 						value="#{cheks.status}" />
@@ -61,7 +61,7 @@
 				</p:column>
 
 				<p:column class="head" headerText="#{msg['text.table.change.date']}"
-					styleClass="desc w10">
+					styleClass="desc w10" sortBy="#{cheks.modifiedDate}">
 
 					<h:outputText class="text"
 						value="#{cheks.modifiedDate}" >

@@ -69,7 +69,6 @@ public class MovementCriteriaDto implements Dto {
 	public MovementCriteriaDto(DateRangeDto dateRange, BalanceRangeDto balanceRange, Date concreteDateSince,
 			Date concreteDateTo, Date lastMonth, Date lasTwoMonth, Date lastTwoWeeks, Date lastWeek, Date today,
 			Date yesterday, String movement, String incomesOrExpenses, String selectDate) {
-		super();
 		this.dateRange = dateRange;
 		this.balanceRange = balanceRange;
 		this.concreteDateSince = concreteDateSince;
@@ -84,6 +83,44 @@ public class MovementCriteriaDto implements Dto {
 		this.incomesOrExpenses = incomesOrExpenses;
 		this.selectDate = selectDate;
 	}
+
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder().append(getDateRange()).append(getBalanceRange()).append(getConcreteDateSince())
+				.append(getConcreteDateTo()).append(getLastMonth()).append(getLasTwoMonth()).append(getLastTwoWeeks())
+				.append(getLastWeek()).append(getToday()).append(getYesterday()).append(getMovement())
+				.append(getIncomesOrExpenses()).append(getSelectDate()).toHashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return (obj != null) && (obj instanceof MovementCriteriaDto)
+				&& this.getDateRange().equals(((MovementCriteriaDto)obj).getDateRange())
+				&& this.getBalanceRange().equals(((MovementCriteriaDto)obj).getBalanceRange())
+				&& this.getConcreteDateSince().equals(((MovementCriteriaDto)obj).getConcreteDateSince())
+				&& this.getConcreteDateTo().equals(((MovementCriteriaDto)obj).getConcreteDateTo())
+				&& this.getLastMonth().equals(((MovementCriteriaDto)obj).getLastMonth())
+				&& this.getLasTwoMonth().equals(((MovementCriteriaDto)obj).getLasTwoMonth())
+				&& this.getLastTwoWeeks().equals(((MovementCriteriaDto)obj).getLastTwoWeeks())
+				&& this.getLastWeek().equals(((MovementCriteriaDto)obj).getLastWeek())
+				&& this.getToday().equals(((MovementCriteriaDto)obj).getToday())
+				&& this.getYesterday().equals(((MovementCriteriaDto)obj).getYesterday())
+				&& this.getMovement().equals(((MovementCriteriaDto)obj).getMovement())
+				&& this.getSelectDate().equals(((MovementCriteriaDto)obj).getSelectDate())
+				&& this.getIncomesOrExpenses().equals(((MovementCriteriaDto)obj).getIncomesOrExpenses());
+	}
+
+	@Override
+	public String toString() {
+		return new ToStringBuilder(this).append("dateRange", getDateRange()).append("balanceRange", getBalanceRange())
+				.append("concreteDateSince", getConcreteDateSince()).append("concreteDateTo", getConcreteDateTo())
+				.append("lastMonth", getLastMonth()).append("lasTwoMonth", getLasTwoMonth())
+				.append("lastTwoWeeks", getLastTwoWeeks()).append("lastWeek", getLastWeek())
+				.append("today", getToday()).append("yesterday", getYesterday()).append("movement", getMovement())
+				.append("selectDate", getSelectDate()).append("incomesOrExpenses", getIncomesOrExpenses()).toString();
+	}
+
+	// Setters and getters
 
 	/**
 	 * @return the dateRange
@@ -265,43 +302,6 @@ public class MovementCriteriaDto implements Dto {
 	 */
 	public void setSelectDate(String selectDate) {
 		this.selectDate = selectDate;
-	}
-
-	@Override
-	public String toString() {
-		return new ToStringBuilder(this).append("dateRange", getDateRange()).append("balanceRange", getBalanceRange())
-				.append("concreteDateSince", getConcreteDateSince()).append("concreteDateTo", getConcreteDateTo())
-				.append("lastMonth", getLastMonth()).append("lasTwoMonth", getLasTwoMonth())
-				.append("lastTwoWeeks", getLastTwoWeeks()).append("lastWeek", getLastWeek())
-				.append("today", getToday()).append("yesterday", getYesterday()).append("movement", getMovement())
-				.append("incomesOrExpenses", getIncomesOrExpenses()).toString();
-	}
-
-	@Override
-	public int hashCode() {
-		return new HashCodeBuilder().append(getDateRange()).append(getBalanceRange()).append(getConcreteDateSince())
-				.append(getConcreteDateTo()).append(getLastMonth()).append(getLasTwoMonth()).append(getLastTwoWeeks())
-				.append(getLastWeek()).append(getToday()).append(getYesterday()).append(getMovement())
-				.append(getIncomesOrExpenses()).toHashCode();
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-
-		return (obj instanceof MovementCriteriaDto)
-				&& this.getDateRange().equals(((MovementCriteriaDto)obj).getDateRange())
-				&& this.getBalanceRange().equals(((MovementCriteriaDto)obj).getBalanceRange())
-				&& this.getConcreteDateSince().equals(((MovementCriteriaDto)obj).getConcreteDateSince())
-				&& this.getConcreteDateTo().equals(((MovementCriteriaDto)obj).getConcreteDateTo())
-				&& this.getLastMonth().equals(((MovementCriteriaDto)obj).getLastMonth())
-				&& this.getLasTwoMonth().equals(((MovementCriteriaDto)obj).getLasTwoMonth())
-				&& this.getLastTwoWeeks().equals(((MovementCriteriaDto)obj).getLastTwoWeeks())
-				&& this.getLastWeek().equals(((MovementCriteriaDto)obj).getLastWeek())
-				&& this.getToday().equals(((MovementCriteriaDto)obj).getToday())
-				&& this.getYesterday().equals(((MovementCriteriaDto)obj).getYesterday())
-				&& this.getMovement().equals(((MovementCriteriaDto)obj).getMovement())
-				&& this.getIncomesOrExpenses().equals(((MovementCriteriaDto)obj).getIncomesOrExpenses());
-
 	}
 
 }
