@@ -41,7 +41,7 @@ public final class BeanBbvaUtils {
 		final DataFactory dataFactory = new DataFactory();
 
 		if (Number.class.isAssignableFrom(clazz)) {
-			return clazz.getConstructor(String.class).newInstance(dataFactory.getNumber());
+			return clazz.getConstructor(String.class).newInstance(dataFactory.getNumberText(5));
 		}
 
 		if (CharSequence.class.isAssignableFrom(clazz)) {

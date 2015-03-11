@@ -50,7 +50,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public <T extends ProductDto> List<String> getNameProduct(final List<T> products) {
-		return new ArrayList<String>(CollectionBbvaUtils.nameProduct(products, "productNumber"));
+		return new ArrayList<String>(CollectionBbvaUtils.getListFieldsByEL(products, "productNumber"));
 	}
 
 	@SuppressWarnings("unchecked")

@@ -15,7 +15,8 @@ public class IncomesPredicate extends BbvaPredicate<MovementDto> {
 
 	@Override
 	protected boolean eval(MovementDto movementDto) {
-		if (movementDto == null || movementDto.getMovementValue() == null) {
+		if (movementDto == null || movementDto.getMovementValue() == null
+				|| movementDto.getMovementValue().getAmount() == null) {
 			return false;
 		}
 		return (movementDto.getMovementValue().getAmount().signum()) == INCOMES;

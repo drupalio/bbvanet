@@ -13,7 +13,8 @@ public class ExtractPeriodPredicate extends BbvaPredicate<ExtractDto> {
 
 	@Override
 	protected boolean eval(final ExtractDto productExtract) {
-		return productExtract.getYear().equals(yearAvailable);
+		return productExtract != null && productExtract.getYear() != null
+				&& productExtract.getYear().equals(yearAvailable);
 	}
 
 }

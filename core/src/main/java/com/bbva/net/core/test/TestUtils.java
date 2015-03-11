@@ -12,7 +12,10 @@ import com.bbva.jee.arq.spring.core.log.I18nLogFactory;
 /**
  * @author Entelgy
  */
-public abstract class TestUtils {
+public final class TestUtils {
+
+	private TestUtils() {
+	}
 
 	protected static final Log LOGGER = I18nLogFactory.getLog(TestUtils.class);
 
