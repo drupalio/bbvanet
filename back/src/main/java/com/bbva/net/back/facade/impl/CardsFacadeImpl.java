@@ -34,7 +34,7 @@ public class CardsFacadeImpl extends AbstractBbvaFacade implements CardsFacade {
 	 * CLIENTE REST
 	 */
 	@Resource(name = "customerService")
-	private CustomerService cardsCustomerService;
+	private CustomerService customService;
 
 	/**
 	 * 
@@ -79,7 +79,7 @@ public class CardsFacadeImpl extends AbstractBbvaFacade implements CardsFacade {
 	 */
 	@Override
 	public List<CardsChargesDto> getCardsChargesByUser(final DateRangeDto dateRange) {
-		EnumPeriodType periodType = null;
+		EnumPeriodType periodType;
 		DateRangeDto dateRangeUser = dateRange;
 		if (dateRangeUser == null) {
 			periodType = EnumPeriodType.valueOf(EnumPeriodType.LAST_SIX_MONTH.getPeriodId());
@@ -88,7 +88,7 @@ public class CardsFacadeImpl extends AbstractBbvaFacade implements CardsFacade {
 		LOGGER.info("Graphic cards Facade by User dateRange:" + dateRangeUser.toString());
 		final String filter = fiqlService.getFiqlQueryByDateRange(dateRangeUser, date, date);
 		LOGGER.info("Graphic cards Facade by User filter:" + filter);
-		final List<CardCharge> response = cardsCustomerService.listCreditCardsCharges(filter);
+		final List<CardCharge> response = customService.listCreditCardsCharges(filter);
 		LOGGER.info("Graphic cards Facade by User Mapper:" + cardsMapper.map(response));
 		return cardsMapper.map(response);
 	}
@@ -115,7 +115,7 @@ public class CardsFacadeImpl extends AbstractBbvaFacade implements CardsFacade {
 
 	/** DEPENDENCY INJECTIONS **/
 
-	public void setCardsCustomerService(final CustomerService cardsCustomerService) {
-		this.cardsCustomerService = cardsCustomerService;
+	public void setCardsCustomerService(final CustomerService CustomService) {
+		this.customService = CustomService;
 	}
 }
