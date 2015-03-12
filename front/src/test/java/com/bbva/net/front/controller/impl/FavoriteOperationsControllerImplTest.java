@@ -26,7 +26,7 @@ public class FavoriteOperationsControllerImplTest {
 		this.favoriteOperations = Mockito.mock(FavoriteOperationsFacade.class);
 		favoriteOperationsController.setFavoriteOperationsFacade(favoriteOperations);
 		favoriteOperationsController.init();
-
+		this.favoriteOperationsController.getNames();
 	}
 
 	@Test
@@ -43,4 +43,15 @@ public class FavoriteOperationsControllerImplTest {
 		Mockito.verify(this.favoriteOperations, Mockito.atLeastOnce()).getListFavoriteOperations();
 	}
 
+	@Test
+	public void checkGetNames() {
+		Mockito.verify(this.favoriteOperationsController, Mockito.atLeastOnce()).getNames();
+	}
+
+	@Test
+	public void checkGetDate() {
+		Date date = new Date();
+		Assert.assertNotNull(this.favoriteOperationsController.getDate(date));
+		Mockito.verify(this.favoriteOperationsController, Mockito.atLeastOnce()).getDate(date);
+	}
 }

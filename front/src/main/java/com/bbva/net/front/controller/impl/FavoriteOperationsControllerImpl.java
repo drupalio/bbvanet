@@ -31,9 +31,18 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
 
 	private List<FavoriteOperationDto> favoriteOperations;
 
+	private SimpleDateFormat dateFormat = new SimpleDateFormat(
+			MessagesHelper.INSTANCE.getStringI18("date.pattner.dd-mm-yyyy"));
+
+	/**
+	 * Facade favoriteOperations
+	 */
 	@Resource(name = "favoriteOperationsFacade")
 	private transient FavoriteOperationsFacade favoriteOperationsFacade;
 
+	/**
+	 * init if FavoriteOperationsController
+	 */
 	@PostConstruct
 	public void init() {
 		favoriteOperations = favoriteOperationsFacade.getListFavoriteOperations();
@@ -41,11 +50,16 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
 	}
 
 	@Override
-	public void onProductSelected(SelectEvent selectEvent) {
+	public void onProductSelected(final SelectEvent selectEvent) {
 		super.onProductSelected(selectEvent);
 		this.sendAction("accountSelected");
 	}
 
+	/**
+	 * Muestra
+	 * 
+	 * @return favoriteOperations
+	 */
 	@Override
 	public List<FavoriteOperationDto> getListFavoriteOperations() {
 
@@ -56,6 +70,11 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
 		}
 	}
 
+	/**
+	 * Favorite operations hidden
+	 * 
+	 * @return favoriteOperations
+	 */
 	@Override
 	public List<FavoriteOperationDto> getListFavoriteOperationsHidden() {
 
@@ -66,9 +85,12 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
 		}
 	}
 
+	/**
+	 * @param transactionDate
+	 * @return
+	 */
 	public String getDate(Date transactionDate) {
-		final SimpleDateFormat dateFormat = new SimpleDateFormat(
-				MessagesHelper.INSTANCE.getStringI18("date.pattner.dd-mm-yyyy"));
+
 		return dateFormat.format(transactionDate);
 
 	}
@@ -88,18 +110,20 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
 
 	}
 
+	/**
+	 * @return favoriteOperations
+	 */
 	public List<FavoriteOperationDto> getFavoriteOperations() {
 		return favoriteOperations;
-	}
-
-	public void setFavoriteOperations(List<FavoriteOperationDto> favoriteOperations) {
-		this.favoriteOperations = favoriteOperations;
 	}
 
 	public FavoriteOperationsFacade getFavoriteOperationsFacade() {
 		return favoriteOperationsFacade;
 	}
 
+	/**
+	 * @param favoriteOperationsFacade
+	 */
 	public void setFavoriteOperationsFacade(FavoriteOperationsFacade favoriteOperationsFacade) {
 		this.favoriteOperationsFacade = favoriteOperationsFacade;
 	}
