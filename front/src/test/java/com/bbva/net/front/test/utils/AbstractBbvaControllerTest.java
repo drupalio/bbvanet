@@ -3,6 +3,8 @@ package com.bbva.net.front.test.utils;
 import static org.powermock.api.mockito.PowerMockito.when;
 
 import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import javax.faces.application.Application;
@@ -21,12 +23,16 @@ import org.mockito.MockitoAnnotations;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
+import org.primefaces.context.RequestContext;
+import org.springframework.webflow.core.collection.MutableAttributeMap;
+import org.springframework.webflow.engine.RequestControlContext;
+import org.springframework.webflow.execution.RequestContextHolder;
 
 /**
  * @author Entelgy
  */
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({ FacesContext.class, ResourceBundle.class })
+@PrepareForTest({ FacesContext.class, RequestContext.class, RequestContextHolder.class, ResourceBundle.class })
 public abstract class AbstractBbvaControllerTest {
 
 	@Mock
@@ -50,6 +56,18 @@ public abstract class AbstractBbvaControllerTest {
 	@Mock
 	protected Application application;
 
+	@Mock
+	protected RequestContextHolder requestContextHolder;
+
+	@Mock
+	protected RequestControlContext webFlowRequestContext;
+
+	@Mock
+	protected RequestContext requestContext;
+
+	@Mock
+	protected MutableAttributeMap<Object> scope;
+
 	protected ResourceBundle resourceBundle;
 
 	@Before
@@ -68,6 +86,8 @@ public abstract class AbstractBbvaControllerTest {
 
 		// Using PowerMockito to mock the statics
 		PowerMockito.mockStatic(FacesContext.class);
+		PowerMockito.mockStatic(RequestContextHolder.class);
+		PowerMockito.mockStatic(RequestContext.class);
 
 		when(FacesContext.getCurrentInstance()).thenReturn(facesContext);
 		when(facesContext.getExternalContext()).thenReturn(externalContext);
@@ -78,7 +98,16 @@ public abstract class AbstractBbvaControllerTest {
 		when(facesContext.getApplication()).thenReturn(application);
 		when(application.getResourceBundle(facesContext, "msg")).thenReturn(resourceBundle);
 		when(application.getResourceBundle(facesContext, "i18")).thenReturn(resourceBundle);
+		when(RequestContext.getCurrentInstance()).thenReturn(requestContext);
 
+		final Map<Object, Object> attributes = new HashMap<Object, Object>();
+		attributes.put(RequestContext.class.getName(), requestContext);
+
+		when(facesContext.getAttributes()).thenReturn(attributes);
+		when(RequestContextHolder.getRequestContext()).thenReturn(webFlowRequestContext);
+		when(webFlowRequestContext.getViewScope()).thenReturn(scope);
+		when(webFlowRequestContext.getFlowScope()).thenReturn(scope);
+		when(webFlowRequestContext.getFlashScope()).thenReturn(scope);
 	}
 
 	/**
