@@ -31,9 +31,6 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
 
 	private List<FavoriteOperationDto> favoriteOperations;
 
-	private SimpleDateFormat dateFormat = new SimpleDateFormat(
-			MessagesHelper.INSTANCE.getStringI18("date.pattner.dd-mm-yyyy"));
-
 	/**
 	 * Facade favoriteOperations
 	 */
@@ -90,7 +87,8 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
 	 * @return
 	 */
 	public String getDate(Date transactionDate) {
-
+		final SimpleDateFormat dateFormat = new SimpleDateFormat(
+				MessagesHelper.INSTANCE.getStringI18("date.pattner.dd-mm-yyyy"));
 		return dateFormat.format(transactionDate);
 
 	}
