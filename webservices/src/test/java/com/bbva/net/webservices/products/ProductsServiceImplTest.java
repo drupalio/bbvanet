@@ -1,5 +1,10 @@
 package com.bbva.net.webservices.products;
 
+import java.util.List;
+
+import javax.ws.rs.ServiceUnavailableException;
+
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -58,9 +63,13 @@ public class ProductsServiceImplTest extends AbstractBbvaRestClientTest {
 
 	@SuppressWarnings("unchecked")
 	@Test
-	public void wormListExtracts() {
-		Mockito.when(webClient.getCollection(Extracto.class)).thenReturn(null);
-		Mockito.when(webClient.getCollection(Extracto.class)).thenThrow(Exception.class);
+	public void checkListExtractsThrowException() {
+		// 1. Prepare Test (Create Mock)
+		Mockito.when(webClient.getCollection(Extracto.class)).thenThrow(ServiceUnavailableException.class);
+		// 2. Invoke to method
+		final List<Extracto> result = this.productServiceImpl.listExtracts("00130443000200009410", "$filter");
+		// 3. Verify reult
+		Assert.assertTrue(result.isEmpty());
 	}
 
 	@SuppressWarnings("unchecked")
