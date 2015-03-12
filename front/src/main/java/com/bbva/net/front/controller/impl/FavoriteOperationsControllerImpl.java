@@ -7,7 +7,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
-import org.primefaces.event.SelectEvent;
+import org.apache.commons.collections.ListUtils;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -29,6 +29,9 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
 	 */
 	private static final long serialVersionUID = -9133966635827463062L;
 
+	/**
+	 * 
+	 */
 	private List<FavoriteOperationDto> favoriteOperations;
 
 	/**
@@ -44,12 +47,6 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
 	public void init() {
 		favoriteOperations = favoriteOperationsFacade.getListFavoriteOperations();
 		getNames();
-	}
-
-	@Override
-	public void onProductSelected(final SelectEvent selectEvent) {
-		super.onProductSelected(selectEvent);
-		this.sendAction("accountSelected");
 	}
 
 	/**
@@ -76,7 +73,7 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
 	public List<FavoriteOperationDto> getListFavoriteOperationsHidden() {
 
 		if (favoriteOperations.size() <= 3) {
-			return favoriteOperations;
+			return ListUtils.EMPTY_LIST;
 		} else {
 			return favoriteOperations.subList(3, favoriteOperations.size());
 		}
@@ -86,7 +83,7 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
 	 * @param transactionDate
 	 * @return
 	 */
-	public String getDate(Date transactionDate) {
+	public String getDate(final Date transactionDate) {
 		final SimpleDateFormat dateFormat = new SimpleDateFormat(
 				MessagesHelper.INSTANCE.getStringI18("date.pattner.dd-mm-yyyy"));
 		return dateFormat.format(transactionDate);
@@ -115,6 +112,16 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
 		return favoriteOperations;
 	}
 
+	/**
+	 * @param favoriteOperations
+	 */
+	public void setFavoriteOperations(final List<FavoriteOperationDto> favoriteOperations) {
+		this.favoriteOperations = favoriteOperations;
+	}
+
+	/**
+	 * @return favoriteOperationsFacade
+	 */
 	public FavoriteOperationsFacade getFavoriteOperationsFacade() {
 		return favoriteOperationsFacade;
 	}
@@ -122,7 +129,7 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
 	/**
 	 * @param favoriteOperationsFacade
 	 */
-	public void setFavoriteOperationsFacade(FavoriteOperationsFacade favoriteOperationsFacade) {
+	public void setFavoriteOperationsFacade(final FavoriteOperationsFacade favoriteOperationsFacade) {
 		this.favoriteOperationsFacade = favoriteOperationsFacade;
 	}
 
