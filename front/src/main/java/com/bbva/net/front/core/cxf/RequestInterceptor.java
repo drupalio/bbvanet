@@ -7,22 +7,27 @@ import java.util.Map;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.logging.Log;
 import org.apache.cxf.interceptor.AbstractOutDatabindingInterceptor;
 import org.apache.cxf.interceptor.Fault;
 import org.apache.cxf.message.Message;
 import org.apache.cxf.phase.Phase;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.faces.webflow.FlowFacesContext;
+
+import com.bbva.jee.arq.spring.core.log.I18nLogFactory;
+import com.google.common.annotations.VisibleForTesting;
 
 /**
  * @author Entelgy
  */
-public class RequestInterceptor extends AbstractOutDatabindingInterceptor {
+public class RequestInterceptor extends AbstractOutDatabindingInterceptor implements BbvaInterceptor {
 
-	protected static final Logger LOGGER = LoggerFactory.getLogger(RequestInterceptor.class);
+	private static final long serialVersionUID = -3621004718075675039L;
 
-	private enum TSecType {
+	protected static final Log LOGGER = I18nLogFactory.getLog(RequestInterceptor.class);
+
+	@VisibleForTesting
+	protected enum TSecType {
 		tsec
 	}
 

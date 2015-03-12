@@ -45,10 +45,8 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 			setOperation(productDto.getOperationOnline());
 			LOGGER.info("el producto id: " + productDto.getProductId() + " Operable: "
 					+ productDto.getOperationOnline());
-
 		} else {
-			LOGGER.info("Datos del producto Seleccionado Vacio (null)" + " operable: "
-					+ productDto.getOperationOnline() + " visible: " + productDto.isVisible());
+			LOGGER.info("Datos del producto Seleccionado Vacio (null)");
 			this.productDto = new ProductDto();
 		}
 	}
