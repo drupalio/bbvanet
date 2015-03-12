@@ -1,4 +1,4 @@
-package com.bbva.net.webservices.globalposition;
+package com.bbva.net.webservices.cards;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ public class CardsCustomerServiceImplTest extends AbstractBbvaRestClientTest {
 		// Invoke to super to initialize Mocks
 		super.setUp();
 
-		// Get GlobalPositionServiceImpl instance
+		// Get CardServiceImpl instance
 		cardServiceImpl = (CardServiceImpl)this.restService;
 
 	}

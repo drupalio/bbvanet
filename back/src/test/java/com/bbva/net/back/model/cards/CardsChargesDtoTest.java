@@ -21,14 +21,4 @@ public class CardsChargesDtoTest extends AbstractBbvaDTOTest<CardsChargesDto> {
 		return this.cardsChargesDto;
 	}
 
-	/**
-	 * Invoke Equals Method
-	 */
-	@Override
-	public void checkEqualsMethod() {
-		Assert.assertNotNull(this.cardsChargesDto.equals(null));
-		Mockito.when(this.cardsChargesDto.equals(null)).thenReturn(true);
-		// Assert.assertSame(expected, actual);
-	}
-
 }
