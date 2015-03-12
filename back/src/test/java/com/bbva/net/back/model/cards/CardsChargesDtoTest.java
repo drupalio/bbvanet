@@ -3,16 +3,22 @@
  */
 package com.bbva.net.back.model.cards;
 
+import org.junit.Assert;
+import org.mockito.Mockito;
+
 import com.bbva.net.core.test.AbstractBbvaDTOTest;
 
 /**
- * @author User
+ * @author Entelgy
  */
 public class CardsChargesDtoTest extends AbstractBbvaDTOTest<CardsChargesDto> {
 
+	private CardsChargesDto cardsChargesDto;
+
 	@Override
 	protected CardsChargesDto getInstance() {
-		return new CardsChargesDto();
+		this.cardsChargesDto = new CardsChargesDto();
+		return this.cardsChargesDto;
 	}
 
 	/**
@@ -20,7 +26,9 @@ public class CardsChargesDtoTest extends AbstractBbvaDTOTest<CardsChargesDto> {
 	 */
 	@Override
 	public void checkEqualsMethod() {
-
+		Assert.assertNotNull(this.cardsChargesDto.equals(null));
+		Mockito.when(this.cardsChargesDto.equals(null)).thenReturn(true);
+		// Assert.assertSame(expected, actual);
 	}
 
 }
