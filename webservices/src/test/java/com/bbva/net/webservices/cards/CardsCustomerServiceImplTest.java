@@ -1,7 +1,6 @@
-package com.bbva.net.webservices.globalposition;
+package com.bbva.net.webservices.cards;
 
-import java.util.List;
-
+import org.apache.commons.lang.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -21,7 +20,7 @@ public class CardsCustomerServiceImplTest extends AbstractBbvaRestClientTest {
 		// Invoke to super to initialize Mocks
 		super.setUp();
 
-		// Get GlobalPositionServiceImpl instance
+		// Get CardServiceImpl instance
 		cardServiceImpl = (CardServiceImpl)this.restService;
 
 	}
@@ -33,17 +32,20 @@ public class CardsCustomerServiceImplTest extends AbstractBbvaRestClientTest {
 
 	/************************************* TEST METHODS **********************************/
 
+	@SuppressWarnings("unchecked")
 	@Test
 	public void checkGetCreditCardCharges_norFilter() {
 		Mockito.when(webClient.getCollection(CardCharge.class)).thenReturn(Mockito.anyCollection());
-		List<CardCharge> lista = cardServiceImpl.getCreditCardCharges("", "", "", "", "");
+		cardServiceImpl.getCreditCardCharges(StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY,
+				StringUtils.EMPTY, StringUtils.EMPTY);
 		Mockito.verify(this.webClient, Mockito.atLeastOnce()).getCollection(CardCharge.class);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Test
 	public void checkGetCreditCardCharges_Filter() {
 		Mockito.when(webClient.getCollection(CardCharge.class)).thenReturn(Mockito.anyCollection());
-		List<CardCharge> lista = cardServiceImpl.getCreditCardCharges("123", "filter", "", "", "");
+		cardServiceImpl.getCreditCardCharges("123", "filter", StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY);
 		Mockito.verify(this.webClient, Mockito.atLeastOnce()).getCollection(CardCharge.class);
 	}
 
