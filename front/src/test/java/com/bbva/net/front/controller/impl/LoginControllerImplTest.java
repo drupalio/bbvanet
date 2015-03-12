@@ -48,7 +48,7 @@ public class LoginControllerImplTest extends AbstractBbvaControllerTest {
 		this.loginController.login();
 
 		// Assert and verify results
-		Mockito.verify(this.loginFacade).login(
+		Mockito.verify(this.loginFacade, Mockito.atLeastOnce()).login(
 				"cqwAIvi92lzshpPQR9RYK2RFo9axRY697/TtCA4N/bnM6d5znws5S1T3rYwHVRU3YnYvpZZXF4s=",
 				"julio123CC000001020715321", "91261343", "1020715321", "CC");
 	}
