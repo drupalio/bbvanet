@@ -44,7 +44,6 @@ public class PersonalizeProductFacadeImplTest {
 	@Test
 	public void checkGetPersonalizeUpdateOperability() {
 		Response responseService = Mockito.mock(Response.class);
-
 		Mockito.when(globalPositionService.updateProductOperability(DEFAULT_ID, product)).thenReturn(responseService);
 		Mockito.when(personalizeAccountProductMapper.map(this.productDto)).thenReturn(product);
 		Assert.assertFalse(personalizeFacadeImpl.updateProductOperability(DEFAULT_ID, this.productDto));
