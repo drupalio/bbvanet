@@ -12,38 +12,56 @@ import com.bbva.net.webservices.core.pattern.AbstractBbvaRestService;
 import com.bbva.net.webservices.core.stereotype.RestService;
 import com.bbva.zic.agileoperations.v01.AgileOperation;
 
+/**
+ * @author Entelgy
+ */
 @RestService(value = "agileOperationsService")
 public class AgileOperationsServiceImpl extends AbstractBbvaRestService implements AgileOperationsService {
 
+	/**
+	 * get favorite operations
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<AgileOperation> getAgileOperations(String $filter) {
+	public List<AgileOperation> getAgileOperations(final String $filter) {
 		// String filterParam = $filter.equals("") ? "" : "$filter";
-		WebClient wc = getJsonWebClient(URL_BASE_OPERATIONS);
+		final WebClient webc = getJsonWebClient(URL_BASE_OPERATIONS);
 		// wc.query(filterParam, $filter);
-		return (List<AgileOperation>)wc.getCollection(AgileOperation.class);
+		return (List<AgileOperation>)webc.getCollection(AgileOperation.class);
 	}
 
+	/**
+	 * 
+	 */
 	@Override
-	public Response addAgileOperation(AgileOperation agileoperation) {
+	public Response addAgileOperation(final AgileOperation agileoperation) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
-	public Response validateAgileOperation(String $filter) {
+	public Response validateAgileOperation(final String $filter) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
-	public Response deleteAgileOperation(String agileOperationId, String attributesdeletelist) {
+	public Response deleteAgileOperation(final String agileOperationId, final String attributesdeletelist) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
-	public Response modifyAgileOperation(String agileOperationId, AgileOperation agileoperation) {
+	public Response modifyAgileOperation(final String agileOperationId, final AgileOperation agileoperation) {
 		// TODO Auto-generated method stub
 		return null;
 	}

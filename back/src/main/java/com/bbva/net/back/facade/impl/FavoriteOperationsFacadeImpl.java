@@ -15,6 +15,9 @@ import com.bbva.net.back.model.commons.Money;
 import com.bbva.net.back.model.favoriteOperations.FavoriteOperationDto;
 import com.bbva.net.webservices.agileOperations.AgileOperationsService;
 
+/**
+ * @author Entelgy
+ */
 @Facade(value = "favoriteOperationsFacade")
 public class FavoriteOperationsFacadeImpl extends AbstractBbvaFacade implements FavoriteOperationsFacade {
 
@@ -23,12 +26,21 @@ public class FavoriteOperationsFacadeImpl extends AbstractBbvaFacade implements 
 	 */
 	private static final long serialVersionUID = 4324772858898315010L;
 
+	/**
+	 * Service AgileOperationsService
+	 */
 	@Resource(name = "agileOperationsService")
 	private AgileOperationsService agileOperationsService;
 
+	/**
+	 * call mapper FavoriteOperationsMapper
+	 */
 	@Resource(name = "favoriteOperationsMapper")
 	private FavoriteOperationsMapper favoriteOperationsMapper;
 
+	/**
+	 * list all FavoriteOperations
+	 */
 	@Override
 	public List<FavoriteOperationDto> getListFavoriteOperations() {
 		List<FavoriteOperationDto> favoriteOperations;
