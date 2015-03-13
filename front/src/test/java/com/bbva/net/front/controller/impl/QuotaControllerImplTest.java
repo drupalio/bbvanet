@@ -1,5 +1,7 @@
 package com.bbva.net.front.controller.impl;
 
+import static org.powermock.api.mockito.PowerMockito.when;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -28,6 +30,7 @@ public class QuotaControllerImplTest extends AbstractBbvaControllerTest {
 	public void init() {
 		super.setUp();
 		this.quotaControllerImpl = new QuotaControllerImpl();
+		this.quotaControllerImpl.init();
 		this.quotaDetailFacade = Mockito.mock(QuotaDetailFacade.class);
 		this.quotaControllerImpl.setQuotaDetailFacade(quotaDetailFacade);
 	}
@@ -50,6 +53,12 @@ public class QuotaControllerImplTest extends AbstractBbvaControllerTest {
 		Assert.assertNotNull(quotaMoveDetailDto);
 		Mockito.verify(this.quotaDetailFacade, Mockito.atLeastOnce())
 				.getRotaryQuotaMovement(DEFAULT_ID, DEFAULT_ID_MOV);
+	}
+
+	@Test
+	public void wormGetProductSelect() {
+		when(facesContext.getAttributes()).thenReturn("active");
+		this.quotaControllerImpl.init();
 	}
 
 }
