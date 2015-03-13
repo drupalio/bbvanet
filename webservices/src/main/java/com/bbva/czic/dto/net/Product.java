@@ -280,6 +280,13 @@ public class Product implements Serializable {
 	}
 
 	/**
+	 * @param movement
+	 */
+	public void setMovement(List<Movement> movement) {
+		this.movement = movement;
+	}
+
+	/**
 	 * Gets the value of the contract property.
 	 * 
 	 * @return possible object is {@link Contract }
@@ -317,6 +324,13 @@ public class Product implements Serializable {
 			extracts = new ArrayList<Extracto>();
 		}
 		return this.extracts;
+	}
+
+	/**
+	 * @param extracts
+	 */
+	public void setExtracts(List<Extracto> extracts) {
+		this.extracts = extracts;
 	}
 
 }
