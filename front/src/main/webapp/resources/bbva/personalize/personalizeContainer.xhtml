@@ -25,11 +25,14 @@
 <composite:implementation>
 	<bbvaPersonalize:personalizeAccount>
 		<bbvaPersonalize:personalizeInputClass divClass="customize-product-name"
-			nameButton="buttonAdd" valueLabel="#{msg['text.nameProduct']}"
-			idButton="buttonUpdate" idInput="inputName"
-			actionListener="#{personalizeProductAccountController.updateAlias()}"
-			valueButton="#{msg['button.save']}" classButton="btn btn-default saveAlias"
-			valueInput="#{personalizeProductAccountController.updateAccountDto.alias}" />
+			valueInput="#{personalizeProductAccountController.updateAccountDto.alias}"
+			valueLabel="#{msg['text.nameProduct']}" nameButton="buttonAdd"
+			idInput="inputName">
+			<p:commandButton id="buttonUpdate" value="#{msg['button.save']}"
+				styleClass="btn btn-default saveAlias" process="@form" update="@form"
+				actionListener="#{personalizeProductAccountController.updateAlias}"
+				pt:name="buttonAdd" disabled="true" />
+		</bbvaPersonalize:personalizeInputClass>
 		<bbvaMessage:messageCheck
 			render="#{personalizeProductAccountController.menSuccessful}" />
 		<span class="separator"></span>

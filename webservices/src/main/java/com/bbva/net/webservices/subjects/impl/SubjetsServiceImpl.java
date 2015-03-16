@@ -14,6 +14,7 @@ public class SubjetsServiceImpl extends AbstractBbvaRestService implements Subje
 	@Override
 	public UpdateAccountOut updateSubject(String contractNumber, UpdateSubjectIn updatesubjectin) {
 		final WebClient webc = getJsonWebClient(URL_SUBJETS);
+		webc.put(updatesubjectin);
 		return webc.get(UpdateAccountOut.class);
 	}
 
