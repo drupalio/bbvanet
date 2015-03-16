@@ -133,7 +133,7 @@ public abstract class AbstractBbvaRestService {
 	 * @param exception
 	 * @throws RestClientException
 	 */
-	private void throwsRestClientException(final Exception exception) throws RestClientException {
+	protected void throwsRestClientException(final Exception exception) throws RestClientException {
 		throw new RestClientException("Rest Client ERROR ", exception);
 	}
 

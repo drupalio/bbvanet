@@ -1,10 +1,12 @@
 package com.bbva.net.back.facade.impl;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
 import com.bbva.net.back.model.globalposition.GlobalProductsDto;
+import com.bbva.net.back.predicate.VisibleProductPredicate;
 import com.bbva.net.back.service.ProductService;
 import com.bbva.net.webservices.globalposition.GlobalPositionService;
 
@@ -14,6 +16,8 @@ public class GlobalPositionFacadeImplTest {
 
 	private ProductService productService;
 
+	private GlobalProductsDto globalProductsDto;
+
 	private GlobalPositionFacadeImpl globalPositionFacadeImpl;
 
 	private static final String DEFAULT_USER = "123";
@@ -21,11 +25,17 @@ public class GlobalPositionFacadeImplTest {
 	@Before
 	public void init() {
 		this.globalPositionFacadeImpl = new GlobalPositionFacadeImpl();
-		productService = Mockito.mock(ProductService.class);
+		this.productService = Mockito.mock(ProductService.class);
+		this.globalProductsDto = Mockito.mock(GlobalProductsDto.class);
+		this.globalPositionFacadeImpl.setProductService(productService);
 	}
 
 	@Test
 	public void checkGetCustomerProducts_Visible() {
+
+		Mockito.when(productService.select(globalProductsDto, new VisibleProductPredicate())).thenReturn(
+				globalProductsDto);
+		Assert.assertNull(globalPositionFacadeImpl.getGlobalProductsVisibles(globalProductsDto));
 
 	}
 
