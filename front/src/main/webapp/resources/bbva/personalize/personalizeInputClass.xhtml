@@ -3,51 +3,34 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:composite="http://java.sun.com/jsf/composite"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
 	xmlns:pm="http://primefaces.org/mobile"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-	xmlns:c="http://java.sun.com/jsp/jstl/core"
-	xmlns:cc="http://jsflive.at/taglib"
+	xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:cc="http://jsflive.at/taglib"
 	xmlns:bbvaGP="http://java.sun.com/jsf/composite/bbva/globalPosition"
 	xmlns:bbvaButton="http://java.sun.com/jsf/composite/bbva/button"
 	xmlns:bbvaInput="http://java.sun.com/jsf/composite/bbva/input">
-
 <composite:interface>
 	<composite:attribute name="divClass" />
-
 	<composite:attribute name="valueLabel" />
-
-	<composite:attribute name="idButton" type="java.lang.String" />
-	<composite:attribute name="valueButton" type="java.lang.String" />
-	<composite:attribute name="styleButton" />
-	<composite:attribute name="classButton" />
-	<composite:attribute name="actionListener"
-		method-signature="void actionlistener(javax.faces.event.ActionEvent)" />
-	<composite:attribute name="iconButton" />
-	<composite:attribute name="typeButton" type="java.lang.String" />
-	<composite:attribute name="nameButton" type="java.lang.String" />
-
 	<composite:attribute name="idInput" />
+	<composite:attribute name="nameButton" />
 	<composite:attribute name="styleClassInput" />
 	<composite:attribute name="valueInput" />
 	<composite:attribute name="onclickInput" />
 </composite:interface>
 <composite:implementation>
 	<div class="#{cc.attrs.divClass}">
-		<h:outputLabel class="leftDiv leftLabel"
-			value="#{cc.attrs.valueLabel}" />
+		<h:outputLabel class="leftDiv leftLabel" value="#{cc.attrs.valueLabel}" />
 		<div class="personalizar-input rigthDiv">
-			<bbvaInput:inputButton idInput="#{cc.attrs.idInput}" typeInput="text"
-				maxlength="25" valueInput="#{cc.attrs.valueInput}"
-				idButton="#{cc.attrs.idButton}"
-				valueButton="#{cc.attrs.valueButton}"
-				classButton="#{cc.attrs.classButton}"
-				styleButton="#{cc.attrs.styleButton}"
-				actionListener="#{cc.attrs.actionListener}"
-				iconButton="#{cc.attrs.iconButton}"
-				typeButton="#{cc.attrs.typeButton}"
-				nameButton="#{cc.attrs.nameButton}" />
+			<fieldset class="input">
+				<p:inputText id="#{cc.attrs.idInput}" type="text"
+					value="#{cc.attrs.valueInput}" maxlength="25"
+					onkeyup="enableDisableButton(this, #{cc.attrs.nameButton})"
+					style="#{cc.attrs.styleInput}" styleClass="form-control required">
+				</p:inputText>
+			</fieldset>
+			<composite:insertChildren></composite:insertChildren>
 		</div>
 	</div>
 </composite:implementation>

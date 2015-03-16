@@ -82,6 +82,9 @@ public abstract class AbstractBbvaRestService {
 	@Value("${rest.agileOperations.url}")
 	protected String URL_BASE_OPERATIONS;
 
+	@Value("${rest.subjets.url}")
+	protected String URL_SUBJETS;
+
 	/**
 	 * @param response
 	 * @param entityClass
@@ -130,7 +133,7 @@ public abstract class AbstractBbvaRestService {
 	 * @param exception
 	 * @throws RestClientException
 	 */
-	private void throwsRestClientException(final Exception exception) throws RestClientException {
+	protected void throwsRestClientException(final Exception exception) throws RestClientException {
 		throw new RestClientException("Rest Client ERROR ", exception);
 	}
 

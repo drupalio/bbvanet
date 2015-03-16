@@ -56,6 +56,7 @@ public class FavoriteOperationsFacadeImpl extends AbstractBbvaFacade implements 
 		favorite.setOrigin("clabe");
 		favorite.setTransactionDate(new Date());
 		favoriteOperations.add(favorite);
+
 		favorite = new FavoriteOperationDto();
 		ammount = new Money();
 		ammount.setAmount(new BigDecimal(2000));
@@ -67,9 +68,33 @@ public class FavoriteOperationsFacadeImpl extends AbstractBbvaFacade implements 
 		favorite.setOrigin("creditNumber");
 		favorite.setTransactionDate(new Date());
 		favoriteOperations.add(favorite);
+
+		favorite = new FavoriteOperationDto();
+		ammount = new Money();
+		ammount.setAmount(new BigDecimal(3000));
+		ammount.setCurrency("COP");
+		favorite.setAmount(ammount);
+		favorite.setContractId("1234");
+		favorite.setDestination("ccc");
+		favorite.setIdOperation("1");
+		favorite.setOrigin("clabe");
+		favorite.setTransactionDate(new Date());
+		favoriteOperations.add(favorite);
+
+		favorite = new FavoriteOperationDto();
+		ammount = new Money();
+		ammount.setAmount(new BigDecimal(4000));
+		ammount.setCurrency("COP");
+		favorite.setAmount(ammount);
+		favorite.setContractId("1234");
+		favorite.setDestination("cardNumber");
+		favorite.setIdOperation("1");
+		favorite.setOrigin("creditNumber");
+		favorite.setTransactionDate(new Date());
+		favoriteOperations.add(favorite);
+
 		// final List<AgileOperation> response = agileOperationsService.getAgileOperations("123");
-		// List<FavoriteOperationDto> hola = favoriteOperationsMapper.map(response);
-		// return hola;
+		// List<FavoriteOperationDto> favoriteOperations = favoriteOperationsMapper.map(response);
 		return favoriteOperations;
 	}
 }

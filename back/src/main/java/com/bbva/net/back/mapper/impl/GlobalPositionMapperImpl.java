@@ -30,10 +30,16 @@ import com.bbva.net.back.model.globalposition.ProductDto;
 import com.bbva.net.back.model.globalposition.RotatingAccountDto;
 import com.bbva.net.webservices.core.pattern.AbstractBbvaRestService;
 
+/**
+ * @author Entelgy
+ */
 @Mapper(value = "globalPositionMapper")
 public class GlobalPositionMapperImpl extends ConfigurableMapper implements GlobalPositionMapper {
 
-	protected static final Log LOGGER = I18nLogFactory.getLog(AbstractBbvaRestService.class);
+	/**
+	 * 
+	 */
+	private static final Log LOGGER = I18nLogFactory.getLog(AbstractBbvaRestService.class);
 
 	/**
 	 * 
@@ -48,64 +54,89 @@ public class GlobalPositionMapperImpl extends ConfigurableMapper implements Glob
 
 			@Override
 			public void executeRotatingAccount(final Product rotatingAccount) {
-
-				RotatingAccountDto product = map(rotatingAccount, RotatingAccountDto.class);
+				LOGGER.info("Mapper of globalPosition, execute Rotating Account");
+				final RotatingAccountDto product = map(rotatingAccount, RotatingAccountDto.class);
 				product.setTypeProd(EnumProductType.RQ);
 				globalProducts.getRotatingAccounts().add(product);
 			}
 
+			/**
+			 * 
+			 */
 			@Override
 			public void executeLoan(final Product loan) {
-
-				LoanDto product = map(loan, LoanDto.class);
+				LOGGER.info("Mapper of globalPosition, execute loan");
+				final LoanDto product = map(loan, LoanDto.class);
 				product.setTypeProd(EnumProductType.LO);
 				globalProducts.getLoan().add(product);
 			}
 
+			/**
+			 * 
+			 */
 			@Override
 			public void executeLeasing(final Product leasing) {
-				LeasingDto product = map(leasing, LeasingDto.class);
+				LOGGER.info("Mapper of globalPosition, execute Leasing");
+				final LeasingDto product = map(leasing, LeasingDto.class);
 				product.setTypeProd(EnumProductType.LI);
 				globalProducts.getLeasings().add(product);
 			}
 
+			/**
+			 * 
+			 */
 			@Override
 			public void executeFund(final Product fund) {
-				FundDto product = map(fund, FundDto.class);
+				LOGGER.info("Mapper of globalPosition, execute Fund");
+				final FundDto product = map(fund, FundDto.class);
 				product.setTypeProd(EnumProductType.SI);
 				globalProducts.getFunds().add(product);
 
 			}
 
+			/**
+			 * 
+			 */
 			@Override
 			public void executeDeposit(final Product deposit) {
-				DepositDto product = map(deposit, DepositDto.class);
+				LOGGER.info("Mapper of globalPosition, execute Deposit");
+				final DepositDto product = map(deposit, DepositDto.class);
 				product.setTypeProd(EnumProductType.ED);
 				globalProducts.getElectronicDeposits().add(product);
 
 			}
 
+			/**
+			 * 
+			 */
 			@Override
 			public void executeCredictCard(final Product creditCard) {
-				CreditCardDto product = map(creditCard, CreditCardDto.class);
+				LOGGER.info("Mapper of globalPosition, execute CreditCard");
+				final CreditCardDto product = map(creditCard, CreditCardDto.class);
 				product.setTypeProd(EnumProductType.TC);
 				globalProducts.getCreditCards().add(product);
 
 			}
 
+			/**
+			 * 
+			 */
 			@Override
 			public void executeAdquirenceAccount(final Product adquirenceAccount) {
-
-				AdquirenceAccountDto product = map(adquirenceAccount, AdquirenceAccountDto.class);
+				LOGGER.info("Mapper of globalPosition, execute Adquirence Account");
+				final AdquirenceAccountDto product = map(adquirenceAccount, AdquirenceAccountDto.class);
 				product.setTypeProd(EnumProductType.AQ);
 				globalProducts.getAdquirencia().add(product);
 
 			}
 
+			/**
+			 * 
+			 */
 			@Override
 			public void executeAccount(final Product account) {
-
-				AccountDto product = map(account, AccountDto.class);
+				LOGGER.info("Mapper of globalPosition, execute Account");
+				final AccountDto product = map(account, AccountDto.class);
 				product.setTypeProd(EnumProductType.PC);
 				globalProducts.getAccounts().add(product);
 			}
@@ -118,7 +149,7 @@ public class GlobalPositionMapperImpl extends ConfigurableMapper implements Glob
 	 * 
 	 */
 	@Override
-	protected void configure(MapperFactory factory) {
+	protected void configure(final MapperFactory factory) {
 
 		// Add ProductDTO Factory
 		factory.registerObjectFactory(new ProductDTOFactory(), TypeFactory.<ProductDto> valueOf(ProductDto.class));

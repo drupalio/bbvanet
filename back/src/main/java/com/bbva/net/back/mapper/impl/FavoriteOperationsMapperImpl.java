@@ -16,6 +16,9 @@ import com.bbva.zic.agileoperations.v01.AdaptedIDestinationAdapter;
 import com.bbva.zic.agileoperations.v01.AdaptedIOriginAdapter;
 import com.bbva.zic.agileoperations.v01.AgileOperation;
 
+/**
+ * @author Entelgy
+ */
 @Mapper(value = "favoriteOperationsMapper")
 public class FavoriteOperationsMapperImpl extends ConfigurableMapper implements FavoriteOperationsMapper {
 
@@ -23,7 +26,7 @@ public class FavoriteOperationsMapperImpl extends ConfigurableMapper implements 
 	 * 
 	 */
 	@Override
-	protected void configure(MapperFactory factory) {
+	protected void configure(final MapperFactory factory) {
 
 		factory.getConverterFactory().registerConverter(new MoneyConverter());
 		factory.getConverterFactory().registerConverter(new StringToDateConverter("yyyy-MM-dd HH:MM:SS"));
@@ -36,16 +39,19 @@ public class FavoriteOperationsMapperImpl extends ConfigurableMapper implements 
 
 	}
 
+	/**
+	 * Mapper of Favorite Operations
+	 */
 	@Override
-	public List<FavoriteOperationDto> map(List<AgileOperation> favOperations) {
+	public List<FavoriteOperationDto> map(final List<AgileOperation> favOperations) {
 		final List<FavoriteOperationDto> favOperationsDto = new ArrayList<FavoriteOperationDto>();
 
 		new VisitorCommand<AgileOperation>(favOperations) {
 
-			FavoriteOperationDto fav = null;
+			FavoriteOperationDto fav;
 
 			@Override
-			public void execute(AgileOperation operation) {
+			public void execute(final AgileOperation operation) {
 				fav = new FavoriteOperationDto();
 				fav = map(operation, FavoriteOperationDto.class);
 				fav.setOrigin(getNameClassOrigin(operation.getOrigin()));
@@ -56,7 +62,13 @@ public class FavoriteOperationsMapperImpl extends ConfigurableMapper implements 
 		return favOperationsDto;
 	}
 
-	public String getNameClassOrigin(AdaptedIOriginAdapter origen) {
+	/**
+	 * Asigna tipo de origen
+	 * 
+	 * @param origen
+	 * @return
+	 */
+	public String getNameClassOrigin(final AdaptedIOriginAdapter origen) {
 		String tipoOrigen = "";
 		if (origen.getCardNumber() != null) tipoOrigen = "cardNumber";
 		if (origen.getCcc() != null) tipoOrigen = "ccc";
@@ -66,7 +78,13 @@ public class FavoriteOperationsMapperImpl extends ConfigurableMapper implements 
 		return tipoOrigen;
 	}
 
-	public String getNameClassDestination(AdaptedIDestinationAdapter origen) {
+	/**
+	 * Asigna tipo de destino
+	 * 
+	 * @param origen
+	 * @return
+	 */
+	public String getNameClassDestination(final AdaptedIDestinationAdapter origen) {
 		String tipoDestination = "";
 		if (origen.getCardNumber() != null) tipoDestination = "cardNumber";
 		if (origen.getCcc() != null) tipoDestination = "ccc";

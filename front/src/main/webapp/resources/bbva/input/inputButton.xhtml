@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:composite="http://java.sun.com/jsf/composite"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:pm="http://primefaces.org/mobile"
-	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile" xmlns:jsf="http://xmlns.jcp.org/jsf"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
-
 <composite:interface>
-
 	<composite:attribute name="idButton" type="java.lang.String" />
 	<composite:attribute name="valueButton" type="java.lang.String" />
 	<composite:attribute name="styleButton" />
@@ -22,24 +17,14 @@
 	<composite:attribute name="iconButton" />
 	<composite:attribute name="typeButton" type="java.lang.String" />
 	<composite:attribute name="nameButton" type="java.lang.String" />
-
 	<composite:attribute name="idInput" />
 	<composite:attribute name="valueInput" />
 	<composite:attribute name="typeInput" type="java.lang.String" />
 	<composite:attribute name="styleInput" />
-	<composite:attribute name="maxlength" type="java.lang.Integer"
-		id="maxlength1" />
+	<composite:attribute name="maxlength" type="java.lang.Integer" id="maxlength1" />
 	<composite:attribute name="onclickInput" />
-
 </composite:interface>
-
 <composite:implementation>
-
-	<script>
-
-</script>
-
-
 	<fieldset class="input">
 		<p:inputText id="#{cc.attrs.idInput}" type="#{cc.attrs.typeInput}"
 			value="#{cc.attrs.valueInput}" maxlength="#{cc.attrs.maxlength}"
@@ -47,14 +32,10 @@
 			style="#{cc.attrs.styleInput}" styleClass="form-control required">
 		</p:inputText>
 	</fieldset>
-
 	<p:commandButton id="#{cc.attrs.idButton}" disabled="true"
 		style="#{cc.attrs.styleButton}" pt:name="#{cc.attrs.nameButton}"
 		value="#{cc.attrs.valueButton}" styleClass="#{cc.attrs.classButton}"
-		process="@form" update="@form"
-		actionListener="#{cc.attrs.actionListener}"
+		process="@form" update="@form" actionListener="#{cc.attrs.actionListener}"
 		onclick="#{cc.attrs.onclickButton}" />
-
 </composite:implementation>
-
 </html>
