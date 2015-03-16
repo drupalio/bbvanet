@@ -16,6 +16,8 @@ public class UpdateAccountDto implements Dto {
 
 	private String userId;
 
+	private String subject;
+
 	private EnumSubjectType subjectType;
 
 	public UpdateAccountDto() {
@@ -27,24 +29,26 @@ public class UpdateAccountDto implements Dto {
 	 * @param userId
 	 * @param subjectType
 	 */
-	public UpdateAccountDto(String folio, String alias, String userId, EnumSubjectType subjectType) {
+	public UpdateAccountDto(String folio, String alias, String userId, EnumSubjectType subjectType, String subject) {
 		super();
 		this.folio = folio;
 		this.alias = alias;
 		this.userId = userId;
+		this.subject = subject;
 		this.subjectType = subjectType;
 	}
 
 	@Override
 	public String toString() {
 		return new ToStringBuilder(this).append("folio", getFolio()).append("alias", getAlias())
-				.append("userId", getUserId()).append("subjetType", getSubjectType()).toString();
+				.append("userId", getUserId()).append("subjetType", getSubjectType()).append("subjets", getSubject())
+				.toString();
 	}
 
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder().append(getFolio()).append(getAlias()).append(getUserId()).append(getSubjectType())
-				.toHashCode();
+				.append(getSubject()).toHashCode();
 	}
 
 	@Override
@@ -54,7 +58,8 @@ public class UpdateAccountDto implements Dto {
 				&& this.getFolio().equals(((UpdateAccountDto)obj).getFolio())
 				&& this.getAlias().equals(((UpdateAccountDto)obj).getAlias())
 				&& this.getUserId().equals(((UpdateAccountDto)obj).getUserId())
-				&& this.getSubjectType().equals(((UpdateAccountDto)obj).getSubjectType());
+				&& this.getSubjectType().equals(((UpdateAccountDto)obj).getSubjectType())
+				&& this.getSubject().equals(((UpdateAccountDto)obj).getSubject());
 	}
 
 	// Setters and getters
@@ -113,5 +118,19 @@ public class UpdateAccountDto implements Dto {
 	 */
 	public void setSubjectType(EnumSubjectType subjectType) {
 		this.subjectType = subjectType;
+	}
+
+	/**
+	 * @return the subjet
+	 */
+	public String getSubject() {
+		return subject;
+	}
+
+	/**
+	 * @param subjet the subjet to set
+	 */
+	public void setSubject(String subject) {
+		this.subject = subject;
 	}
 }

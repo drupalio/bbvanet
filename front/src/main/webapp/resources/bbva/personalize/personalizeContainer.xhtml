@@ -1,16 +1,21 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui"
-	xmlns:composite="http://java.sun.com/jsf/composite" xmlns:bbvaAcc="http://java.sun.com/jsf/composite/bbva/accounts"
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:bbvaAcc="http://java.sun.com/jsf/composite/bbva/accounts"
 	xmlns:bbvaGP="http://java.sun.com/jsf/composite/bbva/globalPosition"
 	xmlns:bbvaAlert="http://java.sun.com/jsf/composite/bbva/alert"
 	xmlns:bbvaBody="http://java.sun.com/jsf/composite/bbva/body"
-	xmlns:bbvaContainer="http://java.sun.com/jsf/composite/bbva/container" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:bbvaContainer="http://java.sun.com/jsf/composite/bbva/container"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:bbvaDetAcc="http://java.sun.com/jsf/composite/bbva/tab"
 	xmlns:bbvaCalendar="http://java.sun.com/jsf/composite/bbva/calendar"
 	xmlns:bbvaDetailMotion="http://java.sun.com/jsf/composite/bbva/movementsDetail"
-	xmlns:bbvaSearch="http://java.sun.com/jsf/composite/bbva/filters" xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:bbvaSearch="http://java.sun.com/jsf/composite/bbva/filters"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
 	xmlns:bbvaMessage="http://java.sun.com/jsf/composite/bbva/messages"
 	xmlns:bbvaPersonalize="http://java.sun.com/jsf/composite/bbva/personalize"
 	xmlns:bbvaButton="http://java.sun.com/jsf/composite/bbva/button">
@@ -19,33 +24,36 @@
 </composite:interface>
 <composite:implementation>
 	<bbvaPersonalize:personalizeAccount>
-		<bbvaPersonalize:personalizeInputClass divClass="customize-product-name" nameButton="buttonAdd"
-			valueLabel="#{msg['text.nameProduct']}" idButton="buttonUpdate" idInput="inputName"
+		<bbvaPersonalize:personalizeInputClass divClass="customize-product-name"
+			nameButton="buttonAdd" valueLabel="#{msg['text.nameProduct']}"
+			idButton="buttonUpdate" idInput="inputName"
 			valueButton="#{msg['button.save']}" classButton="btn btn-default saveAlias"
-			valueInput="#{personalizeProductAccountController.personalizeProductAccountDto.alias}" />
-		<bbvaMessage:messageCheck render="#{personalizeProductAccountController.menSuccessful}" />
+			valueInput="#{personalizeProductAccountController.updateAccountDto.alias}" />
+		<bbvaMessage:messageCheck
+			render="#{personalizeProductAccountController.menSuccessful}" />
 		<span class="separator"></span>
-		<bbvaPersonalize:personalizeCombo size="bigCombo yourStyleClass" idCombo="comboTwo" divClass="customize-online"
-			classIcon="icon-info-blue" valueLabel="#{msg['text.consult']}" labelIcon="#{msg['text.online']}"
+		<bbvaPersonalize:personalizeCombo size="bigCombo yourStyleClass"
+			idCombo="comboTwo" divClass="customize-online" classIcon="icon-info-blue"
+			valueLabel="#{msg['text.consult']}" labelIcon="#{msg['text.online']}"
 			ajaxCom="#{personalizeProductAccountController.offMessageOpenKey}"
 			value="#{personalizeProductAccountController.search}" />
-		<bbvaPersonalize:personalizeCombo size="bigCombo yourStyleClass" idCombo="comboThree" divClass="customize-online"
-			classIcon="icon-info-blue" valueLabel="#{msg['text.work']}" labelIcon="#{msg['text.online']}"
+		<bbvaPersonalize:personalizeCombo size="bigCombo yourStyleClass"
+			idCombo="comboThree" divClass="customize-online" classIcon="icon-info-blue"
+			valueLabel="#{msg['text.work']}" labelIcon="#{msg['text.online']}"
 			ajaxCom="#{personalizeProductAccountController.offMessageOpenKey}"
 			value="#{personalizeProductAccountController.operation}" />
-
 		<p:commandButton id="buttonThree" value="#{msg['button.save']}"
-			style="	margin: 6px 20px 20px !important;"
-			styleClass="btn btn-default save" onstart="PF('statusDialog').show()"
-			onsuccess="PF('statusDialog').hide()" process="@form" update="@form"
+			style="	margin: 6px 20px 20px !important;" styleClass="btn btn-default save"
+			onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()"
+			process="@form" update="@form"
 			actionListener="#{personalizeProductAccountController.operKey}" />
-
 		<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
-			showEffect="fade" hideEffect="fade"
-			closable="false" resizable="false" showHeader="false">
+			showEffect="fade" hideEffect="fade" closable="false" resizable="false"
+			showHeader="false">
 			<p:outputLabel value="#{msg['please.wait']}" />
 		</p:dialog>
-		<bbvaMessage:messageCheck idComfirm="buttonFour" render="#{personalizeProductAccountController.menOperationKey}" />
+		<bbvaMessage:messageCheck idComfirm="buttonFour"
+			render="#{personalizeProductAccountController.menOperationKey}" />
 	</bbvaPersonalize:personalizeAccount>
 </composite:implementation>
 </html>
