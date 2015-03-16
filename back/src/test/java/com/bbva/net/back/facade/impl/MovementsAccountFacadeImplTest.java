@@ -1,5 +1,9 @@
 package com.bbva.net.back.facade.impl;
 
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import java.util.Date;
 
 import javax.annotation.Resource;
@@ -7,14 +11,19 @@ import javax.annotation.Resource;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mockito;
+import org.powermock.modules.junit4.PowerMockRunner;
 
+import com.bbva.czic.dto.net.Movement;
 import com.bbva.net.back.mapper.MovementsMapper;
 import com.bbva.net.back.model.commons.BalanceRangeDto;
 import com.bbva.net.back.model.commons.DateRangeDto;
+import com.bbva.net.back.model.movements.MovementDetailDto;
 import com.bbva.net.back.service.FiqlService;
 import com.bbva.net.webservices.products.ProductsService;
 
+@RunWith(PowerMockRunner.class)
 public class MovementsAccountFacadeImplTest {
 
 	@Resource(name = "productsService")
@@ -28,9 +37,11 @@ public class MovementsAccountFacadeImplTest {
 
 	private MovementsAccountFacadeImpl movementsAccountFacade;
 
-	DateRangeDto dateRange;
+	private DateRangeDto dateRange;
 
-	BalanceRangeDto balanceRange;
+	private BalanceRangeDto balanceRange;
+
+	private static final String FILTER = "productType=AH";
 
 	@Before
 	public void init() {
@@ -64,9 +75,9 @@ public class MovementsAccountFacadeImplTest {
 
 		dateRange = new DateRangeDto();
 
-		Date a = new Date();
-		dateRange.setDateSince(a);
-		dateRange.setDateTo(a);
+		final Date currenteDate = new Date();
+		dateRange.setDateSince(currenteDate);
+		dateRange.setDateTo(currenteDate);
 
 		balanceRange = new BalanceRangeDto();
 
@@ -74,7 +85,24 @@ public class MovementsAccountFacadeImplTest {
 
 	}
 
-	/*
-	 * @Test public void checkMovements() { Assert.assertNotNull(movementsAccountFacade.getMovement("1234", "TE", "123")); }
-	 */
+	@Test
+	public void checkMovements() {
+
+		final Movement movement = new Movement();
+
+		// 1. Prepare Mocks
+		when(this.fiqlService.getFiqlQueryByCustomerIdAndProductType(anyString(), anyString())).thenReturn(FILTER);
+		when(this.productsService.getMovement(anyString(), anyString(), anyString())).thenReturn(movement);
+		when(this.movementMapper.mapMovement(movement)).thenReturn(new MovementDetailDto());
+
+		// 2. Invoke testing Method
+		final MovementDetailDto movementDto = this.movementsAccountFacade.getMovement("1234", "AH", "9876");
+
+		// 3.Verifies and Asserts
+		Assert.assertNotNull(movementDto);
+		verify(this.fiqlService).getFiqlQueryByCustomerIdAndProductType(anyString(), anyString());
+		verify(this.productsService).getMovement(anyString(), anyString(), anyString());
+		verify(this.movementMapper).mapMovement(movement);
+
+	}
 }

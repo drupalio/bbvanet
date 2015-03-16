@@ -65,8 +65,7 @@ public class MovementsAccountFacadeImpl extends AbstractBbvaFacade implements Mo
 
 	@Override
 	public MovementDetailDto getMovement(String productId, String productType, String movementId) {
-		String filter;
-		filter = fiqlService.getFiqlQueryByCustomerIdAndProductType(productType, PRODUCTTYPE);
+		final String filter = fiqlService.getFiqlQueryByCustomerIdAndProductType(productType, PRODUCTTYPE);
 		Movement movement = this.productsService.getMovement(productId, movementId, filter);
 		return movementMapper.mapMovement(movement);
 	}
