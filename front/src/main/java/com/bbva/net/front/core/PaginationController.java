@@ -19,7 +19,7 @@ public abstract class PaginationController<T extends Serializable> extends Abstr
 
 	private boolean hasMorePages = true;
 
-	protected static final int PAGE_SIZE = 10;
+	protected static int PAGE_SIZE = 10;
 
 	protected Integer paginationKey;
 
@@ -75,4 +75,5 @@ public abstract class PaginationController<T extends Serializable> extends Abstr
 	public void setPaginationKey(Integer paginationKey) {
 		this.paginationKey = paginationKey;
 	}
+
 }
