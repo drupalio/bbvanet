@@ -27,6 +27,7 @@
 		<bbvaPersonalize:personalizeInputClass divClass="customize-product-name"
 			nameButton="buttonAdd" valueLabel="#{msg['text.nameProduct']}"
 			idButton="buttonUpdate" idInput="inputName"
+			actionListener="#{personalizeProductAccountController.updateAlias()}"
 			valueButton="#{msg['button.save']}" classButton="btn btn-default saveAlias"
 			valueInput="#{personalizeProductAccountController.updateAccountDto.alias}" />
 		<bbvaMessage:messageCheck
