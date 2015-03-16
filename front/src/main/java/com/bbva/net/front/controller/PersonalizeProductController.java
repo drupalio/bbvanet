@@ -4,6 +4,7 @@ import javax.faces.event.ActionEvent;
 import javax.faces.event.AjaxBehaviorEvent;
 
 import com.bbva.net.back.model.personalize.PersonalizeAccountDto;
+import com.bbva.net.back.model.updateAlias.UpdateAccountDto;
 
 /**
  * @author Entelgy
@@ -16,6 +17,11 @@ public interface PersonalizeProductController {
 	 * @return
 	 */
 	PersonalizeAccountDto getPersonalizeProductAccountDto();
+
+	/**
+	 * Metodo de updateAias
+	 */
+	UpdateAccountDto updateAlias();
 
 	/**
 	 * Metodos de rendered de mensajes que estan en la vista

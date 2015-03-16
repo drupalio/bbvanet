@@ -5,10 +5,13 @@ import javax.faces.event.ActionEvent;
 import javax.faces.event.AjaxBehaviorEvent;
 
 import com.bbva.net.back.facade.PersonalizeProductFacade;
+import com.bbva.net.back.facade.UpdateAliasFacade;
 import com.bbva.net.back.model.globalposition.ProductDto;
 import com.bbva.net.back.model.personalize.PersonalizeAccountDto;
+import com.bbva.net.back.model.updateAlias.UpdateAccountDto;
 import com.bbva.net.front.controller.PersonalizeProductController;
 import com.bbva.net.front.core.AbstractBbvaController;
+import com.bbva.zic.commons.v01.EnumSubjectType;
 
 /**
  * @author Entelgy
@@ -16,6 +19,12 @@ import com.bbva.net.front.core.AbstractBbvaController;
 public class PersonalizeProductControllerImpl extends AbstractBbvaController implements PersonalizeProductController {
 
 	private static final long serialVersionUID = 4372849387340418649L;
+
+	@Resource(name = "personalizeProductAccountFacade")
+	private transient PersonalizeProductFacade personalizeProductAccountFacade;
+
+	@Resource(name = "updateAliasFacade")
+	private transient UpdateAliasFacade updateAliasFacade;
 
 	private boolean menSuccessful;
 
@@ -25,17 +34,19 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 
 	private boolean search;
 
-	private PersonalizeAccountDto personalizeProductAccountDto = new PersonalizeAccountDto();
+	private PersonalizeAccountDto personalizeProductAccountDto;
 
-	private ProductDto productDto = new ProductDto();
+	private ProductDto productDto;
 
-	@Resource(name = "personalizeProductAccountFacade")
-	private transient PersonalizeProductFacade personalizeProductAccountFacade;
+	private UpdateAccountDto updateAccountDto;
 
 	public void init() {
 		LOGGER.debug("Inicialize ProductAccountController");
-		this.menOperationKey = false;
-		this.menSuccessful = false;
+		this.personalizeProductAccountDto = new PersonalizeAccountDto();
+		this.productDto = new ProductDto();
+		this.updateAccountDto = new UpdateAccountDto();
+		setMenOperationKey(false);
+		setMenSuccessful(false);
 
 		this.productDto = super.getSelectedProduct();
 		if (productDto != null && productDto.getOperationOnline() != null && productDto.isVisible() != null) {
@@ -68,23 +79,39 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 		productDto.setOperationOnline(isOperation());
 
 		LOGGER.info("Llamando updateProductVisibility del facade");
-		Boolean responseVisi = this.personalizeProductAccountFacade.updateProductVisibility(
-				this.productDto.getProductId(), productDto);
-		LOGGER.info("Dato visible de la cuenta: " + this.productDto.getProductId() + " visible: "
-				+ productDto.isVisible() + " actualizado: " + responseVisi);
+		if (productDto != null && productDto.getProductId() != null) {
+			Boolean responseVisi = this.personalizeProductAccountFacade.updateProductVisibility(
+					this.productDto.getProductId(), productDto);
+			LOGGER.info("Dato visible de la cuenta: " + this.productDto.getProductId() + " visible: "
+					+ productDto.isVisible() + " actualizado: " + responseVisi);
 
-		LOGGER.info("Llamando updateProductOperability del facade");
-		Boolean responseOpe = this.personalizeProductAccountFacade.updateProductOperability(
-				this.productDto.getProductId(), productDto);
-		LOGGER.info("Dato operable de la cuenta: " + this.productDto.getProductId() + " operable: "
-				+ productDto.getOperationOnline() + " actualizado: " + responseOpe);
+			LOGGER.info("Llamando updateProductOperability del facade");
+			Boolean responseOpe = this.personalizeProductAccountFacade.updateProductOperability(
+					this.productDto.getProductId(), productDto);
+			LOGGER.info("Dato operable de la cuenta: " + this.productDto.getProductId() + " operable: "
+					+ productDto.getOperationOnline() + " actualizado: " + responseOpe);
 
-		if (responseVisi == true && responseOpe == true) {
-			LOGGER.info("mostrando mensaje de operaciones Exitoso");
-			setMenOperationKey(true);
+			if (responseVisi == true && responseOpe == true) {
+				LOGGER.info("mostrando mensaje de operaciones Exitoso");
+				setMenOperationKey(true);
+			} else {
+				LOGGER.info("Error de actulización");
+			}
 		} else {
-			LOGGER.info("Error de actulización");
+			LOGGER.info("Error producto nulo");
+			this.productDto = new ProductDto();
 		}
+	}
+
+	@Override
+	public UpdateAccountDto updateAlias() {
+		UpdateAccountDto updateAccountIn = new UpdateAccountDto();
+		LOGGER.info("Llamando updateProductVisibility del facade");
+		this.updateAccountDto.setSubject(this.productDto.getSubTypeProd());
+		this.updateAccountDto.setSubjectType(EnumSubjectType.SAVING_ACCOUNT);
+		this.updateAccountDto.setUserId("12345678");
+		updateAccountIn = this.updateAliasFacade.updateSubject(DEFAULT_USER, this.updateAccountDto);
+		return updateAccountIn;
 	}
 
 	/**
@@ -112,12 +139,10 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 		this.menSuccessful = false;
 	}
 
-	public void setPersonalizeProductAccountFacade(PersonalizeProductFacade personalizeProductAccountFacade) {
-		this.personalizeProductAccountFacade = personalizeProductAccountFacade;
-	}
+	// Setters and Getters
 
 	/**
-	 * Metodo que retona el estado de visibilidad del messageSuccessful
+	 * @return the menSuccessful
 	 */
 	@Override
 	public boolean isMenSuccessful() {
@@ -125,12 +150,53 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 	}
 
 	/**
-	 * Metodo que retona el estado de visibilidad del divOperationKey
+	 * @param menSuccessful the menSuccessful to set
 	 */
+	public void setMenSuccessful(boolean menSuccessful) {
+		this.menSuccessful = menSuccessful;
+	}
 
+	/**
+	 * @return the menOperationKey
+	 */
 	@Override
 	public boolean isMenOperationKey() {
 		return menOperationKey;
+	}
+
+	/**
+	 * @param menOperationKey the menOperationKey to set
+	 */
+	public void setMenOperationKey(boolean menOperationKey) {
+		this.menOperationKey = menOperationKey;
+	}
+
+	/**
+	 * @return the operation
+	 */
+	public boolean isOperation() {
+		return operation;
+	}
+
+	/**
+	 * @param operation the operation to set
+	 */
+	public void setOperation(boolean operation) {
+		this.operation = operation;
+	}
+
+	/**
+	 * @return the search
+	 */
+	public boolean isSearch() {
+		return search;
+	}
+
+	/**
+	 * @param search the search to set
+	 */
+	public void setSearch(boolean search) {
+		this.search = search;
 	}
 
 	/**
@@ -163,37 +229,30 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 	}
 
 	/**
-	 * @return the operation
+	 * @return the updateAccountDto
 	 */
-	public boolean isOperation() {
-		return operation;
+	public UpdateAccountDto getUpdateAccountDto() {
+		return updateAccountDto;
 	}
 
 	/**
-	 * @param operation the operation to set
+	 * @param updateAccountDto the updateAccountDto to set
 	 */
-	public void setOperation(boolean operation) {
-		this.operation = operation;
+	public void setUpdateAccountDto(UpdateAccountDto updateAccountDto) {
+		this.updateAccountDto = updateAccountDto;
 	}
 
 	/**
-	 * @return the search
+	 * @param personalizeProductAccountFacade the personalizeProductAccountFacade to set
 	 */
-	public boolean isSearch() {
-		return search;
+	public void setPersonalizeProductAccountFacade(PersonalizeProductFacade personalizeProductAccountFacade) {
+		this.personalizeProductAccountFacade = personalizeProductAccountFacade;
 	}
 
 	/**
-	 * @param search the search to set
+	 * @param updateAliasFacade the updateAliasFacade to set
 	 */
-	public void setSearch(boolean search) {
-		this.search = search;
-	}
-
-	/**
-	 * @param menOperationKey the menOperationKey to set
-	 */
-	public void setMenOperationKey(boolean menOperationKey) {
-		this.menOperationKey = menOperationKey;
+	public void setUpdateAliasFacade(UpdateAliasFacade updateAliasFacade) {
+		this.updateAliasFacade = updateAliasFacade;
 	}
 }
