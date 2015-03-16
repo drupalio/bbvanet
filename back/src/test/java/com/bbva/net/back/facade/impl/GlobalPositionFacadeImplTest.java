@@ -1,5 +1,6 @@
 package com.bbva.net.back.facade.impl;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -26,13 +27,16 @@ public class GlobalPositionFacadeImplTest {
 		this.globalPositionFacadeImpl = new GlobalPositionFacadeImpl();
 		this.productService = Mockito.mock(ProductService.class);
 		this.globalProductsDto = Mockito.mock(GlobalProductsDto.class);
+		this.globalPositionFacadeImpl.setProductService(productService);
 	}
 
 	@Test
 	public void checkGetCustomerProducts_Visible() {
-		GlobalProductsDto g = new GlobalProductsDto();
-		productService.select(g, new VisibleProductPredicate());
-		Mockito.verify(productService, Mockito.atLeastOnce()).select(g, Mockito.mock(VisibleProductPredicate.class));
+
+		Mockito.when(productService.select(globalProductsDto, new VisibleProductPredicate())).thenReturn(
+				globalProductsDto);
+		Assert.assertNull(globalPositionFacadeImpl.getGlobalProductsVisibles(globalProductsDto));
+
 	}
 
 	@Test
