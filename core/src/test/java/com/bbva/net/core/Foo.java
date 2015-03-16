@@ -2,6 +2,9 @@ package com.bbva.net.core;
 
 import java.io.Serializable;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "Foo")
 public class Foo implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -11,6 +14,9 @@ public class Foo implements Serializable {
 	private Integer value;
 
 	private String description;
+
+	public Foo() {
+	}
 
 	public Foo(Long quantity, Integer value, String description) {
 		super();

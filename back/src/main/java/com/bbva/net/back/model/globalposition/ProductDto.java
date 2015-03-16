@@ -66,33 +66,6 @@ public class ProductDto implements Dto {
 		this.typeProd = typeProd;
 	}
 
-	@Override
-	public String toString() {
-		return new ToStringBuilder(this).append("productId", getProductId())
-				.append("productNumber", getProductNumber()).append("productName", getProductName())
-				.append("asset", isAsset()).append("operationOnline", getOperationOnline())
-				.append("visible", isVisible()).append("alias", getAlias()).append("totalCash", getTotalCash())
-				.append("cashAvailable", getCashAvailable()).append("subTypeProd", getSubTypeProd())
-				.append("typeProd", getTypeProd()).toString();
-	}
-
-	@Override
-	public int hashCode() {
-		return new HashCodeBuilder().append(getProductId()).append(getProductNumber()).append(getProductName())
-				.append(isAsset()).append(getOperationOnline()).append(isVisible()).append(getAlias())
-				.append(getTotalCash()).append(getCashAvailable()).append(getSubTypeProd()).append(getTypeProd())
-				.toHashCode();
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		return (obj != null) && (obj instanceof ProductDto)
-				&& (this.getProductId() != null && ((ProductDto)obj).getProductId() != null)
-				&& (this.getProductNumber() != null && ((ProductDto)obj).getProductNumber() != null)
-				&& this.getProductId().equals(((ProductDto)obj).getProductId())
-				&& this.getProductNumber().equals(((ProductDto)obj).getProductNumber());
-	}
-
 	// Setters and getters
 
 	/**
@@ -257,20 +230,6 @@ public class ProductDto implements Dto {
 	}
 
 	/**
-	 * @return the typeProd
-	 */
-	public EnumProductType getTypeProd() {
-		return typeProd;
-	}
-
-	/**
-	 * @param typeProd the typeProd to set
-	 */
-	public void setTypeProd(EnumProductType typeProd) {
-		this.typeProd = typeProd;
-	}
-
-	/**
 	 * @return the operationOnline
 	 */
 	public Boolean getOperationOnline() {
@@ -282,6 +241,14 @@ public class ProductDto implements Dto {
 	 */
 	public void setOperationOnline(Boolean operationOnline) {
 		this.operationOnline = operationOnline;
+	}
+
+	public EnumProductType getTypeProd() {
+		return typeProd;
+	}
+
+	public void setTypeProd(EnumProductType typeProd) {
+		this.typeProd = typeProd;
 	}
 
 	/**
@@ -297,4 +264,25 @@ public class ProductDto implements Dto {
 	public void setSubTypeProd(String subTypeProd) {
 		this.subTypeProd = subTypeProd;
 	}
+
+	@Override
+	public String toString() {
+		return new ToStringBuilder(this).append("productId", getProductId())
+				.append("productNumber", getProductNumber()).toString();
+	}
+
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder().append(getProductId()).append(getProductNumber()).toHashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+
+		return (obj != null) && (obj instanceof ProductDto)
+				&& (this.getProductId() != null && ((ProductDto)obj).getProductId() != null)
+				&& this.getProductId().equals(((ProductDto)obj).getProductId());
+
+	}
+
 }

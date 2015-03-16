@@ -1,5 +1,7 @@
 package com.bbva.czic.dto.net;
 
+import java.io.Serializable;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
@@ -35,7 +37,9 @@ import com.bbva.jee.arq.spring.core.servicing.utils.Money;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "RotaryQuotaMove", propOrder = { "id", "operation", "concept", "transactionDate", "status", "value",
 		"deb", "numbersOfQuotas", "remainingQuotas" })
-public class RotaryQuotaMove {
+public class RotaryQuotaMove implements Serializable {
+
+	private static final long serialVersionUID = -163141776247178142L;
 
 	protected String id;
 

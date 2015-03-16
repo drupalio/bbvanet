@@ -1,16 +1,18 @@
-
 package com.bbva.czic.dto.net;
+
+import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
+
 import com.bbva.jee.arq.spring.core.servicing.utils.Money;
 
-
 /**
- * <p>Java class for Activity complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * Java class for Activity complex type.
+ * <p>
+ * The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="Activity">
@@ -27,143 +29,111 @@ import com.bbva.jee.arq.spring.core.servicing.utils.Money;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Activity", propOrder = {
-    "operationDate",
-    "executionDate",
-    "function",
-    "amount",
-    "reference"
-})
-public class Activity {
+@XmlType(name = "Activity", propOrder = { "operationDate", "executionDate", "function", "amount", "reference" })
+public class Activity implements Serializable {
 
-    protected String operationDate;
-    protected String executionDate;
-    protected Function function;
-    protected Money amount;
-    protected String reference;
+	private static final long serialVersionUID = 4003314383637775290L;
 
-    /**
-     * Gets the value of the operationDate property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getOperationDate() {
-        return operationDate;
-    }
+	protected String operationDate;
 
-    /**
-     * Sets the value of the operationDate property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setOperationDate(String value) {
-        this.operationDate = value;
-    }
+	protected String executionDate;
 
-    /**
-     * Gets the value of the executionDate property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getExecutionDate() {
-        return executionDate;
-    }
+	protected Function function;
 
-    /**
-     * Sets the value of the executionDate property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setExecutionDate(String value) {
-        this.executionDate = value;
-    }
+	protected Money amount;
 
-    /**
-     * Gets the value of the function property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Function }
-     *     
-     */
-    public Function getFunction() {
-        return function;
-    }
+	protected String reference;
 
-    /**
-     * Sets the value of the function property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Function }
-     *     
-     */
-    public void setFunction(Function value) {
-        this.function = value;
-    }
+	/**
+	 * Gets the value of the operationDate property.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getOperationDate() {
+		return operationDate;
+	}
 
-    /**
-     * Gets the value of the amount property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Money }
-     *     
-     */
-    public Money getAmount() {
-        return amount;
-    }
+	/**
+	 * Sets the value of the operationDate property.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setOperationDate(String value) {
+		this.operationDate = value;
+	}
 
-    /**
-     * Sets the value of the amount property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Money }
-     *     
-     */
-    public void setAmount(Money value) {
-        this.amount = value;
-    }
+	/**
+	 * Gets the value of the executionDate property.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getExecutionDate() {
+		return executionDate;
+	}
 
-    /**
-     * Gets the value of the reference property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getReference() {
-        return reference;
-    }
+	/**
+	 * Sets the value of the executionDate property.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setExecutionDate(String value) {
+		this.executionDate = value;
+	}
 
-    /**
-     * Sets the value of the reference property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setReference(String value) {
-        this.reference = value;
-    }
+	/**
+	 * Gets the value of the function property.
+	 * 
+	 * @return possible object is {@link Function }
+	 */
+	public Function getFunction() {
+		return function;
+	}
+
+	/**
+	 * Sets the value of the function property.
+	 * 
+	 * @param value allowed object is {@link Function }
+	 */
+	public void setFunction(Function value) {
+		this.function = value;
+	}
+
+	/**
+	 * Gets the value of the amount property.
+	 * 
+	 * @return possible object is {@link Money }
+	 */
+	public Money getAmount() {
+		return amount;
+	}
+
+	/**
+	 * Sets the value of the amount property.
+	 * 
+	 * @param value allowed object is {@link Money }
+	 */
+	public void setAmount(Money value) {
+		this.amount = value;
+	}
+
+	/**
+	 * Gets the value of the reference property.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getReference() {
+		return reference;
+	}
+
+	/**
+	 * Sets the value of the reference property.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setReference(String value) {
+		this.reference = value;
+	}
 
 }

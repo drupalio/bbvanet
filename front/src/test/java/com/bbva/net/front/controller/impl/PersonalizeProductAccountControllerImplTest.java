@@ -1,6 +1,5 @@
 package com.bbva.net.front.controller.impl;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -12,47 +11,41 @@ public class PersonalizeProductAccountControllerImplTest {
 
 	private static final String DEFAULT_ID = "0013044300020000949";
 
-	private PersonalizeProductControllerImpl personalizeProductAccountControllerImpl;
+	private PersonalizeProductControllerImpl personalizeController;
 
-	private PersonalizeProductFacade personalizeProductAccountFacade;
+	private PersonalizeProductFacade personalizeFacade;
 
 	private ProductDto productDto;
 
 	@Before
 	public void init() throws Exception {
-		this.personalizeProductAccountControllerImpl = new PersonalizeProductControllerImpl();
-		this.personalizeProductAccountControllerImpl.offMessageSuccesful(null);
-		this.personalizeProductAccountControllerImpl.offMessageOpenKey(null);
-		this.personalizeProductAccountControllerImpl.successful(null);
-		this.personalizeProductAccountFacade = Mockito.mock(PersonalizeProductFacade.class);
-
-		productDto = Mockito.mock(ProductDto.class);
-		productDto.setProductId(DEFAULT_ID);
+		this.personalizeController = new PersonalizeProductControllerImpl();
+		this.personalizeController.offMessageSuccesful(null);
+		this.personalizeController.offMessageOpenKey(null);
+		this.personalizeController.successful(null);
+		this.personalizeFacade = Mockito.mock(PersonalizeProductFacade.class);
+		this.personalizeController.setPersonalizeProductAccountFacade(personalizeFacade);
+		productDto = new ProductDto();
+		productDto.setProductId("0013044300020000949");
+		productDto.setOperationOnline(true);
 		productDto.setVisible(true);
-		productDto.setOperationOnline(false);
-
+		this.personalizeController.setProductDto(productDto);
 	}
 
 	@Test
-	public void checkGetPersonalizeUpdateOperability() {
-		boolean response = true;
-		Mockito.when(personalizeProductAccountFacade.updateProductOperability(DEFAULT_ID, productDto)).thenReturn(
-				response);
-		response = personalizeProductAccountFacade.updateProductOperability(DEFAULT_ID, this.productDto);
-		Assert.assertEquals(response, true);
-		Mockito.verify(this.personalizeProductAccountFacade, Mockito.atLeastOnce()).updateProductOperability(
-				DEFAULT_ID, productDto);
-	}
-
-	@Test
-	public void checkGetPersonalizeUpdateVisibility() {
-		boolean response = true;
-		Mockito.when(personalizeProductAccountFacade.updateProductVisibility(DEFAULT_ID, productDto)).thenReturn(
-				response);
-		response = personalizeProductAccountFacade.updateProductVisibility(DEFAULT_ID, this.productDto);
-		Assert.assertEquals(response, true);
-		Mockito.verify(this.personalizeProductAccountFacade, Mockito.atLeastOnce()).updateProductVisibility(DEFAULT_ID,
-				productDto);
+	public void checkOperKey() {
+		Mockito.when(this.personalizeFacade.updateProductOperability(DEFAULT_ID, productDto)).thenReturn(true);
+		Mockito.when(this.personalizeFacade.updateProductVisibility(DEFAULT_ID, productDto)).thenReturn(true);
+		this.personalizeController.operKey();
+		Mockito.when(this.personalizeFacade.updateProductOperability(DEFAULT_ID, productDto)).thenReturn(false);
+		this.personalizeController.operKey();
+		Mockito.when(this.personalizeFacade.updateProductVisibility(DEFAULT_ID, productDto)).thenReturn(false);
+		this.personalizeController.operKey();
+		Mockito.when(this.personalizeFacade.updateProductOperability(DEFAULT_ID, productDto)).thenReturn(false);
+		Mockito.when(this.personalizeFacade.updateProductVisibility(DEFAULT_ID, productDto)).thenReturn(false);
+		this.personalizeController.operKey();
+		Mockito.verify(this.personalizeFacade, Mockito.atLeastOnce()).updateProductOperability(DEFAULT_ID, productDto);
+		Mockito.verify(this.personalizeFacade, Mockito.atLeastOnce()).updateProductVisibility(DEFAULT_ID, productDto);
 	}
 
 }

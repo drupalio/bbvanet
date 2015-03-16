@@ -1,15 +1,16 @@
-
 package com.bbva.eiaq.commons.v01;
+
+import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Clase Java para creditNumber complex type.
- * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>
+ * Clase Java para creditNumber complex type.
+ * <p>
+ * El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="creditNumber">
@@ -22,39 +23,31 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "creditNumber", propOrder = {
-    "number"
-})
-public class CreditNumber {
+@XmlType(name = "creditNumber", propOrder = { "number" })
+public class CreditNumber implements Serializable {
 
-    protected String number;
+	private static final long serialVersionUID = 4088259796749289714L;
 
-    /**
-     * Obtiene el valor de la propiedad number.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getNumber() {
-        return number;
-    }
+	protected String number;
 
-    /**
-     * Define el valor de la propiedad number.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setNumber(String value) {
-        this.number = value;
-    }
+	/**
+	 * Obtiene el valor de la propiedad number.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getNumber() {
+		return number;
+	}
+
+	/**
+	 * Define el valor de la propiedad number.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setNumber(String value) {
+		this.number = value;
+	}
 
 }

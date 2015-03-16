@@ -22,85 +22,95 @@
 		</div>
 		<div class="chart-cheese" id="cardG" data-highcharts-chart="3">
 			<div id="chart2_2" class="c3">
+				<p:dialog widgetVar="GraphicCard" modal="true" draggable="false"
+					position="center" showEffect="fade" hideEffect="fade"
+					closable="false" resizable="false" showHeader="false" style="height:100px;width:100px;">
+					<p:outputLabel value="#{msg['please.wait']}" />
+				</p:dialog>
+			</div>
 		</div>
-		</div>
-		<p:dialog widgetVar="GraphicCard" modal="true" draggable="false"
-			position="center" showEffect="fade" hideEffect="fade"
-			closable="false" resizable="false" showHeader="false">
-			<p:outputLabel value="#{msg['please.wait']}" />
-		</p:dialog>
+
 		<script>
-		$(document).ready(function() {
-			
-			PF('GraphicCard').show()
-			var totalColums = [];
-			var colorsLegend = [];
-			var label;
-			var colums;
-			var values;
-			var currency;
-			var color;
-			var colors;
-			var totalporcentaje = 0;
+			$(document)
+					.ready(
+							function() {
+								 
+								//PF('GraphicCard').show()
+								var totalColums = [];
+								var colorsLegend = [];
+								var label;
+								var colums;
+								var values;
+								var currency;
+								var color;
+								var colors;
+								var totalporcentaje = 0;
 
-			<c:forEach var="pieItemUI" items="${cc.attrs.pieConfigUI.pieItemUIList}">
-			label = ("${pieItemUI.textLegend}");
-			currency = ("${pieItemUI.currency}");
-			values = ("${pieItemUI.value}");
-			colums = [ [ label ], [ values ] ];
-			totalColums.push(colums);
-			totalporcentaje += parseInt(values);
-			color = ("${pieItemUI.color}");
-			colorsLegend.push(color);
-			</c:forEach>
+								<c:forEach var="pieItemUI" items="${cc.attrs.pieConfigUI.pieItemUIList}">
+								label = ("${pieItemUI.textLegend}");
+								currency = ("${pieItemUI.currency}");
+								values = ("${pieItemUI.value}");
+								colums = [ [ label ], [ values ] ];
+								totalColums.push(colums);
+								totalporcentaje += parseInt(values);
+								color = ("${pieItemUI.color}");
+								colorsLegend.push(color);
+								</c:forEach>
 
-			var chart = c3.generate({
-				bindto : '#chart2_2',
+								var chart = c3
+										.generate({
+											bindto : '#chart2_2',
 
-				padding : {
-					top : 30,
-					right : 100,
-					bottom : 40,
-					left : 100,
-				},
-				data : {
+											padding : {
+												top : 30,
+												right : 100,
+												bottom : 40,
+												left : 100,
+											},
+											data : {
 
-					size : {
-						height : 240,
-						width : 480
-					},
-					columns : totalColums,
+												size : {
+													height : 240,
+													width : 480
+												},
+												columns : totalColums,
 
-					type : 'pie',
-				},
-				pie : {
-					label : {
-						show : false
-					}
-				},
-				tooltip : {
-					format : {
-						name : function(name, ratio, id, index) {							
-							return "<tr><td >" + name + "</td></tr>";
-						},
-						value : function(value, ratio, id) {
-							var format = d3.format(',');
-							return "<B>"
-									+ currency
-									+ " "
-									+ format(value)
-									+ "</B> ("
-									+ ((value * 100) / totalporcentaje)
-											.toFixed(1) + "%)";
-						}
-					}
-				}
-			// 				color : {
-			// 					pattern : colorsLegend
-			// 				},
-			});
-			PF('GraphicCard').hide();
-		});
+												type : 'pie',
+											},
+											pie : {
+												label : {
+													show : false
+												}
+											},
+											tooltip : {
+												format : {
+													name : function(name,
+															ratio, id, index) {
+														return "<tr><td >"
+																+ name
+																+ "</td></tr>";
+													},
+													value : function(value,
+															ratio, id) {
+														var format = d3
+																.format(',');
+														return "<B>"
+																+ currency
+																+ " "
+																+ format(value)
+																+ "</B> ("
+																+ ((value * 100) / totalporcentaje)
+																		.toFixed(1)
+																+ "%)";
+													}
+												}
+											}
+										// 				color : {
+										// 					pattern : colorsLegend
+										// 				},
+										});
+								//PF('GraphicCard').hide();
+							});
 		</script>
 
 	</h:form>

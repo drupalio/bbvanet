@@ -1,15 +1,16 @@
-
 package com.bbva.saz.co.grantingticket.v01;
+
+import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Clase Java para UserPreferences complex type.
- * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>
+ * Clase Java para UserPreferences complex type.
+ * <p>
+ * El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="UserPreferences">
@@ -22,39 +23,34 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "UserPreferences", propOrder = {
-    "language"
-})
-public class UserPreferences {
+@XmlType(name = "UserPreferences", propOrder = { "language" })
+public class UserPreferences implements Serializable {
 
-    protected String language;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5623539017974888350L;
 
-    /**
-     * Obtiene el valor de la propiedad language.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getLanguage() {
-        return language;
-    }
+	protected String language;
 
-    /**
-     * Define el valor de la propiedad language.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setLanguage(String value) {
-        this.language = value;
-    }
+	/**
+	 * Obtiene el valor de la propiedad language.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getLanguage() {
+		return language;
+	}
+
+	/**
+	 * Define el valor de la propiedad language.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setLanguage(String value) {
+		this.language = value;
+	}
 
 }

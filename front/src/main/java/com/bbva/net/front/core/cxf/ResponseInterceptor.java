@@ -14,14 +14,22 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.faces.webflow.FlowFacesContext;
 
+import com.google.common.annotations.VisibleForTesting;
+
 /**
  * @author Entelgy
  */
-public class ResponseInterceptor extends AbstractInDatabindingInterceptor {
+public class ResponseInterceptor extends AbstractInDatabindingInterceptor implements BbvaInterceptor {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4873323292250777236L;
 
 	protected static final Logger LOGGER = LoggerFactory.getLogger(ResponseInterceptor.class);
 
-	private enum TSecType {
+	@VisibleForTesting
+	protected enum TSecType {
 		tsec
 	}
 

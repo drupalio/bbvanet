@@ -1,15 +1,16 @@
-
 package com.bbva.saz.co.grantingticket.v01;
+
+import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Clase Java para ConsumerContext complex type.
- * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>
+ * Clase Java para ConsumerContext complex type.
+ * <p>
+ * El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="ConsumerContext">
@@ -26,143 +27,112 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ConsumerContext", propOrder = {
-    "authentication",
-    "userPreferences",
-    "backendSession",
-    "addressIp",
-    "dialogId"
-})
-public class ConsumerContext {
+@XmlType(name = "ConsumerContext", propOrder = { "authentication", "userPreferences", "backendSession", "addressIp",
+		"dialogId" })
+public class ConsumerContext implements Serializable {
 
-    protected Authentication authentication;
-    protected UserPreferences userPreferences;
-    protected String backendSession;
-    protected String addressIp;
-    protected String dialogId;
+	private static final long serialVersionUID = 5565196367449378283L;
 
-    /**
-     * Obtiene el valor de la propiedad authentication.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Authentication }
-     *     
-     */
-    public Authentication getAuthentication() {
-        return authentication;
-    }
+	protected Authentication authentication;
 
-    /**
-     * Define el valor de la propiedad authentication.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Authentication }
-     *     
-     */
-    public void setAuthentication(Authentication value) {
-        this.authentication = value;
-    }
+	protected UserPreferences userPreferences;
 
-    /**
-     * Obtiene el valor de la propiedad userPreferences.
-     * 
-     * @return
-     *     possible object is
-     *     {@link UserPreferences }
-     *     
-     */
-    public UserPreferences getUserPreferences() {
-        return userPreferences;
-    }
+	protected String backendSession;
 
-    /**
-     * Define el valor de la propiedad userPreferences.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link UserPreferences }
-     *     
-     */
-    public void setUserPreferences(UserPreferences value) {
-        this.userPreferences = value;
-    }
+	protected String addressIp;
 
-    /**
-     * Obtiene el valor de la propiedad backendSession.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getBackendSession() {
-        return backendSession;
-    }
+	protected String dialogId;
 
-    /**
-     * Define el valor de la propiedad backendSession.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setBackendSession(String value) {
-        this.backendSession = value;
-    }
+	/**
+	 * Obtiene el valor de la propiedad authentication.
+	 * 
+	 * @return possible object is {@link Authentication }
+	 */
+	public Authentication getAuthentication() {
+		return authentication;
+	}
 
-    /**
-     * Obtiene el valor de la propiedad addressIp.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getAddressIp() {
-        return addressIp;
-    }
+	/**
+	 * Define el valor de la propiedad authentication.
+	 * 
+	 * @param value allowed object is {@link Authentication }
+	 */
+	public void setAuthentication(Authentication value) {
+		this.authentication = value;
+	}
 
-    /**
-     * Define el valor de la propiedad addressIp.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setAddressIp(String value) {
-        this.addressIp = value;
-    }
+	/**
+	 * Obtiene el valor de la propiedad userPreferences.
+	 * 
+	 * @return possible object is {@link UserPreferences }
+	 */
+	public UserPreferences getUserPreferences() {
+		return userPreferences;
+	}
 
-    /**
-     * Obtiene el valor de la propiedad dialogId.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getDialogId() {
-        return dialogId;
-    }
+	/**
+	 * Define el valor de la propiedad userPreferences.
+	 * 
+	 * @param value allowed object is {@link UserPreferences }
+	 */
+	public void setUserPreferences(UserPreferences value) {
+		this.userPreferences = value;
+	}
 
-    /**
-     * Define el valor de la propiedad dialogId.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setDialogId(String value) {
-        this.dialogId = value;
-    }
+	/**
+	 * Obtiene el valor de la propiedad backendSession.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getBackendSession() {
+		return backendSession;
+	}
+
+	/**
+	 * Define el valor de la propiedad backendSession.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setBackendSession(String value) {
+		this.backendSession = value;
+	}
+
+	/**
+	 * Obtiene el valor de la propiedad addressIp.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getAddressIp() {
+		return addressIp;
+	}
+
+	/**
+	 * Define el valor de la propiedad addressIp.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setAddressIp(String value) {
+		this.addressIp = value;
+	}
+
+	/**
+	 * Obtiene el valor de la propiedad dialogId.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getDialogId() {
+		return dialogId;
+	}
+
+	/**
+	 * Define el valor de la propiedad dialogId.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setDialogId(String value) {
+		this.dialogId = value;
+	}
 
 }

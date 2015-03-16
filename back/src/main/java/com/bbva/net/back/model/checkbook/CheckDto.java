@@ -32,6 +32,13 @@ public class CheckDto implements Dto {
 	}
 
 	/**
+	 * @param id
+	 */
+	public CheckDto(final String id) {
+		this.id = id;
+	}
+
+	/**
 	 * @param modifiedDate
 	 * @param status
 	 * @param value

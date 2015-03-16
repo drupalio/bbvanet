@@ -26,45 +26,51 @@ public class PersonalizeProductFacadeImpl extends AbstractBbvaFacade implements 
 
 	@Override
 	public Boolean updateProductOperability(String idProduct, ProductDto productDto) {
-		boolean respuesta = false;
 		this.product = new Product();
 		LOGGER.info("Comenzando mapeo del servicio de updateProductOperability (ProductoDto -> Product)"
 				+ " ProductId: " + idProduct);
 		this.product = personalizeAccountProductMapper.map(productDto);
 		LOGGER.info("Llamando al servicio de updateProductOperability" + " product Id: " + product.getId());
+
 		if (this.globalPositionService.updateProductOperability(idProduct, product).getStatus() == 200) {
-			respuesta = true;
+			LOGGER.info("finalizando llamado de updateProductOperability" + " " + "true");
+			return true;
+		} else {
+			LOGGER.info("Error llamado de updateProductOperability" + " " + "false");
+			return false;
 		}
-		LOGGER.info("finalizando llamado de updateProductOperability" + " " + respuesta);
-		return respuesta;
 	}
 
 	@Override
 	public Boolean updateProductVisibility(String idProduct, ProductDto productDto) {
-		boolean respuesta = false;
 		this.product = new Product();
 		LOGGER.info("Comenzando mapeo del servicio de updateProductVisibility (ProductoDto -> Product)"
 				+ " ProductId: " + idProduct);
 		this.product = personalizeAccountProductMapper.map(productDto);
 		LOGGER.info("Llamando al servicio de updateProductVisibility" + " product Id: " + product.getId());
-		if (this.globalPositionService.updateProductVisibility(idProduct, product).getStatus() == 200) {
-			respuesta = true;
-			LOGGER.info("finalizando llamado de updateProductVisibility" + " " + respuesta);
-		}
 
-		return respuesta;
+		if (this.globalPositionService.updateProductVisibility(idProduct, product).getStatus() == 200) {
+			LOGGER.info("finalizando llamado de updateProductOperability" + " " + "true");
+			return true;
+		} else {
+			LOGGER.info("Error llamado de updateProductOperability" + " " + "false");
+			return false;
+		}
 	}
 
+	/********************************** DEPENDENCY INJECTIONS ***********************************/
+
+	/**
+	 * @param globalPositionService
+	 */
 	public void setGlobalPositionService(GlobalPositionService globalPositionService) {
 		this.globalPositionService = globalPositionService;
 	}
 
-	public PersonalizeAccountProductMapper getPersonalizeAccountProductMapper() {
-		return personalizeAccountProductMapper;
-	}
-
+	/**
+	 * @param personalizeAccountProductMapper
+	 */
 	public void setPersonalizeAccountProductMapper(PersonalizeAccountProductMapper personalizeAccountProductMapper) {
 		this.personalizeAccountProductMapper = personalizeAccountProductMapper;
 	}
-
 }

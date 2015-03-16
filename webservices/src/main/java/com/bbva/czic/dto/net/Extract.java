@@ -1,16 +1,17 @@
-
 package com.bbva.czic.dto.net;
+
+import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Clase Java para Extract complex type.
- * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>
+ * Clase Java para Extract complex type.
+ * <p>
+ * El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="Extract">
@@ -25,93 +26,73 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Extract", propOrder = {
-    "month",
-    "year",
-    "generationDate"
-})
-public class Extract {
+@XmlType(name = "Extract", propOrder = { "month", "year", "generationDate" })
+public class Extract implements Serializable {
 
-    @XmlElement(required = true)
-    protected String month;
-    @XmlElement(required = true)
-    protected String year;
-    protected String generationDate;
+	private static final long serialVersionUID = 5798996320409009592L;
 
-    /**
-     * Obtiene el valor de la propiedad month.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getMonth() {
-        return month;
-    }
+	@XmlElement(required = true)
+	protected String month;
 
-    /**
-     * Define el valor de la propiedad month.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setMonth(String value) {
-        this.month = value;
-    }
+	@XmlElement(required = true)
+	protected String year;
 
-    /**
-     * Obtiene el valor de la propiedad year.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getYear() {
-        return year;
-    }
+	protected String generationDate;
 
-    /**
-     * Define el valor de la propiedad year.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setYear(String value) {
-        this.year = value;
-    }
+	/**
+	 * Obtiene el valor de la propiedad month.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getMonth() {
+		return month;
+	}
 
-    /**
-     * Obtiene el valor de la propiedad generationDate.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getGenerationDate() {
-        return generationDate;
-    }
+	/**
+	 * Define el valor de la propiedad month.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setMonth(String value) {
+		this.month = value;
+	}
 
-    /**
-     * Define el valor de la propiedad generationDate.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setGenerationDate(String value) {
-        this.generationDate = value;
-    }
+	/**
+	 * Obtiene el valor de la propiedad year.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getYear() {
+		return year;
+	}
+
+	/**
+	 * Define el valor de la propiedad year.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setYear(String value) {
+		this.year = value;
+	}
+
+	/**
+	 * Obtiene el valor de la propiedad generationDate.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getGenerationDate() {
+		return generationDate;
+	}
+
+	/**
+	 * Define el valor de la propiedad generationDate.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setGenerationDate(String value) {
+		this.generationDate = value;
+	}
 
 }

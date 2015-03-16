@@ -70,4 +70,25 @@ public class MovementsAccountFacadeImpl extends AbstractBbvaFacade implements Mo
 		Movement movement = this.productsService.getMovement(productId, movementId, filter);
 		return movementMapper.mapMovement(movement);
 	}
+
+	/**
+	 * @param productsService the productsService to set
+	 */
+	public void setProductsService(ProductsService productsService) {
+		this.productsService = productsService;
+	}
+
+	/**
+	 * @param movementMapper the movementMapper to set
+	 */
+	public void setMovementMapper(MovementsMapper movementMapper) {
+		this.movementMapper = movementMapper;
+	}
+
+	/**
+	 * @param fiqlService the fiqlService to set
+	 */
+	public void setFiqlService(FiqlService fiqlService) {
+		this.fiqlService = fiqlService;
+	}
 }

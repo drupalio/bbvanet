@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Foo>
+    <description>Valor 1</description>
+    <quantity>5</quantity>
+    <value>3</value>
+</Foo>
