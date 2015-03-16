@@ -97,15 +97,15 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 		// Filtros
 		renderComponents.put(RenderAttributes.FILTERDATE.toString(), false);
 		// Atr
-		movementCriteria = new MovementCriteriaDto();
-		movementCriteria.setDateRange(new DateRangeDto());
+		this.movementCriteria = new MovementCriteriaDto();
+		this.movementCriteria.setDateRange(new DateRangeDto());
 		setSinceText(new String());
 		setToText(new String());
 		setSinceDatestr(new String());
 		setToDatestr(new String());
-		sinceDate = null;
-		toDate = null;
-		selectDate = new String();
+		setSinceDate(null);
+		setToDate(null);
+		setSelectDate(new String());
 
 	}
 
@@ -128,7 +128,6 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 	public void handleDateSelect(final SelectEvent event) {
 		if (event.getObject() != null) {
 			setSinceDate((Date)event.getObject());
-
 		}
 	}
 
