@@ -14,10 +14,12 @@ public class SubjetsServiceImpl extends AbstractBbvaRestService implements Subje
 	@Override
 	public UpdateAccountOut updateSubject(String contractNumber, UpdateSubjectIn updatesubjectin) {
 		final WebClient webc = getJsonWebClient(URL_SUBJETS);
-		webc.put(updatesubjectin);
-		if (webc.getResponse().getStatus() == 200) {
-			return webc.get(UpdateAccountOut.class);
+		try {
+			webc.put(updatesubjectin);
+		} catch (Exception ex) {
+			LOGGER.info("[Servicio updateSubject  No respondió al actualizar el alias] " + ex.getMessage());
+			return new UpdateAccountOut();
 		}
-		return null;
+		return webc.get(UpdateAccountOut.class);
 	}
 }

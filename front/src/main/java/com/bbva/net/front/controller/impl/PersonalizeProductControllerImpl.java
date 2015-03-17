@@ -103,17 +103,16 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 	}
 
 	@Override
-	public UpdateAccountDto updateAlias() {
+	public void updateAlias() {
 		UpdateAccountDto updateAccountIn;
 		LOGGER.info("Llamando updateProductVisibility del facade");
 		this.updateAccountDto.setSubject(this.productDto.getSubTypeProd());
 		this.updateAccountDto.setSubjectType(EnumSubjectType.SAVING_ACCOUNT);
 		this.updateAccountDto.setUserId("12345678");
 		updateAccountIn = this.updateAliasFacade.updateSubject(DEFAULT_USER, this.updateAccountDto);
-		if (updateAccountIn != null) {
+		if (updateAccountIn.getFolio() != null) {
 			setMenSuccessful(true);
 		}
-		return updateAccountIn;
 	}
 
 	/**

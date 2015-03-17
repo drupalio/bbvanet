@@ -2,8 +2,6 @@ package com.bbva.net.front.controller;
 
 import javax.faces.event.AjaxBehaviorEvent;
 
-import com.bbva.net.back.model.updateAlias.UpdateAccountDto;
-
 /**
  * @author Entelgy
  */
@@ -12,7 +10,7 @@ public interface PersonalizeProductController {
 	/**
 	 * Metodo de updateAias
 	 */
-	UpdateAccountDto updateAlias();
+	void updateAlias();
 
 	/**
 	 * Metodo de ComboButtons
