@@ -3,15 +3,12 @@
 //inputId = id del input
 //btn = name del button
 
-function enableDisableButton(inputId, btn) {
-    var button = document.getElementsByName(btn.name)[0].id;
-    var valor = inputId.value;
-    if (valor.length != 0) {
-	document.getElementById(button).disabled = false;
-	document.getElementById(button).classList.remove('ui-state-disabled');
-    } else {
-	document.getElementById(button).disabled = true;
+function enableDisableButton(inputId) {
+    var valueInput = $(inputId).val().length;
+    if (valueInput > 0) {
+	$('.saveAlias').removeClass('buttonDisabled');
     }
+    return false;
 }
 
 // metodo que habilita o desabilita el boton cuando hay 4 digitos en el input
@@ -20,14 +17,11 @@ function enableDisableButton(inputId, btn) {
 // btnW = name del button
 
 function enableDisable(inputId, btnW) {
-    var button = document.getElementsByName(btnW.name)[0].id;
-    var valor = inputId.value;
-    if (valor.length == 4) {
-	document.getElementById(button).disabled = false;
-	document.getElementById(button).classList.remove('ui-state-disabled');
-    } else {
-	document.getElementById(button).disabled = true;
+    var valueInput = $(inputId).val().length;
+    if (valueInput == 4) {
+	$('.operKey').removeClass('buttonDisabled');
     }
+    return false;
 }
 
 // Metodo que cambia el estilo del divOperationkey

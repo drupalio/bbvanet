@@ -20,9 +20,8 @@ public class PersonalizeProductAccountControllerImplTest {
 	@Before
 	public void init() throws Exception {
 		this.personalizeController = new PersonalizeProductControllerImpl();
-		this.personalizeController.offMessageSuccesful(null);
+		this.personalizeController.offMessageSuccesful();
 		this.personalizeController.offMessageOpenKey(null);
-		this.personalizeController.successful(null);
 		this.personalizeFacade = Mockito.mock(PersonalizeProductFacade.class);
 		this.personalizeController.setPersonalizeProductAccountFacade(personalizeFacade);
 		productDto = new ProductDto();
