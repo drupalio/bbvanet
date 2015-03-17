@@ -30,7 +30,6 @@ public class CheckBookFacadeImpl extends AbstractBbvaFacade implements CheckBook
 
 	private static final long serialVersionUID = 1L;
 
-	
 	@Resource(name = "accountsService")
 	private AccountsService accountService;
 
@@ -55,7 +54,8 @@ public class CheckBookFacadeImpl extends AbstractBbvaFacade implements CheckBook
 	@Override
 	public List<CheckDto> getCheckByStatusOrDate(String accountId, DateRangeDto dateRange, String status,
 			Integer paginationKey, Integer pageSize) {
-		String filter = dateRange == null ? fiqlService.getFiqlQueryByStatus(status, STATUS) : fiqlService.getFiqlQueryByDateRange(dateRange, DATE, DATE);
+		String filter = dateRange == null ? fiqlService.getFiqlQueryByStatus(status, STATUS) : fiqlService
+				.getFiqlQueryByDateRange(dateRange, DATE, DATE);
 		final List<Check> response = this.accountService.listCheck(accountId, filter, paginationKey, pageSize);
 		return checkBookMapper.mapCheckList(response);
 	}
@@ -65,9 +65,9 @@ public class CheckBookFacadeImpl extends AbstractBbvaFacade implements CheckBook
 		final Checkbook response = this.accountService.getCheckbook(checkBookId, accountId);
 		return checkBookMapper.mapCheckBook(response);
 	}
-	
+
 	@Override
-	//TODO cambiar x accountId
+	// TODO cambiar x accountId
 	public List<CheckbookDto> getCheckBooksById(String accountId) {
 		final List<Checkbook> response = this.accountService.getAccount(accountId).getCheckbooks();
 		return checkBookMapper.mapCheckBookList(response);
