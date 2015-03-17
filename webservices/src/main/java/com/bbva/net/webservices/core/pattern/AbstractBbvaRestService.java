@@ -79,6 +79,9 @@ public abstract class AbstractBbvaRestService {
 	@Value("${rest.agileOperations.url}")
 	protected String URL_BASE_OPERATIONS;
 
+	@Value("${rest.subjets.url}")
+	protected String URL_SUBJETS;
+
 	/**
 	 * @param response
 	 * @param entityClass
