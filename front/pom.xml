@@ -36,7 +36,7 @@
 			<scope>test</scope>
 		</dependency>
 
-		
+
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-core</artifactId>
@@ -290,6 +290,12 @@
 					<source>1.6</source>
 					<target>1.6</target>
 					<encoding>UTF-8</encoding>
+					<webResources>
+						<resource>
+							<directory>src/main/webapp</directory>
+						</resource>
+					</webResources>
+					<packagingExcludes>WEB-INF/lib/*.jar</packagingExcludes>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -363,7 +369,19 @@
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-war-plugin</artifactId>
 					<version>2.5</version>
-					<!-- <configuration> <webXml>target/web.xml</webXml> </configuration> -->
+					<configuration>
+						<source>1.6</source>
+						<target>1.6</target>
+						<encoding>UTF-8</encoding>
+						<webResources>
+							<resource>
+								<directory>src/main/webapp</directory>
+							</resource>
+						</webResources>
+						<packagingExcludes>WEB-INF/lib/*.jar</packagingExcludes>
+						<packagingIncludes></packagingIncludes>
+						<skinnyWars>true</skinnyWars>
+					</configuration>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>

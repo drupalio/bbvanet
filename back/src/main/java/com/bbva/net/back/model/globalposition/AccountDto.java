@@ -29,12 +29,6 @@ public class AccountDto extends ProductDto implements Dto {
 		return new HashCodeBuilder().append(getOverDraft()).toHashCode();
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		return (obj != null) && (obj instanceof AccountDto)
-				&& this.getOverDraft().equals(((AccountDto)obj).getOverDraft());
-	}
-
 	// Setters and getters
 
 	/**
