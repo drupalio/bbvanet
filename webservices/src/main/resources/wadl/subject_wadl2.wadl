@@ -1,0 +1,70 @@
+<application xmlns="http://wadl.dev.java.net/2009/02"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:prefix1="http://bbva.com/zic/subjects/V01">
+	<grammars>
+		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns:ns1="http://bbva.com/zic/commons/V01" xmlns:tns="http://bbva.com/zic/subjects/V01"
+			attributeFormDefault="unqualified" elementFormDefault="unqualified"
+			targetNamespace="http://bbva.com/zic/subjects/V01">
+			<xs:import namespace="http://bbva.com/zic/commons/V01" />
+			<xs:element name="updateSubjectIn" type="tns:updateSubjectIn" />
+			<xs:element name="updateSubjectOut" type="tns:updateAccountOut" />
+			<xs:complexType name="updateSubjectIn">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="userId" type="xs:string" />
+					<xs:element minOccurs="0" name="subjectType" type="ns1:enumSubjectType" />
+					<xs:element minOccurs="0" name="subject" type="xs:string" />
+					<xs:element minOccurs="0" name="alias" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="updateAccountOut">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="folio" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+		</xs:schema>
+		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns:tns="http://bbva.com/zic/commons/V01" attributeFormDefault="unqualified"
+			elementFormDefault="unqualified" targetNamespace="http://bbva.com/zic/commons/V01">
+			<xs:element name="enumSubjectType" type="tns:enumSubjectType" />
+			<xs:simpleType name="enumSubjectType">
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="CHECK_ACCOUNT" />
+					<xs:enumeration value="SAVING_ACCOUNT" />
+					<xs:enumeration value="LIBRETON" />
+					<xs:enumeration value="CED_ACCOUNT" />
+					<xs:enumeration value="CREDIT_CARD" />
+					<xs:enumeration value="FOURTY_CARD" />
+					<xs:enumeration value="PAYMENT_CARD" />
+					<xs:enumeration value="DESPENSA_CARD" />
+					<xs:enumeration value="DEBIT_CARD" />
+					<xs:enumeration value="INSTANT_LOAN" />
+					<xs:enumeration value="EXPRESS_CARD" />
+					<xs:enumeration value="VISA_TRAVEL_USD_CARD" />
+					<xs:enumeration value="VISA_TRAVEL_EUR_CARD" />
+					<xs:enumeration value="CURRENT_ACCOUNT" />
+					<xs:enumeration value="PREPAID_CARD" />
+					<xs:enumeration value="INVESTMENT" />
+					<xs:enumeration value="INVESTMENT_FUND" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:schema>
+	</grammars>
+	<resources base="http://localhost:8080/zic/subjects">
+		<resource path="/V01"
+			id="com.bbva.zic.subjects.facade.v01.impl.SrvSubjectsV01">
+			<resource path="/{contractNumber}">
+				<param name="contractNumber" style="template" type="xs:string" />
+				<method name="PUT" id="updateSubject">
+					<request>
+						<representation mediaType="application/json"
+							element="prefix1:updateSubjectIn" />
+					</request>
+					<response>
+						<representation mediaType="application/json"
+							element="prefix1:updateSubjectOut" />
+					</response>
+				</method>
+			</resource>
+		</resource>
+	</resources>
+</application>
