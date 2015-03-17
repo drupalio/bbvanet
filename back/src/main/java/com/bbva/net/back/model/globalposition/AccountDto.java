@@ -31,8 +31,8 @@ public class AccountDto extends ProductDto implements Dto {
 
 	@Override
 	public boolean equals(Object obj) {
-		return (obj != null) && (obj instanceof AccountDto)
-				&& this.getOverDraft().equals(((AccountDto)obj).getOverDraft());
+		return (obj instanceof AccountDto) && this.getProductId().equals(((AccountDto)obj).getProductId())
+				&& this.getProductNumber().equals(((ProductDto)obj).getProductNumber());
 	}
 
 	// Setters and getters
