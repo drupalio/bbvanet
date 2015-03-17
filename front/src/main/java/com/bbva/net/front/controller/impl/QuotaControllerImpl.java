@@ -143,7 +143,6 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 	public List<MovementDto> getAllQuotamovenDtos() {
 		LOGGER.info("QuotaControllerImpl getAllQuotamovenDtos ");
 		calculateDate(MessagesHelper.INSTANCE.getString("select.radio.last.month"));
-
 		setDateRangePControl(this.dateRange);
 		next();
 		this.quotamovenDtos = getCurrentList();
