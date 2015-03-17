@@ -1,7 +1,6 @@
 package com.bbva.net.front.controller.impl;
 
 import javax.annotation.Resource;
-import javax.faces.event.ActionEvent;
 import javax.faces.event.AjaxBehaviorEvent;
 
 import com.bbva.net.back.facade.PersonalizeProductFacade;
@@ -42,9 +41,9 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 
 	public void init() {
 		LOGGER.debug("Inicialize ProductAccountController");
-		this.personalizeProductAccountDto = new PersonalizeAccountDto();
-		this.productDto = new ProductDto();
-		this.updateAccountDto = new UpdateAccountDto();
+		setPersonalizeProductAccountDto(new PersonalizeAccountDto());
+		setProductDto(new ProductDto());
+		setUpdateAccountDto(new UpdateAccountDto());
 		setMenOperationKey(false);
 		setMenSuccessful(false);
 
@@ -99,27 +98,21 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 			}
 		} else {
 			LOGGER.info("Error producto nulo");
-			this.productDto = new ProductDto();
+			setProductDto(new ProductDto());
 		}
 	}
 
 	@Override
-	public UpdateAccountDto updateAlias() {
-		UpdateAccountDto updateAccountIn = new UpdateAccountDto();
+	public void updateAlias() {
+		UpdateAccountDto updateAccountIn;
 		LOGGER.info("Llamando updateProductVisibility del facade");
 		this.updateAccountDto.setSubject(this.productDto.getSubTypeProd());
 		this.updateAccountDto.setSubjectType(EnumSubjectType.SAVING_ACCOUNT);
 		this.updateAccountDto.setUserId("12345678");
 		updateAccountIn = this.updateAliasFacade.updateSubject(DEFAULT_USER, this.updateAccountDto);
-		return updateAccountIn;
-	}
-
-	/**
-	 * Metodo que muestra el mensaje successful
-	 */
-	@Override
-	public void successful(ActionEvent event) {
-		this.menSuccessful = true;
+		if (updateAccountIn.getFolio() != null) {
+			setMenSuccessful(true);
+		}
 	}
 
 	/**
@@ -128,15 +121,15 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 
 	@Override
 	public void offMessageOpenKey(AjaxBehaviorEvent event) {
-		this.menOperationKey = false;
+		setMenOperationKey(false);
 	}
 
 	/**
 	 * Metodo que esconde el mensaje "Successful" cuando se le da click a un boton del comboButton
 	 */
 	@Override
-	public void offMessageSuccesful(AjaxBehaviorEvent event) {
-		this.menSuccessful = false;
+	public void offMessageSuccesful() {
+		setMenSuccessful(false);
 	}
 
 	// Setters and Getters
@@ -144,7 +137,6 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 	/**
 	 * @return the menSuccessful
 	 */
-	@Override
 	public boolean isMenSuccessful() {
 		return menSuccessful;
 	}
@@ -159,7 +151,6 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 	/**
 	 * @return the menOperationKey
 	 */
-	@Override
 	public boolean isMenOperationKey() {
 		return menOperationKey;
 	}
@@ -202,7 +193,6 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 	/**
 	 * @return the personalizeProductAccountDto
 	 */
-	@Override
 	public PersonalizeAccountDto getPersonalizeProductAccountDto() {
 		return personalizeProductAccountDto;
 	}

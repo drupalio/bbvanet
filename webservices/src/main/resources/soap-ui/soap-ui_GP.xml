@@ -3445,7 +3445,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 </con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
   "folio": "123456789"
 }
-</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/zic/subjects/V01/" method="PUT" resourcePath="/zic/subjects/V01/"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/zic/subjects/V01/" method="PUT" resourcePath="/zic/subjects/V01/"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Examples showing how to match based on path, query param and header
 // Match based on path
 def requestPath = mockRequest.getPath()
