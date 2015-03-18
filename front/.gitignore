@@ -5,3 +5,4 @@ target/
 .factorypath
 .springBeans
 target/surefire
+/target/

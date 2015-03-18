@@ -99,17 +99,14 @@ public class QuotaControllerImplTest extends AbstractBbvaControllerTest {
 	}
 
 	@Test
-	public void coberturaGetProductSelect() {
+	public void coberturaInit() {
 		// Producto Nulo y id Exitoso.
-		Mockito.when(quotaControllerImpl.getSelectedProduct()).thenReturn(null);
 		Mockito.when(productDto.getProductId()).thenReturn(DEFAULT_ID);
 		this.quotaControllerImpl.init();
-
 		// id Nulo y Producto Exitoso.
 		Mockito.when(quotaControllerImpl.getSelectedProduct()).thenReturn(productDto);
 		Mockito.when(productDto.getProductId()).thenReturn(null);
 		this.quotaControllerImpl.init();
-
 		// Caso Esitoso.
 		Mockito.when(quotaControllerImpl.getSelectedProduct()).thenReturn(productDto);
 		Mockito.when(productDto.getProductId()).thenReturn(DEFAULT_ID);
@@ -130,16 +127,13 @@ public class QuotaControllerImplTest extends AbstractBbvaControllerTest {
 	public void coberSetCustomDate() {
 		// nullos y concreteDate igual
 		this.quotaControllerImpl.setCustomDate(eventAction);
-
 		// setSinceDate no nula, toDate nula y concreteDate igual
 		this.quotaControllerImpl.setSinceDate(new Date());
 		this.quotaControllerImpl.setCustomDate(eventAction);
-
 		// no nulos y concreteDate igual
 		this.quotaControllerImpl.setSinceDate(new Date());
 		this.quotaControllerImpl.setToDate(new Date());
 		this.quotaControllerImpl.setCustomDate(eventAction);
-
 		// setToDate no nula, setSinceDate nulo y concreteDate igual
 		this.quotaControllerImpl.setSelectDate("null");
 		this.quotaControllerImpl.setToDate(new Date());
@@ -148,7 +142,6 @@ public class QuotaControllerImplTest extends AbstractBbvaControllerTest {
 
 	@Test
 	public void coberturaHandle() {
-
 		// handleDateSelect event.getObject nullo
 		this.quotaControllerImpl.handleDateSelect(eventSelect);
 		// handleDateSelect event.getObject no nullo

@@ -48,6 +48,10 @@ public class GlobalPositionServiceImplTest extends AbstractBbvaRestClientTest {
 		final Product productParamenter = new Product();
 
 		Mockito.when(webClient.put(productParamenter)).thenReturn(response);
+		Mockito.when(webClient.getResponse()).thenReturn(response);
+		Mockito.when(response.getStatus()).thenReturn(200);
+		this.globalpositionServiceImpl.updateProductOperability("123", productParamenter);
+		Mockito.when(response.getStatus()).thenReturn(404);
 		this.globalpositionServiceImpl.updateProductOperability("123", productParamenter);
 		Mockito.verify(this.webClient, Mockito.atLeastOnce()).put(productParamenter);
 	}
@@ -58,6 +62,10 @@ public class GlobalPositionServiceImplTest extends AbstractBbvaRestClientTest {
 		final Product productParamenter = new Product();
 
 		Mockito.when(webClient.put(productParamenter)).thenReturn(response);
+		Mockito.when(webClient.getResponse()).thenReturn(response);
+		Mockito.when(response.getStatus()).thenReturn(200);
+		this.globalpositionServiceImpl.updateProductVisibility("123", productParamenter);
+		Mockito.when(response.getStatus()).thenReturn(404);
 		this.globalpositionServiceImpl.updateProductVisibility("123", productParamenter);
 		Mockito.verify(this.webClient, Mockito.atLeastOnce()).put(productParamenter);
 	}
