@@ -26,6 +26,7 @@ public class SubjetsServiceImpl extends AbstractBbvaRestService implements Subje
 			}
 
 		} catch (Exception ex) {
+			System.out.println(ex.getMessage());
 			LOGGER.info("[Servicio updateSubject No respondió al actualizar el alias] " + ex.getMessage());
 			return new UpdateAccountOut();
 		}
