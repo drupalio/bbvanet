@@ -356,13 +356,15 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		EnumPeriodType periodType = null;
 		if (!this.periodCardSelected.isEmpty()) {
 			periodType = EnumPeriodType.valueOf(Integer.parseInt(this.periodCardSelected));
+			LOGGER.info("Graphic cards Controller periodSelected: " + periodCardSelected);
 		} else {
 			periodType = EnumPeriodType.valueOf(EnumPeriodType.LAST_SIX_MONTH.getPeriodId());
+			LOGGER.info("Graphic cards Controller periodSelected: " + periodCardSelected);
 		}
-		DateRangeDto dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
+		final DateRangeDto dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
 
 		if (MessagesHelper.INSTANCE.getString("text.allCards").equals(cardSelected) || cardSelected.isEmpty()) {
-			cardSelected = MessagesHelper.INSTANCE.getString("text.allCards");
+			this.cardSelected = MessagesHelper.INSTANCE.getString("text.allCards");
 			LOGGER.info("Graphic cards Controller carSelected: " + cardSelected + "  dateRange:" + dateRange.toString());
 			this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(dateRange));
 
@@ -413,10 +415,10 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	 * @return
 	 */
 	public String maskCardsNumber(final String number) {
-		String mask = "";
+		final StringBuilder mask = new StringBuilder("");
 		for (int i = 0; i < number.length() - 4; i++) {
-			if (i % 4 == 0) mask += " ";
-			mask += "*";
+			if (i % 4 == 0) mask.append(" ");
+			mask.append("*");
 		}
 		return mask + " " + number.substring(number.length() - 4, number.length());
 	}
@@ -428,10 +430,9 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	 * @param available
 	 * @return
 	 */
-	public Money getTotalUsedCards(Money total, Money available) {
+	public Money getTotalUsedCards(final Money total, final Money available) {
 
-		Money totalUsed = new Money(total.getAmount().subtract(available.getAmount()));
-		return totalUsed;
+		return new Money(total.getAmount().subtract(available.getAmount()));
 	}
 
 	/************************************* SETTER BEANS **************************************/
@@ -577,6 +578,9 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		return lineConfigUI;
 	}
 
+	/**
+	 * @return globalProductsDTO
+	 */
 	public GlobalProductsDto getGlobalProductsDTO() {
 		return globalProductsDTO;
 	}
