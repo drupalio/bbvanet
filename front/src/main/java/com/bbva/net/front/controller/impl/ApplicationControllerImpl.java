@@ -12,7 +12,6 @@ import com.bbva.net.back.entity.MultiValueGroup;
 import com.bbva.net.back.facade.MultiValueGroupFacade;
 import com.bbva.net.front.controller.ApplicationController;
 import com.bbva.net.front.core.AbstractBbvaController;
-import com.bbva.net.front.ui.menu.ItemMenu;
 
 @Controller(value = "applicationController")
 @Scope(value = "globalSession")
@@ -22,7 +21,6 @@ public class ApplicationControllerImpl extends AbstractBbvaController implements
 
 	// private GraphicUI graphicUI;
 	private static final Integer LIKE_LIST = 1;
-
 
 	@Resource(name = "multiValueGroupFacade")
 	private transient MultiValueGroupFacade multiValueGroupFacade;
@@ -58,6 +56,5 @@ public class ApplicationControllerImpl extends AbstractBbvaController implements
 	public List<MultiValueGroup> getLikes() {
 		return likes;
 	}
-
 
 }
