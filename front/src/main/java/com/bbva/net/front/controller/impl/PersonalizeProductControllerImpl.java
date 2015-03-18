@@ -37,13 +37,16 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 
 	private ProductDto productDto;
 
-	private UpdateAccountDto updateAccountDto;
+	private UpdateAccountDto updateAccountIn;
+
+	private UpdateAccountDto updateAccountOut;
 
 	public void init() {
 		LOGGER.debug("Inicialize ProductAccountController");
-		setPersonalizeProductAccountDto(new PersonalizeAccountDto());
-		setProductDto(new ProductDto());
-		setUpdateAccountDto(new UpdateAccountDto());
+		this.personalizeProductAccountDto = new PersonalizeAccountDto();
+		this.productDto = new ProductDto();
+		this.updateAccountIn = new UpdateAccountDto();
+		this.updateAccountOut = new UpdateAccountDto();
 		setMenOperationKey(false);
 		setMenSuccessful(false);
 
@@ -61,11 +64,6 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 		}
 	}
 
-	@Override
-	public void setSelectedProduct(ProductDto selectedProduct) {
-		super.setSelectedProduct(selectedProduct);
-	}
-
 	/**
 	 * Metodo que muestra el div de confirmación de contraseña (divOperationKey) y trae los datos del product seleccionado
 	 * 
@@ -73,12 +71,14 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 	 */
 	@Override
 	public void operKey() {
-		LOGGER.info("Método operKey -> llenando datos de vista");
-		productDto.setVisible(isSearch());
-		productDto.setOperationOnline(isOperation());
+		LOGGER.info("Método operKey");
 
-		LOGGER.info("Llamando updateProductVisibility del facade");
-		if (productDto != null && productDto.getProductId() != null) {
+		if (productDto.getProductId() != null) {
+
+			productDto.setVisible(isSearch());
+			productDto.setOperationOnline(isOperation());
+
+			LOGGER.info("Llamando updateProductVisibility del facade");
 			Boolean responseVisi = this.personalizeProductAccountFacade.updateProductVisibility(
 					this.productDto.getProductId(), productDto);
 			LOGGER.info("Dato visible de la cuenta: " + this.productDto.getProductId() + " visible: "
@@ -104,15 +104,15 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 
 	@Override
 	public void updateAlias() {
-		UpdateAccountDto updateAccountIn;
 		LOGGER.info("Llamando updateProductVisibility del facade");
-		this.updateAccountDto.setSubject(this.productDto.getSubTypeProd());
-		this.updateAccountDto.setSubjectType(EnumSubjectType.SAVING_ACCOUNT);
-		this.updateAccountDto.setUserId("12345678");
-		updateAccountIn = this.updateAliasFacade.updateSubject(DEFAULT_USER, this.updateAccountDto);
-		if (updateAccountIn.getFolio() != null) {
+		this.updateAccountIn.setSubject(this.productDto.getSubTypeProd());
+		this.updateAccountIn.setSubjectType(EnumSubjectType.SAVING_ACCOUNT);
+		this.updateAccountIn.setUserId("12345678");
+		this.updateAccountOut = this.updateAliasFacade.updateSubject("12345656", this.updateAccountIn);
+		if (updateAccountOut.getFolio() != null) {
 			setMenSuccessful(true);
-		}
+		} else
+			LOGGER.info("Error al actulizar el alias");
 	}
 
 	/**
@@ -219,20 +219,6 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 	}
 
 	/**
-	 * @return the updateAccountDto
-	 */
-	public UpdateAccountDto getUpdateAccountDto() {
-		return updateAccountDto;
-	}
-
-	/**
-	 * @param updateAccountDto the updateAccountDto to set
-	 */
-	public void setUpdateAccountDto(UpdateAccountDto updateAccountDto) {
-		this.updateAccountDto = updateAccountDto;
-	}
-
-	/**
 	 * @param personalizeProductAccountFacade the personalizeProductAccountFacade to set
 	 */
 	public void setPersonalizeProductAccountFacade(PersonalizeProductFacade personalizeProductAccountFacade) {
@@ -244,5 +230,33 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 	 */
 	public void setUpdateAliasFacade(UpdateAliasFacade updateAliasFacade) {
 		this.updateAliasFacade = updateAliasFacade;
+	}
+
+	/**
+	 * @return the updateAccountIn
+	 */
+	public UpdateAccountDto getUpdateAccountIn() {
+		return updateAccountIn;
+	}
+
+	/**
+	 * @param updateAccountIn the updateAccountIn to set
+	 */
+	public void setUpdateAccountIn(UpdateAccountDto updateAccountIn) {
+		this.updateAccountIn = updateAccountIn;
+	}
+
+	/**
+	 * @return the updateAccountOut
+	 */
+	public UpdateAccountDto getUpdateAccountOut() {
+		return updateAccountOut;
+	}
+
+	/**
+	 * @param updateAccountOut the updateAccountOut to set
+	 */
+	public void setUpdateAccountOut(UpdateAccountDto updateAccountOut) {
+		this.updateAccountOut = updateAccountOut;
 	}
 }

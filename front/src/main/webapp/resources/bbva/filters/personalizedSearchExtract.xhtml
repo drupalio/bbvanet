@@ -21,54 +21,78 @@
 <composite:implementation>
 	<div class="panel-tab-body">
 		<div class="filters consultas descarga hidden-xs hidden-sm">
-			<div class="download-extract container">
-				<!-- <form id="extractDownload"> -->
-				<h1>Descargar extracto electrónico</h1>
-				<div class="first-part-download">
-					<small>Selecciona el año y el mes del extracto que quieres
-						consultar <i class="iconFont-412"></i>
-					</small>
-					<div id="parentCombo" class="row filteroptions">
-						<div class="col-md-3 selectorCombo">
-							<!-- COMBO AÑOS -->
-							<h:selectOneMenu id="stateYear" value="#{extractController.selectedYear}"
-								onchange="styles(this)" enabledClass="selectOption"
-								disabledClass="selectOptionDisabled"
-								style="background-position: 90% !important;">
-								<f:selectItem itemLabel="#{msg['text.year']}" itemDisabled="true" />
-								<f:selectItems value="#{extractController.yearAvailable}" />
-								<p:ajax process="@this" listener="#{extractController.actionState}"
-									update="stateMonth" />
-							</h:selectOneMenu>
-						</div>
-						<!-- COMBO MESES -->
-						<div class="col-md-3 selectorCombo">
-							<h:selectOneMenu id="stateMonth"
-								value="#{extractController.selectedMonth}" onchange="styles(this)"
-								disabled="#{extractController.enableMonth}"
-								disabledClass="selectOptionDisabled" enabledClass="selectOption"
-								style="background-position: 90% !important;">
-								<f:selectItem itemLabel="#{msg['text.mounth']}" itemDisabled="true" />
-								<f:selectItems value="#{extractController.monthAvailable}" />
-								<p:ajax update="@this" process="@this" />
-							</h:selectOneMenu>
-						</div>
-						<!-- BOTON DESCARGA -->
-						<div class="col-md-5">
-							<bbvaButton:iconButton id="searchExtract" icon="icon pdf"
-								value="Descargar extracto" show="true"
-								classButton="stable-button medium icon-left ext-message"
-								actionListener="#{extractController.documentExtract}">
-							</bbvaButton:iconButton>
+			<div class="download-extract container ">
+				<div class="extractOnePage">
+					<!-- <form id="extractDownload"> -->
+					<h1>#{msg['title.downloadExtract']}</h1>
+					<div class="first-part-download">
+						<small>#{msg['text.emailExtract']} </small>
+						<div class="extractEmail" style="margin-top: 30px !important;">
+							<small class="extractLabel"> #{msg['text.email']} </small>
+							<p:inputText id="inputExtract" type="text" disabled="true"
+								styleClass="form-control ui-inputmask required extractInput" />
+							<p:watermark for="inputExtract" value="marisa@bbva.com" id="watermark" />
 						</div>
 					</div>
+					<!-- TEXTO INFERIOR -->
+					<div class="system-message info">
+						<span class="icon"></span>
+						<p>#{msg['msg.info.extract.email1']}</p>
+						<p>#{msg['msg.info.extract.email2']}</p>
+					</div>
+					<div class="col-md-12" style="text-align: center;">
+						<p:commandButton id="emailTExtract" value="#{msg['button.confirm']}"
+							styleClass="stable-button medium extractButton">
+						</p:commandButton>
+					</div>
 				</div>
-				<!-- </form> -->
-				<!-- TEXTO INFERIOR -->
-				<div class="system-message info" style="margin-top: 20px !important;">
-					<span class="icon"></span>
-					<p>#{msg['msg.info.extract.part1']}</p>
-					<p>#{msg['msg.info.extract.part2']}</p>
+				<div class="extractTwoPage renderExtract">
+					<h1>#{msg['title.downExtractMoun']}</h1>
+					<div class="first-part-download">
+						<small>#{msg['text.selectMenuC']}<i class="iconFont-412"></i>
+						</small>
+						<div id="parentCombo" class="row filteroptions">
+							<div class="col-md-3 selectorCombo">
+								<!-- COMBO AÑOS -->
+								<h:selectOneMenu id="stateYear"
+									value="#{extractController.selectedYear}" onchange="styles(this)"
+									enabledClass="selectOption" disabledClass="selectOptionDisabled"
+									style="background-position: 90% !important;">
+									<f:selectItem itemLabel="#{msg['text.year']}" itemDisabled="true" />
+									<f:selectItems value="#{extractController.yearAvailable}" />
+									<p:ajax process="@this" listener="#{extractController.actionState}"
+										update="stateMonth" />
+								</h:selectOneMenu>
+							</div>
+							<!-- COMBO MESES -->
+							<div class="col-md-3 selectorCombo">
+								<h:selectOneMenu id="stateMonth"
+									value="#{extractController.selectedMonth}" onchange="styles(this)"
+									disabled="#{extractController.enableMonth}"
+									disabledClass="selectOptionDisabled" enabledClass="selectOption"
+									style="background-position: 90% !important;">
+									<f:selectItem itemLabel="#{msg['text.mounth']}" itemDisabled="true" />
+									<f:selectItems value="#{extractController.monthAvailable}" />
+									<p:ajax update="@this" process="@this" />
+								</h:selectOneMenu>
+							</div>
+							<!-- BOTON DESCARGA -->
+							<div class="col-md-5">
+								<bbvaButton:iconButton id="searchExtract" icon="icon pdf"
+									value="Descargar extracto" show="true"
+									classButton="stable-button medium icon-left ext-message"
+									actionListener="#{extractController.documentExtract}">
+								</bbvaButton:iconButton>
+							</div>
+						</div>
+					</div>
+					<!-- </form> -->
+					<!-- TEXTO INFERIOR -->
+					<div class="system-message info" style="margin-top: 20px !important;">
+						<span class="icon"></span>
+						<p>#{msg['msg.info.extract.part1']}</p>
+						<p>#{msg['msg.info.extract.part2']}</p>
+					</div>
 				</div>
 			</div>
 		</div>

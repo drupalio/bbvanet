@@ -315,7 +315,7 @@ input.ui-state-hover {
 	font-weight: 400 !important;
 	box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.16) inset !important;
 	color: #999EA5 !important;
-	background-color: #FFF !important;
+	background-color: #FFF;
 }
 
 /* estilos boton close dialog Check */
@@ -666,4 +666,37 @@ a.header.setStyle span.outStyle {
 
 a.header.setStyle span.arrow-left-smaller {
 	background-image: url("../img/icon-smaller-cross.png") !important;
+}
+
+/* input extractos*/
+.extractInput {
+	width: 90%;
+	background-color: #DDDDDD !important;
+	display: inline-block !important;
+}
+
+.extractEmail input.ui-state-hover {
+	background-color: #DDDDDD !important;
+}
+
+.extractEmail input.ui-state-focus {
+	background-color: #DDDDDD !important;
+}
+
+/* label extractos*/
+.extractLabel {
+	width: 10%;
+	padding-left: 2px !important;
+	display: inline-block !important;
+}
+
+/*button extracto*/
+.extractButton {
+	margin-top: 30px !important;
+	font-weight: 400 !important;
+}
+
+/*Nav*/
+.renderExtract {
+	display: none;
 }

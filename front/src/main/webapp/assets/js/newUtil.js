@@ -71,12 +71,15 @@ function styles(combo) {
 	$(combo).blur();
     });
 }
+
+/* Quitar estilo de tabs de consultas */
 $(document).ready(function() {
     $('#headerTab').click(function() {
 	$(this).removeClass('setStyle');
     });
 });
 
+/* Poner estilo de tabs de consultas */
 function headerTabS(button) {
     $(document).ready(function() {
 	var parent = $(button).parents('#dateFilterContent');
@@ -84,3 +87,11 @@ function headerTabS(button) {
 	$(li).addClass('setStyle');
     });
 }
+
+$(document).ready(function() {
+    $(".extractButton").click(function() {
+	$('.extractOnePage').empty();
+	$('.extractTwoPage').removeClass('renderExtract');
+    });
+
+});

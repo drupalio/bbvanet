@@ -27,7 +27,7 @@ public class BbvaRestServiceTest extends AbstractBbvaRestClientTest {
 	public void checkReadJsonValue() {
 		final Response response = Mockito.mock(Response.class);
 		Mockito.when(response.getEntity()).thenReturn(FileBbvaUtils.getJsonString(new Product()));
-		this.restService.readJsonValue(response, Product.class);
+		Assert.assertNotNull(this.restService.readJsonValue(response, Product.class));
 	}
 
 	@Test(expected = RestClientException.class)
