@@ -45,7 +45,10 @@ public class GraphicPieDelegateTest extends AbstractBbvaControllerTest {
 		this.graphicPie = new GraphicPieDelegateImpl();
 		this.productService = Mockito.mock(ProductService.class);
 		this.graphicPie.setProductService(productService);
-		this.money = Mockito.mock(Money.class);
+
+		this.money = new Money();
+		this.money.setAmount(new BigDecimal(10));
+		this.money.setCurrency("$");
 	}
 
 	@Test
@@ -76,7 +79,7 @@ public class GraphicPieDelegateTest extends AbstractBbvaControllerTest {
 		AdquirenceAccountDto adquirenceAccountDto = Mockito.mock(AdquirenceAccountDto.class);
 		LoanDto loanDto = Mockito.mock(LoanDto.class);
 
-		// Prepara Listas
+		// Prepara Listas con los Mocks de Dto
 		List<AccountDto> accounts = new ArrayList<AccountDto>();
 		accounts.add(accountDto);
 		globalProducts.setAccounts(accounts);
@@ -110,26 +113,35 @@ public class GraphicPieDelegateTest extends AbstractBbvaControllerTest {
 		globalProducts.setLoan(loan);
 
 		ProductDto productDto = new ProductDto();
-		productDto.setTypeProd(EnumProductType.PC);
-		productDto.setCashAvailable(money);
-		productDto.setTotalCash(money);
 
-		@SuppressWarnings("unchecked")
-		List<ProductDto> listProduct = Mockito.mock(List.class);
-		List<ProductDto> listaProduct = new ArrayList<ProductDto>();
-		listaProduct.add(productDto);
+		List<ProductDto> listProduct = new ArrayList<ProductDto>();
+		listProduct.add(productDto);
 
 		// Prepara Mock para ProductServico
 		Mockito.when(productService.getProducts(globalProducts)).thenReturn(listProduct);
 		Mockito.when(productService.getTotalAssets(listProduct)).thenReturn(money);
 		Mockito.when(productService.getTotalFinanciacion(listProduct)).thenReturn(money);
-		Mockito.when(productService.getTotalAssets(listProduct).getAmount()).thenReturn(Mockito.mock(BigDecimal.class));
-		// Mockito.when(productService.getTotalProductsByType(listProduct, EnumProductType.PC).getAmount()).thenReturn(
-		// new BigDecimal("0"));
+		Mockito.when(productService.getTotalAssets(listProduct)).thenReturn(money);
+		Mockito.when(productService.getTotalProductsByType(listProduct, EnumProductType.PC)).thenReturn(money);
+		Mockito.when(productService.getTotalProductsByType(listProduct, EnumProductType.SI)).thenReturn(money);
+		Mockito.when(productService.getTotalProductsByType(listProduct, EnumProductType.ED)).thenReturn(money);
+		Mockito.when(productService.getTotalProductsByType(listProduct, EnumProductType.TC)).thenReturn(money);
+		Mockito.when(productService.getTotalProductsByType(listProduct, EnumProductType.LI)).thenReturn(money);
+		Mockito.when(productService.getTotalProductsByType(listProduct, EnumProductType.LO)).thenReturn(money);
+		Mockito.when(productService.getTotalProductsByType(listProduct, EnumProductType.ED)).thenReturn(money);
+		Mockito.when(productService.getTotalProductsByType(listProduct, EnumProductType.RQ)).thenReturn(money);
 
 		SituationPiesUI situation = graphicPie.getSituationGlobalProducts(globalProducts);
 
 		Assert.assertNotNull(situation);
+		Mockito.verify(this.productService, Mockito.atLeastOnce()).getProducts(globalProducts);
+		Mockito.verify(this.productService, Mockito.atLeastOnce()).getTotalAssets(listProduct);
+		Mockito.verify(this.productService, Mockito.atLeastOnce()).getTotalFinanciacion(listProduct);
+
+	}
+
+	@Test
+	public void checkGetSituationGlobalProductsNew() {
 
 	}
 
