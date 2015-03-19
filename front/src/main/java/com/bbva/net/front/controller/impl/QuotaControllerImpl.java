@@ -40,6 +40,8 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 
 	private MovementDetailDto quotaMoveDetailDto;
 
+	private MovementDto quotaMove;
+
 	private ProductDto productDto;
 
 	private DateRangeDto dateRange;
@@ -92,6 +94,11 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 
 		// setTitle(MessagesHelper.INSTANCE.getString("text.last.movments"));
 		cleanFilters();
+	}
+
+	@Override
+	public ProductDto getSelectedProduct() {
+		return super.getSelectedProduct();
 	}
 
 	@Override
@@ -163,11 +170,11 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 
 	public void onRowToggle(final SelectEvent event) {
 		LOGGER.info("QuotaControllerImpl onRowToggle");
-		MovementDto quotaMove = new MovementDto();
+		this.quotaMove = new MovementDto();
 		super.onMovementSelected(event);
-		quotaMove = super.getSelectedMovements();
+		this.quotaMove = super.getSelectedMovements();
 		this.quotaMoveDetailDto = this.quotaDetailFacade.getRotaryQuotaMovement(this.productDto.getProductId(),
-				quotaMove.getMovementId());
+				this.quotaMove.getMovementId());
 		LOGGER.info("Movimiento Seleccionado " + quotaMoveDetailDto.getId());
 	}
 
@@ -387,5 +394,19 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 
 	public void setPaymentDate(String paymentDate) {
 		this.paymentDate = paymentDate;
+	}
+
+	/**
+	 * @return the quotaMove
+	 */
+	public MovementDto getQuotaMove() {
+		return quotaMove;
+	}
+
+	/**
+	 * @param quotaMove the quotaMove to set
+	 */
+	public void setQuotaMove(MovementDto quotaMove) {
+		this.quotaMove = quotaMove;
 	}
 }
