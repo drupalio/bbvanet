@@ -26,12 +26,12 @@
 	<bbvaPersonalize:personalizeAccount>
 		<bbvaPersonalize:personalizeInputClass divClass="customize-product-name"
 			valueInput="#{personalizeProductAccountController.updateAccountDto.alias}"
-			valueLabel="#{msg['text.nameProduct']}" nameButton="buttonAdd"
-			idInput="inputName">
+			valueLabel="#{msg['text.nameProduct']}" idInput="inputName">
 			<p:commandButton id="buttonUpdate" value="#{msg['button.save']}"
-				styleClass="btn btn-default saveAlias" process="@form" update="@form"
+				styleClass="btn btn-default saveAlias buttonDisabled"
+				onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()"
 				actionListener="#{personalizeProductAccountController.updateAlias}"
-				pt:name="buttonAdd" disabled="true" />
+				process="@this" update="@form" />
 		</bbvaPersonalize:personalizeInputClass>
 		<bbvaMessage:messageCheck
 			render="#{personalizeProductAccountController.menSuccessful}" />
@@ -56,7 +56,7 @@
 			showHeader="false">
 			<p:outputLabel value="#{msg['please.wait']}" />
 		</p:dialog>
-		<bbvaMessage:messageCheck idComfirm="buttonFour"
+		<bbvaMessage:messageCheck
 			render="#{personalizeProductAccountController.menOperationKey}" />
 	</bbvaPersonalize:personalizeAccount>
 </composite:implementation>

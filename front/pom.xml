@@ -294,6 +294,12 @@
 						<resource>
 							<directory>src/main/webapp</directory>
 						</resource>
+						<resource>
+							<directory>src/main/resources</directory>
+							<includes>
+								<include>**/*.properties</include>
+							</includes>
+						</resource>
 					</webResources>
 					<packagingExcludes>WEB-INF/lib/*.jar</packagingExcludes>
 				</configuration>
@@ -377,10 +383,29 @@
 							<resource>
 								<directory>src/main/webapp</directory>
 							</resource>
+							<resource>
+								<directory>src/main/resources</directory>
+								<targetPath>WEB-INF/classes</targetPath>
+								<includes>
+									<include>**/*.properties</include>
+								</includes>
+							</resource>
+							<resource>
+								<directory>src/main/resources</directory>
+								<targetPath>WEB-INF/classes</targetPath>
+								<includes>
+									<include>**/*.xml</include>
+								</includes>
+							</resource>
 						</webResources>
 						<packagingExcludes>WEB-INF/lib/*.jar</packagingExcludes>
-						<packagingIncludes></packagingIncludes>
 						<skinnyWars>true</skinnyWars>
+						<archive>
+							<manifest>
+								<classpathPrefix>/de/kqco/online/co/web/jar/</classpathPrefix>
+								<addClasspath>true</addClasspath>
+							</manifest>
+						</archive>
 					</configuration>
 				</plugin>
 				<plugin>

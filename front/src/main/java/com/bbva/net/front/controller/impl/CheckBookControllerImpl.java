@@ -224,6 +224,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 		setFalseMovementsComponents();
 
 		if (getRenderComponents().get(RenderAttributes.FILTERCHECKBOOK.toString())) {
+
 			LOGGER.info(" CheckBookControllerImpl showResults filterByCheckBook ");
 			// Filter by checkId
 			LOGGER.info(" CheckBookControllerImpl showResults filterByCheckBook checkId: " + getCheckNumber());
@@ -234,6 +235,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			this.checkList.add(check);
 
 		} else if (getRenderComponents().get(RenderAttributes.FILTERSTATUS.toString())) {
+
 			LOGGER.info(" CheckBookControllerImpl showResults filterByStatus ");
 			// Filter by status
 			this.dateRange = null;
@@ -242,6 +244,10 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 		}
 
 		else if (getRenderComponents().get(RenderAttributes.FILTERNUMBERCHECK.toString())) {
+			getRenderComponents().put(RenderAttributes.TITLECHECKS.name(), false);
+			getRenderComponents().put(RenderAttributes.CHECKTABLE.toString(), false);
+			getRenderComponents().put(RenderAttributes.TITLECHECKBOOKS.name(), true);
+			getRenderComponents().put(RenderAttributes.CHECKBOOKTABLE.toString(), true);
 			LOGGER.info(" CheckBookControllerImpl showResults filterByNumberCheck ");
 			// Filter by talonario
 			LOGGER.info(" CheckBookControllerImpl showResults filterByNumberCheck checkBookNumber: "
@@ -455,14 +461,21 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	/**
 	 * @return the checkBook
 	 */
-	public CheckbookDto getCheckBookList() {
+	public CheckbookDto getCheckBook() {
 		return checkBook;
 	}
 
 	/**
-	 * @param checkBookList the checkBook to set
+	 * @return the checkBookList
 	 */
-	public void setCheckBookList(CheckbookDto checkBook) {
+	public List<CheckbookDto> getCheckBookList() {
+		return checkBookList;
+	}
+
+	/**
+	 * @param checkBook the checkBook to set
+	 */
+	public void setCheckBook(CheckbookDto checkBook) {
 		this.checkBook = checkBook;
 	}
 

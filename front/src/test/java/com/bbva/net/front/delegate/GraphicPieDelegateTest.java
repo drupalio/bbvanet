@@ -62,7 +62,6 @@ public class GraphicPieDelegateTest extends AbstractBbvaControllerTest {
 
 	}
 
-	@Test
 	public void checkGetSituationGlobalProducts() {
 
 		GlobalProductsDto globalProducts = new GlobalProductsDto();
