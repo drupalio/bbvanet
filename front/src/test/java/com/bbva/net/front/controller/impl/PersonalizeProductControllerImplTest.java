@@ -11,7 +11,7 @@ import com.bbva.net.back.model.personalize.PersonalizeAccountDto;
 import com.bbva.net.back.model.updateAlias.UpdateAccountDto;
 import com.bbva.net.front.test.utils.AbstractBbvaControllerTest;
 
-public class PersonalizeProductAccountControllerImplTest extends AbstractBbvaControllerTest {
+public class PersonalizeProductControllerImplTest extends AbstractBbvaControllerTest {
 
 	private static final String DEFAULT_ID = "0013044300020000949";
 
