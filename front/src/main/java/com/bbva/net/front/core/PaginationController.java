@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
+
+import com.bbva.net.back.facade.QuotaDetailFacade;
 
 /**
  * Controller to pagination tables
@@ -14,6 +17,9 @@ import javax.annotation.PostConstruct;
 public abstract class PaginationController<T extends Serializable> extends AbstractBbvaController {
 
 	private static final long serialVersionUID = 1L;
+
+	@Resource(name = "quotaDetailFacade")
+	private transient QuotaDetailFacade quotaDetailFacade;
 
 	protected List<T> currentList;
 
@@ -74,6 +80,13 @@ public abstract class PaginationController<T extends Serializable> extends Abstr
 	 */
 	public void setPaginationKey(Integer paginationKey) {
 		this.paginationKey = paginationKey;
+	}
+
+	/**
+	 * @param quotaDetailFacade the quotaDetailFacade to set
+	 */
+	public void setQuotaDetailFacade(QuotaDetailFacade quotaDetailFacade) {
+		this.quotaDetailFacade = quotaDetailFacade;
 	}
 
 }

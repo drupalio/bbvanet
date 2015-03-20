@@ -13,7 +13,7 @@
 		<evaluate expression="personalizeProductAccountController.init()"/>	
 		<evaluate expression="termsController.getAllConditions()" result="flowScope.allConditions" />
 		<evaluate expression="quotaController.getAllQuotamovenDtos()" result="flowScope.quotaMovements" />
-		<evaluate expression="quotaController.getSelectProduct()" result="flowScope.product"/>
+		<evaluate expression="quotaController.getSelectedProduct()" result="flowScope.product"/>
 	</on-start>
 	
 	<view-state id="quotaDetail">

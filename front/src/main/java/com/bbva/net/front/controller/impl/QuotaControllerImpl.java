@@ -4,6 +4,7 @@
 package com.bbva.net.front.controller.impl;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -35,26 +36,26 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 
 	private static final long serialVersionUID = 1L;
 
-	private QuotaDetailDto quotaDetailDto = new QuotaDetailDto();
+	private QuotaDetailDto quotaDetailDto;
 
-	private MovementDetailDto quotaMoveDetailDto = new MovementDetailDto();
+	private MovementDetailDto quotaMoveDetailDto;
 
-	private ProductDto productDto = new ProductDto();
+	private MovementDto quotaMove;
 
-	private MovementDto quotaMove = new MovementDto();
+	private ProductDto productDto;
 
-	private Map<String, Boolean> renderComponents = new HashMap<String, Boolean>();
+	private DateRangeDto dateRange;
 
 	private List<MovementDto> quotamovenDtos;
 
-	private DateRangeDto dateRange = new DateRangeDto();
+	private MovementCriteriaDto movementCriteria;
+
+	private Map<String, Boolean> renderComponents;
 
 	private Date sinceDate, toDate;
 
 	private String sinceText, toText, sinceDatestr, toDatestr, selectDate, moveDate, maturityDate, previousDate,
 			paymentDate;
-
-	private MovementCriteriaDto movementCriteria = new MovementCriteriaDto();
 
 	SimpleDateFormat dateFormat = new SimpleDateFormat(MessagesHelper.INSTANCE.getStringI18("date.pattner.dd.mm.yyyy"));
 
@@ -69,15 +70,26 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 
 	@Override
 	public void init() {
+		LOGGER.info("QuotaControllerImpl Super Initialize");
 		super.init();
 		LOGGER.info("QuotaControllerImpl Initialize QuotaController");
-		this.productDto = getSelectProduct();
+		// inicializar variables
+		this.quotaDetailDto = new QuotaDetailDto();
+		this.quotamovenDtos = new ArrayList<MovementDto>();
+		this.quotaMoveDetailDto = new MovementDetailDto();
+		this.productDto = new ProductDto();
+		this.dateRange = new DateRangeDto();
+		this.movementCriteria = new MovementCriteriaDto();
+		this.renderComponents = new HashMap<String, Boolean>();
+		// obtener el producto
+		this.productDto = super.getSelectedProduct();
 		if (productDto != null && productDto.getProductId() != null) {
 			LOGGER.info("Datos del producto Seleccionado Terminado " + " Product Id: " + productDto.getProductId());
 			this.quotaDetailDto = this.quotaDetailFacade.getDetailRotaryQuota(this.productDto.getProductId());
 			LOGGER.info("Datos del quotaDetailDto Terminados" + " Product Id: " + quotaDetailDto.getId());
 		} else {
 			LOGGER.info("Datos del producto Seleccionado Vacio (null)");
+			this.productDto = new ProductDto();
 		}
 
 		// setTitle(MessagesHelper.INSTANCE.getString("text.last.movments"));
@@ -85,7 +97,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 	}
 
 	@Override
-	public ProductDto getSelectProduct() {
+	public ProductDto getSelectedProduct() {
 		return super.getSelectedProduct();
 	}
 
@@ -158,6 +170,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 
 	public void onRowToggle(final SelectEvent event) {
 		LOGGER.info("QuotaControllerImpl onRowToggle");
+		this.quotaMove = new MovementDto();
 		super.onMovementSelected(event);
 		this.quotaMove = super.getSelectedMovements();
 		this.quotaMoveDetailDto = this.quotaDetailFacade.getRotaryQuotaMovement(this.productDto.getProductId(),
@@ -383,10 +396,16 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 		this.paymentDate = paymentDate;
 	}
 
+	/**
+	 * @return the quotaMove
+	 */
 	public MovementDto getQuotaMove() {
 		return quotaMove;
 	}
 
+	/**
+	 * @param quotaMove the quotaMove to set
+	 */
 	public void setQuotaMove(MovementDto quotaMove) {
 		this.quotaMove = quotaMove;
 	}

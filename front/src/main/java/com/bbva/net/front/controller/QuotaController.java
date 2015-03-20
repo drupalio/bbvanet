@@ -7,7 +7,6 @@ import java.util.List;
 
 import javax.faces.event.ActionEvent;
 
-import com.bbva.net.back.model.globalposition.ProductDto;
 import com.bbva.net.back.model.movements.MovementDto;
 
 /**
@@ -58,14 +57,6 @@ public interface QuotaController {
 	 */
 
 	void nextPage(ActionEvent event);
-
-	/**
-	 * Product Data
-	 * 
-	 * @return
-	 */
-
-	ProductDto getSelectProduct();
 
 	void criteriaSearch();
 
