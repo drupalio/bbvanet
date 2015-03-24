@@ -23,4 +23,11 @@ public class TermsControllerImpl extends AbstractBbvaController implements Terms
 		return detalle;
 	}
 
+	/**
+	 * @param detallesCuenta the detallesCuenta to set
+	 */
+	public void setDetallesCuenta(TermasAccountsFacade detallesCuenta) {
+		this.detallesCuenta = detallesCuenta;
+	}
+
 }

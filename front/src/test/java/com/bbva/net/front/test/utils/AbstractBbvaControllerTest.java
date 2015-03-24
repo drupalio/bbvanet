@@ -23,16 +23,21 @@ import org.mockito.MockitoAnnotations;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
+import org.powermock.reflect.Whitebox;
 import org.primefaces.context.RequestContext;
 import org.springframework.webflow.core.collection.MutableAttributeMap;
 import org.springframework.webflow.engine.RequestControlContext;
 import org.springframework.webflow.execution.RequestContextHolder;
 
+import com.bbva.czic.dto.net.EnumProductType;
+import com.bbva.net.back.model.comboFilter.EnumCheckStatus;
+
 /**
  * @author Entelgy
  */
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({ FacesContext.class, RequestContext.class, RequestContextHolder.class, ResourceBundle.class })
+@PrepareForTest({ FacesContext.class, RequestContext.class, RequestContextHolder.class, ResourceBundle.class,
+		EnumProductType.class, EnumCheckStatus.class })
 public abstract class AbstractBbvaControllerTest {
 
 	@Mock
@@ -68,6 +73,12 @@ public abstract class AbstractBbvaControllerTest {
 	@Mock
 	protected MutableAttributeMap<Object> scope;
 
+	@Mock
+	protected EnumProductType enumProductType;
+
+	@Mock
+	protected EnumCheckStatus enumCheckStatus;
+
 	protected ResourceBundle resourceBundle;
 
 	@Before
@@ -83,6 +94,15 @@ public abstract class AbstractBbvaControllerTest {
 	 * Initialize: FacesContext, ExternalContext and Application
 	 */
 	protected void initFacesContext() {
+
+		// creating an unknown enum value
+		enumProductType = PowerMockito.mock(EnumProductType.class);
+		Whitebox.setInternalState(enumProductType, "name", "Account");
+		when(enumProductType.value()).thenReturn("Account");
+
+		enumCheckStatus = PowerMockito.mock(EnumCheckStatus.class);
+		Whitebox.setInternalState(enumCheckStatus, "name", "Account");
+		when(enumCheckStatus.getValue()).thenReturn("check");
 
 		// Using PowerMockito to mock the statics
 		PowerMockito.mockStatic(FacesContext.class);
