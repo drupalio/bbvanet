@@ -60,34 +60,6 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	private String actionState, checkState, checkNumber, checkBookNumber, titleDateSince, titleDateTo, sinceDatestr,
 			toDatestr, leftTitle, rightTitle, titleState;
 
-	/**
-	 * @return the titleDateTo
-	 */
-	public String getTitleDateTo() {
-		return titleDateTo;
-	}
-
-	/**
-	 * @param titleDateTo the titleDateTo to set
-	 */
-	public void setTitleDateTo(String titleDateTo) {
-		this.titleDateTo = titleDateTo;
-	}
-
-	/**
-	 * @return the titleState
-	 */
-	public String getTitleState() {
-		return titleState;
-	}
-
-	/**
-	 * @param titleState the titleState to set
-	 */
-	public void setTitleState(String titleState) {
-		this.titleState = titleState;
-	}
-
 	private CheckbookDto checkBook = new CheckbookDto();
 
 	private List<CheckDto> checkList = new ArrayList<CheckDto>();
@@ -337,6 +309,8 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 		final Date date = (Date)event.getObject();
 		this.toDate = date;
 	}
+
+	// Setters And Getters
 
 	/**
 	 * @return the selectDate
@@ -624,6 +598,34 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	 */
 	public void setTitleDateSince(String titleDateSince) {
 		this.titleDateSince = titleDateSince;
+	}
+
+	/**
+	 * @return the titleDateTo
+	 */
+	public String getTitleDateTo() {
+		return titleDateTo;
+	}
+
+	/**
+	 * @param titleDateTo the titleDateTo to set
+	 */
+	public void setTitleDateTo(String titleDateTo) {
+		this.titleDateTo = titleDateTo;
+	}
+
+	/**
+	 * @return the titleState
+	 */
+	public String getTitleState() {
+		return titleState;
+	}
+
+	/**
+	 * @param titleState the titleState to set
+	 */
+	public void setTitleState(String titleState) {
+		this.titleState = titleState;
 	}
 
 }

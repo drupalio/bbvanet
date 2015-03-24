@@ -23,8 +23,7 @@ public class PersonalizeAccountDto implements Dto {
 	 * @param operationOnline
 	 * @param operationKey
 	 */
-	public PersonalizeAccountDto(String alias, boolean virtualMail, boolean searchOnline, boolean operationOnline,
-			String operationKey) {
+	public PersonalizeAccountDto(boolean virtualMail, String operationKey) {
 		this.virtualMail = virtualMail;
 		this.operationKey = operationKey;
 	}

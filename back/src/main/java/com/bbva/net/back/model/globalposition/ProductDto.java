@@ -52,7 +52,6 @@ public class ProductDto implements Dto {
 	public ProductDto(String productId, String productName, String productNumber, Boolean asset,
 			Boolean operationOnline, Boolean visible, String alias, Money totalCash, Money cashAvailable,
 			String subTypeProd, EnumProductType typeProd) {
-		super();
 		this.productId = productId;
 		this.productName = productName;
 		this.productNumber = productNumber;
