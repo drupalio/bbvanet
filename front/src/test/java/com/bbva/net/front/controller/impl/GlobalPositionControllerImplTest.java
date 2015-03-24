@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.faces.event.ComponentSystemEvent;
 
 import org.apache.commons.lang.StringUtils;
 import org.junit.Assert;
@@ -17,17 +18,21 @@ import com.bbva.net.back.facade.AccountMovementsResumeFacade;
 import com.bbva.net.back.facade.CardsFacade;
 import com.bbva.net.back.facade.GlobalPositionFacade;
 import com.bbva.net.back.facade.MonthBalanceFacade;
+import com.bbva.net.back.model.accounts.GlobalMonthlyBalanceDto;
 import com.bbva.net.back.model.comboFilter.EnumPeriodType;
 import com.bbva.net.back.model.commons.DateRangeDto;
 import com.bbva.net.back.model.commons.Money;
 import com.bbva.net.back.model.globalposition.DepositDto;
 import com.bbva.net.back.model.globalposition.GlobalProductsDto;
+import com.bbva.net.back.model.globalposition.ProductDto;
 import com.bbva.net.back.model.movements.GlobalResumeMovementsDto;
 import com.bbva.net.back.service.impl.DateFilterServiceImpl;
 import com.bbva.net.front.delegate.GraphicBarLineDelegate;
 import com.bbva.net.front.delegate.GraphicLineDelegate;
 import com.bbva.net.front.delegate.GraphicPieDelegate;
 import com.bbva.net.front.test.utils.AbstractBbvaControllerTest;
+import com.bbva.net.front.ui.globalposition.AccountBarLineUI;
+import com.bbva.net.front.ui.line.LineConfigUI;
 import com.bbva.net.front.ui.pie.PieConfigUI;
 
 /**
@@ -229,8 +234,9 @@ public class GlobalPositionControllerImplTest extends AbstractBbvaControllerTest
 
 	@Test
 	public void checkOnProductSelectd() {
+		ProductDto product = new ProductDto();
 		SelectEvent event = Mockito.mock(SelectEvent.class);
-		// Assert.assertNotNull(globalPositionController.getSelectedProduct());
+		// globalPositionController.onProductSelected(event);
 	}
 
 	@Test
@@ -252,17 +258,26 @@ public class GlobalPositionControllerImplTest extends AbstractBbvaControllerTest
 
 		Assert.assertNotNull(globalPositionController.getNamesProducts());
 
-		// Assert.assertNotNull(globalPositionController.getLineConfigUI());
+		globalPositionController.setLineConfigUI(Mockito.mock(LineConfigUI.class));
+		Assert.assertNotNull(globalPositionController.getLineConfigUI());
 
 		Assert.assertNotNull(globalPositionController.getGraphicPieInvestmentFunds());
 
 		Assert.assertNotNull(globalPositionController.getCardSelected());
 
-		// Assert.assertNotNull(globalPositionController.getAccountGraphicBarLineUI());
-		// Assert.assertNotNull(globalPositionController.getGlobalMonthlyBalance());
+		globalPositionController.setAccountGraphicBarLineUI(Mockito.mock(AccountBarLineUI.class));
+		Assert.assertNotNull(globalPositionController.getAccountGraphicBarLineUI());
+
+		Assert.assertNotNull(globalPositionController.getGlobalPositionFacade());
+
+		globalPositionController.setGlobalMonthlyBalance(Mockito.mock(GlobalMonthlyBalanceDto.class));
+		Assert.assertNotNull(globalPositionController.getGlobalMonthlyBalance());
+
 		Assert.assertNotNull(globalPositionController.getGlobalProductsDTO());
 		Assert.assertNotNull(globalPositionController.getPeriodAccountSelected());
 		Assert.assertNotNull(globalPositionController.getPeriodCardSelected());
 
+		ComponentSystemEvent event = Mockito.mock(ComponentSystemEvent.class);
+		globalPositionController.preRender(event);
 	}
 }

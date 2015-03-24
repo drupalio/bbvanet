@@ -217,6 +217,10 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	}
 
+	public GlobalPositionFacade getGlobalPositionFacade() {
+		return globalPositionFacade;
+	}
+
 	/**
 	 * 
 	 */
@@ -239,6 +243,27 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	@Override
 	public GlobalProductsDto getCustomerProductsHidden() {
 		return this.globalPositionFacade.getGlobalProductsHidden(globalProductsDTO);
+	}
+
+	/**
+	 * @param lineConfigUI
+	 */
+	public void setLineConfigUI(LineConfigUI lineConfigUI) {
+		this.lineConfigUI = lineConfigUI;
+	}
+
+	/**
+	 * @param accountGraphicBarLineUI
+	 */
+	public void setAccountGraphicBarLineUI(AccountBarLineUI accountGraphicBarLineUI) {
+		this.accountGraphicBarLineUI = accountGraphicBarLineUI;
+	}
+
+	/**
+	 * @param globalMonthlyBalance
+	 */
+	public void setGlobalMonthlyBalance(GlobalMonthlyBalanceDto globalMonthlyBalance) {
+		this.globalMonthlyBalance = globalMonthlyBalance;
 	}
 
 	/**
@@ -342,6 +367,9 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public void onProductLoanSelected(final SelectEvent selectEvent) {
 		super.onProductSelected(selectEvent);
