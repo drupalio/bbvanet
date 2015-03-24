@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.faces.component.UIComponent;
+import javax.faces.component.behavior.Behavior;
 import javax.faces.event.ComponentSystemEvent;
 
 import org.apache.commons.lang.StringUtils;
@@ -162,6 +164,18 @@ public class GlobalPositionControllerImplTest extends AbstractBbvaControllerTest
 	}
 
 	@Test
+	public void checkActivePanelType() {
+		Assert.assertEquals(this.globalPositionController.getActivePanelEnum().valueOf("SITUATION"),
+				this.globalPositionController.getActivePanelEnum().SITUATION);
+
+		Assert.assertEquals(this.globalPositionController.getActivePanelEnum().valueOf("FINANCIATION"),
+				this.globalPositionController.getActivePanelEnum().FINANCIATION);
+
+		Assert.assertEquals(this.globalPositionController.getActivePanelEnum().valueOf("ASSET"),
+				this.globalPositionController.getActivePanelEnum().ASSET);
+	}
+
+	@Test
 	public void checkGraphicPaiUI() {
 
 		GlobalProductsDto globalProducts = Mockito.mock(GlobalProductsDto.class);
@@ -233,10 +247,19 @@ public class GlobalPositionControllerImplTest extends AbstractBbvaControllerTest
 	}
 
 	@Test
+	public void checkOnProductSelected() {
+		final UIComponent uiComponent = Mockito.mock(UIComponent.class);
+		final Behavior behavior = Mockito.mock(Behavior.class);
+		final SelectEvent selectEvent = new SelectEvent(uiComponent, behavior, new ProductDto());
+		globalPositionController.onProductSelected(selectEvent);
+	}
+
+	@Test
 	public void checkOnProductSelectd() {
-		ProductDto product = new ProductDto();
-		SelectEvent event = Mockito.mock(SelectEvent.class);
-		// globalPositionController.onProductSelected(event);
+		final UIComponent uiComponent = Mockito.mock(UIComponent.class);
+		final Behavior behavior = Mockito.mock(Behavior.class);
+		final SelectEvent selectEvent = new SelectEvent(uiComponent, behavior, new ProductDto());
+		globalPositionController.onProductLoanSelected(selectEvent);
 	}
 
 	@Test
@@ -279,5 +302,6 @@ public class GlobalPositionControllerImplTest extends AbstractBbvaControllerTest
 
 		ComponentSystemEvent event = Mockito.mock(ComponentSystemEvent.class);
 		globalPositionController.preRender(event);
+
 	}
 }

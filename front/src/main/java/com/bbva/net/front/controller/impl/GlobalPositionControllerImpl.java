@@ -169,7 +169,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	/**
 	 * @author Entelgy
 	 */
-	private enum ActivePanelType {
+	public enum ActivePanelType {
 
 		SITUATION, ASSET, FINANCIATION
 	}
@@ -217,6 +217,9 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 	}
 
+	/**
+	 * @return
+	 */
 	public GlobalPositionFacade getGlobalPositionFacade() {
 		return globalPositionFacade;
 	}
@@ -248,21 +251,21 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	/**
 	 * @param lineConfigUI
 	 */
-	public void setLineConfigUI(LineConfigUI lineConfigUI) {
+	public void setLineConfigUI(final LineConfigUI lineConfigUI) {
 		this.lineConfigUI = lineConfigUI;
 	}
 
 	/**
 	 * @param accountGraphicBarLineUI
 	 */
-	public void setAccountGraphicBarLineUI(AccountBarLineUI accountGraphicBarLineUI) {
+	public void setAccountGraphicBarLineUI(final AccountBarLineUI accountGraphicBarLineUI) {
 		this.accountGraphicBarLineUI = accountGraphicBarLineUI;
 	}
 
 	/**
 	 * @param globalMonthlyBalance
 	 */
-	public void setGlobalMonthlyBalance(GlobalMonthlyBalanceDto globalMonthlyBalance) {
+	public void setGlobalMonthlyBalance(final GlobalMonthlyBalanceDto globalMonthlyBalance) {
 		this.globalMonthlyBalance = globalMonthlyBalance;
 	}
 
@@ -298,6 +301,13 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	 */
 	public String getActivePanel() {
 		return this.activePanel.name();
+	}
+
+	/**
+	 * @return
+	 */
+	public ActivePanelType getActivePanelEnum() {
+		return this.activePanel;
 	}
 
 	/**
