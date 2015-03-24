@@ -657,6 +657,35 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		this.titleDateTo = titleDateTo;
 	}
 
+	/**
+	 * @param movementsFacade the movementsFacade to set
+	 */
+	@Override
+	public void setMovementsFacade(MovementsAccountFacade movementsFacade) {
+		this.movementsFacade = movementsFacade;
+	}
+
+	/**
+	 * @param movementsList the movementsList to set
+	 */
+	public void setMovementsList(List<MovementDto> movementsList) {
+		this.movementsList = movementsList;
+	}
+
+	/**
+	 * @param graphicLineDelegate the graphicLineDelegate to set
+	 */
+	public void setGraphicLineDelegate(GraphicLineDelegate graphicLineDelegate) {
+		this.graphicLineDelegate = graphicLineDelegate;
+	}
+
+	/**
+	 * @param graphicLineMovements the graphicLineMovements to set
+	 */
+	public void setGraphicLineMovements(LineConfigUI graphicLineMovements) {
+		this.graphicLineMovements = graphicLineMovements;
+	}
+
 	@Override
 	public List<BigDecimal> valuesLinesGraphic(LineConfigUI valuesLines) {
 		BigDecimal menor = new BigDecimal(0);

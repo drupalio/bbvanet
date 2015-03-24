@@ -20,6 +20,7 @@ import com.bbva.net.back.model.globalposition.ProductDto;
 import com.bbva.net.back.model.movements.MovementDetailDto;
 import com.bbva.net.back.model.movements.MovementDto;
 import com.bbva.net.back.model.quota.QuotaDetailDto;
+import com.bbva.net.front.core.PaginationController;
 import com.bbva.net.front.test.utils.AbstractBbvaControllerTest;
 
 public class QuotaControllerImplTest extends AbstractBbvaControllerTest {
@@ -40,6 +41,8 @@ public class QuotaControllerImplTest extends AbstractBbvaControllerTest {
 
 	private DateRangeDto date;
 
+	private PaginationController<MovementDto> paginationController;
+
 	private QuotaPaginatedController quotaPaginatedController;
 
 	@Before
@@ -53,6 +56,7 @@ public class QuotaControllerImplTest extends AbstractBbvaControllerTest {
 		this.eventAction = Mockito.mock(ActionEvent.class);
 		this.quotaDetailFacade = Mockito.mock(QuotaDetailFacade.class);
 		this.productDto = Mockito.mock(ProductDto.class);
+		// this.paginationController = new PaginationController<MovementDto>(Mockito.<MovementDto> mock(MovementDto.class));
 		this.quotaPaginatedController = new QuotaPaginatedController();
 		// DateRangeDto
 		this.date = new DateRangeDto();
@@ -87,7 +91,6 @@ public class QuotaControllerImplTest extends AbstractBbvaControllerTest {
 				.getRotaryQuotaMovement(DEFAULT_ID, DEFAULT_ID_MOV);
 	}
 
-	// Metodo no funciona
 	public void checkGetAllQuotamovenDtos() {
 		// Arreglo respuesta
 		List<MovementDto> quotaMovements = new ArrayList<MovementDto>();
