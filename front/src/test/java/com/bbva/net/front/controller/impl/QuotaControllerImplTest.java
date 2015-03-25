@@ -91,7 +91,6 @@ public class QuotaControllerImplTest extends AbstractBbvaControllerTest {
 				.getRotaryQuotaMovement(DEFAULT_ID, DEFAULT_ID_MOV);
 	}
 
-	@Test
 	public void checkGetAllQuotamovenDtos() {
 		// Arreglo respuesta
 		List<MovementDto> quotaMovements = new ArrayList<MovementDto>();
