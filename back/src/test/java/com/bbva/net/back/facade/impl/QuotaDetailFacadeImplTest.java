@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.annotation.Resource;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -28,14 +26,10 @@ public class QuotaDetailFacadeImplTest {
 
 	private QuotaDetailFacadeImpl quotaDetailFacede;
 
-	// CLIENTE REST
-	@Resource(name = "loanService")
 	private LoanService loanService;
 
-	@Resource(name = "quotaDetailMapper")
 	private QuotaDetailMapper mapper;
 
-	@Resource(name = "fiqlService")
 	private FiqlService fiqlService;
 
 	private QuotaDetailDto quotaDetailDto;
@@ -44,10 +38,15 @@ public class QuotaDetailFacadeImplTest {
 
 	@Before
 	public void init() {
+		// inicializar controlador
 		this.quotaDetailFacede = new QuotaDetailFacadeImpl();
+		// Mockitos
 		this.loanService = Mockito.mock(LoanService.class);
 		this.mapper = Mockito.mock(QuotaDetailMapper.class);
 		this.fiqlService = Mockito.mock(FiqlService.class);
+		this.quotaDetailDto = Mockito.mock(QuotaDetailDto.class);
+		this.quotaMoveDetailDto = Mockito.mock(MovementDetailDto.class);
+		// set
 		this.quotaDetailFacede.setLoanService(loanService);
 		this.quotaDetailFacede.setMapper(mapper);
 		this.quotaDetailFacede.setFiqlService(fiqlService);
@@ -56,22 +55,30 @@ public class QuotaDetailFacadeImplTest {
 	@Test
 	public void checkGetDetailRotaryQuota() {
 		Loan loan = new Loan();
-		quotaDetailDto = Mockito.mock(QuotaDetailDto.class);
+		// Mockear respuestas
 		Mockito.when(loanService.getRotaryQuota(DEFAULT_ID)).thenReturn(loan);
 		Mockito.when(mapper.mapQuota(loan)).thenReturn(quotaDetailDto);
 		Mockito.when(quotaDetailFacede.getDetailRotaryQuota(DEFAULT_ID)).thenReturn(quotaDetailDto);
+		// Llamar método getDetailRotaryQuota
+		this.quotaDetailDto = this.quotaDetailFacede.getDetailRotaryQuota(DEFAULT_ID);
+		// Verificar que no venga nulo
 		Assert.assertNotNull(quotaDetailDto);
+		// Verificar método getRotaryQuota
 		Mockito.verify(this.loanService, Mockito.atLeastOnce()).getRotaryQuota(DEFAULT_ID);
 	}
 
 	@Test
 	public void checkGetDetailMovemenRotaryQuota() {
 		RotaryQuotaMove rotaryQuotaMove = new RotaryQuotaMove();
-		quotaMoveDetailDto = Mockito.mock(MovementDetailDto.class);
+		// Mockear respuestas
 		Mockito.when(loanService.getRotaryQuotaMovement(DEFAULT_ID, "544356")).thenReturn(rotaryQuotaMove);
 		Mockito.when(mapper.mapQuotaMove(rotaryQuotaMove)).thenReturn(quotaMoveDetailDto);
 		Mockito.when(quotaDetailFacede.getRotaryQuotaMovement(DEFAULT_ID, "544356")).thenReturn(quotaMoveDetailDto);
+		// Llamar método getRotaryQuotaMovement
+		this.quotaMoveDetailDto = this.quotaDetailFacede.getRotaryQuotaMovement(DEFAULT_ID, "544356");
+		// Verificar que no venga nulo
 		Assert.assertNotNull(quotaMoveDetailDto);
+		// Verificar método getRotaryQuotaMovement
 		Mockito.verify(this.loanService, Mockito.atLeastOnce()).getRotaryQuotaMovement(DEFAULT_ID, "544356");
 	}
 
@@ -82,11 +89,16 @@ public class QuotaDetailFacadeImplTest {
 		date.setDateTo(new Date());
 		List<Movement> listMovement = new ArrayList<Movement>();
 		List<MovementDto> listMovementDto = new ArrayList<MovementDto>();
+		// Mockear respuestas
 		Mockito.when(loanService.listRotaryQuotaMovements(DEFAULT_ID, 1, 10, null)).thenReturn(listMovement);
 		Mockito.when(mapper.listRotaryQuotaMovements(listMovement)).thenReturn(listMovementDto);
 		Mockito.when(quotaDetailFacede.listRotaryQuotaMovements(DEFAULT_ID, date, 1, 10)).thenReturn(listMovementDto);
 		Mockito.when(quotaDetailFacede.listRotaryQuotaMovements(DEFAULT_ID, null, 1, 10)).thenReturn(listMovementDto);
+		// Llamar el método listRotaryQuotaMovements
+		listMovementDto = this.quotaDetailFacede.listRotaryQuotaMovements(DEFAULT_ID, date, 1, 10);
+		// Verificar que no venga nulo
 		Assert.assertNotNull(listMovementDto);
+		// Verificar método listRotaryQuotaMovements
 		Mockito.verify(this.loanService, Mockito.atLeastOnce()).listRotaryQuotaMovements(DEFAULT_ID, 1, 10, null);
 	}
 }
