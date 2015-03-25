@@ -29,7 +29,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "City", propOrder = { "id", "name" })
 public class City implements Serializable {
 
-	private static final long serialVersionUID = 7663670999804546011L;
+	private static final long serialVersionUID = 1L;
 
 	protected String id;
 

@@ -32,7 +32,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Extracto", propOrder = { "externalCode", "month", "year", "generationDate", "url" })
 public class Extracto implements Serializable {
 
-	private static final long serialVersionUID = -6641191359610121811L;
+	private static final long serialVersionUID = 1L;
 
 	protected String externalCode;
 

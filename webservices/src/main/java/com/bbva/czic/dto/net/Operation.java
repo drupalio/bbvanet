@@ -29,7 +29,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Operation", propOrder = { "code", "description" })
 public class Operation implements Serializable {
 
-	private static final long serialVersionUID = 7770342488676734948L;
+	private static final long serialVersionUID = 1L;
 
 	protected String code;
 

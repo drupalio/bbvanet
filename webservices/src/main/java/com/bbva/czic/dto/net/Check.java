@@ -34,7 +34,7 @@ import com.bbva.jee.arq.spring.core.servicing.utils.Money;
 @XmlType(name = "Check", propOrder = { "id", "issueDate", "value", "status", "modifiedDate" })
 public class Check implements Serializable {
 
-	private static final long serialVersionUID = -4227782124736277804L;
+	private static final long serialVersionUID = 1L;
 
 	protected String id;
 

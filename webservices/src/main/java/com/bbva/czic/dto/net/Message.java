@@ -36,7 +36,7 @@ import com.bbva.jee.arq.spring.core.servicing.utils.Money;
 @XmlType(name = "Message", propOrder = { "id", "title", "template", "reference", "time", "value", "info" })
 public class Message implements Serializable {
 
-	private static final long serialVersionUID = -6257795353340484899L;
+	private static final long serialVersionUID = 1L;
 
 	protected String id;
 

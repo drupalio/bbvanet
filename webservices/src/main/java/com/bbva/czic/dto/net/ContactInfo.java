@@ -32,7 +32,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "ContactInfo", propOrder = { "phoneNumbers", "emails" })
 public class ContactInfo implements Serializable {
 
-	private static final long serialVersionUID = -6534028310669542842L;
+	private static final long serialVersionUID = 1L;
 
 	@XmlElement(nillable = true)
 	protected List<PhoneNumber> phoneNumbers;
