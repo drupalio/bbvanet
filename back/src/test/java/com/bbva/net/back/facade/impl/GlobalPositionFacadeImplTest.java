@@ -1,5 +1,6 @@
 package com.bbva.net.back.facade.impl;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import com.bbva.net.back.model.commons.Money;
 import com.bbva.net.back.model.globalposition.AccountDto;
 import com.bbva.net.back.model.globalposition.BalanceDto;
 import com.bbva.net.back.model.globalposition.GlobalProductsDto;
@@ -42,13 +44,15 @@ public class GlobalPositionFacadeImplTest {
 	public void checkGetCustomerProducts_Visible() {
 		AccountDto account = new AccountDto();
 		account.setVisible(true);
+		account.setOverDraft(new Money(new BigDecimal(1000)));
 		List<AccountDto> lista = new ArrayList<AccountDto>();
 		lista.add(account);
-		GlobalProductsDto global = new GlobalProductsDto();
-		global.setAccounts(lista);
+		GlobalProductsDto globalProductsDto = new GlobalProductsDto();
+		globalProductsDto.setAccounts(lista);
 
-		Mockito.when(productService.select(globalProductsDto, new VisibleProductPredicate())).thenReturn(global);
-		Assert.assertNull(globalPositionFacadeImpl.getGlobalProductsVisibles(global));
+		Mockito.when(productService.select(globalProductsDto, new VisibleProductPredicate())).thenReturn(
+				globalProductsDto);
+		Assert.assertNull(globalPositionFacadeImpl.getGlobalProductsVisibles(globalProductsDto));
 
 	}
 
