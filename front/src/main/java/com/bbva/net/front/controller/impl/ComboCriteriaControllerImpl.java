@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 
 import com.bbva.net.back.entity.MultiValueGroup;
 import com.bbva.net.back.facade.MultiValueGroupFacade;
-import com.bbva.net.back.model.comboFilter.EnumPeriodType;
 import com.bbva.net.front.controller.ComboCriteriaController;
 import com.bbva.net.front.core.AbstractBbvaController;
 
@@ -36,17 +35,12 @@ public class ComboCriteriaControllerImpl extends AbstractBbvaController implemen
 	/**
 	 * 
 	 */
-	private EnumPeriodType period;
+	private transient List<MultiValueGroup> multiValuePeriod;
 
 	/**
 	 * 
 	 */
-	private List<MultiValueGroup> multiValuePeriod;
-
-	/**
-	 * 
-	 */
-	private List<MultiValueGroup> multiValueList;
+	private transient List<MultiValueGroup> multiValueList;
 
 	/**
 	 * 
@@ -143,6 +137,13 @@ public class ComboCriteriaControllerImpl extends AbstractBbvaController implemen
 	// ************* Getters Methods *************
 
 	/**
+	 * @param multiValueGroupFacade
+	 */
+	public void setMultiValueGroupFacade(final MultiValueGroupFacade multiValueGroupFacade) {
+		this.multiValueGroupFacade = multiValueGroupFacade;
+	}
+
+	/**
 	 * @return
 	 */
 	public List<MultiValueGroup> getMultiValuePeriod() {
@@ -155,13 +156,6 @@ public class ComboCriteriaControllerImpl extends AbstractBbvaController implemen
 
 	public List<MultiValueGroup> getMultiValueList() {
 		return multiValueList;
-	}
-
-	/**
-	 * @return
-	 */
-	public EnumPeriodType getPeriod() {
-		return period;
 	}
 
 }
