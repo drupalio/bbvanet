@@ -26,8 +26,11 @@ import com.bbva.net.front.ui.pie.PieItemUI;
 @Delegate(value = "graphicPieDelegate")
 public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 
+	/**
+	 * 
+	 */
 	@Resource(name = "productService")
-	private ProductService productService;
+	private transient ProductService productService;
 
 	/**
 	 * @param cardsCharges
@@ -50,6 +53,9 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 		return assetPie;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public SituationPiesUI getSituationGlobalProducts(final GlobalProductsDto globalProducts) {
 
@@ -60,8 +66,8 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 		situationPiesUI.setAssets(getAssetPieConfig(productList));
 		situationPiesUI.setFinancing(getFinanciationPieConfig(productList));
 
-		situationPiesUI.setTotalAssets((productService.getTotalAssets(productList)));
-		situationPiesUI.setTotalFinancing((productService.getTotalFinanciacion(productList)));
+		situationPiesUI.setTotalAssets(productService.getTotalAssets(productList));
+		situationPiesUI.setTotalFinancing(productService.getTotalFinanciacion(productList));
 
 		return situationPiesUI;
 	}
@@ -99,9 +105,9 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 	public PieConfigUI getAssetPieConfig(final List<ProductDto> products) {
 
 		final PieConfigUI assetPie = new PieConfigUI();
-		DecimalFormat myFormatter = new DecimalFormat(ResourceBundle.getBundle("i18n_es").getString(
+		final DecimalFormat myFormatter = new DecimalFormat(ResourceBundle.getBundle("i18n_es").getString(
 				"number.format.decimals"));
-		String totalAssets = myFormatter.format(productService.getTotalAssets(products).getAmount());
+		final String totalAssets = myFormatter.format(productService.getTotalAssets(products).getAmount());
 
 		assetPie.setHeaderLeft(" Activos ");
 		assetPie.setHeaderRight(totalAssets);
@@ -136,9 +142,9 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 	public PieConfigUI getFinanciationPieConfig(final List<ProductDto> products) {
 
 		final PieConfigUI financiationPie = new PieConfigUI();
-		DecimalFormat myFormatter = new DecimalFormat(ResourceBundle.getBundle("i18n_es").getString(
+		final DecimalFormat myFormatter = new DecimalFormat(ResourceBundle.getBundle("i18n_es").getString(
 				"number.format.decimals"));
-		String totalFinancing = myFormatter.format(productService.getTotalFinanciacion(products).getAmount());
+		final String totalFinancing = myFormatter.format(productService.getTotalFinanciacion(products).getAmount());
 		financiationPie.setHeaderCenter(" COP ");
 		financiationPie.setHeaderRight(totalFinancing);
 
@@ -165,6 +171,9 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 		return financiationPie;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public PieConfigUI getAccountsfundsProducts(final GlobalProductsDto globalProducts) {
 
