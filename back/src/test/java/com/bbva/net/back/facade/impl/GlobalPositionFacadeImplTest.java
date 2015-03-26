@@ -1,7 +1,5 @@
 package com.bbva.net.back.facade.impl;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -10,8 +8,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import com.bbva.net.back.model.commons.Money;
-import com.bbva.net.back.model.globalposition.AccountDto;
 import com.bbva.net.back.model.globalposition.BalanceDto;
 import com.bbva.net.back.model.globalposition.GlobalProductsDto;
 import com.bbva.net.back.predicate.HiddenProductPredicate;
@@ -42,25 +38,20 @@ public class GlobalPositionFacadeImplTest {
 
 	@Test
 	public void checkGetCustomerProducts_Visible() {
-		AccountDto account = new AccountDto();
-		account.setVisible(true);
-		account.setOverDraft(new Money(new BigDecimal(1000)));
-		List<AccountDto> lista = new ArrayList<AccountDto>();
-		lista.add(account);
-		GlobalProductsDto globalProductsDto = new GlobalProductsDto();
-		globalProductsDto.setAccounts(lista);
 
-		Mockito.when(productService.select(globalProductsDto, new VisibleProductPredicate())).thenReturn(
-				globalProductsDto);
-		Assert.assertNull(globalPositionFacadeImpl.getGlobalProductsVisibles(globalProductsDto));
+		Mockito.when(
+				productService.select(Mockito.any(GlobalProductsDto.class), Mockito.any(VisibleProductPredicate.class)))
+				.thenReturn(globalProductsDto);
+		Assert.assertNotNull(globalPositionFacadeImpl.getGlobalProductsVisibles(globalProductsDto));
 
 	}
 
 	@Test
 	public void checkGetGlobalProductsHidden() {
-		Mockito.when(productService.select(globalProductsDto, new HiddenProductPredicate())).thenReturn(
-				globalProductsDto);
-		Assert.assertNull(globalPositionFacadeImpl.getGlobalProductsHidden(globalProductsDto));
+		Mockito.when(
+				productService.select(Mockito.any(GlobalProductsDto.class), Mockito.any(HiddenProductPredicate.class)))
+				.thenReturn(globalProductsDto);
+		Assert.assertNotNull(globalPositionFacadeImpl.getGlobalProductsHidden(globalProductsDto));
 	}
 
 	@Test
