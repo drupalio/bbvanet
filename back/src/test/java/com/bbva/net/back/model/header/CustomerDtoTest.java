@@ -9,6 +9,8 @@ import com.bbva.net.core.test.AbstractBbvaDTOTest;
 
 public class CustomerDtoTest extends AbstractBbvaDTOTest<CustomerDto> {
 
+	private CustomerDto customer;
+
 	@Override
 	protected CustomerDto getInstance() {
 		return new CustomerDto();
