@@ -30,4 +30,20 @@ public class TermasAccountsFacadeImpl extends AbstractBbvaFacade implements Term
 		return mapper.map(condiciones);
 	}
 
+	// Setters
+
+	/**
+	 * @param productsService the productsService to set
+	 */
+	public void setProductsService(ProductsService productsService) {
+		this.productsService = productsService;
+	}
+
+	/**
+	 * @param mapper the mapper to set
+	 */
+	public void setMapper(ConditionsMapper mapper) {
+		this.mapper = mapper;
+	}
+
 }

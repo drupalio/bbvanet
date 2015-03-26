@@ -95,6 +95,7 @@ public class QuotaControllerImplTest extends AbstractBbvaControllerTest {
 		// Arreglo respuesta
 		List<MovementDto> quotaMovements = new ArrayList<MovementDto>();
 		// Mockear el productDto para quotaPaginatedController
+		this.quotaPaginatedController.setQuotaDetailFacade(quotaDetailFacade);
 		Mockito.when(quotaPaginatedController.getSelectedProduct()).thenReturn(productDto);
 		Mockito.when(productDto.getProductId()).thenReturn(DEFAULT_ID);
 		// Setear el dateRangeDto para el quotaPaginatedController

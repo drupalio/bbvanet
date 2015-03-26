@@ -1,38 +1,36 @@
-
 package com.bbva.czic.dto.net;
 
-import javax.xml.bind.annotation.XmlEnum;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-
-/**
- * <p>Java class for EnumCheckbookStatus.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
- * <p>
- * <pre>
- * &lt;simpleType name="EnumCheckbookStatus">
- *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *     &lt;enumeration value="HABILITADO"/>
- *     &lt;enumeration value="SOLICITADO"/>
- *   &lt;/restriction>
- * &lt;/simpleType>
- * </pre>
- * 
- */
-@XmlType(name = "EnumCheckbookStatus")
-@XmlEnum
+@XmlRootElement(name = "EnumCheckbookStatus", namespace = "urn:com:bbva:czic:dto:net")
+@XmlType(name = "EnumCheckbookStatus", namespace = "urn:com:bbva:czic:dto:net")
+@XmlAccessorType(XmlAccessType.FIELD)
 public enum EnumCheckbookStatus {
 
-    HABILITADO,
-    SOLICITADO;
+	ANULADO("1"), PED_OFICINA("A"), EN_IMPRESOR("I"), EN_OFICINA("O"), ENTRE_CLIENTE("E"), DE_BAJA("B"), NO_RECIBIDO(
+			"N"), ANULADO_PETICION("C"), PERDIDO("2");
 
-    public String value() {
-        return name();
-    }
+	private String code;
 
-    public static EnumCheckbookStatus fromValue(String v) {
-        return valueOf(v);
-    }
+	private EnumCheckbookStatus(String code) {
+		this.code = code;
+	}
 
+	public String getCode() {
+		return code;
+	}
+
+	public static EnumCheckbookStatus getByCode(String code) {
+		if (code != null) {
+			for (EnumCheckbookStatus val : EnumCheckbookStatus.values()) {
+				if (val.getCode().equals(code)) {
+					return val;
+				}
+			}
+		}
+		return null;
+	}
 }

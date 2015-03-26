@@ -16,15 +16,30 @@ import com.bbva.net.back.model.commons.DateRangeDto;
 import com.bbva.net.back.model.extract.ExtractDto;
 import com.bbva.net.back.service.FiqlService;
 
+/**
+ * @author Entelgy
+ */
 @Service(value = "fiqlService")
 public class FiqlServiceImpl implements FiqlService {
 
+	/**
+	 * 
+	 */
 	private static final String DATE_FORMAT = "yyyy-MM-dd";
 
+	/**
+	 * 
+	 */
 	private static final String MONTH_FORMAT = "MM";
 
+	/**
+	 * 
+	 */
 	private static final String FIQL_LANGUAGE = "fiql";
 
+	/**
+	 * 
+	 */
 	@Override
 	public String getFiqlQueryByDateRange(final DateRangeDto dateRange, final String startProperty,
 			final String endProperty) {
@@ -34,8 +49,12 @@ public class FiqlServiceImpl implements FiqlService {
 		}
 
 		final SearchConditionBuilder filter = SearchConditionBuilder.instance(FIQL_LANGUAGE);
-		return filter.is(startProperty).notBefore(formatDate(dateRange.getDateSince())).and().is(endProperty)
-				.notAfter(dateRange.getDateTo()).query();
+		try {
+			return filter.is(startProperty).notBefore(formatDate(dateRange.getDateSince())).and().is(endProperty)
+					.notAfter(dateRange.getDateTo()).query();
+		} catch (ParseException e) {
+			return StringUtils.EMPTY;
+		}
 
 	}
 
@@ -44,7 +63,7 @@ public class FiqlServiceImpl implements FiqlService {
 	 * getAccMovementResume
 	 */
 	@Override
-	public String formatMonthByAccMovementResume(final DateRangeDto dateRange, String monthProperty) {
+	public String formatMonthByAccMovementResume(final DateRangeDto dateRange, final String monthProperty) {
 
 		if (dateRange == null || dateRange.getDateSince() == null || dateRange.getDateTo() == null) {
 			return StringUtils.EMPTY;
@@ -55,6 +74,9 @@ public class FiqlServiceImpl implements FiqlService {
 		return filter.is(monthProperty).lexicalNotBefore(formatOldMont(dateRange.getDateSince())).query();
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public String getFiqlQueryByCustomerIdAndProductType(final String productType, final String startProperty) {
 		if (productType == null) {
@@ -65,9 +87,12 @@ public class FiqlServiceImpl implements FiqlService {
 		return filter.is(startProperty).equalTo(productType).query();
 	}
 
+	/**
+	 * 
+	 */
 	@Override
-	public String getFiqlQueryByBalanceRange(final BalanceRangeDto balanceRange, String startProperty,
-			String endProperty) {
+	public String getFiqlQueryByBalanceRange(final BalanceRangeDto balanceRange, final String startProperty,
+			final String endProperty) {
 
 		if (balanceRange == null || balanceRange.getBalanceSince() == null || balanceRange.getBalanceTo() == null) {
 			return StringUtils.EMPTY;
@@ -78,8 +103,11 @@ public class FiqlServiceImpl implements FiqlService {
 
 	}
 
+	/**
+	 * 
+	 */
 	@Override
-	public String getFiqlQueryByStatus(final String status, String statusProperty) {
+	public String getFiqlQueryByStatus(final String status, final String statusProperty) {
 
 		if (status == null) {
 			return StringUtils.EMPTY;
@@ -90,8 +118,11 @@ public class FiqlServiceImpl implements FiqlService {
 
 	}
 
+	/**
+	 * 
+	 */
 	@Override
-	public String getFiqlEqual(String parameter, String value) {
+	public String getFiqlEqual(final String parameter, final String value) {
 		if (parameter == null || value == null) {
 			return StringUtils.EMPTY;
 		}
@@ -99,6 +130,9 @@ public class FiqlServiceImpl implements FiqlService {
 		return filter.is(parameter).equalTo(value).query();
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public String getExecutiveFiql() {
 		final SearchConditionBuilder filter = SearchConditionBuilder.instance(FIQL_LANGUAGE);
@@ -110,18 +144,15 @@ public class FiqlServiceImpl implements FiqlService {
 	 * @return
 	 * @throws ParseException
 	 */
-	private Date formatDate(final Date date) {
+	private Date formatDate(final Date date) throws ParseException {
 
 		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DATE_FORMAT);
 		// dateis the java.util.Date in yyyy-mm-dd format
 		// Converting it into String using formatter
 		final String strDate = simpleDateFormat.format(date);
 
-		try {
-			return simpleDateFormat.parse(strDate);
-		} catch (ParseException e) {
-			return null;
-		}
+		return simpleDateFormat.parse(strDate);
+
 	}
 
 	private String formatMonth(final Date date) {
@@ -146,8 +177,12 @@ public class FiqlServiceImpl implements FiqlService {
 		return oldDate;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
-	public String getFiqlQueryMonthlyByDateRange(DateRangeDto dateRange, String startProperty, String endProperty) {
+	public String getFiqlQueryMonthlyByDateRange(final DateRangeDto dateRange, final String startProperty,
+			final String endProperty) {
 
 		if (dateRange == null || dateRange.getDateSince() == null || dateRange.getDateTo() == null) {
 			return StringUtils.EMPTY;
@@ -159,8 +194,11 @@ public class FiqlServiceImpl implements FiqlService {
 
 	}
 
+	/**
+	 * Fiql Query que construye el filtro para consultar por nombre de usuario, tipo de doc y el id del documento
+	 */
 	@Override
-	public String getFiqlQueryCustomer(String userName, String docTypeUser, String docIdUser) {
+	public String getFiqlQueryCustomer(final String userName, final String docTypeUser, final String docIdUser) {
 		if (userName == null || docTypeUser == null || docIdUser == null) {
 			return StringUtils.EMPTY;
 		}
@@ -173,7 +211,7 @@ public class FiqlServiceImpl implements FiqlService {
 	 * Fiql Query que construye el filtro para consultar la URL de descarga para un extracto
 	 */
 	@Override
-	public String getFiqlQueryByExtract(ExtractDto extract) {
+	public String getFiqlQueryByExtract(final ExtractDto extract) {
 		if (extract == null) {
 			return StringUtils.EMPTY;
 		}

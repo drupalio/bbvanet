@@ -76,11 +76,7 @@ public class MovementDto implements Dto {
 	public boolean equals(Object obj) {
 		return (obj != null) && (obj instanceof MovementDto)
 				&& (this.getMovementId() != null && ((MovementDto)obj).getMovementId() != null)
-				&& this.getMovementId().equals(((MovementDto)obj).getMovementId())
-				&& this.getMovementConcept().equals(((MovementDto)obj).getMovementConcept())
-				&& this.getMovementDate().equals(((MovementDto)obj).getMovementDate())
-				&& this.getMovementValue().equals(((MovementDto)obj).getMovementValue())
-				&& this.getTotalBalance() == (((MovementDto)obj).getTotalBalance());
+				&& this.getMovementId().equals(((MovementDto)obj).getMovementId());
 	}
 
 	@Override

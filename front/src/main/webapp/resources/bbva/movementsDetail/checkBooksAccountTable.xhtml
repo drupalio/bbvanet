@@ -3,110 +3,73 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:composite="http://java.sun.com/jsf/composite"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:pm="http://primefaces.org/mobile"
-	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile" xmlns:jsf="http://xmlns.jcp.org/jsf"
 	xmlns:bbvaButton="http://java.sun.com/jsf/composite/bbva/button">
-
 <composite:interface>
 	<composite:attribute name="id" type="String" />
 	<composite:attribute name="listCheckBooks" type="java.util.List" />
 </composite:interface>
-
 <composite:implementation>
 	<h:form id="formCheckBooks">
-
 		<!-- Tabla de Chequeras -->
 		<div class="table-wrapper">
 			<p:dataTable id="checkBooksTable" widgetVar="checkBooksTable"
 				styleClass="detail-table-body sortable"
-				emptyMessage="#{msg['text.empty.table']}"
-				value="#{cc.attrs.listCheckBooks}" var="cheks"
-				rendered="false"
-				rowKey="#{cheks.id}">
+				emptyMessage="#{msg['text.empty.table']}" value="#{cc.attrs.listCheckBooks}"
+				var="cheks" rendered="false" rowKey="#{cheks.id}">
 				<p:column headerText="#{msg['checkbooks.first.check']}"
 					styleClass="sorted w13 desc" sortBy="#{cheks.id}">
-
-					<h:outputText styleClass="brand"
-						value="#{cheks.id}" />
+					<h:outputText styleClass="brand" value="#{cheks.id}" />
 				</p:column>
-
-				<p:column headerText="#{msg['checkbooks.last.check']}"
-					styleClass="desc w13" sortBy="#{cheks.issueDate}"
-					>
-
-					<h:outputText class="text"
-						
-						value="#{cheks.issueDate}">
+				<p:column headerText="#{msg['checkbooks.last.check']}" styleClass="desc w13"
+					sortBy="#{cheks.issueDate}">
+					<h:outputText class="text" value="#{cheks.issueDate}">
 						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</h:outputText>
-
 				</p:column>
-
-				<p:column  headerText="#{msg['checkbooks.available.checks']}"
-					styleClass="styleColum desc w34" sortBy="#{cheks.value}"
-					colspan="2">
-
-					<h:outputText class="currency styleCurrent"
-						value="#{cheks.value}" />
-
+				<p:column headerText="#{msg['checkbooks.available.checks']}"
+					styleClass="styleColum desc w34" sortBy="#{cheks.value}" colspan="2">
+					<h:outputText class="currency styleCurrent" value="#{cheks.value}" />
 				</p:column>
-				<p:column class="head" headerText="#{msg['checkbooks.petition.date']} #{msg['checkbooks.delivery.date']}"
+				<p:column class="head"
+					headerText="#{msg['checkbooks.petition.date']} #{msg['checkbooks.delivery.date']}"
 					styleClass="desc w10" sortBy="#{cheks.status}">
-
-					<h:outputText class="text"
-						value="#{cheks.modifiedDate}" >
+					<h:outputText class="text" value="#{cheks.modifiedDate}">
 						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</h:outputText>
-					
-					<h:outputText class="text"
-						value="#{cheks.modifiedDate}" >
+					<h:outputText class="text" value="#{cheks.modifiedDate}">
 						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</h:outputText>
-
 				</p:column>
-
 				<p:column class="head" headerText="#{msg['text.table.status']}"
 					styleClass="desc w10" sortBy="#{cheks.modifiedDate}">
-
-					<h:outputText class="text"
-						value="#{cheks.modifiedDate}" >
+					<h:outputText class="text" value="#{cheks.modifiedDate}">
 						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</h:outputText>
-
 				</p:column>
-
 				<p:column headerText="#{msg['text.detailMove.concep']}"
 					styleClass="smart-view responseTable">
-
 					<div class="left hidden-lg">
-						<h:outputText styleClass="brand"
-							style="font-size: 15px;line-height: 17px" value="#{cheks.id}" />
-
+						<h:outputText styleClass="brand" style="font-size: 15px;line-height: 17px"
+							value="#{cheks.id}" />
 						<h:outputText class="text"
 							style="font-size: 15px;line-height: 17px;color: #333"
 							value="#{cheks.issueDate}">
 							<f:convertDateTime pattern="dd/MM/yyyy" />
 						</h:outputText>
-
 					</div>
-
 					<div class="right hidden-lg" style="width: 35% !important;">
 						<h:outputText class="currency"
 							style="font-size: 15px; padding-top: 12px; text-align: right; white-space: nowrap;color: #333"
 							value="#{cheks.value}" />
-
 						<h:outputText class="text"
 							style="font-size: 15px;line-height: 17px;color: #333"
 							value="#{cheks.status}" />
 					</div>
 				</p:column>
-
 			</p:dataTable>
-		</div>		
-
+		</div>
 	</h:form>
-
 </composite:implementation>
 </html>
