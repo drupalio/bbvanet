@@ -39,7 +39,7 @@ public interface CheckBookFacade {
 	 * @param checkBookId
 	 * @return CheckBookDto
 	 */
-	CheckbookDto getCheckBookByAccountId(String accountId, String checkBookId);
+	List<CheckbookDto> getCheckBookByAccountId(String accountId, String checkBookId);
 
 	/**
 	 * Method to search a checkBook by accountId

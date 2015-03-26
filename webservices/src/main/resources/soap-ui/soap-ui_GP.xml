@@ -3485,4 +3485,98 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 }
 
 */
-</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200"><con:settings/><con:responseContent/></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
+</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200"><con:settings/><con:responseContent/></con:response></con:restMockAction><con:restMockAction name="/czic/accounts/V01/00130443000200009416/checkbooks/" method="GET" resourcePath="/czic/accounts/V01/00130443000200009416/checkbooks/"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
+	"id": "1",
+	"firstCheck": "6",
+	"lastCheck": "8",
+	"totalCheck": 2,
+	"requestDate": "24/09/2014",
+	"deliveryDate": "05/08/2014",
+	"actualState": "1"
+},
+{
+	"id": "5",
+	"firstCheck": "8",
+	"lastCheck": "5",
+	"totalCheck": 0,
+	"requestDate": "24/09/2014",
+	"deliveryDate": "05/08/2014",
+	"actualState": "B"
+},
+{
+	"id": "4",
+	"firstCheck": "8",
+	"lastCheck": "3",
+	"totalCheck": 4,
+	"requestDate": "24/09/2014",
+	"deliveryDate": "05/08/2014",
+	"actualState": "A"
+},
+{
+	"id": "9",
+	"firstCheck": "2",
+	"lastCheck": "7",
+	"totalCheck": 2,
+	"requestDate": "24/09/2014",
+	"deliveryDate": "05/08/2014",
+	"actualState": "I"
+},
+{
+	"id": "7",
+	"firstCheck": "8",
+	"lastCheck": "3",
+	"totalCheck": 1,
+	"requestDate": "24/09/2014",
+	"deliveryDate": "05/08/2014",
+	"actualState": "2"
+},
+{
+	"id": "6",
+	"firstCheck": "1",
+	"lastCheck": "6",
+	"totalCheck": 7,
+	"requestDate": "24/09/2014",
+	"deliveryDate": "05/08/2014",
+	"actualState": "O"
+}]
+</con:responseContent></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

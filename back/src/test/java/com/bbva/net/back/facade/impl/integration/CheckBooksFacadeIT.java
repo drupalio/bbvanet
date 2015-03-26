@@ -85,7 +85,7 @@ public class CheckBooksFacadeIT {
 	@Test
 	// Todo ok Daniel
 	public void getCheckBookByAccountIdOk() {
-		final CheckbookDto checkBook = this.checkBookFacade.getCheckBookByAccountId("00130693000100000010",
+		final List<CheckbookDto> checkBook = this.checkBookFacade.getCheckBookByAccountId("00130693000100000010",
 				"00130693000100000010");
 		Assert.assertNotNull(checkBook);
 	}
@@ -94,7 +94,8 @@ public class CheckBooksFacadeIT {
 	// Todo ok without checkBookId
 	public void getCheckBookByAccountIdNotOk() {
 		try {
-			final CheckbookDto checkBook = this.checkBookFacade.getCheckBookByAccountId("00130693000100000010", null);
+			final List<CheckbookDto> checkBook = this.checkBookFacade.getCheckBookByAccountId("00130693000100000010",
+					null);
 
 		} catch (final BadRequestException notFoundException) {
 			Assert.assertEquals(notFoundException.getMessage(), "HTTP 400 Bad Request");
@@ -106,7 +107,8 @@ public class CheckBooksFacadeIT {
 	@Test(expected = BadRequestException.class)
 	public void getCheckBookByAccountIdNotAccountId() {
 		try {
-			final CheckbookDto checkBook = this.checkBookFacade.getCheckBookByAccountId(null, "00130693000100000010");
+			final List<CheckbookDto> checkBook = this.checkBookFacade.getCheckBookByAccountId(null,
+					"00130693000100000010");
 
 		} catch (final BadRequestException notFoundException) {
 			Assert.assertEquals(notFoundException.getMessage(), "HTTP 400 Bad Request");

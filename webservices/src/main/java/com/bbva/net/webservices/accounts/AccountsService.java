@@ -24,7 +24,7 @@ public interface AccountsService {
 	@GET
 	@Produces("application/json")
 	@Path("/{accountId}/checkbooks/{checkbookId}")
-	Checkbook getCheckbook(@PathParam("checkbookId") String checkbookId, @PathParam("accountId") String accountId);
+	List<Checkbook> getCheckbook(@PathParam("checkbookId") String checkbookId, @PathParam("accountId") String accountId);
 
 	@GET
 	@Produces("application/json")

@@ -61,9 +61,9 @@ public class CheckBookFacadeImpl extends AbstractBbvaFacade implements CheckBook
 	}
 
 	@Override
-	public CheckbookDto getCheckBookByAccountId(String accountId, String checkBookId) {
-		final Checkbook response = this.accountService.getCheckbook(checkBookId, accountId);
-		return checkBookMapper.mapCheckBook(response);
+	public List<CheckbookDto> getCheckBookByAccountId(String accountId, String checkBookId) {
+		final List<Checkbook> response = this.accountService.getCheckbook(accountId, checkBookId);
+		return checkBookMapper.mapCheckBookList(response);
 	}
 
 	@Override

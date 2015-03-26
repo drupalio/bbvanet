@@ -60,9 +60,9 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	private String actionState, checkState, checkNumber, checkBookNumber, titleDateSince, titleDateTo, sinceDatestr,
 			toDatestr, leftTitle, rightTitle, titleState;
 
-	private CheckbookDto checkBook = new CheckbookDto();
+	private List<CheckbookDto> checkBook;
 
-	private List<CheckDto> checkList = new ArrayList<CheckDto>();
+	private List<CheckDto> checkList;
 
 	private List<CheckbookDto> checkBookList = null;
 
@@ -89,6 +89,8 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 
 	public void initCheckBookList() {
 		LOGGER.info(" CheckBookControllerImpl initCheckBookList ");
+		this.checkList = new ArrayList<CheckDto>();
+		this.checkBook = new ArrayList<CheckbookDto>();
 		this.checkBookList = new ArrayList<CheckbookDto>();
 		// TODO accountId
 		LOGGER.info(" CheckBookControllerImpl initCheckBookList productId: " + getSelectedProduct().getProductId());
@@ -142,14 +144,6 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	}
 
 	@Override
-	public void hasMoreElements(List<CheckDto> cheksList) {
-		if (cheksList.size() >= 9)
-			getRenderComponents().put(RenderAttributes.FOOTERTABLECHEKS.toString(), true);
-		else
-			getRenderComponents().put(RenderAttributes.FOOTERTABLECHEKS.toString(), false);
-	}
-
-	@Override
 	public void actionState() {
 		LOGGER.info(" CheckBookControllerImpl actionState ");
 
@@ -182,21 +176,17 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 		}
 	}
 
-	public void setFalseMovementsComponents() {
-		getRenderComponents().put(RenderAttributes.TITLEMOVES.name(), false);
-		getRenderComponents().put(RenderAttributes.MOVEMENTSTABLE.name(), false);
-		getRenderComponents().put(RenderAttributes.FOOTERTABLEMOVEMENT.name(), false);
-	}
-
 	@Override
 	public void showResults(final ActionEvent event) {
 		LOGGER.info(" CheckBookControllerImpl showResults ");
-		getRenderComponents().put(RenderAttributes.TITLECHECKS.name(), true);
-		getRenderComponents().put(RenderAttributes.CHECKTABLE.toString(), true);
 		setFalseMovementsComponents();
 
-		if (getRenderComponents().get(RenderAttributes.FILTERCHECKBOOK.toString())) {
-
+		if (getRenderComponents().get(RenderAttributes.FILTERCHECKBOOK.toString())
+				&& getActionState().equals(SEARCH_BY_NUMBER_CHECK)) {
+			LOGGER.info(" CheckBookControllerImpl showResults filterByCheckBook render");
+			setFalseCheckBookComponents();
+			getRenderComponents().put(RenderAttributes.TITLECHECKS.name(), true);
+			getRenderComponents().put(RenderAttributes.CHECKTABLE.toString(), true);
 			LOGGER.info(" CheckBookControllerImpl showResults filterByCheckBook ");
 			// Filter by checkId
 			LOGGER.info(" CheckBookControllerImpl showResults filterByCheckBook checkId: " + getCheckNumber());
@@ -206,18 +196,20 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			this.checkList = new ArrayList<CheckDto>();
 			this.checkList.add(check);
 
-		} else if (getRenderComponents().get(RenderAttributes.FILTERSTATUS.toString())) {
-
+		} else if (getRenderComponents().get(RenderAttributes.FILTERSTATUS.toString())
+				&& getActionState().equals(SEARCH_BY_STATUS)) {
+			LOGGER.info(" CheckBookControllerImpl showResults filterByStatus render ");
+			setFalseCheckBookComponents();
+			getRenderComponents().put(RenderAttributes.TITLECHECKS.name(), true);
+			getRenderComponents().put(RenderAttributes.CHECKTABLE.toString(), true);
 			LOGGER.info(" CheckBookControllerImpl showResults filterByStatus ");
 			// Filter by status
 			this.dateRange = null;
 			criteriaSearch();
 
-		}
-
-		else if (getRenderComponents().get(RenderAttributes.FILTERNUMBERCHECK.toString())) {
-			getRenderComponents().put(RenderAttributes.TITLECHECKS.name(), false);
-			getRenderComponents().put(RenderAttributes.CHECKTABLE.toString(), false);
+		} else if (getRenderComponents().get(RenderAttributes.FILTERNUMBERCHECK.toString())
+				&& getActionState().equals(SEARCH_CHECK)) {
+			setFalseCheckComponents();
 			getRenderComponents().put(RenderAttributes.TITLECHECKBOOKS.name(), true);
 			getRenderComponents().put(RenderAttributes.CHECKBOOKTABLE.toString(), true);
 			LOGGER.info(" CheckBookControllerImpl showResults filterByNumberCheck ");
@@ -227,6 +219,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			// TODO DEFAULT_ACCOUNT accountId
 			this.checkBook = checkBookFacade.getCheckBookByAccountId(getSelectedProduct().getProductId(),
 					getCheckBookNumber());
+			hasMoreElementsCheckBook(this.checkBook);
 
 		} else if (getRenderComponents().get(RenderAttributes.FILTERDATECHECK.toString())) {
 			// Filter by date
@@ -239,7 +232,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			criteriaSearch();
 
 		} else {
-			System.out.println("sin filtros");
+			LOGGER.info("sin filtros");
 		}
 	}
 
@@ -259,7 +252,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 				new CheckStatusPredicate());
 
 		this.checkList = cheksByStatus;
-		hasMoreElements(this.checkList);
+		hasMoreElementsCheck(this.checkList);
 
 	}
 
@@ -295,6 +288,40 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			leftTitle = " Nº Cheque " + getCheckNumber();
 		}
 
+	}
+
+	@Override
+	public void hasMoreElementsCheck(List<CheckDto> cheksList) {
+		if (cheksList.size() >= 9)
+			getRenderComponents().put(RenderAttributes.FOOTERTABLECHEKS.toString(), true);
+		else
+			getRenderComponents().put(RenderAttributes.FOOTERTABLECHEKS.toString(), false);
+	}
+
+	@Override
+	public void hasMoreElementsCheckBook(List<CheckbookDto> cheksBookList) {
+		if (cheksBookList.size() >= 6)
+			getRenderComponents().put(RenderAttributes.FOOTERTABLECHECKBOOK.toString(), true);
+		else
+			getRenderComponents().put(RenderAttributes.FOOTERTABLECHECKBOOK.toString(), false);
+	}
+
+	public void setFalseMovementsComponents() {
+		getRenderComponents().put(RenderAttributes.TITLEMOVES.name(), false);
+		getRenderComponents().put(RenderAttributes.MOVEMENTSTABLE.name(), false);
+		getRenderComponents().put(RenderAttributes.FOOTERTABLEMOVEMENT.name(), false);
+	}
+
+	public void setFalseCheckComponents() {
+		getRenderComponents().put(RenderAttributes.TITLECHECKS.name(), false);
+		getRenderComponents().put(RenderAttributes.CHECKTABLE.name(), false);
+		getRenderComponents().put(RenderAttributes.FOOTERTABLECHEKS.name(), false);
+	}
+
+	public void setFalseCheckBookComponents() {
+		getRenderComponents().put(RenderAttributes.TITLECHECKBOOKS.name(), false);
+		getRenderComponents().put(RenderAttributes.CHECKBOOKTABLE.name(), false);
+		getRenderComponents().put(RenderAttributes.FOOTERTABLECHECKBOOK.name(), false);
 	}
 
 	@Override
@@ -435,7 +462,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	/**
 	 * @return the checkBook
 	 */
-	public CheckbookDto getCheckBook() {
+	public List<CheckbookDto> getCheckBook() {
 		return checkBook;
 	}
 
@@ -449,7 +476,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	/**
 	 * @param checkBook the checkBook to set
 	 */
-	public void setCheckBook(CheckbookDto checkBook) {
+	public void setCheckBook(List<CheckbookDto> checkBook) {
 		this.checkBook = checkBook;
 	}
 

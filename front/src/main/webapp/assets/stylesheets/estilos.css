@@ -480,7 +480,11 @@ input.ui-state-hover {
 		font-weight: bold;
 		color: #333;
 		text-align: left;
-		color: #333;
+	}
+	.normal {
+		font-size: 12px;
+		font-weight: bold;
+		text-align: left;
 	}
 	/*Estilos letra currency columna*/
 	.styleCurrent {
@@ -495,7 +499,10 @@ input.ui-state-hover {
 		font-weight: bold;
 		color: #333;
 		text-align: left;
-		color: #333;
+	}
+	.normal {
+		font-size: 14px;
+		text-align: left;
 	}
 	/*Estilos letra currency columna*/
 	.styleCurrent {
@@ -699,4 +706,14 @@ a.header.setStyle span.arrow-left-smaller {
 /*Nav*/
 .renderExtract {
 	display: none;
+}
+
+/*Quitar la flecha negra de las tablas*/
+.detail-table-body th {
+	position: inherit;
+}
+
+/* color de letra negra */
+.colorBlack {
+	color: #333 !important;
 }
