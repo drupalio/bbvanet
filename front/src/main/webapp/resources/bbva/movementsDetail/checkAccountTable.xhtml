@@ -15,16 +15,18 @@
 		<!-- Tabla de Cheques -->
 		<div class="table-wrapper">
 			<p:dataTable id="checksTable" widgetVar="checksTable" var="cheks"
-				styleClass="detail-table-body sortable" value="#{cc.attrs.listChecks}"
-				emptyMessage="#{msg['text.empty.table']}" rowKey="#{cheks.id}"
-				rendered="#{checkBookController.renderComponents['CHECKTABLE']}">
-				<p:column headerText="#{msg['text.table.num.check']}"
+				styleClass="detail-table-body sortable checks"
+				value="#{cc.attrs.listChecks}" emptyMessage="#{msg['text.empty.table']}"
+				rowKey="#{cheks.id}"
+				rendered="#{checkBookController.renderComponents['CHECKTABLE']}"
+				style="margin-top: -30px">
+				<p:column headerText="#{msg['text.table.num.check']}" style="width: 17%;"
 					styleClass="styleColum w13 desc" sortBy="#{cheks.id}">
 					<h:outputText styleClass="brand styleLeft" value="#{cheks.id}" />
 				</p:column>
 				<p:column headerText="#{msg['text.table.emi.date']}"
 					styleClass="styleColum desc" sortBy="#{cheks.issueDate}"
-					style="width: 20%;">
+					style="width: 22%;">
 					<h:outputText class="text styleLeft" value="#{cheks.issueDate}">
 						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</h:outputText>

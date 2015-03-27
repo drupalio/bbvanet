@@ -132,6 +132,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	public void nextPage(ActionEvent event) {
 		getRenderComponents().put(RenderAttributes.TITLEMOVES.name(), true);
 		getRenderComponents().put(RenderAttributes.MOVEMENTSTABLE.name(), true);
+		setFalseCheckBookComponents();
 		setFalseCheckComponents();
 		next();
 		this.movementsList = getCurrentList();
@@ -144,6 +145,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		getRenderComponents().put(RenderAttributes.TITLEMOVES.name(), true);
 		getRenderComponents().put(RenderAttributes.MOVEMENTSTABLE.toString(), true);
 		setFalseCheckComponents();
+		setFalseCheckBookComponents();
 
 		if (getRenderComponents().get(RenderAttributes.FILTERDATE.toString())) {
 			// Get movements by date
@@ -350,6 +352,12 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		getRenderComponents().put(RenderAttributes.TITLECHECKS.name(), false);
 		getRenderComponents().put(RenderAttributes.CHECKTABLE.toString(), false);
 		getRenderComponents().put(RenderAttributes.FOOTERTABLECHEKS.toString(), false);
+	}
+
+	public void setFalseCheckBookComponents() {
+		getRenderComponents().put(RenderAttributes.TITLECHECKBOOKS.name(), false);
+		getRenderComponents().put(RenderAttributes.CHECKBOOKTABLE.name(), false);
+		getRenderComponents().put(RenderAttributes.FOOTERTABLECHECKBOOK.name(), false);
 	}
 
 	@Override

@@ -1,17 +1,14 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:composite="http://java.sun.com/jsf/composite"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:bbvaSearch="http://java.sun.com/jsf/composite/bbva/filters"
 	xmlns:jsf="http://xmlns.jcp.org/jsf">
-
 <composite:interface>
 	<composite:attribute name="title" type="String" />
 	<composite:attribute name="value" />
@@ -22,10 +19,10 @@
 	<composite:attribute name="actionListenerDate"
 		method-signature="void actionlistener(javax.faces.event.ActionEvent)" />
 	<composite:attribute name="listenerDate" />
-	<composite:attribute name ="actionListenerSince"
-		method-signature="void actionlistener(org.primefaces.event.SelectEvent)"/>
+	<composite:attribute name="actionListenerSince"
+		method-signature="void actionlistener(org.primefaces.event.SelectEvent)" />
 	<composite:attribute name="actionListenerTo"
-		method-signature="void actionlistener(org.primefaces.event.SelectEvent)"/>
+		method-signature="void actionlistener(org.primefaces.event.SelectEvent)" />
 	<composite:attribute name="valueCheck" />
 	<composite:attribute name="valueCheckNumber" />
 	<composite:attribute name="valuecheckState" />
@@ -33,18 +30,14 @@
 	<composite:attribute name="actionListenerCheck"
 		method-signature="void actionlistener(javax.faces.event.ActionEvent)" />
 </composite:interface>
-
 <composite:implementation>
-
 	<bbvaSearch:customSearchList id="customCheckList"
 		classList="date-filter customSearch" classSpan="arrow-left-smaller"
-		classSpanFilter="filter" title="#{msg['text.date']}"	
+		classSpanFilter="filter" title="#{msg['text.date']}"
 		filterTitle="#{checkBookController.titleDateSince}"
 		filterTitle2="#{checkBookController.titleDateTo}"
 		filterMessage="#{checkBookController.sinceDatestr}"
-		filterMessage2="#{checkBookController.toDatestr}"
-		
-		>
+		filterMessage2="#{checkBookController.toDatestr}">
 		<bbvaSearch:customSearchFilter id="customDate" showQuota="false"
 			showMovements="false" showChecks="true" value="#{cc.attrs.value}"
 			valueDateSince="#{cc.attrs.valueDateSince}"
@@ -56,14 +49,12 @@
 			actionListenerTo="#{movementsCriteriaController.onSelectDateTo}"
 			listenerDate="#{cc.attrs.listenerDate}" />
 	</bbvaSearch:customSearchList>
-
 	<bbvaSearch:customSearchList id="checkList"
 		classList="date-filter customSearch" classSpan="arrow-left-smaller"
 		classSpanFilter="filter" title="#{msg['text.number.check.books']}"
 		filterTitle="#{checkBookController.leftTitle}"
 		filterMessage="#{checkBookController.rightTitle}">
-		<bbvaSearch:numberCheck id="numberCheck"
-			valueCheck="#{cc.attrs.valueCheck}"
+		<bbvaSearch:numberCheck id="numberCheck" valueCheck="#{cc.attrs.valueCheck}"
 			valueCheckNumber="#{cc.attrs.valueCheckNumber}"
 			valuecheckState="#{cc.attrs.valuecheckState}"
 			valueBookNumber="#{cc.attrs.valueBookNumber}"

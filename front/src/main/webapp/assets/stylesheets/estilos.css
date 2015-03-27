@@ -236,6 +236,30 @@ tr.ui-state-hover {
 	margin-left: 0px !important;
 }
 
+/* radio Button active talonarios y cheques*/
+.radioButtonT .ui-state-active .ui-icon {
+	background:
+		url("/page/javax.faces.resource/images/ui-icons_4eb305_256x240.png?ln=primefaces-le-frog")
+		repeat scroll -61px -112px/200px auto transparent !important;
+}
+
+/* radio Button active fechas*/
+.radioBT .ui-state-active .ui-icon {
+	background:
+		url("/page/javax.faces.resource/images/ui-icons_4eb305_256x240.png?ln=primefaces-le-frog")
+		repeat scroll -61px -112px/200px auto transparent !important;
+}
+
+/*icon de tablas*/
+.styleColum .ui-icon-triangle-1-n {
+	background-image: none !important;
+}
+
+/*icon de tablas*/
+.styleColum .ui-icon {
+	background-image: none !important;
+}
+
 .ui-selectoneradio label {
 	margin-top: -4px !important;
 	margin-left: -13px !important;
@@ -470,7 +494,8 @@ input.ui-state-hover {
 	color: #434A58;
 	font-family: Arial;
 	background: none;
-	border-style: none
+	border-style: none;
+	position: relative !important;
 }
 
 /*Estilos letra text columna*/
