@@ -255,7 +255,7 @@ public class GlobalPositionControllerImplTest extends AbstractBbvaControllerTest
 	}
 
 	@Test
-	public void checkOnProductSelectd() {
+	public void checkOnProductLoanSelected() {
 		final UIComponent uiComponent = Mockito.mock(UIComponent.class);
 		final Behavior behavior = Mockito.mock(Behavior.class);
 		final SelectEvent selectEvent = new SelectEvent(uiComponent, behavior, new ProductDto());

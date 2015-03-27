@@ -65,10 +65,10 @@ public class ComboCriteriaControllerImplTest extends AbstractBbvaControllerTest 
 	@Test
 	public void checkGetListQuieroAccounts() {
 
-		Mockito.when(this.multiValueGroupFacade.getMultiValueTypes(5)).thenReturn(multivalueGroupList);
+		Mockito.when(this.multiValueGroupFacade.getMultiValueTypes(6)).thenReturn(multivalueGroupList);
 		List<MultiValueGroup> multivalGroup = this.comboCriteriaControllerImpl.getListQuieroAccounts();
 		Assert.assertNotNull(multivalGroup);
-		Mockito.verify(this.multiValueGroupFacade, Mockito.atLeastOnce()).getMultiValueTypes(5);
+		Mockito.verify(this.multiValueGroupFacade, Mockito.atLeastOnce()).getMultiValueTypes(6);
 		Assert.assertNotEquals(this.multiValueGroup, this.comboCriteriaControllerImpl.getMultiValueList());
 		Assert.assertNotEquals(this.multiValueGroup, this.comboCriteriaControllerImpl.getMultiValuePeriod());
 	}
@@ -76,54 +76,54 @@ public class ComboCriteriaControllerImplTest extends AbstractBbvaControllerTest 
 	@Test
 	public void checkGetListQuieroCards() {
 
-		Mockito.when(this.multiValueGroupFacade.getMultiValueTypes(6)).thenReturn(multivalueGroupList);
-		List<MultiValueGroup> multivalGroup = this.comboCriteriaControllerImpl.getListQuieroCards();
-		Assert.assertNotNull(multivalGroup);
-		Mockito.verify(this.multiValueGroupFacade, Mockito.atLeastOnce()).getMultiValueTypes(6);
-	}
-
-	@Test
-	public void checkGetListQuieroQuota() {
-
 		Mockito.when(this.multiValueGroupFacade.getMultiValueTypes(7)).thenReturn(multivalueGroupList);
-		List<MultiValueGroup> multivalGroup = this.comboCriteriaControllerImpl.getListQuieroQuota();
+		List<MultiValueGroup> multivalGroup = this.comboCriteriaControllerImpl.getListQuieroCards();
 		Assert.assertNotNull(multivalGroup);
 		Mockito.verify(this.multiValueGroupFacade, Mockito.atLeastOnce()).getMultiValueTypes(7);
 	}
 
 	@Test
-	public void checkGetQuieroLoan() {
+	public void checkGetListQuieroQuota() {
 
 		Mockito.when(this.multiValueGroupFacade.getMultiValueTypes(8)).thenReturn(multivalueGroupList);
-		List<MultiValueGroup> multivalGroup = this.comboCriteriaControllerImpl.getQuieroLoan();
+		List<MultiValueGroup> multivalGroup = this.comboCriteriaControllerImpl.getListQuieroQuota();
 		Assert.assertNotNull(multivalGroup);
 		Mockito.verify(this.multiValueGroupFacade, Mockito.atLeastOnce()).getMultiValueTypes(8);
 	}
 
 	@Test
-	public void checkGetQuieroDeposit() {
+	public void checkGetQuieroLoan() {
 
 		Mockito.when(this.multiValueGroupFacade.getMultiValueTypes(9)).thenReturn(multivalueGroupList);
-		List<MultiValueGroup> multivalGroup = this.comboCriteriaControllerImpl.getQuieroDeposit();
+		List<MultiValueGroup> multivalGroup = this.comboCriteriaControllerImpl.getQuieroLoan();
 		Assert.assertNotNull(multivalGroup);
 		Mockito.verify(this.multiValueGroupFacade, Mockito.atLeastOnce()).getMultiValueTypes(9);
 	}
 
 	@Test
-	public void checkGetQuieroFund() {
+	public void checkGetQuieroDeposit() {
 
 		Mockito.when(this.multiValueGroupFacade.getMultiValueTypes(10)).thenReturn(multivalueGroupList);
-		List<MultiValueGroup> multivalGroup = this.comboCriteriaControllerImpl.getQuieroFund();
+		List<MultiValueGroup> multivalGroup = this.comboCriteriaControllerImpl.getQuieroDeposit();
 		Assert.assertNotNull(multivalGroup);
 		Mockito.verify(this.multiValueGroupFacade, Mockito.atLeastOnce()).getMultiValueTypes(10);
 	}
 
 	@Test
-	public void checkGetQuieroLeasing() {
+	public void checkGetQuieroFund() {
 
 		Mockito.when(this.multiValueGroupFacade.getMultiValueTypes(11)).thenReturn(multivalueGroupList);
-		List<MultiValueGroup> multivalGroup = this.comboCriteriaControllerImpl.getQuieroLeasing();
+		List<MultiValueGroup> multivalGroup = this.comboCriteriaControllerImpl.getQuieroFund();
 		Assert.assertNotNull(multivalGroup);
 		Mockito.verify(this.multiValueGroupFacade, Mockito.atLeastOnce()).getMultiValueTypes(11);
+	}
+
+	@Test
+	public void checkGetQuieroLeasing() {
+
+		Mockito.when(this.multiValueGroupFacade.getMultiValueTypes(12)).thenReturn(multivalueGroupList);
+		List<MultiValueGroup> multivalGroup = this.comboCriteriaControllerImpl.getQuieroLeasing();
+		Assert.assertNotNull(multivalGroup);
+		Mockito.verify(this.multiValueGroupFacade, Mockito.atLeastOnce()).getMultiValueTypes(12);
 	}
 }
