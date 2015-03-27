@@ -92,10 +92,11 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		setBalanceRangePc(null);
 		// TODO oroductId
 		LOGGER.info("MovementsAccountController getAllMovements productId:  " + getSelectedProduct().getProductId());
+		super.setMovementsFacade(movementsFacade);
 		next();
 		this.movementsList = getCurrentList();
 		this.graphicLineMovements = graphicLineDelegate.getMovementAccount(this.movementsList);
-		this.valuesLinesGraphic = valuesLinesGraphic(graphicLineMovements);
+		// this.valuesLinesGraphic = valuesLinesGraphic(graphicLineMovements);
 		return this.movementsList;
 	}
 
