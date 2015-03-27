@@ -17,6 +17,9 @@ import com.bbva.net.back.predicate.ExtractPeriodPredicate;
 import com.bbva.net.front.controller.ExtractController;
 import com.bbva.net.front.core.AbstractBbvaController;
 
+/**
+ * @author Entelgy
+ */
 public class ExtractControllerImpl extends AbstractBbvaController implements ExtractController {
 
 	/**
@@ -24,23 +27,45 @@ public class ExtractControllerImpl extends AbstractBbvaController implements Ext
 	 */
 	private static final long serialVersionUID = -7877371441207311900L;
 
+	/**
+	 * 
+	 */
 	private String selectedYear;
 
+	/**
+	 * 
+	 */
 	private String selectedMonth;
 
-	private String extractId;
-
+	/**
+	 * 
+	 */
 	@Resource(name = "extractFacade")
 	private transient ExtractFacade extractFacade;
 
-	private List<ExtractDto> extractList;
+	/**
+	 * 
+	 */
+	private transient List<ExtractDto> extractList;
 
-	private List<String> yearAvailable;
+	/**
+	 * 
+	 */
+	private transient List<String> yearAvailable;
 
-	private List<String> monthAvailable;
+	/**
+	 * 
+	 */
+	private transient List<String> monthAvailable;
 
+	/**
+	 * 
+	 */
 	private boolean enableMonth;
 
+	/**
+	 * 
+	 */
 	public void init() {
 
 		this.extractList = this.extractFacade.getExtractAvailable(super.getSelectedProduct().getProductNumber());
@@ -49,7 +74,10 @@ public class ExtractControllerImpl extends AbstractBbvaController implements Ext
 
 	}
 
-	public void documentExtract(ActionEvent event) {
+	/**
+	 * @param event
+	 */
+	public void documentExtract(final ActionEvent event) {
 
 		LOGGER.info("Consultando extracto..........");
 		final ExtractDto extract = (ExtractDto)CollectionUtils.find(extractList, new ExtractDocumentPredicate(
@@ -57,15 +85,22 @@ public class ExtractControllerImpl extends AbstractBbvaController implements Ext
 		final List<ExtractDto> extractDocument = this.extractFacade.getDocumentExtract(super.getSelectedProduct()
 				.getProductNumber(), extract);
 		// Hacer Redirect
-		LOGGER.info("Descargar Extracto en : " + extractDocument.get(0).getUrl());
-
+		if (extractDocument != null) {
+			LOGGER.info("Descargar Extracto en : " + extractDocument.get(0).getUrl());
+		}
 	}
 
+	/**
+	 * 
+	 */
 	public void actionState() {
 		this.enableMonth = false;
 		getExtractMontAvailable();
 	}
 
+	/**
+	 * 
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<String> getExtractAvailablePeriod() {
@@ -78,6 +113,9 @@ public class ExtractControllerImpl extends AbstractBbvaController implements Ext
 		return yearAvailable;
 	}
 
+	/**
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	public List<String> getExtractMontAvailable() {
 
@@ -91,56 +129,74 @@ public class ExtractControllerImpl extends AbstractBbvaController implements Ext
 		return monthAvailable;
 	}
 
+	/**
+	 * @return
+	 */
 	public String getSelectedYear() {
 		return selectedYear;
 	}
 
+	/**
+	 * @param selectedYear
+	 */
 	public void setSelectedYear(final String selectedYear) {
 		this.selectedYear = selectedYear;
 	}
 
+	/**
+	 * @return
+	 */
 	public String getSelectedMonth() {
 		return selectedMonth;
 	}
 
+	/**
+	 * @param selectedMonth
+	 */
 	public void setSelectedMonth(final String selectedMonth) {
 		this.selectedMonth = selectedMonth;
 	}
 
+	/**
+	 * @return
+	 */
 	public List<ExtractDto> getExtractList() {
 		return extractList;
 	}
 
+	/**
+	 * @param extractFacade
+	 */
 	public void setExtractFacade(final ExtractFacade extractFacade) {
 		this.extractFacade = extractFacade;
 	}
 
+	/**
+	 * @return
+	 */
 	public List<String> getYearAvailable() {
 		return yearAvailable;
 	}
 
+	/**
+	 * @return
+	 */
 	public List<String> getMonthAvailable() {
 		return monthAvailable;
 	}
 
-	public void setMonthAvailable(List<String> monthAvailable) {
-		this.monthAvailable = monthAvailable;
-	}
-
+	/**
+	 * @return
+	 */
 	public boolean isEnableMonth() {
 		return enableMonth;
 	}
 
-	public void setEnableMonth(boolean enableMonth) {
+	/**
+	 * @param enableMonth
+	 */
+	public void setEnableMonth(final boolean enableMonth) {
 		this.enableMonth = enableMonth;
-	}
-
-	public String getExtractId() {
-		return extractId;
-	}
-
-	public void setExtractId(String extractId) {
-		this.extractId = extractId;
 	}
 
 }

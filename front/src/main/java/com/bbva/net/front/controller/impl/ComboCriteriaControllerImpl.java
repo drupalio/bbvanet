@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 
 import com.bbva.net.back.entity.MultiValueGroup;
 import com.bbva.net.back.facade.MultiValueGroupFacade;
-import com.bbva.net.back.model.comboFilter.EnumPeriodType;
 import com.bbva.net.front.controller.ComboCriteriaController;
 import com.bbva.net.front.core.AbstractBbvaController;
 
@@ -36,17 +35,12 @@ public class ComboCriteriaControllerImpl extends AbstractBbvaController implemen
 	/**
 	 * 
 	 */
-	private EnumPeriodType period;
+	private transient List<MultiValueGroup> multiValuePeriod;
 
 	/**
 	 * 
 	 */
-	private List<MultiValueGroup> multiValuePeriod;
-
-	/**
-	 * 
-	 */
-	private List<MultiValueGroup> multiValueList;
+	private transient List<MultiValueGroup> multiValueList;
 
 	/**
 	 * 
@@ -89,7 +83,7 @@ public class ComboCriteriaControllerImpl extends AbstractBbvaController implemen
 	 */
 	@Override
 	public List<MultiValueGroup> getListQuieroAccounts() {
-		return this.multiValueGroupFacade.getMultiValueTypes(5);
+		return this.multiValueGroupFacade.getMultiValueTypes(6);
 	}
 
 	/**
@@ -97,7 +91,7 @@ public class ComboCriteriaControllerImpl extends AbstractBbvaController implemen
 	 */
 	@Override
 	public List<MultiValueGroup> getListQuieroCards() {
-		return this.multiValueGroupFacade.getMultiValueTypes(6);
+		return this.multiValueGroupFacade.getMultiValueTypes(7);
 	}
 
 	/**
@@ -105,7 +99,7 @@ public class ComboCriteriaControllerImpl extends AbstractBbvaController implemen
 	 */
 	@Override
 	public List<MultiValueGroup> getListQuieroQuota() {
-		return this.multiValueGroupFacade.getMultiValueTypes(7);
+		return this.multiValueGroupFacade.getMultiValueTypes(8);
 	}
 
 	/**
@@ -113,7 +107,7 @@ public class ComboCriteriaControllerImpl extends AbstractBbvaController implemen
 	 */
 	@Override
 	public List<MultiValueGroup> getQuieroLoan() {
-		return this.multiValueGroupFacade.getMultiValueTypes(8);
+		return this.multiValueGroupFacade.getMultiValueTypes(9);
 	}
 
 	/**
@@ -121,7 +115,7 @@ public class ComboCriteriaControllerImpl extends AbstractBbvaController implemen
 	 */
 	@Override
 	public List<MultiValueGroup> getQuieroDeposit() {
-		return this.multiValueGroupFacade.getMultiValueTypes(9);
+		return this.multiValueGroupFacade.getMultiValueTypes(10);
 	}
 
 	/**
@@ -129,7 +123,7 @@ public class ComboCriteriaControllerImpl extends AbstractBbvaController implemen
 	 */
 	@Override
 	public List<MultiValueGroup> getQuieroFund() {
-		return this.multiValueGroupFacade.getMultiValueTypes(10);
+		return this.multiValueGroupFacade.getMultiValueTypes(11);
 	}
 
 	/**
@@ -137,10 +131,17 @@ public class ComboCriteriaControllerImpl extends AbstractBbvaController implemen
 	 */
 	@Override
 	public List<MultiValueGroup> getQuieroLeasing() {
-		return this.multiValueGroupFacade.getMultiValueTypes(11);
+		return this.multiValueGroupFacade.getMultiValueTypes(12);
 	}
 
 	// ************* Getters Methods *************
+
+	/**
+	 * @param multiValueGroupFacade
+	 */
+	public void setMultiValueGroupFacade(final MultiValueGroupFacade multiValueGroupFacade) {
+		this.multiValueGroupFacade = multiValueGroupFacade;
+	}
 
 	/**
 	 * @return
@@ -155,13 +156,6 @@ public class ComboCriteriaControllerImpl extends AbstractBbvaController implemen
 
 	public List<MultiValueGroup> getMultiValueList() {
 		return multiValueList;
-	}
-
-	/**
-	 * @return
-	 */
-	public EnumPeriodType getPeriod() {
-		return period;
 	}
 
 }

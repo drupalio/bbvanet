@@ -65,6 +65,7 @@ public class GraphicLineDelegateTest extends AbstractBbvaControllerTest {
 	public void checkGetMovementAccount() {
 
 		MovementDto movement = new MovementDto();
+
 		List<MovementDto> listMovement = new ArrayList<MovementDto>();
 		listMovement.add(movement);
 

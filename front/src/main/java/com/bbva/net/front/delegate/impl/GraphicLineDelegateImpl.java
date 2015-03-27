@@ -25,15 +25,15 @@ public class GraphicLineDelegateImpl implements GraphicLineDelegate {
 	@Override
 	public LineConfigUI getMonthlyBalance(final GlobalMonthlyBalanceDto globalMonthlyBalance) {
 
-		LineConfigUI lineConfigUI = new LineConfigUI();
+		final LineConfigUI lineConfigUI = new LineConfigUI();
 
-		List<LineItemUI> lineItemUIList = new ArrayList<LineItemUI>();
+		final List<LineItemUI> lineItemUIList = new ArrayList<LineItemUI>();
 
 		if (!CollectionUtils.isEmpty(globalMonthlyBalance.getMonthlyBalanceList())) {
 
-			for (MonthBalanceDto monthly : globalMonthlyBalance.getMonthlyBalanceList()) {
+			for (final MonthBalanceDto monthly : globalMonthlyBalance.getMonthlyBalanceList()) {
 
-				LineItemUI lineItemUI = new LineItemUI();
+				final LineItemUI lineItemUI = new LineItemUI();
 				lineItemUI.setDay(monthly.getDay());
 				lineItemUI.setValue(monthly.getBalance());
 				lineItemUI.setLabel("Saldo");
@@ -48,20 +48,24 @@ public class GraphicLineDelegateImpl implements GraphicLineDelegate {
 		return lineConfigUI;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
-	public LineConfigUI getMovementAccount(List<MovementDto> globalResumeMovements) {
+	public LineConfigUI getMovementAccount(final List<MovementDto> globalResumeMovements) {
 
-		LineConfigUI lineConfigUI = new LineConfigUI();
+		final LineConfigUI lineConfigUI = new LineConfigUI();
 
 		final List<LineItemUI> lineItemUIList = new ArrayList<LineItemUI>();
 		if (!CollectionUtils.isEmpty(globalResumeMovements)) {
-			int size = 0;
-			if (globalResumeMovements.size() < 8)
+			int size = 8;
+			if (globalResumeMovements.size() < 8) {
 				size = globalResumeMovements.size();
-			else
-				size = 8;
+			}
+			// else
+			// size = 8;
 			for (int i = 0; i < size; i++) {
-				LineItemUI lineItemUI = new LineItemUI();
+				final LineItemUI lineItemUI = new LineItemUI();
 				lineItemUI.setLabel("Serie 1: ");
 				lineItemUI.setValue(globalResumeMovements.get(i).getTotalBalance());
 				lineItemUIList.add(lineItemUI);
