@@ -31,7 +31,11 @@ public class MovementPaginatedController extends PaginationController<MovementDt
 
 	@Override
 	protected Integer getNextPaginantionKey(List<MovementDto> lastPage) {
-		return Integer.valueOf(lastPage.get(lastPage.size() - 1).getMovementId());
+		Integer page = 0;
+		if (lastPage.size() > 0) {
+			page = Integer.valueOf(lastPage.get(lastPage.size() - 1).getMovementId());
+		}
+		return page;
 	}
 
 	public void search() {

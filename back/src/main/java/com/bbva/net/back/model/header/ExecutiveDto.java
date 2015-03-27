@@ -6,20 +6,44 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import com.bbva.net.back.core.pattern.dto.Dto;
 import com.bbva.net.back.model.office.OfficeDto;
 
+/**
+ * @author Entelgy
+ */
 public class ExecutiveDto implements Dto {
 
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = -5171899248470478707L;
 
+	/**
+	 * 
+	 */
 	private String name;
 
+	/**
+	 * 
+	 */
 	private OfficeDto office;
 
+	/**
+	 * 
+	 */
 	private String phone;
 
+	/**
+	 * 
+	 */
 	private String mail;
 
+	/**
+	 * 
+	 */
 	private String coordenadas;
 
+	/**
+	 * 
+	 */
 	public ExecutiveDto() {
 	}
 
@@ -30,7 +54,8 @@ public class ExecutiveDto implements Dto {
 	 * @param mail
 	 * @param coordenadas
 	 */
-	public ExecutiveDto(String name, OfficeDto office, String phone, String mail, String coordenadas) {
+	public ExecutiveDto(final String name, final OfficeDto office, final String phone, final String mail,
+			final String coordenadas) {
 		super();
 		this.name = name;
 		this.office = office;
@@ -39,14 +64,20 @@ public class ExecutiveDto implements Dto {
 		this.coordenadas = coordenadas;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder().append(getName()).append(getOffice()).append(getPhone()).append(getMail())
 				.append(getCoordenadas()).toHashCode();
 	}
 
+	/**
+	 * 
+	 */
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		return (obj != null) && (obj instanceof ExecutiveDto) && this.getName().equals(((ExecutiveDto)obj).getName())
 				&& this.getOffice().equals(((ExecutiveDto)obj).getOffice())
 				&& this.getPhone().equals(((ExecutiveDto)obj).getPhone())
@@ -54,6 +85,9 @@ public class ExecutiveDto implements Dto {
 				&& this.getCoordenadas().equals(((ExecutiveDto)obj).getCoordenadas());
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public String toString() {
 		return new ToStringBuilder(this).append("Name ", getName()).append("Office ", getOffice())
@@ -73,7 +107,7 @@ public class ExecutiveDto implements Dto {
 	/**
 	 * @param name the name to set
 	 */
-	public void setName(String name) {
+	public void setName(final String name) {
 		this.name = name;
 	}
 
@@ -87,7 +121,7 @@ public class ExecutiveDto implements Dto {
 	/**
 	 * @param office the office to set
 	 */
-	public void setOffice(OfficeDto office) {
+	public void setOffice(final OfficeDto office) {
 		this.office = office;
 	}
 
@@ -101,7 +135,7 @@ public class ExecutiveDto implements Dto {
 	/**
 	 * @param phone the phone to set
 	 */
-	public void setPhone(String phone) {
+	public void setPhone(final String phone) {
 		this.phone = phone;
 	}
 
@@ -115,7 +149,7 @@ public class ExecutiveDto implements Dto {
 	/**
 	 * @param mail the mail to set
 	 */
-	public void setMail(String mail) {
+	public void setMail(final String mail) {
 		this.mail = mail;
 	}
 
@@ -129,7 +163,7 @@ public class ExecutiveDto implements Dto {
 	/**
 	 * @param coordenadas the coordenadas to set
 	 */
-	public void setCoordenadas(String coordenadas) {
+	public void setCoordenadas(final String coordenadas) {
 		this.coordenadas = coordenadas;
 	}
 }

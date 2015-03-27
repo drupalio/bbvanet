@@ -8,15 +8,21 @@ import com.bbva.net.webservices.core.pattern.AbstractBbvaRestService;
 import com.bbva.net.webservices.core.stereotype.RestService;
 import com.bbva.net.webservices.executives.ExecutiveService;
 
+/**
+ * @author Entelgy
+ */
 @RestService(value = "executiveService")
 public class ExecutiveServiceImpl extends AbstractBbvaRestService implements ExecutiveService {
 
+	/**
+	 * 
+	 */
 	@Override
-	public Executive getExecutive(String filter, String $fields, String $expands, String $sort) {
+	public Executive getExecutive(final String filter, final String fields, final String expands, final String sort) {
 
-		WebClient wc = getJsonWebClient(URL_BASE_EXECUTIVE);
-		if (!StringUtils.isEmpty(filter)) wc.query("$filter", filter);
-		return wc.get(Executive.class);
+		final WebClient webC = getJsonWebClient(URL_BASE_EXECUTIVE);
+		if (!StringUtils.isEmpty(filter)) webC.query("$filter", filter);
+		return webC.get(Executive.class);
 	}
 
 }

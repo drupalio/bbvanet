@@ -8,6 +8,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.bbva.net.back.facade.impl.QuotaDetailFacadeImpl;
 import com.bbva.net.front.test.utils.AbstractBbvaControllerTest;
 
 public class PaginationControllerTest extends AbstractBbvaControllerTest {
@@ -106,5 +107,10 @@ public class PaginationControllerTest extends AbstractBbvaControllerTest {
 		PaginationController.PAGE_SIZE = 11;
 		this.paginatedController.next();
 		Assert.assertFalse(this.paginatedController.isHasMorePages());
+	}
+
+	@Test
+	public void checkSetQuotaDetailFacade() {
+		this.paginatedController.setQuotaDetailFacade(new QuotaDetailFacadeImpl());
 	}
 }
