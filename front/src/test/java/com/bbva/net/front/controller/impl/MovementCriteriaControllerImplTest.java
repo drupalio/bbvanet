@@ -297,10 +297,13 @@ public class MovementCriteriaControllerImplTest extends AbstractBbvaControllerTe
 		Assert.assertNull(this.movementCriteriaController.calculateDate("Últimos 8 meses"));
 	}
 
+	@SuppressWarnings("unchecked")
 	public void checkSetShowMoreStatus() {
 		List<MovementDto> movementsList = new ArrayList<MovementDto>();
 		this.movementCriteriaController.setMovementsList(movementsList);
+		Mockito.when(this.webFlowRequestContext.getViewScope().get("renderComponents")).thenReturn(Mockito.anyMap());
 		Mockito.when(this.movementCriteriaController.getRenderComponents()).thenReturn(Mockito.anyMap());
 		this.movementCriteriaController.setShowMoreStatus();
 	}
+
 }
