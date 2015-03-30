@@ -26,6 +26,8 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
 
 	private CheckBookControllerImpl checkBookController;
 
+	private CheckPaginatedController checkPaginator;
+
 	private CheckBookFacade checkBookFacade;
 
 	private MultiValueGroupFacade multiValueGroupFacade;
@@ -42,6 +44,7 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
 	public void init() {
 		// Inicializar controlador
 		this.checkBookController = new CheckBookControllerImpl();
+		this.checkPaginator = new CheckPaginatedController();
 		// Mockitos
 		this.checkBookFacade = Mockito.mock(CheckBookFacade.class);
 		this.multiValueGroupFacade = Mockito.mock(MultiValueGroupFacade.class);
@@ -50,6 +53,7 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
 		this.eventSelect = Mockito.mock(SelectEvent.class);
 		this.eventAction = Mockito.mock(ActionEvent.class);
 		// setar Facade
+		this.checkPaginator.setCheckBookFacade(checkBookFacade);
 		this.checkBookController.setMultiValueGroupFacade(multiValueGroupFacade);
 		this.checkBookController.setCheckBookFacade(checkBookFacade);
 
@@ -108,17 +112,26 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
 		this.checkBookController.setCustomDate(eventAction);
 	}
 
+	@SuppressWarnings("static-access")
 	@Test
 	public void checkActionState() {
-		// Mockear el render
+		// put render
+		renderComponents.put(RenderAttributes.FILTERCHECKBOOK.toString(), true);
 		renderComponents.put(RenderAttributes.FILTERSTATUS.toString(), true);
+		renderComponents.put(RenderAttributes.FILTERDATECHECK.toString(), true);
+		// Mockear el render y product
 		Mockito.when(this.checkBookController.getRenderComponents()).thenReturn(renderComponents);
+		Mockito.when(checkBookController.getSelectedProduct()).thenReturn(productDto);
+		Mockito.when(productDto.getProductId()).thenReturn(DEFAULT_ID);
+		// set ActionState
 		this.checkBookController.setActionState("");
 		this.checkBookController.actionState();
-		this.checkBookController.setActionState("null");
-		this.checkBookController.actionState();
-		this.checkBookController.setCheckState("1");
-		this.checkBookController.setNumberCheckOrBook(eventAction);
+		// this.checkBookController.setActionState("null");
+		// this.checkBookController.actionState();
+		// this.checkBookController.setNumberCheckOrBook(eventAction);
+		this.checkBookController.showResults(eventAction);
+		this.checkBookController.setSelectDate("Ayer");
+		this.checkBookController.showResults(eventAction);
 	}
 
 	@Test

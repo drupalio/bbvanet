@@ -251,6 +251,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 		}
 		setProductIdPControl(getSelectedProduct().getProductId());
 		super.init();
+		super.setCheckBookFacade(checkBookFacade);
 		search();
 		final List<CheckDto> cheksByStatus = (List<CheckDto>)CollectionUtils.select(getCurrentList(),
 				new CheckStatusPredicate());
@@ -264,6 +265,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	public void nextPage(ActionEvent event) {
 		getRenderComponents().put(RenderAttributes.TITLECHECKS.name(), true);
 		getRenderComponents().put(RenderAttributes.CHECKTABLE.toString(), true);
+		super.setCheckBookFacade(checkBookFacade);
 		next();
 		final List<CheckDto> cheksByStatus = (List<CheckDto>)CollectionUtils.select(getCurrentList(),
 				new CheckStatusPredicate());
@@ -553,6 +555,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	/**
 	 * @param checkBookFacade the checkBookFacade to set
 	 */
+	@Override
 	public void setCheckBookFacade(CheckBookFacade checkBookFacade) {
 		this.checkBookFacade = checkBookFacade;
 	}
@@ -681,6 +684,20 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	 */
 	public void setRows(int rows) {
 		this.rows = rows;
+	}
+
+	/**
+	 * @return the searchByNumberCheck
+	 */
+	public static String getSearchByNumberCheck() {
+		return SEARCH_BY_NUMBER_CHECK;
+	}
+
+	/**
+	 * @return the searchCheck
+	 */
+	public static String getSearchCheck() {
+		return SEARCH_CHECK;
 	}
 
 }
