@@ -54,8 +54,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 
 	private Date sinceDate, toDate;
 
-	private String sinceText, toText, sinceDatestr, toDatestr, selectDate, moveDate, maturityDate, previousDate,
-			paymentDate;
+	private String sinceText, toText, sinceDatestr, toDatestr, selectDate;
 
 	SimpleDateFormat dateFormat = new SimpleDateFormat(MessagesHelper.INSTANCE.getStringI18("date.pattner.dd.mm.yyyy"));
 
@@ -91,8 +90,6 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 			LOGGER.info("Datos del producto Seleccionado Vacio (null)");
 			this.productDto = new ProductDto();
 		}
-
-		// setTitle(MessagesHelper.INSTANCE.getString("text.last.movments"));
 		cleanFilters();
 	}
 
@@ -129,7 +126,6 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 
 	private void calculateDate(final String date) {
 		LOGGER.info("QuotaControllerImpl calculateDate ");
-
 		EnumPeriodType periodType = EnumPeriodType.valueOfLabel(date);
 		if (!(periodType == (null))) {
 			this.dateRange = new DateRangeDto();
@@ -236,6 +232,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 	@Override
 	public void nextPage(final ActionEvent event) {
 		LOGGER.info("QuotaControllerImpl nextPage ");
+		super.setQuotaDetailFacade(quotaDetailFacade);
 		next();
 		this.quotamovenDtos = getCurrentList();
 	}
@@ -249,6 +246,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 					+ this.dateRange.getDateTo());
 		}
 		super.init();
+		super.setQuotaDetailFacade(quotaDetailFacade);
 		search();
 		this.quotamovenDtos = getCurrentList();
 		setShowMoreStatus();
@@ -365,48 +363,10 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 		this.quotaDetailFacade = quotaDetailFacade;
 	}
 
-	public String getMoveDate() {
-		return moveDate;
-	}
-
-	public void setMoveDate(String moveDate) {
-		this.moveDate = moveDate;
-	}
-
-	public String getMaturityDate() {
-		return maturityDate;
-	}
-
-	public void setMaturityDate(String maturityDate) {
-		this.maturityDate = maturityDate;
-	}
-
-	public String getPreviousDate() {
-		return previousDate;
-	}
-
-	public void setPreviousDate(String previousDate) {
-		this.previousDate = previousDate;
-	}
-
-	public String getPaymentDate() {
-		return paymentDate;
-	}
-
-	public void setPaymentDate(String paymentDate) {
-		this.paymentDate = paymentDate;
-	}
-
-	/**
-	 * @return the quotaMove
-	 */
 	public MovementDto getQuotaMove() {
 		return quotaMove;
 	}
 
-	/**
-	 * @param quotaMove the quotaMove to set
-	 */
 	public void setQuotaMove(MovementDto quotaMove) {
 		this.quotaMove = quotaMove;
 	}

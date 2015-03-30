@@ -15,8 +15,6 @@ public class QuotaPaginatedController extends PaginationController<MovementDto> 
 
 	private DateRangeDto dateRangePControl;
 
-	private String productIdPControl;
-
 	@Resource(name = "quotaDetailFacade")
 	private transient QuotaDetailFacade quotaDetailFacade;
 
@@ -27,13 +25,19 @@ public class QuotaPaginatedController extends PaginationController<MovementDto> 
 
 	@Override
 	protected List<MovementDto> getNextPage(int paginantionKey, int psize) {
+		LOGGER.info("Llamando el método listRotaryQuotaMovements del QuotaFacade" + " número de páginas " + psize);
 		return quotaDetailFacade.listRotaryQuotaMovements(getSelectedProduct().getProductId(), dateRangePControl,
 				paginantionKey, psize);
 	}
 
 	@Override
 	protected Integer getNextPaginantionKey(List<MovementDto> lastPage) {
-		return Integer.valueOf(lastPage.get(lastPage.size() - 1).getMovementId());
+		if (lastPage.size() > 0) {
+			LOGGER.info("El producto tiene movimientos");
+			return Integer.valueOf(lastPage.get(lastPage.size() - 1).getMovementId());
+		}
+		LOGGER.info("El producto no tiene movimientos");
+		return 0;
 	}
 
 	public DateRangeDto getDateRangePControl() {
@@ -44,6 +48,7 @@ public class QuotaPaginatedController extends PaginationController<MovementDto> 
 		this.dateRangePControl = dateRangePControl;
 	}
 
+	@Override
 	public void setQuotaDetailFacade(QuotaDetailFacade quotaDetailFacade) {
 		this.quotaDetailFacade = quotaDetailFacade;
 	}
