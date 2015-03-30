@@ -88,4 +88,12 @@ public class CheckPaginatedController extends PaginationController<CheckDto> {
 		this.productIdPControl = productIdPControl;
 	}
 
+	/**
+	 * @param checkBookFacade the checkBookFacade to set
+	 */
+	@Override
+	public void setCheckBookFacade(CheckBookFacade checkBookFacade) {
+		this.checkBookFacade = checkBookFacade;
+	}
+
 }
