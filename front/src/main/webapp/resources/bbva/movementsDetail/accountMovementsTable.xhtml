@@ -37,7 +37,7 @@
 						</p:column>
 						<p:column headerText="#{msg['text.detailMove.date']}"
 							styleClass="styleColum desc w34"  sortBy="#{moves.movementDate}">
-							<h:outputText styleClass="brand styleLeft" value="#{moves.movementDate}">
+							<h:outputText styleClass="brand styleLeft" value="#{moves.operationDate}">
 								<f:convertDateTime pattern="dd/MM/yyyy" />
 							</h:outputText>
 						</p:column>
