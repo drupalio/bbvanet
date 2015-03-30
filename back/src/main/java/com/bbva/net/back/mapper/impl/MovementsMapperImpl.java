@@ -21,7 +21,7 @@ public class MovementsMapperImpl extends ConfigurableMapper implements Movements
 		// Add Money Converter
 		factory.getConverterFactory().registerConverter(new MoneyConverter());
 		// Add Date Converter
-		factory.getConverterFactory().registerConverter(new StringToDateConverter("yyyy-MM-dd'T'HH:mm:ss.SSSZ"));
+		factory.getConverterFactory().registerConverter(new StringToDateConverter("yyyy-MM-dd"));
 
 		// Map Movement DTO
 		factory.classMap(Movement.class, MovementDto.class).field("id", "movementId")
