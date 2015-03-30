@@ -10,6 +10,7 @@ import java.util.Map;
 
 import javax.faces.event.ActionEvent;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -288,4 +289,21 @@ public class MovementCriteriaControllerImplTest extends AbstractBbvaControllerTe
 				lista);
 		this.movementCriteriaController.getAllMovements();
 	}
+
+	@Test
+	public void checkCalcuteDate() {
+		Assert.assertNotNull(this.movementCriteriaController.calculateDate("Últimos 3 meses"));
+		this.movementCriteriaController.setDateRange(null);
+		Assert.assertNull(this.movementCriteriaController.calculateDate("Últimos 8 meses"));
+	}
+
+	@SuppressWarnings("unchecked")
+	public void checkSetShowMoreStatus() {
+		List<MovementDto> movementsList = new ArrayList<MovementDto>();
+		this.movementCriteriaController.setMovementsList(movementsList);
+		Mockito.when(this.webFlowRequestContext.getViewScope().get("renderComponents")).thenReturn(Mockito.anyMap());
+		Mockito.when(this.movementCriteriaController.getRenderComponents()).thenReturn(Mockito.anyMap());
+		this.movementCriteriaController.setShowMoreStatus();
+	}
+
 }

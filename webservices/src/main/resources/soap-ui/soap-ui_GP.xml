@@ -1300,7 +1300,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		"currency": "COP",
 		"amount": 3833241
 	}
-}]</con:responseContent><con:header><con:name>tsec</con:name><con:value>fkjdkfjdkfjkdfjkdfjkdfjk3438493dkfjkd</con:value></con:header></con:response></con:restMockAction><con:restMockAction name="/czic/cards/V01/creditCard/2032/cardCharges" method="GET" resourcePath="/czic/cards/V01/creditCard/2032/cardCharges"><con:settings/><con:defaultResponse xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/><con:dispatchStyle>SCRIPT</con:dispatchStyle><con:dispatchPath>def requestMock = mockRequest.getRequest().toString()
+}]</con:responseContent><con:header><con:name>tsec</con:name><con:value>fkjdkfjdkfjkdfjkdfjkdfjk3438493dkfjkd</con:value></con:header></con:response></con:restMockAction><con:restMockAction name="/czic/cards/V01/creditCard/2032/cardCharges" method="GET" resourcePath="/czic/cards/V01/creditCard/1938574203958713/cardCharges"><con:settings/><con:defaultResponse xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/><con:dispatchStyle>SCRIPT</con:dispatchStyle><con:dispatchPath>def requestMock = mockRequest.getRequest().toString()
 log.info "*** "+requestMock
 if( requestMock.contains("filter") )
 {
