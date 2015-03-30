@@ -51,6 +51,10 @@ public class HeaderControllerImpl extends AbstractBbvaController implements Head
 		return cliente;
 	}
 
+	public void setHeaderFacade(HeaderFacade headerFacade) {
+		this.headerFacade = headerFacade;
+	}
+
 	@Override
 	public CustomerDto getCustomer() {
 
