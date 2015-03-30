@@ -46,9 +46,10 @@ public class CheckBooksFacadeIT {
 		final List<CheckDto> listCheckDto = this.checkBookFacade.getCheckByStatusOrDate("00130693000100000010", null,
 				"HABILITADO", 1, 10);
 		Assert.assertNotNull(listCheckDto); // Assert.assertEquals("HABILITADO", listCheckDto.get(0).getStatus());
-	} 
+	}
 
-	@Test(expected = BadRequestException.class)//falla no valida filter date ni status
+	@Test(expected = BadRequestException.class)
+	// falla no valida filter date ni status
 	public void checkGetCheckByStatusAndUserNotOK() {
 		try {
 			final List<CheckDto> listCheckDto = this.checkBookFacade.getCheckByStatusOrDate("00130693000100000010",
@@ -81,56 +82,55 @@ public class CheckBooksFacadeIT {
 		}
 	}
 
-
-	  @Test //Todo ok Daniel 
-	  public void getCheckBookByAccountIdOk() { 
-		  final CheckbookDto checkBook =
-	  this.checkBookFacade.getCheckBookByAccountId("00130693000100000010", "00130693000100000010");
-	  Assert.assertNotNull(checkBook); 
-	  }
-	
-		
-	@Test(expected = BadRequestException.class)//Todo ok without checkBookId 
-	  public void getCheckBookByAccountIdNotOk() { 
-		try {
-			  final CheckbookDto checkBook =
-					  this.checkBookFacade.getCheckBookByAccountId("00130693000100000010",null ); 
-
-		}catch (final BadRequestException notFoundException) {
-			Assert.assertEquals(notFoundException.getMessage(), "HTTP 400 Bad Request");
-			throw notFoundException;
-		} 
-	  }
-	
-	//Todo ok without checkBookId    
-	@Test(expected = BadRequestException.class)
-	    public void getCheckBookByAccountIdNotAccountId(){ 
-		try {
-			  final CheckbookDto checkBook =
-					  this.checkBookFacade.getCheckBookByAccountId(null,"00130693000100000010" ); 
-
-		}catch (final BadRequestException notFoundException) {
-			Assert.assertEquals(notFoundException.getMessage(), "HTTP 400 Bad Request");
-			throw notFoundException;
-		} 
-	  }
-	  
-	  @Test //Todo ok Tafur 
-	  public void getCheckByAccountIdOk() { 
-		  final CheckDto checkDto =
-	  this.checkBookFacade.getCheckById("12345678909876543212", "123456789"); 
-		  Assert.assertNotNull(checkDto); 
+	@Test
+	// Todo ok Daniel
+	public void getCheckBookByAccountIdOk() {
+		final List<CheckbookDto> checkBook = this.checkBookFacade.getCheckBookByAccountId("00130693000100000010",
+				"00130693000100000010");
+		Assert.assertNotNull(checkBook);
 	}
-	  
-	  @Test(expected = BadRequestException.class)
-	    public void getCheckByAccountIdNotAccountId(){ 
-		try {
-			  final CheckDto checkDto =
-					  this.checkBookFacade.getCheckById("12345678909876543212", null); 
 
-		}catch (final BadRequestException notFoundException) {
+	@Test(expected = BadRequestException.class)
+	// Todo ok without checkBookId
+	public void getCheckBookByAccountIdNotOk() {
+		try {
+			final List<CheckbookDto> checkBook = this.checkBookFacade.getCheckBookByAccountId("00130693000100000010",
+					null);
+
+		} catch (final BadRequestException notFoundException) {
 			Assert.assertEquals(notFoundException.getMessage(), "HTTP 400 Bad Request");
 			throw notFoundException;
-		} 
+		}
+	}
+
+	// Todo ok without checkBookId
+	@Test(expected = BadRequestException.class)
+	public void getCheckBookByAccountIdNotAccountId() {
+		try {
+			final List<CheckbookDto> checkBook = this.checkBookFacade.getCheckBookByAccountId(null,
+					"00130693000100000010");
+
+		} catch (final BadRequestException notFoundException) {
+			Assert.assertEquals(notFoundException.getMessage(), "HTTP 400 Bad Request");
+			throw notFoundException;
+		}
+	}
+
+	@Test
+	// Todo ok Tafur
+	public void getCheckByAccountIdOk() {
+		final CheckDto checkDto = this.checkBookFacade.getCheckById("12345678909876543212", "123456789");
+		Assert.assertNotNull(checkDto);
+	}
+
+	@Test(expected = BadRequestException.class)
+	public void getCheckByAccountIdNotAccountId() {
+		try {
+			final CheckDto checkDto = this.checkBookFacade.getCheckById("12345678909876543212", null);
+
+		} catch (final BadRequestException notFoundException) {
+			Assert.assertEquals(notFoundException.getMessage(), "HTTP 400 Bad Request");
+			throw notFoundException;
+		}
 	}
 }

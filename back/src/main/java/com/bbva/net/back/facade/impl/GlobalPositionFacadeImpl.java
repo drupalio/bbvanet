@@ -20,50 +20,76 @@ import com.bbva.net.back.predicate.VisibleProductPredicate;
 import com.bbva.net.back.service.ProductService;
 import com.bbva.net.webservices.globalposition.GlobalPositionService;
 
-// import com.bbva.net.webservices.globalposition.GlobalPositionService;
-
+/**
+ * @author Entelgy
+ */
 @Facade(value = "globalPositionFacade")
 public class GlobalPositionFacadeImpl extends AbstractBbvaFacade implements GlobalPositionFacade {
 
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = -8133045188591147282L;
 
-	// CLIENTE REST
+	/**
+	 * CLIENTE REST
+	 */
 	@Resource(name = "globalPositionService")
-	private GlobalPositionService globalPositionService;
+	private transient GlobalPositionService globalPositionService;
 
+	/**
+	 * 
+	 */
 	@Resource(name = "globalPositionMapper")
-	private GlobalPositionMapper globalPositionMapper;
+	private transient GlobalPositionMapper globalPositionMapper;
 
+	/**
+	 * 
+	 */
 	@Resource(name = "productService")
-	private ProductService productService;
+	private transient ProductService productService;
 
+	/**
+	 * 
+	 */
 	@Override
 	public GlobalProductsDto getGlobalProductsByUser() throws RestClientException {
 
 		final List<Product> response = this.globalPositionService.getExtractGlobalBalance(StringUtils.EMPTY);
 
-		// return globalPositionMapper.map(response);
 		return globalPositionMapper.map(response);
 
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public GlobalProductsDto getGlobalProductsVisibles(final GlobalProductsDto globalProductsDTO) {
 		return productService.select(globalProductsDTO, new VisibleProductPredicate());
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public GlobalProductsDto getGlobalProductsHidden(final GlobalProductsDto globalProductsDTO) {
 		return productService.select(globalProductsDTO, new HiddenProductPredicate());
 	}
 
+	/**
+	 * 
+	 */
 	@Override
-	public Map<String, BalanceDto> getTotalsByProduct(GlobalProductsDto globalProductsDTO) {
+	public Map<String, BalanceDto> getTotalsByProduct(final GlobalProductsDto globalProductsDTO) {
 		return productService.getTotals(globalProductsDTO);
 	}
 
+	/**
+	 * 
+	 */
 	@Override
-	public Map<String, List<String>> getNamesProducts(GlobalProductsDto globalProducts) {
+	public Map<String, List<String>> getNamesProducts(final GlobalProductsDto globalProducts) {
 		return productService.getProductsName(globalProducts);
 	}
 
@@ -77,16 +103,9 @@ public class GlobalPositionFacadeImpl extends AbstractBbvaFacade implements Glob
 	}
 
 	/**
-	 * @param globalPositionMapper
-	 */
-	public void setGlobalPositionMapper(GlobalPositionMapper globalPositionMapper) {
-		this.globalPositionMapper = globalPositionMapper;
-	}
-
-	/**
 	 * @param productService
 	 */
-	public void setProductService(ProductService productService) {
+	public void setProductService(final ProductService productService) {
 		this.productService = productService;
 	}
 

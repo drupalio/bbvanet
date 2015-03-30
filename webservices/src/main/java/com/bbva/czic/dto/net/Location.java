@@ -32,7 +32,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Location", propOrder = { "city", "country", "state", "postalAddress", "category" })
 public class Location implements Serializable {
 
-	private static final long serialVersionUID = 1329337417406835100L;
+	private static final long serialVersionUID = 1L;
 
 	protected City city;
 

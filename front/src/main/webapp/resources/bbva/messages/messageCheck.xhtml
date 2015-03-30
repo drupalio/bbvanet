@@ -3,25 +3,15 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:composite="http://java.sun.com/jsf/composite"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
-
-
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui">
 <composite:interface>
-
 	<composite:attribute name="render" type="java.lang.String" />
 </composite:interface>
-
-
 <composite:implementation>
-
-
 	<h:panelGroup class="col-xs-12" rendered="#{cc.attrs.render}">
 		<div class="operation-success">
 			<span class="success-icon">#{msg['text.successful']}</span>
 		</div>
 	</h:panelGroup>
-
 </composite:implementation>
-
 </html>

@@ -31,7 +31,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Email", propOrder = { "source", "address", "primary", "active" })
 public class Email implements Serializable {
 
-	private static final long serialVersionUID = -9114154569389445061L;
+	private static final long serialVersionUID = 1L;
 
 	protected String source;
 

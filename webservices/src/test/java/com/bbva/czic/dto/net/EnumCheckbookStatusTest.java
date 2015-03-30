@@ -16,8 +16,8 @@ public class EnumCheckbookStatusTest {
 	@Test
 	public void checkAccessNotNullMethods() {
 
-		assertNotNull(EnumCheckbookStatus.HABILITADO.value());
-		assertNotNull(EnumCheckbookStatus.fromValue("HABILITADO"));
+		assertNotNull(EnumCheckbookStatus.ANULADO.getCode());
+		assertNotNull(EnumCheckbookStatus.getByCode("A"));
 
 	}
 }

@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "money", propOrder = { "amount", "currency" })
 public class Money implements Serializable {
 
-	private static final long serialVersionUID = 6323851953009565154L;
+	private static final long serialVersionUID = 1L;
 
 	protected BigDecimal amount;
 

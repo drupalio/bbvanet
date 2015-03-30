@@ -1,16 +1,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:composite="http://java.sun.com/jsf/composite"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:jsf="http://xmlns.jcp.org/jsf"
 	xmlns:bbvaButton="http://java.sun.com/jsf/composite/bbva/button">
-
 <composite:interface>
 	<composite:attribute name="show" type="boolean" />
 	<composite:attribute name="actionListenerShow"
@@ -18,46 +15,43 @@
 	<composite:attribute name="actionListenerRemove"
 		method-signature="void actionlistener(javax.faces.event.ActionEvent)" />
 </composite:interface>
-
 <composite:implementation>
 	<li class="filter-buttons">
-
 		<div>
 			<bbvaButton:iconButton id="removeFields" icon="trash-icon" type="submit"
 				value="#{msg['button.clean.filters']}" show="#{cc.attrs.show}"
 				classButton="btn btn-default hidden-xs hidden-sm"
-				actionListener="#{cc.attrs.actionListenerRemove}" >
-				</bbvaButton:iconButton>
-			
-			<button class="btn btn-default" 
-				jsf:rendered="#{cc.attrs.showMovements}"
+				actionListener="#{cc.attrs.actionListenerRemove}">
+			</bbvaButton:iconButton>
+			<button class="btn btn-default" jsf:rendered="#{cc.attrs.showMovements}"
 				jsf:actionListener="#{cc.attrs.actionListenerShow}">
 				<span class="document-view-icon" />#{msg['button.see.result']}
-				<p:ajax process="@form" onstart="PF('statusDialogMovement').show()" onsuccess="PF('statusDialogMovement').hide()" 
-						update=":detailAccounts:tableMovements:formMovesDetail
-								:detailAccounts:checkTable:formCheks"/>
+				<p:ajax process="@form" onstart="PF('statusDialogMovement').show()"
+					onsuccess="PF('statusDialogMovement').hide()"
+					update=":detailAccounts:tableMovements:formMovesDetail
+								:detailAccounts:checkTable:formCheks
+								:detailAccounts:checkBookTable:formCheckBooks" />
 			</button>
-			
-			<button class="btn btn-default" 
-				jsf:rendered="#{cc.attrs.showChecks}"
+			<button class="btn btn-default" jsf:rendered="#{cc.attrs.showChecks}"
 				jsf:actionListener="#{cc.attrs.actionListenerShow}">
 				<span class="document-view-icon" />#{msg['button.see.result']}
-				<p:ajax process="@form"  onstart="PF('statusDialogMovement').show()" onsuccess="PF('statusDialogMovement').hide()"  
-						update=":detailAccounts:tableMovements:formMovesDetail
-								:detailAccounts:checkTable:formCheks"/>
+				<p:ajax process="@form" onstart="PF('statusDialogMovement').show()"
+					onsuccess="PF('statusDialogMovement').hide()"
+					update=":detailAccounts:tableMovements:formMovesDetail
+								:detailAccounts:checkTable:formCheks
+								:detailAccounts:checkBookTable:formCheckBooks" />
 			</button>
-			
-			<button class="btn btn-default" 
-				type="button"  jsf:rendered="#{cc.attrs.showQuota}"
+			<button class="btn btn-default" type="button"
+				jsf:rendered="#{cc.attrs.showQuota}"
 				jsf:actionListener="#{cc.attrs.actionListenerShow}">
 				<span class="document-view-icon" />#{msg['button.see.result']}
-				<p:ajax process="@form" onstart="PF('statusDialogMovement').show()" onsuccess="PF('statusDialogMovement').hide()" 
-						update=":quotaDetail:detailAccounts:detailAccounts:detailmovesAC" />
+				<p:ajax process="@form" onstart="PF('statusDialogMovement').show()"
+					onsuccess="PF('statusDialogMovement').hide()"
+					update=":quotaDetail:detailAccounts:detailAccounts:detailmovesAC" />
 			</button>
-			
 			<p:dialog widgetVar="statusDialogMovement" modal="true" draggable="false"
-				showEffect="fade" hideEffect="fade"
-				closable="false" resizable="false" showHeader="false">
+				showEffect="fade" hideEffect="fade" closable="false" resizable="false"
+				showHeader="false">
 				<p:outputLabel value="#{msg['please.wait']}" />
 			</p:dialog>
 		</div>

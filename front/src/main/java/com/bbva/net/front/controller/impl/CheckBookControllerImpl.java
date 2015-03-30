@@ -25,6 +25,7 @@ import com.bbva.net.back.model.comboFilter.EnumCheckStatus;
 import com.bbva.net.back.model.comboFilter.EnumPeriodType;
 import com.bbva.net.back.model.commons.DateRangeDto;
 import com.bbva.net.back.model.enums.RenderAttributes;
+import com.bbva.net.back.predicate.CheckBookStatusPredicate;
 import com.bbva.net.back.predicate.CheckStatusPredicate;
 import com.bbva.net.back.service.impl.DateFilterServiceImpl;
 import com.bbva.net.front.controller.CheckBookController;
@@ -39,17 +40,11 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	private static final long serialVersionUID = 1L;
 
 	private static final String SEARCH_BY_NUMBER_CHECK = MessagesHelper.INSTANCE
-			.getString("text.search.by.number.check");
-
-	private static final String SEARCH_CHECK = MessagesHelper.INSTANCE.getString("text.search.by.numberbook");
-
-	private static final String SEARCH_BY_STATUS = MessagesHelper.INSTANCE.getString("text.search.by.number.status");
-
-	private static final String CONCRETE_DATE = MessagesHelper.INSTANCE.getString("select.radio.concret.date");
-
-	private static final String SINCE_TITLE = MessagesHelper.INSTANCE.getString("text.since");
-
-	private static final String TO_TITLE = MessagesHelper.INSTANCE.getString("text.to");
+			.getString("text.search.by.number.check"), SEARCH_CHECK = MessagesHelper.INSTANCE
+			.getString("text.search.by.numberbook"), SEARCH_BY_STATUS = MessagesHelper.INSTANCE
+			.getString("text.search.by.number.status"), CONCRETE_DATE = MessagesHelper.INSTANCE
+			.getString("select.radio.concret.date"), SINCE_TITLE = MessagesHelper.INSTANCE.getString("text.since"),
+			TO_TITLE = MessagesHelper.INSTANCE.getString("text.to");
 
 	private static final Integer LIST_CHECK_STATUS = 2;
 
@@ -60,37 +55,9 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	private String actionState, checkState, checkNumber, checkBookNumber, titleDateSince, titleDateTo, sinceDatestr,
 			toDatestr, leftTitle, rightTitle, titleState;
 
-	/**
-	 * @return the titleDateTo
-	 */
-	public String getTitleDateTo() {
-		return titleDateTo;
-	}
+	private List<CheckbookDto> checkBook;
 
-	/**
-	 * @param titleDateTo the titleDateTo to set
-	 */
-	public void setTitleDateTo(String titleDateTo) {
-		this.titleDateTo = titleDateTo;
-	}
-
-	/**
-	 * @return the titleState
-	 */
-	public String getTitleState() {
-		return titleState;
-	}
-
-	/**
-	 * @param titleState the titleState to set
-	 */
-	public void setTitleState(String titleState) {
-		this.titleState = titleState;
-	}
-
-	private CheckbookDto checkBook = new CheckbookDto();
-
-	private List<CheckDto> checkList = new ArrayList<CheckDto>();
+	private List<CheckDto> checkList;
 
 	private List<CheckbookDto> checkBookList = null;
 
@@ -99,6 +66,8 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	private DateRangeDto dateRange = new DateRangeDto();
 
 	private List<SelectItem> checkBooks;
+
+	private int rows;
 
 	@Resource(name = "checkBookFacade")
 	private transient CheckBookFacade checkBookFacade;
@@ -117,6 +86,8 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 
 	public void initCheckBookList() {
 		LOGGER.info(" CheckBookControllerImpl initCheckBookList ");
+		this.checkList = new ArrayList<CheckDto>();
+		this.checkBook = new ArrayList<CheckbookDto>();
 		this.checkBookList = new ArrayList<CheckbookDto>();
 		// TODO accountId
 		LOGGER.info(" CheckBookControllerImpl initCheckBookList productId: " + getSelectedProduct().getProductId());
@@ -170,14 +141,6 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	}
 
 	@Override
-	public void hasMoreElements(List<CheckDto> cheksList) {
-		if (cheksList.size() >= 9)
-			getRenderComponents().put(RenderAttributes.FOOTERTABLECHEKS.toString(), true);
-		else
-			getRenderComponents().put(RenderAttributes.FOOTERTABLECHEKS.toString(), false);
-	}
-
-	@Override
 	public void actionState() {
 		LOGGER.info(" CheckBookControllerImpl actionState ");
 
@@ -210,20 +173,17 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 		}
 	}
 
-	public void setFalseMovementsComponents() {
-		getRenderComponents().put(RenderAttributes.TITLEMOVES.name(), false);
-		getRenderComponents().put(RenderAttributes.MOVEMENTSTABLE.name(), false);
-		getRenderComponents().put(RenderAttributes.FOOTERTABLEMOVEMENT.name(), false);
-	}
-
 	@Override
 	public void showResults(final ActionEvent event) {
 		LOGGER.info(" CheckBookControllerImpl showResults ");
-		getRenderComponents().put(RenderAttributes.TITLECHECKS.name(), true);
-		getRenderComponents().put(RenderAttributes.CHECKTABLE.toString(), true);
 		setFalseMovementsComponents();
 
-		if (getRenderComponents().get(RenderAttributes.FILTERCHECKBOOK.toString())) {
+		if (getRenderComponents().get(RenderAttributes.FILTERCHECKBOOK.toString())
+				&& getActionState().equals(SEARCH_BY_NUMBER_CHECK)) {
+			LOGGER.info(" CheckBookControllerImpl showResults filterByCheckBook render");
+			setFalseCheckBookComponents();
+			getRenderComponents().put(RenderAttributes.TITLECHECKS.name(), true);
+			getRenderComponents().put(RenderAttributes.CHECKTABLE.toString(), true);
 			LOGGER.info(" CheckBookControllerImpl showResults filterByCheckBook ");
 			// Filter by checkId
 			LOGGER.info(" CheckBookControllerImpl showResults filterByCheckBook checkId: " + getCheckNumber());
@@ -233,22 +193,32 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			this.checkList = new ArrayList<CheckDto>();
 			this.checkList.add(check);
 
-		} else if (getRenderComponents().get(RenderAttributes.FILTERSTATUS.toString())) {
+		} else if (getRenderComponents().get(RenderAttributes.FILTERSTATUS.toString())
+				&& getActionState().equals(SEARCH_BY_STATUS)) {
+			LOGGER.info(" CheckBookControllerImpl showResults filterByStatus render ");
+			setFalseCheckBookComponents();
+			getRenderComponents().put(RenderAttributes.TITLECHECKS.name(), true);
+			getRenderComponents().put(RenderAttributes.CHECKTABLE.toString(), true);
 			LOGGER.info(" CheckBookControllerImpl showResults filterByStatus ");
 			// Filter by status
 			this.dateRange = null;
 			criteriaSearch();
 
-		}
-
-		else if (getRenderComponents().get(RenderAttributes.FILTERNUMBERCHECK.toString())) {
+		} else if (getRenderComponents().get(RenderAttributes.FILTERNUMBERCHECK.toString())
+				&& getActionState().equals(SEARCH_CHECK)) {
+			setFalseCheckComponents();
+			getRenderComponents().put(RenderAttributes.TITLECHECKBOOKS.name(), true);
+			getRenderComponents().put(RenderAttributes.CHECKBOOKTABLE.toString(), true);
 			LOGGER.info(" CheckBookControllerImpl showResults filterByNumberCheck ");
 			// Filter by talonario
 			LOGGER.info(" CheckBookControllerImpl showResults filterByNumberCheck checkBookNumber: "
 					+ getCheckBookNumber());
 			// TODO DEFAULT_ACCOUNT accountId
-			this.checkBook = checkBookFacade.getCheckBookByAccountId(getSelectedProduct().getProductId(),
-					getCheckBookNumber());
+			final List<CheckbookDto> initial = checkBookFacade.getCheckBookByAccountId(getSelectedProduct()
+					.getProductId(), getCheckBookNumber());
+			setRows(5);
+			getListCheckBookById(initial);
+			hasMoreElementsCheckBook(getCheckBook());
 
 		} else if (getRenderComponents().get(RenderAttributes.FILTERDATECHECK.toString())) {
 			// Filter by date
@@ -261,8 +231,13 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			criteriaSearch();
 
 		} else {
-			System.out.println("sin filtros");
+			LOGGER.info("sin filtros");
 		}
+	}
+
+	@SuppressWarnings("unchecked")
+	public void getListCheckBookById(List<CheckbookDto> initial) {
+		this.checkBook = (List<CheckbookDto>)CollectionUtils.select(initial, new CheckBookStatusPredicate());
 	}
 
 	@SuppressWarnings("unchecked")
@@ -281,7 +256,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 				new CheckStatusPredicate());
 
 		this.checkList = cheksByStatus;
-		hasMoreElements(this.checkList);
+		hasMoreElementsCheck(this.checkList);
 
 	}
 
@@ -296,6 +271,12 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 		setFalseMovementsComponents();
 	}
 
+	public void nextPageCheckBook(ActionEvent event) {
+		setRows(getCheckBook().size());
+		getRenderComponents().put(RenderAttributes.FOOTERTABLECHECKBOOK.toString(), false);
+		System.out.println(RenderAttributes.FOOTERTABLECHECKBOOK.toString());
+	}
+
 	@Override
 	public List<MultiValueGroup> getListMultiValueChecks() {
 		return this.multiValueGroupFacade.getMultiValueTypes(LIST_CHECK_STATUS);
@@ -305,18 +286,56 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	public void setNumberCheckOrBook(final ActionEvent event) {
 		LOGGER.info(" CheckBookControllerImpl setNumberCheckOrBook ");
 
-		if (getRenderComponents().get(RenderAttributes.FILTERNUMBERCHECK.toString())) {
-			leftTitle = " Talonario: " + getCheckBookNumber();
-
+		if (getRenderComponents().get(RenderAttributes.FILTERCHECKBOOK.toString())
+				&& getActionState().equals(SEARCH_BY_NUMBER_CHECK)) {
+			leftTitle = " Nº Cheque ";
+			rightTitle = getCheckNumber();
 		}
-		if (getRenderComponents().get(RenderAttributes.FILTERSTATUS.toString())) {
+		if (getRenderComponents().get(RenderAttributes.FILTERSTATUS.toString())
+				&& getActionState().equals(SEARCH_BY_STATUS)) {
 			titleState = EnumCheckStatus.valueOf(Integer.parseInt(getCheckState())).getValue();
-			leftTitle = " Estado " + titleState;
-
-		} else {
-			leftTitle = " Nº Cheque " + getCheckNumber();
+			leftTitle = " Estado ";
+			rightTitle = titleState;
 		}
+		if (getRenderComponents().get(RenderAttributes.FILTERNUMBERCHECK.toString())
+				&& getActionState().equals(SEARCH_CHECK)) {
+			leftTitle = " Talonario: ";
+			rightTitle = getCheckBookNumber();
+		}
+	}
 
+	@Override
+	public void hasMoreElementsCheck(List<CheckDto> cheksList) {
+		if (cheksList.size() >= 9)
+			getRenderComponents().put(RenderAttributes.FOOTERTABLECHEKS.toString(), true);
+		else
+			getRenderComponents().put(RenderAttributes.FOOTERTABLECHEKS.toString(), false);
+	}
+
+	@Override
+	public void hasMoreElementsCheckBook(List<CheckbookDto> cheksBookList) {
+		if (cheksBookList.size() >= 6)
+			getRenderComponents().put(RenderAttributes.FOOTERTABLECHECKBOOK.toString(), true);
+		else
+			getRenderComponents().put(RenderAttributes.FOOTERTABLECHECKBOOK.toString(), false);
+	}
+
+	public void setFalseMovementsComponents() {
+		getRenderComponents().put(RenderAttributes.TITLEMOVES.name(), false);
+		getRenderComponents().put(RenderAttributes.MOVEMENTSTABLE.name(), false);
+		getRenderComponents().put(RenderAttributes.FOOTERTABLEMOVEMENT.name(), false);
+	}
+
+	public void setFalseCheckComponents() {
+		getRenderComponents().put(RenderAttributes.TITLECHECKS.name(), false);
+		getRenderComponents().put(RenderAttributes.CHECKTABLE.name(), false);
+		getRenderComponents().put(RenderAttributes.FOOTERTABLECHEKS.name(), false);
+	}
+
+	public void setFalseCheckBookComponents() {
+		getRenderComponents().put(RenderAttributes.TITLECHECKBOOKS.name(), false);
+		getRenderComponents().put(RenderAttributes.CHECKBOOKTABLE.name(), false);
+		getRenderComponents().put(RenderAttributes.FOOTERTABLECHECKBOOK.name(), false);
 	}
 
 	@Override
@@ -331,6 +350,8 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 		final Date date = (Date)event.getObject();
 		this.toDate = date;
 	}
+
+	// Setters And Getters
 
 	/**
 	 * @return the selectDate
@@ -455,14 +476,21 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	/**
 	 * @return the checkBook
 	 */
-	public CheckbookDto getCheckBookList() {
+	public List<CheckbookDto> getCheckBook() {
 		return checkBook;
 	}
 
 	/**
-	 * @param checkBookList the checkBook to set
+	 * @return the checkBookList
 	 */
-	public void setCheckBookList(CheckbookDto checkBook) {
+	public List<CheckbookDto> getCheckBookList() {
+		return checkBookList;
+	}
+
+	/**
+	 * @param checkBook the checkBook to set
+	 */
+	public void setCheckBook(List<CheckbookDto> checkBook) {
 		this.checkBook = checkBook;
 	}
 
@@ -611,6 +639,48 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	 */
 	public void setTitleDateSince(String titleDateSince) {
 		this.titleDateSince = titleDateSince;
+	}
+
+	/**
+	 * @return the titleDateTo
+	 */
+	public String getTitleDateTo() {
+		return titleDateTo;
+	}
+
+	/**
+	 * @param titleDateTo the titleDateTo to set
+	 */
+	public void setTitleDateTo(String titleDateTo) {
+		this.titleDateTo = titleDateTo;
+	}
+
+	/**
+	 * @return the titleState
+	 */
+	public String getTitleState() {
+		return titleState;
+	}
+
+	/**
+	 * @param titleState the titleState to set
+	 */
+	public void setTitleState(String titleState) {
+		this.titleState = titleState;
+	}
+
+	/**
+	 * @return the rows
+	 */
+	public int getRows() {
+		return rows;
+	}
+
+	/**
+	 * @param rows the rows to set
+	 */
+	public void setRows(int rows) {
+		this.rows = rows;
 	}
 
 }

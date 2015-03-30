@@ -1,7 +1,6 @@
 package com.bbva.net.back.facade.impl;
 
 import javax.annotation.Resource;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -43,4 +42,5 @@ public class TermasAccountsFacadeImplTest {
 		Assert.assertNotNull(condiciones);
 		Mockito.verify(this.productsService, Mockito.atLeastOnce()).getConditions(DEFAULT_CUENTA);
 	}
+
 }

@@ -21,8 +21,7 @@ public interface CheckBookFacade {
 	 * @param accountId
 	 * @return Check
 	 */
-	CheckDto getCheckById(final String accountId, final String checkId); 
-
+	CheckDto getCheckById(final String accountId, final String checkId);
 
 	/**
 	 * Method to get a list of checks giving id Check and status
@@ -32,21 +31,21 @@ public interface CheckBookFacade {
 	 */
 	List<CheckDto> getCheckByStatusOrDate(String accountId, DateRangeDto dateRange, String status,
 			Integer paginationKey, Integer pageSize);
-	
-	
-	
+
 	/**
 	 * Method to search a checkBook by criteria
+	 * 
 	 * @param accountId
 	 * @param checkBookId
 	 * @return CheckBookDto
 	 */
-	CheckbookDto getCheckBookByAccountId(String accountId,String checkBookId);
+	List<CheckbookDto> getCheckBookByAccountId(String accountId, String checkBookId);
 
 	/**
 	 * Method to search a checkBook by accountId
+	 * 
 	 * @param accountId
 	 * @return List CheckBookDto
 	 */
-	List<CheckbookDto> getCheckBooksById(String accountId);	
+	List<CheckbookDto> getCheckBooksById(String accountId);
 }

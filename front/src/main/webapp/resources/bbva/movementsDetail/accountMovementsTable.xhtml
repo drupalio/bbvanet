@@ -13,28 +13,28 @@
 <composite:implementation>
 	<h:form id="formMovesDetail">
 		<h3>
-			<h:outputLabel id="labelMovements"
-				value="#{msg['text.last.movments']}"
-				rendered="#{renderComponents['TITLEMOVES']}" style="font-weight:normal"/>
+			<h:outputLabel id="labelMovements" value="#{msg['text.last.movments']}"
+				rendered="#{renderComponents['TITLEMOVES']}" style="font-weight:normal" />
 			<h:outputLabel id="labelChecks" value="#{msg['tex.check.status']}"
 				rendered="#{renderComponents['TITLECHECKS']}" />
+			<h:outputLabel id="labelCheckBooks" value="#{msg['checkbooks.state.title']}"
+				rendered="#{renderComponents['TITLECHECKBOOKS']}" />
 		</h3>
 		<p:outputPanel id="movAccount">
 			<article class="detail-table-group">
 				<div class="table-wrapper">
 					<p:dataTable id="detalMov" widgetVar="detalMov"
-						styleClass="detail-table-body sortable"
-						emptyMessage="#{msg['text.empty.table']}" value="#{cc.attrs.listAccounts}"
-						var="moves" selectionMode="single"
+						styleClass="detail-table-body sortable" value="#{cc.attrs.listAccounts}"
+						var="moves" selectionMode="single" rowKey="#{moves.movementId}"
 						rendered="#{renderComponents['MOVEMENTSTABLE']}"
-						rowKey="#{moves.movementId}">
+						emptyMessage="#{msg['text.empty.table']}">
 						<p:ajax event="rowSelect" oncomplete="clickMove();"
 							listener="#{movementsCriteriaController.onMovementSelected}" />
 						<p:column width="0% !important;" style="z-index: -1 !important">
 							<p:rowToggler rendered="true" />
 						</p:column>
 						<p:column headerText="#{msg['text.detailMove.date']}"
-							styleClass="styleColum desc w34"  sortBy="#{moves.movementDate}">
+							styleClass="styleColum desc w34" sortBy="#{moves.movementDate}">
 							<h:outputText styleClass="brand styleLeft" value="#{moves.movementDate}">
 								<f:convertDateTime pattern="dd/MM/yyyy" />
 							</h:outputText>
@@ -46,15 +46,17 @@
 						</p:column>
 						<p:column class="head" headerText="#{msg['text.detailMove.value']}"
 							styleClass="styleColum desc w34" sortBy="#{moves.movementValue}">
-							<h:outputText class="currency styleCurrent"
+							<h:outputText class="currency styleCurrent styleLeft"
 								value="#{moves.movementValue}" />
 						</p:column>
-						<p:column class="head" styleClass="styleColum desc w34" sortBy="#{moves.totalBalance}"
+						<p:column class="head" styleClass="styleColum desc w34"
+							sortBy="#{moves.totalBalance}"
 							headerText="#{msg['text.detailMove.balance']}" colspan="2">
-							<h:outputText class="currency styleCurrent" value="#{moves.totalBalance}" />
+							<h:outputText class="currency styleCurrent styleLeft"
+								value="#{moves.totalBalance}" />
 						</p:column>
-						<p:column headerText="#{msg['text.detailMove.concep']}" 
-							styleClass="smart-view"> 
+						<p:column headerText="#{msg['text.detailMove.concep']}"
+							styleClass="smart-view">
 							<div class="left hidden-lg">
 								<h:outputText class="text styleLeft" value="#{moves.movementConcept}" />
 								<h:outputText styleClass="brand styleLeft" value="#{moves.movementDate}">

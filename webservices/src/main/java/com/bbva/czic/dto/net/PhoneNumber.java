@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlType;
 		"primary", "active" })
 public class PhoneNumber implements Serializable {
 
-	private static final long serialVersionUID = -8679578035442416291L;
+	private static final long serialVersionUID = 1L;
 
 	protected String contactSource;
 

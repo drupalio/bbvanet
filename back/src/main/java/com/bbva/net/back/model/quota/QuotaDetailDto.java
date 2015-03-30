@@ -85,19 +85,8 @@ public class QuotaDetailDto extends RotatingAccountDto implements Dto {
 	@Override
 	public boolean equals(Object obj) {
 		return (obj != null) && (obj instanceof QuotaDetailDto)
-				&& this.getAmountRequested().equals(((QuotaDetailDto)obj).getAmountRequested())
 				&& (this.getId() != null && ((QuotaDetailDto)obj).getId() != null)
-				&& this.getId().equals(((QuotaDetailDto)obj).getId())
-				&& this.getOutstandingBalance().equals(((QuotaDetailDto)obj).getOutstandingBalance())
-				&& this.getNumberOfShares() == (((QuotaDetailDto)obj).getNumberOfShares())
-				&& this.getDateMaturity().equals(((QuotaDetailDto)obj).getDateMaturity())
-				&& this.getDatePayment().equals(((QuotaDetailDto)obj).getDatePayment())
-				&& this.getDatePrevious().equals(((QuotaDetailDto)obj).getDatePrevious())
-				&& this.getState().equals(((QuotaDetailDto)obj).getState())
-				&& this.getMinimumPayment().equals(((QuotaDetailDto)obj).getMinimumPayment())
-				&& this.getFeeCollection().equals(((QuotaDetailDto)obj).getFeeCollection())
-				&& this.getAvailableBalance().equals(((QuotaDetailDto)obj).getAvailableBalance())
-				&& this.getBalancePrevious().equals(((QuotaDetailDto)obj).getBalancePrevious());
+				&& this.getId().equals(((QuotaDetailDto)obj).getId());
 	}
 
 	@Override

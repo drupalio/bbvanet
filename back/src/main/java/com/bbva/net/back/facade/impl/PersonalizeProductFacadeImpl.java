@@ -32,13 +32,9 @@ public class PersonalizeProductFacadeImpl extends AbstractBbvaFacade implements 
 		this.product = personalizeAccountProductMapper.map(productDto);
 		LOGGER.info("Llamando al servicio de updateProductOperability" + " product Id: " + product.getId());
 
-		if (this.globalPositionService.updateProductOperability(idProduct, product).getStatus() == 200) {
-			LOGGER.info("finalizando llamado de updateProductOperability" + " " + "true");
-			return true;
-		} else {
-			LOGGER.info("Error llamado de updateProductOperability" + " " + "false");
-			return false;
-		}
+		Boolean response = this.globalPositionService.updateProductOperability(idProduct, product);
+
+		return response;
 	}
 
 	@Override
@@ -49,13 +45,9 @@ public class PersonalizeProductFacadeImpl extends AbstractBbvaFacade implements 
 		this.product = personalizeAccountProductMapper.map(productDto);
 		LOGGER.info("Llamando al servicio de updateProductVisibility" + " product Id: " + product.getId());
 
-		if (this.globalPositionService.updateProductVisibility(idProduct, product).getStatus() == 200) {
-			LOGGER.info("finalizando llamado de updateProductOperability" + " " + "true");
-			return true;
-		} else {
-			LOGGER.info("Error llamado de updateProductOperability" + " " + "false");
-			return false;
-		}
+		Boolean response = this.globalPositionService.updateProductVisibility(idProduct, product);
+
+		return response;
 	}
 
 	/********************************** DEPENDENCY INJECTIONS ***********************************/

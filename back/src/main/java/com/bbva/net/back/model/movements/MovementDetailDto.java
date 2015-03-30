@@ -59,6 +59,54 @@ public class MovementDetailDto implements Dto {
 
 	private String remainingQuotas;
 
+	public MovementDetailDto() {
+
+	}
+
+	/**
+	 * @param operationHour
+	 * @param operationCode
+	 * @param operationDescription
+	 * @param observations
+	 * @param originCenterMovement
+	 * @param plaza
+	 * @param state
+	 * @param operationValue
+	 * @param value
+	 * @param valueslope
+	 * @param id
+	 * @param operationDate
+	 * @param transactionDate
+	 * @param concept
+	 * @param description
+	 * @param status
+	 * @param numbersOfQuota
+	 * @param remainingQuotas
+	 */
+	public MovementDetailDto(Date operationHour, String operationCode, String operationDescription,
+			String observations, String originCenterMovement, String plaza, String state, Money operationValue,
+			Money value, Money valueslope, String id, Date operationDate, Date transactionDate, String concept,
+			String description, String status, String numbersOfQuota, String remainingQuotas) {
+		this.operationHour = operationHour;
+		this.operationCode = operationCode;
+		this.operationDescription = operationDescription;
+		this.observations = observations;
+		this.originCenterMovement = originCenterMovement;
+		this.plaza = plaza;
+		this.state = state;
+		this.operationValue = operationValue;
+		this.value = value;
+		this.valueslope = valueslope;
+		this.id = id;
+		this.operationDate = operationDate;
+		this.transactionDate = transactionDate;
+		this.concept = concept;
+		this.description = description;
+		this.status = status;
+		this.numbersOfQuota = numbersOfQuota;
+		this.remainingQuotas = remainingQuotas;
+	}
+
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder().append(getOperationCode()).append(getPlaza()).append(getState())
@@ -70,16 +118,6 @@ public class MovementDetailDto implements Dto {
 	@Override
 	public boolean equals(Object obj) {
 		return (obj != null) && (obj instanceof MovementDetailDto)
-				&& this.getOperationCode().equals(((MovementDetailDto)obj).getOperationCode())
-				&& this.getPlaza().equals(((MovementDetailDto)obj).getPlaza())
-				&& this.getState().equals(((MovementDetailDto)obj).getState())
-				&& this.getDescription().equals(((MovementDetailDto)obj).getDescription())
-				&& this.getConcept() == (((MovementDetailDto)obj).getConcept())
-				&& this.getStatus() == (((MovementDetailDto)obj).getStatus())
-				&& this.getValue().equals(((MovementDetailDto)obj).getValue())
-				&& this.getValueslope().equals(((MovementDetailDto)obj).getValueslope())
-				&& this.getNumbersOfQuota().equals(((MovementDetailDto)obj).getNumbersOfQuota())
-				&& this.getRemainingQuotas().equals(((MovementDetailDto)obj).getRemainingQuotas())
 				&& (this.getId() != null && ((MovementDetailDto)obj).getId() != null)
 				&& this.getId().equals(((MovementDetailDto)obj).getId());
 	}

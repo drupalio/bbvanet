@@ -1,15 +1,14 @@
-
 package com.bbva.czic.dto.net;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Clase Java para Card complex type.
- * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>
+ * Clase Java para Card complex type.
+ * <p>
+ * El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="Card">
@@ -23,67 +22,54 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Card", propOrder = {
-    "cardNumber",
-    "nip"
-})
-public class Card
-    extends Product
-{
+@XmlType(name = "Card", propOrder = { "cardNumber", "nip" })
+public class Card extends Product {
 
-    protected String cardNumber;
-    protected String nip;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
-    /**
-     * Obtiene el valor de la propiedad cardNumber.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getCardNumber() {
-        return cardNumber;
-    }
+	protected String cardNumber;
 
-    /**
-     * Define el valor de la propiedad cardNumber.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setCardNumber(String value) {
-        this.cardNumber = value;
-    }
+	protected String nip;
 
-    /**
-     * Obtiene el valor de la propiedad nip.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getNip() {
-        return nip;
-    }
+	/**
+	 * Obtiene el valor de la propiedad cardNumber.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getCardNumber() {
+		return cardNumber;
+	}
 
-    /**
-     * Define el valor de la propiedad nip.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setNip(String value) {
-        this.nip = value;
-    }
+	/**
+	 * Define el valor de la propiedad cardNumber.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setCardNumber(String value) {
+		this.cardNumber = value;
+	}
+
+	/**
+	 * Obtiene el valor de la propiedad nip.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getNip() {
+		return nip;
+	}
+
+	/**
+	 * Define el valor de la propiedad nip.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setNip(String value) {
+		this.nip = value;
+	}
 
 }

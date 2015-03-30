@@ -1,7 +1,6 @@
 package com.bbva.net.back.facade.impl;
 
 import javax.annotation.Resource;
-import javax.ws.rs.core.Response;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -43,24 +42,16 @@ public class PersonalizeProductFacadeImplTest {
 
 	@Test
 	public void checkGetPersonalizeUpdateOperability() {
-		Response responseService = Mockito.mock(Response.class);
-		Mockito.when(globalPositionService.updateProductOperability(DEFAULT_ID, product)).thenReturn(responseService);
+		Mockito.when(globalPositionService.updateProductOperability(DEFAULT_ID, product)).thenReturn(true);
 		Mockito.when(personalizeAccountProductMapper.map(this.productDto)).thenReturn(product);
-		Assert.assertFalse(personalizeFacadeImpl.updateProductOperability(DEFAULT_ID, this.productDto));
-		Mockito.when(responseService.getStatus()).thenReturn(200);
-		Mockito.when(globalPositionService.updateProductOperability(DEFAULT_ID, product)).thenReturn(responseService);
-		this.personalizeFacadeImpl.setGlobalPositionService(globalPositionService);
 		Assert.assertTrue(personalizeFacadeImpl.updateProductOperability(DEFAULT_ID, this.productDto));
 		Mockito.verify(this.globalPositionService, Mockito.atLeastOnce()).updateProductOperability(DEFAULT_ID, product);
 	}
 
 	@Test
 	public void checkGetPersonalizeUpdateVisibility() {
-		Response responseService = Mockito.mock(Response.class);
-		Mockito.when(globalPositionService.updateProductVisibility(DEFAULT_ID, product)).thenReturn(responseService);
+		Mockito.when(globalPositionService.updateProductVisibility(DEFAULT_ID, product)).thenReturn(true);
 		Mockito.when(personalizeAccountProductMapper.map(this.productDto)).thenReturn(product);
-		Assert.assertFalse(personalizeFacadeImpl.updateProductVisibility(DEFAULT_ID, this.productDto));
-		Mockito.when(responseService.getStatus()).thenReturn(200);
 		Assert.assertTrue(personalizeFacadeImpl.updateProductVisibility(DEFAULT_ID, this.productDto));
 		Mockito.verify(this.globalPositionService, Mockito.atLeastOnce()).updateProductVisibility(DEFAULT_ID, product);
 	}

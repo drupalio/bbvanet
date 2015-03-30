@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
+
+import com.bbva.net.back.facade.QuotaDetailFacade;
 
 /**
  * Controller to pagination tables
@@ -15,11 +18,14 @@ public abstract class PaginationController<T extends Serializable> extends Abstr
 
 	private static final long serialVersionUID = 1L;
 
+	@Resource(name = "quotaDetailFacade")
+	private transient QuotaDetailFacade quotaDetailFacade;
+
 	protected List<T> currentList;
 
 	private boolean hasMorePages = true;
 
-	protected static final int PAGE_SIZE = 10;
+	protected static int PAGE_SIZE = 10;
 
 	protected Integer paginationKey;
 
@@ -29,20 +35,22 @@ public abstract class PaginationController<T extends Serializable> extends Abstr
 
 	@PostConstruct
 	public void init() {
+		LOGGER.info("Inicializando la lista de movimientos y la paginación ");
 		this.currentList = new ArrayList<T>();
 		this.paginationKey = 0;
 	}
 
 	public void next() {
+		LOGGER.info("Llamando al método real de getNextPage");
 		final List<T> currentPage = getNextPage(paginationKey, PAGE_SIZE);
 		if (currentPage.size() < PAGE_SIZE) {
 			hasMorePages = false;
 		}
-
 		currentList.addAll(currentPage);
 		paginationKey = getNextPaginantionKey(currentPage);
-
 	}
+
+	// Setters and getters
 
 	/**
 	 * @return the hasMorePages
@@ -75,4 +83,12 @@ public abstract class PaginationController<T extends Serializable> extends Abstr
 	public void setPaginationKey(Integer paginationKey) {
 		this.paginationKey = paginationKey;
 	}
+
+	/**
+	 * @param quotaDetailFacade the quotaDetailFacade to set
+	 */
+	public void setQuotaDetailFacade(QuotaDetailFacade quotaDetailFacade) {
+		this.quotaDetailFacade = quotaDetailFacade;
+	}
+
 }

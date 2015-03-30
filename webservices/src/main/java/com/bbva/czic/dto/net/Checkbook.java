@@ -7,9 +7,7 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.datatype.XMLGregorianCalendar;
 
 /**
  * <p>
@@ -26,9 +24,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="firstCheck" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="lastCheck" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="totalCheck" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
- *         &lt;element name="requestDate" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
- *         &lt;element name="deliveryDate" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
- *         &lt;element name="actualState" type="{urn:com:bbva:czic:dto:net}EnumCheckbookStatus" minOccurs="0"/>
+ *         &lt;element name="requestDate" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="deliveryDate" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="actualState" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="checks" type="{urn:com:bbva:czic:dto:net}Check" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -41,7 +39,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 		"deliveryDate", "actualState", "checks" })
 public class Checkbook implements Serializable {
 
-	private static final long serialVersionUID = -524086775179668582L;
+	private static final long serialVersionUID = 1L;
 
 	protected String id;
 
@@ -51,13 +49,11 @@ public class Checkbook implements Serializable {
 
 	protected Integer totalCheck;
 
-	@XmlSchemaType(name = "dateTime")
-	protected XMLGregorianCalendar requestDate;
+	protected String requestDate;
 
-	@XmlSchemaType(name = "dateTime")
-	protected XMLGregorianCalendar deliveryDate;
+	protected String deliveryDate;
 
-	protected EnumCheckbookStatus actualState;
+	protected String actualState;
 
 	@XmlElement(nillable = true)
 	protected List<Check> checks;
@@ -137,54 +133,54 @@ public class Checkbook implements Serializable {
 	/**
 	 * Gets the value of the requestDate property.
 	 * 
-	 * @return possible object is {@link XMLGregorianCalendar }
+	 * @return possible object is {@link String }
 	 */
-	public XMLGregorianCalendar getRequestDate() {
+	public String getRequestDate() {
 		return requestDate;
 	}
 
 	/**
 	 * Sets the value of the requestDate property.
 	 * 
-	 * @param value allowed object is {@link XMLGregorianCalendar }
+	 * @param value allowed object is {@link String }
 	 */
-	public void setRequestDate(XMLGregorianCalendar value) {
+	public void setRequestDate(String value) {
 		this.requestDate = value;
 	}
 
 	/**
 	 * Gets the value of the deliveryDate property.
 	 * 
-	 * @return possible object is {@link XMLGregorianCalendar }
+	 * @return possible object is {@link String }
 	 */
-	public XMLGregorianCalendar getDeliveryDate() {
+	public String getDeliveryDate() {
 		return deliveryDate;
 	}
 
 	/**
 	 * Sets the value of the deliveryDate property.
 	 * 
-	 * @param value allowed object is {@link XMLGregorianCalendar }
+	 * @param value allowed object is {@link String }
 	 */
-	public void setDeliveryDate(XMLGregorianCalendar value) {
+	public void setDeliveryDate(String value) {
 		this.deliveryDate = value;
 	}
 
 	/**
 	 * Gets the value of the actualState property.
 	 * 
-	 * @return possible object is {@link EnumCheckbookStatus }
+	 * @return possible object is {@link String }
 	 */
-	public EnumCheckbookStatus getActualState() {
+	public String getActualState() {
 		return actualState;
 	}
 
 	/**
 	 * Sets the value of the actualState property.
 	 * 
-	 * @param value allowed object is {@link EnumCheckbookStatus }
+	 * @param value allowed object is {@link String }
 	 */
-	public void setActualState(EnumCheckbookStatus value) {
+	public void setActualState(String value) {
 		this.actualState = value;
 	}
 
