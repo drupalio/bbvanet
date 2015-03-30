@@ -46,17 +46,17 @@ public class ExtractControllerImpl extends AbstractBbvaController implements Ext
 	/**
 	 * 
 	 */
-	private transient List<ExtractDto> extractList;
+	private List<ExtractDto> extractList;
 
 	/**
 	 * 
 	 */
-	private transient List<String> yearAvailable;
+	private List<String> yearAvailable;
 
 	/**
 	 * 
 	 */
-	private transient List<String> monthAvailable;
+	private List<String> monthAvailable;
 
 	/**
 	 * 
