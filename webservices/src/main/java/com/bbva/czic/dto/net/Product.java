@@ -7,6 +7,7 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
 
 /**
@@ -42,12 +43,10 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Product", propOrder = { "id", "type", "name", "alias", "financialState", "visible", "operable",
 		"balance", "contactInfo", "conditions", "movement", "contract", "extracts" })
+@XmlSeeAlso({ Account.class })
 public class Product implements Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -1107212303272708394L;
+	private static final long serialVersionUID = 1L;
 
 	protected String id;
 
@@ -280,13 +279,6 @@ public class Product implements Serializable {
 	}
 
 	/**
-	 * @param movement
-	 */
-	public void setMovement(List<Movement> movement) {
-		this.movement = movement;
-	}
-
-	/**
 	 * Gets the value of the contract property.
 	 * 
 	 * @return possible object is {@link Contract }
@@ -324,13 +316,6 @@ public class Product implements Serializable {
 			extracts = new ArrayList<Extracto>();
 		}
 		return this.extracts;
-	}
-
-	/**
-	 * @param extracts
-	 */
-	public void setExtracts(List<Extracto> extracts) {
-		this.extracts = extracts;
 	}
 
 }

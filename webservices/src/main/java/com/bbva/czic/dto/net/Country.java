@@ -33,7 +33,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Country", propOrder = { "id", "name", "states" })
 public class Country implements Serializable {
 
-	private static final long serialVersionUID = 3487530352321078127L;
+	private static final long serialVersionUID = 1L;
 
 	protected String id;
 

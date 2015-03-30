@@ -8,6 +8,7 @@ import org.primefaces.event.SelectEvent;
 
 import com.bbva.net.back.entity.MultiValueGroup;
 import com.bbva.net.back.model.checkbook.CheckDto;
+import com.bbva.net.back.model.checkbook.CheckbookDto;
 
 public interface CheckBookController {
 
@@ -50,7 +51,7 @@ public interface CheckBookController {
 	 * 
 	 * @param List<CheckDto> cheksList
 	 */
-	void hasMoreElements(List<CheckDto> cheksList);
+	void hasMoreElementsCheck(List<CheckDto> cheksList);
 
 	/**
 	 * @param event
@@ -61,5 +62,10 @@ public interface CheckBookController {
 	 * @param event
 	 */
 	void onSelectDateTo(SelectEvent event);
+
+	/**
+	 * @param cheksBookList
+	 */
+	void hasMoreElementsCheckBook(List<CheckbookDto> cheksBookList);
 
 }

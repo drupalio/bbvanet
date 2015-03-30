@@ -42,6 +42,8 @@ import javax.xml.bind.annotation.XmlType;
 		"homeLocation", "stratum", "residenceYears", "homeMembers", "dwelingType", "officeLocation", "lastAccessDate" })
 public class Customer implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+
 	protected String id;
 
 	protected Document document;

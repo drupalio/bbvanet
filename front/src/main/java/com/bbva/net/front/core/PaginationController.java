@@ -35,20 +35,22 @@ public abstract class PaginationController<T extends Serializable> extends Abstr
 
 	@PostConstruct
 	public void init() {
+		LOGGER.info("Inicializando la lista de movimientos y la paginación ");
 		this.currentList = new ArrayList<T>();
 		this.paginationKey = 0;
 	}
 
 	public void next() {
+		LOGGER.info("Llamando al método real de getNextPage");
 		final List<T> currentPage = getNextPage(paginationKey, PAGE_SIZE);
 		if (currentPage.size() < PAGE_SIZE) {
 			hasMorePages = false;
 		}
-
 		currentList.addAll(currentPage);
 		paginationKey = getNextPaginantionKey(currentPage);
-
 	}
+
+	// Setters and getters
 
 	/**
 	 * @return the hasMorePages

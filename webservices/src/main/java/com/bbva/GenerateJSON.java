@@ -1,26 +1,22 @@
 // package com.bbva;
 //
-// import java.math.BigDecimal;
 // import java.text.SimpleDateFormat;
 // import java.util.ArrayList;
 // import java.util.Date;
 // import java.util.List;
-// import java.util.Random;
 //
 // import org.fluttercode.datafactory.impl.DataFactory;
 //
-// import com.bbva.czic.dto.net.Check;
-// import com.bbva.czic.dto.net.Movement;
-// import com.bbva.jee.arq.spring.core.servicing.utils.Money;
+// import com.bbva.czic.dto.net.Checkbook;
+// import com.bbva.czic.dto.net.EnumCheckbookStatus;
 // import com.google.gson.Gson;
 //
 // public class GenerateJSON {
 //
 // public static void main(String[] args) {
 // Gson gson = new Gson();
-// String checkJSON = gson.toJson(getMovementList());
+// String checkJSON = gson.toJson(getCheckbook());
 // System.out.println(checkJSON);
-// getMovementList();
 // }
 //
 // public static String dateToSring(Date date) {
@@ -30,22 +26,76 @@
 // return str;
 // }
 //
-// // public static <E> Checkbook getCheckbook() {
-// // Checkbook checkBook = new Checkbook();
-// // DataFactory dataFactory = new DataFactory();
-// // Date minDate = dataFactory.getDate(2014, 1, 1);
-// // Date maxDate = new Date();
-// // Date start = dataFactory.getDateBetween(minDate, maxDate);
-// // Date end = dataFactory.getDateBetween(start, maxDate);
-// // checkBook.setActualState(EnumCheckbookStatus.HABILITADO);
-// // checkBook.setDeliveryDate(dateToSring(start));
-// // checkBook.setFirstCheck(dataFactory.getNumberUpTo(10) + "");
-// // checkBook.setId(dataFactory.getNumberUpTo(10) + "");
-// // checkBook.setLastCheck(dataFactory.getNumberUpTo(10) + "");
-// // checkBook.setRequestDate(dateToSring(end));
-// // checkBook.setTotalCheck(dataFactory.getNumberUpTo(10));
-// // return checkBook;
-// // }
+// public static <E> List<Checkbook> getCheckbook() {
+// List<Checkbook> checkBook = new ArrayList<Checkbook>();
+// Checkbook checkBook1 = new Checkbook();
+// Checkbook checkBook2 = new Checkbook();
+// Checkbook checkBook3 = new Checkbook();
+// Checkbook checkBook4 = new Checkbook();
+// Checkbook checkBook5 = new Checkbook();
+// Checkbook checkBook6 = new Checkbook();
+// DataFactory dataFactory = new DataFactory();
+// Date minDate = dataFactory.getDate(2014, 1, 1);
+// Date maxDate = new Date();
+// Date start = dataFactory.getDateBetween(minDate, maxDate);
+// Date end = dataFactory.getDateBetween(start, maxDate);
+//
+// checkBook1.setActualState(EnumCheckbookStatus.ANULADO.getCode());
+// checkBook1.setDeliveryDate(dateToSring(start));
+// checkBook1.setFirstCheck(dataFactory.getNumberUpTo(10) + "");
+// checkBook1.setId(dataFactory.getNumberUpTo(10) + "");
+// checkBook1.setLastCheck(dataFactory.getNumberUpTo(10) + "");
+// checkBook1.setRequestDate(dateToSring(end));
+// checkBook1.setTotalCheck(dataFactory.getNumberUpTo(10));
+// checkBook.add(checkBook1);
+//
+// checkBook2.setActualState(EnumCheckbookStatus.DE_BAJA.getCode());
+// checkBook2.setDeliveryDate(dateToSring(start));
+// checkBook2.setFirstCheck(dataFactory.getNumberUpTo(10) + "");
+// checkBook2.setId(dataFactory.getNumberUpTo(10) + "");
+// checkBook2.setLastCheck(dataFactory.getNumberUpTo(10) + "");
+// checkBook2.setRequestDate(dateToSring(end));
+// checkBook2.setTotalCheck(dataFactory.getNumberUpTo(10));
+// checkBook.add(checkBook2);
+//
+// checkBook3.setActualState(EnumCheckbookStatus.PED_OFICINA.getCode());
+// checkBook3.setDeliveryDate(dateToSring(start));
+// checkBook3.setFirstCheck(dataFactory.getNumberUpTo(10) + "");
+// checkBook3.setId(dataFactory.getNumberUpTo(10) + "");
+// checkBook3.setLastCheck(dataFactory.getNumberUpTo(10) + "");
+// checkBook3.setRequestDate(dateToSring(end));
+// checkBook3.setTotalCheck(dataFactory.getNumberUpTo(10));
+// checkBook.add(checkBook3);
+//
+// checkBook4.setActualState(EnumCheckbookStatus.EN_IMPRESOR.getCode());
+// checkBook4.setDeliveryDate(dateToSring(start));
+// checkBook4.setFirstCheck(dataFactory.getNumberUpTo(10) + "");
+// checkBook4.setId(dataFactory.getNumberUpTo(10) + "");
+// checkBook4.setLastCheck(dataFactory.getNumberUpTo(10) + "");
+// checkBook4.setRequestDate(dateToSring(end));
+// checkBook4.setTotalCheck(dataFactory.getNumberUpTo(10));
+// checkBook.add(checkBook4);
+//
+// checkBook5.setActualState(EnumCheckbookStatus.PERDIDO.getCode());
+// checkBook5.setDeliveryDate(dateToSring(start));
+// checkBook5.setFirstCheck(dataFactory.getNumberUpTo(10) + "");
+// checkBook5.setId(dataFactory.getNumberUpTo(10) + "");
+// checkBook5.setLastCheck(dataFactory.getNumberUpTo(10) + "");
+// checkBook5.setRequestDate(dateToSring(end));
+// checkBook5.setTotalCheck(dataFactory.getNumberUpTo(10));
+// checkBook.add(checkBook5);
+//
+// checkBook6.setActualState(EnumCheckbookStatus.EN_OFICINA.getCode());
+// checkBook6.setDeliveryDate(dateToSring(start));
+// checkBook6.setFirstCheck(dataFactory.getNumberUpTo(10) + "");
+// checkBook6.setId(dataFactory.getNumberUpTo(10) + "");
+// checkBook6.setLastCheck(dataFactory.getNumberUpTo(10) + "");
+// checkBook6.setRequestDate(dateToSring(end));
+// checkBook6.setTotalCheck(dataFactory.getNumberUpTo(10));
+// checkBook.add(checkBook6);
+//
+// return checkBook;
+// }
 //
 // public static <E> Check getCheck() {
 // Check check = new Check();
@@ -66,7 +116,8 @@
 // }
 //
 // // public static <E> Movement getMovementDetail() { Movement movementDetail = new
-// // Movement(); DataFactory dataFactory = new DataFactory(); Date minDate = dataFactory.getDate(2014, 1, 1); Money money;
+// // Movement(); DataFactory dataFactory = new DataFactory(); Date minDate = dataFactory.getDate(2014, 1, 1); Money
+// money;
 // // movementDetail.setBalance(value); movementDetail.setConcept(value); movementDetail.setDestinationReference(value);
 // // movementDetail.setNumberOfQuotas(value); movementDetail.setOffice(value); movementDetail.set movementDetail.set
 // // movementDetail.set movementDetail.set movementDetail.set return movementDetail; }

@@ -236,6 +236,30 @@ tr.ui-state-hover {
 	margin-left: 0px !important;
 }
 
+/* radio Button active talonarios y cheques*/
+.radioButtonT .ui-state-active .ui-icon {
+	background:
+		url("/page/javax.faces.resource/images/ui-icons_4eb305_256x240.png?ln=primefaces-le-frog")
+		repeat scroll -61px -112px/200px auto transparent !important;
+}
+
+/* radio Button active fechas*/
+.radioBT .ui-state-active .ui-icon {
+	background:
+		url("/page/javax.faces.resource/images/ui-icons_4eb305_256x240.png?ln=primefaces-le-frog")
+		repeat scroll -61px -112px/200px auto transparent !important;
+}
+
+/*icon de tablas*/
+.styleColum .ui-icon-triangle-1-n {
+	background-image: none !important;
+}
+
+/*icon de tablas*/
+.styleColum .ui-icon {
+	background-image: none !important;
+}
+
 .ui-selectoneradio label {
 	margin-top: -4px !important;
 	margin-left: -13px !important;
@@ -470,7 +494,8 @@ input.ui-state-hover {
 	color: #434A58;
 	font-family: Arial;
 	background: none;
-	border-style: none
+	border-style: none;
+	position: relative !important;
 }
 
 /*Estilos letra text columna*/
@@ -480,7 +505,11 @@ input.ui-state-hover {
 		font-weight: bold;
 		color: #333;
 		text-align: left;
-		color: #333;
+	}
+	.normal {
+		font-size: 12px;
+		font-weight: bold;
+		text-align: left;
 	}
 	/*Estilos letra currency columna*/
 	.styleCurrent {
@@ -495,7 +524,10 @@ input.ui-state-hover {
 		font-weight: bold;
 		color: #333;
 		text-align: left;
-		color: #333;
+	}
+	.normal {
+		font-size: 14px;
+		text-align: left;
 	}
 	/*Estilos letra currency columna*/
 	.styleCurrent {
@@ -699,4 +731,14 @@ a.header.setStyle span.arrow-left-smaller {
 /*Nav*/
 .renderExtract {
 	display: none;
+}
+
+/*Quitar la flecha negra de las tablas*/
+.detail-table-body th {
+	position: inherit;
+}
+
+/* color de letra negra */
+.colorBlack {
+	color: #333 !important;
 }

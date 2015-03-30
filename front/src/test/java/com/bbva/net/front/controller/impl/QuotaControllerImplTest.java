@@ -11,6 +11,7 @@ import javax.faces.event.ActionEvent;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
+import org.powermock.reflect.Whitebox;
 import org.primefaces.event.SelectEvent;
 
 import com.bbva.net.back.facade.QuotaDetailFacade;
@@ -20,7 +21,6 @@ import com.bbva.net.back.model.globalposition.ProductDto;
 import com.bbva.net.back.model.movements.MovementDetailDto;
 import com.bbva.net.back.model.movements.MovementDto;
 import com.bbva.net.back.model.quota.QuotaDetailDto;
-import com.bbva.net.front.core.PaginationController;
 import com.bbva.net.front.test.utils.AbstractBbvaControllerTest;
 
 public class QuotaControllerImplTest extends AbstractBbvaControllerTest {
@@ -41,12 +41,10 @@ public class QuotaControllerImplTest extends AbstractBbvaControllerTest {
 
 	private DateRangeDto date;
 
-	private PaginationController<MovementDto> paginationController;
-
 	private QuotaPaginatedController quotaPaginatedController;
 
 	@Before
-	public void init() {
+	public void init() throws Exception {
 		// inicializar super
 		super.setUp();
 		// inicializar controlador
@@ -56,15 +54,21 @@ public class QuotaControllerImplTest extends AbstractBbvaControllerTest {
 		this.eventAction = Mockito.mock(ActionEvent.class);
 		this.quotaDetailFacade = Mockito.mock(QuotaDetailFacade.class);
 		this.productDto = Mockito.mock(ProductDto.class);
-		// this.paginationController = new PaginationController<MovementDto>(Mockito.<MovementDto> mock(MovementDto.class));
 		this.quotaPaginatedController = new QuotaPaginatedController();
 		// DateRangeDto
 		this.date = new DateRangeDto();
 		date.setDateSince(new Date());
 		date.setDateTo(new Date());
 		// set Facade
+		this.quotaControllerImpl.setSelectedProduct(productDto);
 		this.quotaPaginatedController.setQuotaDetailFacade(quotaDetailFacade);
 		this.quotaControllerImpl.setQuotaDetailFacade(quotaDetailFacade);
+		// get titles
+		this.quotaControllerImpl.getSinceDatestr();
+		this.quotaControllerImpl.getSinceDate();
+		this.quotaControllerImpl.getSinceText();
+		this.quotaControllerImpl.getToText();
+		this.quotaControllerImpl.getToDatestr();
 		// init Controller producto y id nulo.
 		this.quotaControllerImpl.init();
 		// Clean Filters
@@ -79,33 +83,48 @@ public class QuotaControllerImplTest extends AbstractBbvaControllerTest {
 		// SetMovement
 		Mockito.when(quotaControllerImpl.getSelectedMovements()).thenReturn(quotaMove);
 		Mockito.when(quotaMove.getMovementId()).thenReturn(DEFAULT_ID_MOV);
+		this.quotaControllerImpl.setQuotaMove(quotaMove);
+		this.quotaControllerImpl.getQuotaMove();
 		// SetProductDto
 		this.quotaControllerImpl.setProductDto(productDto);
 		Mockito.when(productDto.getProductId()).thenReturn(DEFAULT_ID);
+		this.quotaControllerImpl.getProductDto();
 		// Response
 		Mockito.when(this.quotaDetailFacade.getRotaryQuotaMovement(DEFAULT_ID, DEFAULT_ID_MOV)).thenReturn(moveDetail);
 		// Ejecución Método
 		this.quotaControllerImpl.onRowToggle(eventSelect);
+		// set y get
+		this.quotaControllerImpl.setQuotaMoveDetailDto(moveDetail);
+		this.quotaControllerImpl.getQuotaMoveDetailDto();
 		// Verify
 		Mockito.verify(this.quotaDetailFacade, Mockito.atLeastOnce())
 				.getRotaryQuotaMovement(DEFAULT_ID, DEFAULT_ID_MOV);
 	}
 
+	@Test
 	public void checkGetAllQuotamovenDtos() {
 		// Arreglo respuesta
 		List<MovementDto> quotaMovements = new ArrayList<MovementDto>();
 		// Mockear el productDto para quotaPaginatedController
-		this.quotaPaginatedController.setQuotaDetailFacade(quotaDetailFacade);
 		Mockito.when(quotaPaginatedController.getSelectedProduct()).thenReturn(productDto);
 		Mockito.when(productDto.getProductId()).thenReturn(DEFAULT_ID);
 		// Setear el dateRangeDto para el quotaPaginatedController
 		this.quotaPaginatedController.setDateRangePControl(date);
+		this.quotaControllerImpl.setDateRange(date);
+		this.quotaControllerImpl.getDateRange();
 		// Mockear la respuesta del facade
-		Mockito.when(quotaDetailFacade.listRotaryQuotaMovements(DEFAULT_ID, date, 0, 10)).thenReturn(quotaMovements);
+		Mockito.when(quotaDetailFacade.listRotaryQuotaMovements(DEFAULT_ID, null, 0, 10)).thenReturn(quotaMovements);
 		// Mockear la respuesta del metodo getNextPage del quotaPaginatedController
 		Mockito.when(quotaPaginatedController.getNextPage(0, 10)).thenReturn(quotaMovements);
+		// Método nextPage desde la vista
+		this.quotaControllerImpl.nextPage(eventAction);
 		// Llamar método de quotaController
 		this.quotaControllerImpl.getAllQuotamovenDtos();
+		// Set y get
+		this.quotaControllerImpl.setQuotamovenDtos(quotaMovements);
+		this.quotaControllerImpl.getQuotamovenDtos();
+		// Verify
+		Mockito.verify(this.quotaDetailFacade, Mockito.atLeastOnce()).listRotaryQuotaMovements(DEFAULT_ID, null, 0, 10);
 	}
 
 	@Test
@@ -125,13 +144,32 @@ public class QuotaControllerImplTest extends AbstractBbvaControllerTest {
 		Mockito.when(quotaDetailFacade.getDetailRotaryQuota(DEFAULT_ID)).thenReturn(quotaDetailDto);
 		Mockito.when(quotaDetailDto.getId()).thenReturn(DEFAULT_ID);
 		this.quotaControllerImpl.init();
+		// set y get QuotaDetailDto
+		this.quotaControllerImpl.setQuotaDetailDto(quotaDetailDto);
+		this.quotaControllerImpl.getQuotaDetailDto();
 	}
 
+	@Test
 	public void coberturaPaginatorTest() {
-		this.quotaControllerImpl.searchQuotaByFilter(eventAction);
+		// Map de render, Arreglo respuesta
 		Map<String, Boolean> renderComponents = new HashMap<String, Boolean>();
-		Mockito.when(renderComponents.get(RenderAttributes.FILTERDATE.toString())).thenReturn(true);
+		List<MovementDto> quotaMovements = new ArrayList<MovementDto>();
+		// Mockitos
+		Mockito.when(quotaPaginatedController.getSelectedProduct()).thenReturn(productDto);
+		Mockito.when(productDto.getProductId()).thenReturn(DEFAULT_ID);
+		// render FILTERDATE true
+		renderComponents.put(RenderAttributes.FILTERDATE.toString(), true);
 		this.quotaControllerImpl.setRenderComponents(renderComponents);
+		this.quotaControllerImpl.setSelectDate("Ayer");
+		this.quotaControllerImpl.searchQuotaByFilter(eventAction);
+		// render FILTERDATE false
+		renderComponents.put(RenderAttributes.FILTERDATE.toString(), false);
+		this.quotaControllerImpl.setRenderComponents(renderComponents);
+		Mockito.when(this.quotaControllerImpl.getQuotamovenDtos()).thenReturn(quotaMovements);
+		Whitebox.setInternalState(quotaMovements, "elementData", new Object[15]);
+		Whitebox.setInternalState(quotaMovements, "size", 15);
+		quotaMovements.set(14, new MovementDto("123456", null, null, null, null, null, null, null, null));
+		this.quotaControllerImpl.criteriaSearch();
 		this.quotaControllerImpl.searchQuotaByFilter(eventAction);
 	}
 

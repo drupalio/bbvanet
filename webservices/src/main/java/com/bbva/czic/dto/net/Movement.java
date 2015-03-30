@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
 
 import com.bbva.jee.arq.spring.core.servicing.utils.Money;
@@ -32,6 +31,8 @@ import com.bbva.jee.arq.spring.core.servicing.utils.Money;
  *         &lt;element name="value" type="{urn:com:bbva:jee:arq:spring:core:servicing:utils}money" minOccurs="0"/>
  *         &lt;element name="balance" type="{urn:com:bbva:jee:arq:spring:core:servicing:utils}money" minOccurs="0"/>
  *         &lt;element name="numberOfQuotas" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="remainingQuotas" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+ *         &lt;element name="deb" type="{urn:com:bbva:czic:dto:net}Balance" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -40,14 +41,11 @@ import com.bbva.jee.arq.spring.core.servicing.utils.Money;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Movement", propOrder = { "id", "concept", "transactionDate", "operationDate", "sourceReference",
-		"destinationReference", "operation", "office", "status", "value", "balance", "numberOfQuotas" })
-@XmlSeeAlso({ AccMoveDetail.class })
+		"destinationReference", "operation", "office", "status", "value", "balance", "numberOfQuotas",
+		"remainingQuotas", "deb" })
 public class Movement implements Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -1134383850717280295L;
+	private static final long serialVersionUID = 1L;
 
 	protected String id;
 
@@ -72,6 +70,10 @@ public class Movement implements Serializable {
 	protected Money balance;
 
 	protected String numberOfQuotas;
+
+	protected Integer remainingQuotas;
+
+	protected Balance deb;
 
 	/**
 	 * Gets the value of the id property.
@@ -287,6 +289,42 @@ public class Movement implements Serializable {
 	 */
 	public void setNumberOfQuotas(String value) {
 		this.numberOfQuotas = value;
+	}
+
+	/**
+	 * Gets the value of the remainingQuotas property.
+	 * 
+	 * @return possible object is {@link Integer }
+	 */
+	public Integer getRemainingQuotas() {
+		return remainingQuotas;
+	}
+
+	/**
+	 * Sets the value of the remainingQuotas property.
+	 * 
+	 * @param value allowed object is {@link Integer }
+	 */
+	public void setRemainingQuotas(Integer value) {
+		this.remainingQuotas = value;
+	}
+
+	/**
+	 * Gets the value of the deb property.
+	 * 
+	 * @return possible object is {@link Balance }
+	 */
+	public Balance getDeb() {
+		return deb;
+	}
+
+	/**
+	 * Sets the value of the deb property.
+	 * 
+	 * @param value allowed object is {@link Balance }
+	 */
+	public void setDeb(Balance value) {
+		this.deb = value;
 	}
 
 }

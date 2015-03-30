@@ -12,7 +12,6 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 import com.bbva.czic.dto.net.Account;
 import com.bbva.czic.dto.net.Check;
-import com.bbva.czic.dto.net.Checkbook;
 
 @Path("/V01")
 public interface SrvAccountsV01 {
@@ -20,12 +19,17 @@ public interface SrvAccountsV01 {
     @GET
     @Produces("application/json")
     @Path("/{accountId}/checkbooks/{checkbookId}")
-    Checkbook getCheckbook(@PathParam("checkbookId") String checkbookId, @PathParam("accountId") String accountId);
+    Response getCheckbook(@PathParam("checkbookId") String checkbookId, @PathParam("accountId") String accountId);
 
     @GET
     @Produces("application/json")
     @Path("/{accountId}/checks/{checkId}")
     Check getCheck(@PathParam("accountId") String accountId, @PathParam("checkId") String checkId);
+
+    @GET
+    @Produces("application/json")
+    @Path("/{accountId}/monthlyBalances")
+    Response getAccountMonthlyBalance(@PathParam("accountId") String accountId, @QueryParam("$filter") @DefaultValue("null") String $filter);
 
     @GET
     @Produces("application/json")
@@ -35,18 +39,11 @@ public interface SrvAccountsV01 {
     @GET
     @Produces("application/json")
     @Path("/{id}/listChecks")
-    Response listCheck(@PathParam("id") String id, @QueryParam("$filter") @DefaultValue("null") String $filter, @QueryParam("paginationKey") @DefaultValue("null") Integer paginationKey, @QueryParam("pageSize") @DefaultValue("null") Integer pageSize);
-
-    @GET
-    @Produces("application/json")
-    @Path("/{id}/monthlyBalances")
-    Response getAccountMonthlyBalance(@PathParam("id") String id, @QueryParam("$filter") @DefaultValue("null") String $filter, @QueryParam("$fields") @DefaultValue("null") String $fields, @QueryParam("$expands") @DefaultValue("null") String $expands, 
-                @QueryParam("$sort") @DefaultValue("null") String $sort);
+    Response listCheck(@PathParam("id") String id, @QueryParam("$filter") String $filter, @QueryParam("paginationKey") Integer paginationKey, @QueryParam("pageSize") Integer pageSize);
 
     @GET
     @Produces("application/json")
     @Path("/{id}/movementsResumes")
-    Response getAccMovementResume(@PathParam("id") String id, @QueryParam("$filter") @DefaultValue("null") String $filter, @QueryParam("$fields") @DefaultValue("null") String $fields, @QueryParam("$expands") @DefaultValue("null") String $expands, 
-                @QueryParam("$sort") @DefaultValue("null") String $sort);
+    Response getAccMovementResume(@PathParam("id") String id, @QueryParam("$filter") @DefaultValue("null") String $filter);
 
 }

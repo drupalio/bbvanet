@@ -18,8 +18,6 @@ public class ObjectFactoryTest extends AbstractBbvaDTOTest<ObjectFactory> {
 
 		final ObjectFactory objectFactory = new ObjectFactory();
 
-		assertNotNull(objectFactory.createAccMoveDetail());
-		assertNotNull(objectFactory.createAccMoveDetail(objectFactory.createAccMoveDetail()));
 		assertNotNull(objectFactory.createActivity());
 		assertNotNull(objectFactory.createActivity(objectFactory.createActivity()));
 		assertNotNull(objectFactory.createBalance());

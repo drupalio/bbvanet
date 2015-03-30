@@ -29,7 +29,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "ThirdParty", propOrder = { "customerId", "type" })
 public class ThirdParty implements Serializable {
 
-	private static final long serialVersionUID = -5482888753156779315L;
+	private static final long serialVersionUID = 1L;
 
 	protected User customerId;
 

@@ -4,16 +4,15 @@ import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 
 import com.bbva.jee.arq.spring.core.servicing.utils.Money;
 
 /**
  * <p>
- * Clase Java para AccMovementsResume complex type.
+ * Java class for AccMovementsResume complex type.
  * <p>
- * El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="AccMovementsResume">
@@ -34,7 +33,7 @@ import com.bbva.jee.arq.spring.core.servicing.utils.Money;
 @XmlType(name = "AccMovementsResume", propOrder = { "income", "outcome", "balance", "month" })
 public class AccMovementsResume implements Serializable {
 
-	private static final long serialVersionUID = 1542636328587742188L;
+	private static final long serialVersionUID = 1L;
 
 	protected Money income;
 
@@ -42,11 +41,10 @@ public class AccMovementsResume implements Serializable {
 
 	protected Money balance;
 
-	@XmlSchemaType(name = "string")
 	protected EnumMonth month;
 
 	/**
-	 * Obtiene el valor de la propiedad income.
+	 * Gets the value of the income property.
 	 * 
 	 * @return possible object is {@link Money }
 	 */
@@ -55,7 +53,7 @@ public class AccMovementsResume implements Serializable {
 	}
 
 	/**
-	 * Define el valor de la propiedad income.
+	 * Sets the value of the income property.
 	 * 
 	 * @param value allowed object is {@link Money }
 	 */
@@ -64,7 +62,7 @@ public class AccMovementsResume implements Serializable {
 	}
 
 	/**
-	 * Obtiene el valor de la propiedad outcome.
+	 * Gets the value of the outcome property.
 	 * 
 	 * @return possible object is {@link Money }
 	 */
@@ -73,7 +71,7 @@ public class AccMovementsResume implements Serializable {
 	}
 
 	/**
-	 * Define el valor de la propiedad outcome.
+	 * Sets the value of the outcome property.
 	 * 
 	 * @param value allowed object is {@link Money }
 	 */
@@ -82,7 +80,7 @@ public class AccMovementsResume implements Serializable {
 	}
 
 	/**
-	 * Obtiene el valor de la propiedad balance.
+	 * Gets the value of the balance property.
 	 * 
 	 * @return possible object is {@link Money }
 	 */
@@ -91,7 +89,7 @@ public class AccMovementsResume implements Serializable {
 	}
 
 	/**
-	 * Define el valor de la propiedad balance.
+	 * Sets the value of the balance property.
 	 * 
 	 * @param value allowed object is {@link Money }
 	 */
@@ -100,7 +98,7 @@ public class AccMovementsResume implements Serializable {
 	}
 
 	/**
-	 * Obtiene el valor de la propiedad month.
+	 * Gets the value of the month property.
 	 * 
 	 * @return possible object is {@link EnumMonth }
 	 */
@@ -109,7 +107,7 @@ public class AccMovementsResume implements Serializable {
 	}
 
 	/**
-	 * Define el valor de la propiedad month.
+	 * Sets the value of the month property.
 	 * 
 	 * @param value allowed object is {@link EnumMonth }
 	 */
