@@ -60,7 +60,7 @@ public class AccountsServiceImplTest extends AbstractBbvaRestClientTest {
 	public void checkGetCheckBook() {
 		Mockito.when(webClient.get(Checkbook.class)).thenReturn(Mockito.mock(Checkbook.class));
 		this.accountsServiceImpl.getCheckbook(ACCOUNT_ID, CHECKBOOK_ID);
-		Mockito.verify(this.webClient, Mockito.atLeastOnce()).get(Checkbook.class);
+		Mockito.verify(this.webClient, Mockito.atLeastOnce()).getCollection(Checkbook.class);
 	}
 
 	@Test
