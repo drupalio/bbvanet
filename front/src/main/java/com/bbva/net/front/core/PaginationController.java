@@ -7,6 +7,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
+import com.bbva.net.back.facade.CheckBookFacade;
 import com.bbva.net.back.facade.QuotaDetailFacade;
 
 /**
@@ -20,6 +21,9 @@ public abstract class PaginationController<T extends Serializable> extends Abstr
 
 	@Resource(name = "quotaDetailFacade")
 	private transient QuotaDetailFacade quotaDetailFacade;
+
+	@Resource(name = "checkBookFacade")
+	private transient CheckBookFacade checkBookFacade;
 
 	protected List<T> currentList;
 
@@ -91,4 +95,10 @@ public abstract class PaginationController<T extends Serializable> extends Abstr
 		this.quotaDetailFacade = quotaDetailFacade;
 	}
 
+	/**
+	 * @param checkBookFacade the checkBookFacade to set
+	 */
+	public void setCheckBookFacade(CheckBookFacade checkBookFacade) {
+		this.checkBookFacade = checkBookFacade;
+	}
 }
