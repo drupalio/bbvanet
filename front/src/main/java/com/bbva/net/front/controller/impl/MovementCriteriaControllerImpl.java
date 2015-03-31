@@ -582,14 +582,6 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		this.multiValueGroupFacade = multiValueGroupFacade;
 	}
 
-	/**
-	 * @return the movementsFacade
-	 */
-	@Override
-	public MovementsAccountFacade getMovementsFacade() {
-		return movementsFacade;
-	}
-
 	public GraphicLineDelegate getGraphicLineDelegate() {
 		return graphicLineDelegate;
 	}

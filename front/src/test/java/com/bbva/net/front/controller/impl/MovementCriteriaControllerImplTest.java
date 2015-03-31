@@ -99,7 +99,6 @@ public class MovementCriteriaControllerImplTest extends AbstractBbvaControllerTe
 		this.movementCriteriaController.getTitleInOrExp();
 		this.movementCriteriaController.getDateRange();
 		this.movementCriteriaController.getMultiValueGroupFacade();
-		this.movementCriteriaController.getMovementsFacade();
 		this.movementCriteriaController.getGraphicLineDelegate();
 		this.movementCriteriaController.getGraphicLineMovements();
 		this.movementCriteriaController.setTitleDateSince("");

@@ -249,7 +249,6 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 		if (this.titleState != null) {
 			setStatusPControl(getCheckState());
 		}
-		setProductIdPControl(getSelectedProduct().getProductId());
 		super.init();
 		super.setCheckBookFacade(checkBookFacade);
 		search();

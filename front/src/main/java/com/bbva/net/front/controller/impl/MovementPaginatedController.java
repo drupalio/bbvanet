@@ -85,13 +85,6 @@ public class MovementPaginatedController extends PaginationController<MovementDt
 	}
 
 	/**
-	 * @return the movementsFacade
-	 */
-	public MovementsAccountFacade getMovementsFacade() {
-		return movementsFacade;
-	}
-
-	/**
 	 * @param movementsFacade the movementsFacade to set
 	 */
 	public void setMovementsFacade(MovementsAccountFacade movementsFacade) {
