@@ -109,4 +109,11 @@ public class GlobalPositionFacadeImpl extends AbstractBbvaFacade implements Glob
 		this.productService = productService;
 	}
 
+	/**
+	 * @param globalPositionMapper
+	 */
+	public void setGlobalPositionMapper(GlobalPositionMapper globalPositionMapper) {
+		this.globalPositionMapper = globalPositionMapper;
+	}
+
 }

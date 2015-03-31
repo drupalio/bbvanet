@@ -1,5 +1,6 @@
 package com.bbva.net.back.facade.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -8,6 +9,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import com.bbva.czic.dto.net.Product;
+import com.bbva.net.back.mapper.GlobalPositionMapper;
 import com.bbva.net.back.model.globalposition.BalanceDto;
 import com.bbva.net.back.model.globalposition.GlobalProductsDto;
 import com.bbva.net.back.predicate.HiddenProductPredicate;
@@ -25,15 +28,29 @@ public class GlobalPositionFacadeImplTest {
 
 	private GlobalPositionFacadeImpl globalPositionFacadeImpl;
 
+	private transient GlobalPositionMapper globalPositionMapper;
+
 	private static final String DEFAULT_USER = "123";
 
 	@Before
 	public void init() {
 		this.globalPositionFacadeImpl = new GlobalPositionFacadeImpl();
 		this.productService = Mockito.mock(ProductService.class);
+		this.globalPositionService = Mockito.mock(GlobalPositionService.class);
+		this.globalPositionMapper = Mockito.mock(GlobalPositionMapper.class);
 		this.globalProductsDto = Mockito.mock(GlobalProductsDto.class);
 		this.globalPositionFacadeImpl.setProductService(productService);
 		this.globalPositionFacadeImpl.setGlobalPositionService(globalPositionService);
+		this.globalPositionFacadeImpl.setGlobalPositionMapper(globalPositionMapper);
+	}
+
+	@Test
+	public void checkgetGlobalProductsByUser() {
+		List<Product> response = new ArrayList<Product>();
+		Mockito.when(this.globalPositionService.getExtractGlobalBalance(Mockito.anyString())).thenReturn(response);
+		Mockito.when(this.globalPositionMapper.map(response)).thenReturn(globalProductsDto);
+		Assert.assertNotNull(globalPositionFacadeImpl.getGlobalProductsByUser());
+
 	}
 
 	@Test
