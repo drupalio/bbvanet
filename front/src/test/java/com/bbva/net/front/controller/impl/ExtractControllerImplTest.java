@@ -1,15 +1,16 @@
 package com.bbva.net.front.controller.impl;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.faces.event.ActionEvent;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
+import org.primefaces.model.StreamedContent;
 
 import com.bbva.net.back.facade.ExtractFacade;
 import com.bbva.net.back.model.extract.ExtractDto;
@@ -31,13 +32,10 @@ public class ExtractControllerImplTest extends AbstractBbvaControllerTest {
 
 	private ProductDto productDto;
 
-	private ActionEvent event;
-
 	private ExtractDto extractDto;
 
 	private List<String> monthAvailable;
 
-	@SuppressWarnings("unchecked")
 	@Before
 	public void init() {
 
@@ -51,7 +49,7 @@ public class ExtractControllerImplTest extends AbstractBbvaControllerTest {
 		extractDto.setExternalCode("12345");
 		extractDto.setGenerationDate("2105-03-24");
 		extractDto.setMonth("03");
-		extractDto.setUrl("http://");
+		extractDto.setUrl("http://www.primefaces.org/docs/guide/primefaces_user_guide_5_0.pdf");
 		extractDto.setYear("2015");
 		extractList.add(extractDto);
 
@@ -66,8 +64,6 @@ public class ExtractControllerImplTest extends AbstractBbvaControllerTest {
 		this.extractController.setSelectedMonth("03");
 		this.extractController.setSelectedYear("2015");
 		this.extractController.setSelectedProduct(productDto);
-
-		event = Mockito.mock(ActionEvent.class);
 
 		Mockito.when(extractController.getSelectedProduct()).thenReturn(productDto);
 
@@ -87,12 +83,16 @@ public class ExtractControllerImplTest extends AbstractBbvaControllerTest {
 	}
 
 	@Test
-	public void checkDocumentExtract() {
+	public void checkDocumentExtract() throws IOException {
 		Mockito.when(extractFacade.getDocumentExtract(DEFAULT_PRODUCT, extractDto)).thenReturn(extractList);
-		this.extractController.documentExtract(event);
+		StreamedContent file = this.extractController.documentExtract();
+		Assert.assertNotNull(file);
 		Assert.assertNotNull(extractList);
 		Assert.assertEquals(extractDto, extractFacade.getDocumentExtract(DEFAULT_PRODUCT, extractDto).get(0));
 		Mockito.verify(extractFacade, Mockito.atLeastOnce()).getDocumentExtract(DEFAULT_PRODUCT, extractDto);
+		// List<ExtractDto> = null
+		Mockito.when(extractFacade.getDocumentExtract(DEFAULT_PRODUCT, extractDto)).thenReturn(null);
+		this.extractController.documentExtract();
 	}
 
 	@Test

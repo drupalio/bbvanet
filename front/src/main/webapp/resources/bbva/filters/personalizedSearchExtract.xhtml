@@ -78,11 +78,11 @@
 							</div>
 							<!-- BOTON DESCARGA -->
 							<div class="col-md-5">
-								<bbvaButton:iconButton id="searchExtract" icon="icon pdf"
-									value="Descargar extracto" show="true"
-									classButton="stable-button medium icon-left ext-message"
-									actionListener="#{extractController.documentExtract}">
-								</bbvaButton:iconButton>
+								<p:commandButton id="searchExtract" value="Descargar extracto"
+									ajax="false" icon="icon pdf"
+									styleClass="stable-button medium icon-left ext-message extractDow">
+									<p:fileDownload value="#{extractController.documentExtract()}" />
+								</p:commandButton>
 							</div>
 						</div>
 					</div>

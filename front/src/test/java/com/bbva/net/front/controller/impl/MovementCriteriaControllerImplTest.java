@@ -14,6 +14,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
+import org.powermock.reflect.Whitebox;
 import org.primefaces.event.SelectEvent;
 
 import com.bbva.net.back.facade.MovementsAccountFacade;
@@ -22,6 +23,7 @@ import com.bbva.net.back.model.citeriaMovements.MovementCriteriaDto;
 import com.bbva.net.back.model.commons.BalanceRangeDto;
 import com.bbva.net.back.model.commons.DateRangeDto;
 import com.bbva.net.back.model.commons.Money;
+import com.bbva.net.back.model.enums.RenderAttributes;
 import com.bbva.net.back.model.globalposition.ProductDto;
 import com.bbva.net.back.model.movements.MovementDetailDto;
 import com.bbva.net.back.model.movements.MovementDto;
@@ -52,6 +54,8 @@ public class MovementCriteriaControllerImplTest extends AbstractBbvaControllerTe
 
 	private ProductDto productDto;
 
+	private List<MovementDto> lista;
+
 	private DateRangeDto date;
 
 	private ActionEvent eventAction;
@@ -71,6 +75,10 @@ public class MovementCriteriaControllerImplTest extends AbstractBbvaControllerTe
 		this.productDto = Mockito.mock(ProductDto.class);
 		this.eventSelect = Mockito.mock(SelectEvent.class);
 		this.eventAction = Mockito.mock(ActionEvent.class);
+		this.lista = new ArrayList<MovementDto>();
+		Mockito.when(movementCriteriaController.getSelectedProduct()).thenReturn(productDto);
+		Mockito.when(productDto.getSubTypeProd()).thenReturn("AA");
+		Mockito.when(productDto.getProductId()).thenReturn(DEFAULT_ID);
 		// Metodo init
 		this.movementCriteriaController.init();
 		// DateRangeDto
@@ -80,35 +88,18 @@ public class MovementCriteriaControllerImplTest extends AbstractBbvaControllerTe
 		this.movementCriteriaController.setDateRange(date);
 		// set de facades al controlador
 		this.movementCriteriaController.setMultiValueGroupFacade(multiValueGroupFacade);
+		this.movementCriteriaController.getMultiValueGroupFacade();
 		this.movementCriteriaController.setGraphicLineDelegate(graphicLineDelegate);
+		this.movementCriteriaController.getGraphicLineDelegate();
 		this.movementCriteriaController.setMovementsFacade(movementsFacade);
 		// methodos
 		this.movementCriteriaController.cleanFilters(eventAction);
 		this.movementCriteriaController.selectDateSince(eventSelect);
 		this.movementCriteriaController.selectDateTo(eventSelect);
-		// Get y set
-		this.movementCriteriaController.getSinceText();
-		this.movementCriteriaController.getSinceDate();
-		this.movementCriteriaController.getToText();
-		this.movementCriteriaController.setDateFormat(new SimpleDateFormat());
-		this.movementCriteriaController.getDateFormat();
-		this.movementCriteriaController.setMessageBalance(new StringBuilder());
-		this.movementCriteriaController.getMessageBalance();
-		this.movementCriteriaController.getSinceDatestr();
-		this.movementCriteriaController.getToDatestr();
-		this.movementCriteriaController.getTitleInOrExp();
-		this.movementCriteriaController.getDateRange();
-		this.movementCriteriaController.getMultiValueGroupFacade();
-		this.movementCriteriaController.getGraphicLineDelegate();
-		this.movementCriteriaController.getGraphicLineMovements();
-		this.movementCriteriaController.setTitleDateSince("");
-		this.movementCriteriaController.getTitleDateSince();
-		this.movementCriteriaController.setTitleDateTo("");
-		this.movementCriteriaController.getTitleDateTo();
 	}
 
 	@Test
-	public void coberturaIncomeExpress() {
+	public void checkIncomeExpress() {
 		// Mockear el render
 		Mockito.when(this.movementCriteriaController.getRenderComponents()).thenReturn(renderComponents);
 		// Cuando setIncomesOrExpenses =1
@@ -124,10 +115,11 @@ public class MovementCriteriaControllerImplTest extends AbstractBbvaControllerTe
 		this.movementCriteriaController.setMovementCriteria(movementCriteriaDto);
 		this.movementCriteriaController.setIncomeExpensesFilter(eventAction);
 		this.movementCriteriaController.getMovementCriteria();
+		this.movementCriteriaController.getTitleInOrExp();
 	}
 
 	@Test
-	public void coberturaMovementConcept() {
+	public void checkMovementConcept() {
 		// Mockear el render
 		Mockito.when(this.movementCriteriaController.getRenderComponents()).thenReturn(renderComponents);
 		// Llamar al metodo setMovementConcept
@@ -135,7 +127,7 @@ public class MovementCriteriaControllerImplTest extends AbstractBbvaControllerTe
 	}
 
 	@Test
-	public void coberturaBalanceValidator() {
+	public void checkBalanceValidator() {
 		// Mockear el render
 		Mockito.when(this.movementCriteriaController.getRenderComponents()).thenReturn(renderComponents);
 		// nulos balanceSince y BalanceTo
@@ -163,11 +155,12 @@ public class MovementCriteriaControllerImplTest extends AbstractBbvaControllerTe
 		// Setear y obtener balanceRange del controlador
 		this.movementCriteriaController.setBalanceRange(balanceRange);
 		this.movementCriteriaController.getBalanceRange();
-
+		this.movementCriteriaController.setMessageBalance(new StringBuilder());
+		this.movementCriteriaController.getMessageBalance();
 	}
 
 	@Test
-	public void coberturaCustomDate() {
+	public void checkCustomDate() {
 		// Mockear el render
 		Mockito.when(this.movementCriteriaController.getRenderComponents()).thenReturn(renderComponents);
 		// nullos y concreteDate igual
@@ -176,17 +169,26 @@ public class MovementCriteriaControllerImplTest extends AbstractBbvaControllerTe
 		this.movementCriteriaController.setSinceDate(new Date());
 		this.movementCriteriaController.setCustomDate(eventAction);
 		// no nulos y concreteDate igual
+		this.movementCriteriaController.setTitleDateSince("Since");
 		this.movementCriteriaController.setSinceDate(new Date());
+		this.movementCriteriaController.setTitleDateTo("To");
 		this.movementCriteriaController.setToDate(new Date());
 		this.movementCriteriaController.setCustomDate(eventAction);
 		// setToDate no nula, setSinceDate nulo y concreteDate igual
 		this.movementCriteriaController.setSelectDate("null");
 		this.movementCriteriaController.setToDate(new Date());
 		this.movementCriteriaController.setCustomDate(eventAction);
+		this.movementCriteriaController.setDateFormat(new SimpleDateFormat());
+		this.movementCriteriaController.getDateFormat();
+		this.movementCriteriaController.getSinceDatestr();
+		this.movementCriteriaController.getToDatestr();
+		this.movementCriteriaController.getDateRange();
+		this.movementCriteriaController.getTitleDateSince();
+		this.movementCriteriaController.getTitleDateTo();
 	}
 
 	@Test
-	public void coberturaOnMovement() {
+	public void checkOnMovement() {
 		// inicializar mockitos de los Dtos
 		MovementDto movement = Mockito.mock(MovementDto.class);
 		MovementDetailDto movementDetailDto = new MovementDetailDto();
@@ -204,7 +206,7 @@ public class MovementCriteriaControllerImplTest extends AbstractBbvaControllerTe
 	}
 
 	@Test
-	public void coberturaHandle() {
+	public void checkHandle() {
 		// handleDateSelect event.getObject nullo
 		this.movementCriteriaController.handleDateSelect(eventSelect);
 		// handleDateSelect event.getObject no nullo
@@ -213,7 +215,7 @@ public class MovementCriteriaControllerImplTest extends AbstractBbvaControllerTe
 	}
 
 	@Test
-	public void coberturaMethod() {
+	public void checkMethod() {
 		// Mockear el render y el producto
 		Mockito.when(this.movementCriteriaController.getRenderComponents()).thenReturn(renderComponents);
 		Mockito.when(movementCriteriaController.getSelectedProduct()).thenReturn(productDto);
@@ -225,6 +227,8 @@ public class MovementCriteriaControllerImplTest extends AbstractBbvaControllerTe
 		this.movementCriteriaController.oneSelectDate();
 		// Balance Range
 		this.movementCriteriaController.setBalanceRange(eventAction);
+		this.movementCriteriaController.getSinceText();
+		this.movementCriteriaController.getToText();
 		// Criteria Search paginator
 		// this.movementCriteriaController.criteriaSearch();
 	}
@@ -277,16 +281,15 @@ public class MovementCriteriaControllerImplTest extends AbstractBbvaControllerTe
 		product.setProductId("12345");
 		DateRangeDto date = new DateRangeDto(new Date(), new Date());
 		BalanceRangeDto balance = new BalanceRangeDto(new BigDecimal(1000), new BigDecimal(2000));
-		List<MovementDto> lista = new ArrayList<MovementDto>();
-
+		lista = new ArrayList<MovementDto>();
 		this.movementCriteriaController.setMovementsFacade(movementsFacade);
 		MovementPaginatedController mpc = new MovementPaginatedController();
 		mpc.setMovementsFacade(movementsFacade);
-
 		Mockito.when(this.movementCriteriaController.getSelectedProduct()).thenReturn(product);
 		Mockito.when(this.movementsFacade.listMovements(product.getProductId(), "AC", date, balance, 0, 0)).thenReturn(
 				lista);
 		this.movementCriteriaController.getAllMovements();
+		this.movementCriteriaController.getGraphicLineMovements();
 	}
 
 	@Test
@@ -296,12 +299,46 @@ public class MovementCriteriaControllerImplTest extends AbstractBbvaControllerTe
 		Assert.assertNull(this.movementCriteriaController.calculateDate("Últimos 8 meses"));
 	}
 
-	@SuppressWarnings("unchecked")
-	public void checkSetShowMoreStatus() {
-		List<MovementDto> movementsList = new ArrayList<MovementDto>();
-		this.movementCriteriaController.setMovementsList(movementsList);
-		Mockito.when(this.webFlowRequestContext.getViewScope().get("renderComponents")).thenReturn(Mockito.anyMap());
-		Mockito.when(this.movementCriteriaController.getRenderComponents()).thenReturn(Mockito.anyMap());
+	@Test
+	public void searchMovementByFilter() {
+		// put render
+		renderComponents.put(RenderAttributes.MOVEMENTSFILTER.toString(), true);
+		renderComponents.put(RenderAttributes.INCOMEOREXPENSESFILTER.toString(), false);
+		renderComponents.put(RenderAttributes.BALANCEFILTER.toString(), false);
+		renderComponents.put(RenderAttributes.FILTERDATE.toString(), false);
+		// Mockear el render
+		Mockito.when(this.movementCriteriaController.getRenderComponents()).thenReturn(renderComponents);
+		this.movementCriteriaController.setMovementsList(lista);
+		this.movementCriteriaController.getMovementsList();
+		// MOVEMENTSFILTER filter (true)
+		this.movementCriteriaController.searchMovementByFilter(eventAction);
+		// INCOMEOREXPENSESFILTER filter (true)
+		renderComponents.put(RenderAttributes.MOVEMENTSFILTER.toString(), false);
+		renderComponents.put(RenderAttributes.INCOMEOREXPENSESFILTER.toString(), true);
+		this.movementCriteriaDto.setIncomesOrExpenses("2");
+		this.movementCriteriaController.setMovementCriteria(movementCriteriaDto);
+		this.movementCriteriaController.searchMovementByFilter(eventAction);
+		this.movementCriteriaDto.setIncomesOrExpenses("1");
+		this.movementCriteriaController.setMovementCriteria(movementCriteriaDto);
+		this.movementCriteriaController.searchMovementByFilter(eventAction);
+		// BALANCEFILTER filter (true)
+		renderComponents.put(RenderAttributes.BALANCEFILTER.toString(), true);
+		this.movementCriteriaController.searchMovementByFilter(eventAction);
+		// FILTERDATE filter (true)
+		renderComponents.put(RenderAttributes.BALANCEFILTER.toString(), false);
+		renderComponents.put(RenderAttributes.FILTERDATE.toString(), true);
+		this.movementCriteriaController.searchMovementByFilter(eventAction);
+	}
+
+	@Test
+	public void checkNextPage() {
+		// Mockear el render
+		Mockito.when(this.movementCriteriaController.getRenderComponents()).thenReturn(renderComponents);
+		// method nextPage
+		this.movementCriteriaController.nextPage(eventAction);
+		// setShowMoreStatus lista.size > 10
+		Whitebox.setInternalState(lista, "size", 15);
+		this.movementCriteriaController.setMovementsList(lista);
 		this.movementCriteriaController.setShowMoreStatus();
 	}
 

@@ -742,3 +742,16 @@ a.header.setStyle span.arrow-left-smaller {
 .colorBlack {
 	color: #333 !important;
 }
+
+/*button Extract*/
+.extractDow {
+	background-position: -3px !important;
+	padding: 2px 6px !important;
+	font-weight: 400 !important;
+}
+
+.ui-button-text-icon-left .ui-icon {
+	position: absolute;
+	top: 25% !important;
+	margin-top: 0px;
+}
