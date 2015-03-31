@@ -1,5 +1,7 @@
 package com.bbva.net.front.controller.impl;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -87,9 +89,9 @@ public class ExtractControllerImplTest extends AbstractBbvaControllerTest {
 	}
 
 	@Test
-	public void checkDocumentExtract() {
+	public void checkDocumentExtract() throws MalformedURLException, IOException {
 		Mockito.when(extractFacade.getDocumentExtract(DEFAULT_PRODUCT, extractDto)).thenReturn(extractList);
-		this.extractController.documentExtract(event);
+		this.extractController.documentExtract();
 		Assert.assertNotNull(extractList);
 		Assert.assertEquals(extractDto, extractFacade.getDocumentExtract(DEFAULT_PRODUCT, extractDto).get(0));
 		Mockito.verify(extractFacade, Mockito.atLeastOnce()).getDocumentExtract(DEFAULT_PRODUCT, extractDto);

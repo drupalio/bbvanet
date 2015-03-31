@@ -1,14 +1,17 @@
 package com.bbva.net.front.controller.impl;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.faces.event.ActionEvent;
 
 import org.apache.commons.beanutils.BeanToPropertyValueTransformer;
 import org.apache.commons.collections.CollectionUtils;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 
 import com.bbva.net.back.facade.ExtractFacade;
 import com.bbva.net.back.model.extract.ExtractDto;
@@ -76,8 +79,9 @@ public class ExtractControllerImpl extends AbstractBbvaController implements Ext
 
 	/**
 	 * @param event
+	 * @throws IOException
 	 */
-	public void documentExtract(final ActionEvent event) {
+	public StreamedContent documentExtract() throws IOException {
 
 		LOGGER.info("Consultando extracto..........");
 		final ExtractDto extract = (ExtractDto)CollectionUtils.find(extractList, new ExtractDocumentPredicate(
@@ -87,7 +91,11 @@ public class ExtractControllerImpl extends AbstractBbvaController implements Ext
 		// Hacer Redirect
 		if (extractDocument != null) {
 			LOGGER.info("Descargar Extracto en : " + extractDocument.get(0).getUrl());
+			String url = extractDocument.get(0).getUrl();
+			URL stream = new URL(url);
+			return new DefaultStreamedContent(stream.openStream(), "application/pdf", "Reporte.pdf");
 		}
+		return new DefaultStreamedContent();
 	}
 
 	/**
@@ -198,5 +206,4 @@ public class ExtractControllerImpl extends AbstractBbvaController implements Ext
 	public void setEnableMonth(final boolean enableMonth) {
 		this.enableMonth = enableMonth;
 	}
-
 }
