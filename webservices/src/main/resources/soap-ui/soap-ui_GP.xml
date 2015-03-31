@@ -3083,7 +3083,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
         "alias": "Julian"
         
     }]
-}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/products/V01/00130443000200009416/extracts" method="GET" resourcePath="/czic/products/V01/00130443000200009416/extracts"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SCRIPT</con:dispatchStyle><con:dispatchPath>def requestMock = mockRequest.getRequest().toString()
+}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/products/V01/00130443000200009416/extracts" method="GET" resourcePath="/czic/products/V01/00130443000200009416/extracts"><con:settings/><con:defaultResponse>Response URL</con:defaultResponse><con:dispatchStyle>SCRIPT</con:dispatchStyle><con:dispatchPath>def requestMock = mockRequest.getRequest().toString()
 log.info "*** "+requestMock
 if( !requestMock.contains("filter") )
 {
@@ -3243,7 +3243,7 @@ if( !requestMock.contains("filter") )
     "year": "2012"
 }]</con:responseContent></con:response><con:response name="Response URL" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
     "externalCode": "922131073",
-    "url": "https://ws1.e-bbva.com.co/extractox/DoxWeb/servlet/FileDownloaderServlet?soli=File20150201065825_KREDOK&amp;fecha=1234&amp;modo=desc"
+    "url": "http://www.primefaces.org/docs/guide/primefaces_user_guide_5_0.pdf"
 }]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/products/V01/00130443000200009416/movements/" method="GET" resourcePath="/czic/products/V01/00130443000200009416/movements/"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Examples showing how to match based on path, query param and header
 // Match based on path
@@ -3485,7 +3485,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 }
 
 */
-</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200"><con:settings/><con:responseContent/></con:response></con:restMockAction><con:restMockAction name="/czic/accounts/V01/00130443000200009416/checkbooks/" method="GET" resourcePath="/czic/accounts/V01/00130443000200009416/checkbooks/"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200"><con:settings/><con:responseContent/></con:response></con:restMockAction><con:restMockAction name="/czic/accounts/V01/00130443000200009416/checkbooks/" method="GET" resourcePath="/czic/accounts/V01/00130443000200009416/checkbooks/"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Examples showing how to match based on path, query param and header
 // Match based on path
 def requestPath = mockRequest.getPath()

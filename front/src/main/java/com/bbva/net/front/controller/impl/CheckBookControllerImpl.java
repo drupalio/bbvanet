@@ -177,9 +177,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	public void showResults(final ActionEvent event) {
 		LOGGER.info(" CheckBookControllerImpl showResults ");
 		setFalseMovementsComponents();
-
-		if (getRenderComponents().get(RenderAttributes.FILTERCHECKBOOK.toString())
-				&& getActionState().equals(SEARCH_BY_NUMBER_CHECK)) {
+		if (getRenderComponents().get(RenderAttributes.FILTERCHECKBOOK.toString())) {
 			LOGGER.info(" CheckBookControllerImpl showResults filterByCheckBook render");
 			setFalseCheckBookComponents();
 			getRenderComponents().put(RenderAttributes.TITLECHECKS.name(), true);
@@ -192,9 +190,9 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 
 			this.checkList = new ArrayList<CheckDto>();
 			this.checkList.add(check);
+			resetMapResults();
 
-		} else if (getRenderComponents().get(RenderAttributes.FILTERSTATUS.toString())
-				&& getActionState().equals(SEARCH_BY_STATUS)) {
+		} else if (getRenderComponents().get(RenderAttributes.FILTERSTATUS.toString())) {
 			LOGGER.info(" CheckBookControllerImpl showResults filterByStatus render ");
 			setFalseCheckBookComponents();
 			getRenderComponents().put(RenderAttributes.TITLECHECKS.name(), true);
@@ -203,9 +201,9 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			// Filter by status
 			this.dateRange = null;
 			criteriaSearch();
+			resetMapResults();
 
-		} else if (getRenderComponents().get(RenderAttributes.FILTERNUMBERCHECK.toString())
-				&& getActionState().equals(SEARCH_CHECK)) {
+		} else if (getRenderComponents().get(RenderAttributes.FILTERNUMBERCHECK.toString())) {
 			setFalseCheckComponents();
 			getRenderComponents().put(RenderAttributes.TITLECHECKBOOKS.name(), true);
 			getRenderComponents().put(RenderAttributes.CHECKBOOKTABLE.toString(), true);
@@ -219,6 +217,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			setRows(5);
 			getListCheckBookById(initial);
 			hasMoreElementsCheckBook(getCheckBook());
+			resetMapResults();
 
 		} else if (getRenderComponents().get(RenderAttributes.FILTERDATECHECK.toString())) {
 			// Filter by date
@@ -229,6 +228,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			}
 			this.titleState = null;
 			criteriaSearch();
+			resetMapResults();
 
 		} else {
 			LOGGER.info("sin filtros");
@@ -287,21 +287,21 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	public void setNumberCheckOrBook(final ActionEvent event) {
 		LOGGER.info(" CheckBookControllerImpl setNumberCheckOrBook ");
 
-		if (getRenderComponents().get(RenderAttributes.FILTERCHECKBOOK.toString())
-				&& getActionState().equals(SEARCH_BY_NUMBER_CHECK)) {
+		if (getRenderComponents().get(RenderAttributes.FILTERCHECKBOOK.toString())) {
 			leftTitle = " Nº Cheque ";
 			rightTitle = getCheckNumber();
+			resetMapResults();
 		}
-		if (getRenderComponents().get(RenderAttributes.FILTERSTATUS.toString())
-				&& getActionState().equals(SEARCH_BY_STATUS)) {
+		if (getRenderComponents().get(RenderAttributes.FILTERSTATUS.toString())) {
 			titleState = EnumCheckStatus.valueOf(Integer.parseInt(getCheckState())).getValue();
 			leftTitle = " Estado ";
 			rightTitle = titleState;
+			resetMapResults();
 		}
-		if (getRenderComponents().get(RenderAttributes.FILTERNUMBERCHECK.toString())
-				&& getActionState().equals(SEARCH_CHECK)) {
+		if (getRenderComponents().get(RenderAttributes.FILTERNUMBERCHECK.toString())) {
 			leftTitle = " Talonario: ";
 			rightTitle = getCheckBookNumber();
+			resetMapResults();
 		}
 	}
 
@@ -337,6 +337,13 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 		getRenderComponents().put(RenderAttributes.TITLECHECKBOOKS.name(), false);
 		getRenderComponents().put(RenderAttributes.CHECKBOOKTABLE.name(), false);
 		getRenderComponents().put(RenderAttributes.FOOTERTABLECHECKBOOK.name(), false);
+	}
+
+	public void resetMapResults() {
+		getRenderComponents().put(RenderAttributes.FILTERCHECKBOOK.toString(), false);
+		getRenderComponents().put(RenderAttributes.FILTERSTATUS.toString(), false);
+		getRenderComponents().put(RenderAttributes.FILTERNUMBERCHECK.toString(), false);
+		getRenderComponents().put(RenderAttributes.FILTERDATECHECK.toString(), false);
 	}
 
 	@Override

@@ -155,6 +155,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			LOGGER.info("MovementsAccountController searchMovementByFilterDate");
 			this.dateRange = calculateDate(this.getSelectDate());
 			criteriaSearch();
+			resetMapResults();
 
 		} else if (getRenderComponents().get(RenderAttributes.BALANCEFILTER.toString())) {
 			// Get movements by balance
@@ -163,6 +164,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			this.balanceRange.setBalanceSince(movementCriteria.getBalanceRange().getBalanceSince());
 			this.balanceRange.setBalanceTo(movementCriteria.getBalanceRange().getBalanceTo());
 			criteriaSearch();
+			resetMapResults();
 		}
 
 		if (getRenderComponents().get(RenderAttributes.INCOMEOREXPENSESFILTER.toString())) {
@@ -188,6 +190,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 				setShowMoreStatus();
 			}
 			RequestContext.getCurrentInstance().update(":detailAccounts:tableMovements:formMovesDetail:movAccount");
+			resetMapResults();
 		}
 
 		if (getRenderComponents().get(RenderAttributes.MOVEMENTSFILTER.toString())) {
@@ -198,6 +201,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			this.movementsList = movementsByConcept;
 			setShowMoreStatus();
 			getRenderComponents().put(RenderAttributes.MOVEMENTSTABLE.toString(), true);
+			resetMapResults();
 		}
 		clean();
 	}
@@ -361,6 +365,13 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		getRenderComponents().put(RenderAttributes.TITLECHECKBOOKS.name(), false);
 		getRenderComponents().put(RenderAttributes.CHECKBOOKTABLE.name(), false);
 		getRenderComponents().put(RenderAttributes.FOOTERTABLECHECKBOOK.name(), false);
+	}
+
+	public void resetMapResults() {
+		getRenderComponents().put(RenderAttributes.MOVEMENTSFILTER.toString(), false);
+		getRenderComponents().put(RenderAttributes.INCOMEOREXPENSESFILTER.toString(), false);
+		getRenderComponents().put(RenderAttributes.BALANCEFILTER.toString(), false);
+		getRenderComponents().put(RenderAttributes.FILTERDATE.toString(), false);
 	}
 
 	@Override
