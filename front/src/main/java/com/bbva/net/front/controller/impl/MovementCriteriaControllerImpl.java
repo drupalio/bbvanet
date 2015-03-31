@@ -124,6 +124,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		LOGGER.info("MovementsAccountController criteriaSearch productType:  " + getSelectedProduct().getSubTypeProd());
 		LOGGER.info("MovementsAccountController criteriaSearch productId:  " + getSelectedProduct().getProductId());
 		super.init();
+		super.setMovementsFacade(movementsFacade);
 		search();
 		this.movementsList = getCurrentList();
 		setShowMoreStatus();
@@ -135,6 +136,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		getRenderComponents().put(RenderAttributes.MOVEMENTSTABLE.name(), true);
 		setFalseCheckBookComponents();
 		setFalseCheckComponents();
+		super.setMovementsFacade(movementsFacade);
 		next();
 		this.movementsList = getCurrentList();
 	}
