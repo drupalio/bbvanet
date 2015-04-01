@@ -170,6 +170,7 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
 	public void setNumberCheckOrBook() {
 		renderComponents.put(RenderAttributes.FILTERSTATUS.toString(), false);
 		renderComponents.put(RenderAttributes.FILTERNUMBERCHECK.toString(), false);
+		this.checkBookController.setActionState("");
 		// FILTERCHECKBOOK (true)
 		renderComponents.put(RenderAttributes.FILTERCHECKBOOK.toString(), true);
 		this.checkBookController.setNumberCheckOrBook(eventAction);

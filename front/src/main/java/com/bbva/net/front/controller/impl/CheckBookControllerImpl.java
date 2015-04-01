@@ -137,6 +137,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	@Override
 	public void actionState() {
 		LOGGER.info(" CheckBookControllerImpl actionState ");
+		resetMapResults();
 		if (getActionState().equals(SEARCH_CHECK)) {
 			getRenderComponents().put(RenderAttributes.FILTERCHECKBOOK.toString(), true);
 			getRenderComponents().put(RenderAttributes.NUMBERCHECK.toString(), true);
@@ -216,8 +217,6 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			}
 			this.titleState = null;
 			criteriaSearch();
-			resetMapResults();
-
 		} else {
 			LOGGER.info("sin filtros");
 		}
@@ -274,12 +273,17 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	@Override
 	public void setNumberCheckOrBook(final ActionEvent event) {
 		LOGGER.info(" CheckBookControllerImpl setNumberCheckOrBook ");
+		actionState();
 		if (getRenderComponents().get(RenderAttributes.FILTERNUMBERCHECK.toString())) {
 			leftTitle = " Nº Cheque ";
 			rightTitle = getCheckNumber();
 		}
 		if (getRenderComponents().get(RenderAttributes.FILTERSTATUS.toString())) {
-			titleState = EnumCheckStatus.valueOf(Integer.parseInt(getCheckState())).getValue();
+			if (getCheckState() != null)
+				setTitleState(EnumCheckStatus.valueOf(Integer.parseInt(getCheckState())).getValue());
+			else
+				setTitleState("Ninguno");
+
 			leftTitle = " Estado ";
 			rightTitle = titleState;
 		}
@@ -327,7 +331,6 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 		getRenderComponents().put(RenderAttributes.FILTERCHECKBOOK.toString(), false);
 		getRenderComponents().put(RenderAttributes.FILTERSTATUS.toString(), false);
 		getRenderComponents().put(RenderAttributes.FILTERNUMBERCHECK.toString(), false);
-		getRenderComponents().put(RenderAttributes.FILTERDATECHECK.toString(), false);
 	}
 
 	@Override
