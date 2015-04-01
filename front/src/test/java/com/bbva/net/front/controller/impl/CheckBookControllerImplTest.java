@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.faces.event.ActionEvent;
+import javax.faces.model.SelectItem;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -18,6 +19,7 @@ import com.bbva.net.back.facade.CheckBookFacade;
 import com.bbva.net.back.facade.MultiValueGroupFacade;
 import com.bbva.net.back.model.checkbook.CheckDto;
 import com.bbva.net.back.model.checkbook.CheckbookDto;
+import com.bbva.net.back.model.commons.DateRangeDto;
 import com.bbva.net.back.model.enums.RenderAttributes;
 import com.bbva.net.back.model.globalposition.ProductDto;
 import com.bbva.net.front.test.utils.AbstractBbvaControllerTest;
@@ -62,21 +64,26 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
 		this.checkPaginator.setCheckBookFacade(checkBookFacade);
 		this.checkBookController.setMultiValueGroupFacade(multiValueGroupFacade);
 		this.checkBookController.setCheckBookFacade(checkBookFacade);
-
+		this.checkBookController.getMultiValueGroupFacade();
 		// init
 		this.checkBookController.init();
-
 	}
 
 	@Test
 	public void initCheckbook() {
 		List<CheckbookDto> check = new ArrayList<CheckbookDto>();
+		List<SelectItem> checkBooks = new ArrayList<SelectItem>();
 		this.checkBookController.setCheckBookList(check);
 		this.checkBookController.getCheckBookList();
 		// Mockear la respuesta
 		this.checkBookController.initCheckBookList();
 		Mockito.when(this.checkBookFacade.getCheckBooksById(DEFAULT_ID)).thenReturn(check);
 		this.checkBookController.initCheckBookList();
+		Whitebox.setInternalState(check, "size", 1);
+		check.set(0, new CheckbookDto(null, null, null, null, null, null, DEFAULT_ID, null));
+		this.checkBookController.initCheckBookList();
+		this.checkBookController.setCheckBooks(checkBooks);
+		this.checkBookController.getCheckBooks();
 	}
 
 	@Test
@@ -95,6 +102,8 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
 		this.checkBookController.setSelectDate("");
 		this.checkBookController.setCustomDate(eventAction);
 		// setSinceDate no nula, toDate nula y concreteDate igual
+		this.checkBookController.setSinceDatestr("");
+		this.checkBookController.getSinceDatestr();
 		this.checkBookController.setSinceDate(new Date());
 		this.checkBookController.setSelectDate("");
 		this.checkBookController.setCustomDate(eventAction);
@@ -105,6 +114,8 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
 		this.checkBookController.setCustomDate(eventAction);
 		// setToDate no nula, setSinceDate nulo y concreteDate igual
 		this.checkBookController.setSelectDate("null");
+		this.checkBookController.setToDatestr("");
+		this.checkBookController.getToDatestr();
 		this.checkBookController.setToDate(new Date());
 		this.checkBookController.setCustomDate(eventAction);
 	}
@@ -136,18 +147,27 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
 		// peridType = null
 		renderComponents.put(RenderAttributes.FILTERDATECHECK.toString(), true);
 		this.checkBookController.setSelectDate("H");
+		this.checkBookController.setDateRange(new DateRangeDto());
+		this.checkBookController.getDateRange();
 		this.checkBookController.showResults(eventAction);
 		// FILTERNUMBERCHECK (true)
 		renderComponents.put(RenderAttributes.FILTERNUMBERCHECK.toString(), true);
+		this.checkBookController.setCheck(new CheckDto());
+		this.checkBookController.getCheck();
+		this.checkBookController.setCheckNumber("");
+		this.checkBookController.getCheckNumber();
 		this.checkBookController.showResults(eventAction);
 		// FILTERSTATUS (true)
 		renderComponents.put(RenderAttributes.FILTERSTATUS.toString(), true);
 		this.checkBookController.setTitleState("A");
 		this.checkBookController.setCheckState("1");
+		this.checkBookController.getTitleState();
 		this.checkBookController.showResults(eventAction);
-		// FILTERSTATUS (true)
+		// FILTERCHECKBOOK (true)
 		renderComponents.put(RenderAttributes.FILTERCHECKBOOK.toString(), true);
 		renderComponents.put(RenderAttributes.FILTERDATECHECK.toString(), false);
+		this.checkBookController.setCheckBookNumber("1234");
+		this.checkBookController.getCheckBookNumber();
 		this.checkBookController.showResults(eventAction);
 	}
 
@@ -161,9 +181,14 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
 		this.checkBookController.nextPageCheckBook(eventAction);
 		// size 15
 		Whitebox.setInternalState(checkBook, "size", 15);
+		this.checkBookController.getRows();
 		this.checkBookController.hasMoreElementsCheckBook(checkBook);
 		Whitebox.setInternalState(check, "size", 15);
 		this.checkBookController.hasMoreElementsCheck(check);
+		this.checkBookController.setCheckBook(checkBook);
+		this.checkBookController.getCheckBook();
+		this.checkBookController.setCheckList(check);
+		this.checkBookController.getCheckList();
 	}
 
 	@Test
@@ -171,6 +196,10 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
 		renderComponents.put(RenderAttributes.FILTERSTATUS.toString(), false);
 		renderComponents.put(RenderAttributes.FILTERNUMBERCHECK.toString(), false);
 		this.checkBookController.setActionState("");
+		this.checkBookController.setLeftTitle("");
+		this.checkBookController.getLeftTitle();
+		this.checkBookController.setRightTitle("");
+		this.checkBookController.getRightTitle();
 		// FILTERCHECKBOOK (true)
 		renderComponents.put(RenderAttributes.FILTERCHECKBOOK.toString(), true);
 		this.checkBookController.setNumberCheckOrBook(eventAction);
@@ -190,11 +219,15 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
 
 	@Test
 	public void checkOnSelectSince() {
+		this.checkBookController.setTitleDateSince("");
+		this.checkBookController.getTitleDateSince();
 		this.checkBookController.onSelectDateSince(eventSelect);
 	}
 
 	@Test
 	public void checkOnSelectTo() {
+		this.checkBookController.setTitleDateTo("");
+		this.checkBookController.getTitleDateTo();
 		this.checkBookController.onSelectDateTo(eventSelect);
 	}
 }

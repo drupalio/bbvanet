@@ -539,13 +539,6 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	}
 
 	/**
-	 * @return the checkBookFacade
-	 */
-	public CheckBookFacade getCheckBookFacade() {
-		return checkBookFacade;
-	}
-
-	/**
 	 * @param checkBookFacade the checkBookFacade to set
 	 */
 	@Override
@@ -678,19 +671,4 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	public void setRows(int rows) {
 		this.rows = rows;
 	}
-
-	/**
-	 * @return the searchByNumberCheck
-	 */
-	public static String getSearchByNumberCheck() {
-		return SEARCH_BY_NUMBER_CHECK;
-	}
-
-	/**
-	 * @return the searchCheck
-	 */
-	public static String getSearchCheck() {
-		return SEARCH_CHECK;
-	}
-
 }
