@@ -145,10 +145,10 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	@Override
 	public void searchMovementByFilter(final ActionEvent event) {
 		LOGGER.info("MovementsAccountController searchMovementByFilter");
-		getRenderComponents().put(RenderAttributes.TITLEMOVES.name(), true);
-		getRenderComponents().put(RenderAttributes.MOVEMENTSTABLE.toString(), true);
 		setFalseCheckComponents();
 		setFalseCheckBookComponents();
+		getRenderComponents().put(RenderAttributes.TITLEMOVES.name(), true);
+		getRenderComponents().put(RenderAttributes.MOVEMENTSTABLE.toString(), true);
 
 		if (getRenderComponents().get(RenderAttributes.FILTERDATE.toString())) {
 			// Get movements by date

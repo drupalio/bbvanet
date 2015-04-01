@@ -81,7 +81,6 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	public void init() {
 		LOGGER.info("Initialize CheckBookControllerImpl");
 		super.init();
-
 	}
 
 	public void initCheckBookList() {
@@ -102,17 +101,13 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	@Override
 	public void oneSelectDate() {
 		LOGGER.info(" CheckBookControllerImpl oneSelectDate ");
-
 		getRenderComponents().put(RenderAttributes.FILTERDATECHECK.toString(), true);
-
 		if (getSelectDate().equals(CONCRETE_DATE)) {
 			getRenderComponents().put(RenderAttributes.CALENDARCHECK.toString(), false);
 			getRenderComponents().put(RenderAttributes.BUTTONDATECHECK.toString(), false);
-
 		} else {
 			getRenderComponents().put(RenderAttributes.CALENDARCHECK.toString(), true);
 			getRenderComponents().put(RenderAttributes.BUTTONDATECHECK.toString(), false);
-
 		}
 	}
 
@@ -136,40 +131,30 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			toDatestr = "";
 			setSinceDate(null);
 			setToDate(null);
-
 		}
 	}
 
 	@Override
 	public void actionState() {
 		LOGGER.info(" CheckBookControllerImpl actionState ");
-
 		if (getActionState().equals(SEARCH_CHECK)) {
-
-			getRenderComponents().put(RenderAttributes.FILTERNUMBERCHECK.toString(), true);
+			getRenderComponents().put(RenderAttributes.FILTERCHECKBOOK.toString(), true);
 			getRenderComponents().put(RenderAttributes.NUMBERCHECK.toString(), true);
 			getRenderComponents().put(RenderAttributes.STATUS.toString(), true);
 			getRenderComponents().put(RenderAttributes.NUMBERBOOK.toString(), false);
 			getRenderComponents().put(RenderAttributes.BUTTONBOOK.toString(), false);
-			getRenderComponents().put(RenderAttributes.MOVEMENTSTABLE.toString(), false);
-
 		} else if (getActionState().equals(SEARCH_BY_NUMBER_CHECK)) {
-
-			getRenderComponents().put(RenderAttributes.FILTERCHECKBOOK.toString(), true);
+			getRenderComponents().put(RenderAttributes.FILTERNUMBERCHECK.toString(), true);
 			getRenderComponents().put(RenderAttributes.NUMBERCHECK.toString(), false);
 			getRenderComponents().put(RenderAttributes.STATUS.toString(), true);
 			getRenderComponents().put(RenderAttributes.NUMBERBOOK.toString(), true);
 			getRenderComponents().put(RenderAttributes.BUTTONBOOK.toString(), false);
-			getRenderComponents().put(RenderAttributes.MOVEMENTSTABLE.toString(), false);
-
 		} else if (getActionState().equals(SEARCH_BY_STATUS)) {
-
 			getRenderComponents().put(RenderAttributes.FILTERSTATUS.toString(), true);
 			getRenderComponents().put(RenderAttributes.NUMBERCHECK.toString(), true);
 			getRenderComponents().put(RenderAttributes.STATUS.toString(), false);
 			getRenderComponents().put(RenderAttributes.NUMBERBOOK.toString(), true);
 			getRenderComponents().put(RenderAttributes.BUTTONBOOK.toString(), false);
-			getRenderComponents().put(RenderAttributes.MOVEMENTSTABLE.toString(), false);
 		}
 	}
 
@@ -177,7 +162,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	public void showResults(final ActionEvent event) {
 		LOGGER.info(" CheckBookControllerImpl showResults ");
 		setFalseMovementsComponents();
-		if (getRenderComponents().get(RenderAttributes.FILTERCHECKBOOK.toString())) {
+		if (getRenderComponents().get(RenderAttributes.FILTERNUMBERCHECK.toString())) {
 			LOGGER.info(" CheckBookControllerImpl showResults filterByCheckBook render");
 			setFalseCheckBookComponents();
 			getRenderComponents().put(RenderAttributes.TITLECHECKS.name(), true);
@@ -203,7 +188,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			criteriaSearch();
 			resetMapResults();
 
-		} else if (getRenderComponents().get(RenderAttributes.FILTERNUMBERCHECK.toString())) {
+		} else if (getRenderComponents().get(RenderAttributes.FILTERCHECKBOOK.toString())) {
 			setFalseCheckComponents();
 			getRenderComponents().put(RenderAttributes.TITLECHECKBOOKS.name(), true);
 			getRenderComponents().put(RenderAttributes.CHECKBOOKTABLE.toString(), true);
@@ -221,6 +206,9 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 
 		} else if (getRenderComponents().get(RenderAttributes.FILTERDATECHECK.toString())) {
 			// Filter by date
+			setFalseCheckBookComponents();
+			getRenderComponents().put(RenderAttributes.TITLECHECKS.name(), true);
+			getRenderComponents().put(RenderAttributes.CHECKTABLE.toString(), true);
 			LOGGER.info(" CheckBookControllerImpl showResults filterByDateCheck ");
 			EnumPeriodType periodType = EnumPeriodType.valueOfLabel(this.getSelectDate());
 			if (!(periodType == (null))) {
@@ -286,22 +274,18 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	@Override
 	public void setNumberCheckOrBook(final ActionEvent event) {
 		LOGGER.info(" CheckBookControllerImpl setNumberCheckOrBook ");
-
-		if (getRenderComponents().get(RenderAttributes.FILTERCHECKBOOK.toString())) {
+		if (getRenderComponents().get(RenderAttributes.FILTERNUMBERCHECK.toString())) {
 			leftTitle = " Nº Cheque ";
 			rightTitle = getCheckNumber();
-			resetMapResults();
 		}
 		if (getRenderComponents().get(RenderAttributes.FILTERSTATUS.toString())) {
 			titleState = EnumCheckStatus.valueOf(Integer.parseInt(getCheckState())).getValue();
 			leftTitle = " Estado ";
 			rightTitle = titleState;
-			resetMapResults();
 		}
-		if (getRenderComponents().get(RenderAttributes.FILTERNUMBERCHECK.toString())) {
+		if (getRenderComponents().get(RenderAttributes.FILTERCHECKBOOK.toString())) {
 			leftTitle = " Talonario: ";
 			rightTitle = getCheckBookNumber();
-			resetMapResults();
 		}
 	}
 
