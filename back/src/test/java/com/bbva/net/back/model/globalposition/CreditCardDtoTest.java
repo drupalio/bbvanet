@@ -11,9 +11,12 @@ import com.bbva.net.core.test.AbstractBbvaDTOTest;
 
 public class CreditCardDtoTest extends AbstractBbvaDTOTest<CreditCardDto> {
 
+	private CreditCardDto creditCard;
+
 	@Override
 	protected CreditCardDto getInstance() {
-		return new CreditCardDto();
+		this.creditCard = new CreditCardDto();
+		return creditCard;
 	}
 
 	@Test
@@ -21,5 +24,11 @@ public class CreditCardDtoTest extends AbstractBbvaDTOTest<CreditCardDto> {
 		CardsChargesDto cards = new CardsChargesDto("TC", new Money(new BigDecimal(1000)));
 		Assert.assertNotNull(cards);
 		Assert.assertEquals(cards.getAmmount().getAmount(), new BigDecimal(1000));
+	}
+
+	@Test
+	public void checkBinCreditCard() {
+		creditCard.setBin(new Money(new BigDecimal(1000)));
+		Assert.assertEquals(creditCard.getBin().getAmount(), new BigDecimal(1000));
 	}
 }
