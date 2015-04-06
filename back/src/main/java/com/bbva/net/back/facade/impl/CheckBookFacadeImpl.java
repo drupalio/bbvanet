@@ -72,4 +72,25 @@ public class CheckBookFacadeImpl extends AbstractBbvaFacade implements CheckBook
 		final List<Checkbook> response = this.accountService.getAccount(accountId).getCheckbooks();
 		return checkBookMapper.mapCheckBookList(response);
 	}
+
+	/**
+	 * @param accountService the accountService to set
+	 */
+	public void setAccountService(AccountsService accountService) {
+		this.accountService = accountService;
+	}
+
+	/**
+	 * @param checkBookMapper the checkBookMapper to set
+	 */
+	public void setCheckBookMapper(CheckBookMapper checkBookMapper) {
+		this.checkBookMapper = checkBookMapper;
+	}
+
+	/**
+	 * @param fiqlService the fiqlService to set
+	 */
+	public void setFiqlService(FiqlService fiqlService) {
+		this.fiqlService = fiqlService;
+	}
 }
