@@ -3,7 +3,6 @@
  */
 package com.bbva.net.front.controller.impl;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -14,7 +13,7 @@ import javax.faces.event.ActionEvent;
 import javax.faces.model.SelectItem;
 
 import org.apache.commons.collections.CollectionUtils;
-import org.primefaces.event.SelectEvent;
+import org.apache.tools.ant.util.DateUtils;
 
 import com.bbva.net.back.entity.MultiValueGroup;
 import com.bbva.net.back.facade.CheckBookFacade;
@@ -75,8 +74,6 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	@Resource(name = "multiValueGroupFacade")
 	private transient MultiValueGroupFacade multiValueGroupFacade;
 
-	SimpleDateFormat dateFormat = new SimpleDateFormat(MessagesHelper.INSTANCE.getStringI18("date.pattner.dd.mm.yyyy"));
-
 	@Override
 	public void init() {
 		LOGGER.info("Initialize CheckBookControllerImpl");
@@ -121,12 +118,11 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 		if (!(getSinceDate() == (null)) && !(getToDate() == (null)) && getSelectDate().equals(CONCRETE_DATE)) {
 			titleDateSince = SINCE_TITLE + ":";
 			titleDateTo = TO_TITLE + ":";
-
-			sinceDatestr = dateFormat.format(getSinceDate());
-			toDatestr = dateFormat.format(getToDate());
+			sinceDatestr = DateUtils.format(getSinceDate(), "dd/MM/yyyy");
+			toDatestr = DateUtils.format(getToDate(), "dd/MM/yyyy");
 		} else {
-			titleDateSince = "";
-			titleDateTo = "";
+			setTitleDateSince("");
+			setTitleDateTo("");
 			sinceDatestr = getSelectDate();
 			toDatestr = "";
 			setSinceDate(null);
@@ -331,19 +327,6 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 		getRenderComponents().put(RenderAttributes.FILTERCHECKBOOK.toString(), false);
 		getRenderComponents().put(RenderAttributes.FILTERSTATUS.toString(), false);
 		getRenderComponents().put(RenderAttributes.FILTERNUMBERCHECK.toString(), false);
-	}
-
-	@Override
-	public void onSelectDateSince(SelectEvent event) {
-
-		final Date date = (Date)event.getObject();
-		this.sinceDate = date;
-	}
-
-	@Override
-	public void onSelectDateTo(SelectEvent event) {
-		final Date date = (Date)event.getObject();
-		this.toDate = date;
 	}
 
 	// Setters And Getters

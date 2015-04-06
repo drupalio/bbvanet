@@ -89,7 +89,7 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
 	@Test
 	public void checkOnselectDate() {
 		// onselectDate concreteDate igual
-		this.checkBookController.setSelectDate("");
+		this.checkBookController.setSelectDate("select.radio.concret.date");
 		this.checkBookController.oneSelectDate();
 		// onselectDate concreteDate diferente
 		this.checkBookController.setSelectDate("null");
@@ -99,16 +99,16 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
 	@Test
 	public void checkCumstomDate() {
 		// nullos y concreteDate igual
-		this.checkBookController.setSelectDate("");
+		this.checkBookController.setSelectDate("select.radio.concret.date");
 		this.checkBookController.setCustomDate(eventAction);
 		// setSinceDate no nula, toDate nula y concreteDate igual
 		this.checkBookController.setSinceDatestr("");
 		this.checkBookController.getSinceDatestr();
 		this.checkBookController.setSinceDate(new Date());
-		this.checkBookController.setSelectDate("");
+		this.checkBookController.setSelectDate("select.radio.concret.date");
 		this.checkBookController.setCustomDate(eventAction);
 		// no nulos y concreteDate igual
-		this.checkBookController.setSelectDate("");
+		this.checkBookController.setSelectDate("select.radio.concret.date");
 		this.checkBookController.setSinceDate(new Date());
 		this.checkBookController.setToDate(new Date());
 		this.checkBookController.setCustomDate(eventAction);
@@ -117,18 +117,33 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
 		this.checkBookController.setToDatestr("");
 		this.checkBookController.getToDatestr();
 		this.checkBookController.setToDate(new Date());
+		this.checkBookController.getTitleDateSince();
+		this.checkBookController.getTitleDateTo();
 		this.checkBookController.setCustomDate(eventAction);
 	}
 
 	@Test
 	public void checkActionState() {
-		// put render
-		renderComponents.put(RenderAttributes.FILTERCHECKBOOK.toString(), false);
-		renderComponents.put(RenderAttributes.FILTERSTATUS.toString(), false);
-		renderComponents.put(RenderAttributes.FILTERDATECHECK.toString(), true);
-		// set ActionState
-		this.checkBookController.setActionState("");
-		this.checkBookController.actionState();
+		// set ActionState estado de cheque
+		this.checkBookController.setActionState("null");
+		this.checkBookController.setNumberCheckOrBook(eventAction);
+		// set ActionState estado de cheque sin estado
+		this.checkBookController.setActionState("text.search.by.number.status");
+		this.checkBookController.setLeftTitle("fecha");
+		this.checkBookController.setRightTitle("fecha");
+		this.checkBookController.setNumberCheckOrBook(eventAction);
+		// set ActionState numero de cheque
+		this.checkBookController.setActionState("text.search.by.number.check");
+		this.checkBookController.getLeftTitle();
+		this.checkBookController.setNumberCheckOrBook(eventAction);
+		// set ActionState numero de talonario
+		this.checkBookController.setActionState("text.search.by.numberbook");
+		this.checkBookController.getRightTitle();
+		this.checkBookController.setNumberCheckOrBook(eventAction);
+		// set ActionState estado de cheque
+		this.checkBookController.setActionState("text.search.by.number.status");
+		this.checkBookController.setCheckState("2");
+		this.checkBookController.setNumberCheckOrBook(eventAction);
 	}
 
 	@Test
@@ -192,42 +207,7 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
 	}
 
 	@Test
-	public void setNumberCheckOrBook() {
-		renderComponents.put(RenderAttributes.FILTERSTATUS.toString(), false);
-		renderComponents.put(RenderAttributes.FILTERNUMBERCHECK.toString(), false);
-		this.checkBookController.setActionState("");
-		this.checkBookController.setLeftTitle("");
-		this.checkBookController.getLeftTitle();
-		this.checkBookController.setRightTitle("");
-		this.checkBookController.getRightTitle();
-		// FILTERCHECKBOOK (true)
-		renderComponents.put(RenderAttributes.FILTERCHECKBOOK.toString(), true);
-		this.checkBookController.setNumberCheckOrBook(eventAction);
-		// FILTERSTATUS (true)
-		renderComponents.put(RenderAttributes.FILTERSTATUS.toString(), true);
-		this.checkBookController.setCheckState("1");
-		this.checkBookController.setNumberCheckOrBook(eventAction);
-		// FILTERNUMBERCHECK (true)
-		renderComponents.put(RenderAttributes.FILTERNUMBERCHECK.toString(), true);
-		this.checkBookController.setNumberCheckOrBook(eventAction);
-	}
-
-	@Test
 	public void checkListValueCheck() {
 		this.checkBookController.getListMultiValueChecks();
-	}
-
-	@Test
-	public void checkOnSelectSince() {
-		this.checkBookController.setTitleDateSince("");
-		this.checkBookController.getTitleDateSince();
-		this.checkBookController.onSelectDateSince(eventSelect);
-	}
-
-	@Test
-	public void checkOnSelectTo() {
-		this.checkBookController.setTitleDateTo("");
-		this.checkBookController.getTitleDateTo();
-		this.checkBookController.onSelectDateTo(eventSelect);
 	}
 }

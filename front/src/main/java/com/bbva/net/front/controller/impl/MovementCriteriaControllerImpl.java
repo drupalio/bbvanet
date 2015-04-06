@@ -1,7 +1,6 @@
 package com.bbva.net.front.controller.impl;
 
 import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -11,6 +10,7 @@ import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.tools.ant.util.DateUtils;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
 
@@ -44,8 +44,6 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			BALANCE_TITLE = MessagesHelper.INSTANCE.getString("msg.message.balance"),
 			SINCE_TITLE = MessagesHelper.INSTANCE.getString("text.since"), TO_TITLE = MessagesHelper.INSTANCE
 					.getString("text.to");
-
-	SimpleDateFormat dateFormat = new SimpleDateFormat(MessagesHelper.INSTANCE.getStringI18("date.pattner.dd.mm.yyyy"));
 
 	private StringBuilder messageBalance;
 
@@ -297,9 +295,8 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		if (!(getSinceDate() == (null)) && !(getToDate() == (null)) && getSelectDate().equals(CONCRETE_DATE)) {
 			titleDateSince = SINCE_TITLE + ":";
 			titleDateTo = TO_TITLE + ":";
-
-			sinceDatestr = dateFormat.format(getSinceDate());
-			toDatestr = dateFormat.format(getToDate());
+			sinceDatestr = DateUtils.format(getSinceDate(), "dd/MM/yyyy");
+			toDatestr = DateUtils.format(getToDate(), "dd/MM/yyyy");
 		} else {
 			titleDateSince = "";
 			titleDateTo = "";
@@ -335,12 +332,6 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		selectDate = new String();
 		dateRange = null;
 		balanceRange = null;
-	}
-
-	public void handleDateSelect(final SelectEvent event) {
-		if (event.getObject() != null) {
-			setSinceDate((Date)event.getObject());
-		}
 	}
 
 	/**
@@ -379,35 +370,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		return super.getSelectedProduct();
 	}
 
-	@Override
-	public void selectDateSince(SelectEvent event) {
-		LOGGER.info("MovementCriteriaController Since Date Selected");
-		// final Date date = (Date)event.getObject();
-		// this.sinceDate = date;
-	}
-
-	@Override
-	public void selectDateTo(SelectEvent event) {
-		LOGGER.info("MovementCriteriaController To Date Selected");
-		// final Date date = (Date)event.getObject();
-		// this.toDate = date;
-	}
-
 	// Getters And Setters
-
-	/**
-	 * @return the dateFormat
-	 */
-	public SimpleDateFormat getDateFormat() {
-		return dateFormat;
-	}
-
-	/**
-	 * @param dateFormat the dateFormat to set
-	 */
-	public void setDateFormat(SimpleDateFormat dateFormat) {
-		this.dateFormat = dateFormat;
-	}
 
 	/**
 	 * @return the messageBalance
