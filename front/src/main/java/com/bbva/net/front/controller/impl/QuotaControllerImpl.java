@@ -3,7 +3,6 @@
  */
 package com.bbva.net.front.controller.impl;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -13,6 +12,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
 
+import org.apache.tools.ant.util.DateUtils;
 import org.primefaces.event.SelectEvent;
 
 import com.bbva.net.back.facade.QuotaDetailFacade;
@@ -55,8 +55,6 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 	private Date sinceDate, toDate;
 
 	private String sinceText, toText, sinceDatestr, toDatestr, selectDate;
-
-	SimpleDateFormat dateFormat = new SimpleDateFormat(MessagesHelper.INSTANCE.getStringI18("date.pattner.dd.mm.yyyy"));
 
 	private static final String CONCRETE_DATE = MessagesHelper.INSTANCE.getString("select.radio.concret.date");
 
@@ -115,7 +113,6 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 		setSinceDate(null);
 		setToDate(null);
 		setSelectDate(new String());
-
 	}
 
 	@Override
@@ -130,12 +127,6 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 		if (!(periodType == (null))) {
 			this.dateRange = new DateRangeDto();
 			this.dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
-		}
-	}
-
-	public void handleDateSelect(final SelectEvent event) {
-		if (event.getObject() != null) {
-			setSinceDate((Date)event.getObject());
 		}
 	}
 
@@ -206,8 +197,8 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 		if (!(getSinceDate() == (null)) && !(getToDate() == (null)) && getSelectDate().equals(CONCRETE_DATE)) {
 			this.sinceText = SINCE_TITLE + ": ";
 			this.toText = TO_TITLE + ": ";
-			this.sinceDatestr = dateFormat.format(getSinceDate());
-			this.toDatestr = dateFormat.format(getToDate());
+			sinceDatestr = DateUtils.format(getSinceDate(), "dd/MM/yyyy");
+			toDatestr = DateUtils.format(getToDate(), "dd/MM/yyyy");
 		} else {
 			this.sinceText = "";
 			this.toText = "";

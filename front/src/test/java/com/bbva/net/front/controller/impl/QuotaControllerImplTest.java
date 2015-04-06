@@ -191,15 +191,6 @@ public class QuotaControllerImplTest extends AbstractBbvaControllerTest {
 	}
 
 	@Test
-	public void coberturaHandle() {
-		// handleDateSelect event.getObject nullo
-		this.quotaControllerImpl.handleDateSelect(eventSelect);
-		// handleDateSelect event.getObject no nullo
-		Mockito.when(eventSelect.getObject()).thenReturn(new Date());
-		this.quotaControllerImpl.handleDateSelect(eventSelect);
-	}
-
-	@Test
 	public void coberturaSelectDate() {
 		// onselectDate concreteDate igual
 		this.quotaControllerImpl.oneSelectDate();
