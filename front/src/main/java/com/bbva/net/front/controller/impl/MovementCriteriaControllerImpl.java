@@ -1,6 +1,5 @@
 package com.bbva.net.front.controller.impl;
 
-import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -75,8 +74,6 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 	private MovementDetailDto movementDetail;
 
-	private List valuesLinesGraphic;
-
 	@Override
 	public void init() {
 		super.init();
@@ -96,7 +93,6 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		next();
 		this.movementsList = getCurrentList();
 		this.graphicLineMovements = graphicLineDelegate.getMovementAccount(this.movementsList);
-		// this.valuesLinesGraphic = valuesLinesGraphic(graphicLineMovements);
 		return this.movementsList;
 	}
 
@@ -625,14 +621,6 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		this.movementDetail = movementDetail;
 	}
 
-	public List getValuesLinesGraphic() {
-		return valuesLinesGraphic;
-	}
-
-	public void setValuesLinesGraphic(List valuesLinesGraphic) {
-		this.valuesLinesGraphic = valuesLinesGraphic;
-	}
-
 	/**
 	 * @return the titleDateSince
 	 */
@@ -690,26 +678,4 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		this.graphicLineMovements = graphicLineMovements;
 	}
 
-	@Override
-	public List<BigDecimal> valuesLinesGraphic(LineConfigUI valuesLines) {
-		BigDecimal menor = new BigDecimal(0);
-		BigDecimal mayor = new BigDecimal(0);
-		BigDecimal total = new BigDecimal(0);
-		List<BigDecimal> values = new ArrayList<BigDecimal>();
-		menor = valuesLines.getLineItemUIList().get(0).getValue().getAmount();
-		for (int i = 0; i < valuesLines.getLineItemUIList().size(); i++) {
-			if (valuesLines.getLineItemUIList().get(i).getValue().getAmount().compareTo(menor) == -1)
-				menor = valuesLines.getLineItemUIList().get(i).getValue().getAmount();
-			if (valuesLines.getLineItemUIList().get(i).getValue().getAmount().compareTo(mayor) == 1)
-				mayor = valuesLines.getLineItemUIList().get(i).getValue().getAmount();
-			total = total.add(valuesLines.getLineItemUIList().get(i).getValue().getAmount());
-		}
-		total = (mayor.subtract(menor)).divide(new BigDecimal(8));
-		for (int i = 0; i <= 8; i++) {
-			values.add(menor);
-			menor = menor.add(total);
-		}
-		values.add(menor);
-		return values;
-	}
 }

@@ -28,8 +28,7 @@
 					<bbvaHeader:moveDetailHeaderLeft alias="#{product.alias}"
 						number="#{product.productId}" type=" #{product.productName}" />
 					<bbvaGraphic:MovementsGraphic
-						lineConfigUI="#{movementsCriteriaController.graphicLineMovements}"
-						values="#{movementsCriteriaController.valuesLinesGraphic}" />
+						lineConfigUI="#{movementsCriteriaController.graphicLineMovements}"/>
 					<bbvaHeader:moveDetailHeaderRight textUp="#{msg['text.available']}"
 						valueUp="#{product.totalCash}" textDown="#{msg['text.tradeBalance']}"
 						valueDown="#{product.cashAvailable}" />

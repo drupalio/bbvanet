@@ -11,8 +11,7 @@
 <composite:interface>
 	<composite:attribute name="id" type="String" />
 	<composite:attribute name="lineConfigUI"
-		type="com.bbva.net.front.ui.line.LineConfigUI" />
-	<composite:attribute name="values" type="java.util.List"/>		
+		type="com.bbva.net.front.ui.line.LineConfigUI" />		
 </composite:interface>
 
 <composite:implementation>
@@ -32,15 +31,8 @@
 			var currency;
 			xColumns.push("Series 1: ");
 			
-			<c:forEach var="lineItemUI" items="${cc.attrs.lineConfigUI.lineItemUIList}" varStatus="status">
-			title = ("${lineItemUI.label}");
-			currency= ("${lineItemUI.value.currency}");
-			label = ("${lineItemUI.label}");
-			xColumns.push("${lineItemUI.value.amount}");
-			</c:forEach>
-			
-			<c:forEach var="lineValues" items="${cc.attrs.values}" varStatus="status">
-			xValues.push("${lineValues}");
+			<c:forEach var="lineValue" items="${cc.attrs.lineConfigUI.lineValues}" varStatus="status">
+			xValues.push("${lineValue}");
 			</c:forEach>
 			
 			var chart = c3.generate({
@@ -61,25 +53,19 @@
 					y : {
 						lines : [ xValues ],
 // 						lines : [ {
-// 							value : 323555556
+// 							value : 45554371
 // 						}, {
-// 							value : 533058788.625
+// 							value : 350914194
 // 						}, {
-// 							value : 742562021.250
+// 							value : 656274017
 // 						}, {
-// 							value : 952065253.875
+// 							value : 961633840
 // 						}, {
-// 							value : 1161568486.500
+// 							value : 1266993663
 // 						}, {
-// 							value : 1371071719.125
+// 							value : 1572353486
 // 						}, {
-// 							value : 1580574951.750
-// 						}, {
-// 							value : 1790078184.375
-// 						}, {
-// 							value : 1999581417.000
-// 						}, {
-// 							value : 2209084649.625
+// 							value : 1877713309
 // 						},],
 					}
 				},

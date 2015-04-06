@@ -1,5 +1,6 @@
 package com.bbva.net.front.delegate.impl;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,8 +63,6 @@ public class GraphicLineDelegateImpl implements GraphicLineDelegate {
 			if (globalResumeMovements.size() < 8) {
 				size = globalResumeMovements.size();
 			}
-			// else
-			// size = 8;
 			for (int i = 0; i < size; i++) {
 				final LineItemUI lineItemUI = new LineItemUI();
 				lineItemUI.setLabel("Serie 1: ");
@@ -73,6 +72,26 @@ public class GraphicLineDelegateImpl implements GraphicLineDelegate {
 
 		}
 		lineConfigUI.setLineItemUIList(lineItemUIList);
+
+		BigDecimal menor = new BigDecimal(0);
+		BigDecimal mayor = new BigDecimal(0);
+		BigDecimal total = new BigDecimal(0);
+		
+		List<BigDecimal> values = new ArrayList<BigDecimal>();
+		menor = lineConfigUI.getLineItemUIList().get(0).getValue().getAmount();
+		for (int i = 0; i < lineConfigUI.getLineItemUIList().size(); i++) {
+			if (lineConfigUI.getLineItemUIList().get(i).getValue().getAmount().compareTo(menor) == -1)
+				menor = lineConfigUI.getLineItemUIList().get(i).getValue().getAmount();
+			if (lineConfigUI.getLineItemUIList().get(i).getValue().getAmount().compareTo(mayor) == 1)
+				mayor = lineConfigUI.getLineItemUIList().get(i).getValue().getAmount();
+			total = total.add(lineConfigUI.getLineItemUIList().get(i).getValue().getAmount());
+		}
+		total = (mayor.subtract(menor)).divide(new BigDecimal(6));
+		for (int i = 0; i <= 6; i++) {
+			values.add(menor);
+			menor = menor.add(total);
+		}
+		lineConfigUI.setLineValues(values);
 		return lineConfigUI;
 	}
 
