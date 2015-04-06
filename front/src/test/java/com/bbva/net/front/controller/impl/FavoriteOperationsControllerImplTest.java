@@ -87,9 +87,9 @@ public class FavoriteOperationsControllerImplTest extends AbstractBbvaController
 		this.favoriteOperationsController.getNames();
 	}
 
-	@Test
-	public void checkGetDate() {
-		Date date = new Date();
-		Assert.assertNotNull(this.favoriteOperationsController.getDate(date));
-	}
+	// @Test
+	// public void checkGetDate() {
+	// Date date = new Date();
+	// Assert.assertNotNull(this.favoriteOperationsController.getDate(date));
+	// }
 }
