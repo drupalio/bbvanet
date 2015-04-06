@@ -28,6 +28,10 @@ public class FiqlServiceImplTest {
 
 	@Value("${fiql.productMovements.productType}")
 	private String PRODUCTTYPE;
+	
+	private String STATUS;
+	
+	private String STATUSPROPERTY;
 
 	@Before
 	public void init() {
@@ -45,9 +49,41 @@ public class FiqlServiceImplTest {
 	}
 
 	@Test
+	public void checkFiqlNotEmptywithExecption() {
+		periodType = EnumPeriodType.valueOf(Integer.parseInt("12"));
+		DateRangeDto dateRange = new DateRangeDto(new Date(0), new Date());
+		final String filtro = fiqlServiceImpl.getFiqlQueryByDateRange(dateRange, "", "");
+		Assert.assertNotNull(filtro);
+	}
+	
+	@Test
+	public void checkgetFiqlQueryByStatusNull() {
+		STATUS = null;
+		STATUSPROPERTY = "";
+		final String filtro = fiqlServiceImpl.getFiqlQueryByStatus(STATUS,STATUSPROPERTY);
+		Assert.assertNotNull(filtro);
+	}
+	
+	@Test
+	public void checkgetFiqlQueryByStatusOK() {
+		STATUS = "";
+		STATUSPROPERTY = "";
+		final String filtro = fiqlServiceImpl.getFiqlQueryByStatus(STATUS,STATUSPROPERTY);
+		Assert.assertNotNull(filtro);
+	}
+	
+	@Test
+	public void checkgetExecutiveFiql() {
+		final String filtro = fiqlServiceImpl.getExecutiveFiql();
+		Assert.assertNotNull(filtro);
+	}
+	
+	@Test
 	public void checkFiqlNotEmptyFormat() throws ParseException {
 
-		final String filtro = fiqlServiceImpl.getFiqlQueryByDateRange(null, "", "");
+		String filtro = fiqlServiceImpl.getFiqlQueryByDateRange(null, "", "");
+		Assert.assertNotNull(filtro);
+		filtro = fiqlServiceImpl.getFiqlQueryByDateRange(null, null, "");
 		Assert.assertNotNull(filtro);
 	}
 
