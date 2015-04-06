@@ -175,27 +175,28 @@ public class QuotaControllerImplTest extends AbstractBbvaControllerTest {
 
 	@Test
 	public void coberSetCustomDate() {
-		// nullos y concreteDate igual
+		// nullos y concreteDate dif
+		this.quotaControllerImpl.setSelectDate("null");
 		this.quotaControllerImpl.setCustomDate(eventAction);
-		// setSinceDate no nula, toDate nula y concreteDate igual
+		// setSinceDate no nula, toDate nula y concreteDate dif
 		this.quotaControllerImpl.setSinceDate(new Date());
 		this.quotaControllerImpl.setCustomDate(eventAction);
 		// no nulos y concreteDate igual
+		this.quotaControllerImpl.setSelectDate("select.radio.concret.date");
 		this.quotaControllerImpl.setSinceDate(new Date());
 		this.quotaControllerImpl.setToDate(new Date());
 		this.quotaControllerImpl.setCustomDate(eventAction);
-		// setToDate no nula, setSinceDate nulo y concreteDate igual
-		this.quotaControllerImpl.setSelectDate("null");
+		// setToDate no nula, setSinceDate nulo y concreteDate dif
 		this.quotaControllerImpl.setToDate(new Date());
 		this.quotaControllerImpl.setCustomDate(eventAction);
 	}
 
 	@Test
 	public void coberturaSelectDate() {
-		// onselectDate concreteDate igual
+		// onselectDate concreteDate dif
 		this.quotaControllerImpl.oneSelectDate();
-		// onselectDate concreteDate diferente
-		this.quotaControllerImpl.setSelectDate("null");
+		// onselectDate concreteDate igual
+		this.quotaControllerImpl.setSelectDate("select.radio.concret.date");
 		this.quotaControllerImpl.oneSelectDate();
 	}
 }
