@@ -1,7 +1,6 @@
 package com.bbva.net.front.controller.impl;
 
 import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -92,8 +91,6 @@ public class MovementCriteriaControllerImplTest extends AbstractBbvaControllerTe
 		this.movementCriteriaController.setMovementsFacade(movementsFacade);
 		// methodos
 		this.movementCriteriaController.cleanFilters(eventAction);
-		this.movementCriteriaController.selectDateSince(eventSelect);
-		this.movementCriteriaController.selectDateTo(eventSelect);
 	}
 
 	@Test
@@ -162,11 +159,14 @@ public class MovementCriteriaControllerImplTest extends AbstractBbvaControllerTe
 		// Mockear el render
 		Mockito.when(this.movementCriteriaController.getRenderComponents()).thenReturn(renderComponents);
 		// nullos y concreteDate igual
+		this.movementCriteriaController.setSelectDate("select.radio.concret.date");
 		this.movementCriteriaController.setCustomDate(eventAction);
 		// setSinceDate no nula, toDate nula y concreteDate igual
+		this.movementCriteriaController.setSelectDate("select.radio.concret.date");
 		this.movementCriteriaController.setSinceDate(new Date());
 		this.movementCriteriaController.setCustomDate(eventAction);
 		// no nulos y concreteDate igual
+		this.movementCriteriaController.setSelectDate("select.radio.concret.date");
 		this.movementCriteriaController.setTitleDateSince("Since");
 		this.movementCriteriaController.setSinceDate(new Date());
 		this.movementCriteriaController.setTitleDateTo("To");
@@ -176,8 +176,6 @@ public class MovementCriteriaControllerImplTest extends AbstractBbvaControllerTe
 		this.movementCriteriaController.setSelectDate("null");
 		this.movementCriteriaController.setToDate(new Date());
 		this.movementCriteriaController.setCustomDate(eventAction);
-		this.movementCriteriaController.setDateFormat(new SimpleDateFormat());
-		this.movementCriteriaController.getDateFormat();
 		this.movementCriteriaController.getSinceDatestr();
 		this.movementCriteriaController.getToDatestr();
 		this.movementCriteriaController.getDateRange();
@@ -204,21 +202,13 @@ public class MovementCriteriaControllerImplTest extends AbstractBbvaControllerTe
 	}
 
 	@Test
-	public void checkHandle() {
-		// handleDateSelect event.getObject nullo
-		this.movementCriteriaController.handleDateSelect(eventSelect);
-		// handleDateSelect event.getObject no nullo
-		Mockito.when(eventSelect.getObject()).thenReturn(new Date());
-		this.movementCriteriaController.handleDateSelect(eventSelect);
-	}
-
-	@Test
 	public void checkMethod() {
 		// Mockear el render y el producto
 		Mockito.when(this.movementCriteriaController.getRenderComponents()).thenReturn(renderComponents);
 		Mockito.when(movementCriteriaController.getSelectedProduct()).thenReturn(productDto);
 		Mockito.when(productDto.getSubTypeProd()).thenReturn("Account");
 		// onselectDate concreteDate igual
+		this.movementCriteriaController.setSelectDate("select.radio.concret.date");
 		this.movementCriteriaController.oneSelectDate();
 		// onselectDate concreteDate diferente
 		this.movementCriteriaController.setSelectDate("null");
@@ -268,13 +258,18 @@ public class MovementCriteriaControllerImplTest extends AbstractBbvaControllerTe
 		this.movementCriteriaController.getMovementsList();
 		// MOVEMENTSFILTER filter (true)
 		this.movementCriteriaController.searchMovementByFilter(eventAction);
-		// INCOMEOREXPENSESFILTER filter (true)
+		// INCOMEOREXPENSESFILTER filter (true) setIncomesOrExpenses null
 		renderComponents.put(RenderAttributes.MOVEMENTSFILTER.toString(), false);
 		renderComponents.put(RenderAttributes.INCOMEOREXPENSESFILTER.toString(), true);
-		this.movementCriteriaDto.setIncomesOrExpenses("2");
+		this.movementCriteriaController.searchMovementByFilter(eventAction);
+		// INCOMEOREXPENSESFILTER filter (true) setIncomesOrExpenses 1
+		renderComponents.put(RenderAttributes.INCOMEOREXPENSESFILTER.toString(), true);
+		this.movementCriteriaDto.setIncomesOrExpenses("1");
 		this.movementCriteriaController.setMovementCriteria(movementCriteriaDto);
 		this.movementCriteriaController.searchMovementByFilter(eventAction);
-		this.movementCriteriaDto.setIncomesOrExpenses("1");
+		// INCOMEOREXPENSESFILTER filter (true) setIncomesOrExpenses 2
+		renderComponents.put(RenderAttributes.INCOMEOREXPENSESFILTER.toString(), true);
+		this.movementCriteriaDto.setIncomesOrExpenses("2");
 		this.movementCriteriaController.setMovementCriteria(movementCriteriaDto);
 		this.movementCriteriaController.searchMovementByFilter(eventAction);
 		// BALANCEFILTER filter (true)

@@ -24,16 +24,15 @@
 					filterMessage="#{movementsCriteriaController.sinceDatestr}"
 					filterMessage2="#{movementsCriteriaController.toDatestr}">
 					<bbvaSearch:customSearchFilter id="customDate" showQuota="false"
-						showMovements="true" showChecks="false"
+						showMovements="true" showChecks="false" identify="moves"
 						value="#{movementsCriteriaController.selectDate}"
 						valueDateSince="#{movementsCriteriaController.sinceDate}"
 						valueDateTo="#{movementsCriteriaController.toDate}"
 						disabledButton="#{movementsCriteriaController.renderComponents['BUTTONDATE']}"
 						disabledCalendar="#{movementsCriteriaController.renderComponents['CALENDAR']}"
 						actionListenerDate="#{movementsCriteriaController.setCustomDate}"
-						actionListenerSince="#{movementsCriteriaController.selectDateSince}"
-						actionListenerTo="#{movementsCriteriaController.selectDateTo}"
-						listenerDate="#{movementsCriteriaController}" />
+						listenerDate="#{movementsCriteriaController}"
+						calendarSince="moveCalendarSince" calendarTo="moveCalendarTo" />
 				</bbvaSearch:customSearchList>
 				<bbvaSearch:customSearchList id="balanceList" classList="balance-filter"
 					classSpan="arrow-left-smaller" classSpanFilter="filter"
@@ -64,32 +63,41 @@
 					actionListenerShow="#{movementsCriteriaController.searchMovementByFilter}" />
 			</bbvaSearch:personalizedSearchTabBody>
 		</h:form>
+		<h:form id="formCheckBook">
+			<bbvaSearch:personalizedSearchTabBody id="checkSearchTab"
+				title="#{msg['text.title.search.book']}">
+				<bbvaSearch:customSearchList id="customCheckList"
+					classList="date-filter customSearch" classSpan="arrow-left-smaller"
+					classSpanFilter="filter" title="#{msg['text.date']}"
+					filterTitle="#{checkBookController.titleDateSince}"
+					filterTitle2="#{checkBookController.titleDateTo}"
+					filterMessage="#{checkBookController.sinceDatestr}"
+					filterMessage2="#{checkBookController.toDatestr}">
+					<bbvaSearch:customSearchFilter id="customDate" showQuota="false"
+						showMovements="false" showChecks="true" identify="check"
+						value="#{checkBookController.selectDate}"
+						valueDateSince="#{checkBookController.sinceDate}"
+						valueDateTo="#{checkBookController.toDate}"
+						calendarSince="checkCalendarSince" calendarTo="checkCalendarTo"
+						disabledButton="#{checkBookController.renderComponents['BUTTONDATECHECK']}"
+						disabledCalendar="#{checkBookController.renderComponents['CALENDARCHECK']}"
+						actionListenerDate="#{checkBookController.setCustomDate}"
+						listenerDate="#{checkBookController}" />
+				</bbvaSearch:customSearchList>
+				<bbvaSearch:checkBooksContainer id="checkContainer"
+					valueCheck="#{checkBookController.actionState}"
+					valueCheckNumber="#{checkBookController.checkNumber}"
+					valuecheckState="#{checkBookController.checkState}"
+					valueBookNumber="#{checkBookController.checkBookNumber}"
+					actionListenerCheck="#{checkBookController.rightTitle}" />
+				<bbvaSearch:searchButtonList show="false" showQuota="false"
+					showChecks="true" showMovements="false"
+					actionListenerShow="#{checkBookController.showResults}" />
+			</bbvaSearch:personalizedSearchTabBody>
+		</h:form>
+		<h:form id="downExtract">
+			<bbvaSearch:personalizedSearchExtract />
+		</h:form>
 	</p:outputPanel>
-	<h:form id="formCheckBook">
-		<bbvaSearch:personalizedSearchTabBody id="checkSearchTab"
-			title="#{msg['text.title.search.book']}">
-			<bbvaSearch:checkBooksContainer id="checkContainer"
-				value="#{checkBookController.selectDate}"
-				valueDateSince="#{checkBookController.sinceDate}"
-				valueDateTo="#{checkBookController.toDate}"
-				disabledButton="#{checkBookController.renderComponents['BUTTONDATECHECK']}"
-				disabledCalendar="#{checkBookController.renderComponents['CALENDARCHECK']}"
-				actionListenerDate="#{checkBookController.setCustomDate}"
-				actionListenerSince="#{movementsCriteriaController.onSelectDateSince}"
-				actionListenerTo="#{movementsCriteriaController.onSelectDateTo}"
-				listenerDate="#{checkBookController}"
-				valueCheck="#{checkBookController.actionState}"
-				valueCheckNumber="#{checkBookController.checkNumber}"
-				valuecheckState="#{checkBookController.checkState}"
-				valueBookNumber="#{checkBookController.checkBookNumber}"
-				actionListenerCheck="#{checkBookController.rightTitle}" />
-			<bbvaSearch:searchButtonList show="false" showQuota="false" showChecks="true"
-				showMovements="false"
-				actionListenerShow="#{checkBookController.showResults}" />
-		</bbvaSearch:personalizedSearchTabBody>
-	</h:form>
-	<h:form id="downExtract">
-		<bbvaSearch:personalizedSearchExtract />
-	</h:form>
 </composite:implementation>
 </html>

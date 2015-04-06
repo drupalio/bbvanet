@@ -58,6 +58,8 @@ public interface QuotaController {
 
 	void nextPage(ActionEvent event);
 
+	/**
+	 * 
+	 */
 	void criteriaSearch();
-
 }

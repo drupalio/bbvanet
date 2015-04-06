@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.lang.StringUtils;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -137,7 +136,7 @@ public abstract class AbstractBbvaControllerTest {
 
 		@Override
 		protected Object handleGetObject(String key) {
-			return StringUtils.EMPTY;
+			return key;
 		}
 
 		@Override
