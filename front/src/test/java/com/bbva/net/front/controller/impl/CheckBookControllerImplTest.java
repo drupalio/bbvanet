@@ -77,10 +77,9 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
 		this.checkBookController.getCheckBookList();
 		// Mockear la respuesta
 		this.checkBookController.initCheckBookList();
-		Mockito.when(this.checkBookFacade.getCheckBooksById(DEFAULT_ID)).thenReturn(check);
 		this.checkBookController.initCheckBookList();
-		Whitebox.setInternalState(check, "size", 1);
-		check.set(0, new CheckbookDto(null, null, null, null, null, null, DEFAULT_ID, null));
+		check.add(new CheckbookDto(null, null, null, null, null, null, DEFAULT_ID, null));
+		Mockito.when(this.checkBookFacade.getCheckBooksById(DEFAULT_ID)).thenReturn(check);
 		this.checkBookController.initCheckBookList();
 		this.checkBookController.setCheckBooks(checkBooks);
 		this.checkBookController.getCheckBooks();
