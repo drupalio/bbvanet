@@ -45,7 +45,6 @@ public class GraphicLineDelegateImpl implements GraphicLineDelegate {
 			lineConfigUI.setLineDepositItemUIList(lineItemUIList);
 
 		}
-
 		return lineConfigUI;
 	}
 
@@ -69,29 +68,31 @@ public class GraphicLineDelegateImpl implements GraphicLineDelegate {
 				lineItemUI.setValue(globalResumeMovements.get(i).getTotalBalance());
 				lineItemUIList.add(lineItemUI);
 			}
-
+			lineConfigUI.setLineItemUIList(lineItemUIList);
 		}
-		lineConfigUI.setLineItemUIList(lineItemUIList);
-
 		if (lineItemUIList.size() > 0 && lineItemUIList != null)
-			lineConfigUI.setLineValues(getLinesValues(lineConfigUI));
+			lineConfigUI.setLineValues(getLinesValues(lineItemUIList));
 
 		return lineConfigUI;
 	}
 
-	public List<BigDecimal> getLinesValues(final LineConfigUI lineConfigUI) {
+	/**
+	 * @param lineConfigUI
+	 * @return
+	 */
+	public List<BigDecimal> getLinesValues(final List<LineItemUI> listValues) {
 		BigDecimal menor = new BigDecimal(0);
 		BigDecimal mayor = new BigDecimal(0);
 		BigDecimal total = new BigDecimal(0);
 
 		List<BigDecimal> values = new ArrayList<BigDecimal>();
-		menor = lineConfigUI.getLineItemUIList().get(0).getValue().getAmount();
-		for (int i = 0; i < lineConfigUI.getLineItemUIList().size(); i++) {
-			if (lineConfigUI.getLineItemUIList().get(i).getValue().getAmount().compareTo(menor) == -1)
-				menor = lineConfigUI.getLineItemUIList().get(i).getValue().getAmount();
-			if (lineConfigUI.getLineItemUIList().get(i).getValue().getAmount().compareTo(mayor) == 1)
-				mayor = lineConfigUI.getLineItemUIList().get(i).getValue().getAmount();
-			total = total.add(lineConfigUI.getLineItemUIList().get(i).getValue().getAmount());
+		menor = listValues.get(0).getValue().getAmount();
+		for (int i = 0; i < listValues.size(); i++) {
+			if (listValues.get(i).getValue().getAmount().compareTo(menor) == -1)
+				menor = listValues.get(i).getValue().getAmount();
+			if (listValues.get(i).getValue().getAmount().compareTo(mayor) == 1)
+				mayor = listValues.get(i).getValue().getAmount();
+			total = total.add(listValues.get(i).getValue().getAmount());
 		}
 		total = (mayor.subtract(menor)).divide(new BigDecimal(6));
 		for (int i = 0; i <= 6; i++) {
