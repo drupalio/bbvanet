@@ -32,9 +32,10 @@ public class CheckbookDto implements Dto {
 
 	private String id;
 
-	private List<CheckDto> checks = new ArrayList<CheckDto>();
+	private List<CheckDto> checks;
 
 	public CheckbookDto() {
+		checks = new ArrayList<CheckDto>();
 	}
 
 	/**
@@ -68,12 +69,7 @@ public class CheckbookDto implements Dto {
 	@Override
 	public boolean equals(Object obj) {
 		return (obj != null) && (obj instanceof CheckbookDto)
-				&& this.getActualState().equals(((CheckbookDto)obj).getActualState())
-				&& this.getDeliveryDate().equals(((CheckbookDto)obj).getDeliveryDate())
-				&& this.getRequestDate().equals(((CheckbookDto)obj).getRequestDate())
-				&& this.getTotalCheck().equals(((CheckbookDto)obj).getTotalCheck())
-				&& this.getLastCheck().equals(((CheckbookDto)obj).getLastCheck())
-				&& this.getFirstCheck().equals(((CheckbookDto)obj).getFirstCheck())
+				&& (this.getId() != null && ((CheckbookDto)obj).getId() != null)
 				&& this.getId().equals(((CheckbookDto)obj).getId());
 	}
 

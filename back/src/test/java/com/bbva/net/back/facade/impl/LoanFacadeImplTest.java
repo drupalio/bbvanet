@@ -37,16 +37,16 @@ public class LoanFacadeImplTest {
 		// Mockitos
 		this.globalPositionFacade = Mockito.mock(GlobalPositionFacade.class);
 		this.productService = Mockito.mock(ProductService.class);
-		this.globalProduct = new GlobalProductsDto();
-		// Datos
-		LoanDto loan = new LoanDto();
-		loan.setVisible(true);
-		List<LoanDto> lista = new ArrayList<LoanDto>();
-		lista.add(loan);
+		this.globalProduct = Mockito.mock(GlobalProductsDto.class);
+		Mockito.when(
+				productService.select(Mockito.any(GlobalProductsDto.class), Mockito.any(VisibleProductPredicate.class)))
+				.thenReturn(globalProduct);
+		Mockito.when(
+				productService.select(Mockito.any(GlobalProductsDto.class), Mockito.any(HiddenProductPredicate.class)))
+				.thenReturn(globalProduct);
 		// Set
 		this.loanFacade.setGlobalPositionFacade(globalPositionFacade);
 		this.loanFacade.setProductService(productService);
-		this.globalProduct.setLoan(lista);
 	}
 
 	@Test
@@ -75,92 +75,93 @@ public class LoanFacadeImplTest {
 		Mockito.verify(this.productService, Mockito.atLeastOnce()).getLoanTotals(globalProduct);
 	}
 
-	public void getLeasingByUser() {
-		GlobalProductsDto global = Mockito.mock(GlobalProductsDto.class);
-		List<LeasingDto> listLe = new ArrayList<LeasingDto>();
-		LeasingDto a = new LeasingDto();
-		a.setVisible(true);
-		listLe.add(a);
-		globalProduct.setLeasings(listLe);
-		// Mockitos
-		Mockito.when(global.getLeasings()).thenReturn(listLe);
-		Mockito.when(productService.select(globalProduct, new VisibleProductPredicate())).thenReturn(global);
-		// Llamar método getLeasingByUser
-		Mockito.when(this.loanFacade.getLeasingByUser(globalProduct)).thenReturn(listLe);
-		// verificar que no venga nulo
-		Assert.assertNotNull(listLe);
-		// Verificar método select
-		Mockito.verify(this.productService, Mockito.atLeastOnce()).select(global, new VisibleProductPredicate())
-				.getLeasings();
-	}
-
-	public void getRotatingAccountByUser() {
-		List<RotatingAccountDto> listRo = new ArrayList<RotatingAccountDto>();
-		// Mockitos
-		Mockito.when(this.productService.select(globalProduct, new VisibleProductPredicate()).getRotatingAccounts())
-				.thenReturn(listRo);
-		// Llamar método getRotatingAccountByUser
-		listRo = this.loanFacade.getRotatingAccountByUser(globalProduct);
-		// verificar que no venga nulo
-		Assert.assertNotNull(listRo);
-		// Verificar método select
-		Mockito.verify(this.productService, Mockito.atLeastOnce()).select(globalProduct, new VisibleProductPredicate())
-				.getRotatingAccounts();
-	}
-
-	public void getRotatingAccountByUserHidden() {
-		List<RotatingAccountDto> listRo = new ArrayList<RotatingAccountDto>();
-		// Mockitos
-		Mockito.when(this.productService.select(globalProduct, new HiddenProductPredicate()).getRotatingAccounts())
-				.thenReturn(listRo);
-		// Llamar método getRotatingAccountByUserHidden
-		listRo = this.loanFacade.getRotatingAccountByUserHidden(globalProduct);
-		// verificar que no venga nulo
-		Assert.assertNotNull(listRo);
-		// Verificar método select
-		Mockito.verify(this.productService, Mockito.atLeastOnce()).select(globalProduct, new HiddenProductPredicate())
-				.getRotatingAccounts();
-	}
-
+	@Test
 	public void getLoansByUser() {
 		List<LoanDto> listLo = new ArrayList<LoanDto>();
 		// Mockitos
-		Mockito.when(this.productService.select(globalProduct, new VisibleProductPredicate()).getLoan()).thenReturn(
-				listLo);
+		Mockito.when(globalProduct.getLoan()).thenReturn(listLo);
 		// Llamar método getLoansByUser
 		listLo = this.loanFacade.getLoansByUser(globalProduct);
 		// verificar que no venga nulo
 		Assert.assertNotNull(listLo);
 		// Verificar método select
-		Mockito.verify(this.productService, Mockito.atLeastOnce()).select(globalProduct, new VisibleProductPredicate())
-				.getLoan();
+		Mockito.verify(this.productService, Mockito.atLeastOnce()).select(Mockito.any(GlobalProductsDto.class),
+				Mockito.any(VisibleProductPredicate.class));
+		Mockito.verify(this.globalProduct, Mockito.atLeastOnce()).getLoan();
 	}
 
-	public void getLeasingByUserHidden() {
-		List<LeasingDto> listLe = new ArrayList<LeasingDto>();
-		// Mockitos
-		Mockito.when(this.productService.select(globalProduct, new HiddenProductPredicate()).getLeasings()).thenReturn(
-				listLe);
-		// Llamar método getLeasingByUserHidden
-		listLe = this.loanFacade.getLeasingByUserHidden(globalProduct);
-		// verificar que no venga nulo
-		Assert.assertNotNull(listLe);
-		// Verificar método select
-		Mockito.verify(this.productService, Mockito.atLeastOnce()).select(globalProduct, new HiddenProductPredicate())
-				.getLeasings();
-	}
-
+	@Test
 	public void getLoansByUserHidden() {
 		List<LoanDto> lisLo = new ArrayList<LoanDto>();
 		// Mockitos
-		Mockito.when(this.productService.select(globalProduct, new HiddenProductPredicate()).getLoan()).thenReturn(
-				lisLo);
+		Mockito.when(globalProduct.getLoan()).thenReturn(lisLo);
 		// Llamar método getLoansByUserHidden
 		lisLo = this.loanFacade.getLoansByUserHidden(globalProduct);
 		// verificar que no venga nulo
 		Assert.assertNotNull(lisLo);
 		// Verificar método select
-		Mockito.verify(this.productService, Mockito.atLeastOnce()).select(globalProduct, new HiddenProductPredicate())
-				.getLoan();
+		Mockito.verify(this.productService, Mockito.atLeastOnce()).select(Mockito.any(GlobalProductsDto.class),
+				Mockito.any(HiddenProductPredicate.class));
+		Mockito.verify(this.globalProduct, Mockito.atLeastOnce()).getLoan();
+	}
+
+	@Test
+	public void getLeasingByUser() {
+		List<LeasingDto> listLe = new ArrayList<LeasingDto>();
+		// Mockitos
+		Mockito.when(globalProduct.getLeasings()).thenReturn(listLe);
+		// Llamar método getLeasingByUser
+		listLe = this.loanFacade.getLeasingByUser(globalProduct);
+		// verificar que no venga nulo
+		Assert.assertNotNull(listLe);
+		// Verificar método select
+		Mockito.verify(this.productService, Mockito.atLeastOnce()).select(Mockito.any(GlobalProductsDto.class),
+				Mockito.any(VisibleProductPredicate.class));
+		Mockito.verify(this.globalProduct, Mockito.atLeastOnce()).getLeasings();
+	}
+
+	@Test
+	public void getLeasingByUserHidden() {
+		List<LeasingDto> listLe = new ArrayList<LeasingDto>();
+		// Mockitos
+		Mockito.when(globalProduct.getLeasings()).thenReturn(listLe);
+		// Llamar método getLeasingByUserHidden
+		listLe = this.loanFacade.getLeasingByUserHidden(globalProduct);
+		// verificar que no venga nulo
+		Assert.assertNotNull(listLe);
+		// Verificar método select
+		Mockito.verify(this.productService, Mockito.atLeastOnce()).select(Mockito.any(GlobalProductsDto.class),
+				Mockito.any(HiddenProductPredicate.class));
+		Mockito.verify(this.globalProduct, Mockito.atLeastOnce()).getLeasings();
+	}
+
+	@Test
+	public void getRotatingAccountByUser() {
+		List<RotatingAccountDto> listRo = new ArrayList<RotatingAccountDto>();
+		// Mockitos
+		Mockito.when(globalProduct.getRotatingAccounts()).thenReturn(listRo);
+		// Llamar método getRotatingAccountByUser
+		listRo = this.loanFacade.getRotatingAccountByUser(globalProduct);
+		// verificar que no venga nulo
+		Assert.assertNotNull(listRo);
+		// Verificar método select
+		Mockito.verify(this.productService, Mockito.atLeastOnce()).select(Mockito.any(GlobalProductsDto.class),
+				Mockito.any(VisibleProductPredicate.class));
+		Mockito.verify(this.globalProduct, Mockito.atLeastOnce()).getRotatingAccounts();
+	}
+
+	@Test
+	public void getRotatingAccountByUserHidden() {
+		List<RotatingAccountDto> listRo = new ArrayList<RotatingAccountDto>();
+		// Mockitos
+		Mockito.when(globalProduct.getRotatingAccounts()).thenReturn(listRo);
+		// Llamar método getRotatingAccountByUserHidden
+		listRo = this.loanFacade.getRotatingAccountByUserHidden(globalProduct);
+		// verificar que no venga nulo
+		Assert.assertNotNull(listRo);
+		// Verificar método select
+		Mockito.verify(this.productService, Mockito.atLeastOnce()).select(Mockito.any(GlobalProductsDto.class),
+				Mockito.any(HiddenProductPredicate.class));
+		Mockito.verify(this.globalProduct, Mockito.atLeastOnce()).getRotatingAccounts();
 	}
 }
