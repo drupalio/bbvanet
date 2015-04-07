@@ -6,7 +6,6 @@ import javax.faces.event.ActionEvent;
 import javax.faces.event.ComponentSystemEvent;
 
 import com.bbva.net.back.model.movements.MovementDto;
-import com.bbva.net.front.ui.line.LineConfigUI;
 
 /**
  * @author User
@@ -76,14 +75,6 @@ public interface MovementCriteriaController {
 	 * @param event
 	 */
 	void setMovementConcept(ActionEvent event);
-
-	/**
-	 * Method lines of graphics Movements
-	 * 
-	 * @param valuesLines
-	 * @return
-	 */
-	List valuesLinesGraphic(LineConfigUI valuesLines);
 
 	/**
 	 * 

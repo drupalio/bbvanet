@@ -21,7 +21,6 @@ import com.bbva.net.back.facade.MultiValueGroupFacade;
 import com.bbva.net.back.model.citeriaMovements.MovementCriteriaDto;
 import com.bbva.net.back.model.commons.BalanceRangeDto;
 import com.bbva.net.back.model.commons.DateRangeDto;
-import com.bbva.net.back.model.commons.Money;
 import com.bbva.net.back.model.enums.RenderAttributes;
 import com.bbva.net.back.model.globalposition.ProductDto;
 import com.bbva.net.back.model.movements.MovementDetailDto;
@@ -29,7 +28,6 @@ import com.bbva.net.back.model.movements.MovementDto;
 import com.bbva.net.front.delegate.GraphicLineDelegate;
 import com.bbva.net.front.test.utils.AbstractBbvaControllerTest;
 import com.bbva.net.front.ui.line.LineConfigUI;
-import com.bbva.net.front.ui.line.LineItemUI;
 
 public class MovementCriteriaControllerImplTest extends AbstractBbvaControllerTest {
 
@@ -221,48 +219,6 @@ public class MovementCriteriaControllerImplTest extends AbstractBbvaControllerTe
 		this.movementCriteriaController.getToText();
 		// Criteria Search paginator
 		// this.movementCriteriaController.criteriaSearch();
-	}
-
-	@Test
-	public void valuesLinesGraphic() {
-		// inicializar los valores de la grafica
-		Money moneyMenor = new Money();
-		moneyMenor.setCurrency("$");
-		moneyMenor.setAmount(new BigDecimal(1000));
-		Money money = new Money();
-		money.setCurrency("$");
-		money.setAmount(new BigDecimal(20000));
-		Money moneyMayor = new Money();
-		moneyMayor.setCurrency("$");
-		moneyMayor.setAmount(new BigDecimal(300000));
-		// inicializar la lista de elementos
-		List<LineItemUI> ListLineItemUI = new ArrayList<LineItemUI>();
-		// inicializar los elementos
-		LineItemUI lineItemUI = new LineItemUI();
-		LineItemUI lineItemUI2 = new LineItemUI();
-		LineItemUI lineItemUI3 = new LineItemUI();
-		// llenar los elementos
-		lineItemUI.setDay("5");
-		lineItemUI.setLabel("Día");
-		lineItemUI.setValue(money);
-		lineItemUI2.setDay("5");
-		lineItemUI2.setLabel("Día");
-		lineItemUI2.setValue(moneyMenor);
-		lineItemUI3.setDay("5");
-		lineItemUI3.setLabel("Día");
-		lineItemUI3.setValue(moneyMayor);
-		// añadir los elementos a la lista
-		ListLineItemUI.add(lineItemUI);
-		ListLineItemUI.add(lineItemUI2);
-		ListLineItemUI.add(lineItemUI3);
-		// Setear y obtener la lista en el controlador
-		this.movementCriteriaController.setGraphicLineMovements(lineConfigUI);
-		this.movementCriteriaController.setValuesLinesGraphic(ListLineItemUI);
-		this.movementCriteriaController.getValuesLinesGraphic();
-		// Mockear la respuesta
-		Mockito.when(this.lineConfigUI.getLineItemUIList()).thenReturn(ListLineItemUI);
-		// Llamar el metodo valuesLinesGraphic
-		this.movementCriteriaController.valuesLinesGraphic(lineConfigUI);
 	}
 
 	@Test
