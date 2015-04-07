@@ -26,13 +26,19 @@
 			var title;
 			var xColumns = [];
 			var xValues = [];
-			var values;
 			var label;
 			var currency;
 			xColumns.push("Series 1: ");
 			
-			<c:forEach var="lineValue" items="${cc.attrs.lineConfigUI.lineValues}" varStatus="status">
-			xValues.push("${lineValue}");
+			<c:forEach var="lineItemUI" items="${cc.attrs.lineConfigUI.lineItemUIList}" varStatus="status">
+			title = ("${lineItemUI.label}");
+			currency= ("${lineItemUI.value.currency}");
+			label = ("${lineItemUI.label}");
+			xColumns.push("${lineItemUI.value.amount}");
+			</c:forEach>
+			
+			<c:forEach var="lineValue" items="${cc.attrs.lineConfigUI.lineValues}" >
+			xValues.push(${lineValue});
 			</c:forEach>
 			
 			var chart = c3.generate({
@@ -51,22 +57,21 @@
 				},
 				grid : {
 					y : {
-						lines : [ xValues ],
-// 						lines : [ {
-// 							value : 45554371
-// 						}, {
-// 							value : 350914194
-// 						}, {
-// 							value : 656274017
-// 						}, {
-// 							value : 961633840
-// 						}, {
-// 							value : 1266993663
-// 						}, {
-// 							value : 1572353486
-// 						}, {
-// 							value : 1877713309
-// 						},],
+						lines : [ {
+							value : xValues[0]
+						}, {
+							value : xValues[1]
+						}, {
+							value : xValues[2]
+						}, {
+							value : xValues[3]
+						}, {
+							value : xValues[4]
+						}, {
+							value : xValues[5]
+						}, {
+							value : xValues[6]
+						},],
 					}
 				},
 				axis : {
@@ -85,7 +90,6 @@
 			                var format = d3.format(',');			                
 			                return "<B>"+currency+" "+format(value)+"</B>";
 						 }
-
 					}
 				},
 				color : function(color, d) {

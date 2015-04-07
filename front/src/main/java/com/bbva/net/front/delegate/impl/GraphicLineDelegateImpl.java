@@ -73,10 +73,17 @@ public class GraphicLineDelegateImpl implements GraphicLineDelegate {
 		}
 		lineConfigUI.setLineItemUIList(lineItemUIList);
 
+		if (lineItemUIList.size() > 0 && lineItemUIList != null)
+			lineConfigUI.setLineValues(getLinesValues(lineConfigUI));
+
+		return lineConfigUI;
+	}
+
+	public List<BigDecimal> getLinesValues(final LineConfigUI lineConfigUI) {
 		BigDecimal menor = new BigDecimal(0);
 		BigDecimal mayor = new BigDecimal(0);
 		BigDecimal total = new BigDecimal(0);
-		
+
 		List<BigDecimal> values = new ArrayList<BigDecimal>();
 		menor = lineConfigUI.getLineItemUIList().get(0).getValue().getAmount();
 		for (int i = 0; i < lineConfigUI.getLineItemUIList().size(); i++) {
@@ -91,8 +98,7 @@ public class GraphicLineDelegateImpl implements GraphicLineDelegate {
 			values.add(menor);
 			menor = menor.add(total);
 		}
-		lineConfigUI.setLineValues(values);
-		return lineConfigUI;
+		return values;
 	}
 
 }

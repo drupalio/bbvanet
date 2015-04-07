@@ -68,6 +68,10 @@ public class GraphicLineDelegateTest extends AbstractBbvaControllerTest {
 		// List<MovementDto> listMovement = new ArrayList<MovementDto>();
 		// listMovement.add(movement);
 		//
+		// List<BigDecimal> linesValues = new ArrayList<BigDecimal>();
+		//
+		// Mockito.when(graphicLineDelegate.getLinesValues(lineConfig)).thenReturn(linesValues);
+		//
 		// // Ejecuta el método
 		// this.lineConfig = this.graphicLineDelegate.getMovementAccount(listMovement);
 		//
@@ -75,5 +79,4 @@ public class GraphicLineDelegateTest extends AbstractBbvaControllerTest {
 		// Assert.assertNotNull(lineConfig);
 
 	}
-
 }
