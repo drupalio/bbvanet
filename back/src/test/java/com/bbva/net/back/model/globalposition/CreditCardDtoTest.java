@@ -5,7 +5,6 @@ import java.math.BigDecimal;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.bbva.net.back.model.cards.CardsChargesDto;
 import com.bbva.net.back.model.commons.Money;
 import com.bbva.net.core.test.AbstractBbvaDTOTest;
 
@@ -20,15 +19,17 @@ public class CreditCardDtoTest extends AbstractBbvaDTOTest<CreditCardDto> {
 	}
 
 	@Test
-	public void checkCardsChargesDto() {
-		CardsChargesDto cards = new CardsChargesDto("TC", new Money(new BigDecimal(1000)));
-		Assert.assertNotNull(cards);
-		Assert.assertEquals(cards.getAmmount().getAmount(), new BigDecimal(1000));
-	}
-
-	@Test
 	public void checkBinCreditCard() {
 		creditCard.setBin(new Money(new BigDecimal(1000)));
 		Assert.assertEquals(creditCard.getBin().getAmount(), new BigDecimal(1000));
+	}
+
+	@Test
+	public void checkBinCard() {
+		this.creditCard = new CreditCardDto();
+		Assert.assertFalse(this.creditCard.isSetBin());
+
+		this.creditCard = new CreditCardDto(new Money(new BigDecimal(1000)));
+		Assert.assertTrue(this.creditCard.isSetBin());
 	}
 }

@@ -3,9 +3,12 @@
  */
 package com.bbva.net.back.model.cards;
 
-import org.junit.Assert;
-import org.mockito.Mockito;
+import java.math.BigDecimal;
 
+import org.junit.Assert;
+import org.junit.Test;
+
+import com.bbva.net.back.model.commons.Money;
 import com.bbva.net.core.test.AbstractBbvaDTOTest;
 
 /**
@@ -21,4 +24,10 @@ public class CardsChargesDtoTest extends AbstractBbvaDTOTest<CardsChargesDto> {
 		return this.cardsChargesDto;
 	}
 
+	@Test
+	public void checkCardsChargesDto() {
+		cardsChargesDto = new CardsChargesDto("TC", new Money(new BigDecimal(1000)));
+		Assert.assertNotNull(cardsChargesDto);
+		Assert.assertEquals(cardsChargesDto.getAmmount().getAmount(), new BigDecimal(1000));
+	}
 }

@@ -12,9 +12,11 @@ import org.mockito.Mockito;
 import com.bbva.net.back.model.accounts.GlobalMonthlyBalanceDto;
 import com.bbva.net.back.model.accounts.MonthBalanceDto;
 import com.bbva.net.back.model.commons.Money;
+import com.bbva.net.back.model.movements.MovementDto;
 import com.bbva.net.front.delegate.impl.GraphicLineDelegateImpl;
 import com.bbva.net.front.test.utils.AbstractBbvaControllerTest;
 import com.bbva.net.front.ui.line.LineConfigUI;
+import com.bbva.net.front.ui.line.LineItemUI;
 
 public class GraphicLineDelegateTest extends AbstractBbvaControllerTest {
 
@@ -63,20 +65,35 @@ public class GraphicLineDelegateTest extends AbstractBbvaControllerTest {
 	@Test
 	public void checkGetMovementAccount() {
 
-		// MovementDto movement = new MovementDto();
-		//
-		// List<MovementDto> listMovement = new ArrayList<MovementDto>();
-		// listMovement.add(movement);
-		//
-		// List<BigDecimal> linesValues = new ArrayList<BigDecimal>();
-		//
-		// Mockito.when(graphicLineDelegate.getLinesValues(lineConfig)).thenReturn(linesValues);
-		//
-		// // Ejecuta el método
-		// this.lineConfig = this.graphicLineDelegate.getMovementAccount(listMovement);
-		//
-		// // Verificaciones
-		// Assert.assertNotNull(lineConfig);
+		MovementDto movement = new MovementDto();
 
+		List<MovementDto> listMovement = new ArrayList<MovementDto>();
+		movement.setTotalBalance(new Money(new BigDecimal(2000)));
+		listMovement.add(movement);
+
+		movement = new MovementDto();
+		movement.setTotalBalance(new Money(new BigDecimal(1000)));
+		listMovement.add(movement);
+
+		// Ejecuta el método
+		this.lineConfig = this.graphicLineDelegate.getMovementAccount(listMovement);
+
+		// Verificaciones
+		Assert.assertNotNull(lineConfig);
+
+	}
+
+	@Test
+	public void checkGetLinesValues() {
+		List<LineItemUI> listValues = new ArrayList<LineItemUI>();
+		LineItemUI lineItem = new LineItemUI();
+		lineItem.setValue(new Money(new BigDecimal(2000)));
+		listValues.add(lineItem);
+
+		lineItem = new LineItemUI();
+		lineItem.setValue(new Money(new BigDecimal(1000)));
+		listValues.add(lineItem);
+
+		Assert.assertNotNull(graphicLineDelegate.getLinesValues(listValues));
 	}
 }

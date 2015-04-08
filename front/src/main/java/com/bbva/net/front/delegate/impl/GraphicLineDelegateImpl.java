@@ -1,6 +1,7 @@
 package com.bbva.net.front.delegate.impl;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -86,18 +87,25 @@ public class GraphicLineDelegateImpl implements GraphicLineDelegate {
 		BigDecimal total = new BigDecimal(0);
 
 		List<BigDecimal> values = new ArrayList<BigDecimal>();
-		menor = listValues.get(0).getValue().getAmount();
-		for (int i = 0; i < listValues.size(); i++) {
-			if (listValues.get(i).getValue().getAmount().compareTo(menor) == -1)
-				menor = listValues.get(i).getValue().getAmount();
-			if (listValues.get(i).getValue().getAmount().compareTo(mayor) == 1)
-				mayor = listValues.get(i).getValue().getAmount();
-			total = total.add(listValues.get(i).getValue().getAmount());
-		}
-		total = (mayor.subtract(menor)).divide(new BigDecimal(6));
-		for (int i = 0; i <= 6; i++) {
-			values.add(menor);
-			menor = menor.add(total);
+
+		if (!CollectionUtils.isEmpty(listValues)) {
+			menor = listValues.get(0).getValue().getAmount();
+
+			for (int i = 0; i < listValues.size(); i++) {
+				if (listValues.get(i).getValue().getAmount().compareTo(menor) == -1)
+					menor = listValues.get(i).getValue().getAmount();
+				if (listValues.get(i).getValue().getAmount().compareTo(mayor) == 1)
+					mayor = listValues.get(i).getValue().getAmount();
+				total = total.add(listValues.get(i).getValue().getAmount());
+			}
+
+			total = mayor.subtract(menor);
+			total = total.divide(new BigDecimal(6), 2, RoundingMode.HALF_UP);
+
+			for (int i = 0; i <= 6; i++) {
+				values.add(menor);
+				menor = menor.add(total);
+			}
 		}
 		return values;
 	}
