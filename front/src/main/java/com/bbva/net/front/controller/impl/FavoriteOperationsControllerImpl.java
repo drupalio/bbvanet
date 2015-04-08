@@ -84,7 +84,7 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
 	 * @return
 	 */
 	public String getDate(final Date transactionDate) {
-		final SimpleDateFormat dateFormat = new SimpleDateFormat(MessagesHelper.INSTANCE.getStringI18("dd-MM-yyyy"));
+		final SimpleDateFormat dateFormat = new SimpleDateFormat(MessagesHelper.INSTANCE.getStringI18("date.pattner.dd-mm-yyyy"));
 		return dateFormat.format(transactionDate);
 
 	}
