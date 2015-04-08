@@ -13,12 +13,6 @@ public class EnumPeriodTypeTest {
 	}
 
 	@Test
-	public void checkValueOf() {
-		Assert.assertNull(EnumPeriodType.valueOf(15));
-		Assert.assertNotNull(EnumPeriodType.valueOf(9));
-	}
-
-	@Test
 	public void checkValueLabel() {
 		Assert.assertNull(EnumPeriodType.valueOfLabel("Últimas tres semanas"));
 		Assert.assertNotNull(EnumPeriodType.valueOfLabel("Ayer"));
@@ -37,5 +31,20 @@ public class EnumPeriodTypeTest {
 
 		EnumPeriodType.LAST_MONTH.setQuantityPeriod(1);
 		Assert.assertEquals(EnumPeriodType.LAST_MONTH.getQuantityPeriod(), 1);
+		// Type Ok
+		EnumPeriodType.valueOf(9);
+
+	}
+
+	@Test
+	public void mistValueOf() {
+		// Type mistake
+		EnumPeriodType.valueOf(1);
+	}
+
+	@Test
+	public void mistValueOfLabel() {
+		// Type mistake
+		EnumPeriodType.valueOfLabel("Última semanas");
 	}
 }

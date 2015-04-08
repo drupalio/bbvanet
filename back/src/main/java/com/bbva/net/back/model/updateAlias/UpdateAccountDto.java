@@ -53,7 +53,6 @@ public class UpdateAccountDto implements Dto {
 
 	@Override
 	public boolean equals(Object obj) {
-
 		return (obj != null) && (obj instanceof UpdateAccountDto)
 				&& this.getFolio().equals(((UpdateAccountDto)obj).getFolio())
 				&& this.getAlias().equals(((UpdateAccountDto)obj).getAlias())

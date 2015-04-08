@@ -61,11 +61,7 @@ public class CheckDto implements Dto {
 
 	@Override
 	public boolean equals(Object obj) {
-		return (obj != null) && (obj instanceof CheckDto)
-				&& this.getModifiedDate().equals(((CheckDto)obj).getModifiedDate())
-				&& this.getStatus().equals(((CheckDto)obj).getStatus())
-				&& this.getValue().equals(((CheckDto)obj).getValue())
-				&& this.getIssueDate().equals(((CheckDto)obj).getIssueDate())
+		return (obj != null) && (obj instanceof CheckDto) && (this.getId() != null && ((CheckDto)obj).getId() != null)
 				&& this.getId().equals(((CheckDto)obj).getId());
 	}
 
