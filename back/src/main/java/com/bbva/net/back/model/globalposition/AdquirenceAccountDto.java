@@ -6,22 +6,17 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import com.bbva.net.back.core.pattern.dto.Dto;
 import com.bbva.net.back.model.commons.Money;
 
-public class AdquirenceAccountDto extends ProductDto implements Dto{
+public class AdquirenceAccountDto extends ProductDto implements Dto {
 
 	private static final long serialVersionUID = 1L;
 
 	private Money overDraft;
 
-	public Money getOverDraft() {
-		return overDraft;
+	public AdquirenceAccountDto() {
 	}
 
-	public void setOverDraft(Money value) {
-		this.overDraft = value;
-	}
-
-	public boolean isSetOverDraft() {
-		return (this.overDraft != null);
+	public AdquirenceAccountDto(Money overDraft) {
+		this.overDraft = overDraft;
 	}
 
 	@Override
@@ -36,8 +31,30 @@ public class AdquirenceAccountDto extends ProductDto implements Dto{
 
 	@Override
 	public boolean equals(Object obj) {
-		return (obj instanceof AdquirenceAccountDto)
+		return (obj != null) && (obj instanceof AdquirenceAccountDto)
 				&& this.getOverDraft().equals(((AdquirenceAccountDto)obj).getOverDraft());
 	}
 
+	// Setters and getters
+
+	/**
+	 * @return the overDraft
+	 */
+	public Money getOverDraft() {
+		return overDraft;
+	}
+
+	/**
+	 * @param overDraft the overDraft to set
+	 */
+	public void setOverDraft(Money overDraft) {
+		this.overDraft = overDraft;
+	}
+
+	/**
+	 * @return
+	 */
+	public boolean isSetOverDraft() {
+		return (this.overDraft != null);
+	}
 }

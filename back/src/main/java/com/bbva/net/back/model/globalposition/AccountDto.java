@@ -6,22 +6,17 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import com.bbva.net.back.core.pattern.dto.Dto;
 import com.bbva.net.back.model.commons.Money;
 
-public class AccountDto extends ProductDto implements Dto{
+public class AccountDto extends ProductDto implements Dto {
 
 	private final static long serialVersionUID = 1L;
 
 	private Money overDraft;
 
-	public Money getOverDraft() {
-		return overDraft;
+	public AccountDto() {
 	}
 
-	public void setOverDraft(Money value) {
-		this.overDraft = value;
-	}
-
-	public boolean isSetOverDraft() {
-		return (this.overDraft != null);
+	public AccountDto(Money overDraft) {
+		this.overDraft = overDraft;
 	}
 
 	@Override
@@ -40,4 +35,26 @@ public class AccountDto extends ProductDto implements Dto{
 				&& this.getProductNumber().equals(((ProductDto)obj).getProductNumber());
 	}
 
+	// Setters and getters
+
+	/**
+	 * @return the overDraft
+	 */
+	public Money getOverDraft() {
+		return overDraft;
+	}
+
+	/**
+	 * @param overDraft the overDraft to set
+	 */
+	public void setOverDraft(Money overDraft) {
+		this.overDraft = overDraft;
+	}
+
+	/**
+	 * @return
+	 */
+	public boolean isSetOverDraft() {
+		return (this.overDraft != null);
+	}
 }

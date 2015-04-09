@@ -1,6 +1,7 @@
 package com.bbva.net.front.ui.line;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -16,6 +17,8 @@ public class LineConfigUI implements Serializable {
 	private List<LineItemUI> lineItemUIList;
 
 	private List<LineItemUI> lineDepositItemUIList;
+
+	private List<BigDecimal> lineValues;
 
 	/**
 	 * @return
@@ -38,4 +41,13 @@ public class LineConfigUI implements Serializable {
 	public void setLineItemUIList(List<LineItemUI> lineItemUIList) {
 		this.lineItemUIList = lineItemUIList;
 	}
+
+	public List<BigDecimal> getLineValues() {
+		return lineValues;
+	}
+
+	public void setLineValues(List<BigDecimal> lineValues) {
+		this.lineValues = lineValues;
+	}
+
 }

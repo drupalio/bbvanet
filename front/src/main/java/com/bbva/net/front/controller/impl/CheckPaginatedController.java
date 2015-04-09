@@ -17,7 +17,7 @@ public class CheckPaginatedController extends PaginationController<CheckDto> {
 
 	private DateRangeDto dateRangePControl;
 
-	private String statusPControl, productIdPControl;
+	private String statusPControl;
 
 	@Resource(name = "checkBookFacade")
 	private transient CheckBookFacade checkBookFacade;
@@ -37,8 +37,8 @@ public class CheckPaginatedController extends PaginationController<CheckDto> {
 	protected List<CheckDto> getNextPage(int pagination, int pageSize) {
 		LOGGER.info(" CheckPaginatedController getNextPage ");
 
-		return checkBookFacade.getCheckByStatusOrDate(productIdPControl, dateRangePControl, statusPControl, pagination,
-				pageSize);
+		return checkBookFacade.getCheckByStatusOrDate(getSelectedProduct().getProductId(), dateRangePControl,
+				statusPControl, pagination, pageSize);
 	}
 
 	@Override
@@ -75,17 +75,11 @@ public class CheckPaginatedController extends PaginationController<CheckDto> {
 	}
 
 	/**
-	 * @return the productIdPControl
+	 * @param checkBookFacade the checkBookFacade to set
 	 */
-	public String getProductIdPControl() {
-		return productIdPControl;
-	}
-
-	/**
-	 * @param productIdPControl the productIdPControl to set
-	 */
-	public void setProductIdPControl(String productIdPControl) {
-		this.productIdPControl = productIdPControl;
+	@Override
+	public void setCheckBookFacade(CheckBookFacade checkBookFacade) {
+		this.checkBookFacade = checkBookFacade;
 	}
 
 }

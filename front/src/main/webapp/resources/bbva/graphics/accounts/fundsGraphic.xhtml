@@ -31,9 +31,11 @@
 		<div class="chart-cheese" id="#{cc.attrs.id}"
 			data-highcharts-chart="3">
 			<div id="chart2_4" class="c3">
-			<div id="imgLOAD" class="imgLOAD" align="center">
-				<IMG src="/assets/img/loader.gif" />
-			</div>
+				<p:dialog widgetVar="GraphicFunds" modal="true" draggable="false"
+					position="center" showEffect="fade" hideEffect="fade"
+					closable="false" resizable="false" showHeader="false">
+					<p:outputLabel value="#{msg['please.wait']}" />
+				</p:dialog>
 			</div>
 		</div>
 
@@ -42,58 +44,64 @@
 
 
 	<script>
-		var totalColums = [];
-		var colorsLegend = [];
-		var label;
-		var colums;
-		var values;
-		var color;
-		var colors;
+		$(document).ready(
+				function() {
 
-		<c:forEach var="pieItemUI" items="${cc.attrs.pieConfigUI.pieItemUIList}">
-		label = ("${pieItemUI.textLegend}");
-		values = ("${pieItemUI.value}");
-		colums = [[label], [values]];
-		totalColums.push(colums);
+					//PF('GraphicFunds').show()
+					var totalColums = [];
+					var colorsLegend = [];
+					var label;
+					var colums;
+					var values;
+					var color;
+					var colors;
 
-		color = ("${pieItemUI.color}");
-		colorsLegend.push(color);
-		</c:forEach>
+					<c:forEach var="pieItemUI" items="${cc.attrs.pieConfigUI.pieItemUIList}">
+					label = ("${pieItemUI.textLegend}");
+					values = ("${pieItemUI.value}");
+					colums = [ [ label ], [ values ] ];
+					totalColums.push(colums);
 
-		var chart = c3.generate({
-			bindto : '#chart2_4',
+					color = ("${pieItemUI.color}");
+					colorsLegend.push(color);
+					</c:forEach>
 
-			data : {
+					var chart = c3.generate({
+						bindto : '#chart2_4',
 
-				size : {
-					height : 240,
-					width : 480
-				},
-				columns : totalColums,
+						data : {
 
-				type : 'pie',
-			},
-			pie : {
-				label : {
-					show : false
-				}
-			},
-			tooltip : {
-				format : {
-					value : function(value, ratio, id, index) {
-						var format1 = d3.format('$');
-						var format2 = d3.format('%');
-						var data = format1(value).bold() + "  " + '('
-								+ format2(ratio) + ')';
-						return data;
-					}
-				}
-			},
-			color : {
-				pattern : colorsLegend
-			},
+							size : {
+								height : 240,
+								width : 480
+							},
+							columns : totalColums,
 
-		});
+							type : 'pie',
+						},
+						pie : {
+							label : {
+								show : false
+							}
+						},
+						tooltip : {
+							format : {
+								value : function(value, ratio, id, index) {
+									var format1 = d3.format('$');
+									var format2 = d3.format('%');
+									var data = format1(value).bold() + "  "
+											+ '(' + format2(ratio) + ')';
+									return data;
+								}
+							}
+						},
+						color : {
+							pattern : colorsLegend
+						},
+
+					});
+					PF('GraphicFunds').hide();
+				});
 	</script>
 
 

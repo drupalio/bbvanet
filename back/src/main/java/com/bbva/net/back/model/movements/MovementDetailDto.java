@@ -59,19 +59,79 @@ public class MovementDetailDto implements Dto {
 
 	private String remainingQuotas;
 
-	/**
-	 * @return the operationDate
-	 */
-	public Date getOperationDate() {
-		return operationDate;
+	public MovementDetailDto() {
+
 	}
 
 	/**
-	 * @param operationDate the operationDate to set
+	 * @param operationHour
+	 * @param operationCode
+	 * @param operationDescription
+	 * @param observations
+	 * @param originCenterMovement
+	 * @param plaza
+	 * @param state
+	 * @param operationValue
+	 * @param value
+	 * @param valueslope
+	 * @param id
+	 * @param operationDate
+	 * @param transactionDate
+	 * @param concept
+	 * @param description
+	 * @param status
+	 * @param numbersOfQuota
+	 * @param remainingQuotas
 	 */
-	public void setOperationDate(Date operationDate) {
+	public MovementDetailDto(Date operationHour, String operationCode, String operationDescription,
+			String observations, String originCenterMovement, String plaza, String state, Money operationValue,
+			Money value, Money valueslope, String id, Date operationDate, Date transactionDate, String concept,
+			String description, String status, String numbersOfQuota, String remainingQuotas) {
+		this.operationHour = operationHour;
+		this.operationCode = operationCode;
+		this.operationDescription = operationDescription;
+		this.observations = observations;
+		this.originCenterMovement = originCenterMovement;
+		this.plaza = plaza;
+		this.state = state;
+		this.operationValue = operationValue;
+		this.value = value;
+		this.valueslope = valueslope;
+		this.id = id;
 		this.operationDate = operationDate;
+		this.transactionDate = transactionDate;
+		this.concept = concept;
+		this.description = description;
+		this.status = status;
+		this.numbersOfQuota = numbersOfQuota;
+		this.remainingQuotas = remainingQuotas;
 	}
+
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder().append(getOperationCode()).append(getPlaza()).append(getState())
+				.append(getDescription()).append(getConcept()).append(getStatus()).append(getValue())
+				.append(getValueslope()).append(getNumbersOfQuota()).append(getRemainingQuotas()).append(getId())
+				.toHashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return (obj != null) && (obj instanceof MovementDetailDto)
+				&& (this.getId() != null && ((MovementDetailDto)obj).getId() != null)
+				&& this.getId().equals(((MovementDetailDto)obj).getId());
+	}
+
+	@Override
+	public String toString() {
+		return new ToStringBuilder(this).append("operationCode", getOperationCode()).append("plaza", getPlaza())
+				.append("state", getState()).append("description", getDescription()).append("concept", getConcept())
+				.append("status", getStatus()).append("value", getValue()).append("valueslope", getValueslope())
+				.append("numbersOfQuota", getNumbersOfQuota()).append("remainingQuotas", getRemainingQuotas())
+				.append("id", getId()).toString();
+	}
+
+	// Setters and getters
 
 	/**
 	 * @return the operationHour
@@ -171,136 +231,157 @@ public class MovementDetailDto implements Dto {
 		this.state = state;
 	}
 
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public String getConcept() {
-		return concept;
-	}
-
-	public void setConcept(String concept) {
-		this.concept = concept;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-	public Money getValue() {
-		return value;
-	}
-
-	public void setValue(Money value) {
-		this.value = value;
-	}
-
-	public Money getValueslope() {
-		return valueslope;
-	}
-
-	public void setValueslope(Money valueslope) {
-		this.valueslope = valueslope;
-	}
-
-	public String getNumbersOfQuota() {
-		return numbersOfQuota;
-	}
-
-	public void setNumbersOfQuota(String numbersOfQuota) {
-		this.numbersOfQuota = numbersOfQuota;
-	}
-
-	public String getRemainingQuotas() {
-		return remainingQuotas;
-	}
-
-	public void setRemainingQuotas(String remainingQuotas) {
-		this.remainingQuotas = remainingQuotas;
-	}
-
-	public Date getTransactionDate() {
-		return transactionDate;
-	}
-
-	public void setTransactionDate(Date transactionDate) {
-		this.transactionDate = transactionDate;
-	}
-
+	/**
+	 * @return the operationValue
+	 */
 	public Money getOperationValue() {
 		return operationValue;
 	}
 
+	/**
+	 * @param operationValue the operationValue to set
+	 */
 	public void setOperationValue(Money operationValue) {
 		this.operationValue = operationValue;
 	}
 
+	/**
+	 * @return the value
+	 */
+	public Money getValue() {
+		return value;
+	}
+
+	/**
+	 * @param value the value to set
+	 */
+	public void setValue(Money value) {
+		this.value = value;
+	}
+
+	/**
+	 * @return the valueslope
+	 */
+	public Money getValueslope() {
+		return valueslope;
+	}
+
+	/**
+	 * @param valueslope the valueslope to set
+	 */
+	public void setValueslope(Money valueslope) {
+		this.valueslope = valueslope;
+	}
+
+	/**
+	 * @return the id
+	 */
 	public String getId() {
 		return id;
 	}
 
+	/**
+	 * @param id the id to set
+	 */
 	public void setId(String id) {
 		this.id = id;
 	}
 
-	@Override
-	public int hashCode() {
-
-		HashCodeBuilder hashCodeBuielder = new HashCodeBuilder();
-		hashCodeBuielder.append(getOperationCode()).toHashCode();
-		hashCodeBuielder.append(getPlaza()).toHashCode();
-		hashCodeBuielder.append(getState()).toHashCode();
-		hashCodeBuielder.append(getDescription()).toHashCode();
-		hashCodeBuielder.append(getConcept()).toHashCode();
-		hashCodeBuielder.append(getStatus()).toHashCode();
-		hashCodeBuielder.append(getValue()).toHashCode();
-		hashCodeBuielder.append(getValueslope()).toHashCode();
-		hashCodeBuielder.append(getNumbersOfQuota()).toHashCode();
-		hashCodeBuielder.append(getRemainingQuotas()).toHashCode();
-		hashCodeBuielder.append(getId()).toHashCode();
-		return hashCodeBuielder.hashCode();
+	/**
+	 * @return the operationDate
+	 */
+	public Date getOperationDate() {
+		return operationDate;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-
-		return (obj instanceof MovementDetailDto)
-				&& this.getOperationCode().equals(((MovementDetailDto)obj).getOperationCode())
-				&& this.getPlaza().equals(((MovementDetailDto)obj).getPlaza())
-				&& this.getState().equals(((MovementDetailDto)obj).getState())
-				&& this.getDescription().equals(((MovementDetailDto)obj).getDescription())
-				&& this.getConcept() == (((MovementDetailDto)obj).getConcept())
-				&& this.getStatus() == (((MovementDetailDto)obj).getStatus())
-				&& this.getValue().equals(((MovementDetailDto)obj).getValue())
-				&& this.getValueslope().equals(((MovementDetailDto)obj).getValueslope())
-				&& this.getNumbersOfQuota().equals(((MovementDetailDto)obj).getNumbersOfQuota())
-				&& this.getRemainingQuotas().equals(((MovementDetailDto)obj).getRemainingQuotas())
-				&& this.getId().equals(((MovementDetailDto)obj).getId());
+	/**
+	 * @param operationDate the operationDate to set
+	 */
+	public void setOperationDate(Date operationDate) {
+		this.operationDate = operationDate;
 	}
 
-	@Override
-	public String toString() {
-		ToStringBuilder toStringBuilder = new ToStringBuilder(this);
-		toStringBuilder.append("operationCode", getOperationCode()).toString();
-		toStringBuilder.append("plaza", getPlaza()).toString();
-		toStringBuilder.append("state", getState()).toString();
-		toStringBuilder.append("description", getDescription());
-		toStringBuilder.append("concept", getConcept());
-		toStringBuilder.append("status", getStatus());
-		toStringBuilder.append("value", getValue());
-		toStringBuilder.append("valueslope", getValueslope());
-		toStringBuilder.append("numbersOfQuota", getNumbersOfQuota());
-		toStringBuilder.append("remainingQuotas", getRemainingQuotas());
-		toStringBuilder.append("id", getId());
-		return toStringBuilder.toString();
+	/**
+	 * @return the transactionDate
+	 */
+	public Date getTransactionDate() {
+		return transactionDate;
 	}
 
+	/**
+	 * @param transactionDate the transactionDate to set
+	 */
+	public void setTransactionDate(Date transactionDate) {
+		this.transactionDate = transactionDate;
+	}
+
+	/**
+	 * @return the concept
+	 */
+	public String getConcept() {
+		return concept;
+	}
+
+	/**
+	 * @param concept the concept to set
+	 */
+	public void setConcept(String concept) {
+		this.concept = concept;
+	}
+
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * @param description the description to set
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	/**
+	 * @return the status
+	 */
+	public String getStatus() {
+		return status;
+	}
+
+	/**
+	 * @param status the status to set
+	 */
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	/**
+	 * @return the numbersOfQuota
+	 */
+	public String getNumbersOfQuota() {
+		return numbersOfQuota;
+	}
+
+	/**
+	 * @param numbersOfQuota the numbersOfQuota to set
+	 */
+	public void setNumbersOfQuota(String numbersOfQuota) {
+		this.numbersOfQuota = numbersOfQuota;
+	}
+
+	/**
+	 * @return the remainingQuotas
+	 */
+	public String getRemainingQuotas() {
+		return remainingQuotas;
+	}
+
+	/**
+	 * @param remainingQuotas the remainingQuotas to set
+	 */
+	public void setRemainingQuotas(String remainingQuotas) {
+		this.remainingQuotas = remainingQuotas;
+	}
 }

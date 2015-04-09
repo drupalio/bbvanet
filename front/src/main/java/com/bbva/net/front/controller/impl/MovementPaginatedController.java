@@ -4,8 +4,6 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.apache.commons.collections.CollectionUtils;
-
 import com.bbva.net.back.facade.MovementsAccountFacade;
 import com.bbva.net.back.model.commons.BalanceRangeDto;
 import com.bbva.net.back.model.commons.DateRangeDto;
@@ -27,17 +25,17 @@ public class MovementPaginatedController extends PaginationController<MovementDt
 
 	@Override
 	protected List<MovementDto> getNextPage(int paginantionKey, int psize) {
-
 		return this.movementsFacade.listMovements(getSelectedProduct().getProductId(), productTypePc, dateRangePc,
 				balanceRangePc, paginantionKey, psize);
 	}
 
 	@Override
 	protected Integer getNextPaginantionKey(List<MovementDto> lastPage) {
-		if (CollectionUtils.isEmpty(lastPage)) {
-			return 0;
+		Integer page = 0;
+		if (lastPage.size() > 0) {
+			page = Integer.valueOf(lastPage.get(lastPage.size() - 1).getMovementId());
 		}
-		return Integer.valueOf(lastPage.get(lastPage.size() - 1).getMovementId());
+		return page;
 	}
 
 	public void search() {
@@ -84,13 +82,6 @@ public class MovementPaginatedController extends PaginationController<MovementDt
 	 */
 	public void setProductTypePc(String productTypePc) {
 		this.productTypePc = productTypePc;
-	}
-
-	/**
-	 * @return the movementsFacade
-	 */
-	public MovementsAccountFacade getMovementsFacade() {
-		return movementsFacade;
 	}
 
 	/**

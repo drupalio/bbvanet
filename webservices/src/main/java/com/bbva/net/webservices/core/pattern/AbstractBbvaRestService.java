@@ -1,6 +1,5 @@
 package com.bbva.net.webservices.core.pattern;
 
-import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -9,8 +8,6 @@ import javax.ws.rs.core.Response;
 import org.apache.commons.logging.Log;
 import org.apache.cxf.jaxrs.client.JAXRSClientFactoryBean;
 import org.apache.cxf.jaxrs.client.WebClient;
-import org.codehaus.jackson.JsonParseException;
-import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.client.RestClientException;
@@ -82,6 +79,9 @@ public abstract class AbstractBbvaRestService {
 	@Value("${rest.agileOperations.url}")
 	protected String URL_BASE_OPERATIONS;
 
+	@Value("${rest.subjets.url}")
+	protected String URL_SUBJETS;
+
 	/**
 	 * @param response
 	 * @param entityClass
@@ -92,12 +92,8 @@ public abstract class AbstractBbvaRestService {
 
 		try {
 			return new ObjectMapper().readValue((String)response.getEntity(), entityClass);
-		} catch (final JsonParseException e) {
-			throwsRestClientException(e);
-		} catch (final JsonMappingException e) {
-			throwsRestClientException(e);
-		} catch (final IOException e) {
-			throwsRestClientException(e);
+		} catch (final Exception exception) {
+			throwsRestClientException(exception);
 		}
 
 		return null;
@@ -130,7 +126,7 @@ public abstract class AbstractBbvaRestService {
 	 * @param exception
 	 * @throws RestClientException
 	 */
-	private void throwsRestClientException(final Exception exception) throws RestClientException {
+	protected void throwsRestClientException(final Exception exception) throws RestClientException {
 		throw new RestClientException("Rest Client ERROR ", exception);
 	}
 

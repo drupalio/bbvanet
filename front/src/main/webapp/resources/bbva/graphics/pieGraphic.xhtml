@@ -22,7 +22,6 @@
 					#{cc.attrs.pieConfigUI.headerLeft}</span>
 			</div>
 			<div style="display: inline-block;" align="center">
-
 				<span
 					style="color: #274b6d; font-size: 16px; font: bold 16px Trebuchet MS, Arial, sans-serif; fill: #274b6d; width: 232px;">
 					#{cc.attrs.pieConfigUI.headerCenter}</span>
@@ -34,86 +33,92 @@
 					#{cc.attrs.pieConfigUI.headerRight}</span>
 			</div>
 		</div>
+
 		<div class="chart-cheese" id="tu-situacion-grafico"
 			data-highcharts-chart="3">
 
 			<div id="chart2_1">
-			<div id="imgLOAD" class="imgLOAD" align="center">
-				<IMG src="/assets/img/loader.gif" />
-			</div>
+				<p:dialog widgetVar="moreGrphic" modal="true" draggable="false"
+					position="center" showEffect="fade" hideEffect="fade"
+					closable="false" resizable="false" showHeader="false">
+					<p:outputLabel value="#{msg['please.wait']}" />
+				</p:dialog>
 			</div>
 		</div>
+
 
 	</h:form>
 
 
-				
-		<script>
-			function initChart() {
-				var totalColums = [];
-				var label;
-				var colums;
-				var values;
-				var totalporcentaje = 0;
 
-				<c:forEach var="pieItemUI" items="${cc.attrs.pieConfigUI.pieItemUIList}">
-				label = ("${pieItemUI.textLegend}");
-				values = ("${pieItemUI.value}");
-				colums = [ [ label ], [ values ] ];
-				totalporcentaje += parseInt(values);
-				totalColums.push(colums);
-				</c:forEach>
-				var chart2_1 = c3.generate({
-					bindto : '#chart2_1',
-					//size: { height: 330, width: 270 },
-					padding : {
-						top : 30,
-						right : 100,
-						bottom : 40,
-						left : 100,
+	<script>
+		function initChart() {
+			//PF('moreGrphic').show();
+			var totalColums = [];
+			var label;
+			var colums;
+			var values;
+			var totalporcentaje = 0;
+
+			<c:forEach var="pieItemUI" items="${cc.attrs.pieConfigUI.pieItemUIList}">
+			label = ("${pieItemUI.textLegend}");
+			values = ("${pieItemUI.value}");
+			colums = [ [ label ], [ values ] ];
+			totalporcentaje += parseInt(values);
+			totalColums.push(colums);
+			</c:forEach>
+			var chart2_1 = c3.generate({
+				bindto : '#chart2_1',
+				//size: { height: 330, width: 270 },
+				padding : {
+					top : 30,
+					right : 100,
+					bottom : 40,
+					left : 100,
+				},
+
+				data : {
+
+					columns : totalColums,
+
+					type : 'pie',
+					onclick : function(d, i) {
+						console.log("onclick", d, i);
 					},
-
-					data : {
-
-						columns : totalColums,
-
-						type : 'pie',
-						onclick : function(d, i) {
-							console.log("onclick", d, i);
+					onmouseover : function(d, i) {
+						console.log("onmouseover", d, i);
+					},
+					onmouseout : function(d, i) {
+						console.log("onmouseout", d, i);
+					}
+				},
+				pie : {
+					label : {
+						show : false
+					}
+				},
+				tooltip : {
+					format : {
+						name : function(name, ratio, id, index) {
+							return "<tr><td >" + name + "</td></tr>";
 						},
-						onmouseover : function(d, i) {
-							console.log("onmouseover", d, i);
-						},
-						onmouseout : function(d, i) {
-							console.log("onmouseout", d, i);
-						}
-					},
-					pie : {
-						label : {
-							show : false
-						}
-					},
-					tooltip : {
-						format : {
-							name : function(name, ratio, id, index) {
-								return "<tr><td >" + name + "</td></tr>";
-							},
-							value : function(value, ratio, id) {
-								var format = d3.format(',');
-								return "<B>"
-										+ currency
-										+ " "
-										+ format(value)
-										+ "</B> ("
-										+ ((value * 100) / totalporcentaje)
-												.toFixed(1) + "%)";
-							}
+						value : function(value, ratio, id) {
+							var format = d3.format(',');
+							return "<B>"
+									+ currency
+									+ " "
+									+ format(value)
+									+ "</B> ("
+									+ ((value * 100) / totalporcentaje)
+											.toFixed(1) + "%)";
 						}
 					}
+				}
 
-				});
-			};
-		</script>
+			});
+			//PF('moreGrphic').hide()
+		};
+	</script>
 
 </composite:implementation>
 </html>

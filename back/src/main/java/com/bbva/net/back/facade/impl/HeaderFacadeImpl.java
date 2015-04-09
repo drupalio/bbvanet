@@ -55,4 +55,21 @@ public class HeaderFacadeImpl extends AbstractBbvaFacade implements HeaderFacade
 		final Customer customer = this.customerService.getCustomer(filter);
 		return mapperCustomer.map(customer);
 	}
+
+	public void setCustomerService(CustomerService customerService) {
+		this.customerService = customerService;
+	}
+
+	public void setMapper(ExecutiveMapper mapper) {
+		this.mapper = mapper;
+	}
+
+	public void setMapperCustomer(CustomerMapper mapperCustomer) {
+		this.mapperCustomer = mapperCustomer;
+	}
+
+	public void setFiqlService(FiqlService fiqlService) {
+		this.fiqlService = fiqlService;
+	}
+
 }

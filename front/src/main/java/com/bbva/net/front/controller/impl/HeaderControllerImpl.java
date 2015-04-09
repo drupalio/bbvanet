@@ -14,7 +14,7 @@ import com.bbva.net.front.controller.HeaderController;
 import com.bbva.net.front.core.AbstractBbvaController;
 
 @Controller(value = "headerController")
-@Scope(value = "session")
+@Scope(value = "globalSession")
 public class HeaderControllerImpl extends AbstractBbvaController implements HeaderController {
 
 	@Resource(name = "headerFacade")
@@ -38,14 +38,8 @@ public class HeaderControllerImpl extends AbstractBbvaController implements Head
 
 	@Override
 	public ExecutiveDto getExecutive() {
-		if (ejecutivo == null) {
-			try {
-				return headerFacade.getExecutive();
-			} catch (final Exception exception) {
-			}
-			return new ExecutiveDto();
-		}
-		return ejecutivo;
+
+		return headerFacade.getExecutive();
 	}
 
 	public ExecutiveDto getEjecutivo() {
@@ -53,7 +47,12 @@ public class HeaderControllerImpl extends AbstractBbvaController implements Head
 	}
 
 	public CustomerDto getCliente() {
+		
 		return cliente;
+	}
+
+	public void setHeaderFacade(HeaderFacade headerFacade) {
+		this.headerFacade = headerFacade;
 	}
 
 	@Override

@@ -9,13 +9,11 @@
 	<var name="personalizeProductAccountController" class="com.bbva.net.front.controller.impl.PersonalizeProductControllerImpl"/>
 	
 	<on-start>
-	
-		<evaluate expression="quotaController.init()"></evaluate>
-		<evaluate expression="personalizeProductAccountController.init()"></evaluate>
+		<evaluate expression="quotaController.init()"/>
+		<evaluate expression="personalizeProductAccountController.init()"/>
 		<evaluate expression="termsController.getAllConditions()" result="flowScope.allConditions" />
 		<evaluate expression="quotaController.getAllQuotamovenDtos()" result="flowScope.quotaMovements" />
-		<evaluate expression="quotaController.getSelectProduct()" result="flowScope.product"/>
-		
+		<evaluate expression="quotaController.getSelectedProduct()" result="flowScope.product"/>
 	</on-start>
 	
 	<view-state id="quotaDetail">

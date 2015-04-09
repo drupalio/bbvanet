@@ -10,109 +10,136 @@
 
 <composite:interface>
 
-<composite:attribute name="barLineUIList"
+	<composite:attribute name="barLineUIList"
 		type="com.bbva.net.front.ui.globalposition.AccountBarLineUI" />
 </composite:interface>
 
 <composite:implementation>
-	<h:form id="account" >	
-			<div id="chart1_4">
-			<div id="imgLOAD" class="imgLOAD" align="center">
-				<IMG src="/assets/img/loader.gif" />
-			</div>
-			</div>
-	<script>
-	
-	$(document).ready(function() {
+	<h:form id="account">
+		<div id="chart1_4">
+			<p:dialog widgetVar="GraphicAccount" modal="true" draggable="false"
+				position="center" showEffect="fade" hideEffect="fade"
+				closable="false" resizable="false" showHeader="false">
+				<p:outputLabel value="#{msg['please.wait']}" />
+			</p:dialog>
+		</div>
 
-	var chart1_4;	
-	var payTotalColums = [];
-	var balanceTotalColums = [];
-	var chargeTotalColums = [];
-	
-	var xColumns= [];
-	var payColums;
-	
-	var payLabel = ("${cc.attrs.barLineUIList.paymentList[0].typeMovement}");
-	var chargeLabel = ("${cc.attrs.barLineUIList.chargesList[0].typeMovement}");
-	var balanceLabel = ("${cc.attrs.barLineUIList.balanceList[0].typeMovement}");
-	
-	//se arma la estructura de la columan iniciando por los labels
-	
-	payTotalColums.push(payLabel);
-	balanceTotalColums.push(balanceLabel);
-	chargeTotalColums.push(chargeLabel);
-	xColumns.push("x");
-	
-	//Itera lista de abonos
-	<c:forEach var="barLineItemUI" items="${cc.attrs.barLineUIList.paymentList}" varStatus="status" >
-	payTotalColums.push("${barLineItemUI.value.amount}");
-	xColumns.push("${barLineItemUI.month}");
-	</c:forEach>
-	//itera  lista de saldos
-	<c:forEach var="barLineItemUI" items="${cc.attrs.barLineUIList.balanceList}">
-	balanceTotalColums.push("${barLineItemUI.value.amount}");
-	</c:forEach>
-	//itera  lista de cargos
-	<c:forEach var="barLineItemUI" items="${cc.attrs.barLineUIList.chargesList}">
-	chargeTotalColums.push("${barLineItemUI.value.amount}");
-	</c:forEach>
-	
-	chart1_4 = c3.generate({
-				bindto: '#chart1_4',
-				tooltip: {
-			        grouped: false 
-			    },
-		    data: {
-		        x: 'x',
-			    colors: { Abonos:'#0E79C3', Cargos:'#045089', Saldos: '#028102' },
-				type: 'bar',
-				groups: [[payLabel, chargeLabel]],
-				types: {
-					Saldos: 'line',
-				},
-		        columns: [
-				  xColumns,
-				  payTotalColums,
-				  chargeTotalColums,
-				  balanceTotalColums
-			   ]
-		    },
-		   
-			
-			//size: { height: 340, width: 780 },
-			
-			grid: {
-			  y: {
-			    lines: [{value: 20},{value: 40},{value: 60},{value: 80},{value: 0},{value: -20},{value: -40},{value: -60},{value: -80}]
-			  }
-			},
-		  
-		    axis: {
-		        x: {
-		        type: 'categorized' 
-		        },
-		      
-		        y: {
-		          show:false,
-		            label: {
-		                text: 'Y Label',
-		                position: 'outer-middle'
-		            }
-		        },
-		        y2: {
-		            show: false,
-		            label: {
-		                text: 'Y2 Label',
-		                position: 'outer-middle'
-		            }
-		        }
-		    }
-			
-		});
-	});
-</script>
-</h:form>
+		<script>
+			$(document)
+					.ready(
+							function() {
+								//PF('GraphicAccount').show()
+
+								var chart1_4;
+								var payTotalColums = [];
+								var balanceTotalColums = [];
+								var chargeTotalColums = [];
+
+								var xColumns = [];
+								var payColums;
+
+								var payLabel = ("${cc.attrs.barLineUIList.paymentList[0].typeMovement}");
+								var chargeLabel = ("${cc.attrs.barLineUIList.chargesList[0].typeMovement}");
+								var balanceLabel = ("${cc.attrs.barLineUIList.balanceList[0].typeMovement}");
+
+								//se arma la estructura de la columan iniciando por los labels
+
+								payTotalColums.push(payLabel);
+								balanceTotalColums.push(balanceLabel);
+								chargeTotalColums.push(chargeLabel);
+								xColumns.push("x");
+
+								//Itera lista de abonos
+								<c:forEach var="barLineItemUI" items="${cc.attrs.barLineUIList.paymentList}" varStatus="status" >
+								payTotalColums
+										.push("${barLineItemUI.value.amount}");
+								xColumns.push("${barLineItemUI.month}");
+								</c:forEach>
+								//itera  lista de saldos
+								<c:forEach var="barLineItemUI" items="${cc.attrs.barLineUIList.balanceList}">
+								balanceTotalColums
+										.push("${barLineItemUI.value.amount}");
+								</c:forEach>
+								//itera  lista de cargos
+								<c:forEach var="barLineItemUI" items="${cc.attrs.barLineUIList.chargesList}">
+								chargeTotalColums
+										.push("${barLineItemUI.value.amount}");
+								</c:forEach>
+
+								chart1_4 = c3.generate({
+									bindto : '#chart1_4',
+									tooltip : {
+										grouped : false
+									},
+									data : {
+										x : 'x',
+										colors : {
+											Abonos : '#0E79C3',
+											Cargos : '#045089',
+											Saldos : '#028102'
+										},
+										type : 'bar',
+										groups : [ [ payLabel, chargeLabel ] ],
+										types : {
+											Saldos : 'line',
+										},
+										columns : [ xColumns, payTotalColums,
+												chargeTotalColums,
+												balanceTotalColums ]
+									},
+
+									//size: { height: 340, width: 780 },
+
+									grid : {
+										y : {
+											lines : [ {
+												value : 20
+											}, {
+												value : 40
+											}, {
+												value : 60
+											}, {
+												value : 80
+											}, {
+												value : 0
+											}, {
+												value : -20
+											}, {
+												value : -40
+											}, {
+												value : -60
+											}, {
+												value : -80
+											} ]
+										}
+									},
+
+									axis : {
+										x : {
+											type : 'categorized'
+										},
+
+										y : {
+											show : false,
+											label : {
+												text : 'Y Label',
+												position : 'outer-middle'
+											}
+										},
+										y2 : {
+											show : false,
+											label : {
+												text : 'Y2 Label',
+												position : 'outer-middle'
+											}
+										}
+									}
+
+								});
+								PF('GraphicAccount').hide();
+							});
+		</script>
+	</h:form>
 
 </composite:implementation>
 </html>

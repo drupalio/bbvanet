@@ -1,16 +1,18 @@
-
 package com.bbva.czic.dto.net;
+
+import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
+
 import com.bbva.jee.arq.spring.core.servicing.utils.Money;
 
-
 /**
- * <p>Java class for Payment complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * Java class for Payment complex type.
+ * <p>
+ * The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="Payment">
@@ -28,169 +30,130 @@ import com.bbva.jee.arq.spring.core.servicing.utils.Money;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Payment", propOrder = {
-    "dueDate",
-    "paymentDate",
-    "shortDate",
-    "fees",
-    "minimumPayment",
-    "numbersOfQuota"
-})
-public class Payment {
+@XmlType(name = "Payment", propOrder = { "dueDate", "paymentDate", "shortDate", "fees", "minimumPayment",
+		"numbersOfQuota" })
+public class Payment implements Serializable {
 
-    protected String dueDate;
-    protected String paymentDate;
-    protected String shortDate;
-    protected Money fees;
-    protected Money minimumPayment;
-    protected Integer numbersOfQuota;
+	protected String dueDate;
 
-    /**
-     * Gets the value of the dueDate property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getDueDate() {
-        return dueDate;
-    }
+	protected String paymentDate;
 
-    /**
-     * Sets the value of the dueDate property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setDueDate(String value) {
-        this.dueDate = value;
-    }
+	protected String shortDate;
 
-    /**
-     * Gets the value of the paymentDate property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getPaymentDate() {
-        return paymentDate;
-    }
+	protected Money fees;
 
-    /**
-     * Sets the value of the paymentDate property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setPaymentDate(String value) {
-        this.paymentDate = value;
-    }
+	protected Money minimumPayment;
 
-    /**
-     * Gets the value of the shortDate property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getShortDate() {
-        return shortDate;
-    }
+	protected Integer numbersOfQuota;
 
-    /**
-     * Sets the value of the shortDate property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setShortDate(String value) {
-        this.shortDate = value;
-    }
+	/**
+	 * Gets the value of the dueDate property.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getDueDate() {
+		return dueDate;
+	}
 
-    /**
-     * Gets the value of the fees property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Money }
-     *     
-     */
-    public Money getFees() {
-        return fees;
-    }
+	/**
+	 * Sets the value of the dueDate property.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setDueDate(String value) {
+		this.dueDate = value;
+	}
 
-    /**
-     * Sets the value of the fees property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Money }
-     *     
-     */
-    public void setFees(Money value) {
-        this.fees = value;
-    }
+	/**
+	 * Gets the value of the paymentDate property.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getPaymentDate() {
+		return paymentDate;
+	}
 
-    /**
-     * Gets the value of the minimumPayment property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Money }
-     *     
-     */
-    public Money getMinimumPayment() {
-        return minimumPayment;
-    }
+	/**
+	 * Sets the value of the paymentDate property.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setPaymentDate(String value) {
+		this.paymentDate = value;
+	}
 
-    /**
-     * Sets the value of the minimumPayment property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Money }
-     *     
-     */
-    public void setMinimumPayment(Money value) {
-        this.minimumPayment = value;
-    }
+	/**
+	 * Gets the value of the shortDate property.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getShortDate() {
+		return shortDate;
+	}
 
-    /**
-     * Gets the value of the numbersOfQuota property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Integer }
-     *     
-     */
-    public Integer getNumbersOfQuota() {
-        return numbersOfQuota;
-    }
+	/**
+	 * Sets the value of the shortDate property.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setShortDate(String value) {
+		this.shortDate = value;
+	}
 
-    /**
-     * Sets the value of the numbersOfQuota property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Integer }
-     *     
-     */
-    public void setNumbersOfQuota(Integer value) {
-        this.numbersOfQuota = value;
-    }
+	/**
+	 * Gets the value of the fees property.
+	 * 
+	 * @return possible object is {@link Money }
+	 */
+	public Money getFees() {
+		return fees;
+	}
+
+	/**
+	 * Sets the value of the fees property.
+	 * 
+	 * @param value allowed object is {@link Money }
+	 */
+	public void setFees(Money value) {
+		this.fees = value;
+	}
+
+	/**
+	 * Gets the value of the minimumPayment property.
+	 * 
+	 * @return possible object is {@link Money }
+	 */
+	public Money getMinimumPayment() {
+		return minimumPayment;
+	}
+
+	/**
+	 * Sets the value of the minimumPayment property.
+	 * 
+	 * @param value allowed object is {@link Money }
+	 */
+	public void setMinimumPayment(Money value) {
+		this.minimumPayment = value;
+	}
+
+	/**
+	 * Gets the value of the numbersOfQuota property.
+	 * 
+	 * @return possible object is {@link Integer }
+	 */
+	public Integer getNumbersOfQuota() {
+		return numbersOfQuota;
+	}
+
+	/**
+	 * Sets the value of the numbersOfQuota property.
+	 * 
+	 * @param value allowed object is {@link Integer }
+	 */
+	public void setNumbersOfQuota(Integer value) {
+		this.numbersOfQuota = value;
+	}
 
 }

@@ -40,11 +40,14 @@ public class LoginFacadeImpl extends AbstractBbvaFacade implements LoginFacade {
 	private static final long serialVersionUID = 6609387805859744761L;
 
 	@Override
-	public AuthenticationState login(String ivTicket, String ivUser) {
+	public AuthenticationState login(String ivTicket, String user, String password, String identification,
+			String identificationType) {
 
 		LOGGER.info("LOGIN FACADE ");
-		LOGGER.info("User: " + ivUser);
-		
+		LOGGER.info("User: " + user);
+		LOGGER.info("Password: " + password);
+		LOGGER.info("Identificacion: " + identification);
+
 		ConsumerContext consumerContext = new ConsumerContext();
 		Authentication autentication = new Authentication();
 		UserPreferences userPreferences = new UserPreferences();
@@ -58,7 +61,7 @@ public class LoginFacadeImpl extends AbstractBbvaFacade implements LoginFacade {
 		/**
 		 * Concatenaciópn de Nick Usuario + Tipo de documento (identificationType) + Identification
 		 */
-		autentication.setAccessCode(ivUser);
+		autentication.setAccessCode(user + identificationType + identification);
 		autentication.setAuthenticationType(AUTH_TYPE);
 		autentication.setClient(null);
 		autentication.setConsumerId(CONSUMER);

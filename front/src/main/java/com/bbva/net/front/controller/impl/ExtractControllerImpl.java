@@ -1,14 +1,17 @@
 package com.bbva.net.front.controller.impl;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.faces.event.ActionEvent;
 
 import org.apache.commons.beanutils.BeanToPropertyValueTransformer;
 import org.apache.commons.collections.CollectionUtils;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 
 import com.bbva.net.back.facade.ExtractFacade;
 import com.bbva.net.back.model.extract.ExtractDto;
@@ -17,6 +20,9 @@ import com.bbva.net.back.predicate.ExtractPeriodPredicate;
 import com.bbva.net.front.controller.ExtractController;
 import com.bbva.net.front.core.AbstractBbvaController;
 
+/**
+ * @author Entelgy
+ */
 public class ExtractControllerImpl extends AbstractBbvaController implements ExtractController {
 
 	/**
@@ -24,23 +30,45 @@ public class ExtractControllerImpl extends AbstractBbvaController implements Ext
 	 */
 	private static final long serialVersionUID = -7877371441207311900L;
 
+	/**
+	 * 
+	 */
 	private String selectedYear;
 
+	/**
+	 * 
+	 */
 	private String selectedMonth;
 
-	private String extractId;
-
+	/**
+	 * 
+	 */
 	@Resource(name = "extractFacade")
 	private transient ExtractFacade extractFacade;
 
+	/**
+	 * 
+	 */
 	private List<ExtractDto> extractList;
 
+	/**
+	 * 
+	 */
 	private List<String> yearAvailable;
 
+	/**
+	 * 
+	 */
 	private List<String> monthAvailable;
 
+	/**
+	 * 
+	 */
 	private boolean enableMonth;
 
+	/**
+	 * 
+	 */
 	public void init() {
 
 		try {
@@ -53,7 +81,11 @@ public class ExtractControllerImpl extends AbstractBbvaController implements Ext
 
 	}
 
-	public void documentExtract(ActionEvent event) {
+	/**
+	 * @param event
+	 * @throws IOException
+	 */
+	public StreamedContent documentExtract() throws IOException {
 
 		LOGGER.info("Consultando extracto..........");
 		final ExtractDto extract = (ExtractDto)CollectionUtils.find(extractList, new ExtractDocumentPredicate(
@@ -61,15 +93,26 @@ public class ExtractControllerImpl extends AbstractBbvaController implements Ext
 		final List<ExtractDto> extractDocument = this.extractFacade.getDocumentExtract(super.getSelectedProduct()
 				.getProductNumber(), extract);
 		// Hacer Redirect
-		LOGGER.info("Descargar Extracto en : " + extractDocument.get(0).getUrl());
-
+		if (extractDocument != null) {
+			LOGGER.info("Descargar Extracto en : " + extractDocument.get(0).getUrl());
+			String url = extractDocument.get(0).getUrl();
+			URL stream = new URL(url);
+			return new DefaultStreamedContent(stream.openStream(), "application/pdf", "Reporte.pdf");
+		}
+		return new DefaultStreamedContent();
 	}
 
+	/**
+	 * 
+	 */
 	public void actionState() {
 		this.enableMonth = false;
 		getExtractMontAvailable();
 	}
 
+	/**
+	 * 
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<String> getExtractAvailablePeriod() {
@@ -82,6 +125,9 @@ public class ExtractControllerImpl extends AbstractBbvaController implements Ext
 		return yearAvailable;
 	}
 
+	/**
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	public List<String> getExtractMontAvailable() {
 
@@ -95,56 +141,73 @@ public class ExtractControllerImpl extends AbstractBbvaController implements Ext
 		return monthAvailable;
 	}
 
+	/**
+	 * @return
+	 */
 	public String getSelectedYear() {
 		return selectedYear;
 	}
 
+	/**
+	 * @param selectedYear
+	 */
 	public void setSelectedYear(final String selectedYear) {
 		this.selectedYear = selectedYear;
 	}
 
+	/**
+	 * @return
+	 */
 	public String getSelectedMonth() {
 		return selectedMonth;
 	}
 
+	/**
+	 * @param selectedMonth
+	 */
 	public void setSelectedMonth(final String selectedMonth) {
 		this.selectedMonth = selectedMonth;
 	}
 
+	/**
+	 * @return
+	 */
 	public List<ExtractDto> getExtractList() {
 		return extractList;
 	}
 
+	/**
+	 * @param extractFacade
+	 */
 	public void setExtractFacade(final ExtractFacade extractFacade) {
 		this.extractFacade = extractFacade;
 	}
 
+	/**
+	 * @return
+	 */
 	public List<String> getYearAvailable() {
 		return yearAvailable;
 	}
 
+	/**
+	 * @return
+	 */
 	public List<String> getMonthAvailable() {
 		return monthAvailable;
 	}
 
-	public void setMonthAvailable(List<String> monthAvailable) {
-		this.monthAvailable = monthAvailable;
-	}
-
+	/**
+	 * @return
+	 */
 	public boolean isEnableMonth() {
 		return enableMonth;
 	}
 
-	public void setEnableMonth(boolean enableMonth) {
+	/**
+	 * @param enableMonth
+	 */
+	public void setEnableMonth(final boolean enableMonth) {
 		this.enableMonth = enableMonth;
 	}
-
-	public String getExtractId() {
-		return extractId;
-	}
-
-	public void setExtractId(String extractId) {
-		this.extractId = extractId;
-	}
-
 }

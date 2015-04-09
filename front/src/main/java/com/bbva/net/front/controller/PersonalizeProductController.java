@@ -1,9 +1,6 @@
 package com.bbva.net.front.controller;
 
-import javax.faces.event.ActionEvent;
 import javax.faces.event.AjaxBehaviorEvent;
-
-import com.bbva.net.back.model.personalize.PersonalizeAccountDto;
 
 /**
  * @author Entelgy
@@ -11,27 +8,23 @@ import com.bbva.net.back.model.personalize.PersonalizeAccountDto;
 public interface PersonalizeProductController {
 
 	/**
-	 * Metodo que retorna el PersonalizeAccountDTO
-	 * 
-	 * @return
+	 * Metodo de updateAias
 	 */
-	PersonalizeAccountDto getPersonalizeProductAccountDto();
+	void updateAlias();
 
 	/**
-	 * Metodos de rendered de mensajes que estan en la vista
+	 * Metodo de ComboButtons
+	 */
+
+	void operKey();
+
+	/**
+	 * Metodos de rendered=false de mensajes que estan en la vista
 	 * 
 	 * @param event
 	 */
 
-	void successful(ActionEvent event);
-
-	void operKey();
-
-	boolean isMenOperationKey();
-
-	boolean isMenSuccessful();
-
-	void offMessageSuccesful(AjaxBehaviorEvent event);
+	void offMessageSuccesful();
 
 	void offMessageOpenKey(AjaxBehaviorEvent event);
 

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import com.bbva.net.back.core.pattern.dto.Dto;
 
@@ -31,13 +31,13 @@ public class CheckbookDto implements Dto {
 	private String firstCheck;
 
 	private String id;
-	
-	private List<CheckDto> checks = new ArrayList<CheckDto>();
+
+	private List<CheckDto> checks;
 
 	public CheckbookDto() {
+		checks = new ArrayList<CheckDto>();
 	}
 
-	
 	/**
 	 * @param actualState
 	 * @param deliveryDate
@@ -60,7 +60,28 @@ public class CheckbookDto implements Dto {
 		this.checks = checks;
 	}
 
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder().append(getActualState()).append(getDeliveryDate()).append(getRequestDate())
+				.append(getTotalCheck()).append(getLastCheck()).append(getFirstCheck()).append(getId()).toHashCode();
+	}
 
+	@Override
+	public boolean equals(Object obj) {
+		return (obj != null) && (obj instanceof CheckbookDto)
+				&& (this.getId() != null && ((CheckbookDto)obj).getId() != null)
+				&& this.getId().equals(((CheckbookDto)obj).getId());
+	}
+
+	@Override
+	public String toString() {
+		return new ToStringBuilder(this).append("actualState", getActualState())
+				.append("deliveryDate", getDeliveryDate()).append("requestDate", getRequestDate())
+				.append("totalCheck", getTotalCheck()).append("lastCheck", getLastCheck())
+				.append("firstCheck", getFirstCheck()).append("id", getId()).toString();
+	}
+
+	// Setters and getters
 
 	/**
 	 * @return the actualState
@@ -153,7 +174,6 @@ public class CheckbookDto implements Dto {
 		return id;
 	}
 
-	
 	/**
 	 * @return the checks
 	 */
@@ -161,8 +181,6 @@ public class CheckbookDto implements Dto {
 		return checks;
 	}
 
-
-	
 	/**
 	 * @param checks the checks to set
 	 */
@@ -170,37 +188,10 @@ public class CheckbookDto implements Dto {
 		this.checks = checks;
 	}
 
-
 	/**
 	 * @param id the id to set
 	 */
 	public void setId(String id) {
 		this.id = id;
-	}
-
-	@Override
-	public String toString() {
-		return new ToStringBuilder(this).append("actualState", getActualState())
-				.append("deliveryDate", getDeliveryDate()).append("requestDate", getRequestDate())
-				.append("totalCheck", getTotalCheck()).append("lastCheck", getLastCheck())
-				.append("firstCheck", getFirstCheck()).append("id", getId()).toString();
-	}
-
-	@Override
-	public int hashCode() {
-		return new HashCodeBuilder().append(getActualState()).append(getDeliveryDate()).append(getRequestDate())
-				.append(getTotalCheck()).append(getLastCheck()).append(getFirstCheck()).append(getId()).toHashCode();
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-
-		return (obj instanceof CheckbookDto) && this.getActualState().equals(((CheckbookDto)obj).getActualState())
-				&& this.getDeliveryDate().equals(((CheckbookDto)obj).getDeliveryDate())
-				&& this.getRequestDate().equals(((CheckbookDto)obj).getRequestDate())
-				&& this.getTotalCheck().equals(((CheckbookDto)obj).getTotalCheck())
-				&& this.getLastCheck().equals(((CheckbookDto)obj).getLastCheck())
-				&& this.getFirstCheck().equals(((CheckbookDto)obj).getFirstCheck())
-				&& this.getId().equals(((CheckbookDto)obj).getId());
 	}
 }

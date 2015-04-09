@@ -1,5 +1,7 @@
 package com.bbva.czic.dto.net;
 
+import java.io.Serializable;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlSchemaType;
@@ -38,7 +40,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Customer", propOrder = { "id", "document", "username", "name", "segment", "contactInfo",
 		"homeLocation", "stratum", "residenceYears", "homeMembers", "dwelingType", "officeLocation", "lastAccessDate" })
-public class Customer {
+public class Customer implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	protected String id;
 
@@ -49,7 +53,7 @@ public class Customer {
 	protected String name;
 
 	@XmlSchemaType(name = "string")
-	protected String segment;
+	protected EnumSegmentType segment;
 
 	protected ContactInfo contactInfo;
 
@@ -62,7 +66,7 @@ public class Customer {
 	protected Integer homeMembers;
 
 	@XmlSchemaType(name = "string")
-	protected String dwelingType;
+	protected EnumDwelingType dwelingType;
 
 	protected Place officeLocation;
 
@@ -145,7 +149,7 @@ public class Customer {
 	 * 
 	 * @return possible object is {@link EnumSegmentType }
 	 */
-	public String getSegment() {
+	public EnumSegmentType getSegment() {
 		return segment;
 	}
 
@@ -154,7 +158,7 @@ public class Customer {
 	 * 
 	 * @param value allowed object is {@link EnumSegmentType }
 	 */
-	public void setSegment(String value) {
+	public void setSegment(EnumSegmentType value) {
 		this.segment = value;
 	}
 
@@ -253,7 +257,7 @@ public class Customer {
 	 * 
 	 * @return possible object is {@link EnumDwelingType }
 	 */
-	public String getDwelingType() {
+	public EnumDwelingType getDwelingType() {
 		return dwelingType;
 	}
 
@@ -262,7 +266,7 @@ public class Customer {
 	 * 
 	 * @param value allowed object is {@link EnumDwelingType }
 	 */
-	public void setDwelingType(String value) {
+	public void setDwelingType(EnumDwelingType value) {
 		this.dwelingType = value;
 	}
 

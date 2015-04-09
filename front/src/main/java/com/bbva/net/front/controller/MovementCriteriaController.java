@@ -5,10 +5,7 @@ import java.util.List;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.ComponentSystemEvent;
 
-import org.primefaces.event.SelectEvent;
-
 import com.bbva.net.back.model.movements.MovementDto;
-import com.bbva.net.front.ui.line.LineConfigUI;
 
 /**
  * @author User
@@ -80,26 +77,8 @@ public interface MovementCriteriaController {
 	void setMovementConcept(ActionEvent event);
 
 	/**
-	 * Method lines of graphics Movements
-	 * 
-	 * @param valuesLines
-	 * @return
-	 */
-	List valuesLinesGraphic(LineConfigUI valuesLines);
-
-	/**
 	 * 
 	 */
 	void clean();
-
-	/**
-	 * @param event
-	 */
-	void selectDateSince(SelectEvent event);
-
-	/**
-	 * @param event
-	 */
-	void selectDateTo(SelectEvent event);
 
 }

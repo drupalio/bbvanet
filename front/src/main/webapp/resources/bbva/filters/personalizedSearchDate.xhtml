@@ -1,20 +1,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:composite="http://java.sun.com/jsf/composite"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:bbvaSearch="http://java.sun.com/jsf/composite/bbva/filters"
 	xmlns:jsf="http://xmlns.jcp.org/jsf">
-
 <composite:interface>
 	<composite:attribute name="title" type="String" />
 </composite:interface>
-
 <composite:implementation>
 	<h:form id="customSearch">
 		<bbvaSearch:personalizedSearchTabBody id="perTabBody"
@@ -26,22 +22,19 @@
 				filterTitle2="#{quotaController.toText}"
 				filterMessage="#{quotaController.sinceDatestr}"
 				filterMessage2="#{quotaController.toDatestr}">
-
 				<bbvaSearch:customSearchFilter id="customDate"
 					value="#{quotaController.selectDate}"
 					valueDateSince="#{quotaController.sinceDate}"
-					valueDateTo="#{quotaController.toDate}"
-					showQuota="true"
-					showMovements="false"
-					showChecks="false"
+					valueDateTo="#{quotaController.toDate}" showQuota="true"
+					showMovements="false" showChecks="false" calendarSince="quotaCalendarSince"
+					calendarTo="quotaCalendarTo"
 					disabledButton="#{quotaController.renderComponents['BUTTONDATE']}"
 					disabledCalendar="#{quotaController.renderComponents['CALENDAR']}"
 					actionListenerDate="#{quotaController.setCustomDate}"
 					listenerDate="#{quotaController}" />
 			</bbvaSearch:customSearchList>
-
-			<bbvaSearch:searchButtonList show="true" showQuota="true" showMovements="false"
-				actionListenerRemove="#{quotaController.cleanFilters}"
+			<bbvaSearch:searchButtonList show="true" showQuota="true"
+				showMovements="false" actionListenerRemove="#{quotaController.cleanFilters}"
 				actionListenerShow="#{quotaController.searchQuotaByFilter}" />
 		</bbvaSearch:personalizedSearchTabBody>
 	</h:form>

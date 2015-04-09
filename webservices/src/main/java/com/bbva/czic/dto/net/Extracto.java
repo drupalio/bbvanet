@@ -1,15 +1,16 @@
-
 package com.bbva.czic.dto.net;
+
+import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for Extracto complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * Java class for Extracto complex type.
+ * <p>
+ * The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="Extracto">
@@ -26,143 +27,111 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Extracto", propOrder = {
-    "externalCode",
-    "month",
-    "year",
-    "generationDate",
-    "url"
-})
-public class Extracto {
+@XmlType(name = "Extracto", propOrder = { "externalCode", "month", "year", "generationDate", "url" })
+public class Extracto implements Serializable {
 
-    protected String externalCode;
-    protected String month;
-    protected String year;
-    protected String generationDate;
-    protected String url;
+	private static final long serialVersionUID = 1L;
 
-    /**
-     * Gets the value of the externalCode property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getExternalCode() {
-        return externalCode;
-    }
+	protected String externalCode;
 
-    /**
-     * Sets the value of the externalCode property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setExternalCode(String value) {
-        this.externalCode = value;
-    }
+	protected String month;
 
-    /**
-     * Gets the value of the month property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getMonth() {
-        return month;
-    }
+	protected String year;
 
-    /**
-     * Sets the value of the month property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setMonth(String value) {
-        this.month = value;
-    }
+	protected String generationDate;
 
-    /**
-     * Gets the value of the year property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getYear() {
-        return year;
-    }
+	protected String url;
 
-    /**
-     * Sets the value of the year property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setYear(String value) {
-        this.year = value;
-    }
+	/**
+	 * Gets the value of the externalCode property.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getExternalCode() {
+		return externalCode;
+	}
 
-    /**
-     * Gets the value of the generationDate property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getGenerationDate() {
-        return generationDate;
-    }
+	/**
+	 * Sets the value of the externalCode property.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setExternalCode(String value) {
+		this.externalCode = value;
+	}
 
-    /**
-     * Sets the value of the generationDate property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setGenerationDate(String value) {
-        this.generationDate = value;
-    }
+	/**
+	 * Gets the value of the month property.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getMonth() {
+		return month;
+	}
 
-    /**
-     * Gets the value of the url property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getUrl() {
-        return url;
-    }
+	/**
+	 * Sets the value of the month property.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setMonth(String value) {
+		this.month = value;
+	}
 
-    /**
-     * Sets the value of the url property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setUrl(String value) {
-        this.url = value;
-    }
+	/**
+	 * Gets the value of the year property.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getYear() {
+		return year;
+	}
+
+	/**
+	 * Sets the value of the year property.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setYear(String value) {
+		this.year = value;
+	}
+
+	/**
+	 * Gets the value of the generationDate property.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getGenerationDate() {
+		return generationDate;
+	}
+
+	/**
+	 * Sets the value of the generationDate property.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setGenerationDate(String value) {
+		this.generationDate = value;
+	}
+
+	/**
+	 * Gets the value of the url property.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getUrl() {
+		return url;
+	}
+
+	/**
+	 * Sets the value of the url property.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setUrl(String value) {
+		this.url = value;
+	}
 
 }

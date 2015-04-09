@@ -7,23 +7,22 @@ import com.bbva.czic.dto.net.Executive;
 import com.bbva.net.webservices.core.pattern.AbstractBbvaRestService;
 import com.bbva.net.webservices.core.stereotype.RestService;
 import com.bbva.net.webservices.executives.ExecutiveService;
-import com.google.gson.Gson;
 
+/**
+ * @author Entelgy
+ */
 @RestService(value = "executiveService")
 public class ExecutiveServiceImpl extends AbstractBbvaRestService implements ExecutiveService {
 
+	/**
+	 * 
+	 */
 	@Override
-	public Executive getExecutive(String filter, String $fields, String $expands, String $sort) {
+	public Executive getExecutive(final String filter, final String fields, final String expands, final String sort) {
 
-		WebClient wc = getJsonWebClient(URL_BASE_EXECUTIVE);
-		LOGGER.info("PETICION: " + wc.getCurrentURI());
-		if (!StringUtils.isEmpty(filter)) wc.query("$filter", filter);
-		final Executive executive = wc.get(Executive.class);
-		final Gson gson = new Gson();
-		String json = gson.toJson(executive);
-		LOGGER.info("JSON EXECUTIVE: " + json);
-		return executive;
-
+		final WebClient webC = getJsonWebClient(URL_BASE_EXECUTIVE);
+		if (!StringUtils.isEmpty(filter)) webC.query("$filter", filter);
+		return webC.get(Executive.class);
 	}
 
 }

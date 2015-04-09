@@ -2,6 +2,7 @@ package com.bbva.net.front.controller.impl;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
 import org.primefaces.event.SelectEvent;
@@ -18,6 +19,7 @@ public class AccountsControllerImpl extends AbstractBbvaController implements Ac
 	@Resource(name = "accountsFacade")
 	private transient AccountsFacade accountsFacade;
 
+	@PostConstruct
 	public void init() {
 		LOGGER.info("Initialize AccountsController");
 	}

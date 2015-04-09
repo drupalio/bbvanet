@@ -3,15 +3,12 @@
 //inputId = id del input
 //btn = name del button
 
-function enableDisableButton(inputId, btn) {
-    var button = document.getElementsByName(btn.name)[0].id;
-    var valor = inputId.value;
-    if (valor.length != 0) {
-	document.getElementById(button).disabled = false;
-	document.getElementById(button).classList.remove('ui-state-disabled');
-    } else {
-	document.getElementById(button).disabled = true;
+function enableDisableButton(inputId) {
+    var valueInput = $(inputId).val().length;
+    if (valueInput > 0) {
+	$('.saveAlias').removeClass('buttonDisabled');
     }
+    return false;
 }
 
 // metodo que habilita o desabilita el boton cuando hay 4 digitos en el input
@@ -20,14 +17,11 @@ function enableDisableButton(inputId, btn) {
 // btnW = name del button
 
 function enableDisable(inputId, btnW) {
-    var button = document.getElementsByName(btnW.name)[0].id;
-    var valor = inputId.value;
-    if (valor.length == 4) {
-	document.getElementById(button).disabled = false;
-	document.getElementById(button).classList.remove('ui-state-disabled');
-    } else {
-	document.getElementById(button).disabled = true;
+    var valueInput = $(inputId).val().length;
+    if (valueInput == 4) {
+	$('.operKey').removeClass('buttonDisabled');
     }
+    return false;
 }
 
 // Metodo que cambia el estilo del divOperationkey
@@ -44,12 +38,10 @@ function clickMove() {
     $(document).ready(function() {
 	var index;
 	var next;
-	var same;
 	$('.ui-datatable-data').children().each(function() {
 	    var selected = $(this).attr('aria-selected');
 	    if (selected === 'true') {
 		index = $(this).attr('data-ri');
-		same = $('.ui-expanded-row').eq(index).length;
 		next = $(this).next('.ui-expanded-row-content').length;
 		return false;
 	    }
@@ -59,7 +51,7 @@ function clickMove() {
 	if (i == 1) {
 	    $('.ui-expanded-row').find('.ui-row-toggler').click();
 	}
-	if (same == 0 && next == 0) {
+	if (next == 0) {
 	    $('.ui-datatable-data').find('.ui-row-toggler').eq(index).click();
 	}
     });
@@ -79,12 +71,15 @@ function styles(combo) {
 	$(combo).blur();
     });
 }
+
+/* Quitar estilo de tabs de consultas */
 $(document).ready(function() {
     $('#headerTab').click(function() {
 	$(this).removeClass('setStyle');
     });
 });
 
+/* Poner estilo de tabs de consultas */
 function headerTabS(button) {
     $(document).ready(function() {
 	var parent = $(button).parents('#dateFilterContent');
@@ -92,3 +87,11 @@ function headerTabS(button) {
 	$(li).addClass('setStyle');
     });
 }
+
+$(document).ready(function() {
+    $(".extractButton").click(function() {
+	$('.extractOnePage').empty();
+	$('.extractTwoPage').removeClass('renderExtract');
+    });
+
+});

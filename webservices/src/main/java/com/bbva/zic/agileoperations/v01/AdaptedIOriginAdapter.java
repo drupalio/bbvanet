@@ -1,21 +1,23 @@
-
 package com.bbva.zic.agileoperations.v01;
+
+import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
+
 import com.bbva.eiaq.commons.v01.CardNumber;
 import com.bbva.eiaq.commons.v01.Ccc;
 import com.bbva.eiaq.commons.v01.Clabe;
 import com.bbva.eiaq.commons.v01.CreditNumber;
 import com.bbva.eiaq.commons.v01.MobilePhoneNumber;
 
-
 /**
- * <p>Clase Java para adaptedIOriginAdapter complex type.
- * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>
+ * Clase Java para adaptedIOriginAdapter complex type.
+ * <p>
+ * El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="adaptedIOriginAdapter">
@@ -32,148 +34,117 @@ import com.bbva.eiaq.commons.v01.MobilePhoneNumber;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "adaptedIOriginAdapter", propOrder = {
-    "cardNumber",
-    "ccc",
-    "clabe",
-    "creditNumber",
-    "mobilePhoneNumber"
-})
-public class AdaptedIOriginAdapter {
+@XmlType(name = "adaptedIOriginAdapter", propOrder = { "cardNumber", "ccc", "clabe", "creditNumber",
+		"mobilePhoneNumber" })
+public class AdaptedIOriginAdapter implements Serializable {
 
-    @XmlElement(namespace = "http://bbva.com/eiaq/commons/V01")
-    protected CardNumber cardNumber;
-    @XmlElement(namespace = "http://bbva.com/eiaq/commons/V01")
-    protected Ccc ccc;
-    @XmlElement(namespace = "http://bbva.com/eiaq/commons/V01")
-    protected Clabe clabe;
-    @XmlElement(namespace = "http://bbva.com/eiaq/commons/V01")
-    protected CreditNumber creditNumber;
-    @XmlElement(namespace = "http://bbva.com/eiaq/commons/V01")
-    protected MobilePhoneNumber mobilePhoneNumber;
+	private static final long serialVersionUID = 8653463038132605566L;
 
-    /**
-     * Obtiene el valor de la propiedad cardNumber.
-     * 
-     * @return
-     *     possible object is
-     *     {@link CardNumber }
-     *     
-     */
-    public CardNumber getCardNumber() {
-        return cardNumber;
-    }
+	@XmlElement(namespace = "http://bbva.com/eiaq/commons/V01")
+	protected CardNumber cardNumber;
 
-    /**
-     * Define el valor de la propiedad cardNumber.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link CardNumber }
-     *     
-     */
-    public void setCardNumber(CardNumber value) {
-        this.cardNumber = value;
-    }
+	@XmlElement(namespace = "http://bbva.com/eiaq/commons/V01")
+	protected Ccc ccc;
 
-    /**
-     * Obtiene el valor de la propiedad ccc.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Ccc }
-     *     
-     */
-    public Ccc getCcc() {
-        return ccc;
-    }
+	@XmlElement(namespace = "http://bbva.com/eiaq/commons/V01")
+	protected Clabe clabe;
 
-    /**
-     * Define el valor de la propiedad ccc.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Ccc }
-     *     
-     */
-    public void setCcc(Ccc value) {
-        this.ccc = value;
-    }
+	@XmlElement(namespace = "http://bbva.com/eiaq/commons/V01")
+	protected CreditNumber creditNumber;
 
-    /**
-     * Obtiene el valor de la propiedad clabe.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Clabe }
-     *     
-     */
-    public Clabe getClabe() {
-        return clabe;
-    }
+	@XmlElement(namespace = "http://bbva.com/eiaq/commons/V01")
+	protected MobilePhoneNumber mobilePhoneNumber;
 
-    /**
-     * Define el valor de la propiedad clabe.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Clabe }
-     *     
-     */
-    public void setClabe(Clabe value) {
-        this.clabe = value;
-    }
+	/**
+	 * Obtiene el valor de la propiedad cardNumber.
+	 * 
+	 * @return possible object is {@link CardNumber }
+	 */
+	public CardNumber getCardNumber() {
+		return cardNumber;
+	}
 
-    /**
-     * Obtiene el valor de la propiedad creditNumber.
-     * 
-     * @return
-     *     possible object is
-     *     {@link CreditNumber }
-     *     
-     */
-    public CreditNumber getCreditNumber() {
-        return creditNumber;
-    }
+	/**
+	 * Define el valor de la propiedad cardNumber.
+	 * 
+	 * @param value allowed object is {@link CardNumber }
+	 */
+	public void setCardNumber(CardNumber value) {
+		this.cardNumber = value;
+	}
 
-    /**
-     * Define el valor de la propiedad creditNumber.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link CreditNumber }
-     *     
-     */
-    public void setCreditNumber(CreditNumber value) {
-        this.creditNumber = value;
-    }
+	/**
+	 * Obtiene el valor de la propiedad ccc.
+	 * 
+	 * @return possible object is {@link Ccc }
+	 */
+	public Ccc getCcc() {
+		return ccc;
+	}
 
-    /**
-     * Obtiene el valor de la propiedad mobilePhoneNumber.
-     * 
-     * @return
-     *     possible object is
-     *     {@link MobilePhoneNumber }
-     *     
-     */
-    public MobilePhoneNumber getMobilePhoneNumber() {
-        return mobilePhoneNumber;
-    }
+	/**
+	 * Define el valor de la propiedad ccc.
+	 * 
+	 * @param value allowed object is {@link Ccc }
+	 */
+	public void setCcc(Ccc value) {
+		this.ccc = value;
+	}
 
-    /**
-     * Define el valor de la propiedad mobilePhoneNumber.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link MobilePhoneNumber }
-     *     
-     */
-    public void setMobilePhoneNumber(MobilePhoneNumber value) {
-        this.mobilePhoneNumber = value;
-    }
+	/**
+	 * Obtiene el valor de la propiedad clabe.
+	 * 
+	 * @return possible object is {@link Clabe }
+	 */
+	public Clabe getClabe() {
+		return clabe;
+	}
+
+	/**
+	 * Define el valor de la propiedad clabe.
+	 * 
+	 * @param value allowed object is {@link Clabe }
+	 */
+	public void setClabe(Clabe value) {
+		this.clabe = value;
+	}
+
+	/**
+	 * Obtiene el valor de la propiedad creditNumber.
+	 * 
+	 * @return possible object is {@link CreditNumber }
+	 */
+	public CreditNumber getCreditNumber() {
+		return creditNumber;
+	}
+
+	/**
+	 * Define el valor de la propiedad creditNumber.
+	 * 
+	 * @param value allowed object is {@link CreditNumber }
+	 */
+	public void setCreditNumber(CreditNumber value) {
+		this.creditNumber = value;
+	}
+
+	/**
+	 * Obtiene el valor de la propiedad mobilePhoneNumber.
+	 * 
+	 * @return possible object is {@link MobilePhoneNumber }
+	 */
+	public MobilePhoneNumber getMobilePhoneNumber() {
+		return mobilePhoneNumber;
+	}
+
+	/**
+	 * Define el valor de la propiedad mobilePhoneNumber.
+	 * 
+	 * @param value allowed object is {@link MobilePhoneNumber }
+	 */
+	public void setMobilePhoneNumber(MobilePhoneNumber value) {
+		this.mobilePhoneNumber = value;
+	}
 
 }

@@ -2,8 +2,7 @@ package com.bbva.net.webservices.globalposition.impl;
 
 import java.util.List;
 
-import javax.ws.rs.core.Response;
-
+import org.apache.cxf.jaxrs.client.WebClient;
 import org.springframework.beans.factory.annotation.Value;
 
 import com.bbva.czic.dto.net.Product;
@@ -34,12 +33,32 @@ public class GlobalPositionServiceImpl extends AbstractBbvaRestService implement
 	}
 
 	@Override
-	public Response updateProductOperability(String idProduct, Product product) {
-		return getJsonWebClient(URL_GLOBAL_BASE + idProduct + URL_OPERABILITY).put(product);
+	public Boolean updateProductOperability(String idProduct, Product product) {
+		final WebClient webc = getJsonWebClient(URL_GLOBAL_BASE + idProduct + URL_OPERABILITY);
+
+		webc.put(product);
+
+		if (webc.getResponse().getStatus() == 200) {
+			LOGGER.info("Servicio updateSubject actualizó el operation Online");
+			return true;
+		} else {
+			LOGGER.info("Servicio updateSubject no actualizó el operation Online");
+			return false;
+		}
 	}
 
 	@Override
-	public Response updateProductVisibility(String idProduct, Product product) {
-		return getJsonWebClient(URL_GLOBAL_BASE + idProduct + URL_VISIBILITY).put(product);
+	public Boolean updateProductVisibility(String idProduct, Product product) {
+		WebClient webc = getJsonWebClient(URL_GLOBAL_BASE + idProduct + URL_VISIBILITY);
+
+		webc.put(product);
+
+		if (webc.getResponse().getStatus() == 200) {
+			LOGGER.info("Servicio updateSubject actualizó la visibilidad");
+			return true;
+		} else {
+			LOGGER.info("Servicio updateSubject no actualizó la visibilidad");
+			return false;
+		}
 	}
 }

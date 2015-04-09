@@ -35,7 +35,7 @@ public abstract class AbstractBbvaController implements Serializable {
 
 	protected enum SessionParamenterType {
 
-		SELECTED_PRODUCT, AUTHENTICATION_STATE, LAST_REQUEST_URI, SELECTED_MOVEMENT
+		SELECTED_PRODUCT, AUTHENTICATION_STATE, LAST_REQUEST_URI, SELECTED_MOVEMENT, TSEC
 	}
 
 	/**
@@ -161,14 +161,6 @@ public abstract class AbstractBbvaController implements Serializable {
 	}
 
 	/**
-	 * @param var
-	 * @return
-	 */
-	protected Object getVarInFlow(final String var) {
-		return getWebFlowRequestContext().getFlashScope().get(var);
-	}
-
-	/**
 	 * @param defaultUser
 	 */
 	public void setDefaultUser(String defaultUser) {
@@ -179,7 +171,7 @@ public abstract class AbstractBbvaController implements Serializable {
 	 * @return
 	 */
 	protected String getCurrentUser() {
-		return (String)getSession().getAttribute("CLIENT_ID");
+		return DEFAULT_USER;
 	}
 
 	/**

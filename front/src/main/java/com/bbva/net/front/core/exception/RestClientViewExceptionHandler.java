@@ -3,7 +3,6 @@ package com.bbva.net.front.core.exception;
 import java.io.IOException;
 
 import org.apache.commons.logging.Log;
-import org.springframework.stereotype.Component;
 import org.springframework.webflow.engine.FlowExecutionExceptionHandler;
 import org.springframework.webflow.engine.RequestControlContext;
 import org.springframework.webflow.engine.ViewState;

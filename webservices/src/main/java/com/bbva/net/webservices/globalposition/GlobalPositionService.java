@@ -9,7 +9,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.Response;
 
 import com.bbva.czic.dto.net.Product;
 
@@ -25,12 +24,12 @@ public interface GlobalPositionService {
 	@Consumes("application/json")
 	@Produces("application/json")
 	@Path("/{idProduct}/setProductOperability")
-	Response updateProductOperability(@PathParam("idProduct") String idProduct, Product product);
+	Boolean updateProductOperability(@PathParam("idProduct") String idProduct, Product product);
 
 	@PUT
 	@Consumes("application/json")
 	@Produces("application/json")
 	@Path("/{idProduct}/setProductVisibility")
-	Response updateProductVisibility(@PathParam("idProduct") String idProduct, Product product);
+	Boolean updateProductVisibility(@PathParam("idProduct") String idProduct, Product product);
 
 }

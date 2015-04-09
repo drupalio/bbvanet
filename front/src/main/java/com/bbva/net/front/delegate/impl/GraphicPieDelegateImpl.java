@@ -3,15 +3,14 @@ package com.bbva.net.front.delegate.impl;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
+import org.apache.commons.logging.Log;
+import com.bbva.jee.arq.spring.core.log.I18nLogFactory;
 
 import javax.annotation.Resource;
 
-import org.apache.commons.logging.Log;
-import org.springframework.beans.factory.annotation.Value;
-
 import com.bbva.czic.dto.net.EnumFundsType;
 import com.bbva.czic.dto.net.EnumProductType;
-import com.bbva.jee.arq.spring.core.log.I18nLogFactory;
 import com.bbva.net.back.model.cards.CardsChargesDto;
 import com.bbva.net.back.model.globalposition.GlobalProductsDto;
 import com.bbva.net.back.model.globalposition.ProductDto;
@@ -31,11 +30,11 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 
 	protected static final Log LOGGER = I18nLogFactory.getLog(GraphicPieDelegateImpl.class);
 
+	/**
+	 * 
+	 */
 	@Resource(name = "productService")
-	private ProductService productService;
-
-	@Value("${number.format.decimals}")
-	private String NUMBER_FORMAT_DECIMALS;
+	private transient ProductService productService;
 
 	/**
 	 * @param cardsCharges
@@ -58,6 +57,9 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 		return assetPie;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public SituationPiesUI getSituationGlobalProducts(final GlobalProductsDto globalProducts) {
 
@@ -116,8 +118,9 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 	public PieConfigUI getAssetPieConfig(final List<ProductDto> products) {
 
 		final PieConfigUI assetPie = new PieConfigUI();
-		DecimalFormat myFormatter = new DecimalFormat(NUMBER_FORMAT_DECIMALS);
-		String totalAssets = myFormatter.format(productService.getTotalAssets(products).getAmount());
+		final DecimalFormat myFormatter = new DecimalFormat(ResourceBundle.getBundle("i18n_es").getString(
+				"number.format.decimals"));
+		final String totalAssets = myFormatter.format(productService.getTotalAssets(products).getAmount());
 
 		assetPie.setHeaderLeft(" Activos ");
 		assetPie.setHeaderRight(totalAssets);
@@ -152,8 +155,9 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 	public PieConfigUI getFinanciationPieConfig(final List<ProductDto> products) {
 
 		final PieConfigUI financiationPie = new PieConfigUI();
-		DecimalFormat myFormatter = new DecimalFormat(NUMBER_FORMAT_DECIMALS);
-		String totalFinancing = myFormatter.format(productService.getTotalFinanciacion(products).getAmount());
+		final DecimalFormat myFormatter = new DecimalFormat(ResourceBundle.getBundle("i18n_es").getString(
+				"number.format.decimals"));
+		final String totalFinancing = myFormatter.format(productService.getTotalFinanciacion(products).getAmount());
 		financiationPie.setHeaderCenter(" COP ");
 		financiationPie.setHeaderRight(totalFinancing);
 
@@ -180,6 +184,9 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 		return financiationPie;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public PieConfigUI getAccountsfundsProducts(final GlobalProductsDto globalProducts) {
 
@@ -188,34 +195,34 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 
 		final List<ProductDto> productList = productService.getProducts(globalProducts);
 
-		final PieItemUI graphicFundsFa = new PieItemUI("#197AC4", "FA", this.productService.getTotalProductsBySubType(
-				productList, EnumFundsType.FA.name()).getAmount());
-		final PieItemUI graphicFundsBd = new PieItemUI("#83C030", "BD", this.productService.getTotalProductsBySubType(
-				productList, EnumFundsType.BD.name()).getAmount());
-		final PieItemUI graphicFundsBf = new PieItemUI("#1874CD", "BF", this.productService.getTotalProductsBySubType(
-				productList, EnumFundsType.BF.name()).getAmount());
-		final PieItemUI graphicFundsPa = new PieItemUI("#104E8B", "PA", this.productService.getTotalProductsBySubType(
-				productList, EnumFundsType.PA.name()).getAmount());
-		final PieItemUI graphicFundsBp = new PieItemUI("#A2CD5A", "BP", this.productService.getTotalProductsBySubType(
-				productList, EnumFundsType.BP.name()).getAmount());
-		final PieItemUI graphicFundsFn = new PieItemUI("#698B22", "FN", this.productService.getTotalProductsBySubType(
-				productList, EnumFundsType.FN.name()).getAmount());
-		final PieItemUI graphicFundsFc = new PieItemUI("#FFC125", "FC", this.productService.getTotalProductsBySubType(
-				productList, EnumFundsType.FC.name()).getAmount());
-		final PieItemUI graphicFundsFe = new PieItemUI("#EE7600", "FE", this.productService.getTotalProductsBySubType(
-				productList, EnumFundsType.FE.name()).getAmount());
-		final PieItemUI graphicFundsFz = new PieItemUI("#2E9AFE", "FZ", this.productService.getTotalProductsBySubType(
-				productList, EnumFundsType.FZ.name()).getAmount());
-		final PieItemUI graphicFundsAn = new PieItemUI("#FFFF00", "AN", this.productService.getTotalProductsBySubType(
-				productList, EnumFundsType.AN.name()).getAmount());
-		final PieItemUI graphicFundsFg = new PieItemUI("#04B45F", "FG", this.productService.getTotalProductsBySubType(
-				productList, EnumFundsType.FG.name()).getAmount());
-		final PieItemUI graphicFundsMd = new PieItemUI("#8904B1", "MD", this.productService.getTotalProductsBySubType(
-				productList, EnumFundsType.MD.name()).getAmount());
-		final PieItemUI graphicFundsFr = new PieItemUI("#DF7401", "FR", this.productService.getTotalProductsBySubType(
-				productList, EnumFundsType.FR.name()).getAmount());
-		final PieItemUI graphicFundsFb = new PieItemUI("#868A08", "FB", this.productService.getTotalProductsBySubType(
-				productList, EnumFundsType.FB.name()).getAmount());
+		final PieItemUI graphicFundsFa = new PieItemUI("#197AC4", MessagesHelper.INSTANCE.getString("graphicFunds.fa"),
+				this.productService.getTotalProductsBySubType(productList, EnumFundsType.FA.name()).getAmount());
+		final PieItemUI graphicFundsBd = new PieItemUI("#83C030", MessagesHelper.INSTANCE.getString("graphicFunds.bd"),
+				this.productService.getTotalProductsBySubType(productList, EnumFundsType.BD.name()).getAmount());
+		final PieItemUI graphicFundsBf = new PieItemUI("#1874CD", MessagesHelper.INSTANCE.getString("graphicFunds.bf"),
+				this.productService.getTotalProductsBySubType(productList, EnumFundsType.BF.name()).getAmount());
+		final PieItemUI graphicFundsPa = new PieItemUI("#104E8B", MessagesHelper.INSTANCE.getString("graphicFunds.pa"),
+				this.productService.getTotalProductsBySubType(productList, EnumFundsType.PA.name()).getAmount());
+		final PieItemUI graphicFundsBp = new PieItemUI("#A2CD5A", MessagesHelper.INSTANCE.getString("graphicFunds.bp"),
+				this.productService.getTotalProductsBySubType(productList, EnumFundsType.BP.name()).getAmount());
+		final PieItemUI graphicFundsFn = new PieItemUI("#698B22", MessagesHelper.INSTANCE.getString("graphicFunds.fn"),
+				this.productService.getTotalProductsBySubType(productList, EnumFundsType.FN.name()).getAmount());
+		final PieItemUI graphicFundsFc = new PieItemUI("#FFC125", MessagesHelper.INSTANCE.getString("graphicFunds.fc"),
+				this.productService.getTotalProductsBySubType(productList, EnumFundsType.FC.name()).getAmount());
+		final PieItemUI graphicFundsFe = new PieItemUI("#EE7600", MessagesHelper.INSTANCE.getString("graphicFunds.fe"),
+				this.productService.getTotalProductsBySubType(productList, EnumFundsType.FE.name()).getAmount());
+		final PieItemUI graphicFundsFz = new PieItemUI("#2E9AFE", MessagesHelper.INSTANCE.getString("graphicFunds.fz"),
+				this.productService.getTotalProductsBySubType(productList, EnumFundsType.FZ.name()).getAmount());
+		final PieItemUI graphicFundsAn = new PieItemUI("#FFFF00", MessagesHelper.INSTANCE.getString("graphicFunds.an"),
+				this.productService.getTotalProductsBySubType(productList, EnumFundsType.AN.name()).getAmount());
+		final PieItemUI graphicFundsFg = new PieItemUI("#04B45F", MessagesHelper.INSTANCE.getString("graphicFunds.fg"),
+				this.productService.getTotalProductsBySubType(productList, EnumFundsType.FG.name()).getAmount());
+		final PieItemUI graphicFundsMd = new PieItemUI("#8904B1", MessagesHelper.INSTANCE.getString("graphicFunds.md"),
+				this.productService.getTotalProductsBySubType(productList, EnumFundsType.MD.name()).getAmount());
+		final PieItemUI graphicFundsFr = new PieItemUI("#DF7401", MessagesHelper.INSTANCE.getString("graphicFunds.fr"),
+				this.productService.getTotalProductsBySubType(productList, EnumFundsType.FR.name()).getAmount());
+		final PieItemUI graphicFundsFb = new PieItemUI("#868A08", MessagesHelper.INSTANCE.getString("graphicFunds.fb"),
+				this.productService.getTotalProductsBySubType(productList, EnumFundsType.FB.name()).getAmount());
 
 		fundsPieItems.add(graphicFundsFa);
 		fundsPieItems.add(graphicFundsBd);

@@ -4,10 +4,9 @@ import java.util.List;
 
 import javax.faces.event.ActionEvent;
 
-import org.primefaces.event.SelectEvent;
-
 import com.bbva.net.back.entity.MultiValueGroup;
 import com.bbva.net.back.model.checkbook.CheckDto;
+import com.bbva.net.back.model.checkbook.CheckbookDto;
 
 public interface CheckBookController {
 
@@ -50,16 +49,11 @@ public interface CheckBookController {
 	 * 
 	 * @param List<CheckDto> cheksList
 	 */
-	void hasMoreElements(List<CheckDto> cheksList);
+	void hasMoreElementsCheck(List<CheckDto> cheksList);
 
 	/**
-	 * @param event
+	 * @param cheksBookList
 	 */
-	void onSelectDateSince(SelectEvent event);
-
-	/**
-	 * @param event
-	 */
-	void onSelectDateTo(SelectEvent event);
+	void hasMoreElementsCheckBook(List<CheckbookDto> cheksBookList);
 
 }

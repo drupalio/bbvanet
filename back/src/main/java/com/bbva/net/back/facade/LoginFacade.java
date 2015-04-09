@@ -13,6 +13,7 @@ public interface LoginFacade {
 	 * @param identification
 	 * @param identificationType
 	 */
-	AuthenticationState login(String ivTicket, String ivUser);
+	AuthenticationState login(String ivTicket, String user, String password, String identification,
+			String identificationType);
 
 }

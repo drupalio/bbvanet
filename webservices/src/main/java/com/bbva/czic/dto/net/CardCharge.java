@@ -1,17 +1,19 @@
-
 package com.bbva.czic.dto.net;
+
+import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
+
 import com.bbva.jee.arq.spring.core.servicing.utils.Money;
 
-
 /**
- * <p>Clase Java para CardCharge complex type.
- * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>
+ * Clase Java para CardCharge complex type.
+ * <p>
+ * El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="CardCharge">
@@ -25,66 +27,52 @@ import com.bbva.jee.arq.spring.core.servicing.utils.Money;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "CardCharge", propOrder = {
-    "category",
-    "amount"
-})
-public class CardCharge {
+@XmlType(name = "CardCharge", propOrder = { "category", "amount" })
+public class CardCharge implements Serializable {
 
-    @XmlSchemaType(name = "string")
-    protected EnumCardChargeCategory category;
-    protected Money amount;
+	private static final long serialVersionUID = -4535338213960260969L;
 
-    /**
-     * Obtiene el valor de la propiedad category.
-     * 
-     * @return
-     *     possible object is
-     *     {@link EnumCardChargeCategory }
-     *     
-     */
-    public EnumCardChargeCategory getCategory() {
-        return category;
-    }
+	@XmlSchemaType(name = "string")
+	protected EnumCardChargeCategory category;
 
-    /**
-     * Define el valor de la propiedad category.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link EnumCardChargeCategory }
-     *     
-     */
-    public void setCategory(EnumCardChargeCategory value) {
-        this.category = value;
-    }
+	protected Money amount;
 
-    /**
-     * Obtiene el valor de la propiedad amount.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Money }
-     *     
-     */
-    public Money getAmount() {
-        return amount;
-    }
+	/**
+	 * Obtiene el valor de la propiedad category.
+	 * 
+	 * @return possible object is {@link EnumCardChargeCategory }
+	 */
+	public EnumCardChargeCategory getCategory() {
+		return category;
+	}
 
-    /**
-     * Define el valor de la propiedad amount.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Money }
-     *     
-     */
-    public void setAmount(Money value) {
-        this.amount = value;
-    }
+	/**
+	 * Define el valor de la propiedad category.
+	 * 
+	 * @param value allowed object is {@link EnumCardChargeCategory }
+	 */
+	public void setCategory(EnumCardChargeCategory value) {
+		this.category = value;
+	}
+
+	/**
+	 * Obtiene el valor de la propiedad amount.
+	 * 
+	 * @return possible object is {@link Money }
+	 */
+	public Money getAmount() {
+		return amount;
+	}
+
+	/**
+	 * Define el valor de la propiedad amount.
+	 * 
+	 * @param value allowed object is {@link Money }
+	 */
+	public void setAmount(Money value) {
+		this.amount = value;
+	}
 
 }

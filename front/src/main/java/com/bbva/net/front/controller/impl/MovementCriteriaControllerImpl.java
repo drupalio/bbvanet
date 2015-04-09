@@ -1,7 +1,5 @@
 package com.bbva.net.front.controller.impl;
 
-import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -11,6 +9,7 @@ import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.tools.ant.util.DateUtils;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
 
@@ -45,8 +44,6 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			SINCE_TITLE = MessagesHelper.INSTANCE.getString("text.since"), TO_TITLE = MessagesHelper.INSTANCE
 					.getString("text.to");
 
-	SimpleDateFormat dateFormat = new SimpleDateFormat(MessagesHelper.INSTANCE.getStringI18("date.pattner.dd.mm.yyyy"));
-
 	private StringBuilder messageBalance;
 
 	private String sinceText, toText, selectDate = "3", titleDateSince, titleDateTo, sinceDatestr, toDatestr,
@@ -75,8 +72,6 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 	private MovementDetailDto movementDetail;
 
-	private List valuesLinesGraphic;
-
 	@Override
 	public void init() {
 		super.init();
@@ -84,113 +79,18 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	}
 
 	@Override
-	public void clean() {
-		movementCriteria = new MovementCriteriaDto();
-		movementCriteria.setBalanceRange(new BalanceRangeDto());
-		movementCriteria.setDateRange(new DateRangeDto());
-		setSinceText(new String());
-		setToText(new String());
-		setSinceDatestr(new String());
-		setToDatestr(new String());
-		setTitleInOrExp(new String());
-		messageBalance = new StringBuilder();
-		sinceDate = null;
-		toDate = null;
-		titleDateSince = "";
-		titleDateTo = "";
-		selectDate = new String();
-		dateRange = null;
-		balanceRange = null;
-	}
-
-	@Override
-	public void cleanFilters(ActionEvent event) {
-		LOGGER.info("MovementsAccountController clean Filters");
-		clean();
-	}
-
-	public void criteriaSearch() {
-		LOGGER.info("MovementsAccountController criteriaSearch");
-		if (getRenderComponents().get(RenderAttributes.FILTERDATE.toString())) {
-			setDateRangePc(this.dateRange);
-		}
-		if (getRenderComponents().get(RenderAttributes.BALANCEFILTER.toString())) {
-			setBalanceRangePc(this.balanceRange);
-		}
-		setProductTypePc(getSelectedProduct().getSubTypeProd());
-		LOGGER.info("MovementsAccountController criteriaSearch productType:  " + getSelectedProduct().getSubTypeProd());
-		LOGGER.info("MovementsAccountController criteriaSearch productId:  " + getSelectedProduct().getProductId());
-		super.init();
-		search();
-		this.movementsList = getCurrentList();
-		setShowMoreStatus();
-		RequestContext.getCurrentInstance().update("detailAccounts:tableMovements:formMovesDetail:movAccount");
-
-	}
-
-	public void handleDateSelect(final SelectEvent event) {
-		if (event.getObject() != null) {
-			setSinceDate((Date)event.getObject());
-
-		}
-	}
-
-	public void nextPage(ActionEvent event) {
-		LOGGER.info("MovementsAccountController nextPage");
-		getRenderComponents().put(RenderAttributes.TITLEMOVES.name(), true);
-		getRenderComponents().put(RenderAttributes.MOVEMENTSTABLE.name(), true);
-		setFalseCheckComponents();
-		next();
-		this.movementsList = getCurrentList();
-	}
-
-	public DateRangeDto calculateDate(String date) {
-		LOGGER.info("MovementsAccountController calculateDate ");
-
-		EnumPeriodType periodType = EnumPeriodType.valueOfLabel(date);
-		if (!(periodType == (null))) {
-			this.dateRange = new DateRangeDto();
-			this.dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
-		}
-		return dateRange;
-	}
-
-	/**
-	 * Method to evaluate if the list has more elements
-	 * 
-	 * @param movementsList
-	 */
-	public void setShowMoreStatus() {
-		if (this.movementsList.size() >= PAGE_SIZE)
-			getRenderComponents().put(RenderAttributes.FOOTERTABLEMOVEMENT.name(), true);
-		else
-			getRenderComponents().put(RenderAttributes.FOOTERTABLEMOVEMENT.name(), false);
-	}
-
-	@Override
 	public List<MovementDto> getAllMovements() {
 		LOGGER.info("MovementsAccountController getAllMovements");
 		this.movementsList = new ArrayList<MovementDto>();
 		dateRange = calculateDate(MessagesHelper.INSTANCE.getString("select.radio.last.month"));
-		// TODO oroductId
-		LOGGER.info("MovementsAccountController getAllMovements productId:  " + getSelectedProduct().getProductId());
-
-		try {
-			next();
-		} catch (final Exception ex) {
-			final List<MovementDto> result = new ArrayList<MovementDto>();
-			setCurrentList(result);
-		}
-
 		setDateRangePc(dateRange);
 		setBalanceRangePc(null);
 		// TODO oroductId
 		LOGGER.info("MovementsAccountController getAllMovements productId:  " + getSelectedProduct().getProductId());
+		super.setMovementsFacade(movementsFacade);
 		next();
 		this.movementsList = getCurrentList();
 		this.graphicLineMovements = graphicLineDelegate.getMovementAccount(this.movementsList);
-		this.valuesLinesGraphic = valuesLinesGraphic(graphicLineMovements);
-
 		return this.movementsList;
 	}
 
@@ -206,25 +106,51 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		System.out.println("mov id selected: " + getSelectedMovements().getMovementId());
 	}
 
-	public void setFalseCheckComponents() {
-		getRenderComponents().put(RenderAttributes.TITLECHECKS.name(), false);
-		getRenderComponents().put(RenderAttributes.CHECKTABLE.toString(), false);
-		getRenderComponents().put(RenderAttributes.FOOTERTABLECHEKS.toString(), false);
+	public void criteriaSearch() {
+		LOGGER.info("MovementsAccountController criteriaSearch");
+		if (getRenderComponents().get(RenderAttributes.FILTERDATE.toString())) {
+			setDateRangePc(this.dateRange);
+		}
+		if (getRenderComponents().get(RenderAttributes.BALANCEFILTER.toString())) {
+			setBalanceRangePc(this.balanceRange);
+		}
+		setProductTypePc(getSelectedProduct().getSubTypeProd());
+		LOGGER.info("MovementsAccountController criteriaSearch productType:  " + getSelectedProduct().getSubTypeProd());
+		LOGGER.info("MovementsAccountController criteriaSearch productId:  " + getSelectedProduct().getProductId());
+		super.init();
+		super.setMovementsFacade(movementsFacade);
+		search();
+		this.movementsList = getCurrentList();
+		setShowMoreStatus();
+		RequestContext.getCurrentInstance().update("detailAccounts:tableMovements:formMovesDetail:movAccount");
+	}
+
+	public void nextPage(ActionEvent event) {
+		LOGGER.info("MovementsAccountController nextPage");
+		getRenderComponents().put(RenderAttributes.TITLEMOVES.name(), true);
+		getRenderComponents().put(RenderAttributes.MOVEMENTSTABLE.name(), true);
+		setFalseCheckBookComponents();
+		setFalseCheckComponents();
+		super.setMovementsFacade(movementsFacade);
+		next();
+		this.movementsList = getCurrentList();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public void searchMovementByFilter(final ActionEvent event) {
 		LOGGER.info("MovementsAccountController searchMovementByFilter");
+		setFalseCheckComponents();
+		setFalseCheckBookComponents();
 		getRenderComponents().put(RenderAttributes.TITLEMOVES.name(), true);
 		getRenderComponents().put(RenderAttributes.MOVEMENTSTABLE.toString(), true);
-		setFalseCheckComponents();
 
 		if (getRenderComponents().get(RenderAttributes.FILTERDATE.toString())) {
 			// Get movements by date
 			LOGGER.info("MovementsAccountController searchMovementByFilterDate");
 			this.dateRange = calculateDate(this.getSelectDate());
 			criteriaSearch();
+			resetMapResults();
 
 		} else if (getRenderComponents().get(RenderAttributes.BALANCEFILTER.toString())) {
 			// Get movements by balance
@@ -232,9 +158,8 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			this.balanceRange = new BalanceRangeDto();
 			this.balanceRange.setBalanceSince(movementCriteria.getBalanceRange().getBalanceSince());
 			this.balanceRange.setBalanceTo(movementCriteria.getBalanceRange().getBalanceTo());
-
 			criteriaSearch();
-
+			resetMapResults();
 		}
 
 		if (getRenderComponents().get(RenderAttributes.INCOMEOREXPENSESFILTER.toString())) {
@@ -258,9 +183,9 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 						this.movementsList, new ExpensesPredicate());
 				this.movementsList = expensesMovements;
 				setShowMoreStatus();
-
 			}
 			RequestContext.getCurrentInstance().update(":detailAccounts:tableMovements:formMovesDetail:movAccount");
+			resetMapResults();
 		}
 
 		if (getRenderComponents().get(RenderAttributes.MOVEMENTSFILTER.toString())) {
@@ -271,36 +196,18 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			this.movementsList = movementsByConcept;
 			setShowMoreStatus();
 			getRenderComponents().put(RenderAttributes.MOVEMENTSTABLE.toString(), true);
-
+			resetMapResults();
 		}
 		clean();
-
-	}
-
-	@Override
-	public void selectDateSince(SelectEvent event) {
-		LOGGER.info("MovementCriteriaController Since Date Selected");
-		// final Date date = (Date)event.getObject();
-		// this.sinceDate = date;
-	}
-
-	@Override
-	public void selectDateTo(SelectEvent event) {
-		LOGGER.info("MovementCriteriaController To Date Selected");
-		// final Date date = (Date)event.getObject();
-		// this.toDate = date;
 	}
 
 	@Override
 	public void oneSelectDate() {
 		LOGGER.info("MovementsAccountController oneSelectDate");
-
 		getRenderComponents().put(RenderAttributes.FILTERDATE.toString(), true);
-
 		if (getSelectDate().equals(CONCRETE_DATE)) {
 			getRenderComponents().put(RenderAttributes.CALENDAR.toString(), false);
 			getRenderComponents().put(RenderAttributes.BUTTONDATE.toString(), false);
-
 		} else {
 			getRenderComponents().put(RenderAttributes.CALENDAR.toString(), true);
 			getRenderComponents().put(RenderAttributes.BUTTONDATE.toString(), false);
@@ -335,13 +242,6 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	}
 
 	@Override
-	public void buildMessage() {
-		LOGGER.info("MovementsAccountController buildMessage");
-		messageBalance = new StringBuilder(BALANCE_TITLE);
-		messageBalance.append(movementCriteria.getBalanceRange().getBalanceSince() + "$");
-	}
-
-	@Override
 	public void balanceValidator() {
 		LOGGER.info("MovementsAccountController balanceValidator");
 		if ((movementCriteria.getBalanceRange().getBalanceSince() != (null) && movementCriteria.getBalanceRange()
@@ -351,7 +251,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 					.compareTo(movementCriteria.getBalanceRange().getBalanceTo()) == -1) {
 
 				getRenderComponents().put(RenderAttributes.BUTTONBALANCE.toString(), false);
-				messageBalance = new StringBuilder("Se mostrar�n los resultados mayores de "
+				messageBalance = new StringBuilder("Se mostrarán los resultados mayores de "
 						+ movementCriteria.getBalanceRange().getBalanceSince() + "$" + " y menores de "
 						+ movementCriteria.getBalanceRange().getBalanceTo() + "$");
 
@@ -365,6 +265,24 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	}
 
 	@Override
+	public void buildMessage() {
+		LOGGER.info("MovementsAccountController buildMessage");
+		messageBalance = new StringBuilder(BALANCE_TITLE);
+		messageBalance.append(movementCriteria.getBalanceRange().getBalanceSince() + "$");
+	}
+
+	public DateRangeDto calculateDate(String date) {
+		LOGGER.info("MovementsAccountController calculateDate ");
+
+		EnumPeriodType periodType = EnumPeriodType.valueOfLabel(date);
+		if (!(periodType == (null))) {
+			this.dateRange = new DateRangeDto();
+			this.dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
+		}
+		return dateRange;
+	}
+
+	@Override
 	public void setCustomDate(final ActionEvent event) {
 		LOGGER.info("MovementsAccountController setCustomDate");
 		getRenderComponents().put(RenderAttributes.FILTERDATE.toString(), true);
@@ -374,9 +292,8 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		if (!(getSinceDate() == (null)) && !(getToDate() == (null)) && getSelectDate().equals(CONCRETE_DATE)) {
 			titleDateSince = SINCE_TITLE + ":";
 			titleDateTo = TO_TITLE + ":";
-
-			sinceDatestr = dateFormat.format(getSinceDate());
-			toDatestr = dateFormat.format(getToDate());
+			sinceDatestr = DateUtils.format(getSinceDate(), "dd/MM/yyyy");
+			toDatestr = DateUtils.format(getToDate(), "dd/MM/yyyy");
 		} else {
 			titleDateSince = "";
 			titleDateTo = "";
@@ -389,23 +306,68 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	}
 
 	@Override
+	public void cleanFilters(ActionEvent event) {
+		LOGGER.info("MovementsAccountController clean Filters");
+		clean();
+	}
+
+	@Override
+	public void clean() {
+		movementCriteria = new MovementCriteriaDto();
+		movementCriteria.setBalanceRange(new BalanceRangeDto());
+		movementCriteria.setDateRange(new DateRangeDto());
+		setSinceText(new String());
+		setToText(new String());
+		setSinceDatestr(new String());
+		setToDatestr(new String());
+		setTitleInOrExp(new String());
+		messageBalance = new StringBuilder();
+		sinceDate = null;
+		toDate = null;
+		titleDateSince = "";
+		titleDateTo = "";
+		selectDate = new String();
+		dateRange = null;
+		balanceRange = null;
+	}
+
+	/**
+	 * Method to evaluate if the list has more elements
+	 * 
+	 * @param movementsList
+	 */
+	public void setShowMoreStatus() {
+		if (this.movementsList.size() >= 10)
+			getRenderComponents().put(RenderAttributes.FOOTERTABLEMOVEMENT.name(), true);
+		else
+			getRenderComponents().put(RenderAttributes.FOOTERTABLEMOVEMENT.name(), false);
+	}
+
+	public void setFalseCheckComponents() {
+		getRenderComponents().put(RenderAttributes.TITLECHECKS.name(), false);
+		getRenderComponents().put(RenderAttributes.CHECKTABLE.toString(), false);
+		getRenderComponents().put(RenderAttributes.FOOTERTABLECHEKS.toString(), false);
+	}
+
+	public void setFalseCheckBookComponents() {
+		getRenderComponents().put(RenderAttributes.TITLECHECKBOOKS.name(), false);
+		getRenderComponents().put(RenderAttributes.CHECKBOOKTABLE.name(), false);
+		getRenderComponents().put(RenderAttributes.FOOTERTABLECHECKBOOK.name(), false);
+	}
+
+	public void resetMapResults() {
+		getRenderComponents().put(RenderAttributes.MOVEMENTSFILTER.toString(), false);
+		getRenderComponents().put(RenderAttributes.INCOMEOREXPENSESFILTER.toString(), false);
+		getRenderComponents().put(RenderAttributes.BALANCEFILTER.toString(), false);
+		getRenderComponents().put(RenderAttributes.FILTERDATE.toString(), false);
+	}
+
+	@Override
 	public ProductDto getSelectedProduct() {
 		return super.getSelectedProduct();
 	}
 
-	/**
-	 * @return the dateFormat
-	 */
-	public SimpleDateFormat getDateFormat() {
-		return dateFormat;
-	}
-
-	/**
-	 * @param dateFormat the dateFormat to set
-	 */
-	public void setDateFormat(SimpleDateFormat dateFormat) {
-		this.dateFormat = dateFormat;
-	}
+	// Getters And Setters
 
 	/**
 	 * @return the messageBalance
@@ -593,14 +555,6 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		this.multiValueGroupFacade = multiValueGroupFacade;
 	}
 
-	/**
-	 * @return the movementsFacade
-	 */
-	@Override
-	public MovementsAccountFacade getMovementsFacade() {
-		return movementsFacade;
-	}
-
 	public GraphicLineDelegate getGraphicLineDelegate() {
 		return graphicLineDelegate;
 	}
@@ -631,14 +585,6 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		this.movementDetail = movementDetail;
 	}
 
-	public List getValuesLinesGraphic() {
-		return valuesLinesGraphic;
-	}
-
-	public void setValuesLinesGraphic(List valuesLinesGraphic) {
-		this.valuesLinesGraphic = valuesLinesGraphic;
-	}
-
 	/**
 	 * @return the titleDateSince
 	 */
@@ -667,30 +613,33 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		this.titleDateTo = titleDateTo;
 	}
 
+	/**
+	 * @param movementsFacade the movementsFacade to set
+	 */
 	@Override
-	public List<BigDecimal> valuesLinesGraphic(LineConfigUI valuesLines) {
-		BigDecimal menor = new BigDecimal(0);
-		BigDecimal mayor = new BigDecimal(0);
-		BigDecimal total = new BigDecimal(0);
-		List<BigDecimal> values = new ArrayList<BigDecimal>();
-
-		if (CollectionUtils.isEmpty(valuesLines.getLineItemUIList())) {
-			return values;
-		}
-		menor = valuesLines.getLineItemUIList().get(0).getValue().getAmount();
-		for (int i = 0; i < valuesLines.getLineItemUIList().size(); i++) {
-			if (valuesLines.getLineItemUIList().get(i).getValue().getAmount().compareTo(menor) == -1)
-				menor = valuesLines.getLineItemUIList().get(i).getValue().getAmount();
-			if (valuesLines.getLineItemUIList().get(i).getValue().getAmount().compareTo(mayor) == 1)
-				mayor = valuesLines.getLineItemUIList().get(i).getValue().getAmount();
-			total = total.add(valuesLines.getLineItemUIList().get(i).getValue().getAmount());
-		}
-		total = (mayor.subtract(menor)).divide(new BigDecimal(8));
-		for (int i = 0; i <= 8; i++) {
-			values.add(menor);
-			menor = menor.add(total);
-		}
-		values.add(menor);
-		return values;
+	public void setMovementsFacade(MovementsAccountFacade movementsFacade) {
+		this.movementsFacade = movementsFacade;
 	}
+
+	/**
+	 * @param movementsList the movementsList to set
+	 */
+	public void setMovementsList(List<MovementDto> movementsList) {
+		this.movementsList = movementsList;
+	}
+
+	/**
+	 * @param graphicLineDelegate the graphicLineDelegate to set
+	 */
+	public void setGraphicLineDelegate(GraphicLineDelegate graphicLineDelegate) {
+		this.graphicLineDelegate = graphicLineDelegate;
+	}
+
+	/**
+	 * @param graphicLineMovements the graphicLineMovements to set
+	 */
+	public void setGraphicLineMovements(LineConfigUI graphicLineMovements) {
+		this.graphicLineMovements = graphicLineMovements;
+	}
+
 }

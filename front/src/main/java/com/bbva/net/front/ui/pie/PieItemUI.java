@@ -16,13 +16,15 @@ public class PieItemUI implements Serializable {
 	private String percentage;
 
 	private char currency = '$';
-	
-	
-	public PieItemUI(final String color, final String textLegend, final BigDecimal value){
-		
+
+	public PieItemUI() {
+	}
+
+	public PieItemUI(final String color, final String textLegend, final BigDecimal value) {
+
 		this.color = color;
-		this.textLegend = textLegend;		
-		this.value=value;
+		this.textLegend = textLegend;
+		this.value = value;
 	}
 
 	public String getColor() {

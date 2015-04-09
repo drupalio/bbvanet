@@ -1,16 +1,18 @@
-
 package com.bbva.czic.dto.net;
+
+import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
+
 import com.bbva.jee.arq.spring.core.servicing.utils.Money;
 
-
 /**
- * <p>Java class for Message complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * Java class for Message complex type.
+ * <p>
+ * The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="Message">
@@ -29,195 +31,151 @@ import com.bbva.jee.arq.spring.core.servicing.utils.Money;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Message", propOrder = {
-    "id",
-    "title",
-    "template",
-    "reference",
-    "time",
-    "value",
-    "info"
-})
-public class Message {
+@XmlType(name = "Message", propOrder = { "id", "title", "template", "reference", "time", "value", "info" })
+public class Message implements Serializable {
 
-    protected String id;
-    protected String title;
-    protected String template;
-    protected EnumMessageType reference;
-    protected String time;
-    protected Money value;
-    protected String info;
+	private static final long serialVersionUID = 1L;
 
-    /**
-     * Gets the value of the id property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getId() {
-        return id;
-    }
+	protected String id;
 
-    /**
-     * Sets the value of the id property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setId(String value) {
-        this.id = value;
-    }
+	protected String title;
 
-    /**
-     * Gets the value of the title property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getTitle() {
-        return title;
-    }
+	protected String template;
 
-    /**
-     * Sets the value of the title property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setTitle(String value) {
-        this.title = value;
-    }
+	protected EnumMessageType reference;
 
-    /**
-     * Gets the value of the template property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getTemplate() {
-        return template;
-    }
+	protected String time;
 
-    /**
-     * Sets the value of the template property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setTemplate(String value) {
-        this.template = value;
-    }
+	protected Money value;
 
-    /**
-     * Gets the value of the reference property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link EnumMessageType }
-     *     
-     */
-    public EnumMessageType getReference() {
-        return reference;
-    }
+	protected String info;
 
-    /**
-     * Sets the value of the reference property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link EnumMessageType }
-     *     
-     */
-    public void setReference(EnumMessageType value) {
-        this.reference = value;
-    }
+	/**
+	 * Gets the value of the id property.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getId() {
+		return id;
+	}
 
-    /**
-     * Gets the value of the time property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getTime() {
-        return time;
-    }
+	/**
+	 * Sets the value of the id property.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setId(String value) {
+		this.id = value;
+	}
 
-    /**
-     * Sets the value of the time property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setTime(String value) {
-        this.time = value;
-    }
+	/**
+	 * Gets the value of the title property.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getTitle() {
+		return title;
+	}
 
-    /**
-     * Gets the value of the value property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Money }
-     *     
-     */
-    public Money getValue() {
-        return value;
-    }
+	/**
+	 * Sets the value of the title property.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setTitle(String value) {
+		this.title = value;
+	}
 
-    /**
-     * Sets the value of the value property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Money }
-     *     
-     */
-    public void setValue(Money value) {
-        this.value = value;
-    }
+	/**
+	 * Gets the value of the template property.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getTemplate() {
+		return template;
+	}
 
-    /**
-     * Gets the value of the info property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getInfo() {
-        return info;
-    }
+	/**
+	 * Sets the value of the template property.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setTemplate(String value) {
+		this.template = value;
+	}
 
-    /**
-     * Sets the value of the info property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setInfo(String value) {
-        this.info = value;
-    }
+	/**
+	 * Gets the value of the reference property.
+	 * 
+	 * @return possible object is {@link EnumMessageType }
+	 */
+	public EnumMessageType getReference() {
+		return reference;
+	}
+
+	/**
+	 * Sets the value of the reference property.
+	 * 
+	 * @param value allowed object is {@link EnumMessageType }
+	 */
+	public void setReference(EnumMessageType value) {
+		this.reference = value;
+	}
+
+	/**
+	 * Gets the value of the time property.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getTime() {
+		return time;
+	}
+
+	/**
+	 * Sets the value of the time property.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setTime(String value) {
+		this.time = value;
+	}
+
+	/**
+	 * Gets the value of the value property.
+	 * 
+	 * @return possible object is {@link Money }
+	 */
+	public Money getValue() {
+		return value;
+	}
+
+	/**
+	 * Sets the value of the value property.
+	 * 
+	 * @param value allowed object is {@link Money }
+	 */
+	public void setValue(Money value) {
+		this.value = value;
+	}
+
+	/**
+	 * Gets the value of the info property.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getInfo() {
+		return info;
+	}
+
+	/**
+	 * Sets the value of the info property.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setInfo(String value) {
+		this.info = value;
+	}
 
 }

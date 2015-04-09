@@ -43,15 +43,16 @@ public class AccountsServiceImpl extends AbstractBbvaRestService implements Acco
 		return wc.get(Check.class);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public Checkbook getCheckbook(String accountId, String checkbookId) {
+	public List<Checkbook> getCheckbook(String accountId, String checkbookId) {
 		WebClient wc = getJsonWebClient(URL_BASE_ACCOUNTS + accountId + URL_CHECKBOOK + checkbookId);
 
 		if (accountId != null && checkbookId != null) {
 			wc.query("checkbookId", checkbookId);
 			wc.query("accountId", accountId);
 		}
-		return wc.get(Checkbook.class);
+		return (List<Checkbook>)wc.getCollection(Checkbook.class);
 	}
 
 	@SuppressWarnings("unchecked")

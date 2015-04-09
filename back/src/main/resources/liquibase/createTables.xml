@@ -37,37 +37,37 @@
 		</insert>
 		
 		<insert tableName="MULTIVALUETYPE">
-			<column name="ID">5</column>
+			<column name="ID">6</column>
 			<column name="TYPE_NAME">QUIEROCUENTAS</column>
 		</insert>
 
 		<insert tableName="MULTIVALUETYPE">
-			<column name="ID">6</column>
+			<column name="ID">7</column>
 			<column name="TYPE_NAME">QUIEROTARJETAS</column>
 		</insert>
 
 		<insert tableName="MULTIVALUETYPE">
-			<column name="ID">7</column>
+			<column name="ID">8</column>
 			<column name="TYPE_NAME">QUIEROCUPO</column>
 		</insert>
 		
 		<insert tableName="MULTIVALUETYPE">
-			<column name="ID">8</column>
+			<column name="ID">9</column>
 			<column name="TYPE_NAME">QUIEROPRESTAMO</column>
 		</insert>
 		
 		<insert tableName="MULTIVALUETYPE">
-			<column name="ID">9</column>
+			<column name="ID">10</column>
 			<column name="TYPE_NAME">QUIERODEPOSITO</column>
 		</insert>
 
 		<insert tableName="MULTIVALUETYPE">
-			<column name="ID">10</column>
+			<column name="ID">11</column>
 			<column name="TYPE_NAME">QUIEROFONDO</column>
 		</insert>
 		
 		<insert tableName="MULTIVALUETYPE">
-			<column name="ID">11</column>
+			<column name="ID">12</column>
 			<column name="TYPE_NAME">QUIEROLEASING</column>
 		</insert>
 
@@ -145,7 +145,6 @@
 			<column name="TYPE_ID">2</column>
 			<column name="VALUE_ID">8</column>
 		</insert>
-
 		
 		<!-- <insert tableName="MULTIVALUEGROUP">
 			<column name="ID">11</column>
@@ -153,7 +152,6 @@
 			<column name="TYPE_ID">3</column>
 		</insert> -->
 		
-
 		<insert tableName="MULTIVALUEGROUP">
 			<column name="ID">12</column>
 			<column name="VALUE">text.combo.period.lastsix</column>
@@ -205,152 +203,152 @@
 		<insert tableName="MULTIVALUEGROUP">
 			<column name="ID" autoIncrement="true" />
 			<column name="VALUE">quiero.viewBalancesMovements</column>
-			<column name="TYPE_ID">5</column>
+			<column name="TYPE_ID">6</column>
 		</insert>
 		
 		<insert tableName="MULTIVALUEGROUP">
 			<column name="ID" autoIncrement="true" />
 			<column name="VALUE">quiero.tranfers</column>
-			<column name="TYPE_ID">5</column>
+			<column name="TYPE_ID">6</column>
 		</insert>
 		
 		<insert tableName="MULTIVALUEGROUP">
 			<column name="ID" autoIncrement="true" />
 			<column name="VALUE">quiero.manageTransfers</column>
-			<column name="TYPE_ID">5</column>
+			<column name="TYPE_ID">6</column>
 		</insert>
 		
 		<insert tableName="MULTIVALUEGROUP">
 			<column name="ID" autoIncrement="true" />
 			<column name="VALUE">quiero.seeMoreOptions</column>
-			<column name="TYPE_ID">5</column>
+			<column name="TYPE_ID">6</column>
 		</insert>		
 		
 		<insert tableName="MULTIVALUEGROUP">
 			<column name="ID" autoIncrement="true" />
 			<column name="VALUE">quiero.viewMovements</column>
-			<column name="TYPE_ID">6</column>
+			<column name="TYPE_ID">7</column>
 		</insert>
 		
 		<insert tableName="MULTIVALUEGROUP">
 			<column name="ID" autoIncrement="true" />
 			<column name="VALUE">quiero.blockCard</column>
-			<column name="TYPE_ID">6</column>
+			<column name="TYPE_ID">7</column>
 		</insert>
 		
 		<insert tableName="MULTIVALUEGROUP">
 			<column name="ID" autoIncrement="true" />
 			<column name="VALUE">quiero.payPurchases</column>
-			<column name="TYPE_ID">6</column>
+			<column name="TYPE_ID">7</column>
 		</insert>
 		
 		<insert tableName="MULTIVALUEGROUP">
 			<column name="ID" autoIncrement="true" />
 			<column name="VALUE">quiero.seeMoreOptions</column>
-			<column name="TYPE_ID">6</column>
+			<column name="TYPE_ID">7</column>
 		</insert>		
 		
 		<insert tableName="MULTIVALUEGROUP">
 			<column name="ID" autoIncrement="true" />
 			<column name="VALUE">quiero.viewMovements</column>
-			<column name="TYPE_ID">7</column>
+			<column name="TYPE_ID">8</column>
 		</insert>
 		
 		<insert tableName="MULTIVALUEGROUP">
 			<column name="ID" autoIncrement="true" />
 			<column name="VALUE">quiero.makingMinimumPayments</column>
-			<column name="TYPE_ID">7</column>
+			<column name="TYPE_ID">8</column>
 		</insert>
 			
 		<insert tableName="MULTIVALUEGROUP">
 			<column name="ID" autoIncrement="true" />
 			<column name="VALUE">quiero.seeMoreOptions</column>
-			<column name="TYPE_ID">7</column>
+			<column name="TYPE_ID">8</column>
 		</insert>
 				
 		<insert tableName="MULTIVALUEGROUP">
 			<column name="ID" autoIncrement="true" />
 			<column name="VALUE">quiero.viewMovements</column>
-			<column name="TYPE_ID">8</column>
+			<column name="TYPE_ID">9</column>
 		</insert>
 		
 		<insert tableName="MULTIVALUEGROUP">
 			<column name="ID" autoIncrement="true" />
 			<column name="VALUE">quiero.payLoan</column>
-			<column name="TYPE_ID">8</column>
+			<column name="TYPE_ID">9</column>
 		</insert>
 		
 		<insert tableName="MULTIVALUEGROUP">
 			<column name="ID" autoIncrement="true" />
 			<column name="VALUE">quiero.householdLoans</column>
-			<column name="TYPE_ID">8</column>
+			<column name="TYPE_ID">9</column>
 		</insert>
 		
 		<insert tableName="MULTIVALUEGROUP">
 			<column name="ID" autoIncrement="true" />
 			<column name="VALUE">quiero.seeMoreOptions</column>
-			<column name="TYPE_ID">8</column>
+			<column name="TYPE_ID">9</column>
 		</insert>		
 		
 		<insert tableName="MULTIVALUEGROUP">
 			<column name="ID" autoIncrement="true" />
 			<column name="VALUE">quiero.viewMovements</column>
-			<column name="TYPE_ID">9</column>
+			<column name="TYPE_ID">10</column>
 		</insert>
 		
 		<insert tableName="MULTIVALUEGROUP">
 			<column name="ID" autoIncrement="true" />
 			<column name="VALUE">quiero.renewMyDeposits</column>
-			<column name="TYPE_ID">9</column>
+			<column name="TYPE_ID">10</column>
 		</insert>
 		
 		<insert tableName="MULTIVALUEGROUP">
 			<column name="ID" autoIncrement="true" />
 			<column name="VALUE">quiero.rescueMyDeposits</column>
-			<column name="TYPE_ID">9</column>
+			<column name="TYPE_ID">10</column>
 		</insert>
 		
 		<insert tableName="MULTIVALUEGROUP">
 			<column name="ID" autoIncrement="true" />
 			<column name="VALUE">quiero.seeMoreOptions</column>
-			<column name="TYPE_ID">9</column>
+			<column name="TYPE_ID">10</column>
 		</insert>
 		
 
 		<insert tableName="MULTIVALUEGROUP">
 			<column name="ID" autoIncrement="true" />
 			<column name="VALUE">quiero.viewBalancesMovements</column>
-			<column name="TYPE_ID">10</column>
+			<column name="TYPE_ID">11</column>
 		</insert>
 		
 		<insert tableName="MULTIVALUEGROUP">
 			<column name="ID" autoIncrement="true" />
 			<column name="VALUE">quiero.investingFund</column>
-			<column name="TYPE_ID">10</column>
+			<column name="TYPE_ID">11</column>
 		</insert>
 		
 		<insert tableName="MULTIVALUEGROUP">
 			<column name="ID" autoIncrement="true" />
 			<column name="VALUE">quiero.rescue</column>
-			<column name="TYPE_ID">10</column>
+			<column name="TYPE_ID">11</column>
 		</insert>
 
 		<insert tableName="MULTIVALUEGROUP">
 			<column name="ID" autoIncrement="true" />
 			<column name="VALUE">quiero.reinvestAnotherFund</column>
-			<column name="TYPE_ID">10</column>
-		</insert>
-		
-		<insert tableName="MULTIVALUEGROUP">
-			<column name="ID" autoIncrement="true" />
-			<column name="VALUE">quiero.seeMoreOptions</column>
-			<column name="TYPE_ID">10</column>
+			<column name="TYPE_ID">11</column>
 		</insert>
 		
 		<insert tableName="MULTIVALUEGROUP">
 			<column name="ID" autoIncrement="true" />
 			<column name="VALUE">quiero.seeMoreOptions</column>
 			<column name="TYPE_ID">11</column>
+		</insert>
+		
+		<insert tableName="MULTIVALUEGROUP">
+			<column name="ID" autoIncrement="true" />
+			<column name="VALUE">quiero.seeMoreOptions</column>
+			<column name="TYPE_ID">12</column>
 		</insert>
 		
 	</changeSet>

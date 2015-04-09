@@ -19,7 +19,7 @@ public class ProductSubTypePredicate extends BbvaPredicate<ProductDto> {
 
 	@Override
 	protected boolean eval(final ProductDto product) {
-		return product.getSubTypeProd().equals(subProductType);
+		return product != null && product.getSubTypeProd() != null && product.getSubTypeProd().equals(subProductType);
 	}
 
 }

@@ -2,8 +2,7 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:bbvaGraphic="http://java.sun.com/jsf/composite/bbva/graphics/accounts"
 	xmlns:bbvaAcc="http://java.sun.com/jsf/composite/bbva/accounts"
@@ -15,18 +14,13 @@
 	xmlns:bbvaSearch="http://java.sun.com/jsf/composite/bbva/filters"
 	xmlns:jsf="http://xmlns.jcp.org/jsf"
 	xmlns:bbvaPersonalize="http://java.sun.com/jsf/composite/bbva/personalize">
-
-
 <ui:composition template="../../templates/defaultLayout.xhtml">
-
 	<ui:define name="bodyTitle">
 		<bbvaBody:title title="#{msg['title.accountsPersonal']}">
-			<bbvaBody:titleOptionProduct
-				optionButttonLeft="#{msg['title.myProducts']}"
+			<bbvaBody:titleOptionProduct optionButttonLeft="#{msg['title.myProducts']}"
 				optionButttonRight="#{msg['title.productCatalog']}" />
 		</bbvaBody:title>
 	</ui:define>
-
 	<ui:define name="contentLeft">
 		<div class="tab-group savingsAccount">
 
@@ -35,51 +29,35 @@
 					<bbvaHeader:moveDetailHeaderLeft alias="#{product.alias}"
 						number="#{product.productId}" type=" #{product.productName}" />
 					<bbvaGraphic:MovementsGraphic
-						lineConfigUI="#{movementsCriteriaController.graphicLineMovements}"
-						values="#{movementsCriteriaController.valuesLinesGraphic}" />
+						lineConfigUI="#{movementsCriteriaController.graphicLineMovements}"/>
 					<bbvaHeader:moveDetailHeaderRight textUp="#{msg['text.available']}"
-						valueUp="#{product.totalCash}"
-						textDown="#{msg['text.tradeBalance']}"
+						valueUp="#{product.totalCash}" textDown="#{msg['text.tradeBalance']}"
 						valueDown="#{product.cashAvailable}" />
 				</bbvaHeader:moveContainerHeader>
 			</bbvaHeader:moveDetailContainer>
-
 			<bbvaDetAcc:tabMenu id="tabMenu">
-
 				<bbvaDetAcc:menuMovements />
-
 				<div class="tab-content">
-
 					<!-- Tab Consultar -->
 					<bbvaSearch:tabCriteria id="tabCriteria">
-						<bbvaSearch:personalizedSearchContainer
-							id="personalizedSearchContainer" />
+						<bbvaSearch:personalizedSearchContainer id="personalizedSearchContainer" />
 					</bbvaSearch:tabCriteria>
-
 					<!-- Tab Condiciones -->
 					<bbvaAcc:accountContainer alias="#{product.alias}"
 						number="#{product.productId}" type="#{product.productName}" />
-
 					<!-- Tab Personalizar -->
 					<bbvaPersonalize:personalizeContainer />
-
 				</div>
 			</bbvaDetAcc:tabMenu>
-
-
 			<div class="table-tabs">
-
 				<bbvaDetailMotion:detailMovesTable id="detailAccounts"
 					listAccounts="#{movementsCriteriaController.movementsList}"
-					listChecks="#{checkBookController.checkList}" />
+					listChecks="#{checkBookController.checkList}"
+					listCheckBooks="#{checkBookController.checkBook}" />
 			</div>
 		</div>
 	</ui:define>
-
 	<ui:define name="contentRight">
-
 	</ui:define>
-
 </ui:composition>
-
 </html>

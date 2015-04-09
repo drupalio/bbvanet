@@ -33,25 +33,29 @@ public class LoginControllerImpl extends AbstractBbvaController implements Login
 		// 2. Get iv_ticketService from header
 		final String ivTicketValue = getRequest().getHeader("iv_ticketService");
 
-		// 3. Get codigo cliente and iv-user
-		final String clientId = getRequest().getHeader("codigo_cliente");
-		final String ivUser = getRequest().getHeader("iv-user");
+		// 3. Set CurrentUser
+		final String user = getRequestParameter("usuario");
+		this.setDefaultUser(user);
 
-		LOGGER.info("Seteando CLIENT_ID a sesion" + clientId);
-		this.getSession().setAttribute("CLIENT_ID", clientId);
-
-		this.setDefaultUser(clientId);
-
-		LOGGER.info("Login with Codigo Cliente: " + clientId);
+		LOGGER.info("Login with User: " + user);
 		LOGGER.info("iv_ticketService: " + ivTicketValue);
 
 		// 4. Invocar al GrantingTicket y almacenar AuthenticationState
-		final AuthenticationState authenticationState = this.loginFacade.login(ivTicketValue, ivUser);
+		final AuthenticationState authenticationState = this.loginFacade.login(ivTicketValue, user,
+				getRequestParameter("password2"), getRequestParameter("NumeroId"), getRequestParameter("TipoId"));
 
 		// 5. Put in Session
 		this.getSession().setAttribute(SessionParamenterType.AUTHENTICATION_STATE.name(), authenticationState);
-		this.getSession().setAttribute("userName", ivUser.substring(0, 8));
-		this.getSession().setAttribute("docTypeUser", ivUser.substring(8, 10));
-		this.getSession().setAttribute("docIdUser", ivUser.substring(10, 25));
+		this.getSession().setAttribute("userName", user.substring(0, 8));
+		this.getSession().setAttribute("docTypeUser", user.substring(8, 10));
+		this.getSession().setAttribute("docIdUser", user.substring(10, 25));
 	}
+
+	/**
+	 * @param loginFacade
+	 */
+	public void setLoginFacade(LoginFacade loginFacade) {
+		this.loginFacade = loginFacade;
+	}
+
 }

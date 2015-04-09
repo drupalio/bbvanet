@@ -7,11 +7,7 @@ public class HiddenProductPredicate extends BbvaPredicate<ProductDto> {
 
 	@Override
 	protected boolean eval(ProductDto productDTO) {
-		
-		if (productDTO!=null && productDTO.isVisible()!=null ){
-				return !productDTO.isVisible();
-		}
-		return false;
+		return productDTO != null && !productDTO.isVisible();
 	}
 
 }
