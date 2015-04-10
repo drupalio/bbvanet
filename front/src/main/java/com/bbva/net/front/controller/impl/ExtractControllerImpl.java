@@ -7,6 +7,8 @@ import java.util.LinkedHashSet;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 import org.apache.commons.beanutils.BeanToPropertyValueTransformer;
 import org.apache.commons.collections.CollectionUtils;
@@ -70,32 +72,39 @@ public class ExtractControllerImpl extends AbstractBbvaController implements Ext
 	 * 
 	 */
 	public void init() {
-
 		this.extractList = this.extractFacade.getExtractAvailable(super.getSelectedProduct().getProductNumber());
 		this.enableMonth = true;
 		getExtractAvailablePeriod();
-
 	}
 
 	/**
 	 * @param event
+	 * @throws InterruptedException
 	 * @throws IOException
 	 */
-	public StreamedContent documentExtract() throws IOException {
-
+	public StreamedContent documentExtract() {
 		LOGGER.info("Consultando extracto..........");
+		FacesContext context = FacesContext.getCurrentInstance();
 		final ExtractDto extract = (ExtractDto)CollectionUtils.find(extractList, new ExtractDocumentPredicate(
 				selectedMonth, selectedYear));
 		final List<ExtractDto> extractDocument = this.extractFacade.getDocumentExtract(super.getSelectedProduct()
 				.getProductNumber(), extract);
-		// Hacer Redirect
-		if (extractDocument != null) {
-			LOGGER.info("Descargar Extracto en : " + extractDocument.get(0).getUrl());
-			String url = extractDocument.get(0).getUrl();
-			URL stream = new URL(url);
-			return new DefaultStreamedContent(stream.openStream(), "application/pdf", "Reporte.pdf");
+		if (getSelectedMonth() != null && getSelectedYear() != null) {
+			try {
+				LOGGER.info("Descargar Extracto en : " + extractDocument.get(0).getUrl());
+				// Hacer Redirect
+				String url = extractDocument.get(0).getUrl();
+				URL stream = new URL(url);
+				return new DefaultStreamedContent(stream.openStream(), "application/pdf", "Reporte.pdf");
+			} catch (IOException ex) {
+				context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+						"No se ha podido descargar el extracto", ""));
+				return null;
+			}
 		}
-		return new DefaultStreamedContent();
+		context.addMessage(null,
+				new FacesMessage(FacesMessage.SEVERITY_ERROR, "No ha seleccionado el año o el mes", ""));
+		return null;
 	}
 
 	/**
