@@ -88,6 +88,19 @@ function headerTabS(button) {
     });
 }
 
+$(window).load(function() {
+	var styleBody = $('.ui-growl-item-container').length;
+	   if (styleBody == 1) {
+	       var heightB = $(document).height();
+	       var overlay = "<div id='modal' class='ui-widget-overlay' style='height:"
+			+ heightB + "px !important; z-index: 1000;'> </div>";
+	       $('body').append(overlay);
+	   }
+	   setTimeout(function() {
+	       $('#modal').remove();
+	   }, 1500);
+});
+
 $(document).ready(function() {
     $(".extractButton").click(function() {
 	$('.extractOnePage').empty();

@@ -1,6 +1,5 @@
 package com.bbva.net.front.controller.impl;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +9,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
-import org.primefaces.model.StreamedContent;
 
 import com.bbva.net.back.facade.ExtractFacade;
 import com.bbva.net.back.model.extract.ExtractDto;
@@ -82,18 +80,18 @@ public class ExtractControllerImplTest extends AbstractBbvaControllerTest {
 		Assert.assertFalse(this.extractController.isEnableMonth());
 	}
 
-	@Test
-	public void checkDocumentExtract() throws IOException {
-		Mockito.when(extractFacade.getDocumentExtract(DEFAULT_PRODUCT, extractDto)).thenReturn(extractList);
-		StreamedContent file = this.extractController.documentExtract();
-		Assert.assertNotNull(file);
-		Assert.assertNotNull(extractList);
-		Assert.assertEquals(extractDto, extractFacade.getDocumentExtract(DEFAULT_PRODUCT, extractDto).get(0));
-		Mockito.verify(extractFacade, Mockito.atLeastOnce()).getDocumentExtract(DEFAULT_PRODUCT, extractDto);
-		// List<ExtractDto> = null
-		Mockito.when(extractFacade.getDocumentExtract(DEFAULT_PRODUCT, extractDto)).thenReturn(null);
-		this.extractController.documentExtract();
-	}
+	// @Test
+	// public void checkDocumentExtract() throws IOException {
+	// Mockito.when(extractFacade.getDocumentExtract(DEFAULT_PRODUCT, extractDto)).thenReturn(extractList);
+	// StreamedContent file = this.extractController.documentExtract();
+	// Assert.assertNotNull(file);
+	// Assert.assertNotNull(extractList);
+	// Assert.assertEquals(extractDto, extractFacade.getDocumentExtract(DEFAULT_PRODUCT, extractDto).get(0));
+	// Mockito.verify(extractFacade, Mockito.atLeastOnce()).getDocumentExtract(DEFAULT_PRODUCT, extractDto);
+	// // List<ExtractDto> = null
+	// Mockito.when(extractFacade.getDocumentExtract(DEFAULT_PRODUCT, extractDto)).thenReturn(null);
+	// this.extractController.documentExtract();
+	// }
 
 	@Test
 	public void getSelectedMonth() {
