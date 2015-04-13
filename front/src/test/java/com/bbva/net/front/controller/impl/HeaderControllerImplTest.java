@@ -41,7 +41,7 @@ public class HeaderControllerImplTest extends AbstractBbvaControllerTest {
 		Mockito.when(httpSession.getAttribute("docTypeUser")).thenReturn("CC");
 		Mockito.when(httpSession.getAttribute("docIdUser")).thenReturn("1010101010");
 		cliente = headerController.getCustomer();
-		Assert.assertNull(cliente);
+		Assert.assertNotNull(cliente);
 		CustomerDto cliente2 = headerController.getCliente();
 		// Assert.assertTrue(cliente.equals(cliente2));
 	}
