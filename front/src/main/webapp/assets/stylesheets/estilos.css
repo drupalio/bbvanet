@@ -774,7 +774,12 @@ body div.ui-growl .ui-state-highlight {
 
 /*letra del mensaje*/
 .ui-growl-message {
-	font: 14px "BBVA Web Medium", Arial, sans-serif 500 !important;
+	padding: 6px 0px 7px;
+	font-weight: bold;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+	font-size: 12px !important;
+	text-align: center;
+	font-weight: bold !important;
 }
 
 .ui-growl-icon-close {

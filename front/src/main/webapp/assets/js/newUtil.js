@@ -98,7 +98,7 @@ $(window).load(function() {
 	   }
 	   setTimeout(function() {
 	       $('#modal').remove();
-	   }, 4000);
+	   }, 1500);
 });
 
 $(document).ready(function() {

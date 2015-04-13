@@ -98,12 +98,12 @@ public class ExtractControllerImpl extends AbstractBbvaController implements Ext
 				return new DefaultStreamedContent(stream.openStream(), "application/pdf", "Reporte.pdf");
 			} catch (IOException ex) {
 				context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
-						"No se ha podido descargar el extracto", ""));
+						"No se ha podido descargar el extracto", "Intente de nuevo"));
 				return null;
 			}
 		}
-		context.addMessage(null,
-				new FacesMessage(FacesMessage.SEVERITY_ERROR, "No ha seleccionado el año o el mes", ""));
+		context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "No ha seleccionado el año o el mes",
+				"Intente de nuevo"));
 		return null;
 	}
 
