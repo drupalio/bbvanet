@@ -2,11 +2,13 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:composite="http://java.sun.com/jsf/composite"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:bbvaAcc="http://java.sun.com/jsf/composite/bbva/accounts"
+	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:bbvaAlert="http://java.sun.com/jsf/composite/bbva/alert"
+	xmlns:c="http://java.sun.com/jstl/core"
 	xmlns:bbvaBody="http://java.sun.com/jsf/composite/bbva/body"
 	xmlns:bbvaContainer="http://java.sun.com/jsf/composite/bbva/container"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
@@ -78,9 +80,11 @@
 							</div>
 							<!-- BOTON DESCARGA -->
 							<div class="col-md-5">
+								<p:growl id="messages" showDetail="true" showSummary="true"
+									autoUpdate="true" life="1000" />
 								<p:commandButton id="searchExtract" value="Descargar extracto"
-									ajax="false" icon="icon pdf"
-									styleClass="stable-button medium icon-left ext-message extractDow">
+									styleClass="stable-button medium icon-left ext-message extractDow"
+									icon="icon pdf" update=":messages" ajax="false">
 									<p:fileDownload value="#{extractController.documentExtract()}" />
 								</p:commandButton>
 							</div>
