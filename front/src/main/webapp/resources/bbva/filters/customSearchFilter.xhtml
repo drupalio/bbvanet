@@ -20,8 +20,6 @@
 	<composite:attribute name="listenerDate" />
 	<composite:attribute name="disabledButton" />
 	<composite:attribute name="disabledCalendar" />
-	<composite:attribute name="calendarSince" />
-	<composite:attribute name="calendarTo" />
 	<composite:attribute name="identify" />
 </composite:interface>
 <composite:implementation>
@@ -46,49 +44,49 @@
 						itemValue="#{msg['select.radio.concret.date']}" />
 					<f:ajax event="click"
 						render="
-                    :tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:item_moveCalendarSince
-                    :tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:item_moveCalendarTo
+                    :tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:itemSince_moveCalendar
+                    :tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:itemTo_moveCalendar
 					:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:dateButtonMovements								
 														
-                    :tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:customCheckList:customDate:item_checkCalendarSince
-                    :tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:customCheckList:customDate:item_checkCalendarTo
+                    :tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:customCheckList:customDate:itemSince_checkCalendar
+                    :tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:customCheckList:customDate:itemTo_checkCalendar
 					:tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:customCheckList:customDate:dateButtonChecks
 					
-                    :quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:item_quotaCalendarSince
-                    :quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:item_quotaCalendarTo
+                    :quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:itemSince_quotaCalendar
+                    :quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:itemTo_quotaCalendar
 					:quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:dateButtonQuota																						
 					"
 						listener="#{cc.attrs.listenerDate.oneSelectDate}" />
 				</p:selectOneRadio>
 				<div class="col-xs-6">
-					<p:radioButton id="customSearch-filter-today"
+					<p:radioButton id="customSearch-filter-today_#{cc.attrs.identify}"
 						for="customRadio_#{cc.attrs.identify}" itemIndex="0" class="radioBT" />
-					<label for="customSearch-filter-today">#{msg['select.radio.today']}</label>
+					<label for="customSearch-filter-today_#{cc.attrs.identify}">#{msg['select.radio.today']}</label>
 				</div>
 				<div class="col-xs-6">
-					<p:radioButton id="customSearch-filter-yesterday"
+					<p:radioButton id="customSearch-filter-yesterday_#{cc.attrs.identify}"
 						for="customRadio_#{cc.attrs.identify}" itemIndex="1" class="radioBT" />
-					<label for="customSearch-filter-yesterday">#{msg['select.radio.yesterday']}</label>
+					<label for="customSearch-filter-yesterday_#{cc.attrs.identify}">#{msg['select.radio.yesterday']}</label>
 				</div>
 				<div class="col-xs-6">
-					<p:radioButton id="customSearch-filter-week"
+					<p:radioButton id="customSearch-filter-week_#{cc.attrs.identify}"
 						for="customRadio_#{cc.attrs.identify}" itemIndex="2" class="radioBT" />
-					<label for="customSearch-filter-week">#{msg['select.radio.last.week']}</label>
+					<label for="customSearch-filter-week_#{cc.attrs.identify}">#{msg['select.radio.last.week']}</label>
 				</div>
 				<div class="col-xs-6">
-					<p:radioButton id="customSearch-filter-two-week"
+					<p:radioButton id="customSearch-filter-two-week_#{cc.attrs.identify}"
 						for="customRadio_#{cc.attrs.identify}" itemIndex="3" class="radioBT" />
-					<label for="customSearch-filter-two-week">#{msg['select.radio.last.two.weeks']}</label>
+					<label for="customSearch-filter-two-week_#{cc.attrs.identify}">#{msg['select.radio.last.two.weeks']}</label>
 				</div>
 				<div class="col-xs-6">
-					<p:radioButton id="customSearch-filter-month"
+					<p:radioButton id="customSearch-filter-month_#{cc.attrs.identify}"
 						for="customRadio_#{cc.attrs.identify}" itemIndex="4" class="radioBT" />
-					<label for="customSearch-filter-month">#{msg['select.radio.last.month']}</label>
+					<label for="customSearch-filter-month_#{cc.attrs.identify}">#{msg['select.radio.last.month']}</label>
 				</div>
 				<div class="col-xs-6">
-					<p:radioButton id="customSearch-filter-two-month"
+					<p:radioButton id="customSearch-filter-two-month_#{cc.attrs.identify}"
 						for="customRadio_#{cc.attrs.identify}" itemIndex="5" class="radioBT" />
-					<label for="customSearch-filter-two-month">#{msg['select.radio.last.two.months']}</label>
+					<label for="customSearch-filter-two-month_#{cc.attrs.identify}">#{msg['select.radio.last.two.months']}</label>
 				</div>
 			</div>
 		</div>
@@ -102,14 +100,16 @@
 				<div class="col-xs-12 col-md-6">
 					<div class="form-group">
 						<div class="col-xs-2 col-md-12">
-							<label for="calendarSinceWV">Desde:</label>
+							<label for="#{cc.attrs.identify}_Since">Desde:</label>
 						</div>
-						<div class="col-xs-10 col-md-12 input-control">
-							<p:calendar widgetVar="calendarSinceWV"
-								id="item_#{cc.attrs.calendarSince}" value="#{cc.attrs.valueDateSince}"
-								pattern="dd/MM/yyyy" disabled="#{cc.attrs.disabledCalendar}">
+						<div class="col-md-12 input-control control">
+							<p:calendar widgetVar="#{cc.attrs.identify}_Since" autocomplete="false"
+								placeholder="__/__/____" id="itemSince_#{cc.attrs.identify}"
+								value="#{cc.attrs.valueDateSince}" pattern="dd/MM/yyyy"
+								disabled="#{cc.attrs.disabledCalendar}" showButtonPanel="true"
+								maxdate="today" showOtherMonths="true">
 								<f:convertDateTime pattern="dd/MM/yyyy" />
-								<p:ajax event="dateSelect" update="item_#{cc.attrs.calendarTo}" />
+								<p:ajax event="dateSelect" update="itemTo_#{cc.attrs.identify}" />
 							</p:calendar>
 						</div>
 					</div>
@@ -117,11 +117,13 @@
 				<div class="col-xs-12 col-md-6">
 					<div class="form-group">
 						<div class="col-xs-2 col-md-12">
-							<label for="calendarToSinceWV">Hasta:</label>
+							<label for="#{cc.attrs.identify}_To">Hasta:</label>
 						</div>
-						<div class="col-xs-10 col-md-12 input-control">
-							<p:calendar widgetVar="calendarToSinceWV"
-								id="item_#{cc.attrs.calendarTo}" mindate="#{cc.attrs.valueDateSince}"
+						<div class="col-md-12 input-control control">
+							<p:calendar widgetVar="#{cc.attrs.identify}_To" autocomplete="false"
+								placeholder="__/__/____" id="itemTo_#{cc.attrs.identify}"
+								mindate="#{cc.attrs.valueDateSince}" maxdate="today"
+								showButtonPanel="true" showOtherMonths="true"
 								value="#{cc.attrs.valueDateTo}" disabled="#{cc.attrs.disabledCalendar}"
 								pattern="dd/MM/yyyy">
 								<f:convertDateTime pattern="dd/MM/yyyy" />
@@ -139,8 +141,8 @@
 			<p:ajax process="@form"
 				oncomplete="document.getElementById('tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:componentList').click();"
 				update="
-			:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:item_moveCalendarSince
-			:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:item_moveCalendarTo
+			:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:itemSince_moveCalendar
+			:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:itemTo_moveCalendar
 			:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:componentList
 			" />
 		</button>
@@ -152,8 +154,8 @@
 			<p:ajax process="@form"
 				oncomplete="document.getElementById('tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:customCheckList:componentList').click();"
 				update="
-            :tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:customCheckList:customDate:item_checkCalendarSince
-            :tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:customCheckList:customDate:item_checkCalendarTo
+            :tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:customCheckList:customDate:itemSince_checkCalendar
+            :tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:customCheckList:customDate:itemTo_checkCalendar
 			:tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:customCheckList:componentList
 			" />
 		</button>
@@ -165,8 +167,8 @@
 			<p:ajax process="@form"
 				oncomplete="document.getElementById('quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:componentList').click();"
 				update="
-		    :quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:item_quotaCalendarSince
-			:quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:item_quotaCalendarTo
+		    :quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:itemSince_quotaCalendar
+			:quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:itemTo_quotaCalendar
 			:quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:componentList
 			" />
 		</button>

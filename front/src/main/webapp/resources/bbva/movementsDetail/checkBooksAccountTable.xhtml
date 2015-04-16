@@ -49,18 +49,18 @@
 					styleClass="styleColum desc" sortBy="#{checkBook.actualState}">
 					<h:outputText styleClass="text styleLeft" value="#{checkBook.actualState}" />
 				</p:column>
-				<p:column styleClass="smart-view responseTable">
+				<p:column styleClass="smart-view">
 					<div class="left hidden-lg">
 						<h:outputText styleClass="brand styleLeft colorBlack"
 							value="#{msg['checkbooks.available.text']} #{checkBook.totalCheck}" />
 						<h:outputText styleClass="text styleLeft" value="#{checkBook.actualState}" />
 					</div>
 					<div class="right hidden-lg" style="width: 35% !important;">
-						<h:outputText styleClass="brand styleLeft"
+						<h:outputText styleClass="brand styleRigth"
 							value="#{checkBook.requestDate}">
 							<f:convertDateTime pattern="dd/MM/yyyy" />
 						</h:outputText>
-						<h:outputText styleClass="text styleLeft"
+						<h:outputText styleClass="text styleRigth"
 							value="#{checkBook.deliveryDate}">
 							<f:convertDateTime pattern="dd/MM/yyyy" />
 						</h:outputText>
@@ -73,7 +73,7 @@
 					styleClass="btn btn-more-results" process="@this"
 					actionListener="#{checkBookController.nextPageCheckBook}" ajax="true"
 					update=":detailAccounts:checkBookTable:formCheckBooks:checkBooksTable
-					:detailAccounts:checkBookTable:formCheckBooks">
+                    :detailAccounts:checkBookTable:formCheckBooks">
 					<p:ajax onstart="PF('moreMovsDialog').show()"
 						onsuccess="PF('moreMovsDialog').hide()" />
 				</p:commandButton>
