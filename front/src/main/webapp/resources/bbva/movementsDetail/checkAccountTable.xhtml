@@ -48,13 +48,13 @@
 				</p:column>
 				<p:column headerText="#{msg['text.detailMove.concep']}"
 					styleClass="smart-view responseTable">
-					<div class="left hidden-lg">
+					<div class="left hidden-lg" style="width: 50% !important;">
 						<h:outputText styleClass="text styleLeft" value="#{cheks.id}" />
 						<h:outputText class="brand styleLeft" value="#{cheks.issueDate}">
 							<f:convertDateTime pattern="dd/MM/yyyy" />
 						</h:outputText>
 					</div>
-					<div class="right hidden-lg" style="width: 35% !important;">
+					<div class="right hidden-lg" style="width: 50% !important;">
 						<h:outputText class="currency styleCurrent styleLeft"
 							value="#{cheks.value}" />
 						<h:outputText class="text styleLeft" value="#{cheks.status}" />
