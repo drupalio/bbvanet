@@ -237,35 +237,38 @@ tr.ui-state-hover {
 .ui-radiobutton-icon {
 	margin-right: 1px !important;
 	margin-left: 0px !important;
+	margin-top: -2px !important;
 }
 
 /*Radio buttom default*/
-.radioButtonT .ui-state-default, .radioBT .ui-state-default {
+.radioButtonT .ui-state-default, .radioBT .ui-state-default,
+	.investRadio .ui-state-default {
 	background: #FFF;
 }
 
 /*Radio buttom hover y active*/
-.radioButtonT .ui-state-active, .radioBT .ui-state-active, .radioButtonT .ui-state-hover,
-	.radioBT .ui-state-hover {
+.radioButtonT .ui-state-active, .radioBT .ui-state-active, .investRadio .ui-state-active,
+	.radioButtonT .ui-state-hover, .radioBT .ui-state-hover, .investRadio .ui-state-hover
+	{
 	background: #FAFCFD;
 	box-shadow: 0px 1px 1px 0px #888888;
 	border: 1px solid #C5DBEC;
 }
 
 /*Radio buttom icon active*/
-.radioButtonT .ui-state-active .ui-icon, .radioBT .ui-state-active .ui-icon
-	{
+.radioButtonT .ui-state-active .ui-icon, .radioBT .ui-state-active .ui-icon,
+	.investRadio .ui-state-active .ui-icon {
 	background:
 		url("/page/javax.faces.resource/images/ui-icons_4eb305_256x240.png?ln=primefaces-le-frog")
-		repeat scroll -61px -112px/200px auto transparent !important;
+		repeat scroll -61px -110px/200px auto transparent !important;
 }
 
 /*Radio buttom icon hover*/
-.radioButtonT .ui-state-hover .ui-icon, .radioBT .ui-state-hover .ui-icon
-	{
+.radioButtonT .ui-state-hover .ui-icon, .radioBT .ui-state-hover .ui-icon,
+	.investRadio .ui-state-hover .ui-icon {
 	background:
 		url("/page/javax.faces.resource/images/ui-icons_bbbbbb_256x240.png?ln=primefaces-black-tie")
-		repeat scroll -61px -112px/200px auto transparent !important;
+		repeat scroll -61px -110px/200px auto transparent !important;
 	opacity: 0.65;
 }
 
@@ -728,10 +731,12 @@ a.header.setStyle span.arrow-left-smaller {
 	display: inline-block !important;
 }
 
+/*.ui-state-hover input*/
 .extractEmail input.ui-state-hover {
 	background-color: #DDDDDD !important;
 }
 
+/*.ui-state-focus input*/
 .extractEmail input.ui-state-focus {
 	background-color: #DDDDDD !important;
 }
@@ -771,6 +776,7 @@ a.header.setStyle span.arrow-left-smaller {
 	font-weight: 400 !important;
 }
 
+/*icon mensaje*/
 .ui-button-text-icon-left .ui-icon {
 	position: absolute;
 	top: 25% !important;
@@ -785,10 +791,12 @@ body div.ui-growl {
 	right: 35% !important;
 }
 
+/*container mensaje*/
 .ui-growl-item-container {
 	opacity: 1.0 !important;
 }
 
+/*ui-state-highlight mensaje*/
 body div.ui-growl .ui-state-highlight {
 	border: none !important;
 }
@@ -803,6 +811,7 @@ body div.ui-growl .ui-state-highlight {
 	font-weight: bold !important;
 }
 
+/*buttom close*/
 .ui-growl-icon-close {
 	width: 0%;
 	height: 0%;
@@ -814,20 +823,64 @@ body div.ui-growl .ui-state-highlight {
 	background-color: #EEE !important;
 }
 
+/*div que contiene balance los input width*/
 @media ( min-width : 450px) and (max-width: 768px) {
 	.control, .refaling {
 		width: 77% !important;
 		display: inherit;
 		height: 40px;
 	}
+
+	/*espacio entre los dos balance´s*/
+	.balance-filter-content div:nth-child(2) {
+		margin-bottom: 15px;
+	}
 }
 
+/*Separación de inputs balance*/
+@media ( min-width : 768px) {
+	/*Margin del label balance desde*/
+	.balance-filter-content div[class*="col-"]:nth-child(2n+1) .form-group {
+		margin-left: 5px;
+		margin-right: 12px;
+	}
+	/*Margin del label balance hasta*/
+	.balance-filter-content div [class*="col-"]:nth-child(2n) .form-group {
+		margin-left: 7px;
+		margin-right: 9px;
+	}
+}
+
+/*width div balance*/
 .refaling {
+	width: 100%;
+}
+
+/*width div input balance*/
+.refalingInput {
 	background-image: url('../img/icons/dollar-blue.png ');
 	background-repeat: no-repeat;
 	background-position: right 3% center;
-	width: 100%;
+	width: 95%;
 	padding: 3px !important;
+}
+
+/*margin de label para centrarlos balance*/
+.balance-filter-content div [class*="col-"] .form-group label {
+	margin: 11px 5px 5px 0px;
+}
+
+/*padding y tamaño del div principal balance*/
+.consultas .panel-tab-body .filters>ul>li .balance-filter-content .form-balance
+	{
+	display: inline-block;
+	width: 100%;
+	padding: 0px;
+}
+
+/*class col- padding 0 balance*/
+.balance-filter-content div[class*="col-"] {
+	padding: 0px;
 }
 
 /*input disabled de calendar Criteria Date*/
@@ -854,14 +907,15 @@ body div.ui-growl .ui-state-highlight {
 	border: 1px solid #DDF4FC !important;
 }
 
+/*margin left radio Buttons Criteria Date*/
 @media ( min-width : 769px) {
-	/*margin left radio Buttons Criteria Date*/
 	.consultas .panel-tab-body .filters>ul>li .date-filter-content div.form-horizontal [class*="col-"]:nth-child(2n)
 		{
 		padding-left: 20px !important;
 	}
 }
 
+/*margin bottom buttons date*/
 @media ( max-width : 768px) {
 	/*margin bottom para el elemento 5 del criteria fecha*/
 	.consultas .panel-tab-body .filters .accordion li .date-filter-content .form-horizontal [class*="col-"]:nth-child(5)
@@ -875,6 +929,28 @@ body div.ui-growl .ui-state-highlight {
 		{
 		margin-bottom: 3px !important;
 	}
+	/*font y position de label de combos*/
+	.radioLabel {
+		cursor: pointer;
+		padding-left: 10px;
+		margin-bottom: 5px;
+		font-size: 14px;
+		font-weight: normal;
+		font-family: Arial;
+		color: #434A58;
+	}
+}
+
+/*font y position de label de combos*/
+.radioLabel {
+	cursor: pointer;
+	padding-left: 10px;
+	margin-bottom: 5px;
+	font-size: 12px;
+	font-weight: normal;
+	font-family: Arial;
+	color: #434A58;
+	font-weight: normal;
 }
 
 /*Estilos del calendario*/
