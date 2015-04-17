@@ -3,51 +3,50 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:composite="http://java.sun.com/jsf/composite"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-	xmlns:jsf="http://xmlns.jcp.org/jsf"
-	xmlns:cc="http://jsflive.at/taglib">
-
+	xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:cc="http://jsflive.at/taglib">
 <composite:interface>
 	<composite:attribute name="value" />
 </composite:interface>
-
 <composite:implementation>
-
 	<div class="incomeAndExpenses-filter-content radio-group">
-
-		<div>
-			<h:panelGrid columns="4" style="margin-bottom:18px"
-				columnClasses="col-xs-4 col-md-4">
-
-				<h:selectOneRadio value="#{cc.attrs.value}">
-					<div class="col-xs-4 col-md-4">
-						<f:selectItem id="inflow" itemLabel="#{msg['select.radio.in']}"
-							itemValue="1" />
-					</div>
-					<div class="col-xs-4 col-md-4">
-						<f:selectItem id="outflow" itemLabel="#{msg['select.radio.out']}"
-							itemValue="2" />
-					</div>
-					<div class="col-xs-4 col-md-4">
-						<f:selectItem id="bothflow" itemLabel="#{msg['select.radio.in.out']}"
-							itemValue="3" />
-					</div>
-				</h:selectOneRadio>
-
-			</h:panelGrid>
-
+		<div class="row form-horizontal">
+			<p:selectOneRadio id="investCombo" value="#{cc.attrs.value}"
+				class="investRadio" layout="custom">
+				<f:selectItem itemLabel="#{msg['select.radio.in']}" itemValue="1" />
+				<f:selectItem itemLabel="#{msg['select.radio.out']}" itemValue="2" />
+				<f:selectItem itemLabel="#{msg['select.radio.in.out']}" itemValue="3" />
+			</p:selectOneRadio>
+			<div class="col-xs-4 col-md-4" style="text-align: left;">
+				<p:radioButton id="inflow" for="investCombo" itemIndex="0"
+					class="investRadio" />
+				<h:outputLabel styleClass="radioLabel" for="inflow"
+					value="#{msg['select.radio.in']}" />
+			</div>
+			<div class="col-xs-4 col-md-4" style="text-align: center;">
+				<p:radioButton id="outflow" for="investCombo" itemIndex="1"
+					class="investRadio" />
+				<h:outputLabel styleClass="radioLabel" for="outflow"
+					value="#{msg['select.radio.out']}" />
+			</div>
+			<div class="col-xs-4 col-md-4" style="text-align: right;">
+				<p:radioButton id="bothflow" for="investCombo" itemIndex="2"
+					class="investRadio" />
+				<h:outputLabel styleClass="radioLabel" for="bothflow"
+					value="#{msg['select.radio.in.out']}" />
+			</div>
 		</div>
 		<button jsf:id="balanceButton"
 			jsf:actionListener="#{movementsCriteriaController.setIncomeExpensesFilter}"
-			class="btn small hidden-xs hidden-sm">#{msg['button.confirm']}
+			class="btn small hidden-xs hidden-sm">
+			#{msg['button.confirm']}
 			<p:ajax process="@form"
-			oncomplete="document.getElementById('tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:incomeOrExpenseList:componentList').click();"
-			update="
+				oncomplete="document.getElementById('tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:incomeOrExpenseList:componentList').click();"
+				update="
 			:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:incomeOrExpenseList:componentList		
 			" />
-			</button>
+		</button>
 	</div>
 </composite:implementation>
 </html>
