@@ -12,7 +12,7 @@ public class MovementDtoTest extends AbstractBbvaDTOTest<MovementDto> {
 
 	public MovementDtoTest() {
 		this.movementDto = new MovementDto("1234567", new Date(), new Date(), "concept", new Money(), new Money(),
-				"desac", "1", new MovementDetailDto());
+				"desac", "1", "000000000", new MovementDetailDto());
 	}
 
 	@Override

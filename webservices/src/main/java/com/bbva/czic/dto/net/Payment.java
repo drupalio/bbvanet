@@ -36,6 +36,11 @@ import com.bbva.jee.arq.spring.core.servicing.utils.Money;
 		"numbersOfQuota" })
 public class Payment implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	protected String dueDate;
 
 	protected String paymentDate;

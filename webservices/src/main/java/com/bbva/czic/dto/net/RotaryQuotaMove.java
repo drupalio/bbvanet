@@ -26,7 +26,7 @@ import com.bbva.jee.arq.spring.core.servicing.utils.Money;
  *         &lt;element name="status" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="value" type="{urn:com:bbva:jee:arq:spring:core:servicing:utils}money" minOccurs="0"/>
  *         &lt;element name="deb" type="{urn:com:bbva:czic:dto:net}Balance" minOccurs="0"/>
- *         &lt;element name="numbersOfQuota" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+ *         &lt;element name="numberOfQuotas" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *         &lt;element name="remainingQuotas" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -36,10 +36,13 @@ import com.bbva.jee.arq.spring.core.servicing.utils.Money;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "RotaryQuotaMove", propOrder = { "id", "operation", "concept", "transactionDate", "status", "value",
-		"deb", "numbersOfQuotas", "remainingQuotas" })
+		"deb", "numberOfQuotas", "remainingQuotas" })
 public class RotaryQuotaMove implements Serializable {
 
-	private static final long serialVersionUID = -163141776247178142L;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	protected String id;
 
@@ -55,7 +58,7 @@ public class RotaryQuotaMove implements Serializable {
 
 	protected Balance deb;
 
-	protected Integer numbersOfQuotas;
+	protected Integer numberOfQuotas;
 
 	protected Integer remainingQuotas;
 
@@ -168,7 +171,7 @@ public class RotaryQuotaMove implements Serializable {
 	}
 
 	/**
-	 * Gets the value of the balance property.
+	 * Gets the value of the deb property.
 	 * 
 	 * @return possible object is {@link Balance }
 	 */
@@ -177,7 +180,7 @@ public class RotaryQuotaMove implements Serializable {
 	}
 
 	/**
-	 * Sets the value of the balance property.
+	 * Sets the value of the deb property.
 	 * 
 	 * @param value allowed object is {@link Balance }
 	 */
@@ -186,21 +189,21 @@ public class RotaryQuotaMove implements Serializable {
 	}
 
 	/**
-	 * Gets the value of the numbersOfQuota property.
+	 * Gets the value of the numberOfQuotas property.
 	 * 
 	 * @return possible object is {@link Integer }
 	 */
-	public Integer getNumbersOfQuotas() {
-		return numbersOfQuotas;
+	public Integer getNumberOfQuotas() {
+		return numberOfQuotas;
 	}
 
 	/**
-	 * Sets the value of the numbersOfQuota property.
+	 * Sets the value of the numberOfQuotas property.
 	 * 
 	 * @param value allowed object is {@link Integer }
 	 */
-	public void setNumbersOfQuotas(Integer value) {
-		this.numbersOfQuotas = value;
+	public void setNumberOfQuotas(Integer value) {
+		this.numberOfQuotas = value;
 	}
 
 	/**

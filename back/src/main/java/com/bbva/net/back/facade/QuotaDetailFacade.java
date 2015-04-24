@@ -13,6 +13,6 @@ public interface QuotaDetailFacade {
 
 	public MovementDetailDto getRotaryQuotaMovement(String idLoan, String idMovement);
 
-	public List<MovementDto> listRotaryQuotaMovements(String loanId, DateRangeDto dateRange, Integer paginationKey,
+	public List<MovementDto> listRotaryQuotaMovements(String loanId, DateRangeDto dateRange, String paginationKey,
 			Integer pageSize);
 }

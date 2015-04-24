@@ -28,6 +28,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Contract", propOrder = { "number" })
 public class Contract implements Serializable {
 
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 
 	protected String number;

@@ -40,6 +40,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlSeeAlso({ Holder.class })
 public class User implements Serializable {
 
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 
 	protected String customerId;

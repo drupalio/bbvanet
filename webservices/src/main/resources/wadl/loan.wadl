@@ -2,6 +2,18 @@
 	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:prefix1="urn:com:bbva:czic:dto:net">
 	<grammars>
 		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns:tns="urn:com:bbva:jee:arq:spring:core:servicing:utils"
+			attributeFormDefault="unqualified" elementFormDefault="unqualified"
+			targetNamespace="urn:com:bbva:jee:arq:spring:core:servicing:utils">
+			<xs:element name="money" type="tns:money" />
+			<xs:complexType name="money">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="amount" type="xs:decimal" />
+					<xs:element minOccurs="0" name="currency" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+		</xs:schema>
+		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 			xmlns:ns1="urn:com:bbva:jee:arq:spring:core:servicing:utils"
 			xmlns:tns="urn:com:bbva:czic:dto:net" attributeFormDefault="unqualified"
 			elementFormDefault="unqualified" targetNamespace="urn:com:bbva:czic:dto:net">
@@ -14,12 +26,15 @@
 			<xs:element name="Contract" type="tns:Contract" />
 			<xs:element name="Country" type="tns:Country" />
 			<xs:element name="Email" type="tns:Email" />
-			<xs:element name="EnumContactSourceType" type="tns:EnumContactSourceType" />
-			<xs:element name="EnumPhoneNumberType" type="tns:EnumPhoneNumberType" />
+			<xs:element name="EnumMessageType" type="tns:EnumMessageType" />
+			<xs:element name="EnumThirdPartyType" type="tns:EnumThirdPartyType" />
+			<xs:element name="Executive" type="tns:Executive" />
 			<xs:element name="Extracto" type="tns:Extracto" />
 			<xs:element name="Function" type="tns:Function" />
+			<xs:element name="Holder" type="tns:Holder" />
 			<xs:element name="Loan" type="tns:Loan" />
 			<xs:element name="Location" type="tns:Location" />
+			<xs:element name="Message" type="tns:Message" />
 			<xs:element name="Movement" type="tns:Movement" />
 			<xs:element name="Office" type="tns:Office" />
 			<xs:element name="Operation" type="tns:Operation" />
@@ -28,68 +43,8 @@
 			<xs:element name="Product" type="tns:Product" />
 			<xs:element name="RotaryQuotaMove" type="tns:RotaryQuotaMove" />
 			<xs:element name="State" type="tns:State" />
-			<xs:complexType name="Movement">
-				<xs:sequence>
-					<xs:element minOccurs="0" name="id" type="xs:string" />
-					<xs:element minOccurs="0" name="concept" type="xs:string" />
-					<xs:element minOccurs="0" name="transactionDate" type="xs:string" />
-					<xs:element minOccurs="0" name="operationDate" type="xs:string" />
-					<xs:element minOccurs="0" name="sourceReference" type="xs:string" />
-					<xs:element minOccurs="0" name="destinationReference"
-						type="xs:string" />
-					<xs:element minOccurs="0" name="operation" type="tns:Operation" />
-					<xs:element minOccurs="0" name="office" type="tns:Office" />
-					<xs:element minOccurs="0" name="status" type="xs:string" />
-					<xs:element minOccurs="0" name="value" type="ns1:money" />
-					<xs:element minOccurs="0" name="balance" type="ns1:money" />
-					<xs:element minOccurs="0" name="numberOfQuotas" type="xs:string" />
-				</xs:sequence>
-			</xs:complexType>
-			<xs:complexType name="Operation">
-				<xs:sequence>
-					<xs:element minOccurs="0" name="code" type="xs:string" />
-					<xs:element minOccurs="0" name="description" type="xs:string" />
-				</xs:sequence>
-			</xs:complexType>
-			<xs:complexType name="Office">
-				<xs:sequence>
-					<xs:element minOccurs="0" name="code" type="xs:string" />
-					<xs:element minOccurs="0" name="name" type="xs:string" />
-					<xs:element minOccurs="0" name="location" type="tns:Location" />
-					<xs:element minOccurs="0" name="postalAddress" type="xs:string" />
-				</xs:sequence>
-			</xs:complexType>
-			<xs:complexType name="Location">
-				<xs:sequence>
-					<xs:element minOccurs="0" name="city" type="tns:City" />
-					<xs:element minOccurs="0" name="country" type="tns:Country" />
-					<xs:element minOccurs="0" name="state" type="tns:State" />
-					<xs:element minOccurs="0" name="postalAddress" type="xs:string" />
-					<xs:element minOccurs="0" name="category" type="xs:string" />
-				</xs:sequence>
-			</xs:complexType>
-			<xs:complexType name="City">
-				<xs:sequence>
-					<xs:element minOccurs="0" name="id" type="xs:string" />
-					<xs:element minOccurs="0" name="name" type="xs:string" />
-				</xs:sequence>
-			</xs:complexType>
-			<xs:complexType name="Country">
-				<xs:sequence>
-					<xs:element minOccurs="0" name="id" type="xs:string" />
-					<xs:element minOccurs="0" name="name" type="xs:string" />
-					<xs:element maxOccurs="unbounded" minOccurs="0" name="states"
-						nillable="true" type="tns:State" />
-				</xs:sequence>
-			</xs:complexType>
-			<xs:complexType name="State">
-				<xs:sequence>
-					<xs:element minOccurs="0" name="id" type="xs:string" />
-					<xs:element minOccurs="0" name="name" type="xs:string" />
-					<xs:element maxOccurs="unbounded" minOccurs="0" name="cities"
-						nillable="true" type="tns:City" />
-				</xs:sequence>
-			</xs:complexType>
+			<xs:element name="ThirdParty" type="tns:ThirdParty" />
+			<xs:element name="User" type="tns:User" />
 			<xs:complexType name="RotaryQuotaMove">
 				<xs:sequence>
 					<xs:element minOccurs="0" name="id" type="xs:string" />
@@ -98,9 +53,15 @@
 					<xs:element minOccurs="0" name="transactionDate" type="xs:string" />
 					<xs:element minOccurs="0" name="status" type="xs:string" />
 					<xs:element minOccurs="0" name="value" type="ns1:money" />
-					<xs:element minOccurs="0" name="balance" type="tns:Balance" />
-					<xs:element minOccurs="0" name="numbersOfQuota" type="xs:int" />
+					<xs:element minOccurs="0" name="deb" type="tns:Balance" />
+					<xs:element minOccurs="0" name="numberOfQuotas" type="xs:int" />
 					<xs:element minOccurs="0" name="remainingQuotas" type="xs:int" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Operation">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="code" type="xs:string" />
+					<xs:element minOccurs="0" name="description" type="xs:string" />
 				</xs:sequence>
 			</xs:complexType>
 			<xs:complexType name="Balance">
@@ -159,20 +120,18 @@
 			</xs:complexType>
 			<xs:complexType name="PhoneNumber">
 				<xs:sequence>
-					<xs:element minOccurs="0" name="contactSource"
-						type="tns:EnumContactSourceType" />
+					<xs:element minOccurs="0" name="contactSource" type="xs:string" />
 					<xs:element minOccurs="0" name="countryCode" type="xs:string" />
 					<xs:element minOccurs="0" name="regionalCode" type="xs:string" />
 					<xs:element minOccurs="0" name="number" type="xs:string" />
-					<xs:element minOccurs="0" name="type" type="tns:EnumPhoneNumberType" />
+					<xs:element minOccurs="0" name="type" type="xs:string" />
 					<xs:element minOccurs="0" name="primary" type="xs:boolean" />
 					<xs:element minOccurs="0" name="active" type="xs:boolean" />
 				</xs:sequence>
 			</xs:complexType>
 			<xs:complexType name="Email">
 				<xs:sequence>
-					<xs:element minOccurs="0" name="source"
-						type="tns:EnumContactSourceType" />
+					<xs:element minOccurs="0" name="source" type="xs:string" />
 					<xs:element minOccurs="0" name="address" type="xs:string" />
 					<xs:element minOccurs="0" name="primary" type="xs:boolean" />
 					<xs:element minOccurs="0" name="active" type="xs:boolean" />
@@ -180,6 +139,7 @@
 			</xs:complexType>
 			<xs:complexType name="Conditions">
 				<xs:sequence>
+					<xs:element minOccurs="0" name="type" type="xs:string" />
 					<xs:element minOccurs="0" name="alias" type="xs:string" />
 					<xs:element minOccurs="0" name="category" type="xs:string" />
 					<xs:element minOccurs="0" name="description" type="xs:string" />
@@ -188,8 +148,48 @@
 					<xs:element minOccurs="0" name="office" type="tns:Office" />
 					<xs:element minOccurs="0" name="mobilizationConditions"
 						type="xs:string" />
-					<xs:element maxOccurs="unbounded" minOccurs="0" name="activities"
-						nillable="true" type="tns:Activity" />
+					<xs:element minOccurs="0" name="activity" type="tns:Activity" />
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="holders"
+						nillable="true" type="tns:Holder" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Office">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="code" type="xs:string" />
+					<xs:element minOccurs="0" name="name" type="xs:string" />
+					<xs:element minOccurs="0" name="location" type="tns:Location" />
+					<xs:element minOccurs="0" name="postalAddress" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Location">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="city" type="tns:City" />
+					<xs:element minOccurs="0" name="country" type="tns:Country" />
+					<xs:element minOccurs="0" name="state" type="tns:State" />
+					<xs:element minOccurs="0" name="postalAddress" type="xs:string" />
+					<xs:element minOccurs="0" name="category" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="City">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="id" type="xs:string" />
+					<xs:element minOccurs="0" name="name" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Country">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="id" type="xs:string" />
+					<xs:element minOccurs="0" name="name" type="xs:string" />
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="states"
+						nillable="true" type="tns:State" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="State">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="id" type="xs:string" />
+					<xs:element minOccurs="0" name="name" type="xs:string" />
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="cities"
+						nillable="true" type="tns:City" />
 				</xs:sequence>
 			</xs:complexType>
 			<xs:complexType name="Activity">
@@ -207,6 +207,76 @@
 					<xs:element minOccurs="0" name="type" type="xs:string" />
 				</xs:sequence>
 			</xs:complexType>
+			<xs:complexType name="Holder">
+				<xs:complexContent>
+					<xs:extension base="tns:User">
+						<xs:sequence>
+							<xs:element minOccurs="0" name="alias" type="xs:string" />
+						</xs:sequence>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:complexType name="User">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="customerId" type="xs:string" />
+					<xs:element minOccurs="0" name="name" type="xs:string" />
+					<xs:element minOccurs="0" name="contactInfo" type="tns:ContactInfo" />
+					<xs:element minOccurs="0" name="salesExecutive" type="tns:Executive" />
+					<xs:element minOccurs="0" name="lastAccessDate" type="xs:string" />
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="message"
+						nillable="true" type="tns:Message" />
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="products"
+						nillable="true" type="tns:Product" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Executive">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="id" type="xs:string" />
+					<xs:element minOccurs="0" name="name" type="xs:string" />
+					<xs:element minOccurs="0" name="phone" type="xs:string" />
+					<xs:element minOccurs="0" name="office" type="tns:Office" />
+					<xs:element minOccurs="0" name="email" type="xs:string" />
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="customer"
+						nillable="true" type="tns:ThirdParty" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ThirdParty">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="customerId" type="tns:User" />
+					<xs:element minOccurs="0" name="type" type="tns:EnumThirdPartyType" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Message">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="id" type="xs:string" />
+					<xs:element minOccurs="0" name="title" type="xs:string" />
+					<xs:element minOccurs="0" name="template" type="xs:string" />
+					<xs:element minOccurs="0" name="reference" type="tns:EnumMessageType" />
+					<xs:element minOccurs="0" name="time" type="xs:string" />
+					<xs:element minOccurs="0" name="value" type="ns1:money" />
+					<xs:element minOccurs="0" name="info" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Movement">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="id" type="xs:string" />
+					<xs:element minOccurs="0" name="concept" type="xs:string" />
+					<xs:element minOccurs="0" name="transactionDate" type="xs:string" />
+					<xs:element minOccurs="0" name="operationDate" type="xs:string" />
+					<xs:element minOccurs="0" name="sourceReference" type="xs:string" />
+					<xs:element minOccurs="0" name="destinationReference"
+						type="xs:string" />
+					<xs:element minOccurs="0" name="operation" type="tns:Operation" />
+					<xs:element minOccurs="0" name="office" type="tns:Office" />
+					<xs:element minOccurs="0" name="status" type="xs:string" />
+					<xs:element minOccurs="0" name="value" type="ns1:money" />
+					<xs:element minOccurs="0" name="balance" type="ns1:money" />
+					<xs:element minOccurs="0" name="numberOfQuotas" type="xs:string" />
+					<xs:element minOccurs="0" name="remainingQuotas" type="xs:int" />
+					<xs:element minOccurs="0" name="deb" type="tns:Balance" />
+					<xs:element minOccurs="0" name="numExt" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
 			<xs:complexType name="Contract">
 				<xs:sequence>
 					<xs:element minOccurs="0" name="number" type="xs:string" />
@@ -221,32 +291,20 @@
 					<xs:element minOccurs="0" name="url" type="xs:string" />
 				</xs:sequence>
 			</xs:complexType>
-			<xs:simpleType name="EnumContactSourceType">
+			<xs:simpleType name="EnumThirdPartyType">
 				<xs:restriction base="xs:string">
-					<xs:enumeration value="MOBILE" />
-					<xs:enumeration value="WEB" />
-					<xs:enumeration value="THIRD_PARTY" />
+					<xs:enumeration value="CUSTOMER" />
+					<xs:enumeration value="LEAD" />
+					<xs:enumeration value="AGGREGATE" />
 				</xs:restriction>
 			</xs:simpleType>
-			<xs:simpleType name="EnumPhoneNumberType">
+			<xs:simpleType name="EnumMessageType">
 				<xs:restriction base="xs:string">
-					<xs:enumeration value="MOBILE" />
-					<xs:enumeration value="LANDLINE" />
-					<xs:enumeration value="FAX" />
+					<xs:enumeration value="ADVERTISEMENT" />
+					<xs:enumeration value="INFORMATION" />
+					<xs:enumeration value="NOTIFICATION" />
 				</xs:restriction>
 			</xs:simpleType>
-		</xs:schema>
-		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-			xmlns:tns="urn:com:bbva:jee:arq:spring:core:servicing:utils"
-			attributeFormDefault="unqualified" elementFormDefault="unqualified"
-			targetNamespace="urn:com:bbva:jee:arq:spring:core:servicing:utils">
-			<xs:element name="money" type="tns:money" />
-			<xs:complexType name="money">
-				<xs:sequence>
-					<xs:element minOccurs="0" name="amount" type="xs:decimal" />
-					<xs:element minOccurs="0" name="currency" type="xs:string" />
-				</xs:sequence>
-			</xs:complexType>
 		</xs:schema>
 	</grammars>
 	<resources base="http://localhost:8080/czic/loan">
@@ -277,7 +335,7 @@
 				<param name="loanId" style="template" type="xs:string" />
 				<method name="GET" id="listRotaryQuotaMovements">
 					<request>
-						<param name="paginationKey" style="query" type="xs:int" />
+						<param name="paginationKey" style="query" type="xs:string" />
 						<param name="pageSize" style="query" type="xs:int" />
 						<param name="$filter" style="query" default="null" type="xs:string" />
 					</request>

@@ -34,6 +34,9 @@ import com.bbva.jee.arq.spring.core.servicing.utils.Money;
 @XmlType(name = "Activity", propOrder = { "operationDate", "executionDate", "function", "amount", "reference" })
 public class Activity implements Serializable {
 
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 
 	protected String operationDate;

@@ -60,7 +60,7 @@ public class QuotaDetailFacadeImpl extends AbstractBbvaFacade implements QuotaDe
 	}
 
 	@Override
-	public List<MovementDto> listRotaryQuotaMovements(String loanId, DateRangeDto dateRange, Integer paginationKey,
+	public List<MovementDto> listRotaryQuotaMovements(String loanId, DateRangeDto dateRange, String paginationKey,
 			Integer pageSize) {
 		String filter = dateRange != null ? fiqlService.getFiqlQueryByDateRange(dateRange, transaccionDate,
 				transaccionDate) : StringUtils.EMPTY;

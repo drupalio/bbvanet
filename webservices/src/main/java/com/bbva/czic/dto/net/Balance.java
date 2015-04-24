@@ -31,6 +31,9 @@ import com.bbva.jee.arq.spring.core.servicing.utils.Money;
 @XmlType(name = "Balance", propOrder = { "total", "availableBalance" })
 public class Balance implements Serializable {
 
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 
 	protected Money total;

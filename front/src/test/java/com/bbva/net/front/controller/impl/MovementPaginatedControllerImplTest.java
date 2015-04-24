@@ -91,7 +91,7 @@ public class MovementPaginatedControllerImplTest extends AbstractBbvaControllerT
 		Assert.assertNotNull(result);
 		Whitebox.setInternalState(movementList, "elementData", new Object[15]);
 		Whitebox.setInternalState(movementList, "size", 15);
-		movementList.set(14, new MovementDto("123456", null, null, null, null, null, null, null, null));
+		movementList.set(14, new MovementDto("123456", null, null, null, null, null, null, null, null, null));
 		result = this.movementPaginatedController.getNextPaginantionKey(movementList);
 		Assert.assertNotNull(result);
 	}
