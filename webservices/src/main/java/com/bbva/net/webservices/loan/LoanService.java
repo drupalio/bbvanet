@@ -34,7 +34,7 @@ public interface LoanService {
 	@Produces("application/json")
 	@Path("/rotaryQuota/{loanId}/movements")
 	List<Movement> listRotaryQuotaMovements(@PathParam("loanId") String loanId,
-			@QueryParam("paginationKey") Integer paginationKey, @QueryParam("pageSize") Integer pageSize,
+			@QueryParam("paginationKey") String paginationKey, @QueryParam("pageSize") Integer pageSize,
 			@QueryParam("$filter") @DefaultValue("null") String $filter);
 
 }

@@ -1,15 +1,14 @@
-
 package com.bbva.czic.dto.net;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for Loan complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * Java class for Loan complex type.
+ * <p>
+ * The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="Loan">
@@ -24,93 +23,74 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Loan", propOrder = {
-    "debt",
-    "payment",
-    "status"
-})
-public class Loan
-    extends Product
-{
+@XmlType(name = "Loan", propOrder = { "debt", "payment", "status" })
+public class Loan extends Product {
 
-    protected Balance debt;
-    protected Payment payment;
-    protected String status;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
-    /**
-     * Gets the value of the debt property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Balance }
-     *     
-     */
-    public Balance getDebt() {
-        return debt;
-    }
+	protected Balance debt;
 
-    /**
-     * Sets the value of the debt property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Balance }
-     *     
-     */
-    public void setDebt(Balance value) {
-        this.debt = value;
-    }
+	protected Payment payment;
 
-    /**
-     * Gets the value of the payment property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Payment }
-     *     
-     */
-    public Payment getPayment() {
-        return payment;
-    }
+	protected String status;
 
-    /**
-     * Sets the value of the payment property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Payment }
-     *     
-     */
-    public void setPayment(Payment value) {
-        this.payment = value;
-    }
+	/**
+	 * Gets the value of the debt property.
+	 * 
+	 * @return possible object is {@link Balance }
+	 */
+	public Balance getDebt() {
+		return debt;
+	}
 
-    /**
-     * Gets the value of the status property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getStatus() {
-        return status;
-    }
+	/**
+	 * Sets the value of the debt property.
+	 * 
+	 * @param value allowed object is {@link Balance }
+	 */
+	public void setDebt(Balance value) {
+		this.debt = value;
+	}
 
-    /**
-     * Sets the value of the status property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setStatus(String value) {
-        this.status = value;
-    }
+	/**
+	 * Gets the value of the payment property.
+	 * 
+	 * @return possible object is {@link Payment }
+	 */
+	public Payment getPayment() {
+		return payment;
+	}
+
+	/**
+	 * Sets the value of the payment property.
+	 * 
+	 * @param value allowed object is {@link Payment }
+	 */
+	public void setPayment(Payment value) {
+		this.payment = value;
+	}
+
+	/**
+	 * Gets the value of the status property.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getStatus() {
+		return status;
+	}
+
+	/**
+	 * Sets the value of the status property.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setStatus(String value) {
+		this.status = value;
+	}
 
 }

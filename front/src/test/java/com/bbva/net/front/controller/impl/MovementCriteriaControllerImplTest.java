@@ -88,6 +88,7 @@ public class MovementCriteriaControllerImplTest extends AbstractBbvaControllerTe
 		this.movementCriteriaController.getMultiValueGroupFacade();
 		this.movementCriteriaController.setGraphicLineDelegate(graphicLineDelegate);
 		this.movementCriteriaController.getGraphicLineDelegate();
+		this.movementCriteriaController.setGraphicLineMovements(lineConfigUI);
 		this.movementCriteriaController.setMovementsFacade(movementsFacade);
 		// methodos
 		this.movementCriteriaController.cleanFilters(eventAction);

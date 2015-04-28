@@ -24,15 +24,14 @@
 					filterMessage="#{movementsCriteriaController.sinceDatestr}"
 					filterMessage2="#{movementsCriteriaController.toDatestr}">
 					<bbvaSearch:customSearchFilter id="customDate" showQuota="false"
-						showMovements="true" showChecks="false" identify="moves"
+						showMovements="true" showChecks="false" identify="moveCalendar"
 						value="#{movementsCriteriaController.selectDate}"
 						valueDateSince="#{movementsCriteriaController.sinceDate}"
 						valueDateTo="#{movementsCriteriaController.toDate}"
 						disabledButton="#{movementsCriteriaController.renderComponents['BUTTONDATE']}"
 						disabledCalendar="#{movementsCriteriaController.renderComponents['CALENDAR']}"
 						actionListenerDate="#{movementsCriteriaController.setCustomDate}"
-						listenerDate="#{movementsCriteriaController}"
-						calendarSince="moveCalendarSince" calendarTo="moveCalendarTo" />
+						listenerDate="#{movementsCriteriaController}" />
 				</bbvaSearch:customSearchList>
 				<bbvaSearch:customSearchList id="balanceList" classList="balance-filter"
 					classSpan="arrow-left-smaller" classSpanFilter="filter"
@@ -74,11 +73,10 @@
 					filterMessage="#{checkBookController.sinceDatestr}"
 					filterMessage2="#{checkBookController.toDatestr}">
 					<bbvaSearch:customSearchFilter id="customDate" showQuota="false"
-						showMovements="false" showChecks="true" identify="check"
+						showMovements="false" showChecks="true" identify="checkCalendar"
 						value="#{checkBookController.selectDate}"
 						valueDateSince="#{checkBookController.sinceDate}"
 						valueDateTo="#{checkBookController.toDate}"
-						calendarSince="checkCalendarSince" calendarTo="checkCalendarTo"
 						disabledButton="#{checkBookController.renderComponents['BUTTONDATECHECK']}"
 						disabledCalendar="#{checkBookController.renderComponents['CALENDARCHECK']}"
 						actionListenerDate="#{checkBookController.setCustomDate}"

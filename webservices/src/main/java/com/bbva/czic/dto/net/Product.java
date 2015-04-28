@@ -43,9 +43,12 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Product", propOrder = { "id", "type", "name", "alias", "financialState", "visible", "operable",
 		"balance", "contactInfo", "conditions", "movement", "contract", "extracts" })
-@XmlSeeAlso({ Account.class })
+@XmlSeeAlso({ Loan.class })
 public class Product implements Serializable {
 
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 
 	protected String id;

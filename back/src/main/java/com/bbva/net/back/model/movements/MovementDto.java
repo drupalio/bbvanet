@@ -34,8 +34,9 @@ public class MovementDto implements Dto {
 
 	private String quotaNumber;
 
-	/** instance detail movement Account/Quota */
+	private String extractNumber;
 
+	/** instance detail movement Account/Quota */
 	private MovementDetailDto movementDetailDto;
 
 	public MovementDto() {
@@ -53,7 +54,7 @@ public class MovementDto implements Dto {
 	 * @param movementDetailDto
 	 */
 	public MovementDto(String movementId, Date movementDate, Date operationDate, String movementConcept,
-			Money movementValue, Money totalBalance, String status, String quotaNumber,
+			Money movementValue, Money totalBalance, String status, String quotaNumber, String extractInd,
 			MovementDetailDto movementDetailDto) {
 		this.movementId = movementId;
 		this.movementDate = movementDate;
@@ -64,6 +65,7 @@ public class MovementDto implements Dto {
 		this.status = status;
 		this.quotaNumber = quotaNumber;
 		this.movementDetailDto = movementDetailDto;
+		this.extractNumber = extractInd;
 	}
 
 	@Override
@@ -212,5 +214,19 @@ public class MovementDto implements Dto {
 	 */
 	public void setOperationDate(Date operationDate) {
 		this.operationDate = operationDate;
+	}
+
+	/**
+	 * @return the extractNumber
+	 */
+	public String getExtractNumber() {
+		return extractNumber;
+	}
+
+	/**
+	 * @param extractNumber the extractNumber to set
+	 */
+	public void setExtractNumber(String extractNumber) {
+		this.extractNumber = extractNumber;
 	}
 }

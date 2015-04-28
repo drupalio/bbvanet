@@ -41,6 +41,9 @@ import javax.xml.bind.annotation.XmlType;
 		"office", "mobilizationConditions", "activity", "holders" })
 public class Conditions implements Serializable {
 
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 
 	protected String type;

@@ -34,8 +34,7 @@ public class LoanServiceImpl extends AbstractBbvaRestService implements LoanServ
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Movement> listRotaryQuotaMovements(String loanId, Integer paginationKey, Integer pageSize,
-			String $filter) {
+	public List<Movement> listRotaryQuotaMovements(String loanId, String paginationKey, Integer pageSize, String $filter) {
 
 		WebClient wc = getJsonWebClient(URL_BASE_ROTARYQUOTA + loanId + URL_ROTARYQUOTA_MOVES);
 		if (!StringUtils.isEmpty($filter)) wc.query(FILTER, $filter);

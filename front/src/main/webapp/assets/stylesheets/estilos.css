@@ -231,23 +231,45 @@ tr.ui-state-hover {
 	margin-left: 25px !important;
 }
 
+/*Radio Buttom Style*/
+
+/*Radio buttom default*/
 .ui-radiobutton-icon {
 	margin-right: 1px !important;
 	margin-left: 0px !important;
+	margin-top: -2px !important;
 }
 
-/* radio Button active talonarios y cheques*/
-.radioButtonT .ui-state-active .ui-icon {
-	background:
-		url("/page/javax.faces.resource/images/ui-icons_4eb305_256x240.png?ln=primefaces-le-frog")
-		repeat scroll -61px -112px/200px auto transparent !important;
+/*Radio buttom default*/
+.radioButtonT .ui-state-default, .radioBT .ui-state-default,
+	.investRadio .ui-state-default {
+	background: #FFF;
 }
 
-/* radio Button active fechas*/
-.radioBT .ui-state-active .ui-icon {
+/*Radio buttom hover y active*/
+.radioButtonT .ui-state-active, .radioBT .ui-state-active, .investRadio .ui-state-active,
+	.radioButtonT .ui-state-hover, .radioBT .ui-state-hover, .investRadio .ui-state-hover
+	{
+	background: #FAFCFD;
+	box-shadow: 0px 1px 1px 0px #888888;
+	border: 1px solid #C5DBEC;
+}
+
+/*Radio buttom icon active*/
+.radioButtonT .ui-state-active .ui-icon, .radioBT .ui-state-active .ui-icon,
+	.investRadio .ui-state-active .ui-icon {
 	background:
 		url("/page/javax.faces.resource/images/ui-icons_4eb305_256x240.png?ln=primefaces-le-frog")
-		repeat scroll -61px -112px/200px auto transparent !important;
+		repeat scroll -61px -110px/200px auto transparent !important;
+}
+
+/*Radio buttom icon hover*/
+.radioButtonT .ui-state-hover .ui-icon, .radioBT .ui-state-hover .ui-icon,
+	.investRadio .ui-state-hover .ui-icon {
+	background:
+		url("/page/javax.faces.resource/images/ui-icons_bbbbbb_256x240.png?ln=primefaces-black-tie")
+		repeat scroll -61px -110px/200px auto transparent !important;
+	opacity: 0.65;
 }
 
 /*icon de tablas*/
@@ -459,26 +481,18 @@ input.ui-state-hover {
 	margin-left: 30px !important;
 }
 
+table thead tr th.smart-view {
+	display: none !important;
+}
+
 /*Response de la tabla de movimientos*/
 @media ( max-width : 769px ) {
-	.responseTable {
-		display: table-cell !important;
-	}
 	.shared {
 		width: 96% !important;
 		float: left !important;
 	}
 	.marginDetailQValue {
 		margin-left: 0px !important;
-	}
-}
-
-/*Response de la tabla de movimientos*/
-@media ( min-width : 769px ) {
-	.responseTable {
-		display: none !important;
-		z-index: -1 !important;
-		width: 0% !important;
 	}
 }
 
@@ -506,6 +520,11 @@ input.ui-state-hover {
 		color: #333;
 		text-align: left;
 	}
+	.styleRigth {
+		font-size: 12px;
+		font-weight: bold;
+		color: #333;
+	}
 	.normal {
 		font-size: 12px;
 		font-weight: bold;
@@ -524,6 +543,11 @@ input.ui-state-hover {
 		font-weight: bold;
 		color: #333;
 		text-align: left;
+	}
+	.styleRigth {
+		font-size: 14px;
+		font-weight: bold;
+		color: #333;
 	}
 	.normal {
 		font-size: 14px;
@@ -707,10 +731,12 @@ a.header.setStyle span.arrow-left-smaller {
 	display: inline-block !important;
 }
 
+/*.ui-state-hover input*/
 .extractEmail input.ui-state-hover {
 	background-color: #DDDDDD !important;
 }
 
+/*.ui-state-focus input*/
 .extractEmail input.ui-state-focus {
 	background-color: #DDDDDD !important;
 }
@@ -750,6 +776,7 @@ a.header.setStyle span.arrow-left-smaller {
 	font-weight: 400 !important;
 }
 
+/*icon mensaje*/
 .ui-button-text-icon-left .ui-icon {
 	position: absolute;
 	top: 25% !important;
@@ -764,10 +791,12 @@ body div.ui-growl {
 	right: 35% !important;
 }
 
+/*container mensaje*/
 .ui-growl-item-container {
 	opacity: 1.0 !important;
 }
 
+/*ui-state-highlight mensaje*/
 body div.ui-growl .ui-state-highlight {
 	border: none !important;
 }
@@ -782,8 +811,319 @@ body div.ui-growl .ui-state-highlight {
 	font-weight: bold !important;
 }
 
+/*buttom close*/
 .ui-growl-icon-close {
 	width: 0%;
 	height: 0%;
 	background-image: none !important;
+}
+
+/*apariencia de input disabled*/
+.form-control[disabled] {
+	background-color: #EEE !important;
+}
+
+/*div que contiene balance los input width*/
+@media ( min-width : 450px) and (max-width: 768px) {
+	.control, .refaling {
+		width: 77% !important;
+		display: inherit;
+		height: 40px;
+	}
+
+	/*espacio entre los dos balance´s*/
+	.balance-filter-content div:nth-child(2) {
+		margin-bottom: 15px;
+	}
+}
+
+/*Separación de inputs balance*/
+@media ( min-width : 768px) {
+	/*Margin del label balance desde*/
+	.balance-filter-content div[class*="col-"]:nth-child(2n+1) .form-group {
+		margin-left: 5px;
+		margin-right: 12px;
+	}
+	/*Margin del label balance hasta*/
+	.balance-filter-content div [class*="col-"]:nth-child(2n) .form-group {
+		margin-left: 7px;
+		margin-right: 9px;
+	}
+}
+
+/*width div balance*/
+.refaling {
+	width: 100%;
+}
+
+/*width div input balance*/
+.refalingInput {
+	background-image: url('../img/icons/dollar-blue.png ');
+	background-repeat: no-repeat;
+	background-position: right 3% center;
+	width: 95%;
+	padding: 3px !important;
+}
+
+/*margin de label para centrarlos balance*/
+.balance-filter-content div [class*="col-"] .form-group label {
+	margin: 11px 5px 5px 0px;
+}
+
+/*padding y tamaño del div principal balance*/
+.consultas .panel-tab-body .filters>ul>li .balance-filter-content .form-balance
+	{
+	display: inline-block;
+	width: 100%;
+	padding: 0px;
+}
+
+/*class col- padding 0 balance*/
+.balance-filter-content div[class*="col-"] {
+	padding: 0px;
+}
+
+/*input disabled de calendar Criteria Date*/
+.control input[disabled] {
+	background-color: #EEE !important;
+	opacity: 1.0 !important;
+	cursor: not-allowed !important;
+}
+
+/*input de calendar Criteria Date*/
+.control input {
+	background-image: url("../img/icons/calendar-blue-small.png");
+	background-repeat: no-repeat;
+	background-position: right 10px center;
+	width: 100%;
+	height: 100%;
+	padding: 4px !important;
+}
+
+/*form control*/
+.control input.ui-state-focus {
+	box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.16) inset !important;
+	background-color: #FFFFF5 !important;
+	border: 1px solid #DDF4FC !important;
+}
+
+/*margin left radio Buttons Criteria Date*/
+@media ( min-width : 769px) {
+	.consultas .panel-tab-body .filters>ul>li .date-filter-content div.form-horizontal [class*="col-"]:nth-child(2n)
+		{
+		padding-left: 20px !important;
+	}
+}
+
+/*margin bottom buttons date*/
+@media ( max-width : 768px) {
+	/*margin bottom para el elemento 5 del criteria fecha*/
+	.consultas .panel-tab-body .filters .accordion li .date-filter-content .form-horizontal [class*="col-"]:nth-child(5)
+		{
+		margin-bottom: 24px !important;
+	}
+
+	/*margin bottom para los elementos 6 y 7 del criteria fecha*/
+	.consultas .panel-tab-body .filters .accordion li .date-filter-content .form-horizontal [class*="col-"]:nth-child(6),
+		.consultas .panel-tab-body .filters .accordion li .date-filter-content .form-horizontal [class*="col-"]:nth-child(7)
+		{
+		margin-bottom: 3px !important;
+	}
+	/*font y position de label de combos*/
+	.radioLabel {
+		cursor: pointer;
+		padding-left: 10px;
+		margin-bottom: 5px;
+		font-size: 14px;
+		font-weight: normal;
+		font-family: Arial;
+		color: #434A58;
+	}
+}
+
+/*font y position de label de combos*/
+.radioLabel {
+	cursor: pointer;
+	padding-left: 10px;
+	margin-bottom: 5px;
+	font-size: 12px;
+	font-weight: normal;
+	font-family: Arial;
+	color: #434A58;
+	font-weight: normal;
+}
+
+/*Estilos del calendario*/
+
+/*Calendar cuerpo*/
+.ui-datepicker {
+	background-image: linear-gradient(#FEFEFE, #F6F8F9);
+	width: 250px;
+	height: auto;
+	padding: 17px 15px 10px 15px;
+	border: 1px solid #C4D7E5;
+	-webkit-box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.176);
+	-moz-box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.176);
+	box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.176);
+}
+
+/*Imagen de arriba del calendar*/
+.ui-datepicker::before {
+	border-color: -moz-use-text-color transparent white;
+	border-style: none solid solid;
+	border-width: 0 7px 7px;
+	content: "";
+	display: inline-block;
+	position: absolute;
+	right: 11px;
+	top: -7px;
+	z-index: 2;
+}
+
+/*Imagen de arriba del calendar*/
+.ui-datepicker::after {
+	border-color: -moz-use-text-color transparent #c4d7e5;
+	border-left: 8px solid transparent;
+	border-right: 8px solid transparent;
+	border-style: none solid solid;
+	border-width: 0 8px 8px;
+	content: "";
+	display: inline-block;
+	position: absolute;
+	right: 11px;
+	top: -8px;
+	z-index: 1;
+}
+
+/*cabecera del calendario*/
+.ui-datepicker .ui-datepicker-header {
+	border: none !important;
+	background: #FFF !important;
+	color: black !important;
+	background: #FFF !important;
+	margin-right: 64px;
+}
+
+/*fuente del titulo del calendario*/
+.ui-datepicker .ui-datepicker-title {
+	text-align: left;
+	padding-left: 5px;
+	font-family: Arial;
+	font-size: 12px;
+	font-family: Arial;
+}
+
+/*fuente del calendario*/
+.ui-datepicker table {
+	font-size: 12px !important;
+	font-family: Arial !important;
+}
+
+/*none table calendario*/
+.ui-datepicker td a {
+	background: none !important;
+	border: none !important;
+	border-radius: 3px;
+	text-align: center !important;
+}
+
+/*td hover img*/
+.ui-datepicker td .ui-state-hover {
+	background-image: url("../img/day-hover.png") !important;
+	background-position: center center !important;
+	background-repeat: no-repeat !important;
+}
+
+/*td active img*/
+.ui-datepicker td .ui-state-active {
+	background-image: url("../img/day-active.png") !important;
+	background-position: center center !important;
+	background-repeat: no-repeat !important;
+	color: #FFF !important;
+}
+
+/*th calendario*/
+.ui-datepicker th {
+	text-align: center !important;
+	margin-left: 5px;
+	font-size: 10px;
+	font-weight: normal;
+	text-transform: uppercase;
+}
+
+/*tr hover none*/
+.ui-datepicker tr:hover {
+	background: none !important;
+}
+
+/*ui-icon prev*/
+.ui-datepicker .ui-datepicker-prev {
+	background: url("../img/sprite-widget-pag_left.png") no-repeat
+		!important;
+	background-position: 0px -80px !important;
+}
+
+/*hover ui-icon*/
+.ui-datepicker .ui-datepicker-prev-hover {
+	background-position: 0px 0px !important;
+	border: none !important;
+}
+
+/*ui-icon next*/
+.ui-datepicker .ui-datepicker-next {
+	display: none;
+}
+
+/*Quitar el background del a*/
+.ui-datepicker .ui-widget-header .ui-icon {
+	background: none !important;
+}
+/*Quitar boton done*/
+.ui-datepicker  .ui-datepicker-close {
+	display: none;
+}
+
+/*Quitar borde*/
+.ui-datepicker .ui-datepicker-buttonpane {
+	border: none !important;
+}
+
+/*button today*/
+.ui-datepicker .ui-datepicker-buttonpane button {
+	background: url("../img/today-btn.png") no-repeat !important;
+	background-position: 0px 0px !important;
+	text-indent: -99999999px;
+	width: 35px;
+	height: 21px;
+	border: none !important;
+	top: 10;
+	left: 10;
+	box-shadow: none !important;
+}
+
+/*button today hover*/
+.ui-datepicker .ui-datepicker-buttonpane button:hover {
+	background-position: 0px -80px !important;
+}
+
+/*button today position*/
+.ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current {
+	position: absolute;
+	top: 11px;
+	right: 45px;
+}
+
+/*items deshabilitados*/
+.ui-datepicker .ui-state-disabled span {
+	background: none repeat scroll 0% 0% transparent !important;
+	color: #8C8C8C !important;
+	border: medium none !important;
+	opacity: 1;
+	text-align: center;
+}
+
+/*items others months*/
+.ui-datepicker .ui-datepicker-other-month a {
+	color: #3F3F3F !important;
+	font-weight: bold !important;
 }

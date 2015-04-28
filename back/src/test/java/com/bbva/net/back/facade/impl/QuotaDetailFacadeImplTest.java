@@ -90,15 +90,15 @@ public class QuotaDetailFacadeImplTest {
 		List<Movement> listMovement = new ArrayList<Movement>();
 		List<MovementDto> listMovementDto = new ArrayList<MovementDto>();
 		// Mockear respuestas
-		Mockito.when(loanService.listRotaryQuotaMovements(DEFAULT_ID, 1, 10, null)).thenReturn(listMovement);
+		Mockito.when(loanService.listRotaryQuotaMovements(DEFAULT_ID, "1", 10, null)).thenReturn(listMovement);
 		Mockito.when(mapper.listRotaryQuotaMovements(listMovement)).thenReturn(listMovementDto);
-		Mockito.when(quotaDetailFacede.listRotaryQuotaMovements(DEFAULT_ID, date, 1, 10)).thenReturn(listMovementDto);
-		Mockito.when(quotaDetailFacede.listRotaryQuotaMovements(DEFAULT_ID, null, 1, 10)).thenReturn(listMovementDto);
+		Mockito.when(quotaDetailFacede.listRotaryQuotaMovements(DEFAULT_ID, date, "1", 10)).thenReturn(listMovementDto);
+		Mockito.when(quotaDetailFacede.listRotaryQuotaMovements(DEFAULT_ID, null, "1", 10)).thenReturn(listMovementDto);
 		// Llamar el método listRotaryQuotaMovements
-		listMovementDto = this.quotaDetailFacede.listRotaryQuotaMovements(DEFAULT_ID, date, 1, 10);
+		listMovementDto = this.quotaDetailFacede.listRotaryQuotaMovements(DEFAULT_ID, date, "1", 10);
 		// Verificar que no venga nulo
 		Assert.assertNotNull(listMovementDto);
 		// Verificar método listRotaryQuotaMovements
-		Mockito.verify(this.loanService, Mockito.atLeastOnce()).listRotaryQuotaMovements(DEFAULT_ID, 1, 10, null);
+		Mockito.verify(this.loanService, Mockito.atLeastOnce()).listRotaryQuotaMovements(DEFAULT_ID, "1", 10, null);
 	}
 }

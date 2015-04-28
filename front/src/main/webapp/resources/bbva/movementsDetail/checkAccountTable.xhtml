@@ -46,8 +46,7 @@
 						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</h:outputText>
 				</p:column>
-				<p:column headerText="#{msg['text.detailMove.concep']}"
-					styleClass="smart-view responseTable">
+				<p:column styleClass="smart-view">
 					<div class="left hidden-lg">
 						<h:outputText styleClass="text styleLeft" value="#{cheks.id}" />
 						<h:outputText class="brand styleLeft" value="#{cheks.issueDate}">
@@ -55,9 +54,8 @@
 						</h:outputText>
 					</div>
 					<div class="right hidden-lg" style="width: 35% !important;">
-						<h:outputText class="currency styleCurrent styleLeft"
-							value="#{cheks.value}" />
-						<h:outputText class="text styleLeft" value="#{cheks.status}" />
+						<h:outputText class="currency styleCurrent" value="#{cheks.value}" />
+						<h:outputText class="text styleRigth" value="#{cheks.status}" />
 					</div>
 				</p:column>
 			</p:dataTable>

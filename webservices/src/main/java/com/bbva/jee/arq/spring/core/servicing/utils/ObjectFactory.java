@@ -18,6 +18,9 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory implements Serializable {
 
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 
 	private final static QName _Money_QNAME = new QName("urn:com:bbva:jee:arq:spring:core:servicing:utils", "money");
