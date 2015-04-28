@@ -20,7 +20,7 @@
 		<h:form id="#{cc.attrs.id}">
 			<p:dataTable id="#{cc.attrs.id}" var="iproduct" rowIndexVar="findex"
 				selectionMode="single" styleClass="hide-column-names"
-				emptyMessage="#{msg['mssg.list.empty']}"
+				emptyMessage="#{msg['mssg.list.empty']}" 
 				rowKey="#{iproduct.productId}" value="#{cc.attrs.listAccounts}">
 
 				<p:ajax event="rowSelect"
@@ -28,7 +28,7 @@
 				<p:ajax event="rowUnselect" />
 
 				<p:column class="head" styleClass="col-xs-6 col-md-8"
-					style="font-size: 10px;color: #434A58;border-style: solid none;
+					style="padding: 14px !important;font-size: 10px;color: #434A58;border-style: solid none;
 					font-family: Arial;background: none;border-radius: 4px;border: 2px solid #DBDCDF;
 					background-color: #F3F5F7;margin-bottom: 14px;">
 
@@ -44,7 +44,7 @@
 				</p:column>
 
 				<p:column class="head" styleClass="col-xs-6 col-md-4"
-					style="font-size: 10px;color: #434A58;border-style: solid none;
+					style="padding: 14px !important;font-size: 10px;color: #434A58;border-style: solid none;
 					font-family: Arial;background: none;border-radius: 4px;border: 2px solid #DBDCDF;
 					background-color: #F3F5F7;margin-bottom: 14px;">
 
