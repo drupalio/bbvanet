@@ -26,8 +26,8 @@
 							name="inputNumberFrom" data-min="0" data-max="12" autocomplete="off"
 							data-filter="#{msg['text.since']}">
 						<f:validateLength maximum="12" minimum="1" />
-						<p:ajax event="keyup" update="out"
-							listener="#{movementsCriteriaController.buildMessage}" />
+						<p:ajax event="keyup" update="out, balanceButton"
+							listener="#{movementsCriteriaController.balanceValidator}" />
 						</input>
 					</div>
 				</div>
@@ -56,7 +56,7 @@
 		</small>
 		<button jsf:id="balanceButton"
 			jsf:actionListener="#{movementsCriteriaController.setBalanceRange}"
-			class="btn small hidden-xs hidden-sm">
+			class="btn small hidden-xs hidden-sm #{(movementsCriteriaController.movementCriteria.balanceRange.balanceSince==null || movementsCriteriaController.movementCriteria.balanceRange.balanceTo==null) || movementsCriteriaController.movementCriteria.balanceRange.balanceSince > movementsCriteriaController.movementCriteria.balanceRange.balanceTo ? 'buttonDisabled': 'none'}">
 			#{msg['button.confirm']}
 			<p:ajax process="@form"
 				oncomplete="document.getElementById('tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:balanceList:componentList').click();"

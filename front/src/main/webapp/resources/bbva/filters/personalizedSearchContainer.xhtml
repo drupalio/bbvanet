@@ -26,6 +26,7 @@
 					<bbvaSearch:customSearchFilter id="customDate" showQuota="false"
 						showMovements="true" showChecks="false" identify="moveCalendar"
 						value="#{movementsCriteriaController.selectDate}"
+						confirmDate=":tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:dateButtonMovements"
 						valueDateSince="#{movementsCriteriaController.sinceDate}"
 						valueDateTo="#{movementsCriteriaController.toDate}"
 						disabledButton="#{movementsCriteriaController.renderComponents['BUTTONDATE']}"
@@ -48,7 +49,7 @@
 					classList="incomeAndExpenses-filter" classSpan="arrow-left-smaller"
 					classSpanFilter="filter" title="#{msg['text.entry.expediture']}"
 					filterMessage="#{movementsCriteriaController.titleInOrExp}">
-					<bbvaSearch:incomeAndExpensesFilter
+					<bbvaSearch:incomeAndExpensesFilter id="incomeContainer"
 						value="#{movementsCriteriaController.movementCriteria.incomesOrExpenses}" />
 				</bbvaSearch:customSearchList>
 				<bbvaSearch:customSearchList id="movementList" classList="movements-filter"

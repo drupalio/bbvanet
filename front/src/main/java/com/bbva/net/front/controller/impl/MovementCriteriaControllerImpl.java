@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.tools.ant.util.DateUtils;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
@@ -33,7 +34,7 @@ import com.bbva.net.front.helper.MessagesHelper;
 import com.bbva.net.front.ui.line.LineConfigUI;
 
 /**
- * @author User
+ * @author Entelgy
  */
 public class MovementCriteriaControllerImpl extends MovementPaginatedController implements MovementCriteriaController {
 
@@ -46,10 +47,10 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 	private StringBuilder messageBalance;
 
-	private String sinceText, toText, selectDate = "3", titleDateSince, titleDateTo, sinceDatestr, toDatestr,
-			titleInOrExp;
+	private String sinceText, toText, selectDate = StringUtils.EMPTY, titleDateSince, titleDateTo, sinceDatestr,
+			toDatestr, titleInOrExp;
 
-	private Date sinceDate, toDate;
+	private Date sinceDate = null, toDate = null;
 
 	private MovementCriteriaDto movementCriteria = new MovementCriteriaDto();
 
@@ -248,15 +249,10 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 			if (movementCriteria.getBalanceRange().getBalanceSince()
 					.compareTo(movementCriteria.getBalanceRange().getBalanceTo()) == -1) {
-
-				getRenderComponents().put(RenderAttributes.BUTTONBALANCE.toString(), false);
 				messageBalance = new StringBuilder("Se mostrarán los resultados mayores de "
 						+ movementCriteria.getBalanceRange().getBalanceSince() + "$" + " y menores de "
 						+ movementCriteria.getBalanceRange().getBalanceTo() + "$");
 
-			} else {
-				getRenderComponents().put(RenderAttributes.BUTTONBALANCE.toString(), true);
-				buildMessage();
 			}
 		} else {
 			messageBalance = new StringBuilder();
@@ -313,8 +309,8 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	@Override
 	public void clean() {
 		movementCriteria = new MovementCriteriaDto();
-		movementCriteria.setBalanceRange(new BalanceRangeDto());
-		movementCriteria.setDateRange(new DateRangeDto());
+		movementCriteria.setBalanceRange(null);
+		movementCriteria.setDateRange(null);
 		setSinceText(new String());
 		setToText(new String());
 		setSinceDatestr(new String());

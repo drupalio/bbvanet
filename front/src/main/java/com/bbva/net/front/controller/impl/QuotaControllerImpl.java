@@ -12,6 +12,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.tools.ant.util.DateUtils;
 import org.primefaces.event.SelectEvent;
 
@@ -52,9 +53,9 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 
 	private Map<String, Boolean> renderComponents;
 
-	private Date sinceDate, toDate;
+	private Date sinceDate = null, toDate = null;
 
-	private String sinceText, toText, sinceDatestr, toDatestr, selectDate;
+	private String sinceText, toText, sinceDatestr, toDatestr, selectDate = StringUtils.EMPTY;
 
 	private static final String CONCRETE_DATE = MessagesHelper.INSTANCE.getString("select.radio.concret.date");
 
