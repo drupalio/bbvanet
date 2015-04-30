@@ -17,6 +17,10 @@
 				<f:selectItem itemLabel="#{msg['select.radio.in']}" itemValue="1" />
 				<f:selectItem itemLabel="#{msg['select.radio.out']}" itemValue="2" />
 				<f:selectItem itemLabel="#{msg['select.radio.in.out']}" itemValue="3" />
+				<f:ajax event="click"
+						render="
+                    :tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:incomeOrExpenseList:incomeContainer:balanceButton															
+					" />
 			</p:selectOneRadio>
 			<div class="col-xs-4 col-md-4" style="text-align: left;">
 				<p:radioButton id="inflow" for="investCombo" itemIndex="0"
@@ -39,7 +43,7 @@
 		</div>
 		<button jsf:id="balanceButton"
 			jsf:actionListener="#{movementsCriteriaController.setIncomeExpensesFilter}"
-			class="btn small hidden-xs hidden-sm">
+			class="btn small hidden-xs hidden-sm #{movementsCriteriaController.movementCriteria.incomesOrExpenses==null ? 'buttonDisabled': 'none'}">
 			#{msg['button.confirm']}
 			<p:ajax process="@form"
 				oncomplete="document.getElementById('tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:incomeOrExpenseList:componentList').click();"
