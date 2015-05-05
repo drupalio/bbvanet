@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:composite="http://java.sun.com/jsf/composite" xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui" xmlns:jsf="http://xmlns.jcp.org/jsf"
-	xmlns:pm="http://primefaces.org/mobile">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+	xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:pm="http://primefaces.org/mobile">
 <composite:interface>
 	<composite:attribute name="controller" />
 </composite:interface>
@@ -15,7 +17,8 @@
 				</a> <a href="#"> <span title="Imprimir" class="icon-printer"></span>
 				</a>
 				<div class="table-detail-close">
-					<a onclick="clickMove()"> <span class="close-text" style="color: #003F8D !important;">#{msg['text.close']}</span>
+					<a onclick="clickMove()"> <span class="close-text"
+						style="color: #003F8D !important;">#{msg['text.close']}</span>
 						<button class="close-icon" type="button" />
 					</a>
 				</div>
@@ -24,11 +27,13 @@
 		<table class="detail" style="border-bottom: 1px solid #C4D7E5 !important;">
 			<tbody>
 				<tr class="textSize visible" onclick="clickMove()">
-					<td class="brand" style="width: 14% !important;"><h:outputText styleClass="brand styleLeft"
+					<td style="width: 25% !important;"><h:outputText
+							styleClass="brand styleLeft"
 							value="#{cc.attrs.controller.movementDetail.transactionDate}">
 							<f:convertDateTime pattern="dd/MM/yyyy" />
 						</h:outputText></td>
-					<td style="text-align: left !important;" class="text">#{cc.attrs.controller.movementDetail.concept} <small>#{cc.attrs.controller.movementDetail.concept}</small>
+					<td style="text-align: left !important;" class="text">#{cc.attrs.controller.movementDetail.concept}
+						<small>#{cc.attrs.controller.movementDetail.concept}</small>
 					</td>
 					<td><span class="currency styleCurrent" style="margin-right: 13px;">#{cc.attrs.controller.movementDetail.operationValue}</span></td>
 					<td class="currency" style="padding-right: 10px !important;">#{cc.attrs.controller.movementDetail.valueslope}</td>
@@ -36,13 +41,18 @@
 				<tr class="textSize" onclick="clickMove()">
 					<td class="smart-view" colspan="3" style="width: 98% !important;">
 						<div class="left textSize" style="width: 46% !important;">
-							<span class="text">#{cc.attrs.controller.movementDetail.concept}</span>
-							<h:outputText styleClass="brand styleLeft" value="#{cc.attrs.controller.movementDetail.transactionDate}">
+							<h:outputText class="text styleLeft"
+								value="#{cc.attrs.controller.movementDetail.concept}" />
+							<h:outputText styleClass="brand styleLeft"
+								value="#{cc.attrs.controller.movementDetail.transactionDate}">
 								<f:convertDateTime pattern="dd/MM/yyyy" />
 							</h:outputText>
 						</div>
 						<div class="right textSize" style="width: 48% !important;">
-							-#{cc.attrs.controller.movementDetail.operationValue} <span>#{cc.attrs.controller.movementDetail.valueslope}</span>
+							<h:outputText class="currency styleCurrent"
+								value="-#{cc.attrs.controller.movementDetail.operationValue}" />
+							<h:outputText class="currency styleCurrent"
+								value="#{cc.attrs.controller.movementDetail.valueslope}" />
 						</div>
 					</td>
 				</tr>
