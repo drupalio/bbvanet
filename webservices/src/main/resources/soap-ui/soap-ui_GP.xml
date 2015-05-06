@@ -2607,7 +2607,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
     "numExt": "167"
 },
 {
-    "id": "822244850",
+    "id": "822244",
     "concept": "Pago cupo rotativo",
     "transactionDate": "2014-03-28",
     "value": {
@@ -2622,7 +2622,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
     "numExt": "345"
 },
 {
-    "id": "1641997532",
+    "id": "164199",
     "concept": "Pago cupo rotativo",
     "transactionDate": "2014-12-19",
     "value": {
@@ -2637,7 +2637,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
     "numExt": "8675"
 },
 {
-    "id": "1643775697",
+    "id": "164377",
     "concept": "Pago cupo rotativo",
     "transactionDate": "2014-05-08",
     "value": {
@@ -2652,7 +2652,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
     "numExt": "8964"
 },
 {
-    "id": "1583615454",
+    "id": "158361",
     "concept": "Pago cupo rotativo",
     "transactionDate": "2014-01-27",
     "value": {
@@ -2667,7 +2667,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
     "numExt": "3245"
 },
 {
-    "id": "335112113",
+    "id": "335112",
     "concept": "Pago cupo rotativo",
     "transactionDate": "2014-05-08",
     "value": {
@@ -2682,7 +2682,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
     "numExt": "1234"
 },
 {
-    "id": "1698785630",
+    "id": "169878",
     "concept": "Pago cupo rotativo",
     "transactionDate": "2014-06-18",
     "value": {
@@ -2697,7 +2697,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
     "numExt": "0987"
 },
 {
-    "id": "800973250",
+    "id": "800973",
     "concept": "Pago cupo rotativo",
     "transactionDate": "2014-05-20",
     "value": {
@@ -2712,7 +2712,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
     "numExt": "23"
 },
 {
-    "id": "1762391792",
+    "id": "176239",
     "concept": "Pago cupo rotativo",
     "transactionDate": "2014-05-09",
     "value": {

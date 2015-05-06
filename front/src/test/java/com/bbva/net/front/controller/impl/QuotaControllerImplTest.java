@@ -83,6 +83,7 @@ public class QuotaControllerImplTest extends AbstractBbvaControllerTest {
 		// SetMovement
 		Mockito.when(quotaControllerImpl.getSelectedMovements()).thenReturn(quotaMove);
 		Mockito.when(quotaMove.getMovementId()).thenReturn(DEFAULT_ID_MOV);
+		Mockito.when(quotaMove.getExtractNumber()).thenReturn("772");
 		this.quotaControllerImpl.setQuotaMove(quotaMove);
 		this.quotaControllerImpl.getQuotaMove();
 		// SetProductDto
@@ -90,15 +91,16 @@ public class QuotaControllerImplTest extends AbstractBbvaControllerTest {
 		Mockito.when(productDto.getProductId()).thenReturn(DEFAULT_ID);
 		this.quotaControllerImpl.getProductDto();
 		// Response
-		Mockito.when(this.quotaDetailFacade.getRotaryQuotaMovement(DEFAULT_ID, DEFAULT_ID_MOV)).thenReturn(moveDetail);
+		Mockito.when(this.quotaDetailFacade.getRotaryQuotaMovement(DEFAULT_ID, DEFAULT_ID_MOV + "0772")).thenReturn(
+				moveDetail);
 		// Ejecución Método
 		this.quotaControllerImpl.onRowToggle(eventSelect);
 		// set y get
 		this.quotaControllerImpl.setQuotaMoveDetailDto(moveDetail);
 		this.quotaControllerImpl.getQuotaMoveDetailDto();
 		// Verify
-		Mockito.verify(this.quotaDetailFacade, Mockito.atLeastOnce())
-				.getRotaryQuotaMovement(DEFAULT_ID, DEFAULT_ID_MOV);
+		Mockito.verify(this.quotaDetailFacade, Mockito.atLeastOnce()).getRotaryQuotaMovement(DEFAULT_ID,
+				DEFAULT_ID_MOV + "0772");
 	}
 
 	@Test

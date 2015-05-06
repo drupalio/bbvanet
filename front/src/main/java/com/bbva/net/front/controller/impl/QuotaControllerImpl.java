@@ -162,8 +162,10 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 		this.quotaMove = new MovementDto();
 		super.onMovementSelected(event);
 		this.quotaMove = super.getSelectedMovements();
+		String identify = String.format("%06d", Integer.valueOf(quotaMove.getMovementId())) + ""
+				+ String.format("%04d", Integer.valueOf(quotaMove.getExtractNumber()));
 		this.quotaMoveDetailDto = this.quotaDetailFacade.getRotaryQuotaMovement(this.productDto.getProductId(),
-				this.quotaMove.getMovementId());
+				identify);
 		LOGGER.info("Movimiento Seleccionado " + quotaMoveDetailDto.getId());
 	}
 
