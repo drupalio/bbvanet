@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:composite="http://java.sun.com/jsf/composite" xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui" xmlns:jsf="http://xmlns.jcp.org/jsf"
-	xmlns:pm="http://primefaces.org/mobile">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+	xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:pm="http://primefaces.org/mobile">
 <composite:interface>
 	<composite:attribute name="controller" />
 </composite:interface>
@@ -15,7 +17,8 @@
 				</a> <a href="#"> <span title="Imprimir" class="icon-printer"></span>
 				</a>
 				<div class="table-detail-close">
-					<a onclick="clickMove()"> <span class="close-text" style="color: #003F8D !important;">#{msg['text.close']}</span>
+					<a onclick="clickMove()"> <span class="close-text"
+						style="color: #003F8D !important;">#{msg['text.close']}</span>
 						<button class="close-icon" type="button" />
 					</a>
 				</div>
@@ -24,23 +27,32 @@
 		<table class="detail" style="border-bottom: 1px solid #C4D7E5 !important;">
 			<tbody>
 				<tr class="textSize visible" onclick="clickMove()">
-					<td style="width: 23% !important"><h:outputText styleClass="brand styleLeft"
+					<td style="width: 23% !important"><h:outputText
+							styleClass="brand styleLeft"
 							value="#{cc.attrs.controller.quotaMoveDetailDto.operationDate}">
 							<f:convertDateTime pattern="dd/MM/yyyy" />
 						</h:outputText></td>
-					<td><span style="float: left !important; display: table-cell !important;" class="text">#{cc.attrs.controller.quotaMove.movementConcept}</span></td>
+					<td><span
+						style="float: left !important; display: table-cell !important;"
+						class="text">#{cc.attrs.controller.quotaMove.movementConcept}</span></td>
 					<td style="padding-right: 10px !important;">#{cc.attrs.controller.quotaMoveDetailDto.value}</td>
 				</tr>
 				<tr class="textSize" onclick="clickMove()">
 					<td class="smart-view" colspan="3" style="width: 98% !important;">
 						<div class="left textSize" style="width: 46% !important;">
-							<span class="text">#{cc.attrs.controller.quotaMove.movementConcept}</span>
-							<h:outputText styleClass="brand styleLeft" value="#{cc.attrs.controller.quotaMoveDetailDto.operationDate}">
+							<h:outputText styleClass="text styleLeft"
+								value="#{cc.attrs.controller.quotaMove.movementConcept}" />
+							<h:outputText styleClass="brand styleLeft"
+								value="#{cc.attrs.controller.quotaMoveDetailDto.operationDate}">
 								<f:convertDateTime pattern="dd/MM/yyyy" />
 							</h:outputText>
 						</div>
-						<div class="right textSize" style="width: 48% !important; padding-right: 20px !important;">
-							#{cc.attrs.controller.quotaMoveDetailDto.value} <span>#{cc.attrs.controller.quotaMoveDetailDto.valueslope}</span>
+						<div class="right textSize"
+							style="width: 48% !important; padding-right: 20px !important;">
+							<h:outputText class="currency styleCurrent"
+								value="#{cc.attrs.controller.quotaMoveDetailDto.value}" />
+							<h:outputText class="currency styleCurrent"
+								value="#{cc.attrs.controller.quotaMoveDetailDto.valueslope}" />
 						</div>
 					</td>
 				</tr>
