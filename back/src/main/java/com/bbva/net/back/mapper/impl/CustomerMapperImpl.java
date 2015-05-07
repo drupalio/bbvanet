@@ -1,11 +1,15 @@
 package com.bbva.net.back.mapper.impl;
 
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+
 import ma.glasnost.orika.MapperFactory;
 import ma.glasnost.orika.impl.ConfigurableMapper;
 
 import com.bbva.czic.dto.net.Customer;
 import com.bbva.net.back.core.stereotype.Mapper;
 import com.bbva.net.back.mapper.CustomerMapper;
+import com.bbva.net.back.mapper.converter.StringToDateConverter;
 import com.bbva.net.back.model.header.CustomerDto;
 
 @Mapper(value = "customerMapper")
@@ -19,6 +23,8 @@ public class CustomerMapperImpl extends ConfigurableMapper implements CustomerMa
 
 	@Override
 	protected void configure(MapperFactory factory) {
+		
+		//factory.getConverterFactory().registerConverter(new SimpleDateFormat("", Locale.ENGLISH));
 
 		factory.classMap(Customer.class, CustomerDto.class).field("name", "nombre").field("lastAccessDate", "date")
 				.byDefault().register();

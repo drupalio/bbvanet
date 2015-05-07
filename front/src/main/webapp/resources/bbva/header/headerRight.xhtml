@@ -79,7 +79,7 @@
 				</div></li>
 			
 			
-			<bbvaHeader:customerInf name="#{headerController.getCustomer().nombre}" date="2015-02-02" hour="13:00"/>
+			<bbvaHeader:customerInf name="#{headerController.getCustomer().nombre}" date="#{headerController.getCustomer().getFecha()}" hour="#{headerController.getCustomer().getHora()}"/>
 			<li class="logout"><a href="index.html"
 				class="btn small warning"> <span>Desconectar</span> <span
 					class="icon-logout"></span>
