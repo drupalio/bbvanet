@@ -54,28 +54,23 @@ public class LoginFacadeImpl extends AbstractBbvaFacade implements LoginFacade {
 		AuthenticationData authenticationData = new AuthenticationData();
 
 		// Authentication-Data
-		authenticationData.setIdAuthenticationData(IV_TICKET_SERVICE);
-		authenticationData.getAuthenticationData().add(ivTicket);
+		authenticationData.setKey(IV_TICKET_SERVICE);
+		authenticationData.getValue().add(ivTicket);
 
 		// Authentication
 		/**
 		 * Concatenaciópn de Nick Usuario + Tipo de documento (identificationType) + Identification
 		 */
-		autentication.setAccessCode(user + identificationType + identification);
-		autentication.setAuthenticationType(AUTH_TYPE);
-		autentication.setClient(null);
+		autentication.setUserId(user + identificationType + identification);
 		autentication.setConsumerId(CONSUMER);
-		autentication.setUserId(StringUtils.EMPTY);
+		autentication.setAuthenticationType(AUTH_TYPE);
 		autentication.getAuthenticationData().add(authenticationData);
 
 		// UserPreferences
-
-		userPreferences.setLanguage(LANGUAGE);
-
+		userPreferences.setUserId(StringUtils.EMPTY);
+		userPreferences.setAccessCode(user + identificationType + identification);
+		userPreferences.setDialogId(StringUtils.EMPTY);
 		// ConsumerContext
-		consumerContext.setDialogId(null);
-		consumerContext.setBackendSession(null);
-		consumerContext.setAddressIp(null);
 		consumerContext.setUserPreferences(userPreferences);
 		consumerContext.setAuthentication(autentication);
 

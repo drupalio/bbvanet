@@ -24,6 +24,7 @@ import com.bbva.net.back.model.enums.RenderAttributes;
 import com.bbva.net.back.model.globalposition.ProductDto;
 import com.bbva.net.back.model.movements.MovementDetailDto;
 import com.bbva.net.back.model.movements.MovementDto;
+import com.bbva.net.back.predicate.BalanceRangeMovementPredicate;
 import com.bbva.net.back.predicate.ConceptMovementPredicate;
 import com.bbva.net.back.predicate.ExpensesPredicate;
 import com.bbva.net.back.predicate.IncomesPredicate;
@@ -87,6 +88,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		setDateRangePc(dateRange);
 		setBalanceRangePc(null);
 		// TODO oroductId
+		setProductTypePc(getSelectedProduct().getSubTypeProd());
 		LOGGER.info("MovementsAccountController getAllMovements productId:  " + getSelectedProduct().getProductId());
 		super.setMovementsFacade(movementsFacade);
 		next();
@@ -111,9 +113,6 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		LOGGER.info("MovementsAccountController criteriaSearch");
 		if (getRenderComponents().get(RenderAttributes.FILTERDATE.toString())) {
 			setDateRangePc(this.dateRange);
-		}
-		if (getRenderComponents().get(RenderAttributes.BALANCEFILTER.toString())) {
-			setBalanceRangePc(this.balanceRange);
 		}
 		setProductTypePc(getSelectedProduct().getSubTypeProd());
 		LOGGER.info("MovementsAccountController criteriaSearch productType:  " + getSelectedProduct().getSubTypeProd());
@@ -152,13 +151,20 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			criteriaSearch();
 			resetMapResults();
 
-		} else if (getRenderComponents().get(RenderAttributes.BALANCEFILTER.toString())) {
+		}
+		if (getRenderComponents().get(RenderAttributes.BALANCEFILTER.toString())) {
 			// Get movements by balance
 			LOGGER.info("MovementsAccountController searchMovementByBalanceFilter");
 			this.balanceRange = new BalanceRangeDto();
 			this.balanceRange.setBalanceSince(movementCriteria.getBalanceRange().getBalanceSince());
 			this.balanceRange.setBalanceTo(movementCriteria.getBalanceRange().getBalanceTo());
-			criteriaSearch();
+
+			// Get only movements by concept
+			final List<MovementDto> movementsByBalance = (List<MovementDto>)CollectionUtils.select(this.movementsList,
+					new BalanceRangeMovementPredicate(balanceRange));
+			this.movementsList = movementsByBalance;
+			setShowMoreStatus();
+			getRenderComponents().put(RenderAttributes.MOVEMENTSTABLE.toString(), true);
 			resetMapResults();
 		}
 
@@ -308,8 +314,10 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 	@Override
 	public void clean() {
+
 		movementCriteria = new MovementCriteriaDto();
-		movementCriteria.setBalanceRange(null);
+		balanceRange = new BalanceRangeDto();
+		movementCriteria.setBalanceRange(balanceRange);
 		movementCriteria.setDateRange(null);
 		setSinceText(new String());
 		setToText(new String());
@@ -321,9 +329,9 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		toDate = null;
 		titleDateSince = "";
 		titleDateTo = "";
-		selectDate = new String();
+		selectDate = StringUtils.EMPTY;
 		dateRange = null;
-		balanceRange = null;
+
 	}
 
 	/**

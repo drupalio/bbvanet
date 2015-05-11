@@ -2,7 +2,6 @@ package com.bbva.net.back.facade;
 
 import java.util.List;
 
-import com.bbva.net.back.model.commons.BalanceRangeDto;
 import com.bbva.net.back.model.commons.DateRangeDto;
 import com.bbva.net.back.model.movements.MovementDetailDto;
 import com.bbva.net.back.model.movements.MovementDto;
@@ -24,7 +23,7 @@ public interface MovementsAccountFacade {
 	 * @return
 	 */
 	List<MovementDto> listMovements(String productId, String productType, DateRangeDto dateRange,
-			BalanceRangeDto balanceRange, Integer paginationKey, Integer pageSize);
+			Integer paginationKey, Integer pageSize);
 
 	/***
 	 * Method to search a detail of one movement, giving productId and movementId.

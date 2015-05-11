@@ -26,5 +26,5 @@ rest.visibility.url = /setProductVisibility
 fiql.filter.parameter = $filter
 
 #Granting Ticket
-rest.granting.url = http://150.250.233.39:7275/saz/co/grantingTicket/V01
+rest.granting.url = http://150.250.140.41:7500/TechArchitecture/co/grantingTicket/V02
 
