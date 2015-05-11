@@ -33,11 +33,12 @@ import javax.xml.bind.annotation.XmlType;
  * </pre>
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Authentication", propOrder = { "consumerId", "authenticationType", "authenticationData", "userId",
-		"client", "accessCode" })
+@XmlType(name = "Authentication", propOrder = { "userId", "consumerId", "authenticationType", "authenticationData" })
 public class Authentication implements Serializable {
 
 	private static final long serialVersionUID = 6974447613098938638L;
+
+	protected String userId;
 
 	protected String consumerId;
 
@@ -45,12 +46,6 @@ public class Authentication implements Serializable {
 
 	@XmlElement(nillable = true)
 	protected List<AuthenticationData> authenticationData;
-
-	protected String userId;
-
-	protected String client;
-
-	protected String accessCode;
 
 	/**
 	 * Obtiene el valor de la propiedad consumerId.
@@ -126,42 +121,6 @@ public class Authentication implements Serializable {
 	 */
 	public void setUserId(String value) {
 		this.userId = value;
-	}
-
-	/**
-	 * Obtiene el valor de la propiedad client.
-	 * 
-	 * @return possible object is {@link String }
-	 */
-	public String getClient() {
-		return client;
-	}
-
-	/**
-	 * Define el valor de la propiedad client.
-	 * 
-	 * @param value allowed object is {@link String }
-	 */
-	public void setClient(String value) {
-		this.client = value;
-	}
-
-	/**
-	 * Obtiene el valor de la propiedad accessCode.
-	 * 
-	 * @return possible object is {@link String }
-	 */
-	public String getAccessCode() {
-		return accessCode;
-	}
-
-	/**
-	 * Define el valor de la propiedad accessCode.
-	 * 
-	 * @param value allowed object is {@link String }
-	 */
-	public void setAccessCode(String value) {
-		this.accessCode = value;
 	}
 
 }

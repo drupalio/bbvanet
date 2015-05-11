@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  * </pre>
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "UserPreferences", propOrder = { "language" })
+@XmlType(name = "UserPreferences", propOrder = { "userId", "accessCode", "dialogId" })
 public class UserPreferences implements Serializable {
 
 	/**
@@ -33,24 +33,64 @@ public class UserPreferences implements Serializable {
 	 */
 	private static final long serialVersionUID = -5623539017974888350L;
 
-	protected String language;
+	protected String userId;
+
+	protected String accessCode;
+
+	private String dialogId;
 
 	/**
-	 * Obtiene el valor de la propiedad language.
+	 * Obtiene el valor de la propiedad client.
 	 * 
 	 * @return possible object is {@link String }
 	 */
-	public String getLanguage() {
-		return language;
+	public String getUserId() {
+		return userId;
 	}
 
 	/**
-	 * Define el valor de la propiedad language.
+	 * Define el valor de la propiedad client.
 	 * 
 	 * @param value allowed object is {@link String }
 	 */
-	public void setLanguage(String value) {
-		this.language = value;
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	/**
+	 * Obtiene el valor de la propiedad accessCode.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getAccessCode() {
+		return accessCode;
+	}
+
+	/**
+	 * Define el valor de la propiedad accessCode.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setAccessCode(String value) {
+		this.accessCode = value;
+	}
+
+	/**
+	 * Obtiene el valor de la propiedad dialogId.
+	 * 
+	 * @return possible object is {@link String }
+	 */
+	public String getDialogId() {
+		return dialogId;
+	}
+
+	/**
+	 * Define el valor de la propiedad dialogId.
+	 * 
+	 * @param value allowed object is {@link String }
+	 */
+	public void setDialogId(String dialogId) {
+		this.dialogId = dialogId;
 	}
 
 }

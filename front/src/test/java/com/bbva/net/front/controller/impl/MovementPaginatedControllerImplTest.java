@@ -76,13 +76,12 @@ public class MovementPaginatedControllerImplTest extends AbstractBbvaControllerT
 
 	@Test
 	public void checkGetNextPage() {
-		Mockito.when(
-				movementsFacade.listMovements(DEFAULT_PRODUCT, PRODUCT_TYPE, daterange, balanceRange, paginationKey,
-						pageSize)).thenReturn(movementList);
+		Mockito.when(movementsFacade.listMovements(DEFAULT_PRODUCT, PRODUCT_TYPE, daterange, paginationKey, pageSize))
+				.thenReturn(movementList);
 		List<MovementDto> result = this.movementPaginatedController.getNextPage(paginationKey, pageSize);
 		Assert.assertNotNull(result);
 		Mockito.verify(this.movementsFacade, Mockito.atLeastOnce()).listMovements(DEFAULT_PRODUCT, PRODUCT_TYPE,
-				daterange, balanceRange, paginationKey, pageSize);
+				daterange, paginationKey, pageSize);
 	}
 
 	@Test

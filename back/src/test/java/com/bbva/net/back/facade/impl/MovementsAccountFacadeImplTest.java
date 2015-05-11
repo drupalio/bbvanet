@@ -59,14 +59,14 @@ public class MovementsAccountFacadeImplTest {
 
 	@Test
 	public void checkListMovementsWhitOutDateAndBalance() {
-		Assert.assertNotNull(movementsAccountFacade.listMovements("1234", "TE", null, null, 0, 10));
+		Assert.assertNotNull(movementsAccountFacade.listMovements("1234", "TE", null, 0, 10));
 
 	}
 
 	@Test
 	public void checkListMovementsDateRangeNull() {
 		balanceRange = new BalanceRangeDto();
-		Assert.assertNotNull(movementsAccountFacade.listMovements("1234", "TE", null, balanceRange, 0, 10));
+		Assert.assertNotNull(movementsAccountFacade.listMovements("1234", "TE", null, 0, 10));
 
 	}
 
@@ -81,7 +81,7 @@ public class MovementsAccountFacadeImplTest {
 
 		balanceRange = new BalanceRangeDto();
 
-		Assert.assertNotNull(movementsAccountFacade.listMovements("1234", "TE", dateRange, balanceRange, 0, 10));
+		Assert.assertNotNull(movementsAccountFacade.listMovements("1234", "TE", dateRange, 0, 10));
 
 	}
 

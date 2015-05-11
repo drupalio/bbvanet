@@ -11,7 +11,6 @@ import com.bbva.net.back.core.pattern.facade.AbstractBbvaFacade;
 import com.bbva.net.back.core.stereotype.Facade;
 import com.bbva.net.back.facade.MovementsAccountFacade;
 import com.bbva.net.back.mapper.MovementsMapper;
-import com.bbva.net.back.model.commons.BalanceRangeDto;
 import com.bbva.net.back.model.commons.DateRangeDto;
 import com.bbva.net.back.model.movements.MovementDetailDto;
 import com.bbva.net.back.model.movements.MovementDto;
@@ -76,9 +75,10 @@ public class MovementsAccountFacadeImpl extends AbstractBbvaFacade implements Mo
 	 */
 	@Override
 	public List<MovementDto> listMovements(final String productId, final String productType,
-			final DateRangeDto dateRange, final BalanceRangeDto balanceRange, final Integer paginationKey,
-			final Integer pageSize) {
+			final DateRangeDto dateRange, final Integer paginationKey, final Integer pageSize) {
 		String filter;
+		LOGGER.info("MovementsAccountFacadeImpl  llamando a listMovements " + productId + productType + dateRange
+				+ paginationKey + pageSize);
 		if (dateRange == null) {
 			filter = fiqlService.getFiqlQueryByCustomerIdAndProductType(productType, PRODUCTTYPE);
 		} else {
@@ -95,6 +95,7 @@ public class MovementsAccountFacadeImpl extends AbstractBbvaFacade implements Mo
 	 */
 	@Override
 	public MovementDetailDto getMovement(final String productId, final String productType, final String movementId) {
+		LOGGER.info("MovementsAccountFacadeImpl getMovement " + productId + productType + movementId);
 		final String filter = fiqlService.getFiqlQueryByCustomerIdAndProductType(productType, PRODUCTTYPE);
 		final Movement movement = this.productsService.getMovement(productId, movementId, filter);
 		return movementMapper.mapMovement(movement);
