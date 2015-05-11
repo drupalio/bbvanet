@@ -59,12 +59,9 @@ public class QuotaPaginatedController extends AbstractBbvaController {
 	protected String getNextPaginantionKey(List<MovementDto> lastPage) {
 		if (lastPage.size() > 0) {
 			LOGGER.info("El producto tiene movimientos");
-			String movementInd = String.format("%06d",
-					Integer.valueOf(lastPage.get(lastPage.size() - 1).getMovementId()));
-			String extractInd = String.format("%04d",
-					Integer.valueOf(lastPage.get(lastPage.size() - 1).getExtractNumber()));
-
-			return movementInd + extractInd;
+			String identify = String.format("%06d", Integer.valueOf(lastPage.get(lastPage.size() - 1).getMovementId()))
+					+ "" + String.format("%04d", Integer.valueOf(lastPage.get(lastPage.size() - 1).getExtractNumber()));
+			return identify;
 		}
 		LOGGER.info("El producto no tiene movimientos");
 		return "0000000000";

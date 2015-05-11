@@ -26,7 +26,7 @@ public class MovementPaginatedController extends PaginationController<MovementDt
 	@Override
 	protected List<MovementDto> getNextPage(int paginantionKey, int psize) {
 		return this.movementsFacade.listMovements(getSelectedProduct().getProductId(), productTypePc, dateRangePc,
-				balanceRangePc, paginantionKey, psize);
+				paginantionKey, psize);
 	}
 
 	@Override

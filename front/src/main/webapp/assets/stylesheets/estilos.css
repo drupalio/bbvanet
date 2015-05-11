@@ -456,13 +456,16 @@ input.ui-state-hover {
 }
 
 /*Detalle de movimiento position*/
-@media ( max-width : 769px ) {
+@media ( max-width : 768px ) {
 	.table-tabs table tbody tr.ui-expanded-row-content td {
 		padding: 21px 0px 14px 15px !important;
-		display: table !important;
+		display: block;
 	}
 	.position {
-		margin: -81px -5px -16px -16px !important;
+		margin: -101px -5px -16px -16px !important;
+	}
+	.positionMove {
+		margin: -101px -5px -16px -16px !important;
 	}
 }
 
@@ -481,6 +484,7 @@ input.ui-state-hover {
 	margin-left: 30px !important;
 }
 
+/*Modo response de tablas*/
 table thead tr th.smart-view {
 	display: none !important;
 }
@@ -500,6 +504,7 @@ table thead tr th.smart-view {
 .textSize {
 	font-family: Arial !important;
 	font-size: 12px !important;
+	padding-top: 0px !important;
 }
 
 /* Estilo de columna */

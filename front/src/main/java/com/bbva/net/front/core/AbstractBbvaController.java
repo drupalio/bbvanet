@@ -161,6 +161,14 @@ public abstract class AbstractBbvaController implements Serializable {
 	}
 
 	/**
+	 * @param var
+	 * @return
+	 */
+	protected Object getVarInFlow(final String var) {
+		return getWebFlowRequestContext().getFlashScope().get(var);
+	}
+
+	/**
 	 * @param defaultUser
 	 */
 	public void setDefaultUser(String defaultUser) {

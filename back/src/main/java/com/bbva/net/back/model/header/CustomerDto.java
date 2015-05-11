@@ -1,6 +1,8 @@
 package com.bbva.net.back.model.header;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
@@ -25,7 +27,7 @@ public class CustomerDto implements Dto {
 	/**
 	 * 
 	 */
-	private Date date;
+	private String date;
 
 	/**
 	 * 
@@ -37,7 +39,7 @@ public class CustomerDto implements Dto {
 	 * @param nombre
 	 * @param date
 	 */
-	public CustomerDto(final String nombre, final Date date) {
+	public CustomerDto(final String nombre, final String date) {
 		this.nombre = nombre;
 		this.date = date;
 	}
@@ -75,6 +77,33 @@ public class CustomerDto implements Dto {
 	public String getNombre() {
 		return nombre;
 	}
+	
+	public String getFecha(){
+		SimpleDateFormat fecha = new SimpleDateFormat("E MMM dd HH:mm:ss z yyyy",Locale.ENGLISH);
+		try{
+            Date datehora = fecha.parse(this.date);
+            fecha = new SimpleDateFormat("dd/MM/yyyy");
+            return fecha.format(datehora);
+
+        }
+        catch(Exception e){
+            System.out.println("EEE:"+e.getMessage());
+            return "";
+        }
+	}
+	public String getHora(){
+		SimpleDateFormat fecha = new SimpleDateFormat("E MMM dd HH:mm:ss z yyyy",Locale.ENGLISH);
+		try{
+            Date datehora = fecha.parse(this.date);
+            fecha = new SimpleDateFormat("HH:mm");
+            return fecha.format(datehora);
+
+        }
+        catch(Exception e){
+            System.out.println("EEE:"+e.getMessage());
+            return "";
+        }
+	}
 
 	/**
 	 * @param nombre the nombre to set
@@ -86,14 +115,14 @@ public class CustomerDto implements Dto {
 	/**
 	 * @return the date
 	 */
-	public Date getDate() {
-		return date;
+	public String getDate() {
+		return date ;
 	}
 
 	/**
 	 * @param date the date to set
 	 */
-	public void setDate(final Date date) {
+	public void setDate(final String date) {
 		this.date = date;
 	}
 }
