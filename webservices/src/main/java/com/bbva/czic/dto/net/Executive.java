@@ -36,6 +36,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Executive", propOrder = { "id", "name", "phone", "office", "email", "customer" })
 public class Executive implements Serializable {
 
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 
 	protected String id;

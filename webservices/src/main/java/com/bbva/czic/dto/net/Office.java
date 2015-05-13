@@ -31,6 +31,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Office", propOrder = { "code", "name", "location", "postalAddress" })
 public class Office implements Serializable {
 
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 
 	protected String code;

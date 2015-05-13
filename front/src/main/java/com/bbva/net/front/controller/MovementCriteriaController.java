@@ -8,7 +8,7 @@ import javax.faces.event.ComponentSystemEvent;
 import com.bbva.net.back.model.movements.MovementDto;
 
 /**
- * @author User
+ * @author Entelgy
  */
 public interface MovementCriteriaController {
 
@@ -76,9 +76,5 @@ public interface MovementCriteriaController {
 	 */
 	void setMovementConcept(ActionEvent event);
 
-	/**
-	 * 
-	 */
 	void clean();
-
 }

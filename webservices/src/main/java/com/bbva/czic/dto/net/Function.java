@@ -29,6 +29,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Function", propOrder = { "id", "type" })
 public class Function implements Serializable {
 
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 
 	protected String id;

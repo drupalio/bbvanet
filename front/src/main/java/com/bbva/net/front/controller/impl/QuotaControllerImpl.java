@@ -12,6 +12,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.tools.ant.util.DateUtils;
 import org.primefaces.event.SelectEvent;
 
@@ -52,9 +53,9 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 
 	private Map<String, Boolean> renderComponents;
 
-	private Date sinceDate, toDate;
+	private Date sinceDate = null, toDate = null;
 
-	private String sinceText, toText, sinceDatestr, toDatestr, selectDate;
+	private String sinceText, toText, sinceDatestr, toDatestr, selectDate = StringUtils.EMPTY;
 
 	private static final String CONCRETE_DATE = MessagesHelper.INSTANCE.getString("select.radio.concret.date");
 
@@ -161,8 +162,10 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 		this.quotaMove = new MovementDto();
 		super.onMovementSelected(event);
 		this.quotaMove = super.getSelectedMovements();
+		String identify = String.format("%06d", Integer.valueOf(quotaMove.getMovementId())) + ""
+				+ String.format("%04d", Integer.valueOf(quotaMove.getExtractNumber()));
 		this.quotaMoveDetailDto = this.quotaDetailFacade.getRotaryQuotaMovement(this.productDto.getProductId(),
-				this.quotaMove.getMovementId());
+				identify);
 		LOGGER.info("Movimiento Seleccionado " + quotaMoveDetailDto.getId());
 	}
 

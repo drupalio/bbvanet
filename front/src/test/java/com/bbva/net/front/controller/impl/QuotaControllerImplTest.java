@@ -83,6 +83,7 @@ public class QuotaControllerImplTest extends AbstractBbvaControllerTest {
 		// SetMovement
 		Mockito.when(quotaControllerImpl.getSelectedMovements()).thenReturn(quotaMove);
 		Mockito.when(quotaMove.getMovementId()).thenReturn(DEFAULT_ID_MOV);
+		Mockito.when(quotaMove.getExtractNumber()).thenReturn("772");
 		this.quotaControllerImpl.setQuotaMove(quotaMove);
 		this.quotaControllerImpl.getQuotaMove();
 		// SetProductDto
@@ -90,15 +91,16 @@ public class QuotaControllerImplTest extends AbstractBbvaControllerTest {
 		Mockito.when(productDto.getProductId()).thenReturn(DEFAULT_ID);
 		this.quotaControllerImpl.getProductDto();
 		// Response
-		Mockito.when(this.quotaDetailFacade.getRotaryQuotaMovement(DEFAULT_ID, DEFAULT_ID_MOV)).thenReturn(moveDetail);
+		Mockito.when(this.quotaDetailFacade.getRotaryQuotaMovement(DEFAULT_ID, DEFAULT_ID_MOV + "0772")).thenReturn(
+				moveDetail);
 		// Ejecución Método
 		this.quotaControllerImpl.onRowToggle(eventSelect);
 		// set y get
 		this.quotaControllerImpl.setQuotaMoveDetailDto(moveDetail);
 		this.quotaControllerImpl.getQuotaMoveDetailDto();
 		// Verify
-		Mockito.verify(this.quotaDetailFacade, Mockito.atLeastOnce())
-				.getRotaryQuotaMovement(DEFAULT_ID, DEFAULT_ID_MOV);
+		Mockito.verify(this.quotaDetailFacade, Mockito.atLeastOnce()).getRotaryQuotaMovement(DEFAULT_ID,
+				DEFAULT_ID_MOV + "0772");
 	}
 
 	@Test
@@ -113,9 +115,10 @@ public class QuotaControllerImplTest extends AbstractBbvaControllerTest {
 		this.quotaControllerImpl.setDateRange(date);
 		this.quotaControllerImpl.getDateRange();
 		// Mockear la respuesta del facade
-		Mockito.when(quotaDetailFacade.listRotaryQuotaMovements(DEFAULT_ID, null, 0, 10)).thenReturn(quotaMovements);
+		Mockito.when(quotaDetailFacade.listRotaryQuotaMovements(DEFAULT_ID, null, "0000000000", 10)).thenReturn(
+				quotaMovements);
 		// Mockear la respuesta del metodo getNextPage del quotaPaginatedController
-		Mockito.when(quotaPaginatedController.getNextPage(0, 10)).thenReturn(quotaMovements);
+		Mockito.when(quotaPaginatedController.getNextPage("0000000000", 10)).thenReturn(quotaMovements);
 		// Método nextPage desde la vista
 		this.quotaControllerImpl.nextPage(eventAction);
 		// Llamar método de quotaController
@@ -124,7 +127,8 @@ public class QuotaControllerImplTest extends AbstractBbvaControllerTest {
 		this.quotaControllerImpl.setQuotamovenDtos(quotaMovements);
 		this.quotaControllerImpl.getQuotamovenDtos();
 		// Verify
-		Mockito.verify(this.quotaDetailFacade, Mockito.atLeastOnce()).listRotaryQuotaMovements(DEFAULT_ID, null, 0, 10);
+		Mockito.verify(this.quotaDetailFacade, Mockito.atLeastOnce()).listRotaryQuotaMovements(DEFAULT_ID, null,
+				"0000000000", 10);
 	}
 
 	@Test
@@ -168,7 +172,7 @@ public class QuotaControllerImplTest extends AbstractBbvaControllerTest {
 		Mockito.when(this.quotaControllerImpl.getQuotamovenDtos()).thenReturn(quotaMovements);
 		Whitebox.setInternalState(quotaMovements, "elementData", new Object[15]);
 		Whitebox.setInternalState(quotaMovements, "size", 15);
-		quotaMovements.set(14, new MovementDto("123456", null, null, null, null, null, null, null, null));
+		quotaMovements.set(14, new MovementDto("123456", null, null, null, null, null, null, null, "0126729876", null));
 		this.quotaControllerImpl.criteriaSearch();
 		this.quotaControllerImpl.searchQuotaByFilter(eventAction);
 	}

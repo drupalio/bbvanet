@@ -40,10 +40,10 @@ public class QuotaDetailMapperImpl extends ConfigurableMapper implements QuotaDe
 
 		factory.classMap(RotaryQuotaMove.class, MovementDetailDto.class).field("id", "id").field("concept", "concept")
 				.field("transactionDate", "operationDate").field("deb.availableBalance", "valueslope")
-				.field("numbersOfQuotas", "numbersOfQuota").field("remainingQuotas", "remainingQuotas").byDefault()
+				.field("numberOfQuotas", "numbersOfQuota").field("remainingQuotas", "remainingQuotas").byDefault()
 				.register();
 
-		factory.classMap(Movement.class, MovementDto.class).field("id", "movementId")
+		factory.classMap(Movement.class, MovementDto.class).field("id", "movementId").field("numExt", "extractNumber")
 				.field("concept", "movementConcept").field("transactionDate", "movementDate")
 				.field("operation.code", "movementDetailDto.operationCode")
 				.field("operation.description", "movementDetailDto.operationDescription").field("status", "status")

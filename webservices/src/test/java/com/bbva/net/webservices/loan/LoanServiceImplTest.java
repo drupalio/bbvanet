@@ -63,10 +63,10 @@ public class LoanServiceImplTest extends AbstractBbvaRestClientTest {
 		// Mockito
 		Mockito.when(webClient.getCollection(Movement.class)).thenReturn(Mockito.anyCollection());
 		// Llamar método listRotaryQuotaMovements
-		this.loanServiceImpl.listRotaryQuotaMovements("00130443000200009410", 1, 10, null);
+		this.loanServiceImpl.listRotaryQuotaMovements("00130443000200009410", "1", 10, null);
 		this.loanServiceImpl.listRotaryQuotaMovements("00130443000200009410", null, 10, null);
 		this.loanServiceImpl.listRotaryQuotaMovements("00130443000200009410", null, null, "$filter");
-		this.loanServiceImpl.listRotaryQuotaMovements("00130443000200009410", 1, null, "$filter");
+		this.loanServiceImpl.listRotaryQuotaMovements("00130443000200009410", "1", null, "$filter");
 		// Verificar el get del servicio
 		Mockito.verify(this.webClient, Mockito.atLeastOnce()).getCollection(Movement.class);
 	}

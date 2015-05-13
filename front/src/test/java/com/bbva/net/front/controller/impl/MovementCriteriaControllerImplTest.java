@@ -88,6 +88,7 @@ public class MovementCriteriaControllerImplTest extends AbstractBbvaControllerTe
 		this.movementCriteriaController.getMultiValueGroupFacade();
 		this.movementCriteriaController.setGraphicLineDelegate(graphicLineDelegate);
 		this.movementCriteriaController.getGraphicLineDelegate();
+		this.movementCriteriaController.setGraphicLineMovements(lineConfigUI);
 		this.movementCriteriaController.setMovementsFacade(movementsFacade);
 		// methodos
 		this.movementCriteriaController.cleanFilters(eventAction);
@@ -265,17 +266,23 @@ public class MovementCriteriaControllerImplTest extends AbstractBbvaControllerTe
 		// INCOMEOREXPENSESFILTER filter (true) setIncomesOrExpenses 1
 		renderComponents.put(RenderAttributes.INCOMEOREXPENSESFILTER.toString(), true);
 		this.movementCriteriaDto.setIncomesOrExpenses("1");
+		this.movementCriteriaDto.setBalanceRange(new BalanceRangeDto(new BigDecimal(1000), new BigDecimal(2000)));
 		this.movementCriteriaController.setMovementCriteria(movementCriteriaDto);
 		this.movementCriteriaController.searchMovementByFilter(eventAction);
 		// INCOMEOREXPENSESFILTER filter (true) setIncomesOrExpenses 2
 		renderComponents.put(RenderAttributes.INCOMEOREXPENSESFILTER.toString(), true);
 		this.movementCriteriaDto.setIncomesOrExpenses("2");
+		this.movementCriteriaDto.setBalanceRange(new BalanceRangeDto(new BigDecimal(1000), new BigDecimal(2000)));
 		this.movementCriteriaController.setMovementCriteria(movementCriteriaDto);
 		this.movementCriteriaController.searchMovementByFilter(eventAction);
 		// BALANCEFILTER filter (true)
+		this.movementCriteriaDto.setBalanceRange(new BalanceRangeDto(new BigDecimal(1000), new BigDecimal(2000)));
+		this.movementCriteriaDto.setIncomesOrExpenses("2");
+		this.movementCriteriaController.setMovementCriteria(movementCriteriaDto);
 		renderComponents.put(RenderAttributes.BALANCEFILTER.toString(), true);
 		this.movementCriteriaController.searchMovementByFilter(eventAction);
 		// FILTERDATE filter (true)
+		this.movementCriteriaDto.setBalanceRange(new BalanceRangeDto(new BigDecimal(1000), new BigDecimal(2000)));
 		renderComponents.put(RenderAttributes.BALANCEFILTER.toString(), false);
 		renderComponents.put(RenderAttributes.FILTERDATE.toString(), true);
 		this.movementCriteriaController.searchMovementByFilter(eventAction);
