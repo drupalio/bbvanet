@@ -179,6 +179,8 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	 */
 	public void init() {
 
+		// try {
+
 		LOGGER.info("STARTING BBVA GLOBAL POSITION .................");
 
 		// Get GlobalProductsDTO by currentUser (visibles and hidden)
@@ -215,7 +217,23 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		// Get names of products
 		this.namesProducts = globalPositionFacade.getNamesProducts(globalProductsDTO);
 
+		// } catch (Throwable t) {
+		// handleException(t);
+		// }
+
 	}
+
+	// public void handleException(Throwable exception) {
+	// String message = "";
+	// if (exception instanceof ClientWebApplicationException) {
+	// message = "An application error occured : " + exception.getMessage();
+	// } else
+	// message = "An unexpected error occured !";
+	//
+	// FacesMessage facesMessage = new FacesMessage(message);
+	// FacesContext.getCurrentInstance().addMessage(null, facesMessage);
+	// // RequestContext.getCurrentInstance().showMessageInDialog(facesMessage);
+	// }
 
 	/**
 	 * @return
