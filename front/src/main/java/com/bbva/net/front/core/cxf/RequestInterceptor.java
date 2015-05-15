@@ -12,6 +12,7 @@ import org.apache.cxf.interceptor.AbstractOutDatabindingInterceptor;
 import org.apache.cxf.interceptor.Fault;
 import org.apache.cxf.message.Message;
 import org.apache.cxf.phase.Phase;
+import org.primefaces.context.RequestContext;
 import org.springframework.faces.webflow.FlowFacesContext;
 
 import com.bbva.jee.arq.spring.core.log.I18nLogFactory;
@@ -52,6 +53,7 @@ public class RequestInterceptor extends AbstractOutDatabindingInterceptor implem
 			tsecHeader.add(tsec);
 			headers.put(TSecType.tsec.name(), tsecHeader);
 		} catch (final Exception exception) {
+			RequestContext.getCurrentInstance().execute("PF('mistake').show();");
 			LOGGER.info("ERROR REQUEST INTERCEPTOR: " + exception.getMessage());
 		}
 

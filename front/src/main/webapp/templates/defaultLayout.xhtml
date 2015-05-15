@@ -7,9 +7,11 @@
 	xmlns:bbvaContainer="http://java.sun.com/jsf/composite/bbva/container"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:c="http://java.sun.com/jstl/core">
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:bbvaMessage="http://java.sun.com/jsf/composite/bbva/messages">
 
 <h:head>
+	<script name="jquery/jquery.js" library="primefaces"></script>
 	<meta http-equiv="Cache-Control" content="no-store" /> 
 	<f:view locale="es_CO"></f:view>
 	<title><ui:insert name="title">	BBVA :: Colombia :: Posición Global</ui:insert></title>
@@ -37,6 +39,7 @@
 				</bbvaContainer:rightBodyPanel>
 			</section>
 		</div>
+		<bbvaMessage:messageMistake/>
 	</div>
 
 	<ui:insert name="footer">

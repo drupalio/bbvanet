@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:bbvaMessage="http://java.sun.com/jsf/composite/bbva/messages"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jstl/core">
+<composite:interface>
+	<composite:attribute name="title" type="java.lang.String" />
+</composite:interface>
+<composite:implementation>
+	<p:dialog id="mistake2" position="center center" widgetVar="mistake"
+		modal="true" class="modal modal-content mistakeMessage" resizable="false">
+		<bbvaMessage:mistakeContent id="container">
+			<div class="block-error" style="margin: 40px;">
+				<div class="error-icon-container">
+					<span class="alert-red" />
+				</div>
+				<div class="error-text-container">
+					<h2 class="error-title">Servicio</h2>
+					<p:outputLabel styleClass="registerCond-error" value="sjsdnf" />
+				</div>
+			</div>
+			<p:button value="Cerrar" href="http://172.17.88.19:9085/kqpu_co_web/page/init?execution=e1s1"/>
+		</bbvaMessage:mistakeContent>
+	</p:dialog>
+</composite:implementation>
+</html>
