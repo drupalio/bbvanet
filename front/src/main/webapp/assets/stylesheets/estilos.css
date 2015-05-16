@@ -287,11 +287,6 @@ tr.ui-state-hover {
 	margin-left: -13px !important;
 }
 
-/* para la cabecera del dialog */
-.ui-dialog-titlebar {
-	visibility: hidden !important;
-}
-
 /* para el label del dialogo recovery */
 .fontLabel {
 	color: #71777F !important;
@@ -788,17 +783,32 @@ a.header.setStyle span.arrow-left-smaller {
 	margin-top: 0px;
 }
 
+/*estilos para el growl*/
+
 /* Mensaje de error extracto*/
 body div.ui-growl {
-	width: 301px !important;
+	width: 360px !important;
 	position: fixed !important;
 	top: 250px !important;
 	right: 35% !important;
 }
 
+.ui-growl-item {
+	position: relative;
+	background-color: #F7E9E9 !important;
+	border: 13px solid #FFF;
+	background-clip: padding-box;
+	padding: 30px 30px 30px 16px !important;
+	outline: 1px solid #DBDCDF;
+	-moz-outline-radius: 6px;
+}
+
 /*container mensaje*/
 .ui-growl-item-container {
 	opacity: 1.0 !important;
+	border: 1px solid #DBDCDC !important;
+	background-color: #F4F7F5 !important;
+	padding: 8px !important;
 }
 
 /*ui-state-highlight mensaje*/
@@ -816,11 +826,128 @@ body div.ui-growl .ui-state-highlight {
 	font-weight: bold !important;
 }
 
-/*buttom close*/
-.ui-growl-icon-close {
-	width: 0%;
-	height: 0%;
+/*buttom close de growl y del dialog*/
+.ui-growl-icon-close, .ui-dialog-titlebar-close {
+	background-image: url("../img/icons/cross-desktop.png") !important;
+	background-repeat: no-repeat;
+	display: inline-block;
+	width: 19px;
+	height: 19px;
+	vertical-align: middle;
+	margin-top: 0;
+	cursor: pointer;
+	border: 0;
+	opacity: 1;
+	z-index: 1;
+	display: block !important;
+}
+
+/*buttom close de growl y del dialog*/
+.ui-icon-closethick {
+	background-position: right;
+}
+
+/*buttom close de growl y del dialog*/
+@media ( max-width : 768px) {
+	.ui-growl-icon-close, .ui-dialog-titlebar-close {
+		background: url("../img/close-icon-big-2.png") no-repeat !important;
+		width: 30px !important;
+		height: 30px !important;
+	}
+}
+
+.ui-dialog-titlebar-close .ui-icon {
 	background-image: none !important;
+}
+
+/*icon error de growl y del dialog*/
+.ui-growl-image-error {
+	background-image: url(../img/icons/alert-red.png);
+	background-repeat: no-repeat;
+	background-position: 0 0;
+}
+
+.ui-messages-fatal-icon {
+	background: url(../img/icons/alert-red.png) no-repeat scroll 0% 0%
+		transparent;
+	background-position: 0px 0px;
+	height: 36px;
+	width: 39px;
+	border-right: 1px #C4136C;
+}
+
+/*estilos para el dialog de error*/
+.ui-dialog-content {
+	position: relative !important;
+	background: #F7E9E9 !important;
+	background-clip: padding-box;
+	word-wrap: break-word;
+	border: 13px solid #FFF !important;
+	border-top: 0px !important;
+	border-bottom-left-radius: 16px !important;
+	border-bottom-right-radius: 16px !important;
+	color: #C4136C !important;
+}
+
+.nonClose .ui-dialog-content {
+	background: #FFF !important;
+	color: #000 !important;
+}
+
+.mistakeMessage .ui-dialog-content {
+	background: #FFF !important;
+	background-clip: padding-box;
+	word-wrap: break-word;
+	border: 13px solid #F4F7F5;
+	border-top: 0px !important;
+	border-bottom-left-radius: 16px !important;
+	border-bottom-right-radius: 16px !important;
+}
+
+/*Header*/
+.ui-widget-header {
+	background: #F7E9E9 !important;
+	border: 13px solid #FFF !important;
+	border-bottom: 0px !important;
+	background-clip: padding-box;
+	border-top-left-radius: 16px !important;
+	border-top-right-radius: 16px !important;
+	color: #C4136C !important;
+}
+
+.mistakeMessage .ui-widget-header {
+	background: #FFF !important;
+	background-clip: padding-box;
+	border: 13px solid #F4F7F5;
+	border-bottom: 0px !important;
+	border-top-left-radius: 16px !important;
+	border-top-right-radius: 16px !important;
+}
+
+.nonClose .ui-widget-header {
+	background: #FFF !important;
+	color: #000 !important;
+}
+
+/*container*/
+.ui-message-dialog {
+	width: 360px !important;
+	position: fixed !important;
+	top: 250px !important;
+	left: 35% !important;
+	border: 1px solid #DBDCDF !important;
+	border-radius: 4px !important;
+	outline: 10px solid #F4F7F5 !important;
+	-moz-outline-radius: 13px 13px;
+	box-shadow: 0px 0px 38px rgba(0, 0, 0, 0.8);
+}
+
+.mistakeMessage .ui-message-dialog {
+	border: 0px !important;
+	border-radius: 0px !important;
+	outline: 0px !important;
+	-moz-outline-radius: 0px;
+	box-shadow: none !important;
 }
 
 /*apariencia de input disabled*/
@@ -1131,4 +1258,34 @@ body div.ui-growl .ui-state-highlight {
 .ui-datepicker .ui-datepicker-other-month a {
 	color: #3F3F3F !important;
 	font-weight: bold !important;
+}
+
+@media ( min-width : 669px) {
+	/*Error dialog*/
+	.mistakeMessage {
+		border: 1px solid #DBDCDC !important;
+		background-color: #F4F7F5 !important;
+		position: absolute !important;
+		top: 50% !important;
+		left: 18% !important;
+		right: 30% !important;
+		bottom: auto !important;
+		overflow: visible !important;
+		bottom: auto !important;
+	}
+}
+
+@media ( max-width : 669px) {
+	/*Error dialog*/
+	.mistakeMessage {
+		border: 1px solid #DBDCDC !important;
+		background-color: #F4F7F5 !important;
+		position: absolute !important;
+		top: 50% !important;
+		left: 0% !important;
+		right: 0% !important;
+		bottom: auto !important;
+		overflow: visible !important;
+		bottom: auto !important;
+	}
 }

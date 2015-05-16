@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:bbvaScript="http://java.sun.com/jsf/composite/bbva/script"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Cache-Control" content="no-store" />
+	<f:view locale="es_CO"></f:view>
+	<title><ui:insert name="title"> BBVA :: Colombia :: Posición Global</ui:insert></title>
+	<bbvaScript:assetScripts />
+</h:head>
+<h:body>
+	<div id="header"></div>
+	<div id="content">
+		<p:growl id="mist" autoUpdate="true" showDetail="true" sticky="true"
+			showSummary="true" />
+		<h:outputLabel value="Error Page " />
+	</div>
+</h:body>
+</html>
