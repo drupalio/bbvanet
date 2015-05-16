@@ -180,75 +180,67 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	 */
 	public void init() {
 
+		LOGGER.info("STARTING BBVA GLOBAL POSITION .................");
+		// Get GlobalProductsDTO by currentUser (visibles and hidden)
+		this.globalProductsDTO = this.globalPositionFacade.getGlobalProductsByUser();
+
+		LOGGER.info("Calculando totales................");
+		// Calculate totals
+		this.totalsProducts = this.globalPositionFacade.getTotalsByProduct(globalProductsDTO);
+
+		LOGGER.info("Calculando Gráfica Tu Situación ................");
+		// Calculate situation graphics panels
+		this.situationGraphicPieUI = graphicPieDelegate.getSituationGlobalProducts(this.globalProductsDTO);
+
+		LOGGER.info("Calculando Gráfica de Fondos ................");
+		// Calculate investmentFunds graphics panels
+		this.graphicPieInvestmentFunds = graphicPieDelegate.getAccountsfundsProducts(globalProductsDTO);
+
+		LOGGER.info("Nombre Productos  ................");
+		this.namesProducts = globalPositionFacade.getNamesProducts(globalProductsDTO);
+
+		LOGGER.info("Obteniendo Tarjetas y calculando gráfica ................");
+
+		try {
+			// Calculate cards graphics panel
+			this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(null));
+		} catch (final Exception exception) {
+			LOGGER.info("Error globalPosition controllergetCardGraphic: " + exception.getMessage());
+		}
+		LOGGER.info("Obteniendo la lista de resumen de movimientos................");
+
 		try {
 
-			LOGGER.info("STARTING BBVA GLOBAL POSITION .................");
-			// Get GlobalProductsDTO by currentUser (visibles and hidden)
-			this.globalProductsDTO = this.globalPositionFacade.getGlobalProductsByUser();
-
-			LOGGER.info("Calculando totales................");
-			// Calculate totals
-			this.totalsProducts = this.globalPositionFacade.getTotalsByProduct(globalProductsDTO);
-
-			LOGGER.info("Calculando Gráfica Tu Situación ................");
-			// Calculate situation graphics panels
-			this.situationGraphicPieUI = graphicPieDelegate.getSituationGlobalProducts(this.globalProductsDTO);
-
-			LOGGER.info("Calculando Gráfica de Fondos ................");
-			// Calculate investmentFunds graphics panels
-			this.graphicPieInvestmentFunds = graphicPieDelegate.getAccountsfundsProducts(globalProductsDTO);
-
-			LOGGER.info("Nombre Productos  ................");
-			this.namesProducts = globalPositionFacade.getNamesProducts(globalProductsDTO);
-
-			LOGGER.info("Obteniendo Tarjetas y calculando gráfica ................");
-
-			try {
-				// Calculate cards graphics panel
-				this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(null));
-			} catch (final Exception exception) {
-				exception.printStackTrace();
-			}
-			LOGGER.info("Obteniendo la lista de resumen de movimientos................");
-
-			try {
-
-				// Obtiene la lista de resumen de movimientos del serivico REST
-				this.globalResumeMovementsDTO = this.movementsResumeFacade
-						.getMovementsResumeByCustomer(new DateRangeDto());
-
-			} catch (final Exception exception) {
-				exception.printStackTrace();
-			}
-
-			LOGGER.info("Obteniendo Monthly Balances ................");
-
-			try {
-
-				if (!CollectionUtils.isEmpty(globalProductsDTO.getElectronicDeposits())) {
-
-					// Delegate construye UI grafica Depositos Electrónicos
-					// this.lineConfigUI = this.graphicLineDelegate.getMonthlyBalance(globalMonthlyBalance);
-					// Obtiene la lista de datos para pintar la grafica Deposito electrónico
-					this.globalMonthlyBalance = this.accountMonthBalanceFacade.getAccountMonthlyBalance(
-							globalProductsDTO.getElectronicDeposits().get(0).getProductId(), new DateRangeDto(),
-							StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY);
-
-					// Delegate construye UI grafica Depositos Electrónicos
-					this.lineConfigUI = this.graphicLineDelegate.getMonthlyBalance(globalMonthlyBalance);
-				}
-
-			} catch (final Exception exception) {
-				exception.printStackTrace();
-			}
-			LOGGER.info("Calculando gráfica de cuentas ................");
-			// Calculate income, output and balance by Account Graphic
-			this.accountGraphicBarLineUI = this.graphicBarLineDelegate.getInOutBalanceAccount(globalResumeMovementsDTO);
+			// Obtiene la lista de resumen de movimientos del serivico REST
+			this.globalResumeMovementsDTO = this.movementsResumeFacade.getMovementsResumeByCustomer(new DateRangeDto());
 
 		} catch (final Exception exception) {
-			LOGGER.info("HA HABIDO UNA EXCEPTION EN GLOBAL POSITION");
-			exception.printStackTrace();
+			LOGGER.info("Error globalPosition controller getMovementsResumeByCustomer: " + exception.getMessage());
 		}
+
+		LOGGER.info("Obteniendo Monthly Balances ................");
+
+		try {
+
+			if (!CollectionUtils.isEmpty(globalProductsDTO.getElectronicDeposits())) {
+
+				// Delegate construye UI grafica Depositos Electrónicos
+				// this.lineConfigUI = this.graphicLineDelegate.getMonthlyBalance(globalMonthlyBalance);
+				// Obtiene la lista de datos para pintar la grafica Deposito electrónico
+				this.globalMonthlyBalance = this.accountMonthBalanceFacade.getAccountMonthlyBalance(globalProductsDTO
+						.getElectronicDeposits().get(0).getProductId(), new DateRangeDto(), StringUtils.EMPTY,
+						StringUtils.EMPTY, StringUtils.EMPTY);
+
+				// Delegate construye UI grafica Depositos Electrónicos
+				this.lineConfigUI = this.graphicLineDelegate.getMonthlyBalance(globalMonthlyBalance);
+			}
+
+		} catch (final Exception exception) {
+			LOGGER.info("Error globalPosition controller Depositos Electrónicos: " + exception.getMessage());
+		}
+		LOGGER.info("Calculando gráfica de cuentas ................");
+		// Calculate income, output and balance by Account Graphic
+		this.accountGraphicBarLineUI = this.graphicBarLineDelegate.getInOutBalanceAccount(globalResumeMovementsDTO);
 
 	}
 

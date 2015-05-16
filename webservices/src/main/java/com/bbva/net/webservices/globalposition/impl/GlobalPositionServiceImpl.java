@@ -1,5 +1,6 @@
 package com.bbva.net.webservices.globalposition.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.cxf.jaxrs.client.WebClient;
@@ -24,11 +25,16 @@ public class GlobalPositionServiceImpl extends AbstractBbvaRestService implement
 
 	@Override
 	public List<Product> getExtractGlobalBalance(String $filter) {
-
-		LOGGER.info("PETICION: " + URL_BASE + URL_GLOBAL_POSITION);
-		final List<Product> result = getJsonCollection(URL_BASE + URL_GLOBAL_POSITION, Product.class);
-		LOGGER.info("NUMERO DE PRODUCTOS:" + result.size());
-		return result;
+		try {
+			LOGGER.info("PETICION: " + URL_BASE + URL_GLOBAL_POSITION);
+			final List<Product> result = getJsonCollection(URL_BASE + URL_GLOBAL_POSITION, Product.class);
+			LOGGER.info("NUMERO DE PRODUCTOS:" + result.size());
+			return result;
+		} catch (Exception ex) {
+			LOGGER.info("[Servicio getExtractGlobalBalance No respondió al obtener Lista de Posición global] "
+					+ ex.getMessage());
+			return new ArrayList<Product>();
+		}
 
 	}
 

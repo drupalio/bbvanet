@@ -28,7 +28,7 @@ public class COGrantingTicketImpl extends AbstractBbvaRestService implements Srv
 		String json = gson.toJson(consumercontext);
 		LOGGER.info("JSON: " + json);
 
-		return wc.post(consumercontext, AuthenticationState.class);
+		return wc.post(json, AuthenticationState.class);
 	}
 
 }

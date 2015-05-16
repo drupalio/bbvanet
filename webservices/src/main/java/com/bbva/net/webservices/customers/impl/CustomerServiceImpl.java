@@ -1,5 +1,6 @@
 package com.bbva.net.webservices.customers.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.core.Response;
@@ -34,7 +35,13 @@ public class CustomerServiceImpl extends AbstractBbvaRestService implements Cust
 		WebClient wc = getJsonWebClient(URL_BASE_CUSTOMER + URL_CUSTOMER);
 		LOGGER.info("PETICION: " + wc.getCurrentURI());
 		if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
-		return (List<AccMovementsResume>)wc.getCollection(AccMovementsResume.class);
+		try {
+			return (List<AccMovementsResume>)wc.getCollection(AccMovementsResume.class);
+		} catch (Exception ex) {
+			LOGGER.info("[Servicio listAccountsMovementsResume No respondió al obtener grafica de cuentas] "
+					+ ex.getMessage());
+			return new ArrayList<AccMovementsResume>();
+		}
 
 	}
 
@@ -43,7 +50,14 @@ public class CustomerServiceImpl extends AbstractBbvaRestService implements Cust
 	public List<CardCharge> listCreditCardsCharges(String filter) {
 		WebClient wc = getJsonWebClient(URL_BASE_CUSTOMER + URL_CARDCHARGES);
 		if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
-		return (List<CardCharge>)wc.getCollection(CardCharge.class);
+		try {
+			LOGGER.info("PETICION: " + URL_BASE_CUSTOMER + URL_CARDCHARGES);
+			return (List<CardCharge>)wc.getCollection(CardCharge.class);
+		} catch (Exception ex) {
+			LOGGER.info("[Servicio listCreditCardsCharges No respondió al obtener grafica de tarjetas] "
+					+ ex.getMessage());
+			return new ArrayList<CardCharge>();
+		}
 
 	}
 
@@ -51,7 +65,13 @@ public class CustomerServiceImpl extends AbstractBbvaRestService implements Cust
 	public Customer getCustomer(String filter) {
 		WebClient wc = getJsonWebClient(URL_BASE_CUSTOMER);
 		if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
-		return wc.get(Customer.class);
+		try {
+			LOGGER.info("PETICION: " + URL_BASE_CUSTOMER);
+			return wc.get(Customer.class);
+		} catch (Exception ex) {
+			LOGGER.info("[Servicio getCustomer No respondió al obtener el cliente] " + ex.getMessage());
+			return new Customer();
+		}
 	}
 
 	@Override

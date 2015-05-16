@@ -1,5 +1,6 @@
 package com.bbva.net.front.controller.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -58,8 +59,21 @@ public class ComboCriteriaControllerImpl extends AbstractBbvaController implemen
 	 */
 	@PostConstruct
 	public void init() {
-		this.multiValuePeriod = this.getListMultiValuePeriod();
-		this.multiValueList = this.getListMultiValueChecks();
+		try {
+			LOGGER.info("Ejecuta metodo base de datos multiValuePeriod");
+			this.multiValuePeriod = this.getListMultiValuePeriod();
+		} catch (Exception ex) {
+			LOGGER.info("Falla ejecución Metodo multiValuePeriod de ComboCriteriaController " + ex.getMessage());
+			this.multiValuePeriod = new ArrayList<MultiValueGroup>();
+		}
+		try {
+			LOGGER.info("Ejecuta metodo base de datos multiValueChecks");
+			this.multiValueList = this.getListMultiValueChecks();
+		} catch (Exception ex) {
+			LOGGER.info("Falla ejecución Metodo tMultiValueChecks de ComboCriteriaController " + ex.getMessage());
+			this.multiValueList = new ArrayList<MultiValueGroup>();
+		}
+
 	}
 
 	/**

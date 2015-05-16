@@ -25,9 +25,15 @@ public class ProductsServiceImpl extends AbstractBbvaRestService implements Prod
 
 	@Override
 	public Conditions getConditions(String productId) {
-		final Conditions conditions = getJsonWebClient(URL_BASE_PRODUCTS + productId + URL_PRODUCTS).get(
-				Conditions.class);
-		return conditions;
+		try {
+			final Conditions conditions = getJsonWebClient(URL_BASE_PRODUCTS + productId + URL_PRODUCTS).get(
+					Conditions.class);
+			return conditions;
+		} catch (Exception ex) {
+			LOGGER.info("[Servicio getConditions No respondió al obtener las condiciones del producto] "
+					+ ex.getMessage());
+			return new Conditions();
+		}
 	}
 
 	@SuppressWarnings("unchecked")
@@ -55,8 +61,13 @@ public class ProductsServiceImpl extends AbstractBbvaRestService implements Prod
 			wc.query("paginationKey", paginationKey);
 			wc.query("pageSize", pageSize);
 		}
-
-		return (List<Movement>)wc.getCollection(Movement.class);
+		try {
+			LOGGER.info("URL_BASE_PRODUCTS + productId + URL_MOVEMENTS");
+			return (List<Movement>)wc.getCollection(Movement.class);
+		} catch (final Exception ex) {
+			LOGGER.info("[Servicio listMovements No respondió al obtener la lista de movimientos] " + ex.getMessage());
+			return new ArrayList<Movement>();
+		}
 	}
 
 	@Override
@@ -64,7 +75,12 @@ public class ProductsServiceImpl extends AbstractBbvaRestService implements Prod
 
 		WebClient wc = getJsonWebClient(URL_BASE_PRODUCTS + productId + URL_MOVEMENTS + "/" + movementId);
 		if (!StringUtils.isEmpty($filter)) wc.query(FILTER, $filter);
-
-		return wc.get(Movement.class);
+		try {
+			LOGGER.info("PETICION: " + URL_BASE_PRODUCTS + productId + URL_MOVEMENTS + "/" + movementId);
+			return wc.get(Movement.class);
+		} catch (final Exception ex) {
+			LOGGER.info("[Servicio getMovement No respondió al obtener el movimiento] " + ex.getMessage());
+			return new Movement();
+		}
 	}
 }

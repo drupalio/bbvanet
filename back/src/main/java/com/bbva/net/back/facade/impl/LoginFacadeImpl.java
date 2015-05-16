@@ -61,14 +61,14 @@ public class LoginFacadeImpl extends AbstractBbvaFacade implements LoginFacade {
 		/**
 		 * Concatenaciópn de Nick Usuario + Tipo de documento (identificationType) + Identification
 		 */
-		autentication.setUserId(user + identificationType + identification);
+		autentication.setUserId(user);
 		autentication.setConsumerId(CONSUMER);
 		autentication.setAuthenticationType(AUTH_TYPE);
 		autentication.getAuthenticationData().add(authenticationData);
 
 		// UserPreferences
 		userPreferences.setUserId(StringUtils.EMPTY);
-		userPreferences.setAccessCode(user + identificationType + identification);
+		userPreferences.setAccessCode(user);
 		userPreferences.setDialogId(StringUtils.EMPTY);
 		// ConsumerContext
 		consumerContext.setUserPreferences(userPreferences);

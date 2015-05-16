@@ -3,6 +3,7 @@
  */
 package com.bbva.net.back.facade.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -26,8 +27,11 @@ public class MultiValueGroupFacadeImpl extends AbstractBbvaFacade implements Mul
 
 	@Override
 	public List<MultiValueGroup> getMultiValueTypes(final Integer typeId) {
-
-		return multiValueDao.getTypes(typeId);
+		try {
+			return multiValueDao.getTypes(typeId);
+		} catch (Exception ex) {
+			return new ArrayList<MultiValueGroup>();
+		}
 
 	}
 }

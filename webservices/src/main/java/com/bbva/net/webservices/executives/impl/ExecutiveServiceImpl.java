@@ -22,7 +22,13 @@ public class ExecutiveServiceImpl extends AbstractBbvaRestService implements Exe
 
 		final WebClient webC = getJsonWebClient(URL_BASE_EXECUTIVE);
 		if (!StringUtils.isEmpty(filter)) webC.query("$filter", filter);
-		return webC.get(Executive.class);
+		try {
+			LOGGER.info("PETICION: " + URL_BASE_EXECUTIVE);
+			return webC.get(Executive.class);
+		} catch (Exception ex) {
+			LOGGER.info("[Servicio getExecutive No respondió al obtener el ejecutivo] " + ex.getMessage());
+			return new Executive();
+		}
 	}
 
 }

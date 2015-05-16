@@ -1,5 +1,6 @@
 package com.bbva.net.webservices.accounts.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.cxf.common.util.StringUtils;
@@ -30,7 +31,13 @@ public class AccountsServiceImpl extends AbstractBbvaRestService implements Acco
 	@Override
 	public Account getAccount(String accountId) {
 		WebClient wc = getJsonWebClient(URL_BASE_ACCOUNTS + accountId);
-		return wc.get(Account.class);
+		try {
+			LOGGER.info("PETICION: " + URL_BASE_ACCOUNTS + accountId);
+			return wc.get(Account.class);
+		} catch (Exception ex) {
+			LOGGER.info("[Servicio getAccount No respondió al obtener la cuenta] " + ex.getMessage());
+			return new Account();
+		}
 	}
 
 	@Override
@@ -40,7 +47,13 @@ public class AccountsServiceImpl extends AbstractBbvaRestService implements Acco
 			wc.query("checkbookId", checkId);
 			wc.query("accountId", accountId);
 		}
-		return wc.get(Check.class);
+		try {
+			LOGGER.info("PETICION: " + URL_BASE_ACCOUNTS + accountId + URL_CHECK + checkId);
+			return wc.get(Check.class);
+		} catch (Exception ex) {
+			LOGGER.info("[Servicio getCheck No respondió al obtener el check] " + ex.getMessage());
+			return new Check();
+		}
 	}
 
 	@SuppressWarnings("unchecked")
@@ -52,7 +65,13 @@ public class AccountsServiceImpl extends AbstractBbvaRestService implements Acco
 			wc.query("checkbookId", checkbookId);
 			wc.query("accountId", accountId);
 		}
-		return (List<Checkbook>)wc.getCollection(Checkbook.class);
+		try {
+			LOGGER.info("PETICION: " + URL_BASE_ACCOUNTS + accountId + URL_CHECKBOOK + checkbookId);
+			return (List<Checkbook>)wc.getCollection(Checkbook.class);
+		} catch (Exception ex) {
+			LOGGER.info("[Servicio getCheckbook No respondió al obtener el checkbook] " + ex.getMessage());
+			return new ArrayList<Checkbook>();
+		}
 	}
 
 	@SuppressWarnings("unchecked")
@@ -66,8 +85,13 @@ public class AccountsServiceImpl extends AbstractBbvaRestService implements Acco
 			wc.query("paginationKey", paginationKey);
 			wc.query("pageSize", pageSize);
 		}
-
-		return (List<Check>)wc.getCollection(Check.class);
+		try {
+			LOGGER.info("PETICION: " + URL_BASE_ACCOUNTS + accountId + URL_CHECK_LIST);
+			return (List<Check>)wc.getCollection(Check.class);
+		} catch (Exception ex) {
+			LOGGER.info("[Servicio listCheck No respondió al obtener la lista de cheques] " + ex.getMessage());
+			return new ArrayList<Check>();
+		}
 	}
 
 	@SuppressWarnings("unchecked")
@@ -78,8 +102,14 @@ public class AccountsServiceImpl extends AbstractBbvaRestService implements Acco
 
 		LOGGER.info("PETICION: " + wc.getCurrentURI());
 		if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
-		final List<MonthlyBalances> res = (List<MonthlyBalances>)wc.getCollection(MonthlyBalances.class);
-		return res;
+		try {
+			final List<MonthlyBalances> res = (List<MonthlyBalances>)wc.getCollection(MonthlyBalances.class);
+			return res;
+		} catch (Exception ex) {
+			LOGGER.info("[Servicio getAccountMonthlyBalance No respondió al obtener grafica de tarjetas] "
+					+ ex.getMessage());
+			return new ArrayList<MonthlyBalances>();
+		}
 	}
 
 	@SuppressWarnings("unchecked")
@@ -88,7 +118,14 @@ public class AccountsServiceImpl extends AbstractBbvaRestService implements Acco
 			String $sort) {
 		WebClient wc = getJsonWebClient(URL_BASE_ACCOUNTS + id + URL_ACCOUNTS);
 		if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
-		return (List<AccMovementsResume>)wc.getCollection(AccMovementsResume.class);
+		try {
+			LOGGER.info("PETICION: " + URL_BASE_ACCOUNTS + id + URL_ACCOUNTS);
+			return (List<AccMovementsResume>)wc.getCollection(AccMovementsResume.class);
+		} catch (Exception ex) {
+			LOGGER.info("[Servicio getAccMovementResume No respondió al obtener el resume del movimiento cuentas] "
+					+ ex.getMessage());
+			return new ArrayList<AccMovementsResume>();
+		}
 	}
 
 }

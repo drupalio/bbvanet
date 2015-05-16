@@ -1,5 +1,6 @@
 package com.bbva.net.webservices.cards.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.cxf.jaxrs.client.WebClient;
@@ -33,6 +34,13 @@ public class CardServiceImpl extends AbstractBbvaRestService implements CardServ
 		final String filterParam = !filter.equals("") ? "$filter" : "";
 		final WebClient webC = getJsonWebClient(URL_BASE_CARDS + idProduct + urlCardcharges);
 		webC.query(filterParam, filter);
-		return (List<CardCharge>)webC.getCollection(CardCharge.class);
+		try {
+			LOGGER.info("PETICION: " + URL_BASE_CARDS + idProduct + urlCardcharges);
+			return (List<CardCharge>)webC.getCollection(CardCharge.class);
+		} catch (Exception ex) {
+			LOGGER.info("[Servicio getCreditCardCharges No respondió al obtener garfica de tarjetas] "
+					+ ex.getMessage());
+			return new ArrayList<CardCharge>();
+		}
 	}
 }

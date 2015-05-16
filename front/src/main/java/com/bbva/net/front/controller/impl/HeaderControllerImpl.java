@@ -47,7 +47,7 @@ public class HeaderControllerImpl extends AbstractBbvaController implements Head
 	}
 
 	public CustomerDto getCliente() {
-		
+
 		return cliente;
 	}
 
@@ -76,7 +76,7 @@ public class HeaderControllerImpl extends AbstractBbvaController implements Head
 				LOGGER.info("CLIENT TOSTRING(): " + cliente.toString());
 			} catch (final Exception exception) {
 				this.cliente = new CustomerDto();
-				exception.printStackTrace();
+				LOGGER.info("Error header controller getCustomer: " + exception.getMessage());
 			}
 		}
 		return this.cliente;
