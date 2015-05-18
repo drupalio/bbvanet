@@ -7,6 +7,7 @@ import javax.ws.rs.core.Response;
 import org.apache.cxf.common.util.StringUtils;
 import org.apache.cxf.jaxrs.client.WebClient;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.client.RestClientException;
 
 import com.bbva.czic.dto.net.AccMovementsResume;
 import com.bbva.czic.dto.net.CardCharge;
@@ -31,26 +32,42 @@ public class CustomerServiceImpl extends AbstractBbvaRestService implements Cust
 	@Override
 	public List<AccMovementsResume> listAccountsMovementsResume(String filter) {
 
-		WebClient wc = getJsonWebClient(URL_BASE_CUSTOMER + URL_CUSTOMER);
-		if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
+		try {
 
-		return (List<AccMovementsResume>)wc.getCollection(AccMovementsResume.class);
+			WebClient wc = getJsonWebClient(URL_BASE_CUSTOMER + URL_CUSTOMER);
+			if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
+			return (List<AccMovementsResume>)wc.getCollection(AccMovementsResume.class);
+
+		} catch (Exception e) {
+			throw new RestClientException("Servicio no disponible - (oznq)");
+		}
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<CardCharge> listCreditCardsCharges(String filter) {
-		WebClient wc = getJsonWebClient(URL_BASE_CUSTOMER + URL_CARDCHARGES);
-		if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
-		return (List<CardCharge>)wc.getCollection(CardCharge.class);
+		try {
+			throw new Exception();
+			// WebClient wc = getJsonWebClient(URL_BASE_CUSTOMER + URL_CARDCHARGES);
+			// if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
+			// return (List<CardCharge>)wc.getCollection(CardCharge.class);
 
+		} catch (Exception e) {
+			throw new RestClientException("Servicio no disponible. Intente más tarde - (tx)oznp");
+		}
 	}
 
 	@Override
 	public Customer getCustomer(String filter) {
-		WebClient wc = getJsonWebClient(URL_BASE_CUSTOMER);
-		if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
-		return wc.get(Customer.class);
+		try {
+			// throw new Exception();
+			WebClient wc = getJsonWebClient(URL_BASE_CUSTOMER);
+			if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
+			return wc.get(Customer.class);
+		} catch (Exception e) {
+			throw new RestClientException("Servicio no disponible. Intente más tarde - (tx)oznb");
+
+		}
 	}
 
 	@Override

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.cxf.jaxrs.client.WebClient;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.client.RestClientException;
 
 import com.bbva.czic.dto.net.Product;
 import com.bbva.net.webservices.core.pattern.AbstractBbvaRestService;
@@ -24,7 +25,13 @@ public class GlobalPositionServiceImpl extends AbstractBbvaRestService implement
 
 	@Override
 	public List<Product> getExtractGlobalBalance(String $filter) {
-		return getJsonCollection(URL_BASE + URL_GLOBAL_POSITION, Product.class);
+		try {
+
+			return getJsonCollection(URL_BASE + URL_GLOBAL_POSITION, Product.class);
+		} catch (Exception e) {
+			throw new RestClientException("Servicio no disponible Intente más tarde - (tx)(ozn1)");
+			// return new ArrayList<Product>();
+		}
 	}
 
 	@Override
