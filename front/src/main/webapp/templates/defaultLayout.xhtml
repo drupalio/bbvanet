@@ -6,27 +6,29 @@
 	xmlns:bbvaScript="http://java.sun.com/jsf/composite/bbva/script"
 	xmlns:bbvaContainer="http://java.sun.com/jsf/composite/bbva/container"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:c="http://java.sun.com/jstl/core">
-
+	xmlns:bbvaMessage="http://java.sun.com/jsf/composite/bbva/messages"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jstl/core">
 <h:head>
-	<meta http-equiv="Cache-Control" content="no-store" /> 
+	<meta http-equiv="Cache-Control" content="no-store" />
 	<f:view locale="es_CO"></f:view>
 	<title><ui:insert name="title">	BBVA :: Colombia :: Posición Global</ui:insert></title>
 	<bbvaScript:assetScripts />
 </h:head>
-
-
 <h:body onload="initChart();">
 	<p:growl/>
+
 	<div id="header">
 		<ui:insert name="header">
 			<ui:include src="header.xhtml" />
 		</ui:insert>
 	</div>
-
 	<div id="content">
 		<div class="container">
+			<p:growl showDetail="true" showSummary="true" sticky="true" autoUpdate="true" />
+			<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
+				styleClass="nonClose" closable="false" resizable="false">
+				<p:outputLabel value="#{msg['please.wait']}" />
+			</p:dialog>
 			<section class="row global-content">
 				<ui:insert name="bodyTitle"></ui:insert>
 				<div class="section-content col-xs-12 col-md-8">
@@ -38,10 +40,8 @@
 			</section>
 		</div>
 	</div>
-
 	<ui:insert name="footer">
 		<ui:include src="footer.xhtml" />
 	</ui:insert>
-
 </h:body>
 </html>

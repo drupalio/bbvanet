@@ -1,7 +1,10 @@
 package com.bbva.net.front.controller.impl;
 
 import javax.annotation.Resource;
+import javax.faces.application.FacesMessage;
 import javax.faces.event.AjaxBehaviorEvent;
+
+import org.primefaces.context.RequestContext;
 
 import com.bbva.net.back.facade.PersonalizeProductFacade;
 import com.bbva.net.back.facade.UpdateAliasFacade;
@@ -94,6 +97,8 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 				LOGGER.info("mostrando mensaje de operaciones Exitoso");
 				setMenOperationKey(true);
 			} else {
+				RequestContext.getCurrentInstance().showMessageInDialog(
+						new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", "No se ha podido actualizar"));
 				LOGGER.info("Error de actulización");
 			}
 		} else {

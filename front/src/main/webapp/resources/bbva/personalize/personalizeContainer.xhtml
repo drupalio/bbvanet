@@ -51,11 +51,6 @@
 			onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()"
 			process="@form" update="@form"
 			actionListener="#{personalizeProductAccountController.operKey}" />
-		<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
-			showEffect="fade" hideEffect="fade" closable="false" resizable="false"
-			showHeader="false">
-			<p:outputLabel value="#{msg['please.wait']}" />
-		</p:dialog>
 		<bbvaMessage:messageCheck
 			render="#{personalizeProductAccountController.menOperationKey}" />
 	</bbvaPersonalize:personalizeAccount>
