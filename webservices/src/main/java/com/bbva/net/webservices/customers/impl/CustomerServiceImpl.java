@@ -34,9 +34,10 @@ public class CustomerServiceImpl extends AbstractBbvaRestService implements Cust
 
 		try {
 
-			WebClient wc = getJsonWebClient(URL_BASE_CUSTOMER + URL_CUSTOMER);
-			if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
-			return (List<AccMovementsResume>)wc.getCollection(AccMovementsResume.class);
+			throw new Exception();
+			// WebClient wc = getJsonWebClient(URL_BASE_CUSTOMER + URL_CUSTOMER);
+			// if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
+			// return (List<AccMovementsResume>)wc.getCollection(AccMovementsResume.class);
 
 		} catch (Exception e) {
 			throw new RestClientException("Servicio no disponible - (oznq)");
@@ -47,10 +48,9 @@ public class CustomerServiceImpl extends AbstractBbvaRestService implements Cust
 	@Override
 	public List<CardCharge> listCreditCardsCharges(String filter) {
 		try {
-			throw new Exception();
-			// WebClient wc = getJsonWebClient(URL_BASE_CUSTOMER + URL_CARDCHARGES);
-			// if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
-			// return (List<CardCharge>)wc.getCollection(CardCharge.class);
+			WebClient wc = getJsonWebClient(URL_BASE_CUSTOMER + URL_CARDCHARGES);
+			if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
+			return (List<CardCharge>)wc.getCollection(CardCharge.class);
 
 		} catch (Exception e) {
 			throw new RestClientException("Servicio no disponible. Intente más tarde - (tx)oznp");
