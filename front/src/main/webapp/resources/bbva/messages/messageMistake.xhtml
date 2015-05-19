@@ -5,7 +5,8 @@
 	xmlns:jsf="http://xmlns.jcp.org/jsf"
 	xmlns:bbvaMessage="http://java.sun.com/jsf/composite/bbva/messages"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:pm="http://primefaces.org/mobile"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:c="http://java.sun.com/jstl/core">
@@ -13,19 +14,27 @@
 	<composite:attribute name="title" type="java.lang.String" />
 </composite:interface>
 <composite:implementation>
+
 	<p:dialog id="mistake2" position="center center" widgetVar="mistake"
-		modal="true" class="mistakeMessage " resizable="false">
+		modal="true" class="mistakeMessage " resizable="false"
+		closable="false" style="left:376px !important;top:185px !important">
 		<bbvaMessage:mistakeContent id="container">
 			<div class="block-error" style="margin: 40px;">
 				<div class="error-icon-container">
 					<span class="alert-red" />
 				</div>
 				<div class="error-text-container">
-					<h2 class="error-title">Servicio</h2>
-					<p:outputLabel styleClass="registerCond-error" value="sjsdnf" />
+					<h2 class="error-title">#{msg['text.sessionFinished']}</h2>
+					<p:outputLabel styleClass="registerCond-error"
+						value="#{msg['text.pageInit']}" />
 				</div>
 			</div>
-			<p:button value="Cerrar" href="http://172.17.88.19:9085/kqpu_co_web/page/init?execution=e1s1"/>
+			<div class="col-md-12" align="center">
+				<p:button
+					style="background:rgba(0, 0, 0, 0) -moz-linear-gradient(center bottom , #00559d 0%, #0075c2 100%) repeat scroll 0 0 !important;border:1px solid #00559d !important;color:#ffffff !important;"
+					value="#{msg['button.acept']}" styleClass="stable-button medium"
+					href="#{msg['rest.URLPublic']}" />
+			</div>
 		</bbvaMessage:mistakeContent>
 	</p:dialog>
 </composite:implementation>
