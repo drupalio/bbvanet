@@ -66,15 +66,10 @@
 				styleClass="btn btn-more-results"
 				actionListener="#{checkBookController.nextPage}" ajax="true"
 				update=":detailAccounts:checkTable:formCheks:checksTable">
-				<p:ajax onstart="PF('statusDialogCheck').show()"
-					onsuccess="PF('statusDialogCheck').hide()" />
+				<p:ajax onstart="PF('statusDialog').show()"
+					onsuccess="PF('statusDialog').hide()" />
 			</p:commandButton>
 		</footer>
-		<p:dialog widgetVar="statusDialogCheck" modal="true" draggable="false"
-			showEffect="fade" hideEffect="fade" closable="false" resizable="false"
-			showHeader="false">
-			<p:outputLabel value="#{msg['please.wait']}" />
-		</p:dialog>
 	</h:form>
 </composite:implementation>
 </html>

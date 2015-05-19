@@ -824,6 +824,7 @@ body div.ui-growl .ui-state-highlight {
 	font-size: 12px !important;
 	text-align: center;
 	font-weight: bold !important;
+	color: #C4136C;
 }
 
 /*buttom close de growl y del dialog*/
@@ -867,6 +868,15 @@ body div.ui-growl .ui-state-highlight {
 	background-position: 0 0;
 }
 
+.ui-messages-fatal-icon {
+	background: url(../img/icons/alert-red.png) no-repeat scroll 0% 0%
+		transparent;
+	background-position: 0px 0px;
+	height: 36px;
+	width: 39px;
+	border-right: 1px #C4136C;
+}
+
 /*estilos para el dialog de error*/
 .ui-dialog-content {
 	position: relative !important;
@@ -877,13 +887,22 @@ body div.ui-growl .ui-state-highlight {
 	border-top: 0px !important;
 	border-bottom-left-radius: 16px !important;
 	border-bottom-right-radius: 16px !important;
+	color: #C4136C !important;
+}
+
+.nonClose .ui-dialog-content {
+	background: #FFF !important;
+	color: #000 !important;
 }
 
 .mistakeMessage .ui-dialog-content {
 	background: #FFF !important;
 	background-clip: padding-box;
 	word-wrap: break-word;
-	border: 0px !important;
+	border: 13px solid #F4F7F5;
+	border-top: 0px !important;
+	border-bottom-left-radius: 16px !important;
+	border-bottom-right-radius: 16px !important;
 }
 
 /*Header*/
@@ -894,12 +913,21 @@ body div.ui-growl .ui-state-highlight {
 	background-clip: padding-box;
 	border-top-left-radius: 16px !important;
 	border-top-right-radius: 16px !important;
+	color: #C4136C !important;
 }
 
 .mistakeMessage .ui-widget-header {
 	background: #FFF !important;
-	border: 0px !important;
 	background-clip: padding-box;
+	border: 13px solid #F4F7F5;
+	border-bottom: 0px !important;
+	border-top-left-radius: 16px !important;
+	border-top-right-radius: 16px !important;
+}
+
+.nonClose .ui-widget-header {
+	background: #FFF !important;
+	color: #000 !important;
 }
 
 /*container*/
@@ -911,7 +939,7 @@ body div.ui-growl .ui-state-highlight {
 	border: 1px solid #DBDCDF !important;
 	border-radius: 4px !important;
 	outline: 10px solid #F4F7F5 !important;
-	-moz-outline-radius: 13px 7px;
+	-moz-outline-radius: 13px 13px;
 	box-shadow: 0px 0px 38px rgba(0, 0, 0, 0.8);
 }
 

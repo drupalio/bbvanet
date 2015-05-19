@@ -80,10 +80,9 @@
 							</div>
 							<!-- BOTON DESCARGA -->
 							<div class="col-md-5">
-								<p:growl id="messages" showDetail="true" showSummary="true" life="1000" />
 								<p:commandButton id="searchExtract" value="Descargar extracto"
 									styleClass="stable-button medium icon-left ext-message extractDow"
-									icon="icon pdf" update=":messages" ajax="false">
+									icon="icon pdf" ajax="false">
 									<p:fileDownload value="#{extractController.documentExtract()}" />
 								</p:commandButton>
 							</div>

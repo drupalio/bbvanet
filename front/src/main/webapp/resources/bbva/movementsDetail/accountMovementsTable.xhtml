@@ -81,17 +81,12 @@
 						styleClass="btn btn-more-results"
 						actionListener="#{movementsCriteriaController.nextPage}" ajax="true"
 						update=":detailAccounts:tableMovements:formMovesDetail:movAccount">
-						<p:ajax onstart="PF('moreMovsDialog').show()"
-							onsuccess="PF('moreMovsDialog').hide()" />
+						<p:ajax onstart="PF('statusDialog').show()"
+							onsuccess="PF('statusDialog').hide()" />
 					</p:commandButton>
 				</footer>
 			</article>
 		</p:outputPanel>
-		<p:dialog widgetVar="moreMovsDialog" modal="true" draggable="false"
-			position="center" showEffect="fade" hideEffect="fade" closable="false"
-			resizable="false" showHeader="false">
-			<p:outputLabel value="#{msg['please.wait']}" />
-		</p:dialog>
 	</h:form>
 </composite:implementation>
 </html>
