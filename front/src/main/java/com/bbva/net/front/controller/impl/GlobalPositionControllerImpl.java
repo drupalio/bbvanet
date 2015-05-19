@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ComponentSystemEvent;
 
 import org.apache.commons.lang.StringUtils;
@@ -179,22 +181,43 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	 */
 	public void init() {
 
+		// try {
+
 		LOGGER.info("STARTING BBVA GLOBAL POSITION .................");
 
-		// Get GlobalProductsDTO by currentUser (visibles and hidden)
-		this.globalProductsDTO = this.globalPositionFacade.getGlobalProductsByUser();
+		try {
+			// Get GlobalProductsDTO by currentUser (visibles and hidden)
+			this.globalProductsDTO = this.globalPositionFacade.getGlobalProductsByUser();
+		} catch (Exception e) {
+			FacesContext ctx = FacesContext.getCurrentInstance();
+			ctx.addMessage("GlobalProductsDTO", new FacesMessage(e.getMessage()));
+			this.globalProductsDTO = new GlobalProductsDto();
 
+		}
 		// Obtiene la lista de resumen de movimientos del serivico REST
-		this.globalResumeMovementsDTO = this.movementsResumeFacade.getMovementsResumeByCustomer(new DateRangeDto());
+		try {
+			this.globalResumeMovementsDTO = this.movementsResumeFacade.getMovementsResumeByCustomer(new DateRangeDto());
+		} catch (Exception e) {
+			FacesContext ctx = FacesContext.getCurrentInstance();
+			ctx.addMessage("GlobalResumeMovementsDto ", new FacesMessage(e.getMessage()));
+			this.globalResumeMovementsDTO = new GlobalResumeMovementsDto();
 
+		}
 		// Obtiene la lista de datos para pintar la grafica Deposito electrónico
 		if (globalProductsDTO.getElectronicDeposits().size() > 0) {
-			this.globalMonthlyBalance = this.accountMonthBalanceFacade.getAccountMonthlyBalance(globalProductsDTO
-					.getElectronicDeposits().get(0).getProductNumber(), new DateRangeDto(), StringUtils.EMPTY,
-					StringUtils.EMPTY, StringUtils.EMPTY);
+			try {
+				this.globalMonthlyBalance = this.accountMonthBalanceFacade.getAccountMonthlyBalance(globalProductsDTO
+						.getElectronicDeposits().get(0).getProductNumber(), new DateRangeDto(), StringUtils.EMPTY,
+						StringUtils.EMPTY, StringUtils.EMPTY);
 
-			// Delegate construye UI grafica Depositos Electrónicos
-			this.lineConfigUI = this.graphicLineDelegate.getMonthlyBalance(globalMonthlyBalance);
+				// Delegate construye UI grafica Depositos Electrónicos
+				this.lineConfigUI = this.graphicLineDelegate.getMonthlyBalance(globalMonthlyBalance);
+			} catch (Exception e) {
+				FacesContext ctx = FacesContext.getCurrentInstance();
+				ctx.addMessage("globalMonthlyBalance ", new FacesMessage(e.getMessage()));
+				this.globalMonthlyBalance = new GlobalMonthlyBalanceDto();
+				this.lineConfigUI = new LineConfigUI();
+			}
 		}
 
 		// Calculate situation graphics panels
@@ -203,9 +226,17 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		// Calculate investmentFunds graphics panels
 		this.graphicPieInvestmentFunds = graphicPieDelegate.getAccountsfundsProducts(globalProductsDTO);
 
-		// Calculate cards graphics panel
-		this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(null));
+		try {
+			// Calculate cards graphics panel
+			this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(null));
 
+		} catch (Exception e) {
+			FacesContext ctx = FacesContext.getCurrentInstance();
+			ctx.addMessage("getCardsChargesByUser ", new FacesMessage(e.getMessage()));
+			this.graphicPieCards = new PieConfigUI();
+			// Verifica si en el mensaje de error existe la palabra tsec
+
+		}
 		// Calculate totals
 		this.totalsProducts = this.globalPositionFacade.getTotalsByProduct(globalProductsDTO);
 

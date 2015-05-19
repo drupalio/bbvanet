@@ -176,19 +176,24 @@
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
 
-	<error-page>
+	<!-- <error-page>
 		<exception-type>java.lang.Throwable</exception-type>
-		<location>/error/error.jsf</location>
+		<location>/error/error.xhtml</location>
 	</error-page>
 
 	<error-page>
 		<exception-type>javax.faces.application.ViewExpiredException</exception-type>
-		<location>/error/viewExpired.jsf</location>
+		<location>/error/viewExpired.xhtml</location>
 	</error-page>
 
 	<error-page>
 		<exception-type>org.springframework.web.client.RestClientException</exception-type>
-		<location>/error/error.jsf</location>
+		<location>/error/error.xhtml</location>
 	</error-page>
+	
+	<error-page>
+		<exception-type>org.apache.cxf.jaxrs.client.ClientWebApplicationException</exception-type>
+		<location>/error/error.xhtml</location>
+	</error-page> -->
 
 </web-app>
