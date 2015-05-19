@@ -1,6 +1,5 @@
 package com.bbva.net.back.facade.impl.integration;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -14,7 +13,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.bbva.net.back.facade.MovementsAccountFacade;
-import com.bbva.net.back.model.commons.BalanceRangeDto;
 import com.bbva.net.back.model.commons.DateRangeDto;
 import com.bbva.net.back.model.movements.MovementDto;
 
@@ -28,7 +26,7 @@ public class MovementsAccountFacadeIT {
 	private static final String ALPHA_ACCOUNT = "12E4567899O765432101";
 
 	private static final String BAD_ACCOUNT = "1234567899";
-	
+
 	private static final String DEFAULT_PRODUC_TYPE = "AH";
 
 	private static final String BAD_PRODUC_TYPE = "01";
@@ -48,9 +46,8 @@ public class MovementsAccountFacadeIT {
 	public void checkListMovementsOK() {
 		// SrvProductsV01 -> listMovements
 
-		final List<MovementDto> resume = this.movementsAccountFacade.listMovements(DEFAULT_ACCOUNT, 
-				DEFAULT_PRODUC_TYPE, new DateRangeDto(), new BalanceRangeDto(new BigDecimal(100), new BigDecimal(500)),
-				1, 50);
+		final List<MovementDto> resume = this.movementsAccountFacade.listMovements(DEFAULT_ACCOUNT,
+				DEFAULT_PRODUC_TYPE, new DateRangeDto(), 1, 50);
 
 		Assert.assertNotNull(resume);
 		Assert.assertNotNull(resume.get(0));
@@ -60,8 +57,7 @@ public class MovementsAccountFacadeIT {
 	public void checkListMovementsBadAccount() {
 		// SrvProductsV01 -> listMovements
 		try {
-			this.movementsAccountFacade.listMovements(BAD_ACCOUNT,  DEFAULT_PRODUC_TYPE,
-					new DateRangeDto(), new BalanceRangeDto(new BigDecimal(100), new BigDecimal(500)), 1, 50);
+			this.movementsAccountFacade.listMovements(BAD_ACCOUNT, DEFAULT_PRODUC_TYPE, new DateRangeDto(), 1, 50);
 		} catch (final BadRequestException notFoundException) {
 			Assert.assertEquals(notFoundException.getMessage(), "HTTP 400 Bad Request");
 			throw notFoundException;
@@ -72,8 +68,7 @@ public class MovementsAccountFacadeIT {
 	public void checkListMovementsAlphaCustomer() {
 		// SrvProductsV01 -> listMovements
 		try {
-			this.movementsAccountFacade.listMovements(DEFAULT_ACCOUNT, DEFAULT_PRODUC_TYPE,
-					new DateRangeDto(), new BalanceRangeDto(new BigDecimal(100), new BigDecimal(500)), 1, 50);
+			this.movementsAccountFacade.listMovements(DEFAULT_ACCOUNT, DEFAULT_PRODUC_TYPE, new DateRangeDto(), 1, 50);
 		} catch (final BadRequestException notFoundException) {
 			Assert.assertEquals(notFoundException.getMessage(), "HTTP 400 Bad Request");
 			throw notFoundException;
@@ -84,8 +79,7 @@ public class MovementsAccountFacadeIT {
 	public void checkListMovementsBadCustomer() {
 		// SrvProductsV01 -> listMovements
 		try {
-			this.movementsAccountFacade.listMovements(DEFAULT_ACCOUNT, DEFAULT_PRODUC_TYPE,
-					new DateRangeDto(), new BalanceRangeDto(new BigDecimal(100), new BigDecimal(500)), 1, 50);
+			this.movementsAccountFacade.listMovements(DEFAULT_ACCOUNT, DEFAULT_PRODUC_TYPE, new DateRangeDto(), 1, 50);
 		} catch (final BadRequestException notFoundException) {
 			Assert.assertEquals(notFoundException.getMessage(), "HTTP 400 Bad Request");
 			throw notFoundException;
@@ -97,8 +91,7 @@ public class MovementsAccountFacadeIT {
 	public void checkListMovementsBadAlphaAccount() {
 		// SrvProductsV01 -> listMovements
 		try {
-			this.movementsAccountFacade.listMovements(ALPHA_ACCOUNT, DEFAULT_PRODUC_TYPE,
-					new DateRangeDto(), new BalanceRangeDto(new BigDecimal(100), new BigDecimal(500)), 1, 50);
+			this.movementsAccountFacade.listMovements(ALPHA_ACCOUNT, DEFAULT_PRODUC_TYPE, new DateRangeDto(), 1, 50);
 		} catch (final BadRequestException notFoundException) {
 			Assert.assertEquals(notFoundException.getMessage(), "HTTP 400 Bad Request");
 			throw notFoundException;
@@ -110,8 +103,7 @@ public class MovementsAccountFacadeIT {
 	public void checkListMovementsBadProductType() {
 		// SrvProductsV01 -> listMovements
 		try {
-			this.movementsAccountFacade.listMovements(DEFAULT_ACCOUNT, BAD_PRODUC_TYPE,
-					new DateRangeDto(), new BalanceRangeDto(new BigDecimal(100), new BigDecimal(500)), 1, 50);
+			this.movementsAccountFacade.listMovements(DEFAULT_ACCOUNT, BAD_PRODUC_TYPE, new DateRangeDto(), 1, 50);
 		} catch (final BadRequestException notFoundException) {
 			Assert.assertEquals(notFoundException.getMessage(), "HTTP 400 Bad Request");
 			throw notFoundException;
@@ -123,8 +115,7 @@ public class MovementsAccountFacadeIT {
 	public void checkListMovementsBadFilterDateRange() {
 		// SrvProductsV01 -> listMovements
 		try {
-			this.movementsAccountFacade.listMovements(DEFAULT_ACCOUNT, DEFAULT_PRODUC_TYPE, null,
-					new BalanceRangeDto(new BigDecimal(100), new BigDecimal(500)), 1, 50);
+			this.movementsAccountFacade.listMovements(DEFAULT_ACCOUNT, DEFAULT_PRODUC_TYPE, null, 1, 50);
 		} catch (final BadRequestException notFoundException) {
 			Assert.assertEquals(notFoundException.getMessage(), "HTTP 400 Bad Request");
 			throw notFoundException;
@@ -136,8 +127,7 @@ public class MovementsAccountFacadeIT {
 	public void checkListMovementsBadFilterBalanceRange() {
 		// SrvProductsV01 -> listMovements
 		try {
-			this.movementsAccountFacade.listMovements(DEFAULT_ACCOUNT, DEFAULT_PRODUC_TYPE,
-					new DateRangeDto(), null, 1, 50);
+			this.movementsAccountFacade.listMovements(DEFAULT_ACCOUNT, DEFAULT_PRODUC_TYPE, new DateRangeDto(), 1, 50);
 		} catch (final BadRequestException notFoundException) {
 			Assert.assertEquals(notFoundException.getMessage(), "HTTP 400 Bad Request");
 			throw notFoundException;
@@ -149,8 +139,8 @@ public class MovementsAccountFacadeIT {
 	public void checkListMovementsBadPaginationSize() {
 		// SrvProductsV01 -> listMovements
 		try {
-			this.movementsAccountFacade.listMovements(DEFAULT_ACCOUNT, DEFAULT_PRODUC_TYPE,
-					new DateRangeDto(), new BalanceRangeDto(new BigDecimal(100), new BigDecimal(500)), null, null);
+			this.movementsAccountFacade.listMovements(DEFAULT_ACCOUNT, DEFAULT_PRODUC_TYPE, new DateRangeDto(), null,
+					null);
 		} catch (final BadRequestException notFoundException) {
 			Assert.assertEquals(notFoundException.getMessage(), "HTTP 400 Bad Request");
 			throw notFoundException;

@@ -243,14 +243,12 @@ public class MovementCriteriaControllerImplTest extends AbstractBbvaControllerTe
 		ProductDto product = new ProductDto();
 		product.setProductId("12345");
 		DateRangeDto date = new DateRangeDto(new Date(), new Date());
-		BalanceRangeDto balance = new BalanceRangeDto(new BigDecimal(1000), new BigDecimal(2000));
 		lista = new ArrayList<MovementDto>();
 		this.movementCriteriaController.setMovementsFacade(movementsFacade);
 		MovementPaginatedController mpc = new MovementPaginatedController();
 		mpc.setMovementsFacade(movementsFacade);
 		Mockito.when(this.movementCriteriaController.getSelectedProduct()).thenReturn(product);
-		Mockito.when(this.movementsFacade.listMovements(product.getProductId(), "AC", date, balance, 0, 0)).thenReturn(
-				lista);
+		Mockito.when(this.movementsFacade.listMovements(product.getProductId(), "AC", date, 0, 0)).thenReturn(lista);
 		this.movementCriteriaController.getAllMovements();
 		this.movementCriteriaController.getGraphicLineMovements();
 	}

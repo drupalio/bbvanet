@@ -29,23 +29,23 @@ import javax.xml.bind.annotation.XmlType;
  * </pre>
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "AuthenticationData", propOrder = { "idAuthenticationData", "authenticationData" })
+@XmlType(name = "AuthenticationData", propOrder = { "key", "value" })
 public class AuthenticationData implements Serializable {
 
 	private static final long serialVersionUID = -3147381952172477570L;
 
-	protected String idAuthenticationData;
+	protected String key;
 
 	@XmlElement(nillable = true)
-	protected List<String> authenticationData;
+	protected List<String> value;
 
 	/**
 	 * Obtiene el valor de la propiedad idAuthenticationData.
 	 * 
 	 * @return possible object is {@link String }
 	 */
-	public String getIdAuthenticationData() {
-		return idAuthenticationData;
+	public String getKey() {
+		return key;
 	}
 
 	/**
@@ -53,8 +53,8 @@ public class AuthenticationData implements Serializable {
 	 * 
 	 * @param value allowed object is {@link String }
 	 */
-	public void setIdAuthenticationData(String value) {
-		this.idAuthenticationData = value;
+	public void setKey(String key) {
+		this.key = key;
 	}
 
 	/**
@@ -72,11 +72,11 @@ public class AuthenticationData implements Serializable {
 	 * <p>
 	 * Objects of the following type(s) are allowed in the list {@link String }
 	 */
-	public List<String> getAuthenticationData() {
-		if (authenticationData == null) {
-			authenticationData = new ArrayList<String>();
+	public List<String> getValue() {
+		if (value == null) {
+			value = new ArrayList<String>();
 		}
-		return this.authenticationData;
+		return this.value;
 	}
 
 }

@@ -30,7 +30,7 @@ public class MovementPaginatedController extends PaginationController<MovementDt
 	protected List<MovementDto> getNextPage(int paginantionKey, int psize) {
 		try {
 			return this.movementsFacade.listMovements(getSelectedProduct().getProductId(), productTypePc, dateRangePc,
-					balanceRangePc, paginantionKey, psize);
+					paginantionKey, psize);
 		} catch (Exception e) {
 			FacesContext ctx = FacesContext.getCurrentInstance();
 			ctx.addMessage("listMovement", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));

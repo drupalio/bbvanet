@@ -19,8 +19,12 @@
 	<div class="movements-filter-content">
 
 		<p:commandLink id="ajax" actionListener="#{movementsCriteriaController.setMovementConcept}">
-			<button class="search-icon" ></button>
-			<p:ajax event="click" process="@form"></p:ajax>
+			<button class="search-icon" >
+			<p:ajax process="@form" event="click" 
+			oncomplete="document.getElementById('tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:movementList:componentList').click();"
+				update="
+			:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:movementList:componentList" />
+			</button>
 		</p:commandLink>
 		<h:inputText styleClass="form-control" value="#{movementsCriteriaController.movementCriteria.movement}"
 			pt:placeholder="#{msg['text.placeholder.movements']}" />
