@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.faces.model.SelectItem;
 
@@ -82,13 +84,17 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 
 	public void initCheckBookList() {
 		LOGGER.info(" CheckBookControllerImpl initCheckBookList ");
-		this.checkList = new ArrayList<CheckDto>();
 		this.checkBook = new ArrayList<CheckbookDto>();
 		this.checkBookList = new ArrayList<CheckbookDto>();
-		// TODO accountId
-		LOGGER.info(" CheckBookControllerImpl initCheckBookList productId: " + getSelectedProduct().getProductId());
-		this.checkBookList = checkBookFacade.getCheckBooksById(getSelectedProduct().getProductId());
-
+		try {
+			// Trae la lista para el combo de Busqueda por chequeras
+			LOGGER.info("CheckBookControllerImpl initCheckBookList productId: " + getSelectedProduct().getProductId());
+			this.checkBookList = checkBookFacade.getCheckBooksById(getSelectedProduct().getProductId());
+		} catch (Exception e) {
+			LOGGER.info("Error al llamar al servicio de getAccount");
+			FacesContext cxt = FacesContext.getCurrentInstance();
+			cxt.addMessage("checkBookList", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+		}
 		checkBooks = new ArrayList<SelectItem>(checkBookList.size());
 		for (CheckbookDto value : checkBookList) {
 			checkBooks.add(new SelectItem(value.getId()));
@@ -160,20 +166,23 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 		LOGGER.info(" CheckBookControllerImpl showResults ");
 		setFalseMovementsComponents();
 		if (getRenderComponents().get(RenderAttributes.FILTERNUMBERCHECK.toString())) {
-			LOGGER.info(" CheckBookControllerImpl showResults filterByCheckBook render");
+			LOGGER.info("CheckBookControllerImpl showResults filterByCheckBook render");
 			setFalseCheckBookComponents();
 			getRenderComponents().put(RenderAttributes.TITLECHECKS.name(), true);
 			getRenderComponents().put(RenderAttributes.CHECKTABLE.toString(), true);
 			LOGGER.info(" CheckBookControllerImpl showResults filterByCheckBook ");
-			// Filter by checkId
-			LOGGER.info(" CheckBookControllerImpl showResults filterByCheckBook checkId: " + getCheckNumber());
-			// TODO DEFAULT_ACCOUNT accountId
-			this.check = checkBookFacade.getCheckById(getSelectedProduct().getProductId(), getCheckNumber());
-
+			try {
+				// Filter by checkId
+				LOGGER.info(" CheckBookControllerImpl showResults filterByCheckBook checkId: " + getCheckNumber());
+				this.check = checkBookFacade.getCheckById(getSelectedProduct().getProductId(), getCheckNumber());
+			} catch (Exception e) {
+				FacesContext ctx = FacesContext.getCurrentInstance();
+				ctx.addMessage("check", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+				this.check = new CheckDto();
+			}
 			this.checkList = new ArrayList<CheckDto>();
 			this.checkList.add(check);
 			resetMapResults();
-
 		} else if (getRenderComponents().get(RenderAttributes.FILTERSTATUS.toString())) {
 			LOGGER.info(" CheckBookControllerImpl showResults filterByStatus render ");
 			setFalseCheckBookComponents();
@@ -190,15 +199,20 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			getRenderComponents().put(RenderAttributes.TITLECHECKBOOKS.name(), true);
 			getRenderComponents().put(RenderAttributes.CHECKBOOKTABLE.toString(), true);
 			LOGGER.info(" CheckBookControllerImpl showResults filterByNumberCheck ");
-			// Filter by talonario
-			LOGGER.info(" CheckBookControllerImpl showResults filterByNumberCheck checkBookNumber: "
-					+ getCheckBookNumber());
-			// TODO DEFAULT_ACCOUNT accountId
-			final List<CheckbookDto> initial = checkBookFacade.getCheckBookByAccountId(getSelectedProduct()
-					.getProductId(), getCheckBookNumber());
-			setRows(5);
-			getListCheckBookById(initial);
-			hasMoreElementsCheckBook(getCheckBook());
+			// Filter CHEQUERAS by id
+			try {
+				LOGGER.info(" CheckBookControllerImpl showResults filterByNumberCheck checkBookNumber: "
+						+ getCheckBookNumber());
+				final List<CheckbookDto> initial = checkBookFacade.getCheckBookByAccountId(getSelectedProduct()
+						.getProductId(), getCheckBookNumber());
+				setRows(5);
+				getListCheckBookById(initial);
+				hasMoreElementsCheckBook(getCheckBook());
+			} catch (Exception e) {
+				FacesContext ctx = FacesContext.getCurrentInstance();
+				ctx.addMessage("CheckBookById", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+				this.checkBook = new ArrayList<CheckbookDto>();
+			}
 			resetMapResults();
 
 		} else if (getRenderComponents().get(RenderAttributes.FILTERDATECHECK.toString())) {
@@ -237,7 +251,6 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 		search();
 		final List<CheckDto> cheksByStatus = (List<CheckDto>)CollectionUtils.select(getCurrentList(),
 				new CheckStatusPredicate());
-
 		this.checkList = cheksByStatus;
 		hasMoreElementsCheck(this.checkList);
 

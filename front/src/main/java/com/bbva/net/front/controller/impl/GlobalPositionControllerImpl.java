@@ -1,5 +1,6 @@
 package com.bbva.net.front.controller.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -22,6 +23,7 @@ import com.bbva.net.back.model.commons.Money;
 import com.bbva.net.back.model.globalposition.BalanceDto;
 import com.bbva.net.back.model.globalposition.GlobalProductsDto;
 import com.bbva.net.back.model.movements.GlobalResumeMovementsDto;
+import com.bbva.net.back.model.movements.MovementsResumeDto;
 import com.bbva.net.back.service.impl.DateFilterServiceImpl;
 import com.bbva.net.front.controller.GlobalPositionController;
 import com.bbva.net.front.core.AbstractBbvaController;
@@ -181,8 +183,6 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	 */
 	public void init() {
 
-		// try {
-
 		LOGGER.info("STARTING BBVA GLOBAL POSITION .................");
 
 		try {
@@ -190,18 +190,18 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 			this.globalProductsDTO = this.globalPositionFacade.getGlobalProductsByUser();
 		} catch (Exception e) {
 			FacesContext ctx = FacesContext.getCurrentInstance();
-			ctx.addMessage("GlobalProductsDTO", new FacesMessage(e.getMessage()));
+			ctx.addMessage("GlobalProductsDTO", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
 			this.globalProductsDTO = new GlobalProductsDto();
-
 		}
 		// Obtiene la lista de resumen de movimientos del serivico REST
 		try {
 			this.globalResumeMovementsDTO = this.movementsResumeFacade.getMovementsResumeByCustomer(new DateRangeDto());
 		} catch (Exception e) {
 			FacesContext ctx = FacesContext.getCurrentInstance();
-			ctx.addMessage("GlobalResumeMovementsDto ", new FacesMessage(e.getMessage()));
+			ctx.addMessage("GlobalResumeMovementsDto ",
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
 			this.globalResumeMovementsDTO = new GlobalResumeMovementsDto();
-
+			this.globalResumeMovementsDTO.setMovementsResumeDto(new ArrayList<MovementsResumeDto>());
 		}
 		// Obtiene la lista de datos para pintar la grafica Deposito electrónico
 		if (globalProductsDTO.getElectronicDeposits().size() > 0) {
@@ -209,12 +209,12 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 				this.globalMonthlyBalance = this.accountMonthBalanceFacade.getAccountMonthlyBalance(globalProductsDTO
 						.getElectronicDeposits().get(0).getProductNumber(), new DateRangeDto(), StringUtils.EMPTY,
 						StringUtils.EMPTY, StringUtils.EMPTY);
-
 				// Delegate construye UI grafica Depositos Electrónicos
 				this.lineConfigUI = this.graphicLineDelegate.getMonthlyBalance(globalMonthlyBalance);
 			} catch (Exception e) {
 				FacesContext ctx = FacesContext.getCurrentInstance();
-				ctx.addMessage("globalMonthlyBalance ", new FacesMessage(e.getMessage()));
+				ctx.addMessage("globalMonthlyBalance ",
+						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
 				this.globalMonthlyBalance = new GlobalMonthlyBalanceDto();
 				this.lineConfigUI = new LineConfigUI();
 			}
@@ -229,13 +229,11 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		try {
 			// Calculate cards graphics panel
 			this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(null));
-
 		} catch (Exception e) {
 			FacesContext ctx = FacesContext.getCurrentInstance();
-			ctx.addMessage("getCardsChargesByUser ", new FacesMessage(e.getMessage()));
+			ctx.addMessage("graphicPieCards ", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
 			this.graphicPieCards = new PieConfigUI();
 			// Verifica si en el mensaje de error existe la palabra tsec
-
 		}
 		// Calculate totals
 		this.totalsProducts = this.globalPositionFacade.getTotalsByProduct(globalProductsDTO);
@@ -421,7 +419,6 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	 * Filter combo of Graphic Cards
 	 */
 	public void onComboSelectedCard() {
-
 		EnumPeriodType periodType = null;
 		if (!this.periodCardSelected.isEmpty()) {
 			periodType = EnumPeriodType.valueOf(Integer.parseInt(this.periodCardSelected));
@@ -434,13 +431,28 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 		if (MessagesHelper.INSTANCE.getString("text.allCards").equals(cardSelected) || cardSelected.isEmpty()) {
 			this.cardSelected = MessagesHelper.INSTANCE.getString("text.allCards");
-			LOGGER.info("Graphic cards Controller carSelected: " + cardSelected + "  dateRange:" + dateRange.toString());
-			this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(dateRange));
-
+			try {
+				LOGGER.info("Graphic cards Controller carSelected: " + cardSelected + "  dateRange:"
+						+ dateRange.toString());
+				this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(dateRange));
+			} catch (Exception e) {
+				FacesContext ctx = FacesContext.getCurrentInstance();
+				ctx.addMessage("graphicPieCards",
+						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+				this.graphicPieCards = new PieConfigUI();
+			}
 		} else {
-			LOGGER.info("Graphic cards Controller carSelected: " + cardSelected + "  dateRange:" + dateRange.toString());
-			this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesFilter(cardSelected,
-					dateRange));
+			try {
+				LOGGER.info("Graphic cards Controller carSelected: " + cardSelected + "  dateRange:"
+						+ dateRange.toString());
+				this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesFilter(
+						cardSelected, dateRange));
+			} catch (Exception e) {
+				FacesContext ctx = FacesContext.getCurrentInstance();
+				ctx.addMessage("graphicPieCards",
+						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+				this.graphicPieCards = new PieConfigUI();
+			}
 		}
 	}
 
@@ -448,7 +460,6 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	 * Captura la acción de los combo filtro en gráfica cuentas.
 	 */
 	public void onComboSelectedAccountGraphic() {
-
 		final EnumPeriodType periodType = StringUtils.isNotEmpty(periodAccountSelected) ? EnumPeriodType
 				.valueOf(Integer.parseInt(this.periodAccountSelected)) : EnumPeriodType
 				.valueOf(EnumPeriodType.LAST_SIX_MONTH.getPeriodId());
@@ -458,23 +469,31 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		// Consume Servicio Accounts
 		if (!StringUtils.isEmpty(accountSelected)
 				&& !MessagesHelper.INSTANCE.getString("text.allAccounts").equals(accountSelected)) {
-
-			this.globalResumeMovementsDTO = this.movementsResumeFacade.getMovementsResumeByAccount(accountSelected,
-					dateRange, StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY);
-			// this.globalResumeMovementsDTO =
-			// this.movementsResumeFacade.getMovementsResumeByAccount(accountSelected);
+			try {
+				this.globalResumeMovementsDTO = this.movementsResumeFacade.getMovementsResumeByAccount(accountSelected,
+						dateRange, StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY);
+			} catch (Exception e) {
+				FacesContext ctx = FacesContext.getCurrentInstance();
+				ctx.addMessage("globalResumeMovementsDTO ",
+						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+				this.globalResumeMovementsDTO = new GlobalResumeMovementsDto();
+			}
 			this.accountGraphicBarLineUI = this.graphicBarLineDelegate.getInOutBalanceAccount(globalResumeMovementsDTO);
 		}
 		// Cosume Servicio Customer
 		if (!StringUtils.isEmpty(periodAccountSelected)
 				&& (MessagesHelper.INSTANCE.getString("text.allAccounts").equals(accountSelected))
 				|| accountSelected.isEmpty()) {
-
-			this.accountGraphicBarLineUI = this.graphicBarLineDelegate.getInOutBalanceAccount(movementsResumeFacade
-					.getMovementsResumeByCustomer(dateRange));
-
+			try {
+				this.accountGraphicBarLineUI = this.graphicBarLineDelegate.getInOutBalanceAccount(movementsResumeFacade
+						.getMovementsResumeByCustomer(dateRange));
+			} catch (Exception e) {
+				FacesContext ctx = FacesContext.getCurrentInstance();
+				ctx.addMessage("accountGraphicBarLineUI ",
+						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+				this.accountGraphicBarLineUI = new AccountBarLineUI();
+			}
 		}
-
 	}
 
 	/**

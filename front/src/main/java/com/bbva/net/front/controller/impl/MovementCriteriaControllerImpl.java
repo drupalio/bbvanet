@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -100,11 +102,15 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		LOGGER.info("MovementsAccountController onMovementSelected");
 		super.onMovementSelected(selectEvent);
 		movementDetail = new MovementDetailDto();
-		LOGGER.info("MovementsAccountController onMovementSelected movementId:  "
-				+ getSelectedMovements().getMovementId());
-		movementDetail = this.movementsFacade.getMovement(getSelectedProduct().getProductId(), getSelectedProduct()
-				.getTypeProd().value(), getSelectedMovements().getMovementId());
-		System.out.println("mov id selected: " + getSelectedMovements().getMovementId());
+		try {
+			LOGGER.info("MovementsAccountController onMovementSelected movementId:  "
+					+ getSelectedMovements().getMovementId());
+			movementDetail = this.movementsFacade.getMovement(getSelectedProduct().getProductId(), getSelectedProduct()
+					.getTypeProd().value(), getSelectedMovements().getMovementId());
+		} catch (Exception e) {
+			FacesContext ctx = FacesContext.getCurrentInstance();
+			ctx.addMessage("movementDetail", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+		}
 	}
 
 	public void criteriaSearch() {

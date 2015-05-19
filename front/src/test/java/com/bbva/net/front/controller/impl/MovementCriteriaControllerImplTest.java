@@ -185,6 +185,16 @@ public class MovementCriteriaControllerImplTest extends AbstractBbvaControllerTe
 	}
 
 	@Test
+	public void builMessage() {
+		BalanceRangeDto balanceRange = new BalanceRangeDto();
+		balanceRange.setBalanceSince(new BigDecimal(2000));
+		this.movementCriteriaDto.setBalanceRange(balanceRange);
+		this.movementCriteriaController.setMovementCriteria(movementCriteriaDto);
+
+		this.movementCriteriaController.buildMessage();
+	}
+
+	@Test
 	public void checkOnMovement() {
 		// inicializar mockitos de los Dtos
 		MovementDto movement = Mockito.mock(MovementDto.class);
@@ -198,6 +208,12 @@ public class MovementCriteriaControllerImplTest extends AbstractBbvaControllerTe
 		Mockito.when(productDto.getTypeProd()).thenReturn(super.enumProductType);
 		Mockito.when(movementCriteriaController.getSelectedMovements()).thenReturn(movement);
 		Mockito.when(movement.getMovementId()).thenReturn(DEFAULT_ID_MOV);
+		// Llamar el metodo SetMovement
+		this.movementCriteriaController.onMovementSelected(eventSelect);
+	}
+
+	@Test
+	public void onMovementWorm() {
 		// Llamar el metodo SetMovement
 		this.movementCriteriaController.onMovementSelected(eventSelect);
 	}

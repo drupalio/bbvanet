@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 import com.bbva.net.back.facade.QuotaDetailFacade;
 import com.bbva.net.back.model.commons.DateRangeDto;
@@ -51,9 +53,15 @@ public class QuotaPaginatedController extends AbstractBbvaController {
 	}
 
 	protected List<MovementDto> getNextPage(String paginantionKey, int psize) {
-		LOGGER.info("Llamando el método listRotaryQuotaMovements del QuotaFacade" + " número de páginas " + psize);
-		return quotaDetailFacade.listRotaryQuotaMovements(getSelectedProduct().getProductId(), dateRangePControl,
-				paginantionKey, psize);
+		try {
+			LOGGER.info("Llamando el método listRotaryQuotaMovements del QuotaFacade" + " número de páginas " + psize);
+			return quotaDetailFacade.listRotaryQuotaMovements(getSelectedProduct().getProductId(), dateRangePControl,
+					paginantionKey, psize);
+		} catch (Exception e) {
+			FacesContext ctx = FacesContext.getCurrentInstance();
+			ctx.addMessage("getCurrentList", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+			return new ArrayList<MovementDto>();
+		}
 	}
 
 	protected String getNextPaginantionKey(List<MovementDto> lastPage) {

@@ -1,11 +1,11 @@
 package com.bbva.net.webservices.products.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.cxf.common.util.StringUtils;
 import org.apache.cxf.jaxrs.client.WebClient;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.client.RestClientException;
 
 import com.bbva.czic.dto.net.Conditions;
 import com.bbva.czic.dto.net.Extracto;
@@ -25,46 +25,53 @@ public class ProductsServiceImpl extends AbstractBbvaRestService implements Prod
 
 	@Override
 	public Conditions getConditions(String productId) {
-		final Conditions conditions = getJsonWebClient(URL_BASE_PRODUCTS + productId + URL_PRODUCTS).get(
-				Conditions.class);
-		return conditions;
+		try {
+			return getJsonWebClient(URL_BASE_PRODUCTS + productId + URL_PRODUCTS).get(Conditions.class);
+		} catch (Exception e) {
+			throw new RestClientException(
+					"Servicio no disponible - No se ha podido cargar la información de condiciones, para mayor información comunicate a nuestras líneas BBVA");
+		}
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Extracto> listExtracts(String productId, String filter) {
-
-		WebClient wc = getJsonWebClient(URL_BASE_PRODUCTS + productId + EXTRACT);
-		if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
-
 		try {
+			WebClient wc = getJsonWebClient(URL_BASE_PRODUCTS + productId + EXTRACT);
+			if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
 			return (List<Extracto>)wc.getCollection(Extracto.class);
-		} catch (Exception ex) {
-			LOGGER.info("[Servicio Product No respondió al obtener Lista de Extractos] " + ex.getMessage());
-			return new ArrayList<Extracto>();
+		} catch (Exception e) {
+			throw new RestClientException(
+					"Servicio no disponible - No se ha podido cargar la información de Extractos, para mayor información comunicate a nuestras líneas BBVA");
 		}
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Movement> listMovements(String productId, String $filter, Integer paginationKey, Integer pageSize) {
-		WebClient wc = getJsonWebClient(URL_BASE_PRODUCTS + productId + URL_MOVEMENTS);
-		if (!StringUtils.isEmpty($filter)) wc.query(FILTER, $filter);
-
-		if (paginationKey != null && pageSize != null) {
-			wc.query("paginationKey", paginationKey);
-			wc.query("pageSize", pageSize);
+		try {
+			WebClient wc = getJsonWebClient(URL_BASE_PRODUCTS + productId + URL_MOVEMENTS);
+			if (!StringUtils.isEmpty($filter)) wc.query(FILTER, $filter);
+			if (paginationKey != null && pageSize != null) {
+				wc.query("paginationKey", paginationKey);
+				wc.query("pageSize", pageSize);
+			}
+			return (List<Movement>)wc.getCollection(Movement.class);
+		} catch (Exception e) {
+			throw new RestClientException(
+					"Servicio no disponible - No se ha podido cargar la lista de movimientos, para mayor información comunicate a nuestras líneas BBVA");
 		}
-
-		return (List<Movement>)wc.getCollection(Movement.class);
 	}
 
 	@Override
 	public Movement getMovement(String productId, String movementId, String $filter) {
-
-		WebClient wc = getJsonWebClient(URL_BASE_PRODUCTS + productId + URL_MOVEMENTS + "/" + movementId);
-		if (!StringUtils.isEmpty($filter)) wc.query(FILTER, $filter);
-
-		return wc.get(Movement.class);
+		try {
+			WebClient wc = getJsonWebClient(URL_BASE_PRODUCTS + productId + URL_MOVEMENTS + "/" + movementId);
+			if (!StringUtils.isEmpty($filter)) wc.query(FILTER, $filter);
+			return wc.get(Movement.class);
+		} catch (Exception e) {
+			throw new RestClientException(
+					"Servicio no disponible - No se ha podido cargar la información del movimiento, para mayor información comunicate a nuestras líneas BBVA");
+		}
 	}
 }

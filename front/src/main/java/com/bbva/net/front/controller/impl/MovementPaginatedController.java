@@ -1,8 +1,11 @@
 package com.bbva.net.front.controller.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 import com.bbva.net.back.facade.MovementsAccountFacade;
 import com.bbva.net.back.model.commons.BalanceRangeDto;
@@ -25,8 +28,14 @@ public class MovementPaginatedController extends PaginationController<MovementDt
 
 	@Override
 	protected List<MovementDto> getNextPage(int paginantionKey, int psize) {
-		return this.movementsFacade.listMovements(getSelectedProduct().getProductId(), productTypePc, dateRangePc,
-				balanceRangePc, paginantionKey, psize);
+		try {
+			return this.movementsFacade.listMovements(getSelectedProduct().getProductId(), productTypePc, dateRangePc,
+					balanceRangePc, paginantionKey, psize);
+		} catch (Exception e) {
+			FacesContext ctx = FacesContext.getCurrentInstance();
+			ctx.addMessage("listMovement", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+			return new ArrayList<MovementDto>();
+		}
 	}
 
 	@Override

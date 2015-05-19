@@ -103,6 +103,7 @@ $(window).load(function() {
 	    $('#modal').remove();
 	});
 });
+
 $(document).ready(function() {
     $('.extractButton').click(function() {
 	$('.extractOnePage').empty();

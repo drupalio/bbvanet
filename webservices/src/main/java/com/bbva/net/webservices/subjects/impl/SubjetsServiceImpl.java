@@ -1,6 +1,7 @@
 package com.bbva.net.webservices.subjects.impl;
 
 import org.apache.cxf.jaxrs.client.WebClient;
+import org.springframework.web.client.RestClientException;
 
 import com.bbva.net.webservices.core.pattern.AbstractBbvaRestService;
 import com.bbva.net.webservices.core.stereotype.RestService;
@@ -13,22 +14,18 @@ public class SubjetsServiceImpl extends AbstractBbvaRestService implements Subje
 
 	@Override
 	public UpdateAccountOut updateSubject(String contractNumber, UpdateSubjectIn updatesubjectin) {
-		final WebClient webc = getJsonWebClient(URL_SUBJETS);
 		try {
+			final WebClient webc = getJsonWebClient(URL_SUBJETS);
 			webc.put(updatesubjectin);
-
 			if (webc.getResponse().getStatus() == 200) {
 				LOGGER.info("Servicio updateSubject actualizó el alias");
 				return webc.get(UpdateAccountOut.class);
-			} else {
-				LOGGER.info("Servicio updateSubject no actualizó el alias");
-				return new UpdateAccountOut();
 			}
-
 		} catch (Exception ex) {
-			System.out.println(ex.getMessage());
 			LOGGER.info("[Servicio updateSubject No respondió al actualizar el alias] " + ex.getMessage());
-			return new UpdateAccountOut();
+			throw new RestClientException(
+					"Servicio no disponible - No se ha podido actualizar el alias, para mayor información comunicate a nuestras líneas BBVA");
 		}
+		return new UpdateAccountOut();
 	}
 }

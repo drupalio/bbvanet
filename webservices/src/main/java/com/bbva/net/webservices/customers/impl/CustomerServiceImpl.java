@@ -31,16 +31,13 @@ public class CustomerServiceImpl extends AbstractBbvaRestService implements Cust
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<AccMovementsResume> listAccountsMovementsResume(String filter) {
-
 		try {
-
-			throw new Exception();
-			// WebClient wc = getJsonWebClient(URL_BASE_CUSTOMER + URL_CUSTOMER);
-			// if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
-			// return (List<AccMovementsResume>)wc.getCollection(AccMovementsResume.class);
-
+			WebClient wc = getJsonWebClient(URL_BASE_CUSTOMER + URL_CUSTOMER);
+			if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
+			return (List<AccMovementsResume>)wc.getCollection(AccMovementsResume.class);
 		} catch (Exception e) {
-			throw new RestClientException("Servicio no disponible - (oznq)");
+			throw new RestClientException(
+					"Servicio no disponible - No se ha podido cargar la lista de resumen de movimientos, para mayor información comunicate a nuestras líneas BBVA");
 		}
 	}
 
@@ -53,20 +50,20 @@ public class CustomerServiceImpl extends AbstractBbvaRestService implements Cust
 			return (List<CardCharge>)wc.getCollection(CardCharge.class);
 
 		} catch (Exception e) {
-			throw new RestClientException("Servicio no disponible. Intente más tarde - (tx)oznp");
+			throw new RestClientException(
+					"Servicio no disponible - No se ha podido cargar la información de gráfica de tarjetas, para mayor información comunicate a nuestras líneas BBVA");
 		}
 	}
 
 	@Override
 	public Customer getCustomer(String filter) {
 		try {
-			// throw new Exception();
 			WebClient wc = getJsonWebClient(URL_BASE_CUSTOMER);
 			if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
 			return wc.get(Customer.class);
 		} catch (Exception e) {
-			throw new RestClientException("Servicio no disponible. Intente más tarde - (tx)oznb");
-
+			throw new RestClientException(
+					"Servicio no disponible - No se ha podido cargar la información del usuario, para mayor información comunicate a nuestras líneas BBVA");
 		}
 	}
 

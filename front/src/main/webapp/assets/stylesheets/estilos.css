@@ -787,10 +787,10 @@ a.header.setStyle span.arrow-left-smaller {
 
 /* Mensaje de error extracto*/
 body div.ui-growl {
-	width: 360px !important;
+	width: 500px !important;
 	position: fixed !important;
 	top: 250px !important;
-	right: 35% !important;
+	right: 40% !important;
 }
 
 .ui-growl-item {
@@ -819,6 +819,7 @@ body div.ui-growl .ui-state-highlight {
 /*letra del mensaje*/
 .ui-growl-message {
 	padding: 6px 0px 7px;
+	width: 350px;
 	font-weight: bold;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 	font-size: 12px !important;
@@ -866,11 +867,12 @@ body div.ui-growl .ui-state-highlight {
 	background-image: url(../img/icons/alert-red.png);
 	background-repeat: no-repeat;
 	background-position: 0 0;
+	margin-top: 5%;
 }
 
 .ui-messages-fatal-icon {
 	background: url(../img/icons/alert-red.png) no-repeat scroll 0% 0%
-		transparent;
+		transparent !important;
 	background-position: 0px 0px;
 	height: 36px;
 	width: 39px;

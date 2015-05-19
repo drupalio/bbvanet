@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.cxf.common.util.StringUtils;
 import org.apache.cxf.jaxrs.client.WebClient;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.client.RestClientException;
 
 import com.bbva.czic.dto.net.Loan;
 import com.bbva.czic.dto.net.Movement;
@@ -21,29 +22,39 @@ public class LoanServiceImpl extends AbstractBbvaRestService implements LoanServ
 
 	@Override
 	public Loan getRotaryQuota(String idLoan) {
-		final Loan loan = getJsonWebClient(URL_BASE_ROTARYQUOTA + idLoan).get(Loan.class);
-		return loan;
+		try {
+			return getJsonWebClient(URL_BASE_ROTARYQUOTA + idLoan).get(Loan.class);
+		} catch (Exception e) {
+			throw new RestClientException(
+					"Servicio no disponible - No se ha podido cargar la información de cupo rotativo, para mayor información comunicate a nuestras líneas BBVA");
+		}
 	}
 
 	@Override
 	public RotaryQuotaMove getRotaryQuotaMovement(String idLoan, String idMovement) {
-		final RotaryQuotaMove rotaryQuotaMove = getJsonWebClient(
-				URL_BASE_ROTARYQUOTA + idLoan + URL_ROTARYQUOTA_MOVE + idMovement).get(RotaryQuotaMove.class);
-		return rotaryQuotaMove;
+		try {
+			return getJsonWebClient(URL_BASE_ROTARYQUOTA + idLoan + URL_ROTARYQUOTA_MOVE + idMovement).get(
+					RotaryQuotaMove.class);
+		} catch (Exception e) {
+			throw new RestClientException(
+					"Servicio no disponible - No se ha podido cargar la información del movimiento seleccionado, para mayor información comunicate a nuestras líneas BBVA");
+		}
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Movement> listRotaryQuotaMovements(String loanId, String paginationKey, Integer pageSize, String $filter) {
-
-		WebClient wc = getJsonWebClient(URL_BASE_ROTARYQUOTA + loanId + URL_ROTARYQUOTA_MOVES);
-		if (!StringUtils.isEmpty($filter)) wc.query(FILTER, $filter);
-
-		if (paginationKey != null && pageSize != null) {
-			wc.query("paginationKey", paginationKey);
-			wc.query("pageSize", pageSize);
+		try {
+			WebClient wc = getJsonWebClient(URL_BASE_ROTARYQUOTA + loanId + URL_ROTARYQUOTA_MOVES);
+			if (!StringUtils.isEmpty($filter)) wc.query(FILTER, $filter);
+			if (paginationKey != null && pageSize != null) {
+				wc.query("paginationKey", paginationKey);
+				wc.query("pageSize", pageSize);
+			}
+			return (List<Movement>)wc.getCollection(Movement.class);
+		} catch (Exception e) {
+			throw new RestClientException(
+					"Servicio no disponible - No se ha podido cargar la lista de movimientos, para mayor información comunicate a nuestras líneas BBVA");
 		}
-
-		return (List<Movement>)wc.getCollection(Movement.class);
 	}
 }

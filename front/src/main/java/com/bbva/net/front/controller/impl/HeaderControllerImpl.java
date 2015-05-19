@@ -33,21 +33,35 @@ public class HeaderControllerImpl extends AbstractBbvaController implements Head
 
 	@PostConstruct
 	public void init() {
-
 		this.cliente = this.getCustomer();
 		this.ejecutivo = this.getExecutive();
 	}
 
 	@Override
 	public ExecutiveDto getExecutive() {
-
 		try {
 			return headerFacade.getExecutive();
 		} catch (Exception e) {
 			FacesContext ctx = FacesContext.getCurrentInstance();
-			ctx.addMessage("getCardsChargesByUser ", new FacesMessage(e.getMessage()));
+			ctx.addMessage("getExecutive ", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
 			return new ExecutiveDto();
+		}
+	}
 
+	@Override
+	public CustomerDto getCustomer() {
+		final String userName = (getSession().getAttribute("userName") == null) ? StringUtils.EMPTY : getSession()
+				.getAttribute("userName").toString();
+		final String docTypeUser = (getSession().getAttribute("docTypeUser") == null) ? StringUtils.EMPTY
+				: getSession().getAttribute("docTypeUser").toString();
+		final String docIdUser = (getSession().getAttribute("docIdUser") == null) ? StringUtils.EMPTY : getSession()
+				.getAttribute("docIdUser").toString();
+		try {
+			return headerFacade.getCustomer(userName, docTypeUser, docIdUser);
+		} catch (Exception e) {
+			FacesContext ctx = FacesContext.getCurrentInstance();
+			ctx.addMessage("getCustomer", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+			return new CustomerDto();
 		}
 	}
 
@@ -62,24 +76,5 @@ public class HeaderControllerImpl extends AbstractBbvaController implements Head
 
 	public void setHeaderFacade(HeaderFacade headerFacade) {
 		this.headerFacade = headerFacade;
-	}
-
-	@Override
-	public CustomerDto getCustomer() {
-
-		final String userName = (getSession().getAttribute("userName") == null) ? StringUtils.EMPTY : getSession()
-				.getAttribute("userName").toString();
-		final String docTypeUser = (getSession().getAttribute("docTypeUser") == null) ? StringUtils.EMPTY
-				: getSession().getAttribute("docTypeUser").toString();
-		final String docIdUser = (getSession().getAttribute("docIdUser") == null) ? StringUtils.EMPTY : getSession()
-				.getAttribute("docIdUser").toString();
-		try {
-			return headerFacade.getCustomer(userName, docTypeUser, docIdUser);
-		} catch (Exception e) {
-			FacesContext ctx = FacesContext.getCurrentInstance();
-			ctx.addMessage("getCustomer ", new FacesMessage(e.getMessage()));
-			return new CustomerDto();
-
-		}
 	}
 }

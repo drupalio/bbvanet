@@ -2,6 +2,7 @@ package com.bbva.net.front.controller.impl;
 
 import javax.annotation.Resource;
 import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
 
 import org.primefaces.context.RequestContext;
@@ -75,30 +76,38 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 	@Override
 	public void operKey() {
 		LOGGER.info("Método operKey");
-
+		Boolean responseVisi = false, responseOpe = false;
 		if (productDto.getProductId() != null) {
-
 			productDto.setVisible(isSearch());
 			productDto.setOperationOnline(isOperation());
-
-			LOGGER.info("Llamando updateProductVisibility del facade");
-			Boolean responseVisi = this.personalizeProductAccountFacade.updateProductVisibility(
-					this.productDto.getProductId(), productDto);
-			LOGGER.info("Dato visible de la cuenta: " + this.productDto.getProductId() + " visible: "
-					+ productDto.isVisible() + " actualizado: " + responseVisi);
-
-			LOGGER.info("Llamando updateProductOperability del facade");
-			Boolean responseOpe = this.personalizeProductAccountFacade.updateProductOperability(
-					this.productDto.getProductId(), productDto);
-			LOGGER.info("Dato operable de la cuenta: " + this.productDto.getProductId() + " operable: "
-					+ productDto.getOperationOnline() + " actualizado: " + responseOpe);
-
+			try {
+				LOGGER.info("Llamando updateProductVisibility del facade");
+				responseVisi = this.personalizeProductAccountFacade.updateProductVisibility(
+						this.productDto.getProductId(), productDto);
+				LOGGER.info("Dato visible de la cuenta: " + this.productDto.getProductId() + " visible: "
+						+ productDto.isVisible() + " actualizado: " + responseVisi);
+			} catch (Exception e) {
+				FacesContext ctx = FacesContext.getCurrentInstance();
+				ctx.addMessage("updateProductVisibility",
+						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+			}
+			try {
+				LOGGER.info("Llamando updateProductOperability del facade");
+				responseOpe = this.personalizeProductAccountFacade.updateProductOperability(
+						this.productDto.getProductId(), productDto);
+				LOGGER.info("Dato operable de la cuenta: " + this.productDto.getProductId() + " operable: "
+						+ productDto.getOperationOnline() + " actualizado: " + responseOpe);
+			} catch (Exception e) {
+				FacesContext ctx = FacesContext.getCurrentInstance();
+				ctx.addMessage("updateProductOperability",
+						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+			}
 			if (responseVisi == true && responseOpe == true) {
 				LOGGER.info("mostrando mensaje de operaciones Exitoso");
 				setMenOperationKey(true);
 			} else {
 				RequestContext.getCurrentInstance().showMessageInDialog(
-						new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error", "No se ha podido actualizar"));
+						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "No se ha podido actualizar"));
 				LOGGER.info("Error de actulización");
 			}
 		} else {
@@ -113,11 +122,16 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 		this.updateAccountIn.setSubject(this.productDto.getSubTypeProd());
 		this.updateAccountIn.setSubjectType(EnumSubjectType.SAVING_ACCOUNT);
 		this.updateAccountIn.setUserId("12345678");
-		this.updateAccountOut = this.updateAliasFacade.updateSubject("12345656", this.updateAccountIn);
-		if (updateAccountOut.getFolio() != null) {
-			setMenSuccessful(true);
-		} else
-			LOGGER.info("Error al actulizar el alias");
+		try {
+			this.updateAccountOut = this.updateAliasFacade.updateSubject("12345656", this.updateAccountIn);
+			if (updateAccountOut.getFolio() != null) {
+				setMenSuccessful(true);
+			} else
+				LOGGER.info("Error al actulizar el alias");
+		} catch (Exception e) {
+			FacesContext ctx = FacesContext.getCurrentInstance();
+			ctx.addMessage("updateAccountOut ", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+		}
 	}
 
 	/**
