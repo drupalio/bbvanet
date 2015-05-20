@@ -13,6 +13,7 @@ import org.junit.Test;
 import org.mockito.Mockito;
 import org.powermock.reflect.Whitebox;
 import org.primefaces.event.SelectEvent;
+import org.springframework.web.client.RestClientException;
 
 import com.bbva.net.back.facade.QuotaDetailFacade;
 import com.bbva.net.back.model.commons.DateRangeDto;
@@ -93,7 +94,7 @@ public class QuotaControllerImplTest extends AbstractBbvaControllerTest {
 		// Response
 		Mockito.when(this.quotaDetailFacade.getRotaryQuotaMovement(DEFAULT_ID, DEFAULT_ID_MOV + "0772")).thenReturn(
 				moveDetail);
-		// Ejecución Método
+		// Ejecución Método OK
 		this.quotaControllerImpl.onRowToggle(eventSelect);
 		// set y get
 		this.quotaControllerImpl.setQuotaMoveDetailDto(moveDetail);
@@ -101,6 +102,11 @@ public class QuotaControllerImplTest extends AbstractBbvaControllerTest {
 		// Verify
 		Mockito.verify(this.quotaDetailFacade, Mockito.atLeastOnce()).getRotaryQuotaMovement(DEFAULT_ID,
 				DEFAULT_ID_MOV + "0772");
+
+		// ClientExeption
+		Mockito.when(this.quotaDetailFacade.getRotaryQuotaMovement(DEFAULT_ID, DEFAULT_ID_MOV + "0772")).thenThrow(
+				new RestClientException("OK"));
+		this.quotaControllerImpl.onRowToggle(eventSelect);
 	}
 
 	@Test
@@ -151,6 +157,10 @@ public class QuotaControllerImplTest extends AbstractBbvaControllerTest {
 		// set y get QuotaDetailDto
 		this.quotaControllerImpl.setQuotaDetailDto(quotaDetailDto);
 		this.quotaControllerImpl.getQuotaDetailDto();
+
+		// ClientException
+		Mockito.when(quotaDetailFacade.getDetailRotaryQuota(DEFAULT_ID)).thenThrow(new RestClientException("ok"));
+		this.quotaControllerImpl.init();
 	}
 
 	@Test

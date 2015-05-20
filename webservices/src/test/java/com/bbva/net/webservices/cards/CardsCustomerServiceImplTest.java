@@ -4,6 +4,7 @@ import org.apache.commons.lang.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
+import org.springframework.web.client.RestClientException;
 
 import com.bbva.czic.dto.net.CardCharge;
 import com.bbva.net.webservices.cards.impl.CardServiceImpl;
@@ -49,4 +50,11 @@ public class CardsCustomerServiceImplTest extends AbstractBbvaRestClientTest {
 		Mockito.verify(this.webClient, Mockito.atLeastOnce()).getCollection(CardCharge.class);
 	}
 
+	@SuppressWarnings("unchecked")
+	@Test(expected = RestClientException.class)
+	public void checkGetCreditCardThrowException() {
+		Mockito.when(webClient.getCollection(CardCharge.class)).thenThrow(RestClientException.class);
+		this.cardServiceImpl.getCreditCardCharges("123", "filter", StringUtils.EMPTY, StringUtils.EMPTY,
+				StringUtils.EMPTY);
+	}
 }

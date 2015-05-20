@@ -15,6 +15,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.primefaces.event.SelectEvent;
+import org.springframework.web.client.RestClientException;
 
 import com.bbva.net.back.facade.AccountMovementsResumeFacade;
 import com.bbva.net.back.facade.CardsFacade;
@@ -27,7 +28,6 @@ import com.bbva.net.back.model.commons.Money;
 import com.bbva.net.back.model.globalposition.DepositDto;
 import com.bbva.net.back.model.globalposition.GlobalProductsDto;
 import com.bbva.net.back.model.globalposition.ProductDto;
-import com.bbva.net.back.model.movements.GlobalResumeMovementsDto;
 import com.bbva.net.back.service.impl.DateFilterServiceImpl;
 import com.bbva.net.front.delegate.GraphicBarLineDelegate;
 import com.bbva.net.front.delegate.GraphicLineDelegate;
@@ -70,7 +70,6 @@ public class GlobalPositionControllerImplTest extends AbstractBbvaControllerTest
 
 	@Before
 	public void init() {
-
 		this.globalPositionController = new GlobalPositionControllerImpl();
 
 		globalPositionFacade = Mockito.mock(GlobalPositionFacade.class);
@@ -81,6 +80,7 @@ public class GlobalPositionControllerImplTest extends AbstractBbvaControllerTest
 		periodType = EnumPeriodType.valueOf(Integer.parseInt("11"));
 		dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
 		globalMovementsFacade = Mockito.mock(AccountMovementsResumeFacade.class);
+		movementsResumeFacade = Mockito.mock(AccountMovementsResumeFacade.class);
 
 		accountMonthBalanceFacade = Mockito.mock(MonthBalanceFacade.class);
 		graphicBarLineDelegate = Mockito.mock(GraphicBarLineDelegate.class);
@@ -98,42 +98,57 @@ public class GlobalPositionControllerImplTest extends AbstractBbvaControllerTest
 		GlobalProductsDto globalProductsDto = new GlobalProductsDto();
 		DepositDto deposit = new DepositDto();
 		List<DepositDto> electronicDeposits = new ArrayList<DepositDto>();
-
 		electronicDeposits.add(deposit);
 		globalProductsDto.setElectronicDeposits(electronicDeposits);
 
+		// ok
 		Mockito.when(globalPositionFacade.getGlobalProductsByUser()).thenReturn(globalProductsDto);
+		globalPositionController.init();
+	}
 
+	@Test
+	public void wormInit() {
+
+		GlobalProductsDto globalProductsDto = new GlobalProductsDto();
+		DepositDto deposit = new DepositDto();
+		List<DepositDto> electronicDeposits = new ArrayList<DepositDto>();
+		electronicDeposits.add(deposit);
+		globalProductsDto.setElectronicDeposits(electronicDeposits);
+
+		// ClientException getCardsChargesByUser
+		Mockito.when(cardsFacade.getCardsChargesByUser(null)).thenThrow(new RestClientException("OK"));
 		globalPositionController.init();
 
+		// ClientException getAccountMonthlyBalance
+		Mockito.when(
+				this.accountMonthBalanceFacade.getAccountMonthlyBalance(globalProductsDto.getElectronicDeposits()
+						.get(0).getProductNumber(), new DateRangeDto(), StringUtils.EMPTY, StringUtils.EMPTY,
+						StringUtils.EMPTY)).thenThrow(new RestClientException("OK"));
+		globalPositionController.init();
+
+		// ClientException getGlobalProductsByUser
+		Mockito.when(globalPositionFacade.getGlobalProductsByUser()).thenThrow(new RestClientException("OK"));
+		globalPositionController.init();
 	}
 
 	@Test
 	public void checkGetCustomerProducts_OK() {
-
 		// prepara el test
 		GlobalProductsDto globalProductsDto = new GlobalProductsDto();
 		GlobalProductsDto globalProducts = globalProductsDto;
 		Mockito.when(globalPositionFacade.getGlobalProductsVisibles(globalProductsDto)).thenReturn(globalProducts);
-
-		// invoca metodo a probar
-		final GlobalProductsDto globbal_Controller = this.globalPositionController.getCustomerProducts();
-
+		this.globalPositionController.getCustomerProducts();
 		// Comprobar resultados
 		Assert.assertNotNull(globalProducts);
 	}
 
 	@Test
 	public void checkGetCustomerProducts_Hidden() {
-
 		// prepara el test
 		GlobalProductsDto globalProductsDto = new GlobalProductsDto();
 		GlobalProductsDto globalProducts = globalProductsDto;
 		Mockito.when(globalPositionFacade.getGlobalProductsHidden(globalProductsDto)).thenReturn(globalProducts);
-
-		// invoca metodo a probar
-		final GlobalProductsDto globbal_Controller = this.globalPositionController.getCustomerProductsHidden();
-
+		this.globalPositionController.getCustomerProductsHidden();
 		// Comprobar resultados
 		Assert.assertNotNull(globalProducts);
 	}
@@ -183,7 +198,6 @@ public class GlobalPositionControllerImplTest extends AbstractBbvaControllerTest
 
 		Assert.assertEquals(this.globalPositionController.getSituationGraphicPieUI(),
 				this.graphicPieDelegate.getSituationGlobalProducts(globalProducts));
-
 	}
 
 	@Test
@@ -210,13 +224,24 @@ public class GlobalPositionControllerImplTest extends AbstractBbvaControllerTest
 		Mockito.when(graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(dateRange)))
 				.thenReturn(prueba);
 		globalPositionController.onComboSelectedCard();
+
+		// ClientException
+		globalPositionController.setCardSelected(StringUtils.EMPTY);
+		Mockito.when(graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(dateRange))).thenThrow(
+				new RestClientException("OK"));
+		globalPositionController.onComboSelectedCard();
+	}
+
+	@Test
+	public void wormComboSelectCard() {
+		globalPositionController.setCardSelected("***");
+		Mockito.when(graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesFilter("", dateRange))).thenThrow(
+				new RestClientException("OK"));
+		globalPositionController.onComboSelectedCard();
 	}
 
 	@Test
 	public void checkonComboSelectedAccountGraphic() {
-		GlobalResumeMovementsDto globalResumeMovementsDTO = Mockito.mock(GlobalResumeMovementsDto.class);
-		DateRangeDto dateRange = Mockito.mock(DateRangeDto.class);
-		PieConfigUI prueba = Mockito.mock(PieConfigUI.class);
 		movementsResumeFacade = Mockito.mock(AccountMovementsResumeFacade.class);
 
 		globalPositionController.setPeriodAccountSelected(StringUtils.EMPTY);
@@ -227,6 +252,29 @@ public class GlobalPositionControllerImplTest extends AbstractBbvaControllerTest
 		globalPositionController.setAccountSelected(StringUtils.EMPTY);
 		Mockito.verify(graphicBarLineDelegate, Mockito.atLeastOnce()).getInOutBalanceAccount(
 				movementsResumeFacade.getMovementsResumeByCustomer(dateRange));
+		globalPositionController.onComboSelectedAccountGraphic();
+		// init
+		globalPositionController.init();
+
+		// ClientException
+		globalPositionController.setAccountSelected("6");
+		globalPositionController.setPeriodAccountSelected(StringUtils.EMPTY);
+		Mockito.when(
+				this.graphicBarLineDelegate.getInOutBalanceAccount(movementsResumeFacade.getMovementsResumeByAccount(
+						"6", dateRange, StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY))).thenThrow(
+				new RestClientException("OK"));
+		globalPositionController.onComboSelectedAccountGraphic();
+	}
+
+	@Test
+	public void ComboSelectedAccountGraphic() {
+
+		// ClientException
+		globalPositionController.setPeriodAccountSelected("6");
+		globalPositionController.setAccountSelected(StringUtils.EMPTY);
+		Mockito.when(
+				graphicBarLineDelegate.getInOutBalanceAccount(movementsResumeFacade
+						.getMovementsResumeByCustomer(dateRange))).thenThrow(new RestClientException("OK"));
 		globalPositionController.onComboSelectedAccountGraphic();
 	}
 

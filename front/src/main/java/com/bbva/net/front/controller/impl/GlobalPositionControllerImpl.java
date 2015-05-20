@@ -470,23 +470,23 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		if (!StringUtils.isEmpty(accountSelected)
 				&& !MessagesHelper.INSTANCE.getString("text.allAccounts").equals(accountSelected)) {
 			try {
-				this.globalResumeMovementsDTO = this.movementsResumeFacade.getMovementsResumeByAccount(accountSelected,
-						dateRange, StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY);
+				this.accountGraphicBarLineUI = this.graphicBarLineDelegate
+						.getInOutBalanceAccount(this.movementsResumeFacade.getMovementsResumeByAccount(accountSelected,
+								dateRange, StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY));
 			} catch (Exception e) {
 				FacesContext ctx = FacesContext.getCurrentInstance();
 				ctx.addMessage("globalResumeMovementsDTO ",
 						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
-				this.globalResumeMovementsDTO = new GlobalResumeMovementsDto();
+				this.accountGraphicBarLineUI = new AccountBarLineUI();
 			}
-			this.accountGraphicBarLineUI = this.graphicBarLineDelegate.getInOutBalanceAccount(globalResumeMovementsDTO);
 		}
 		// Cosume Servicio Customer
 		if (!StringUtils.isEmpty(periodAccountSelected)
 				&& (MessagesHelper.INSTANCE.getString("text.allAccounts").equals(accountSelected))
 				|| accountSelected.isEmpty()) {
 			try {
-				this.accountGraphicBarLineUI = this.graphicBarLineDelegate.getInOutBalanceAccount(movementsResumeFacade
-						.getMovementsResumeByCustomer(dateRange));
+				this.accountGraphicBarLineUI = this.graphicBarLineDelegate
+						.getInOutBalanceAccount(this.movementsResumeFacade.getMovementsResumeByCustomer(dateRange));
 			} catch (Exception e) {
 				FacesContext ctx = FacesContext.getCurrentInstance();
 				ctx.addMessage("accountGraphicBarLineUI ",

@@ -1,10 +1,9 @@
 package com.bbva.net.webservices.agileOperations;
 
-import java.util.List;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
+import org.springframework.web.client.RestClientException;
 
 import com.bbva.net.webservices.agileOperations.impl.AgileOperationsServiceImpl;
 import com.bbva.net.webservices.core.pattern.AbstractBbvaRestService;
@@ -33,11 +32,19 @@ public class AgileOperationsServiceImplTest extends AbstractBbvaRestClientTest {
 
 	/************************************* TEST METHODS **********************************/
 
+	@SuppressWarnings("unchecked")
 	@Test
 	public void checkGetAgileOperations() {
 		Mockito.when(webClient.getCollection(AgileOperation.class)).thenReturn(Mockito.anyCollection());
-		List<AgileOperation> lista = agileServiceImpl.getAgileOperations("");
+		agileServiceImpl.getAgileOperations("");
 		Mockito.verify(this.webClient, Mockito.atLeastOnce()).getCollection(AgileOperation.class);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Test(expected = RestClientException.class)
+	public void checkGetAgileThrowException() {
+		Mockito.when(webClient.getCollection(AgileOperation.class)).thenThrow(RestClientException.class);
+		this.agileServiceImpl.getAgileOperations("");
 	}
 
 	@Test

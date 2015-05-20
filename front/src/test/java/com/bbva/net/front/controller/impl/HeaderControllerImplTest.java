@@ -7,6 +7,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
+import org.springframework.web.client.RestClientException;
 
 import com.bbva.net.back.facade.HeaderFacade;
 import com.bbva.net.back.model.header.CustomerDto;
@@ -41,9 +42,17 @@ public class HeaderControllerImplTest extends AbstractBbvaControllerTest {
 		Mockito.when(httpSession.getAttribute("docTypeUser")).thenReturn("CC");
 		Mockito.when(httpSession.getAttribute("docIdUser")).thenReturn("1010101010");
 		cliente = headerController.getCustomer();
+		this.headerController.getCliente();
 		Assert.assertNull(cliente);
-		CustomerDto cliente2 = headerController.getCliente();
-		// Assert.assertTrue(cliente.equals(cliente2));
+	}
+
+	@Test
+	public void wormGetCustomer() {
+
+		Mockito.when(headerFacade.getCustomer(StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY)).thenThrow(
+				new RestClientException("OK"));
+
+		headerController.getCustomer();
 	}
 
 	@Test
@@ -53,5 +62,11 @@ public class HeaderControllerImplTest extends AbstractBbvaControllerTest {
 		executive = headerController.getEjecutivo();
 		Assert.assertNull(executive);
 
+	}
+
+	@Test
+	public void wormGetExecutive() {
+		Mockito.when(headerFacade.getExecutive()).thenThrow(new RestClientException("Ok"));
+		this.headerController.getExecutive();
 	}
 }

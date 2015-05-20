@@ -3,7 +3,6 @@ package com.bbva.net.front.controller.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -30,7 +29,6 @@ public class QuotaPaginatedController extends AbstractBbvaController {
 
 	protected String paginationKey;
 
-	@PostConstruct
 	public void init() {
 		LOGGER.info("Inicializando la lista de movimientos y la paginación ");
 		this.currentList = new ArrayList<MovementDto>();

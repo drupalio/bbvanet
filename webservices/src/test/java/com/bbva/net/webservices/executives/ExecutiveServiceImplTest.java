@@ -4,6 +4,7 @@ import org.apache.commons.lang.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
+import org.springframework.web.client.RestClientException;
 
 import com.bbva.czic.dto.net.Executive;
 import com.bbva.net.webservices.core.pattern.AbstractBbvaRestService;
@@ -32,7 +33,6 @@ public class ExecutiveServiceImplTest extends AbstractBbvaRestClientTest {
 
 	/************************************* TEST METHODS **********************************/
 
-	@SuppressWarnings("unchecked")
 	@Test
 	public void checkGetExecutive_notFilter() {
 		Mockito.when(webClient.get(Executive.class)).thenReturn(Mockito.any(Executive.class));
@@ -40,7 +40,6 @@ public class ExecutiveServiceImplTest extends AbstractBbvaRestClientTest {
 		Mockito.verify(this.webClient, Mockito.atLeastOnce()).get(Executive.class);
 	}
 
-	@SuppressWarnings("unchecked")
 	@Test
 	public void checkGetExecutive_Filter() {
 		Mockito.when(webClient.get(Executive.class)).thenReturn(Mockito.any(Executive.class));
@@ -48,4 +47,10 @@ public class ExecutiveServiceImplTest extends AbstractBbvaRestClientTest {
 		Mockito.verify(this.webClient, Mockito.atLeastOnce()).get(Executive.class);
 	}
 
+	@SuppressWarnings("unchecked")
+	@Test(expected = RestClientException.class)
+	public void checkGetExecutiveThrowException() {
+		Mockito.when(webClient.get(Executive.class)).thenThrow(RestClientException.class);
+		this.executiveServiceImpl.getExecutive("123", "filter", StringUtils.EMPTY, StringUtils.EMPTY);
+	}
 }

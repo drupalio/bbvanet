@@ -3,6 +3,7 @@ package com.bbva.net.front.controller.impl;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
+import org.springframework.web.client.RestClientException;
 
 import com.bbva.net.back.facade.PersonalizeProductFacade;
 import com.bbva.net.back.facade.UpdateAliasFacade;
@@ -83,6 +84,13 @@ public class PersonalizeProductControllerImplTest extends AbstractBbvaController
 		this.personalizeController.operKey();
 		Mockito.verify(this.personalizeFacade, Mockito.atLeastOnce()).updateProductOperability(DEFAULT_ID, product);
 		Mockito.verify(this.personalizeFacade, Mockito.atLeastOnce()).updateProductVisibility(DEFAULT_ID, product);
+		// ClientException
+		Mockito.when(this.personalizeFacade.updateProductOperability(DEFAULT_ID, product)).thenThrow(
+				new RestClientException("OK"));
+		Mockito.when(this.personalizeFacade.updateProductVisibility(DEFAULT_ID, product)).thenThrow(
+				new RestClientException("OK"));
+		this.personalizeController.operKey();
+
 	}
 
 	@Test
@@ -100,5 +108,9 @@ public class PersonalizeProductControllerImplTest extends AbstractBbvaController
 		Mockito.when(this.update.getFolio()).thenReturn("123456789");
 		this.personalizeController.updateAlias();
 		Mockito.verify(this.updateAliasFacade, Mockito.atLeastOnce()).updateSubject("12345656", update);
+
+		// ClientException
+		Mockito.when(this.updateAliasFacade.updateSubject("12345656", update)).thenThrow(new RestClientException("OK"));
+		this.personalizeController.updateAlias();
 	}
 }

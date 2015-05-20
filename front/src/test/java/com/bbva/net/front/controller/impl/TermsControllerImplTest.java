@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
+import org.springframework.web.client.RestClientException;
 
 import com.bbva.net.back.facade.TermasAccountsFacade;
 import com.bbva.net.back.model.accounts.TermsAccountsDto;
@@ -29,7 +30,6 @@ public class TermsControllerImplTest extends AbstractBbvaControllerTest {
 		this.detallesCuenta = Mockito.mock(TermasAccountsFacade.class);
 		// Setear el facade
 		this.termsController.setDetallesCuenta(detallesCuenta);
-
 	}
 
 	@Test
@@ -45,6 +45,17 @@ public class TermsControllerImplTest extends AbstractBbvaControllerTest {
 		termsAccountsDto = this.termsController.getAllConditions();
 		// mirar que la respuesta no venga vacia
 		Assert.assertNotNull(termsAccountsDto);
-
 	}
+
+	@Test
+	public void wormGetConditions() {
+		// Mockar el producto
+		Mockito.when(termsController.getSelectedProduct()).thenReturn(productDto);
+		Mockito.when(productDto.getProductId()).thenReturn(DEFAULT_ID);
+		// Mockear la respuesta
+		Mockito.when(this.detallesCuenta.getAllConditions(DEFAULT_ID)).thenThrow(new RestClientException("OK"));
+
+		this.termsController.getAllConditions();
+	}
+
 }

@@ -2,12 +2,11 @@ package com.bbva.net.webservices.products;
 
 import java.util.List;
 
-import javax.ws.rs.ServiceUnavailableException;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
+import org.springframework.web.client.RestClientException;
 
 import com.bbva.czic.dto.net.Conditions;
 import com.bbva.czic.dto.net.Extracto;
@@ -44,11 +43,25 @@ public class ProductsServiceImplTest extends AbstractBbvaRestClientTest {
 		Mockito.verify(this.webClient, Mockito.atLeastOnce()).get(Conditions.class);
 	}
 
+	@SuppressWarnings("unchecked")
+	@Test(expected = RestClientException.class)
+	public void checkGetConditionsThrowException() {
+		Mockito.when(webClient.get(Conditions.class)).thenThrow(RestClientException.class);
+		this.productServiceImpl.getConditions("00130443000200009410");
+	}
+
 	@Test
 	public void checkGetMovement() {
 		this.productServiceImpl.getMovement("00130443000200009410", "56456788", null);
 		this.productServiceImpl.getMovement("00130443000200009410", "56456788", "$filter");
 		Mockito.verify(this.webClient, Mockito.atLeastOnce()).get(Movement.class);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Test(expected = RestClientException.class)
+	public void checkGetMovementThrowException() {
+		Mockito.when(webClient.get(Movement.class)).thenThrow(RestClientException.class);
+		this.productServiceImpl.getMovement("00130443000200009410", "56456788", null);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -62,10 +75,10 @@ public class ProductsServiceImplTest extends AbstractBbvaRestClientTest {
 	}
 
 	@SuppressWarnings("unchecked")
-	@Test
+	@Test(expected = RestClientException.class)
 	public void checkListExtractsThrowException() {
 		// 1. Prepare Test (Create Mock)
-		Mockito.when(webClient.getCollection(Extracto.class)).thenThrow(ServiceUnavailableException.class);
+		Mockito.when(webClient.getCollection(Extracto.class)).thenThrow(RestClientException.class);
 		// 2. Invoke to method
 		final List<Extracto> result = this.productServiceImpl.listExtracts("00130443000200009410", "$filter");
 		// 3. Verify reult
@@ -81,6 +94,13 @@ public class ProductsServiceImplTest extends AbstractBbvaRestClientTest {
 		this.productServiceImpl.listMovements("00130443000200009410", "$filter", null, null);
 		this.productServiceImpl.listMovements("00130443000200009410", "$filter", 1, null);
 		Mockito.verify(this.webClient, Mockito.atLeastOnce()).getCollection(Movement.class);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Test(expected = RestClientException.class)
+	public void checkListMovementsThrowException() {
+		Mockito.when(webClient.getCollection(Movement.class)).thenThrow(RestClientException.class);
+		this.productServiceImpl.listMovements("00130443000200009410", null, 1, 10);
 	}
 
 }
