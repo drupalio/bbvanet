@@ -3,8 +3,9 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:composite="http://java.sun.com/jsf/composite"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
-	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui" xmlns:jsf="http://xmlns.jcp.org/jsf"
 	xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:cc="http://jsflive.at/taglib"
 	xmlns:bbvaInputCurrent="http://java.sun.com/jsf/composite/bbva/input"
 	xmlns:bbvaButton="http://java.sun.com/jsf/composite/bbva/button">
@@ -21,14 +22,14 @@
 						<label for="inputNumberFrom">#{msg['text.since']}:</label>
 					</div>
 					<div class="col-xs-12 col-md-12 balanceFrom refaling">
-						<input jsf:id="currencySince1" jsf:value="#{cc.attrs.valueSince}"
-							type="text" class="form-control refalingInput" maxlength="12"
-							name="inputNumberFrom" data-min="0" data-max="12" autocomplete="off"
-							data-filter="#{msg['text.since']}">
-						<f:validateLength maximum="12" minimum="1" />
-						<p:ajax event="keyup" update="out, balanceButton"
-							listener="#{movementsCriteriaController.balanceValidator}" />
-						</input>
+						<p:inputText id="currencySince1" value="#{cc.attrs.valueSince}"
+							type="text" styleClass="form-control refalingInput" maxlength="12"
+							name="inputNumberFrom" autocomplete="off"
+							converterMessage="Error de formato">
+							<f:validateLength maximum="12" minimum="1" />
+							<p:ajax event="keyup" update="out, balanceButton"
+								listener="#{movementsCriteriaController.balanceValidator}" />
+						</p:inputText>
 					</div>
 				</div>
 			</div>
@@ -38,19 +39,19 @@
 						<label for="inputNumberFrom">#{msg['text.to']}:</label>
 					</div>
 					<div class="col-xs-12 col-md-12 balanceTo refaling">
-						<input jsf:id="currencyTo" jsf:value="#{cc.attrs.valueTo}" type="text"
-							class="form-control refalingInput" maxlength="12" name="inputNumberTo"
-							data-min="1" data-max="12" autocomplete="off"
-							data-filter="#{msg['text.since']}">
-						<f:validateLength maximum="12" minimum="1" />
-						<p:ajax event="keyup" update="out, balanceButton"
-							listener="#{movementsCriteriaController.balanceValidator}" />
-						</input>
+						<p:inputText id="currencyTo" value="#{cc.attrs.valueTo}" type="text"
+							styleClass="form-control refalingInput" maxlength="12"
+							pt:name="inputNumberTo" autocomplete="off"
+							converterMessage="Error de formato">
+							<f:validateLength maximum="12" minimum="1" />
+							<p:ajax event="keyup" update="out, balanceButton"
+								listener="#{movementsCriteriaController.balanceValidator}" />
+						</p:inputText>
 					</div>
 				</div>
 			</div>
 		</div>
-		<small class="muted filter-description"> <h:outputText id="out"
+		<small> <h:outputText id="out"
 				value="#{movementsCriteriaController.messageBalance}"
 				style="color: #777777;" />
 		</small>

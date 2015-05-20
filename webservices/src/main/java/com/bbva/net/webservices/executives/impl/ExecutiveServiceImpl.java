@@ -2,6 +2,7 @@ package com.bbva.net.webservices.executives.impl;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.cxf.jaxrs.client.WebClient;
+import org.springframework.web.client.RestClientException;
 
 import com.bbva.czic.dto.net.Executive;
 import com.bbva.net.webservices.core.pattern.AbstractBbvaRestService;
@@ -20,14 +21,14 @@ public class ExecutiveServiceImpl extends AbstractBbvaRestService implements Exe
 	@Override
 	public Executive getExecutive(final String filter, final String fields, final String expands, final String sort) {
 
-		final WebClient webC = getJsonWebClient(URL_BASE_EXECUTIVE);
-		if (!StringUtils.isEmpty(filter)) webC.query("$filter", filter);
 		try {
-			LOGGER.info("PETICION: " + URL_BASE_EXECUTIVE);
+			final WebClient webC = getJsonWebClient(URL_BASE_EXECUTIVE);
+			if (!StringUtils.isEmpty(filter)) webC.query("$filter", filter);
 			return webC.get(Executive.class);
-		} catch (Exception ex) {
-			LOGGER.info("[Servicio getExecutive No respondió al obtener el ejecutivo] " + ex.getMessage());
-			return new Executive();
+
+		} catch (Exception e) {
+			throw new RestClientException("Servicio no disponible. - oznr");
+
 		}
 	}
 

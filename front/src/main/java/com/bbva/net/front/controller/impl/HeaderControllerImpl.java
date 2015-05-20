@@ -2,6 +2,8 @@ package com.bbva.net.front.controller.impl;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.context.annotation.Scope;
@@ -39,7 +41,14 @@ public class HeaderControllerImpl extends AbstractBbvaController implements Head
 	@Override
 	public ExecutiveDto getExecutive() {
 
-		return headerFacade.getExecutive();
+		try {
+			return headerFacade.getExecutive();
+		} catch (Exception e) {
+			FacesContext ctx = FacesContext.getCurrentInstance();
+			ctx.addMessage("getCardsChargesByUser ", new FacesMessage(e.getMessage()));
+			return new ExecutiveDto();
+
+		}
 	}
 
 	public ExecutiveDto getEjecutivo() {
@@ -75,10 +84,12 @@ public class HeaderControllerImpl extends AbstractBbvaController implements Head
 				this.cliente = headerFacade.getCustomer(userName, docTypeUser, docIdUser);
 				LOGGER.info("CLIENT TOSTRING(): " + cliente.toString());
 			} catch (final Exception exception) {
-				this.cliente = new CustomerDto();
 				LOGGER.info("Error header controller getCustomer: " + exception.getMessage());
+				FacesContext ctx = FacesContext.getCurrentInstance();
+				ctx.addMessage("getCustomer ", new FacesMessage(exception.getMessage()));
+				this.cliente = new CustomerDto();
 			}
 		}
-		return this.cliente;
+		return cliente;
 	}
 }

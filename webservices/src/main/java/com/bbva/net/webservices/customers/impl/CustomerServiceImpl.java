@@ -1,6 +1,5 @@
 package com.bbva.net.webservices.customers.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.core.Response;
@@ -8,6 +7,7 @@ import javax.ws.rs.core.Response;
 import org.apache.cxf.common.util.StringUtils;
 import org.apache.cxf.jaxrs.client.WebClient;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.client.RestClientException;
 
 import com.bbva.czic.dto.net.AccMovementsResume;
 import com.bbva.czic.dto.net.CardCharge;
@@ -31,16 +31,17 @@ public class CustomerServiceImpl extends AbstractBbvaRestService implements Cust
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<AccMovementsResume> listAccountsMovementsResume(String filter) {
-
-		WebClient wc = getJsonWebClient(URL_BASE_CUSTOMER + URL_CUSTOMER);
-		LOGGER.info("PETICION: " + wc.getCurrentURI());
-		if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
 		try {
+
+			// throw new Exception();
+			WebClient wc = getJsonWebClient(URL_BASE_CUSTOMER + URL_CUSTOMER);
+			if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
 			return (List<AccMovementsResume>)wc.getCollection(AccMovementsResume.class);
-		} catch (Exception ex) {
+
+		} catch (Exception e) {
 			LOGGER.info("[Servicio listAccountsMovementsResume No respondió al obtener grafica de cuentas] "
-					+ ex.getMessage());
-			return new ArrayList<AccMovementsResume>();
+					+ e.getMessage());
+			throw new RestClientException("Servicio no disponible - (oznq)");
 		}
 
 	}
@@ -48,29 +49,27 @@ public class CustomerServiceImpl extends AbstractBbvaRestService implements Cust
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<CardCharge> listCreditCardsCharges(String filter) {
-		WebClient wc = getJsonWebClient(URL_BASE_CUSTOMER + URL_CARDCHARGES);
-		if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
 		try {
-			LOGGER.info("PETICION: " + URL_BASE_CUSTOMER + URL_CARDCHARGES);
+			WebClient wc = getJsonWebClient(URL_BASE_CUSTOMER + URL_CARDCHARGES);
+			if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
 			return (List<CardCharge>)wc.getCollection(CardCharge.class);
-		} catch (Exception ex) {
-			LOGGER.info("[Servicio listCreditCardsCharges No respondió al obtener grafica de tarjetas] "
-					+ ex.getMessage());
-			return new ArrayList<CardCharge>();
-		}
 
+		} catch (Exception e) {
+			LOGGER.info("[Servicio listCreditCardsCharges No respondió al obtener grafica de tarjetas] "
+					+ e.getMessage());
+			throw new RestClientException("Servicio no disponible. Intente más tarde - (tx)oznp");
+		}
 	}
 
 	@Override
 	public Customer getCustomer(String filter) {
-		WebClient wc = getJsonWebClient(URL_BASE_CUSTOMER);
-		if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
 		try {
-			LOGGER.info("PETICION: " + URL_BASE_CUSTOMER);
+			// throw new Exception();
+			WebClient wc = getJsonWebClient(URL_BASE_CUSTOMER);
+			if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
 			return wc.get(Customer.class);
-		} catch (Exception ex) {
-			LOGGER.info("[Servicio getCustomer No respondió al obtener el cliente] " + ex.getMessage());
-			return new Customer();
+		} catch (Exception e) {
+			throw new RestClientException("Servicio no disponible. Intente más tarde - (tx)oznb");
 		}
 	}
 

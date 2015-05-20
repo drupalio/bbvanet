@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.cxf.common.util.StringUtils;
 import org.apache.cxf.jaxrs.client.WebClient;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.client.RestClientException;
 
 import com.bbva.czic.dto.net.AccMovementsResume;
 import com.bbva.czic.dto.net.Account;
@@ -98,17 +99,18 @@ public class AccountsServiceImpl extends AbstractBbvaRestService implements Acco
 	@Override
 	public List<MonthlyBalances> getAccountMonthlyBalance(String accountId, String filter, String fields,
 			String expands, String sort) {
-		WebClient wc = getJsonWebClient(URL_BASE_ACCOUNTS + accountId + URL_MOUNTHBALANCE);
-
-		LOGGER.info("PETICION: " + wc.getCurrentURI());
-		if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
 		try {
-			final List<MonthlyBalances> res = (List<MonthlyBalances>)wc.getCollection(MonthlyBalances.class);
+
+			WebClient wc = getJsonWebClient(URL_BASE_ACCOUNTS + accountId + URL_MOUNTHBALANCE);
+			if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
+
+			List<MonthlyBalances> res = (List<MonthlyBalances>)wc.getCollection(MonthlyBalances.class);
+
 			return res;
-		} catch (Exception ex) {
+		} catch (Exception e) {
 			LOGGER.info("[Servicio getAccountMonthlyBalance No respondió al obtener grafica de tarjetas] "
-					+ ex.getMessage());
-			return new ArrayList<MonthlyBalances>();
+					+ e.getMessage());
+			throw new RestClientException("Servicio no disponible - (oznv)");
 		}
 	}
 

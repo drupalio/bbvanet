@@ -1,10 +1,10 @@
 package com.bbva.net.webservices.globalposition.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.cxf.jaxrs.client.WebClient;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.client.RestClientException;
 
 import com.bbva.czic.dto.net.Product;
 import com.bbva.net.webservices.core.pattern.AbstractBbvaRestService;
@@ -33,7 +33,8 @@ public class GlobalPositionServiceImpl extends AbstractBbvaRestService implement
 		} catch (Exception ex) {
 			LOGGER.info("[Servicio getExtractGlobalBalance No respondió al obtener Lista de Posición global] "
 					+ ex.getMessage());
-			return new ArrayList<Product>();
+			throw new RestClientException("Servicio no disponible Intente más tarde - (tx)(ozn1)");
+			// return new ArrayList<Product>();
 		}
 
 	}

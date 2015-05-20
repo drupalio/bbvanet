@@ -52,6 +52,8 @@ public class ResponseInterceptor extends AbstractInDatabindingInterceptor implem
 			LOGGER.info("Recogiendo TSEC y añadiendo a sesión:" + tsec);
 			session.setAttribute(TSecType.tsec.name(), tsec);
 		} catch (final Exception exception) {
+			// Muestra el mensaje de error de tsec caducado
+			// RequestContext.getCurrentInstance().execute("PF('mistake').show();");
 			LOGGER.info("ERROR RESPONSE INTERCEPTOR: " + exception.getCause());
 		}
 
