@@ -10,6 +10,7 @@ import org.apache.cxf.interceptor.AbstractInDatabindingInterceptor;
 import org.apache.cxf.interceptor.Fault;
 import org.apache.cxf.message.Message;
 import org.apache.cxf.phase.Phase;
+import org.primefaces.context.RequestContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.faces.webflow.FlowFacesContext;
@@ -53,7 +54,7 @@ public class ResponseInterceptor extends AbstractInDatabindingInterceptor implem
 			session.setAttribute(TSecType.tsec.name(), tsec);
 		} catch (final Exception exception) {
 			// Muestra el mensaje de error de tsec caducado
-			// RequestContext.getCurrentInstance().execute("PF('mistake').show();");
+			RequestContext.getCurrentInstance().execute("PF('mistake').show();");
 			LOGGER.info("ERROR RESPONSE INTERCEPTOR: " + exception.getCause());
 		}
 
