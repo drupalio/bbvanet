@@ -14,6 +14,7 @@ import org.junit.Test;
 import org.mockito.Mockito;
 import org.powermock.reflect.Whitebox;
 import org.primefaces.event.SelectEvent;
+import org.springframework.web.client.RestClientException;
 
 import com.bbva.net.back.facade.CheckBookFacade;
 import com.bbva.net.back.facade.MultiValueGroupFacade;
@@ -76,13 +77,15 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
 		this.checkBookController.setCheckBookList(check);
 		this.checkBookController.getCheckBookList();
 		// Mockear la respuesta
-		this.checkBookController.initCheckBookList();
-		this.checkBookController.initCheckBookList();
 		check.add(new CheckbookDto(null, null, null, null, null, null, DEFAULT_ID, null));
 		Mockito.when(this.checkBookFacade.getCheckBooksById(DEFAULT_ID)).thenReturn(check);
+		// OK
 		this.checkBookController.initCheckBookList();
 		this.checkBookController.setCheckBooks(checkBooks);
 		this.checkBookController.getCheckBooks();
+		// ClientException
+		Mockito.when(checkBookFacade.getCheckBooksById(DEFAULT_ID)).thenThrow(new RestClientException("OK"));
+		this.checkBookController.initCheckBookList();
 	}
 
 	@Test
@@ -164,12 +167,18 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
 		this.checkBookController.setDateRange(new DateRangeDto());
 		this.checkBookController.getDateRange();
 		this.checkBookController.showResults(eventAction);
-		// FILTERNUMBERCHECK (true)
+		// FILTERNUMBERCHECK (true) OK
 		renderComponents.put(RenderAttributes.FILTERNUMBERCHECK.toString(), true);
 		this.checkBookController.setCheck(new CheckDto());
 		this.checkBookController.getCheck();
 		this.checkBookController.setCheckNumber("");
 		this.checkBookController.getCheckNumber();
+		Mockito.when(checkBookFacade.getCheckById(DEFAULT_ID, "")).thenReturn(new CheckDto());
+		this.checkBookController.showResults(eventAction);
+		// FILTERNUMBERCHECK (true) ClientException
+		renderComponents.put(RenderAttributes.FILTERNUMBERCHECK.toString(), true);
+		this.checkBookController.setCheckNumber("");
+		Mockito.when(checkBookFacade.getCheckById(DEFAULT_ID, "")).thenThrow(new RestClientException("OK"));
 		this.checkBookController.showResults(eventAction);
 		// FILTERSTATUS (true)
 		renderComponents.put(RenderAttributes.FILTERSTATUS.toString(), true);
@@ -177,11 +186,20 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
 		this.checkBookController.setCheckState("1");
 		this.checkBookController.getTitleState();
 		this.checkBookController.showResults(eventAction);
-		// FILTERCHECKBOOK (true)
+		// FILTERCHECKBOOK (true) OK
 		renderComponents.put(RenderAttributes.FILTERCHECKBOOK.toString(), true);
 		renderComponents.put(RenderAttributes.FILTERDATECHECK.toString(), false);
 		this.checkBookController.setCheckBookNumber("1234");
 		this.checkBookController.getCheckBookNumber();
+		Mockito.when(this.checkBookFacade.getCheckBookByAccountId(DEFAULT_ID, "1234")).thenReturn(
+				new ArrayList<CheckbookDto>());
+		this.checkBookController.showResults(eventAction);
+		// FILTERCHECKBOOK (true) ClientException
+		renderComponents.put(RenderAttributes.FILTERCHECKBOOK.toString(), true);
+		renderComponents.put(RenderAttributes.FILTERDATECHECK.toString(), false);
+		this.checkBookController.setCheckBookNumber("1234");
+		Mockito.when(this.checkBookFacade.getCheckBookByAccountId(DEFAULT_ID, "1234")).thenThrow(
+				new RestClientException("OK"));
 		this.checkBookController.showResults(eventAction);
 	}
 

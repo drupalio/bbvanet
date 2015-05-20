@@ -7,6 +7,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
+import org.springframework.web.client.RestClientException;
 
 import com.bbva.net.back.facade.CheckBookFacade;
 import com.bbva.net.back.model.checkbook.CheckDto;
@@ -52,6 +53,7 @@ public class CheckPaginatedControllerTest extends AbstractBbvaControllerTest {
 
 	@Test
 	public void checkNextPage() {
+		// OK
 		Mockito.when(
 				checkBookFacade.getCheckByStatusOrDate(DEFAULT_ID, dateRangePControl,
 						this.checkPaginatedController.getStatusPControl(), 0, 10)).thenReturn(checkList);
@@ -59,6 +61,14 @@ public class CheckPaginatedControllerTest extends AbstractBbvaControllerTest {
 		Assert.assertNotNull(result);
 		Mockito.verify(this.checkBookFacade, Mockito.atLeastOnce()).getCheckByStatusOrDate(DEFAULT_ID,
 				dateRangePControl, this.checkPaginatedController.getStatusPControl(), 0, 10);
+
+		// ClientException
+		Mockito.when(
+				checkBookFacade.getCheckByStatusOrDate(DEFAULT_ID, dateRangePControl,
+						this.checkPaginatedController.getStatusPControl(), 0, 10)).thenThrow(
+				new RestClientException("OK"));
+		result = this.checkPaginatedController.getNextPage(0, 10);
+		Assert.assertNotNull(result);
 	}
 
 	@Test

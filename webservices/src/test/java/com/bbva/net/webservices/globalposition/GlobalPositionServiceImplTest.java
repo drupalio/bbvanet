@@ -1,10 +1,9 @@
 package com.bbva.net.webservices.globalposition;
 
-import javax.naming.ServiceUnavailableException;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
+import org.springframework.web.client.RestClientException;
 
 import com.bbva.czic.dto.net.Product;
 import com.bbva.net.webservices.core.pattern.AbstractBbvaRestService;
@@ -35,18 +34,22 @@ public class GlobalPositionServiceImplTest extends AbstractBbvaRestClientTest {
 
 	@SuppressWarnings("unchecked")
 	@Test
-	public void checkGetGlobalProducts_OK() {
-
+	public void checkGetGlobalProductsOk() {
 		Mockito.when(webClient.getCollection(Product.class)).thenReturn(Mockito.anyCollection());
 		globalpositionServiceImpl.getExtractGlobalBalance("123");
 		Mockito.verify(this.webClient, Mockito.atLeastOnce()).getCollection(Product.class);
 	}
 
+	@SuppressWarnings("unchecked")
+	@Test(expected = RestClientException.class)
+	public void checkGetGlobalProductThrowException() {
+		Mockito.when(webClient.getCollection(Product.class)).thenThrow(RestClientException.class);
+		this.globalpositionServiceImpl.getExtractGlobalBalance("123");
+	}
+
 	@Test
-	public void checkUpdateProductOperability_OK() {
-
+	public void checkUpdateProductOperabilityOk() {
 		final Product productParamenter = new Product();
-
 		Mockito.when(webClient.put(productParamenter)).thenReturn(response);
 		Mockito.when(webClient.getResponse()).thenReturn(response);
 		Mockito.when(response.getStatus()).thenReturn(200);
@@ -56,11 +59,17 @@ public class GlobalPositionServiceImplTest extends AbstractBbvaRestClientTest {
 		Mockito.verify(this.webClient, Mockito.atLeastOnce()).put(productParamenter);
 	}
 
+	@SuppressWarnings("unchecked")
+	@Test(expected = RestClientException.class)
+	public void checkUpdateProductOperabilityThrow() {
+		final Product productParamenter = new Product();
+		Mockito.when(webClient.put(productParamenter)).thenThrow(RestClientException.class);
+		this.globalpositionServiceImpl.updateProductOperability("123", productParamenter);
+	}
+
 	@Test
 	public void checkUpdateProductVisibility_OK() {
-
 		final Product productParamenter = new Product();
-
 		Mockito.when(webClient.put(productParamenter)).thenReturn(response);
 		Mockito.when(webClient.getResponse()).thenReturn(response);
 		Mockito.when(response.getStatus()).thenReturn(200);
@@ -71,10 +80,10 @@ public class GlobalPositionServiceImplTest extends AbstractBbvaRestClientTest {
 	}
 
 	@SuppressWarnings("unchecked")
-	@Test(expected = ServiceUnavailableException.class)
-	public void checkGetGlobalProductsThrowsException() {
-
-		Mockito.when(webClient.getCollection(Product.class)).thenThrow(ServiceUnavailableException.class);
-		globalpositionServiceImpl.getExtractGlobalBalance("123");
+	@Test(expected = RestClientException.class)
+	public void heckUpdateProductVisibilityThrow() {
+		final Product productParamenter = new Product();
+		Mockito.when(webClient.put(productParamenter)).thenThrow(RestClientException.class);
+		this.globalpositionServiceImpl.updateProductVisibility("123", productParamenter);
 	}
 }

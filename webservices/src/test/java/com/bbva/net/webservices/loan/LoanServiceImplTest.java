@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
+import org.springframework.web.client.RestClientException;
 
 import com.bbva.czic.dto.net.Loan;
 import com.bbva.czic.dto.net.Movement;
@@ -44,6 +45,13 @@ public class LoanServiceImplTest extends AbstractBbvaRestClientTest {
 		Mockito.verify(this.webClient, Mockito.atLeastOnce()).get(Loan.class);
 	}
 
+	@SuppressWarnings("unchecked")
+	@Test(expected = RestClientException.class)
+	public void checkGetRotaryQuotaThrowException() {
+		Mockito.when(webClient.get(Loan.class)).thenThrow(RestClientException.class);
+		this.loanServiceImpl.getRotaryQuota("00130443000200009410");
+	}
+
 	@Test
 	public void checkGetRotaryQuotaMovement() {
 		RotaryQuotaMove rotary = new RotaryQuotaMove();
@@ -58,6 +66,13 @@ public class LoanServiceImplTest extends AbstractBbvaRestClientTest {
 	}
 
 	@SuppressWarnings("unchecked")
+	@Test(expected = RestClientException.class)
+	public void checkGetRotaryQuotaMovementThrowException() {
+		Mockito.when(webClient.get(RotaryQuotaMove.class)).thenThrow(RestClientException.class);
+		this.loanServiceImpl.getRotaryQuotaMovement("00130443000200009410", "5645535");
+	}
+
+	@SuppressWarnings("unchecked")
 	@Test
 	public void checkListRotaryQuotaMovements() {
 		// Mockito
@@ -69,5 +84,12 @@ public class LoanServiceImplTest extends AbstractBbvaRestClientTest {
 		this.loanServiceImpl.listRotaryQuotaMovements("00130443000200009410", "1", null, "$filter");
 		// Verificar el get del servicio
 		Mockito.verify(this.webClient, Mockito.atLeastOnce()).getCollection(Movement.class);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Test(expected = RestClientException.class)
+	public void checkListRotaryQuotaMovementsThrowException() {
+		Mockito.when(webClient.getCollection(Movement.class)).thenThrow(RestClientException.class);
+		this.loanServiceImpl.listRotaryQuotaMovements("00130443000200009410", "1", 10, null);
 	}
 }
