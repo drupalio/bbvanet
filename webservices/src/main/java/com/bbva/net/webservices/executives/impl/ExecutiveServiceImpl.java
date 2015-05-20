@@ -20,16 +20,14 @@ public class ExecutiveServiceImpl extends AbstractBbvaRestService implements Exe
 	 */
 	@Override
 	public Executive getExecutive(final String filter, final String fields, final String expands, final String sort) {
-
 		try {
 			final WebClient webC = getJsonWebClient(URL_BASE_EXECUTIVE);
 			if (!StringUtils.isEmpty(filter)) webC.query("$filter", filter);
 			return webC.get(Executive.class);
 
 		} catch (Exception e) {
-			throw new RestClientException("Servicio no disponible. - oznr");
-
+			throw new RestClientException(
+					"Servicio no disponible - No se ha podido cargar la información del ejecutivo, para mayor información comunicate a nuestras líneas BBVA");
 		}
 	}
-
 }

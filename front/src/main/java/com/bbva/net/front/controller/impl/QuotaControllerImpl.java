@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
 import org.apache.commons.lang.StringUtils;
@@ -82,9 +84,14 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 		// obtener el producto
 		this.productDto = super.getSelectedProduct();
 		if (productDto != null && productDto.getProductId() != null) {
-			LOGGER.info("Datos del producto Seleccionado Terminado " + " Product Id: " + productDto.getProductId());
-			this.quotaDetailDto = this.quotaDetailFacade.getDetailRotaryQuota(this.productDto.getProductId());
-			LOGGER.info("Datos del quotaDetailDto Terminados" + " Product Id: " + quotaDetailDto.getId());
+			try {
+				LOGGER.info("Datos del producto Seleccionado Terminado " + " Product Id: " + productDto.getProductId());
+				this.quotaDetailDto = this.quotaDetailFacade.getDetailRotaryQuota(this.productDto.getProductId());
+				LOGGER.info("Datos del quotaDetailDto Terminados" + " Product Id: " + quotaDetailDto.getId());
+			} catch (Exception e) {
+				FacesContext ctx = FacesContext.getCurrentInstance();
+				ctx.addMessage("quotaDetailDto", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+			}
 		} else {
 			LOGGER.info("Datos del producto Seleccionado Vacio (null)");
 			this.productDto = new ProductDto();
@@ -170,27 +177,28 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 		this.quotaMove = super.getSelectedMovements();
 		String identify = String.format("%06d", Integer.valueOf(quotaMove.getMovementId())) + ""
 				+ String.format("%04d", Integer.valueOf(quotaMove.getExtractNumber()));
-		this.quotaMoveDetailDto = this.quotaDetailFacade.getRotaryQuotaMovement(this.productDto.getProductId(),
-				identify);
-		LOGGER.info("Movimiento Seleccionado " + quotaMoveDetailDto.getId());
+		try {
+			this.quotaMoveDetailDto = this.quotaDetailFacade.getRotaryQuotaMovement(this.productDto.getProductId(),
+					identify);
+			LOGGER.info("Movimiento Seleccionado " + quotaMoveDetailDto.getId());
+		} catch (Exception e) {
+			FacesContext ctx = FacesContext.getCurrentInstance();
+			ctx.addMessage("quotaMoveDetailDto", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+		}
 	}
 
 	@Override
 	public void oneSelectDate() {
 		LOGGER.info("Method oneSelectDate");
-
 		renderComponents.put(RenderAttributes.FILTERDATE.toString(), true);
-
 		if (getSelectDate().equals(CONCRETE_DATE)) {
 			renderComponents.put(RenderAttributes.CALENDAR.toString(), false);
 			renderComponents.put(RenderAttributes.BUTTONDATE.toString(), false);
 			LOGGER.info("Fecha Concreta: " + " Calendar: " + renderComponents.get(RenderAttributes.CALENDAR.toString())
 					+ " Boton: " + renderComponents.get(RenderAttributes.BUTTONDATE.toString()));
-
 		} else {
 			renderComponents.put(RenderAttributes.CALENDAR.toString(), true);
 			renderComponents.put(RenderAttributes.BUTTONDATE.toString(), false);
-
 			LOGGER.info("Radio Button: " + " Calendar: " + renderComponents.get(RenderAttributes.CALENDAR.toString())
 					+ " Boton: " + renderComponents.get(RenderAttributes.BUTTONDATE.toString()));
 		}

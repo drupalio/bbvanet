@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ws.rs.core.Response;
 
 import org.apache.cxf.jaxrs.client.WebClient;
+import org.springframework.web.client.RestClientException;
 
 import com.bbva.net.webservices.agileOperations.AgileOperationsService;
 // import com.bbva.czic.dto.net.Product;
@@ -24,10 +25,13 @@ public class AgileOperationsServiceImpl extends AbstractBbvaRestService implemen
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<AgileOperation> getAgileOperations(final String $filter) {
-		// String filterParam = $filter.equals("") ? "" : "$filter";
-		final WebClient webc = getJsonWebClient(URL_BASE_OPERATIONS);
-		// wc.query(filterParam, $filter);
-		return (List<AgileOperation>)webc.getCollection(AgileOperation.class);
+		try {
+			final WebClient webc = getJsonWebClient(URL_BASE_OPERATIONS);
+			return (List<AgileOperation>)webc.getCollection(AgileOperation.class);
+		} catch (Exception e) {
+			throw new RestClientException(
+					"Servicio no disponible - No se han podido cargar la información de favoritos, para mayor información comunicate a nuestras líneas BBVA");
+		}
 	}
 
 	/**

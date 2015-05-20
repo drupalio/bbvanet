@@ -63,7 +63,6 @@ public class AccountMovementsResumeFacadeImpl extends AbstractBbvaFacade impleme
 		if (dateRange.getDateSince().equals(dateRange.getDateTo())) {
 			EnumPeriodType periodType = EnumPeriodType.valueOf(EnumPeriodType.LAST_SIX_MONTH.getPeriodId());
 			dateRan = dateFilterService.getPeriodFilter(periodType);
-
 		}
 		String filter = dateRange == null ? StringUtils.EMPTY : fiqlService
 				.getFiqlQueryByDateRange(dateRan, DATE, DATE);

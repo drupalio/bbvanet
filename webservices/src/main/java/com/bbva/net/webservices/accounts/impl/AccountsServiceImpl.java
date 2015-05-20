@@ -1,6 +1,5 @@
 package com.bbva.net.webservices.accounts.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.cxf.common.util.StringUtils;
@@ -31,67 +30,62 @@ public class AccountsServiceImpl extends AbstractBbvaRestService implements Acco
 
 	@Override
 	public Account getAccount(String accountId) {
-		WebClient wc = getJsonWebClient(URL_BASE_ACCOUNTS + accountId);
 		try {
-			LOGGER.info("PETICION: " + URL_BASE_ACCOUNTS + accountId);
+			WebClient wc = getJsonWebClient(URL_BASE_ACCOUNTS + accountId);
 			return wc.get(Account.class);
-		} catch (Exception ex) {
-			LOGGER.info("[Servicio getAccount No respondió al obtener la cuenta] " + ex.getMessage());
-			return new Account();
+		} catch (Exception e) {
+			throw new RestClientException(
+					"Servicio no disponible - No se han podido cargar la información de chequeras, para mayor información comunicate a nuestras líneas BBVA");
+
 		}
 	}
 
 	@Override
 	public Check getCheck(String accountId, String checkId) {
-		WebClient wc = getJsonWebClient(URL_BASE_ACCOUNTS + accountId + URL_CHECK + checkId);
-		if (accountId != null && checkId != null) {
-			wc.query("checkbookId", checkId);
-			wc.query("accountId", accountId);
-		}
 		try {
-			LOGGER.info("PETICION: " + URL_BASE_ACCOUNTS + accountId + URL_CHECK + checkId);
+			WebClient wc = getJsonWebClient(URL_BASE_ACCOUNTS + accountId + URL_CHECK + checkId);
+			if (accountId != null && checkId != null) {
+				wc.query("checkbookId", checkId);
+				wc.query("accountId", accountId);
+			}
 			return wc.get(Check.class);
-		} catch (Exception ex) {
-			LOGGER.info("[Servicio getCheck No respondió al obtener el check] " + ex.getMessage());
-			return new Check();
+		} catch (Exception e) {
+			throw new RestClientException(
+					"Servicio no disponible - No se han podido cargar la información del cheque seleccionado, para mayor información comunicate a nuestras líneas BBVA");
 		}
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Checkbook> getCheckbook(String accountId, String checkbookId) {
-		WebClient wc = getJsonWebClient(URL_BASE_ACCOUNTS + accountId + URL_CHECKBOOK + checkbookId);
-
-		if (accountId != null && checkbookId != null) {
-			wc.query("checkbookId", checkbookId);
-			wc.query("accountId", accountId);
-		}
 		try {
-			LOGGER.info("PETICION: " + URL_BASE_ACCOUNTS + accountId + URL_CHECKBOOK + checkbookId);
+			WebClient wc = getJsonWebClient(URL_BASE_ACCOUNTS + accountId + URL_CHECKBOOK + checkbookId);
+			if (accountId != null && checkbookId != null) {
+				wc.query("checkbookId", checkbookId);
+				wc.query("accountId", accountId);
+			}
 			return (List<Checkbook>)wc.getCollection(Checkbook.class);
-		} catch (Exception ex) {
-			LOGGER.info("[Servicio getCheckbook No respondió al obtener el checkbook] " + ex.getMessage());
-			return new ArrayList<Checkbook>();
+		} catch (Exception e) {
+			throw new RestClientException(
+					"Servicio no disponible - No se han podido cargar la lista de chequeras, para mayor información comunicate a nuestras líneas BBVA");
 		}
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Check> listCheck(String accountId, String filter, Integer paginationKey, Integer pageSize) {
-
-		WebClient wc = getJsonWebClient(URL_BASE_ACCOUNTS + accountId + URL_CHECK_LIST);
-		if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
-
-		if (paginationKey != null && pageSize != null) {
-			wc.query("paginationKey", paginationKey);
-			wc.query("pageSize", pageSize);
-		}
 		try {
-			LOGGER.info("PETICION: " + URL_BASE_ACCOUNTS + accountId + URL_CHECK_LIST);
+			WebClient wc = getJsonWebClient(URL_BASE_ACCOUNTS + accountId + URL_CHECK_LIST);
+			if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
+
+			if (paginationKey != null && pageSize != null) {
+				wc.query("paginationKey", paginationKey);
+				wc.query("pageSize", pageSize);
+			}
 			return (List<Check>)wc.getCollection(Check.class);
-		} catch (Exception ex) {
-			LOGGER.info("[Servicio listCheck No respondió al obtener la lista de cheques] " + ex.getMessage());
-			return new ArrayList<Check>();
+		} catch (Exception e) {
+			throw new RestClientException(
+					"Servicio no disponible - No se han podido cargar la lista de cheques, para mayor información comunicate a nuestras líneas BBVA");
 		}
 	}
 
@@ -100,17 +94,12 @@ public class AccountsServiceImpl extends AbstractBbvaRestService implements Acco
 	public List<MonthlyBalances> getAccountMonthlyBalance(String accountId, String filter, String fields,
 			String expands, String sort) {
 		try {
-
 			WebClient wc = getJsonWebClient(URL_BASE_ACCOUNTS + accountId + URL_MOUNTHBALANCE);
 			if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
-
-			List<MonthlyBalances> res = (List<MonthlyBalances>)wc.getCollection(MonthlyBalances.class);
-
-			return res;
+			return (List<MonthlyBalances>)wc.getCollection(MonthlyBalances.class);
 		} catch (Exception e) {
-			LOGGER.info("[Servicio getAccountMonthlyBalance No respondió al obtener grafica de tarjetas] "
-					+ e.getMessage());
-			throw new RestClientException("Servicio no disponible - (oznv)");
+			throw new RestClientException(
+					"Servicio no disponible - No se han podido cargar la información para la gráfica de depositos Electrónicos, para mayor información comunicate a nuestras líneas BBVA");
 		}
 	}
 
@@ -118,16 +107,13 @@ public class AccountsServiceImpl extends AbstractBbvaRestService implements Acco
 	@Override
 	public List<AccMovementsResume> getAccMovementResume(String id, String filter, String $fields, String $expands,
 			String $sort) {
-		WebClient wc = getJsonWebClient(URL_BASE_ACCOUNTS + id + URL_ACCOUNTS);
-		if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
 		try {
-			LOGGER.info("PETICION: " + URL_BASE_ACCOUNTS + id + URL_ACCOUNTS);
+			WebClient wc = getJsonWebClient(URL_BASE_ACCOUNTS + id + URL_ACCOUNTS);
+			if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
 			return (List<AccMovementsResume>)wc.getCollection(AccMovementsResume.class);
-		} catch (Exception ex) {
-			LOGGER.info("[Servicio getAccMovementResume No respondió al obtener el resume del movimiento cuentas] "
-					+ ex.getMessage());
-			return new ArrayList<AccMovementsResume>();
+		} catch (Exception e) {
+			throw new RestClientException(
+					"Servicio no disponible - No se han podido cargar la información para la gráfica de cuentas, para mayor información comunicate a nuestras líneas BBVA");
 		}
 	}
-
 }

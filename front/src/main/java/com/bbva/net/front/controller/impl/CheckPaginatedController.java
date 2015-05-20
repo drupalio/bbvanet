@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 import com.bbva.net.back.facade.CheckBookFacade;
 import com.bbva.net.back.model.checkbook.CheckDto;
@@ -35,10 +37,17 @@ public class CheckPaginatedController extends PaginationController<CheckDto> {
 
 	@Override
 	protected List<CheckDto> getNextPage(int pagination, int pageSize) {
-		LOGGER.info(" CheckPaginatedController getNextPage ");
-
-		return checkBookFacade.getCheckByStatusOrDate(getSelectedProduct().getProductId(), dateRangePControl,
-				statusPControl, pagination, pageSize);
+		List<CheckDto> checkList = new ArrayList<CheckDto>();
+		try {
+			LOGGER.info(" CheckPaginatedController getNextPage ");
+			checkList = checkBookFacade.getCheckByStatusOrDate(getSelectedProduct().getProductId(), dateRangePControl,
+					statusPControl, pagination, pageSize);
+		} catch (Exception e) {
+			FacesContext ctx = FacesContext.getCurrentInstance();
+			ctx.addMessage("Check by DATE OR STATUS",
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+		}
+		return checkList;
 	}
 
 	@Override

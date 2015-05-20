@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.primefaces.model.StreamedContent;
+import org.springframework.web.client.RestClientException;
 
 import com.bbva.net.back.facade.ExtractFacade;
 import com.bbva.net.back.model.extract.ExtractDto;
@@ -55,15 +56,25 @@ public class ExtractControllerImplTest extends AbstractBbvaControllerTest {
 		// Mockitos y set
 		this.extractFacade = Mockito.mock(ExtractFacade.class);
 		this.extractController.setExtractFacade(extractFacade);
+
 		this.extractController.setSelectedProduct(productDto);
 		Mockito.when(extractController.getSelectedProduct()).thenReturn(productDto);
+
+		// OK
 		Mockito.when(extractFacade.getExtractAvailable(DEFAULT_PRODUCT)).thenReturn(extractList);
-		// init
+		this.extractController.init();
+	}
+
+	@Test
+	public void wormExtract() {
+		// ClientException
+		Mockito.when(extractFacade.getExtractAvailable(DEFAULT_PRODUCT)).thenThrow(new RestClientException("OK"));
 		this.extractController.init();
 	}
 
 	@Test
 	public void checkDocumentExtract() {
+		// OK
 		Mockito.when(extractFacade.getDocumentExtract(DEFAULT_PRODUCT, extractDto)).thenReturn(extractList);
 		// Year null and Month null, URL NULL
 		StreamedContent file = this.extractController.documentExtract();
@@ -93,6 +104,13 @@ public class ExtractControllerImplTest extends AbstractBbvaControllerTest {
 		Mockito.when(extractFacade.getDocumentExtract(DEFAULT_PRODUCT, extractDto)).thenReturn(null);
 		// Verify
 		Mockito.verify(extractFacade, Mockito.atLeastOnce()).getDocumentExtract(DEFAULT_PRODUCT, extractDto);
+
+		// ClientException
+		this.extractController.setSelectedYear("2015");
+		Mockito.when(extractFacade.getDocumentExtract(DEFAULT_PRODUCT, extractDto)).thenThrow(
+				new RestClientException("OK"));
+		file = extractController.documentExtract();
+		Assert.assertNull(file);
 	}
 
 	@Test

@@ -32,16 +32,12 @@ public class CustomerServiceImpl extends AbstractBbvaRestService implements Cust
 	@Override
 	public List<AccMovementsResume> listAccountsMovementsResume(String filter) {
 		try {
-
-			// throw new Exception();
 			WebClient wc = getJsonWebClient(URL_BASE_CUSTOMER + URL_CUSTOMER);
 			if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
 			return (List<AccMovementsResume>)wc.getCollection(AccMovementsResume.class);
-
 		} catch (Exception e) {
-			LOGGER.info("[Servicio listAccountsMovementsResume No respondió al obtener grafica de cuentas] "
-					+ e.getMessage());
-			throw new RestClientException("Servicio no disponible - (oznq)");
+			throw new RestClientException(
+					"Servicio no disponible - No se ha podido cargar la lista de resumen de movimientos, para mayor información comunicate a nuestras líneas BBVA");
 		}
 
 	}
@@ -55,21 +51,20 @@ public class CustomerServiceImpl extends AbstractBbvaRestService implements Cust
 			return (List<CardCharge>)wc.getCollection(CardCharge.class);
 
 		} catch (Exception e) {
-			LOGGER.info("[Servicio listCreditCardsCharges No respondió al obtener grafica de tarjetas] "
-					+ e.getMessage());
-			throw new RestClientException("Servicio no disponible. Intente más tarde - (tx)oznp");
+			throw new RestClientException(
+					"Servicio no disponible - No se ha podido cargar la información de gráfica de tarjetas, para mayor información comunicate a nuestras líneas BBVA");
 		}
 	}
 
 	@Override
 	public Customer getCustomer(String filter) {
 		try {
-			// throw new Exception();
 			WebClient wc = getJsonWebClient(URL_BASE_CUSTOMER);
 			if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
 			return wc.get(Customer.class);
 		} catch (Exception e) {
-			throw new RestClientException("Servicio no disponible. Intente más tarde - (tx)oznb");
+			throw new RestClientException(
+					"Servicio no disponible - No se ha podido cargar la información del usuario, para mayor información comunicate a nuestras líneas BBVA");
 		}
 	}
 

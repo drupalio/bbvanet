@@ -4,6 +4,7 @@ import org.apache.commons.lang.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
+import org.springframework.web.client.RestClientException;
 
 import com.bbva.czic.dto.net.AccMovementsResume;
 import com.bbva.czic.dto.net.Account;
@@ -49,11 +50,25 @@ public class AccountsServiceImplTest extends AbstractBbvaRestClientTest {
 		Mockito.verify(this.webClient, Mockito.atLeastOnce()).get(Account.class);
 	}
 
+	@SuppressWarnings("unchecked")
+	@Test(expected = RestClientException.class)
+	public void checkGetAccountThrowException() {
+		Mockito.when(webClient.get(Account.class)).thenThrow(RestClientException.class);
+		this.accountsServiceImpl.getAccount(ACCOUNT_ID);
+	}
+
 	@Test
 	public void checkGetCheck() {
 		Mockito.when(webClient.get(Check.class)).thenReturn(Mockito.mock(Check.class));
 		this.accountsServiceImpl.getCheck(ACCOUNT_ID, CHECK_ID);
 		Mockito.verify(this.webClient, Mockito.atLeastOnce()).get(Check.class);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Test(expected = RestClientException.class)
+	public void checkGetCheckThrowException() {
+		Mockito.when(webClient.get(Check.class)).thenThrow(RestClientException.class);
+		this.accountsServiceImpl.getCheck(ACCOUNT_ID, CHECK_ID);
 	}
 
 	@Test
@@ -63,6 +78,14 @@ public class AccountsServiceImplTest extends AbstractBbvaRestClientTest {
 		Mockito.verify(this.webClient, Mockito.atLeastOnce()).getCollection(Checkbook.class);
 	}
 
+	@SuppressWarnings("unchecked")
+	@Test(expected = RestClientException.class)
+	public void checkGetCheckBookThrowException() {
+		Mockito.when(webClient.getCollection(Checkbook.class)).thenThrow(RestClientException.class);
+		this.accountsServiceImpl.getCheckbook(ACCOUNT_ID, CHECKBOOK_ID);
+	}
+
+	@SuppressWarnings("unchecked")
 	@Test
 	public void checkListCheck() {
 		Mockito.when(webClient.getCollection(Check.class)).thenReturn(Mockito.anyCollection());
@@ -70,6 +93,14 @@ public class AccountsServiceImplTest extends AbstractBbvaRestClientTest {
 		Mockito.verify(this.webClient, Mockito.atLeastOnce()).getCollection(Check.class);
 	}
 
+	@SuppressWarnings("unchecked")
+	@Test(expected = RestClientException.class)
+	public void checkListCheckThrowException() {
+		Mockito.when(webClient.getCollection(Check.class)).thenThrow(RestClientException.class);
+		this.accountsServiceImpl.listCheck(ACCOUNT_ID, filter, paginationKey, pageSize);
+	}
+
+	@SuppressWarnings("unchecked")
 	@Test
 	public void checkGetAccountMonthlyBalance() {
 		Mockito.when(webClient.getCollection(MonthlyBalances.class)).thenReturn(Mockito.anyCollection());
@@ -78,13 +109,30 @@ public class AccountsServiceImplTest extends AbstractBbvaRestClientTest {
 		Mockito.verify(this.webClient, Mockito.atLeastOnce()).getCollection(MonthlyBalances.class);
 	}
 
+	@SuppressWarnings("unchecked")
+	@Test(expected = RestClientException.class)
+	public void checkGetAccountMonthlyBalanceThrow() {
+		Mockito.when(webClient.getCollection(MonthlyBalances.class)).thenThrow(RestClientException.class);
+		this.accountsServiceImpl.getAccountMonthlyBalance(ACCOUNT_ID, filter, StringUtils.EMPTY, StringUtils.EMPTY,
+				StringUtils.EMPTY);
+	}
+
 	// getAccMovementResume
 
+	@SuppressWarnings("unchecked")
 	@Test
 	public void checkGetAccMovementResume() {
 		Mockito.when(webClient.getCollection(AccMovementsResume.class)).thenReturn(Mockito.anyCollection());
 		this.accountsServiceImpl.getAccMovementResume(ACCOUNT_ID, filter, StringUtils.EMPTY, StringUtils.EMPTY,
 				StringUtils.EMPTY);
 		Mockito.verify(this.webClient, Mockito.atLeastOnce()).getCollection(AccMovementsResume.class);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Test(expected = RestClientException.class)
+	public void checkGetAccMovementResumeThrow() {
+		Mockito.when(webClient.getCollection(AccMovementsResume.class)).thenThrow(RestClientException.class);
+		this.accountsServiceImpl.getAccMovementResume(ACCOUNT_ID, filter, StringUtils.EMPTY, StringUtils.EMPTY,
+				StringUtils.EMPTY);
 	}
 }

@@ -33,35 +33,19 @@ public class HeaderControllerImpl extends AbstractBbvaController implements Head
 
 	@PostConstruct
 	public void init() {
-
 		this.cliente = this.getCustomer();
 		this.ejecutivo = this.getExecutive();
 	}
 
 	@Override
 	public ExecutiveDto getExecutive() {
-
 		try {
 			return headerFacade.getExecutive();
 		} catch (Exception e) {
 			FacesContext ctx = FacesContext.getCurrentInstance();
-			ctx.addMessage("getCardsChargesByUser ", new FacesMessage(e.getMessage()));
+			ctx.addMessage("getExecutive ", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
 			return new ExecutiveDto();
-
 		}
-	}
-
-	public ExecutiveDto getEjecutivo() {
-		return ejecutivo;
-	}
-
-	public CustomerDto getCliente() {
-
-		return cliente;
-	}
-
-	public void setHeaderFacade(HeaderFacade headerFacade) {
-		this.headerFacade = headerFacade;
 	}
 
 	@Override
@@ -84,12 +68,26 @@ public class HeaderControllerImpl extends AbstractBbvaController implements Head
 				this.cliente = headerFacade.getCustomer(userName, docTypeUser, docIdUser);
 				LOGGER.info("CLIENT TOSTRING(): " + cliente.toString());
 			} catch (final Exception exception) {
-				LOGGER.info("Error header controller getCustomer: " + exception.getMessage());
 				FacesContext ctx = FacesContext.getCurrentInstance();
-				ctx.addMessage("getCustomer ", new FacesMessage(exception.getMessage()));
-				this.cliente = new CustomerDto();
+				ctx.addMessage("getCustomer",
+						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", exception.getMessage()));
+				return new CustomerDto();
 			}
+
 		}
 		return cliente;
+	}
+
+	public ExecutiveDto getEjecutivo() {
+		return ejecutivo;
+	}
+
+	public CustomerDto getCliente() {
+
+		return cliente;
+	}
+
+	public void setHeaderFacade(HeaderFacade headerFacade) {
+		this.headerFacade = headerFacade;
 	}
 }

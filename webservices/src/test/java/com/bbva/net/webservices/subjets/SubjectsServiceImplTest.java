@@ -1,16 +1,13 @@
 package com.bbva.net.webservices.subjets;
 
-import javax.ws.rs.ServiceUnavailableException;
-
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
+import org.springframework.web.client.RestClientException;
 
 import com.bbva.net.webservices.core.pattern.AbstractBbvaRestService;
 import com.bbva.net.webservices.subjects.impl.SubjetsServiceImpl;
 import com.bbva.test.utils.AbstractBbvaRestClientTest;
-import com.bbva.zic.subjects.v01.UpdateAccountOut;
 import com.bbva.zic.subjects.v01.UpdateSubjectIn;
 
 public class SubjectsServiceImplTest extends AbstractBbvaRestClientTest {
@@ -47,11 +44,10 @@ public class SubjectsServiceImplTest extends AbstractBbvaRestClientTest {
 	}
 
 	@SuppressWarnings("unchecked")
-	@Test
+	@Test(expected = RestClientException.class)
 	public void checkGetUpdateSubjectThrowsException() {
 		final UpdateSubjectIn updateSubjectIn = new UpdateSubjectIn();
-		Mockito.when(webClient.put(updateSubjectIn)).thenThrow(ServiceUnavailableException.class);
-		final UpdateAccountOut updateAccountOut = this.subjetsServiceImpl.updateSubject("123", updateSubjectIn);
-		Assert.assertTrue(updateAccountOut.getFolio() == null);
+		Mockito.when(webClient.put(updateSubjectIn)).thenThrow(RestClientException.class);
+		this.subjetsServiceImpl.updateSubject("", updateSubjectIn);
 	}
 }

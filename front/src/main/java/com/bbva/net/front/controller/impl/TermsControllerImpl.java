@@ -1,6 +1,8 @@
 package com.bbva.net.front.controller.impl;
 
 import javax.annotation.Resource;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 import com.bbva.net.back.facade.TermasAccountsFacade;
 import com.bbva.net.back.model.accounts.TermsAccountsDto;
@@ -20,13 +22,14 @@ public class TermsControllerImpl extends AbstractBbvaController implements Terms
 	@Override
 	public TermsAccountsDto getAllConditions() {
 
+		TermsAccountsDto detallesCuenta = new TermsAccountsDto();
 		try {
-			TermsAccountsDto detalle = this.detallesCuenta.getAllConditions(super.getSelectedProduct().getProductId());
-			return detalle;
-		} catch (final Exception exception) {
-			return new TermsAccountsDto();
+			detallesCuenta = this.detallesCuenta.getAllConditions(super.getSelectedProduct().getProductId());
+		} catch (Exception e) {
+			FacesContext ctx = FacesContext.getCurrentInstance();
+			ctx.addMessage("Condiciones", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
 		}
-
+		return detallesCuenta;
 	}
 
 	/**

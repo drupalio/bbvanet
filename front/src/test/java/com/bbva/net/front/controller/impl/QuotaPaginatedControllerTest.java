@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.powermock.reflect.Whitebox;
+import org.springframework.web.client.RestClientException;
 
 import com.bbva.net.back.facade.QuotaDetailFacade;
 import com.bbva.net.back.model.commons.DateRangeDto;
@@ -46,6 +47,23 @@ public class QuotaPaginatedControllerTest extends AbstractBbvaControllerTest {
 	}
 
 	@Test
+	public void checkNextPage() {
+		// OK
+		Mockito.when(quotaDetailFacade.listRotaryQuotaMovements(DEFAULT_ID, daterange, "000000", 10)).thenReturn(
+				quotaList);
+		List<MovementDto> result = this.quotaPaginatedController.getNextPage("000000", 10);
+		Assert.assertNotNull(result);
+		Mockito.verify(this.quotaDetailFacade, Mockito.atLeastOnce()).listRotaryQuotaMovements(DEFAULT_ID, daterange,
+				"000000", 10);
+
+		// ClientException
+		Mockito.when(quotaDetailFacade.listRotaryQuotaMovements(DEFAULT_ID, daterange, "000000", 10)).thenThrow(
+				new RestClientException("OK"));
+		result = this.quotaPaginatedController.getNextPage("000000", 10);
+		Assert.assertNotNull(result);
+	}
+
+	@Test
 	public void checkSearch() {
 		this.quotaPaginatedController.init();
 		this.quotaPaginatedController.getPaginationKey();
@@ -63,16 +81,6 @@ public class QuotaPaginatedControllerTest extends AbstractBbvaControllerTest {
 		Mockito.when(quotaDetailFacade.listRotaryQuotaMovements(DEFAULT_ID, daterange, "1234567845", 10)).thenReturn(
 				quotaList);
 		this.quotaPaginatedController.search();
-	}
-
-	@Test
-	public void checkNextPage() {
-		Mockito.when(quotaDetailFacade.listRotaryQuotaMovements(DEFAULT_ID, daterange, "00000000000", 10)).thenReturn(
-				quotaList);
-		List<MovementDto> result = this.quotaPaginatedController.getNextPage("0000000000", 10);
-		Assert.assertNotNull(result);
-		Mockito.verify(this.quotaDetailFacade, Mockito.atLeastOnce()).listRotaryQuotaMovements(DEFAULT_ID, daterange,
-				"0000000000", 10);
 	}
 
 	@Test

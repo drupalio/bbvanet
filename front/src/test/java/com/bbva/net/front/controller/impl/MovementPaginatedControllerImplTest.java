@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.powermock.reflect.Whitebox;
+import org.springframework.web.client.RestClientException;
 
 import com.bbva.net.back.facade.MovementsAccountFacade;
 import com.bbva.net.back.model.commons.BalanceRangeDto;
@@ -76,12 +77,19 @@ public class MovementPaginatedControllerImplTest extends AbstractBbvaControllerT
 
 	@Test
 	public void checkGetNextPage() {
+		// OK
 		Mockito.when(movementsFacade.listMovements(DEFAULT_PRODUCT, PRODUCT_TYPE, daterange, paginationKey, pageSize))
 				.thenReturn(movementList);
 		List<MovementDto> result = this.movementPaginatedController.getNextPage(paginationKey, pageSize);
 		Assert.assertNotNull(result);
 		Mockito.verify(this.movementsFacade, Mockito.atLeastOnce()).listMovements(DEFAULT_PRODUCT, PRODUCT_TYPE,
 				daterange, paginationKey, pageSize);
+
+		// ClientException
+		Mockito.when(movementsFacade.listMovements(DEFAULT_PRODUCT, PRODUCT_TYPE, daterange, paginationKey, pageSize))
+				.thenThrow(new RestClientException("OK"));
+		result = this.movementPaginatedController.getNextPage(paginationKey, pageSize);
+		Assert.assertNotNull(result);
 	}
 
 	@Test

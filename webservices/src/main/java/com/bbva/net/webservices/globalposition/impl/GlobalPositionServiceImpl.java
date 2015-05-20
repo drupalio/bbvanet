@@ -26,46 +26,47 @@ public class GlobalPositionServiceImpl extends AbstractBbvaRestService implement
 	@Override
 	public List<Product> getExtractGlobalBalance(String $filter) {
 		try {
-			LOGGER.info("PETICION: " + URL_BASE + URL_GLOBAL_POSITION);
-			final List<Product> result = getJsonCollection(URL_BASE + URL_GLOBAL_POSITION, Product.class);
-			LOGGER.info("NUMERO DE PRODUCTOS:" + result.size());
-			return result;
-		} catch (Exception ex) {
-			LOGGER.info("[Servicio getExtractGlobalBalance No respondió al obtener Lista de Posición global] "
-					+ ex.getMessage());
-			throw new RestClientException("Servicio no disponible Intente más tarde - (tx)(ozn1)");
-			// return new ArrayList<Product>();
+			return getJsonCollection(URL_BASE + URL_GLOBAL_POSITION, Product.class);
+		} catch (Exception e) {
+			throw new RestClientException(
+					"Servicio no disponible - No se ha podido cargar la información de los productos, para mayor información comunicate a nuestras líneas BBVA");
 		}
 
 	}
 
 	@Override
 	public Boolean updateProductOperability(String idProduct, Product product) {
-		final WebClient webc = getJsonWebClient(URL_GLOBAL_BASE + idProduct + URL_OPERABILITY);
-
-		webc.put(product);
-
-		if (webc.getResponse().getStatus() == 200) {
-			LOGGER.info("Servicio updateSubject actualizó el operation Online");
-			return true;
-		} else {
-			LOGGER.info("Servicio updateSubject no actualizó el operation Online");
-			return false;
+		try {
+			final WebClient webc = getJsonWebClient(URL_GLOBAL_BASE + idProduct + URL_OPERABILITY);
+			webc.put(product);
+			if (webc.getResponse().getStatus() == 200) {
+				LOGGER.info("Servicio updateSubject actualizó el operation Online");
+				return true;
+			} else {
+				LOGGER.info("Servicio updateSubject no actualizó el operation Online");
+				return false;
+			}
+		} catch (Exception e) {
+			throw new RestClientException(
+					"Servicio no disponible - No se ha podido actualizar la operabilidad, para mayor información comunicate a nuestras líneas BBVA");
 		}
 	}
 
 	@Override
 	public Boolean updateProductVisibility(String idProduct, Product product) {
-		WebClient webc = getJsonWebClient(URL_GLOBAL_BASE + idProduct + URL_VISIBILITY);
-
-		webc.put(product);
-
-		if (webc.getResponse().getStatus() == 200) {
-			LOGGER.info("Servicio updateSubject actualizó la visibilidad");
-			return true;
-		} else {
-			LOGGER.info("Servicio updateSubject no actualizó la visibilidad");
-			return false;
+		try {
+			WebClient webc = getJsonWebClient(URL_GLOBAL_BASE + idProduct + URL_VISIBILITY);
+			webc.put(product);
+			if (webc.getResponse().getStatus() == 200) {
+				LOGGER.info("Servicio updateSubject actualizó la visibilidad");
+				return true;
+			} else {
+				LOGGER.info("Servicio updateSubject no actualizó la visibilidad");
+				return false;
+			}
+		} catch (Exception e) {
+			throw new RestClientException(
+					"Servicio no disponible - No se ha podido actualizar la visibilidad, para mayor información comunicate a nuestras líneas BBVA");
 		}
 	}
 }
