@@ -53,7 +53,6 @@ public class HeaderControllerImplTest extends AbstractBbvaControllerTest {
 				new RestClientException("OK"));
 
 		headerController.getCustomer();
-
 	}
 
 	@Test

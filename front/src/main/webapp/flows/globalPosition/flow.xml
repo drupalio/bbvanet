@@ -14,7 +14,7 @@
 
 	</on-start>
 
-	<view-state id="globalPosition">
+	<view-state id="globalPosition" >
 		<on-entry>
 			<set name="flowScope.menuActive" value="'PG'" />
 			<evaluate expression="new java.lang.String()" />

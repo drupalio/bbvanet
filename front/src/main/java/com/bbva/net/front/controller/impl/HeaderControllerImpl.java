@@ -52,30 +52,28 @@ public class HeaderControllerImpl extends AbstractBbvaController implements Head
 	public CustomerDto getCustomer() {
 
 		LOGGER.info("====================================== GET CUSTOMER ==============================");
-		if (this.cliente == null) {
-			final String userName = (getSession().getAttribute("userName") == null) ? StringUtils.EMPTY : getSession()
-					.getAttribute("userName").toString();
+		final String userName = (getSession().getAttribute("userName") == null) ? StringUtils.EMPTY : getSession()
+				.getAttribute("userName").toString();
 
-			LOGGER.info("CLIENTE: " + userName);
-			final String docTypeUser = (getSession().getAttribute("docTypeUser") == null) ? StringUtils.EMPTY
-					: getSession().getAttribute("docTypeUser").toString();
-			LOGGER.info("DOC TYPE USER" + docTypeUser);
-			final String docIdUser = (getSession().getAttribute("docIdUser") == null) ? StringUtils.EMPTY
-					: getSession().getAttribute("docIdUser").toString();
-			LOGGER.info("DOC ID USER" + docIdUser);
+		LOGGER.info("CLIENTE: " + userName);
+		final String docTypeUser = (getSession().getAttribute("docTypeUser") == null) ? StringUtils.EMPTY
+				: getSession().getAttribute("docTypeUser").toString();
+		LOGGER.info("DOC TYPE USER" + docTypeUser);
+		final String docIdUser = (getSession().getAttribute("docIdUser") == null) ? StringUtils.EMPTY : getSession()
+				.getAttribute("docIdUser").toString();
+		LOGGER.info("DOC ID USER" + docIdUser);
 
-			try {
-				this.cliente = headerFacade.getCustomer(userName, docTypeUser, docIdUser);
-				LOGGER.info("CLIENT TOSTRING(): " + cliente.toString());
-			} catch (final Exception exception) {
-				FacesContext ctx = FacesContext.getCurrentInstance();
-				ctx.addMessage("getCustomer",
-						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", exception.getMessage()));
-				return new CustomerDto();
-			}
+		try {
+			LOGGER.info("CLIENT TOSTRING(): " + cliente.toString());
+			return headerFacade.getCustomer(userName, docTypeUser, docIdUser);
 
+		} catch (final Exception exception) {
+			FacesContext ctx = FacesContext.getCurrentInstance();
+			ctx.addMessage("getCustomer",
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", exception.getMessage()));
+			return new CustomerDto();
 		}
-		return cliente;
+
 	}
 
 	public ExecutiveDto getEjecutivo() {
