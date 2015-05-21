@@ -42,24 +42,25 @@ public class ResponseInterceptor extends AbstractInDatabindingInterceptor implem
 	@SuppressWarnings("unchecked")
 	@Override
 	public void handleMessage(final Message outMessage) throws Fault {
-		String isGt = "";
+		String status = "";
 		try {
 
 			final FacesContext facesContext = FlowFacesContext.getCurrentInstance();
 			LOGGER.info("INTERCEPTANDO RESPUESTA : " + facesContext.getExternalContext().getRequestServletPath());
 			final HttpSession session = (HttpSession)facesContext.getExternalContext().getSession(false);
 
-			isGt = outMessage.get(Conduit.class).toString();
-
+			status = outMessage.get(Message.RESPONSE_CODE).toString();
+			
 			final Map<String, List<String>> headers = (Map<String, List<String>>)outMessage
 					.get(Message.PROTOCOL_HEADERS);
 			final String tsec = headers.get(TSecType.tsec.name()).get(0);
 			LOGGER.info("Recogiendo TSEC y añadiendo a sesión:" + tsec);
 			session.setAttribute(TSecType.tsec.name(), tsec);
 		} catch (final Exception exception) {
+			
 
 			// Muestra el mensaje de error de tsec caducado
-			if (!isGt.contains("grantingTicket")) RequestContext.getCurrentInstance().execute("PF('mistake').show();");
+			if (status.equals("403")) RequestContext.getCurrentInstance().execute("PF('mistake').show();");
 			LOGGER.info("ERROR RESPONSE INTERCEPTOR: " + exception.getCause());
 		}
 
