@@ -30,7 +30,7 @@ public class ResponseInterceptorTest extends AbstractBbvaControllerTest {
 		this.responseInterceptor = new ResponseInterceptor();
 	}
 
-	@Test
+	// @Test
 	public void checkHandleMessage_OK() {
 
 		final Map<String, List<String>> headers = new HashMap<String, List<String>>();
@@ -47,7 +47,7 @@ public class ResponseInterceptorTest extends AbstractBbvaControllerTest {
 	}
 
 	@SuppressWarnings("unchecked")
-	@Test
+	// @Test
 	public void checkHandleMessage_ThrowException() {
 
 		Mockito.when(message.get(Message.PROTOCOL_HEADERS)).thenThrow(UncheckedException.class);
