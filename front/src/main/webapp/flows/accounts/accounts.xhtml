@@ -1,64 +1,49 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:bbvaGP="http://java.sun.com/jsf/composite/bbva/globalPosition"
 	xmlns:bbvaAlert="http://java.sun.com/jsf/composite/bbva/alert"
 	xmlns:bbvaBody="http://java.sun.com/jsf/composite/bbva/body"
-	xmlns:bbvaContainer="http://java.sun.com/jsf/composite/bbva/container"	
+	xmlns:bbvaContainer="http://java.sun.com/jsf/composite/bbva/container"
 	xmlns:bbvaOperationFav="http://java.sun.com/jsf/composite/bbva/favoriteOperations"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:jsf="http://xmlns.jcp.org/jsf">
-
-
 <ui:composition template="../../templates/defaultLayout.xhtml">
-
 	<ui:define name="bodyTitle">
 		<bbvaBody:title title="#{msg['title.accountsPersonal']}">
 			<bbvaBody:titleOptionProduct optionButttonLeft="Mis productos"
 				optionButttonRight="Catálogo de productos" />
 		</bbvaBody:title>
 	</ui:define>
-
 	<ui:define name="contentLeft">
-
-		<bbvaContainer:productPanelAccountGraphic id="AccountGP" graphic="#{customerProducts.accounts.size()==0 &amp;&amp; customerProducts.adquirencia.size()==0 &amp;&amp; customerProductsHidden.accounts.size()==0 ? 'none' : 'block'}"
-			title="#{msg['title.accountsPersonal']}">
+		<bbvaContainer:productPanelAccountGraphic id="AccountGP" title="#{msg['title.accountsPersonal']}"
+			graphic="#{customerProducts.accounts.size()==0 &amp;&amp; customerProducts.adquirencia.size()==0 &amp;&amp; customerProductsHidden.accounts.size()==0 ? 'none' : 'block'}">
 			<div class="table-tabs">
-				<bbvaGP:accountSearch id="accountSearchTable" listAccounts="#{customerProducts.accounts}"
+				<bbvaGP:accountSearch id="accountSearchTable"
+					listAccounts="#{customerProducts.accounts}"
 					listAccountsAdquirencia="#{customerProducts.adquirencia}"
 					listAccountsMore="#{customerProductsHidden.accounts}" />
 				<bbvaGP:accountHeadTable listAccounts="#{customerProducts.accounts}"
 					controller="#{globalPositionController}" />
-
-				<bbvaGP:accountAdquirenciaTable
-					controller="#{globalPositionController}"
+				<bbvaGP:accountAdquirenciaTable controller="#{globalPositionController}"
 					listAccounts="#{customerProducts.adquirencia}"
-					display = "#{customerProducts.adquirencia.size() > '0' ? 'block' : 'none'}" />
-
+					display="#{customerProducts.adquirencia.size() > '0' ? 'block' : 'none'}" />
 				<bbvaGP:accountTailTable controller="#{globalPositionController}"
 					listAccounts="#{customerProductsHidden.accounts}" />
 			</div>
 			<div class="row afterTable">
-				<bbvaGP:productFooter
-					listProduct="#{customerProductsHidden.accounts}" />
+				<bbvaGP:productFooter listProduct="#{customerProductsHidden.accounts}" />
 				<bbvaGP:totalBalance util="#{msg['text.accountant']}"
 					total="#{globalPositionController.totalsProducts['PC'].total}"
 					subtotal="#{globalPositionController.totalsProducts['PC'].available}" />
 			</div>
 		</bbvaContainer:productPanelAccountGraphic>
-		
 	</ui:define>
-
 	<ui:define name="contentRight">
-		<bbvaOperationFav:operationsPanel list="#{operations}"/>
-
+		<bbvaOperationFav:operationsPanel list="#{operations}" />
 	</ui:define>
-
 </ui:composition>
-
 </html>
