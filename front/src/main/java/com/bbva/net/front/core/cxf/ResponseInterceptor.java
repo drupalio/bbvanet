@@ -63,7 +63,13 @@ public class ResponseInterceptor extends AbstractInDatabindingInterceptor implem
 			// Muestra el mensaje de error de tsec caducado
 			if (status.trim().equals("403")){
 				LOGGER.info("Se Redirecciona a la pagina publica con status:" + status);
-				RequestContext.getCurrentInstance().execute("PF('mistake').show();");
+				try{
+					FacesContext context = FlowFacesContext.getCurrentInstance();
+					context.getExternalContext().redirect("/error/error.xhtml");
+					//RequestContext.getCurrentInstance().execute("PF('mistake').show();");
+				}catch(Exception d){
+					
+				}
 			}
 			LOGGER.info("ERROR RESPONSE INTERCEPTOR: " + exception.getCause());
 		}
