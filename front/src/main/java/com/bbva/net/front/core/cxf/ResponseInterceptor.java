@@ -46,7 +46,7 @@ public class ResponseInterceptor extends AbstractInDatabindingInterceptor implem
 		try {
 
 			status = outMessage.get(Message.RESPONSE_CODE).toString();
-			LOGGER.info("Status service :" + status);
+			LOGGER.info("service con status::" + status);
 			
 			final FacesContext facesContext = FlowFacesContext.getCurrentInstance();
 			LOGGER.info("INTERCEPTANDO RESPUESTA : " + facesContext.getExternalContext().getRequestServletPath());
@@ -61,7 +61,10 @@ public class ResponseInterceptor extends AbstractInDatabindingInterceptor implem
 			
 			LOGGER.info("Excepcion con Status :" + status);
 			// Muestra el mensaje de error de tsec caducado
-			if (status.trim().equals("403")) RequestContext.getCurrentInstance().execute("PF('mistake').show();");
+			if (status.trim().equals("403")){
+				LOGGER.info("Se Redirecciona a la pagina publica con status:" + status);
+				RequestContext.getCurrentInstance().execute("PF('mistake').show();");
+			}
 			LOGGER.info("ERROR RESPONSE INTERCEPTOR: " + exception.getCause());
 		}
 
