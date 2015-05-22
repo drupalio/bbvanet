@@ -4,6 +4,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:bbvaScript="http://java.sun.com/jsf/composite/bbva/script"
+	xmlns:bbvaMessage="http://java.sun.com/jsf/composite/bbva/messages"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<meta http-equiv="Cache-Control" content="no-store" />
@@ -11,10 +12,14 @@
 	<title><ui:insert name="title"> BBVA :: Colombia :: Posición Global</ui:insert></title>
 	<bbvaScript:assetScripts />
 </h:head>
-<h:body>
+<h:body id="modal" class="bodyError">
 	<div id="header"></div>
 	<div id="content">
-		<h:outputLabel value="Error Page " />
+		<div class="container">
+			<bbvaMessage:messageMistake />
+		</div>
 	</div>
 </h:body>
 </html>
+
+
