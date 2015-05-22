@@ -84,6 +84,18 @@
 						title="Ir a Ahorros e inversión" liclass="item"
 						spanclass="icon-menu-investments-blue-light"
 						rendered="#{menuActive != 'SAVEINVEST'}" />
+						
+					<bbvaMenu:itemMenuMobile href=""
+						value="Seguros"
+						title="Ir a Seguros" liclass="active"
+						spanclass="icon-menu-insurance-blue-light"
+						rendered="#{menuActive == 'SEGUROS'}" />
+						
+					<bbvaMenu:itemMenuMobile href=""
+						value="Seguros"
+						title="Ir a Seguros" liclass="item"
+						spanclass="icon-menu-insurance-blue-light"
+						rendered="#{menuActive != 'SEGUROS'}" />
 
 					<li class="item"><a href="#" title="Ir a Editar perfil"> <span
 							class="icon-menu-user-blue-light"></span> Editar perfil

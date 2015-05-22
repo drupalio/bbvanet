@@ -79,6 +79,16 @@
 				liclass="more-width" rendered="#{menuActive != 'SAVEINVEST'}" />
 
 			<bbvaMenu:itemSearch />
+			
+			<bbvaMenu:itemMenu href="" value="Seguros"
+				title="Ir a seguros" icon="insurance-icon"
+				liclass="more-width active" rendered="#{menuActive == 'SEGUROS'}" />
+
+			<bbvaMenu:itemMenu href="" value="Seguros"
+				title="Ir a seguros" icon=" insurance-icon"
+				liclass="more-width" rendered="#{menuActive != 'SEGUROS'}" />
+
+			<bbvaMenu:itemSearch />
 
 		</bbvaMenu:menu>
 		<bbvaMenu:menuMobile />
