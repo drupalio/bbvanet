@@ -6,6 +6,7 @@ import org.apache.commons.logging.Log;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bbva.jee.arq.spring.core.log.I18nLogFactory;
@@ -14,6 +15,7 @@ import com.bbva.jee.arq.spring.core.log.I18nLogFactory;
  * @author Entelgy
  * @param <T> Entity
  */
+@EnableTransactionManagement
 @Transactional
 public abstract class AbstractBbvaDao<T extends Serializable> implements CrudDao<T> {
 
@@ -28,7 +30,8 @@ public abstract class AbstractBbvaDao<T extends Serializable> implements CrudDao
 		return (T)getSession().get(entityClass, id);
 	}
 
-	public Session getSession() {
+	@Transactional
+	protected Session getSession() {
 		return this.sessionFactory.getCurrentSession();
 	}
 
