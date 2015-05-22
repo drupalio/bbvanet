@@ -899,12 +899,10 @@ body div.ui-growl .ui-state-highlight {
 
 .mistakeMessage .ui-dialog-content {
 	background: #FFF !important;
-	background-clip: padding-box;
-	word-wrap: break-word;
-	border: 13px solid #F4F7F5;
+	border: 1px solid #DBDCDF !important;
 	border-top: 0px !important;
-	border-bottom-left-radius: 16px !important;
-	border-bottom-right-radius: 16px !important;
+	border-bottom-left-radius: 6px !important;
+	border-bottom-right-radius: 6px !important;
 }
 
 /*Header*/
@@ -920,11 +918,10 @@ body div.ui-growl .ui-state-highlight {
 
 .mistakeMessage .ui-widget-header {
 	background: #FFF !important;
-	background-clip: padding-box;
-	border: 13px solid #F4F7F5;
+	border: 1px solid #DBDCDF !important;
 	border-bottom: 0px !important;
-	border-top-left-radius: 16px !important;
-	border-top-right-radius: 16px !important;
+	border-top-left-radius: 6px !important;
+	border-top-right-radius: 6px !important;
 }
 
 .nonClose .ui-widget-header {
@@ -1266,9 +1263,10 @@ body div.ui-growl .ui-state-highlight {
 @media ( min-width : 669px) {
 	/*Error dialog*/
 	.mistakeMessage {
-		border: 1px solid #DBDCDC !important;
-		background-color: #F4F7F5 !important;
-		position: absolute !important;
+		border: 13px solid #F4F7F5 !important;
+		outline: 1px solid #DBDCDC !important;
+		position: fixed !important;
+		-moz-outline-radius: 6px;
 		top: 25.5% !important;
 		left: 25% !important;
 		right: 30% !important;
@@ -1281,9 +1279,10 @@ body div.ui-growl .ui-state-highlight {
 @media ( max-width : 669px) {
 	/*Error dialog*/
 	.mistakeMessage {
-		border: 1px solid #DBDCDC !important;
-		background-color: #F4F7F5 !important;
-		position: absolute !important;
+		border: 13px solid #F4F7F5 !important;
+		outline: 1px solid #DBDCDC !important;
+		position: fixed !important;
+		-moz-outline-radius: 6px;
 		top: 50% !important;
 		left: 0% !important;
 		right: 0% !important;
