@@ -14,9 +14,9 @@
 	xmlns:bbvaGP="http://java.sun.com/jsf/composite/bbva/globalPosition">
 
 <composite:interface>
-	<composite:attribute name="id" type="String" />
-	<composite:attribute name="title" type="String" />
-	<composite:attribute name="graphic" type="String"/>
+    <composite:attribute name="id" type="String" />
+    <composite:attribute name="title" type="String" />
+    <composite:attribute name="graphic" type="String"/>
 </composite:interface>
 
 <composite:implementation>
@@ -39,20 +39,16 @@
 		</div>
 
 		<div class="tab tab-bars chart" style="overflow: visible !important;">
-			<div>
+		  <div class="tab-title">#{msg['graphicAccount.tittle']}</div>
 				<h:form id="barGraphic">
 					<bbvaAccountGraphic:barGraphic
 						barLineUIList="#{globalPositionController.accountGraphicBarLineUI}" />
 				</h:form>
 
-				<bbvaPieGraphic:footerFiltersAccount nameRight="Cuentas"
-					nameLeft="Periodo"
+				<bbvaPieGraphic:footerFiltersAccount nameRight="#{msg['graphic.footer.accounts']}"
+					nameLeft="#{msg['graphic.footer.time']}"
 					listenerLeft="#{globalPositionController.onComboSelectedAccountGraphic}"
 					listenerRight="#{globalPositionController.onComboSelectedAccountGraphic}" />
-				<!-- 				<h3>GRAFICA555</h3> -->
-
-			</div>
-
 		</div>
 
 		<div class="row afterTable"></div>

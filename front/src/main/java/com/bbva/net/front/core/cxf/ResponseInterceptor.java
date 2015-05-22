@@ -45,12 +45,13 @@ public class ResponseInterceptor extends AbstractInDatabindingInterceptor implem
 		String status = "";
 		try {
 
+			status = outMessage.get(Message.RESPONSE_CODE).toString();
+			LOGGER.info("service con status::" + status);
+			
 			final FacesContext facesContext = FlowFacesContext.getCurrentInstance();
 			LOGGER.info("INTERCEPTANDO RESPUESTA : " + facesContext.getExternalContext().getRequestServletPath());
 			final HttpSession session = (HttpSession)facesContext.getExternalContext().getSession(false);
 
-			status = outMessage.get(Message.RESPONSE_CODE).toString();
-			
 			final Map<String, List<String>> headers = (Map<String, List<String>>)outMessage
 					.get(Message.PROTOCOL_HEADERS);
 			final String tsec = headers.get(TSecType.tsec.name()).get(0);
@@ -58,9 +59,12 @@ public class ResponseInterceptor extends AbstractInDatabindingInterceptor implem
 			session.setAttribute(TSecType.tsec.name(), tsec);
 		} catch (final Exception exception) {
 			
-
+			LOGGER.info("Excepcion con Status :" + status);
 			// Muestra el mensaje de error de tsec caducado
-			if (status.equals("403")) RequestContext.getCurrentInstance().execute("PF('mistake').show();");
+			if (status.trim().equals("403")){
+				LOGGER.info("Se Redirecciona a la pagina publica con status:" + status);
+				RequestContext.getCurrentInstance().execute("PF('mistake').show();");
+			}
 			LOGGER.info("ERROR RESPONSE INTERCEPTOR: " + exception.getCause());
 		}
 
