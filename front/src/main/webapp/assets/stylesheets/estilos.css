@@ -870,7 +870,7 @@ body div.ui-growl .ui-state-highlight {
 	margin-top: 5%;
 }
 
-.ui-messages-fatal-icon {
+.ui-messages-error-icon {
 	background: url(../img/icons/alert-red.png) no-repeat scroll 0% 0%
 		transparent !important;
 	background-position: 0px 0px;
