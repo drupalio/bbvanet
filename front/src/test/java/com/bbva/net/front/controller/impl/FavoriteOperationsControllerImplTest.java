@@ -49,7 +49,7 @@ public class FavoriteOperationsControllerImplTest extends AbstractBbvaController
 		this.favoriteOperationsController.setFavoriteOperations(favoriteOperations);
 		Assert.assertNotNull(this.favoriteOperationsController.getListFavoriteOperations());
 
-		Mockito.verify(this.favoriteOperations, Mockito.atLeastOnce()).getListFavoriteOperations();
+		Mockito.verify(this.favoriteOperations, Mockito.atLeastOnce()).getListFavoriteOperations("123");
 	}
 
 	@Test
@@ -66,7 +66,7 @@ public class FavoriteOperationsControllerImplTest extends AbstractBbvaController
 		this.favoriteOperationsController.setFavoriteOperations(favoriteOperations);
 		Assert.assertNotNull(this.favoriteOperationsController.getListFavoriteOperationsHidden());
 
-		Mockito.verify(this.favoriteOperations, Mockito.atLeastOnce()).getListFavoriteOperations();
+		Mockito.verify(this.favoriteOperations, Mockito.atLeastOnce()).getListFavoriteOperations("123");
 	}
 
 	@Test

@@ -29,8 +29,9 @@ public class AgileOperationsServiceImpl extends AbstractBbvaRestService
 	public List<AgileOperation> getAgileOperations(final String $filter) {
 		try {
 			final WebClient webc = getJsonWebClient(URL_BASE_OPERATIONS);
-			return (List<AgileOperation>) webc
-					.getCollection(AgileOperation.class);
+			final String filterParam = !$filter.equals("") ? "$filter" : "";
+			webc.query(filterParam, $filter);
+			return (List<AgileOperation>)webc.getCollection(AgileOperation.class);
 		} catch (Exception e) {
 			throw new RestClientException(
 					"Servicio no disponible - No se han podido cargar la información de favoritos, para mayor información comunicate a nuestras líneas BBVA");
@@ -73,20 +74,29 @@ public class AgileOperationsServiceImpl extends AbstractBbvaRestService
 	 * 
 	 */
 	@Override
-	public Response deleteAgileOperation(final String agileOperationId,
-			final String attributesdeletelist) {
-		// TODO Auto-generated method stub
-		return null;
+
+	public String deleteAgileOperation(final String agileOperationId, final String attributesdeletelist) {
+		try {
+			final WebClient webc = getJsonWebClient(URL_BASE_OPERATIONS + "/" + agileOperationId);
+			return webc.delete().toString();
+		} catch (Exception e) {
+			throw new RestClientException(
+					"Servicio no disponible - No se han podido cargar la información de favoritos, para mayor información comunicate a nuestras líneas BBVA");
+		}
 	}
 
 	/**
 	 * 
 	 */
 	@Override
-	public Response modifyAgileOperation(final String agileOperationId,
-			final AgileOperation agileoperation) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
+	public Response modifyAgileOperation(final String agileOperationId, final AgileOperation agileoperation) {
+		try {
+			final WebClient webc = getJsonWebClient(URL_BASE_OPERATIONS + "/" + agileOperationId);
+			return webc.put(agileoperation);
+		} catch (Exception e) {
+			throw new RestClientException(
+					"Servicio no disponible - No se han podido cargar la información de favoritos, para mayor información comunicate a nuestras líneas BBVA");
+		}
+	}
 }

@@ -45,7 +45,15 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
 	 */
 	@PostConstruct
 	public void init() {
-		favoriteOperations = favoriteOperationsFacade.getListFavoriteOperations();
+		if (getSession().getAttribute("docIdUser") != null) {
+			LOGGER.info("Metodo init de FavoriteOperationController con usuario de la sesión "
+					+ getSession().getAttribute("docIdUser").toString());
+			favoriteOperations = favoriteOperationsFacade.getListFavoriteOperations(getSession().getAttribute(
+					"docIdUser").toString());
+		} else {
+			LOGGER.info("Metodo init de FavoriteOperationController sin usuario de la sesión ");
+			favoriteOperations = favoriteOperationsFacade.getListFavoriteOperations("123");
+		}
 		getNames();
 	}
 
@@ -84,7 +92,9 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
 	 * @return
 	 */
 	public String getDate(final Date transactionDate) {
-		final SimpleDateFormat dateFormat = new SimpleDateFormat(MessagesHelper.INSTANCE.getStringI18("date.pattner.dd-mm-yyyy"));
+		LOGGER.info("Formater de fecha de FavoriteOperations");
+		final SimpleDateFormat dateFormat = new SimpleDateFormat(
+				MessagesHelper.INSTANCE.getStringI18("date.pattner.dd-mm-yyyy"));
 		return dateFormat.format(transactionDate);
 
 	}
@@ -93,6 +103,7 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
      * 
      */
 	public void getNames() {
+		LOGGER.info("Metodo getNames de favoriteOperations");
 		for (int i = 0; i < favoriteOperations.size(); i++) {
 			final String origen = MessagesHelper.INSTANCE.getFavOperationsPrefix(this.favoriteOperations.get(i)
 					.getOrigin());
