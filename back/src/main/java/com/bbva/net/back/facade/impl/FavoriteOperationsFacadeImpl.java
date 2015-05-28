@@ -63,4 +63,18 @@ public class FavoriteOperationsFacadeImpl extends AbstractBbvaFacade implements 
 		AgileOperation agileOperation = favoriteOperationsMapper.map(favoriteOperation);
 		agileOperationsService.modifyAgileOperation(favoriteOperation.getIdOperation(), agileOperation);
 	}
+
+	public void setFiqlService(FiqlService fiqlService) {
+		this.fiqlService = fiqlService;
+
+	}
+
+	public void setAgileOperationsService(AgileOperationsService agileOperationsService) {
+		this.agileOperationsService = agileOperationsService;
+	}
+
+	public void setFavoriteOperationsMapper(FavoriteOperationsMapper favoriteOperationsMapper) {
+		this.favoriteOperationsMapper = favoriteOperationsMapper;
+	}
+
 }

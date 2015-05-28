@@ -1,7 +1,5 @@
 package com.bbva.net.webservices.agileOperations;
 
-import javax.ws.rs.core.Response;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -60,10 +58,18 @@ public class AgileOperationsServiceImplTest extends AbstractBbvaRestClientTest {
 		agileServiceImpl.validateAgileOperation(Mockito.anyString());
 	}
 
-	@Test(expected = RestClientException.class)
+	@Test
 	public void checkDeleteAgileOperation() {
-		Mockito.when(webClient.delete()).thenReturn(Mockito.any(Response.class));
+		Mockito.when(webClient.getResponse()).thenReturn(response);
+		Mockito.when(webClient.delete()).thenReturn(response);
 		agileServiceImpl.deleteAgileOperation("123", "456");
+	}
+
+	@SuppressWarnings("unchecked")
+	@Test(expected = RestClientException.class)
+	public void checkDeleteAgileThrowException() {
+		Mockito.when(webClient.delete()).thenThrow(RestClientException.class);
+		this.agileServiceImpl.deleteAgileOperation(null, null);
 	}
 
 	@Test
@@ -71,10 +77,10 @@ public class AgileOperationsServiceImplTest extends AbstractBbvaRestClientTest {
 		agileServiceImpl.modifyAgileOperation(Mockito.anyString(), new AgileOperation());
 	}
 
-	// @SuppressWarnings("unchecked")
-	// @Test(expected = RestClientException.class)
-	// public void checkModifyAgileThrowException() {
-	//
-	// this.agileServiceImpl.modifyAgileOperation(Mockito.anyString(), new AgileOperation());
-	// }
+	@SuppressWarnings("unchecked")
+	@Test(expected = RestClientException.class)
+	public void checkModifyAgileThrowException() {
+		Mockito.when(webClient.put(null)).thenThrow(RestClientException.class);
+		this.agileServiceImpl.modifyAgileOperation(null, null);
+	}
 }

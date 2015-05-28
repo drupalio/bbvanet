@@ -40,6 +40,14 @@ public class FavoriteOperationsMapperImplTest {
 	}
 
 	@Test
+	public void check() {
+		FavoriteOperationDto favoriteOperationDto = new FavoriteOperationDto();
+		AgileOperation agileOperation = favoriteOperationMapper.map(favoriteOperationDto);
+		Assert.assertNotNull(agileOperation);
+
+	}
+
+	@Test
 	public void checkGetNameClassOrigin() {
 		Assert.assertNotNull(favoriteOperationMapper.getNameClassOrigin(Mockito.mock(AdaptedIOriginAdapter.class)));
 
