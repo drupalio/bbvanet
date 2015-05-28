@@ -39,7 +39,7 @@ public interface AgileOperationsService {
 	@DELETE
 	@Produces("application/json")
 	@Path("/{agileOperationId}")
-	Response deleteAgileOperation(@PathParam("agileOperationId") String agileOperationId,
+	String deleteAgileOperation(@PathParam("agileOperationId") String agileOperationId,
 			@HeaderParam("attributesdeletelist") String attributesdeletelist);
 
 	@PUT

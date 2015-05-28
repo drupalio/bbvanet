@@ -222,4 +222,17 @@ public class FiqlServiceImpl implements FiqlService {
 				.equalTo(EnumMonthType.valueOfLabel(extract.getMonth()).getMonthNum()).and().is("year")
 				.equalTo(extract.getYear()).query();
 	}
+
+	/**
+	 * Fiql que construyel el filtro para traer el listado de operaciones favoritas
+	 */
+	@Override
+	public String getContractId(String docIdUser) {
+		if (docIdUser == null) {
+			return StringUtils.EMPTY;
+		}
+		final SearchConditionBuilder filter = SearchConditionBuilder.instance(FIQL_LANGUAGE);
+		return filter.is("contractId").equalTo(docIdUser).query();
+	}
+
 }

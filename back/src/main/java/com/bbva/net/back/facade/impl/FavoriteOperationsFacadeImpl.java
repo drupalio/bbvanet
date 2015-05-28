@@ -1,8 +1,5 @@
 package com.bbva.net.back.facade.impl;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -11,9 +8,10 @@ import com.bbva.net.back.core.pattern.facade.AbstractBbvaFacade;
 import com.bbva.net.back.core.stereotype.Facade;
 import com.bbva.net.back.facade.FavoriteOperationsFacade;
 import com.bbva.net.back.mapper.FavoriteOperationsMapper;
-import com.bbva.net.back.model.commons.Money;
 import com.bbva.net.back.model.favoriteOperations.FavoriteOperationDto;
+import com.bbva.net.back.service.FiqlService;
 import com.bbva.net.webservices.agileOperations.AgileOperationsService;
+import com.bbva.zic.agileoperations.v01.AgileOperation;
 
 /**
  * @author Entelgy
@@ -38,63 +36,31 @@ public class FavoriteOperationsFacadeImpl extends AbstractBbvaFacade implements 
 	@Resource(name = "favoriteOperationsMapper")
 	private FavoriteOperationsMapper favoriteOperationsMapper;
 
+	@Resource(name = "fiqlService")
+	private FiqlService fiqlService;
+
 	/**
 	 * list all FavoriteOperations
 	 */
 	@Override
-	public List<FavoriteOperationDto> getListFavoriteOperations() {
-		List<FavoriteOperationDto> favoriteOperations;
-		favoriteOperations = new ArrayList<FavoriteOperationDto>();
-		FavoriteOperationDto favorite = new FavoriteOperationDto();
-		Money ammount = new Money();
-		ammount.setAmount(new BigDecimal(1000));
-		ammount.setCurrency("COP");
-		favorite.setAmount(ammount);
-		favorite.setContractId("1234");
-		favorite.setDestination("ccc");
-		favorite.setIdOperation("1");
-		favorite.setOrigin("clabe");
-		favorite.setTransactionDate(new Date());
-		favoriteOperations.add(favorite);
-
-		favorite = new FavoriteOperationDto();
-		ammount = new Money();
-		ammount.setAmount(new BigDecimal(2000));
-		ammount.setCurrency("COP");
-		favorite.setAmount(ammount);
-		favorite.setContractId("1234");
-		favorite.setDestination("cardNumber");
-		favorite.setIdOperation("1");
-		favorite.setOrigin("creditNumber");
-		favorite.setTransactionDate(new Date());
-		favoriteOperations.add(favorite);
-
-		favorite = new FavoriteOperationDto();
-		ammount = new Money();
-		ammount.setAmount(new BigDecimal(3000));
-		ammount.setCurrency("COP");
-		favorite.setAmount(ammount);
-		favorite.setContractId("1234");
-		favorite.setDestination("ccc");
-		favorite.setIdOperation("1");
-		favorite.setOrigin("clabe");
-		favorite.setTransactionDate(new Date());
-		favoriteOperations.add(favorite);
-
-		favorite = new FavoriteOperationDto();
-		ammount = new Money();
-		ammount.setAmount(new BigDecimal(4000));
-		ammount.setCurrency("COP");
-		favorite.setAmount(ammount);
-		favorite.setContractId("1234");
-		favorite.setDestination("cardNumber");
-		favorite.setIdOperation("1");
-		favorite.setOrigin("creditNumber");
-		favorite.setTransactionDate(new Date());
-		favoriteOperations.add(favorite);
-
-		// final List<AgileOperation> response = agileOperationsService.getAgileOperations("123");
-		// List<FavoriteOperationDto> favoriteOperations = favoriteOperationsMapper.map(response);
+	public List<FavoriteOperationDto> getListFavoriteOperations(String user) {
+		LOGGER.info("Inicia Método getListFavoriteOperations de FavoriteOperationsFacade");
+		final String filter = fiqlService.getContractId(user);
+		final List<AgileOperation> response = agileOperationsService.getAgileOperations(filter);
+		List<FavoriteOperationDto> favoriteOperations = favoriteOperationsMapper.map(response);
 		return favoriteOperations;
+	}
+
+	@Override
+	public String deleteFavoriteOperations(String operationId) {
+		LOGGER.info("Inicia Método deleteFavoriteOperations de FavoriteOperationsFacade");
+		return agileOperationsService.deleteAgileOperation(operationId, null);
+	}
+
+	@Override
+	public void modifyFavoriteoperations(FavoriteOperationDto favoriteOperation) {
+		LOGGER.info("Inicia Método modifyFavoriteoperations de FavoriteOperationsFacade");
+		AgileOperation agileOperation = favoriteOperationsMapper.map(favoriteOperation);
+		agileOperationsService.modifyAgileOperation(favoriteOperation.getIdOperation(), agileOperation);
 	}
 }

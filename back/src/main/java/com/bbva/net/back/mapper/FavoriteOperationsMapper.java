@@ -13,4 +13,10 @@ public interface FavoriteOperationsMapper {
 	 */
 	List<FavoriteOperationDto> map(List<AgileOperation> favOperations);
 
+	/**
+	 * @param favOperation
+	 * @return
+	 */
+	AgileOperation map(FavoriteOperationDto favOperation);
+
 }
