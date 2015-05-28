@@ -59,5 +59,12 @@ public interface FiqlService {
 	 * @return
 	 */
 	String getFiqlQueryCustomer(String userName, String docTypeUser, String docIdUser);
+	
+	/**
+	 * 
+	 * @param usr
+	 * @return
+	 */
+	String getFiqlQuerybyCustomer(String usr);
 
 }

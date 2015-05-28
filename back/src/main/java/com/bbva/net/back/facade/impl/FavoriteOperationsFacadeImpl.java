@@ -13,6 +13,7 @@ import com.bbva.net.back.facade.FavoriteOperationsFacade;
 import com.bbva.net.back.mapper.FavoriteOperationsMapper;
 import com.bbva.net.back.model.commons.Money;
 import com.bbva.net.back.model.favoriteOperations.FavoriteOperationDto;
+import com.bbva.net.back.service.FiqlService;
 import com.bbva.net.webservices.agileOperations.AgileOperationsService;
 
 /**
@@ -37,6 +38,9 @@ public class FavoriteOperationsFacadeImpl extends AbstractBbvaFacade implements 
 	 */
 	@Resource(name = "favoriteOperationsMapper")
 	private FavoriteOperationsMapper favoriteOperationsMapper;
+	
+	@Resource(name = "fiqlService")
+	private FiqlService fiqlService;
 
 	/**
 	 * list all FavoriteOperations
@@ -96,5 +100,16 @@ public class FavoriteOperationsFacadeImpl extends AbstractBbvaFacade implements 
 		// final List<AgileOperation> response = agileOperationsService.getAgileOperations("123");
 		// List<FavoriteOperationDto> favoriteOperations = favoriteOperationsMapper.map(response);
 		return favoriteOperations;
+	}
+
+	@Override
+	public boolean validateOperation(String user) {
+		String fiql = fiqlService.getFiqlQuerybyCustomer(user);
+		return agileOperationsService.validateAgileOperation(fiql);
+	}
+
+	@Override
+	public boolean addOperation(FavoriteOperationDto operacionFavorita) {
+		return agileOperationsService.addAgileOperation(null);
 	}
 }
