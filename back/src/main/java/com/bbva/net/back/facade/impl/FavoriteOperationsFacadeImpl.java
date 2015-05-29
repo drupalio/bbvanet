@@ -45,7 +45,7 @@ public class FavoriteOperationsFacadeImpl extends AbstractBbvaFacade implements 
 	@Override
 	public List<FavoriteOperationDto> getListFavoriteOperations(String user) {
 		LOGGER.info("Inicia Método getListFavoriteOperations de FavoriteOperationsFacade");
-		final String filter = fiqlService.getContractId(user);
+		final String filter = fiqlService.getFiqlQuerybyCustomer(user);
 		final List<AgileOperation> response = agileOperationsService.getAgileOperations(filter);
 		List<FavoriteOperationDto> favoriteOperations = favoriteOperationsMapper.map(response);
 		return favoriteOperations;
@@ -75,6 +75,20 @@ public class FavoriteOperationsFacadeImpl extends AbstractBbvaFacade implements 
 
 	public void setFavoriteOperationsMapper(FavoriteOperationsMapper favoriteOperationsMapper) {
 		this.favoriteOperationsMapper = favoriteOperationsMapper;
+	}
+
+	@Override
+	public boolean validateOperation(String user) {
+		LOGGER.info("Inicia Método validateOperation de FavoriteOperationsFacade");
+		String fiql = fiqlService.getFiqlQuerybyCustomer(user);
+		return agileOperationsService.validateAgileOperation(fiql);
+	}
+
+	@Override
+	public boolean addOperation(FavoriteOperationDto operacionFavorita) {
+		LOGGER.info("Inicia Método addOperation de FavoriteOperationsFacade");
+		AgileOperation agileOperation = favoriteOperationsMapper.map(operacionFavorita);
+		return agileOperationsService.addAgileOperation(agileOperation);
 	}
 
 }

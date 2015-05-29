@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ws.rs.core.Response;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.cxf.jaxrs.client.WebClient;
 import org.springframework.web.client.RestClientException;
 
@@ -17,7 +18,8 @@ import com.bbva.zic.agileoperations.v01.AgileOperation;
  * @author Entelgy
  */
 @RestService(value = "agileOperationsService")
-public class AgileOperationsServiceImpl extends AbstractBbvaRestService implements AgileOperationsService {
+public class AgileOperationsServiceImpl extends AbstractBbvaRestService
+		implements AgileOperationsService {
 
 	/**
 	 * get favorite operations
@@ -40,24 +42,39 @@ public class AgileOperationsServiceImpl extends AbstractBbvaRestService implemen
 	 * 
 	 */
 	@Override
-	public Response addAgileOperation(final AgileOperation agileoperation) {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean addAgileOperation(final AgileOperation agileoperation) {
+		try {
+			final WebClient webc = getJsonWebClient(URL_BASE_OPERATIONS);
+			Response res = webc.post(agileoperation);			
+			return res.getStatus() == 0;
+		} catch (Exception s) {
+			throw new RestClientException(
+					"Servicio no disponible - No se han podido agregar la operacion");
+		}
 	}
 
 	/**
 	 * 
 	 */
 	@Override
-	public Response validateAgileOperation(final String $filter) {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean validateAgileOperation(final String $filter) {
+		try {
+			final WebClient webc = getJsonWebClient(URL_BASE_OPERATIONS
+					+ URL_VALIDATED);
+			if (!StringUtils.isEmpty($filter))
+				webc.query("$filter", $filter);
+			return webc.get(boolean.class);
+		} catch (Exception s) {
+			throw new RestClientException(
+					"Servicio no disponible - No se han podido Validar la operacion");
+		}
 	}
 
 	/**
 	 * 
 	 */
 	@Override
+
 	public String deleteAgileOperation(final String agileOperationId, final String attributesdeletelist) {
 		try {
 			final WebClient webc = getJsonWebClient(URL_BASE_OPERATIONS + "/" + agileOperationId);
@@ -72,6 +89,7 @@ public class AgileOperationsServiceImpl extends AbstractBbvaRestService implemen
 	 * 
 	 */
 	@Override
+
 	public Response modifyAgileOperation(final String agileOperationId, final AgileOperation agileoperation) {
 		try {
 			final WebClient webc = getJsonWebClient(URL_BASE_OPERATIONS + "/" + agileOperationId);

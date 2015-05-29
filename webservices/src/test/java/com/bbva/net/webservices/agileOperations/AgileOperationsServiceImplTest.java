@@ -50,12 +50,20 @@ public class AgileOperationsServiceImplTest extends AbstractBbvaRestClientTest {
 
 	@Test
 	public void checkAddAgileOperation() {
-		agileServiceImpl.addAgileOperation(Mockito.mock(AgileOperation.class));
+		AgileOperation op = new AgileOperation();
+		Mockito.when(webClient.getResponse()).thenReturn(response);
+		Mockito.when(webClient.post(op)).thenReturn(response);
+		agileServiceImpl.addAgileOperation(op);
 	}
 
 	@Test
 	public void checkValidateAgileOperation() {
-		agileServiceImpl.validateAgileOperation(Mockito.anyString());
+		
+		String fql = "asdf";
+		Mockito.when(webClient.query("$filter", fql)).thenReturn(webClient);
+		Mockito.when(webClient.getResponse()).thenReturn(response);
+		Mockito.when(webClient.get(boolean.class)).thenReturn(true);
+		agileServiceImpl.validateAgileOperation(fql);
 	}
 
 	@Test

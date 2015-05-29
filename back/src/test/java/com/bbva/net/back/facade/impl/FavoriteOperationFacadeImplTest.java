@@ -51,13 +51,31 @@ public class FavoriteOperationFacadeImplTest {
 
 	@Test
 	public void getListFavoriteOperations() {
-		Mockito.when(fiqlService.getContractId("")).thenReturn("");
+		Mockito.when(fiqlService.getFiqlQuerybyCustomer("")).thenReturn("");
 		List<AgileOperation> response = new ArrayList<AgileOperation>();
 		Mockito.when(agileOperationsService.getAgileOperations("")).thenReturn(response);
 		List<FavoriteOperationDto> favOperation = new ArrayList<FavoriteOperationDto>();
 		Mockito.when(favoriteOperationsMapper.map(response)).thenReturn(favOperation);
 		Assert.assertNotNull(favoriteFacade.getListFavoriteOperations(""));
 
+	}
+
+	@Test
+	public void addFavoriteoperations() {
+		AgileOperation agileOperation = new AgileOperation();
+		FavoriteOperationDto favoriteOperation = new FavoriteOperationDto(new Date(), new Money(new BigDecimal(1000)),
+				"Cuenta corriente", "Cuenta de ahorro", "9132", "5", "Pago", "123456");
+		Mockito.when(favoriteOperationsMapper.map(favoriteOperation)).thenReturn(agileOperation);
+		Mockito.when(agileOperationsService.addAgileOperation(agileOperation)).thenReturn(true);
+		Assert.assertNotNull(favoriteFacade.addOperation(favoriteOperation));
+
+	}
+
+	@Test
+	public void validateFavoriteOperations() {
+		Mockito.when(fiqlService.getFiqlQuerybyCustomer("")).thenReturn("");
+		Mockito.when(agileOperationsService.validateAgileOperation("")).thenReturn(true);
+		Assert.assertNotNull(favoriteFacade.validateOperation(""));
 	}
 
 	@Test
