@@ -88,6 +88,22 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
 	}
 
 	/**
+	 * 
+	 */
+	// public void modifyFavotiteOperations(final SelectEvent selectEvent) {
+	// FavoriteOperationDto favorite
+	// LOGGER.info("ON favoriteOperation\n: " + ((FavoriteOperationDto)selectEvent.getObject()).getIdOperation());
+	// this.favoriteOperationsFacade.modifyFavoriteoperations(favoriteOperation);
+	// }
+
+	/**
+	 * 
+	 */
+	public void deleteFavoriteOperations() {
+
+	}
+
+	/**
 	 * @param transactionDate
 	 * @return
 	 */

@@ -1,7 +1,6 @@
 package com.bbva.net.front.controller.impl;
 
 import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -95,10 +94,10 @@ public class FavoriteOperationsControllerImplTest extends AbstractBbvaController
 	}
 
 	// @Test
-	public void checkGetDate() {
-		final Date date = new Date();
-		final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-		// Mockito.when(dateFormat.format(date)).thenReturn("29-02-2015");
-		Assert.assertNotNull(this.favoriteOperationsController.getDate(date));
-	}
+	// public void checkGetDate() {
+	// final Date date = new Date();
+	// final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+	// // Mockito.when(dateFormat.format(date)).thenReturn("29-02-2015");
+	// Assert.assertNotNull(this.favoriteOperationsController.getDate(date));
+	// }
 }
