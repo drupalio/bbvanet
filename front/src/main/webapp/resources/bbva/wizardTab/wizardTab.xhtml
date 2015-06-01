@@ -12,6 +12,7 @@
 	<composite:attribute name="title" type="String" />
 	<composite:attribute name="text" type="String" />
 	<composite:attribute name="icon" />
+	<composite:attribute name="controller" />
 	<composite:attribute name="widgetVar" />
 	<composite:attribute name="widgetVarDialog" />
 </composite:interface>
@@ -37,7 +38,8 @@
 							update="formWizard" type="button"
 							onclick="PF('#{cc.attrs.widgetVarDialog}').hide();" resetValues="true" />
 						<p:commandButton styleClass="closeNextbtn" value="Aceptar" type="button"
-							onclick="PF('#{cc.attrs.widgetVar}').next();" />
+							onclick="PF('#{cc.attrs.widgetVar}').next();"
+							actionListener="#{cc.attrs.controller}" />
 					</p:panel>
 				</p:tab>
 				<p:tab id="check" titleStyle="display: none">

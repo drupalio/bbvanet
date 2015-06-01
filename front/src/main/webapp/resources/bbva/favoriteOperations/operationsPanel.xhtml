@@ -15,7 +15,7 @@
 </composite:interface>
 <composite:implementation>
 	<bbvaWizardTab:wizardTab title="Eliminar operación favorita" widgetVar="myWizard" widgetVarDialog="confimDialog"
-		text="¿Estás seguro que deseas eliminar esta operación favorita?" icon="info-blue iconWizard" />
+		text="¿Estás seguro que deseas eliminar esta operación favorita?" icon="info-blue iconWizard" controller="favoriteOperationsController.delete"/>
     <section class="links dated favoritas editable" id="preferredOperations">
         <bbvaOperationFav:operationsHeader title="#{msg['text.favoriteOperations']}" msgInfo="#{msg['msg.info.favoriteOperations']}"/>
         <h:form id="favorito">

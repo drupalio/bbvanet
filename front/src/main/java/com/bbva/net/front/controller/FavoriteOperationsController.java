@@ -18,9 +18,9 @@ public interface FavoriteOperationsController {
 	 * @return
 	 */
 	List<FavoriteOperationDto> getListFavoriteOperationsHidden();
-	
-	void modificar();
-	
-	void eliminar();
+
+	void modify();
+
+	void delete();
 
 }

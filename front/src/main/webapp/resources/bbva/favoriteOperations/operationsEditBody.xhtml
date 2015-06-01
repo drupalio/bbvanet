@@ -9,6 +9,7 @@
 <composite:interface>
 	<composite:attribute name="alias" type="String" />
 	<composite:attribute name="valor" type="String" />
+	<composite:attribute name="controller" type="String" />
 </composite:interface>
 <composite:implementation>
 	<article id="artFav-Edit">
@@ -39,12 +40,13 @@
 		</div>
 		<div class="formEdFavoritos buttonsFina">
 			<div class="col-md-6">
-				<button type="button" class="btn small button-finishFa"
-					onclick="removeEdit(this)">#{msg['button.acept']}</button>
+				<p:commandButton styleClass="btn small button-finishEdit"
+					onclick="removeEdit(this)" value="#{msg['button.acept']}"
+					actionListener="#{cc.attrs.controller.modify}" />
 			</div>
 			<div class="col-md-6">
-				<button type="button" class="btn small button-finishFa"
-					onclick="removeEdit(this)">#{msg['button.cancel']}</button>
+				<p:commandButton styleClass="btn small button-finishEdit"
+					onclick="removeEdit(this)" value="#{msg['button.cancel']}" />
 			</div>
 		</div>
 	</article>
