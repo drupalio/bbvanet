@@ -34,6 +34,8 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
 	 * 
 	 */
 	private List<FavoriteOperationDto> favoriteOperations;
+	
+	private FavoriteOperationDto selectOperation;
 
 	/**
 	 * Facade favoriteOperations
@@ -158,6 +160,15 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
 	 */
 	public void setFavoriteOperationsFacade(final FavoriteOperationsFacade favoriteOperationsFacade) {
 		this.favoriteOperationsFacade = favoriteOperationsFacade;
+	}
+
+	public FavoriteOperationDto getSelectOperation() {
+		return selectOperation;
+	}
+
+	public void setSelectOperation(FavoriteOperationDto selectOperation) {		
+		LOGGER.info("Operacion seleccionada ..."+selectOperation.getContractId());
+		this.selectOperation = selectOperation;
 	}
 
 }

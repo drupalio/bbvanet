@@ -3,15 +3,15 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:composite="http://java.sun.com/jsf/composite"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets" 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:bbvaOperationFav="http://java.sun.com/jsf/composite/bbva/favoriteOperations"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pm="http://primefaces.org/mobile"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 <composite:interface>
 	<composite:attribute name="list" type="java.util.List" />
-	<composite:attribute name="id_form" type="String"/>
-	<composite:attribute name="id_wid" type="String"/>
+	<composite:attribute name="id_form" type="String" />
+	<composite:attribute name="id_wid" type="String" />
 	<composite:attribute name="sclass" />
 </composite:interface>
 <composite:implementation>
@@ -19,35 +19,35 @@
 		<ul>
 
 			<p:dataTable id="#{cc.attrs.id_form}" widgetVar="#{cc.attrs.id_wid}"
-				var="iOperations" rowIndexVar="findex" value="#{cc.attrs.list}" 
+				var="iOperations" rowIndexVar="findex" value="#{cc.attrs.list}"
 				selectionMode="single" rowKey="#{iOperations.idOperation}">
-				<p:ajax event="rowSelect" listener="#{favoriteOperationsController.onFavoriteSelected}" />
-				<p:ajax event="rowUnselect" />
 				<p:column width="0% !important;" style="z-index: -1 !important">
 					<p:rowToggler rendered="true" />
 				</p:column>
 				<p:column class="head" styleClass="operation" id="fav-colum"
-                    style="font-size: 0.9em;border: 1px solid #D5E2EE !important">
-                    <li>
-                       <a id="alink" class="mini-triangled" href="#"> 
-                           <span class="dateText">#{msg['text.favoriteOperations.lastTime']} #{favoriteOperationsController.getDate(iOperations.transactionDate)}</span> 
-                           <span style="color: #0065b7; margin-top: 2px !important">#{msg['text.favoriteOperations.tranfer']} #{iOperations.amount} </span> 
-                           <span class="dateText-foot" style="margin-top: 1px !important">#{iOperations.origin} - #{iOperations.destination}</span> 
-                           <h:panelGroup styleClass="buttons buttons-addfavo editDele nonee">
-                                <button class="btn primary iconed table-button button-edit"
-                                    type="button" onclick="clickMoveFav(this)">
-                                    <span class="icon-16 blue n04-editar" />
-                                </button>
-                                <button class="btn primary iconed table-button button-delete"
-                                    type="button" onclick="PF('confimDialog').show();">
-                                    <span class="icon-16 blue n05-eliminar" />
-                                </button>
-                            </h:panelGroup>
-                       </a>
-                    </li>
-                </p:column>     
+					style="font-size: 0.9em;border: 1px solid #D5E2EE !important">
+					<li><a id="alink" class="mini-triangled" href="#"> <span
+							class="dateText">#{msg['text.favoriteOperations.lastTime']}
+								#{favoriteOperationsController.getDate(iOperations.transactionDate)}</span>
+							<span style="color: #0065b7; margin-top: 2px !important">#{msg['text.favoriteOperations.tranfer']}
+								#{iOperations.amount} </span> <span class="dateText-foot"
+							style="margin-top: 1px !important">#{iOperations.origin} -
+								#{iOperations.destination}</span> <h:panelGroup
+								styleClass="buttons buttons-addfavo editDele nonee">
+								<p:commandButton
+									styleClass="btn primary iconed table-button button-edit" onclick="clickMoveFav(this)">
+									<f:setPropertyActionListener value="#{iOperations}" target="#{favoriteOperationsController.selectOperation}" />
+								<span class="icon-16 blue n04-editar" />
+								</p:commandButton>
+								<button class="btn primary iconed table-button button-delete"
+									type="button" onclick="PF('confimDialog').show();">
+									<span class="icon-16 blue n05-eliminar" />
+								</button>
+							</h:panelGroup>
+					</a></li>
+				</p:column>
 				<p:rowExpansion styleClass="detail-row">
-			        <bbvaOperationFav:operationsEditBody/>
+					<bbvaOperationFav:operationsEditBody />
 				</p:rowExpansion>
 			</p:dataTable>
 		</ul>
