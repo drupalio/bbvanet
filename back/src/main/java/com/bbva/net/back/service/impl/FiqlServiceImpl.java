@@ -222,4 +222,18 @@ public class FiqlServiceImpl implements FiqlService {
 				.equalTo(EnumMonthType.valueOfLabel(extract.getMonth()).getMonthNum()).and().is("year")
 				.equalTo(extract.getYear()).query();
 	}
+
+	/**
+	 * Fiql Query que construye el filtro para consultar validateOperation
+	 */
+	@Override
+	public String getFiqlQuerybyCustomer(final String usr) {
+		if (usr == null) {
+			return StringUtils.EMPTY;
+		}
+		final SearchConditionBuilder filter = SearchConditionBuilder.instance(FIQL_LANGUAGE);
+
+		return filter.is("contractId").equalTo(usr).query();
+	}
+
 }

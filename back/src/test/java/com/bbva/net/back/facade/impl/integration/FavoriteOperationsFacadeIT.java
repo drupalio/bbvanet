@@ -21,7 +21,7 @@ public class FavoriteOperationsFacadeIT {
 
 	@Test
 	public void checkGetOperationsOK() {
-		Assert.assertNotNull(this.favoriteOperationsFacade.getListFavoriteOperations());
+		Assert.assertNotNull(this.favoriteOperationsFacade.getListFavoriteOperations("123"));
 	}
 
 }

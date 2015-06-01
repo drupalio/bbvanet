@@ -13,5 +13,22 @@ public interface FavoriteOperationsFacade {
 	 * @param contractId
 	 * @return List favorite operations by contractId
 	 */
-	List<FavoriteOperationDto> getListFavoriteOperations();
+	
+	boolean validateOperation(String user);
+	
+	boolean addOperation(FavoriteOperationDto operacionFavorita);
+
+	List<FavoriteOperationDto> getListFavoriteOperations(String user);
+
+	/**
+	 * @param id
+	 * @return
+	 */
+	String deleteFavoriteOperations(String operationId);
+
+	/**
+	 * @param favoriteOperation
+	 */
+	void modifyFavoriteoperations(FavoriteOperationDto favoriteOperation);
+
 }

@@ -29,17 +29,17 @@ public interface AgileOperationsService {
 	@POST
 	@Consumes("application/json")
 	@Produces("application/json")
-	Response addAgileOperation(AgileOperation agileoperation);
+	boolean addAgileOperation(AgileOperation agileoperation);
 
 	@GET
 	@Produces("application/json")
 	@Path("/validated")
-	Response validateAgileOperation(@QueryParam("$filter") String $filter);
+	boolean validateAgileOperation(@QueryParam("$filter") String $filter);
 
 	@DELETE
 	@Produces("application/json")
 	@Path("/{agileOperationId}")
-	Response deleteAgileOperation(@PathParam("agileOperationId") String agileOperationId,
+	String deleteAgileOperation(@PathParam("agileOperationId") String agileOperationId,
 			@HeaderParam("attributesdeletelist") String attributesdeletelist);
 
 	@PUT
