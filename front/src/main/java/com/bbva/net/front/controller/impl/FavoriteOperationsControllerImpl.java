@@ -8,6 +8,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
 import org.apache.commons.collections.ListUtils;
+import org.primefaces.event.SelectEvent;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -90,11 +91,11 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
 	/**
 	 * 
 	 */
-	// public void modifyFavotiteOperations(final SelectEvent selectEvent) {
-	// FavoriteOperationDto favorite
-	// LOGGER.info("ON favoriteOperation\n: " + ((FavoriteOperationDto)selectEvent.getObject()).getIdOperation());
-	// this.favoriteOperationsFacade.modifyFavoriteoperations(favoriteOperation);
-	// }
+	public void onFavoriteSelected(final SelectEvent selectEvent) {
+		FavoriteOperationDto a = (FavoriteOperationDto)selectEvent.getObject();
+		LOGGER.info("ON productSelected\n: " + ((FavoriteOperationDto)selectEvent.getObject()).getAmount());
+		System.out.print("Hola " + a.getContractId());
+	}
 
 	/**
 	 * 

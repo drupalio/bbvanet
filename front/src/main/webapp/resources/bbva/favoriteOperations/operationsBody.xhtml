@@ -10,13 +10,19 @@
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 <composite:interface>
 	<composite:attribute name="list" type="java.util.List" />
+	<composite:attribute name="id_form" type="String"/>
+	<composite:attribute name="id_wid" type="String"/>
 	<composite:attribute name="sclass" />
 </composite:interface>
 <composite:implementation>
 	<article id="artFav-Options" class="#{cc.attrs.sclass}">
 		<ul>
-			<p:dataTable id="favoriteOperations" widgetVar="favoriteOperations"
-				var="iOperations" rowIndexVar="findex" value="#{cc.attrs.list}">
+
+			<p:dataTable id="#{cc.attrs.id_form}" widgetVar="#{cc.attrs.id_wid}"
+				var="iOperations" rowIndexVar="findex" value="#{cc.attrs.list}" 
+				selectionMode="single" rowKey="#{iOperations.idOperation}">
+				<p:ajax event="rowSelect" listener="#{favoriteOperationsController.onFavoriteSelected}" />
+				<p:ajax event="rowUnselect" />
 				<p:column width="0% !important;" style="z-index: -1 !important">
 					<p:rowToggler rendered="true" />
 				</p:column>
