@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:bbvaMessage="http://java.sun.com/jsf/composite/bbva/messages"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:pm="http://primefaces.org/mobile">
+<composite:interface>
+	<composite:attribute name="title" type="String" />
+	<composite:attribute name="text" type="String" />
+	<composite:attribute name="icon" type="String" />
+</composite:interface>
+<composite:implementation>
+	<p:dialog position="center center" widgetVar="confimDialog" modal="true"
+		resizable="false" styleClass="nonClose fontBlue" header="#{cc.attrs.title}">
+		<h:form>
+			<p:wizard styleClass="wizardR" onback="PF('confimDialog').hide();"
+				backLabel="Cancelar" nextLabel="Aceptar">
+				<p:tab id="confirm" titleStyle="display: none">
+					<p:panel styleClass="idPrincipal">
+						<div class="error-icon-container">
+							<span class="#{cc.attrs.icon}" />
+						</div>
+						<div class="error-text-container" style="text-align: center !important;">
+							<p>#{cc.attrs.text}</p>
+						</div>
+					</p:panel>
+				</p:tab>
+				<p:tab id="check" titleStyle="display: none">
+					<h:panelGroup class="col-xs-12">
+						<div class="operation-success">
+							<span class="success-icon">#{msg['text.successful']}</span>
+						</div>
+					</h:panelGroup>
+				</p:tab>
+			</p:wizard>
+		</h:form>
+	</p:dialog>
+</composite:implementation>
+</html>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+<composite:interface>
+</composite:interface>
+<composite:implementation>
+	<article id="artFav-Edit">
+		<div class="formEdFavoritos">
+			<div class="col-md-12 ">
+				<div class="col-md-4">
+					<p:outputLabel for="currencyValue" styleClass="fontSmall"
+						value="#{msg['text.aliasAplication']} :" />
+				</div>
+				<div class="col-md-8">
+					<p:inputText id="changeAlias" value="#{cc.attrs.valueSince}" type="text"
+						styleClass="form-control" />
+				</div>
+			</div>
+			<div class="col-md-12 ">
+				<div class="col-md-4">
+					<p:outputLabel for="currencyValue" styleClass="fontSmall"
+						value="#{msg['text.valueTe']}:" />
+				</div>
+				<div class="col-md-8">
+					<p:inputText id="currencyValue" value="#{cc.attrs.valueSince}" type="text"
+						styleClass="form-control refalingInput" maxlength="12" autocomplete="off"
+						style="width:100% !important">
+						<f:validateLength maximum="12" minimum="1" />
+					</p:inputText>
+				</div>
+			</div>
+		</div>
+		<div class="formEdFavoritos buttonsFina">
+			<div class="col-md-6">
+				<button type="button" class="btn small button-finishFa"
+					onclick="removeEdit(this)">#{msg['button.acept']}</button>
+			</div>
+			<div class="col-md-6">
+				<button type="button" class="btn small button-finishFa"
+					onclick="removeEdit(this)">#{msg['button.cancel']}</button>
+			</div>
+		</div>
+	</article>
+</composite:implementation>
+</html>

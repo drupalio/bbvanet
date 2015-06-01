@@ -895,6 +895,7 @@ body div.ui-growl .ui-state-highlight {
 .nonClose .ui-dialog-content {
 	background: #FFF !important;
 	color: #000 !important;
+	overflow: visible !important;
 }
 
 .mistakeMessage .ui-dialog-content {
@@ -926,7 +927,13 @@ body div.ui-growl .ui-state-highlight {
 
 .nonClose .ui-widget-header {
 	background: #FFF !important;
-	color: #000 !important;
+	overflow: visible !important;
+}
+
+.fontBlue .ui-widget-header {
+	color: #0078D2 !important;
+	font-size: 20px !important;
+	font-weight: 400 !important;
 }
 
 /*container*/
@@ -990,9 +997,9 @@ body div.ui-growl .ui-state-highlight {
 
 /*width div input balance*/
 .refalingInput {
-	background-image: url('../img/icons/dollar-blue.png ');
-	background-repeat: no-repeat;
-	background-position: right 3% center;
+	background-image: url('../img/icons/dollar-blue.png ') !important;
+	background-repeat: no-repeat !important;
+	background-position: right 3% center !important;
 	width: 95%;
 	padding: 3px !important;
 }
@@ -1306,4 +1313,124 @@ body div.ui-growl .ui-state-highlight {
 	background: #B3C5CF
 		url("/showcase/javax.faces.resource/images/ui-bg_flat_0_2d5972_40x100.png.xhtml?ln=primefaces-aristo")
 		50% 50% repeat-x !important;
+}
+
+/*none image Background*/
+.backImaNo {
+	background-image: none !important;
+}
+
+/*Letra pequeña*/
+.fontSmall {
+	font-size: 10px !important;
+}
+
+/*Icon rowToogle*/
+.ui-datatable .ui-row-toggler {
+	background-image: none !important;
+}
+
+/*Favoritos*/
+/*Boton de editar*/
+.n04-editar {
+	background: #FFF url("../img/sprite-blue-x16.png") no-repeat -463px
+		-1387px !important;
+}
+/*Boton de eliminar*/
+.n05-eliminar {
+	background: #FFF url("../img/sprite-blue-x16.png") no-repeat scroll
+		-462px -1452px !important;
+}
+/*Boton de editar y eliminar*/
+.button-edit, .button-delete {
+	background: #FFF !important;
+	padding: 2px 8px !important;
+	z-index: 1000;
+	margin: 0px !important;
+	margin-top: -67px !important;
+}
+
+/*Formulario de editar favoritos*/
+.formEdFavoritos {
+	background: #F7E9E9 !important;
+	padding: 32px 0px 80px 0px;
+}
+
+.buttonsFina {
+	padding: 25px 0px 54px 0px !important;
+	border-top: 1px solid #A6C9E2;
+}
+/*Span de boton de editar y eliminar*/
+@media ( min-width : 769px) {
+	.editDele {
+		position: relative;
+		left: 80%;
+	}
+	.button-finishFa {
+		margin: 5% 0% !important;
+		padding: 3px 30px 3px 30px !important;
+	}
+}
+
+@media ( max-width : 768px) {
+	.editDele {
+		position: relative;
+		left: 90%;
+	}
+	.button-finishFa {
+		margin: 5% 0% !important;
+		padding: 12.5px 50px !important;
+	}
+}
+
+.idPrincipal {
+	overflow-x: auto !important;
+	border: 0px !important;
+	text-align: center !important;
+}
+
+.wizardR .ui-wizard-content {
+	border-top: 1px solid #DBDCDF !important;
+}
+
+.wizardR .ui-wizard-navbar {
+	border-top: 1px solid #DBDCDF !important;
+	text-align: center !important;
+}
+
+.wizardR .ui-wizard-navbar .ui-wizard-nav-back, .wizardR .ui-wizard-navbar .ui-wizard-nav-next
+	{
+	float: none !important;
+	background: #0079C1
+		-moz-linear-gradient(center top, #0079C1 0%, #00559D 100%) repeat
+		scroll 0% 0%;
+	border-radius: 4px;
+	color: #FFF;
+	border: 1px solid #00559D;
+	vertical-align: middle;
+	text-shadow: none !important;
+	font: 12px/24px "BBVA Web Medium", Arial, sans-serif !important;
+	padding: 5px 13px 5px 0px !important;
+	font-weight: 400 !important;
+	background: #0079C1
+		-moz-linear-gradient(center top, #0079C1 0%, #00559D 100%) repeat
+		scroll 0% 0%;
+	margin: 20px 0px 0px 30px !important;
+}
+
+.wizardR .ui-wizard-navbar .ui-wizard-nav-back {
+	display: inline-block !important;
+}
+
+.wizardR .ui-wizard-navbar .ui-wizard-nav-back .ui-button-icon-left,
+	.wizardR .ui-wizard-navbar .ui-wizard-nav-next .ui-button-icon-left {
+	left: 0.5em;
+	background-image: none !important;
+	width: 0px !important;
+}
+
+.wizardR .ui-wizard-navbar .ui-wizard-nav-back .ui-button .ui-button-text,
+	.wizardR .ui-wizard-navbar .ui-wizard-nav-next .ui-button .ui-button-text
+	{
+	padding: 0.3em 2em 0.3em 2.1em !important;
 }

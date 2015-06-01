@@ -3,35 +3,48 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:composite="http://java.sun.com/jsf/composite"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:ui="http://java.sun.com/jsf/facelets" 
+	xmlns:bbvaOperationFav="http://java.sun.com/jsf/composite/bbva/favoriteOperations"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pm="http://primefaces.org/mobile"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
-
 <composite:interface>
 	<composite:attribute name="list" type="java.util.List" />
 	<composite:attribute name="sclass" />
 </composite:interface>
-
 <composite:implementation>
-
-	<article>
+	<article id="artFav-Options" class="#{cc.attrs.sclass}">
 		<ul>
 			<p:dataTable id="favoriteOperations" widgetVar="favoriteOperations"
-				var="iOperations" rowIndexVar="findex" value="#{cc.attrs.list}" >
-				<p:column class="head" styleClass="operation" style="font-size: 0.9em;border: 1px solid #D5E2EE !important">
-					<li class="#{cc.attrs.sclass}">
-						<a class="mini-triangled" href="#">
-							<span class="dateText">#{msg['text.favoriteOperations.lastTime']} #{favoriteOperationsController.getDate(iOperations.transactionDate)}</span> 
-							<span style="color: #0065b7;margin-top: 2px !important">#{msg['text.favoriteOperations.tranfer']} #{iOperations.amount} </span>
-							<span class="dateText-foot" style="margin-top: 1px !important">#{iOperations.origin} - #{iOperations.destination}</span>
-						</a>
-					</li>					
+				var="iOperations" rowIndexVar="findex" value="#{cc.attrs.list}">
+				<p:column width="0% !important;" style="z-index: -1 !important">
+					<p:rowToggler rendered="true" />
 				</p:column>
+				<p:column class="head" styleClass="operation" id="fav-colum"
+                    style="font-size: 0.9em;border: 1px solid #D5E2EE !important">
+                    <li>
+                       <a id="alink" class="mini-triangled" href="#"> 
+                           <span class="dateText">#{msg['text.favoriteOperations.lastTime']} #{favoriteOperationsController.getDate(iOperations.transactionDate)}</span> 
+                           <span style="color: #0065b7; margin-top: 2px !important">#{msg['text.favoriteOperations.tranfer']} #{iOperations.amount} </span> 
+                           <span class="dateText-foot" style="margin-top: 1px !important">#{iOperations.origin} - #{iOperations.destination}</span> 
+                           <h:panelGroup styleClass="buttons buttons-addfavo editDele nonee">
+                                <button class="btn primary iconed table-button button-edit"
+                                    type="button" onclick="clickMoveFav(this)">
+                                    <span class="icon-16 blue n04-editar" />
+                                </button>
+                                <button class="btn primary iconed table-button button-delete"
+                                    type="button" onclick="PF('confimDialog').show();">
+                                    <span class="icon-16 blue n05-eliminar" />
+                                </button>
+                            </h:panelGroup>
+                       </a>
+                    </li>
+                </p:column>     
+				<p:rowExpansion styleClass="detail-row">
+			        <bbvaOperationFav:operationsEditBody/>
+				</p:rowExpansion>
 			</p:dataTable>
 		</ul>
 	</article>
-
 </composite:implementation>
-
 </html>
