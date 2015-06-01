@@ -7,6 +7,8 @@
 	xmlns:pm="http://primefaces.org/mobile"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 <composite:interface>
+	<composite:attribute name="alias" type="String" />
+	<composite:attribute name="valor" type="String" />
 </composite:interface>
 <composite:implementation>
 	<article id="artFav-Edit">
@@ -17,7 +19,7 @@
 						value="#{msg['text.aliasAplication']} :" />
 				</div>
 				<div class="col-md-8">
-					<p:inputText id="changeAlias" value="#{cc.attrs.valueSince}" type="text"
+					<p:inputText id="changeAlias" value="#{cc.attrs.alias}" type="text"
 						styleClass="form-control" />
 				</div>
 			</div>
@@ -27,10 +29,10 @@
 						value="#{msg['text.valueTe']}:" />
 				</div>
 				<div class="col-md-8">
-					<p:inputText id="currencyValue" value="#{cc.attrs.valueSince}" type="text"
+					<p:inputText id="currencyValue" value="#{cc.attrs.valor}" type="text"
 						styleClass="form-control refalingInput" maxlength="12" autocomplete="off"
 						style="width:100% !important">
-						<f:validateLength maximum="12" minimum="1" />
+						<f:validateLength maximum="12" />
 					</p:inputText>
 				</div>
 			</div>
