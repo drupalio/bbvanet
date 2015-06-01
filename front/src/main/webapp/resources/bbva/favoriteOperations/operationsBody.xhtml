@@ -17,7 +17,6 @@
 <composite:implementation>
 	<article id="artFav-Options" class="#{cc.attrs.sclass}">
 		<ul>
-
 			<p:dataTable id="#{cc.attrs.id_form}" widgetVar="#{cc.attrs.id_wid}"
 				var="iOperations" rowIndexVar="findex" value="#{cc.attrs.list}"
 				selectionMode="single" rowKey="#{iOperations.idOperation}">
@@ -34,15 +33,12 @@
 							style="margin-top: 1px !important">#{iOperations.origin} -
 								#{iOperations.destination}</span> <h:panelGroup
 								styleClass="buttons buttons-addfavo editDele nonee">
-								<p:commandButton
-									styleClass="btn primary iconed table-button button-edit" onclick="clickMoveFav(this)">
+								<p:commandButton styleClass="btn primary iconed table-button button-edit" onclick="clickMoveFav(this)" icon="icon-16 blue n04-editar">
 									<f:setPropertyActionListener value="#{iOperations}" target="#{favoriteOperationsController.selectOperation}" />
-								<span class="icon-16 blue n04-editar" />
 								</p:commandButton>
-								<button class="btn primary iconed table-button button-delete"
-									type="button" onclick="PF('confimDialog').show();">
-									<span class="icon-16 blue n05-eliminar" />
-								</button>
+								<p:commandButton styleClass="btn primary iconed table-button button-delete" onclick="PF('confimDialog').show();" icon="icon-16 blue n05-eliminar">
+									 <f:setPropertyActionListener value="#{iOperations}" target="#{favoriteOperationsController.selectOperation}" />
+								</p:commandButton>
 							</h:panelGroup>
 					</a></li>
 				</p:column>

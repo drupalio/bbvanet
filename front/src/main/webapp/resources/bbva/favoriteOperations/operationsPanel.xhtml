@@ -18,9 +18,9 @@
 		text="¿Estás seguro que deseas eliminar esta operación favorita?" icon="info-blue iconWizard" />
     <section class="links dated favoritas editable" id="preferredOperations">
         <bbvaOperationFav:operationsHeader title="#{msg['text.favoriteOperations']}" msgInfo="#{msg['msg.info.favoriteOperations']}"/>
-        		<h:form id="favorito">
-        <bbvaOperationFav:operationsBody list="#{favoriteOperationsController.getListFavoriteOperations()}" sclass="operation" id_form="favorite" id_wid="fav"/>
-        <bbvaOperationFav:operationsBody list="#{favoriteOperationsController.getListFavoriteOperationsHidden()}" sclass="operation hiddenElement" id_form="favoriteH" id_wid="favh"/>
+        <h:form id="favorito">
+             <bbvaOperationFav:operationsBody list="#{favoriteOperationsController.getListFavoriteOperations()}" sclass="operation" id_form="favorite" id_wid="fav"/>
+             <bbvaOperationFav:operationsBody list="#{favoriteOperationsController.getListFavoriteOperationsHidden()}" sclass="operation hiddenElement" id_form="favoriteH" id_wid="favh"/>
         </h:form>
         <bbvaOperationFav:operationsFooter/>  
         <footer>

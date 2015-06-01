@@ -1379,9 +1379,9 @@ body div.ui-growl .ui-state-highlight {
 .button-edit, .button-delete {
 	background: #FFF !important;
 	padding: 2px 8px !important;
-	z-index: 1000;
+	border: 1px solid #00559D !important;
 	margin: 0px !important;
-	margin-top: -67px !important;
+	margin: -67px 0px 0px 9px !important;
 }
 
 /*Formulario de editar favoritos*/
@@ -1410,6 +1410,7 @@ body div.ui-growl .ui-state-highlight {
 	.editDele {
 		position: relative;
 		left: 90%;
+		margin-left: 3px !important;
 	}
 	.button-finishFa {
 		margin: 5% 0% !important;
