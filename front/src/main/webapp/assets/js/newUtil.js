@@ -138,15 +138,17 @@ function removeEdit(button) {
 }
 
 function removeEditAll(button) {
-	var dat = $(button).parents('article[id|="artFav"]').parent();
-	var i = $('.ui-row-toggler.ui-icon-circle-triangle-s').length;
+	$(document).ready(function() {
+		var dat = $(button).parents('article[id|="artFav"]').parent();
+		var i = $('.ui-row-toggler.ui-icon-circle-triangle-s').length;
 
-	if (i >= 1) {
-		$('.ui-expanded-row').find('.ui-row-toggler').click();
-	}
-	$(dat).find('span[class*="buttons-addfavo"]').addClass('nonee');
-	$(dat).find('a[id="alink"]').addClass('mini-triangled');
-	$(dat).find('a[id="alink"]').removeClass('backImaNo');
+		if (i >= 1) {
+			$('.ui-expanded-row').find('.ui-row-toggler').click();
+		}
+		$(dat).find('span[class*="buttons-addfavo"]').addClass('nonee');
+		$(dat).find('a[id="alink"]').addClass('mini-triangled');
+		$(dat).find('a[id="alink"]').removeClass('backImaNo');
+	});
 }
 
 function clickMoveFav(button) {
@@ -162,9 +164,3 @@ function clickMoveFav(button) {
 		$(parent).find('.ui-row-toggler').eq(index).click();
 	});
 }
-
-$(document).ready(function() {
-	$('.ui-wizard-nav-next').click(function() {
-		$('.ui-wizard-nav-back span:last').text('close');
-	});
-});

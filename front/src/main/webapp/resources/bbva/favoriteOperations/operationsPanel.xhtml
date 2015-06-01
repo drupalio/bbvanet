@@ -14,8 +14,8 @@
 	<composite:attribute name="list" type="java.util.List" />
 </composite:interface>
 <composite:implementation>
-	<bbvaWizardTab:wizardTab title="Eliminar operación favorita"
-		text="¿Estás seguro que deseas eliminar esta operación favorita?" icon="alert-error" />
+	<bbvaWizardTab:wizardTab title="Eliminar operación favorita" widgetVar="myWizard" widgetVarDialog="confimDialog"
+		text="¿Estás seguro que deseas eliminar esta operación favorita?" icon="info-blue iconWizard" />
     <section class="links dated favoritas editable" id="preferredOperations">
         <bbvaOperationFav:operationsHeader title="#{msg['text.favoriteOperations']}" msgInfo="#{msg['msg.info.favoriteOperations']}"/>
         <bbvaOperationFav:operationsBody list="#{favoriteOperationsController.getListFavoriteOperations()}" sclass="operation"/>

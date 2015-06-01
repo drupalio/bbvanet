@@ -11,30 +11,48 @@
 <composite:interface>
 	<composite:attribute name="title" type="String" />
 	<composite:attribute name="text" type="String" />
-	<composite:attribute name="icon" type="String" />
+	<composite:attribute name="icon" />
+	<composite:attribute name="widgetVar" />
+	<composite:attribute name="widgetVarDialog" />
 </composite:interface>
 <composite:implementation>
-	<p:dialog position="center center" widgetVar="confimDialog" modal="true"
-		resizable="false" styleClass="nonClose fontBlue" header="#{cc.attrs.title}">
-		<h:form>
+	<p:dialog position="center center" widgetVar="#{cc.attrs.widgetVarDialog}"
+		modal="true" resizable="false" styleClass="mistakeMessage fontBlue "
+		header="#{cc.attrs.title}">
+		<p:ajax event="close" resetValues="true" update="formWizard" />
+		<h:form id="formWizard">
 			<p:wizard styleClass="wizardR" onback="PF('confimDialog').hide();"
-				backLabel="Cancelar" nextLabel="Aceptar">
+				showNavBar="false" widgetVar="#{cc.attrs.widgetVar}">
 				<p:tab id="confirm" titleStyle="display: none">
-					<p:panel styleClass="idPrincipal">
-						<div class="error-icon-container">
+					<p:panel styleClass="panelText infoConta">
+						<div class="error-icon-container" style="border: 0px !important;">
 							<span class="#{cc.attrs.icon}" />
 						</div>
 						<div class="error-text-container" style="text-align: center !important;">
 							<p>#{cc.attrs.text}</p>
 						</div>
 					</p:panel>
+					<p:panel styleClass="panelButtons">
+						<p:commandButton styleClass="closeNextbtn" value="Cancelar"
+							update="formWizard" type="button"
+							onclick="PF('#{cc.attrs.widgetVarDialog}').hide();" resetValues="true" />
+						<p:commandButton styleClass="closeNextbtn" value="Aceptar" type="button"
+							onclick="PF('#{cc.attrs.widgetVar}').next();" />
+					</p:panel>
 				</p:tab>
 				<p:tab id="check" titleStyle="display: none">
-					<h:panelGroup class="col-xs-12">
-						<div class="operation-success">
-							<span class="success-icon">#{msg['text.successful']}</span>
-						</div>
-					</h:panelGroup>
+					<p:panel styleClass="panelText" style="margin: 0px 30px;">
+						<h:panelGroup class="col-xs-12">
+							<div class="operation-success">
+								<span class="success-icon fontBlueSmall">#{msg['title.opertationCheck']}</span>
+							</div>
+						</h:panelGroup>
+					</p:panel>
+					<p:panel styleClass="panelButtons">
+						<p:commandButton styleClass="closeNextbtn" value="Cerrar" type="button"
+							onclick="PF('#{cc.attrs.widgetVarDialog}').hide();" resetValues="true"
+							update="formWizard" />
+					</p:panel>
 				</p:tab>
 			</p:wizard>
 		</h:form>
