@@ -8,6 +8,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
 import org.apache.commons.collections.ListUtils;
+import org.primefaces.event.SelectEvent;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -33,6 +34,8 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
 	 * 
 	 */
 	private List<FavoriteOperationDto> favoriteOperations;
+	
+	private FavoriteOperationDto selectOperation;
 
 	/**
 	 * Facade favoriteOperations
@@ -85,6 +88,22 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
 		} else {
 			return favoriteOperations.subList(3, favoriteOperations.size());
 		}
+	}
+
+	/**
+	 * 
+	 */
+	public void onFavoriteSelected(final SelectEvent selectEvent) {
+		FavoriteOperationDto a = (FavoriteOperationDto)selectEvent.getObject();
+		LOGGER.info("ON productSelected\n: " + ((FavoriteOperationDto)selectEvent.getObject()).getAmount());
+		System.out.print("Hola " + a.getContractId());
+	}
+
+	/**
+	 * 
+	 */
+	public void deleteFavoriteOperations() {
+
 	}
 
 	/**
@@ -141,6 +160,15 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
 	 */
 	public void setFavoriteOperationsFacade(final FavoriteOperationsFacade favoriteOperationsFacade) {
 		this.favoriteOperationsFacade = favoriteOperationsFacade;
+	}
+
+	public FavoriteOperationDto getSelectOperation() {
+		return selectOperation;
+	}
+
+	public void setSelectOperation(FavoriteOperationDto selectOperation) {		
+		LOGGER.info("Operacion seleccionada ..."+selectOperation.getContractId());
+		this.selectOperation = selectOperation;
 	}
 
 }
