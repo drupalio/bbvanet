@@ -31,9 +31,8 @@
 				</div>
 				<div class="col-md-8">
 					<p:inputText id="currencyValue" value="#{cc.attrs.valor}" type="text"
-						styleClass="form-control refalingInput" maxlength="12" autocomplete="off"
+						styleClass="form-control refalingInput" autocomplete="off"
 						style="width:100% !important">
-						<f:validateLength maximum="12" />
 					</p:inputText>
 				</div>
 			</div>
@@ -41,8 +40,8 @@
 		<div class="formEdFavoritos buttonsFina">
 			<div class="col-md-6">
 				<p:commandButton styleClass="btn small button-finishEdit"
-					onclick="removeEdit(this)" value="#{msg['button.acept']}"
-					actionListener="#{cc.attrs.controller.modify}" />
+					value="#{msg['button.acept']}" onclick="removeEdit(this)"
+					oncomplete="PF('confimDialogEdit').show();" />
 			</div>
 			<div class="col-md-6">
 				<p:commandButton styleClass="btn small button-finishEdit"

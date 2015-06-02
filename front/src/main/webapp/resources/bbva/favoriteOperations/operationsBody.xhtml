@@ -36,7 +36,7 @@
 								<p:commandButton styleClass="btn primary iconed table-button button-edit" onclick="clickMoveFav(this)" icon="icon-16 blue n04-editar">
 									<f:setPropertyActionListener value="#{iOperations}" target="#{favoriteOperationsController.selectOperation}" />
 								</p:commandButton>
-								<p:commandButton styleClass="btn primary iconed table-button button-delete" onclick="PF('confimDialog').show();" icon="icon-16 blue n05-eliminar">
+								<p:commandButton styleClass="btn primary iconed table-button button-delete" onclick="PF('confimDialogDelete').show();" icon="icon-16 blue n05-eliminar">
 									 <f:setPropertyActionListener value="#{iOperations}" target="#{favoriteOperationsController.selectOperation}" />
 								</p:commandButton>
 							</h:panelGroup>

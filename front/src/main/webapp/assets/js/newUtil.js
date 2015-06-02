@@ -7,8 +7,10 @@ function enableDisableButton(inputId) {
 	var valueInput = $(inputId).val().length;
 	if (valueInput > 0) {
 		$('.saveAlias').removeClass('buttonDisabled');
+		return;
+	} else {
+		$('.saveAlias').addClass('buttonDisabled');
 	}
-	return false;
 }
 
 // metodo que habilita o desabilita el boton cuando hay 4 digitos en el input
@@ -16,12 +18,15 @@ function enableDisableButton(inputId) {
 // inputId= id del input
 // btnW = name del button
 
-function enableDisable(inputId, btnW) {
+function enableDisable(inputId) {
 	var valueInput = $(inputId).val().length;
 	if (valueInput == 4) {
 		$('.operKey').removeClass('buttonDisabled');
+		return;
+	} else {
+		$('.operKey').addClass('buttonDisabled');
 	}
-	return false;
+
 }
 
 // Metodo que cambia el estilo del divOperationkey
