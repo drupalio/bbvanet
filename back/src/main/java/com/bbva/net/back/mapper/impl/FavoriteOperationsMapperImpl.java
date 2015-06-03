@@ -39,6 +39,12 @@ public class FavoriteOperationsMapperImpl extends ConfigurableMapper implements 
 
 	}
 
+	@Override
+	public AgileOperation map(FavoriteOperationDto favOperation) {
+		AgileOperation agileOperation = map(favOperation, AgileOperation.class);
+		return agileOperation;
+	}
+
 	/**
 	 * Mapper of Favorite Operations
 	 */
@@ -93,4 +99,5 @@ public class FavoriteOperationsMapperImpl extends ConfigurableMapper implements 
 		if (origen.getMobilePhoneNumber() != null) tipoDestination = "mobilePhoneNumber";
 		return tipoDestination;
 	}
+
 }

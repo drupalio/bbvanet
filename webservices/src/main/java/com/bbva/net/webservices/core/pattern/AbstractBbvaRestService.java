@@ -81,7 +81,9 @@ public abstract class AbstractBbvaRestService {
 
 	@Value("${rest.subjets.url}")
 	protected String URL_SUBJETS;
-
+	
+	@Value("${rest.agileValidated.url}")
+	protected String URL_VALIDATED;
 	/**
 	 * @param response
 	 * @param entityClass

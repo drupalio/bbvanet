@@ -7,16 +7,13 @@
 	xmlns:pm="http://primefaces.org/mobile"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 <composite:interface>
-	<composite:attribute name="title" type="String" />
-	<composite:attribute name="msgInfo" type="String" />
 </composite:interface>
 <composite:implementation>
-	<header id="headerFavo">
-		<span class="icon-star"></span>
-		<h1>#{cc.attrs.title}</h1>
-		<span data-original-title="#{cc.attrs.msgInfo}" data-toggle="tooltip" title=""
-			class="icon-info-blue"> </span> <span class="edit-gray"
-			onclick="buttonVisi(this)"></span>
-	</header>
+	<article id="artFav-Footer" style="text-align: center;">
+		<h:panelGroup styleClass="buttons-addfavo nonee">
+			<button type="button" class="btn small button-finishFa"
+				onclick="removeEditAll(this)">#{msg['button.finishEdit']}</button>
+		</h:panelGroup>
+	</article>
 </composite:implementation>
 </html>

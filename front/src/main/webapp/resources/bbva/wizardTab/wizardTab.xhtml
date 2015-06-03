@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:bbvaMessage="http://java.sun.com/jsf/composite/bbva/messages"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:pm="http://primefaces.org/mobile">
+<composite:interface>
+	<composite:attribute name="title" type="String" />
+	<composite:attribute name="textConfim" type="String" />
+	<composite:attribute name="icon" />
+	<composite:attribute name="textOperations" />
+	<composite:attribute name="textCheck" />
+	<composite:attribute name="controller" method-signature="void actionlistener(javax.faces.event.ActionEvent)"/>
+	<composite:attribute name="widgetVar" />
+	<composite:attribute name="widgetVarDialog" />
+	<composite:attribute name="formWizard" />
+</composite:interface>
+<composite:implementation>
+	<p:dialog id="dialogW" position="center center"
+		widgetVar="#{cc.attrs.widgetVarDialog}" modal="true" resizable="false"
+		styleClass="mistakeMessage fontBlue" header="#{cc.attrs.title}"
+		closeOnEscape="false">
+		<p:ajax event="close" resetValues="true" update="item_#{cc.attrs.formWizard}" />
+		<h:form id="item_#{cc.attrs.formWizard}">
+			<p:wizard id="contentW" styleClass="wizardR" showNavBar="false"
+				widgetVar="#{cc.attrs.widgetVar}">
+				<p:tab id="confim" titleStyle="display: none">
+					<p:panel styleClass="panelText infoConta">
+						<div class="error-icon-container" style="border: 0px !important;">
+							<span class="#{cc.attrs.icon}" />
+						</div>
+						<div class="error-text-container" style="text-align: center !important;">
+							<p>#{cc.attrs.textConfim}</p>
+						</div>
+					</p:panel>
+					<p:panel styleClass="panelButtons">
+						<p:commandButton styleClass="closeNextbtn marginBuutonW" value="Cancelar"
+							update="item_#{cc.attrs.formWizard}" resetValues="true"
+							oncomplete="PF('#{cc.attrs.widgetVar}').loadStep('confim', true)"
+							onclick="PF('#{cc.attrs.widgetVarDialog}').hide()" />
+						<p:commandButton styleClass="closeNextbtn marginBuutonW" value="Siguiente"
+							oncomplete="PF('#{cc.attrs.widgetVar}').loadStep('verify', true)" />
+					</p:panel>
+				</p:tab>
+				<p:tab id="verify" titleStyle="display: none">
+					<p:panel styleClass="panelText">
+						<div class="col-xs-12 operation-message">
+							<div class="row validate-key">
+								<div class="col-xs-12 col-md-12">
+									<span class=".iconFont-183" />
+								</div>
+								<p:outputLabel styleClass="col-xs-12 col-md-12 fontLabelT"
+									style="text-align: left !important; padding: 18px !important;"
+									value="#{cc.attrs.textOperations}" />
+								<div class="col-xs-12 col-md-12" style="padding: 7px !important;">
+									<div class="col-xs-6 col-md-6 input-control">
+										<p:inputText type="password" onkeyup="enableDisable(this)"
+											styleClass="form-control" maxlength="4" />
+									</div>
+									<div class="col-xs-6 col-md-5" style="padding: 0px !important;">
+										<p:commandButton styleClass="closeNextbtn operKey buttonDisabled"
+											value="Confirmar" actionListener="#{cc.attrs.controller}"
+											oncomplete="PF('#{cc.attrs.widgetVar}').loadStep('check', true)"
+											style="padding: 2px 8px !important;" />
+									</div>
+								</div>
+							</div>
+						</div>
+					</p:panel>
+					<p:panel styleClass="panelButtons">
+						<p:commandButton styleClass="closeNextbtn" value="Cancelar"
+							update="item_#{cc.attrs.formWizard}" resetValues="true"
+							onclick="PF('#{cc.attrs.widgetVarDialog}').hide();"
+							oncomplete="PF('#{cc.attrs.widgetVar}').loadStep('confim', true)" />
+					</p:panel>
+				</p:tab>
+				<p:tab id="check" titleStyle="display: none">
+					<p:panel styleClass="panelText" style="margin: 0px 30px;">
+						<h:panelGroup class="col-xs-12">
+							<div class="operation-success">
+								<span class="success-icon fontBlueSmall">#{cc.attrs.textCheck}</span>
+							</div>
+						</h:panelGroup>
+					</p:panel>
+					<p:panel styleClass="panelButtons">
+						<p:commandButton styleClass="closeNextbtn" value="Cerrar"
+							oncomplete="PF('#{cc.attrs.widgetVar}').loadStep('confim', true)"
+							onclick="PF('#{cc.attrs.widgetVarDialog}').hide();" resetValues="true"
+							update="item_#{cc.attrs.formWizard}" />
+					</p:panel>
+				</p:tab>
+			</p:wizard>
+		</h:form>
+	</p:dialog>
+</composite:implementation>
+</html>

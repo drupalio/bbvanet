@@ -6,8 +6,10 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
+import javax.faces.event.ActionEvent;
 
 import org.apache.commons.collections.ListUtils;
+import org.primefaces.event.SelectEvent;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -34,6 +36,8 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
 	 */
 	private List<FavoriteOperationDto> favoriteOperations;
 
+	private FavoriteOperationDto selectOperation = new FavoriteOperationDto();
+
 	/**
 	 * Facade favoriteOperations
 	 */
@@ -45,7 +49,15 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
 	 */
 	@PostConstruct
 	public void init() {
-		favoriteOperations = favoriteOperationsFacade.getListFavoriteOperations();
+		if (getSession().getAttribute("docIdUser") != null) {
+			LOGGER.info("Metodo init de FavoriteOperationController con usuario de la sesión "
+					+ getSession().getAttribute("docIdUser").toString());
+			favoriteOperations = favoriteOperationsFacade.getListFavoriteOperations(getSession().getAttribute(
+					"docIdUser").toString());
+		} else {
+			LOGGER.info("Metodo init de FavoriteOperationController sin usuario de la sesión ");
+			favoriteOperations = favoriteOperationsFacade.getListFavoriteOperations("123");
+		}
 		getNames();
 	}
 
@@ -80,11 +92,22 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
 	}
 
 	/**
+	 * 
+	 */
+	public void onFavoriteSelected(final SelectEvent selectEvent) {
+		FavoriteOperationDto a = (FavoriteOperationDto)selectEvent.getObject();
+		LOGGER.info("ON productSelected\n: " + ((FavoriteOperationDto)selectEvent.getObject()).getAmount());
+		System.out.print("Hola " + a.getContractId());
+	}
+
+	/**
 	 * @param transactionDate
 	 * @return
 	 */
 	public String getDate(final Date transactionDate) {
-		final SimpleDateFormat dateFormat = new SimpleDateFormat(MessagesHelper.INSTANCE.getStringI18("date.pattner.dd-mm-yyyy"));
+		LOGGER.info("Formater de fecha de FavoriteOperations");
+		final SimpleDateFormat dateFormat = new SimpleDateFormat(
+				MessagesHelper.INSTANCE.getStringI18("date.pattner.dd-mm-yyyy"));
 		return dateFormat.format(transactionDate);
 
 	}
@@ -93,6 +116,7 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
      * 
      */
 	public void getNames() {
+		LOGGER.info("Metodo getNames de favoriteOperations");
 		for (int i = 0; i < favoriteOperations.size(); i++) {
 			final String origen = MessagesHelper.INSTANCE.getFavOperationsPrefix(this.favoriteOperations.get(i)
 					.getOrigin());
@@ -130,6 +154,29 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
 	 */
 	public void setFavoriteOperationsFacade(final FavoriteOperationsFacade favoriteOperationsFacade) {
 		this.favoriteOperationsFacade = favoriteOperationsFacade;
+	}
+
+	public FavoriteOperationDto getSelectOperation() {
+		return selectOperation;
+	}
+
+	public void setSelectOperation(FavoriteOperationDto selectOperation) {
+		LOGGER.info("Operacion seleccionada ..." + selectOperation.getAmount());
+		this.selectOperation = selectOperation;
+	}
+
+	@Override
+	public void modify(ActionEvent actionEvent) {
+		LOGGER.info("Operacion modificada ..." + selectOperation.getAmount());
+		favoriteOperationsFacade.modifyFavoriteoperations(selectOperation);
+
+	}
+
+	@Override
+	public void delete(ActionEvent actionEvent) {
+		LOGGER.info("Operacion a eliminar ..." + selectOperation.getAmount());
+		favoriteOperationsFacade.deleteFavoriteOperations(selectOperation.getIdOperation());
+
 	}
 
 }
