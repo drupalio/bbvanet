@@ -17,14 +17,14 @@
 	<bbvaWizardTab:wizardTab title="Eliminar operación favorita"
 		widgetVar="myWizardDelete" widgetVarDialog="confimDialogDelete"
 		textConfim="#{msg['msg.info.confimDeleteFav']}" icon="info-blue iconWizard"
-		controller="favoriteOperationsController.delete" formWizard="Delete"
+		controller="#{favoriteOperationsController.delete}" formWizard="Delete"
 		textOperations="#{msg['msg.info.keyOperations']}" 
 		textCheck="#{msg['title.opertationCheck']}" />
 		
 	<bbvaWizardTab:wizardTab title="Editar operación favorita"
 		widgetVar="myWizardEdit" widgetVarDialog="confimDialogEdit"
 		textConfim="#{msg['msg.info.confimEditFav']}" icon="info-blue iconWizard"
-		controller="favoriteOperationsController.modify" formWizard="Edit"
+		controller="#{favoriteOperationsController.modify}" formWizard="Edit"
 		textOperations="#{msg['msg.info.keyOperations']}" 
 		textCheck="#{msg['title.opertationCheck']}" />
 		

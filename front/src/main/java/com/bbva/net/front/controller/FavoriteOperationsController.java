@@ -2,6 +2,8 @@ package com.bbva.net.front.controller;
 
 import java.util.List;
 
+import javax.faces.event.ActionEvent;
+
 import com.bbva.net.back.model.favoriteOperations.FavoriteOperationDto;
 
 /**
@@ -19,8 +21,8 @@ public interface FavoriteOperationsController {
 	 */
 	List<FavoriteOperationDto> getListFavoriteOperationsHidden();
 
-	void modify();
+	void modify(ActionEvent actionEvent);
 
-	void delete();
+	void delete(ActionEvent actionEvent);
 
 }
