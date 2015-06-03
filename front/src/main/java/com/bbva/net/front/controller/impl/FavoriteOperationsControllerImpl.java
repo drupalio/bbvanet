@@ -101,13 +101,6 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
 	}
 
 	/**
-	 * 
-	 */
-	public void deleteFavoriteOperations() {
-
-	}
-
-	/**
 	 * @param transactionDate
 	 * @return
 	 */
@@ -181,6 +174,7 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
 
 	@Override
 	public void delete(ActionEvent actionEvent) {
+		LOGGER.info("Operacion a eliminar ..." + selectOperation.getAmount());
 		favoriteOperationsFacade.deleteFavoriteOperations(selectOperation.getIdOperation());
 
 	}
