@@ -156,8 +156,9 @@ function removeEditAll(button) {
 	});
 }
 
-function clickMoveFav(button) {
+function clickMoveFav() {
 	$(document).ready(function() {
+		var button = $('.editFavoritosRow.ui-state-focus');
 		var dat = $(button).parents('td.operation').parent();
 		var index = $(dat).attr('data-ri');
 		var parent = $(dat).parent('.ui-datatable-data');
