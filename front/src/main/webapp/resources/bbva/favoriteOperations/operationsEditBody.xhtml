@@ -40,14 +40,14 @@
 				</div>
 			</div>
 		</div>
-		<div class="formEdFavoritos buttonsFina">
-			<div class="col-md-6">
+		<div class="formEdFavoritos buttonsFina" align="center">
+			<div class="col-md-6" style="display: inline-block;">
 				<p:commandButton styleClass="btn small button-finishEdit"
 					value="#{msg['button.acept']}" onclick="removeEdit(this)"
-					oncomplete="PF('confimDialogEdit').show();" >
+					oncomplete="PF('confimDialogEdit').show();" style="">
 					</p:commandButton>
 			</div>
-			<div class="col-md-6">
+			<div class="col-md-6" style="display: inline-block;">
 				<p:commandButton styleClass="btn small button-finishEdit"
 					onclick="removeEdit(this)" value="#{msg['button.cancel']}" />
 			</div>
