@@ -10,8 +10,6 @@ import org.apache.cxf.interceptor.AbstractInDatabindingInterceptor;
 import org.apache.cxf.interceptor.Fault;
 import org.apache.cxf.message.Message;
 import org.apache.cxf.phase.Phase;
-import org.apache.cxf.transport.Conduit;
-import org.primefaces.context.RequestContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.faces.webflow.FlowFacesContext;
@@ -47,7 +45,7 @@ public class ResponseInterceptor extends AbstractInDatabindingInterceptor implem
 
 			status = outMessage.get(Message.RESPONSE_CODE).toString();
 			LOGGER.info("service con status::" + status);
-			
+
 			final FacesContext facesContext = FlowFacesContext.getCurrentInstance();
 			LOGGER.info("INTERCEPTANDO RESPUESTA : " + facesContext.getExternalContext().getRequestServletPath());
 			final HttpSession session = (HttpSession)facesContext.getExternalContext().getSession(false);
@@ -57,18 +55,36 @@ public class ResponseInterceptor extends AbstractInDatabindingInterceptor implem
 			final String tsec = headers.get(TSecType.tsec.name()).get(0);
 			LOGGER.info("Recogiendo TSEC y añadiendo a sesión:" + tsec);
 			session.setAttribute(TSecType.tsec.name(), tsec);
+			if (status.trim().equals("500")) {
+				LOGGER.info("Se Redirecciona a la de errror con status:" + status);
+				try {
+					FacesContext context = FlowFacesContext.getCurrentInstance();
+					context.getExternalContext().redirect("/errorService/errorService.xhtml");
+				} catch (Exception d) {
+
+				}
+			}
 		} catch (final Exception exception) {
-			
+
 			LOGGER.info("Excepcion con Status :" + status);
 			// Muestra el mensaje de error de tsec caducado
-			if (status.trim().equals("403")){
+			if (status.trim().equals("403")) {
 				LOGGER.info("Se Redirecciona a la pagina publica con status:" + status);
-				try{
+				try {
 					FacesContext context = FlowFacesContext.getCurrentInstance();
 					context.getExternalContext().redirect("/error/error.xhtml");
-					//RequestContext.getCurrentInstance().execute("PF('mistake').show();");
-				}catch(Exception d){
-					
+					// RequestContext.getCurrentInstance().execute("PF('mistake').show();");
+				} catch (Exception d) {
+
+				}
+			}
+			if (status.trim().equals("500")) {
+				LOGGER.info("Se Redirecciona a la de error desde catch con status:" + status);
+				try {
+					FacesContext context = FlowFacesContext.getCurrentInstance();
+					context.getExternalContext().redirect("/errorService/errorService.xhtml");
+				} catch (Exception d) {
+
 				}
 			}
 			LOGGER.info("ERROR RESPONSE INTERCEPTOR: " + exception.getCause());

@@ -7,8 +7,10 @@ function enableDisableButton(inputId) {
 	var valueInput = $(inputId).val().length;
 	if (valueInput > 0) {
 		$('.saveAlias').removeClass('buttonDisabled');
+		return;
+	} else {
+		$('.saveAlias').addClass('buttonDisabled');
 	}
-	return false;
 }
 
 // metodo que habilita o desabilita el boton cuando hay 4 digitos en el input
@@ -16,12 +18,15 @@ function enableDisableButton(inputId) {
 // inputId= id del input
 // btnW = name del button
 
-function enableDisable(inputId, btnW) {
+function enableDisable(inputId) {
 	var valueInput = $(inputId).val().length;
 	if (valueInput == 4) {
 		$('.operKey').removeClass('buttonDisabled');
+		return;
+	} else {
+		$('.operKey').addClass('buttonDisabled');
 	}
-	return false;
+
 }
 
 // Metodo que cambia el estilo del divOperationkey
@@ -138,19 +143,22 @@ function removeEdit(button) {
 }
 
 function removeEditAll(button) {
-	var dat = $(button).parents('article[id|="artFav"]').parent();
-	var i = $('.ui-row-toggler.ui-icon-circle-triangle-s').length;
+	$(document).ready(function() {
+		var dat = $(button).parents('article[id|="artFav"]').parent();
+		var i = $('.ui-row-toggler.ui-icon-circle-triangle-s').length;
 
-	if (i >= 1) {
-		$('.ui-expanded-row').find('.ui-row-toggler').click();
-	}
-	$(dat).find('span[class*="buttons-addfavo"]').addClass('nonee');
-	$(dat).find('a[id="alink"]').addClass('mini-triangled');
-	$(dat).find('a[id="alink"]').removeClass('backImaNo');
+		if (i >= 1) {
+			$('.ui-expanded-row').find('.ui-row-toggler').click();
+		}
+		$(dat).find('span[class*="buttons-addfavo"]').addClass('nonee');
+		$(dat).find('a[id="alink"]').addClass('mini-triangled');
+		$(dat).find('a[id="alink"]').removeClass('backImaNo');
+	});
 }
 
-function clickMoveFav(button) {
+function clickMoveFav() {
 	$(document).ready(function() {
+		var button = $('.editFavoritosRow.ui-state-focus');
 		var dat = $(button).parents('td.operation').parent();
 		var index = $(dat).attr('data-ri');
 		var parent = $(dat).parent('.ui-datatable-data');
@@ -162,9 +170,3 @@ function clickMoveFav(button) {
 		$(parent).find('.ui-row-toggler').eq(index).click();
 	});
 }
-
-$(document).ready(function() {
-	$('.ui-wizard-nav-next').click(function() {
-		$('.ui-wizard-nav-back span:last').text('close');
-	});
-});

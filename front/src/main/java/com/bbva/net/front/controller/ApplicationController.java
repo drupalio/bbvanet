@@ -1,9 +1,6 @@
 package com.bbva.net.front.controller;
 
-import java.util.List;
-
-import com.bbva.net.back.entity.MultiValueGroup;
-import com.bbva.net.front.ui.menu.ItemMenu;
+import javax.faces.event.ValueChangeEvent;
 
 /**
  * @author Entelgy
@@ -11,10 +8,7 @@ import com.bbva.net.front.ui.menu.ItemMenu;
 public interface ApplicationController {
 
 	/**
-	 * @return
+	 * 
 	 */
-	List<MultiValueGroup> getListMultiValueLikes();
-
-	
-
+	public void onLikeAccount(final ValueChangeEvent valueChangeEvent);
 }

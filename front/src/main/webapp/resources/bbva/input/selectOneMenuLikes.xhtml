@@ -10,13 +10,13 @@
 	<composite:attribute name="label" />
 	<composite:attribute name="value" type="String" />
 	<composite:attribute name="valueList" />
-	<composite:attribute name="listener" />
+	<composite:attribute name="listener" method-signature="void actionlistener(javax.faces.event.ActionEvent)"/>
 	<composite:attribute name="render" />
 </composite:interface>
 <composite:implementation>
 	<div class="select-tab-quiero selectorCombo hidden-xs hidden-sm">
 		<h:form>
-		<h:selectOneMenu enabledClass="selectOption"
+		<h:selectOneMenu enabledClass="selectOption" 
 			disabledClass="selectOptionDisabled" onchange="styles(this)"
 			styleClass="select-tab-quiero select-tab-quiero-default quieros btn-group bootstrap-select hidden-xs hidden-sm quiero"
 			style="background-position: 95% !important;">

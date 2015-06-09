@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
+import javax.faces.event.ActionEvent;
 
 import org.apache.commons.collections.ListUtils;
 import org.primefaces.event.SelectEvent;
@@ -34,7 +35,7 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
 	 * 
 	 */
 	private List<FavoriteOperationDto> favoriteOperations;
-	
+
 	private FavoriteOperationDto selectOperation = new FavoriteOperationDto();
 
 	/**
@@ -100,13 +101,6 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
 	}
 
 	/**
-	 * 
-	 */
-	public void deleteFavoriteOperations() {
-
-	}
-
-	/**
 	 * @param transactionDate
 	 * @return
 	 */
@@ -166,21 +160,23 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
 		return selectOperation;
 	}
 
-	public void setSelectOperation(FavoriteOperationDto selectOperation) {		
-		LOGGER.info("Operacion seleccionada ..."+selectOperation.getContractId());
+	public void setSelectOperation(FavoriteOperationDto selectOperation) {
+		LOGGER.info("Operacion seleccionada ..." + selectOperation.getAmount());
 		this.selectOperation = selectOperation;
 	}
 
 	@Override
-	public void modificar() {
+	public void modify(ActionEvent actionEvent) {
+		LOGGER.info("Operacion modificada ..." + selectOperation.getAmount());
 		favoriteOperationsFacade.modifyFavoriteoperations(selectOperation);
-		
+
 	}
 
 	@Override
-	public void eliminar() {
+	public void delete(ActionEvent actionEvent) {
+		LOGGER.info("Operacion a eliminar ..." + selectOperation.getAmount());
 		favoriteOperationsFacade.deleteFavoriteOperations(selectOperation.getIdOperation());
-		
+
 	}
 
 }

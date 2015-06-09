@@ -20,17 +20,17 @@
 			<bbvaHeader:particulares />
 			<bbvaHeader:executive>
 				<bbvaHeader:executiveHeader title="#{msg['text.executive']}:"
-					dat="#{headerController.getEjecutivo().name}" />
+					dat="#{headerController.ejecutivo.name}" />
 				<bbvaHeader:executiveBody>
 					<bbvaHeader:executiveItem
-						link="https://www.google.es/maps/#{headerController.getEjecutivo().coordenadas}"
+						link="https://www.google.es/maps/#{headerController.ejecutivo.coordenadas}"
 						targe="_blank" icono="office"
-						data="#{headerController.getEjecutivo().office.name}"
-						dataSmall="#{headerController.getEjecutivo().office.addres}" />
+						data="#{headerController.ejecutivo.office.name}"
+						dataSmall="#{headerController.ejecutivo.office.addres}" />
 					<bbvaHeader:executiveItem link="tel:#{executive.phone}"
-						icono="phone" data="#{headerController.getEjecutivo().phone}" />
+						icono="phone" data="#{headerController.ejecutivo.phone}" />
 					<bbvaHeader:executiveItem link="mailto:#{executive.mail}"
-						icono="mail" data="#{headerController.getEjecutivo().mail}" />
+						icono="mail" data="#{headerController.ejecutivo.mail}" />
 				</bbvaHeader:executiveBody>
 			</bbvaHeader:executive>
 
@@ -38,43 +38,43 @@
 
 		<bbvaMenu:menu>
 
-			<bbvaMenu:itemMenu href="./globalPosition" value="Posición global"
+			<bbvaMenu:itemMenu href="/page/globalPosition" value="Posición global"
 				title="Ir a Posición global" icon="posicionglobal" style="border-bottom-left-radius: 5px;border-top-left-radius:5px;" liclass="active"
 				rendered="#{menuActive == 'PG'}" />
 
-			<bbvaMenu:itemMenu href="./globalPosition" value="Posición global"
+			<bbvaMenu:itemMenu href="/page/globalPosition" value="Posición global"
 				title="Ir a Posición global" icon="posicionglobal" style="border-bottom-left-radius: 5px;border-top-left-radius:5px;"
 				liclass="width" rendered="#{menuActive != 'PG'}" />
 
-			<bbvaMenu:itemMenu href="./accounts" value="Cuentas"
+			<bbvaMenu:itemMenu href="/page/accounts" value="Cuentas"
 				title="Ir a Cuentas" icon="account-icon" liclass="active"
 				rendered="#{menuActive == 'ACCOUNTS'}" />
 
-			<bbvaMenu:itemMenu href="./accounts" value="Cuentas"
+			<bbvaMenu:itemMenu href="/page/accounts" value="Cuentas"
 				title="Ir a Cuentas" icon="account-icon"
 				rendered="#{menuActive != 'ACCOUNTS'}" />
 
-			<bbvaMenu:itemMenu href="./cards" value="Tarjetas"
+			<bbvaMenu:itemMenu href="/page/cards" value="Tarjetas"
 				title="Ir a Tarjetas" icon="card-icon"
 				rendered="#{menuActive != 'CARDS'}" />
 
-			<bbvaMenu:itemMenu href="./cards" value="Tarjetas"
+			<bbvaMenu:itemMenu href="/page/cards" value="Tarjetas"
 				title="Ir a Tarjetas" icon="card-icon" liclass="active"
 				rendered="#{menuActive == 'CARDS'}" />
 
-			<bbvaMenu:itemMenu href="./loan" value="Préstamos"
+			<bbvaMenu:itemMenu href="/page/loan" value="Préstamos"
 				title="Ir a Préstamos" icon="credit-icon" liclass="active"
 				rendered="#{menuActive == 'LOANS'}" />
 
-			<bbvaMenu:itemMenu href="./loan" value="Préstamos"
+			<bbvaMenu:itemMenu href="/page/loan" value="Préstamos"
 				title="Ir a Préstamos" icon="credit-icon"
 				rendered="#{menuActive != 'LOANS'}" />
 
-			<bbvaMenu:itemMenu href="./saveInvest" value="Ahorros e inversión"
+			<bbvaMenu:itemMenu href="/page/saveInvest" value="Ahorros e inversión"
 				title="Ir a ahorros e inversión" icon="investment-icon"
 				liclass="more-width active" rendered="#{menuActive == 'SAVEINVEST'}" />
 
-			<bbvaMenu:itemMenu href="./saveInvest" value="Ahorros e inversión"
+			<bbvaMenu:itemMenu href="/page/saveInvest" value="Ahorros e inversión"
 				title="Ir a ahorros e inversión" icon="investment-icon"
 				liclass="more-width" rendered="#{menuActive != 'SAVEINVEST'}" />
 			

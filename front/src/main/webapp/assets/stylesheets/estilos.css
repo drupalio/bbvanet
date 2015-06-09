@@ -400,7 +400,11 @@ input.ui-state-hover {
 }
 
 .nonee {
-	display: none;
+	display: none !important;
+}
+
+.visiblee {
+	display: inline-block !important;
 }
 
 /*Detalle del movimiento para el titulo información del movimiento*/
@@ -936,6 +940,12 @@ body div.ui-growl .ui-state-highlight {
 	font-weight: 400 !important;
 }
 
+.fontBlueSmall {
+	color: #0078D2 !important;
+	font-size: 16px !important;
+	font-weight: 400 !important;
+}
+
 /*container*/
 .ui-message-dialog {
 	width: 360px !important;
@@ -1267,46 +1277,70 @@ body div.ui-growl .ui-state-highlight {
 	font-weight: bold !important;
 }
 
-@media ( min-width : 669px) {
-	/*Error dialog*/
+@media ( min-width : 1065px) {
+	/*dialog*/
 	.mistakeMessage {
-		margin-left: -1%;
-		margin-right: -1% !important;
-		margin-top: -1.2% !important;
-		position: fixed !important;
-		width: 500px !important;
-		height: 250px !important;
-		z-index: 1000 !important;
-		background: #FFF !important;
-		border: 13px solid #F4F7F5 !important;
-		outline: 1px solid #DBDCDC !important;
-		-moz-outline-radius: 6px;
 		top: 30% !important;
 		left: 30% !important;
-		overflow: visible !important;
-		border-radius: 6px !important;
 	}
 }
 
-@media ( max-width : 669px) {
+@media ( min-width : 795px) and ( max-width : 1065px) {
+	/*dialog*/
+	.mistakeMessage {
+		top: 30% !important;
+		left: 20% !important;
+	}
+}
+
+@media ( min-width : 678px) and ( max-width : 795px) {
 	/*Error dialog*/
 	.mistakeMessage {
-		margin-left: -1%;
-		margin-right: -1% !important;
-		margin-top: -1.2% !important;
-		position: fixed !important;
-		width: 300px !important;
-		height: 250px !important;
-		z-index: 1000 !important;
-		background: #FFF !important;
-		border: 13px solid #F4F7F5 !important;
-		outline: 1px solid #DBDCDC !important;
-		-moz-outline-radius: 6px;
-		top: 10% !important;
-		left: 10% !important;
-		overflow: visible !important;
-		border-radius: 6px !important;
+		top: 30% !important;
+		left: 15% !important;
 	}
+}
+
+@media ( min-width : 610px) and ( max-width : 678px) {
+	/*Error dialog*/
+	.mistakeMessage {
+		top: 30% !important;
+		left: 7% !important;
+	}
+}
+
+@media ( min-width : 550px) and ( max-width : 610px) {
+	/*Error dialog*/
+	.mistakeMessage {
+		top: 30% !important;
+		left: 4% !important;
+	}
+}
+
+@media ( max-width : 550px) {
+	/*Error dialog*/
+	.mistakeMessage {
+		top: 30% !important;
+		left: 1% !important;
+	}
+}
+
+.mistakeMessage {
+	margin-left: -1%;
+	margin-right: -1% !important;
+	margin-top: -1.2% !important;
+	position: fixed !important;
+	max-width: 550px !important;
+	height: auto !important;
+	z-index: 1000 !important;
+	background: #FFF !important;
+	border: 13px solid #F4F7F5 !important;
+	outline: 1px solid #DBDCDC !important;
+	-moz-outline-radius: 6px;
+	overflow: visible !important;
+	border-radius: 6px !important;
+	overflow: visible !important;
+	height: auto !important;
 }
 
 .bodyError {
@@ -1345,9 +1379,9 @@ body div.ui-growl .ui-state-highlight {
 .button-edit, .button-delete {
 	background: #FFF !important;
 	padding: 2px 8px !important;
-	z-index: 1000;
+	border: 1px solid #00559D !important;
 	margin: 0px !important;
-	margin-top: -67px !important;
+	margin: -67px 0px 0px 9px !important;
 }
 
 /*Formulario de editar favoritos*/
@@ -1366,6 +1400,10 @@ body div.ui-growl .ui-state-highlight {
 		position: relative;
 		left: 80%;
 	}
+	.button-finishEdit {
+		margin-left: 10% !important;
+		padding: 0px 8px !important;
+	}
 	.button-finishFa {
 		margin: 5% 0% !important;
 		padding: 3px 30px 3px 30px !important;
@@ -1376,6 +1414,11 @@ body div.ui-growl .ui-state-highlight {
 	.editDele {
 		position: relative;
 		left: 90%;
+		margin-left: 3px !important;
+	}
+	.button-finishEdit {
+		margin: 5% 0% !important;
+		padding: 0px 10px !important;
 	}
 	.button-finishFa {
 		margin: 5% 0% !important;
@@ -1383,9 +1426,25 @@ body div.ui-growl .ui-state-highlight {
 	}
 }
 
-.idPrincipal {
+.button-finishEdit {
+	background: #0079C1
+		-moz-linear-gradient(center top, #0079C1 0%, #00559D 100%) repeat
+		scroll 0% 0% !important;
+	color: #FFF !important;
+	border: 1px solid #00559D !important;
+	font-weight: 400 !important;
+}
+
+.panelText {
 	overflow-x: auto !important;
 	border: 0px !important;
+	text-align: center !important;
+}
+
+.panelButtons {
+	border: 0px !important;
+	border-top: 1px solid #DBDCDF !important;
+	overflow-x: auto !important;
 	text-align: center !important;
 }
 
@@ -1393,44 +1452,37 @@ body div.ui-growl .ui-state-highlight {
 	border-top: 1px solid #DBDCDF !important;
 }
 
-.wizardR .ui-wizard-navbar {
-	border-top: 1px solid #DBDCDF !important;
-	text-align: center !important;
-}
-
-.wizardR .ui-wizard-navbar .ui-wizard-nav-back, .wizardR .ui-wizard-navbar .ui-wizard-nav-next
-	{
+.closeNextbtn {
 	float: none !important;
 	background: #0079C1
 		-moz-linear-gradient(center top, #0079C1 0%, #00559D 100%) repeat
-		scroll 0% 0%;
-	border-radius: 4px;
-	color: #FFF;
-	border: 1px solid #00559D;
+		scroll 0% 0% !important;
+	background: -webkit-linear-gradient(top, #0079C1 0%, #00559D 100%)
+		repeat scroll 0% 0% !important;
+	background: -ms-linear-gradient(top, #0079C1 0%, #00559D 100%) repeat
+		scroll 0% 0% !important;
+	border: 1px solid #00559D !important;
+	border-radius: 4px !important;
+	color: #FFF !important;
 	vertical-align: middle;
 	text-shadow: none !important;
 	font: 12px/24px "BBVA Web Medium", Arial, sans-serif !important;
-	padding: 5px 13px 5px 0px !important;
+	padding: 5px 13px !important;
 	font-weight: 400 !important;
-	background: #0079C1
-		-moz-linear-gradient(center top, #0079C1 0%, #00559D 100%) repeat
-		scroll 0% 0%;
+}
+
+.marginBuutonW {
 	margin: 20px 0px 0px 30px !important;
 }
 
-.wizardR .ui-wizard-navbar .ui-wizard-nav-back {
+.iconWizard {
 	display: inline-block !important;
+	width: 50px !important;
+	height: 50px !important;
 }
 
-.wizardR .ui-wizard-navbar .ui-wizard-nav-back .ui-button-icon-left,
-	.wizardR .ui-wizard-navbar .ui-wizard-nav-next .ui-button-icon-left {
-	left: 0.5em;
-	background-image: none !important;
-	width: 0px !important;
-}
-
-.wizardR .ui-wizard-navbar .ui-wizard-nav-back .ui-button .ui-button-text,
-	.wizardR .ui-wizard-navbar .ui-wizard-nav-next .ui-button .ui-button-text
-	{
-	padding: 0.3em 2em 0.3em 2.1em !important;
+.infoConta {
+	background: #DBDCDF !important;
+	margin-top: 32px;
+	margin-bottom: 25px;
 }

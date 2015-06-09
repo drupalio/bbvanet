@@ -7,8 +7,9 @@
 	xmlns:pm="http://primefaces.org/mobile"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 <composite:interface>
-	<composite:attribute name="alias" type="String" />
-	<composite:attribute name="valor" type="String" />
+	<composite:attribute name="alias"/>
+	<composite:attribute name="valor"/>
+	<composite:attribute name="controller" type="String" />
 </composite:interface>
 <composite:implementation>
 	<article id="artFav-Edit">
@@ -20,7 +21,9 @@
 				</div>
 				<div class="col-md-8">
 					<p:inputText id="changeAlias" value="#{cc.attrs.alias}" type="text"
-						styleClass="form-control" />
+						styleClass="form-control">
+					<p:ajax event="keyup" />	
+					</p:inputText>
 				</div>
 			</div>
 			<div class="col-md-12 ">
@@ -30,21 +33,23 @@
 				</div>
 				<div class="col-md-8">
 					<p:inputText id="currencyValue" value="#{cc.attrs.valor}" type="text"
-						styleClass="form-control refalingInput" maxlength="12" autocomplete="off"
+						styleClass="form-control refalingInput" autocomplete="off" 
 						style="width:100% !important">
-						<f:validateLength maximum="12" />
+						<p:ajax event="keyup" />
 					</p:inputText>
 				</div>
 			</div>
 		</div>
-		<div class="formEdFavoritos buttonsFina">
-			<div class="col-md-6">
-				<button type="button" class="btn small button-finishFa"
-					onclick="removeEdit(this)">#{msg['button.acept']}</button>
+		<div class="formEdFavoritos buttonsFina" align="center">
+			<div class="col-md-6" style="display: inline-block;">
+				<p:commandButton styleClass="btn small button-finishEdit"
+					value="#{msg['button.acept']}" onclick="removeEdit(this)"
+					oncomplete="PF('confimDialogEdit').show();" style="">
+					</p:commandButton>
 			</div>
-			<div class="col-md-6">
-				<button type="button" class="btn small button-finishFa"
-					onclick="removeEdit(this)">#{msg['button.cancel']}</button>
+			<div class="col-md-6" style="display: inline-block;">
+				<p:commandButton styleClass="btn small button-finishEdit"
+					onclick="removeEdit(this)" value="#{msg['button.cancel']}" />
 			</div>
 		</div>
 	</article>
