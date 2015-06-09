@@ -1,60 +1,42 @@
 package com.bbva.net.front.controller.impl;
 
-import java.util.List;
+import javax.faces.event.ValueChangeEvent;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
-
-import org.springframework.context.annotation.Scope;
+import org.primefaces.event.SelectEvent;
 import org.springframework.stereotype.Controller;
 
-import com.bbva.net.back.entity.MultiValueGroup;
-import com.bbva.net.back.facade.MultiValueGroupFacade;
+import com.bbva.net.back.model.globalposition.ProductDto;
 import com.bbva.net.front.controller.ApplicationController;
 import com.bbva.net.front.core.AbstractBbvaController;
 
 @Controller(value = "applicationController")
-@Scope(value = "globalSession")
 public class ApplicationControllerImpl extends AbstractBbvaController implements ApplicationController {
 
 	private static final long serialVersionUID = -7098769540244437001L;
 
-	// private GraphicUI graphicUI;
-	private static final Integer LIKE_LIST = 1;
+	private ProductDto product;
 
-	@Resource(name = "multiValueGroupFacade")
-	private transient MultiValueGroupFacade multiValueGroupFacade;
-
-	private List<MultiValueGroup> likes;
-
-	/**
-	 * 
-	 */
-	@PostConstruct
-	public void init() {
-		this.likes = this.getListMultiValueLikes();
+	public ProductDto getProduct() {
+		return product;
 	}
 
-	/**
-	 * @return the listMultiValueLikes
-	 */
+	public void setProduct(ProductDto product) {
+		this.product = product;
+	}
+
 	@Override
-	public List<MultiValueGroup> getListMultiValueLikes() {
-		return this.multiValueGroupFacade.getMultiValueTypes(LIKE_LIST);
+	public void onLikeAccount(final ValueChangeEvent valueChangeEvent) {
+		// super.onProductSelected(changeEvent);
+		LOGGER.info("onLikeAccount " + valueChangeEvent);
+		super.setSelectedProduct((ProductDto)valueChangeEvent.getOldValue());
+		super.getSelectedProduct();
+		this.sendAction("accountSelected");
+
 	}
 
-	/**
-	 * @param multiValueGroupFacade the multiValueGroupFacade to set
-	 */
-	public void setMultiValueGroupFacade(MultiValueGroupFacade multiValueGroupFacade) {
-		this.multiValueGroupFacade = multiValueGroupFacade;
+	@Override
+	public void onProductSelected(SelectEvent selectEvent) {
+		// TODO Auto-generated method stub
+		super.onProductSelected(selectEvent);
 	}
-
-	/**
-	 * @return
-	 */
-	public List<MultiValueGroup> getLikes() {
-		return likes;
-	}
-
 }

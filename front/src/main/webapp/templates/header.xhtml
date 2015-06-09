@@ -20,17 +20,17 @@
 			<bbvaHeader:particulares />
 			<bbvaHeader:executive>
 				<bbvaHeader:executiveHeader title="#{msg['text.executive']}:"
-					dat="#{headerController.getEjecutivo().name}" />
+					dat="#{headerController.ejecutivo.name}" />
 				<bbvaHeader:executiveBody>
 					<bbvaHeader:executiveItem
-						link="https://www.google.es/maps/#{headerController.getEjecutivo().coordenadas}"
+						link="https://www.google.es/maps/#{headerController.ejecutivo.coordenadas}"
 						targe="_blank" icono="office"
-						data="#{headerController.getEjecutivo().office.name}"
-						dataSmall="#{headerController.getEjecutivo().office.addres}" />
+						data="#{headerController.ejecutivo.office.name}"
+						dataSmall="#{headerController.ejecutivo.office.addres}" />
 					<bbvaHeader:executiveItem link="tel:#{executive.phone}"
-						icono="phone" data="#{headerController.getEjecutivo().phone}" />
+						icono="phone" data="#{headerController.ejecutivo.phone}" />
 					<bbvaHeader:executiveItem link="mailto:#{executive.mail}"
-						icono="mail" data="#{headerController.getEjecutivo().mail}" />
+						icono="mail" data="#{headerController.ejecutivo.mail}" />
 				</bbvaHeader:executiveBody>
 			</bbvaHeader:executive>
 
