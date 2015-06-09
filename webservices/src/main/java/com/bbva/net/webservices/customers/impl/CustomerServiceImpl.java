@@ -58,7 +58,7 @@ public class CustomerServiceImpl extends AbstractBbvaRestService implements Cust
 	@Override
 	public Customer getCustomer(String filter) {
 		try {
-			WebClient wc = getJsonWebClient(URL_BASE_CUSTOMER);
+			WebClient wc = getJsonWebClient(URL_BASE_CUSTOMER + URL_GETEXECUTIVE);
 			if (!StringUtils.isEmpty(filter)) wc.query(FILTER, filter);
 			return wc.get(Customer.class);
 		} catch (Exception e) {
