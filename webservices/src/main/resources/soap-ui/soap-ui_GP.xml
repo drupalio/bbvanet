@@ -2488,7 +2488,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
         "name": "Calle 93 - 15"
     },
     "email": "Jhon00021@gmail.com"
-}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/customers/V01" method="GET" resourcePath="/czic/customers/V01"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/customers/V01/getCustomer" method="GET" resourcePath="/czic/customers/V01/getCustomer"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Examples showing how to match based on path, query param and header
 // Match based on path
 def requestPath = mockRequest.getPath()

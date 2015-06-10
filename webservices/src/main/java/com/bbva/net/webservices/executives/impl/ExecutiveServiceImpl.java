@@ -21,7 +21,7 @@ public class ExecutiveServiceImpl extends AbstractBbvaRestService implements Exe
 	@Override
 	public Executive getExecutive(final String filter, final String fields, final String expands, final String sort) {
 		try {
-			final WebClient webC = getJsonWebClient(URL_BASE_EXECUTIVE);
+			final WebClient webC = getJsonWebClient(URL_BASE_EXECUTIVE+URL_GETEXECUTIVE);
 			if (!StringUtils.isEmpty(filter)) webC.query("$filter", filter);
 			return webC.get(Executive.class);
 
