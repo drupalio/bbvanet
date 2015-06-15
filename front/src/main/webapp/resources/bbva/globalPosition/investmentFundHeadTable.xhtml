@@ -39,7 +39,7 @@
 					escape="false" value="&lt;br /&gt; #{iproduct.productName}" />
 
 				<!-- Combo quiero -->
-				<bbvaInput:selectOneMenuLikes valueList="#{comboCriteriaController.getQuieroFund()}"/>
+				<bbvaInput:selectOneMenuLikes valueList="#{comboCriteriaController.getQuieroFund()}" listener="#{applicationController.onLike}"/>
 				
 			</p:column>
 			<p:column class="head" headerText="#{msg['text.balenceMax']}"
