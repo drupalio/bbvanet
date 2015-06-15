@@ -10,24 +10,24 @@
 	<composite:attribute name="label" />
 	<composite:attribute name="value" type="String" />
 	<composite:attribute name="valueList" />
-	<composite:attribute name="listener" method-signature="void actionlistener(javax.faces.event.ActionEvent)"/>
+	<composite:attribute name="listener" method-signature="void actionlistener(javax.faces.event.ValueChangeEvent)"/>
 	<composite:attribute name="render" />
 </composite:interface>
 <composite:implementation>
 	<div class="select-tab-quiero selectorCombo hidden-xs hidden-sm">
-		<h:form>
-		<h:selectOneMenu enabledClass="selectOption" 
-			disabledClass="selectOptionDisabled" onchange="styles(this)"
-			styleClass="select-tab-quiero select-tab-quiero-default quieros btn-group bootstrap-select hidden-xs hidden-sm quiero"
-			style="background-position: 95% !important;">
-			<f:selectItem itemLabel="Quiero" itemDisabled="true" />
-			<f:selectItems value="#{cc.attrs.valueList}" var="multiValue"
-				itemValue="#{msg[multiValue.getValue()]}"
-				itemLabel="#{msg[multiValue.getValue()]}" />
-			<!-- 		<f:ajax listener="#{cc.attrs.listener}" event="valueChange" -->
-			<!-- 			execute="@this" render="#{cc.attrs.render}" /> -->
-		</h:selectOneMenu>
-		</h:form>
-	</div>
+					<h:form>
+						<h:selectOneMenu enabledClass="selectOption"  value="#{iproduct}"
+							valueChangeListener="#{cc.attrs.listener}"
+							disabledClass="selectOptionDisabled"
+							onchange="styles(this);submit()"
+							styleClass="select-tab-quiero select-tab-quiero-default quieros btn-group bootstrap-select hidden-xs hidden-sm quiero"
+							style="background-position: 95% !important;">
+							<f:selectItem itemLabel="Quiero" />
+							<f:selectItems value="#{cc.attrs.valueList}" var="multiValue"
+								itemValue="#{msg[multiValue.getValue()]}"
+								itemLabel="#{msg[multiValue.getValue()]}" />
+						</h:selectOneMenu>
+					</h:form>
+				</div>
 </composite:implementation>
 </html>

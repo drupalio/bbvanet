@@ -1,13 +1,15 @@
 package com.bbva.net.front.controller.impl;
 
+import javax.annotation.Resource;
 import javax.faces.event.ValueChangeEvent;
 
-import org.primefaces.event.SelectEvent;
 import org.springframework.stereotype.Controller;
 
+import com.bbva.net.back.facade.MultiValueGroupFacade;
 import com.bbva.net.back.model.globalposition.ProductDto;
 import com.bbva.net.front.controller.ApplicationController;
 import com.bbva.net.front.core.AbstractBbvaController;
+import com.bbva.net.front.helper.MessagesHelper;
 
 @Controller(value = "applicationController")
 public class ApplicationControllerImpl extends AbstractBbvaController implements ApplicationController {
@@ -15,6 +17,11 @@ public class ApplicationControllerImpl extends AbstractBbvaController implements
 	private static final long serialVersionUID = -7098769540244437001L;
 
 	private ProductDto product;
+
+	private transient ComboCriteriaControllerImpl combos = new ComboCriteriaControllerImpl();
+
+	@Resource(name = "multiValueGroupFacade")
+	private transient MultiValueGroupFacade multiValueGroupFacade;
 
 	public ProductDto getProduct() {
 		return product;
@@ -26,17 +33,21 @@ public class ApplicationControllerImpl extends AbstractBbvaController implements
 
 	@Override
 	public void onLikeAccount(final ValueChangeEvent valueChangeEvent) {
-		// super.onProductSelected(changeEvent);
-		LOGGER.info("onLikeAccount " + valueChangeEvent);
-		super.setSelectedProduct((ProductDto)valueChangeEvent.getOldValue());
-		super.getSelectedProduct();
-		this.sendAction("accountSelected");
+		LOGGER.info("onLikeAccount " + valueChangeEvent + " "
+				+ MessagesHelper.INSTANCE.getString(multiValueGroupFacade.getMultiValueTypes(6).get(0).getValue()));
+		if (valueChangeEvent.getNewValue().equals(
+				MessagesHelper.INSTANCE.getString(multiValueGroupFacade.getMultiValueTypes(6).get(0).getValue()))) {
+			super.setSelectedProduct((ProductDto)valueChangeEvent.getOldValue());
+			super.getSelectedProduct();
+			this.sendAction("accountSelected");
+		}
 
 	}
 
 	@Override
-	public void onProductSelected(SelectEvent selectEvent) {
+	public void onLike(ValueChangeEvent valueChangeEvent) {
 		// TODO Auto-generated method stub
-		super.onProductSelected(selectEvent);
+
 	}
+
 }

@@ -34,7 +34,7 @@
 		<h:form id="favorito">
 			<bbvaOperationFav:operationsBody
 				list="#{favoriteOperationsController.getListFavoriteOperations()}"
-				sclass="operation" id_form="favorite" id_wid="fav" />
+				sclass="operation" id_form="favorite" id_wid="fav"  empty_Message="#{msg['msg.empty.Favorites']}"/>
 			<bbvaOperationFav:operationsBody
 				list="#{favoriteOperationsController.getListFavoriteOperationsHidden()}"
 				sclass="operation hiddenElement" id_form="favoriteH" id_wid="favh" />

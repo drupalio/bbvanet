@@ -1009,9 +1009,10 @@ body div.ui-growl .ui-state-highlight {
 .refalingInput {
 	background-image: url('../img/icons/dollar-blue.png ') !important;
 	background-repeat: no-repeat !important;
-	background-position: right 3% center !important;
+	background-position: left 3% center !important;
 	width: 95%;
 	padding: 3px !important;
+	padding-left: 20px !important
 }
 
 /*margin de label para centrarlos balance*/
