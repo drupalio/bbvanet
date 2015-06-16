@@ -6,6 +6,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:bbvaInput="http://java.sun.com/jsf/composite/bbva/input"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <composite:interface>
@@ -40,7 +41,8 @@
 					value="&lt;br /&gt; #{iproduct.productId}"></h:outputText>
 				<h:outputText styleClass="sublabel" style="font-size: 1.1em;font-weight:bold;color:#71777f"
 					escape="false" value="&lt;br /&gt; #{iproduct.productName}" />
-
+				<!-- Combo quiero -->
+				<bbvaInput:selectOneMenuLikes valueList="#{comboCriteriaController.getQuieroLeasing()}" listener="#{applicationController.onLike}"/>
 			</p:column>
 
 			<p:column class="head" styleClass="head hidden-xs hidden-sm col-sm-4"

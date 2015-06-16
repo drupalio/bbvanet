@@ -46,8 +46,7 @@ public class ApplicationControllerImpl extends AbstractBbvaController implements
 
 	@Override
 	public void onLike(ValueChangeEvent valueChangeEvent) {
-		// TODO Auto-generated method stub
+		LOGGER.info("onLike" + valueChangeEvent);
 
 	}
-
 }

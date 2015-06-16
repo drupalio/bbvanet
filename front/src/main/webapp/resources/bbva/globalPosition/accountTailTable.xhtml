@@ -5,6 +5,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
+	xmlns:bbvaInput="http://java.sun.com/jsf/composite/bbva/input"
 	xmlns:pm="http://primefaces.org/mobile">
 
 <composite:interface>
@@ -18,13 +19,10 @@
 
 	<div class="item-hidden" style="display: block;">
 		<h:form id="#{cc.attrs.id}">
-			<p:dataTable id="#{cc.attrs.id}" var="iproduct" rowIndexVar="findex"
-				selectionMode="single" styleClass="hide-column-names"
-				emptyMessage="#{msg['mssg.list.empty']}" 
-				rowKey="#{iproduct.productId}" value="#{cc.attrs.listAccounts}">
-
-				<p:ajax event="rowSelect"
-					listener="#{cc.attrs.controller.onProductSelected}" />
+			<p:dataTable id="tableAccounts" var="iproduct" styleClass="hide-column-names"
+			rowIndexVar="findex" selectionMode="single" rowKey="#{iproduct.productId}"
+			value="#{cc.attrs.listAccounts}">
+				<p:ajax event="rowSelect" listener="#{cc.attrs.controller.onProductSelected}" immediate="true"/>
 				<p:ajax event="rowUnselect" />
 
 				<p:column class="head" styleClass="col-xs-6 col-md-8"
@@ -40,7 +38,8 @@
 						value="&lt;br /&gt; #{iproduct.productId}"></h:outputText>
 					<h:outputText styleClass="sublabel" style="font-size: 1em"
 						escape="false" value="&lt;br /&gt; #{iproduct.productName}" />
-
+					<bbvaInput:selectOneMenuLikes valueList="#{comboCriteriaController.getListQuieroAccounts()}" 
+				listener="#{applicationController.onLikeAccount}"/>
 				</p:column>
 
 				<p:column class="head" styleClass="col-xs-6 col-md-4"

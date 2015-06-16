@@ -6,7 +6,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pm="http://primefaces.org/mobile"
-	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:bbvaInput="http://java.sun.com/jsf/composite/bbva/input">
 
 <composite:interface>
 	<composite:attribute name="id" type="String" />
@@ -25,7 +26,7 @@
 				emptyMessage="#{msg['mssg.list.empty']}">
 
 				<p:ajax event="rowSelect"
-					listener="#{cc.attrs.controller.onProductLoanSelected}" />
+					listener="#{cc.attrs.controller.onProductLoanSelected}" immediate="true"/>
 				<p:ajax event="rowUnselect" />
 
 				<p:column class="head" styleClass="head col-xs-6 col-md-6"
@@ -41,6 +42,8 @@
 					<h:outputText styleClass="sublabel" style="font-size: 1.1em;font-weight:bold;color:#71777f"
 						escape="false" value="&lt;br /&gt; #{iprodcut.productName}" />
 
+					<!-- Combo quiero -->
+				<bbvaInput:selectOneMenuLikes valueList="#{comboCriteriaController.getListQuieroQuota()}" listener="#{applicationController.onLike}"/>
 				</p:column>
 
 				<p:column class="head" styleClass="head hidden-xs hidden-sm col-sm-4"

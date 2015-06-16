@@ -24,7 +24,7 @@
 			value="#{cc.attrs.listLoan}">
 
 			<p:ajax event="rowSelect"
-				listener="#{cc.attrs.controller.onProductLoanSelected}" />
+				listener="#{cc.attrs.controller.onProductLoanSelected}" immediate="true"/>
 			<p:ajax event="rowUnselect" />
 
 			<p:column class="head" headerText="#{msg['text.loan']}"

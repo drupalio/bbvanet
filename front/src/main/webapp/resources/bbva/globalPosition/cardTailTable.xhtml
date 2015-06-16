@@ -6,6 +6,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:bbvaInput="http://java.sun.com/jsf/composite/bbva/input"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <composite:interface>
@@ -25,7 +26,7 @@
 				emptyMessage="#{msg['mssg.list.empty']}">
 
 				<p:ajax event="rowSelect"
-					listener="#{cc.attrs.controller.onProductSelected}" />
+					listener="#{cc.attrs.controller.onProductSelected}" immediate="true"/>
 				<p:ajax event="rowUnselect" />
 
 				<p:column class="head" styleClass="col-xs-6 col-md-6"
@@ -40,7 +41,7 @@
 						value="&lt;br /&gt; #{globalPositionController.maskCardsNumber(iproduct.productId)}"></h:outputText>
 					<h:outputText styleClass="sublabel" style="font-size: 1.1em;font-weight:bold;color:#71777f"
 						escape="false" value="&lt;br /&gt; #{iproduct.productName}" />
-
+					<bbvaInput:selectOneMenuLikes valueList="#{comboCriteriaController.getListQuieroCards()}" listener="#{applicationController.onLike}"/>
 				</p:column>
 				<p:column class="head" styleClass="hidden-xs hidden-sm col-sm-4"
 					style="padding: 14px !important;font-size: 10px;color: #434A58;border-style: solid none;

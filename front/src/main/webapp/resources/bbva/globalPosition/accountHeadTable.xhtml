@@ -19,7 +19,7 @@
 		<p:dataTable id="tableAccounts" widgetVar="tableAccounts" var="iproduct"
 			rowIndexVar="findex" selectionMode="single" rowKey="#{iproduct.productId}"
 			value="#{cc.attrs.listAccounts}">
-			<p:ajax event="rowSelect" listener="#{cc.attrs.controller.onProductSelected}" />
+			<p:ajax event="rowSelect" listener="#{cc.attrs.controller.onProductSelected}" immediate="true"/>
 			<p:ajax event="rowUnselect" />
 			<p:column class="head" headerText="#{msg['text.acco.name']}"
 				styleClass="col-xs-6 col-md-8"
