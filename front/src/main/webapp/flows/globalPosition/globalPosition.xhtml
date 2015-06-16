@@ -35,7 +35,7 @@
 	</ui:define>
 
 	<ui:define name="contentLeft">
-		<bbvaContainer:banner href="" img_URL="https://www.bbva.com.co/documents/702694/2878314/01-BN-970x260.jpg/376b216f-950a-4d0f-9853-35d1db46d4b3?t=1433346845578"/>
+		
 		<c:set var="currency" value="$" />
 
 		<bbvaContainer:productPanelAccountGraphic id="AccountGP"
@@ -64,7 +64,8 @@
 					subtotal="#{globalPositionController.totalsProducts['PC'].available}" />
 			</div>
 		</bbvaContainer:productPanelAccountGraphic>
-
+		<!-- banner cuentas -->
+		<bbvaContainer:banner href="" img_URL="https://www.bbva.com.co/documents/702694/2878314/01-BN-970x260.jpg/376b216f-950a-4d0f-9853-35d1db46d4b3?t=1433346845578"/>
 		<bbvaContainer:productCardGraphic id="cardPieGP"
 			title="#{msg['title.cards']}" header="#{msg['graphicCard.tittle']}"
 			graphic="#{customerProducts.creditCards.size()==0 &amp;&amp; customerProductsHidden.creditCards.size()==0? 'none' : 'block'}"
@@ -84,7 +85,9 @@
 					subtotal="#{globalPositionController.getTotalUsedCards(globalPositionController.totalsProducts['TC'].total,globalPositionController.totalsProducts['TC'].available)}" />
 			</div>
 		</bbvaContainer:productCardGraphic>
-
+		<!-- banner tarjetas -->
+		<bbvaContainer:banner href="" img_URL="https://www.bbva.com.co/documents/248648/0/Banner-pagina-blanca-26marzo.jpg/67c51407-0058-480c-818c-f2c8cdf649b5?t=1427724563349"/>
+		
 		<bbvaContainer:productPanel title="#{msg['title.rotaryQuota']}"
 			display="#{globalPositionController.globalProductsDTO.rotatingAccounts.size() > '0' ? 'block' : 'none' }">
 			<div class="table-tabs">
@@ -135,7 +138,8 @@
 					total="#{globalPositionController.totalsProducts['LO'].total}" />
 			</div>
 		</bbvaContainer:productPanel>
-
+		<!-- banner loan -->
+		<bbvaContainer:banner href="" img_URL="https://www.bbva.com.co/documents/702694/2878314/BN-notoriedad.jpg/29cc630e-f3e2-4495-a531-9140e398b9e1?t=1433508489494"/>
 		<bbvaContainer:productPanelLineGraphic
 			title="#{msg['title.electronicDeposit']}"
 			graphic="#{customerProducts.electronicDeposits.size()==0 &amp;&amp; customerProductsHidden.electronicDeposits.size()==0? 'none' : 'block'}">
@@ -174,7 +178,8 @@
 					total="#{globalPositionController.totalsProducts['SI'].total}" />
 			</div>
 		</bbvaContainer:productPanelFundsGraphic>
-
+		<!-- banner fondos -->
+		<bbvaContainer:banner href="" img_URL="https://www.bbva.com.co/documents/702694/2878314/BN-BBVA-Asset-Management_v3.jpg/30eb089e-d286-418d-b8b4-6d72d94d0459?t=1434127241314"/>
 	</ui:define>
 
 
