@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:composite="http://java.sun.com/jsf/composite"
-	xmlns:f="http://java.sun.com/jsf/core"
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite" xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
 	xmlns:pm="http://primefaces.org/mobile"
 	xmlns:bbvaInput="http://java.sun.com/jsf/composite/bbva/input"
@@ -11,39 +9,34 @@
 	<composite:attribute name="id" />
 	<composite:attribute name="listAccounts" type="java.util.List" />
 	<composite:attribute name="listValueLikes" />
-	<composite:attribute name="controller"
-		type="com.bbva.net.front.core.AbstractBbvaController" />
+	<composite:attribute name="controller" type="com.bbva.net.front.core.AbstractBbvaController" />
 </composite:interface>
 <composite:implementation>
 	<h:form id="#{cc.attrs.id}">
-		<p:dataTable id="tableAccounts" widgetVar="tableAccounts" var="iproduct"
-			rowIndexVar="findex" selectionMode="single" rowKey="#{iproduct.productId}"
-			value="#{cc.attrs.listAccounts}">
-			<p:ajax event="rowSelect" listener="#{cc.attrs.controller.onProductSelected}" immediate="true"/>
+		<p:dataTable id="tableAccounts" widgetVar="tableAccounts" var="iproduct" rowIndexVar="findex"
+			selectionMode="single" rowKey="#{iproduct.productId}" value="#{cc.attrs.listAccounts}">
+			<p:ajax event="rowSelect" listener="#{cc.attrs.controller.onProductSelected}" immediate="true"
+				onstart="PF('statusDialog').show()" oncomplete="PF('statusDialog').hide()" />
 			<p:ajax event="rowUnselect" />
-			<p:column class="head" headerText="#{msg['text.acco.name']}"
-				styleClass="col-xs-6 col-md-8"
+			<p:column class="head" headerText="#{msg['text.acco.name']}" styleClass="col-xs-6 col-md-8"
 				style="font-size: 10px;color: #434A58;font-family: Arial;background: none;border-style: none">
-				<h:outputText styleClass="title-label"
-					style="font-size: 1.2em; font-weight:bold; color:#0078d2" escape="false"
-					value="#{iproduct.alias}" />
+				<h:outputText styleClass="title-label" style="font-size: 1.2em; font-weight:bold; color:#0078d2"
+					escape="false" value="#{iproduct.alias}" />
 				<h:outputText
 					style="display:block;font-size: 1.1em;margin-bottom:-8px;margin-top:-8px;color:#71777f"
 					escape="false" value="&lt;br /&gt; #{iproduct.productId}"></h:outputText>
-				<h:outputText styleClass="sublabel"
-					style="font-size: 1.1em;font-weight:bold;color:#71777f" escape="false"
-					value="&lt;br /&gt; #{iproduct.productName}" />
+				<h:outputText styleClass="sublabel" style="font-size: 1.1em;font-weight:bold;color:#71777f"
+					escape="false" value="&lt;br /&gt; #{iproduct.productName}" />
 				<!-- Combo quiero -->
-				<bbvaInput:selectOneMenuLikes valueList="#{comboCriteriaController.getListQuieroAccounts()}" 
-				listener="#{applicationController.onLikeAccount}"/>
+				<bbvaInput:selectOneMenuLikes valueList="#{comboCriteriaController.getListQuieroAccounts()}"
+					listener="#{applicationController.onLikeAccount}" />
 			</p:column>
-			<p:column class="head" headerText="#{msg['text.account.balance']}"
-				styleClass="col-xs-6 col-md-4"
+			<p:column class="head" headerText="#{msg['text.account.balance']}" styleClass="col-xs-6 col-md-4"
 				style="font-size: 10px;color: #434A58;font-family: Arial;background: none;border-style: none">
-				<h:outputText style="font-size: 1.6em; font-weight:bold"
-					styleClass="balance" value="#{iproduct.totalCash}" />
-				<h:outputText styleClass="ui-datatable-selectable"
-					style="font-size:1em;color:#71777f" escape="false"
+				<h:outputText style="font-size: 1.6em; font-weight:bold" styleClass="balance"
+					value="#{iproduct.totalCash}" />
+				<h:outputText styleClass="ui-datatable-selectable" style="font-size:1em;color:#71777f"
+					escape="false"
 					value="&lt;br /&gt; #{msg['text.account.balance.label']} #{iproduct.cashAvailable}" />
 				<p class="sublabel"></p>
 			</p:column>
