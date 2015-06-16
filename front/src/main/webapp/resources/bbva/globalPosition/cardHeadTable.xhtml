@@ -23,7 +23,7 @@
 			rowKey="#{iproduct.productId}" value="#{cc.attrs.listCards}">
 			
 			<p:ajax event="rowSelect"
-				listener="#{cc.attrs.controller.onProductSelected}" />
+				listener="#{cc.attrs.controller.onProductSelected}" immediate="true"/>
 
 			<p:ajax event="rowUnselect" />
 

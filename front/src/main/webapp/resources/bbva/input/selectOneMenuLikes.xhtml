@@ -15,11 +15,11 @@
 </composite:interface>
 <composite:implementation>
 	<div class="select-tab-quiero selectorCombo hidden-xs hidden-sm">
-					<h:form>
+					<h:form id="comboQuiero">
 						<h:selectOneMenu enabledClass="selectOption"  value="#{iproduct}"
 							valueChangeListener="#{cc.attrs.listener}"
 							disabledClass="selectOptionDisabled"
-							onchange="styles(this);submit()"
+							onchange="styles(this);submit()" 
 							styleClass="select-tab-quiero select-tab-quiero-default quieros btn-group bootstrap-select hidden-xs hidden-sm quiero"
 							style="background-position: 95% !important;">
 							<f:selectItem itemLabel="Quiero" />
