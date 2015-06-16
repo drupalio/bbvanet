@@ -21,9 +21,10 @@
 <ui:composition template="../../templates/defaultLayout.xhtml">
 
 	<f:metadata>
-		<f:event listener="#{globalPositionController.preRender}" type="preRenderView" />
+		<f:event listener="#{globalPositionController.preRender}"
+			type="preRenderView" />
 	</f:metadata>
-	
+
 	<c:forEach var="type"
 		items="#{globalPositionController.totalsProducts.keySet()}">
 		<ui:param name="#{type}" value="#{type}" />
@@ -34,23 +35,23 @@
 	</ui:define>
 
 	<ui:define name="contentLeft">
-
+		<bbvaContainer:banner href="" img_URL="https://www.bbva.com.co/documents/702694/2878314/01-BN-970x260.jpg/376b216f-950a-4d0f-9853-35d1db46d4b3?t=1433346845578"/>
 		<c:set var="currency" value="$" />
 
 		<bbvaContainer:productPanelAccountGraphic id="AccountGP"
-			title="#{msg['title.accountsPersonal']}" graphic="#{customerProducts.accounts.size()==0 &amp;&amp; customerProducts.adquirencia.size()==0 &amp;&amp; customerProductsHidden.accounts.size()==0 ? 'none' : 'block'}">
+			title="#{msg['title.accountsPersonal']}"
+			graphic="#{customerProducts.accounts.size()==0 &amp;&amp; customerProducts.adquirencia.size()==0 &amp;&amp; customerProductsHidden.accounts.size()==0 ? 'none' : 'block'}">
 			<div class="table-tabs">
 				<bbvaGP:accountSearch listAccounts="#{customerProducts.accounts}"
 					listAccountsAdquirencia="#{customerProducts.adquirencia}"
 					listAccountsMore="#{customerProductsHidden.accounts}" />
 				<bbvaGP:accountHeadTable listAccounts="#{customerProducts.accounts}"
 					controller="#{globalPositionController}" />
-				
+
 				<bbvaGP:accountAdquirenciaTable
 					controller="#{globalPositionController}"
-					listAccounts="#{customerProducts.adquirencia}" 
-					display = "#{globalPositionController.globalProductsDTO.adquirencia.size() > '0' ? 'block' : 'none' }"
-					/>
+					listAccounts="#{customerProducts.adquirencia}"
+					display="#{globalPositionController.globalProductsDTO.adquirencia.size() > '0' ? 'block' : 'none' }" />
 
 				<bbvaGP:accountTailTable controller="#{globalPositionController}"
 					listAccounts="#{customerProductsHidden.accounts}" />
@@ -84,7 +85,8 @@
 			</div>
 		</bbvaContainer:productCardGraphic>
 
-		<bbvaContainer:productPanel title="#{msg['title.rotaryQuota']}" display = "#{globalPositionController.globalProductsDTO.rotatingAccounts.size() > '0' ? 'block' : 'none' }">
+		<bbvaContainer:productPanel title="#{msg['title.rotaryQuota']}"
+			display="#{globalPositionController.globalProductsDTO.rotatingAccounts.size() > '0' ? 'block' : 'none' }">
 			<div class="table-tabs">
 
 				<bbvaGP:rotatingQuotaHeadTable
@@ -103,7 +105,8 @@
 			</div>
 		</bbvaContainer:productPanel>
 
-		<bbvaContainer:productPanel title="#{msg['title.Leasing']}" display = "#{globalPositionController.globalProductsDTO.leasings.size() > '0' ? 'block' : 'none' }">
+		<bbvaContainer:productPanel title="#{msg['title.Leasing']}"
+			display="#{globalPositionController.globalProductsDTO.leasings.size() > '0' ? 'block' : 'none' }">
 			<div class="table-tabs">
 				<bbvaGP:leasingHeadTable controller="#{globalPositionController}"
 					listLeasing="#{customerProducts.leasings}" />
@@ -118,7 +121,8 @@
 			</div>
 		</bbvaContainer:productPanel>
 
-		<bbvaContainer:productPanel title="#{msg['title.loans']}" display = "#{globalPositionController.globalProductsDTO.loan.size() > '0' ? 'block' : 'none' }">
+		<bbvaContainer:productPanel title="#{msg['title.loans']}"
+			display="#{globalPositionController.globalProductsDTO.loan.size() > '0' ? 'block' : 'none' }">
 			<div class="table-tabs">
 				<bbvaGP:loanHeadTable controller="#{globalPositionController}"
 					listLoan="#{customerProducts.loan}" />
@@ -133,7 +137,8 @@
 		</bbvaContainer:productPanel>
 
 		<bbvaContainer:productPanelLineGraphic
-			title="#{msg['title.electronicDeposit']}" graphic="#{customerProducts.electronicDeposits.size()==0 &amp;&amp; customerProductsHidden.electronicDeposits.size()==0? 'none' : 'block'}">
+			title="#{msg['title.electronicDeposit']}"
+			graphic="#{customerProducts.electronicDeposits.size()==0 &amp;&amp; customerProductsHidden.electronicDeposits.size()==0? 'none' : 'block'}">
 			<div class="table-tabs">
 				<bbvaGP:depositHeadTable controller="#{globalPositionController}"
 					listDeposit="#{customerProducts.electronicDeposits}" />
@@ -177,7 +182,8 @@
 
 		<bbvaSituation:globalSituationPanel />
 
-		<bbvaOperationFav:operationsPanel list="#{favoriteOperationsController.favoriteOperations}"/>
+		<bbvaOperationFav:operationsPanel
+			list="#{favoriteOperationsController.favoriteOperations}" />
 
 
 	</ui:define>
