@@ -12,13 +12,14 @@
 <composite:interface>
 	<composite:attribute name="href" type="String" />
 	<composite:attribute name="img_URL" type="String" />
+	<composite:attribute name="display" type="String" />
 </composite:interface>
 
 <composite:implementation>
 
 	<div
 		class="carousel slide slider-container col-xs-12 hidden-xs hidden-sm"
-		id="globalSlider">
+		id="globalSlider" style="display:#{cc.attrs.display} !important;">
 		<div class="slider-content carousel-inner">
 			<a href="#{cc.attrs.href}"
 				style="letter-spacing: 0.03em; line-height: 1.4;" target="_blank">
