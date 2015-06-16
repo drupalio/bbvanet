@@ -12,13 +12,14 @@
 	<composite:attribute name="id_form" type="String" />
 	<composite:attribute name="id_wid" type="String" />
 	<composite:attribute name="sclass" />
+	<composite:attribute name="empty_Message" type="String"/>
 </composite:interface>
 <composite:implementation>
 	<article id="artFav-Options" class="#{cc.attrs.sclass}">
 		<ul>
 			<p:dataTable id="#{cc.attrs.id_form}" widgetVar="#{cc.attrs.id_wid}"
 				var="iOperations" rowIndexVar="findex" value="#{cc.attrs.list}"
-				selectionMode="single" rowKey="#{iOperations.idOperation}">
+				selectionMode="single" rowKey="#{iOperations.idOperation}" emptyMessage="#{cc.attrs.empty_Message}">
 				<p:column width="0% !important;" style="z-index: -1 !important">
 					<p:rowToggler rendered="true" />
 				</p:column>

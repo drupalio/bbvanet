@@ -40,7 +40,7 @@
 					escape="false" value="&lt;br /&gt; #{iproduct.productName}" />
 				
 				<!-- Combo quiero -->
-				<bbvaInput:selectOneMenuLikes valueList="#{comboCriteriaController.getQuieroLoan()}"/>
+				<bbvaInput:selectOneMenuLikes valueList="#{comboCriteriaController.getQuieroLoan()}" listener="#{applicationController.onLike}"/>
 				
 			</p:column>
 

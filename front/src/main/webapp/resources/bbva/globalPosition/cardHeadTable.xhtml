@@ -41,7 +41,7 @@
 					escape="false" value="&lt;br /&gt; #{iproduct.productName}" />
 			
 				<!-- Combo quiero -->
-				<bbvaInput:selectOneMenuLikes valueList="#{comboCriteriaController.getListQuieroCards()}"/>
+				<bbvaInput:selectOneMenuLikes valueList="#{comboCriteriaController.getListQuieroCards()}" listener="#{applicationController.onLike}"/>
 			</p:column>
 			<p:column class="head" headerText="#{msg['text.card.balanceTotal']}"
 				styleClass="hidden-xs hidden-sm col-sm-4"
