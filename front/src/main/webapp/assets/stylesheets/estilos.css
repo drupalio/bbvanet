@@ -1010,9 +1010,11 @@ body div.ui-growl .ui-state-highlight {
 	background-image: url('../img/icons/dollar-blue.png ') !important;
 	background-repeat: no-repeat !important;
 	background-position: left 3% center !important;
+	background-size: 8px 14px !important;
 	width: 95%;
 	padding: 3px !important;
 	padding-left: 20px !important
+	
 }
 
 /*margin de label para centrarlos balance*/
@@ -1486,4 +1488,14 @@ body div.ui-growl .ui-state-highlight {
 	background: #DBDCDF !important;
 	margin-top: 32px;
 	margin-bottom: 25px;
+}
+.icon-Info-Blue {
+	background-image: url("../img/icons/icon-info-blue-small.png");
+	background-repeat: no-repeat;
+	display: inline-block;
+	height: 20px;
+	margin-left: 3px;
+	position: relative;
+	top: 7px;
+	width: 18px;
 }
