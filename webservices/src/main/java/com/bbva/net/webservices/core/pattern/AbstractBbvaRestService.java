@@ -46,8 +46,11 @@ public abstract class AbstractBbvaRestService {
 	@Value("${rest.base.executive.url}")
 	protected String URL_BASE_EXECUTIVE;
 	
-	@Value("${rest.base.getexecutive.url}")
+	@Value("${rest.executive.url}")
 	protected String URL_GETEXECUTIVE;
+	
+	@Value("${rest.base.getexecutive.url}")
+	protected String URL_GETCUSTOMER;
 
 	@Value("${rest.base.cards.url}")
 	protected String URL_BASE_CARDS;
