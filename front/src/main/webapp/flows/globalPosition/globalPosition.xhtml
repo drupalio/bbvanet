@@ -67,6 +67,13 @@
 			</div>
 		</bbvaContainer:productPanelAccountGraphic>
 
+		<!-- banner cuentas -->
+		<bbvaContainer:banner href=""
+		display="#{customerProducts.accounts.size()==0 &amp;&amp; customerProductsHidden.accounts.size()==0? 'none' : 'block'}"
+			img_URL="https://www.bbva.com.co/documents/702694/2878314/01-BN-970x260.jpg/376b216f-950a-4d0f-9853-35d1db46d4b3?t=1433346845578" />
+		<c:set var="currency" value="$" />
+
+
 		<bbvaContainer:productCardGraphic id="cardPieGP"
 			title="#{msg['title.cards']}" header="#{msg['graphicCard.tittle']}"
 			graphic="#{customerProducts.creditCards.size()==0 &amp;&amp; customerProductsHidden.creditCards.size()==0? 'none' : 'block'}"
