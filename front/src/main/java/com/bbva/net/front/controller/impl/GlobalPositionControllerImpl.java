@@ -190,17 +190,17 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 			// Get GlobalProductsDTO by currentUser (visibles and hidden)
 			this.globalProductsDTO = this.globalPositionFacade.getGlobalProductsByUser();
 		} catch (Exception e) {
-			FacesContext ctx = FacesContext.getCurrentInstance();
-			ctx.addMessage("GlobalProductsDTO", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+			// FacesContext ctx = FacesContext.getCurrentInstance();
+			// ctx.addMessage("GlobalProductsDTO", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
 			this.globalProductsDTO = new GlobalProductsDto();
 		}
 		// Obtiene la lista de resumen de movimientos del serivico REST
 		try {
 			this.globalResumeMovementsDTO = this.movementsResumeFacade.getMovementsResumeByCustomer(new DateRangeDto());
 		} catch (Exception e) {
-			FacesContext ctx = FacesContext.getCurrentInstance();
-			ctx.addMessage("GlobalResumeMovementsDto ",
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+			// FacesContext ctx = FacesContext.getCurrentInstance();
+			// ctx.addMessage("GlobalResumeMovementsDto ",
+			// new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
 			this.globalResumeMovementsDTO = new GlobalResumeMovementsDto();
 			this.globalResumeMovementsDTO.setMovementsResumeDto(new ArrayList<MovementsResumeDto>());
 		}
@@ -213,9 +213,9 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 				// Delegate construye UI grafica Depositos Electrónicos
 				this.lineConfigUI = this.graphicLineDelegate.getMonthlyBalance(globalMonthlyBalance);
 			} catch (Exception e) {
-				FacesContext ctx = FacesContext.getCurrentInstance();
-				ctx.addMessage("globalMonthlyBalance ",
-						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+				// FacesContext ctx = FacesContext.getCurrentInstance();
+				// ctx.addMessage("globalMonthlyBalance ",
+				// new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
 				this.globalMonthlyBalance = new GlobalMonthlyBalanceDto();
 				this.lineConfigUI = new LineConfigUI();
 			}
@@ -232,7 +232,12 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 			this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(null));
 		} catch (Exception e) {
 			FacesContext ctx = FacesContext.getCurrentInstance();
-			ctx.addMessage("graphicPieCards ", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+			ctx.addMessage(
+					"graphicPieCards ",
+					new FacesMessage(
+							FacesMessage.SEVERITY_ERROR,
+							"Error",
+							"Servicio no disponible - No se han podido cargar algunos datos, para mayor información comunicate a nuestras líneas BBVA"));
 			this.graphicPieCards = new PieConfigUI();
 			// Verifica si en el mensaje de error existe la palabra tsec
 		}

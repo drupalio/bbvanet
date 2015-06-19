@@ -2,8 +2,6 @@ package com.bbva.net.front.controller.impl;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.context.annotation.Scope;
@@ -42,8 +40,8 @@ public class HeaderControllerImpl extends AbstractBbvaController implements Head
 		try {
 			return headerFacade.getExecutive();
 		} catch (Exception e) {
-			FacesContext ctx = FacesContext.getCurrentInstance();
-			ctx.addMessage("getExecutive ", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+			// FacesContext ctx = FacesContext.getCurrentInstance();
+			// ctx.addMessage("getExecutive ", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
 			return new ExecutiveDto();
 		}
 	}
@@ -67,10 +65,9 @@ public class HeaderControllerImpl extends AbstractBbvaController implements Head
 			LOGGER.info("CLIENT TOSTRING(): " + cliente.toString());
 			return headerFacade.getCustomer(userName, docTypeUser, docIdUser);
 
-		} catch (final Exception exception) {
-			FacesContext ctx = FacesContext.getCurrentInstance();
-			ctx.addMessage("getCustomer",
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", exception.getMessage()));
+		} catch (Exception e) {
+			// FacesContext ctx = FacesContext.getCurrentInstance();
+			// ctx.addMessage("getCustomer", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
 			return new CustomerDto();
 		}
 
