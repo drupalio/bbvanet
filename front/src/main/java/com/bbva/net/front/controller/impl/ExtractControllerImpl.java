@@ -83,7 +83,12 @@ public class ExtractControllerImpl extends AbstractBbvaController implements Ext
 
 		} catch (Exception e) {
 			FacesContext ctx = FacesContext.getCurrentInstance();
-			ctx.addMessage("extractList", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+			ctx.addMessage(
+					"extractList",
+					new FacesMessage(
+							FacesMessage.SEVERITY_ERROR,
+							"Error",
+							"Servicio no disponible - No se han podido cargar algunos datos, para mayor información comunicate a nuestras líneas BBVA"));
 			this.extractList = new ArrayList<ExtractDto>();
 		}
 		this.enableMonth = true;

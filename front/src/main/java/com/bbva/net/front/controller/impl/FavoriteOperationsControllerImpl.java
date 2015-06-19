@@ -1,13 +1,12 @@
 package com.bbva.net.front.controller.impl;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
 import org.apache.commons.collections.ListUtils;
@@ -57,22 +56,26 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
 						+ getSession().getAttribute("docIdUser").toString());
 				favoriteOperations = favoriteOperationsFacade.getListFavoriteOperations(getSession().getAttribute(
 						"docIdUser").toString());
+				getNames();
 			} catch (Exception e) {
-				FacesContext ctx = FacesContext.getCurrentInstance();
-				ctx.addMessage("Favorite Operation Session",
-						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+				// FacesContext ctx = FacesContext.getCurrentInstance();
+				// ctx.addMessage("Favorite Operation Session",
+				// new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+				favoriteOperations = new ArrayList<FavoriteOperationDto>();
 			}
 		} else {
 			try {
 				LOGGER.info("Metodo init de FavoriteOperationController sin usuario de la sesión ");
 				favoriteOperations = favoriteOperationsFacade.getListFavoriteOperations("123");
+				getNames();
 			} catch (Exception e) {
-				FacesContext ctx = FacesContext.getCurrentInstance();
-				ctx.addMessage("Favorite Operation user",
-						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+				// FacesContext ctx = FacesContext.getCurrentInstance();
+				// ctx.addMessage("Favorite Operation user",
+				// new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+				favoriteOperations = new ArrayList<FavoriteOperationDto>();
 			}
 		}
-		getNames();
+
 	}
 
 	/**
