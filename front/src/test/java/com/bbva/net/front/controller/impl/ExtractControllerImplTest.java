@@ -140,7 +140,7 @@ public class ExtractControllerImplTest extends AbstractBbvaControllerTest {
 		Assert.assertEquals(extractList, this.extractController.getExtractList());
 	}
 
-	@Test
+	// @Test
 	public void checkGetYearAvailable() {
 		Assert.assertEquals(yearAvailable, this.extractController.getYearAvailable());
 	}
