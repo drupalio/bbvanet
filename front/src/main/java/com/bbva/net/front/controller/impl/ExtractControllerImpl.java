@@ -169,8 +169,11 @@ public class ExtractControllerImpl extends AbstractBbvaController implements Ext
 	 */
 	@SuppressWarnings("unchecked")
 	public String getEmail() {
-		List<EmailDto> emails = (List<EmailDto>)CollectionUtils.select(headerController.getCliente().getEmails(),
-				new EmailPredicate());
+		List<EmailDto> emails = new ArrayList<EmailDto>();
+		if (headerController.getCliente().getEmails() != null) {
+			emails = (List<EmailDto>)CollectionUtils.select(headerController.getCliente().getEmails(),
+					new EmailPredicate());
+		}
 		if (emails.size() > 0)
 			return emails.get(0).getAddress();
 		else
