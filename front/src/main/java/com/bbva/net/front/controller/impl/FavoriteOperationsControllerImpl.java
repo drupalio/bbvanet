@@ -50,32 +50,32 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
 	 */
 	@PostConstruct
 	public void init() {
-		if (getSession().getAttribute("docIdUser") != null) {
-			try {
-				LOGGER.info("Metodo init de FavoriteOperationController con usuario de la sesión "
-						+ getSession().getAttribute("docIdUser").toString());
-				favoriteOperations = favoriteOperationsFacade.getListFavoriteOperations(getSession().getAttribute(
-						"docIdUser").toString());
-				getNames();
-			} catch (Exception e) {
-				// FacesContext ctx = FacesContext.getCurrentInstance();
-				// ctx.addMessage("Favorite Operation Session",
-				// new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
-				favoriteOperations = new ArrayList<FavoriteOperationDto>();
-			}
-		} else {
-			try {
-				LOGGER.info("Metodo init de FavoriteOperationController sin usuario de la sesión ");
-				favoriteOperations = favoriteOperationsFacade.getListFavoriteOperations("123");
-				getNames();
-			} catch (Exception e) {
-				// FacesContext ctx = FacesContext.getCurrentInstance();
-				// ctx.addMessage("Favorite Operation user",
-				// new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
-				favoriteOperations = new ArrayList<FavoriteOperationDto>();
-			}
-		}
-
+		// if (getSession().getAttribute("docIdUser") != null) {
+		// try {
+		// LOGGER.info("Metodo init de FavoriteOperationController con usuario de la sesión "
+		// + getSession().getAttribute("docIdUser").toString());
+		// favoriteOperations = favoriteOperationsFacade.getListFavoriteOperations(getSession().getAttribute(
+		// "docIdUser").toString());
+		// getNames();
+		// } catch (Exception e) {
+		// // FacesContext ctx = FacesContext.getCurrentInstance();
+		// // ctx.addMessage("Favorite Operation Session",
+		// // new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+		// favoriteOperations = new ArrayList<FavoriteOperationDto>();
+		// }
+		// } else {
+		// try {
+		// LOGGER.info("Metodo init de FavoriteOperationController sin usuario de la sesión ");
+		// favoriteOperations = favoriteOperationsFacade.getListFavoriteOperations("123");
+		// getNames();
+		// } catch (Exception e) {
+		// // FacesContext ctx = FacesContext.getCurrentInstance();
+		// // ctx.addMessage("Favorite Operation user",
+		// // new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+		// favoriteOperations = new ArrayList<FavoriteOperationDto>();
+		// }
+		// }
+		favoriteOperations = new ArrayList<FavoriteOperationDto>();
 	}
 
 	/**
