@@ -8,7 +8,6 @@ import javax.faces.context.FacesContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.webflow.execution.RequestContext;
 
 import com.bbva.net.front.core.exception.RestClientViewExceptionHandler;
 
@@ -17,8 +16,6 @@ public class BbvaExceptionHandler extends ExceptionHandlerWrapper {
 	protected static final Logger LOGGER = LoggerFactory.getLogger(BbvaExceptionHandler.class);
 
 	private final ExceptionHandler wrapped;
-
-	private RequestContext context;
 
 	@Autowired
 	private RestClientViewExceptionHandler restClientViewExceptionHandler;
