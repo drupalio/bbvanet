@@ -370,6 +370,12 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	}
 
 	@Override
+	public void exportExcel() {
+		LOGGER.info("iniciando exportar archivo excel");
+
+	}
+
+	@Override
 	public ProductDto getSelectedProduct() {
 		return super.getSelectedProduct();
 	}

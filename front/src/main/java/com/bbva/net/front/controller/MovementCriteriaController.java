@@ -77,4 +77,6 @@ public interface MovementCriteriaController {
 	void setMovementConcept(ActionEvent event);
 
 	void clean();
+
+	void exportExcel();
 }
