@@ -12,11 +12,14 @@ import javax.faces.context.FacesContext;
 
 import org.apache.commons.beanutils.BeanToPropertyValueTransformer;
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang.StringUtils;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
 import com.bbva.net.back.facade.ExtractFacade;
 import com.bbva.net.back.model.extract.ExtractDto;
+import com.bbva.net.back.model.header.EmailDto;
+import com.bbva.net.back.predicate.EmailPredicate;
 import com.bbva.net.back.predicate.ExtractDocumentPredicate;
 import com.bbva.net.back.predicate.ExtractPeriodPredicate;
 import com.bbva.net.front.controller.ExtractController;
@@ -71,12 +74,21 @@ public class ExtractControllerImpl extends AbstractBbvaController implements Ext
 	/**
 	 * 
 	 */
+	@Resource(name = "headerController")
+	private transient HeaderControllerImpl headerController;
+
 	public void init() {
 		try {
 			this.extractList = this.extractFacade.getExtractAvailable(super.getSelectedProduct().getProductNumber());
+
 		} catch (Exception e) {
 			FacesContext ctx = FacesContext.getCurrentInstance();
-			ctx.addMessage("extractList", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+			ctx.addMessage(
+					"extractList",
+					new FacesMessage(
+							FacesMessage.SEVERITY_ERROR,
+							"Error",
+							"Servicio no disponible - No se han podido cargar algunos datos, para mayor información comunicate a nuestras líneas BBVA"));
 			this.extractList = new ArrayList<ExtractDto>();
 		}
 		this.enableMonth = true;
@@ -150,6 +162,22 @@ public class ExtractControllerImpl extends AbstractBbvaController implements Ext
 				"month"));
 		monthAvailable = new ArrayList<String>(new LinkedHashSet<String>(monthAvailable));
 		return monthAvailable;
+	}
+
+	/**
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public String getEmail() {
+		List<EmailDto> emails = new ArrayList<EmailDto>();
+		if (headerController.getCliente().getEmails() != null) {
+			emails = (List<EmailDto>)CollectionUtils.select(headerController.getCliente().getEmails(),
+					new EmailPredicate());
+		}
+		if (emails.size() > 0)
+			return emails.get(0).getAddress();
+		else
+			return StringUtils.EMPTY;
 	}
 
 	/**

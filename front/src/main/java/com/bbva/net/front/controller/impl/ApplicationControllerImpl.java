@@ -34,9 +34,9 @@ public class ApplicationControllerImpl extends AbstractBbvaController implements
 	@Override
 	public void onLikeAccount(final ValueChangeEvent valueChangeEvent) {
 		LOGGER.info("onLikeAccount " + valueChangeEvent + " "
-				+ MessagesHelper.INSTANCE.getString(multiValueGroupFacade.getMultiValueTypes(6).get(0).getValue()));
+				+ MessagesHelper.INSTANCE.getString(multiValueGroupFacade.getMultiValueTypes(6).get(1).getValue()));
 		if (valueChangeEvent.getNewValue().equals(
-				MessagesHelper.INSTANCE.getString(multiValueGroupFacade.getMultiValueTypes(6).get(0).getValue()))) {
+				MessagesHelper.INSTANCE.getString(multiValueGroupFacade.getMultiValueTypes(6).get(1).getValue()))) {
 			super.setSelectedProduct((ProductDto)valueChangeEvent.getOldValue());
 			super.getSelectedProduct();
 			this.sendAction("accountSelected");
