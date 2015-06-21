@@ -78,7 +78,7 @@
 				<footer class="detail-table-footer">
 					<p:commandButton id="moreMovs" value="#{msg['text.detailMove.footer']}"
 						rendered="#{renderComponents['FOOTERTABLEMOVEMENT'] and renderComponents['MOVEMENTSTABLE']}"
-						styleClass="btn btn-more-results"
+						styleClass="btn btn-more-results seeMore" 
 						actionListener="#{movementsCriteriaController.nextPage}" ajax="true"
 						update=":detailAccounts:tableMovements:formMovesDetail:movAccount">
 						<p:ajax onstart="PF('statusDialog').show()"
