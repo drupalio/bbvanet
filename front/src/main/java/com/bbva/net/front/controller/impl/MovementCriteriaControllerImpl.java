@@ -1,5 +1,13 @@
 package com.bbva.net.front.controller.impl;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -10,9 +18,20 @@ import javax.faces.event.ActionEvent;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.hssf.util.CellRangeAddress;
+import org.apache.poi.hssf.util.HSSFColor;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.tools.ant.util.DateUtils;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 
 import com.bbva.net.back.facade.MovementsAccountFacade;
 import com.bbva.net.back.facade.MultiValueGroupFacade;
@@ -58,6 +77,8 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	private BalanceRangeDto balanceRange;
 
 	private DateRangeDto dateRange;
+
+	private transient StreamedContent exportFile;
 
 	@Resource(name = "multiValueGroupFacade")
 	private transient MultiValueGroupFacade multiValueGroupFacade;
@@ -371,6 +392,126 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	}
 
 	@Override
+	public void exportExcel() {
+		LOGGER.info("iniciando exportar archivo excel");
+
+		String rutaArchivo = "src/main/webapp/assets/img/Movimientos.xls";
+
+		File archivoXLS = new File(rutaArchivo);
+		if (archivoXLS.exists()) archivoXLS.delete();
+
+		try {
+			archivoXLS.createNewFile();
+		} catch (IOException e) {
+			LOGGER.info("Excepción al crear el archivo" + e.getMessage());
+		}
+		Workbook libro = new HSSFWorkbook();
+
+		// Create a new font and alter it.
+
+		try {
+			FileOutputStream archivo = new FileOutputStream(archivoXLS);
+			Sheet hoja = libro.createSheet("Movimientos de cuenta");
+			// try {
+			// // Insertar imagen url("../img/icons/icon-excel-file.png")
+			// InputStream inputStream = new FileInputStream("src/main/webapp/assets/img/bbva.png");
+			// // Get the contents of an InputStream as a byte[].
+			// byte[] bytes = IOUtils.toByteArray(inputStream);
+			// // Adds a picture to the workbook
+			// int pictureIdx = libro.addPicture(bytes, Workbook.PICTURE_TYPE_PNG);
+			// // close the input stream
+			// inputStream.close();
+			//
+			// // Returns an object that handles instantiating concrete classes
+			// CreationHelper helper = libro.getCreationHelper();
+			//
+			// // Creates the top-level drawing patriarch.
+			// Drawing drawing = hoja.createDrawingPatriarch();
+			//
+			// // Create an anchor that is attached to the worksheet
+			// ClientAnchor anchor = helper.createClientAnchor();
+			// // set top-left corner for the image
+			// anchor.setCol1(0);
+			// anchor.setRow1(0);
+			//
+			// // Creates a picture
+			// Picture pict = drawing.createPicture(anchor, pictureIdx);
+			// // Reset the image to the original size
+			// pict.resize();
+			// } catch (Exception e) {
+			// LOGGER.info("Excepción al cargar imagen bbva" + e.getMessage());
+			// }
+			Row filaHeader = hoja.createRow(0);
+
+			filaHeader.createCell(0).setCellValue("Fecha");
+
+			filaHeader.createCell(2).setCellValue("Concepto");
+
+			filaHeader.createCell(4).setCellValue("Valor");
+
+			filaHeader.createCell(6).setCellValue("Saldo");
+
+			hoja.addMergedRegion(new CellRangeAddress(0, 0, 0, 1));
+			hoja.addMergedRegion(new CellRangeAddress(0, 0, 2, 3));
+			hoja.addMergedRegion(new CellRangeAddress(0, 0, 4, 5));
+			hoja.addMergedRegion(new CellRangeAddress(0, 0, 6, 7));
+			for (int f = 0; f < this.movementsList.size(); f++) {
+				Row fila = hoja.createRow(f + 1);
+				for (int c = 0; c < 8; c = c + 2) {
+					Cell celda = fila.createCell(c);
+
+					if (c == 0) {
+						CellStyle cellStyle = libro.createCellStyle();
+						Font date = libro.createFont();
+						date.setFontHeightInPoints((short)10);
+						date.setFontName("Arial");
+						date.setBold(true);
+						date.setColor(HSSFColor.BLUE.index);
+						cellStyle.setFont(date);
+						celda.setCellStyle(cellStyle);
+
+						celda.setCellValue(getdateString(this.movementsList.get(f).getOperationDate()));
+
+					}
+					if (c == 2) {
+						celda.setCellValue(this.movementsList.get(f).getMovementConcept());
+
+					}
+					if (c == 4) {
+						celda.setCellValue(this.movementsList.get(f).getMovementValue().toString());
+
+					}
+					if (c == 6) {
+						celda.setCellValue(this.movementsList.get(f).getTotalBalance().toString());
+
+					}
+					hoja.addMergedRegion(new CellRangeAddress(f, f, 0, 1));
+					hoja.addMergedRegion(new CellRangeAddress(f, f, 2, 3));
+					hoja.addMergedRegion(new CellRangeAddress(f, f, 4, 5));
+					hoja.addMergedRegion(new CellRangeAddress(f, f, 6, 7));
+				}
+			}
+			try {
+				libro.write(archivo);
+				// archivo.flush();
+
+				archivo.close();
+			} catch (IOException e) {
+				LOGGER.info("Excepción al leer y cerrar el archivo" + e.getMessage());
+			}
+
+		} catch (FileNotFoundException e) {
+			LOGGER.info("Excepción no se encuentra el archivo" + e.getMessage());
+		}
+	}
+
+	public String getdateString(Date date) {
+		final SimpleDateFormat dateFormat = new SimpleDateFormat(
+				MessagesHelper.INSTANCE.getStringI18("date.pattner.dd-mm-yyyy"));
+		return dateFormat.format(date);
+	}
+
+	@Override
 	public ProductDto getSelectedProduct() {
 		return super.getSelectedProduct();
 	}
@@ -648,6 +789,24 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	 */
 	public void setGraphicLineMovements(LineConfigUI graphicLineMovements) {
 		this.graphicLineMovements = graphicLineMovements;
+	}
+
+	public StreamedContent getExportFile() {
+		exportExcel();
+		InputStream stream;
+		try {
+			stream = new BufferedInputStream(new FileInputStream("src/main/webapp/assets/img/Movimientos.xls"));
+			exportFile = new DefaultStreamedContent(stream, "application/xls", "Movimientos.xls");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return exportFile;
+	}
+
+	public void setExportFile(StreamedContent exportFile) {
+		this.exportFile = exportFile;
 	}
 
 }
