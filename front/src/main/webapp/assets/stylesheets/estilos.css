@@ -1592,3 +1592,10 @@ body div.ui-growl .ui-state-highlight {
 	font-size: 0.85em !important;
 	margin: 0px !important;
 }
+
+.seeMore{
+	font-size: 11px !important;
+	color:#0078d2 !important; 
+	font-family:Arial !important;
+	font-weight:bold !important
+}
