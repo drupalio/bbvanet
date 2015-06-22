@@ -18,12 +18,14 @@
 	<article class="detail-table-group">
 		<div class="utility-icons">
 		<h:form id="documentsExport">
-			<p:commandButton ajax="false" styleClass="icon-excel-file" value="">
+			<p:commandButton ajax="false" styleClass="icon-excel-file" value="" o>
 				<p:fileDownload value="#{movementsCriteriaController.exportFile}" />
 			</p:commandButton>
 			<a href="#"><span class="icon-pdf-file" title="Descargar pdf"></span></a>
 			<a href="#"><span class="icon-send-by-email" title="Enviar"></span></a>
-			<a href="#"><span class="icon-printer" title="Imprimir"></span></a>
+			<p:commandButton id="Print" ajax="false" styleClass="icon-printer" value="" actionListener="#{movementsCriteriaController.printFile()}">
+			</p:commandButton>
+
 		</h:form>
 		</div>
 		<bbvaTablesAcc:accountMovementsTable id="tableMovements"

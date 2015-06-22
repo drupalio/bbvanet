@@ -15,6 +15,14 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
+import javax.print.Doc;
+import javax.print.DocFlavor;
+import javax.print.DocPrintJob;
+import javax.print.PrintService;
+import javax.print.PrintServiceLookup;
+import javax.print.SimpleDoc;
+import javax.print.attribute.HashPrintRequestAttributeSet;
+import javax.print.attribute.PrintRequestAttributeSet;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
@@ -412,30 +420,30 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			FileOutputStream archivo = new FileOutputStream(archivoXLS);
 			Sheet hoja = libro.createSheet("Movimientos de cuenta");
 			// try {
-			// // Insertar imagen url("../img/icons/icon-excel-file.png")
+
 			// InputStream inputStream = new FileInputStream("src/main/webapp/assets/img/bbva.png");
-			// // Get the contents of an InputStream as a byte[].
+
 			// byte[] bytes = IOUtils.toByteArray(inputStream);
-			// // Adds a picture to the workbook
+
 			// int pictureIdx = libro.addPicture(bytes, Workbook.PICTURE_TYPE_PNG);
-			// // close the input stream
+
 			// inputStream.close();
 			//
-			// // Returns an object that handles instantiating concrete classes
+
 			// CreationHelper helper = libro.getCreationHelper();
 			//
-			// // Creates the top-level drawing patriarch.
+
 			// Drawing drawing = hoja.createDrawingPatriarch();
 			//
-			// // Create an anchor that is attached to the worksheet
+
 			// ClientAnchor anchor = helper.createClientAnchor();
-			// // set top-left corner for the image
+
 			// anchor.setCol1(0);
 			// anchor.setRow1(0);
 			//
-			// // Creates a picture
+
 			// Picture pict = drawing.createPicture(anchor, pictureIdx);
-			// // Reset the image to the original size
+
 			// pict.resize();
 			// } catch (Exception e) {
 			// LOGGER.info("Excepción al cargar imagen bbva" + e.getMessage());
@@ -492,8 +500,6 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			}
 			try {
 				libro.write(archivo);
-				// archivo.flush();
-
 				archivo.close();
 			} catch (IOException e) {
 				LOGGER.info("Excepción al leer y cerrar el archivo" + e.getMessage());
@@ -509,6 +515,48 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 				MessagesHelper.INSTANCE.getStringI18("date.pattner.dd-mm-yyyy"));
 		return dateFormat.format(date);
 	}
+
+	@Override
+	public void printFile() {
+		FileInputStream inputFile = null;
+		try {
+			inputFile = new FileInputStream("src/main/webapp/assets/img/Movimientos.pdf");
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		if (inputFile == null) {
+			return;
+		}
+
+		DocFlavor docFormat = DocFlavor.INPUT_STREAM.AUTOSENSE;
+		Doc document = new SimpleDoc(inputFile, docFormat, null);
+
+		PrintRequestAttributeSet attributeSet = new HashPrintRequestAttributeSet();
+
+		PrintService defaultPrintService = PrintServiceLookup.lookupDefaultPrintService();
+
+		if (defaultPrintService != null) {
+			DocPrintJob printJob = defaultPrintService.createPrintJob();
+			try {
+				printJob.print(document, attributeSet);
+
+			} catch (Exception e) {
+				LOGGER.info("Erro al imrpimir " + e.getMessage());
+			}
+		} else {
+			System.err.println("No existen impresoras instaladas");
+		}
+		try {
+			inputFile.close();
+		} catch (IOException e) {
+			LOGGER.info("Erro al cerrar el archivo de impresión " + e.getMessage());
+		}
+	}
+
+	@Override
+	public void emailFile() {
+
+	};
 
 	@Override
 	public ProductDto getSelectedProduct() {
