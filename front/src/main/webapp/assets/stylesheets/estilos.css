@@ -1593,6 +1593,12 @@ body div.ui-growl .ui-state-highlight {
 	margin: 0px !important;
 }
 
+@media ( max-width : 769px) {
+	.likeSame {
+		display: block !important;
+	}
+}
+
 .seeMore {
 	font-size: 11px !important;
 	color: #0078d2 !important;
