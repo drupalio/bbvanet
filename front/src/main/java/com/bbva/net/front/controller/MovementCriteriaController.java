@@ -84,15 +84,15 @@ public interface MovementCriteriaController {
 	/**
 	 * 
 	 */
-	void exportExcel();
+	void exportDocumentPdf();
+
+	/**
+	 * 
+	 */
+	void exportDocumentExcel();
 
 	/**
 	 * 
 	 */
 	void printFile();
-
-	/**
-	 * 
-	 */
-	void emailFile();
 }
