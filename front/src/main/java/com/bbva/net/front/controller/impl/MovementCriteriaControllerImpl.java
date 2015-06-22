@@ -434,14 +434,25 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			inicio = inicio + 3;
 
 			filaHeader = hoja.createRow(inicio);
+			Cell celdaHeader = filaHeader.createCell(1);
+			CellStyle cellStyleHeader = libro.createCellStyle();
+			Font text = libro.createFont();
+			text.setFontHeightInPoints((short)10);
+			text.setFontName("Arial");
+			text.setBold(true);
+			text.setColor(HSSFColor.BLACK.index);
+			cellStyleHeader.setFont(text);
+			celdaHeader.setCellStyle(cellStyleHeader);
+			celdaHeader.setCellValue("FECHA");
 
-			filaHeader.createCell(1).setCellValue("Fecha");
+			celdaHeader = filaHeader.createCell(3);
+			celdaHeader.setCellValue("CONCEPTO");
 
-			filaHeader.createCell(3).setCellValue("Concepto");
+			celdaHeader = filaHeader.createCell(5);
+			celdaHeader.setCellValue("VALOR");
 
-			filaHeader.createCell(5).setCellValue("Valor");
-
-			filaHeader.createCell(7).setCellValue("Saldo");
+			celdaHeader = filaHeader.createCell(7);
+			celdaHeader.setCellValue("SALDO");
 
 			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 2));
 			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 3, 4));
@@ -484,7 +495,54 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 					hoja.addMergedRegion(new CellRangeAddress(f, f, 7, 8));
 				}
 			}
-			inicio = this.movementsList.size() + 4;
+			inicio = inicio + this.movementsList.size() + 2;
+			Row filaFooter = hoja.createRow(inicio);
+			filaFooter.createCell(1).setCellValue("Cordial saludo,");
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 8));
+			inicio = inicio + 1;
+			filaFooter = hoja.createRow(inicio);
+			filaFooter.createCell(1).setCellValue("BBVA Adelante");
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 8));
+			inicio = inicio + 2;
+
+			filaFooter = hoja.createRow(inicio);
+			filaFooter
+					.createCell(1)
+					.setCellValue(
+							"Nota: Si no eres el destinatario de este mensaje, por favor comunícate con nosotros con el fin de realizar la actualización correspondiente, al 4010000 en Bogotá, 4938300 en Medellín, 3503500 en Barranquilla, 8892020 en Cali, 6304000 en Bucaramanga o al 01800 912227 desde el resto del país. ");
+
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 8));
+
+			inicio = inicio + 2;
+			filaFooter = hoja.createRow(inicio);
+			filaFooter.createCell(1).setCellValue("********************* AVISO LEGAL **************************");
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 8));
+
+			inicio = inicio + 1;
+			filaFooter = hoja.createRow(inicio);
+			filaFooter
+					.createCell(1)
+					.setCellValue(
+							"Este mensaje es solamente para la persona a la que va dirigido. Puede contener informacion  confidencial  o  legalmente  protegida.  No  hay  renuncia  a la confidencialidad o privilegio por cualquier transmision mala/erronea. Si usted ha recibido este mensaje por error,  le rogamos que borre de su sistema inmediatamente el mensaje asi como todas sus copias, destruya todas las copias del mismo de su disco duro y notifique al remitente.  No debe,  directa o indirectamente, usar, revelar, distribuir, imprimir o copiar ninguna de las partes de este mensaje si no es usted el destinatario. Cualquier opinion expresada en este mensaje proviene del remitente, excepto cuando el mensaje establezca lo contrario y el remitente este autorizado para establecer que dichas opiniones provienen de  BBVA. Notese que el correo electronico via Internet no permite asegurar ni la confidencialidad de los mensajes que se transmiten ni la correcta recepcion de los mismos. En el caso de que el destinatario de este mensaje no consintiera la utilizacion del correo electronico via Internet, rogamos lo ponga en nuestro conocimiento de manera inmediata.");
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 8));
+
+			inicio = inicio + 2;
+			filaFooter = hoja.createRow(inicio);
+			filaFooter.createCell(1).setCellValue("**************************  DISCLAIMER**********************");
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 8));
+
+			inicio = inicio + 1;
+			filaFooter = hoja.createRow(inicio);
+			filaFooter
+					.createCell(1)
+					.setCellValue(
+							"This message is intended exclusively for the named person. It may contain confidential, propietary or legally privileged information. No confidentiality or privilege is waived or lost by any mistransmission. If you receive this message in error, please immediately delete it and all copies of it from your system, destroy any hard copies of it and notify the sender. Your must not, directly or indirectly, use, disclose, distribute, print, or copy any part of this message if you are not the intended recipient. Any views expressed in this message are those of the individual sender, except where the message states otherwise and the sender is authorised to state them to be the views of BBVA. Please note that internet e-mail neither guarantees the confidentiality nor the proper receipt of the message sent.If the addressee of this message does not consent to the use of internet e-mail, please communicate it to us immediately.");
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 8));
+
+			inicio = inicio + 1;
+			filaFooter = hoja.createRow(inicio);
+			filaFooter.createCell(1).setCellValue("************************************************************");
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 8));
 
 			try {
 				libro.write(archivo);
@@ -709,6 +767,11 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		} catch (IOException e) {
 			LOGGER.info("Erro al cerrar el archivo de impresión " + e.getMessage());
 		}
+	}
+
+	@Override
+	public void sendMail() {
+
 	}
 
 	@Override
