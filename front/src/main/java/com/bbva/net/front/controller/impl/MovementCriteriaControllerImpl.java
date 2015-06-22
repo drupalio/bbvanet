@@ -13,9 +13,20 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
+import javax.activation.DataHandler;
+import javax.activation.FileDataSource;
 import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
+import javax.mail.BodyPart;
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 import javax.print.Doc;
 import javax.print.DocFlavor;
 import javax.print.DocPrintJob;
@@ -771,7 +782,41 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 	@Override
 	public void sendMail() {
+		try {
 
+			Properties props = new Properties();
+			props.put("mail.smtp.host", "smtp.gmail.com");
+			props.setProperty("mail.smtp.starttls.enable", "true");
+			props.setProperty("mail.smtp.port", "587");
+			props.setProperty("mail.smtp.user", "nerlyzaa@gmail.com");
+			props.setProperty("mail.smtp.auth", "true");
+
+			Session session = Session.getDefaultInstance(props, null);
+
+			BodyPart texto = new MimeBodyPart();
+			texto.setText("Texto del mensaje");
+
+			BodyPart adjunto = new MimeBodyPart();
+			adjunto.setDataHandler(new DataHandler(new FileDataSource("src/main/webapp/assets/img/logo/logo_bbva.png")));
+			adjunto.setFileName("logo_bbva.png");
+
+			MimeMultipart multiParte = new MimeMultipart();
+			multiParte.addBodyPart(texto);
+			multiParte.addBodyPart(adjunto);
+
+			MimeMessage message = new MimeMessage(session);
+			message.setFrom(new InternetAddress("nerlyzaa@gmail.com"));
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress("nerlyzaa@gmail.com"));
+			message.setSubject("Hola");
+			message.setContent(multiParte);
+
+			Transport t = session.getTransport("smtp");
+			t.connect("nerlyzaa@gmail.com", "pinina123");
+			t.sendMessage(message, message.getAllRecipients());
+			t.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
