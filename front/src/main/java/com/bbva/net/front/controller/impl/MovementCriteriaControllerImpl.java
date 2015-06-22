@@ -668,6 +668,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 	@Override
 	public void printFile() {
+		exportDocumentPdf();
 		FileInputStream inputFile = null;
 		try {
 			inputFile = new FileInputStream("src/main/webapp/assets/img/Movimientos.pdf");
