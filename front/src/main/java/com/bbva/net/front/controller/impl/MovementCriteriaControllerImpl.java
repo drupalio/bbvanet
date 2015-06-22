@@ -114,7 +114,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	@Resource(name = "graphicLineDelegate")
 	private transient GraphicLineDelegate graphicLineDelegate;
 	
-	private String RUTAEXCEL = "/kqco_co_web/assets";
+	private String RUTAEXCEL = "/kqco_co_web/assets/Movimientos.xls";
 
 	private LineConfigUI graphicLineMovements;
 
@@ -389,7 +389,13 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	@Override
 	public void exportDocumentExcel() {
 		LOGGER.info("iniciando exportar archivo excel");
-
+		File miDir = new File (".");
+	     try {
+	    	 LOGGER.info("Directorio actual: " + miDir.getCanonicalPath());
+	       }
+	     catch(Exception e) {
+	       e.printStackTrace();
+	       }
 		String rutaArchivo = RUTAEXCEL;
 
 		File archivoXLS = new File(rutaArchivo);
@@ -991,7 +997,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		exportDocumentExcel();
 		InputStream stream;
 		try {
-			stream = new BufferedInputStream(new FileInputStream("src/main/webapp/assets/img/Movimientos.xls"));
+			stream = new BufferedInputStream(new FileInputStream("RUTAEXCEL"));
 			exportExcel = new DefaultStreamedContent(stream, "application/xls", "Movimientos.xls");
 		} catch (FileNotFoundException e) {
 			LOGGER.info("Error al descargar el Excel " + e.getMessage());
