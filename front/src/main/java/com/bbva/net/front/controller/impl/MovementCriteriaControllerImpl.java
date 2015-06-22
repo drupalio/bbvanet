@@ -1,5 +1,6 @@
 package com.bbva.net.front.controller.impl;
 
+import java.awt.print.PrinterJob;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -31,10 +32,15 @@ import org.apache.poi.hssf.util.CellRangeAddress;
 import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.ClientAnchor;
+import org.apache.poi.ss.usermodel.CreationHelper;
+import org.apache.poi.ss.usermodel.Drawing;
 import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.Picture;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.util.IOUtils;
 import org.apache.tools.ant.util.DateUtils;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
@@ -388,7 +394,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		LOGGER.info("iniciando exportar archivo excel");
 
 		String rutaArchivo = "src/main/webapp/assets/img/Movimientos.xls";
-
+		int inicio = 9;
 		File archivoXLS = new File(rutaArchivo);
 		if (archivoXLS.exists()) archivoXLS.delete();
 
@@ -399,60 +405,55 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		}
 		Workbook libro = new HSSFWorkbook();
 
-		// Create a new font and alter it.
-
 		try {
 			FileOutputStream archivo = new FileOutputStream(archivoXLS);
 			Sheet hoja = libro.createSheet("Movimientos de cuenta");
-			// try {
+			try {
+				InputStream inputStream = new FileInputStream("src/main/webapp/assets/img/logo/logo_bbva.png");
+				byte[] bytes = IOUtils.toByteArray(inputStream);
+				int pictureIdx = libro.addPicture(bytes, Workbook.PICTURE_TYPE_PNG);
+				inputStream.close();
 
-			// InputStream inputStream = new FileInputStream("src/main/webapp/assets/img/bbva.png");
+				CreationHelper helper = libro.getCreationHelper();
 
-			// byte[] bytes = IOUtils.toByteArray(inputStream);
+				Drawing drawing = hoja.createDrawingPatriarch();
 
-			// int pictureIdx = libro.addPicture(bytes, Workbook.PICTURE_TYPE_PNG);
+				ClientAnchor anchor = helper.createClientAnchor();
+				anchor.setCol1(1);
+				anchor.setRow1(1);
 
-			// inputStream.close();
-			//
+				Picture pict = drawing.createPicture(anchor, pictureIdx);
+				pict.resize();
+			} catch (Exception e) {
+				LOGGER.info("Excepción al cargar imagen bbva" + e.getMessage());
+			}
 
-			// CreationHelper helper = libro.getCreationHelper();
-			//
+			Row filaHeader = hoja.createRow(inicio);
+			filaHeader.createCell(1).setCellValue("Estimado(a) cliente:");
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 2));
+			inicio = inicio + 3;
 
-			// Drawing drawing = hoja.createDrawingPatriarch();
-			//
+			filaHeader = hoja.createRow(inicio);
 
-			// ClientAnchor anchor = helper.createClientAnchor();
+			filaHeader.createCell(1).setCellValue("Fecha");
 
-			// anchor.setCol1(0);
-			// anchor.setRow1(0);
-			//
+			filaHeader.createCell(3).setCellValue("Concepto");
 
-			// Picture pict = drawing.createPicture(anchor, pictureIdx);
+			filaHeader.createCell(5).setCellValue("Valor");
 
-			// pict.resize();
-			// } catch (Exception e) {
-			// LOGGER.info("Excepción al cargar imagen bbva" + e.getMessage());
-			// }
-			Row filaHeader = hoja.createRow(0);
+			filaHeader.createCell(7).setCellValue("Saldo");
 
-			filaHeader.createCell(0).setCellValue("Fecha");
-
-			filaHeader.createCell(2).setCellValue("Concepto");
-
-			filaHeader.createCell(4).setCellValue("Valor");
-
-			filaHeader.createCell(6).setCellValue("Saldo");
-
-			hoja.addMergedRegion(new CellRangeAddress(0, 0, 0, 1));
-			hoja.addMergedRegion(new CellRangeAddress(0, 0, 2, 3));
-			hoja.addMergedRegion(new CellRangeAddress(0, 0, 4, 5));
-			hoja.addMergedRegion(new CellRangeAddress(0, 0, 6, 7));
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 2));
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 3, 4));
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 5, 6));
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 7, 8));
+			inicio = inicio + 1;
 			for (int f = 0; f < this.movementsList.size(); f++) {
-				Row fila = hoja.createRow(f + 1);
-				for (int c = 0; c < 8; c = c + 2) {
+				Row fila = hoja.createRow(f + inicio);
+				for (int c = 1; c < 9; c = c + 2) {
 					Cell celda = fila.createCell(c);
 
-					if (c == 0) {
+					if (c == 1) {
 						CellStyle cellStyle = libro.createCellStyle();
 						Font date = libro.createFont();
 						date.setFontHeightInPoints((short)10);
@@ -465,24 +466,26 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 						celda.setCellValue(getdateString(this.movementsList.get(f).getOperationDate()));
 
 					}
-					if (c == 2) {
+					if (c == 3) {
 						celda.setCellValue(this.movementsList.get(f).getMovementConcept());
 
 					}
-					if (c == 4) {
+					if (c == 5) {
 						celda.setCellValue(this.movementsList.get(f).getMovementValue().toString());
 
 					}
-					if (c == 6) {
+					if (c == 7) {
 						celda.setCellValue(this.movementsList.get(f).getTotalBalance().toString());
 
 					}
-					hoja.addMergedRegion(new CellRangeAddress(f, f, 0, 1));
-					hoja.addMergedRegion(new CellRangeAddress(f, f, 2, 3));
-					hoja.addMergedRegion(new CellRangeAddress(f, f, 4, 5));
-					hoja.addMergedRegion(new CellRangeAddress(f, f, 6, 7));
+					hoja.addMergedRegion(new CellRangeAddress(f, f, 1, 2));
+					hoja.addMergedRegion(new CellRangeAddress(f, f, 3, 4));
+					hoja.addMergedRegion(new CellRangeAddress(f, f, 5, 6));
+					hoja.addMergedRegion(new CellRangeAddress(f, f, 7, 8));
 				}
 			}
+			inicio = this.movementsList.size() + 4;
+
 			try {
 				libro.write(archivo);
 				archivo.close();
@@ -687,13 +690,17 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		PrintService defaultPrintService = PrintServiceLookup.lookupDefaultPrintService();
 
 		if (defaultPrintService != null) {
-			DocPrintJob printJob = defaultPrintService.createPrintJob();
-			try {
-				printJob.print(document, attributeSet);
+			PrinterJob printerJob = PrinterJob.getPrinterJob();
+			if (printerJob.printDialog()) {
+				DocPrintJob docprintJob = defaultPrintService.createPrintJob();
+				try {
+					docprintJob.print(document, attributeSet);
 
-			} catch (Exception e) {
-				LOGGER.info("Erro al imrpimir " + e.getMessage());
+				} catch (Exception e) {
+					LOGGER.info("Erro al imrpimir " + e.getMessage());
+				}
 			}
+
 		} else {
 			System.err.println("No existen impresoras instaladas");
 		}
