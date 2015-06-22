@@ -15,6 +15,14 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
+import javax.print.Doc;
+import javax.print.DocFlavor;
+import javax.print.DocPrintJob;
+import javax.print.PrintService;
+import javax.print.PrintServiceLookup;
+import javax.print.SimpleDoc;
+import javax.print.attribute.HashPrintRequestAttributeSet;
+import javax.print.attribute.PrintRequestAttributeSet;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
@@ -53,6 +61,18 @@ import com.bbva.net.front.controller.MovementCriteriaController;
 import com.bbva.net.front.delegate.GraphicLineDelegate;
 import com.bbva.net.front.helper.MessagesHelper;
 import com.bbva.net.front.ui.line.LineConfigUI;
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font.FontFamily;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 
 /**
  * @author Entelgy
@@ -79,7 +99,9 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 	private DateRangeDto dateRange;
 
-	private transient StreamedContent exportFile;
+	private transient StreamedContent exportExcel;
+
+	private transient StreamedContent exportPdf;
 
 	@Resource(name = "multiValueGroupFacade")
 	private transient MultiValueGroupFacade multiValueGroupFacade;
@@ -362,39 +384,10 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 	}
 
-	/**
-	 * Method to evaluate if the list has more elements
-	 * 
-	 * @param movementsList
-	 */
-	public void setShowMoreStatus() {
-		if (this.movementsList.size() >= 10)
-			getRenderComponents().put(RenderAttributes.FOOTERTABLEMOVEMENT.name(), true);
-		else
-			getRenderComponents().put(RenderAttributes.FOOTERTABLEMOVEMENT.name(), false);
-	}
-
-	public void setFalseCheckComponents() {
-		getRenderComponents().put(RenderAttributes.TITLECHECKS.name(), false);
-		getRenderComponents().put(RenderAttributes.CHECKTABLE.toString(), false);
-		getRenderComponents().put(RenderAttributes.FOOTERTABLECHEKS.toString(), false);
-	}
-
-	public void setFalseCheckBookComponents() {
-		getRenderComponents().put(RenderAttributes.TITLECHECKBOOKS.name(), false);
-		getRenderComponents().put(RenderAttributes.CHECKBOOKTABLE.name(), false);
-		getRenderComponents().put(RenderAttributes.FOOTERTABLECHECKBOOK.name(), false);
-	}
-
-	public void resetMapResults() {
-		getRenderComponents().put(RenderAttributes.MOVEMENTSFILTER.toString(), false);
-		getRenderComponents().put(RenderAttributes.INCOMEOREXPENSESFILTER.toString(), false);
-		getRenderComponents().put(RenderAttributes.BALANCEFILTER.toString(), false);
-		getRenderComponents().put(RenderAttributes.FILTERDATE.toString(), false);
-	}
-
+	// Export Excel
+	@SuppressWarnings("deprecation")
 	@Override
-	public void exportExcel() {
+	public void exportDocumentExcel() {
 		LOGGER.info("iniciando exportar archivo excel");
 
 		String rutaArchivo = RUTAEXCEL;
@@ -415,30 +408,30 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			FileOutputStream archivo = new FileOutputStream(archivoXLS);
 			Sheet hoja = libro.createSheet("Movimientos de cuenta");
 			// try {
-			// // Insertar imagen url("../img/icons/icon-excel-file.png")
+
 			// InputStream inputStream = new FileInputStream("src/main/webapp/assets/img/bbva.png");
-			// // Get the contents of an InputStream as a byte[].
+
 			// byte[] bytes = IOUtils.toByteArray(inputStream);
-			// // Adds a picture to the workbook
+
 			// int pictureIdx = libro.addPicture(bytes, Workbook.PICTURE_TYPE_PNG);
-			// // close the input stream
+
 			// inputStream.close();
 			//
-			// // Returns an object that handles instantiating concrete classes
+
 			// CreationHelper helper = libro.getCreationHelper();
 			//
-			// // Creates the top-level drawing patriarch.
+
 			// Drawing drawing = hoja.createDrawingPatriarch();
 			//
-			// // Create an anchor that is attached to the worksheet
+
 			// ClientAnchor anchor = helper.createClientAnchor();
-			// // set top-left corner for the image
+
 			// anchor.setCol1(0);
 			// anchor.setRow1(0);
 			//
-			// // Creates a picture
+
 			// Picture pict = drawing.createPicture(anchor, pictureIdx);
-			// // Reset the image to the original size
+
 			// pict.resize();
 			// } catch (Exception e) {
 			// LOGGER.info("Excepción al cargar imagen bbva" + e.getMessage());
@@ -495,8 +488,6 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			}
 			try {
 				libro.write(archivo);
-				// archivo.flush();
-
 				archivo.close();
 			} catch (IOException e) {
 				LOGGER.info("Excepción al leer y cerrar el archivo" + e.getMessage());
@@ -507,10 +498,213 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		}
 	}
 
+	// Export Pdf
+	@Override
+	public void exportDocumentPdf() {
+
+		LOGGER.info("iniciando exportar archivo pdf");
+
+		String rutaArchivo = "src/main/webapp/assets/img/Movimientos.pdf";
+
+		try {
+
+			FileOutputStream file = null;
+
+			try {
+				file = new FileOutputStream(rutaArchivo);
+			} catch (FileNotFoundException e) {
+				LOGGER.info("Excepción no se encuentra el archivo" + e.getMessage());
+			}
+
+			Document document = new Document();
+
+			PdfWriter.getInstance(document, file).setInitialLeading(20);
+
+			document.open();
+
+			try {
+				Image foto = Image.getInstance("src/main/webapp/assets/img/logo/logo_bbva.png");
+				foto.scaleToFit(100, 100);
+				document.add(foto);
+			} catch (Exception e) {
+				LOGGER.info("Excepción no se encuentra el archivo de imagen" + e.getMessage());
+			}
+
+			Paragraph initial = new Paragraph("Estimado(a) cliente: ",
+					FontFactory.getFont("arial", 12, BaseColor.BLACK));
+			initial.setAlignment(Element.ALIGN_LEFT);
+			initial.setSpacingBefore(20);
+			document.add(initial);
+
+			PdfPTable tabla = new PdfPTable(4);
+			com.itextpdf.text.Font font = new com.itextpdf.text.Font(FontFamily.HELVETICA, 10,
+					com.itextpdf.text.Font.BOLD, BaseColor.BLACK);
+			com.itextpdf.text.Font fontNormal = new com.itextpdf.text.Font(FontFamily.HELVETICA, 10,
+					com.itextpdf.text.Font.NORMAL, BaseColor.BLACK);
+			com.itextpdf.text.Font fontBlue = new com.itextpdf.text.Font(FontFamily.HELVETICA, 10,
+					com.itextpdf.text.Font.BOLD, new BaseColor(0, 80, 152));
+			tabla.setSpacingBefore(20);
+			tabla.setSpacingAfter(20);
+
+			PdfPCell dateTitle = new PdfPCell(new Phrase("FECHA", font));
+			dateTitle.setBackgroundColor(new BaseColor(229, 229, 229));
+			tabla.addCell(dateTitle);
+
+			PdfPCell concept = new PdfPCell(new Phrase("CONCEPTO", font));
+			concept.setBackgroundColor(new BaseColor(229, 229, 229));
+			tabla.addCell(concept);
+
+			PdfPCell value = new PdfPCell(new Phrase("VALOR", font));
+			value.setBackgroundColor(new BaseColor(229, 229, 229));
+			tabla.addCell(value);
+
+			PdfPCell sald = new PdfPCell(new Phrase("SALDO", font));
+			sald.setBackgroundColor(new BaseColor(229, 229, 229));
+			tabla.addCell(sald);
+
+			for (int i = 0; i < movementsList.size(); i++) {
+
+				String date = getdateString(movementsList.get(i).getOperationDate());
+
+				tabla.addCell(new Phrase(date, fontBlue));
+				tabla.addCell(new Phrase(movementsList.get(i).getMovementConcept(), fontNormal));
+				tabla.addCell(new Phrase(movementsList.get(i).getMovementValue() + "", font));
+				tabla.addCell(new Phrase(movementsList.get(i).getTotalBalance() + "", font));
+			}
+			document.add(tabla);
+
+			Paragraph att = new Paragraph("Cordial saludo, ", FontFactory.getFont("arial", 12, BaseColor.BLACK));
+			att.setAlignment(Element.ALIGN_JUSTIFIED);
+			att.setSpacingBefore(20);
+			document.add(att);
+
+			Paragraph bbva = new Paragraph("BBVA Adelante ",
+					FontFactory.getFont("arial", 12, new BaseColor(0, 80, 152)));
+			bbva.setAlignment(Element.ALIGN_JUSTIFIED);
+			bbva.setSpacingAfter(20);
+			document.add(bbva);
+
+			Paragraph note = new Paragraph(
+					"Nota: Si no eres el destinatario de este mensaje, por favor comunícate con nosotros con el fin de realizar la actualización correspondiente, al 4010000 en Bogotá, 4938300 en Medellín, 3503500 en Barranquilla, 8892020 en Cali, 6304000 en Bucaramanga o al 01800 912227 desde el resto del país. ",
+					FontFactory.getFont("arial", 9, com.itextpdf.text.Font.BOLD));
+			note.setAlignment(Element.ALIGN_JUSTIFIED);
+			note.setSpacingAfter(20);
+			document.add(note);
+
+			String ast = "*********************";
+
+			Paragraph post = new Paragraph(ast + " AVISO LEGAL " + ast,
+					FontFactory.getFont("arial", 9, BaseColor.BLACK));
+			post.setAlignment(Element.ALIGN_LEFT);
+			document.add(post);
+
+			Paragraph postCont = new Paragraph(
+					"Este mensaje es solamente para la persona a la que va dirigido. Puede contener informacion  confidencial  o  legalmente  protegida.  No  hay  renuncia  a la confidencialidad o privilegio por cualquier transmision mala/erronea. Si usted ha recibido este mensaje por error,  le rogamos que borre de su sistema inmediatamente el mensaje asi como todas sus copias, destruya todas las copias del mismo de su disco duro y notifique al remitente.  No debe,  directa o indirectamente, usar, revelar, distribuir, imprimir o copiar ninguna de las partes de este mensaje si no es usted el destinatario. Cualquier opinion expresada en este mensaje proviene del remitente, excepto cuando el mensaje establezca lo contrario y el remitente este autorizado para establecer que dichas opiniones provienen de  BBVA. Notese que el correo electronico via Internet no permite asegurar ni la confidencialidad de los mensajes que se transmiten ni la correcta recepcion de los mismos. En el caso de que el destinatario de este mensaje no consintiera la utilizacion del correo electronico via Internet, rogamos lo ponga en nuestro conocimiento de manera inmediata.",
+					FontFactory.getFont("arial", 9, BaseColor.BLACK));
+			postCont.setAlignment(Element.ALIGN_JUSTIFIED);
+			postCont.setSpacingAfter(20);
+			document.add(postCont);
+
+			Paragraph post2 = new Paragraph(ast + " DISCLAIMER " + ast,
+					FontFactory.getFont("arial", 9, BaseColor.BLACK));
+			post2.setAlignment(Element.ALIGN_LEFT);
+			document.add(post2);
+
+			Paragraph post2Content = new Paragraph(
+					"This message is intended exclusively for the named person. It may contain confidential, propietary or legally privileged information. No confidentiality or privilege is waived or lost by any mistransmission. If you receive this message in error, please immediately delete it and all copies of it from your system, destroy any hard copies of it and notify the sender. Your must not, directly or indirectly, use, disclose, distribute, print, or copy any part of this message if you are not the intended recipient. Any views expressed in this message are those of the individual sender, except where the message states otherwise and the sender is authorised to state them to be the views of BBVA. Please note that internet e-mail neither guarantees the confidentiality nor the proper receipt of the message sent. If the addressee of this message does not consent to the use of internet e-mail, please communicate it to us immediately.",
+					FontFactory.getFont("arial", 9, BaseColor.BLACK));
+			post2Content.setAlignment(Element.ALIGN_JUSTIFIED);
+			post2Content.setSpacingAfter(20);
+			document.add(post2Content);
+
+			Paragraph asty = new Paragraph(ast, FontFactory.getFont("arial", 9, BaseColor.BLACK));
+			asty.setAlignment(Element.ALIGN_LEFT);
+			asty.setSpacingAfter(20);
+			document.add(asty);
+
+			document.close();
+
+		} catch (DocumentException e) {
+			LOGGER.info("Excepción no se encuentra el archivo" + e.getMessage());
+		}
+	}
+
+	/**
+	 * Method to evaluate if the list has more elements
+	 * 
+	 * @param movementsList
+	 */
+	public void setShowMoreStatus() {
+		if (this.movementsList.size() >= 10)
+			getRenderComponents().put(RenderAttributes.FOOTERTABLEMOVEMENT.name(), true);
+		else
+			getRenderComponents().put(RenderAttributes.FOOTERTABLEMOVEMENT.name(), false);
+	}
+
+	public void setFalseCheckComponents() {
+		getRenderComponents().put(RenderAttributes.TITLECHECKS.name(), false);
+		getRenderComponents().put(RenderAttributes.CHECKTABLE.toString(), false);
+		getRenderComponents().put(RenderAttributes.FOOTERTABLECHEKS.toString(), false);
+	}
+
+	public void setFalseCheckBookComponents() {
+		getRenderComponents().put(RenderAttributes.TITLECHECKBOOKS.name(), false);
+		getRenderComponents().put(RenderAttributes.CHECKBOOKTABLE.name(), false);
+		getRenderComponents().put(RenderAttributes.FOOTERTABLECHECKBOOK.name(), false);
+	}
+
+	public void resetMapResults() {
+		getRenderComponents().put(RenderAttributes.MOVEMENTSFILTER.toString(), false);
+		getRenderComponents().put(RenderAttributes.INCOMEOREXPENSESFILTER.toString(), false);
+		getRenderComponents().put(RenderAttributes.BALANCEFILTER.toString(), false);
+		getRenderComponents().put(RenderAttributes.FILTERDATE.toString(), false);
+	}
+
 	public String getdateString(Date date) {
 		final SimpleDateFormat dateFormat = new SimpleDateFormat(
 				MessagesHelper.INSTANCE.getStringI18("date.pattner.dd-mm-yyyy"));
-		return dateFormat.format(date);
+		if (date != null) {
+			return dateFormat.format(date);
+		}
+		return "N/A";
+	}
+
+	@Override
+	public void printFile() {
+		exportDocumentPdf();
+		FileInputStream inputFile = null;
+		try {
+			inputFile = new FileInputStream("src/main/webapp/assets/img/Movimientos.pdf");
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		if (inputFile == null) {
+			return;
+		}
+
+		DocFlavor docFormat = DocFlavor.INPUT_STREAM.AUTOSENSE;
+		Doc document = new SimpleDoc(inputFile, docFormat, null);
+
+		PrintRequestAttributeSet attributeSet = new HashPrintRequestAttributeSet();
+
+		PrintService defaultPrintService = PrintServiceLookup.lookupDefaultPrintService();
+
+		if (defaultPrintService != null) {
+			DocPrintJob printJob = defaultPrintService.createPrintJob();
+			try {
+				printJob.print(document, attributeSet);
+
+			} catch (Exception e) {
+				LOGGER.info("Erro al imrpimir " + e.getMessage());
+			}
+		} else {
+			System.err.println("No existen impresoras instaladas");
+		}
+		try {
+			inputFile.close();
+		} catch (IOException e) {
+			LOGGER.info("Erro al cerrar el archivo de impresión " + e.getMessage());
+		}
 	}
 
 	@Override
@@ -793,22 +987,43 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		this.graphicLineMovements = graphicLineMovements;
 	}
 
-	public StreamedContent getExportFile() {
-		exportExcel();
+	public StreamedContent getExportExcel() {
+		exportDocumentExcel();
 		InputStream stream;
 		try {
 			stream = new BufferedInputStream(new FileInputStream("src/main/webapp/assets/img/Movimientos.xls"));
-			exportFile = new DefaultStreamedContent(stream, "application/xls", "Movimientos.xls");
+			exportExcel = new DefaultStreamedContent(stream, "application/xls", "Movimientos.xls");
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.info("Error al descargar el Excel " + e.getMessage());
 		}
 
-		return exportFile;
+		return exportExcel;
 	}
 
-	public void setExportFile(StreamedContent exportFile) {
-		this.exportFile = exportFile;
+	public void setExportExcel(StreamedContent exportExcel) {
+		this.exportExcel = exportExcel;
+	}
+
+	/**
+	 * @return the exportPdf
+	 */
+	public StreamedContent getExportPdf() {
+		exportDocumentPdf();
+		InputStream stream;
+		try {
+			stream = new BufferedInputStream(new FileInputStream("src/main/webapp/assets/img/Movimientos.pdf"));
+			exportPdf = new DefaultStreamedContent(stream, "application/pdf", "Movimientos.pdf");
+		} catch (FileNotFoundException e) {
+			LOGGER.info("Error al descargar el pdf " + e.getMessage());
+		}
+		return exportPdf;
+	}
+
+	/**
+	 * @param exportPdf the exportPdf to set
+	 */
+	public void setExportPdf(StreamedContent exportPdf) {
+		this.exportPdf = exportPdf;
 	}
 
 }
