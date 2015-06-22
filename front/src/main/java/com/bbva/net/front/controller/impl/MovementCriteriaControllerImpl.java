@@ -1,5 +1,6 @@
 package com.bbva.net.front.controller.impl;
 
+import java.awt.print.PrinterJob;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -31,10 +32,15 @@ import org.apache.poi.hssf.util.CellRangeAddress;
 import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.ClientAnchor;
+import org.apache.poi.ss.usermodel.CreationHelper;
+import org.apache.poi.ss.usermodel.Drawing;
 import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.Picture;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.util.IOUtils;
 import org.apache.tools.ant.util.DateUtils;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
@@ -398,6 +404,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	       e.printStackTrace();
 	       }
 		String rutaArchivo = RUTAEXCEL;
+		int inicio = 9;
 
 		File archivoXLS = new File(rutaArchivo);
 		if (archivoXLS.exists()) archivoXLS.delete();
@@ -409,60 +416,66 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		}
 		Workbook libro = new HSSFWorkbook();
 
-		// Create a new font and alter it.
-
 		try {
 			FileOutputStream archivo = new FileOutputStream(archivoXLS);
 			Sheet hoja = libro.createSheet("Movimientos de cuenta");
-			// try {
+			try {
+				InputStream inputStream = new FileInputStream("src/main/webapp/assets/img/logo/logo_bbva.png");
+				byte[] bytes = IOUtils.toByteArray(inputStream);
+				int pictureIdx = libro.addPicture(bytes, Workbook.PICTURE_TYPE_PNG);
+				inputStream.close();
 
-			// InputStream inputStream = new FileInputStream("src/main/webapp/assets/img/bbva.png");
+				CreationHelper helper = libro.getCreationHelper();
 
-			// byte[] bytes = IOUtils.toByteArray(inputStream);
+				Drawing drawing = hoja.createDrawingPatriarch();
 
-			// int pictureIdx = libro.addPicture(bytes, Workbook.PICTURE_TYPE_PNG);
+				ClientAnchor anchor = helper.createClientAnchor();
+				anchor.setCol1(1);
+				anchor.setRow1(1);
 
-			// inputStream.close();
-			//
+				Picture pict = drawing.createPicture(anchor, pictureIdx);
+				pict.resize();
+			} catch (Exception e) {
+				LOGGER.info("Excepción al cargar imagen bbva" + e.getMessage());
+			}
 
-			// CreationHelper helper = libro.getCreationHelper();
-			//
+			Row filaHeader = hoja.createRow(inicio);
+			filaHeader.createCell(1).setCellValue("Estimado(a) cliente:");
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 2));
+			inicio = inicio + 3;
 
-			// Drawing drawing = hoja.createDrawingPatriarch();
-			//
+			filaHeader = hoja.createRow(inicio);
+			Cell celdaHeader = filaHeader.createCell(1);
+			CellStyle cellStyleHeader = libro.createCellStyle();
+			Font text = libro.createFont();
+			text.setFontHeightInPoints((short)10);
+			text.setFontName("Arial");
+			text.setBold(true);
+			text.setColor(HSSFColor.BLACK.index);
+			cellStyleHeader.setFont(text);
+			celdaHeader.setCellStyle(cellStyleHeader);
+			celdaHeader.setCellValue("FECHA");
 
-			// ClientAnchor anchor = helper.createClientAnchor();
+			celdaHeader = filaHeader.createCell(3);
+			celdaHeader.setCellValue("CONCEPTO");
 
-			// anchor.setCol1(0);
-			// anchor.setRow1(0);
-			//
+			celdaHeader = filaHeader.createCell(5);
+			celdaHeader.setCellValue("VALOR");
 
-			// Picture pict = drawing.createPicture(anchor, pictureIdx);
+			celdaHeader = filaHeader.createCell(7);
+			celdaHeader.setCellValue("SALDO");
 
-			// pict.resize();
-			// } catch (Exception e) {
-			// LOGGER.info("Excepción al cargar imagen bbva" + e.getMessage());
-			// }
-			Row filaHeader = hoja.createRow(0);
-
-			filaHeader.createCell(0).setCellValue("Fecha");
-
-			filaHeader.createCell(2).setCellValue("Concepto");
-
-			filaHeader.createCell(4).setCellValue("Valor");
-
-			filaHeader.createCell(6).setCellValue("Saldo");
-
-			hoja.addMergedRegion(new CellRangeAddress(0, 0, 0, 1));
-			hoja.addMergedRegion(new CellRangeAddress(0, 0, 2, 3));
-			hoja.addMergedRegion(new CellRangeAddress(0, 0, 4, 5));
-			hoja.addMergedRegion(new CellRangeAddress(0, 0, 6, 7));
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 2));
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 3, 4));
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 5, 6));
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 7, 8));
+			inicio = inicio + 1;
 			for (int f = 0; f < this.movementsList.size(); f++) {
-				Row fila = hoja.createRow(f + 1);
-				for (int c = 0; c < 8; c = c + 2) {
+				Row fila = hoja.createRow(f + inicio);
+				for (int c = 1; c < 9; c = c + 2) {
 					Cell celda = fila.createCell(c);
 
-					if (c == 0) {
+					if (c == 1) {
 						CellStyle cellStyle = libro.createCellStyle();
 						Font date = libro.createFont();
 						date.setFontHeightInPoints((short)10);
@@ -475,24 +488,73 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 						celda.setCellValue(getdateString(this.movementsList.get(f).getOperationDate()));
 
 					}
-					if (c == 2) {
+					if (c == 3) {
 						celda.setCellValue(this.movementsList.get(f).getMovementConcept());
 
 					}
-					if (c == 4) {
+					if (c == 5) {
 						celda.setCellValue(this.movementsList.get(f).getMovementValue().toString());
 
 					}
-					if (c == 6) {
+					if (c == 7) {
 						celda.setCellValue(this.movementsList.get(f).getTotalBalance().toString());
 
 					}
-					hoja.addMergedRegion(new CellRangeAddress(f, f, 0, 1));
-					hoja.addMergedRegion(new CellRangeAddress(f, f, 2, 3));
-					hoja.addMergedRegion(new CellRangeAddress(f, f, 4, 5));
-					hoja.addMergedRegion(new CellRangeAddress(f, f, 6, 7));
+					hoja.addMergedRegion(new CellRangeAddress(f, f, 1, 2));
+					hoja.addMergedRegion(new CellRangeAddress(f, f, 3, 4));
+					hoja.addMergedRegion(new CellRangeAddress(f, f, 5, 6));
+					hoja.addMergedRegion(new CellRangeAddress(f, f, 7, 8));
 				}
 			}
+			inicio = inicio + this.movementsList.size() + 2;
+			Row filaFooter = hoja.createRow(inicio);
+			filaFooter.createCell(1).setCellValue("Cordial saludo,");
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 8));
+			inicio = inicio + 1;
+			filaFooter = hoja.createRow(inicio);
+			filaFooter.createCell(1).setCellValue("BBVA Adelante");
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 8));
+			inicio = inicio + 2;
+
+			filaFooter = hoja.createRow(inicio);
+			filaFooter
+					.createCell(1)
+					.setCellValue(
+							"Nota: Si no eres el destinatario de este mensaje, por favor comunícate con nosotros con el fin de realizar la actualización correspondiente, al 4010000 en Bogotá, 4938300 en Medellín, 3503500 en Barranquilla, 8892020 en Cali, 6304000 en Bucaramanga o al 01800 912227 desde el resto del país. ");
+
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 8));
+
+			inicio = inicio + 2;
+			filaFooter = hoja.createRow(inicio);
+			filaFooter.createCell(1).setCellValue("********************* AVISO LEGAL **************************");
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 8));
+
+			inicio = inicio + 1;
+			filaFooter = hoja.createRow(inicio);
+			filaFooter
+					.createCell(1)
+					.setCellValue(
+							"Este mensaje es solamente para la persona a la que va dirigido. Puede contener informacion  confidencial  o  legalmente  protegida.  No  hay  renuncia  a la confidencialidad o privilegio por cualquier transmision mala/erronea. Si usted ha recibido este mensaje por error,  le rogamos que borre de su sistema inmediatamente el mensaje asi como todas sus copias, destruya todas las copias del mismo de su disco duro y notifique al remitente.  No debe,  directa o indirectamente, usar, revelar, distribuir, imprimir o copiar ninguna de las partes de este mensaje si no es usted el destinatario. Cualquier opinion expresada en este mensaje proviene del remitente, excepto cuando el mensaje establezca lo contrario y el remitente este autorizado para establecer que dichas opiniones provienen de  BBVA. Notese que el correo electronico via Internet no permite asegurar ni la confidencialidad de los mensajes que se transmiten ni la correcta recepcion de los mismos. En el caso de que el destinatario de este mensaje no consintiera la utilizacion del correo electronico via Internet, rogamos lo ponga en nuestro conocimiento de manera inmediata.");
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 8));
+
+			inicio = inicio + 2;
+			filaFooter = hoja.createRow(inicio);
+			filaFooter.createCell(1).setCellValue("**************************  DISCLAIMER**********************");
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 8));
+
+			inicio = inicio + 1;
+			filaFooter = hoja.createRow(inicio);
+			filaFooter
+					.createCell(1)
+					.setCellValue(
+							"This message is intended exclusively for the named person. It may contain confidential, propietary or legally privileged information. No confidentiality or privilege is waived or lost by any mistransmission. If you receive this message in error, please immediately delete it and all copies of it from your system, destroy any hard copies of it and notify the sender. Your must not, directly or indirectly, use, disclose, distribute, print, or copy any part of this message if you are not the intended recipient. Any views expressed in this message are those of the individual sender, except where the message states otherwise and the sender is authorised to state them to be the views of BBVA. Please note that internet e-mail neither guarantees the confidentiality nor the proper receipt of the message sent.If the addressee of this message does not consent to the use of internet e-mail, please communicate it to us immediately.");
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 8));
+
+			inicio = inicio + 1;
+			filaFooter = hoja.createRow(inicio);
+			filaFooter.createCell(1).setCellValue("************************************************************");
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 8));
+
 			try {
 				libro.write(archivo);
 				archivo.close();
@@ -697,13 +759,17 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		PrintService defaultPrintService = PrintServiceLookup.lookupDefaultPrintService();
 
 		if (defaultPrintService != null) {
-			DocPrintJob printJob = defaultPrintService.createPrintJob();
-			try {
-				printJob.print(document, attributeSet);
+			PrinterJob printerJob = PrinterJob.getPrinterJob();
+			if (printerJob.printDialog()) {
+				DocPrintJob docprintJob = defaultPrintService.createPrintJob();
+				try {
+					docprintJob.print(document, attributeSet);
 
-			} catch (Exception e) {
-				LOGGER.info("Erro al imrpimir " + e.getMessage());
+				} catch (Exception e) {
+					LOGGER.info("Erro al imrpimir " + e.getMessage());
+				}
 			}
+
 		} else {
 			System.err.println("No existen impresoras instaladas");
 		}
@@ -712,6 +778,11 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		} catch (IOException e) {
 			LOGGER.info("Erro al cerrar el archivo de impresión " + e.getMessage());
 		}
+	}
+
+	@Override
+	public void sendMail() {
+
 	}
 
 	@Override
