@@ -114,7 +114,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	@Resource(name = "graphicLineDelegate")
 	private transient GraphicLineDelegate graphicLineDelegate;
 	
-	private String RUTAEXCEL = "/kqco_co_web/assets/Movimientos.xls";
+	private String RUTAEXCEL = "Movimientos.xls";
 
 	private LineConfigUI graphicLineMovements;
 
@@ -176,6 +176,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	}
 
 	public void nextPage(ActionEvent event) {
+		LOGGER.info("MovementsAccountController nextPage");
 		getRenderComponents().put(RenderAttributes.TITLEMOVES.name(), true);
 		getRenderComponents().put(RenderAttributes.MOVEMENTSTABLE.name(), true);
 		setFalseCheckBookComponents();
@@ -510,7 +511,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 		LOGGER.info("iniciando exportar archivo pdf");
 
-		String rutaArchivo = "src/main/webapp/assets/img/Movimientos.pdf";
+		String rutaArchivo = "Movimientos.pdf";
 
 		try {
 
@@ -529,7 +530,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			document.open();
 
 			try {
-				Image foto = Image.getInstance("src/main/webapp/assets/img/logo/logo_bbva.png");
+				Image foto = Image.getInstance("https://www.bbvanet.com.co/bbvaco/kqco_co_web/assets/img/logo/logo_bbva.png");
 				foto.scaleToFit(100, 100);
 				document.add(foto);
 			} catch (Exception e) {
@@ -680,7 +681,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		exportDocumentPdf();
 		FileInputStream inputFile = null;
 		try {
-			inputFile = new FileInputStream("src/main/webapp/assets/img/Movimientos.pdf");
+			inputFile = new FileInputStream("Movimientos.pdf");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -997,7 +998,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		exportDocumentExcel();
 		InputStream stream;
 		try {
-			stream = new BufferedInputStream(new FileInputStream("RUTAEXCEL"));
+			stream = new BufferedInputStream(new FileInputStream(RUTAEXCEL));
 			exportExcel = new DefaultStreamedContent(stream, "application/xls", "Movimientos.xls");
 		} catch (FileNotFoundException e) {
 			LOGGER.info("Error al descargar el Excel " + e.getMessage());
@@ -1017,7 +1018,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		exportDocumentPdf();
 		InputStream stream;
 		try {
-			stream = new BufferedInputStream(new FileInputStream("src/main/webapp/assets/img/Movimientos.pdf"));
+			stream = new BufferedInputStream(new FileInputStream("Movimientos.pdf"));
 			exportPdf = new DefaultStreamedContent(stream, "application/pdf", "Movimientos.pdf");
 		} catch (FileNotFoundException e) {
 			LOGGER.info("Error al descargar el pdf " + e.getMessage());
