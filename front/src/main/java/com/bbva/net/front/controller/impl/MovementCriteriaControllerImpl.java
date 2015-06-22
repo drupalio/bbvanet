@@ -32,6 +32,7 @@ import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
+import org.springframework.beans.factory.annotation.Value;
 
 import com.bbva.net.back.facade.MovementsAccountFacade;
 import com.bbva.net.back.facade.MultiValueGroupFacade;
@@ -90,6 +91,8 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 	@Resource(name = "graphicLineDelegate")
 	private transient GraphicLineDelegate graphicLineDelegate;
+	
+	private String RUTAEXCEL = "/kqco_co_web/assets";
 
 	private LineConfigUI graphicLineMovements;
 
@@ -395,7 +398,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	public void exportExcel() {
 		LOGGER.info("iniciando exportar archivo excel");
 
-		String rutaArchivo = "src/main/webapp/assets/img/Movimientos.xls";
+		String rutaArchivo = RUTAEXCEL;
 
 		File archivoXLS = new File(rutaArchivo);
 		if (archivoXLS.exists()) archivoXLS.delete();
