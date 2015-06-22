@@ -78,5 +78,7 @@ public interface MovementCriteriaController {
 
 	void clean();
 
-	void exportExcel();
+	void exportDocumentPdf();
+
+	void exportDocumentExcel();
 }

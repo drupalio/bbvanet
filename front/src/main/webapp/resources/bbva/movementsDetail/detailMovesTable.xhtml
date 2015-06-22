@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:composite="http://java.sun.com/jsf/composite"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:pm="http://primefaces.org/mobile"
-	xmlns:jsf="http://xmlns.jcp.org/jsf"
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile" xmlns:jsf="http://xmlns.jcp.org/jsf"
 	xmlns:bbvaTablesAcc="http://java.sun.com/jsf/composite/bbva/movementsDetail">
 <composite:interface>
 	<composite:attribute name="id" type="String" />
@@ -17,19 +13,19 @@
 <composite:implementation>
 	<article class="detail-table-group">
 		<div class="utility-icons">
-		<h:form id="documentsExport">
-			<p:commandButton ajax="false" styleClass="icon-excel-file" value="">
-				<p:fileDownload value="#{movementsCriteriaController.exportFile}" />
-			</p:commandButton>
-			<a href="#"><span class="icon-pdf-file" title="Descargar pdf"></span></a>
-			<a href="#"><span class="icon-send-by-email" title="Enviar"></span></a>
-			<a href="#"><span class="icon-printer" title="Imprimir"></span></a>
-		</h:form>
+			<h:form id="documentsExport">
+				<p:commandButton ajax="false" styleClass="icon-excel-file" value="">
+					<p:fileDownload value="#{movementsCriteriaController.exportExcel}" />
+				</p:commandButton>
+				<p:commandLink styleClass="icon-pdf-file" ajax="false">
+					<p:fileDownload value="#{movementsCriteriaController.exportPdf}" />
+				</p:commandLink>
+				<a href="#"><span class="icon-send-by-email" title="Enviar"></span></a>
+				<a href="#"><span class="icon-printer" title="Imprimir"></span></a>
+			</h:form>
 		</div>
-		<bbvaTablesAcc:accountMovementsTable id="tableMovements"
-			listAccounts="#{cc.attrs.listAccounts}" />
-		<bbvaTablesAcc:checkAccountTable id="checkTable"
-			listChecks="#{cc.attrs.listChecks}" />
+		<bbvaTablesAcc:accountMovementsTable id="tableMovements" listAccounts="#{cc.attrs.listAccounts}" />
+		<bbvaTablesAcc:checkAccountTable id="checkTable" listChecks="#{cc.attrs.listChecks}" />
 		<bbvaTablesAcc:checkBooksAccountTable id="checkBookTable"
 			listCheckBooks="#{cc.attrs.listCheckBooks}" />
 	</article>
