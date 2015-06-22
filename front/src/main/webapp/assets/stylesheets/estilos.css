@@ -221,6 +221,16 @@ tr:hover {
 	background: none repeat scroll 0% 0% #E0F6FC !important;
 }
 
+.table-tabs table thead th {
+	border-style: solid none solid solid !important;
+	border-width: 1px 0px 1px 1px;
+	border-color: #E5E5E5 -moz-use-text-color #E5E5E5 #E5E5E5;
+}
+
+.table-tabs {
+	padding-bottom: 0px !important;
+}
+
 /* borde de las tablas hover */
 tr.ui-state-hover {
 	box-shadow: 0px 0px 8px #FFF, 0px 1px 0px #FFF inset !important;
@@ -259,7 +269,7 @@ tr.ui-state-hover {
 .radioButtonT .ui-state-active .ui-icon, .radioBT .ui-state-active .ui-icon,
 	.investRadio .ui-state-active .ui-icon {
 	background:
-		url("/page/javax.faces.resource/images/ui-icons_4eb305_256x240.png?ln=primefaces-le-frog")
+		url("/kqco_co_web/page/javax.faces.resource/images/ui-icons_4eb305_256x240.png?ln=primefaces-le-frog")
 		repeat scroll -61px -110px/200px auto transparent !important;
 }
 
@@ -267,7 +277,7 @@ tr.ui-state-hover {
 .radioButtonT .ui-state-hover .ui-icon, .radioBT .ui-state-hover .ui-icon,
 	.investRadio .ui-state-hover .ui-icon {
 	background:
-		url("/page/javax.faces.resource/images/ui-icons_bbbbbb_256x240.png?ln=primefaces-black-tie")
+		url("/kqco_co_web/page/javax.faces.resource/images/ui-icons_bbbbbb_256x240.png?ln=primefaces-black-tie")
 		repeat scroll -61px -110px/200px auto transparent !important;
 	opacity: 0.65;
 }
@@ -609,21 +619,6 @@ table thead tr th.smart-view {
 #imgLOAD {
 	top: 20% !important;
 	cursor: not-allowed;
-}
-
-.quieros {
-	width: 50% !important;
-	float: right !important;
-	z-index: 1000;
-}
-
-.quiero {
-	background: linear-gradient(to bottom, #ffffff 0%, #eaf1f7 100%) repeat
-		scroll 0 0 white !important;
-	border: 1px solid #d5e2ee !important;
-	width: 70px !important;
-	float: right !important;
-	z-index: 1000;
 }
 
 /*Combos*/
@@ -1010,6 +1005,7 @@ body div.ui-growl .ui-state-highlight {
 	background-image: url('../img/icons/dollar-blue.png ') !important;
 	background-repeat: no-repeat !important;
 	background-position: left 3% center !important;
+	background-size: 8px 14px !important;
 	width: 95%;
 	padding: 3px !important;
 	padding-left: 20px !important
@@ -1486,4 +1482,120 @@ body div.ui-growl .ui-state-highlight {
 	background: #DBDCDF !important;
 	margin-top: 32px;
 	margin-bottom: 25px;
+}
+
+.icon-Info-Blue {
+	background-image: url("../img/icons/icon-info-blue-small.png");
+	background-repeat: no-repeat;
+	display: inline-block;
+	height: 20px;
+	margin-left: 3px;
+	position: relative;
+	top: 7px;
+	width: 18px;
+}
+
+/*Combo like*/
+.comboLike {
+	width: auto;
+	height: auto;
+	position: absolute;
+	top: 10px;
+	right: 0px;
+	top: 10px;
+}
+
+.comboLike .ui-selectonemenu {
+	width: 100% !important;
+	float: right !important;
+	position: relative;
+}
+
+.comboLike .ui-selectonemenu.ui-state-default {
+	border-radius: 0px;
+	background: #FFF linear-gradient(to bottom, #FFF 0%, #EAF1F7 100%)
+		repeat scroll 0% 0%;
+	border: 1px solid #D5E2EE;
+}
+
+.comboLike .ui-selectonemenu {
+	background: #F5F7F8 none repeat scroll 0% 0% !important;
+}
+
+.comboLike .ui-selectonemenu.open {
+	border: 1px solid #D5E2EE !important;
+}
+
+.comboLike .ui-selectonemenu-label {
+	background: transparent !important;
+	box-shadow: none !important;
+	padding: 11px 27px 8px 9px;
+	width: 100% !important;
+	font: 11px Arial !important;
+	color: #0092DF;
+}
+
+.comboLike .ui-selectonemenu-label.open {
+	border: 5px solid #FFF !important;
+}
+
+.comboLike .ui-selectonemenu .ui-selectonemenu-trigger {
+	width: 20px;
+	border: 0px none;
+	background: transparent;
+}
+
+.comboLike .ui-selectonemenu-trigger.open {
+	border-right: 5px solid #FFF !important;
+}
+
+.comboLike .ui-selectonemenu .ui-selectonemenu-trigger .ui-icon {
+	background: transparent url("../img/quiero-plegado.png") no-repeat
+		scroll left center;
+	margin-top: 7px !important;
+}
+
+.comboLike .ui-selectonemenu .ui-selectonemenu-trigger.open .ui-icon {
+	background: transparent url("../img/quiero-desplegado.png") no-repeat
+		scroll left center !important;
+}
+
+/*Combo like options*/
+.ui-selectonemenu-panel.comboItemsLike {
+	border-style: none none none solid !important;
+	border-width: 0px 0px 0px 1px !important;
+	border-color: #D5E2EE !important;
+	border-radius: 0px !important;
+	box-shadow: none !important;
+}
+
+.comboItemsLike .ui-selectonemenu-items-wrapper {
+	border-style: none solid solid none !important;
+	border-width: 0px 1px 1px 0px !important;
+	border-color: #D5E2EE !important;
+	line-height: 4px !important;
+	width: 260px !important;
+	z-index: 1000;
+}
+
+.comboItemsLike .ui-selectonemenu-items-wrapper .ui-selectonemenu-items
+	{
+	background: #F5F7F8 none repeat scroll 0% 0% !important;
+	padding: 0px !important;
+	border: 5px solid #FFF;
+	border-top: 0px !important;
+}
+
+.comboItemsLike .ui-selectonemenu-item {
+	color: #0066BA !important;
+	padding: 7px 14px;
+	font-size: 0.85em !important;
+	margin: 0px !important;
+}
+
+.seeMore{
+	font-size: 11px !important;
+	color:#0078d2 !important; 
+	font-family:Arial !important;
+	font-weight:bold !important
 }

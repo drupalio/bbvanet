@@ -2,6 +2,7 @@ package com.bbva.net.back.model.header;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -28,6 +29,16 @@ public class CustomerDto implements Dto {
 	 * 
 	 */
 	private String date;
+
+	/**
+	 * 
+	 */
+	private List<EmailDto> emails;
+
+	/**
+	 * 
+	 */
+	private List<PhoneNumbers> phoneNumbers;
 
 	/**
 	 * 
@@ -77,32 +88,31 @@ public class CustomerDto implements Dto {
 	public String getNombre() {
 		return nombre;
 	}
-	
-	public String getFecha(){
-		SimpleDateFormat fecha = new SimpleDateFormat("E MMM dd HH:mm:ss z yyyy",Locale.ENGLISH);
-		try{
-            Date datehora = fecha.parse(this.date);
-            fecha = new SimpleDateFormat("dd/MM/yyyy");
-            return fecha.format(datehora);
 
-        }
-        catch(Exception e){
-            System.out.println("EEE:"+e.getMessage());
-            return "";
-        }
+	public String getFecha() {
+		SimpleDateFormat fecha = new SimpleDateFormat("E MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+		try {
+			Date datehora = fecha.parse(this.date);
+			fecha = new SimpleDateFormat("dd/MM/yyyy");
+			return fecha.format(datehora);
+
+		} catch (Exception e) {
+			System.out.println("EEE:" + e.getMessage());
+			return "";
+		}
 	}
-	public String getHora(){
-		SimpleDateFormat fecha = new SimpleDateFormat("E MMM dd HH:mm:ss z yyyy",Locale.ENGLISH);
-		try{
-            Date datehora = fecha.parse(this.date);
-            fecha = new SimpleDateFormat("HH:mm");
-            return fecha.format(datehora);
 
-        }
-        catch(Exception e){
-            System.out.println("EEE:"+e.getMessage());
-            return "";
-        }
+	public String getHora() {
+		SimpleDateFormat fecha = new SimpleDateFormat("E MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+		try {
+			Date datehora = fecha.parse(this.date);
+			fecha = new SimpleDateFormat("HH:mm");
+			return fecha.format(datehora);
+
+		} catch (Exception e) {
+			System.out.println("EEE:" + e.getMessage());
+			return "";
+		}
 	}
 
 	/**
@@ -116,7 +126,7 @@ public class CustomerDto implements Dto {
 	 * @return the date
 	 */
 	public String getDate() {
-		return date ;
+		return date;
 	}
 
 	/**
@@ -125,4 +135,33 @@ public class CustomerDto implements Dto {
 	public void setDate(final String date) {
 		this.date = date;
 	}
+
+	/**
+	 * @return
+	 */
+	public List<EmailDto> getEmails() {
+		return emails;
+	}
+
+	/**
+	 * @param emails
+	 */
+	public void setEmails(List<EmailDto> emails) {
+		this.emails = emails;
+	}
+
+	/**
+	 * @return
+	 */
+	public List<PhoneNumbers> getPhoneNumbers() {
+		return phoneNumbers;
+	}
+
+	/**
+	 * @param phoneNumbers
+	 */
+	public void setPhoneNumbers(List<PhoneNumbers> phoneNumbers) {
+		this.phoneNumbers = phoneNumbers;
+	}
+
 }

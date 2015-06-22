@@ -66,6 +66,7 @@ public class ResponseInterceptor extends AbstractInDatabindingInterceptor implem
 					context.getExternalContext().redirect("/kqco_co_web/error/error.xhtml");
 					// RequestContext.getCurrentInstance().execute("PF('mistake').show();");
 				} catch (Exception d) {
+
 				}
 			}
 			LOGGER.info("ERROR RESPONSE INTERCEPTOR: " + exception.getCause());
