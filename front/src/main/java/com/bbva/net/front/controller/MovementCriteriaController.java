@@ -95,4 +95,9 @@ public interface MovementCriteriaController {
 	 * 
 	 */
 	void printFile();
+
+	/**
+	 * 
+	 */
+	void sendMail();
 }
