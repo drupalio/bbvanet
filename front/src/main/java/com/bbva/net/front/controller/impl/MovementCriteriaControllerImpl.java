@@ -501,7 +501,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 						cellStyle.setFont(date);
 						celda.setCellStyle(cellStyle);
 
-						celda.setCellValue(getdateString(this.movementsList.get(f).getOperationDate()));
+						celda.setCellValue(getdateString(this.movementsList.get(f).getMovementDate()));
 
 					}
 					if (c == 3) {
@@ -649,7 +649,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 			for (int i = 0; i < movementsList.size(); i++) {
 
-				String date = getdateString(movementsList.get(i).getOperationDate());
+				String date = getdateString(movementsList.get(i).getMovementDate());
 
 				tabla.addCell(new Phrase(date, fontBlue));
 				tabla.addCell(new Phrase(movementsList.get(i).getMovementConcept(), fontNormal));
