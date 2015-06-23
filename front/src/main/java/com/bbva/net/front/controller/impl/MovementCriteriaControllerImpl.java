@@ -420,7 +420,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			FileOutputStream archivo = new FileOutputStream(archivoXLS);
 			Sheet hoja = libro.createSheet("Movimientos de cuenta");
 			try {
-				InputStream inputStream = new FileInputStream("src/main/webapp/assets/img/logo/logo_bbva.png");
+				InputStream inputStream = new FileInputStream("https://www.bbvanet.com.co/bbvaco/kqco_co_web/assets/img/logo/logo_bbva.png");
 				byte[] bytes = IOUtils.toByteArray(inputStream);
 				int pictureIdx = libro.addPicture(bytes, Workbook.PICTURE_TYPE_PNG);
 				inputStream.close();
