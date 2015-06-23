@@ -11,17 +11,16 @@
 	<composite:attribute name="render" />
 </composite:interface>
 <composite:implementation>
-	<h:form id="comboQuiero">
-		<div class="hidden-xs hidden-sm comboLike" style="display: block;">
+	<div class="hidden-xs hidden-sm comboLike" style="display: block;">
+		<h:form id="comboQuiero">
 			<p:selectOneMenu value="#{iproduct}" style="background-position: 95% !important;"
 				valueChangeListener="#{cc.attrs.listener}" styleClass="hidden-xs hidden-sm likeSame"
 				panelStyle="width: 260px;" panelStyleClass="comboItemsLike" onchange="submit()">
 				<f:selectItem itemLabel="Quiero" />
 				<f:selectItems value="#{cc.attrs.valueList}" var="multiValue"
 					itemValue="#{msg[multiValue.getValue()]}" itemLabel="#{msg[multiValue.getValue()]}" />
-				<p:ajax event="click" oncomplete="rigthSelect(jQuery(this))" />
 			</p:selectOneMenu>
-		</div>
-	</h:form>
+		</h:form>
+	</div>
 </composite:implementation>
 </html>
