@@ -2,12 +2,14 @@ package com.bbva.net.front.controller.impl;
 
 import java.awt.print.PrinterJob;
 import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -31,7 +33,6 @@ import javax.print.Doc;
 import javax.print.DocFlavor;
 import javax.print.DocPrintJob;
 import javax.print.PrintService;
-import javax.print.PrintServiceLookup;
 import javax.print.SimpleDoc;
 import javax.print.attribute.HashPrintRequestAttributeSet;
 import javax.print.attribute.PrintRequestAttributeSet;
@@ -51,7 +52,6 @@ import org.apache.poi.ss.usermodel.Picture;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.util.IOUtils;
 import org.apache.tools.ant.util.DateUtils;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
@@ -130,6 +130,8 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	@Resource(name = "graphicLineDelegate")
 	private transient GraphicLineDelegate graphicLineDelegate;
 
+	private String RUTAEXCEL = "Movimientos.xls";
+
 	private LineConfigUI graphicLineMovements;
 
 	private MovementDetailDto movementDetail;
@@ -190,6 +192,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	}
 
 	public void nextPage(ActionEvent event) {
+		LOGGER.info("MovementsAccountController nextPage");
 		getRenderComponents().put(RenderAttributes.TITLEMOVES.name(), true);
 		getRenderComponents().put(RenderAttributes.MOVEMENTSTABLE.name(), true);
 		setFalseCheckBookComponents();
@@ -403,9 +406,15 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	@Override
 	public void exportDocumentExcel() {
 		LOGGER.info("iniciando exportar archivo excel");
-
-		String rutaArchivo = "src/main/webapp/assets/img/Movimientos.xls";
+		File miDir = new File(".");
+		try {
+			LOGGER.info("Directorio actual: " + miDir.getCanonicalPath());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		String rutaArchivo = RUTAEXCEL;
 		int inicio = 9;
+
 		File archivoXLS = new File(rutaArchivo);
 		if (archivoXLS.exists()) archivoXLS.delete();
 
@@ -420,10 +429,17 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			FileOutputStream archivo = new FileOutputStream(archivoXLS);
 			Sheet hoja = libro.createSheet("Movimientos de cuenta");
 			try {
-				InputStream inputStream = new FileInputStream("src/main/webapp/assets/img/logo/logo_bbva.png");
-				byte[] bytes = IOUtils.toByteArray(inputStream);
-				int pictureIdx = libro.addPicture(bytes, Workbook.PICTURE_TYPE_PNG);
-				inputStream.close();
+				URL url = new URL("https://www.bbva.com.co/BBVA-home-theme/images/BBVA/logo_bbva.png");
+				InputStream is = url.openStream();
+				// InputStream inputStream = new FileInputStream(
+				// "https://www.bbva.com.co/BBVA-home-theme/images/BBVA/logo_bbva.png");
+				ByteArrayOutputStream img_bytes = new ByteArrayOutputStream();
+				int b;
+				while ((b = is.read()) != -1)
+					img_bytes.write(b);
+				is.close();
+
+				int pictureIdx = libro.addPicture(img_bytes.toByteArray(), Workbook.PICTURE_TYPE_PNG);
 
 				CreationHelper helper = libro.getCreationHelper();
 
@@ -442,7 +458,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			Row filaHeader = hoja.createRow(inicio);
 			filaHeader.createCell(1).setCellValue("Estimado(a) cliente:");
 			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 2));
-			inicio = inicio + 3;
+			inicio = inicio + 4;
 
 			filaHeader = hoja.createRow(inicio);
 			Cell celdaHeader = filaHeader.createCell(1);
@@ -573,7 +589,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 		LOGGER.info("iniciando exportar archivo pdf");
 
-		String rutaArchivo = "src/main/webapp/assets/img/Movimientos.pdf";
+		String rutaArchivo = "Movimientos.pdf";
 
 		try {
 
@@ -592,7 +608,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			document.open();
 
 			try {
-				Image foto = Image.getInstance("src/main/webapp/assets/img/logo/logo_bbva.png");
+				Image foto = Image.getInstance("https://www.bbva.com.co/BBVA-home-theme/images/BBVA/logo_bbva.png");
 				foto.scaleToFit(100, 100);
 				document.add(foto);
 			} catch (Exception e) {
@@ -741,9 +757,21 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	@Override
 	public void printFile() {
 		exportDocumentPdf();
+
+		// PrinterJob printJob = PrinterJob.getPrinterJob();
+		// printJob.setJobName("Movimientos.pdf");
+		//
+		// try {
+		//
+		// if (printJob.printDialog()) {
+		// printJob.print();
+		// }
+		// } catch (Exception printException) {
+		// LOGGER.info("Error al imprimir archivo " + printException.getMessage());
+		// }
 		FileInputStream inputFile = null;
 		try {
-			inputFile = new FileInputStream("src/main/webapp/assets/img/Movimientos.pdf");
+			inputFile = new FileInputStream("Movimientos.pdf");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -756,23 +784,20 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 		PrintRequestAttributeSet attributeSet = new HashPrintRequestAttributeSet();
 
-		PrintService defaultPrintService = PrintServiceLookup.lookupDefaultPrintService();
+		PrinterJob printerJob = PrinterJob.getPrinterJob();
+		if (printerJob.printDialog()) {
 
-		if (defaultPrintService != null) {
-			PrinterJob printerJob = PrinterJob.getPrinterJob();
-			if (printerJob.printDialog()) {
-				DocPrintJob docprintJob = defaultPrintService.createPrintJob();
-				try {
-					docprintJob.print(document, attributeSet);
+			PrintService defaultPrintService = printerJob.getPrintService();
 
-				} catch (Exception e) {
-					LOGGER.info("Erro al imrpimir " + e.getMessage());
-				}
+			DocPrintJob docprintJob = defaultPrintService.createPrintJob();
+			try {
+				docprintJob.print(document, attributeSet);
+
+			} catch (Exception e) {
+				LOGGER.info("Erro al imrpimir " + e.getMessage());
 			}
-
-		} else {
-			System.err.println("No existen impresoras instaladas");
 		}
+
 		try {
 			inputFile.close();
 		} catch (IOException e) {
@@ -1103,7 +1128,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		exportDocumentExcel();
 		InputStream stream;
 		try {
-			stream = new BufferedInputStream(new FileInputStream("src/main/webapp/assets/img/Movimientos.xls"));
+			stream = new BufferedInputStream(new FileInputStream(RUTAEXCEL));
 			exportExcel = new DefaultStreamedContent(stream, "application/xls", "Movimientos.xls");
 		} catch (FileNotFoundException e) {
 			LOGGER.info("Error al descargar el Excel " + e.getMessage());
@@ -1123,7 +1148,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		exportDocumentPdf();
 		InputStream stream;
 		try {
-			stream = new BufferedInputStream(new FileInputStream("src/main/webapp/assets/img/Movimientos.pdf"));
+			stream = new BufferedInputStream(new FileInputStream("Movimientos.pdf"));
 			exportPdf = new DefaultStreamedContent(stream, "application/pdf", "Movimientos.pdf");
 		} catch (FileNotFoundException e) {
 			LOGGER.info("Error al descargar el pdf " + e.getMessage());
