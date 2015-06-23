@@ -410,7 +410,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		try {
 			LOGGER.info("Directorio actual: " + miDir.getCanonicalPath());
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOGGER.info("No encontró directorio actual " + e.getMessage());
 		}
 		String rutaArchivo = RUTAEXCEL;
 		int inicio = 9;
