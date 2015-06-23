@@ -62,7 +62,6 @@ public class HeaderControllerImpl extends AbstractBbvaController implements Head
 		LOGGER.info("DOC ID USER" + docIdUser);
 
 		try {
-			LOGGER.info("CLIENT TOSTRING(): " + cliente.toString());
 			return headerFacade.getCustomer(userName, docTypeUser, docIdUser);
 
 		} catch (Exception e) {
