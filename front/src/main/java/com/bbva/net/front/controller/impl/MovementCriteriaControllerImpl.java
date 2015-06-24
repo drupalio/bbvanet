@@ -748,13 +748,6 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	@Override
 	public void printFile() {
 		File pdfFile = new File("Movimientos.pdf");
-		// PDFFile pdfFile = new PDFFile(new File("Movimientos.pdf"));
-		// PdfReader pdfReader = pdfFile.getPdfReader();
-		// try {
-		// ...
-		// } finally {
-		// pdfReader.close();
-		// }
 
 		if (pdfFile.exists()) {
 			if (pdfFile.delete()) {
@@ -762,7 +755,8 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 				exportDocumentPdf();
 			} else
 				LOGGER.info("No lo borró");
-
+		} else {
+			exportDocumentPdf();
 		}
 
 		try {
