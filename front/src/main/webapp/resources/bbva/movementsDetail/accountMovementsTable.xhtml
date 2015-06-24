@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:composite="http://java.sun.com/jsf/composite"
-	xmlns:f="http://java.sun.com/jsf/core"
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite" xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
 	xmlns:pm="http://primefaces.org/mobile" xmlns:jsf="http://xmlns.jcp.org/jsf"
 	xmlns:bbvaDetailMotion="http://java.sun.com/jsf/composite/bbva/movementsDetail">
@@ -23,66 +21,59 @@
 		<p:outputPanel id="movAccount">
 			<article class="detail-table-group">
 				<div class="table-wrapper">
-					<p:dataTable id="detalMov" widgetVar="detalMov"
-						styleClass="detail-table-body sortable" value="#{cc.attrs.listAccounts}"
-						var="moves" selectionMode="single" rowKey="#{moves.movementId}"
-						rendered="#{renderComponents['MOVEMENTSTABLE']}"
+					<p:dataTable id="detalMov" widgetVar="detalMov" styleClass="detail-table-body sortable"
+						value="#{cc.attrs.listAccounts}" var="moves" selectionMode="single"
+						rowKey="#{moves.movementId}" rendered="#{renderComponents['MOVEMENTSTABLE']}"
 						emptyMessage="#{msg['text.empty.table']}">
 						<p:ajax event="rowSelect" oncomplete="clickMove();"
 							listener="#{movementsCriteriaController.onMovementSelected}" />
 						<p:column style="z-index: -1 !important; display:none;">
 							<p:rowToggler rendered="true" />
 						</p:column>
-						<p:column headerText="#{msg['text.detailMove.date']}"
-							styleClass="styleColum desc w34" sortBy="#{moves.movementDate}">
+						<p:column headerText="#{msg['text.detailMove.date']}" styleClass="styleColum desc w34"
+							sortBy="#{moves.movementDate}">
 							<h:outputText styleClass="brand styleLeft" value="#{moves.movementDate}">
 								<f:convertDateTime pattern="dd/MM/yyyy" />
 							</h:outputText>
 						</p:column>
-						<p:column headerText="#{msg['text.detailMove.concep']}"
-							styleClass="styleColum desc w34" sortBy="#{moves.movementConcept}">
-							<h:outputText class="text styleLeft" value="#{moves.movementConcept}" />
-							<h:outputText class="text styleLeft" value="#{moves.movementConcept}" />
+						<p:column headerText="#{msg['text.detailMove.concep']}" styleClass="styleColum desc w34"
+							sortBy="#{moves.movementConcept}">
+							<h:outputText style="font-weight: bold;" class="text styleLeft"
+								value="#{moves.movementConcept}" />
+							<h:outputText class="text styleLeft" value="#{moves.movementDetailDto.operationDescription}" />
 						</p:column>
 						<p:column class="head" headerText="#{msg['text.detailMove.value']}"
 							styleClass="styleColum desc w34" sortBy="#{moves.movementValue}">
-							<h:outputText class="currency styleCurrent"
-								value="#{moves.movementValue}" />
+							<h:outputText class="currency styleCurrent" value="#{moves.movementValue}" />
 						</p:column>
-						<p:column class="head" styleClass="styleColum desc w34"
-							sortBy="#{moves.totalBalance}"
+						<p:column class="head" styleClass="styleColum desc w34" sortBy="#{moves.totalBalance}"
 							headerText="#{msg['text.detailMove.balance']}" colspan="2">
 							<h:outputText class="currency styleCurrent" value="#{moves.totalBalance}" />
 						</p:column>
 						<p:column styleClass="smart-view">
 							<div class="left hidden-lg">
 								<h:outputText class="text styleLeft" value="#{moves.movementConcept}" />
-								<h:outputText styleClass="brand styleLeft"
-									value="#{moves.operationDate}">
+								<h:outputText styleClass="brand styleLeft" value="#{moves.operationDate}">
 									<f:convertDateTime pattern="dd/MM/yyyy" />
 								</h:outputText>
 							</div>
 							<div class="right hidden-lg" style="width: 35% !important;">
-								<h:outputText class="currency styleCurrent"
-									value="#{moves.movementValue}" />
-								<h:outputText class="currency styleCurrent"
-									value="#{moves.totalBalance}" />
+								<h:outputText class="currency styleCurrent" value="#{moves.movementValue}" />
+								<h:outputText class="currency styleCurrent" value="#{moves.totalBalance}" />
 							</div>
 						</p:column>
 						<p:rowExpansion styleClass="detail-row">
-							<bbvaDetailMotion:tableContent
-								controller="#{movementsCriteriaController}" />
+							<bbvaDetailMotion:tableContent controller="#{movementsCriteriaController}" />
 						</p:rowExpansion>
 					</p:dataTable>
 				</div>
 				<footer class="detail-table-footer">
 					<p:commandButton id="moreMovs" value="#{msg['text.detailMove.footer']}"
 						rendered="#{renderComponents['FOOTERTABLEMOVEMENT'] and renderComponents['MOVEMENTSTABLE']}"
-						styleClass="btn btn-more-results seeMore" 
+						styleClass="btn btn-more-results seeMore"
 						actionListener="#{movementsCriteriaController.nextPage}" ajax="true"
 						update=":detailAccounts:tableMovements:formMovesDetail:movAccount">
-						<p:ajax onstart="PF('statusDialog').show()"
-							onsuccess="PF('statusDialog').hide()" />
+						<p:ajax onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
 					</p:commandButton>
 				</footer>
 			</article>
