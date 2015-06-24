@@ -190,10 +190,10 @@ $(document).ready(function() {
 	});
 
 	$('.comboLike').children('.ui-selectonemenu').one("click", function() {
-		var comboItems = $('#' + this.id.replace(/:/g, '\\:') + '_panel').find('.ui-selectonemenu-items');
-		var listItem = $(comboItems).children('.ui-selectonemenu-item:first');
-		$(comboItems).before("<div style='width:" + (260 - $(this).width()) + "px; border-top: 1px solid #D5E2EE;' />");
-		$(listItem).before("<div style='width:" + (260 - $(this).width()) + "px; border-top: 5px solid #FFF; border-left: 5px solid #FFF;'/>");
+		var comboItems = $('#' + this.id.replace(/:/g, '\\:') + '_panel');
+		var selectItems = $(comboItems).children('.ui-selectonemenu-items-wrapper');
+		$(selectItems).before("<div style='width:" + (260 - $(this).width()) + "px;' class='likeBord'/>");
+		$(selectItems).before("<div style='width:" + ($(this).width() - 1) + "px;' class='likeDif'/>");
 	});
 });
 
