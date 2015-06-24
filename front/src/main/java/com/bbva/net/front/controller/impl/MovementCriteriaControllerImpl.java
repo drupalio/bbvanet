@@ -751,12 +751,13 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		if (Desktop.isDesktopSupported()) {
 			try {
 				File myFile = new File("Movimientos.pdf");
-				Desktop.getDesktop().open(myFile);
+
+				Desktop.getDesktop().print(myFile);
+				// myFile.delete();
 			} catch (IOException ex) {
 				LOGGER.info("Error al abrir archivo " + ex.getMessage());
 			}
 		}
-
 	}
 
 	@Override
