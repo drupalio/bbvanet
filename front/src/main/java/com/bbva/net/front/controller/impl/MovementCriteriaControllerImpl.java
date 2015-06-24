@@ -782,15 +782,15 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			BodyPart content = new MimeBodyPart();
 			String htmlHeader = "<br></br><br></br><strong>Estimado(a) cliente: </strong><br></br><br></br>";
 
-			String htmlTable = "<table><thead><tr role=\"row\"><th role=\"columnheader\" tabindex=\"0\"><span >FECHA</span><span></span></th><th role=\"columnheader\" tabindex=\"0\"><span >CONCEPTO</span><span></span></th><th role=\"columnheader\" tabindex=\"0\"><span >VALOR</span><span ></span></th><th colspan=\"2\" role=\"columnheader\" tabindex=\"0\"><span >SALDO</span><span ></span></th><th role=\"columnheader\" ><span></span></th></tr></thead>";
+			String htmlTable = "<table width=100% rules=\"all\" border=\"1\"><thead><tr role=\"row\"><th role=\"columnheader\" tabindex=\"0\"><span >FECHA</span><span></span></th><th role=\"columnheader\" tabindex=\"0\"><span >CONCEPTO</span><span></span></th><th role=\"columnheader\" tabindex=\"0\"><span >VALOR</span><span ></span></th><th role=\"columnheader\" tabindex=\"0\"><span >SALDO</span><span ></span></th></tr></thead>";
 			for (int i = 0; i < this.movementsList.size(); i++) {
-				htmlTable += "<tr><th role=\"gridcell\" tabindex=\"0\"><span style=\"color:blue;\">"
+				htmlTable += "<tr><th role=\"gridcell\" tabindex=\"0\"><span style=\"color:blue>"
 						+ this.movementsList.get(i).getMovementDate()
-						+ "</span><span></span></th><th role=\"gridcell\" tabindex=\"0\"><span >"
+						+ "</span><span></span></th><th role=\"gridcell\" tabindex=\"0\"><span style=\"font-weight:normal\">"
 						+ this.movementsList.get(i).getMovementConcept()
-						+ "</span><span></span></th><th role=\"gridcell\" tabindex=\"0\"><span>"
+						+ "</span><span></span></th><th role=\"gridcell\" tabindex=\"0\"><span >"
 						+ this.movementsList.get(i).getMovementValue()
-						+ "</span><span ></span></th><th colspan=\"2\" role=\"gridcell\" tabindex=\"0\"><span>"
+						+ "</span><span ></span></th><th role=\"gridcell\" tabindex=\"0\"><span >"
 						+ this.movementsList.get(i).getTotalBalance()
 						+ "</span><span ></span></th><th role=\"gridcell\" ><span></span></th></tr>";
 			}
