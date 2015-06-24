@@ -784,7 +784,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 			String htmlTable = "<table><thead><tr role=\"row\"><th role=\"columnheader\" tabindex=\"0\"><span >FECHA</span><span></span></th><th role=\"columnheader\" tabindex=\"0\"><span >CONCEPTO</span><span></span></th><th role=\"columnheader\" tabindex=\"0\"><span >VALOR</span><span ></span></th><th colspan=\"2\" role=\"columnheader\" tabindex=\"0\"><span >SALDO</span><span ></span></th><th role=\"columnheader\" ><span></span></th></tr></thead>";
 			for (int i = 0; i < this.movementsList.size(); i++) {
-				htmlTable += "<th role=\"gridcell\" tabindex=\"0\"><span >"
+				htmlTable += "<tr><th role=\"gridcell\" tabindex=\"0\"><span style=\"color:blue;\">"
 						+ this.movementsList.get(i).getMovementDate()
 						+ "</span><span></span></th><th role=\"gridcell\" tabindex=\"0\"><span >"
 						+ this.movementsList.get(i).getMovementConcept()

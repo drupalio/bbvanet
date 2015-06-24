@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 
 /**
@@ -52,8 +51,8 @@ public class Customer implements Serializable {
 
 	protected String name;
 
-	@XmlSchemaType(name = "string")
-	protected EnumSegmentType segment;
+	// @XmlSchemaType(name = "string")
+	protected String segment;
 
 	protected ContactInfo contactInfo;
 
@@ -65,8 +64,8 @@ public class Customer implements Serializable {
 
 	protected Integer homeMembers;
 
-	@XmlSchemaType(name = "string")
-	protected EnumDwelingType dwelingType;
+	// @XmlSchemaType(name = "string")
+	protected String dwelingType;
 
 	protected Place officeLocation;
 
@@ -149,7 +148,7 @@ public class Customer implements Serializable {
 	 * 
 	 * @return possible object is {@link EnumSegmentType }
 	 */
-	public EnumSegmentType getSegment() {
+	public String getSegment() {
 		return segment;
 	}
 
@@ -158,7 +157,7 @@ public class Customer implements Serializable {
 	 * 
 	 * @param value allowed object is {@link EnumSegmentType }
 	 */
-	public void setSegment(EnumSegmentType value) {
+	public void setSegment(String value) {
 		this.segment = value;
 	}
 
@@ -257,7 +256,7 @@ public class Customer implements Serializable {
 	 * 
 	 * @return possible object is {@link EnumDwelingType }
 	 */
-	public EnumDwelingType getDwelingType() {
+	public String getDwelingType() {
 		return dwelingType;
 	}
 
@@ -266,7 +265,7 @@ public class Customer implements Serializable {
 	 * 
 	 * @param value allowed object is {@link EnumDwelingType }
 	 */
-	public void setDwelingType(EnumDwelingType value) {
+	public void setDwelingType(String value) {
 		this.dwelingType = value;
 	}
 
