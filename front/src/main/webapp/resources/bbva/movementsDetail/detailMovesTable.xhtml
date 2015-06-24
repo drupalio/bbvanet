@@ -13,19 +13,20 @@
 <composite:implementation>
 	<article class="detail-table-group">
 		<div class="utility-icons">
-		<h:form id="documentsExport">
-			<p:commandLink ajax="false" styleClass="icon-excel-file" >
-				<p:fileDownload value="#{movementsCriteriaController.exportExcel}" />
-			</p:commandLink>
-			<p:commandLink styleClass="icon-pdf-file" ajax="false">
+			<h:form id="documentsExport">
+				<p:commandLink ajax="false" styleClass="icon-excel-file">
+					<p:fileDownload value="#{movementsCriteriaController.exportExcel}" />
+				</p:commandLink>
+				<p:commandLink styleClass="icon-pdf-file" ajax="false">
 					<p:fileDownload value="#{movementsCriteriaController.exportPdf}" />
-			</p:commandLink>
-			<p:commandLink ajax="false" styleClass="icon-send-by-email" actionListener="#{movementsCriteriaController.sendMail()}">
-			</p:commandLink>
-			<p:commandLink  ajax="false" styleClass="icon-printer" actionListener="#{movementsCriteriaController.printFile()}">
-			</p:commandLink>
-
-		</h:form>
+				</p:commandLink>
+				<p:commandLink ajax="false" styleClass="icon-send-by-email"
+					actionListener="#{movementsCriteriaController.sendMail()}">
+				</p:commandLink>
+				<p:commandLink ajax="false" styleClass="icon-printer"
+					actionListener="#{movementsCriteriaController.printFile()}">
+				</p:commandLink>
+			</h:form>
 		</div>
 		<bbvaTablesAcc:accountMovementsTable id="tableMovements" listAccounts="#{cc.attrs.listAccounts}" />
 		<bbvaTablesAcc:checkAccountTable id="checkTable" listChecks="#{cc.attrs.listChecks}" />

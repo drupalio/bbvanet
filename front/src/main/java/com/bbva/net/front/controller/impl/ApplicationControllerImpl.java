@@ -41,6 +41,13 @@ public class ApplicationControllerImpl extends AbstractBbvaController implements
 			super.getSelectedProduct();
 			this.sendAction("accountSelected");
 		}
+		if (valueChangeEvent.getNewValue().equals(
+				MessagesHelper.INSTANCE.getString(multiValueGroupFacade.getMultiValueTypes(6).get(3).getValue()))) {
+			super.setSelectedProduct((ProductDto)valueChangeEvent.getOldValue());
+			super.getSelectedProduct();
+			this.sendAction("accountSelected");
+
+		}
 
 	}
 

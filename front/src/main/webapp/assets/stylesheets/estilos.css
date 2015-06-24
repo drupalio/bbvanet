@@ -450,13 +450,13 @@ input.ui-state-hover {
 
 /*Detalle de movimiento position*/
 .positionHeadMove {
-	top: -117px !important;
+	top: -108px !important;
 	z-index: 1 !important;
 }
 
 /*Detalle de movimiento position*/
 .positionHead {
-	top: -108px !important;
+	top: -98px !important;
 	z-index: 1 !important;
 }
 /* width 100% */

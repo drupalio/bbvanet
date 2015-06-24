@@ -1,6 +1,6 @@
 package com.bbva.net.front.controller.impl;
 
-import java.awt.print.PrinterJob;
+import java.awt.Desktop;
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -17,8 +17,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import javax.activation.DataHandler;
-import javax.activation.FileDataSource;
 import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
 import javax.mail.BodyPart;
@@ -29,13 +27,6 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
-import javax.print.Doc;
-import javax.print.DocFlavor;
-import javax.print.DocPrintJob;
-import javax.print.PrintService;
-import javax.print.SimpleDoc;
-import javax.print.attribute.HashPrintRequestAttributeSet;
-import javax.print.attribute.PrintRequestAttributeSet;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
@@ -501,7 +492,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 						cellStyle.setFont(date);
 						celda.setCellStyle(cellStyle);
 
-						celda.setCellValue(getdateString(this.movementsList.get(f).getOperationDate()));
+						celda.setCellValue(getdateString(this.movementsList.get(f).getMovementDate()));
 
 					}
 					if (c == 3) {
@@ -649,7 +640,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 			for (int i = 0; i < movementsList.size(); i++) {
 
-				String date = getdateString(movementsList.get(i).getOperationDate());
+				String date = getdateString(movementsList.get(i).getMovementDate());
 
 				tabla.addCell(new Phrase(date, fontBlue));
 				tabla.addCell(new Phrase(movementsList.get(i).getMovementConcept(), fontNormal));
@@ -757,52 +748,15 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	@Override
 	public void printFile() {
 		exportDocumentPdf();
-
-		// PrinterJob printJob = PrinterJob.getPrinterJob();
-		// printJob.setJobName("Movimientos.pdf");
-		//
-		// try {
-		//
-		// if (printJob.printDialog()) {
-		// printJob.print();
-		// }
-		// } catch (Exception printException) {
-		// LOGGER.info("Error al imprimir archivo " + printException.getMessage());
-		// }
-		FileInputStream inputFile = null;
-		try {
-			inputFile = new FileInputStream("Movimientos.pdf");
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		if (inputFile == null) {
-			return;
-		}
-
-		DocFlavor docFormat = DocFlavor.INPUT_STREAM.AUTOSENSE;
-		Doc document = new SimpleDoc(inputFile, docFormat, null);
-
-		PrintRequestAttributeSet attributeSet = new HashPrintRequestAttributeSet();
-
-		PrinterJob printerJob = PrinterJob.getPrinterJob();
-		if (printerJob.printDialog()) {
-
-			PrintService defaultPrintService = printerJob.getPrintService();
-
-			DocPrintJob docprintJob = defaultPrintService.createPrintJob();
+		if (Desktop.isDesktopSupported()) {
 			try {
-				docprintJob.print(document, attributeSet);
-
-			} catch (Exception e) {
-				LOGGER.info("Erro al imrpimir " + e.getMessage());
+				File myFile = new File("Movimientos.pdf");
+				Desktop.getDesktop().open(myFile);
+			} catch (IOException ex) {
+				LOGGER.info("Error al abrir archivo " + ex.getMessage());
 			}
 		}
 
-		try {
-			inputFile.close();
-		} catch (IOException e) {
-			LOGGER.info("Erro al cerrar el archivo de impresión " + e.getMessage());
-		}
 	}
 
 	@Override
@@ -818,29 +772,54 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 			Session session = Session.getDefaultInstance(props, null);
 
-			BodyPart texto = new MimeBodyPart();
-			texto.setText("Texto del mensaje");
-
-			BodyPart adjunto = new MimeBodyPart();
-			adjunto.setDataHandler(new DataHandler(new FileDataSource("src/main/webapp/assets/img/logo/logo_bbva.png")));
-			adjunto.setFileName("logo_bbva.png");
+			BodyPart header = new MimeBodyPart();
+			String htmlText = "<img src=\"https://ci3.googleusercontent.com/proxy/riFpqgLCyTit6KJRJ18o9l7IUkTjZEPxeh0gj_-ghcRMq5l5tJu-OyAExex95MjbTbd4wCqTGQ-tkooIlpHeuP5CR_rV4XThdoA8dA=s0-d-e1-ft#https://www.bbva.com.co/documents/10180/84494/bbva.gif\">";
+			header.setContent(htmlText, "text/html");
 
 			MimeMultipart multiParte = new MimeMultipart();
-			multiParte.addBodyPart(texto);
-			multiParte.addBodyPart(adjunto);
+			multiParte.addBodyPart(header);
+
+			BodyPart content = new MimeBodyPart();
+			String htmlHeader = "<br></br><br></br><strong>Estimado(a) cliente: </strong><br></br><br></br>";
+
+			String htmlTable = "<table width=100% rules=\"all\" border=\"1\"><thead><tr role=\"row\"><th role=\"columnheader\" tabindex=\"0\"><span >FECHA</span><span></span></th><th role=\"columnheader\" tabindex=\"0\"><span >CONCEPTO</span><span></span></th><th role=\"columnheader\" tabindex=\"0\"><span >VALOR</span><span ></span></th><th role=\"columnheader\" tabindex=\"0\"><span >SALDO</span><span ></span></th></tr></thead>";
+			for (int i = 0; i < this.movementsList.size(); i++) {
+				htmlTable += "<tr><th role=\"gridcell\" tabindex=\"0\"><span style=\"color:blue>"
+						+ this.movementsList.get(i).getMovementDate()
+						+ "</span><span></span></th><th role=\"gridcell\" tabindex=\"0\"><span style=\"font-weight:normal\">"
+						+ this.movementsList.get(i).getMovementConcept()
+						+ "</span><span></span></th><th role=\"gridcell\" tabindex=\"0\"><span >"
+						+ this.movementsList.get(i).getMovementValue()
+						+ "</span><span ></span></th><th role=\"gridcell\" tabindex=\"0\"><span >"
+						+ this.movementsList.get(i).getTotalBalance()
+						+ "</span><span ></span></th><th role=\"gridcell\" ><span></span></th></tr>";
+			}
+
+			htmlTable += "</table>";
+
+			String htmlContent = "<br></br><br></br><div align=\"justify\" style=\"font-weight:bold;width:80%;font-size:90%;border-spacing:2px;border-collapse:separate\">Nota: Si no eres el destinatario de este mensaje, por favor comunícate con nosotros con el fin de realizar la actualización correspondiente, al 4010000 en Bogotá, 4938300 en Medellín, 3503500 en Barranquilla, 8892020 en Cali, 6304000 en Bucaramanga o al 01800 912227 desde el resto del país.</div>";
+			String htmlFooter = "<br></br><br></br>********************* AVISO LEGAL **************************<br></br>";
+			htmlFooter += "Este mensaje es solamente para la persona a la que va dirigido. Puede contener informacion  confidencial  o  legalmente  protegida.  No  hay  renuncia  a la confidencialidad o privilegio por cualquier transmision mala/erronea. Si usted ha recibido este mensaje por error,  le rogamos que borre de su sistema inmediatamente el mensaje asi como todas sus copias, destruya todas las copias del mismo de su disco duro y notifique al remitente.  No debe,  directa o indirectamente, usar, revelar, distribuir, imprimir o copiar ninguna de las partes de este mensaje si no es usted el destinatario. Cualquier opinion expresada en este mensaje proviene del remitente, excepto cuando el mensaje establezca lo contrario y el remitente este autorizado para establecer que dichas opiniones provienen de  BBVA. Notese que el correo electronico via Internet no permite asegurar ni la confidencialidad de los mensajes que se transmiten ni la correcta recepcion de los mismos. En el caso de que el destinatario de este mensaje no consintiera la utilizacion del correo electronico via Internet, rogamos lo ponga en nuestro conocimiento de manera inmediata.";
+			htmlFooter += "<br></br><br></br>**************************  DISCLAIMER**********************<br></br>";
+			htmlFooter += "This message is intended exclusively for the named person. It may contain confidential, propietary or legally privileged information. No confidentiality or privilege is waived or lost by any mistransmission. If you receive this message in error, please immediately delete it and all copies of it from your system, destroy any hard copies of it and notify the sender. Your must not, directly or indirectly, use, disclose, distribute, print, or copy any part of this message if you are not the intended recipient. Any views expressed in this message are those of the individual sender, except where the message states otherwise and the sender is authorised to state them to be the views of BBVA. Please note that internet e-mail neither guarantees the confidentiality nor the proper receipt of the message sent.If the addressee of this message does not consent to the use of internet e-mail, please communicate it to us immediately.";
+			htmlFooter += "<br></br><br></br>************************************************************<br></br>";
+
+			content.setContent(htmlHeader + htmlTable + htmlContent + htmlFooter, "text/html");
+
+			multiParte.addBodyPart(content);
 
 			MimeMessage message = new MimeMessage(session);
 			message.setFrom(new InternetAddress("nerlyzaa@gmail.com"));
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress("nerlyzaa@gmail.com"));
-			message.setSubject("Hola");
+			message.setSubject("Movimientos");
 			message.setContent(multiParte);
 
 			Transport t = session.getTransport("smtp");
-			t.connect("nerlyzaa@gmail.com", "pinina123");
+			t.connect("nerlyzaa@gmail.com", "prueba");
 			t.sendMessage(message, message.getAllRecipients());
 			t.close();
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOGGER.info("Error enviando mail " + e.getMessage());
 		}
 	}
 
