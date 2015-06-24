@@ -1,21 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:composite="http://java.sun.com/jsf/composite"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-	xmlns:c="http://java.sun.com/jsp/jstl/core"
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough" xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:cc="http://jsflive.at/taglib">
-
 <composite:interface>
 	<composite:attribute name="title" type="String" />
 </composite:interface>
-
-
 <composite:implementation>
-
 	<div class="col-xs-12 col-sm-12 more-margin-bottom">
 		<div class="condiciones-list first">
 			<div class="row">
@@ -25,13 +17,15 @@
 				<div class="hidden-xs col-sm-6">
 					<div class="box">
 						<div class="utility-icons">
-							<a href="#"> <span class="icon-16 gray l01-pdf"
-								title="Descargar pdf"></span>
-							</a> <a href="#"> <span
-								class="icon-16 gray m07-correspondenciavirtual" title="Enviar"></span>
-							</a> <a href="#"> <span class="icon-16 gray n01-imprimir"
-								title="Imprimir"></span>
-							</a>
+							<h:form id="documentsCExport">
+								<p:commandLink styleClass="icon-pdf-file" ajax="false">
+									<p:fileDownload value="#{termsController.exportPdf}" />
+								</p:commandLink>
+								<p:commandLink ajax="false" styleClass="icon-send-by-email" actionListener="#">
+								</p:commandLink>
+								<p:commandLink ajax="false" styleClass="icon-printer" actionListener="#">
+								</p:commandLink>
+							</h:form>
 						</div>
 					</div>
 				</div>
@@ -41,8 +35,5 @@
 			</div>
 		</div>
 	</div>
-
-
 </composite:implementation>
-
 </html>

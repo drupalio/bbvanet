@@ -11,8 +11,8 @@
 	<composite:attribute name="render" />
 </composite:interface>
 <composite:implementation>
-	<div class="hidden-xs hidden-sm comboLike" style="display: block;">
-		<h:form id="comboQuiero">
+	<h:form id="comboQuiero">
+		<div class="hidden-xs hidden-sm comboLike" style="display: block;">
 			<p:selectOneMenu value="#{iproduct}" style="background-position: 95% !important;"
 				valueChangeListener="#{cc.attrs.listener}" styleClass="hidden-xs hidden-sm likeSame"
 				panelStyle="width: 260px;" panelStyleClass="comboItemsLike" onchange="submit()">
@@ -20,7 +20,7 @@
 				<f:selectItems value="#{cc.attrs.valueList}" var="multiValue"
 					itemValue="#{msg[multiValue.getValue()]}" itemLabel="#{msg[multiValue.getValue()]}" />
 			</p:selectOneMenu>
-		</h:form>
-	</div>
+		</div>
+	</h:form>
 </composite:implementation>
 </html>
