@@ -313,9 +313,9 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 			if (movementCriteria.getBalanceRange().getBalanceSince()
 					.compareTo(movementCriteria.getBalanceRange().getBalanceTo()) == -1) {
-				messageBalance = new StringBuilder("Se mostrarán los resultados mayores de "
-						+ movementCriteria.getBalanceRange().getBalanceSince() + "$" + " y menores de "
-						+ movementCriteria.getBalanceRange().getBalanceTo() + "$");
+				messageBalance = new StringBuilder("Se mostrarán los resultados mayores de $ "
+						+ movementCriteria.getBalanceRange().getBalanceSince()  + " y menores de $ "
+						+ movementCriteria.getBalanceRange().getBalanceTo() );
 
 			}
 		} else {
