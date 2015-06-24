@@ -747,16 +747,27 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 	@Override
 	public void printFile() {
-		exportDocumentPdf();
-		if (Desktop.isDesktopSupported()) {
-			try {
-				File myFile = new File("Movimientos.pdf");
-				Desktop.getDesktop().open(myFile);
-			} catch (IOException ex) {
-				LOGGER.info("Error al abrir archivo " + ex.getMessage());
-			}
+		File pdfFile = new File("Movimientos.pdf");
+
+		if (pdfFile.exists()) {
+			if (pdfFile.delete()) {
+				LOGGER.info("borró el archivo");
+				exportDocumentPdf();
+			} else
+				LOGGER.info("No lo borró");
+		} else {
+			exportDocumentPdf();
 		}
 
+		try {
+			if (Desktop.isDesktopSupported()) {
+
+				Desktop.getDesktop().open(pdfFile);
+				// myFile.delete();
+			}
+		} catch (IOException ex) {
+			LOGGER.info("Error al abrir archivo " + ex.getMessage());
+		}
 	}
 
 	@Override
