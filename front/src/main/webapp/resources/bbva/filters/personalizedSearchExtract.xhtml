@@ -44,10 +44,12 @@
 					</div>
 					<div class="col-md-12" style="text-align: center;">
 						<p:commandButton id="emailTExtract" value="#{msg['button.confirm']}"
-							styleClass="stable-button medium extractButton">
+							styleClass="stable-button medium extractButton" >
+							<p:ajax listener="#{extractController.init()}" event="click" execute="@this" update=":tabMenu:tabCriteria:personalizedSearchContainer:downExtract:containerExtract:dateExtract:stateYear"></p:ajax>
 						</p:commandButton>
 					</div>
 				</div>
+				<h:form id="dateExtract">
 				<div class="extractTwoPage renderExtract">
 					<h1>#{msg['title.downExtractMoun']}</h1>
 					<div class="first-part-download">
@@ -98,6 +100,7 @@
 						<p>#{msg['msg.info.extract.part2']}</p>
 					</div>
 				</div>
+				</h:form>
 			</div>
 		</div>
 	</div>

@@ -14,7 +14,6 @@
 	<on-start>
 		<evaluate expression="checkBookController.init()" />
 		<evaluate expression="checkBookController.initCheckBookList()" />
-		<evaluate expression="extractController.init()" />
 		<evaluate expression="personalizeProductAccountController.init()" />
 		<evaluate expression="movementsCriteriaController.init()" />
 		<evaluate expression="movementsCriteriaController.getSelectedProduct()"
