@@ -13,7 +13,6 @@
 
 	<composite:attribute name="name" type="String" />
 	<composite:attribute name="date" type="String" />
-	<composite:attribute name="hour" type="String" />
 </composite:interface>
 
 <composite:implementation>
@@ -40,7 +39,7 @@
 								alertas</a></li>
 					</ul>
 					<div class="footer">
-						<span>Última conexión:</span> <span>#{cc.attrs.date} a las #{cc.attrs.hour}h</span>
+						<span>Última conexión:</span> <span>#{cc.attrs.date}</span>
 					</div>
 				</div></li>
 
