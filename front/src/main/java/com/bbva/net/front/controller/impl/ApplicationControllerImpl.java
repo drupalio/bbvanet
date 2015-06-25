@@ -1,7 +1,9 @@
 package com.bbva.net.front.controller.impl;
 
 import javax.annotation.Resource;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 
@@ -46,7 +48,9 @@ public class ApplicationControllerImpl extends AbstractBbvaController implements
 			super.setSelectedProduct((ProductDto)valueChangeEvent.getOldValue());
 			super.getSelectedProduct();
 			this.sendAction("accountSelected");
-
+			final HttpSession session = (HttpSession)FacesContext.getCurrentInstance().getExternalContext()
+					.getSession(false);
+			session.setAttribute("operations", "true");
 		}
 
 	}

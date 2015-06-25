@@ -21,6 +21,13 @@
 		</bbvaBody:title>
 	</ui:define>
 	<ui:define name="contentLeft">
+		<script type="text/javascript">
+			window.onload = function() {
+				openOperaMore();
+			};
+		</script>
+		<input id='operations' type='hidden' value='${sessionScope.operations}' />
+		<button id="opButton" style="display: none;" onclick="#{movementsCriteriaController.resetData()}" />
 		<div class="tab-group savingsAccount">
 			<bbvaHeader:moveDetailContainer>
 				<bbvaHeader:moveContainerHeader>
