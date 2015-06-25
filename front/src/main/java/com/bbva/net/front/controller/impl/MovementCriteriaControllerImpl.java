@@ -827,7 +827,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 			MimeMessage message = new MimeMessage(session);
 			message.setFrom(new InternetAddress("BBVA@bbvanet.com.co"));
-			message.addRecipient(Message.RecipientType.TO, new InternetAddress("nerlyzaa@gmail.com"));
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress("luferupa@gmail.com"));
 			message.setSubject("Movimientos");
 			message.setContent(multiParte);
 
