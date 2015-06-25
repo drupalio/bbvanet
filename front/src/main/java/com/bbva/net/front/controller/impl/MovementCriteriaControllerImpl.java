@@ -1,6 +1,5 @@
 package com.bbva.net.front.controller.impl;
 
-import java.awt.Desktop;
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -321,9 +320,9 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 			if (movementCriteria.getBalanceRange().getBalanceSince()
 					.compareTo(movementCriteria.getBalanceRange().getBalanceTo()) == -1) {
-				messageBalance = new StringBuilder("Se mostrarán los resultados mayores de "
-						+ movementCriteria.getBalanceRange().getBalanceSince() + "$" + " y menores de "
-						+ movementCriteria.getBalanceRange().getBalanceTo() + "$");
+				messageBalance = new StringBuilder("Se mostrarán los resultados mayores de $ "
+						+ movementCriteria.getBalanceRange().getBalanceSince() + " y menores de $ "
+						+ movementCriteria.getBalanceRange().getBalanceTo());
 
 			}
 		} else {
@@ -756,13 +755,6 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	@Override
 	public void printFile() {
 		File pdfFile = new File("Movimientos.pdf");
-		// PDFFile pdfFile = new PDFFile(new File("Movimientos.pdf"));
-		// PdfReader pdfReader = pdfFile.getPdfReader();
-		// try {
-		// ...
-		// } finally {
-		// pdfReader.close();
-		// }
 
 		if (pdfFile.exists()) {
 			if (pdfFile.delete()) {
@@ -770,17 +762,81 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 				exportDocumentPdf();
 			} else
 				LOGGER.info("No lo borró");
+		} else {
+			exportDocumentPdf();
+		}
+		// try {
+		// Process p = Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler Movimientos.pdf");
+		// p.waitFor();
+		//
+		// LOGGER.info("Abrió el archivo");
+		//
+		// } catch (Exception ex) {
+		// LOGGER.info("No pudo abrir el archivo" + ex.getMessage());
+		// }
 
+		String s = System.getProperty("os.name").toLowerCase();
+		if (s.contains("win")) {
+			createCommand("explorer", "%s", pdfFile.getPath());
 		}
 
-		try {
-			if (Desktop.isDesktopSupported()) {
+		if (s.contains("mac")) {
+			createCommand("open", "%s", pdfFile.getPath());
+		}
 
-				Desktop.getDesktop().open(pdfFile);
-				// myFile.delete();
+		if (s.contains("linux") || s.contains("unix")) {
+			createCommand("kde-open", "%s", pdfFile.getPath());
+			createCommand("gnome-open", "%s", pdfFile.getPath());
+			createCommand("xdg-open", "%s", pdfFile.getPath());
+		}
+
+		// try {
+		// if (Desktop.isDesktopSupported()) {
+		//
+		// Desktop.getDesktop().open(pdfFile);
+		// // myFile.delete();
+		// }
+		// } catch (IOException ex) {
+		// LOGGER.info("Error al abrir archivo " + ex.getMessage());
+		// }
+	}
+
+	private boolean createCommand(String command, String args, String file) {
+
+		LOGGER.info("Probando comando exec:\n   cmd = " + command + "\n   args = " + args + "\n   %s = " + file);
+
+		List<String> parts = new ArrayList<String>();
+		parts.add(command);
+
+		if (args != null) {
+			for (String s : args.split(" ")) {
+				s = String.format(s, file);
+				parts.add(s.trim());
 			}
-		} catch (IOException ex) {
-			LOGGER.info("Error al abrir archivo " + ex.getMessage());
+		}
+
+		String[] sParts = parts.toArray(new String[parts.size()]);
+
+		try {
+			Process p = Runtime.getRuntime().exec(sParts);
+			if (p == null) return false;
+
+			try {
+				int retval = p.exitValue();
+				if (retval == 0) {
+					LOGGER.info("Proceso terminó inmediatamente.");
+					return false;
+				} else {
+					LOGGER.info("Proceso colapso");
+					return false;
+				}
+			} catch (IllegalThreadStateException itse) {
+				LOGGER.info("Proceso esta corriendo " + itse.getMessage());
+				return true;
+			}
+		} catch (IOException e) {
+			LOGGER.info("Error ejecutando el comando " + e.getMessage());
+			return false;
 		}
 	}
 
@@ -789,11 +845,11 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		try {
 
 			Properties props = new Properties();
-			props.put("mail.smtp.host", "smtp.gmail.com");
+			props.put("mail.smtp.host", "172.16.9.53");
 			props.setProperty("mail.smtp.starttls.enable", "true");
-			props.setProperty("mail.smtp.port", "587");
-			props.setProperty("mail.smtp.user", "nerlyzaa@gmail.com");
-			props.setProperty("mail.smtp.auth", "true");
+			props.setProperty("mail.smtp.port", "25");
+			props.setProperty("mail.smtp.user", "BBVA@bbvanet.com.co");
+			props.setProperty("mail.smtp.auth", "false");
 
 			Session session = Session.getDefaultInstance(props, null);
 
@@ -807,17 +863,16 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			BodyPart content = new MimeBodyPart();
 			String htmlHeader = "<br></br><br></br><strong>Estimado(a) cliente: </strong><br></br><br></br>";
 
-			String htmlTable = "<table width=100% rules=\"all\" border=\"1\"><thead><tr role=\"row\"><th role=\"columnheader\" tabindex=\"0\"><span >FECHA</span><span></span></th><th role=\"columnheader\" tabindex=\"0\"><span >CONCEPTO</span><span></span></th><th role=\"columnheader\" tabindex=\"0\"><span >VALOR</span><span ></span></th><th role=\"columnheader\" tabindex=\"0\"><span >SALDO</span><span ></span></th></tr></thead>";
+			String htmlTable = "<table width=100% rules=\"all\" border=\"1\"><thead><tr role=\"row\" style=\"background-color: gainsboro;\"><th role=\"columnheader\" tabindex=\"0\"><span >FECHA</span><span></span></th><th role=\"columnheader\" tabindex=\"0\"><span >CONCEPTO</span><span></span></th><th role=\"columnheader\" tabindex=\"0\"><span >VALOR</span><span ></span></th><th role=\"columnheader\" tabindex=\"0\"><span >SALDO</span><span ></span></th></tr></thead>";
 			for (int i = 0; i < this.movementsList.size(); i++) {
-				htmlTable += "<tr><th role=\"gridcell\" tabindex=\"0\"><span style=\"color:blue>"
-						+ this.movementsList.get(i).getMovementDate()
+				htmlTable += "<tr><th role=\"gridcell\" tabindex=\"0\"><span style=\"color:blue\">"
+						+ getdateString(this.movementsList.get(i).getMovementDate())
 						+ "</span><span></span></th><th role=\"gridcell\" tabindex=\"0\"><span style=\"font-weight:normal\">"
 						+ this.movementsList.get(i).getMovementConcept()
 						+ "</span><span></span></th><th role=\"gridcell\" tabindex=\"0\"><span >"
 						+ this.movementsList.get(i).getMovementValue()
 						+ "</span><span ></span></th><th role=\"gridcell\" tabindex=\"0\"><span >"
-						+ this.movementsList.get(i).getTotalBalance()
-						+ "</span><span ></span></th><th role=\"gridcell\" ><span></span></th></tr>";
+						+ this.movementsList.get(i).getTotalBalance() + "</span><span ></span></th></tr>";
 			}
 
 			htmlTable += "</table>";
@@ -834,13 +889,14 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			multiParte.addBodyPart(content);
 
 			MimeMessage message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("nerlyzaa@gmail.com"));
+			message.setFrom(new InternetAddress("BBVA@bbvanet.com.co"));
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress("nerlyzaa@gmail.com"));
 			message.setSubject("Movimientos");
 			message.setContent(multiParte);
 
 			Transport t = session.getTransport("smtp");
-			t.connect("nerlyzaa@gmail.com", "prueba");
+			t.connect();
+			// t.connect("nerlyzaa@gmail.com", "prueba");
 			t.sendMessage(message, message.getAllRecipients());
 			t.close();
 		} catch (Exception e) {
