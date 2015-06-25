@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:composite="http://java.sun.com/jsf/composite" xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
-	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough" xmlns:c="http://java.sun.com/jsp/jstl/core"
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:cc="http://jsflive.at/taglib">
 <composite:interface>
 	<composite:attribute name="title" type="String" />
@@ -21,9 +25,8 @@
 								<p:commandLink styleClass="icon-pdf-file" ajax="false">
 									<p:fileDownload value="#{termsController.exportPdf}" />
 								</p:commandLink>
-								<p:commandLink ajax="false" styleClass="icon-send-by-email" actionListener="#">
-								</p:commandLink>
-								<p:commandLink ajax="false" styleClass="icon-printer" actionListener="#">
+								<p:commandLink ajax="false" styleClass="icon-printer"
+									actionListener="#{termsController.printFile()}">
 								</p:commandLink>
 							</h:form>
 						</div>
