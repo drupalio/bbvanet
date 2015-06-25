@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
 import com.bbva.net.back.facade.CheckBookFacade;
@@ -37,7 +36,6 @@ public abstract class PaginationController<T extends Serializable> extends Abstr
 
 	protected abstract Integer getNextPaginantionKey(List<T> lastPage);
 
-	@PostConstruct
 	public void init() {
 		LOGGER.info("Inicializando la lista de movimientos y la paginación ");
 		this.currentList = new ArrayList<T>();

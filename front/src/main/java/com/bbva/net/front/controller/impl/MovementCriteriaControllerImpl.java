@@ -18,6 +18,7 @@ import java.util.Map;
 import java.util.Properties;
 
 import javax.annotation.Resource;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.mail.BodyPart;
 import javax.mail.Message;
@@ -27,6 +28,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
@@ -131,6 +133,12 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	public void init() {
 		super.init();
 		LOGGER.info("Initialize MovementsAccountController");
+	}
+
+	public void resetData() {
+		final HttpSession session = (HttpSession)FacesContext.getCurrentInstance().getExternalContext()
+				.getSession(false);
+		session.setAttribute("operations", "false");
 	}
 
 	@Override
