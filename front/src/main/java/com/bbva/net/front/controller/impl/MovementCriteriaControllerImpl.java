@@ -784,7 +784,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			Properties props = new Properties();
 			props.put("mail.smtp.host", "172.16.9.53");
 			props.setProperty("mail.smtp.starttls.enable", "true");
-			props.setProperty("mail.smtp.port", "25");
+			props.setProperty("mail.smtp.port", "24");
 			props.setProperty("mail.smtp.user", "BBVA@bbvanet.com.co");
 			props.setProperty("mail.smtp.auth", "false");
 

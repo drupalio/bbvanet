@@ -1042,7 +1042,7 @@ body div.ui-growl .ui-state-highlight {
 	background-repeat: no-repeat;
 	background-position: right 10px center;
 	width: 100%;
-	height: 100%;
+	/*height: 100%;*/
 	padding: 4px !important;
 }
 
