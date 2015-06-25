@@ -68,6 +68,18 @@ function headerTabS(button) {
 	});
 }
 
+function openOperaMore() {
+	$(document).ready(function() {
+		var mysessionItem = $('#operations').val();
+		if (mysessionItem == 'true') {
+			var context = $('.operation-tabs');
+			$(context).find('#item_operations').addClass('active');
+			$(context).find('#tab-operaciones').addClass('active');
+			$('#opButton').click();
+		}
+	});
+}
+
 /* buttons visible favoritos */
 function buttonVisi(button) {
 	$(document).ready(function() {
