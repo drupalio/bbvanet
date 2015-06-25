@@ -313,8 +313,8 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			if (movementCriteria.getBalanceRange().getBalanceSince()
 					.compareTo(movementCriteria.getBalanceRange().getBalanceTo()) == -1) {
 				messageBalance = new StringBuilder("Se mostrarán los resultados mayores de $ "
-						+ movementCriteria.getBalanceRange().getBalanceSince()  + " y menores de $ "
-						+ movementCriteria.getBalanceRange().getBalanceTo() );
+						+ movementCriteria.getBalanceRange().getBalanceSince() + " y menores de $ "
+						+ movementCriteria.getBalanceRange().getBalanceTo());
 
 			}
 		} else {
@@ -757,15 +757,31 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		} else {
 			exportDocumentPdf();
 		}
-		try {
-			Process p = Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler Movimientos.pdf");
-			p.waitFor();
+		// try {
+		// Process p = Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler Movimientos.pdf");
+		// p.waitFor();
+		//
+		// LOGGER.info("Abrió el archivo");
+		//
+		// } catch (Exception ex) {
+		// LOGGER.info("No pudo abrir el archivo" + ex.getMessage());
+		// }
 
-			LOGGER.info("Abrió el archivo");
-
-		} catch (Exception ex) {
-			LOGGER.info("No pudo abrir el archivo" + ex.getMessage());
+		String s = System.getProperty("os.name").toLowerCase();
+		if (s.contains("win")) {
+			createCommand("explorer", "%s", pdfFile.getPath());
 		}
+
+		if (s.contains("mac")) {
+			createCommand("open", "%s", pdfFile.getPath());
+		}
+
+		if (s.contains("linux") || s.contains("unix")) {
+			createCommand("kde-open", "%s", pdfFile.getPath());
+			createCommand("gnome-open", "%s", pdfFile.getPath());
+			createCommand("xdg-open", "%s", pdfFile.getPath());
+		}
+
 		// try {
 		// if (Desktop.isDesktopSupported()) {
 		//
@@ -775,6 +791,45 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		// } catch (IOException ex) {
 		// LOGGER.info("Error al abrir archivo " + ex.getMessage());
 		// }
+	}
+
+	private boolean createCommand(String command, String args, String file) {
+
+		LOGGER.info("Probando comando exec:\n   cmd = " + command + "\n   args = " + args + "\n   %s = " + file);
+
+		List<String> parts = new ArrayList<String>();
+		parts.add(command);
+
+		if (args != null) {
+			for (String s : args.split(" ")) {
+				s = String.format(s, file);
+				parts.add(s.trim());
+			}
+		}
+
+		String[] sParts = parts.toArray(new String[parts.size()]);
+
+		try {
+			Process p = Runtime.getRuntime().exec(sParts);
+			if (p == null) return false;
+
+			try {
+				int retval = p.exitValue();
+				if (retval == 0) {
+					LOGGER.info("Proceso terminó inmediatamente.");
+					return false;
+				} else {
+					LOGGER.info("Proceso colapso");
+					return false;
+				}
+			} catch (IllegalThreadStateException itse) {
+				LOGGER.info("Proceso esta corriendo " + itse.getMessage());
+				return true;
+			}
+		} catch (IOException e) {
+			LOGGER.info("Error ejecutando el comando " + e.getMessage());
+			return false;
+		}
 	}
 
 	@Override
