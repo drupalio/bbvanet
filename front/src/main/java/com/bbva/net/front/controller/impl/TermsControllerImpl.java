@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
 
 import javax.annotation.Resource;
 
@@ -15,15 +16,17 @@ import com.bbva.net.back.facade.TermasAccountsFacade;
 import com.bbva.net.back.model.accounts.TermsAccountsDto;
 import com.bbva.net.front.controller.TermsController;
 import com.bbva.net.front.core.AbstractBbvaController;
+import com.bbva.net.front.helper.MessagesHelper;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
+import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.ColumnText;
-import com.itextpdf.text.pdf.PdfContentByte;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
 public class TermsControllerImpl extends AbstractBbvaController implements TermsController {
@@ -38,16 +41,18 @@ public class TermsControllerImpl extends AbstractBbvaController implements Terms
 
 	private static final long serialVersionUID = -9161774389839616910L;
 
+	private TermsAccountsDto detallesCuentaDto = new TermsAccountsDto();
+
 	@Override
 	public TermsAccountsDto getAllConditions() {
-		TermsAccountsDto detallesCuenta = new TermsAccountsDto();
+
 		try {
-			detallesCuenta = this.detallesCuenta.getAllConditions(super.getSelectedProduct().getProductId());
+			detallesCuentaDto = this.detallesCuenta.getAllConditions(super.getSelectedProduct().getProductId());
 		} catch (Exception e) {
 			// FacesContext ctx = FacesContext.getCurrentInstance();
 			// ctx.addMessage("Condiciones", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
 		}
-		return detallesCuenta;
+		return detallesCuentaDto;
 	}
 
 	@Override
@@ -55,7 +60,7 @@ public class TermsControllerImpl extends AbstractBbvaController implements Terms
 
 		LOGGER.info("iniciando exportar archivo pdf");
 
-		String rutaArchivo = "conditions.pdf";
+		String rutaArchivo = "Conditions.pdf";
 
 		try {
 
@@ -88,15 +93,99 @@ public class TermsControllerImpl extends AbstractBbvaController implements Terms
 			initial.setSpacingBefore(20);
 			document.add(initial);
 
-			PdfContentByte cb = writer.getDirectContent();
+			Paragraph title = new Paragraph("Información del producto", FontFactory.getFont("helvetica", 11,
+					new BaseColor(51, 51, 51)));
+			title.setSpacingBefore(20);
+			document.add(title);
 
-			ColumnText colum1 = new ColumnText(cb);
-			Paragraph alias = new Paragraph("alias", FontFactory.getFont("arial", 12, BaseColor.BLACK));
-			colum1.addText(alias);
+			com.itextpdf.text.Font font = new com.itextpdf.text.Font(FontFamily.HELVETICA, 7,
+					com.itextpdf.text.Font.BOLD, new BaseColor(102, 102, 102));
+			com.itextpdf.text.Font fontNormal = new com.itextpdf.text.Font(FontFamily.HELVETICA, 7,
+					com.itextpdf.text.Font.NORMAL, new BaseColor(102, 102, 102));
 
-			Paragraph aliasRes = new Paragraph("respuesta", FontFactory.getFont("arial", 12, BaseColor.BLACK));
-			ColumnText colum2 = new ColumnText(cb);
-			colum2.addText(aliasRes);
+			PdfPTable tabla = new PdfPTable(2);
+
+			tabla.setSpacingBefore(20);
+			tabla.setSpacingAfter(20);
+			tabla.setHorizontalAlignment(Element.ALIGN_LEFT);
+			tabla.getDefaultCell().setBorder(0);
+
+			tabla.addCell(new Phrase("Alias:", font));
+			tabla.addCell(new Phrase(getSelectedProduct().getAlias(), fontNormal));
+			tabla.addCell(new Phrase("N° de cuenta:", font));
+			tabla.addCell(new Phrase(getSelectedProduct().getProductNumber(), fontNormal));
+			tabla.addCell(new Phrase("Tipo de cuenta:", font));
+			tabla.addCell(new Phrase(getSelectedProduct().getProductName(), fontNormal));
+			document.add(tabla);
+
+			title = new Paragraph("Intervinientes", FontFactory.getFont("helvetica", 11, new BaseColor(51, 51, 51)));
+			document.add(title);
+
+			tabla = new PdfPTable(2);
+			tabla.setSpacingBefore(20);
+			tabla.setSpacingAfter(20);
+			tabla.setHorizontalAlignment(Element.ALIGN_LEFT);
+			tabla.getDefaultCell().setBorder(0);
+
+			for (int i = 0; i < detallesCuentaDto.getHolders().size(); i++) {
+				tabla.addCell(new Phrase("Titular:", font));
+				tabla.addCell(new Phrase(detallesCuentaDto.getHolders().get(i).getAlias(), fontNormal));
+			}
+
+			tabla.addCell(new Phrase("Condiciones de movilización:", font));
+			tabla.addCell(new Phrase(detallesCuentaDto.getCondicionesMovilizacion(), fontNormal));
+			document.add(tabla);
+
+			title = new Paragraph("Condiciones", FontFactory.getFont("helvetica", 11, new BaseColor(51, 51, 51)));
+			document.add(title);
+
+			tabla = new PdfPTable(2);
+			tabla.setSpacingBefore(20);
+			tabla.setSpacingAfter(20);
+			tabla.setHorizontalAlignment(Element.ALIGN_LEFT);
+			tabla.getDefaultCell().setBorder(0);
+
+			tabla.addCell(new Phrase("Categoría:", font));
+			tabla.addCell(new Phrase(detallesCuentaDto.getDetalleCondiciones().getCategoria(), fontNormal));
+			tabla.addCell(new Phrase("Descripción:", font));
+			tabla.addCell(new Phrase(detallesCuentaDto.getDetalleCondiciones().getDescripcion(), fontNormal));
+			tabla.addCell(new Phrase("Fecha de apertura:", font));
+			final SimpleDateFormat dateFormat = new SimpleDateFormat(
+					MessagesHelper.INSTANCE.getStringI18("date.pattner.dd-mm-yyyy"));
+			if (detallesCuentaDto.getDetalleCondiciones().getFechaApertura() != null) {
+				tabla.addCell(new Phrase(dateFormat
+						.format(detallesCuentaDto.getDetalleCondiciones().getFechaApertura()), fontNormal));
+				dateFormat.format(detallesCuentaDto.getDetalleCondiciones().getFechaApertura());
+			} else {
+				tabla.addCell(new Phrase("N/A", fontNormal));
+			}
+			tabla.addCell(new Phrase("Comisiones:", font));
+			tabla.addCell(new Phrase(detallesCuentaDto.getDetalleCondiciones().getComisiones(), fontNormal));
+			document.add(tabla);
+
+			title = new Paragraph("Dirección postal", FontFactory.getFont("helvetica", 11, new BaseColor(51, 51, 51)));
+			document.add(title);
+
+			tabla = new PdfPTable(2);
+			tabla.setSpacingBefore(20);
+			tabla.setSpacingAfter(15);
+			tabla.setHorizontalAlignment(Element.ALIGN_LEFT);
+			tabla.getDefaultCell().setBorder(0);
+
+			tabla.addCell(new Phrase("Nombre oficina:", font));
+			tabla.addCell(new Phrase(detallesCuentaDto.getDireccionPostal().getNombreOficina(), fontNormal));
+			tabla.addCell(new Phrase("Dirección postal:", font));
+			tabla.addCell(new Phrase(detallesCuentaDto.getDireccionPostal().getDireccionPostal(), fontNormal));
+			document.add(tabla);
+			// PdfContentByte cb = writer.getDirectContent();
+			//
+			// ColumnText colum1 = new ColumnText(cb);
+			// Paragraph alias = new Paragraph("alias", FontFactory.getFont("arial", 12, BaseColor.BLACK));
+			// colum1.addText(alias);
+			//
+			// Paragraph aliasRes = new Paragraph("respuesta", FontFactory.getFont("arial", 12, BaseColor.BLACK));
+			// ColumnText colum2 = new ColumnText(cb);
+			// colum2.addText(aliasRes);
 
 			Paragraph att = new Paragraph("Cordial saludo, ", FontFactory.getFont("arial", 12, BaseColor.BLACK));
 			att.setAlignment(Element.ALIGN_JUSTIFIED);
