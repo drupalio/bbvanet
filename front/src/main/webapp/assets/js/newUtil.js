@@ -133,8 +133,15 @@ function clickMoveFav() {
 	});
 }
 
-$(document).ready(function() {
+function closePlease() {
+	$(document).ready(function() {
+		var asdasdas = $('#momentPlease');
+		var asdasd = $('#momentPlease').find('.ui-dialog-titlebar-close');
+		$(asdasd).click();
+	});
+}
 
+$(document).ready(function() {
 	/* button Extractos */
 	$('.extractButton').click(function() {
 		$('.extractOnePage').empty();
@@ -211,6 +218,10 @@ $(document).ready(function() {
 		$(selectItems).before("<div style='width:" + (260 - $(this).width()) + "px;' class='likeBord'/>");
 		$(selectItems).before("<div style='width:" + ($(this).width() - 1) + "px;' class='likeDif'/>");
 	});
+});
+
+$(window).load(function() {
+	PF('statusDialog').hide()
 });
 
 $(window).load(function() {

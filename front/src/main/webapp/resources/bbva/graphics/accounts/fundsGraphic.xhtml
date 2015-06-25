@@ -1,109 +1,78 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:composite="http://java.sun.com/jsf/composite"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:pm="http://primefaces.org/mobile"
-	xmlns:c="http://java.sun.com/jstl/core">
-
-
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile" xmlns:c="http://java.sun.com/jstl/core">
 <composite:interface>
 	<composite:attribute name="id" type="String" />
 	<composite:attribute name="pieConfigGUI" />
 </composite:interface>
-
 <composite:implementation>
-
-
 	<h:form id="pieGe">
 		<div align="center">
-
 			<div style="display: inline-block;" align="center">
-
 				<span
 					style="color: #274b6d; font-size: 16px; font: bold 16px Trebuchet MS, Arial, sans-serif; fill: #274b6d; width: 232px;">
 					#{cc.attrs.pieConfigUI.headerCenter}</span>
-
-			</div>
-
-		</div>
-		<div class="chart-cheese" id="#{cc.attrs.id}"
-			data-highcharts-chart="3">
-			<div id="chart2_4" class="c3">
-				<p:dialog widgetVar="GraphicFunds" modal="true" draggable="false"
-					position="center" showEffect="fade" hideEffect="fade"
-					closable="false" resizable="false" showHeader="false">
-					<p:outputLabel value="#{msg['please.wait']}" />
-				</p:dialog>
 			</div>
 		</div>
-
+		<div class="chart-cheese" id="#{cc.attrs.id}" data-highcharts-chart="3">
+			<div id="chart2_4" class="c3"></div>
+		</div>
 	</h:form>
-
-
-
 	<script>
-		$(document).ready(
-				function() {
+		$(document).ready(function() {
+			var totalColums = [];
+			var colorsLegend = [];
+			var label;
+			var colums;
+			var values;
+			var color;
+			var colors;
 
-					//PF('GraphicFunds').show()
-					var totalColums = [];
-					var colorsLegend = [];
-					var label;
-					var colums;
-					var values;
-					var color;
-					var colors;
+			<c:forEach var="pieItemUI" items="${cc.attrs.pieConfigUI.pieItemUIList}">
+			label = ("${pieItemUI.textLegend}");
+			values = ("${pieItemUI.value}");
+			colums = [ [ label ], [ values ] ];
+			totalColums.push(colums);
 
-					<c:forEach var="pieItemUI" items="${cc.attrs.pieConfigUI.pieItemUIList}">
-					label = ("${pieItemUI.textLegend}");
-					values = ("${pieItemUI.value}");
-					colums = [ [ label ], [ values ] ];
-					totalColums.push(colums);
+			color = ("${pieItemUI.color}");
+			colorsLegend.push(color);
+			</c:forEach>
 
-					color = ("${pieItemUI.color}");
-					colorsLegend.push(color);
-					</c:forEach>
+			var chart = c3.generate({
+				bindto : '#chart2_4',
 
-					var chart = c3.generate({
-						bindto : '#chart2_4',
+				data : {
 
-						data : {
+					size : {
+						height : 240,
+						width : 480
+					},
+					columns : totalColums,
 
-							size : {
-								height : 240,
-								width : 480
-							},
-							columns : totalColums,
+					type : 'pie',
+				},
+				pie : {
+					label : {
+						show : false
+					}
+				},
+				tooltip : {
+					format : {
+						value : function(value, ratio, id, index) {
+							var format1 = d3.format('$');
+							var format2 = d3.format('%');
+							var data = format1(value).bold() + "  " + '(' + format2(ratio) + ')';
+							return data;
+						}
+					}
+				},
+				color : {
+					pattern : colorsLegend
+				},
 
-							type : 'pie',
-						},
-						pie : {
-							label : {
-								show : false
-							}
-						},
-						tooltip : {
-							format : {
-								value : function(value, ratio, id, index) {
-									var format1 = d3.format('$');
-									var format2 = d3.format('%');
-									var data = format1(value).bold() + "  "
-											+ '(' + format2(ratio) + ')';
-									return data;
-								}
-							}
-						},
-						color : {
-							pattern : colorsLegend
-						},
-
-					});
-					PF('GraphicFunds').hide();
-				});
+			});
+		});
 	</script>
-
-
 </composite:implementation>
 </html>

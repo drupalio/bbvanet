@@ -10,12 +10,12 @@
 	<composite:attribute name="controller" type="com.bbva.net.front.core.AbstractBbvaController" />
 </composite:interface>
 <composite:implementation>
-	<div style = "display: #{cc.attrs.listQuota.size() > '0' ? 'block' : 'none'}" >
+	<div style="display: #{cc.attrs.listQuota.size()&gt; '0'? 'block': 'none'}">
 		<h:form id="#{cc.attrs.id}">
 			<p:dataTable id="#{cc.attrs.id}" var="iproduct" rowIndexVar="findex" selectionMode="single"
 				rowKey="#{iproduct.productId}" value="#{cc.attrs.listQuota}">
 				<p:ajax event="rowSelect" listener="#{cc.attrs.controller.onProductLoanSelected}"
-					immediate="true" onstart="PF('statusDialog').show()" oncomplete="PF('statusDialog').hide()" />
+					immediate="true" onstart="PF('statusDialog').show()" />
 				<p:ajax event="rowUnselect" />
 				<p:column class="head" headerText="#{msg['text.quota']}" styleClass="head col-xs-6 col-md-6"
 					style="font-size: 10px;color: #434A58;font-family: Arial;background: none;border-style: none">
