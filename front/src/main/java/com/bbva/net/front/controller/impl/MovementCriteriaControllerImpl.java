@@ -1,6 +1,5 @@
 package com.bbva.net.front.controller.impl;
 
-import java.awt.Desktop;
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -758,16 +757,24 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		} else {
 			exportDocumentPdf();
 		}
-
 		try {
-			if (Desktop.isDesktopSupported()) {
+			Process p = Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler Movimientos.pdf");
+			p.waitFor();
 
-				Desktop.getDesktop().open(pdfFile);
-				// myFile.delete();
-			}
-		} catch (IOException ex) {
-			LOGGER.info("Error al abrir archivo " + ex.getMessage());
+			LOGGER.info("Abrió el archivo");
+
+		} catch (Exception ex) {
+			LOGGER.info("No pudo abrir el archivo" + ex.getMessage());
 		}
+		// try {
+		// if (Desktop.isDesktopSupported()) {
+		//
+		// Desktop.getDesktop().open(pdfFile);
+		// // myFile.delete();
+		// }
+		// } catch (IOException ex) {
+		// LOGGER.info("Error al abrir archivo " + ex.getMessage());
+		// }
 	}
 
 	@Override
@@ -775,11 +782,11 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		try {
 
 			Properties props = new Properties();
-			props.put("mail.smtp.host", "smtp.gmail.com");
+			props.put("mail.smtp.host", "172.16.9.53");
 			props.setProperty("mail.smtp.starttls.enable", "true");
-			props.setProperty("mail.smtp.port", "587");
-			props.setProperty("mail.smtp.user", "nerlyzaa@gmail.com");
-			props.setProperty("mail.smtp.auth", "true");
+			props.setProperty("mail.smtp.port", "25");
+			props.setProperty("mail.smtp.user", "BBVA@bbvanet.com.co");
+			props.setProperty("mail.smtp.auth", "false");
 
 			Session session = Session.getDefaultInstance(props, null);
 
@@ -793,17 +800,16 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			BodyPart content = new MimeBodyPart();
 			String htmlHeader = "<br></br><br></br><strong>Estimado(a) cliente: </strong><br></br><br></br>";
 
-			String htmlTable = "<table width=100% rules=\"all\" border=\"1\"><thead><tr role=\"row\"><th role=\"columnheader\" tabindex=\"0\"><span >FECHA</span><span></span></th><th role=\"columnheader\" tabindex=\"0\"><span >CONCEPTO</span><span></span></th><th role=\"columnheader\" tabindex=\"0\"><span >VALOR</span><span ></span></th><th role=\"columnheader\" tabindex=\"0\"><span >SALDO</span><span ></span></th></tr></thead>";
+			String htmlTable = "<table width=100% rules=\"all\" border=\"1\"><thead><tr role=\"row\" style=\"background-color: gainsboro;\"><th role=\"columnheader\" tabindex=\"0\"><span >FECHA</span><span></span></th><th role=\"columnheader\" tabindex=\"0\"><span >CONCEPTO</span><span></span></th><th role=\"columnheader\" tabindex=\"0\"><span >VALOR</span><span ></span></th><th role=\"columnheader\" tabindex=\"0\"><span >SALDO</span><span ></span></th></tr></thead>";
 			for (int i = 0; i < this.movementsList.size(); i++) {
-				htmlTable += "<tr><th role=\"gridcell\" tabindex=\"0\"><span style=\"color:blue>"
-						+ this.movementsList.get(i).getMovementDate()
+				htmlTable += "<tr><th role=\"gridcell\" tabindex=\"0\"><span style=\"color:blue\">"
+						+ getdateString(this.movementsList.get(i).getMovementDate())
 						+ "</span><span></span></th><th role=\"gridcell\" tabindex=\"0\"><span style=\"font-weight:normal\">"
 						+ this.movementsList.get(i).getMovementConcept()
 						+ "</span><span></span></th><th role=\"gridcell\" tabindex=\"0\"><span >"
 						+ this.movementsList.get(i).getMovementValue()
 						+ "</span><span ></span></th><th role=\"gridcell\" tabindex=\"0\"><span >"
-						+ this.movementsList.get(i).getTotalBalance()
-						+ "</span><span ></span></th><th role=\"gridcell\" ><span></span></th></tr>";
+						+ this.movementsList.get(i).getTotalBalance() + "</span><span ></span></th></tr>";
 			}
 
 			htmlTable += "</table>";
@@ -820,13 +826,14 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			multiParte.addBodyPart(content);
 
 			MimeMessage message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("nerlyzaa@gmail.com"));
+			message.setFrom(new InternetAddress("BBVA@bbvanet.com.co"));
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress("nerlyzaa@gmail.com"));
 			message.setSubject("Movimientos");
 			message.setContent(multiParte);
 
 			Transport t = session.getTransport("smtp");
-			t.connect("nerlyzaa@gmail.com", "prueba");
+			t.connect();
+			// t.connect("nerlyzaa@gmail.com", "prueba");
 			t.sendMessage(message, message.getAllRecipients());
 			t.close();
 		} catch (Exception e) {
