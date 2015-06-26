@@ -34,65 +34,73 @@
 					</li>
 					<bbvaMenu:itemMenuMobile href="./globalPosition"
 						value="Posición global" title="Ir a Posición global"
-						liclass="home active"
+						liclass="home active" onclick="PF('statusDialog').show()"
 						spanclass="icon-menu-global-position-blue-light"
 						rendered="#{menuActive == 'PG'}" />
 
 					<bbvaMenu:itemMenuMobile href="./globalPosition"
 						value="Posición global" title="Ir a Posición global"
 						liclass="home" spanclass="icon-menu-global-position-blue-light"
-						rendered="#{menuActive != 'PG'}" />
+						rendered="#{menuActive != 'PG'}" onclick="PF('statusDialog').show()"/>
 
 					<bbvaMenu:itemMenuMobile href="./accounts" value="Cuentas"
 						title="Ir a Cuentas" liclass="active"
 						spanclass="icon-menu-accounts-blue-light"
-						rendered="#{menuActive == 'ACCOUNTS'}" />
+						rendered="#{menuActive == 'ACCOUNTS'}" 
+						onclick="PF('statusDialog').show()"/>
 
 					<bbvaMenu:itemMenuMobile href="./accounts" value="Cuentas"
 						title="Ir a Cuentas" liclass="item"
 						spanclass="icon-menu-accounts-blue-light"
-						rendered="#{menuActive != 'ACCOUNTS'}" />
+						rendered="#{menuActive != 'ACCOUNTS'}" 
+						onclick="PF('statusDialog').show()"/>
 
 					<bbvaMenu:itemMenuMobile href="./cards" value="Tarjetas"
 						title="Ir a Tarjetas" liclass="active"
 						spanclass="icon-menu-cards-blue-light"
-						rendered="#{menuActive == 'CARDS'}" />
+						rendered="#{menuActive == 'CARDS'}" 
+						onclick="PF('statusDialog').show()"/>
 
 					<bbvaMenu:itemMenuMobile href="./cards" value="Tarjetas"
 						title="Ir a Tarjetas" liclass="item"
 						spanclass="icon-menu-cards-blue-light"
-						rendered="#{menuActive != 'CARDS'}" />
+						rendered="#{menuActive != 'CARDS'}" 
+						onclick="PF('statusDialog').show()"/>
 
 					<bbvaMenu:itemMenuMobile href="./loan" value="Préstamos"
 						title="Ir a Préstamos" liclass="active"
 						spanclass="icon-menu-loans-blue-light"
-						rendered="#{menuActive == 'LOANS'}" />
+						rendered="#{menuActive == 'LOANS'}" 
+						onclick="PF('statusDialog').show()"/>
 
 					<bbvaMenu:itemMenuMobile href="./loan" value="Préstamos"
 						title="Ir a Préstamos" liclass="item"
 						spanclass="icon-menu-loans-blue-light"
-						rendered="#{menuActive != 'LOANS'}" />
+						rendered="#{menuActive != 'LOANS'}" 
+						onclick="PF('statusDialog').show()"/>
 
 					<bbvaMenu:itemMenuMobile href="./saveInvest"
-						value="Ahorro e	Inversiones"
+						value="Ahorro e	Inversiones" 
 						title="Ir a Ahorros e inversión" liclass="active"
 						spanclass="icon-menu-investments-blue-light"
-						rendered="#{menuActive == 'SAVEINVEST'}" />
+						rendered="#{menuActive == 'SAVEINVEST'}"
+						onclick="PF('statusDialog').show()" />
 						
 					<bbvaMenu:itemMenuMobile href="./saveInvest"
 						value="Ahorro e	Inversiones"
 						title="Ir a Ahorros e inversión" liclass="item"
 						spanclass="icon-menu-investments-blue-light"
-						rendered="#{menuActive != 'SAVEINVEST'}" />
+						rendered="#{menuActive != 'SAVEINVEST'}" 
+						onclick="PF('statusDialog').show()"/>
 						
-					<bbvaMenu:itemMenuMobile href=""
+					<bbvaMenu:itemMenuMobile href="#"
 						value="Seguros"
 						title="Ir a Seguros" liclass="active"
 						spanclass="icon-menu-insurance-blue-light"
 						rendered="#{menuActive == 'SEGUROS'}" />
 						
-					<bbvaMenu:itemMenuMobile href=""
-						value="Seguros"
+					<bbvaMenu:itemMenuMobile href="#"
+						value="Seguros" 
 						title="Ir a Seguros" liclass="item"
 						spanclass="icon-menu-insurance-blue-light"
 						rendered="#{menuActive != 'SEGUROS'}" />
