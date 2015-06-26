@@ -33,12 +33,18 @@
 			</p:column>
 			<p:column class="head" headerText="#{msg['text.account.balance']}" styleClass="col-xs-6 col-md-4"
 				style="font-size: 10px;color: #434A58;font-family: Arial;background: none;border-style: none">
-				<h:outputText style="font-size: 1.6em; font-weight:bold" styleClass="balance"
-					value="#{iproduct.totalCash}" />
-				<h:outputText styleClass="ui-datatable-selectable" style="font-size:1em;color:#71777f"
-					escape="false"
-					value="&lt;br /&gt; #{msg['text.account.balance.label']} #{iproduct.cashAvailable}" />
-				<p class="sublabel"></p>
+				<p:outputPanel rendered="#{(iproduct.isVisible()) &amp;&amp; (iproduct.getOperationOnline())}">
+					<h:outputText style="font-size: 1.6em; font-weight:bold" styleClass="balance"
+						value="#{iproduct.totalCash}" />
+					<h:outputText styleClass="ui-datatable-selectable" style="font-size:1em;color:#71777f"
+						value="&lt;br /&gt; #{msg['text.account.balance.label']} #{iproduct.cashAvailable}"
+						escape="false" />
+					<p class="sublabel"></p>
+				</p:outputPanel>
+				    <p:outputLabel rendered="#{!iproduct.isVisible()}" style="font-weight:bold"
+                        styleClass="balance" value="#{msg['msg.info.notConsu']}" />
+                    <p:outputLabel rendered="#{!iproduct.getOperationOnline()}" styleClass="balance"
+                        style="font-weight:bold" value="#{msg['msg.info.notOpera']}" />
 			</p:column>
 		</p:dataTable>
 	</h:form>
