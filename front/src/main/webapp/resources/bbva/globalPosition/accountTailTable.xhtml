@@ -16,7 +16,7 @@
 				rowIndexVar="findex" selectionMode="single" rowKey="#{iproduct.productId}"
 				value="#{cc.attrs.listAccounts}">
 				<p:ajax event="rowSelect" listener="#{cc.attrs.controller.onProductSelected}" immediate="true"
-					onstart="PF('statusDialog').show()" oncomplete="PF('statusDialog').hide()" />
+					onstart="PF('statusDialog').show()" />
 				<p:ajax event="rowUnselect" />
 				<p:column class="head" styleClass="col-xs-6 col-md-8"
 					style="padding: 14px !important;font-size: 10px;color: #434A58;border-style: solid none;

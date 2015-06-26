@@ -1652,3 +1652,17 @@ body div.ui-growl .ui-state-highlight {
 		overflow: hidden;
 	}
 }
+
+#momentPlease .ui-dialog-titlebar-close {
+	display: none !important;
+}
+
+#momentPlease .ui-dialog-content, #momentPlease.ui-widget-content,
+	#momentPlease  .ui-widget-header, #momentPlease .ui-dialog-content {
+	border: 0px !important;
+	background: transparent !important;
+}
+
+#momentPlease.ui-shadow {
+	box-shadow: none !important;
+}

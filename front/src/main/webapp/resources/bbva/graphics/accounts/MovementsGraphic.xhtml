@@ -1,27 +1,15 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:composite="http://java.sun.com/jsf/composite"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:pm="http://primefaces.org/mobile"
-	xmlns:c="http://java.sun.com/jstl/core">
-
-
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile" xmlns:c="http://java.sun.com/jstl/core">
 <composite:interface>
 	<composite:attribute name="id" type="String" />
-	<composite:attribute name="lineConfigUI"
-		type="com.bbva.net.front.ui.line.LineConfigUI" />		
+	<composite:attribute name="lineConfigUI" type="com.bbva.net.front.ui.line.LineConfigUI" />
 </composite:interface>
-
 <composite:implementation>
 	<div class="hidden-xs col-sm-4 bbva-chart">
 		<div id="savings" class="chart-lines">
-			<div id="chart2_8" class="c3">
-			<div id="imgLOAD" class="imgLOAD" align="center">
-				<IMG src="/assets/img/loader.gif" />
-			</div>
-			</div>
+			<div id="chart2_8" class="c3"></div>
 			<script>
 			var title;
 			var xColumns = [];

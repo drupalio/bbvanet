@@ -1,377 +1,105 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:composite="http://java.sun.com/jsf/composite"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:pm="http://primefaces.org/mobile"
-	xmlns:c="http://java.sun.com/jstl/core">
-
-
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile" xmlns:c="http://java.sun.com/jstl/core">
 <composite:interface>
-	<composite:attribute name="graphicLine"
-		type="com.bbva.net.front.ui.line.LineConfigUI" />
+	<composite:attribute name="graphicLine" type="com.bbva.net.front.ui.line.LineConfigUI" />
 </composite:interface>
-
 <composite:implementation>
 	<h:form id="eDeposit">
-
-		<div id="chart1_99">
-		<p:dialog widgetVar="GraphicDeposit" modal="true" draggable="false"
-			position="center" showEffect="fade" hideEffect="fade"
-			closable="false" resizable="false" showHeader="false">
-			<p:outputLabel value="#{msg['please.wait']}" />
-		</p:dialog>
-		</div>
+		<div id="chart1_99"></div>
 		<div class="col-md-12">
-		
 			<script>
-			$(document).ready(function() {
-				
-				//PF('GraphicDeposit').show()
-				var xColumns = [];
-				var xLines = [];
-				xColumns.push("data1");
+				$(document).ready(function() {
+					var xColumns = [];
+					var xLines = [];
+					xColumns.push("data1");
 
-				//Itera lista de saldos diario
-				<c:forEach var="lineItem" items="${cc.attrs.graphicLine.lineDepositItemUIList}" varStatus="status" >
-				xColumns.push("${lineItem.value.amount}");
-				xLines.push(["value"])
-				xLines.push(["${lineItem.value.amount}"])
-				</c:forEach>
-				
-				var chart1_99 = c3.generate({
-					bindto : '#chart1_99',
-					legend : {
-						show : false
-					},
-					padding : {
-						top : 0,
-						right : 30,
-						bottom : 0,
-						left : 30,
-					},
-					data : {
+					//Itera lista de saldos diario
+					<c:forEach var="lineItem" items="${cc.attrs.graphicLine.lineDepositItemUIList}" varStatus="status" >
+					xColumns.push("${lineItem.value.amount}");
+					xLines.push([ "value" ])
+					xLines.push([ "${lineItem.value.amount}" ])
+					</c:forEach>
 
-						columns : [ xColumns ],
-
-						regions : {
-							'data1' : [ {
-								'start' : 0,
-								'end' : 1,
-								'style' : 'dashed'
-							}, {
-								'start' : 2,
-								'end' : 3
-							}, {
-								'start' : 4
-							} ]
-
-						}
-					},
-					grid : {
-						y : {
-							//lines: [xLines]
-						lines: [{value: 1000000},{value: 2000000},{value: 3000000},{value: 4000000},{value: 5000000},{value: 6000000},{value: 7000000},{value: 8000000},{value: 9000000}]
-						}
-					},
-
-					axis : {
-						x : {
-							type : 'categorized'
+					var chart1_99 = c3.generate({
+						bindto : '#chart1_99',
+						legend : {
+							show : false
 						},
+						padding : {
+							top : 0,
+							right : 30,
+							bottom : 0,
+							left : 30,
+						},
+						data : {
 
-						y : {
-							show : false,
-							label : {
-								text : '$ (miles)',
-								position : 'outer-middle'
+							columns : [ xColumns ],
+
+							regions : {
+								'data1' : [ {
+									'start' : 0,
+									'end' : 1,
+									'style' : 'dashed'
+								}, {
+									'start' : 2,
+									'end' : 3
+								}, {
+									'start' : 4
+								} ]
+
 							}
 						},
-						y2 : {
-							show : false,
-							label : {
-								text : 'Y2 Label',
-								position : 'outer-middle'
+						grid : {
+							y : {
+								//lines: [xLines]
+								lines : [ {
+									value : 1000000
+								}, {
+									value : 2000000
+								}, {
+									value : 3000000
+								}, {
+									value : 4000000
+								}, {
+									value : 5000000
+								}, {
+									value : 6000000
+								}, {
+									value : 7000000
+								}, {
+									value : 8000000
+								}, {
+									value : 9000000
+								} ]
+							}
+						},
+
+						axis : {
+							x : {
+								type : 'categorized'
+							},
+
+							y : {
+								show : false,
+								label : {
+									text : '$ (miles)',
+									position : 'outer-middle'
+								}
+							},
+							y2 : {
+								show : false,
+								label : {
+									text : 'Y2 Label',
+									position : 'outer-middle'
+								}
 							}
 						}
-					}
+					});
 				});
-				PF('GraphicDeposit').hide();
-			});
 			</script>
-
-
 		</div>
-
-
-
-
-
-
-
-
-
-		<!-- <div class="chart-lines"
-				data-json="assets/js/graphycs/data/depositos.json"
-				data-highcharts-chart="17">
-				<div class="highcharts-container" id="highcharts-121"
-					style="position: relative; overflow: hidden; width: 627px; height: 400px; text-align: left; line-height: normal; z-index: 0; left: 0.166687px; top: 0.96666px;">
-					<svg version="1.1"
-						style="font-family: &amp; quot; Lucida Grande&amp;quot; , &amp; quot; Lucida Sans Unicode&amp;quot; , Verdana , Arial, Helvetica, sans-serif; font-size: 12px;"
-						xmlns="http://www.w3.org/2000/svg" width="627" height="400">
-						<desc>Created with Highcharts 3.0.10</desc>
-						<defs>
-						<clipPath id="highcharts-122">
-						<rect x="0" y="0" width="554" height="331" /></clipPath>
-						<radialGradient cx="0.5" cy="0.5" r="0.5" id="highcharts-125">
-						<stop offset="0" stop-color="#087BD3" stop-opacity="1" />
-						<stop offset="1" stop-color="#1E91E6" stop-opacity="1" /></radialGradient></defs>
-						<rect x="0" y="0" width="627" height="400" rx="5" ry="5"
-							fill="#FFFFFF" class=" highcharts-background" />
-						<g class="highcharts-grid" zIndex="1" />
-						<g class="highcharts-grid" zIndex="1">
-						<path fill="none" d="M 43 39.5 L 597 39.5" stroke="#C0C0C0"
-							stroke-width="1" zIndex="1" opacity="1" />
-						<path fill="none" d="M 43 70.5 L 597 70.5" stroke="#C0C0C0"
-							stroke-width="1" zIndex="1" opacity="1" />
-						<path fill="none" d="M 43 100.5 L 597 100.5" stroke="#C0C0C0"
-							stroke-width="1" zIndex="1" opacity="1" />
-						<path fill="none" d="M 43 130.5 L 597 130.5" stroke="#C0C0C0"
-							stroke-width="1" zIndex="1" opacity="1" />
-						<path fill="none" d="M 43 160.5 L 597 160.5" stroke="#C0C0C0"
-							stroke-width="1" zIndex="1" opacity="1" />
-						<path fill="none" d="M 43 190.5 L 597 190.5" stroke="#C0C0C0"
-							stroke-width="1" zIndex="1" opacity="1" />
-						<path fill="none" d="M 43 221.5 L 597 221.5" stroke="#C0C0C0"
-							stroke-width="1" zIndex="1" opacity="1" />
-						<path fill="none" d="M 43 251.5 L 597 251.5" stroke="#C0C0C0"
-							stroke-width="1" zIndex="1" opacity="1" />
-						<path fill="none" d="M 43 281.5 L 597 281.5" stroke="#C0C0C0"
-							stroke-width="1" zIndex="1" opacity="1" />
-						<path fill="none" d="M 43 311.5 L 597 311.5" stroke="#C0C0C0"
-							stroke-width="1" zIndex="1" opacity="1" />
-						<path fill="none" d="M 43 341.5 L 597 341.5" stroke="#C0C0C0"
-							stroke-width="1" zIndex="1" opacity="1" />
-						<path fill="none" d="M 43 371.5 L 597 371.5" stroke="#C0C0C0"
-							stroke-width="1" zIndex="1" opacity="1" /></g>
-						<g class="highcharts-axis" zIndex="2">
-						<path fill="none" d="M 116.5 371 L 116.5 376" stroke="#C0D0E0"
-							stroke-width="1" opacity="1" />
-						<path fill="none" d="M 153.5 371 L 153.5 376" stroke="#C0D0E0"
-							stroke-width="1" opacity="1" />
-						<path fill="none" d="M 190.5 371 L 190.5 376" stroke="#C0D0E0"
-							stroke-width="1" opacity="1" />
-						<path fill="none" d="M 227.5 371 L 227.5 376" stroke="#C0D0E0"
-							stroke-width="1" opacity="1" />
-						<path fill="none" d="M 264.5 371 L 264.5 376" stroke="#C0D0E0"
-							stroke-width="1" opacity="1" />
-						<path fill="none" d="M 301.5 371 L 301.5 376" stroke="#C0D0E0"
-							stroke-width="1" opacity="1" />
-						<path fill="none" d="M 337.5 371 L 337.5 376" stroke="#C0D0E0"
-							stroke-width="1" opacity="1" />
-						<path fill="none" d="M 374.5 371 L 374.5 376" stroke="#C0D0E0"
-							stroke-width="1" opacity="1" />
-						<path fill="none" d="M 411.5 371 L 411.5 376" stroke="#C0D0E0"
-							stroke-width="1" opacity="1" />
-						<path fill="none" d="M 448.5 371 L 448.5 376" stroke="#C0D0E0"
-							stroke-width="1" opacity="1" />
-						<path fill="none" d="M 485.5 371 L 485.5 376" stroke="#C0D0E0"
-							stroke-width="1" opacity="1" />
-						<path fill="none" d="M 522.5 371 L 522.5 376" stroke="#C0D0E0"
-							stroke-width="1" opacity="1" />
-						<path fill="none" d="M 559.5 371 L 559.5 376" stroke="#C0D0E0"
-							stroke-width="1" opacity="1" />
-						<path fill="none" d="M 597.5 371 L 597.5 376" stroke="#C0D0E0"
-							stroke-width="1" opacity="1" />
-						<path fill="none" d="M 79.5 371 L 79.5 376" stroke="#C0D0E0"
-							stroke-width="1" opacity="1" />
-						<path fill="none" d="M 43 371.5 L 597 371.5" stroke="#C0D0E0"
-							stroke-width="1" zIndex="7" visibility="visible" /></g>
-						<g class="highcharts-axis" zIndex="2">
-						<text x="33" y="205.5" zIndex="7" text-anchor="middle"
-							transform="translate(0,0) rotate(270 33 205.5)"
-							class=" highcharts-yaxis-title"
-							style="color:#434A58;font-weight:bold;font:bold 12px Trebuchet MS, Arial, sans-serif;font-size:11px;font-family:Arial;fill:#434A58;"
-							visibility="visible">
-						<tspan x="33">$ (miles)</tspan></text></g>
-						<g class="highcharts-series-group" zIndex="3">
-						<g class="highcharts-series" visibility="visible" zIndex="0.1"
-							transform="translate(43,40) scale(1 1)"
-							clip-path="url(#highcharts-122)">
-						<path fill="none"
-							d="M 92.33333333333333 324.9818181818182 L 166.2 270.8181818181818 M 387.79999999999995 84.25454545454545 L 461.6666666666666 60.78363636363639"
-							stroke="url(#highcharts-125)" stroke-width="2" zIndex="1"
-							stroke-linejoin="round" stroke-linecap="round" />
-						<path fill="none"
-							d="M 82.33333333333333 324.9818181818182 L 92.33333333333333 324.9818181818182 L 166.2 270.8181818181818 L 176.2 270.8181818181818 M 377.79999999999995 84.25454545454545 L 387.79999999999995 84.25454545454545 L 461.6666666666666 60.78363636363639 L 471.6666666666666 60.78363636363639"
-							stroke-linejoin="round" visibility="visible"
-							stroke-opacity="0.0001" stroke="rgb(192,192,192)"
-							stroke-width="22" zIndex="2" class=" highcharts-tracker" style="" /></g>
-						<g class="highcharts-markers highcharts-tracker"
-							visibility="visible" zIndex="0.1"
-							transform="translate(43,40) scale(1 1)" clip-path="none" style="">
-						<path fill="url(#highcharts-125)"
-							d="M 461 56.78363636363639 C 466.328 56.78363636363639 466.328 64.78363636363639 461 64.78363636363639 C 455.672 64.78363636363639 455.672 56.78363636363639 461 56.78363636363639 Z"
-							visibility="inherit" />
-						<path fill="url(#highcharts-125)"
-							d="M 387 80.25454545454545 C 392.328 80.25454545454545 392.328 88.25454545454545 387 88.25454545454545 C 381.672 88.25454545454545 381.672 80.25454545454545 387 80.25454545454545 Z"
-							visibility="inherit" />
-						<path fill="url(#highcharts-125)"
-							d="M 166 266.8181818181818 C 171.328 266.8181818181818 171.328 274.8181818181818 166 274.8181818181818 C 160.672 274.8181818181818 160.672 266.8181818181818 166 266.8181818181818 Z"
-							visibility="inherit" />
-						<path fill="url(#highcharts-125)"
-							d="M 92 320.9818181818182 C 97.328 320.9818181818182 97.328 328.9818181818182 92 328.9818181818182 C 86.672 328.9818181818182 86.672 320.9818181818182 92 320.9818181818182 Z"
-							visibility="inherit" /></g></g>
-						<text x="309" y="25" text-anchor="middle" class="highcharts-title"
-							zIndex="4"
-							style="color:#274b6d;font-size:16px;font:bold 16px Trebuchet MS, Arial, sans-serif;fill:#274b6d;width:533px;">
-						<tspan x="309">Enero</tspan></text>
-						<g class="highcharts-axis-labels highcharts-xaxis-labels"
-							zIndex="7">
-						<text x="61.46666666666667" y="385" text-anchor="middle"
-							style="width:17px;color:#666;cursor:default;font-size:11px;font:11px Trebuchet MS, Arial, sans-serif;fill:#666;"
-							opacity="1">
-						<tspan x="61.46666666666667">4</tspan></text>
-						<text x="98.39999999999999" y="385" text-anchor="middle"
-							style="width:17px;color:#666;cursor:default;font-size:11px;font:11px Trebuchet MS, Arial, sans-serif;fill:#666;"
-							opacity="1">
-						<tspan x="98.39999999999999">6</tspan></text>
-						<text x="135.33333333333334" y="385" text-anchor="middle"
-							style="width:17px;color:#666;cursor:default;font-size:11px;font:11px Trebuchet MS, Arial, sans-serif;fill:#666;"
-							opacity="1">
-						<tspan x="135.33333333333334">8</tspan></text>
-						<text x="172.26666666666665" y="385" text-anchor="middle"
-							style="width:17px;color:#666;cursor:default;font-size:11px;font:11px Trebuchet MS, Arial, sans-serif;fill:#666;"
-							opacity="1">
-						<tspan x="172.26666666666665">10</tspan></text>
-						<text x="209.2" y="385" text-anchor="middle"
-							style="width:17px;color:#666;cursor:default;font-size:11px;font:11px Trebuchet MS, Arial, sans-serif;fill:#666;"
-							opacity="1">
-						<tspan x="209.2">12</tspan></text>
-						<text x="246.13333333333335" y="385" text-anchor="middle"
-							style="width:17px;color:#666;cursor:default;font-size:11px;font:11px Trebuchet MS, Arial, sans-serif;fill:#666;"
-							opacity="1">
-						<tspan x="246.13333333333335">14</tspan></text>
-						<text x="283.06666666666666" y="385" text-anchor="middle"
-							style="width:17px;color:#666;cursor:default;font-size:11px;font:11px Trebuchet MS, Arial, sans-serif;fill:#666;"
-							opacity="1">
-						<tspan x="283.06666666666666">16</tspan></text>
-						<text x="320" y="385" text-anchor="middle"
-							style="width:17px;color:#666;cursor:default;font-size:11px;font:11px Trebuchet MS, Arial, sans-serif;fill:#666;"
-							opacity="1">
-						<tspan x="320">18</tspan></text>
-						<text x="356.9333333333333" y="385" text-anchor="middle"
-							style="width:17px;color:#666;cursor:default;font-size:11px;font:11px Trebuchet MS, Arial, sans-serif;fill:#666;"
-							opacity="1">
-						<tspan x="356.9333333333333">20</tspan></text>
-						<text x="393.8666666666666" y="385" text-anchor="middle"
-							style="width:17px;color:#666;cursor:default;font-size:11px;font:11px Trebuchet MS, Arial, sans-serif;fill:#666;"
-							opacity="1">
-						<tspan x="393.8666666666666">22</tspan></text>
-						<text x="430.79999999999995" y="385" text-anchor="middle"
-							style="width:17px;color:#666;cursor:default;font-size:11px;font:11px Trebuchet MS, Arial, sans-serif;fill:#666;"
-							opacity="1">
-						<tspan x="430.79999999999995">24</tspan></text>
-						<text x="467.7333333333333" y="385" text-anchor="middle"
-							style="width:17px;color:#666;cursor:default;font-size:11px;font:11px Trebuchet MS, Arial, sans-serif;fill:#666;"
-							opacity="1">
-						<tspan x="467.7333333333333">26</tspan></text>
-						<text x="504.6666666666666" y="385" text-anchor="middle"
-							style="width:17px;color:#666;cursor:default;font-size:11px;font:11px Trebuchet MS, Arial, sans-serif;fill:#666;"
-							opacity="1">
-						<tspan x="504.6666666666666">28</tspan></text>
-						<text x="541.5999999999999" y="385" text-anchor="middle"
-							style="width:17px;color:#666;cursor:default;font-size:11px;font:11px Trebuchet MS, Arial, sans-serif;fill:#666;"
-							opacity="1">
-						<tspan x="541.5999999999999">30</tspan></text>
-						<text x="578.5333333333333" y="385" text-anchor="middle"
-							style="width:17px;color:#666;cursor:default;font-size:11px;font:11px Trebuchet MS, Arial, sans-serif;fill:#666;"
-							opacity="1">
-						<tspan x="578.5333333333333">31</tspan></text></g>
-						<g class="highcharts-axis-labels highcharts-yaxis-labels"
-							zIndex="7">
-						<text x="35" y="383" text-anchor="end"
-							style="width:187px;color:#666;cursor:default;font-size:11px;font:11px Trebuchet MS, Arial, sans-serif;fill:#666;"
-							opacity="1">
-						<tspan x="35">1450</tspan></text>
-						<text x="35" y="352.90909090909093" text-anchor="end"
-							style="width:187px;color:#666;cursor:default;font-size:11px;font:11px Trebuchet MS, Arial, sans-serif;fill:#666;"
-							opacity="1">
-						<tspan x="35">1500</tspan></text>
-						<text x="35" y="322.8181818181818" text-anchor="end"
-							style="width:187px;color:#666;cursor:default;font-size:11px;font:11px Trebuchet MS, Arial, sans-serif;fill:#666;"
-							opacity="1">
-						<tspan x="35">1550</tspan></text>
-						<text x="35" y="292.72727272727275" text-anchor="end"
-							style="width:187px;color:#666;cursor:default;font-size:11px;font:11px Trebuchet MS, Arial, sans-serif;fill:#666;"
-							opacity="1">
-						<tspan x="35">1600</tspan></text>
-						<text x="35" y="262.6363636363636" text-anchor="end"
-							style="width:187px;color:#666;cursor:default;font-size:11px;font:11px Trebuchet MS, Arial, sans-serif;fill:#666;"
-							opacity="1">
-						<tspan x="35">1650</tspan></text>
-						<text x="35" y="232.54545454545456" text-anchor="end"
-							style="width:187px;color:#666;cursor:default;font-size:11px;font:11px Trebuchet MS, Arial, sans-serif;fill:#666;"
-							opacity="1">
-						<tspan x="35">1700</tspan></text>
-						<text x="35" y="202.45454545454547" text-anchor="end"
-							style="width:187px;color:#666;cursor:default;font-size:11px;font:11px Trebuchet MS, Arial, sans-serif;fill:#666;"
-							opacity="1">
-						<tspan x="35">1750</tspan></text>
-						<text x="35" y="172.36363636363637" text-anchor="end"
-							style="width:187px;color:#666;cursor:default;font-size:11px;font:11px Trebuchet MS, Arial, sans-serif;fill:#666;"
-							opacity="1">
-						<tspan x="35">1800</tspan></text>
-						<text x="35" y="142.27272727272728" text-anchor="end"
-							style="width:187px;color:#666;cursor:default;font-size:11px;font:11px Trebuchet MS, Arial, sans-serif;fill:#666;"
-							opacity="1">
-						<tspan x="35">1850</tspan></text>
-						<text x="35" y="112.18181818181819" text-anchor="end"
-							style="width:187px;color:#666;cursor:default;font-size:11px;font:11px Trebuchet MS, Arial, sans-serif;fill:#666;"
-							opacity="1">
-						<tspan x="35">1900</tspan></text>
-						<text x="35" y="82.09090909090912" text-anchor="end"
-							style="width:187px;color:#666;cursor:default;font-size:11px;font:11px Trebuchet MS, Arial, sans-serif;fill:#666;"
-							opacity="1">
-						<tspan x="35">1950</tspan></text>
-						<text x="35" y="52" text-anchor="end"
-							style="width:187px;color:#666;cursor:default;font-size:11px;font:11px Trebuchet MS, Arial, sans-serif;fill:#666;"
-							opacity="1">
-						<tspan x="35">2000</tspan></text></g>
-						<g class="highcharts-tooltip" zIndex="8"
-							style="cursor:default;padding:0;white-space:nowrap;"
-							transform="translate(0,-9999)">
-						<rect x="0.5" y="0.5" width="16" height="16" fill="none"
-							fill-opacity="0.85" rx="3" ry="3" isShadow="true" stroke="black"
-							stroke-opacity="0.049999999999999996" stroke-width="5"
-							transform="translate(1, 1)" />
-						<rect x="0.5" y="0.5" width="16" height="16" fill="none"
-							fill-opacity="0.85" rx="3" ry="3" isShadow="true" stroke="black"
-							stroke-opacity="0.09999999999999999" stroke-width="3"
-							transform="translate(1, 1)" />
-						<rect x="0.5" y="0.5" width="16" height="16" fill="none"
-							fill-opacity="0.85" rx="3" ry="3" isShadow="true" stroke="black"
-							stroke-opacity="0.15" stroke-width="1"
-							transform="translate(1, 1)" />
-						<rect x="0.5" y="0.5" width="16" height="16"
-							fill="rgb(255,255,255)" fill-opacity="0.85" rx="3" ry="3" />
-						<text x="8" y="21" zIndex="1"
-							style="font-size:12px;color:#333333;fill:#333333;" /></g>
-						<text x="617" y="395" text-anchor="end" zIndex="8"
-							style="cursor:pointer;color:#909090;font-size:9px;fill:#909090;">
-						<tspan x="617">Highcharts.com</tspan></text></svg>
-				</div>
-			</div>  -->
-
-
-
-
-
-
-
-
 	</h:form>
-
 </composite:implementation>
 </html>
