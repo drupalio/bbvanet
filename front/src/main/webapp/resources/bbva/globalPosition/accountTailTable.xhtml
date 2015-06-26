@@ -28,7 +28,7 @@
 					<h:outputText style="font-size: 1em" escape="false" value="&lt;br /&gt; #{iproduct.productId}"></h:outputText>
 					<h:outputText styleClass="sublabel" style="font-size: 1em" escape="false"
 						value="&lt;br /&gt; #{iproduct.productName}" />
-					<bbvaInput:selectOneMenuLikes valueList="#{comboCriteriaController.getListQuieroAccounts()}"
+					<bbvaInput:selectOneMenuLikes valueList="#{comboCriteriaController.getListQuieroAccounts(iproduct)}"
 						listener="#{applicationController.onLikeAccount}" />
 				</p:column>
 				<p:column class="head" styleClass="col-xs-6 col-md-4"
