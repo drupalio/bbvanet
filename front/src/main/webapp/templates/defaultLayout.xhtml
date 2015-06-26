@@ -11,6 +11,21 @@
 	<f:view locale="es_CO"></f:view>
 	<title><ui:insert name="title">	BBVA :: Colombia :: Posición Global</ui:insert></title>
 	<bbvaScript:assetScripts />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	    <title>Google Maps Javascript API V3 y Geoposicionamiento</title>
+
+		<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
+		<style>
+
+		#map
+		{
+			width: 100%;
+			height: 300px;
+			border: 1px solid #d0d0d0;
+		}
+
+		</style>
 </h:head>
 <h:body onload="initChart();">
 	<script type="text/javascript">

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 
 import com.bbva.net.back.entity.MultiValueGroup;
 import com.bbva.net.back.facade.MultiValueGroupFacade;
+import com.bbva.net.back.model.globalposition.ProductDto;
 import com.bbva.net.front.controller.ComboCriteriaController;
 import com.bbva.net.front.core.AbstractBbvaController;
 
@@ -82,8 +83,15 @@ public class ComboCriteriaControllerImpl extends AbstractBbvaController implemen
 	 * Método que obtiene los items del combo quiero de cuentas
 	 */
 	@Override
-	public List<MultiValueGroup> getListQuieroAccounts() {
-		return this.multiValueGroupFacade.getMultiValueTypes(6);
+	public List<MultiValueGroup> getListQuieroAccounts(ProductDto product) {
+		LOGGER.info("Prodcuto " + product.getAlias());
+		if (product.getOperationOnline()) {
+			return this.multiValueGroupFacade.getMultiValueTypes(6);
+		} else {
+			List<MultiValueGroup> lista = this.multiValueGroupFacade.getMultiValueTypes(6);
+			lista.remove(lista.size() - 1);
+			return lista;
+		}
 	}
 
 	/**
