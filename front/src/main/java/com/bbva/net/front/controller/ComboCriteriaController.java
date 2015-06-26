@@ -15,7 +15,7 @@ public interface ComboCriteriaController {
 
 	List<MultiValueGroup> getListQuieroCards();
 
-	List<MultiValueGroup> getListQuieroQuota();
+	List<MultiValueGroup> getListQuieroQuota(ProductDto product);
 
 	List<MultiValueGroup> getQuieroLoan();
 

@@ -31,7 +31,7 @@
 					<h:outputText styleClass="sublabel" style="font-size: 1.1em;font-weight:bold;color:#71777f"
 						escape="false" value="&lt;br /&gt; #{iprodcut.productName}" />
 					<!-- Combo quiero -->
-					<bbvaInput:selectOneMenuLikes valueList="#{comboCriteriaController.getListQuieroQuota()}"
+					<bbvaInput:selectOneMenuLikes valueList="#{comboCriteriaController.getListQuieroQuota(iproduct)}"
 						listener="#{applicationController.onLike}" />
 				</p:column>
 				<p:column class="head" styleClass="head hidden-xs hidden-sm col-sm-4"
