@@ -36,7 +36,7 @@
 	color: #333 !important;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 14px !important;
-	height: 100% !important;
+	height: auto !important;
 	line-height: 20px !important;
 	min-height: 1px !important;
 	padding-left: 15px !important;
@@ -1492,7 +1492,7 @@ body div.ui-growl .ui-state-highlight {
 	margin-left: 3px;
 	position: relative;
 	top: 7px;
-	width: 18px;
+	width: auto;
 }
 
 /*Combo like*/
