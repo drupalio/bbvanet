@@ -133,14 +133,6 @@ function clickMoveFav() {
 	});
 }
 
-function closePlease() {
-	$(document).ready(function() {
-		var asdasdas = $('#momentPlease');
-		var asdasd = $('#momentPlease').find('.ui-dialog-titlebar-close');
-		$(asdasd).click();
-	});
-}
-
 $(document).ready(function() {
 	/* button Extractos */
 	$('.extractButton').click(function() {

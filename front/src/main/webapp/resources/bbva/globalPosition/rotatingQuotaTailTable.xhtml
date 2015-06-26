@@ -46,9 +46,15 @@
 					style="padding: 14px !important;font-size: 10px;color: #434A58;border-style: solid none;
 					font-family: Arial;background: none;border-radius: 4px;border: 2px solid #DBDCDF;
 					background-color: #F3F5F7;margin-bottom: 14px;">
-					<h:outputText style="font-size: 1.6em; font-weight:bold" styleClass="balance"
-						value="#{iproduct.cashAvailable}" />
-					<p class="sublabel"></p>
+					<p:outputPanel rendered="#{(iproduct.isVisible()) &amp;&amp; (iproduct.getOperationOnline())}">
+						<h:outputText style="font-size: 1.6em; font-weight:bold" styleClass="balance"
+							value="#{iproduct.cashAvailable}" />
+						<p class="sublabel"></p>
+					</p:outputPanel>
+				    <p:outputLabel rendered="#{!iproduct.isVisible()}" style="font-weight:bold"
+                        styleClass="balance" value="#{msg['msg.info.notConsu']}" />
+                    <p:outputLabel rendered="#{!iproduct.getOperationOnline()}" styleClass="balance"
+                        style="font-weight:bold" value="#{msg['msg.info.notOpera']}" />
 				</p:column>
 			</p:dataTable>
 		</h:form>

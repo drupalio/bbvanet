@@ -98,8 +98,9 @@
 
 			<bbvaDetAcc:tabMenu id="tabMenu">
 
-				<bbvaDetAcc:menuMovements />
-
+				<bbvaDetAcc:menuMovements disabledOpera="#{product.getOperationOnline()}"
+                    disabledConsult="#{product.isVisible()}" />
+                    
 				<div class="tab-content">
 
 					<!-- Tab Consultar -->
