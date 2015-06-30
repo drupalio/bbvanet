@@ -13,6 +13,7 @@ import javax.annotation.Resource;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.tools.ant.util.DateUtils;
@@ -97,6 +98,12 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 			this.productDto = new ProductDto();
 		}
 		cleanFilters();
+	}
+
+	public void resetData() {
+		final HttpSession session = (HttpSession)FacesContext.getCurrentInstance().getExternalContext()
+				.getSession(false);
+		session.setAttribute("operationsRotary", "false");
 	}
 
 	@Override

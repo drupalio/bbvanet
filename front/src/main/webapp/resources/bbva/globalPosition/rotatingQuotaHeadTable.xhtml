@@ -17,30 +17,27 @@
 				<p:ajax event="rowSelect" listener="#{cc.attrs.controller.onProductLoanSelected}"
 					immediate="true" onstart="PF('statusDialog').show()" />
 				<p:ajax event="rowUnselect" />
-				<p:column class="head" headerText="#{msg['text.quota']}" styleClass="head col-xs-6 col-md-6"
-					style="font-size: 10px;color: #434A58;font-family: Arial;background: none;border-style: none">
-					<h:outputText styleClass="title-label"
-						style="font-size: 1.2em; font-weight:bold; color:#0078d2" escape="false"
-						value="#{iproduct.alias}" />
-					<h:outputText
-						style="display:block;font-size: 1.1em;margin-bottom:-8px;margin-top:-8px;color:#71777f"
-						escape="false" value="&lt;br /&gt; #{iproduct.productId}"></h:outputText>
-					<h:outputText styleClass="sublabel" style="font-size: 1.1em;font-weight:bold;color:#71777f"
-						escape="false" value="&lt;br /&gt; #{iproduct.productName}" />
+				<p:column headerText="#{msg['text.quota']}"
+					styleClass="head col-xs-6 col-md-6 columStyleVisible">
+					<h:outputText styleClass="title-label" value="#{iproduct.alias}" escape="false"
+						style="font-size: 1.2em; font-weight:bold; color:#0078d2" />
+					<h:outputText escape="false" value="&lt;br /&gt; #{iproduct.productId}"
+						style="display:block;font-size: 1.1em;margin-bottom:-8px;margin-top:-8px;color:#71777f" />
+					<h:outputText escape="false" value="&lt;br /&gt; #{iproduct.productName}" styleClass="sublabel"
+						style="font-size: 1.1em;font-weight:bold;color:#71777f" />
 					<!-- Combo quiero -->
-					<bbvaInput:selectOneMenuLikes valueList="#{comboCriteriaController.getListQuieroQuota()}"
-						listener="#{applicationController.onLike}" />
+					<bbvaInput:selectOneMenuLikes
+						valueList="#{comboCriteriaController.getListQuieroQuota(iproduct)}"
+						listener="#{applicationController.onLikeQuota}" />
 				</p:column>
-				<p:column class="head" headerText="#{msg['text.quotaTotal']}"
-					styleClass="hidden-xs hidden-sm col-sm-4"
-					style="font-size: 10px;color: #434A58;font-family: Arial;background: none;border-style: none">
-					<h:outputText style="font-size: 1.6em; font-weight:bold"
-						styleClass="balance hidden-xs hidden-sm" value="#{iproduct.totalCash}" />
+				<p:column headerText="#{msg['text.quotaTotal']}"
+					styleClass="hidden-xs hidden-sm col-sm-4 columStyleVisible">
+					<h:outputText style="font-size: 1.6em; font-weight:bold" value="#{iproduct.totalCash}"
+						styleClass="balance hidden-xs hidden-sm" />
 					<p class="sublabel"></p>
 				</p:column>
-				<p:column class="head" headerText="#{msg['text.quotaAvailable']}"
-					styleClass="head col-xs-6 col-md-4"
-					style="font-size: 10px;color: #434A58;font-family: Arial;background: none;border-style: none">
+				<p:column headerText="#{msg['text.quotaAvailable']}"
+					styleClass="head col-xs-6 col-md-4 columStyleVisible">
 					<p:outputPanel rendered="#{(iproduct.isVisible()) &amp;&amp; (iproduct.getOperationOnline())}">
 						<h:outputText style="font-size: 1.6em; font-weight:bold" styleClass="balance"
 							value="#{iproduct.cashAvailable}" />

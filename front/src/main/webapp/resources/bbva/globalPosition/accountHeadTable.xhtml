@@ -29,7 +29,7 @@
 					escape="false" value="&lt;br /&gt; #{iproduct.productName}" />
 				<!-- Combo quiero -->
 				<bbvaInput:selectOneMenuLikes valueList="#{comboCriteriaController.getListQuieroAccounts(iproduct)}"
-					listener="#{applicationController.onLikeAccount}" value="#{iproduct.productId}"/>
+					listener="#{applicationController.onLikeAccount}" />
 			</p:column>
 			<p:column class="head" headerText="#{msg['text.account.balance']}" styleClass="col-xs-6 col-md-4"
 				style="font-size: 10px;color: #434A58;font-family: Arial;background: none;border-style: none">

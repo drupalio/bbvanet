@@ -140,7 +140,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	public void resetData() {
 		final HttpSession session = (HttpSession)FacesContext.getCurrentInstance().getExternalContext()
 				.getSession(false);
-		session.setAttribute("operations", "false");
+		session.setAttribute("operationsAccount", "false");
 	}
 
 	@Override

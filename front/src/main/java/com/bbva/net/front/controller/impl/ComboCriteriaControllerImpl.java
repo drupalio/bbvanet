@@ -106,8 +106,15 @@ public class ComboCriteriaControllerImpl extends AbstractBbvaController implemen
 	 * Método que obtiene los items del combo quiero de cupo
 	 */
 	@Override
-	public List<MultiValueGroup> getListQuieroQuota() {
-		return this.multiValueGroupFacade.getMultiValueTypes(8);
+	public List<MultiValueGroup> getListQuieroQuota(ProductDto product) {
+		LOGGER.info("Prodcuto " + product.getAlias());
+		if (product.getOperationOnline()) {
+			return this.multiValueGroupFacade.getMultiValueTypes(8);
+		} else {
+			List<MultiValueGroup> lista = this.multiValueGroupFacade.getMultiValueTypes(8);
+			lista.remove(lista.size() - 1);
+			return lista;
+		}
 	}
 
 	/**
