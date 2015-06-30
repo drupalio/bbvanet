@@ -20,6 +20,7 @@
 			<evaluate expression="new java.lang.String()" />
 		</on-entry>
 		<transition to="detailAccount" on="accountSelected"></transition>
+		<transition to="globalPosition" on="back"></transition>
 		<transition to="detailQuota" on="loanSelected"></transition>
 	</view-state>
 

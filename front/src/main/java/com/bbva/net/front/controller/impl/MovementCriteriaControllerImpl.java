@@ -50,6 +50,7 @@ import org.primefaces.event.SelectEvent;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
+import com.bbva.net.back.entity.MultiCoordinates;
 import com.bbva.net.back.facade.MovementsAccountFacade;
 import com.bbva.net.back.facade.MultiValueGroupFacade;
 import com.bbva.net.back.model.citeriaMovements.MovementCriteriaDto;
@@ -117,6 +118,8 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	@Resource(name = "movementsAccountFacade")
 	private transient MovementsAccountFacade movementsFacade;
 
+	private transient ComboCriteriaControllerImpl comboCriteriaControllerImpl = new ComboCriteriaControllerImpl();
+
 	private List<MovementDto> movementsList;
 
 	@Resource(name = "graphicLineDelegate")
@@ -162,11 +165,20 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		LOGGER.info("MovementsAccountController onMovementSelected");
 		super.onMovementSelected(selectEvent);
 		movementDetail = new MovementDetailDto();
+
 		try {
 			LOGGER.info("MovementsAccountController onMovementSelected movementId:  "
 					+ getSelectedMovements().getMovementId());
 			movementDetail = this.movementsFacade.getMovement(getSelectedProduct().getProductId(), getSelectedProduct()
 					.getTypeProd().value(), getSelectedMovements().getMovementId());
+			List<MultiCoordinates> coordenadas = this.multiValueGroupFacade.getMultiCoordinate(movementDetail
+					.getPlaza().getCode());
+			// movementDetail.getPlaza().setLatitude(coordenadas.get(0).getLength());
+			// movementDetail.getPlaza().setLength(coordenadas.get(0).getLatitude());
+			LOGGER.info("latitud..." + coordenadas.get(0).getLatitude() + "..longitud.."
+					+ coordenadas.get(0).getLength() + "..");
+			movementDetail.getPlaza().setLatitude("4.712036");
+			movementDetail.getPlaza().setLength("-74.071831");
 		} catch (Exception e) {
 			// FacesContext ctx = FacesContext.getCurrentInstance();
 			// ctx.addMessage("movementDetail", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));

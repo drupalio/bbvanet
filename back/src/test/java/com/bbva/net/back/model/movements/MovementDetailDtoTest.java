@@ -4,6 +4,7 @@ import java.util.Date;
 
 import com.bbva.net.back.model.citeriaMovements.MovementCriteriaDto;
 import com.bbva.net.back.model.commons.Money;
+import com.bbva.net.back.model.office.OfficeDto;
 import com.bbva.net.core.test.AbstractBbvaDTOTest;
 
 public class MovementDetailDtoTest extends AbstractBbvaDTOTest<MovementDetailDto> {
@@ -11,7 +12,7 @@ public class MovementDetailDtoTest extends AbstractBbvaDTOTest<MovementDetailDto
 	private MovementDetailDto movementDetailDto;
 
 	public MovementDetailDtoTest() {
-		this.movementDetailDto = new MovementDetailDto(new Date(), "1234", "desc", "none", "salitre", "salitre",
+		this.movementDetailDto = new MovementDetailDto(new Date(), "1234", "desc", "none", "salitre", new OfficeDto(),
 				"desac", new Money(), new Money(), new Money(), "12342345", new Date(), new Date(), "trasaccion",
 				"none", "desac", "1", "3");
 	}

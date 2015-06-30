@@ -1666,3 +1666,9 @@ body div.ui-growl .ui-state-highlight {
 #momentPlease.ui-shadow {
 	box-shadow: none !important;
 }
+
+#mapDetail	{
+	width: 100%;
+	height: 200px;
+	border: 1px solid #d0d0d0;
+}

@@ -10,7 +10,9 @@ import javax.annotation.Resource;
 
 import com.bbva.net.back.core.pattern.facade.AbstractBbvaFacade;
 import com.bbva.net.back.core.stereotype.Facade;
+import com.bbva.net.back.dao.MultiCoordinateDAO;
 import com.bbva.net.back.dao.MultiValueGroupDAO;
+import com.bbva.net.back.entity.MultiCoordinates;
 import com.bbva.net.back.entity.MultiValueGroup;
 import com.bbva.net.back.facade.MultiValueGroupFacade;
 
@@ -25,6 +27,9 @@ public class MultiValueGroupFacadeImpl extends AbstractBbvaFacade implements Mul
 	@Resource(name = "multiValueGroupDao")
 	private transient MultiValueGroupDAO multiValueDao;
 
+	@Resource(name = "multiCoordinateDao")
+	private transient MultiCoordinateDAO multiCoordinate;
+
 	@Override
 	public List<MultiValueGroup> getMultiValueTypes(final Integer typeId) {
 		try {
@@ -34,4 +39,14 @@ public class MultiValueGroupFacadeImpl extends AbstractBbvaFacade implements Mul
 		}
 
 	}
+
+	@Override
+	public List<MultiCoordinates> getMultiCoordinate(String officeId) {
+		try {
+			return multiCoordinate.getTypes(officeId);
+		} catch (Exception ex) {
+			return new ArrayList<MultiCoordinates>();
+		}
+	}
+
 }
