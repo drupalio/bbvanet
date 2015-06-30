@@ -10,10 +10,10 @@ public interface ApplicationController {
 	/**
 	 * @param valueChangeEvent
 	 */
-	public void onLikeAccount(final ValueChangeEvent valueChangeEvent);
+	void onLikeAccount(final ValueChangeEvent valueChangeEvent);
 
 	/**
 	 * @param valueChangeEvent
 	 */
-	public void onLike(final ValueChangeEvent valueChangeEvent);
+	void onLikeQuota(ValueChangeEvent valueChangeEvent);
 }

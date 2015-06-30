@@ -18,23 +18,16 @@
 				<p:ajax event="rowSelect" listener="#{cc.attrs.controller.onProductSelected}" immediate="true"
 					onstart="PF('statusDialog').show()" />
 				<p:ajax event="rowUnselect" />
-				<p:column class="head" styleClass="col-xs-6 col-md-8"
-					style="padding: 14px !important;font-size: 10px;color: #434A58;border-style: solid none;
-					font-family: Arial;background: none;border-radius: 4px;border: 2px solid #DBDCDF;
-					background-color: #F3F5F7;margin-bottom: 14px;">
-					<h:outputText styleClass="title-label"
-						style="font-size: 1.1em; font-weight:bold; color:#0078d2" escape="false"
-						value="#{iproduct.alias}" />
-					<h:outputText style="font-size: 1em" escape="false" value="&lt;br /&gt; #{iproduct.productId}"></h:outputText>
+				<p:column styleClass="head col-xs-6 col-md-8 columStyleHidden">
+					<h:outputText styleClass="title-label" value="#{iproduct.alias}" 
+						style="font-size: 1.1em; font-weight:bold; color:#0078d2" escape="false" />
+					<h:outputText style="font-size: 1em" escape="false" value="&lt;br /&gt; #{iproduct.productId}"/>
 					<h:outputText styleClass="sublabel" style="font-size: 1em" escape="false"
 						value="&lt;br /&gt; #{iproduct.productName}" />
 					<bbvaInput:selectOneMenuLikes valueList="#{comboCriteriaController.getListQuieroAccounts(iproduct)}"
 						listener="#{applicationController.onLikeAccount}" />
 				</p:column>
-				<p:column class="head" styleClass="col-xs-6 col-md-4"
-					style="padding: 14px !important;font-size: 10px;color: #434A58;border-style: solid none;
-					font-family: Arial;background: none;border-radius: 4px;border: 2px solid #DBDCDF;
-					background-color: #F3F5F7;margin-bottom: 14px;">
+				<p:column styleClass="head col-xs-6 col-md-4 columStyleHidden">
 					<p:outputPanel rendered="#{(iproduct.isVisible()) &amp;&amp; (iproduct.getOperationOnline())}">
 						<h:outputText style="font-size: 1.6em; font-weight:bold" styleClass="balance"
 							value="#{iproduct.totalCash}" />

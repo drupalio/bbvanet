@@ -23,7 +23,7 @@
 			<set name="flowScope.menuActive" value="'LOANS'" />
 			<evaluate expression="new java.lang.String()"/>
 		</on-entry>
-		<transition to="quotaDetail" on="accountQuotaSelected"></transition>
+		<transition to="quotaDetail" on="quotaSelected"></transition>
 	</view-state>
 	
 	<view-state id="quotaDetail" view="externalRedirect:quotaDetail">
