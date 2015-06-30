@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:bbva="http://java.sun.com/jsf/composite/bbva"
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:bbva="http://java.sun.com/jsf/composite/bbva"
 	xmlns:bbvaScript="http://java.sun.com/jsf/composite/bbva/script"
 	xmlns:bbvaContainer="http://java.sun.com/jsf/composite/bbva/container"
 	xmlns:p="http://primefaces.org/ui"
@@ -13,8 +11,16 @@
 	<f:view locale="es_CO"></f:view>
 	<title><ui:insert name="title">	BBVA :: Colombia :: Posición Global</ui:insert></title>
 	<bbvaScript:assetScripts />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+
+
 </h:head>
 <h:body onload="initChart();">
+	<script type="text/javascript">
+		document.ready = function() {
+			PF('statusDialog').show()
+		};
+	</script>
 	<div id="header">
 		<ui:insert name="header">
 			<ui:include src="header.xhtml" />
@@ -23,9 +29,9 @@
 	<div id="content">
 		<div class="container">
 			<p:growl showDetail="true" showSummary="true" sticky="true" autoUpdate="true" />
-			<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
-				styleClass="nonClose" closable="false" resizable="false">
-				<p:outputLabel value="#{msg['please.wait']}" />
+			<p:dialog id="momentPlease" widgetVar="statusDialog" modal="true" draggable="false"
+				styleClass="nonClose momentP" resizable="false" closable="false" closeOnEscape="false">
+				<img src="../assets/img/loader.gif" />
 			</p:dialog>
 			<section class="row global-content">
 				<ui:insert name="bodyTitle"></ui:insert>

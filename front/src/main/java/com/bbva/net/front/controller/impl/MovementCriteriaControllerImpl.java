@@ -117,6 +117,8 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	@Resource(name = "movementsAccountFacade")
 	private transient MovementsAccountFacade movementsFacade;
 
+	private transient ComboCriteriaControllerImpl comboCriteriaControllerImpl = new ComboCriteriaControllerImpl();
+
 	private List<MovementDto> movementsList;
 
 	@Resource(name = "graphicLineDelegate")
@@ -137,7 +139,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	public void resetData() {
 		final HttpSession session = (HttpSession)FacesContext.getCurrentInstance().getExternalContext()
 				.getSession(false);
-		session.setAttribute("operations", "false");
+		session.setAttribute("operationsAccount", "false");
 	}
 
 	@Override
@@ -162,11 +164,20 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		LOGGER.info("MovementsAccountController onMovementSelected");
 		super.onMovementSelected(selectEvent);
 		movementDetail = new MovementDetailDto();
+
 		try {
 			LOGGER.info("MovementsAccountController onMovementSelected movementId:  "
 					+ getSelectedMovements().getMovementId());
 			movementDetail = this.movementsFacade.getMovement(getSelectedProduct().getProductId(), getSelectedProduct()
 					.getTypeProd().value(), getSelectedMovements().getMovementId());
+			// List<MultiCoordinates> coordenadas = this.multiValueGroupFacade.getMultiCoordinate(movementDetail
+			// .getPlaza().getCode());
+			// movementDetail.getPlaza().setLatitude(coordenadas.get(0).getLength());
+			// movementDetail.getPlaza().setLength(coordenadas.get(0).getLatitude());
+			// LOGGER.info("latitud..." + coordenadas.get(0).getLatitude() + "..longitud.."
+			// + coordenadas.get(0).getLength() + "..");
+			movementDetail.getPlaza().setLatitude("4.712036");
+			movementDetail.getPlaza().setLength("-74.071831");
 		} catch (Exception e) {
 			// FacesContext ctx = FacesContext.getCurrentInstance();
 			// ctx.addMessage("movementDetail", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
@@ -845,14 +856,13 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		try {
 
 			Properties props = new Properties();
+			props.put("mail.smtp.auth", "false");
+			props.put("mail.smtp.starttls.enable", "true");
+			props.put("mail.smtp.user", "BBVA@bbvanet.com.co");
 			props.put("mail.smtp.host", "172.16.9.53");
-			props.setProperty("mail.smtp.starttls.enable", "true");
-			props.setProperty("mail.smtp.port", "24");
-			props.setProperty("mail.smtp.user", "BBVA@bbvanet.com.co");
-			props.setProperty("mail.smtp.auth", "false");
+			props.put("mail.smtp.port", "587");
 
 			Session session = Session.getDefaultInstance(props, null);
-
 			BodyPart header = new MimeBodyPart();
 			String htmlText = "<img src=\"https://ci3.googleusercontent.com/proxy/riFpqgLCyTit6KJRJ18o9l7IUkTjZEPxeh0gj_-ghcRMq5l5tJu-OyAExex95MjbTbd4wCqTGQ-tkooIlpHeuP5CR_rV4XThdoA8dA=s0-d-e1-ft#https://www.bbva.com.co/documents/10180/84494/bbva.gif\">";
 			header.setContent(htmlText, "text/html");

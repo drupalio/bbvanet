@@ -134,7 +134,6 @@ function clickMoveFav() {
 }
 
 $(document).ready(function() {
-
 	/* button Extractos */
 	$('.extractButton').click(function() {
 		$('.extractOnePage').empty();
@@ -214,6 +213,10 @@ $(document).ready(function() {
 });
 
 $(window).load(function() {
+	PF('statusDialog').hide()
+});
+
+$(window).load(function() {
 	/* Message Container */
 	var styleBody = $('.ui-growl-item-container').length;
 
@@ -231,3 +234,4 @@ $(window).load(function() {
 		}
 	});
 });
+

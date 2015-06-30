@@ -10,45 +10,43 @@
 	<composite:attribute name="controller" type="com.bbva.net.front.core.AbstractBbvaController" />
 </composite:interface>
 <composite:implementation>
-	   <div class="item-hidden" style="display: #{cc.attrs.listQuota.size() > '0' ? 'block' : 'none'}">
+	<div class="item-hidden" style="display: #{cc.attrs.listQuota.size()&gt; '0'? 'block': 'none'}">
 		<h:form id="#{cc.attrs.id}">
-			<p:dataTable id="#{cc.attrs.id}" var="iprodcut" rowIndexVar="findex" selectionMode="single"
-				styleClass="hide-column-names" rowKey="#{iprodcut.productId}" value="#{cc.attrs.listQuota}"
+			<p:dataTable id="#{cc.attrs.id}" var="iproduct" rowIndexVar="findex" selectionMode="single"
+				styleClass="hide-column-names" rowKey="#{iproduct.productId}" value="#{cc.attrs.listQuota}"
 				emptyMessage="#{msg['mssg.list.empty']}">
 				<p:ajax event="rowSelect" listener="#{cc.attrs.controller.onProductLoanSelected}"
-					immediate="true" onstart="PF('statusDialog').show()" oncomplete="PF('statusDialog').hide()" />
+					immediate="true" onstart="PF('statusDialog').show()" />
 				<p:ajax event="rowUnselect" />
-				<p:column class="head" styleClass="head col-xs-6 col-md-6"
-					style="padding: 14px !important;font-size: 10px;color: #434A58;border-style: solid none;
-					font-family: Arial;background: none;border-radius: 4px;border: 2px solid #DBDCDF;
-					background-color: #F3F5F7;margin-bottom: 14px;">
+				<p:column styleClass="head col-xs-6 col-md-6 columStyleHidden">
 					<h:outputText styleClass="title-label"
 						style="font-size: 1.2em; font-weight:bold; color:#0078d2" escape="false"
-						value="#{iprodcut.alias}" />
+						value="#{iproduct.alias}" />
 					<h:outputText
 						style="display:block;font-size: 1.1em;margin-bottom:-8px;margin-top:-8px;color:#71777f"
-						escape="false" value="&lt;br /&gt; #{iprodcut.productId}"></h:outputText>
+						escape="false" value="&lt;br /&gt; #{iproduct.productId}"></h:outputText>
 					<h:outputText styleClass="sublabel" style="font-size: 1.1em;font-weight:bold;color:#71777f"
-						escape="false" value="&lt;br /&gt; #{iprodcut.productName}" />
+						escape="false" value="&lt;br /&gt; #{iproduct.productName}" />
 					<!-- Combo quiero -->
-					<bbvaInput:selectOneMenuLikes valueList="#{comboCriteriaController.getListQuieroQuota()}"
-						listener="#{applicationController.onLike}" />
+					<bbvaInput:selectOneMenuLikes
+						valueList="#{comboCriteriaController.getListQuieroQuota(iproduct)}"
+						listener="#{applicationController.onLikeQuota}" />
 				</p:column>
-				<p:column class="head" styleClass="head hidden-xs hidden-sm col-sm-4"
-					style="padding: 14px !important;font-size: 10px;color: #434A58;border-style: solid none;
-					font-family: Arial;background: none;border-radius: 4px;border: 2px solid #DBDCDF;
-					background-color: #F3F5F7;margin-bottom: 14px;">
+				<p:column styleClass="head hidden-xs hidden-sm col-sm-4 columStyleHidden">
 					<h:outputText style="font-size: 1.6em; font-weight:bold"
 						styleClass="balance hidden-xs hidden-sm" value="#{iproduct.totalCash}" />
 					<p class="sublabel"></p>
 				</p:column>
-				<p:column class="head" styleClass="head col-xs-6 col-md-4"
-					style="padding: 14px !important;font-size: 10px;color: #434A58;border-style: solid none;
-					font-family: Arial;background: none;border-radius: 4px;border: 2px solid #DBDCDF;
-					background-color: #F3F5F7;margin-bottom: 14px;">
-					<h:outputText style="font-size: 1.6em; font-weight:bold" styleClass="balance"
-						value="#{iproduct.cashAvailable}" />
-					<p class="sublabel"></p>
+				<p:column styleClass="head col-xs-6 col-md-4 columStyleHidden">
+					<p:outputPanel rendered="#{(iproduct.isVisible()) &amp;&amp; (iproduct.getOperationOnline())}">
+						<h:outputText style="font-size: 1.6em; font-weight:bold" styleClass="balance"
+							value="#{iproduct.cashAvailable}" />
+						<p class="sublabel"></p>
+					</p:outputPanel>
+					<p:outputLabel rendered="#{!iproduct.isVisible()}" style="font-weight:bold"
+						styleClass="balance" value="#{msg['msg.info.notConsu']}" />
+					<p:outputLabel rendered="#{!iproduct.getOperationOnline()}" styleClass="balance"
+						style="font-weight:bold" value="#{msg['msg.info.notOpera']}" />
 				</p:column>
 			</p:dataTable>
 		</h:form>

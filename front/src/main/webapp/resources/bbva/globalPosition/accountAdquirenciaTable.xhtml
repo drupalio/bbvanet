@@ -1,64 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:composite="http://java.sun.com/jsf/composite"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui"
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
 	xmlns:pm="http://primefaces.org/mobile"
 	xmlns:bbvaInput="http://java.sun.com/jsf/composite/bbva/input">
-
 <composite:interface>
 	<composite:attribute name="id" type="String" />
 	<composite:attribute name="listAccounts" type="java.util.List" />
 	<composite:attribute name="controller" />
 	<composite:attribute name="display" type="String" />
 </composite:interface>
-
 <composite:implementation>
-<div style="display: #{cc.attrs.display}">
-	<h:form id="#{cc.attrs.id}">
-		<p:dataTable var="iproduct" rowIndexVar="findex"
-			selectionMode="single"
-			emptyMessage="#{msg['text.empty.table']}"
-			rowKey="#{iproduct.productId}" value="#{cc.attrs.listAccounts}">
-
-			<p:ajax event="rowSelect"
-				listener="#{cc.attrs.controller.onProductSelected}" />
-			<p:ajax event="rowUnselect" />
-
-
-			<p:column class="head"
-				headerText="#{msg['text.accountAduirencia.name']}"
-				styleClass="col-xs-6 col-md-8"
-				style="font-size: 10px;color: #434A58;font-family: Arial;background: none;border-style: none">
-
-				<h:outputText styleClass="title-label"
-					style="font-size: 1.2em; font-weight:bold; color:#0078d2"
-					escape="false" value="#{iproduct.alias}" />
-				<h:outputText style="display:block;font-size: 1.1em;margin-bottom:-8px;margin-top:-8px;color:#71777f" escape="false"
-					value="&lt;br /&gt; #{iproduct.productId}"></h:outputText>
-				<h:outputText styleClass="sublabel" style="font-size: 1.1em;font-weight:bold;color:#71777f"
-					escape="false" value="&lt;br /&gt; #{iproduct.productName}" />
-
-				<!-- Combo quiero -->
-				<bbvaInput:selectOneMenuLikes valueList="#{comboCriteriaController.getListQuieroCards()}" listener="#{applicationController.onLike}"/>
-			</p:column>
-			
-			<p:column class="head" headerText="#{msg['text.account.balance']}"
-				styleClass="col-xs-6 col-md-4"
-				style="font-size: 10px;color: #434A58;font-family: Arial;background: none;border-style: none">
-
-				<h:outputText style="font-size: 1.6em; font-weight:bold"
-					styleClass="balance" value="#{iproduct.totalCash}" />
-				<h:outputText styleClass="ui-datatable-selectable"
-					style="font-size:1em;color:#71777f" escape="false"
-					value="&lt;br /&gt; #{msg['text.account.balance.label']} #{currency}#{iproduct.cashAvailable.amount}" />
-
-			</p:column>
-		</p:dataTable>
-
-	</h:form>
+	<div style="display: #{cc.attrs.display}">
+		<h:form id="#{cc.attrs.id}">
+			<p:dataTable var="iproduct" rowIndexVar="findex" selectionMode="single"
+				emptyMessage="#{msg['text.empty.table']}" rowKey="#{iproduct.productId}"
+				value="#{cc.attrs.listAccounts}">
+				<p:ajax event="rowSelect" listener="#{cc.attrs.controller.onProductSelected}" />
+				<p:ajax event="rowUnselect" />
+				<p:column headerText="#{msg['text.accountAduirencia.name']}" styleClass="head col-xs-6 col-md-8 columStyleVisible">
+					<h:outputText styleClass="title-label"
+						style="font-size: 1.2em; font-weight:bold; color:#0078d2" escape="false"
+						value="#{iproduct.alias}" />
+					<h:outputText escape="false" value="&lt;br /&gt; #{iproduct.productId}"
+						style="display:block;font-size: 1.1em;margin-bottom:-8px;margin-top:-8px;color:#71777f"/>
+					<h:outputText escape="false" value="&lt;br /&gt; #{iproduct.productName}" 
+				    	styleClass="sublabel" style="font-size: 1.1em;font-weight:bold;color:#71777f"/>
+					<!-- Combo quiero -->
+					<bbvaInput:selectOneMenuLikes valueList="#{comboCriteriaController.getListQuieroAccounts(iproduct)}"
+						listener="#{applicationController.onLikeAccount}" />
+				</p:column>
+				<p:column headerText="#{msg['text.account.balance']}" styleClass="head col-xs-6 col-md-4 columStyleVisible">
+					<p:outputPanel rendered="#{(iproduct.isVisible()) &amp;&amp; (iproduct.getOperationOnline())}">
+						<h:outputText style="font-size: 1.6em; font-weight:bold" styleClass="balance"
+							value="#{iproduct.totalCash}" />
+						<h:outputText styleClass="ui-datatable-selectable" style="font-size:1em;color:#71777f"
+							escape="false"
+							value="&lt;br /&gt; #{msg['text.account.balance.label']} #{currency}#{iproduct.cashAvailable.amount}" />
+					</p:outputPanel>
+					   <p:outputLabel rendered="#{!iproduct.isVisible()}" style="font-weight:bold"
+                        styleClass="balance" value="#{msg['msg.info.notConsu']}" />
+                    <p:outputLabel rendered="#{!iproduct.getOperationOnline()}" styleClass="balance"
+                        style="font-weight:bold" value="#{msg['msg.info.notOpera']}" />
+				</p:column>
+			</p:dataTable>
+		</h:form>
 	</div>
 </composite:implementation>
 </html>

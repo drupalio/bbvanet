@@ -26,7 +26,7 @@
 				openOperaMore();
 			};
 		</script>
-		<input id='operations' type='hidden' value='${sessionScope.operations}' />
+		<input id='operations' type='hidden' value='${sessionScope.operationsAccount}' />
 		<button id="opButton" style="display: none;" onclick="#{movementsCriteriaController.resetData()}" />
 		<div class="tab-group savingsAccount">
 			<bbvaHeader:moveDetailContainer>
@@ -41,7 +41,8 @@
 				</bbvaHeader:moveContainerHeader>
 			</bbvaHeader:moveDetailContainer>
 			<bbvaDetAcc:tabMenu id="tabMenu">
-				<bbvaDetAcc:menuMovements />
+				<bbvaDetAcc:menuMovements disabledOpera="#{product.getOperationOnline()}"
+					disabledConsult="#{product.isVisible()}" />
 				<div class="tab-content">
 					<!-- Tab Consultar -->
 					<bbvaSearch:tabCriteria id="tabCriteria">

@@ -69,7 +69,7 @@ public class LoanControllerImpl extends AbstractBbvaController implements LoanCo
 	@Override
 	public void onProductLoanSelected(SelectEvent selectEvent) {
 		super.onProductSelected(selectEvent);
-		this.sendAction("accountQuotaSelected");
+		this.sendAction("quotaSelected");
 
 	}
 

@@ -1,18 +1,10 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:composite="http://java.sun.com/jsf/composite"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:pm="http://primefaces.org/mobile"
-	xmlns:c="http://java.sun.com/jstl/core">
-
-
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile" xmlns:c="http://java.sun.com/jstl/core">
 <composite:interface>
-
 	<composite:attribute name="pieConfigUI" />
 </composite:interface>
-
 <composite:implementation>
 	<h:form id="tuform">
 		<div align="center">
@@ -25,7 +17,6 @@
 				<span
 					style="color: #274b6d; font-size: 16px; font: bold 16px Trebuchet MS, Arial, sans-serif; fill: #274b6d; width: 232px;">
 					#{cc.attrs.pieConfigUI.headerCenter}</span>
-
 			</div>
 			<div style="display: inline-block;">
 				<span
@@ -33,27 +24,12 @@
 					#{cc.attrs.pieConfigUI.headerRight}</span>
 			</div>
 		</div>
-
-		<div class="chart-cheese" id="tu-situacion-grafico"
-			data-highcharts-chart="3">
-
-			<div id="chart2_1">
-				<p:dialog widgetVar="moreGrphic" modal="true" draggable="false"
-					position="center" showEffect="fade" hideEffect="fade"
-					closable="false" resizable="false" showHeader="false">
-					<p:outputLabel value="#{msg['please.wait']}" />
-				</p:dialog>
-			</div>
+		<div class="chart-cheese" id="tu-situacion-grafico" data-highcharts-chart="3">
+			<div id="chart2_1"></div>
 		</div>
-
-
 	</h:form>
-
-
-
 	<script>
 		function initChart() {
-			//PF('moreGrphic').show();
 			var totalColums = [];
 			var label;
 			var colums;
@@ -104,21 +80,13 @@
 						},
 						value : function(value, ratio, id) {
 							var format = d3.format(',');
-							return "<B>"
-									+ currency
-									+ " "
-									+ format(value)
-									+ "</B> ("
-									+ ((value * 100) / totalporcentaje)
-											.toFixed(1) + "%)";
+							return "<B>" + currency + " " + format(value) + "</B> (" + ((value * 100) / totalporcentaje).toFixed(1) + "%)";
 						}
 					}
 				}
 
 			});
-			//PF('moreGrphic').hide()
 		};
 	</script>
-
 </composite:implementation>
 </html>
