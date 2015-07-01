@@ -22,6 +22,7 @@
 		<transition to="detailAccount" on="accountSelected"></transition>
 		<transition to="globalPosition" on="back"></transition>
 		<transition to="detailQuota" on="loanSelected"></transition>
+		<transition to="detailQuota" on="quotaSelected"></transition>
 	</view-state>
 
 	<view-state id="detailQuota" view="externalRedirect:quotaDetail">

@@ -16,39 +16,45 @@
 		</div>
 		<div class="definitions textSize" style="width: 100%;">
 			<dl class="shared">
-				<dd  style="padding-bottom: 8px;">#{msg['text.moveNumber']}</dd>
-				<dt  style="padding-bottom: 8px;">#{cc.attrs.controller.movementDetail.id}</dt>
-				<dd  style="padding-bottom: 8px;">#{msg['text.operationDate']}</dd>
-				<dt  style="padding-bottom: 8px;">
-					<h:outputText value="#{cc.attrs.controller.movementDetail.transactionDate}">
-						<f:convertDateTime pattern="dd/MM/yyyy" />
-					</h:outputText>
-				</dt>
-				<dd  style="padding-bottom: 8px;">#{msg['text.valueDate']}</dd>
-				<dt  style="padding-bottom: 8px;">
+				<dd class="condiciones-list-element conditionsTitle" style="white-space:normal !important;height: 33px !important" >#{msg['text.moveNumber']}</dd>
+				<dt class="condiciones-list-element conditionsData" style="white-space:normal !important;height: 33px !important" >#{cc.attrs.controller.movementDetail.id}</dt>
+				<dd class="condiciones-list-element conditionsTitle" style="white-space:normal !important;height: 33px !important">#{msg['text.operationDate']}</dd>
+				<dt class="condiciones-list-element conditionsData" style="white-space:normal !important;height: 33px !important">
 					<h:outputText value="#{cc.attrs.controller.movementDetail.operationDate}">
 						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</h:outputText>
 				</dt>
-				<dd  style="padding-bottom: 8px;">#{msg['text.operationHour']}</dd>
-				<dt  style="padding-bottom: 8px;">#{cc.attrs.controller.movementDetail.operationHour} hrs.</dt>
-				<dd  style="padding-bottom: 8px;">#{msg['text.valueMin']}</dd>
-				<dt  style="padding-bottom: 8px;">#{cc.attrs.controller.movementDetail.operationValue}</dt>
-				<dd  style="padding-bottom: 8px;">#{msg['text.moveAfterSald']}</dd>
-				<dt  style="padding-bottom: 8px;">#{cc.attrs.controller.movementDetail.valueslope}</dt>
-				<dd  style="padding-bottom: 8px;">#{msg['text.operationCode']}</dd>
-				<dt  style="padding-bottom: 8px;">#{cc.attrs.controller.movementDetail.operationCode}</dt>
-				<dd  style="padding-bottom: 8px;">#{msg['text.operationDescription']}</dd>
-				<dt  style="padding-bottom: 8px;">#{cc.attrs.controller.movementDetail.operationDescription}</dt>
-				<dd  style="padding-bottom: 8px;">#{msg['text.originCenterOfMontion']}</dd>
-				<dt  style="padding-bottom: 8px;">#{cc.attrs.controller.movementDetail.originCenterMovement}</dt>
-				<dd class="border-desktop"  style="padding-bottom: 8px;">#{msg['text.plaza']}</dd>
-				<dt class="border-desktop"  style="padding-bottom: 8px;">#{cc.attrs.controller.movementDetail.plaza.name}</dt>
+				<dd class="condiciones-list-element conditionsTitle" style="white-space:normal !important;height: 33px !important">#{msg['text.valueDate']}</dd>
+				<dt class="condiciones-list-element conditionsData" style="white-space:normal !important;height: 33px !important">
+					<h:outputText value="#{cc.attrs.controller.movementDetail.transactionDate}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+				</dt>
+				<dd class="condiciones-list-element conditionsTitle" style="white-space:normal !important;height: 33px !important">#{msg['text.operationHour']}</dd>
+				<dt class="condiciones-list-element conditionsData" style="white-space:normal !important;height: 33px !important">
+					<h:outputText value="#{cc.attrs.controller.movementDetail.operationHour}">
+							<f:convertDateTime pattern="h:mm a" />
+						</h:outputText>
+				</dt>
+				<dd class="condiciones-list-element conditionsTitle" style="white-space:normal !important;height: 33px !important">#{msg['text.valueMin']}</dd>
+				<dt class="condiciones-list-element conditionsData" style="white-space:normal !important;height: 33px !important">#{cc.attrs.controller.movementDetail.operationValue}</dt>
+				<dd class="condiciones-list-element conditionsTitle" style="white-space:normal !important;height: 33px !important">#{msg['text.moveAfterSald']}</dd>
+				<dt class="condiciones-list-element conditionsData" style="white-space:normal !important;height: 33px !important">#{cc.attrs.controller.movementDetail.valueslope}</dt>
+				<dd class="condiciones-list-element conditionsTitle" style="white-space:normal !important;height: 33px !important">#{msg['text.operationCode']}</dd>
+				<dt class="condiciones-list-element conditionsData" style="white-space:normal !important;height: 33px !important">#{cc.attrs.controller.movementDetail.operationCode}</dt>
+				<dd class="condiciones-list-element conditionsTitle" style="white-space:normal !important;height: 33px !important">#{msg['text.operationDescription']}</dd>
+				<dt class="condiciones-list-element conditionsData" style="white-space:normal !important;height: 33px !important">#{cc.attrs.controller.movementDetail.operationDescription}</dt>
+				<dd class="condiciones-list-element conditionsTitle" style="white-space:normal !important;height: 33px !important">#{msg['text.plaza']}</dd>
+				<dt class="condiciones-list-element conditionsData"  style="white-space:normal !important;height: 33px !important">#{cc.attrs.controller.movementDetail.plaza.postalAddress}</dt>
+
 				
 			</dl>
 			<dl class="shared marginDetailQValue">
 				<bbvaGrap:MapDetail latitud="#{cc.attrs.controller.movementDetail.plaza.latitude}" longitud="#{cc.attrs.controller.movementDetail.plaza.length}"></bbvaGrap:MapDetail>
-				
+								<dd class="condiciones-list-element conditionsTitle" style="white-space:normal !important;height: 33px !important">#{msg['text.originCenterOfMontion']}</dd>
+				<dt class="condiciones-list-element conditionsData" style="white-space:normal !important;height: 33px !important">#{cc.attrs.controller.movementDetail.originCenterMovement}</dt>
+				<dd class="condiciones-list-element conditionsTitle" style="white-space:normal !important;height: 33px !important">#{msg['text.search.by.number.status']}</dd>
+				<dt class="condiciones-list-element conditionsData"  style="white-space:normal !important;height: 33px !important">#{cc.attrs.controller.movementDetail.state}</dt>
 			</dl>	
 			
 		</div>

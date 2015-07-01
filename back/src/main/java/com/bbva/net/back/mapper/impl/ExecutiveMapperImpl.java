@@ -22,7 +22,7 @@ public class ExecutiveMapperImpl extends ConfigurableMapper implements Executive
 
 		factory.classMap(Executive.class, ExecutiveDto.class).field("name", "name").field("phone", "phone")
 				.field("email", "mail").field("office.name", "office.name")
-				.field("office.postalAddress", "office.addres").byDefault().register();
+				.field("office.postalAddress", "office.postalAddress").byDefault().register();
 		super.configure(factory);
 	}
 

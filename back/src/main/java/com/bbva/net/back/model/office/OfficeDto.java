@@ -13,7 +13,7 @@ public class OfficeDto implements Dto {
 
 	private String name;
 
-	private String Addres;
+	private String postalAddress;
 
 	private String city;
 
@@ -28,10 +28,10 @@ public class OfficeDto implements Dto {
 	 * @param name
 	 * @param addres
 	 */
-	public OfficeDto(String name, String addres) {
+	public OfficeDto(String name, String postalAddress) {
 		super();
 		this.name = name;
-		Addres = addres;
+		this.postalAddress = postalAddress;
 	}
 
 	/**
@@ -40,17 +40,17 @@ public class OfficeDto implements Dto {
 	 * @param addres
 	 * @param city
 	 */
-	public OfficeDto(String code, String name, String addres, String city) {
+	public OfficeDto(String code, String name, String postalAddress, String city) {
 		super();
 		this.code = code;
 		this.name = name;
-		this.Addres = addres;
+		this.postalAddress = postalAddress;
 		this.city = city;
 	}
 
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder().append(getCode()).append(getName()).append(getAddres()).append(getCity())
+		return new HashCodeBuilder().append(getCode()).append(getName()).append(getPostalAddress()).append(getCity())
 				.toHashCode();
 	}
 
@@ -58,14 +58,14 @@ public class OfficeDto implements Dto {
 	public boolean equals(Object obj) {
 		return (obj != null) && (obj instanceof OfficeDto) && this.getCode().equals(((OfficeDto)obj).getCode())
 				&& this.getName().equals(((OfficeDto)obj).getName())
-				&& this.getAddres().equals(((OfficeDto)obj).getAddres())
+				&& this.getPostalAddress().equals(((OfficeDto)obj).getPostalAddress())
 				&& this.getCity().equals(((OfficeDto)obj).getCity());
 	}
 
 	@Override
 	public String toString() {
 		return new ToStringBuilder(this).append("Code Office", getCode()).append("Name Office", getName())
-				.append("Addres Office", getAddres()).append("City Office", getCity()).toString();
+				.append("Addres Office", getPostalAddress()).append("City Office", getCity()).toString();
 	}
 
 	// Setters and getters
@@ -85,17 +85,17 @@ public class OfficeDto implements Dto {
 	}
 
 	/**
-	 * @return the addres
+	 * @return
 	 */
-	public String getAddres() {
-		return Addres;
+	public String getPostalAddress() {
+		return postalAddress;
 	}
 
 	/**
-	 * @param addres the addres to set
+	 * @param postalAddress
 	 */
-	public void setAddres(String addres) {
-		Addres = addres;
+	public void setPostalAddress(String postalAddress) {
+		this.postalAddress = postalAddress;
 	}
 
 	/**
