@@ -1667,6 +1667,12 @@ body div.ui-growl .ui-state-highlight {
 	box-shadow: none !important;
 }
 
+#mapDetail	{
+	width: 100%;
+	height: 200px;
+	border: 1px solid #d0d0d0;
+}
+
 .columStyleHidden {
 	padding: 14px !important;
 	font-size: 10px;

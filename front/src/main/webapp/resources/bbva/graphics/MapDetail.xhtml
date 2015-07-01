@@ -1,0 +1,61 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile" xmlns:c="http://java.sun.com/jstl/core">
+<composite:interface>
+	<composite:attribute name="latitud" type="String" />
+	<composite:attribute name="longitud" type="String"/>
+</composite:interface>
+<composite:implementation>
+<div id="mapDetail" ></div>
+<script>
+$(document).ready(function() {
+		/* Si se puede obtener la localización */
+	 	if (navigator.geolocation)
+		{
+	        navigator.geolocation.getCurrentPosition(mapa,error);
+	    }
+	    /* Si el navegador no soporta la recuperación de la geolocalización */
+	    else
+	    {
+	        alert('Tu navegador no soporta geolocalización.');
+	    }
+
+	function mapa()
+	{
+
+		var contenedor = document.getElementById("mapDetail");
+		var latitud ="${cc.attrs.latitud}";
+		var longitud = "${cc.attrs.longitud}";
+		var centro = new google.maps.LatLng(latitud,longitud);
+		 //alert("latitud..."+latitud+"..longitud.."+longitud);
+		var propiedades =
+		{
+	        zoom: 15,
+	        center: centro,
+	        mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+
+		var map = new google.maps.Map(contenedor, propiedades);
+
+		var marcador = new google.maps.Marker({
+	        position: centro,
+	        map: map,
+	        title: "Tu localizacion"
+	    });
+	}
+
+	/* Gestión de errores */
+	function error(errorCode)
+	{
+		if(errorCode.code == 1)
+			alert("No has permitido buscar tu localizacion")
+		else if (errorCode.code==2)
+			alert("Posicion no disponible")
+		else
+			alert("Ha ocurrido un error")
+	}
+});
+</script>
+</composite:implementation>
+</html>

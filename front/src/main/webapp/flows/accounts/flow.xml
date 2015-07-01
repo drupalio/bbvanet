@@ -28,7 +28,7 @@
 			<set name="flowScope.menuActive" value="'ACCOUNTS'" />
 			<evaluate expression="new java.lang.String()" />
 		</on-entry>
-
+		<transition to="accounts" on="back"></transition>
 		<transition on="accountSelected" to="movementsAccount"></transition>
 	</view-state>
 

@@ -7,6 +7,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import com.bbva.net.back.core.pattern.dto.Dto;
 import com.bbva.net.back.model.commons.Money;
+import com.bbva.net.back.model.office.OfficeDto;
 
 /**
  * Clase de negocio que contiene la información del detalle en un movimiento
@@ -29,7 +30,7 @@ public class MovementDetailDto implements Dto {
 
 	private String originCenterMovement;
 
-	private String plaza;
+	private OfficeDto plaza;
 
 	private String state;
 
@@ -84,7 +85,7 @@ public class MovementDetailDto implements Dto {
 	 * @param remainingQuotas
 	 */
 	public MovementDetailDto(Date operationHour, String operationCode, String operationDescription,
-			String observations, String originCenterMovement, String plaza, String state, Money operationValue,
+			String observations, String originCenterMovement, OfficeDto plaza, String state, Money operationValue,
 			Money value, Money valueslope, String id, Date operationDate, Date transactionDate, String concept,
 			String description, String status, String numbersOfQuota, String remainingQuotas) {
 		this.operationHour = operationHour;
@@ -206,14 +207,14 @@ public class MovementDetailDto implements Dto {
 	/**
 	 * @return the plaza
 	 */
-	public String getPlaza() {
+	public OfficeDto getPlaza() {
 		return plaza;
 	}
 
 	/**
 	 * @param plaza the plaza to set
 	 */
-	public void setPlaza(String plaza) {
+	public void setPlaza(OfficeDto plaza) {
 		this.plaza = plaza;
 	}
 

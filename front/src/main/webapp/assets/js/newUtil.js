@@ -308,3 +308,4 @@ function error(errorCode) {
 	else
 		alert("Ha ocurrido un error")
 }
+

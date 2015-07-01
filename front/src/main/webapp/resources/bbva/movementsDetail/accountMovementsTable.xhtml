@@ -25,7 +25,7 @@
 						value="#{cc.attrs.listAccounts}" var="moves" selectionMode="single"
 						rowKey="#{moves.movementId}" rendered="#{renderComponents['MOVEMENTSTABLE']}"
 						emptyMessage="#{msg['text.empty.table']}">
-						<p:ajax event="rowSelect" oncomplete="clickMove();localize();"
+						<p:ajax event="rowSelect" oncomplete="clickMove();"
 							listener="#{movementsCriteriaController.onMovementSelected}" />
 						<p:column style="z-index: -1 !important; display:none;">
 							<p:rowToggler rendered="true" />
