@@ -37,7 +37,8 @@
 						lineConfigUI="#{movementsCriteriaController.graphicLineMovements}" />
 					<bbvaHeader:moveDetailHeaderRight textUp="#{msg['text.available']}"
 						valueUp="#{product.totalCash}" textDown="#{msg['text.tradeBalance']}"
-						valueDown="#{product.cashAvailable}" />
+						valueDown="#{product.cashAvailable}" disabledOpera="#{product.getOperationOnline()}"
+						disabledConsult="#{product.isVisible()}" />
 				</bbvaHeader:moveContainerHeader>
 			</bbvaHeader:moveDetailContainer>
 			<bbvaDetAcc:tabMenu id="tabMenu">

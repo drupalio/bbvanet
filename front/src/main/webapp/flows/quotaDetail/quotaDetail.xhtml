@@ -42,7 +42,8 @@
 					<bbvaQuotaHeader:moveDetailHeaderRight textUp="#{msg['text.outstandingBalance']}"
 						valueUp="#{quotaController.quotaDetailDto.outstandingBalance}"
 						textDown="#{msg['text.amountRequested']}"
-						valueDown="#{quotaController.quotaDetailDto.amountRequested}" />
+						valueDown="#{quotaController.quotaDetailDto.amountRequested}"
+						disabledOpera="#{product.getOperationOnline()}" disabledConsult="#{product.isVisible()}" />
 				</bbvaQuotaHeader:moveContainerHeader>
 				<bbvaQuotaHeader:quotaDetailHeaderBody>
 					<bbvaQuotaHeader:quotaDetailHeaderBodyContainer type="left">
