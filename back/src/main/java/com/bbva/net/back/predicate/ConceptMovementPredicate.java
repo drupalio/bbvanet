@@ -23,7 +23,7 @@ public class ConceptMovementPredicate extends BbvaPredicate<MovementDto> {
 		if (movementDto == null || movementDto.getMovementConcept() == null) {
 			return false;
 		}
-		return movementDto.getMovementConcept().contentEquals(concept);
+		return movementDto.getMovementConcept().contains(concept);
 	}
 
 }

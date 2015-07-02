@@ -3369,38 +3369,40 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 
 */
 </con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
-    "id": "000100987333",
-    "concept": "1000",
-    "transactionDate": "2014-03-11T00:00:00.000-0500",
-    "operationDate": "2014-05-12T00:00:00.000-0500",
-    "operation": {
-        "code": "A",
-        "description": "ABC"
-    },
-    "office": {
-        "name": "2000",
-        "location": {
-            "city": {
-                "name": "NORTE"
-            },
-            "state": {
-                "name": "NORTE"
-            }
-        },
-        "postalAddress": "CHILE CENTRO"
-    },
-    "value": {
-        "currency": "COP",
-        "amount": 30.00
-    },
-    "balance": {
-        "currency": "COP",
-        "amount": 10.00
-    },
-    "originValue": {
-        "currency": "COP",
-        "amount": 20.00
-    }
+	"id":"00130073000298827489",
+	"concept":"00106907  00106907  C0026T002S",
+	"transactionDate":"2015-06-12T00:00:00.000-0500",
+	"operationDate":"2015-06-12T00    :00:00.000-0500",
+	"operation":{
+		"code":"AH",
+		"description":"ABONO  DOMICILIACION NO    MINAS"
+	},
+	"office":{
+		"code":"0180",
+		"name":"+000012113583690",
+		"location":{
+			"city":{
+				"name":"BOGOTA (    CUNDINAMARCA)"
+			},
+			"state":{
+				"name":"BOGOTA (CUNDINAMARCA)"
+			}
+		},
+		"postalAddress":"0073     AVENIDA CHILE"
+	},
+	"value":{
+		"currency":"COP",
+		"amount":771000.00
+	},
+	"balance":{
+		"currency":"COP",
+		"amount":120364836.90
+	},
+	"originValue":{
+		"currency":"COP",
+		"amount":121135836.90
+	},
+	"status":"En proceso"
 }</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/accounts/V01/" method="GET" resourcePath="/czic/accounts/V01/"><con:settings/><con:defaultResponse xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Examples showing how to match based on path, query param and header
 // Match based on path
