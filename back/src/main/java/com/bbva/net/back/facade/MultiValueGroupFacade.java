@@ -5,6 +5,7 @@ package com.bbva.net.back.facade;
 
 import java.util.List;
 
+import com.bbva.net.back.entity.MultiCoordinates;
 import com.bbva.net.back.entity.MultiValueGroup;
 
 /**
@@ -21,4 +22,9 @@ public interface MultiValueGroupFacade {
 
 	List<MultiValueGroup> getMultiValueTypes(final Integer typeId);
 
+	/**
+	 * @param typeId
+	 * @return
+	 */
+	List<MultiCoordinates> getMultiCoordinate(final String officeId);
 }

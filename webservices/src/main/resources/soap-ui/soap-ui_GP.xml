@@ -533,6 +533,34 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
     }
 },
 {
+    "id": "00130443000200009410",
+    "type": "CR",
+    "name": "hiii",
+    "alias": "max",
+    "financialState": "P",
+    "visible": false,
+    "operable": true,
+    "balance": {
+        "total": {
+            "currency": "COP",
+            "amount": 99555.12
+        },
+        "availableBalance": {
+            "currency": "COP",
+            "amount": 7169.54
+        }
+    },
+    "contactInfo": {
+        "phoneNumbers": [{
+            "type": "MOBILE"
+        }],
+        "emails": []
+    },
+    "contract": {
+        "number": "57201938557120395878"
+    }
+},
+{
     "id": "00130443000200009411",
     "type": "BF",
     "name": "Herrera",
@@ -701,7 +729,35 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
     }
 },
 {
-    "id": "00130443000200009417",
+    "id": "00130443000200009416",
+    "type": "CC",
+    "name": "rodriguez",
+    "alias": "kiki",
+    "financialState": "A",
+    "visible": false,
+    "operable": true,
+    "balance": {
+        "total": {
+            "currency": "COP",
+            "amount": 11049.57
+        },
+        "availableBalance": {
+            "currency": "COP",
+            "amount": 2088.18
+        }
+    },
+    "contactInfo": {
+        "phoneNumbers": [{
+            "type": "MOBILE"
+        }],
+        "emails": []
+    },
+    "contract": {
+        "number": "57201938357120395877"
+    }
+},
+{
+    "id": "00130443000200009416",
     "type": "CC",
     "name": "Althea",
     "alias": "Price",

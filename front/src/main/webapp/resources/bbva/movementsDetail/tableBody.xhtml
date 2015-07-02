@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:composite="http://java.sun.com/jsf/composite"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui" xmlns:jsf="http://xmlns.jcp.org/jsf"
-	xmlns:pm="http://primefaces.org/mobile">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite" xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui" xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:bbvaGrap="http://java.sun.com/jsf/composite/bbva/graphics">
 <composite:interface>
 	<composite:attribute name="controller" />
 </composite:interface>
@@ -19,64 +18,41 @@
 		</div>
 		<div class="definitions textSize" style="width: 100%;">
 			<dl class="shared">
-				<dd>#{msg['text.moveNumber']}</dd>
-				<dt>#{cc.attrs.controller.movementDetail.id}</dt>
-			</dl>
-			<dl class="shared marginDetailQValue">
-				<dd>#{msg['text.operationDate']}</dd>
-				<dt>
-					<h:outputText
-						value="#{cc.attrs.controller.movementDetail.transactionDate}">
+				<dd  style="padding-bottom: 8px;">#{msg['text.moveNumber']}</dd>
+				<dt  style="padding-bottom: 8px;">#{cc.attrs.controller.movementDetail.id}</dt>
+				<dd  style="padding-bottom: 8px;">#{msg['text.operationDate']}</dd>
+				<dt  style="padding-bottom: 8px;">
+					<h:outputText value="#{cc.attrs.controller.movementDetail.transactionDate}">
 						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</h:outputText>
 				</dt>
-			</dl>
-			<dl class="shared">
-				<dd>#{msg['text.valueDate']}</dd>
-				<dt>
-					<h:outputText
-						value="#{cc.attrs.controller.movementDetail.operationDate}">
+				<dd  style="padding-bottom: 8px;">#{msg['text.valueDate']}</dd>
+				<dt  style="padding-bottom: 8px;">
+					<h:outputText value="#{cc.attrs.controller.movementDetail.operationDate}">
 						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</h:outputText>
 				</dt>
+				<dd  style="padding-bottom: 8px;">#{msg['text.operationHour']}</dd>
+				<dt  style="padding-bottom: 8px;">#{cc.attrs.controller.movementDetail.operationHour} hrs.</dt>
+				<dd  style="padding-bottom: 8px;">#{msg['text.valueMin']}</dd>
+				<dt  style="padding-bottom: 8px;">#{cc.attrs.controller.movementDetail.operationValue}</dt>
+				<dd  style="padding-bottom: 8px;">#{msg['text.moveAfterSald']}</dd>
+				<dt  style="padding-bottom: 8px;">#{cc.attrs.controller.movementDetail.valueslope}</dt>
+				<dd  style="padding-bottom: 8px;">#{msg['text.operationCode']}</dd>
+				<dt  style="padding-bottom: 8px;">#{cc.attrs.controller.movementDetail.operationCode}</dt>
+				<dd  style="padding-bottom: 8px;">#{msg['text.operationDescription']}</dd>
+				<dt  style="padding-bottom: 8px;">#{cc.attrs.controller.movementDetail.operationDescription}</dt>
+				<dd  style="padding-bottom: 8px;">#{msg['text.originCenterOfMontion']}</dd>
+				<dt  style="padding-bottom: 8px;">#{cc.attrs.controller.movementDetail.originCenterMovement}</dt>
+				<dd class="border-desktop"  style="padding-bottom: 8px;">#{msg['text.plaza']}</dd>
+				<dt class="border-desktop"  style="padding-bottom: 8px;">#{cc.attrs.controller.movementDetail.plaza.name}</dt>
+				
 			</dl>
 			<dl class="shared marginDetailQValue">
-				<dd>#{msg['text.operationHour']}</dd>
-				<dt>#{cc.attrs.controller.movementDetail.operationHour} hrs.</dt>
-			</dl>
-			<dl class="shared">
-				<dd>#{msg['text.valueMin']}</dd>
-				<dt>#{cc.attrs.controller.movementDetail.operationValue}</dt>
-			</dl>
-			<dl class="shared marginDetailQValue">
-				<dd>#{msg['text.moveAfterSald']}</dd>
-				<dt>#{cc.attrs.controller.movementDetail.valueslope}</dt>
-			</dl>
-			<dl class="shared">
-				<dd>#{msg['text.operationCode']}</dd>
-				<dt>#{cc.attrs.controller.movementDetail.operationCode}</dt>
-			</dl>
-			<dl class="shared marginDetailQValue">
-				<dd>#{msg['text.operationDescription']}</dd>
-				<dt>#{cc.attrs.controller.movementDetail.operationDescription}</dt>
-			</dl>
-			<dl class="shared">
-				<dd>#{msg['text.observations']}</dd>
+				<bbvaGrap:MapDetail latitud="#{cc.attrs.controller.movementDetail.plaza.latitude}" longitud="#{cc.attrs.controller.movementDetail.plaza.length}"></bbvaGrap:MapDetail>
+				
+			</dl>	
 
-				<dt>#{cc.attrs.controller.movementDetail.concept}</dt>
-			</dl>
-			<dl class="shared marginDetailQValue">
-				<dd>#{msg['text.originCenterOfMontion']}</dd>
-				<dt>#{cc.attrs.controller.movementDetail.originCenterMovement}</dt>
-			</dl>
-			<dl class="shared">
-				<dd class="border-desktop">#{msg['text.plaza']}</dd>
-				<dt class="border-desktop">#{cc.attrs.controller.movementDetail.plaza}</dt>
-			</dl>
-			<dl class="shared marginDetailQValue">
-				<dd class="border-desktop border-mobile">#{msg['text.search.by.number.status']}</dd>
-				<dt class="border-desktop border-mobile">#{cc.attrs.controller.movementDetail.state}</dt>
-			</dl>
 		</div>
 	</div>
 </composite:implementation>

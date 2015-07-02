@@ -418,7 +418,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	@Override
 	public void onProductLoanSelected(final SelectEvent selectEvent) {
 		super.onProductSelected(selectEvent);
-		this.sendAction("loanSelected");
+		this.sendAction("quotaSelected");
 	}
 
 	/**

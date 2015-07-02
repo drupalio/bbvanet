@@ -35,12 +35,13 @@ public class ApplicationControllerImpl extends AbstractBbvaController implements
 
 	@Override
 	public void onLikeAccount(final ValueChangeEvent valueChangeEvent) {
-		LOGGER.info("onLikeAccount " + valueChangeEvent + " "
-				+ MessagesHelper.INSTANCE.getString(multiValueGroupFacade.getMultiValueTypes(6).get(0).getValue()));
+		boolean flow = false;
+		LOGGER.info("onLikeAccount " + valueChangeEvent + " ");
 		if (valueChangeEvent.getNewValue().equals(
 				MessagesHelper.INSTANCE.getString(multiValueGroupFacade.getMultiValueTypes(6).get(0).getValue()))) {
 			super.setSelectedProduct((ProductDto)valueChangeEvent.getOldValue());
 			super.getSelectedProduct();
+			flow = true;
 			this.sendAction("accountSelected");
 		}
 		if (valueChangeEvent.getNewValue().equals(
@@ -50,14 +51,37 @@ public class ApplicationControllerImpl extends AbstractBbvaController implements
 			this.sendAction("accountSelected");
 			final HttpSession session = (HttpSession)FacesContext.getCurrentInstance().getExternalContext()
 					.getSession(false);
+			flow = true;
 			session.setAttribute("operations", "true");
+		}
+		if (!flow) {
+			this.sendAction("back");
 		}
 
 	}
 
-	@Override
 	public void onLike(ValueChangeEvent valueChangeEvent) {
-		LOGGER.info("onLike" + valueChangeEvent);
+		this.sendAction("back");
+	}
 
+	@Override
+	public void onLikeQuota(ValueChangeEvent valueChangeEvent) {
+		LOGGER.info("onLikeAccount " + valueChangeEvent + " "
+				+ MessagesHelper.INSTANCE.getString(multiValueGroupFacade.getMultiValueTypes(8).get(0).getValue()));
+		if (valueChangeEvent.getNewValue().equals(
+				MessagesHelper.INSTANCE.getString(multiValueGroupFacade.getMultiValueTypes(8).get(0).getValue()))) {
+			super.setSelectedProduct((ProductDto)valueChangeEvent.getOldValue());
+			super.getSelectedProduct();
+			this.sendAction("quotaSelected");
+		}
+		if (valueChangeEvent.getNewValue().equals(
+				MessagesHelper.INSTANCE.getString(multiValueGroupFacade.getMultiValueTypes(8).get(2).getValue()))) {
+			super.setSelectedProduct((ProductDto)valueChangeEvent.getOldValue());
+			super.getSelectedProduct();
+			this.sendAction("quotaSelected");
+			final HttpSession session = (HttpSession)FacesContext.getCurrentInstance().getExternalContext()
+					.getSession(false);
+			session.setAttribute("operationsRotary", "true");
+		}
 	}
 }
