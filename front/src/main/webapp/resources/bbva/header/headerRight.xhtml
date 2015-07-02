@@ -80,10 +80,14 @@
 			
 			
 			<bbvaHeader:customerInf name="#{headerController.cliente.nombre}" date="#{headerController.cliente.date}"/>
-			<li class="logout"><a href="https://www.bbvanet.com.co/bbvaco/kqpu_co_web/page/init"
-				class="btn small warning"> <span>Desconectar</span> <span
-					class="icon-logout"></span>
-			</a></li>
+			<li class="logout" >
+				<h:form >			
+				<p:commandLink ajax="false" value="Desconectar" styleClass="btn small warning" actionListener="#{headerController.logOut()}">
+				<span class="icon-logout"></span>
+				</p:commandLink>
+			
+			</h:form>
+			</li>
 		</ul>
 	</nav>
 

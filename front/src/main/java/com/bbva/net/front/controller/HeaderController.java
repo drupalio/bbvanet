@@ -9,4 +9,6 @@ public interface HeaderController {
 
 	CustomerDto getCustomer();
 
+	void logOut();
+
 }

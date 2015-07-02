@@ -1,7 +1,10 @@
 package com.bbva.net.front.controller.impl;
 
+import java.io.IOException;
+
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
+import javax.faces.context.FacesContext;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.context.annotation.Scope;
@@ -60,6 +63,23 @@ public class HeaderControllerImpl extends AbstractBbvaController implements Head
 			// FacesContext ctx = FacesContext.getCurrentInstance();
 			// ctx.addMessage("getCustomer", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
 			return new CustomerDto();
+		}
+	}
+
+	@Override
+	public void logOut() {
+		getSession().removeAttribute("tsec");
+		getSession().removeAttribute(SessionParamenterType.AUTHENTICATION_STATE.name());
+		getSession().removeAttribute("userName");
+		getSession().removeAttribute("docTypeUser");
+		getSession().removeAttribute("docIdUser");
+		getSession().invalidate();
+		LOGGER.info("Se cerro la sesion " + getSession());
+		try {
+			FacesContext.getCurrentInstance().getExternalContext()
+					.redirect("https://www.bbvanet.com.co/bbvaco/kqpu_co_web/page/init");
+		} catch (IOException e) {
+			LOGGER.info("No pudo redidreccionar a https://www.bbvanet.com.co/bbvaco/kqpu_co_web/page/init");
 		}
 	}
 
