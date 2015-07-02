@@ -1,5 +1,6 @@
 package com.bbva.net.front.controller;
 
+import javax.faces.event.ActionEvent;
 import javax.faces.event.AjaxBehaviorEvent;
 
 /**
@@ -16,7 +17,9 @@ public interface PersonalizeProductController {
 	 * Metodo de ComboButtons
 	 */
 
-	void operKey();
+	void operKey(ActionEvent event);
+
+	void operationkey();
 
 	/**
 	 * Metodos de rendered=false de mensajes que estan en la vista

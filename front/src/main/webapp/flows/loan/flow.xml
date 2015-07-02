@@ -25,6 +25,7 @@
 		</on-entry>
 		<transition to="loan" on="back"></transition>
 		<transition to="quotaDetail" on="accountQuotaSelected"></transition>
+		<transition to="quotaDetail" on="quotaSelected"></transition>
 	</view-state>
 	
 	<view-state id="quotaDetail" view="externalRedirect:quotaDetail">

@@ -159,6 +159,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		return this.movementsList;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void onMovementSelected(SelectEvent selectEvent) {
 		LOGGER.info("MovementsAccountController onMovementSelected");
@@ -172,12 +173,16 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 					.getTypeProd().value(), getSelectedMovements().getMovementId());
 			// List<MultiCoordinates> coordenadas = this.multiValueGroupFacade.getMultiCoordinate(movementDetail
 			// .getPlaza().getCode());
-			// movementDetail.getPlaza().setLatitude(coordenadas.get(0).getLength());
-			// movementDetail.getPlaza().setLength(coordenadas.get(0).getLatitude());
+
+			// if (coordenadas.size() >= 2) {
+			// coordenadas = (List<MultiCoordinates>)CollectionUtils.select(coordenadas, new CityOfficePredicate(
+			// movementDetail.getPlaza().getCity()));
+			// }
+			// movementDetail.getPlaza().setLatitude(coordenadas.get(0).getLatitude());
+			// movementDetail.getPlaza().setLength(coordenadas.get(0).getLength());
 			// LOGGER.info("latitud..." + coordenadas.get(0).getLatitude() + "..longitud.."
 			// + coordenadas.get(0).getLength() + "..");
-			movementDetail.getPlaza().setLatitude("4.712036");
-			movementDetail.getPlaza().setLength("-74.071831");
+
 		} catch (Exception e) {
 			// FacesContext ctx = FacesContext.getCurrentInstance();
 			// ctx.addMessage("movementDetail", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));

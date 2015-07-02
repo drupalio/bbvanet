@@ -11,7 +11,7 @@ public class ConceptMovementPredicateTest {
 
 	private static final String CONCEPT = "Concepto";
 
-	private static final String ANOTHER_CONCEPT = "Otro Concepto";
+	private static final String ANOTHER_CONCEPT = "Otro";
 
 	@Test
 	public void checkConceptMovementPredicatedTrue() {

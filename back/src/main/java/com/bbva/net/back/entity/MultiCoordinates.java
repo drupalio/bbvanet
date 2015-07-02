@@ -29,7 +29,7 @@ public class MultiCoordinates implements Serializable {
 	@Column(name = "OFFICE")
 	private String office;
 
-	@Column(name = "LENGTH")
+	@Column(name = "LONGITUDE")
 	private String length;
 
 	@Column(name = "LATITUDE")

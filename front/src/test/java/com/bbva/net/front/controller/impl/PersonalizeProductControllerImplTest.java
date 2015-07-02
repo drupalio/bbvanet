@@ -1,5 +1,7 @@
 package com.bbva.net.front.controller.impl;
 
+import javax.faces.event.ActionEvent;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -18,6 +20,8 @@ public class PersonalizeProductControllerImplTest extends AbstractBbvaController
 
 	private PersonalizeProductControllerImpl personalizeController;
 
+	private ActionEvent eventAction;
+
 	private PersonalizeProductFacade personalizeFacade;
 
 	private UpdateAliasFacade updateAliasFacade;
@@ -32,6 +36,7 @@ public class PersonalizeProductControllerImplTest extends AbstractBbvaController
 	public void init() throws Exception {
 		super.setUp();
 		this.personalizeController = new PersonalizeProductControllerImpl();
+		this.eventAction = Mockito.mock(ActionEvent.class);
 		this.personalizeController.offMessageSuccesful();
 		this.personalizeController.offMessageOpenKey(null);
 		this.personalizeController.isMenSuccessful();
@@ -66,7 +71,7 @@ public class PersonalizeProductControllerImplTest extends AbstractBbvaController
 	@Test
 	public void checkOperKey() {
 		// null
-		this.personalizeController.operKey();
+		this.personalizeController.operKey(eventAction);
 		this.product.setProductId("0013044300020000949");
 		this.product.setOperationOnline(true);
 		this.product.setVisible(true);
@@ -75,13 +80,13 @@ public class PersonalizeProductControllerImplTest extends AbstractBbvaController
 		// verdaderos
 		Mockito.when(this.personalizeFacade.updateProductOperability(DEFAULT_ID, product)).thenReturn(true);
 		Mockito.when(this.personalizeFacade.updateProductVisibility(DEFAULT_ID, product)).thenReturn(true);
-		this.personalizeController.operKey();
+		this.personalizeController.operKey(eventAction);
 		// operationOnline falso
 		Mockito.when(this.personalizeFacade.updateProductOperability(DEFAULT_ID, product)).thenReturn(false);
-		this.personalizeController.operKey();
+		this.personalizeController.operKey(eventAction);
 		// visible falso
 		Mockito.when(this.personalizeFacade.updateProductVisibility(DEFAULT_ID, product)).thenReturn(false);
-		this.personalizeController.operKey();
+		this.personalizeController.operKey(eventAction);
 		Mockito.verify(this.personalizeFacade, Mockito.atLeastOnce()).updateProductOperability(DEFAULT_ID, product);
 		Mockito.verify(this.personalizeFacade, Mockito.atLeastOnce()).updateProductVisibility(DEFAULT_ID, product);
 		// ClientException
@@ -89,7 +94,7 @@ public class PersonalizeProductControllerImplTest extends AbstractBbvaController
 				new RestClientException("OK"));
 		Mockito.when(this.personalizeFacade.updateProductVisibility(DEFAULT_ID, product)).thenThrow(
 				new RestClientException("OK"));
-		this.personalizeController.operKey();
+		this.personalizeController.operKey(eventAction);
 
 	}
 

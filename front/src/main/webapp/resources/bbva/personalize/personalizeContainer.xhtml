@@ -1,10 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:p="http://primefaces.org/ui" xmlns:composite="http://java.sun.com/jsf/composite"
 	xmlns:bbvaAcc="http://java.sun.com/jsf/composite/bbva/accounts"
 	xmlns:bbvaGP="http://java.sun.com/jsf/composite/bbva/globalPosition"
 	xmlns:bbvaAlert="http://java.sun.com/jsf/composite/bbva/alert"
@@ -28,31 +26,32 @@
 			valueInput="#{personalizeProductAccountController.updateAccountIn.alias}"
 			valueLabel="#{msg['text.nameProduct']}" idInput="inputName">
 			<p:commandButton id="buttonUpdate" value="#{msg['button.save']}"
-				styleClass="btn btn-default saveAlias buttonDisabled"
-				onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()"
-				actionListener="#{personalizeProductAccountController.updateAlias}"
-				process="@this" update="@form" />
+				styleClass="btn btn-default saveAlias buttonDisabled" onstart="PF('statusDialog').show()"
+				actionListener="#{personalizeProductAccountController.updateAlias}" process="@this"
+				onsuccess="PF('statusDialog').hide()" update="@form" />
 		</bbvaPersonalize:personalizeInputClass>
-		<bbvaMessage:messageCheck
-			render="#{personalizeProductAccountController.menSuccessful}" />
+		<bbvaMessage:messageCheck render="#{personalizeProductAccountController.menSuccessful}" />
 		<span class="separator"></span>
-		<bbvaPersonalize:personalizeCombo size="bigCombo yourStyleClass"
-			idCombo="comboTwo" divClass="customize-online" classIcon="icon-info-blue"
-			valueLabel="#{msg['text.consult']}" labelIcon="#{msg['text.online']}"
-			ajaxCom="#{personalizeProductAccountController.offMessageOpenKey}"
-			value="#{personalizeProductAccountController.search}" />
-		<bbvaPersonalize:personalizeCombo size="bigCombo yourStyleClass"
-			idCombo="comboThree" divClass="customize-online" classIcon="icon-info-blue"
-			valueLabel="#{msg['text.work']}" labelIcon="#{msg['text.online']}"
-			ajaxCom="#{personalizeProductAccountController.offMessageOpenKey}"
-			value="#{personalizeProductAccountController.operation}" />
+		<bbvaPersonalize:personalizeCombo size="smallCombo yourStyleClass" idCombo="comboOne"
+			divClass="customize-virtual" classIcon="icon-info-blue" valueButton="#{msg['button.save']}"
+			valueLabel="#{msg['text.virtualCorresp']}" labelIcon="#{msg['text.online']}"
+			value="#{personalizeProductAccountController.personalizeProductAccountDto.virtualMail}" />
+		<bbvaPersonalize:personalizeCombo size="bigCombo yourStyleClass" idCombo="comboTwo"
+			divClass="customize-online" classIcon="icon-info-blue" valueLabel="#{msg['text.consult']}"
+			labelIcon="#{msg['text.online']}" value="#{personalizeProductAccountController.search}"
+			ajaxCom="#{personalizeProductAccountController.offMessageOpenKey}" idButton="coVir" />
+		<bbvaPersonalize:personalizeCombo size="bigCombo yourStyleClass" idCombo="comboThree"
+			divClass="customize-online" classIcon="icon-info-blue" valueLabel="#{msg['text.work']}"
+			labelIcon="#{msg['text.online']}" value="#{personalizeProductAccountController.operation}"
+			ajaxCom="#{personalizeProductAccountController.offMessageOpenKey}" />
 		<p:commandButton id="buttonThree" value="#{msg['button.save']}"
 			style="	margin: 6px 20px 20px !important;" styleClass="btn btn-default save"
-			onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()"
-			process="@form" update="@form"
+			onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" process="@form"
+			update="@form" actionListener="#{personalizeProductAccountController.operationkey}" />
+		<bbvaMessage:divOperationKey idComfirm="buttonFour" idInput="inputTwo" nameB="buttonConfirm"
+			idInputDiv="divClass" render="#{personalizeProductAccountController.menOperationKey}"
+			value="#{personalizeProductAccountController.personalizeProductAccountDto.operationKey}"
 			actionListener="#{personalizeProductAccountController.operKey}" />
-		<bbvaMessage:messageCheck
-			render="#{personalizeProductAccountController.menOperationKey}" />
 	</bbvaPersonalize:personalizeAccount>
 </composite:implementation>
 </html>
