@@ -1,32 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:composite="http://java.sun.com/jsf/composite"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:pm="http://primefaces.org/mobile"
-	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-	xmlns:c="http://java.sun.com/jsp/jstl/core"
-	xmlns:cc="http://jsflive.at/taglib"
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:cc="http://jsflive.at/taglib"
 	xmlns:bbvaGP="http://java.sun.com/jsf/composite/bbva/globalPosition"
 	xmlns:bbvaButton="http://java.sun.com/jsf/composite/bbva/button"
 	xmlns:bbvaInput="http://java.sun.com/jsf/composite/bbva/input">
-
 <composite:interface>
 	<composite:attribute name="divClass" />
-
 	<composite:attribute name="valueLabel" />
-
 	<composite:attribute name="value" />
 	<composite:attribute name="size" />
 	<composite:attribute name="ajaxCom" required="false"
 		method-signature="void listen(javax.faces.event.AjaxBehaviorEvent)" />
-
 	<composite:attribute name="classIcon" />
 	<composite:attribute name="labelIcon" />
 	<composite:attribute name="idCombo" />
-
 	<composite:attribute name="valueButton" />
 	<composite:attribute name="idButton" />
 	<composite:attribute name="actionListenerCom"
@@ -34,25 +24,22 @@
 </composite:interface>
 <composite:implementation>
 	<div class="#{cc.attrs.divClass}">
-		<p:outputLabel class="leftDiv leftLabel"
-			value="#{cc.attrs.valueLabel}">
+		<p:outputLabel class="leftDiv leftLabel" value="#{cc.attrs.valueLabel}">
 			<span class="#{cc.attrs.classIcon}">#{cc.attrs.labelIcon}</span>
 		</p:outputLabel>
 		<div class="rigthDiv" style="padding-left: 10px ! important;">
 			<c:if test="#{cc.getValueExpression('ajaxCom') != null}">
-				<bbvaButton:comboButtons idCombo="#{cc.attrs.idCombo}"
-					size="#{cc.attrs.size}" value="#{cc.attrs.value}"
-					ajax="#{cc.attrs.ajaxCom}" />
+				<bbvaButton:comboButtons idCombo="#{cc.attrs.idCombo}" size="#{cc.attrs.size}"
+					value="#{cc.attrs.value}" ajax="#{cc.attrs.ajaxCom}" />
 			</c:if>
 			<c:if test="#{cc.getValueExpression('ajaxCom') == null}">
-				<bbvaButton:comboButtons idCombo="#{cc.attrs.idCombo}"
-					size="#{cc.attrs.size}" value="#{cc.attrs.value}" />
+				<bbvaButton:comboButtons idCombo="#{cc.attrs.idCombo}" size="#{cc.attrs.size}"
+					value="#{cc.attrs.value}" />
 			</c:if>
 			<c:if test="#{cc.attrs.size == 'smallCombo yourStyleClass'}">
-				<p:commandButton id="#{cc.attrs.idButton}"
-					value="#{cc.attrs.valueButton}" styleClass="btn btn-default save"
-					process="@form" update="@form"
-					actionListener="#{cc.attrs.actionListenerCom}" />
+				<p:commandButton id="item_#{cc.attrs.idButton}" value="#{cc.attrs.valueButton}"
+					styleClass="btn btn-default saveAlias" process="@form" update="@form"
+					actionListener="#{cc.attrs.actionListenerCom}" style="margin-top: 4px !important;" />
 			</c:if>
 		</div>
 	</div>

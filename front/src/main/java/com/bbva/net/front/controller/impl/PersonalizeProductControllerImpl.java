@@ -3,6 +3,7 @@ package com.bbva.net.front.controller.impl;
 import javax.annotation.Resource;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import javax.faces.event.AjaxBehaviorEvent;
 
 import org.primefaces.context.RequestContext;
@@ -74,7 +75,7 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 	 * @throws Exception
 	 */
 	@Override
-	public void operKey() {
+	public void operKey(ActionEvent event) {
 		LOGGER.info("Método operKey");
 		Boolean responseVisi = false, responseOpe = false;
 		if (productDto.getProductId() != null) {
@@ -104,7 +105,6 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 			}
 			if (responseVisi == true && responseOpe == true) {
 				LOGGER.info("mostrando mensaje de operaciones Exitoso");
-				setMenOperationKey(true);
 			} else {
 				RequestContext.getCurrentInstance().showMessageInDialog(
 						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "No se ha podido actualizar"));
@@ -114,6 +114,7 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 			LOGGER.info("Error producto nulo");
 			setProductDto(new ProductDto());
 		}
+		this.personalizeProductAccountDto.setOperationKey("");
 	}
 
 	@Override
@@ -149,6 +150,11 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 	@Override
 	public void offMessageSuccesful() {
 		setMenSuccessful(false);
+	}
+
+	@Override
+	public void operationkey() {
+		setMenOperationKey(true);
 	}
 
 	// Setters and Getters

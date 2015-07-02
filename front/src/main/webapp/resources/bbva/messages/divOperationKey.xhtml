@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:composite="http://java.sun.com/jsf/composite"
-	xmlns:f="http://java.sun.com/jsf/core"
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite" xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
 	xmlns:pm="http://primefaces.org/mobile" xmlns:jsf="http://xmlns.jcp.org/jsf"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
@@ -23,15 +21,14 @@
 				<label class="col-xs-12 col-md-5"><span class="iconFont-218"></span>#{msg['text.operationKey']}</label>
 				<div class="col-xs-12 col-md-7 input-group">
 					<div class="col-xs-9 col-md-8 input-control" id="#{cc.attrs.idInputDiv}">
-						<p:inputText id="#{cc.attrs.idInput}" styleClass="form-control"
-							type="password" value="#{cc.attrs.value}" onkeyup="enableDisable(this)" />
+						<p:inputText id="#{cc.attrs.idInput}" styleClass="form-control" type="password"
+							value="#{cc.attrs.value}" onkeyup="enableDisable(this)" />
 					</div>
 					<div class="col-xs-3 col-md-4 btn-control">
-						<p:commandButton id="#{cc.attrs.idComfirm}" value="#{msg['text.comfirm']}"
-							style="padding: 3px 1px;"
-							styleClass="operKey btn btn-default btn-confirm buttonDisabled"
-							actionListener="#{cc.attrs.actionListener}"
-							onclick="checkFilled(this, #{cc.attrs.idInputDiv})" />
+						<p:commandButton id="item_#{cc.attrs.idComfirm}" value="#{msg['text.comfirm']}"
+							style="padding: 3px 1px;" styleClass="operKey btn btn-default btn-confirm buttonDisabled"
+							onclick="checkFilled(this, #{cc.attrs.idInputDiv})"
+							actionListener="#{cc.attrs.actionListener}" />
 					</div>
 				</div>
 			</div>
