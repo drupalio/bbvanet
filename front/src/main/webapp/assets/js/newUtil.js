@@ -25,7 +25,7 @@ function enableDisable(inputId) {
 function checkFilled(btnW, inputId) {
 	var button = document.getElementsByName(btnW.name)[0].id;
 	document.getElementById(button).style.visibility = "hidden";
-	inputId.className = "col-xs-9 col-md-8 input-control pass-valid";
+	inputId.className = 'col-xs-9 col-md-8 input-control pass-valid';
 }
 
 // Para abrir y cerrar los detalles de movimientos.
@@ -210,6 +210,17 @@ $(document).ready(function() {
 		$(selectItems).before("<div style='width:" + (260 - $(this).width()) + "px;' class='likeBord'/>");
 		$(selectItems).before("<div style='width:" + ($(this).width() - 1) + "px;' class='likeDif'/>");
 	});
+
+	$('.tooltip-item').on({
+		'mouseover' : function(event) {
+			var div = "<div class='tooltip-arrow'></div><div class='tooltip-inner'>" + $(this).attr('data-original-title') + "</div>";
+			$(this).parent().prepend("<div style='display: block; top: -67px; left: -15px;' id='" + $(this).attr('id') + "tooltip' class='tooltip fade top in' role='tooltip'>" + div + " </div>");
+		},
+
+		'mouseout' : function(event) {
+			$(this).prev().remove();
+		}
+	});
 });
 
 $(window).load(function() {
@@ -241,7 +252,7 @@ $(window).load(function() {
 			$(this).children('.tab-head').addClass('buttonDisabled');
 
 			$(this).hover(function() {
-				$(this).prepend("<div style='display: block; top: -87px; left: -3px;' id='" + $(this).attr('id') + "tooltip' class='tooltip fade top in' role='tooltip'>" + div + " </div>");
+				$(this).prepend("<div style='display: block; top: -87px; left: -3px; z-index: 10000;' id='" + $(this).attr('id') + "tooltip' class='tooltip fade top in' role='tooltip'>" + div + " </div>");
 			}, function() {
 				$(this).children('.tooltip').remove();
 			});
@@ -308,4 +319,3 @@ function error(errorCode) {
 	else
 		alert("Ha ocurrido un error")
 }
-
