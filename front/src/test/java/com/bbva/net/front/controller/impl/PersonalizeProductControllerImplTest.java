@@ -1,6 +1,7 @@
 package com.bbva.net.front.controller.impl;
 
 import javax.faces.event.ActionEvent;
+import javax.faces.event.AjaxBehaviorEvent;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -22,6 +23,8 @@ public class PersonalizeProductControllerImplTest extends AbstractBbvaController
 
 	private ActionEvent eventAction;
 
+	private AjaxBehaviorEvent ajaxEvent;
+
 	private PersonalizeProductFacade personalizeFacade;
 
 	private UpdateAliasFacade updateAliasFacade;
@@ -37,10 +40,11 @@ public class PersonalizeProductControllerImplTest extends AbstractBbvaController
 		super.setUp();
 		this.personalizeController = new PersonalizeProductControllerImpl();
 		this.eventAction = Mockito.mock(ActionEvent.class);
-		this.personalizeController.offMessageSuccesful();
+		this.ajaxEvent = Mockito.mock(AjaxBehaviorEvent.class);
+		this.personalizeController.offMessageSuccesful(ajaxEvent);
 		this.personalizeController.offMessageOpenKey(null);
-		this.personalizeController.isMenSuccessful();
-		this.personalizeController.isMenOperationKey();
+		this.personalizeController.getMenSuccessful();
+		this.personalizeController.getMenOperationKey();
 		this.personalizeFacade = Mockito.mock(PersonalizeProductFacade.class);
 		this.updateAliasFacade = Mockito.mock(UpdateAliasFacade.class);
 		this.personalizeController.setPersonalizeProductAccountFacade(personalizeFacade);

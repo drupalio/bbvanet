@@ -42,6 +42,8 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 
 	private ProductDto productDto;
 
+	private String alias;
+
 	private UpdateAccountDto updateAccountIn;
 
 	private UpdateAccountDto updateAccountOut;
@@ -105,6 +107,7 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 			}
 			if (responseVisi == true && responseOpe == true) {
 				LOGGER.info("mostrando mensaje de operaciones Exitoso");
+				super.executeScript("checkFilled()");
 			} else {
 				RequestContext.getCurrentInstance().showMessageInDialog(
 						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "No se ha podido actualizar"));
@@ -124,9 +127,11 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 		this.updateAccountIn.setSubjectType(EnumSubjectType.SAVING_ACCOUNT);
 		this.updateAccountIn.setUserId("12345678");
 		try {
+			this.updateAccountIn.setAlias(getAlias());
 			this.updateAccountOut = this.updateAliasFacade.updateSubject("12345656", this.updateAccountIn);
 			if (updateAccountOut.getFolio() != null) {
 				setMenSuccessful(true);
+				setAlias("");
 			} else
 				LOGGER.info("Error al actulizar el alias");
 		} catch (Exception e) {
@@ -148,7 +153,7 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 	 * Metodo que esconde el mensaje "Successful" cuando se le da click a un boton del comboButton
 	 */
 	@Override
-	public void offMessageSuccesful() {
+	public void offMessageSuccesful(AjaxBehaviorEvent event) {
 		setMenSuccessful(false);
 	}
 
@@ -162,7 +167,7 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 	/**
 	 * @return the menSuccessful
 	 */
-	public boolean isMenSuccessful() {
+	public boolean getMenSuccessful() {
 		return menSuccessful;
 	}
 
@@ -176,7 +181,7 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 	/**
 	 * @return the menOperationKey
 	 */
-	public boolean isMenOperationKey() {
+	public boolean getMenOperationKey() {
 		return menOperationKey;
 	}
 
@@ -283,5 +288,19 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 	 */
 	public void setUpdateAccountOut(UpdateAccountDto updateAccountOut) {
 		this.updateAccountOut = updateAccountOut;
+	}
+
+	/**
+	 * @return the alias
+	 */
+	public String getAlias() {
+		return alias;
+	}
+
+	/**
+	 * @param alias the alias to set
+	 */
+	public void setAlias(String alias) {
+		this.alias = alias;
 	}
 }

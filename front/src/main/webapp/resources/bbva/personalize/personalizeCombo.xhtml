@@ -21,11 +21,17 @@
 	<composite:attribute name="idButton" />
 	<composite:attribute name="actionListenerCom"
 		method-signature="void actionlistener(javax.faces.event.ActionEvent)" />
+	<composite:attribute name="styleTool" />
+	<composite:attribute name="valueTool" />
 </composite:interface>
 <composite:implementation>
 	<div class="#{cc.attrs.divClass}">
 		<p:outputLabel class="leftDiv leftLabel" value="#{cc.attrs.valueLabel}">
-			<span class="#{cc.attrs.classIcon}">#{cc.attrs.labelIcon}</span>
+			<c:if test="#{cc.attrs.size != 'smallCombo yourStyleClass'}">
+				<span data-original-title="#{cc.attrs.valueTool}" data-style-toggle="#{cc.attrs.styleTool}"
+					class="#{cc.attrs.classIcon}" onmouseover="addTool(jQuery(this))"
+					onmouseout="removeTool(jQuery(this))">#{cc.attrs.labelIcon}</span>
+			</c:if>
 		</p:outputLabel>
 		<div class="rigthDiv" style="padding-left: 10px ! important;">
 			<c:if test="#{cc.getValueExpression('ajaxCom') != null}">
@@ -37,9 +43,10 @@
 					value="#{cc.attrs.value}" />
 			</c:if>
 			<c:if test="#{cc.attrs.size == 'smallCombo yourStyleClass'}">
-				<p:commandButton id="item_#{cc.attrs.idButton}" value="#{cc.attrs.valueButton}"
-					styleClass="btn btn-default saveAlias" process="@form" update="@form"
-					actionListener="#{cc.attrs.actionListenerCom}" style="margin-top: 4px !important;" />
+				<p:commandButton id="item_#{cc.attrs.idButton}" value="#{cc.attrs.valueButton}" update="@form"
+					style="margin: 20px 9px 0px 17px !important;" styleClass="btn btn-default save"
+					actionListener="#{cc.attrs.actionListenerCom}" onstart="PF('statusDialog').show()"
+					oncomplete="PF('statusDialog').hide()" />
 			</c:if>
 		</div>
 	</div>
