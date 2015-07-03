@@ -1217,7 +1217,14 @@ body div.ui-growl .ui-state-highlight {
 
 /*ui-icon next*/
 .ui-datepicker .ui-datepicker-next {
-	display: none;
+	background: url("../img/sprite-widget-pag_right.png") no-repeat
+		!important;
+	background-position: 0px -80px !important;
+}
+/*hover ui-icon*/
+.ui-datepicker .ui-datepicker-next-hover {
+	background-position: 0px 0px !important;
+	border: none !important;
 }
 
 /*Quitar el background del a*/

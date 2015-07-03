@@ -119,13 +119,12 @@
 						</div>
 						<div class="col-md-12 input-control control">
 							<p:calendar widgetVar="#{cc.attrs.identify}_Since" autocomplete="false"
-								placeholder="__/__/____" id="itemSince_#{cc.attrs.identify}"
+								placeholder="__/__/____" id="itemSince_#{cc.attrs.identify}" mask="true"
 								value="#{cc.attrs.valueDateSince}" pattern="dd/MM/yyyy"
-								disabled="#{cc.attrs.disabledCalendar}" showButtonPanel="true"
+								disabled="#{cc.attrs.disabledCalendar}" showButtonPanel="true" converterMessage="Fecha inválida"
 								maxdate="today" showOtherMonths="true">
-								<f:convertDateTime pattern="dd/MM/yyyy" />
 								<p:ajax event="dateSelect" update="#{cc.attrs.confirmDate}" />
-								
+								<p:ajax event="change" update="#{cc.attrs.confirmDate}"/>
 							</p:calendar>
 						</div>
 					</div>
@@ -137,13 +136,12 @@
 						</div>
 						<div class="col-md-12 input-control control">
 							<p:calendar widgetVar="#{cc.attrs.identify}_To" autocomplete="false"
-								placeholder="__/__/____" id="itemTo_#{cc.attrs.identify}"
-								mindate="#{cc.attrs.valueDateSince}" maxdate="today"
-								showButtonPanel="true" showOtherMonths="true"
-								value="#{cc.attrs.valueDateTo}" disabled="#{cc.attrs.disabledCalendar}"
-								pattern="dd/MM/yyyy">
-								<f:convertDateTime pattern="dd/MM/yyyy" />
+								placeholder="__/__/____" id="itemTo_#{cc.attrs.identify}" 
+								mindate="#{cc.attrs.valueDateSince}" maxdate="today" pattern="dd/MM/yyyy" 
+								showButtonPanel="true" showOtherMonths="true" mask="true" converterMessage="Fecha inválida"
+								value="#{cc.attrs.valueDateTo}" disabled="#{cc.attrs.disabledCalendar}">
 								<p:ajax event="dateSelect" update="#{cc.attrs.confirmDate}" />
+								<p:ajax event="change" update="#{cc.attrs.confirmDate}"/>
 							</p:calendar>
 						</div>
 					</div>
