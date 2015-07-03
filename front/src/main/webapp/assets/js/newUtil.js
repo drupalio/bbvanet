@@ -2,10 +2,10 @@
 function enableDisableButton(inputId) {
 	var valueInput = $(inputId).val().length;
 	if (valueInput > 0) {
-		$('.saveAlias').removeClass('buttonDisabled');
+		$('#tabMenu\\:tabPersonal\\:personaliz\\:upAlias\\:inputContent\\:buttonUpdate').removeClass('buttonDisabled');
 		return;
 	} else {
-		$('.saveAlias').addClass('buttonDisabled');
+		$('#tabMenu\\:tabPersonal\\:personaliz\\:upAlias\\:inputContent\\:buttonUpdate').addClass('buttonDisabled');
 	}
 }
 
@@ -22,10 +22,13 @@ function enableDisable(inputId) {
 }
 
 // Metodo que cambia el estilo del divOperationkey
-function checkFilled(btnW, inputId) {
-	var button = document.getElementsByName(btnW.name)[0].id;
-	document.getElementById(button).style.visibility = "hidden";
-	inputId.className = 'col-xs-9 col-md-8 input-control pass-valid';
+function checkFilled() {
+	$(document).ready(function() {
+		$('button.verifySucess').css('visibility', 'hidden');
+		$('#divClass').css('width', '100% !important');
+		$('input.verifySucess').css('width', '50% !important');
+		$('input.verifySucess').after('<div class="pass-valid" style="width: 17px ! important; float: right; height: 32px;"></div>');
+	});
 }
 
 // Para abrir y cerrar los detalles de movimientos.
@@ -133,6 +136,19 @@ function clickMoveFav() {
 	});
 }
 
+function addTool(spanT) {
+	$(document).ready(function() {
+		var div = "<div class='tooltip-arrow'></div><div class='tooltip-inner'>" + $(spanT).attr('data-original-title') + "</div>";
+		$(spanT).parent().prepend("<div style='display: block;" + $(spanT).attr('data-style-toggle') + "' id='" + $(spanT).attr('id') + "tooltip' class='tooltip fade top in' role='tooltip'>" + div + " </div>");
+	});
+}
+
+function removeTool(spanT) {
+	$(document).ready(function() {
+		$(spanT).prev().remove();
+	});
+}
+
 $(document).ready(function() {
 	/* button Extractos */
 	$('.extractButton').click(function() {
@@ -210,17 +226,6 @@ $(document).ready(function() {
 		$(selectItems).before("<div style='width:" + (260 - $(this).width()) + "px;' class='likeBord'/>");
 		$(selectItems).before("<div style='width:" + ($(this).width() - 1) + "px;' class='likeDif'/>");
 	});
-
-	$('.tooltip-item').on({
-		'mouseover' : function(event) {
-			var div = "<div class='tooltip-arrow'></div><div class='tooltip-inner'>" + $(this).attr('data-original-title') + "</div>";
-			$(this).parent().prepend("<div style='display: block; top: -67px; left: -15px;' id='" + $(this).attr('id') + "tooltip' class='tooltip fade top in' role='tooltip'>" + div + " </div>");
-		},
-
-		'mouseout' : function(event) {
-			$(this).prev().remove();
-		}
-	});
 });
 
 $(window).load(function() {
@@ -247,7 +252,7 @@ $(window).load(function() {
 
 	$('#tabsOperations li').each(function(event) {
 		var sdas = $(this).attr('data-origin-value');
-		var div = "<div class='tooltip-arrow' /><div class='tooltip-inner' style='bottom: 0px !important; font-size: 11px !important;'>" + $(this).attr('data-original-title') + "</div>";
+		var div = "<div class='tooltip-arrow' /><div class='tooltip-inner' style='font-size: 11px !important;'>" + $(this).attr('data-original-title') + "</div>";
 		if (sdas == 'false') {
 			$(this).children('.tab-head').addClass('buttonDisabled');
 

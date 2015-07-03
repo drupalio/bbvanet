@@ -27,7 +27,7 @@ public interface PersonalizeProductController {
 	 * @param event
 	 */
 
-	void offMessageSuccesful();
+	void offMessageSuccesful(AjaxBehaviorEvent event);
 
 	void offMessageOpenKey(AjaxBehaviorEvent event);
 

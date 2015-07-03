@@ -15,20 +15,19 @@
 		method-signature="void actionlistener(javax.faces.event.ActionEvent)" />
 </composite:interface>
 <composite:implementation>
-	<h:panelGroup rendered="#{cc.attrs.render}">
+	<h:panelGroup rendered="#{cc.attrs.render}" autoUpdate="true">
 		<div class="col-xs-12 operation-message">
 			<div class="row validate-key">
 				<label class="col-xs-12 col-md-5"><span class="iconFont-218"></span>#{msg['text.operationKey']}</label>
 				<div class="col-xs-12 col-md-7 input-group">
 					<div class="col-xs-9 col-md-8 input-control" id="#{cc.attrs.idInputDiv}">
-						<p:inputText id="#{cc.attrs.idInput}" styleClass="form-control" type="password"
+						<p:inputText id="#{cc.attrs.idInput}" styleClass="form-control verifySucess" type="password"
 							value="#{cc.attrs.value}" onkeyup="enableDisable(this)" />
 					</div>
 					<div class="col-xs-3 col-md-4 btn-control">
 						<p:commandButton id="item_#{cc.attrs.idComfirm}" value="#{msg['text.comfirm']}"
-							style="padding: 3px 1px;" styleClass="operKey btn btn-default btn-confirm buttonDisabled"
-							onclick="checkFilled(this, #{cc.attrs.idInputDiv})"
-							actionListener="#{cc.attrs.actionListener}" />
+							style="padding: 3px 1px;" actionListener="#{cc.attrs.actionListener}"
+							styleClass="operKey btn btn-default btn-confirm buttonDisabled verifySucess" />
 					</div>
 				</div>
 			</div>
