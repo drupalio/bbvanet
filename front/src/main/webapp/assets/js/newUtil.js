@@ -25,9 +25,9 @@ function enableDisable(inputId) {
 function checkFilled() {
 	$(document).ready(function() {
 		$('button.verifySucess').css('visibility', 'hidden');
-		$('#divClass').css('width', '100% !important');
-		$('input.verifySucess').css('width', '50% !important');
-		$('input.verifySucess').after('<div class="pass-valid" style="width: 17px ! important; float: right; height: 32px;"></div>');
+		$('#divClass').css("cssText", "width: 100% !important;");
+		$('input.verifySucess').css("cssText", "width: 63% !important;");
+		$('input.verifySucess').after('<div class="pass-valid" style="width: 20px !important; float: right; height: 32px; padding: 0px; margin-right: 38px;"></div>');
 	});
 }
 
