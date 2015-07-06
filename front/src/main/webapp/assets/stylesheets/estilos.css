@@ -1115,44 +1115,49 @@ body div.ui-growl .ui-state-highlight {
 
 /*Imagen de arriba del calendar*/
 .ui-datepicker::before {
-	border-color: -moz-use-text-color transparent white;
-	border-style: none solid solid;
-	border-width: 0 7px 7px;
-	content: "";
+	content: '';
 	display: inline-block;
+	border-left: 7px solid transparent;
+	border-right: 7px solid transparent;
+	border-bottom: 7px solid white;
+	border-top: 0;
+	border-bottom-color: white;
 	position: absolute;
-	right: 11px;
 	top: -7px;
+	right: 11px;
 	z-index: 2;
 }
 
 /*Imagen de arriba del calendar*/
 .ui-datepicker::after {
-	border-color: -moz-use-text-color transparent #c4d7e5;
+	content: '';
+	display: inline-block;
 	border-left: 8px solid transparent;
 	border-right: 8px solid transparent;
-	border-style: none solid solid;
-	border-width: 0 8px 8px;
-	content: "";
-	display: inline-block;
+	border-bottom: 8px solid #c4d7e5;
+	border-top: 0;
+	border-bottom-color: #c4d7e5;
 	position: absolute;
-	right: 11px;
 	top: -8px;
+	right: 10px;
 	z-index: 1;
+}
+
+.ui-datepicker.ui-helper-clearfix::after {
+	visibility: visible;
 }
 
 /*cabecera del calendario*/
 .ui-datepicker .ui-datepicker-header {
 	border: none !important;
-	background: #FFF !important;
+	background: transparent !important;
 	color: black !important;
-	background: #FFF !important;
-	margin-right: 64px;
+	margin-bottom: 32px;
 }
 
 /*fuente del titulo del calendario*/
 .ui-datepicker .ui-datepicker-title {
-	text-align: left;
+	text-align: center;
 	padding-left: 5px;
 	font-family: Arial;
 	font-size: 12px;
@@ -1261,9 +1266,9 @@ body div.ui-growl .ui-state-highlight {
 
 /*button today position*/
 .ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current {
-	position: absolute;
-	top: 11px;
-	right: 45px;
+	margin-top: -76%;
+	margin-right: 40%;
+	float: right;
 }
 
 /*items deshabilitados*/
