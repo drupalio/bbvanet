@@ -100,4 +100,9 @@ public interface MovementCriteriaController {
 	 * 
 	 */
 	void sendMail();
+
+	/**
+	 * 
+	 */
+	void exportDocumentDetailPdf();
 }

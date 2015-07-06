@@ -111,6 +111,8 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 	private transient StreamedContent exportPdf;
 
+	private transient StreamedContent exportDetailPdf;
+
 	@Resource(name = "multiValueGroupFacade")
 	private transient MultiValueGroupFacade multiValueGroupFacade;
 
@@ -159,7 +161,6 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		return this.movementsList;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public void onMovementSelected(SelectEvent selectEvent) {
 		LOGGER.info("MovementsAccountController onMovementSelected");
@@ -602,6 +603,137 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		LOGGER.info("iniciando exportar archivo pdf");
 
 		String rutaArchivo = "Movimientos.pdf";
+
+		try {
+
+			FileOutputStream file = null;
+
+			try {
+				file = new FileOutputStream(rutaArchivo);
+			} catch (FileNotFoundException e) {
+				LOGGER.info("Excepción no se encuentra el archivo" + e.getMessage());
+			}
+
+			Document document = new Document();
+
+			PdfWriter.getInstance(document, file).setInitialLeading(20);
+
+			document.open();
+
+			try {
+				Image foto = Image.getInstance("https://www.bbva.com.co/BBVA-home-theme/images/BBVA/logo_bbva.png");
+				foto.scaleToFit(100, 100);
+				document.add(foto);
+			} catch (Exception e) {
+				LOGGER.info("Excepción no se encuentra el archivo de imagen" + e.getMessage());
+			}
+
+			Paragraph initial = new Paragraph("Estimado(a) cliente: ",
+					FontFactory.getFont("arial", 12, BaseColor.BLACK));
+			initial.setAlignment(Element.ALIGN_LEFT);
+			initial.setSpacingBefore(20);
+			document.add(initial);
+
+			PdfPTable tabla = new PdfPTable(4);
+			com.itextpdf.text.Font font = new com.itextpdf.text.Font(FontFamily.HELVETICA, 10,
+					com.itextpdf.text.Font.BOLD, BaseColor.BLACK);
+			com.itextpdf.text.Font fontNormal = new com.itextpdf.text.Font(FontFamily.HELVETICA, 10,
+					com.itextpdf.text.Font.NORMAL, BaseColor.BLACK);
+			com.itextpdf.text.Font fontBlue = new com.itextpdf.text.Font(FontFamily.HELVETICA, 10,
+					com.itextpdf.text.Font.BOLD, new BaseColor(0, 80, 152));
+			tabla.setSpacingBefore(20);
+			tabla.setSpacingAfter(20);
+
+			PdfPCell dateTitle = new PdfPCell(new Phrase("FECHA", font));
+			dateTitle.setBackgroundColor(new BaseColor(229, 229, 229));
+			tabla.addCell(dateTitle);
+
+			PdfPCell concept = new PdfPCell(new Phrase("CONCEPTO", font));
+			concept.setBackgroundColor(new BaseColor(229, 229, 229));
+			tabla.addCell(concept);
+
+			PdfPCell value = new PdfPCell(new Phrase("VALOR", font));
+			value.setBackgroundColor(new BaseColor(229, 229, 229));
+			tabla.addCell(value);
+
+			PdfPCell sald = new PdfPCell(new Phrase("SALDO", font));
+			sald.setBackgroundColor(new BaseColor(229, 229, 229));
+			tabla.addCell(sald);
+
+			for (int i = 0; i < movementsList.size(); i++) {
+
+				String date = getdateString(movementsList.get(i).getMovementDate());
+
+				tabla.addCell(new Phrase(date, fontBlue));
+				tabla.addCell(new Phrase(movementsList.get(i).getMovementConcept(), fontNormal));
+				tabla.addCell(new Phrase(movementsList.get(i).getMovementValue() + "", font));
+				tabla.addCell(new Phrase(movementsList.get(i).getTotalBalance() + "", font));
+			}
+			document.add(tabla);
+
+			Paragraph att = new Paragraph("Cordial saludo, ", FontFactory.getFont("arial", 12, BaseColor.BLACK));
+			att.setAlignment(Element.ALIGN_JUSTIFIED);
+			att.setSpacingBefore(20);
+			document.add(att);
+
+			Paragraph bbva = new Paragraph("BBVA Adelante ",
+					FontFactory.getFont("arial", 12, new BaseColor(0, 80, 152)));
+			bbva.setAlignment(Element.ALIGN_JUSTIFIED);
+			bbva.setSpacingAfter(20);
+			document.add(bbva);
+
+			Paragraph note = new Paragraph(
+					"Nota: Si no eres el destinatario de este mensaje, por favor comunícate con nosotros con el fin de realizar la actualización correspondiente, al 4010000 en Bogotá, 4938300 en Medellín, 3503500 en Barranquilla, 8892020 en Cali, 6304000 en Bucaramanga o al 01800 912227 desde el resto del país. ",
+					FontFactory.getFont("arial", 9, com.itextpdf.text.Font.BOLD));
+			note.setAlignment(Element.ALIGN_JUSTIFIED);
+			note.setSpacingAfter(20);
+			document.add(note);
+
+			String ast = "*********************";
+
+			Paragraph post = new Paragraph(ast + " AVISO LEGAL " + ast,
+					FontFactory.getFont("arial", 9, BaseColor.BLACK));
+			post.setAlignment(Element.ALIGN_LEFT);
+			document.add(post);
+
+			Paragraph postCont = new Paragraph(
+					"Este mensaje es solamente para la persona a la que va dirigido. Puede contener informacion  confidencial  o  legalmente  protegida.  No  hay  renuncia  a la confidencialidad o privilegio por cualquier transmision mala/erronea. Si usted ha recibido este mensaje por error,  le rogamos que borre de su sistema inmediatamente el mensaje asi como todas sus copias, destruya todas las copias del mismo de su disco duro y notifique al remitente.  No debe,  directa o indirectamente, usar, revelar, distribuir, imprimir o copiar ninguna de las partes de este mensaje si no es usted el destinatario. Cualquier opinion expresada en este mensaje proviene del remitente, excepto cuando el mensaje establezca lo contrario y el remitente este autorizado para establecer que dichas opiniones provienen de  BBVA. Notese que el correo electronico via Internet no permite asegurar ni la confidencialidad de los mensajes que se transmiten ni la correcta recepcion de los mismos. En el caso de que el destinatario de este mensaje no consintiera la utilizacion del correo electronico via Internet, rogamos lo ponga en nuestro conocimiento de manera inmediata.",
+					FontFactory.getFont("arial", 9, BaseColor.BLACK));
+			postCont.setAlignment(Element.ALIGN_JUSTIFIED);
+			postCont.setSpacingAfter(20);
+			document.add(postCont);
+
+			Paragraph post2 = new Paragraph(ast + " DISCLAIMER " + ast,
+					FontFactory.getFont("arial", 9, BaseColor.BLACK));
+			post2.setAlignment(Element.ALIGN_LEFT);
+			document.add(post2);
+
+			Paragraph post2Content = new Paragraph(
+					"This message is intended exclusively for the named person. It may contain confidential, propietary or legally privileged information. No confidentiality or privilege is waived or lost by any mistransmission. If you receive this message in error, please immediately delete it and all copies of it from your system, destroy any hard copies of it and notify the sender. Your must not, directly or indirectly, use, disclose, distribute, print, or copy any part of this message if you are not the intended recipient. Any views expressed in this message are those of the individual sender, except where the message states otherwise and the sender is authorised to state them to be the views of BBVA. Please note that internet e-mail neither guarantees the confidentiality nor the proper receipt of the message sent. If the addressee of this message does not consent to the use of internet e-mail, please communicate it to us immediately.",
+					FontFactory.getFont("arial", 9, BaseColor.BLACK));
+			post2Content.setAlignment(Element.ALIGN_JUSTIFIED);
+			post2Content.setSpacingAfter(20);
+			document.add(post2Content);
+
+			Paragraph asty = new Paragraph(ast, FontFactory.getFont("arial", 9, BaseColor.BLACK));
+			asty.setAlignment(Element.ALIGN_LEFT);
+			asty.setSpacingAfter(20);
+			document.add(asty);
+
+			document.close();
+
+		} catch (DocumentException e) {
+			LOGGER.info("Excepción no se encuentra el archivo" + e.getMessage());
+		}
+	}
+
+	// Export Pdf
+	@Override
+	public void exportDocumentDetailPdf() {
+
+		LOGGER.info("iniciando exportar archivo pdf");
+
+		String rutaArchivo = "MovimientosDetail.pdf";
 
 		try {
 
@@ -1233,6 +1365,28 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	 * @param exportPdf the exportPdf to set
 	 */
 	public void setExportPdf(StreamedContent exportPdf) {
+		this.exportPdf = exportPdf;
+	}
+
+	/**
+	 * @return the exportPdf
+	 */
+	public StreamedContent getExportDetailPdf() {
+		exportDocumentDetailPdf();
+		InputStream stream;
+		try {
+			stream = new BufferedInputStream(new FileInputStream("Movimientos.pdf"));
+			exportPdf = new DefaultStreamedContent(stream, "application/pdf", "Movimientos.pdf");
+		} catch (FileNotFoundException e) {
+			LOGGER.info("Error al descargar el pdf " + e.getMessage());
+		}
+		return exportPdf;
+	}
+
+	/**
+	 * @param exportPdf the exportPdf to set
+	 */
+	public void setExportDetailPdf(StreamedContent exportPdf) {
 		this.exportPdf = exportPdf;
 	}
 

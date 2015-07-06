@@ -177,15 +177,6 @@ public class TermsControllerImpl extends AbstractBbvaController implements Terms
 			tabla.addCell(new Phrase("Dirección postal:", font));
 			tabla.addCell(new Phrase(detallesCuentaDto.getDireccionPostal().getDireccionPostal(), fontNormal));
 			document.add(tabla);
-			// PdfContentByte cb = writer.getDirectContent();
-			//
-			// ColumnText colum1 = new ColumnText(cb);
-			// Paragraph alias = new Paragraph("alias", FontFactory.getFont("arial", 12, BaseColor.BLACK));
-			// colum1.addText(alias);
-			//
-			// Paragraph aliasRes = new Paragraph("respuesta", FontFactory.getFont("arial", 12, BaseColor.BLACK));
-			// ColumnText colum2 = new ColumnText(cb);
-			// colum2.addText(aliasRes);
 
 			Paragraph att = new Paragraph("Cordial saludo, ", FontFactory.getFont("arial", 12, BaseColor.BLACK));
 			att.setAlignment(Element.ALIGN_JUSTIFIED);
