@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:composite="http://java.sun.com/jsf/composite"
-	xmlns:f="http://java.sun.com/jsf/core"
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite" xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
 	xmlns:pm="http://primefaces.org/mobile" xmlns:jsf="http://xmlns.jcp.org/jsf"
-	xmlns:bbvaButton="http://java.sun.com/jsf/composite/bbva/button">
+	xmlns:bbvaButton="http://java.sun.com/jsf/composite/bbva/button"
+	xmlns:bbvaDetailMotion="http://java.sun.com/jsf/composite/bbva/movementsDetail">
 <composite:interface>
 	<composite:attribute name="id" type="String" />
 	<composite:attribute name="listCheckBooks" type="java.util.List" />
@@ -27,11 +26,9 @@
 					styleClass="styleColum desc" sortBy="#{checkBook.lastCheck}">
 					<h:outputText styleClass="text normal" value="#{checkBook.lastCheck}" />
 				</p:column>
-				<p:column headerText="#{msg['checkbooks.available.checks']}"
-					styleClass="styleColum desc" style="width: 30%;"
-					sortBy="#{checkBook.totalCheck}" colspan="2">
-					<h:outputText styleClass="brand styleLeft colorBlack"
-						value="#{checkBook.totalCheck}" />
+				<p:column headerText="#{msg['checkbooks.available.checks']}" styleClass="styleColum desc"
+					style="width: 30%;" sortBy="#{checkBook.totalCheck}" colspan="2">
+					<h:outputText styleClass="brand styleLeft colorBlack" value="#{checkBook.totalCheck}" />
 					<h:outputText styleClass="text styleLeft"
 						value="#{msg['checkbooks.available.text']} #{checkBook.totalCheck}" />
 				</p:column>
@@ -56,12 +53,10 @@
 						<h:outputText styleClass="text styleLeft" value="#{checkBook.actualState}" />
 					</div>
 					<div class="right hidden-lg" style="width: 35% !important;">
-						<h:outputText styleClass="brand styleRigth"
-							value="#{checkBook.requestDate}">
+						<h:outputText styleClass="brand styleRigth" value="#{checkBook.requestDate}">
 							<f:convertDateTime pattern="dd/MM/yyyy" />
 						</h:outputText>
-						<h:outputText styleClass="text styleRigth"
-							value="#{checkBook.deliveryDate}">
+						<h:outputText styleClass="text styleRigth" value="#{checkBook.deliveryDate}">
 							<f:convertDateTime pattern="dd/MM/yyyy" />
 						</h:outputText>
 					</div>
@@ -72,10 +67,8 @@
 					rendered="#{checkBookController.renderComponents['FOOTERTABLECHECKBOOK']}"
 					styleClass="btn btn-more-results" process="@this"
 					actionListener="#{checkBookController.nextPageCheckBook}" ajax="true"
-					update=":detailAccounts:checkBookTable:formCheckBooks:checkBooksTable
-                    :detailAccounts:checkBookTable:formCheckBooks">
-					<p:ajax onstart="PF('moreMovsDialog').show()"
-						onsuccess="PF('moreMovsDialog').hide()" />
+					update=":detailAccounts:checkBookTable:formCheckBooks:checkBooksTable">
+					<p:ajax onstart="PF('moreMovsDialog').show()" onsuccess="PF('moreMovsDialog').hide()" />
 				</p:commandButton>
 			</footer>
 		</div>

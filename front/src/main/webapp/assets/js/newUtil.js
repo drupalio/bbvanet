@@ -1,4 +1,4 @@
-//metodo que habilita o desabilita el boton cuando se escribe en el input
+// metodo que habilita o desabilita el boton cuando se escribe en el input
 function enableDisableButton(inputId) {
 	var valueInput = $(inputId).val().length;
 	if (valueInput > 0) {

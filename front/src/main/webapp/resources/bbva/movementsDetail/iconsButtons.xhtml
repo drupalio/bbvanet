@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile" xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:bbvaDetailMotion="http://java.sun.com/jsf/composite/bbva/movementsDetail">
+<composite:interface>
+	<composite:attribute name="renderCorreo" />
+	<composite:attribute name="render" />
+	<composite:attribute name="valueExcel" />
+	<composite:attribute name="valuePdf" />
+	<composite:attribute name="valueCorreo" />
+	<composite:attribute name="valuePrinter" />
+</composite:interface>
+<composite:implementation>
+	<div class="utility-icons">
+		<p:outputPanel autoUpdate="true">
+			<h:form id="documentsExport" rendered="#{cc.attrs.render}">
+				<p:commandLink ajax="false" styleClass="icon-excel-file">
+					<p:fileDownload value="#{cc.attrs.valueExcel}" />
+				</p:commandLink>
+				<p:commandLink styleClass="icon-pdf-file" ajax="false">
+					<p:fileDownload value="#{cc.attrs.valuePdf}" />
+				</p:commandLink>
+				<p:commandLink ajax="false" styleClass="icon-send-by-email" rendered="#{cc.attrs.renderCorreo}"
+					actionListener="#{cc.attrs.valueCorreo}" />
+				<p:commandLink ajax="false" styleClass="icon-printer" actionListener="#{cc.attrs.valuePrinter}" />
+			</h:form>
+		</p:outputPanel>
+	</div>
+</composite:implementation>
+</html>

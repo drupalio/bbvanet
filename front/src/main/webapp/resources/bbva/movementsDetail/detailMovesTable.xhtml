@@ -3,7 +3,8 @@
 	xmlns:composite="http://java.sun.com/jsf/composite" xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
 	xmlns:pm="http://primefaces.org/mobile" xmlns:jsf="http://xmlns.jcp.org/jsf"
-	xmlns:bbvaTablesAcc="http://java.sun.com/jsf/composite/bbva/movementsDetail">
+	xmlns:bbvaTablesAcc="http://java.sun.com/jsf/composite/bbva/movementsDetail"
+	xmlns:c="http://java.sun.com/jstl/core">
 <composite:interface>
 	<composite:attribute name="id" type="String" />
 	<composite:attribute name="listAccounts" type="java.util.List" />
@@ -12,22 +13,22 @@
 </composite:interface>
 <composite:implementation>
 	<article class="detail-table-group">
-		<div class="utility-icons">
-			<h:form id="documentsExport">
-				<p:commandLink ajax="false" styleClass="icon-excel-file">
-					<p:fileDownload value="#{movementsCriteriaController.exportExcel}" />
-				</p:commandLink>
-				<p:commandLink styleClass="icon-pdf-file" ajax="false">
-					<p:fileDownload value="#{movementsCriteriaController.exportPdf}" />
-				</p:commandLink>
-				<p:commandLink ajax="false" styleClass="icon-send-by-email"
-					actionListener="#{movementsCriteriaController.sendMail()}">
-				</p:commandLink>
-				<p:commandLink ajax="false" styleClass="icon-printer"
-					actionListener="#{movementsCriteriaController.printFile()}">
-				</p:commandLink>
-			</h:form>
-		</div>
+		<bbvaTablesAcc:iconsButtons id="iconsMoves" renderCorreo="true"
+			valueExcel="#{movementsCriteriaController.exportExcel}"
+			valuePdf="#{movementsCriteriaController.exportPdf}" render="#{renderComponents['TITLEMOVES']}"
+			valueCorreo="#{movementsCriteriaController.sendMail()}"
+			valuePrinter="#{movementsCriteriaController.printFile()}" />
+		<bbvaTablesAcc:iconsButtons id="iconsChek" renderCorreo="false"
+			valueExcel="#{movementsCriteriaController.exportExcel}"
+			valuePdf="#{movementsCriteriaController.exportPdf}" render="#{renderComponents['TITLECHECKS']}"
+			valueCorreo="#{movementsCriteriaController.sendMail()}"
+			valuePrinter="#{movementsCriteriaController.printFile()}" />
+		<bbvaTablesAcc:iconsButtons id="iconsChecBook" renderCorreo="false"
+			valueExcel="#{movementsCriteriaController.exportExcel}"
+			valuePdf="#{movementsCriteriaController.exportPdf}"
+			render="#{renderComponents['TITLECHECKBOOKS']}"
+			valueCorreo="#{movementsCriteriaController.sendMail()}"
+			valuePrinter="#{movementsCriteriaController.printFile()}" />
 		<bbvaTablesAcc:accountMovementsTable id="tableMovements" listAccounts="#{cc.attrs.listAccounts}" />
 		<bbvaTablesAcc:checkAccountTable id="checkTable" listChecks="#{cc.attrs.listChecks}" />
 		<bbvaTablesAcc:checkBooksAccountTable id="checkBookTable"
