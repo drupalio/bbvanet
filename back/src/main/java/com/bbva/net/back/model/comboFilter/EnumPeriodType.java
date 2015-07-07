@@ -6,9 +6,9 @@ package com.bbva.net.back.model.comboFilter;
 public enum EnumPeriodType {
 
 	YESTERDAY(9, "Ayer", -1), TODAY(8, "Hoy", 0), LAST_WEEK(7, "Última semana", -1), LAST_TWO_WEEK(6,
-			"Últimas dos semanas", -2), LAST_TWO_MONTH(5, "Últimos dos meses", -2), LAST_MONTH(14, "Último mes", -1), LAST_THREE_MONTH(
-			13, "Últimos 3 meses", -3), LAST_SIX_MONTH(12, "Últimos 6 meses", -6), LAST_TWELVE_MONTH(11,
-			"Últimos 12 meses", -12);
+			"Últimas dos semanas", -2), LAST_TWO_MONTH(5, "Últimos dos meses", -2), LAST_MONTH(14, "Último mes", -1), LAST_45_DAYS(
+			15, "Últimos 45 días", -45), LAST_THREE_MONTH(13, "Últimos 3 meses", -3), LAST_SIX_MONTH(12,
+			"Últimos 6 meses", -6), LAST_TWELVE_MONTH(11, "Últimos 12 meses", -12);
 
 	/**
 	 * 

@@ -45,6 +45,9 @@ public class DateFilterServiceImpl implements DateFilterService {
 			case LAST_MONTH:
 				dateRange.setDateSince(DateUtils.addMonths(currentDate, EnumPeriodType.LAST_MONTH.getQuantityPeriod()));
 				break;
+			case LAST_45_DAYS:
+				dateRange.setDateSince(DateUtils.addDays(currentDate, EnumPeriodType.LAST_45_DAYS.getQuantityPeriod()));
+				break;
 			case LAST_TWO_MONTH:
 				dateRange.setDateSince(DateUtils.addMonths(currentDate,
 						EnumPeriodType.LAST_TWO_MONTH.getQuantityPeriod()));

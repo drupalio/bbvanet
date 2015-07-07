@@ -62,4 +62,14 @@ public interface QuotaController {
 	 * 
 	 */
 	void criteriaSearch();
+
+	/**
+	 * 
+	 */
+	void exportDocumentPdf();
+
+	/**
+	 * 
+	 */
+	void exportDocumentExcel();
 }
