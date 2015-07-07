@@ -244,7 +244,20 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		this.totalsProducts = this.globalPositionFacade.getTotalsByProduct(globalProductsDTO);
 
 		// Calculate income, output and balance by Account Graphic
-		this.accountGraphicBarLineUI = this.graphicBarLineDelegate.getInOutBalanceAccount(globalResumeMovementsDTO);
+		// this.accountGraphicBarLineUI = this.graphicBarLineDelegate.getInOutBalanceAccount(globalResumeMovementsDTO);
+		final EnumPeriodType periodType = EnumPeriodType.valueOf(EnumPeriodType.LAST_45_DAYS.getPeriodId());
+
+		final DateRangeDto dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
+
+		try {
+			this.accountGraphicBarLineUI = this.graphicBarLineDelegate
+					.getInOutBalanceAccount(this.movementsResumeFacade.getMovementsResumeByCustomer(dateRange));
+		} catch (Exception e) {
+			// FacesContext ctx = FacesContext.getCurrentInstance();
+			// ctx.addMessage("accountGraphicBarLineUI ",
+			// new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+			this.accountGraphicBarLineUI = new AccountBarLineUI();
+		}
 
 		// Get names of products
 		this.namesProducts = globalPositionFacade.getNamesProducts(globalProductsDTO);
