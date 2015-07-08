@@ -12,7 +12,7 @@ function enableDisableButton(inputId) {
 // metodo que habilita o desabilita el boton cuando hay 4 digitos en el input
 function enableDisable(inputId) {
 	var valueInput = $(inputId).val().length;
-	if (valueInput == 5) {
+	if (valueInput >= 5) {
 		$('.operKey').removeClass('buttonDisabled');
 		return;
 	} else {
@@ -28,6 +28,16 @@ function checkFilled() {
 		$('#divClass').css("cssText", "width: 100% !important;");
 		$('input.verifySucess').css("cssText", "width: 63% !important;");
 		$('input.verifySucess').after('<div class="pass-valid" style="width: 20px !important; float: right; height: 32px; padding: 0px; margin-right: 38px;"></div>');
+	});
+}
+
+// Metodo que cambia el estilo del divOperationkey
+function mistakeFilled() {
+	$(document).ready(function() {
+		$('button.verifySucess').css('visibility', 'hidden');
+		$('#divClass').css("cssText", "width: 100% !important;");
+		$('input.verifySucess').css("cssText", "width: 63% !important;");
+		$('input.verifySucess').after('<div class="mistake-operation" style="width: 20px !important; float: right; height: 32px; padding: 0px; margin-right: 38px;"></div>');
 	});
 }
 

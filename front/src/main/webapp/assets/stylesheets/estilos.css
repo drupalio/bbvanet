@@ -1764,3 +1764,21 @@ body div.ui-growl .ui-state-highlight {
 .tooltip-inner {
 	bottom: 0px !important;
 }
+
+.mistake-operation {
+	background-image: url("../img/errorSymbol.png");
+	background-repeat: no-repeat;
+	background-position: center right;
+	background-size: 23px;
+	padding-left: 20px;
+	width: 71%;
+	padding-right: 28px;
+	padding-left: 20px;
+}
+
+@media ( max-width : 768px) {
+	.mistake-operation {
+		padding-right: 31px;
+		width: 80%;
+	}
+}

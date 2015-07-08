@@ -128,6 +128,7 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 			this.personalizeProductAccountDto.setOperationKey("");
 		} else {
 			operationPass.addError();
+			super.executeScript("mistakeFilled()");
 		}
 	}
 
