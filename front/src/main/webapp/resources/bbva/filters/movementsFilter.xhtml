@@ -19,15 +19,27 @@
 	<div class="movements-filter-content">
 
 		<p:commandLink id="ajax" actionListener="#{movementsCriteriaController.setMovementConcept}">
-			<button class="search-icon" >
+			<button class="search-icon" style="z-index:1 !important">
 			<p:ajax process="@form" event="click" 
 			oncomplete="document.getElementById('tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:movementList:componentList').click();"
 				update="
 			:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:movementList:componentList" />
 			</button>
 		</p:commandLink>
-		<h:inputText styleClass="form-control" value="#{movementsCriteriaController.movementCriteria.movement}"
-			pt:placeholder="#{msg['text.placeholder.movements']}" />
+		<p:autoComplete style="width:308% !important"  placeholder="#{msg['text.placeholder.movements']}" value="#{movementsCriteriaController.movementCriteria.movement}" completeMethod="#{movementsCriteriaController.completeMovement}">
+		<p:ajax process="@form" event="click" listener="#{movementsCriteriaController.selectFilterMove()}" update=":tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:movementList:conceptMove:formfilterConMo:filterConMo" />
+		</p:autoComplete>
+		<h:form id="formfilterConMo">
+	<div class="selectorCombo" style="display: #{movementsCriteriaController.selectFilterMove()}; width: 187.517px !important;">
+		<h:selectOneMenu id="filterConMo" enabledClass="selectOption"
+			disabledClass="selectOptionDisabled" onchange="styles(this)" style="background-position: 95% !important;">
+			<f:selectItems value="#{movementsCriteriaController.conceptMovements}" var="multiValue"
+				itemLabel="#{msg[multiValue.value]}" itemValue="#{multiValue.id}" />
+
+			
+		</h:selectOneMenu>
+	</div>
+	</h:form>
 	</div>
 
 </composite:implementation>

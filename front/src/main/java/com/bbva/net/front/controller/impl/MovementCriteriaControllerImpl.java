@@ -50,6 +50,7 @@ import org.primefaces.event.SelectEvent;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
+import com.bbva.net.back.entity.MultiValueGroup;
 import com.bbva.net.back.facade.MovementsAccountFacade;
 import com.bbva.net.back.facade.MultiValueGroupFacade;
 import com.bbva.net.back.model.citeriaMovements.MovementCriteriaDto;
@@ -131,6 +132,8 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	private LineConfigUI graphicLineMovements;
 
 	private MovementDetailDto movementDetail;
+
+	private List<MultiValueGroup> conceptMovements;
 
 	@Override
 	public void init() {
@@ -229,8 +232,14 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			LOGGER.info("MovementsAccountController searchMovementByFilterDate");
 			this.dateRange = calculateDate(this.getSelectDate());
 			criteriaSearch();
-			resetMapResults();
+			// resetMapResults();
 
+		} else {
+			this.dateRange = null;
+			setDateRangePc(dateRange);
+			this.paginationKey = 0;
+			next();
+			this.movementsList = getCurrentList();
 		}
 		if (getRenderComponents().get(RenderAttributes.BALANCEFILTER.toString())) {
 			// Get movements by balance
@@ -245,7 +254,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			this.movementsList = movementsByBalance;
 			setShowMoreStatus();
 			getRenderComponents().put(RenderAttributes.MOVEMENTSTABLE.toString(), true);
-			resetMapResults();
+			// resetMapResults();
 		}
 
 		if (getRenderComponents().get(RenderAttributes.INCOMEOREXPENSESFILTER.toString())) {
@@ -271,7 +280,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 				setShowMoreStatus();
 			}
 			RequestContext.getCurrentInstance().update(":detailAccounts:tableMovements:formMovesDetail:movAccount");
-			resetMapResults();
+			// resetMapResults();
 		}
 
 		if (getRenderComponents().get(RenderAttributes.MOVEMENTSFILTER.toString())) {
@@ -282,9 +291,51 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			this.movementsList = movementsByConcept;
 			setShowMoreStatus();
 			getRenderComponents().put(RenderAttributes.MOVEMENTSTABLE.toString(), true);
-			resetMapResults();
+
 		}
+		resetMapResults();
 		clean();
+	}
+
+	public String selectFilterMove() {
+		String estado = "inline-block";
+		List<String> values = new ArrayList<String>();
+		values.add("Pagos de facturas PSE");
+		values.add("Pago de facturas");
+		values.add("Remesas");
+		LOGGER.info("--- " + movementCriteria.getMovement());
+		if (movementCriteria.getMovement() != null) {
+			if (movementCriteria.getMovement().equals(values.get(0))) {
+				estado = "inline-block";
+				conceptMovements = multiValueGroupFacade.getMultiValueTypes(13);
+			}
+			if (movementCriteria.getMovement().equals(values.get(1))) {
+				estado = "inline-block";
+				conceptMovements = multiValueGroupFacade.getMultiValueTypes(14);
+			}
+			if (movementCriteria.getMovement().equals(values.get(2))) {
+				estado = "inline-block";
+				conceptMovements = multiValueGroupFacade.getMultiValueTypes(15);
+			}
+		}
+		return estado;
+	}
+
+	public List<String> completeMovement(String filter) {
+		List<String> values = new ArrayList<String>();
+		values.add("Pagos de facturas PSE");
+		values.add("Pago de facturas");
+		values.add("Remesas");
+		List<String> results = new ArrayList<String>();
+		if (!filter.isEmpty()) {
+			for (int i = 0; i < values.size(); i++) {
+				if (values.get(i).toLowerCase().startsWith(filter.toLowerCase())) {
+					results.add(values.get(i));
+				}
+			}
+
+		}
+		return results;
 	}
 
 	@Override
@@ -389,6 +440,9 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	@Override
 	public void cleanFilters(ActionEvent event) {
 		LOGGER.info("MovementsAccountController clean Filters");
+		this.paginationKey = 0;
+		next();
+		this.movementsList = getCurrentList();
 		clean();
 	}
 
@@ -1388,6 +1442,14 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	 */
 	public void setExportDetailPdf(StreamedContent exportPdf) {
 		this.exportPdf = exportPdf;
+	}
+
+	public List<MultiValueGroup> getConceptMovements() {
+		return conceptMovements;
+	}
+
+	public void setConceptMovements(List<MultiValueGroup> conceptMovements) {
+		this.conceptMovements = conceptMovements;
 	}
 
 }
