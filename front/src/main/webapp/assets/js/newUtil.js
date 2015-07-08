@@ -12,7 +12,7 @@ function enableDisableButton(inputId) {
 // metodo que habilita o desabilita el boton cuando hay 4 digitos en el input
 function enableDisable(inputId) {
 	var valueInput = $(inputId).val().length;
-	if (valueInput == 4) {
+	if (valueInput == 5) {
 		$('.operKey').removeClass('buttonDisabled');
 		return;
 	} else {
@@ -148,6 +148,29 @@ function removeTool(spanT) {
 		$(spanT).prev().remove();
 	});
 }
+
+function dataCalendar() {
+	$(document).ready(function() {
+		var currentTo = $('.ui-datepicker-current');
+		var tableCalen = $('.ui-datepicker-calendar');
+		var heigthCa = $(tableCalen).height();
+		$(currentTo).css('margin-top', '-' + (heigthCa + 40) + 'px');
+	});
+}
+
+$(document).delegate('.ui-datepicker-prev', 'click', function() {
+	var currentTo = $('.ui-datepicker-current');
+	var tableCalen = $('.ui-datepicker-calendar');
+	var heigthCa = $(tableCalen).height();
+	$(currentTo).css('margin-top', '-' + (heigthCa + 40) + 'px');
+});
+
+$(document).delegate('.ui-datepicker-next', 'click', function() {
+	var currentTo = $('.ui-datepicker-current');
+	var tableCalen = $('.ui-datepicker-calendar');
+	var heigthCa = $(tableCalen).height();
+	$(currentTo).css('margin-top', '-' + (heigthCa + 40) + 'px');
+});
 
 $(document).ready(function() {
 	/* button Extractos */

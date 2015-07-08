@@ -2,6 +2,8 @@ package com.bbva.net.front.core;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 import javax.faces.context.ExternalContext;
@@ -21,6 +23,7 @@ import org.springframework.webflow.execution.RequestContextHolder;
 import com.bbva.jee.arq.spring.core.log.I18nLogFactory;
 import com.bbva.net.back.model.globalposition.ProductDto;
 import com.bbva.net.back.model.movements.MovementDto;
+import com.bbva.net.front.helper.MessagesHelper;
 
 /**
  * @author Entelgy
@@ -225,5 +228,14 @@ public abstract class AbstractBbvaController implements Serializable {
 	public void onMovementSelected(final SelectEvent selectEvent) {
 		this.setSelectedMovements((MovementDto)selectEvent.getObject());
 		System.out.print("ON productSelected\n");
+	}
+
+	public String getdateString(Date date) {
+		final SimpleDateFormat dateFormat = new SimpleDateFormat(
+				MessagesHelper.INSTANCE.getStringI18("date.pattner.dd-mm-yyyy"));
+		if (date != null) {
+			return dateFormat.format(date);
+		}
+		return "N/A";
 	}
 }
