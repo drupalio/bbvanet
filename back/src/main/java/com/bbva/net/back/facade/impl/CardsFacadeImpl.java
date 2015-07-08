@@ -82,7 +82,7 @@ public class CardsFacadeImpl extends AbstractBbvaFacade implements CardsFacade {
 		EnumPeriodType periodType;
 		DateRangeDto dateRangeUser = dateRange;
 		if (dateRangeUser == null) {
-			periodType = EnumPeriodType.valueOf(EnumPeriodType.LAST_SIX_MONTH.getPeriodId());
+			periodType = EnumPeriodType.valueOf(EnumPeriodType.LAST_45_DAYS.getPeriodId());
 			dateRangeUser = new DateFilterServiceImpl().getPeriodFilter(periodType);
 		}
 		LOGGER.info("Graphic cards Facade by User dateRange:" + dateRangeUser.toString());
@@ -90,6 +90,7 @@ public class CardsFacadeImpl extends AbstractBbvaFacade implements CardsFacade {
 		LOGGER.info("Graphic cards Facade by User filter:" + filter);
 		final List<CardCharge> response = customService.listCreditCardsCharges(filter);
 		LOGGER.info("Graphic cards Facade by User Mapper:" + cardsMapper.map(response));
+		List<CardsChargesDto> a = cardsMapper.map(response);
 		return cardsMapper.map(response);
 	}
 
