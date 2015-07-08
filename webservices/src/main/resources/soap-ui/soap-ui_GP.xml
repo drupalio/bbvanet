@@ -3446,6 +3446,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 </con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
     "id": "53921258839174078423",
     "type": "AH",
+    "status": "8",
     "name": "jvjebywyypgqorighfawpftjqevznxclmndaawethajnahzxgx",
     "balance": {
         "total": {

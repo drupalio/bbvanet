@@ -56,4 +56,13 @@ public interface CheckBookController {
 	 */
 	void hasMoreElementsCheckBook(List<CheckbookDto> cheksBookList);
 
+	/**
+	 * @param event
+	 */
+	void cleanFilters(ActionEvent event);
+
+	/**
+	 * 
+	 */
+	void clean();
 }
