@@ -626,7 +626,7 @@ table thead tr th.smart-view {
 	padding: 0.5px 0px 0.5px 1px !important;
 	height: 31px;
 	background: url("../img/selectCombo.png") no-repeat 98% white !important;
-	display: block !important;
+	display: inline-block !important;
 	width: 100%;
 	border-radius: 4px;
 	text-align: left !important;
@@ -638,13 +638,38 @@ table thead tr th.smart-view {
 	-moz-appearance: none; /* Firefox */
 	-o-appearance: none;
 }
+
+.selectorCombo2 select {
+	padding: 0.5px 0px 0.5px 1px !important;
+	height: 31px;
+	background: url("../img/selectCombo.png") no-repeat 98% white !important;
+	width: 100%;
+	border-radius: 4px;
+	text-align: left !important;
+	vertical-align: middle !important;
+	color: #0078D2 !important;
+	font: 12px "BBVA Web Medium", Arial, sans-serif bold !important;
+	border: 1px solid #D5E2EE;
+	-webkit-appearance: none; /* Safari and Chrome */
+	-moz-appearance: none; /* Firefox */
+	-o-appearance: none;
+}
+
 /*Combos*/
 .selectorCombo select:hover {
 	box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.1);
 }
 
+.selectorCombo2 select:hover {
+	box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.1);
+}
+
 /*Combos*/
 .selectorCombo select::-ms-expand {
+	display: none;
+}
+
+.selectorCombo2 select::-ms-expand {
 	display: none;
 }
 
@@ -654,7 +679,23 @@ table thead tr th.smart-view {
 	box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.125) inset !important;
 }
 
+.selectorCombo2 select:focus {
+	outline: none;
+	box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.125) inset !important;
+}
+
 .selectorCombo select>option {
+	padding: 6px 0px 5px 0.7em !important;
+	width: 100%;
+	background: none repeat scroll 0% 0% #FFF !important;
+	z-index: 1000;
+	outline: none;
+	line-height: 4px !important;
+	font: 12px "BBVA Web Medium", Arial, sans-serif bold !important;
+	background: none repeat scroll 0% 0% #FFF !important;
+}
+
+.selectorCombo2 select>option {
 	padding: 6px 0px 5px 0.7em !important;
 	width: 100%;
 	background: none repeat scroll 0% 0% #FFF !important;
@@ -705,6 +746,7 @@ table thead tr th.smart-view {
 @media ( min-width : 769px) {
 	.widthTalo {
 		width: 60% !important;
+		display: inline-block;
 	}
 }
 
@@ -712,6 +754,7 @@ table thead tr th.smart-view {
 @media ( max-width : 769px) {
 	.widthTalo {
 		width: 100% !important;
+		display: block;
 	}
 }
 

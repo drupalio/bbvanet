@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:composite="http://java.sun.com/jsf/composite"
-	xmlns:f="http://java.sun.com/jsf/core"
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite" xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
-	xmlns:pm="http://primefaces.org/mobile"
-	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-	xmlns:jsf="http://xmlns.jcp.org/jsf"
-	xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:cc="http://jsflive.at/taglib">
+	xmlns:pm="http://primefaces.org/mobile" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:cc="http://jsflive.at/taglib">
 <composite:interface>
 	<composite:attribute name="valueCheck" />
 	<composite:attribute name="valueCheckNumber" />
@@ -19,21 +16,16 @@
 <composite:implementation>
 	<div class="date-filter-content" style="width: 100% !important;">
 		<p:outputPanel id="customPanel" style="width: 100% !important;">
-			<p:selectOneRadio id="customRadio" layout="custom"
-				value="#{cc.attrs.valueCheck}">
+			<p:selectOneRadio id="customRadio" layout="custom" value="#{cc.attrs.valueCheck}">
 				<f:selectItem itemLabel="#{msg['text.search.by.number.check']}"
 					itemValue="#{msg['text.search.by.number.check']}" />
-				<f:selectItem itemLabel="#{msg['text.search.by.number.status']}"
-					itemValue="#{msg['text.search.by.number.status']}"
-					noSelectionOption="false" />
 				<f:selectItem itemLabel="#{msg['text.search.by.numberbook']}"
 					itemValue="#{msg['text.search.by.numberbook']}" />
-				<p:ajax process="@this" listener="#{checkBookController.actionState}"
+				<p:ajax process="@form" listener="#{checkBookController.actionState}"
 					update="customPanel, searchButton" />
 			</p:selectOneRadio>
 			<div style="margin-bottom: 17px;">
-				<p:radioButton id="opt1" for="customRadio" itemIndex="0"
-					styleClass="divAlign radioButtonT" />
+				<p:radioButton id="opt1" for="customRadio" itemIndex="0" styleClass="divAlign radioButtonT" />
 				<h:outputLabel for="opt1" value="#{msg['text.search.by.number.check']}"
 					styleClass="fontLabelT divAlign col-md-4 col-lg-4 radioLabel" />
 				<h:inputText id="inputNumberCheck"
@@ -42,35 +34,39 @@
 					disabled="#{checkBookController.renderComponents['NUMBERCHECK']}"
 					validatorMessage="Formato Invalido">
 					<f:validateRegex pattern="[0-9]*" />
+					<p:ajax process="@form"
+						update=":tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:checkContainer:checkList" />
 				</h:inputText>
 			</div>
-			<div class="selectorCombo" style="margin-bottom: 17px;">
-				<p:radioButton id="opt2" for="customRadio" itemIndex="1"
-					styleClass="divAlign radioButtonT" />
+			<div class="selectorCombo2" style="margin-bottom: 17px;">
+				<p:outputPanel rendered="#{checkBookController.renderComponents['FILTERNUMBERCHECK']}"
+					styleClass="divAlign" style="width: 5%; display: inline-block; float: left;" />
 				<h:outputLabel for="opt2" value="#{msg['text.search.by.number.status']}"
-					styleClass="fontLabelT divAlign col-md-4 col-lg-4 radioLabel" />
-				<h:selectOneMenu id="stateSelect" styleClass="widthTalo"
-					value="#{cc.attrs.valuecheckState}" onchange="styles(this)"
-					enabledClass="selectOption" disabledClass="selectOptionDisabled"
-					disabled="#{checkBookController.renderComponents['STATUS']}">
-					<f:selectItem itemLabel="#{msg['text.combo.select']}" itemDisabled="true" />
-					<f:selectItems value="#{comboCriteriaController.multiValueList}"
-						var="multiValue" itemValue="#{multiValue.valueId}"
-						itemLabel="#{msg[multiValue.value]}" />
+					styleClass="fontLabelT divAlign col-md-4 col-lg-4 radioLabel"
+					rendered="#{checkBookController.renderComponents['FILTERNUMBERCHECK']}" />
+				<h:selectOneMenu id="stateSelect"
+					styleClass="#{checkBookController.renderComponents['FILTERNUMBERCHECK'] ? 'widthTalo' : 'widthTalo nonee'}"
+					value="#{cc.attrs.valuecheckState}" enabledClass="selectOption"
+					disabledClass="selectOptionDisabled" onchange="styles(this)">
+					<f:selectItem itemLabel="#{msg['text.combo.select']}" />
+					<f:selectItems value="#{comboCriteriaController.multiValueList}" var="multiValue"
+						itemValue="#{multiValue.valueId}" itemLabel="#{msg[multiValue.value]}" />
+					<p:ajax process="@form"
+						update=":tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:checkContainer:checkList" />
 				</h:selectOneMenu>
 			</div>
 			<div class="selectorCombo" style="margin-bottom: 17px;">
-				<p:radioButton id="opt3" for="customRadio" itemIndex="2"
-					styleClass="divAlign radioButtonT" />
+				<p:radioButton id="opt3" for="customRadio" itemIndex="1" styleClass="divAlign radioButtonT" />
 				<h:outputLabel for="opt3" value="#{msg['text.search.by.numberbook']}"
 					styleClass="fontLabelT divAlign col-md-4 col-lg-4 radioLabel" />
-				<h:selectOneMenu id="numberBook" value="#{cc.attrs.valueBookNumber}"
-					styleClass="widthTalo" enabledClass="selectOption"
-					disabledClass="selectOptionDisabled" onchange="styles(this)"
+				<h:selectOneMenu id="numberBook" value="#{cc.attrs.valueBookNumber}" styleClass="widthTalo"
+					enabledClass="selectOption" disabledClass="selectOptionDisabled" onchange="styles(this)"
 					disabled="#{checkBookController.renderComponents['NUMBERBOOK']}">
-					<f:selectItem itemLabel="#{msg['text.combo.select']}" itemDisabled="true" />
+					<f:selectItem itemLabel="#{msg['text.combo.select']}" />
 					<f:selectItems value="#{checkBookController.checkBooks}" var="multiValue"
 						itemValue="#{multiValue.id}" itemLabel="#{msg[multiValue.value]}" />
+					<p:ajax process="@form"
+						update=":tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:checkContainer:checkList" />
 				</h:selectOneMenu>
 			</div>
 		</p:outputPanel>
@@ -82,10 +78,8 @@
 				jsf:actionListener="#{checkBookController.setNumberCheckOrBook}">
 				#{msg['button.confirm']}
 				<p:ajax process="@form"
-					oncomplete="document.getElementById('tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:checkContainer:checkList:componentList').click();"
-					update="
-			:tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:checkContainer:checkList:componentList
-			" />
+					update=":tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:checkContainer:checkList:componentList"
+					oncomplete="document.getElementById('tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:checkContainer:checkList:componentList').click();" />
 			</button>
 		</p:outputPanel>
 	</div>
