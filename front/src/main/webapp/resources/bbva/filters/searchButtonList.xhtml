@@ -1,12 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:composite="http://java.sun.com/jsf/composite"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:composite="http://java.sun.com/jsf/composite" xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough" xmlns:jsf="http://xmlns.jcp.org/jsf"
 	xmlns:bbvaButton="http://java.sun.com/jsf/composite/bbva/button">
 <composite:interface>
 	<composite:attribute name="show" type="boolean" />
@@ -41,8 +38,7 @@
 								:detailAccounts:checkTable:formCheks
 								:detailAccounts:checkBookTable:formCheckBooks" />
 			</button>
-			<button class="btn btn-default" type="button"
-				jsf:rendered="#{cc.attrs.showQuota}"
+			<button class="btn btn-default" type="button" jsf:rendered="#{cc.attrs.showQuota}"
 				jsf:actionListener="#{cc.attrs.actionListenerShow}">
 				<span class="document-view-icon" />#{msg['button.see.result']}
 				<p:ajax process="@form" onstart="PF('statusDialog').show()"

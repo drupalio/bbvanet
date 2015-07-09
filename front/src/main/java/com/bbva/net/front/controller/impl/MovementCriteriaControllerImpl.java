@@ -97,8 +97,8 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 	private StringBuilder messageBalance;
 
-	private String sinceText, toText, selectDate = StringUtils.EMPTY, titleDateSince, titleDateTo, sinceDatestr,
-			toDatestr, titleInOrExp;
+	private String sinceText, toText, statusText = "Estado", selectDate = StringUtils.EMPTY, titleDateSince,
+			titleDateTo, sinceDatestr, toDatestr, titleInOrExp, status = StringUtils.EMPTY;
 
 	private Date sinceDate = null, toDate = null;
 
@@ -238,6 +238,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			this.dateRange = null;
 			setDateRangePc(dateRange);
 			this.paginationKey = 0;
+			setCurrentList(new ArrayList<MovementDto>());
 			next();
 			this.movementsList = getCurrentList();
 		}
@@ -286,35 +287,39 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		if (getRenderComponents().get(RenderAttributes.MOVEMENTSFILTER.toString())) {
 			LOGGER.info("MovementsAccountController searchMovementByMovementFilter");
 			// Get only movements by concept
+			if (status.equals(MessagesHelper.INSTANCE.getString("mov.all"))) status = null;
 			final List<MovementDto> movementsByConcept = (List<MovementDto>)CollectionUtils.select(this.movementsList,
-					new ConceptMovementPredicate(movementCriteria.getMovement()));
+					new ConceptMovementPredicate(movementCriteria.getMovement(), status));
 			this.movementsList = movementsByConcept;
 			setShowMoreStatus();
 			getRenderComponents().put(RenderAttributes.MOVEMENTSTABLE.toString(), true);
 
 		}
-		resetMapResults();
 		clean();
 	}
 
-	public String selectFilterMove() {
-		String estado = "inline-block";
+	public boolean selectFilterMove() {
+		Boolean estado = false;
 		List<String> values = new ArrayList<String>();
-		values.add("Pagos de facturas PSE");
+		values.add("Pago de facturas PSE");
 		values.add("Pago de facturas");
 		values.add("Remesas");
+
 		LOGGER.info("--- " + movementCriteria.getMovement());
 		if (movementCriteria.getMovement() != null) {
 			if (movementCriteria.getMovement().equals(values.get(0))) {
-				estado = "inline-block";
+				status = MessagesHelper.INSTANCE.getString("mov.all");
+				estado = true;
 				conceptMovements = multiValueGroupFacade.getMultiValueTypes(13);
 			}
 			if (movementCriteria.getMovement().equals(values.get(1))) {
-				estado = "inline-block";
+				status = MessagesHelper.INSTANCE.getString("mov.all");
+				estado = true;
 				conceptMovements = multiValueGroupFacade.getMultiValueTypes(14);
 			}
 			if (movementCriteria.getMovement().equals(values.get(2))) {
-				estado = "inline-block";
+				status = MessagesHelper.INSTANCE.getString("mov.all");
+				estado = true;
 				conceptMovements = multiValueGroupFacade.getMultiValueTypes(15);
 			}
 		}
@@ -323,7 +328,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 	public List<String> completeMovement(String filter) {
 		List<String> values = new ArrayList<String>();
-		values.add("Pagos de facturas PSE");
+		values.add("Pago de facturas PSE");
 		values.add("Pago de facturas");
 		values.add("Remesas");
 		List<String> results = new ArrayList<String>();
@@ -376,6 +381,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	public void setMovementConcept(final ActionEvent event) {
 		LOGGER.info("MovementsAccountController setMovementConcept");
 		getRenderComponents().put(RenderAttributes.MOVEMENTSFILTER.toString(), true);
+
 	}
 
 	@Override
@@ -441,6 +447,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	public void cleanFilters(ActionEvent event) {
 		LOGGER.info("MovementsAccountController clean Filters");
 		this.paginationKey = 0;
+		setCurrentList(new ArrayList<MovementDto>());
 		next();
 		this.movementsList = getCurrentList();
 		clean();
@@ -465,6 +472,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		titleDateTo = "";
 		selectDate = StringUtils.EMPTY;
 		dateRange = null;
+		status = StringUtils.EMPTY;
 
 	}
 
@@ -1450,6 +1458,30 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 	public void setConceptMovements(List<MultiValueGroup> conceptMovements) {
 		this.conceptMovements = conceptMovements;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public boolean statusMovement() {
+		if (movementCriteria.getMovement() != null) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	public String getStatusText() {
+		return statusText;
+	}
+
+	public void setStatusText(String statusText) {
+		this.statusText = statusText;
 	}
 
 }
