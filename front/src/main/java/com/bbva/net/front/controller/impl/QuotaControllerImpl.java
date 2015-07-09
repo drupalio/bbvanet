@@ -12,7 +12,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -307,15 +306,6 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 		cleanFilters();
 	}
 
-	public String getdateString(Date date) {
-		final SimpleDateFormat dateFormat = new SimpleDateFormat(
-				MessagesHelper.INSTANCE.getStringI18("date.pattner.dd-mm-yyyy"));
-		if (date != null) {
-			return dateFormat.format(date);
-		}
-		return "N/A";
-	}
-
 	@SuppressWarnings("deprecation")
 	@Override
 	public void exportDocumentExcel() {
@@ -411,9 +401,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 						date.setColor(HSSFColor.BLUE.index);
 						cellStyle.setFont(date);
 						celda.setCellStyle(cellStyle);
-
-						celda.setCellValue(getdateString(this.quotamovenDtos.get(f).getMovementDate()));
-
+						celda.setCellValue(super.getdateString(this.quotamovenDtos.get(f).getMovementDate()));
 					}
 					if (c == 3) {
 						celda.setCellValue(this.quotamovenDtos.get(f).getMovementConcept());
@@ -552,9 +540,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 			tabla.addCell(value);
 
 			for (int i = 0; i < quotamovenDtos.size(); i++) {
-
-				String date = getdateString(quotamovenDtos.get(i).getMovementDate());
-
+				String date = super.getdateString(quotamovenDtos.get(i).getMovementDate());
 				tabla.addCell(new Phrase(date, fontBlue));
 				tabla.addCell(new Phrase(quotamovenDtos.get(i).getMovementConcept(), fontNormal));
 				tabla.addCell(new Phrase(quotamovenDtos.get(i).getMovementValue() + "", font));

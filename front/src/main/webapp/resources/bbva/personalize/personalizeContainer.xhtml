@@ -58,9 +58,9 @@
 				onstart="PF('statusDialog').show()" oncomplete="PF('statusDialog').hide()" update="@form"
 				actionListener="#{personalizeProductAccountController.operationkey}" />
 			<bbvaMessage:divOperationKey id="divSucess" idComfirm="buttonFour" idInput="inputTwo"
-				value="#{personalizeProductAccountController.personalizeProductAccountDto.operationKey}"
+				value="#{personalizeProductAccountController.operationKey}"
 				nameB="buttonConfirm" render="#{personalizeProductAccountController.menOperationKey}"
-				actionListener="#{personalizeProductAccountController.operKey}" idInputDiv="divClass" />
+				actionListener="#{personalizeProductAccountController.operKey}" idInputDiv="divClass"  />
 		</h:form>
 	</bbvaPersonalize:personalizeAccount>
 </composite:implementation>

@@ -93,7 +93,7 @@
 								placeholder="__/__/____" id="itemSince_#{cc.attrs.identify}" mask="true"
 								converterMessage="Fecha inválida" value="#{cc.attrs.valueDateSince}" pattern="dd/MM/yyyy"
 								locale="#{msg['leng.locale']}" disabled="#{cc.attrs.disabledCalendar}"
-								showButtonPanel="true" showOtherMonths="true">
+								showButtonPanel="true" showOtherMonths="true" onclick="dataCalendar()">
 								<p:ajax event="dateSelect" update="#{cc.attrs.confirmDate} itemSince_#{cc.attrs.identify}" />
 								<p:ajax event="change" update="#{cc.attrs.confirmDate} itemSince_#{cc.attrs.identify}" />
 							</p:calendar>
@@ -110,7 +110,7 @@
 								id="itemTo_#{cc.attrs.identify}" locale="#{msg['leng.locale']}" showOtherMonths="true"
 								value="#{cc.attrs.valueDateTo}" disabled="#{cc.attrs.disabledCalendar}" mask="true"
 								mindate="#{cc.attrs.valueDateSince}" maxdate="today" pattern="dd/MM/yyyy"
-								showButtonPanel="true" converterMessage="Fecha inválida">
+								showButtonPanel="true" converterMessage="Fecha inválida" onclick="dataCalendar()">
 								<p:ajax event="dateSelect" update="#{cc.attrs.confirmDate} itemTo_#{cc.attrs.identify}" />
 								<p:ajax event="change" update="#{cc.attrs.confirmDate} itemTo_#{cc.attrs.identify}" />
 							</p:calendar>

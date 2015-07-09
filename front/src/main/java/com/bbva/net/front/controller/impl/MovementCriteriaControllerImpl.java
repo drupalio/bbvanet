@@ -9,7 +9,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -576,7 +575,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 						cellStyle.setFont(date);
 						celda.setCellStyle(cellStyle);
 
-						celda.setCellValue(getdateString(this.movementsList.get(f).getMovementDate()));
+						celda.setCellValue(super.getdateString(this.movementsList.get(f).getMovementDate()));
 
 					}
 					if (c == 3) {
@@ -723,8 +722,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			tabla.addCell(sald);
 
 			for (int i = 0; i < movementsList.size(); i++) {
-
-				String date = getdateString(movementsList.get(i).getMovementDate());
+				String date = super.getdateString(movementsList.get(i).getMovementDate());
 
 				tabla.addCell(new Phrase(date, fontBlue));
 				tabla.addCell(new Phrase(movementsList.get(i).getMovementConcept(), fontNormal));
@@ -855,7 +853,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 			for (int i = 0; i < movementsList.size(); i++) {
 
-				String date = getdateString(movementsList.get(i).getMovementDate());
+				String date = super.getdateString(movementsList.get(i).getMovementDate());
 
 				tabla.addCell(new Phrase(date, fontBlue));
 				tabla.addCell(new Phrase(movementsList.get(i).getMovementConcept(), fontNormal));
@@ -949,15 +947,6 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		getRenderComponents().put(RenderAttributes.INCOMEOREXPENSESFILTER.toString(), false);
 		getRenderComponents().put(RenderAttributes.BALANCEFILTER.toString(), false);
 		getRenderComponents().put(RenderAttributes.FILTERDATE.toString(), false);
-	}
-
-	public String getdateString(Date date) {
-		final SimpleDateFormat dateFormat = new SimpleDateFormat(
-				MessagesHelper.INSTANCE.getStringI18("date.pattner.dd-mm-yyyy"));
-		if (date != null) {
-			return dateFormat.format(date);
-		}
-		return "N/A";
 	}
 
 	@Override
@@ -1073,7 +1062,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			String htmlTable = "<table width=100% rules=\"all\" border=\"1\"><thead><tr role=\"row\" style=\"background-color: gainsboro;\"><th role=\"columnheader\" tabindex=\"0\"><span >FECHA</span><span></span></th><th role=\"columnheader\" tabindex=\"0\"><span >CONCEPTO</span><span></span></th><th role=\"columnheader\" tabindex=\"0\"><span >VALOR</span><span ></span></th><th role=\"columnheader\" tabindex=\"0\"><span >SALDO</span><span ></span></th></tr></thead>";
 			for (int i = 0; i < this.movementsList.size(); i++) {
 				htmlTable += "<tr><th role=\"gridcell\" tabindex=\"0\"><span style=\"color:blue\">"
-						+ getdateString(this.movementsList.get(i).getMovementDate())
+						+ super.getdateString(this.movementsList.get(i).getMovementDate())
 						+ "</span><span></span></th><th role=\"gridcell\" tabindex=\"0\"><span style=\"font-weight:normal\">"
 						+ this.movementsList.get(i).getMovementConcept()
 						+ "</span><span></span></th><th role=\"gridcell\" tabindex=\"0\"><span >"

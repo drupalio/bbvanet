@@ -7,4 +7,6 @@ public interface TermsController {
 	TermsAccountsDto getAllConditions();
 
 	void exportDocumentPdf();
+
+	void deletePdf();
 }
