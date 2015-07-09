@@ -17,7 +17,7 @@ public class ConceptMovementPredicateTest {
 	public void checkConceptMovementPredicatedTrue() {
 
 		// Check Equals Concept
-		final ConceptMovementPredicate conceptMovementPredicated = new ConceptMovementPredicate(CONCEPT);
+		final ConceptMovementPredicate conceptMovementPredicated = new ConceptMovementPredicate(CONCEPT, "OK");
 
 		final MovementDto movementDto = new MovementDto();
 		movementDto.setMovementConcept(CONCEPT);
@@ -29,7 +29,7 @@ public class ConceptMovementPredicateTest {
 	@Test
 	public void checkConceptMovementPredicatedFalse() {
 
-		final ConceptMovementPredicate conceptMovementPredicated = new ConceptMovementPredicate(CONCEPT);
+		final ConceptMovementPredicate conceptMovementPredicated = new ConceptMovementPredicate(CONCEPT, "OK");
 
 		final MovementDto movementDto = new MovementDto();
 		movementDto.setMovementConcept(ANOTHER_CONCEPT);

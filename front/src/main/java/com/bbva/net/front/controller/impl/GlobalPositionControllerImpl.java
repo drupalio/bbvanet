@@ -443,7 +443,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 			periodType = EnumPeriodType.valueOf(Integer.parseInt(this.periodCardSelected));
 			LOGGER.info("Graphic cards Controller periodSelected: " + periodCardSelected);
 		} else {
-			periodType = EnumPeriodType.valueOf(EnumPeriodType.LAST_SIX_MONTH.getPeriodId());
+			periodType = EnumPeriodType.valueOf(EnumPeriodType.LAST_45_DAYS.getPeriodId());
 			LOGGER.info("Graphic cards Controller periodSelected: " + periodCardSelected);
 		}
 		final DateRangeDto dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
@@ -481,7 +481,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	public void onComboSelectedAccountGraphic() {
 		final EnumPeriodType periodType = StringUtils.isNotEmpty(periodAccountSelected) ? EnumPeriodType
 				.valueOf(Integer.parseInt(this.periodAccountSelected)) : EnumPeriodType
-				.valueOf(EnumPeriodType.LAST_SIX_MONTH.getPeriodId());
+				.valueOf(EnumPeriodType.LAST_45_DAYS.getPeriodId());
 
 		final DateRangeDto dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
 

@@ -19,15 +19,49 @@
 	<div class="movements-filter-content">
 
 		<p:commandLink id="ajax" actionListener="#{movementsCriteriaController.setMovementConcept}">
-			<button class="search-icon" >
+			<button  id="lupaMovementsFilter" class="search-icon #{movementsCriteriaController.statusMovement() ? 'buttonDisabled': ''}" style="z-index:1 !important" >
 			<p:ajax process="@form" event="click" 
 			oncomplete="document.getElementById('tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:movementList:componentList').click();"
 				update="
 			:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:movementList:componentList" />
 			</button>
 		</p:commandLink>
-		<h:inputText styleClass="form-control" value="#{movementsCriteriaController.movementCriteria.movement}"
-			pt:placeholder="#{msg['text.placeholder.movements']}" />
+		<p:autoComplete id="conceptM" style="width:304% !important"  placeholder="#{msg['text.placeholder.movements']}" value="#{movementsCriteriaController.movementCriteria.movement}" completeMethod="#{movementsCriteriaController.completeMovement}">
+		<p:ajax process="@form" event="itemSelect" listener="#{movementsCriteriaController.selectFilterMove()}" 
+		update=":tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:movementList:conceptMove:filterConMo
+		:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:movementList:conceptMove:filterLabel
+		:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:movementList:conceptMove:confirMovementsFilter
+		:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:movementList:conceptMove:ajax"/>
+		<p:ajax process="@form" event="mouseout" listener="#{movementsCriteriaController.selectFilterMove()}" 
+		update=":tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:movementList:conceptMove:filterConMo
+		:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:movementList:conceptMove:filterLabel
+		:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:movementList:conceptMove:confirMovementsFilter
+		:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:movementList:conceptMove:ajax"/>
+		<p:ajax process="@form" event="mouseout"  listener="#{movementsCriteriaController.statusMovement()}"
+		update=":tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:movementList:conceptMove:confirMovementsFilter
+		:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:movementList:conceptMove:ajax"/>
+		</p:autoComplete>
+	<div class="selectorCombo2" style=";margin-top: 10px; margin-bottom: 10px;">
+	<h:outputLabel id="filterLabel" styleClass="#{movementsCriteriaController.selectFilterMove() ? '' : 'nonee'}" value="Estado" />	
+	<h:selectOneMenu id="filterConMo" value="#{movementsCriteriaController.status}" enabledClass="selectOption" styleClass="#{movementsCriteriaController.selectFilterMove() ? '' : 'nonee'}"
+		disabledClass="selectOptionDisabled" onchange="styles(this)">
+		<f:selectItem itemLabel="#{msg['mov.all']}" itemValue="#{msg['mov.all']}" />
+		<f:selectItems value="#{movementsCriteriaController.conceptMovements}" var="multiValue"
+			itemLabel="#{msg[multiValue.value]}" itemValue="#{msg[multiValue.value]}" />
+		<f:ajax event="valueChange" execute="@this"/>
+	</h:selectOneMenu>
+	
+	</div>
+	<p:commandLink id="confirMovementsFilter" actionListener="#{movementsCriteriaController.setMovementConcept}">
+			<button 
+			class="btn small hidden-xs hidden-sm #{movementsCriteriaController.statusMovement() ? 'buttonDisabled': ''}">
+			#{msg['button.confirm']}
+			<p:ajax process="@form" event="click"
+			oncomplete="document.getElementById('tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:movementList:componentList').click();"
+				update="
+			:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:movementList:componentList" />
+	</button>
+		</p:commandLink>
 	</div>
 
 </composite:implementation>

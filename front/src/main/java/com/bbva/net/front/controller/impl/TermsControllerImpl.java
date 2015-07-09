@@ -1,11 +1,11 @@
 package com.bbva.net.front.controller.impl;
 
 import java.io.BufferedInputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.text.SimpleDateFormat;
 
 import javax.annotation.Resource;
 
@@ -16,7 +16,6 @@ import com.bbva.net.back.facade.TermasAccountsFacade;
 import com.bbva.net.back.model.accounts.TermsAccountsDto;
 import com.bbva.net.front.controller.TermsController;
 import com.bbva.net.front.core.AbstractBbvaController;
-import com.bbva.net.front.helper.MessagesHelper;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -39,7 +38,11 @@ public class TermsControllerImpl extends AbstractBbvaController implements Terms
 
 	private transient StreamedContent exportPdf;
 
+	private String rutaArchivo;
+
 	private static final long serialVersionUID = -9161774389839616910L;
+
+	private Document fileInput;
 
 	private TermsAccountsDto detallesCuentaDto = new TermsAccountsDto();
 
@@ -60,7 +63,7 @@ public class TermsControllerImpl extends AbstractBbvaController implements Terms
 
 		LOGGER.info("iniciando exportar archivo pdf");
 
-		String rutaArchivo = "Conditions.pdf";
+		rutaArchivo = "Conditions" + getSelectedProduct().getProductNumber() + ".pdf";
 
 		try {
 
@@ -127,9 +130,11 @@ public class TermsControllerImpl extends AbstractBbvaController implements Terms
 			tabla.setHorizontalAlignment(Element.ALIGN_LEFT);
 			tabla.getDefaultCell().setBorder(0);
 
-			for (int i = 0; i < detallesCuentaDto.getHolders().size(); i++) {
-				tabla.addCell(new Phrase("Titular:", font));
-				tabla.addCell(new Phrase(detallesCuentaDto.getHolders().get(i).getAlias(), fontNormal));
+			if (detallesCuentaDto.getHolders() != null) {
+				for (int i = 0; i < detallesCuentaDto.getHolders().size(); i++) {
+					tabla.addCell(new Phrase("Titular:", font));
+					tabla.addCell(new Phrase(detallesCuentaDto.getHolders().get(i).getAlias(), fontNormal));
+				}
 			}
 
 			tabla.addCell(new Phrase("Condiciones de movilización:", font));
@@ -150,15 +155,8 @@ public class TermsControllerImpl extends AbstractBbvaController implements Terms
 			tabla.addCell(new Phrase("Descripción:", font));
 			tabla.addCell(new Phrase(detallesCuentaDto.getDetalleCondiciones().getDescripcion(), fontNormal));
 			tabla.addCell(new Phrase("Fecha de apertura:", font));
-			final SimpleDateFormat dateFormat = new SimpleDateFormat(
-					MessagesHelper.INSTANCE.getStringI18("date.pattner.dd-mm-yyyy"));
-			if (detallesCuentaDto.getDetalleCondiciones().getFechaApertura() != null) {
-				tabla.addCell(new Phrase(dateFormat
-						.format(detallesCuentaDto.getDetalleCondiciones().getFechaApertura()), fontNormal));
-				dateFormat.format(detallesCuentaDto.getDetalleCondiciones().getFechaApertura());
-			} else {
-				tabla.addCell(new Phrase("N/A", fontNormal));
-			}
+			String date = super.getdateString(detallesCuentaDto.getDetalleCondiciones().getFechaApertura());
+			tabla.addCell(new Phrase(date, fontNormal));
 			tabla.addCell(new Phrase("Comisiones:", font));
 			tabla.addCell(new Phrase(detallesCuentaDto.getDetalleCondiciones().getComisiones(), fontNormal));
 			document.add(tabla);
@@ -231,6 +229,7 @@ public class TermsControllerImpl extends AbstractBbvaController implements Terms
 
 		} catch (DocumentException e) {
 			LOGGER.info("Excepción no se encuentra el archivo" + e.getMessage());
+
 		}
 	}
 
@@ -241,6 +240,19 @@ public class TermsControllerImpl extends AbstractBbvaController implements Terms
 		this.detallesCuenta = detallesCuenta;
 	}
 
+	@Override
+	public void deletePdf() {
+		try {
+			File fileOut = new File(rutaArchivo);
+
+			if (fileOut.exists()) {
+				fileOut.delete();
+			}
+		} catch (Exception ex) {
+			LOGGER.info("Excepción no se encuentra el archivo para eliminar" + ex.getMessage());
+		}
+	}
+
 	/**
 	 * @return the exportPdf
 	 */
@@ -248,8 +260,10 @@ public class TermsControllerImpl extends AbstractBbvaController implements Terms
 		exportDocumentPdf();
 		InputStream stream;
 		try {
-			stream = new BufferedInputStream(new FileInputStream("conditions.pdf"));
-			exportPdf = new DefaultStreamedContent(stream, "application/pdf", "Conditions.pdf");
+			stream = new BufferedInputStream(new FileInputStream("Conditions" + getSelectedProduct().getProductNumber()
+					+ ".pdf"));
+			exportPdf = new DefaultStreamedContent(stream, "application/pdf", "Conditions"
+					+ getSelectedProduct().getProductNumber() + ".pdf");
 		} catch (FileNotFoundException e) {
 			LOGGER.info("Error al descargar el pdf " + e.getMessage());
 		}
