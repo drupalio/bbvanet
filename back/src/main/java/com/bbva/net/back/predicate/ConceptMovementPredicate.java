@@ -26,9 +26,11 @@ public class ConceptMovementPredicate extends BbvaPredicate<MovementDto> {
 			return false;
 		} else {
 			if (status == null || movementDto.getStatus() == null) {
-				return movementDto.getMovementDetailDto().getOperationDescription().contains(concept);
+				return movementDto.getMovementDetailDto().getOperationDescription().toLowerCase()
+						.contains(concept.toLowerCase());
 			} else {
-				return movementDto.getMovementDetailDto().getOperationDescription().contains(concept)
+				return movementDto.getMovementDetailDto().getOperationDescription().toLowerCase()
+						.contains(concept.toLowerCase())
 						&& movementDto.getStatus().contains(status);
 			}
 

@@ -96,7 +96,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 	private StringBuilder messageBalance;
 
-	private String sinceText, toText, statusText = "Estado", selectDate = StringUtils.EMPTY, titleDateSince,
+	private String sinceText, toText, statusText = StringUtils.EMPTY, selectDate = StringUtils.EMPTY, titleDateSince,
 			titleDateTo, sinceDatestr, toDatestr, titleInOrExp, status = StringUtils.EMPTY;
 
 	private Date sinceDate = null, toDate = null;
