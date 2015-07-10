@@ -96,8 +96,9 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 	private StringBuilder messageBalance;
 
-	private String sinceText, toText, statusText = StringUtils.EMPTY, selectDate = StringUtils.EMPTY, titleDateSince,
-			titleDateTo, sinceDatestr, toDatestr, titleInOrExp, status = StringUtils.EMPTY;
+	private String sinceText, toText, statusText = StringUtils.EMPTY, statusLabel = StringUtils.EMPTY,
+			selectDate = StringUtils.EMPTY, titleDateSince, titleDateTo, sinceDatestr, toDatestr, titleInOrExp,
+			status = StringUtils.EMPTY;
 
 	private Date sinceDate = null, toDate = null;
 
@@ -305,21 +306,28 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		values.add("Pago de facturas PSE");
 		values.add("Pago de facturas");
 		values.add("Remesas");
-
+		statusText = StringUtils.EMPTY;
+		statusLabel = StringUtils.EMPTY;
 		LOGGER.info("--- " + movementCriteria.getMovement());
 		if (movementCriteria.getMovement() != null) {
 			if (movementCriteria.getMovement().equals(values.get(0))) {
+				statusText = "Estado";
 				status = MessagesHelper.INSTANCE.getString("mov.all");
+				statusLabel = status;
 				estado = true;
 				conceptMovements = multiValueGroupFacade.getMultiValueTypes(13);
 			}
 			if (movementCriteria.getMovement().equals(values.get(1))) {
+				statusText = "Estado";
 				status = MessagesHelper.INSTANCE.getString("mov.all");
+				statusLabel = status;
 				estado = true;
 				conceptMovements = multiValueGroupFacade.getMultiValueTypes(14);
 			}
 			if (movementCriteria.getMovement().equals(values.get(2))) {
+				statusText = "Estado";
 				status = MessagesHelper.INSTANCE.getString("mov.all");
+				statusLabel = status;
 				estado = true;
 				conceptMovements = multiValueGroupFacade.getMultiValueTypes(15);
 			}
@@ -332,6 +340,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		values.add("Pago de facturas PSE");
 		values.add("Pago de facturas");
 		values.add("Remesas");
+		statusText = StringUtils.EMPTY;
 		List<String> results = new ArrayList<String>();
 		if (!filter.isEmpty()) {
 			for (int i = 0; i < values.size(); i++) {
@@ -381,6 +390,9 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	@Override
 	public void setMovementConcept(final ActionEvent event) {
 		LOGGER.info("MovementsAccountController setMovementConcept");
+		if (statusText.isEmpty()) {
+			statusLabel = StringUtils.EMPTY;
+		}
 		getRenderComponents().put(RenderAttributes.MOVEMENTSFILTER.toString(), true);
 
 	}
@@ -408,6 +420,10 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		LOGGER.info("MovementsAccountController buildMessage");
 		messageBalance = new StringBuilder(BALANCE_TITLE);
 		messageBalance.append(movementCriteria.getBalanceRange().getBalanceSince() + "$");
+	}
+
+	public void setLabelConcept() {
+		statusLabel = status;
 	}
 
 	public DateRangeDto calculateDate(String date) {
@@ -473,6 +489,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		titleDateTo = "";
 		selectDate = StringUtils.EMPTY;
 		dateRange = null;
+		statusText = StringUtils.EMPTY;
 		status = StringUtils.EMPTY;
 
 	}
@@ -665,7 +682,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 		LOGGER.info("iniciando exportar archivo pdf");
 
-		String rutaArchivo = "Movimientos.pdf";
+		String rutaArchivo = "Movimientos" + getSelectedProduct().getProductNumber() + ".pdf";
 
 		try {
 
@@ -795,7 +812,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 		LOGGER.info("iniciando exportar archivo pdf");
 
-		String rutaArchivo = "MovimientosDetail.pdf";
+		String rutaArchivo = "DetailMove" + getSelectedProduct().getProductNumber() + ".pdf";
 
 		try {
 
@@ -951,10 +968,23 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		getRenderComponents().put(RenderAttributes.FILTERDATE.toString(), false);
 	}
 
-	@Override
-	public void printFile() {
-		File pdfFile = new File("Movimientos.pdf");
+	public void printMoves() {
+		printFile("Movements");
+	}
 
+	public void printMoveDetail() {
+		printFile("DetailMovement");
+	}
+
+	@Override
+	public void printFile(String typeDoc) {
+		File pdfFile = null;
+		if (typeDoc.equals("Movements")) {
+			pdfFile = new File("Movimientos" + getSelectedProduct().getProductNumber() + ".pdf");
+		}
+		if (typeDoc.equals("DetailMovement")) {
+			pdfFile = new File("MovimientosDetail" + getSelectedProduct().getProductNumber() + ".pdf");
+		}
 		if (pdfFile.exists()) {
 			if (pdfFile.delete()) {
 				LOGGER.info("borró el archivo");
@@ -962,17 +992,14 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			} else
 				LOGGER.info("No lo borró");
 		} else {
-			exportDocumentPdf();
+			if (typeDoc.equals("Movements")) {
+				exportDocumentPdf();
+			}
+			if (typeDoc.equals("DetailMovement")) {
+				exportDocumentDetailPdf();
+			}
+
 		}
-		// try {
-		// Process p = Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler Movimientos.pdf");
-		// p.waitFor();
-		//
-		// LOGGER.info("Abrió el archivo");
-		//
-		// } catch (Exception ex) {
-		// LOGGER.info("No pudo abrir el archivo" + ex.getMessage());
-		// }
 
 		String s = System.getProperty("os.name").toLowerCase();
 		if (s.contains("win")) {
@@ -989,15 +1016,6 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			createCommand("xdg-open", "%s", pdfFile.getPath());
 		}
 
-		// try {
-		// if (Desktop.isDesktopSupported()) {
-		//
-		// Desktop.getDesktop().open(pdfFile);
-		// // myFile.delete();
-		// }
-		// } catch (IOException ex) {
-		// LOGGER.info("Error al abrir archivo " + ex.getMessage());
-		// }
 	}
 
 	private boolean createCommand(String command, String args, String file) {
@@ -1405,8 +1423,10 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		exportDocumentPdf();
 		InputStream stream;
 		try {
-			stream = new BufferedInputStream(new FileInputStream("Movimientos.pdf"));
-			exportPdf = new DefaultStreamedContent(stream, "application/pdf", "Movimientos.pdf");
+			stream = new BufferedInputStream(new FileInputStream("Movimientos"
+					+ getSelectedProduct().getProductNumber() + ".pdf"));
+			exportPdf = new DefaultStreamedContent(stream, "application/pdf", "Movimientos"
+					+ getSelectedProduct().getProductNumber() + ".pdf");
 		} catch (FileNotFoundException e) {
 			LOGGER.info("Error al descargar el pdf " + e.getMessage());
 		}
@@ -1427,19 +1447,21 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		exportDocumentDetailPdf();
 		InputStream stream;
 		try {
-			stream = new BufferedInputStream(new FileInputStream("Movimientos.pdf"));
-			exportPdf = new DefaultStreamedContent(stream, "application/pdf", "Movimientos.pdf");
+			stream = new BufferedInputStream(new FileInputStream("DetailMove" + getSelectedProduct().getProductNumber()
+					+ ".pdf"));
+			exportDetailPdf = new DefaultStreamedContent(stream, "application/pdf", "DetailMove"
+					+ getSelectedProduct().getProductNumber() + ".pdf");
 		} catch (FileNotFoundException e) {
 			LOGGER.info("Error al descargar el pdf " + e.getMessage());
 		}
-		return exportPdf;
+		return exportDetailPdf;
 	}
 
 	/**
 	 * @param exportPdf the exportPdf to set
 	 */
-	public void setExportDetailPdf(StreamedContent exportPdf) {
-		this.exportPdf = exportPdf;
+	public void setExportDetailPdf(StreamedContent exportDetailPdf) {
+		this.exportDetailPdf = exportDetailPdf;
 	}
 
 	public List<MultiValueGroup> getConceptMovements() {
@@ -1472,6 +1494,14 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 	public void setStatusText(String statusText) {
 		this.statusText = statusText;
+	}
+
+	public String getStatusLabel() {
+		return statusLabel;
+	}
+
+	public void setStatusLabel(String statusLabel) {
+		this.statusLabel = statusLabel;
 	}
 
 }
