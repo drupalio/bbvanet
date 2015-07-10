@@ -65,4 +65,26 @@ public interface CheckBookController {
 	 * 
 	 */
 	void clean();
+
+	/**
+	 * 
+	 */
+	void exportDocCheckBookPdf();
+
+	/**
+	  * 
+	  */
+
+	void exportDocCheckPdf();
+
+	/**
+	 * 
+	 */
+	void exportDocCheckBookExcel();
+
+	/**
+	 * 
+	 */
+
+	void exportDocCheckExcel();
 }
