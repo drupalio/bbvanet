@@ -1774,6 +1774,36 @@ body div.ui-growl .ui-state-highlight {
 	border-style: none
 }
 
+.tableAlias {
+	font-size: 12px !important;
+	font-weight: bold !important;
+	color: #0078d2 !important;
+}
+
+.tableValue {
+	font-size: 16px !important;
+	font-weight: bold !important;
+}
+
+.tableAvaila {
+	font-size: 10px !important;
+	color: #71777f !important;
+}
+
+.tableNumberC {
+	display: block !important;
+	font-size: 11px !important;
+	margin-bottom: -8px !important;
+	margin-top: -8px !important;
+	color: #71777f !important;
+}
+
+.tableName {
+	font-size: 11px !important;
+	font-weight: bold !important;
+	color: #71777f !important;
+}
+
 .tooltip-inner {
 	bottom: 0px !important;
 }

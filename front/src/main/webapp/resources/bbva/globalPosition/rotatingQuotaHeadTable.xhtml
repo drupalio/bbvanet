@@ -17,30 +17,24 @@
 				<p:ajax event="rowSelect" listener="#{cc.attrs.controller.onProductLoanSelected}"
 					immediate="true" onstart="PF('statusDialog').show()" />
 				<p:ajax event="rowUnselect" />
-				<p:column headerText="#{msg['text.quota']}"
-					styleClass="head col-xs-6 col-md-6 columStyleVisible">
-					<h:outputText styleClass="title-label" value="#{iproduct.alias}" escape="false"
-						style="font-size: 1.2em; font-weight:bold; color:#0078d2" />
-					<h:outputText escape="false" value="&lt;br /&gt; #{iproduct.productId}"
-						style="display:block;font-size: 1.1em;margin-bottom:-8px;margin-top:-8px;color:#71777f" />
-					<h:outputText escape="false" value="&lt;br /&gt; #{iproduct.productName}" styleClass="sublabel"
-						style="font-size: 1.1em;font-weight:bold;color:#71777f" />
+				<p:column headerText="#{msg['text.quota']}" styleClass="head col-xs-6 col-md-6 columStyleVisible">
+					<h:outputText styleClass="title-label tableAlias" value="#{iproduct.alias}" escape="false" />
+					<h:outputText styleClass="tableNumberC" escape="false" value="&lt;br /&gt; #{iproduct.productId}" />
+					<h:outputText styleClass="sublabel tableName" escape="false" value="&lt;br /&gt; #{iproduct.productName}" />
 					<!-- Combo quiero -->
 					<bbvaInput:selectOneMenuLikes
 						valueList="#{comboCriteriaController.getListQuieroQuota(iproduct)}"
 						listener="#{applicationController.onLikeQuota}" />
 				</p:column>
-				<p:column headerText="#{msg['text.quotaTotal']}"
-					styleClass="hidden-xs hidden-sm col-sm-4 columStyleVisible">
-					<h:outputText style="font-size: 1.6em; font-weight:bold" value="#{iproduct.totalCash}"
-						styleClass="balance hidden-xs hidden-sm" />
+				<p:column headerText="#{msg['text.quotaTotal']}" styleClass="hidden-xs hidden-sm col-sm-4 columStyleVisible">
+					<p:outputPanel rendered="#{(iproduct.isVisible()) &amp;&amp; (iproduct.getOperationOnline())}">
+						<h:outputText styleClass="balance hidden-xs hidden-sm tableValue" value="#{iproduct.totalCash}" />
+					</p:outputPanel>
 					<p class="sublabel"></p>
 				</p:column>
-				<p:column headerText="#{msg['text.quotaAvailable']}"
-					styleClass="head col-xs-6 col-md-4 columStyleVisible">
+				<p:column headerText="#{msg['text.quotaAvailable']}" styleClass="head col-xs-6 col-md-4 columStyleVisible">
 					<p:outputPanel rendered="#{(iproduct.isVisible()) &amp;&amp; (iproduct.getOperationOnline())}">
-						<h:outputText style="font-size: 1.6em; font-weight:bold" styleClass="balance"
-							value="#{iproduct.cashAvailable}" />
+						<h:outputText styleClass="balance tableValue" value="#{iproduct.cashAvailable}" />
 						<p class="sublabel"></p>
 					</p:outputPanel>
 					<p:outputLabel rendered="#{!iproduct.isVisible()}" style="font-weight:bold"

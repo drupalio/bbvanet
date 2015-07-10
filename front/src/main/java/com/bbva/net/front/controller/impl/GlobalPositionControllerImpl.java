@@ -195,7 +195,14 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		}
 		// Obtiene la lista de resumen de movimientos del serivico REST
 		try {
-			this.globalResumeMovementsDTO = this.movementsResumeFacade.getMovementsResumeByCustomer(new DateRangeDto());
+			// this.globalResumeMovementsDTO = this.movementsResumeFacade.getMovementsResumeByCustomer(new DateRangeDto());
+			final EnumPeriodType periodType = EnumPeriodType.valueOf(EnumPeriodType.LAST_45_DAYS.getPeriodId());
+
+			final DateRangeDto dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
+			accountSelected = globalProductsDTO.getAccounts().get(0).getProductNumber();
+			this.accountGraphicBarLineUI = this.graphicBarLineDelegate
+					.getInOutBalanceAccount(this.movementsResumeFacade.getMovementsResumeByAccount(accountSelected,
+							dateRange, StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY));
 		} catch (Exception e) {
 			// FacesContext ctx = FacesContext.getCurrentInstance();
 			// ctx.addMessage("GlobalResumeMovementsDto ",
