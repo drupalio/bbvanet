@@ -359,7 +359,9 @@ input.ui-state-default {
 	color: #999EA5 !important;
 	font-weight: 400 !important;
 }
-
+.ui-autocomplete-input{
+	width: 33% !important;
+}
 /* estado cuando mouseover en el input */
 input.ui-state-hover {
 	border-color: #DBDCDF !important;

@@ -46,9 +46,11 @@
 						value="#{movementsCriteriaController.movementCriteria.incomesOrExpenses}" />
 				</bbvaSearch:customSearchList>
 				<bbvaSearch:customSearchList id="movementList" classList="movements-filter"
-					classSpan="arrow-left-smaller" classSpanFilter="filter" title="#{msg['text.movement']}"
-					filterMessage="#{movementsCriteriaController.movementCriteria.movement}">
-					<bbvaSearch:movementsFilter />
+					classSpan="arrow-left-smaller" classSpanFilter="filter"
+					title="#{msg['text.movement']}" filterMessage="#{movementsCriteriaController.movementCriteria.movement}"
+					filterTitle2="#{movementsCriteriaController.statusText}"
+					filterMessage2="#{movementsCriteriaController.status}">
+					<bbvaSearch:movementsFilter id="conceptMove"/>
 				</bbvaSearch:customSearchList>
 				<bbvaSearch:searchButtonList show="true" showChecks="false" showQuota="false"
 					showMovements="true" actionListenerRemove="#{movementsCriteriaController.cleanFilters}"

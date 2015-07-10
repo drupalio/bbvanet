@@ -47,9 +47,11 @@
 				<bbvaPieGraphic:cardGraphic id="#{cc.attrs.id}"
 					pieConfigUI="#{cc.attrs.pieGraphic}" />
 			</h:form>
-
+				<bbvaPieGraphic:footerFiltersCards nameRight="#{msg['graphic.footer.cards']}"
+					nameLeft="#{msg['graphic.footer.period']}" listenerLeft="#{globalPositionController.onComboSelectedCard}"
+					listenerRight="#{globalPositionController.onComboSelectedCard}" />
 		</div>
-
+		
 		<div class="row afterTable"></div>
 	</div>
 

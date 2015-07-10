@@ -1687,7 +1687,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
     "contract": {
         "number": "31543576655"
     }
-}</con:responseContent><con:header><con:name>tsec</con:name><con:value>errewewqrewqewq4542354235fdadfsfsaf</con:value></con:header></con:response></con:restMockAction><con:restMockAction name="/czic/accounts/V01/12345678909876543210/movementsResumes" method="GET" resourcePath="/czic/accounts/V01/12345678909876543210/movementsResumes"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+}</con:responseContent><con:header><con:name>tsec</con:name><con:value>errewewqrewqewq4542354235fdadfsfsaf</con:value></con:header></con:response></con:restMockAction><con:restMockAction name="/czic/accounts/V01/12345678909876543210/movementsResumes" method="GET" resourcePath="/czic/accounts/V01/00130443000200009416/movementsResumes"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Examples showing how to match based on path, query param and header
 // Match based on path
 def requestPath = mockRequest.getPath()
@@ -2311,6 +2311,10 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
     "id": "1569464032",
     "concept": "Compra",
     "transactionDate": "2015-03-17T11:58:41.889-0500",
+    "operation":{
+    		"code":"OK",
+    		"description":"Pago de facturas PSE"
+    	},
     "value": {
         "amount": 1286584935,
         "currency": "COP"
@@ -2318,12 +2322,18 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
     "balance": {
         "amount": 1286584935,
         "currency": "COP"
-    }
+    },
+    "status": "OK - Finalizada exitosamente"
+    
 },
 {
     "id": "1868163546",
     "concept": "Transferencia",
     "transactionDate": "2015-03-17T11:58:41.889-0500",
+    "operation":{
+    		"code":"OK",
+    		"description":"Pago de facturas"
+    	},
     "value": {
         "amount": 494417598,
         "currency": "COP"
@@ -2331,12 +2341,17 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
     "balance": {
         "amount": 494417598,
         "currency": "COP"
-    }
+    },
+    "status": "Activo"
 },
 {
     "id": "686323016",
     "concept": "Compra",
     "transactionDate": "2015-03-17T11:58:41.889-0500",
+     "operation":{
+    		"code":"OK",
+    		"description":"Remesas"
+    	},
     "value": {
         "amount": 478951021,
         "currency": "COP"
@@ -2344,12 +2359,17 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
     "balance": {
         "amount": 478951021,
         "currency": "COP"
-    }
+    },
+    "status" : "Devueltas"
 },
 {
     "id": "1684569362",
     "concept": "Transferencia",
     "transactionDate": "2015-03-17T11:58:41.889-0500",
+    "operation":{
+    		"code":"OK",
+    		"description":"Otro"
+    	},
     "value": {
         "amount": 1877713309,
         "currency": "COP"
@@ -2357,12 +2377,17 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
     "balance": {
         "amount": 1877713309,
         "currency": "COP"
-    }
+    },
+    "status": "Otro"
 },
 {
     "id": "472995075",
     "concept": "Compra",
     "transactionDate": "2015-03-17T11:58:41.889-0500",
+    "operation":{
+    		"code":"NK",
+    		"description":"Pago de facturas PSE"
+    	},
     "value": {
         "amount": 666139023,
         "currency": "COP"
@@ -2370,12 +2395,17 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
     "balance": {
         "amount": 666139023,
         "currency": "COP"
-    }
+    },
+    "status" : "NK - No exitosa - Devuelta"
 },
 {
     "id": "1354077718",
     "concept": "Transferencia",
     "transactionDate": "2015-03-17T11:58:41.889-0500",
+    "operation":{
+    		"code":"NK",
+    		"description":"Pago de facturas"
+    	},
     "value": {
         "amount": 1318303733,
         "currency": "COP"
@@ -2383,12 +2413,17 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
     "balance": {
         "amount": 1318303733,
         "currency": "COP"
-    }
+    },
+    "status" : "Cancelada"
 },
 {
     "id": "1175184804",
     "concept": "Compra",
     "transactionDate": "2015-03-17T11:58:41.889-0500",
+    "operation":{
+    		"code":"NK",
+    		"description":"Remesas"
+    	},
     "value": {
         "amount": 45554371,
         "currency": "COP"
@@ -2396,12 +2431,17 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
     "balance": {
         "amount": 45554371,
         "currency": "COP"
-    }
+    },
+    "status" : "Pendientes"
 },
 {
     "id": "31518699",
     "concept": "Transferencia",
     "transactionDate": "2015-03-17T11:58:41.889-0500",
+    "operation":{
+    		"code":"NK",
+    		"description":"Otro"
+    	},
     "value": {
         "amount": 877389155,
         "currency": "COP"
@@ -2409,7 +2449,8 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
     "balance": {
         "amount": 877389155,
         "currency": "COP"
-    }
+    },
+    "status" : "Otro"
 },
 {
     "id": "510814576",

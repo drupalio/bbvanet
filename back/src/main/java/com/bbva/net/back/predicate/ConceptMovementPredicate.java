@@ -13,17 +13,28 @@ public class ConceptMovementPredicate extends BbvaPredicate<MovementDto> {
 
 	private String concept;
 
-	public ConceptMovementPredicate(final String concept) {
+	private String status;
+
+	public ConceptMovementPredicate(final String concept, final String status) {
 		this.concept = concept;
+		this.status = status;
 	}
 
 	@Override
 	protected boolean eval(final MovementDto movementDto) {
-
-		if (movementDto == null || movementDto.getMovementConcept() == null) {
+		if (movementDto == null || movementDto.getMovementDetailDto().getOperationDescription() == null) {
 			return false;
-		}
-		return movementDto.getMovementConcept().contains(concept);
-	}
+		} else {
+			if (status == null || movementDto.getStatus() == null) {
+				return movementDto.getMovementDetailDto().getOperationDescription().toLowerCase()
+						.contains(concept.toLowerCase());
+			} else {
+				return movementDto.getMovementDetailDto().getOperationDescription().toLowerCase()
+						.contains(concept.toLowerCase())
+						&& movementDto.getStatus().contains(status);
+			}
 
+		}
+
+	}
 }
