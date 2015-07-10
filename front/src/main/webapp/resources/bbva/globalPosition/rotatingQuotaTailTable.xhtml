@@ -19,28 +19,23 @@
 					immediate="true" onstart="PF('statusDialog').show()" />
 				<p:ajax event="rowUnselect" />
 				<p:column styleClass="head col-xs-6 col-md-6 columStyleHidden">
-					<h:outputText styleClass="title-label"
-						style="font-size: 1.2em; font-weight:bold; color:#0078d2" escape="false"
-						value="#{iproduct.alias}" />
-					<h:outputText
-						style="display:block;font-size: 1.1em;margin-bottom:-8px;margin-top:-8px;color:#71777f"
-						escape="false" value="&lt;br /&gt; #{iproduct.productId}"></h:outputText>
-					<h:outputText styleClass="sublabel" style="font-size: 1.1em;font-weight:bold;color:#71777f"
-						escape="false" value="&lt;br /&gt; #{iproduct.productName}" />
+					<h:outputText styleClass="title-label tableAlias" escape="false" value="#{iproduct.alias}" />
+					<h:outputText styleClass="tableNumberC" escape="false" value="&lt;br /&gt; #{iproduct.productId}"></h:outputText>
+					<h:outputText styleClass="sublabel tableName" escape="false" value="&lt;br /&gt; #{iproduct.productName}" />
 					<!-- Combo quiero -->
 					<bbvaInput:selectOneMenuLikes
 						valueList="#{comboCriteriaController.getListQuieroQuota(iproduct)}"
 						listener="#{applicationController.onLikeQuota}" />
 				</p:column>
 				<p:column styleClass="head hidden-xs hidden-sm col-sm-4 columStyleHidden">
-					<h:outputText style="font-size: 1.6em; font-weight:bold"
-						styleClass="balance hidden-xs hidden-sm" value="#{iproduct.totalCash}" />
+					<p:outputPanel rendered="#{(iproduct.isVisible()) &amp;&amp; (iproduct.getOperationOnline())}">
+						<h:outputText styleClass="balance hidden-xs hidden-sm tableValue" value="#{iproduct.totalCash}" />
+					</p:outputPanel>
 					<p class="sublabel"></p>
 				</p:column>
 				<p:column styleClass="head col-xs-6 col-md-4 columStyleHidden">
 					<p:outputPanel rendered="#{(iproduct.isVisible()) &amp;&amp; (iproduct.getOperationOnline())}">
-						<h:outputText style="font-size: 1.6em; font-weight:bold" styleClass="balance"
-							value="#{iproduct.cashAvailable}" />
+						<h:outputText styleClass="balance tableValue" value="#{iproduct.cashAvailable}" />
 						<p class="sublabel"></p>
 					</p:outputPanel>
 					<p:outputLabel rendered="#{!iproduct.isVisible()}" style="font-weight:bold"

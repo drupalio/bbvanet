@@ -18,33 +18,27 @@
 			<p:ajax event="rowSelect" listener="#{cc.attrs.controller.onProductSelected}" immediate="true"
 				onstart="PF('statusDialog').show()" />
 			<p:ajax event="rowUnselect" />
-			<p:column class="head" headerText="#{msg['text.acco.name']}" styleClass="col-xs-6 col-md-8"
-				style="font-size: 10px;color: #434A58;font-family: Arial;background: none;border-style: none">
-				<h:outputText styleClass="title-label" style="font-size: 1.2em; font-weight:bold; color:#0078d2"
-					escape="false" value="#{iproduct.alias}" />
-				<h:outputText
-					style="display:block;font-size: 1.1em;margin-bottom:-8px;margin-top:-8px;color:#71777f"
-					escape="false" value="&lt;br /&gt; #{iproduct.productId}"></h:outputText>
-				<h:outputText styleClass="sublabel" style="font-size: 1.1em;font-weight:bold;color:#71777f"
-					escape="false" value="&lt;br /&gt; #{iproduct.productName}" />
+			<p:column headerText="#{msg['text.acco.name']}" styleClass="head col-xs-6 col-md-8 columStyleVisible">
+				<h:outputText styleClass="title-label tableAlias" escape="false" value="#{iproduct.alias}" />
+				<h:outputText styleClass="tableNumberC" escape="false" value="&lt;br /&gt; #{iproduct.productId}" />
+				<h:outputText styleClass="sublabel tableName" escape="false" value="&lt;br /&gt; #{iproduct.productName}" />
 				<!-- Combo quiero -->
-				<bbvaInput:selectOneMenuLikes valueList="#{comboCriteriaController.getListQuieroAccounts(iproduct)}"
+				<bbvaInput:selectOneMenuLikes
+					valueList="#{comboCriteriaController.getListQuieroAccounts(iproduct)}"
 					listener="#{applicationController.onLikeAccount}" />
 			</p:column>
-			<p:column class="head" headerText="#{msg['text.account.balance']}" styleClass="col-xs-6 col-md-4"
-				style="font-size: 10px;color: #434A58;font-family: Arial;background: none;border-style: none">
+			<p:column headerText="#{msg['text.account.balance']}"
+				styleClass="head col-xs-6 col-md-4 columStyleVisible">
 				<p:outputPanel rendered="#{(iproduct.isVisible()) &amp;&amp; (iproduct.getOperationOnline())}">
-					<h:outputText style="font-size: 1.6em; font-weight:bold" styleClass="balance"
-						value="#{iproduct.totalCash}" />
-					<h:outputText styleClass="ui-datatable-selectable" style="font-size:1em;color:#71777f"
-						value="&lt;br /&gt; #{msg['text.account.balance.label']} #{iproduct.cashAvailable}"
-						escape="false" />
+					<h:outputText styleClass="balance tableValue" value="#{iproduct.totalCash}" />
+					<h:outputText styleClass="ui-datatable-selectable tableAvaila" escape="false"
+						value="&lt;br /&gt; #{msg['text.account.balance.label']} #{iproduct.cashAvailable}" />
 					<p class="sublabel"></p>
 				</p:outputPanel>
-				    <p:outputLabel rendered="#{!iproduct.isVisible()}" style="font-weight:bold"
-                        styleClass="balance" value="#{msg['msg.info.notConsu']}" />
-                    <p:outputLabel rendered="#{!iproduct.getOperationOnline()}" styleClass="balance"
-                        style="font-weight:bold" value="#{msg['msg.info.notOpera']}" />
+				<p:outputLabel rendered="#{!iproduct.isVisible()}" style="font-weight:bold" styleClass="balance"
+					value="#{msg['msg.info.notConsu']}" />
+				<p:outputLabel rendered="#{!iproduct.getOperationOnline()}" styleClass="balance"
+					style="font-weight:bold" value="#{msg['msg.info.notOpera']}" />
 			</p:column>
 		</p:dataTable>
 	</h:form>
