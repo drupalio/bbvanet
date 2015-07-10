@@ -36,7 +36,7 @@
 	color: #333 !important;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 14px !important;
-	height: auto !important;
+	height: 100% !important;
 	line-height: 20px !important;
 	min-height: 1px !important;
 	padding-left: 15px !important;
@@ -1087,7 +1087,7 @@ body div.ui-growl .ui-state-highlight {
 	background-repeat: no-repeat;
 	background-position: right 10px center;
 	width: 100%;
-	/*height: 100%;*/
+	height: 100%;
 	padding: 4px !important;
 }
 
@@ -1547,10 +1547,6 @@ body div.ui-growl .ui-state-highlight {
 	height: 20px;
 	margin-left: 3px;
 	position: relative;
-<<<<<<< HEAD
-	top: 7px;
-	width: auto;
-=======
 	/*top: 7px;*/
 	width: 18px;
 }
@@ -1564,7 +1560,6 @@ body div.ui-growl .ui-state-highlight {
 	position: relative;
 	/*top: 7px;*/
 	width: 18px;
->>>>>>> master
 }
 
 .buttonTable {
@@ -1812,6 +1807,7 @@ body div.ui-growl .ui-state-highlight {
 .tooltip-inner {
 	bottom: 0px !important;
 }
+
 .mistake-operation {
 	background-image: url("../img/errorSymbol.png");
 	background-repeat: no-repeat;
