@@ -35,8 +35,6 @@ public class OperationPasswordControllerImpl extends AbstractBbvaController impl
 	@Override
 	public boolean validateOperation(String operationPass) {
 		LOGGER.info("Se Valida clave de operaciones en OperationPasswordControllerImpl");
-		final FacesContext facesContext = FlowFacesContext.getCurrentInstance();
-		facesContext.getExternalContext().getSession(true);
 		String user = (String)this.getSession().getAttribute("userName")
 				+ this.getSession().getAttribute("docTypeUser") + this.getSession().getAttribute("docIdUser");
 		return operationPassword.validateOperation(user, operationPass, numberAttempts);
