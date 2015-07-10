@@ -29,7 +29,7 @@ public class OperationPasswordControllerImpl extends AbstractBbvaController impl
 
 	@PostConstruct
 	public void init() {
-		this.numberAttempts = 0;
+		this.numberAttempts = 1;
 	}
 
 	@Override
@@ -48,7 +48,7 @@ public class OperationPasswordControllerImpl extends AbstractBbvaController impl
 
 	@Override
 	public void removeErrors() {
-		numberAttempts = 0;
+		numberAttempts = 1;
 
 	}
 
