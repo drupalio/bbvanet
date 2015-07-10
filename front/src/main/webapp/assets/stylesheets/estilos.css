@@ -1547,7 +1547,18 @@ body div.ui-growl .ui-state-highlight {
 	height: 20px;
 	margin-left: 3px;
 	position: relative;
-	top: 7px;
+	/*top: 7px;*/
+	width: 18px;
+}
+
+.icon-Info-BlueFilter {
+	background-image: url("../img/icons/icon-info-blue-small.png");
+	background-repeat: no-repeat;
+	display: inline-block;
+	height: 20px;
+	margin-left: 3px;
+	position: relative;
+	/*top: 7px;*/
 	width: 18px;
 }
 
