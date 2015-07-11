@@ -197,14 +197,18 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 
 	@Override
 	public void oneSelectDate() {
-		LOGGER.info(" CheckBookControllerImpl oneSelectDate ");
+		LOGGER.info(" CheckBookControllerImpl oneSelectDate " + getSelectDate());
 		getRenderComponents().put(RenderAttributes.FILTERDATECHECK.toString(), true);
 		getRenderComponents().put(RenderAttributes.FILTERCHECKBOOK.toString(), false);
 		getRenderComponents().put(RenderAttributes.FILTERNUMBERCHECK.toString(), false);
 		if (getSelectDate().equals(CONCRETE_DATE)) {
 			getRenderComponents().put(RenderAttributes.CALENDARCHECK.toString(), false);
+			LOGGER.info(" CheckBookControllerImpl oneSelectDate es igual CONCRETE_DATE " + getSelectDate() + "  "
+					+ getRenderComponents().get(RenderAttributes.CALENDARCHECK.toString()));
 		} else {
 			getRenderComponents().put(RenderAttributes.CALENDARCHECK.toString(), true);
+			LOGGER.info(" CheckBookControllerImpl oneSelectDate no es igual CONCRETE_DATE" + getSelectDate() + "  "
+					+ getRenderComponents().get(RenderAttributes.CALENDARCHECK.toString()));
 		}
 	}
 
