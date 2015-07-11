@@ -511,7 +511,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
     "alias": "Lora",
     "financialState": "P",
     "visible": true,
-    "operable": false,
+    "operable": true,
     "balance": {
         "total": {
             "currency": "COP",

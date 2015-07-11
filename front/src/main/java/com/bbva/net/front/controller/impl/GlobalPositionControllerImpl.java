@@ -256,16 +256,6 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 
 		final DateRangeDto dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
 
-		try {
-			this.accountGraphicBarLineUI = this.graphicBarLineDelegate
-					.getInOutBalanceAccount(this.movementsResumeFacade.getMovementsResumeByCustomer(dateRange));
-		} catch (Exception e) {
-			// FacesContext ctx = FacesContext.getCurrentInstance();
-			// ctx.addMessage("accountGraphicBarLineUI ",
-			// new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
-			this.accountGraphicBarLineUI = new AccountBarLineUI();
-		}
-
 		// Get names of products
 		this.namesProducts = globalPositionFacade.getNamesProducts(globalProductsDTO);
 
