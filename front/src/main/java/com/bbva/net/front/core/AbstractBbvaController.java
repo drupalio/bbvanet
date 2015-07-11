@@ -238,4 +238,8 @@ public abstract class AbstractBbvaController implements Serializable {
 		}
 		return "N/A";
 	}
+
+	public void createCell() {
+
+	}
 }
