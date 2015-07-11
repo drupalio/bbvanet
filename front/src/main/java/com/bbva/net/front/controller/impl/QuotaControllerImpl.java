@@ -108,7 +108,11 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 
 	private transient StreamedContent exportDetailPdf;
 
-	private String RUTAEXCEL = "Movimientos.xls";
+	private String rutaExcelCupo;
+
+	private String rutaPdfCupo;
+
+	private String rutaPdfMove;
 
 	@Resource(name = "quotaDetailFacade")
 	private transient QuotaDetailFacade quotaDetailFacade;
@@ -316,10 +320,12 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 		} catch (Exception e) {
 			LOGGER.info("No encontró directorio actual " + e.getMessage());
 		}
-		String rutaArchivo = RUTAEXCEL;
-		int inicio = 9;
 
-		File archivoXLS = new File(rutaArchivo);
+		rutaExcelCupo = "MovimientosCupo" + getSelectedProduct().getProductNumber() + ".xls";
+
+		int inicio = 10;
+
+		File archivoXLS = new File(rutaExcelCupo);
 		if (archivoXLS.exists()) archivoXLS.delete();
 
 		try {
@@ -354,7 +360,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 				anchor.setRow1(1);
 
 				Picture pict = drawing.createPicture(anchor, pictureIdx);
-				pict.resize();
+				pict.resize(2.05, 7.0);
 			} catch (Exception e) {
 				LOGGER.info("Excepción al cargar imagen bbva" + e.getMessage());
 			}
@@ -365,107 +371,166 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 			inicio = inicio + 4;
 
 			filaHeader = hoja.createRow(inicio);
-			Cell celdaHeader = filaHeader.createCell(1);
-			CellStyle cellStyleHeader = libro.createCellStyle();
+
 			Font text = libro.createFont();
 			text.setFontHeightInPoints((short)10);
 			text.setFontName("Arial");
 			text.setBold(true);
 			text.setColor(HSSFColor.BLACK.index);
+
+			CellStyle cellStyleHeader = libro.createCellStyle();
 			cellStyleHeader.setFont(text);
-			celdaHeader.setCellStyle(cellStyleHeader);
-			celdaHeader.setCellValue("FECHA");
+			cellStyleHeader.setBorderBottom((short)0);
+			cellStyleHeader.setWrapText(true);
+			cellStyleHeader.setBorderBottom((short)1);
+			cellStyleHeader.setBorderLeft((short)1);
+			cellStyleHeader.setBorderRight((short)1);
+			cellStyleHeader.setBorderTop((short)1);
+			cellStyleHeader.setAlignment(CellStyle.ALIGN_CENTER);
 
-			celdaHeader = filaHeader.createCell(3);
-			celdaHeader.setCellValue("CONCEPTO");
+			Cell dateHeader = filaHeader.createCell(1);
+			dateHeader.setCellType(Cell.CELL_TYPE_STRING);
+			dateHeader.setCellStyle(cellStyleHeader);
+			dateHeader.setCellValue("FECHA");
 
-			celdaHeader = filaHeader.createCell(5);
-			celdaHeader.setCellValue("PENDIENTE");
+			Cell concep = filaHeader.createCell(2);
+			concep.setCellType(Cell.CELL_TYPE_STRING);
+			concep.setCellStyle(cellStyleHeader);
+			concep.setCellValue("CONCEPTO");
 
-			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 2));
-			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 3, 4));
-			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 5, 6));
-			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 7, 8));
+			Cell pend = filaHeader.createCell(3);
+			pend.setCellType(Cell.CELL_TYPE_STRING);
+			pend.setCellStyle(cellStyleHeader);
+			pend.setCellValue("PENDIENTE");
+
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 1));
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 2, 2));
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 3, 3));
+
 			inicio = inicio + 1;
-			for (int f = 0; f < this.quotamovenDtos.size(); f++) {
-				Row fila = hoja.createRow(f + inicio);
-				for (int c = 1; c < 9; c = c + 2) {
-					Cell celda = fila.createCell(c);
 
-					if (c == 1) {
+			if (quotamovenDtos != null) {
+				for (int f = 0; f < this.quotamovenDtos.size(); f++) {
+					Row fila = hoja.createRow(f + inicio);
+					for (int c = 1; c < 4; c++) {
+
+						Font fontad = libro.createFont();
+						fontad.setFontHeightInPoints((short)10);
+						fontad.setFontName("Arial");
+						fontad.setBold(true);
+						fontad.setColor(HSSFColor.BLUE.index);
+
+						Cell celda = fila.createCell(c);
+						celda.setCellType(Cell.CELL_TYPE_STRING);
 						CellStyle cellStyle = libro.createCellStyle();
-						Font date = libro.createFont();
-						date.setFontHeightInPoints((short)10);
-						date.setFontName("Arial");
-						date.setBold(true);
-						date.setColor(HSSFColor.BLUE.index);
-						cellStyle.setFont(date);
-						celda.setCellStyle(cellStyle);
-						celda.setCellValue(super.getdateString(this.quotamovenDtos.get(f).getMovementDate()));
-					}
-					if (c == 3) {
-						celda.setCellValue(this.quotamovenDtos.get(f).getMovementConcept());
 
-					}
-					if (c == 5) {
-						celda.setCellValue(this.quotamovenDtos.get(f).getMovementValue().toString());
+						cellStyle.setAlignment(CellStyle.ALIGN_CENTER);
+						cellStyle.setBorderBottom((short)1);
+						cellStyle.setBorderLeft((short)1);
+						cellStyle.setBorderRight((short)1);
+						cellStyle.setBorderTop((short)1);
+						cellStyle.setWrapText(true);
 
-					}
+						if (c == 1) {
 
-					hoja.addMergedRegion(new CellRangeAddress(f, f, 1, 2));
-					hoja.addMergedRegion(new CellRangeAddress(f, f, 3, 4));
-					hoja.addMergedRegion(new CellRangeAddress(f, f, 5, 6));
-					hoja.addMergedRegion(new CellRangeAddress(f, f, 7, 8));
+							cellStyle.setFont(fontad);
+							celda.setCellStyle(cellStyle);
+							celda.setCellValue(super.getdateString(this.quotamovenDtos.get(f).getMovementDate()));
+						}
+
+						if (c == 2) {
+
+							celda.setCellStyle(cellStyle);
+							celda.setCellValue(this.quotamovenDtos.get(f).getMovementConcept());
+
+						}
+
+						if (c == 3) {
+
+							celda.setCellStyle(cellStyle);
+							celda.setCellValue(this.quotamovenDtos.get(f).getMovementValue().toString());
+
+						}
+
+						hoja.addMergedRegion(new CellRangeAddress(f, f, 1, 1));
+						hoja.addMergedRegion(new CellRangeAddress(f, f, 2, 2));
+						hoja.addMergedRegion(new CellRangeAddress(f, f, 3, 3));
+					}
 				}
+				inicio = inicio + this.quotamovenDtos.size() + 2;
 			}
-			inicio = inicio + this.quotamovenDtos.size() + 2;
+
 			Row filaFooter = hoja.createRow(inicio);
 			filaFooter.createCell(1).setCellValue("Cordial saludo,");
-			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 8));
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 3));
+
+			Font bbvaAde = libro.createFont();
+			bbvaAde.setColor(HSSFColor.BLUE.index);
+
+			CellStyle bbvaStyle = libro.createCellStyle();
+			bbvaStyle.setFont(bbvaAde);
+
 			inicio = inicio + 1;
-			filaFooter = hoja.createRow(inicio);
-			filaFooter.createCell(1).setCellValue("BBVA Adelante");
-			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 8));
-			inicio = inicio + 2;
 
 			filaFooter = hoja.createRow(inicio);
-			filaFooter
-					.createCell(1)
-					.setCellValue(
-							"Nota: Si no eres el destinatario de este mensaje, por favor comunícate con nosotros con el fin de realizar la actualización correspondiente, al 4010000 en Bogotá, 4938300 en Medellín, 3503500 en Barranquilla, 8892020 en Cali, 6304000 en Bucaramanga o al 01800 912227 desde el resto del país. ");
-
-			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 8));
+			Cell bbva = filaFooter.createCell(1);
+			bbva.setCellStyle(bbvaStyle);
+			bbva.setCellValue("BBVA Adelante");
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 3));
 
 			inicio = inicio + 2;
+
+			Font notaFont = libro.createFont();
+			notaFont.setBold(true);
+
+			CellStyle cellNotaStyle = libro.createCellStyle();
+			cellNotaStyle.setVerticalAlignment(CellStyle.VERTICAL_JUSTIFY);
+			cellNotaStyle.setFont(notaFont);
+
+			filaFooter = hoja.createRow(inicio);
+			Cell nota = filaFooter.createCell(1);
+			nota.setCellStyle(cellNotaStyle);
+			nota.setCellValue("Nota: Si no eres el destinatario de este mensaje, por favor comunícate con nosotros con el fin de realizar la actualización correspondiente, al 4010000 en Bogotá, 4938300 en Medellín, 3503500 en Barranquilla, 8892020 en Cali, 6304000 en Bucaramanga o al 01800 912227 desde el resto del país. ");
+			filaFooter.setHeight((short)900);
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 3));
+
+			inicio = inicio + 2;
+
+			CellStyle cellFooterStyle = libro.createCellStyle();
+			cellFooterStyle.setVerticalAlignment(CellStyle.VERTICAL_JUSTIFY);
+
 			filaFooter = hoja.createRow(inicio);
 			filaFooter.createCell(1).setCellValue("********************* AVISO LEGAL **************************");
-			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 8));
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 3));
 
 			inicio = inicio + 1;
 			filaFooter = hoja.createRow(inicio);
-			filaFooter
-					.createCell(1)
-					.setCellValue(
-							"Este mensaje es solamente para la persona a la que va dirigido. Puede contener informacion  confidencial  o  legalmente  protegida.  No  hay  renuncia  a la confidencialidad o privilegio por cualquier transmision mala/erronea. Si usted ha recibido este mensaje por error,  le rogamos que borre de su sistema inmediatamente el mensaje asi como todas sus copias, destruya todas las copias del mismo de su disco duro y notifique al remitente.  No debe,  directa o indirectamente, usar, revelar, distribuir, imprimir o copiar ninguna de las partes de este mensaje si no es usted el destinatario. Cualquier opinion expresada en este mensaje proviene del remitente, excepto cuando el mensaje establezca lo contrario y el remitente este autorizado para establecer que dichas opiniones provienen de  BBVA. Notese que el correo electronico via Internet no permite asegurar ni la confidencialidad de los mensajes que se transmiten ni la correcta recepcion de los mismos. En el caso de que el destinatario de este mensaje no consintiera la utilizacion del correo electronico via Internet, rogamos lo ponga en nuestro conocimiento de manera inmediata.");
-			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 8));
+			Cell message = filaFooter.createCell(1);
+			message.setCellStyle(cellFooterStyle);
+			message.setCellValue("Este mensaje es solamente para la persona a la que va dirigido. Puede contener informacion  confidencial  o  legalmente  protegida.  No  hay  renuncia  a la confidencialidad o privilegio por cualquier transmision mala/erronea. Si usted ha recibido este mensaje por error,  le rogamos que borre de su sistema inmediatamente el mensaje asi como todas sus copias, destruya todas las copias del mismo de su disco duro y notifique al remitente.  No debe,  directa o indirectamente, usar, revelar, distribuir, imprimir o copiar ninguna de las partes de este mensaje si no es usted el destinatario. Cualquier opinion expresada en este mensaje proviene del remitente, excepto cuando el mensaje establezca lo contrario y el remitente este autorizado para establecer que dichas opiniones provienen de  BBVA. Notese que el correo electronico via Internet no permite asegurar ni la confidencialidad de los mensajes que se transmiten ni la correcta recepcion de los mismos. En el caso de que el destinatario de este mensaje no consintiera la utilizacion del correo electronico via Internet, rogamos lo ponga en nuestro conocimiento de manera inmediata.");
+			filaFooter.setHeight((short)2600);
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 3));
 
 			inicio = inicio + 2;
+
 			filaFooter = hoja.createRow(inicio);
 			filaFooter.createCell(1).setCellValue("**************************  DISCLAIMER**********************");
-			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 8));
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 3));
 
 			inicio = inicio + 1;
+
 			filaFooter = hoja.createRow(inicio);
-			filaFooter
-					.createCell(1)
-					.setCellValue(
-							"This message is intended exclusively for the named person. It may contain confidential, propietary or legally privileged information. No confidentiality or privilege is waived or lost by any mistransmission. If you receive this message in error, please immediately delete it and all copies of it from your system, destroy any hard copies of it and notify the sender. Your must not, directly or indirectly, use, disclose, distribute, print, or copy any part of this message if you are not the intended recipient. Any views expressed in this message are those of the individual sender, except where the message states otherwise and the sender is authorised to state them to be the views of BBVA. Please note that internet e-mail neither guarantees the confidentiality nor the proper receipt of the message sent.If the addressee of this message does not consent to the use of internet e-mail, please communicate it to us immediately.");
-			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 8));
+			Cell messEng = filaFooter.createCell(1);
+			messEng.setCellStyle(cellFooterStyle);
+			messEng.setCellValue("This message is intended exclusively for the named person. It may contain confidential, propietary or legally privileged information. No confidentiality or privilege is waived or lost by any mistransmission. If you receive this message in error, please immediately delete it and all copies of it from your system, destroy any hard copies of it and notify the sender. Your must not, directly or indirectly, use, disclose, distribute, print, or copy any part of this message if you are not the intended recipient. Any views expressed in this message are those of the individual sender, except where the message states otherwise and the sender is authorised to state them to be the views of BBVA. Please note that internet e-mail neither guarantees the confidentiality nor the proper receipt of the message sent.If the addressee of this message does not consent to the use of internet e-mail, please communicate it to us immediately.");
+			filaFooter.setHeight((short)2100);
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 3));
 
 			inicio = inicio + 1;
+
 			filaFooter = hoja.createRow(inicio);
 			filaFooter.createCell(1).setCellValue("************************************************************");
-			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 8));
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 3));
 
 			try {
 				libro.write(archivo);
@@ -485,14 +550,14 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 
 		LOGGER.info("iniciando exportar archivo pdf");
 
-		String rutaArchivo = "MovimientosCupo.pdf";
+		rutaPdfCupo = "MovimientosCupo" + getSelectedProduct().getProductNumber() + ".pdf";
 
 		try {
 
 			FileOutputStream file = null;
 
 			try {
-				file = new FileOutputStream(rutaArchivo);
+				file = new FileOutputStream(rutaPdfCupo);
 			} catch (FileNotFoundException e) {
 				LOGGER.info("Excepción no se encuentra el archivo" + e.getMessage());
 			}
@@ -528,23 +593,42 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 			tabla.setSpacingAfter(20);
 
 			PdfPCell dateTitle = new PdfPCell(new Phrase("FECHA", font));
+			dateTitle.setHorizontalAlignment(Element.ALIGN_CENTER);
+			dateTitle.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			dateTitle.setBackgroundColor(new BaseColor(229, 229, 229));
 			tabla.addCell(dateTitle);
 
 			PdfPCell concept = new PdfPCell(new Phrase("CONCEPTO", font));
 			concept.setBackgroundColor(new BaseColor(229, 229, 229));
+			concept.setHorizontalAlignment(Element.ALIGN_CENTER);
+			concept.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			tabla.addCell(concept);
 
 			PdfPCell value = new PdfPCell(new Phrase("VALOR", font));
 			value.setBackgroundColor(new BaseColor(229, 229, 229));
+			value.setHorizontalAlignment(Element.ALIGN_CENTER);
+			value.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			tabla.addCell(value);
 
 			for (int i = 0; i < quotamovenDtos.size(); i++) {
 				String date = super.getdateString(quotamovenDtos.get(i).getMovementDate());
-				tabla.addCell(new Phrase(date, fontBlue));
-				tabla.addCell(new Phrase(quotamovenDtos.get(i).getMovementConcept(), fontNormal));
-				tabla.addCell(new Phrase(quotamovenDtos.get(i).getMovementValue() + "", font));
+
+				PdfPCell dateData = new PdfPCell(new Phrase(date, fontBlue));
+				dateData.setHorizontalAlignment(Element.ALIGN_CENTER);
+				dateData.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				tabla.addCell(dateData);
+
+				PdfPCell dataconcept = new PdfPCell(new Phrase(quotamovenDtos.get(i).getMovementConcept(), fontNormal));
+				dataconcept.setHorizontalAlignment(Element.ALIGN_CENTER);
+				dataconcept.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				tabla.addCell(dataconcept);
+
+				PdfPCell dataValue = new PdfPCell(new Phrase(quotamovenDtos.get(i).getMovementValue() + "", font));
+				dataValue.setHorizontalAlignment(Element.ALIGN_CENTER);
+				dataValue.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				tabla.addCell(dataValue);
 			}
+
 			document.add(tabla);
 
 			Paragraph att = new Paragraph("Cordial saludo, ", FontFactory.getFont("arial", 12, BaseColor.BLACK));
@@ -600,6 +684,193 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 
 		} catch (DocumentException e) {
 			LOGGER.info("Excepción no se encuentra el archivo" + e.getMessage());
+		}
+	}
+
+	@Override
+	public void exportDocDetailPdf() {
+		LOGGER.info("iniciando exportar archivo pdf");
+
+		rutaPdfMove = "MovDetalleCupo" + quotaMoveDetailDto.getId() + ".pdf";
+
+		try {
+
+			FileOutputStream file = null;
+
+			try {
+				file = new FileOutputStream(rutaPdfMove);
+			} catch (FileNotFoundException e) {
+				LOGGER.info("Excepción no se encuentra el archivo" + e.getMessage());
+			}
+
+			Document document = new Document();
+
+			PdfWriter writer = PdfWriter.getInstance(document, file);
+			writer.setInitialLeading(20);
+
+			document.open();
+
+			try {
+				Image foto = Image.getInstance("https://www.bbva.com.co/BBVA-home-theme/images/BBVA/logo_bbva.png");
+				foto.scaleToFit(100, 100);
+				document.add(foto);
+			} catch (Exception e) {
+				LOGGER.info("Excepción no se encuentra el archivo de imagen" + e.getMessage());
+			}
+
+			Paragraph initial = new Paragraph("Estimado(a) cliente: ",
+					FontFactory.getFont("arial", 12, BaseColor.BLACK));
+			initial.setAlignment(Element.ALIGN_LEFT);
+			initial.setSpacingBefore(20);
+			document.add(initial);
+
+			com.itextpdf.text.Font font = new com.itextpdf.text.Font(FontFamily.HELVETICA, 10,
+					com.itextpdf.text.Font.BOLD, new BaseColor(102, 102, 102));
+			com.itextpdf.text.Font fontNormal = new com.itextpdf.text.Font(FontFamily.HELVETICA, 10,
+					com.itextpdf.text.Font.NORMAL, new BaseColor(102, 102, 102));
+			com.itextpdf.text.Font fontBlue = new com.itextpdf.text.Font(FontFamily.HELVETICA, 10,
+					com.itextpdf.text.Font.BOLD, new BaseColor(0, 80, 152));
+
+			PdfPTable header = new PdfPTable(3);
+
+			header.setSpacingBefore(20);
+			header.setSpacingAfter(20);
+			header.setHorizontalAlignment(Element.ALIGN_LEFT);
+			header.getDefaultCell().setBorder(0);
+
+			PdfPCell datesP = new PdfPCell(new Phrase("Fecha", fontBlue));
+			datesP.setHorizontalAlignment(Element.ALIGN_LEFT);
+			datesP.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			datesP.setBorder(0);
+			header.addCell(datesP);
+
+			PdfPCell concep = new PdfPCell(new Phrase("Concepto", fontBlue));
+			concep.setHorizontalAlignment(Element.ALIGN_LEFT);
+			concep.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			concep.setBorder(0);
+			header.addCell(concep);
+
+			PdfPCell pends = new PdfPCell(new Phrase("Pendiente", fontBlue));
+			pends.setHorizontalAlignment(Element.ALIGN_LEFT);
+			pends.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			pends.setBorder(0);
+			header.addCell(pends);
+
+			String date = super.getdateString(quotaMove.getMovementDate());
+
+			PdfPCell dataDates = new PdfPCell(new Phrase(date, fontNormal));
+			dataDates.setHorizontalAlignment(Element.ALIGN_LEFT);
+			dataDates.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			dataDates.setBorder(0);
+			header.addCell(dataDates);
+
+			PdfPCell dataConcep = new PdfPCell(new Phrase(quotaMove.getMovementConcept(), fontNormal));
+			dataConcep.setHorizontalAlignment(Element.ALIGN_LEFT);
+			dataConcep.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			dataConcep.setBorder(0);
+			header.addCell(dataConcep);
+
+			PdfPCell dataPends = new PdfPCell(new Phrase(quotaMove.getMovementValue().toString(), fontNormal));
+			dataPends.setHorizontalAlignment(Element.ALIGN_LEFT);
+			dataPends.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			dataPends.setBorder(0);
+			header.addCell(dataPends);
+
+			document.add(header);
+
+			Paragraph title = new Paragraph("Información del movimiento", FontFactory.getFont("helvetica", 11,
+					new BaseColor(51, 51, 51)));
+			title.setSpacingBefore(20);
+			document.add(title);
+
+			PdfPTable tabla = new PdfPTable(4);
+
+			tabla.setSpacingBefore(20);
+			tabla.setSpacingAfter(20);
+			tabla.setHorizontalAlignment(Element.ALIGN_LEFT);
+			tabla.getDefaultCell().setBorder(0);
+
+			PdfPCell quota = new PdfPCell(new Phrase("N° de cuota", font));
+			quota.setHorizontalAlignment(Element.ALIGN_CENTER);
+			quota.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			quota.setBorder(0);
+			tabla.addCell(quota);
+
+			PdfPCell dataQuota = new PdfPCell(new Phrase(this.quotaMoveDetailDto.getRemainingQuotas() + " de "
+					+ quotaMoveDetailDto.getNumbersOfQuota(), fontNormal));
+			dataQuota.setHorizontalAlignment(Element.ALIGN_CENTER);
+			dataQuota.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			dataQuota.setBorder(0);
+			tabla.addCell(dataQuota);
+
+			PdfPCell fool = new PdfPCell(new Phrase("Pendiente", font));
+			fool.setHorizontalAlignment(Element.ALIGN_CENTER);
+			fool.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			fool.setBorder(0);
+			tabla.addCell(fool);
+
+			PdfPCell dataFool = new PdfPCell(new Phrase(quotaMoveDetailDto.getValueslope().toString(), fontNormal));
+			dataFool.setHorizontalAlignment(Element.ALIGN_CENTER);
+			dataFool.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			dataFool.setBorder(0);
+			tabla.addCell(dataFool);
+
+			document.add(tabla);
+
+			Paragraph att = new Paragraph("Cordial saludo, ", FontFactory.getFont("arial", 12, BaseColor.BLACK));
+			att.setAlignment(Element.ALIGN_JUSTIFIED);
+			att.setSpacingBefore(20);
+			document.add(att);
+
+			Paragraph bbva = new Paragraph("BBVA Adelante ",
+					FontFactory.getFont("arial", 12, new BaseColor(0, 80, 152)));
+			bbva.setAlignment(Element.ALIGN_JUSTIFIED);
+			bbva.setSpacingAfter(20);
+			document.add(bbva);
+
+			Paragraph note = new Paragraph(
+					"Nota: Si no eres el destinatario de este mensaje, por favor comunícate con nosotros con el fin de realizar la actualización correspondiente, al 4010000 en Bogotá, 4938300 en Medellín, 3503500 en Barranquilla, 8892020 en Cali, 6304000 en Bucaramanga o al 01800 912227 desde el resto del país. ",
+					FontFactory.getFont("arial", 9, com.itextpdf.text.Font.BOLD));
+			note.setAlignment(Element.ALIGN_JUSTIFIED);
+			note.setSpacingAfter(20);
+			document.add(note);
+
+			String ast = "*********************";
+
+			Paragraph post = new Paragraph(ast + " AVISO LEGAL " + ast,
+					FontFactory.getFont("arial", 9, BaseColor.BLACK));
+			post.setAlignment(Element.ALIGN_LEFT);
+			document.add(post);
+
+			Paragraph postCont = new Paragraph(
+					"Este mensaje es solamente para la persona a la que va dirigido. Puede contener informacion  confidencial  o  legalmente  protegida.  No  hay  renuncia  a la confidencialidad o privilegio por cualquier transmision mala/erronea. Si usted ha recibido este mensaje por error,  le rogamos que borre de su sistema inmediatamente el mensaje asi como todas sus copias, destruya todas las copias del mismo de su disco duro y notifique al remitente.  No debe,  directa o indirectamente, usar, revelar, distribuir, imprimir o copiar ninguna de las partes de este mensaje si no es usted el destinatario. Cualquier opinion expresada en este mensaje proviene del remitente, excepto cuando el mensaje establezca lo contrario y el remitente este autorizado para establecer que dichas opiniones provienen de  BBVA. Notese que el correo electronico via Internet no permite asegurar ni la confidencialidad de los mensajes que se transmiten ni la correcta recepcion de los mismos. En el caso de que el destinatario de este mensaje no consintiera la utilizacion del correo electronico via Internet, rogamos lo ponga en nuestro conocimiento de manera inmediata.",
+					FontFactory.getFont("arial", 9, BaseColor.BLACK));
+			postCont.setAlignment(Element.ALIGN_JUSTIFIED);
+			postCont.setSpacingAfter(20);
+			document.add(postCont);
+
+			Paragraph post2 = new Paragraph(ast + " DISCLAIMER " + ast,
+					FontFactory.getFont("arial", 9, BaseColor.BLACK));
+			post2.setAlignment(Element.ALIGN_LEFT);
+			document.add(post2);
+
+			Paragraph post2Content = new Paragraph(
+					"This message is intended exclusively for the named person. It may contain confidential, propietary or legally privileged information. No confidentiality or privilege is waived or lost by any mistransmission. If you receive this message in error, please immediately delete it and all copies of it from your system, destroy any hard copies of it and notify the sender. Your must not, directly or indirectly, use, disclose, distribute, print, or copy any part of this message if you are not the intended recipient. Any views expressed in this message are those of the individual sender, except where the message states otherwise and the sender is authorised to state them to be the views of BBVA. Please note that internet e-mail neither guarantees the confidentiality nor the proper receipt of the message sent. If the addressee of this message does not consent to the use of internet e-mail, please communicate it to us immediately.",
+					FontFactory.getFont("arial", 9, BaseColor.BLACK));
+			post2Content.setAlignment(Element.ALIGN_JUSTIFIED);
+			post2Content.setSpacingAfter(20);
+			document.add(post2Content);
+
+			Paragraph asty = new Paragraph(ast, FontFactory.getFont("arial", 9, BaseColor.BLACK));
+			asty.setAlignment(Element.ALIGN_LEFT);
+			asty.setSpacingAfter(20);
+			document.add(asty);
+
+			document.close();
+
+		} catch (DocumentException e) {
+			LOGGER.info("Excepción no se encuentra el archivo" + e.getMessage());
+
 		}
 	}
 
@@ -725,8 +996,9 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 		exportDocumentExcel();
 		InputStream stream;
 		try {
-			stream = new BufferedInputStream(new FileInputStream(RUTAEXCEL));
-			exportExcel = new DefaultStreamedContent(stream, "application/xls", "MovimientosCupo.xls");
+			stream = new BufferedInputStream(new FileInputStream(rutaExcelCupo));
+			exportExcel = new DefaultStreamedContent(stream, "application/xls", "MovimientosCupo"
+					+ getSelectedProduct().getProductNumber() + ".xls");
 		} catch (FileNotFoundException e) {
 			LOGGER.info("Error al descargar el Excel " + e.getMessage());
 		}
@@ -745,8 +1017,9 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 		exportDocumentPdf();
 		InputStream stream;
 		try {
-			stream = new BufferedInputStream(new FileInputStream("MovimientosCupo.pdf"));
-			exportPdf = new DefaultStreamedContent(stream, "application/pdf", "MovimientosCupo.pdf");
+			stream = new BufferedInputStream(new FileInputStream(rutaPdfCupo));
+			exportPdf = new DefaultStreamedContent(stream, "application/pdf", "MovimientosCupo"
+					+ getSelectedProduct().getProductNumber() + ".pdf");
 		} catch (FileNotFoundException e) {
 			LOGGER.info("Error al descargar el pdf " + e.getMessage());
 		}
@@ -759,4 +1032,28 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 	public void setExportPdf(StreamedContent exportPdf) {
 		this.exportPdf = exportPdf;
 	}
+
+	/**
+	 * @return the exportPdf
+	 */
+	public StreamedContent getExportDetailPdf() {
+		exportDocDetailPdf();
+		InputStream stream;
+		try {
+			stream = new BufferedInputStream(new FileInputStream(rutaPdfMove));
+			exportDetailPdf = new DefaultStreamedContent(stream, "application/pdf", "MovDetalleCupo"
+					+ quotaMoveDetailDto.getId() + ".pdf");
+		} catch (FileNotFoundException e) {
+			LOGGER.info("Error al descargar el pdf " + e.getMessage());
+		}
+		return exportDetailPdf;
+	}
+
+	/**
+	 * @param exportPdf the exportPdf to set
+	 */
+	public void setExportDetailPdf(StreamedContent exportPdf) {
+		this.exportDetailPdf = exportPdf;
+	}
+
 }

@@ -359,7 +359,8 @@ input.ui-state-default {
 	color: #999EA5 !important;
 	font-weight: 400 !important;
 }
-.ui-autocomplete-input{
+
+.ui-autocomplete-input {
 	width: 33% !important;
 }
 /* estado cuando mouseover en el input */
@@ -1783,6 +1784,8 @@ body div.ui-growl .ui-state-highlight {
 .tableValue {
 	font-size: 16px !important;
 	font-weight: bold !important;
+	color: #434A58 !important;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 }
 
 .tableAvaila {
