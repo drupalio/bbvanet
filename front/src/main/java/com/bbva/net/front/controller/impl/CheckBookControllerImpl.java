@@ -770,13 +770,13 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 		for (int i = 0; i < 5; i++) {
 			int width = 0;
 			int max = 0;
-			for (int j = 0; j < (cellSheet.size() / 5); j = j + 5) {
+			for (int j = 0; j < cellSheet.size(); j = j + 5) {
 				if (j == 0) {
 					max = cellSheet.get(i + j).getStringCellValue().length();
 				} else {
-					int anterior = cellSheet.get(i + j - 5).getStringCellValue().length();
-					if (max < anterior) {
-						max = cellSheet.get(i + j - 5).getStringCellValue().length();
+					int actual = cellSheet.get(i + j).getStringCellValue().length();
+					if (max < actual) {
+						max = cellSheet.get(i + j).getStringCellValue().length();
 					}
 				}
 			}
@@ -867,26 +867,31 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			cellStyleHeader.setAlignment(CellStyle.ALIGN_CENTER);
 
 			Cell numberCheck = filaHeader.createCell(1);
+			numberCheck.setCellType(Cell.CELL_TYPE_STRING);
 			numberCheck.setCellStyle(cellStyleHeader);
 			numberCheck.setCellValue("N° CHEQUE");
 			cellSheet.add(numberCheck);
 
 			Cell dateRea = filaHeader.createCell(2);
+			dateRea.setCellType(Cell.CELL_TYPE_STRING);
 			dateRea.setCellStyle(cellStyleHeader);
 			dateRea.setCellValue("FECHA EMISIÓN");
 			cellSheet.add(dateRea);
 
 			Cell valueCheck = filaHeader.createCell(3);
+			valueCheck.setCellType(Cell.CELL_TYPE_STRING);
 			valueCheck.setCellStyle(cellStyleHeader);
 			valueCheck.setCellValue("VALOR");
 			cellSheet.add(valueCheck);
 
 			Cell state = filaHeader.createCell(4);
+			state.setCellType(Cell.CELL_TYPE_STRING);
 			state.setCellStyle(cellStyleHeader);
 			state.setCellValue("ESTADO ACTUAL");
 			cellSheet.add(state);
 
 			Cell dateState = filaHeader.createCell(5);
+			dateState.setCellType(Cell.CELL_TYPE_STRING);
 			dateState.setCellStyle(cellStyleHeader);
 			dateState.setCellValue("FECHA CAMBIO ESTADO");
 			cellSheet.add(dateState);
@@ -911,6 +916,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 						check.setColor(HSSFColor.BLUE.index);
 
 						Cell celda = fila.createCell(c);
+						celda.setCellType(Cell.CELL_TYPE_STRING);
 						CellStyle cellStyle = libro.createCellStyle();
 
 						cellStyle.setAlignment(CellStyle.ALIGN_CENTER);
@@ -968,8 +974,6 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 
 				inicio = inicio + this.checkList.size() + 2;
 			}
-
-			maxSize(cellSheet, hoja);
 
 			Row filaFooter = hoja.createRow(inicio);
 			filaFooter.createCell(1).setCellValue("Cordial saludo,");
