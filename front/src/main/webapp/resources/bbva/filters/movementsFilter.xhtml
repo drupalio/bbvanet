@@ -44,11 +44,11 @@
 	<div class="selectorCombo2" style=";margin-top: 10px; margin-bottom: 10px;">
 	<h:outputLabel id="filterLabel" styleClass="#{movementsCriteriaController.selectFilterMove() ? '' : 'nonee'}" value="Estado" />	
 	<h:selectOneMenu id="filterConMo" value="#{movementsCriteriaController.status}" enabledClass="selectOption" styleClass="#{movementsCriteriaController.selectFilterMove() ? '' : 'nonee'}"
-		disabledClass="selectOptionDisabled" onchange="styles(this)">
+		disabledClass="selectOptionDisabled" onchange="styles(this)" >
 		<f:selectItem itemLabel="#{msg['mov.all']}" itemValue="#{msg['mov.all']}" />
 		<f:selectItems value="#{movementsCriteriaController.conceptMovements}" var="multiValue"
 			itemLabel="#{msg[multiValue.value]}" itemValue="#{msg[multiValue.value]}" />
-		<f:ajax event="valueChange" execute="@this"/>
+		<f:ajax event="valueChange" execute="@this" listener="#{movementsCriteriaController.setLabelConcept()}"/>
 	</h:selectOneMenu>
 	
 	</div>
