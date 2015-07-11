@@ -232,20 +232,33 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 
 	@Override
 	public void actionState() {
-		LOGGER.info(" CheckBookControllerImpl actionState ");
+		LOGGER.info(" CheckBookControllerImpl actionState " + getActionState());
 		resetMapResults();
 		if (getActionState().equals(SEARCH_CHECK)) {
+			LOGGER.info(" CheckBookControllerImpl actionState entro a SEARCH_CHECK " + SEARCH_CHECK);
 			getRenderComponents().put(RenderAttributes.FILTERCHECKBOOK.toString(), true);
 			getRenderComponents().put(RenderAttributes.NUMBERCHECK.toString(), true);
 			getRenderComponents().put(RenderAttributes.STATUS.toString(), true);
 			getRenderComponents().put(RenderAttributes.NUMBERBOOK.toString(), false);
 			getRenderComponents().put(RenderAttributes.BUTTONBOOK.toString(), false);
+			LOGGER.info("getRenderComponents(). FILTERCHECKBOOK"
+					+ getRenderComponents().get(RenderAttributes.FILTERCHECKBOOK.toString()));
+			LOGGER.info("getRenderComponents(). NUMBERBOOK"
+					+ getRenderComponents().get(RenderAttributes.NUMBERBOOK.toString()));
+			LOGGER.info("getRenderComponents(). BUTTONBOOK"
+					+ getRenderComponents().get(RenderAttributes.BUTTONBOOK.toString()));
 		} else if (getActionState().equals(SEARCH_BY_NUMBER_CHECK)) {
+			LOGGER.info(" CheckBookControllerImpl actionState entro a SEARCH_BY_NUMBER_CHECK " + SEARCH_BY_NUMBER_CHECK);
 			getRenderComponents().put(RenderAttributes.FILTERNUMBERCHECK.toString(), true);
 			getRenderComponents().put(RenderAttributes.NUMBERCHECK.toString(), false);
 			getRenderComponents().put(RenderAttributes.STATUS.toString(), false);
 			getRenderComponents().put(RenderAttributes.NUMBERBOOK.toString(), true);
 			getRenderComponents().put(RenderAttributes.BUTTONBOOK.toString(), false);
+			LOGGER.info("getRenderComponents(). FILTERNUMBERCHECK"
+					+ getRenderComponents().get(RenderAttributes.FILTERNUMBERCHECK.toString()));
+			LOGGER.info("getRenderComponents(). NUMBERCHECK"
+					+ getRenderComponents().get(RenderAttributes.NUMBERCHECK.toString()));
+			LOGGER.info("getRenderComponents(). STATUS" + getRenderComponents().get(RenderAttributes.STATUS.toString()));
 		}
 	}
 
