@@ -16,6 +16,8 @@ import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
 import com.bbva.net.back.facade.TermasAccountsFacade;
+import com.bbva.net.back.model.accounts.DetailConditionsDto;
+import com.bbva.net.back.model.accounts.PostalAddresDto;
 import com.bbva.net.back.model.accounts.TermsAccountsDto;
 import com.bbva.net.front.controller.TermsController;
 import com.bbva.net.front.core.AbstractBbvaController;
@@ -158,6 +160,9 @@ public class TermsControllerImpl extends AbstractBbvaController implements Terms
 			tabla.getDefaultCell().setBorder(0);
 
 			tabla.addCell(new Phrase("Categoría:", font));
+			if(detallesCuentaDto.getDetalleCondiciones()==null){
+				detallesCuentaDto.setDetalleCondiciones(new DetailConditionsDto());
+			}
 			tabla.addCell(new Phrase(detallesCuentaDto.getDetalleCondiciones().getCategoria(), fontNormal));
 			tabla.addCell(new Phrase("Descripción:", font));
 			tabla.addCell(new Phrase(detallesCuentaDto.getDetalleCondiciones().getDescripcion(), fontNormal));
@@ -176,7 +181,9 @@ public class TermsControllerImpl extends AbstractBbvaController implements Terms
 			tabla.setSpacingAfter(15);
 			tabla.setHorizontalAlignment(Element.ALIGN_LEFT);
 			tabla.getDefaultCell().setBorder(0);
-
+			if(detallesCuentaDto.getDireccionPostal()==null){
+				detallesCuentaDto.setDireccionPostal(new PostalAddresDto());
+			}
 			tabla.addCell(new Phrase("Nombre oficina:", font));
 			tabla.addCell(new Phrase(detallesCuentaDto.getDireccionPostal().getNombreOficina(), fontNormal));
 			tabla.addCell(new Phrase("Dirección postal:", font));

@@ -197,14 +197,18 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 
 	@Override
 	public void oneSelectDate() {
-		LOGGER.info(" CheckBookControllerImpl oneSelectDate ");
+		LOGGER.info(" CheckBookControllerImpl oneSelectDate " + getSelectDate());
 		getRenderComponents().put(RenderAttributes.FILTERDATECHECK.toString(), true);
 		getRenderComponents().put(RenderAttributes.FILTERCHECKBOOK.toString(), false);
 		getRenderComponents().put(RenderAttributes.FILTERNUMBERCHECK.toString(), false);
 		if (getSelectDate().equals(CONCRETE_DATE)) {
 			getRenderComponents().put(RenderAttributes.CALENDARCHECK.toString(), false);
+			LOGGER.info(" CheckBookControllerImpl oneSelectDate es igual CONCRETE_DATE " + getSelectDate() + "  "
+					+ getRenderComponents().get(RenderAttributes.CALENDARCHECK.toString()));
 		} else {
 			getRenderComponents().put(RenderAttributes.CALENDARCHECK.toString(), true);
+			LOGGER.info(" CheckBookControllerImpl oneSelectDate no es igual CONCRETE_DATE" + getSelectDate() + "  "
+					+ getRenderComponents().get(RenderAttributes.CALENDARCHECK.toString()));
 		}
 	}
 
@@ -232,20 +236,33 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 
 	@Override
 	public void actionState() {
-		LOGGER.info(" CheckBookControllerImpl actionState ");
+		LOGGER.info(" CheckBookControllerImpl actionState " + getActionState());
 		resetMapResults();
 		if (getActionState().equals(SEARCH_CHECK)) {
+			LOGGER.info(" CheckBookControllerImpl actionState entro a SEARCH_CHECK " + SEARCH_CHECK);
 			getRenderComponents().put(RenderAttributes.FILTERCHECKBOOK.toString(), true);
 			getRenderComponents().put(RenderAttributes.NUMBERCHECK.toString(), true);
 			getRenderComponents().put(RenderAttributes.STATUS.toString(), true);
 			getRenderComponents().put(RenderAttributes.NUMBERBOOK.toString(), false);
 			getRenderComponents().put(RenderAttributes.BUTTONBOOK.toString(), false);
+			LOGGER.info("getRenderComponents(). FILTERCHECKBOOK"
+					+ getRenderComponents().get(RenderAttributes.FILTERCHECKBOOK.toString()));
+			LOGGER.info("getRenderComponents(). NUMBERBOOK"
+					+ getRenderComponents().get(RenderAttributes.NUMBERBOOK.toString()));
+			LOGGER.info("getRenderComponents(). BUTTONBOOK"
+					+ getRenderComponents().get(RenderAttributes.BUTTONBOOK.toString()));
 		} else if (getActionState().equals(SEARCH_BY_NUMBER_CHECK)) {
+			LOGGER.info(" CheckBookControllerImpl actionState entro a SEARCH_BY_NUMBER_CHECK " + SEARCH_BY_NUMBER_CHECK);
 			getRenderComponents().put(RenderAttributes.FILTERNUMBERCHECK.toString(), true);
 			getRenderComponents().put(RenderAttributes.NUMBERCHECK.toString(), false);
 			getRenderComponents().put(RenderAttributes.STATUS.toString(), false);
 			getRenderComponents().put(RenderAttributes.NUMBERBOOK.toString(), true);
 			getRenderComponents().put(RenderAttributes.BUTTONBOOK.toString(), false);
+			LOGGER.info("getRenderComponents(). FILTERNUMBERCHECK"
+					+ getRenderComponents().get(RenderAttributes.FILTERNUMBERCHECK.toString()));
+			LOGGER.info("getRenderComponents(). NUMBERCHECK"
+					+ getRenderComponents().get(RenderAttributes.NUMBERCHECK.toString()));
+			LOGGER.info("getRenderComponents(). STATUS" + getRenderComponents().get(RenderAttributes.STATUS.toString()));
 		}
 	}
 
@@ -770,13 +787,13 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 		for (int i = 0; i < 5; i++) {
 			int width = 0;
 			int max = 0;
-			for (int j = 0; j < (cellSheet.size() / 5); j = j + 5) {
+			for (int j = 0; j < cellSheet.size(); j = j + 5) {
 				if (j == 0) {
 					max = cellSheet.get(i + j).getStringCellValue().length();
 				} else {
-					int anterior = cellSheet.get(i + j - 5).getStringCellValue().length();
-					if (max < anterior) {
-						max = cellSheet.get(i + j - 5).getStringCellValue().length();
+					int actual = cellSheet.get(i + j).getStringCellValue().length();
+					if (max < actual) {
+						max = cellSheet.get(i + j).getStringCellValue().length();
 					}
 				}
 			}
@@ -867,26 +884,31 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			cellStyleHeader.setAlignment(CellStyle.ALIGN_CENTER);
 
 			Cell numberCheck = filaHeader.createCell(1);
+			numberCheck.setCellType(Cell.CELL_TYPE_STRING);
 			numberCheck.setCellStyle(cellStyleHeader);
 			numberCheck.setCellValue("N° CHEQUE");
 			cellSheet.add(numberCheck);
 
 			Cell dateRea = filaHeader.createCell(2);
+			dateRea.setCellType(Cell.CELL_TYPE_STRING);
 			dateRea.setCellStyle(cellStyleHeader);
 			dateRea.setCellValue("FECHA EMISIÓN");
 			cellSheet.add(dateRea);
 
 			Cell valueCheck = filaHeader.createCell(3);
+			valueCheck.setCellType(Cell.CELL_TYPE_STRING);
 			valueCheck.setCellStyle(cellStyleHeader);
 			valueCheck.setCellValue("VALOR");
 			cellSheet.add(valueCheck);
 
 			Cell state = filaHeader.createCell(4);
+			state.setCellType(Cell.CELL_TYPE_STRING);
 			state.setCellStyle(cellStyleHeader);
 			state.setCellValue("ESTADO ACTUAL");
 			cellSheet.add(state);
 
 			Cell dateState = filaHeader.createCell(5);
+			dateState.setCellType(Cell.CELL_TYPE_STRING);
 			dateState.setCellStyle(cellStyleHeader);
 			dateState.setCellValue("FECHA CAMBIO ESTADO");
 			cellSheet.add(dateState);
@@ -911,6 +933,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 						check.setColor(HSSFColor.BLUE.index);
 
 						Cell celda = fila.createCell(c);
+						celda.setCellType(Cell.CELL_TYPE_STRING);
 						CellStyle cellStyle = libro.createCellStyle();
 
 						cellStyle.setAlignment(CellStyle.ALIGN_CENTER);
@@ -968,8 +991,6 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 
 				inicio = inicio + this.checkList.size() + 2;
 			}
-
-			maxSize(cellSheet, hoja);
 
 			Row filaFooter = hoja.createRow(inicio);
 			filaFooter.createCell(1).setCellValue("Cordial saludo,");

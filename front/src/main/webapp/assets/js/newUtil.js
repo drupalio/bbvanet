@@ -3,9 +3,11 @@ function enableDisableButton(inputId) {
 	var valueInput = $(inputId).val().length;
 	if (valueInput > 0) {
 		$('#tabMenu\\:tabPersonal\\:personaliz\\:upAlias\\:inputContent\\:buttonUpdate').removeClass('buttonDisabled');
+		$('#quotaDetail\\:tabMenu\\:tabQuota\\:personaliz\\:upAlias\\:inputContent\\:buttonUpdate').removeClass('buttonDisabled');
 		return;
 	} else {
 		$('#tabMenu\\:tabPersonal\\:personaliz\\:upAlias\\:inputContent\\:buttonUpdate').addClass('buttonDisabled');
+		$('#quotaDetail\\:tabMenu\\:tabQuota\\:personaliz\\:upAlias\\:inputContent\\:buttonUpdate').addClass('buttonDisabled');
 	}
 }
 
