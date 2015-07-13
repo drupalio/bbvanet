@@ -72,4 +72,9 @@ public interface QuotaController {
 	 * 
 	 */
 	void exportDocumentExcel();
+
+	/**
+	 * 
+	 */
+	void exportDocDetailPdf();
 }

@@ -41,6 +41,7 @@ public class RenderViewMovementsUI implements Serializable {
 		getRenderComponents().put(RenderAttributes.NUMBERBOOK.toString(), true);
 		getRenderComponents().put(RenderAttributes.STATUS.toString(), true);
 		getRenderComponents().put(RenderAttributes.NUMBERCHECK.toString(), true);
+		getRenderComponents().put(RenderAttributes.RADIOSTATUS.toString(), false);
 		getRenderComponents().put(RenderAttributes.BUTTONBOOK.toString(), true);
 
 		getRenderComponents().put(RenderAttributes.FILTERSTATUS.toString(), false);

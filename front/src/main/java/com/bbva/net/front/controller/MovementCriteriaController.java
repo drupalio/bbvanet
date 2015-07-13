@@ -94,7 +94,7 @@ public interface MovementCriteriaController {
 	/**
 	 * 
 	 */
-	void printFile();
+	void printFile(String typeDoc);
 
 	/**
 	 * 

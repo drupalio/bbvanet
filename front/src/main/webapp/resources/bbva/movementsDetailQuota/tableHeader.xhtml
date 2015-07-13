@@ -11,6 +11,7 @@
 		<div class="table-tab positionHead hidden-xs hidden-sm">
 			<div class="table-detail-border" style="padding-bottom: 2% !important;">
 				<p:commandLink styleClass="icon-pdf-file" ajax="false">
+					<p:fileDownload value="#{cc.attrs.controller.exportDetailPdf}" />
 				</p:commandLink>
 				<p:commandLink ajax="false" styleClass="icon-printer">
 				</p:commandLink>
