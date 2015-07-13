@@ -17,6 +17,8 @@ public class CheckStatusPredicate extends BbvaPredicate<CheckDto> {
 
 		if (checkDto == null || checkDto.getId() == null) {
 			return false;
+		} else if (checkDto.getStatus() == null) {
+			checkDto.setStatus(" ");
 		} else if (checkDto.getStatus().contentEquals("0")) {
 			checkDto.setStatus(EnumCheckStatus.valueOf(Integer.parseInt("0")).getValue());
 		} else if (checkDto.getStatus().contentEquals("1")) {

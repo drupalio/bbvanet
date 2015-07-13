@@ -893,45 +893,86 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			cellStyleHeader.setBorderTop((short)1);
 			cellStyleHeader.setAlignment(CellStyle.ALIGN_CENTER);
 
-			Cell numberCheck = filaHeader.createCell(1);
-			numberCheck.setCellType(Cell.CELL_TYPE_STRING);
-			numberCheck.setCellStyle(cellStyleHeader);
-			numberCheck.setCellValue("N° CHEQUE");
-			cellSheet.add(numberCheck);
+			if (checkList != null && (this.checkList.size() != 0 || !this.checkList.isEmpty())) {
 
-			Cell dateRea = filaHeader.createCell(2);
-			dateRea.setCellType(Cell.CELL_TYPE_STRING);
-			dateRea.setCellStyle(cellStyleHeader);
-			dateRea.setCellValue("FECHA EMISIÓN");
-			cellSheet.add(dateRea);
+				Cell numberCheck = filaHeader.createCell(1);
+				numberCheck.setCellType(Cell.CELL_TYPE_STRING);
+				numberCheck.setCellStyle(cellStyleHeader);
+				numberCheck.setCellValue("N° CHEQUE");
+				cellSheet.add(numberCheck);
 
-			Cell valueCheck = filaHeader.createCell(3);
-			valueCheck.setCellType(Cell.CELL_TYPE_STRING);
-			valueCheck.setCellStyle(cellStyleHeader);
-			valueCheck.setCellValue("VALOR");
-			cellSheet.add(valueCheck);
+				Cell dateRea = filaHeader.createCell(2);
+				dateRea.setCellType(Cell.CELL_TYPE_STRING);
+				dateRea.setCellStyle(cellStyleHeader);
+				dateRea.setCellValue("FECHA EMISIÓN");
+				cellSheet.add(dateRea);
 
-			Cell state = filaHeader.createCell(4);
-			state.setCellType(Cell.CELL_TYPE_STRING);
-			state.setCellStyle(cellStyleHeader);
-			state.setCellValue("ESTADO ACTUAL");
-			cellSheet.add(state);
+				Cell valueCheck = filaHeader.createCell(3);
+				valueCheck.setCellType(Cell.CELL_TYPE_STRING);
+				valueCheck.setCellStyle(cellStyleHeader);
+				valueCheck.setCellValue("VALOR");
+				cellSheet.add(valueCheck);
 
-			Cell dateState = filaHeader.createCell(5);
-			dateState.setCellType(Cell.CELL_TYPE_STRING);
-			dateState.setCellStyle(cellStyleHeader);
-			dateState.setCellValue("FECHA CAMBIO ESTADO");
-			cellSheet.add(dateState);
+				Cell state = filaHeader.createCell(4);
+				state.setCellType(Cell.CELL_TYPE_STRING);
+				state.setCellStyle(cellStyleHeader);
+				state.setCellValue("ESTADO ACTUAL");
+				cellSheet.add(state);
 
-			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 1));
-			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 2, 2));
-			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 3, 3));
-			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 4, 4));
-			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 5, 5));
+				Cell dateState = filaHeader.createCell(5);
+				dateState.setCellType(Cell.CELL_TYPE_STRING);
+				dateState.setCellStyle(cellStyleHeader);
+				dateState.setCellValue("FECHA CAMBIO ESTADO");
+				cellSheet.add(dateState);
+
+				hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 1));
+				hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 2, 2));
+				hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 3, 3));
+				hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 4, 4));
+				hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 5, 5));
+
+			} else {
+
+				Cell numberCheck = filaHeader.createCell(1);
+				numberCheck.setCellType(Cell.CELL_TYPE_STRING);
+				numberCheck.setCellStyle(cellStyleHeader);
+				numberCheck.setCellValue("N° CHEQUE");
+				hoja.autoSizeColumn(1);
+
+				Cell dateRea = filaHeader.createCell(2);
+				dateRea.setCellType(Cell.CELL_TYPE_STRING);
+				dateRea.setCellStyle(cellStyleHeader);
+				dateRea.setCellValue("FECHA EMISIÓN");
+				hoja.autoSizeColumn(2);
+
+				Cell valueCheck = filaHeader.createCell(3);
+				valueCheck.setCellType(Cell.CELL_TYPE_STRING);
+				valueCheck.setCellStyle(cellStyleHeader);
+				valueCheck.setCellValue("VALOR");
+				hoja.autoSizeColumn(3);
+
+				Cell state = filaHeader.createCell(4);
+				state.setCellType(Cell.CELL_TYPE_STRING);
+				state.setCellStyle(cellStyleHeader);
+				state.setCellValue("ESTADO ACTUAL");
+				hoja.autoSizeColumn(4);
+
+				Cell dateState = filaHeader.createCell(5);
+				dateState.setCellType(Cell.CELL_TYPE_STRING);
+				dateState.setCellStyle(cellStyleHeader);
+				dateState.setCellValue("FECHA CAMBIO ESTADO");
+				hoja.autoSizeColumn(5);
+
+				hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 1));
+				hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 2, 2));
+				hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 3, 3));
+				hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 4, 4));
+				hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 5, 5));
+			}
 
 			inicio = inicio + 1;
 
-			if (checkList != null) {
+			if (checkList != null && (this.checkList.size() != 0 || !this.checkList.isEmpty())) {
 				for (int f = 0; f < this.checkList.size(); f++) {
 					Row fila = hoja.createRow(f + inicio);
 					for (int c = 1; c < 6; c++) {
@@ -954,42 +995,32 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 						cellStyle.setWrapText(true);
 
 						if (c == 1) {
-
 							cellStyle.setFont(check);
-							celda.setCellStyle(cellStyle);
-							celda.setCellValue(this.checkList.get(f).getId());
+							super.createCell(celda, this.checkList.get(f).getId(), cellStyle);
 							cellSheet.add(celda);
-
 						}
 						if (c == 2) {
-
 							String DateString = super.getdateString(this.checkList.get(f).getIssueDate());
-							celda.setCellStyle(cellStyle);
-							celda.setCellValue(DateString);
+							super.createCell(celda, DateString, cellStyle);
 							cellSheet.add(celda);
-
 						}
 						if (c == 3) {
-
-							celda.setCellStyle(cellStyle);
-							celda.setCellValue(this.checkList.get(f).getValue().toString());
+							super.createCellMoney(celda, this.checkList.get(f).getValue(), cellStyle);
 							cellSheet.add(celda);
-
 						}
 						if (c == 4) {
-
-							celda.setCellStyle(cellStyle);
-							celda.setCellValue(this.checkList.get(f).getStatus());
+							super.createCell(celda, this.checkList.get(f).getStatus(), cellStyle);
 							cellSheet.add(celda);
-
 						}
 
 						if (c == 5) {
-
 							celda.setCellStyle(cellStyle);
-							celda.setCellValue(this.checkList.get(f).getModifiedDate().replace("/", "-"));
+							if (this.checkList.get(f).getModifiedDate() != null) {
+								celda.setCellValue(this.checkList.get(f).getModifiedDate().replace("/", "-"));
+							} else {
+								celda.setCellValue(" ");
+							}
 							cellSheet.add(celda);
-
 						}
 
 						hoja.addMergedRegion(new CellRangeAddress(f, f, 1, 1));
@@ -1000,10 +1031,41 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 					}
 				}
 
-				inicio = inicio + this.checkList.size() + 2;
-			}
+				super.maxSize(cellSheet, hoja);
 
-			super.maxSize(cellSheet, hoja);
+				inicio = inicio + this.checkList.size() + 2;
+
+			} else if (checkList != null && (this.checkList.size() == 0 || this.checkList.isEmpty())) {
+
+				Row filaOter = hoja.createRow(inicio);
+
+				Cell celda = filaOter.createCell(1);
+				Cell celda1 = filaOter.createCell(2);
+				Cell celda2 = filaOter.createCell(3);
+				Cell celda3 = filaOter.createCell(4);
+				Cell celda4 = filaOter.createCell(5);
+
+				celda.setCellType(Cell.CELL_TYPE_STRING);
+				CellStyle cellStyle = libro.createCellStyle();
+
+				cellStyle.setAlignment(CellStyle.ALIGN_CENTER);
+				cellStyle.setBorderBottom((short)1);
+				cellStyle.setBorderLeft((short)1);
+				cellStyle.setBorderRight((short)1);
+				cellStyle.setBorderTop((short)1);
+				cellStyle.setWrapText(true);
+
+				celda.setCellStyle(cellStyle);
+				celda1.setCellStyle(cellStyle);
+				celda2.setCellStyle(cellStyle);
+				celda3.setCellStyle(cellStyle);
+				celda4.setCellStyle(cellStyle);
+				celda.setCellValue("No hay registros");
+
+				hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 5));
+
+				inicio = inicio + this.checkList.size() + 3;
+			}
 
 			Row filaFooter = hoja.createRow(inicio);
 			filaFooter.createCell(1).setCellValue("Cordial saludo,");
@@ -1169,40 +1231,77 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			cellStyleHeader.setBorderTop((short)1);
 			cellStyleHeader.setAlignment(CellStyle.ALIGN_CENTER);
 
-			Cell fistCheq = filaHeader.createCell(1);
-			fistCheq.setCellStyle(cellStyleHeader);
-			fistCheq.setCellValue("PRIMER CHEQUE");
-			cellSheet.add(fistCheq);
+			if (checkBook != null && (this.checkBook.size() != 0 || !this.checkBook.isEmpty())) {
 
-			Cell lastCheq = filaHeader.createCell(2);
-			lastCheq.setCellStyle(cellStyleHeader);
-			lastCheq.setCellValue("ÚLTIMO CHEQUE");
-			cellSheet.add(lastCheq);
+				Cell fistCheq = filaHeader.createCell(1);
+				fistCheq.setCellStyle(cellStyleHeader);
+				fistCheq.setCellValue("PRIMER CHEQUE");
+				cellSheet.add(fistCheq);
 
-			Cell avalCheck = filaHeader.createCell(3);
-			avalCheck.setCellStyle(cellStyleHeader);
-			avalCheck.setCellValue("CHEQUES DISPONIBLES");
-			cellSheet.add(avalCheck);
+				Cell lastCheq = filaHeader.createCell(2);
+				lastCheq.setCellStyle(cellStyleHeader);
+				lastCheq.setCellValue("ÚLTIMO CHEQUE");
+				cellSheet.add(lastCheq);
 
-			Cell dates = filaHeader.createCell(4);
-			dates.setCellStyle(cellStyleHeader);
-			dates.setCellValue("FECHA PETICIÓN - FECHA ENTREGA");
-			cellSheet.add(dates);
+				Cell avalCheck = filaHeader.createCell(3);
+				avalCheck.setCellStyle(cellStyleHeader);
+				avalCheck.setCellValue("CHEQUES DISPONIBLES");
+				cellSheet.add(avalCheck);
 
-			Cell state = filaHeader.createCell(5);
-			state.setCellStyle(cellStyleHeader);
-			state.setCellValue("ESTADO");
-			cellSheet.add(state);
+				Cell dates = filaHeader.createCell(4);
+				dates.setCellStyle(cellStyleHeader);
+				dates.setCellValue("FECHA PETICIÓN - FECHA ENTREGA");
+				cellSheet.add(dates);
 
-			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 1));
-			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 2, 2));
-			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 3, 3));
-			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 4, 4));
-			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 5, 5));
+				Cell state = filaHeader.createCell(5);
+				state.setCellStyle(cellStyleHeader);
+				state.setCellValue("ESTADO");
+				cellSheet.add(state);
+
+				hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 1));
+				hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 2, 2));
+				hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 3, 3));
+				hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 4, 4));
+				hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 5, 5));
+
+			} else {
+
+				Cell fistCheq = filaHeader.createCell(1);
+				fistCheq.setCellStyle(cellStyleHeader);
+				fistCheq.setCellValue("PRIMER CHEQUE");
+				hoja.autoSizeColumn(1);
+
+				Cell lastCheq = filaHeader.createCell(2);
+				lastCheq.setCellStyle(cellStyleHeader);
+				lastCheq.setCellValue("ÚLTIMO CHEQUE");
+				hoja.autoSizeColumn(2);
+
+				Cell avalCheck = filaHeader.createCell(3);
+				avalCheck.setCellStyle(cellStyleHeader);
+				avalCheck.setCellValue("CHEQUES DISPONIBLES");
+				hoja.autoSizeColumn(3);
+
+				Cell dates = filaHeader.createCell(4);
+				dates.setCellStyle(cellStyleHeader);
+				dates.setCellValue("FECHA PETICIÓN - FECHA ENTREGA");
+				hoja.autoSizeColumn(4);
+
+				Cell state = filaHeader.createCell(5);
+				state.setCellStyle(cellStyleHeader);
+				state.setCellValue("ESTADO");
+				hoja.autoSizeColumn(5);
+
+				hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 1));
+				hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 2, 2));
+				hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 3, 3));
+				hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 4, 4));
+				hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 5, 5));
+			}
 
 			inicio = inicio + 1;
 
-			if (checkBook != null) {
+			if (checkBook != null && (this.checkBook.size() != 0 || !this.checkBook.isEmpty())) {
+
 				for (int f = 0; f < this.checkBook.size(); f++) {
 					Row fila = hoja.createRow(f + inicio);
 					for (int c = 1; c < 6; c++) {
@@ -1224,45 +1323,35 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 						cellStyle.setWrapText(true);
 
 						if (c == 1) {
-
 							cellStyle.setFont(book);
-							celda.setCellStyle(cellStyle);
-							celda.setCellValue(this.checkBook.get(f).getFirstCheck());
+							super.createCell(celda, this.checkBook.get(f).getFirstCheck(), cellStyle);
 							cellSheet.add(celda);
-
 						}
-
 						if (c == 2) {
-
 							celda.setCellStyle(cellStyle);
-							celda.setCellValue(this.checkBook.get(f).getLastCheck());
+							super.createCell(celda, this.checkBook.get(f).getLastCheck(), cellStyle);
 							cellSheet.add(celda);
-
 						}
-
 						if (c == 3) {
-
 							celda.setCellStyle(cellStyle);
-							celda.setCellValue(this.checkBook.get(f).getTotalCheck().toString());
+							super.createCell(celda, this.checkBook.get(f).getTotalCheck(), cellStyle);
 							cellSheet.add(celda);
-
 						}
-
 						if (c == 4) {
-
 							celda.setCellStyle(cellStyle);
-							celda.setCellValue(this.checkBook.get(f).getRequestDate().toString() + " - "
-									+ this.checkBook.get(f).getDeliveryDate().toString());
+							if (this.checkBook.get(f).getRequestDate() != null
+									&& this.checkBook.get(f).getDeliveryDate() != null) {
+								celda.setCellValue(this.checkBook.get(f).getRequestDate().toString() + " - "
+										+ this.checkBook.get(f).getDeliveryDate().toString());
+							} else {
+								celda.setCellValue(" ");
+							}
 							cellSheet.add(celda);
-
 						}
-
 						if (c == 5) {
-
 							celda.setCellStyle(cellStyle);
-							celda.setCellValue(this.checkBook.get(f).getActualState().toString());
+							super.createCell(celda, this.checkBook.get(f).getActualState(), cellStyle);
 							cellSheet.add(celda);
-
 						}
 
 						hoja.addMergedRegion(new CellRangeAddress(f, f, 1, 1));
@@ -1272,10 +1361,41 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 						hoja.addMergedRegion(new CellRangeAddress(f, f, 5, 5));
 					}
 				}
-				inicio = inicio + this.checkBook.size() + 2;
-			}
+				super.maxSize(cellSheet, hoja);
 
-			super.maxSize(cellSheet, hoja);
+				inicio = inicio + this.checkBook.size() + 3;
+
+			} else if (checkBook != null && (this.checkBook.size() == 0 || this.checkBook.isEmpty())) {
+
+				Row filaOter = hoja.createRow(inicio);
+
+				Cell celda = filaOter.createCell(1);
+				Cell celda1 = filaOter.createCell(2);
+				Cell celda2 = filaOter.createCell(3);
+				Cell celda3 = filaOter.createCell(4);
+				Cell celda4 = filaOter.createCell(5);
+
+				celda.setCellType(Cell.CELL_TYPE_STRING);
+				CellStyle cellStyle = libro.createCellStyle();
+
+				cellStyle.setAlignment(CellStyle.ALIGN_CENTER);
+				cellStyle.setBorderBottom((short)1);
+				cellStyle.setBorderLeft((short)1);
+				cellStyle.setBorderRight((short)1);
+				cellStyle.setBorderTop((short)1);
+				cellStyle.setWrapText(true);
+
+				celda.setCellStyle(cellStyle);
+				celda1.setCellStyle(cellStyle);
+				celda2.setCellStyle(cellStyle);
+				celda3.setCellStyle(cellStyle);
+				celda4.setCellStyle(cellStyle);
+				celda.setCellValue("No hay registros");
+
+				hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 5));
+
+				inicio = inicio + this.checkBook.size() + 3;
+			}
 
 			Row filaFooter = hoja.createRow(inicio);
 			filaFooter.createCell(1).setCellValue("Cordial saludo,");
