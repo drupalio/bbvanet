@@ -22,9 +22,9 @@
 	</jdbc:embedded-database>
 
 	<bean id="transactionManager"
-		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-		<property name="sessionFactory">
-			<ref local="sessionFactory" />
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource">
+			<ref local="dataSource" />
 		</property>
 	</bean>
 
@@ -55,7 +55,7 @@
 		depends-on="dataSource">
 		<property name="dataSource" ref="dataSource" />
 		<property name="defaultSchema" value="bbva" />
-		<property name="changeLog" value="classpath:/liquiBase/changeLogs.xml" />
+		<property name="changeLog" value="classpath:/liquibase/changeLogs.xml" />
 	</bean>
 
 
