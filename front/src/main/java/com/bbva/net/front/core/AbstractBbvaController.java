@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javax.faces.context.ExternalContext;
@@ -13,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Sheet;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
 import org.springframework.faces.webflow.FlowFacesContext;
@@ -239,7 +242,22 @@ public abstract class AbstractBbvaController implements Serializable {
 		return "N/A";
 	}
 
-	public void createCell() {
-
+	public void maxSize(List<Cell> cellSheet, Sheet hoja) {
+		for (int i = 0; i < 5; i++) {
+			int width = 0;
+			int max = 0;
+			for (int j = 0; j < cellSheet.size(); j = j + 5) {
+				if (j == 0) {
+					max = cellSheet.get(i + j).getStringCellValue().length();
+				} else {
+					int actual = cellSheet.get(i + j).getStringCellValue().length();
+					if (max < actual) {
+						max = cellSheet.get(i + j).getStringCellValue().length();
+					}
+				}
+			}
+			width = ((int)(max * 1.14388) * 256);
+			hoja.setColumnWidth(i + 1, width);
+		}
 	}
 }
