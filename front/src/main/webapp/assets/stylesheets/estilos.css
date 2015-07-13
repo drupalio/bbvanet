@@ -36,7 +36,7 @@
 	color: #333 !important;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 14px !important;
-	height: 100% !important;
+	height: auto !important;
 	line-height: 20px !important;
 	min-height: 1px !important;
 	padding-left: 15px !important;
@@ -1088,7 +1088,7 @@ body div.ui-growl .ui-state-highlight {
 	background-repeat: no-repeat;
 	background-position: right 10px center;
 	width: 100%;
-	height: 100%;
+	/*height: 100%;*/
 	padding: 4px !important;
 }
 
@@ -1548,7 +1548,18 @@ body div.ui-growl .ui-state-highlight {
 	height: 20px;
 	margin-left: 3px;
 	position: relative;
-	top: 7px;
+	/*top: 7px;*/
+	width: auto;
+}
+
+.icon-Info-BlueFilter {
+	background-image: url("../img/icons/icon-info-blue-small.png");
+	background-repeat: no-repeat;
+	display: inline-block;
+	height: 20px;
+	margin-left: 3px;
+	position: relative;
+	/*top: 7px;*/
 	width: 18px;
 }
 
