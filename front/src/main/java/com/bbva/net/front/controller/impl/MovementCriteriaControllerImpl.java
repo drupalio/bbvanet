@@ -678,10 +678,9 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	@Override
 	public void exportDocumentPdf() {
 
-		LOGGER.info("iniciando exportar archivo pdf");
-
 		String rutaArchivo = "Movimientos" + getSelectedProduct().getProductNumber() + ".pdf";
-
+		LOGGER.info("iniciando exportar archivo pdf " + "Movimientos" + getSelectedProduct().getProductNumber()
+				+ ".pdf");
 		try {
 
 			FileOutputStream file = null;
@@ -808,9 +807,9 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	@Override
 	public void exportDocumentDetailPdf() {
 
-		LOGGER.info("iniciando exportar archivo pdf");
-
 		String rutaArchivo = "DetailMove" + getSelectedProduct().getProductNumber() + ".pdf";
+
+		LOGGER.info("iniciando exportar archivo pdf " + "DetailMove" + getSelectedProduct().getProductNumber() + ".pdf");
 
 		try {
 
@@ -983,13 +982,20 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		if (typeDoc.equals("DetailMovement")) {
 			pdfFile = new File("MovimientosDetail" + getSelectedProduct().getProductNumber() + ".pdf");
 		}
+		LOGGER.info("printFile ruta de archivo " + pdfFile.getPath());
 		if (pdfFile.exists()) {
 			if (pdfFile.delete()) {
-				LOGGER.info("borró el archivo");
-				exportDocumentPdf();
+				LOGGER.info("borró el archivo " + pdfFile.getPath());
+				if (typeDoc.equals("Movements")) {
+					exportDocumentPdf();
+				}
+				if (typeDoc.equals("DetailMovement")) {
+					exportDocumentDetailPdf();
+				}
 			} else
 				LOGGER.info("No lo borró");
 		} else {
+			LOGGER.info("crea el archivo " + pdfFile.getPath());
 			if (typeDoc.equals("Movements")) {
 				exportDocumentPdf();
 			}
@@ -1034,8 +1040,10 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 		try {
 			Process p = Runtime.getRuntime().exec(sParts);
+			LOGGER.info(" Proceso input " + p.toString());
 			if (p == null) return false;
 
+			LOGGER.info("Inicia la terminación de proceso");
 			try {
 				int retval = p.exitValue();
 				if (retval == 0) {
@@ -1046,11 +1054,13 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 					return false;
 				}
 			} catch (IllegalThreadStateException itse) {
-				LOGGER.info("Proceso esta corriendo " + itse.getMessage());
+				LOGGER.info("Ruta archivo*** " + file + "***Proceso esta corriendo mensaje " + itse.getMessage()
+						+ "---causa---" + itse.getCause());
 				return true;
 			}
 		} catch (IOException e) {
-			LOGGER.info("Error ejecutando el comando " + e.getMessage());
+			LOGGER.info("Error ejecutando el comando Mensaje " + e.getMessage() + " Ruta archivo*** " + file
+					+ "*** Causa" + e.getCause());
 			return false;
 		}
 	}
