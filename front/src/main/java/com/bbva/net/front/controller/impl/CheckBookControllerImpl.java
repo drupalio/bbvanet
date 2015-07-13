@@ -341,6 +341,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 					LOGGER.info(" CheckBookControllerImpl showResults filterByCheckBook checkId: " + getCheckNumber());
 
 					this.check = checkBookFacade.getCheckById(getSelectedProduct().getProductId(), getCheckNumber());
+
 				} catch (Exception e) {
 					FacesContext ctx = FacesContext.getCurrentInstance();
 					ctx.addMessage("check", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
@@ -359,11 +360,15 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 						}
 					}
 
+					hasMoreElementsCheck(this.checkList);
+
 				} else {
 					LOGGER.info(" CheckBookControllerImpl showResults filterByCheckBook ");
 
 					this.checkList.add(check);
 					this.checkList = getListCheckById(checkList);
+
+					hasMoreElementsCheck(this.checkList);
 				}
 
 			} else if (getTitleState() != null && !getTitleState().equals("Ninguno")) {
@@ -371,6 +376,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 
 				this.dateRange = null;
 				criteriaSearch();
+
 			} else {
 				LOGGER.info(" CheckBookControllerImpl showResults sin filtro cheques");
 
