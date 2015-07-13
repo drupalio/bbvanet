@@ -18,7 +18,7 @@ public interface CheckBookController {
 	/**
 	 * Method to get states from checks or books
 	 */
-	void actionState();
+	void radioActionState();
 
 	/**
 	 * Method to set a check or book, according filters given

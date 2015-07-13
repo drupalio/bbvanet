@@ -124,16 +124,8 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
 		this.checkBookController.setCustomDate(eventAction);
 	}
 
-	@Test
+	// @Test
 	public void checkActionState() {
-		// set ActionState estado de cheque
-		this.checkBookController.setActionState("null");
-		this.checkBookController.setNumberCheckOrBook(eventAction);
-		// set ActionState estado de cheque sin estado
-		this.checkBookController.setActionState("text.search.by.number.status");
-		this.checkBookController.setLeftTitle("fecha");
-		this.checkBookController.setRightTitle("fecha");
-		this.checkBookController.setNumberCheckOrBook(eventAction);
 		// set ActionState numero de cheque
 		this.checkBookController.setActionState("text.search.by.number.check");
 		this.checkBookController.getLeftTitle();
@@ -141,10 +133,6 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
 		// set ActionState numero de talonario
 		this.checkBookController.setActionState("text.search.by.numberbook");
 		this.checkBookController.getRightTitle();
-		this.checkBookController.setNumberCheckOrBook(eventAction);
-		// set ActionState estado de cheque
-		this.checkBookController.setActionState("text.search.by.number.status");
-		this.checkBookController.setCheckState("2");
 		this.checkBookController.setNumberCheckOrBook(eventAction);
 	}
 

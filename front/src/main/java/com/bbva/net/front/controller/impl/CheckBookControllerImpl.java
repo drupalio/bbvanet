@@ -81,8 +81,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 
 	private static final String SEARCH_BY_NUMBER_CHECK = MessagesHelper.INSTANCE
 			.getString("text.search.by.number.check"), SEARCH_CHECK = MessagesHelper.INSTANCE
-			.getString("text.search.by.numberbook"), SEARCH_BY_STATUS = MessagesHelper.INSTANCE
-			.getString("text.search.by.number.status"), CONCRETE_DATE = MessagesHelper.INSTANCE
+			.getString("text.search.by.numberbook"), CONCRETE_DATE = MessagesHelper.INSTANCE
 			.getString("select.radio.concret.date"), SINCE_TITLE = MessagesHelper.INSTANCE.getString("text.since"),
 			TO_TITLE = MessagesHelper.INSTANCE.getString("text.to");
 
@@ -159,7 +158,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 
 	@Override
 	public void cleanFilters(ActionEvent event) {
-		LOGGER.info("MovementsAccountController clean Filters");
+		LOGGER.info("CheckAccountController clean Filters");
 		clean();
 	}
 
@@ -213,6 +212,53 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	}
 
 	@Override
+	public void radioActionState() {
+		LOGGER.info(SEARCH_CHECK + " " + SEARCH_BY_NUMBER_CHECK + " CheckBookControllerImpl actionState "
+				+ getActionState());
+		if (getActionState().equals(SEARCH_CHECK)) {
+			LOGGER.info(" CheckBookControllerImpl actionState entro a SEARCH_CHECK " + SEARCH_CHECK);
+
+			getRenderComponents().put(RenderAttributes.BUTTONBOOK.toString(), false);
+			getRenderComponents().put(RenderAttributes.FILTERCHECKBOOK.toString(), true);
+			getRenderComponents().put(RenderAttributes.NUMBERBOOK.toString(), false);
+
+			getRenderComponents().put(RenderAttributes.NUMBERCHECK.toString(), true);
+			getRenderComponents().put(RenderAttributes.STATUS.toString(), true);
+			getRenderComponents().put(RenderAttributes.RADIOSTATUS.toString(), false);
+
+			getRenderComponents().put(RenderAttributes.FILTERNUMBERCHECK.toString(), false);
+			getRenderComponents().put(RenderAttributes.FILTERDATECHECK.toString(), false);
+
+			LOGGER.info("getRenderComponents(). FILTERCHECKBOOK"
+					+ getRenderComponents().get(RenderAttributes.FILTERCHECKBOOK.toString()));
+			LOGGER.info("getRenderComponents(). NUMBERBOOK"
+					+ getRenderComponents().get(RenderAttributes.NUMBERBOOK.toString()));
+			LOGGER.info("getRenderComponents(). BUTTONBOOK"
+					+ getRenderComponents().get(RenderAttributes.BUTTONBOOK.toString()));
+
+		} else if (getActionState().equals(SEARCH_BY_NUMBER_CHECK)) {
+			LOGGER.info(" CheckBookControllerImpl actionState entro a SEARCH_BY_NUMBER_CHECK " + SEARCH_BY_NUMBER_CHECK);
+
+			getRenderComponents().put(RenderAttributes.BUTTONBOOK.toString(), false);
+			getRenderComponents().put(RenderAttributes.FILTERNUMBERCHECK.toString(), true);
+			getRenderComponents().put(RenderAttributes.NUMBERCHECK.toString(), false);
+			getRenderComponents().put(RenderAttributes.STATUS.toString(), false);
+			getRenderComponents().put(RenderAttributes.RADIOSTATUS.toString(), true);
+
+			getRenderComponents().put(RenderAttributes.NUMBERBOOK.toString(), true);
+
+			getRenderComponents().put(RenderAttributes.FILTERCHECKBOOK.toString(), false);
+			getRenderComponents().put(RenderAttributes.FILTERDATECHECK.toString(), false);
+
+			LOGGER.info("getRenderComponents(). FILTERNUMBERCHECK"
+					+ getRenderComponents().get(RenderAttributes.FILTERNUMBERCHECK.toString()));
+			LOGGER.info("getRenderComponents(). NUMBERCHECK"
+					+ getRenderComponents().get(RenderAttributes.NUMBERCHECK.toString()));
+			LOGGER.info("getRenderComponents(). STATUS" + getRenderComponents().get(RenderAttributes.STATUS.toString()));
+		}
+	}
+
+	@Override
 	public void setCustomDate(final ActionEvent event) {
 		LOGGER.info(" CheckBookControllerImpl setCustomDate ");
 		getRenderComponents().put(RenderAttributes.FILTERDATE.toString(), true);
@@ -235,34 +281,44 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	}
 
 	@Override
-	public void actionState() {
-		LOGGER.info(" CheckBookControllerImpl actionState " + getActionState());
-		resetMapResults();
-		if (getActionState().equals(SEARCH_CHECK)) {
-			LOGGER.info(" CheckBookControllerImpl actionState entro a SEARCH_CHECK " + SEARCH_CHECK);
-			getRenderComponents().put(RenderAttributes.FILTERCHECKBOOK.toString(), true);
-			getRenderComponents().put(RenderAttributes.NUMBERCHECK.toString(), true);
-			getRenderComponents().put(RenderAttributes.STATUS.toString(), true);
-			getRenderComponents().put(RenderAttributes.NUMBERBOOK.toString(), false);
-			getRenderComponents().put(RenderAttributes.BUTTONBOOK.toString(), false);
-			LOGGER.info("getRenderComponents(). FILTERCHECKBOOK"
-					+ getRenderComponents().get(RenderAttributes.FILTERCHECKBOOK.toString()));
-			LOGGER.info("getRenderComponents(). NUMBERBOOK"
-					+ getRenderComponents().get(RenderAttributes.NUMBERBOOK.toString()));
-			LOGGER.info("getRenderComponents(). BUTTONBOOK"
-					+ getRenderComponents().get(RenderAttributes.BUTTONBOOK.toString()));
-		} else if (getActionState().equals(SEARCH_BY_NUMBER_CHECK)) {
-			LOGGER.info(" CheckBookControllerImpl actionState entro a SEARCH_BY_NUMBER_CHECK " + SEARCH_BY_NUMBER_CHECK);
-			getRenderComponents().put(RenderAttributes.FILTERNUMBERCHECK.toString(), true);
-			getRenderComponents().put(RenderAttributes.NUMBERCHECK.toString(), false);
-			getRenderComponents().put(RenderAttributes.STATUS.toString(), false);
-			getRenderComponents().put(RenderAttributes.NUMBERBOOK.toString(), true);
-			getRenderComponents().put(RenderAttributes.BUTTONBOOK.toString(), false);
-			LOGGER.info("getRenderComponents(). FILTERNUMBERCHECK"
-					+ getRenderComponents().get(RenderAttributes.FILTERNUMBERCHECK.toString()));
-			LOGGER.info("getRenderComponents(). NUMBERCHECK"
-					+ getRenderComponents().get(RenderAttributes.NUMBERCHECK.toString()));
-			LOGGER.info("getRenderComponents(). STATUS" + getRenderComponents().get(RenderAttributes.STATUS.toString()));
+	public void setNumberCheckOrBook(final ActionEvent event) {
+		LOGGER.info(" CheckBookControllerImpl setNumberCheckOrBook ");
+		radioActionState();
+		if (getRenderComponents().get(RenderAttributes.FILTERNUMBERCHECK.toString())) {
+
+			if (getCheckState() != null && !getCheckState().isEmpty()) {
+				leftTitle2 = " Estado ";
+				setTitleState(EnumCheckStatus.valueOf(Integer.parseInt(getCheckState())).getValue());
+				rightTitle2 = getTitleState();
+			} else {
+				leftTitle2 = " Estado ";
+				setTitleState("Ninguno");
+				rightTitle2 = getTitleState();
+			}
+
+			if (getCheckNumber() != null && !getCheckNumber().isEmpty()) {
+				leftTitle = " Nº Cheque ";
+				rightTitle = getCheckNumber();
+			} else {
+				leftTitle = " Nº Cheque ";
+				rightTitle = "todos";
+			}
+
+		} else if (getRenderComponents().get(RenderAttributes.FILTERCHECKBOOK.toString())) {
+
+			if (getCheckBookNumber() != null && !getCheckBookNumber().isEmpty()) {
+				leftTitle = " Talonario: ";
+				rightTitle = getCheckBookNumber();
+
+				leftTitle2 = "";
+				rightTitle2 = "";
+			} else {
+				leftTitle = " Talonario: ";
+				rightTitle = "Todos";
+
+				leftTitle2 = "";
+				rightTitle2 = "";
+			}
 		}
 	}
 
@@ -285,6 +341,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 					LOGGER.info(" CheckBookControllerImpl showResults filterByCheckBook checkId: " + getCheckNumber());
 
 					this.check = checkBookFacade.getCheckById(getSelectedProduct().getProductId(), getCheckNumber());
+
 				} catch (Exception e) {
 					FacesContext ctx = FacesContext.getCurrentInstance();
 					ctx.addMessage("check", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
@@ -303,11 +360,15 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 						}
 					}
 
+					hasMoreElementsCheck(this.checkList);
+
 				} else {
 					LOGGER.info(" CheckBookControllerImpl showResults filterByCheckBook ");
 
 					this.checkList.add(check);
 					this.checkList = getListCheckById(checkList);
+
+					hasMoreElementsCheck(this.checkList);
 				}
 
 			} else if (getTitleState() != null && !getTitleState().equals("Ninguno")) {
@@ -315,6 +376,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 
 				this.dateRange = null;
 				criteriaSearch();
+
 			} else {
 				LOGGER.info(" CheckBookControllerImpl showResults sin filtro cheques");
 
@@ -391,39 +453,6 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 				new CheckStatusPredicate());
 		this.checkList = cheksByStatus;
 		hasMoreElementsCheck(this.checkList);
-	}
-
-	@Override
-	public void setNumberCheckOrBook(final ActionEvent event) {
-		LOGGER.info(" CheckBookControllerImpl setNumberCheckOrBook ");
-		actionState();
-		if (getRenderComponents().get(RenderAttributes.FILTERNUMBERCHECK.toString())) {
-
-			if (getCheckState() != null && !getCheckState().isEmpty()) {
-				leftTitle2 = " Estado ";
-				setTitleState(EnumCheckStatus.valueOf(Integer.parseInt(getCheckState())).getValue());
-				rightTitle2 = getTitleState();
-			} else {
-				leftTitle2 = " Estado ";
-				setTitleState("Ninguno");
-				rightTitle2 = getTitleState();
-			}
-
-			if (getCheckNumber() != null && !getCheckNumber().isEmpty()) {
-				leftTitle = " Nº Cheque ";
-				rightTitle = getCheckNumber();
-			} else {
-				leftTitle = " Nº Cheque ";
-				rightTitle = "todos";
-			}
-
-		} else if (getRenderComponents().get(RenderAttributes.FILTERCHECKBOOK.toString())) {
-			leftTitle = " Talonario: ";
-			rightTitle = getCheckBookNumber();
-
-			leftTitle2 = "";
-			rightTitle2 = "";
-		}
 	}
 
 	@Override
@@ -782,30 +811,11 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 		}
 	}
 
-	public void maxSize(List<Cell> cellSheet, Sheet hoja) {
-
-		for (int i = 0; i < 5; i++) {
-			int width = 0;
-			int max = 0;
-			for (int j = 0; j < cellSheet.size(); j = j + 5) {
-				if (j == 0) {
-					max = cellSheet.get(i + j).getStringCellValue().length();
-				} else {
-					int actual = cellSheet.get(i + j).getStringCellValue().length();
-					if (max < actual) {
-						max = cellSheet.get(i + j).getStringCellValue().length();
-					}
-				}
-			}
-			width = ((int)(max * 1.14388) * 256);
-			hoja.setColumnWidth(i, width);
-		}
-	}
-
 	@SuppressWarnings({ "deprecation", "resource" })
 	@Override
 	public void exportDocCheckExcel() {
 		LOGGER.info("iniciando exportar archivo excel");
+
 		File miDir = new File(".");
 		try {
 			LOGGER.info("Directorio actual: " + miDir.getCanonicalPath());
@@ -924,7 +934,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			if (checkList != null) {
 				for (int f = 0; f < this.checkList.size(); f++) {
 					Row fila = hoja.createRow(f + inicio);
-					for (int c = 1; c < 5; c++) {
+					for (int c = 1; c < 6; c++) {
 
 						Font check = libro.createFont();
 						check.setFontHeightInPoints((short)10);
@@ -953,8 +963,9 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 						}
 						if (c == 2) {
 
+							String DateString = super.getdateString(this.checkList.get(f).getIssueDate());
 							celda.setCellStyle(cellStyle);
-							celda.setCellValue(this.checkList.get(f).getIssueDate());
+							celda.setCellValue(DateString);
 							cellSheet.add(celda);
 
 						}
@@ -968,7 +979,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 						if (c == 4) {
 
 							celda.setCellStyle(cellStyle);
-							celda.setCellValue(this.checkList.get(f).getStatus().toString());
+							celda.setCellValue(this.checkList.get(f).getStatus());
 							cellSheet.add(celda);
 
 						}
@@ -976,7 +987,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 						if (c == 5) {
 
 							celda.setCellStyle(cellStyle);
-							celda.setCellValue(this.checkList.get(f).getModifiedDate().toString());
+							celda.setCellValue(this.checkList.get(f).getModifiedDate().replace("/", "-"));
 							cellSheet.add(celda);
 
 						}
@@ -991,6 +1002,8 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 
 				inicio = inicio + this.checkList.size() + 2;
 			}
+
+			super.maxSize(cellSheet, hoja);
 
 			Row filaFooter = hoja.createRow(inicio);
 			filaFooter.createCell(1).setCellValue("Cordial saludo,");
@@ -1023,7 +1036,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			Cell nota = filaFooter.createCell(1);
 			nota.setCellStyle(cellNotaStyle);
 			nota.setCellValue("Nota: Si no eres el destinatario de este mensaje, por favor comunícate con nosotros con el fin de realizar la actualización correspondiente, al 4010000 en Bogotá, 4938300 en Medellín, 3503500 en Barranquilla, 8892020 en Cali, 6304000 en Bucaramanga o al 01800 912227 desde el resto del país. ");
-			filaFooter.setHeight((short)900);
+			filaFooter.setHeight((short)1100);
 			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 5));
 
 			inicio = inicio + 2;
@@ -1040,7 +1053,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			Cell message = filaFooter.createCell(1);
 			message.setCellStyle(cellFooterStyle);
 			message.setCellValue("Este mensaje es solamente para la persona a la que va dirigido. Puede contener informacion  confidencial  o  legalmente  protegida.  No  hay  renuncia  a la confidencialidad o privilegio por cualquier transmision mala/erronea. Si usted ha recibido este mensaje por error,  le rogamos que borre de su sistema inmediatamente el mensaje asi como todas sus copias, destruya todas las copias del mismo de su disco duro y notifique al remitente.  No debe,  directa o indirectamente, usar, revelar, distribuir, imprimir o copiar ninguna de las partes de este mensaje si no es usted el destinatario. Cualquier opinion expresada en este mensaje proviene del remitente, excepto cuando el mensaje establezca lo contrario y el remitente este autorizado para establecer que dichas opiniones provienen de  BBVA. Notese que el correo electronico via Internet no permite asegurar ni la confidencialidad de los mensajes que se transmiten ni la correcta recepcion de los mismos. En el caso de que el destinatario de este mensaje no consintiera la utilizacion del correo electronico via Internet, rogamos lo ponga en nuestro conocimiento de manera inmediata.");
-			filaFooter.setHeight((short)2600);
+			filaFooter.setHeight((short)3500);
 			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 5));
 
 			inicio = inicio + 2;
@@ -1055,7 +1068,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			Cell messEng = filaFooter.createCell(1);
 			messEng.setCellStyle(cellFooterStyle);
 			messEng.setCellValue("This message is intended exclusively for the named person. It may contain confidential, propietary or legally privileged information. No confidentiality or privilege is waived or lost by any mistransmission. If you receive this message in error, please immediately delete it and all copies of it from your system, destroy any hard copies of it and notify the sender. Your must not, directly or indirectly, use, disclose, distribute, print, or copy any part of this message if you are not the intended recipient. Any views expressed in this message are those of the individual sender, except where the message states otherwise and the sender is authorised to state them to be the views of BBVA. Please note that internet e-mail neither guarantees the confidentiality nor the proper receipt of the message sent.If the addressee of this message does not consent to the use of internet e-mail, please communicate it to us immediately.");
-			filaFooter.setHeight((short)2100);
+			filaFooter.setHeight((short)2900);
 			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 5));
 
 			inicio = inicio + 1;
@@ -1080,6 +1093,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	@Override
 	public void exportDocCheckBookExcel() {
 		LOGGER.info("iniciando exportar archivo excel");
+
 		File miDir = new File(".");
 		try {
 			LOGGER.info("Directorio actual: " + miDir.getCanonicalPath());
@@ -1087,6 +1101,8 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			LOGGER.info("No encontró directorio actual " + e.getMessage());
 		}
 		rutaCheckBookExcel = "Chequeras" + getSelectedProduct().getProductNumber() + ".xls";
+
+		List<Cell> cellSheet = new ArrayList<Cell>();
 
 		int inicio = 10;
 
@@ -1156,27 +1172,27 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			Cell fistCheq = filaHeader.createCell(1);
 			fistCheq.setCellStyle(cellStyleHeader);
 			fistCheq.setCellValue("PRIMER CHEQUE");
-			hoja.autoSizeColumn(1);
+			cellSheet.add(fistCheq);
 
 			Cell lastCheq = filaHeader.createCell(2);
 			lastCheq.setCellStyle(cellStyleHeader);
 			lastCheq.setCellValue("ÚLTIMO CHEQUE");
-			hoja.autoSizeColumn(2);
+			cellSheet.add(lastCheq);
 
 			Cell avalCheck = filaHeader.createCell(3);
 			avalCheck.setCellStyle(cellStyleHeader);
 			avalCheck.setCellValue("CHEQUES DISPONIBLES");
-			hoja.autoSizeColumn(3);
+			cellSheet.add(avalCheck);
 
 			Cell dates = filaHeader.createCell(4);
 			dates.setCellStyle(cellStyleHeader);
 			dates.setCellValue("FECHA PETICIÓN - FECHA ENTREGA");
-			hoja.autoSizeColumn(4);
+			cellSheet.add(dates);
 
 			Cell state = filaHeader.createCell(5);
 			state.setCellStyle(cellStyleHeader);
 			state.setCellValue("ESTADO");
-			hoja.autoSizeColumn(5);
+			cellSheet.add(state);
 
 			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 1));
 			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 2, 2));
@@ -1212,6 +1228,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 							cellStyle.setFont(book);
 							celda.setCellStyle(cellStyle);
 							celda.setCellValue(this.checkBook.get(f).getFirstCheck());
+							cellSheet.add(celda);
 
 						}
 
@@ -1219,6 +1236,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 
 							celda.setCellStyle(cellStyle);
 							celda.setCellValue(this.checkBook.get(f).getLastCheck());
+							cellSheet.add(celda);
 
 						}
 
@@ -1226,6 +1244,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 
 							celda.setCellStyle(cellStyle);
 							celda.setCellValue(this.checkBook.get(f).getTotalCheck().toString());
+							cellSheet.add(celda);
 
 						}
 
@@ -1234,6 +1253,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 							celda.setCellStyle(cellStyle);
 							celda.setCellValue(this.checkBook.get(f).getRequestDate().toString() + " - "
 									+ this.checkBook.get(f).getDeliveryDate().toString());
+							cellSheet.add(celda);
 
 						}
 
@@ -1241,6 +1261,8 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 
 							celda.setCellStyle(cellStyle);
 							celda.setCellValue(this.checkBook.get(f).getActualState().toString());
+							cellSheet.add(celda);
+
 						}
 
 						hoja.addMergedRegion(new CellRangeAddress(f, f, 1, 1));
@@ -1252,6 +1274,8 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 				}
 				inicio = inicio + this.checkBook.size() + 2;
 			}
+
+			super.maxSize(cellSheet, hoja);
 
 			Row filaFooter = hoja.createRow(inicio);
 			filaFooter.createCell(1).setCellValue("Cordial saludo,");
@@ -1284,7 +1308,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			Cell nota = filaFooter.createCell(1);
 			nota.setCellStyle(cellNotaStyle);
 			nota.setCellValue("Nota: Si no eres el destinatario de este mensaje, por favor comunícate con nosotros con el fin de realizar la actualización correspondiente, al 4010000 en Bogotá, 4938300 en Medellín, 3503500 en Barranquilla, 8892020 en Cali, 6304000 en Bucaramanga o al 01800 912227 desde el resto del país. ");
-			filaFooter.setHeight((short)900);
+			filaFooter.setHeight((short)1100);
 			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 5));
 
 			inicio = inicio + 2;
@@ -1301,7 +1325,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			Cell message = filaFooter.createCell(1);
 			message.setCellStyle(cellFooterStyle);
 			message.setCellValue("Este mensaje es solamente para la persona a la que va dirigido. Puede contener informacion  confidencial  o  legalmente  protegida.  No  hay  renuncia  a la confidencialidad o privilegio por cualquier transmision mala/erronea. Si usted ha recibido este mensaje por error,  le rogamos que borre de su sistema inmediatamente el mensaje asi como todas sus copias, destruya todas las copias del mismo de su disco duro y notifique al remitente.  No debe,  directa o indirectamente, usar, revelar, distribuir, imprimir o copiar ninguna de las partes de este mensaje si no es usted el destinatario. Cualquier opinion expresada en este mensaje proviene del remitente, excepto cuando el mensaje establezca lo contrario y el remitente este autorizado para establecer que dichas opiniones provienen de  BBVA. Notese que el correo electronico via Internet no permite asegurar ni la confidencialidad de los mensajes que se transmiten ni la correcta recepcion de los mismos. En el caso de que el destinatario de este mensaje no consintiera la utilizacion del correo electronico via Internet, rogamos lo ponga en nuestro conocimiento de manera inmediata.");
-			filaFooter.setHeight((short)2600);
+			filaFooter.setHeight((short)3100);
 			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 5));
 
 			inicio = inicio + 2;
@@ -1316,7 +1340,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			Cell messEng = filaFooter.createCell(1);
 			messEng.setCellStyle(cellFooterStyle);
 			messEng.setCellValue("This message is intended exclusively for the named person. It may contain confidential, propietary or legally privileged information. No confidentiality or privilege is waived or lost by any mistransmission. If you receive this message in error, please immediately delete it and all copies of it from your system, destroy any hard copies of it and notify the sender. Your must not, directly or indirectly, use, disclose, distribute, print, or copy any part of this message if you are not the intended recipient. Any views expressed in this message are those of the individual sender, except where the message states otherwise and the sender is authorised to state them to be the views of BBVA. Please note that internet e-mail neither guarantees the confidentiality nor the proper receipt of the message sent.If the addressee of this message does not consent to the use of internet e-mail, please communicate it to us immediately.");
-			filaFooter.setHeight((short)2100);
+			filaFooter.setHeight((short)2600);
 			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 5));
 
 			inicio = inicio + 1;
@@ -1377,9 +1401,13 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	}
 
 	public void resetMapResults() {
+		LOGGER.info("Entro a ResetMapResults" + RenderAttributes.FILTERCHECKBOOK.toString() + " "
+				+ RenderAttributes.FILTERNUMBERCHECK.toString() + " " + RenderAttributes.FILTERDATECHECK.toString());
 		getRenderComponents().put(RenderAttributes.FILTERCHECKBOOK.toString(), false);
 		getRenderComponents().put(RenderAttributes.FILTERNUMBERCHECK.toString(), false);
 		getRenderComponents().put(RenderAttributes.FILTERDATECHECK.toString(), false);
+
+		LOGGER.info("Salio del ResetMapResults");
 	}
 
 	// Setters And Getters
