@@ -11,6 +11,8 @@ public class CheckBookStatusPredicate extends BbvaPredicate<CheckbookDto> {
 
 		if (checkBookDto == null || checkBookDto.getId() == null) {
 			return false;
+		} else if (checkBookDto.getActualState() == null) {
+			checkBookDto.setActualState(" ");
 		} else if (checkBookDto.getActualState().equals("1")) {
 			checkBookDto.setActualState(EnumCheckBookStatus.valueOfEnum("1").getValue());
 		} else if (checkBookDto.getActualState().equals("A")) {

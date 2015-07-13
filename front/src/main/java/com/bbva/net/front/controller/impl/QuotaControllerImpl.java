@@ -345,7 +345,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 			FileOutputStream archivo = new FileOutputStream(archivoXLS);
 			Sheet hoja = libro.createSheet("Movimientos de cupo rotativo");
 			try {
-				URL url = new URL("https://www.bbva.com.co/BBVA-home-theme/images/BBVA/logo_bbva.png");
+				URL url = new URL("https://www.bbvanet.com.co/bbvaco/kqco_co_web/assets/img/logo/logobbva.png");
 				InputStream is = url.openStream();
 				// InputStream inputStream = new FileInputStream(
 				// "https://www.bbva.com.co/BBVA-home-theme/images/BBVA/logo_bbva.png");
@@ -575,7 +575,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 			document.open();
 
 			try {
-				Image foto = Image.getInstance("https://www.bbva.com.co/BBVA-home-theme/images/BBVA/logo_bbva.png");
+				Image foto = Image.getInstance("https://www.bbvanet.com.co/bbvaco/kqco_co_web/assets/img/logo/logobbva.png");
 				foto.scaleToFit(100, 100);
 				document.add(foto);
 			} catch (Exception e) {
@@ -717,7 +717,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 			document.open();
 
 			try {
-				Image foto = Image.getInstance("https://www.bbva.com.co/BBVA-home-theme/images/BBVA/logo_bbva.png");
+				Image foto = Image.getInstance("https://www.bbvanet.com.co/bbvaco/kqco_co_web/assets/img/logo/logobbva.png");
 				foto.scaleToFit(100, 100);
 				document.add(foto);
 			} catch (Exception e) {

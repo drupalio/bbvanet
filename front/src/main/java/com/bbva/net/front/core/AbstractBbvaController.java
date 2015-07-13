@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
@@ -24,6 +25,7 @@ import org.springframework.webflow.execution.Event;
 import org.springframework.webflow.execution.RequestContextHolder;
 
 import com.bbva.jee.arq.spring.core.log.I18nLogFactory;
+import com.bbva.net.back.model.commons.Money;
 import com.bbva.net.back.model.globalposition.ProductDto;
 import com.bbva.net.back.model.movements.MovementDto;
 import com.bbva.net.front.helper.MessagesHelper;
@@ -269,8 +271,26 @@ public abstract class AbstractBbvaController implements Serializable {
 					}
 				}
 			}
-			width = ((int)(max * 1.14388) * 256);
+			width = ((int)(max * 1.6) * 256);
 			hoja.setColumnWidth(i + 1, width);
+		}
+	}
+
+	public void createCell(Cell cell, String value, CellStyle style) {
+		cell.setCellStyle(style);
+		if (value != null) {
+			cell.setCellValue(value);
+		} else {
+			cell.setCellValue(" ");
+		}
+	}
+
+	public void createCellMoney(Cell cell, Money value, CellStyle style) {
+		cell.setCellStyle(style);
+		if (value != null) {
+			cell.setCellValue(value.toString());
+		} else {
+			cell.setCellValue(" ");
 		}
 	}
 }

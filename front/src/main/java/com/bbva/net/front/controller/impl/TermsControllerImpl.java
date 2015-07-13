@@ -88,7 +88,7 @@ public class TermsControllerImpl extends AbstractBbvaController implements Terms
 			document.open();
 
 			try {
-				Image foto = Image.getInstance("https://www.bbva.com.co/BBVA-home-theme/images/BBVA/logo_bbva.png");
+				Image foto = Image.getInstance("https://www.bbvanet.com.co/bbvaco/kqco_co_web/assets/img/logo/logobbva.png");
 				foto.scaleToFit(100, 100);
 				document.add(foto);
 			} catch (Exception e) {
