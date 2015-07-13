@@ -124,7 +124,7 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
 		this.checkBookController.setCustomDate(eventAction);
 	}
 
-	@Test
+	// @Test
 	public void checkActionState() {
 		// set ActionState estado de cheque
 		this.checkBookController.setActionState("null");
