@@ -40,7 +40,7 @@ public class OperationPasswordFacadeImpl extends AbstractBbvaFacade implements
 				+ PAIS
 				+ " Banco "
 				+ BANCO
-				+ " intento numero: "
+				+ " intentos: "
 				+ NUMBERATTMPTS);
 		try {
 			servicioModuloOperaciones.checkoperpwdUserAPI(user, operationPass,
