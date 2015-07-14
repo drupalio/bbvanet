@@ -24,12 +24,14 @@ public class OperationPasswordFacadeImpl extends AbstractBbvaFacade implements
 	@Value("${ldap.bank}")
 	private String BANCO;
 
+	@Value("${ldap.numberarrmpts}")
+	private String NUMBERATTMPTS;
+	
 	@Autowired
 	private ServicioModuloOperacionesImpl servicioModuloOperaciones;
 
 	@Override
-	public boolean validateOperation(String user, String operationPass,
-			int numberAttempts) {
+	public boolean validateOperation(String user, String operationPass) {
 		LOGGER.info("Se Valida clave de operaciones en OperationPasswordFacadeImpl, Se prepara para llamar al metodo checkoperpwdUserAPI de ClienteOperaciones con datos User: "
 				+ user
 				+ " ClaveOperaciones: "
@@ -38,11 +40,11 @@ public class OperationPasswordFacadeImpl extends AbstractBbvaFacade implements
 				+ PAIS
 				+ " Banco "
 				+ BANCO
-				+ " intento numero: "
-				+ numberAttempts);
+				+ " intentos: "
+				+ NUMBERATTMPTS);
 		try {
 			servicioModuloOperaciones.checkoperpwdUserAPI(user, operationPass,
-					PAIS, BANCO, numberAttempts);
+					PAIS, BANCO, Integer.parseInt(NUMBERATTMPTS));
 			return true;
 		} catch (ArqSpringOperacionesExcepcion e) {
 			return false;

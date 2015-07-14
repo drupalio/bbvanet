@@ -123,7 +123,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 	private transient ComboCriteriaControllerImpl comboCriteriaControllerImpl = new ComboCriteriaControllerImpl();
 
-	private List<MovementDto> movementsList;
+	private List<MovementDto> movementsList, movementsListGen;
 
 	@Resource(name = "graphicLineDelegate")
 	private transient GraphicLineDelegate graphicLineDelegate;
@@ -167,6 +167,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		super.setMovementsFacade(movementsFacade);
 		next();
 		this.movementsList = getCurrentList();
+		this.movementsListGen = this.movementsList;
 		this.graphicLineMovements = graphicLineDelegate.getMovementAccount(this.movementsList);
 		return this.movementsList;
 	}
@@ -224,6 +225,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		super.setMovementsFacade(movementsFacade);
 		next();
 		this.movementsList = getCurrentList();
+		this.movementsListGen = this.movementsList;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -244,10 +246,6 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		} else {
 			this.dateRange = null;
 			setDateRangePc(dateRange);
-			this.paginationKey = 0;
-			setCurrentList(new ArrayList<MovementDto>());
-			next();
-			this.movementsList = getCurrentList();
 		}
 		if (getRenderComponents().get(RenderAttributes.BALANCEFILTER.toString())) {
 			// Get movements by balance
@@ -257,10 +255,10 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			this.balanceRange.setBalanceTo(movementCriteria.getBalanceRange().getBalanceTo());
 
 			// Get only movements by concept
-			final List<MovementDto> movementsByBalance = (List<MovementDto>)CollectionUtils.select(this.movementsList,
-					new BalanceRangeMovementPredicate(balanceRange));
+			final List<MovementDto> movementsByBalance = (List<MovementDto>)CollectionUtils.select(
+					this.movementsListGen, new BalanceRangeMovementPredicate(balanceRange));
 			this.movementsList = movementsByBalance;
-			setShowMoreStatus();
+			// setShowMoreStatus();
 			getRenderComponents().put(RenderAttributes.MOVEMENTSTABLE.toString(), true);
 		}
 
@@ -272,19 +270,19 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			if (movementCriteria.getIncomesOrExpenses() != null && movementCriteria.getIncomesOrExpenses().equals("1")) {
 				// Income Movements
 				LOGGER.info("MovementsAccountController searchMovementByIncomeOrExpensesFilter incomeMovements");
-				final List<MovementDto> incomeMovements = (List<MovementDto>)CollectionUtils.select(this.movementsList,
-						new IncomesPredicate());
+				final List<MovementDto> incomeMovements = (List<MovementDto>)CollectionUtils.select(
+						this.movementsListGen, new IncomesPredicate());
 				this.movementsList = incomeMovements;
-				setShowMoreStatus();
+				// setShowMoreStatus();
 			}
 
 			if (movementCriteria.getIncomesOrExpenses() != null && movementCriteria.getIncomesOrExpenses().equals("2")) {
 				// Expense Movements
 				LOGGER.info("MovementsAccountController searchMovementByIncomeOrExpensesFilter expensesMovements");
 				final List<MovementDto> expensesMovements = (List<MovementDto>)CollectionUtils.select(
-						this.movementsList, new ExpensesPredicate());
+						this.movementsListGen, new ExpensesPredicate());
 				this.movementsList = expensesMovements;
-				setShowMoreStatus();
+				// setShowMoreStatus();
 			}
 			RequestContext.getCurrentInstance().update(":detailAccounts:tableMovements:formMovesDetail:movAccount");
 		}
@@ -293,13 +291,14 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			LOGGER.info("MovementsAccountController searchMovementByMovementFilter");
 			// Get only movements by concept
 			if (status.equals(MessagesHelper.INSTANCE.getString("mov.all"))) status = null;
-			final List<MovementDto> movementsByConcept = (List<MovementDto>)CollectionUtils.select(this.movementsList,
-					new ConceptMovementPredicate(movementCriteria.getMovement(), status));
+			final List<MovementDto> movementsByConcept = (List<MovementDto>)CollectionUtils.select(
+					this.movementsListGen, new ConceptMovementPredicate(movementCriteria.getMovement(), status));
 			this.movementsList = movementsByConcept;
-			setShowMoreStatus();
+			// setShowMoreStatus();
 			getRenderComponents().put(RenderAttributes.MOVEMENTSTABLE.toString(), true);
 
 		}
+		getRenderComponents().put(RenderAttributes.FOOTERTABLEMOVEMENT.name(), false);
 		clean();
 	}
 
@@ -528,7 +527,8 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			FileOutputStream archivo = new FileOutputStream(archivoXLS);
 			Sheet hoja = libro.createSheet("Movimientos de cuenta");
 			try {
-				URL url = new URL("https://www.bbvanet.com.co/bbvaco/kqco_co_web/assets/img/logo/logobbva.png");
+				URL url = new URL(
+						"/de/kqco/online/co/web/j2ee/1.6/kqco_mult_web.ear/kqco_mult_web_front-01.war/assets/img/logo/logobbva.png");
 				InputStream is = url.openStream();
 				// InputStream inputStream = new FileInputStream(
 				// "https://www.bbva.com.co/BBVA-home-theme/images/BBVA/logo_bbva.png");
@@ -835,7 +835,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 			try {
 				Image foto = Image
-						.getInstance("https://www.bbvanet.com.co/bbvaco/kqco_co_web/assets/img/logo/logobbva.png");
+						.getInstance("/de/kqco/online/co/web/j2ee/1.6/kqco_mult_web.ear/kqco_mult_web_front-01.war/assets/img/logo/logobbva.png");
 				foto.scaleToFit(100, 100);
 				document.add(foto);
 			} catch (Exception e) {
@@ -1016,7 +1016,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 			try {
 				Image foto = Image
-						.getInstance("https://www.bbvanet.com.co/bbvaco/kqco_co_web/assets/img/logo/logobbva.png");
+						.getInstance("/de/kqco/online/co/web/j2ee/1.6/kqco_mult_web.ear/kqco_mult_web_front-01.war/assets/img/logo/logobbva.png");
 				foto.scaleToFit(100, 100);
 				document.add(foto);
 			} catch (Exception e) {
@@ -1911,6 +1911,14 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	 */
 	public void setMovementAction(MovementDto movementAction) {
 		this.movementAction = movementAction;
+	}
+
+	public List<MovementDto> getMovementsListGen() {
+		return movementsListGen;
+	}
+
+	public void setMovementsListGen(List<MovementDto> movementsListGen) {
+		this.movementsListGen = movementsListGen;
 	}
 
 }

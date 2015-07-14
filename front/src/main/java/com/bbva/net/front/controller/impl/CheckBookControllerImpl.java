@@ -480,7 +480,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 
 			try {
 				Image foto = Image
-						.getInstance("https://www.bbvanet.com.co/bbvaco/kqco_co_web/assets/img/logo/logobbva.png");
+						.getInstance("/de/kqco/online/co/web/j2ee/1.6/kqco_mult_web.ear/kqco_mult_web_front-01.war/assets/img/logo/logobbva.png");
 				foto.scaleToFit(100, 100);
 				document.add(foto);
 			} catch (Exception e) {
@@ -671,7 +671,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 
 			try {
 				Image foto = Image
-						.getInstance("https://www.bbvanet.com.co/bbvaco/kqco_co_web/assets/img/logo/logobbva.png");
+						.getInstance("/de/kqco/online/co/web/j2ee/1.6/kqco_mult_web.ear/kqco_mult_web_front-01.war/assets/img/logo/logobbva.png");
 				foto.scaleToFit(100, 100);
 				document.add(foto);
 			} catch (Exception e) {
@@ -886,7 +886,8 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			Sheet hoja = libro.createSheet("Chequeras de cuenta");
 
 			try {
-				URL url = new URL("https://www.bbvanet.com.co/bbvaco/kqco_co_web/assets/img/logo/logobbva.png");
+				URL url = new URL(
+						"/de/kqco/online/co/web/j2ee/1.6/kqco_mult_web.ear/kqco_mult_web_front-01.war/assets/img/logo/logobbva.png");
 				InputStream is = url.openStream();
 				ByteArrayOutputStream img_bytes = new ByteArrayOutputStream();
 				int b;
@@ -1225,7 +1226,8 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			Sheet hoja = libro.createSheet("Chequeras de cuenta");
 
 			try {
-				URL url = new URL("https://www.bbvanet.com.co/bbvaco/kqco_co_web/assets/img/logo/logobbva.png");
+				URL url = new URL(
+						"/de/kqco/online/co/web/j2ee/1.6/kqco_mult_web.ear/kqco_mult_web_front-01.war/assets/img/logo/logobbva.png");
 				InputStream is = url.openStream();
 				ByteArrayOutputStream img_bytes = new ByteArrayOutputStream();
 				int b;
