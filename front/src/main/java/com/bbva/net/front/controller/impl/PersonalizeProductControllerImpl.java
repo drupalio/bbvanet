@@ -86,7 +86,6 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 	public void operKey(ActionEvent event) {
 		LOGGER.info("Método operKey");
 		if (operationPass.validateOperation(operationKey)) {
-			operationPass.removeErrors();
 			Boolean responseVisi = false, responseOpe = false;
 			if (productDto.getProductId() != null) {
 				productDto.setVisible(isSearch());
@@ -127,7 +126,6 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
 			}
 			this.personalizeProductAccountDto.setOperationKey("");
 		} else {
-			operationPass.addError();
 			super.executeScript("mistakeFilled()");
 		}
 	}
