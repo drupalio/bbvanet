@@ -251,7 +251,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			final List<MovementDto> movementsByBalance = (List<MovementDto>)CollectionUtils.select(
 					this.movementsListGen, new BalanceRangeMovementPredicate(balanceRange));
 			this.movementsList = movementsByBalance;
-			setShowMoreStatus();
+			// setShowMoreStatus();
 			getRenderComponents().put(RenderAttributes.MOVEMENTSTABLE.toString(), true);
 			// resetMapResults();
 		}
@@ -267,7 +267,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 				final List<MovementDto> incomeMovements = (List<MovementDto>)CollectionUtils.select(
 						this.movementsListGen, new IncomesPredicate());
 				this.movementsList = incomeMovements;
-				setShowMoreStatus();
+				// setShowMoreStatus();
 			}
 
 			if (movementCriteria.getIncomesOrExpenses() != null && movementCriteria.getIncomesOrExpenses().equals("2")) {
@@ -276,7 +276,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 				final List<MovementDto> expensesMovements = (List<MovementDto>)CollectionUtils.select(
 						this.movementsListGen, new ExpensesPredicate());
 				this.movementsList = expensesMovements;
-				setShowMoreStatus();
+				// setShowMoreStatus();
 			}
 			RequestContext.getCurrentInstance().update(":detailAccounts:tableMovements:formMovesDetail:movAccount");
 			// resetMapResults();
@@ -289,7 +289,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			final List<MovementDto> movementsByConcept = (List<MovementDto>)CollectionUtils.select(
 					this.movementsListGen, new ConceptMovementPredicate(movementCriteria.getMovement(), status));
 			this.movementsList = movementsByConcept;
-			setShowMoreStatus();
+			// setShowMoreStatus();
 			getRenderComponents().put(RenderAttributes.MOVEMENTSTABLE.toString(), true);
 
 		}
