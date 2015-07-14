@@ -22,21 +22,32 @@ public class ConceptMovementPredicate extends BbvaPredicate<MovementDto> {
 
 	@Override
 	protected boolean eval(final MovementDto movementDto) {
-		if (movementDto == null || movementDto.getMovementDetailDto().getOperationDescription() == null) {
-			return false;
+		Boolean estado = false;
+		if (movementDto == null) {
+			estado = false;
 		} else {
 			if (status == null || movementDto.getStatus() == null) {
-				return movementDto.getMovementDetailDto().getOperationDescription().toLowerCase()
-						.contains(concept.toLowerCase())
-						|| movementDto.getMovementConcept().toLowerCase().contains(concept.toLowerCase());
+
+				if (movementDto.getMovementDetailDto().getOperationDescription() != null)
+					estado = movementDto.getMovementDetailDto().getOperationDescription().toLowerCase()
+							.contains(concept.toLowerCase());
+
+				if (movementDto.getMovementConcept() != null)
+					estado = movementDto.getMovementConcept().toLowerCase().contains(concept.toLowerCase());
+
 			} else {
-				return (movementDto.getMovementDetailDto().getOperationDescription().toLowerCase()
-						.contains(concept.toLowerCase()) || movementDto.getMovementConcept().toLowerCase()
-						.contains(concept.toLowerCase()))
-						&& movementDto.getStatus().contains(status);
+				if (movementDto.getMovementDetailDto().getOperationDescription() != null)
+					estado = movementDto.getMovementDetailDto().getOperationDescription().toLowerCase()
+							.contains(concept.toLowerCase())
+							&& movementDto.getStatus().contains(status);
+
+				if (movementDto.getMovementConcept() != null)
+					estado = movementDto.getMovementConcept().toLowerCase().contains(concept.toLowerCase())
+							&& movementDto.getStatus().contains(status);
+
 			}
 
 		}
-
+		return estado;
 	}
 }

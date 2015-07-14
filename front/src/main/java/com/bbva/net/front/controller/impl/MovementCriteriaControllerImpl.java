@@ -293,6 +293,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			getRenderComponents().put(RenderAttributes.MOVEMENTSTABLE.toString(), true);
 
 		}
+		getRenderComponents().put(RenderAttributes.FOOTERTABLEMOVEMENT.name(), false);
 		clean();
 	}
 
