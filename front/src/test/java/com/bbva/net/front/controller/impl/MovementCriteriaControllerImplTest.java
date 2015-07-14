@@ -271,6 +271,7 @@ public class MovementCriteriaControllerImplTest extends AbstractBbvaControllerTe
 		Mockito.when(this.movementCriteriaController.getRenderComponents()).thenReturn(renderComponents);
 		this.movementCriteriaController.setMovementsList(lista);
 		this.movementCriteriaController.getMovementsList();
+		this.movementCriteriaController.setMovementsListGen(lista);
 		// MOVEMENTSFILTER filter (true)
 		this.movementCriteriaController.searchMovementByFilter(eventAction);
 		// INCOMEOREXPENSESFILTER filter (true) setIncomesOrExpenses null
