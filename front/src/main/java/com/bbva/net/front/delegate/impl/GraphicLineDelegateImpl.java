@@ -6,10 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.logging.Log;
 
+import com.bbva.jee.arq.spring.core.log.I18nLogFactory;
 import com.bbva.net.back.model.accounts.GlobalMonthlyBalanceDto;
 import com.bbva.net.back.model.accounts.MonthBalanceDto;
 import com.bbva.net.back.model.movements.MovementDto;
+import com.bbva.net.front.core.AbstractBbvaController;
 import com.bbva.net.front.core.stereotype.Delegate;
 import com.bbva.net.front.delegate.GraphicLineDelegate;
 import com.bbva.net.front.ui.line.LineConfigUI;
@@ -20,6 +23,8 @@ import com.bbva.net.front.ui.line.LineItemUI;
  */
 @Delegate(value = "graphicLineDelegate")
 public class GraphicLineDelegateImpl implements GraphicLineDelegate {
+
+	protected static final Log LOGGER = I18nLogFactory.getLog(AbstractBbvaController.class);
 
 	/**
 	 * 
@@ -63,13 +68,17 @@ public class GraphicLineDelegateImpl implements GraphicLineDelegate {
 			if (globalResumeMovements.size() < 8) {
 				size = globalResumeMovements.size();
 			}
-			for (int i = 0; i < size; i++) {
-				final LineItemUI lineItemUI = new LineItemUI();
-				lineItemUI.setLabel("Serie 1: ");
-				lineItemUI.setValue(globalResumeMovements.get(i).getTotalBalance());
-				lineItemUIList.add(lineItemUI);
+			try {
+				for (int i = 0; i < size; i++) {
+					final LineItemUI lineItemUI = new LineItemUI();
+					lineItemUI.setLabel("Serie 1: ");
+					lineItemUI.setValue(globalResumeMovements.get(i).getTotalBalance());
+					lineItemUIList.add(lineItemUI);
+				}
+				lineConfigUI.setLineItemUIList(lineItemUIList);
+			} catch (Exception ex) {
+				LOGGER.info("Error al cargar gráfica movimientos" + ex.getMessage());
 			}
-			lineConfigUI.setLineItemUIList(lineItemUIList);
 		}
 		if (lineItemUIList.size() > 0 && lineItemUIList != null)
 			lineConfigUI.setLineValues(getLinesValues(lineItemUIList));
@@ -88,24 +97,28 @@ public class GraphicLineDelegateImpl implements GraphicLineDelegate {
 
 		List<BigDecimal> values = new ArrayList<BigDecimal>();
 
-		if (!CollectionUtils.isEmpty(listValues)) {
-			menor = listValues.get(0).getValue().getAmount();
+		try {
+			if (!CollectionUtils.isEmpty(listValues)) {
+				menor = listValues.get(0).getValue().getAmount();
 
-			for (int i = 0; i < listValues.size(); i++) {
-				if (listValues.get(i).getValue().getAmount().compareTo(menor) == -1)
-					menor = listValues.get(i).getValue().getAmount();
-				if (listValues.get(i).getValue().getAmount().compareTo(mayor) == 1)
-					mayor = listValues.get(i).getValue().getAmount();
-				total = total.add(listValues.get(i).getValue().getAmount());
+				for (int i = 0; i < listValues.size(); i++) {
+					if (listValues.get(i).getValue().getAmount().compareTo(menor) == -1)
+						menor = listValues.get(i).getValue().getAmount();
+					if (listValues.get(i).getValue().getAmount().compareTo(mayor) == 1)
+						mayor = listValues.get(i).getValue().getAmount();
+					total = total.add(listValues.get(i).getValue().getAmount());
+				}
+
+				total = mayor.subtract(menor);
+				total = total.divide(new BigDecimal(6), 2, RoundingMode.HALF_UP);
+
+				for (int i = 0; i <= 6; i++) {
+					values.add(menor);
+					menor = menor.add(total);
+				}
 			}
-
-			total = mayor.subtract(menor);
-			total = total.divide(new BigDecimal(6), 2, RoundingMode.HALF_UP);
-
-			for (int i = 0; i <= 6; i++) {
-				values.add(menor);
-				menor = menor.add(total);
-			}
+		} catch (Exception ex) {
+			LOGGER.info("Error al cargar gráfica movimientos " + ex.getMessage());
 		}
 		return values;
 	}

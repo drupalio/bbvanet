@@ -479,7 +479,8 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			document.open();
 
 			try {
-				Image foto = Image.getInstance("https://www.bbvanet.com.co/bbvaco/kqco_co_web/assets/img/logo/logobbva.png");
+				Image foto = Image
+						.getInstance("https://www.bbvanet.com.co/bbvaco/kqco_co_web/assets/img/logo/logobbva.png");
 				foto.scaleToFit(100, 100);
 				document.add(foto);
 			} catch (Exception e) {
@@ -534,35 +535,55 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			datestateAc.setBackgroundColor(new BaseColor(229, 229, 229));
 			tabla.addCell(datestateAc);
 
-			if (checkList != null) {
+			if (checkList != null && checkList.size() != 0) {
+
 				for (int i = 0; i < checkList.size(); i++) {
-					String dateIss = super.getdateString(checkList.get(i).getIssueDate());
 
 					PdfPCell idCheck = new PdfPCell(new Phrase(checkList.get(i).getId(), fontBlue));
 					idCheck.setHorizontalAlignment(Element.ALIGN_CENTER);
 					idCheck.setVerticalAlignment(Element.ALIGN_MIDDLE);
 					tabla.addCell(idCheck);
 
+					String dateIss = super.getdateString(checkList.get(i).getIssueDate());
 					PdfPCell dateIssCheck = new PdfPCell(new Phrase(dateIss, fontNormal));
 					dateIssCheck.setHorizontalAlignment(Element.ALIGN_CENTER);
 					dateIssCheck.setVerticalAlignment(Element.ALIGN_MIDDLE);
 					tabla.addCell(dateIssCheck);
 
-					PdfPCell valueCheck = new PdfPCell(new Phrase(checkList.get(i).getValue() + "", font));
-					valueCheck.setHorizontalAlignment(Element.ALIGN_CENTER);
-					valueCheck.setVerticalAlignment(Element.ALIGN_MIDDLE);
-					tabla.addCell(valueCheck);
+					if (checkList.get(i).getValue() != null) {
+						PdfPCell valueCheck = new PdfPCell(new Phrase(checkList.get(i).getValue().toString(), font));
+						valueCheck.setHorizontalAlignment(Element.ALIGN_CENTER);
+						valueCheck.setVerticalAlignment(Element.ALIGN_MIDDLE);
+						tabla.addCell(valueCheck);
+					} else {
+						tabla.addCell(" ");
+					}
 
 					PdfPCell statusCheck = new PdfPCell(new Phrase(checkList.get(i).getStatus(), fontNormal));
 					statusCheck.setHorizontalAlignment(Element.ALIGN_CENTER);
 					statusCheck.setVerticalAlignment(Element.ALIGN_MIDDLE);
 					tabla.addCell(statusCheck);
 
-					PdfPCell dateModC = new PdfPCell(new Phrase(checkList.get(i).getModifiedDate() + "", fontNormal));
-					dateModC.setHorizontalAlignment(Element.ALIGN_CENTER);
-					dateModC.setVerticalAlignment(Element.ALIGN_MIDDLE);
-					tabla.addCell(dateModC);
+					if (checkList.get(i).getModifiedDate() != null) {
+						PdfPCell dateModC = new PdfPCell(new Phrase(checkList.get(i).getModifiedDate()
+								.replace("/", "-"), fontNormal));
+						dateModC.setHorizontalAlignment(Element.ALIGN_CENTER);
+						dateModC.setVerticalAlignment(Element.ALIGN_MIDDLE);
+						tabla.addCell(dateModC);
+					} else {
+						tabla.addCell(" ");
+					}
 				}
+
+			} else if (checkList == null || checkList.size() == 0) {
+
+				PdfPCell nonee = new PdfPCell(new Phrase("No hay registros", font));
+				nonee.setHorizontalAlignment(Element.ALIGN_CENTER);
+				nonee.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				nonee.setBorder(Rectangle.BOX);
+				nonee.setColspan(5);
+				tabla.addCell(nonee);
+
 			}
 
 			document.add(tabla);
@@ -649,7 +670,8 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			document.open();
 
 			try {
-				Image foto = Image.getInstance("https://www.bbvanet.com.co/bbvaco/kqco_co_web/assets/img/logo/logobbva.png");
+				Image foto = Image
+						.getInstance("https://www.bbvanet.com.co/bbvaco/kqco_co_web/assets/img/logo/logobbva.png");
 				foto.scaleToFit(100, 100);
 				document.add(foto);
 			} catch (Exception e) {
@@ -711,7 +733,8 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			datestateAc.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			tabla.addCell(datestateAc);
 
-			if (checkBook != null) {
+			if (checkBook != null && checkBook.size() != 0) {
+
 				for (int i = 0; i < checkBook.size(); i++) {
 					PdfPCell firstCheck = new PdfPCell(new Phrase(checkBook.get(i).getFirstCheck(), fontBlue));
 					firstCheck.setHorizontalAlignment(Element.ALIGN_CENTER);
@@ -728,28 +751,46 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 					totalCheck.setVerticalAlignment(Element.ALIGN_MIDDLE);
 					tabla.addCell(totalCheck);
 
-					PdfPCell dateReq = new PdfPCell(new Phrase(checkBook.get(i).getRequestDate(), fontNormal));
-					dateReq.setBorder(Rectangle.BOTTOM);
-					dateReq.setHorizontalAlignment(Element.ALIGN_CENTER);
-					dateReq.setVerticalAlignment(Element.ALIGN_MIDDLE);
-					tabla.addCell(dateReq);
+					if (checkBook.get(i).getRequestDate() != null) {
+						PdfPCell dateReq = new PdfPCell(new Phrase(checkBook.get(i).getRequestDate().replace("/", "-"),
+								fontNormal));
+						dateReq.setBorder(Rectangle.BOTTOM);
+						dateReq.setHorizontalAlignment(Element.ALIGN_CENTER);
+						dateReq.setVerticalAlignment(Element.ALIGN_MIDDLE);
+						tabla.addCell(dateReq);
+					} else {
+						tabla.addCell(" ");
+					}
 
 					PdfPCell lineDiv = new PdfPCell(new Phrase("-", fontNormal));
 					lineDiv.setBorder(Rectangle.BOTTOM);
 					lineDiv.setVerticalAlignment(Element.ALIGN_MIDDLE);
 					tabla.addCell(lineDiv);
 
-					PdfPCell dateDeli = new PdfPCell(new Phrase(checkBook.get(i).getDeliveryDate(), fontNormal));
-					dateDeli.setBorder(Rectangle.BOTTOM);
-					dateDeli.setHorizontalAlignment(Element.ALIGN_CENTER);
-					dateDeli.setVerticalAlignment(Element.ALIGN_MIDDLE);
-					tabla.addCell(dateDeli);
+					if (checkBook.get(i).getDeliveryDate() != null) {
+						PdfPCell dateDeli = new PdfPCell(new Phrase(checkBook.get(i).getDeliveryDate()
+								.replace("/", "-"), fontNormal));
+						dateDeli.setBorder(Rectangle.BOTTOM);
+						dateDeli.setHorizontalAlignment(Element.ALIGN_CENTER);
+						dateDeli.setVerticalAlignment(Element.ALIGN_MIDDLE);
+						tabla.addCell(dateDeli);
+					} else {
+						tabla.addCell(" ");
+					}
 
 					PdfPCell state = new PdfPCell(new Phrase(checkBook.get(i).getActualState(), fontNormal));
 					state.setHorizontalAlignment(Element.ALIGN_CENTER);
 					state.setVerticalAlignment(Element.ALIGN_MIDDLE);
 					tabla.addCell(state);
 				}
+			} else if (checkBook == null || checkBook.size() == 0) {
+
+				PdfPCell nonee = new PdfPCell(new Phrase("No hay registros", font));
+				nonee.setHorizontalAlignment(Element.ALIGN_CENTER);
+				nonee.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				nonee.setBorder(Rectangle.BOX);
+				nonee.setColspan(5);
+				tabla.addCell(nonee);
 			}
 
 			document.add(tabla);
@@ -837,6 +878,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 		} catch (IOException e) {
 			LOGGER.info("Excepción al crear el archivo" + e.getMessage());
 		}
+
 		Workbook libro = new HSSFWorkbook();
 
 		try {
@@ -1031,7 +1073,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 					}
 				}
 
-				super.maxSize(cellSheet, hoja);
+				super.maxSize(cellSheet, hoja, 5);
 
 				inicio = inicio + this.checkList.size() + 2;
 
@@ -1361,7 +1403,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 						hoja.addMergedRegion(new CellRangeAddress(f, f, 5, 5));
 					}
 				}
-				super.maxSize(cellSheet, hoja);
+				super.maxSize(cellSheet, hoja, 5);
 
 				inicio = inicio + this.checkBook.size() + 3;
 
@@ -1897,8 +1939,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 		InputStream stream;
 		try {
 			stream = new BufferedInputStream(new FileInputStream(rutaCheckPdf));
-			exportCheckPdf = new DefaultStreamedContent(stream, "application/pdf", "Cheques"
-					+ getSelectedProduct().getProductNumber() + ".pdf");
+			exportCheckPdf = new DefaultStreamedContent(stream, "application/pdf", rutaCheckPdf);
 		} catch (FileNotFoundException e) {
 			LOGGER.info("Error al descargar el pdf " + e.getMessage());
 		}
@@ -1920,8 +1961,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 		InputStream stream;
 		try {
 			stream = new BufferedInputStream(new FileInputStream(rutaCheckBookPdf));
-			exportCheckBookPdf = new DefaultStreamedContent(stream, "application/pdf", "Chequeras"
-					+ getSelectedProduct().getProductNumber() + ".pdf");
+			exportCheckBookPdf = new DefaultStreamedContent(stream, "application/pdf", rutaCheckBookPdf);
 		} catch (FileNotFoundException e) {
 			LOGGER.info("Error al descargar el pdf " + e.getMessage());
 		}
@@ -1940,8 +1980,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 		InputStream stream;
 		try {
 			stream = new BufferedInputStream(new FileInputStream(rutaCheckExcel));
-			exportCheckExcel = new DefaultStreamedContent(stream, "application/xls", "Cheques"
-					+ getSelectedProduct().getProductNumber() + ".xls");
+			exportCheckExcel = new DefaultStreamedContent(stream, "application/xls", rutaCheckExcel);
 		} catch (FileNotFoundException e) {
 			LOGGER.info("Error al descargar el Excel " + e.getMessage());
 		}
@@ -1958,8 +1997,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 		InputStream stream;
 		try {
 			stream = new BufferedInputStream(new FileInputStream(rutaCheckBookExcel));
-			exportCheckBookExcel = new DefaultStreamedContent(stream, "application/xls", "Chequeras"
-					+ getSelectedProduct().getProductNumber() + ".xls");
+			exportCheckBookExcel = new DefaultStreamedContent(stream, "application/xls", rutaCheckBookExcel);
 		} catch (FileNotFoundException e) {
 			LOGGER.info("Error al descargar el Excel " + e.getMessage());
 		}

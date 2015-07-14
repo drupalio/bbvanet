@@ -244,11 +244,11 @@ public abstract class AbstractBbvaController implements Serializable {
 		return "N/A";
 	}
 
-	public void maxSize(List<Cell> cellSheet, Sheet hoja) {
-		for (int i = 0; i < 5; i++) {
+	public void maxSize(List<Cell> cellSheet, Sheet hoja, int maxSize) {
+		for (int i = 0; i < maxSize; i++) {
 			int width = 0;
 			int max = 0;
-			for (int j = 0; j < cellSheet.size(); j = j + 5) {
+			for (int j = 0; j < cellSheet.size(); j = j + maxSize) {
 				if (j == 0) {
 					max = cellSheet.get(i + j).getStringCellValue().length();
 				} else {
