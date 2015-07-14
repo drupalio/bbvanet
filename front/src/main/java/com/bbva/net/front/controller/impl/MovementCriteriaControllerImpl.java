@@ -122,7 +122,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 	private transient ComboCriteriaControllerImpl comboCriteriaControllerImpl = new ComboCriteriaControllerImpl();
 
-	private List<MovementDto> movementsList;
+	private List<MovementDto> movementsList, movementsListGen;
 
 	@Resource(name = "graphicLineDelegate")
 	private transient GraphicLineDelegate graphicLineDelegate;
@@ -160,6 +160,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		super.setMovementsFacade(movementsFacade);
 		next();
 		this.movementsList = getCurrentList();
+		this.movementsListGen = this.movementsList;
 		this.graphicLineMovements = graphicLineDelegate.getMovementAccount(this.movementsList);
 		return this.movementsList;
 	}
@@ -216,6 +217,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		super.setMovementsFacade(movementsFacade);
 		next();
 		this.movementsList = getCurrentList();
+		this.movementsListGen = this.movementsList;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -237,10 +239,6 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		} else {
 			this.dateRange = null;
 			setDateRangePc(dateRange);
-			this.paginationKey = 0;
-			setCurrentList(new ArrayList<MovementDto>());
-			next();
-			this.movementsList = getCurrentList();
 		}
 		if (getRenderComponents().get(RenderAttributes.BALANCEFILTER.toString())) {
 			// Get movements by balance
@@ -250,8 +248,8 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			this.balanceRange.setBalanceTo(movementCriteria.getBalanceRange().getBalanceTo());
 
 			// Get only movements by concept
-			final List<MovementDto> movementsByBalance = (List<MovementDto>)CollectionUtils.select(this.movementsList,
-					new BalanceRangeMovementPredicate(balanceRange));
+			final List<MovementDto> movementsByBalance = (List<MovementDto>)CollectionUtils.select(
+					this.movementsListGen, new BalanceRangeMovementPredicate(balanceRange));
 			this.movementsList = movementsByBalance;
 			setShowMoreStatus();
 			getRenderComponents().put(RenderAttributes.MOVEMENTSTABLE.toString(), true);
@@ -266,8 +264,8 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			if (movementCriteria.getIncomesOrExpenses() != null && movementCriteria.getIncomesOrExpenses().equals("1")) {
 				// Income Movements
 				LOGGER.info("MovementsAccountController searchMovementByIncomeOrExpensesFilter incomeMovements");
-				final List<MovementDto> incomeMovements = (List<MovementDto>)CollectionUtils.select(this.movementsList,
-						new IncomesPredicate());
+				final List<MovementDto> incomeMovements = (List<MovementDto>)CollectionUtils.select(
+						this.movementsListGen, new IncomesPredicate());
 				this.movementsList = incomeMovements;
 				setShowMoreStatus();
 			}
@@ -276,7 +274,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 				// Expense Movements
 				LOGGER.info("MovementsAccountController searchMovementByIncomeOrExpensesFilter expensesMovements");
 				final List<MovementDto> expensesMovements = (List<MovementDto>)CollectionUtils.select(
-						this.movementsList, new ExpensesPredicate());
+						this.movementsListGen, new ExpensesPredicate());
 				this.movementsList = expensesMovements;
 				setShowMoreStatus();
 			}
@@ -288,8 +286,8 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			LOGGER.info("MovementsAccountController searchMovementByMovementFilter");
 			// Get only movements by concept
 			if (status.equals(MessagesHelper.INSTANCE.getString("mov.all"))) status = null;
-			final List<MovementDto> movementsByConcept = (List<MovementDto>)CollectionUtils.select(this.movementsList,
-					new ConceptMovementPredicate(movementCriteria.getMovement(), status));
+			final List<MovementDto> movementsByConcept = (List<MovementDto>)CollectionUtils.select(
+					this.movementsListGen, new ConceptMovementPredicate(movementCriteria.getMovement(), status));
 			this.movementsList = movementsByConcept;
 			setShowMoreStatus();
 			getRenderComponents().put(RenderAttributes.MOVEMENTSTABLE.toString(), true);
@@ -698,7 +696,8 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			document.open();
 
 			try {
-				Image foto = Image.getInstance("https://www.bbvanet.com.co/bbvaco/kqco_co_web/assets/img/logo/logobbva.png");
+				Image foto = Image
+						.getInstance("https://www.bbvanet.com.co/bbvaco/kqco_co_web/assets/img/logo/logobbva.png");
 				foto.scaleToFit(100, 100);
 				document.add(foto);
 			} catch (Exception e) {
@@ -828,7 +827,8 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			document.open();
 
 			try {
-				Image foto = Image.getInstance("https://www.bbvanet.com.co/bbvaco/kqco_co_web/assets/img/logo/logobbva.png");
+				Image foto = Image
+						.getInstance("https://www.bbvanet.com.co/bbvaco/kqco_co_web/assets/img/logo/logobbva.png");
 				foto.scaleToFit(100, 100);
 				document.add(foto);
 			} catch (Exception e) {
@@ -1511,6 +1511,14 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 	public void setStatusLabel(String statusLabel) {
 		this.statusLabel = statusLabel;
+	}
+
+	public List<MovementDto> getMovementsListGen() {
+		return movementsListGen;
+	}
+
+	public void setMovementsListGen(List<MovementDto> movementsListGen) {
+		this.movementsListGen = movementsListGen;
 	}
 
 }
