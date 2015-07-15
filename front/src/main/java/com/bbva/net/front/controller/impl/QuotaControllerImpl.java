@@ -17,11 +17,20 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 import javax.annotation.Resource;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.mail.BodyPart;
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.StringUtils;
@@ -114,9 +123,14 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 	private String rutaPdfCupo;
 
 	private String rutaPdfMove;
-	
-	protected String RUTA_ICONO_BBVA = MessagesHelper.INSTANCE
-			.getString("ruta.iconobbva");
+
+	protected String RUTA_ICONO_BBVA = MessagesHelper.INSTANCE.getString("ruta.iconobbva");
+
+	protected String IP_IRONPORT = MessagesHelper.INSTANCE.getString("ruta.ipironport");
+
+	protected String PUERTO_IRONPORT = MessagesHelper.INSTANCE.getString("ruta.puertoironport");
+
+	protected String REMITENTE = MessagesHelper.INSTANCE.getString("ruta.remitente");
 
 	@Resource(name = "quotaDetailFacade")
 	private transient QuotaDetailFacade quotaDetailFacade;
@@ -346,8 +360,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 			FileOutputStream archivo = new FileOutputStream(archivoXLS);
 			Sheet hoja = libro.createSheet("Movimientos de cupo rotativo");
 			try {
-				URL url = new URL(
-						"RUTA_ICONO_BBVA");
+				URL url = new URL("RUTA_ICONO_BBVA");
 				InputStream is = url.openStream();
 				// InputStream inputStream = new FileInputStream(
 				// "https://www.bbva.com.co/BBVA-home-theme/images/BBVA/logo_bbva.png");
@@ -636,8 +649,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 			document.open();
 
 			try {
-				Image foto = Image
-						.getInstance("RUTA_ICONO_BBVA");
+				Image foto = Image.getInstance("RUTA_ICONO_BBVA");
 				foto.scaleToFit(100, 100);
 				document.add(foto);
 			} catch (Exception e) {
@@ -794,8 +806,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 			document.open();
 
 			try {
-				Image foto = Image
-						.getInstance("RUTA_ICONO_BBVA");
+				Image foto = Image.getInstance("RUTA_ICONO_BBVA");
 				foto.scaleToFit(100, 100);
 				document.add(foto);
 			} catch (Exception e) {
@@ -870,7 +881,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 			title.setSpacingBefore(20);
 			document.add(title);
 
-			PdfPTable tabla = new PdfPTable(4);
+			PdfPTable tabla = new PdfPTable(5);
 
 			tabla.setSpacingBefore(20);
 			tabla.setSpacingAfter(20);
@@ -883,12 +894,26 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 			quota.setBorder(0);
 			tabla.addCell(quota);
 
-			PdfPCell dataQuota = new PdfPCell(new Phrase(this.quotaMoveDetailDto.getRemainingQuotas() + " de "
-					+ quotaMoveDetailDto.getNumbersOfQuota(), fontNormal));
-			dataQuota.setHorizontalAlignment(Element.ALIGN_CENTER);
-			dataQuota.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			dataQuota.setBorder(0);
-			tabla.addCell(dataQuota);
+			if (this.quotaMoveDetailDto.getRemainingQuotas() != null) {
+				PdfPCell dataQuota = new PdfPCell(new Phrase(this.quotaMoveDetailDto.getRemainingQuotas(), fontNormal));
+				dataQuota.setHorizontalAlignment(Element.ALIGN_CENTER);
+				dataQuota.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				dataQuota.setBorder(0);
+				tabla.addCell(dataQuota);
+			} else {
+				tabla.addCell("");
+			}
+
+			if (quotaMoveDetailDto.getNumbersOfQuota() != null) {
+				PdfPCell data2Quota = new PdfPCell(new Phrase(" de " + quotaMoveDetailDto.getNumbersOfQuota(),
+						fontNormal));
+				data2Quota.setHorizontalAlignment(Element.ALIGN_CENTER);
+				data2Quota.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				data2Quota.setBorder(0);
+				tabla.addCell(data2Quota);
+			} else {
+				tabla.addCell("");
+			}
 
 			PdfPCell fool = new PdfPCell(new Phrase("Pendiente", font));
 			fool.setHorizontalAlignment(Element.ALIGN_CENTER);
@@ -962,6 +987,175 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 		} catch (DocumentException e) {
 			LOGGER.info("Excepción no se encuentra el archivo" + e.getMessage());
 
+		}
+	}
+
+	@Override
+	public void printMovesQuota() {
+		printFile("MovementsQuota");
+	}
+
+	@Override
+	public void printMoveDetailQuota() {
+		printFile("DetailMoveQuota");
+	}
+
+	public void printFile(String typeDoc) {
+		File pdfFile = null;
+		if (typeDoc.equals("MovementsQuota")) {
+			pdfFile = new File("MovDetalleCupo" + quotaMoveDetailDto.getId() + ".pdf");
+		}
+		if (typeDoc.equals("DetailMoveQuota")) {
+			pdfFile = new File("MovimientosDetail" + getSelectedProduct().getProductNumber() + ".pdf");
+		}
+		LOGGER.info("printFile ruta de archivo " + pdfFile.getAbsolutePath());
+		if (pdfFile.exists()) {
+			if (pdfFile.delete()) {
+				LOGGER.info("borró el archivo " + pdfFile.getAbsolutePath());
+				if (typeDoc.equals("MovementsQuota")) {
+					exportDocumentPdf();
+				}
+				if (typeDoc.equals("DetailMoveQuota")) {
+					exportDocDetailPdf();
+				}
+			} else
+				LOGGER.info("No lo borró");
+		} else {
+			LOGGER.info("crea el archivo " + pdfFile.getAbsolutePath());
+			if (typeDoc.equals("MovementsQuota")) {
+				exportDocumentPdf();
+			}
+			if (typeDoc.equals("DetailMoveQuota")) {
+				exportDocDetailPdf();
+			}
+
+		}
+
+		String s = System.getProperty("os.name").toLowerCase();
+		if (s.contains("win")) {
+			createCommand("explorer", "%s", pdfFile.getAbsolutePath());
+		}
+
+		if (s.contains("mac")) {
+			createCommand("open", "%s", pdfFile.getAbsolutePath());
+		}
+
+		if (s.contains("linux") || s.contains("unix")) {
+			createCommand("kde-open", "%s", pdfFile.getAbsolutePath());
+			createCommand("gnome-open", "%s", pdfFile.getAbsolutePath());
+			createCommand("xdg-open", "%s", pdfFile.getAbsolutePath());
+		}
+
+	}
+
+	private boolean createCommand(String command, String args, String file) {
+
+		LOGGER.info("Probando comando exec:\n   cmd = " + command + "\n   args = " + args + "\n   %s = " + file);
+
+		List<String> parts = new ArrayList<String>();
+		parts.add(command);
+
+		if (args != null) {
+			for (String s : args.split(" ")) {
+				s = String.format(s, file);
+				parts.add(s.trim());
+			}
+		}
+
+		String[] sParts = parts.toArray(new String[parts.size()]);
+
+		try {
+			Process p = Runtime.getRuntime().exec(sParts);
+			LOGGER.info(" Proceso input " + p.toString());
+			if (p == null) return false;
+
+			LOGGER.info("Inicia la terminación de proceso");
+			try {
+				int retval = p.exitValue();
+				if (retval == 0) {
+					LOGGER.info("Proceso terminó inmediatamente.");
+					return false;
+				} else {
+					LOGGER.info("Proceso colapso");
+					return false;
+				}
+			} catch (IllegalThreadStateException itse) {
+				LOGGER.info("Ruta archivo*** " + file + "***Proceso esta corriendo mensaje " + itse.getMessage()
+						+ "---causa---" + itse.getCause());
+				return true;
+			}
+		} catch (IOException e) {
+			LOGGER.info("Error ejecutando el comando Mensaje " + e.getMessage() + " Ruta archivo*** " + file
+					+ "*** Causa" + e.getCause());
+			return false;
+		}
+	}
+
+	@Override
+	public void sendMail() {
+		try {
+
+			Properties props = new Properties();
+			props.put("mail.smtp.auth", "false");
+			props.put("mail.smtp.starttls.enable", "true");
+			props.put("mail.smtp.user", REMITENTE);
+			props.put("mail.smtp.host", IP_IRONPORT);
+			props.put("mail.smtp.port", PUERTO_IRONPORT);
+
+			Session session = Session.getDefaultInstance(props, null);
+			BodyPart header = new MimeBodyPart();
+			String htmlText = "<img src=\"https://ci3.googleusercontent.com/proxy/riFpqgLCyTit6KJRJ18o9l7IUkTjZEPxeh0gj_-ghcRMq5l5tJu-OyAExex95MjbTbd4wCqTGQ-tkooIlpHeuP5CR_rV4XThdoA8dA=s0-d-e1-ft#https://www.bbva.com.co/documents/10180/84494/bbva.gif\">";
+			header.setContent(htmlText, "text/html");
+
+			MimeMultipart multiParte = new MimeMultipart();
+			multiParte.addBodyPart(header);
+
+			BodyPart content = new MimeBodyPart();
+			String htmlHeader = "<br></br><br></br><strong>Estimado(a) cliente: </strong><br></br><br></br>";
+
+			String htmlTable = "<table width=100% rules=\"all\" border=\"1\"><thead><tr role=\"row\" style=\"background-color: gainsboro;\"><th role=\"columnheader\" tabindex=\"0\"><span >FECHA</span><span></span></th><th role=\"columnheader\" tabindex=\"0\"><span >CONCEPTO</span><span></span></th><th role=\"columnheader\" tabindex=\"0\"><span >VALOR</span><span ></span></th><th role=\"columnheader\" tabindex=\"0\"><span >SALDO</span><span ></span></th></tr></thead>";
+			if (quotamovenDtos != null) {
+				for (int i = 0; i < this.quotamovenDtos.size(); i++) {
+					String value = "";
+					if (this.quotamovenDtos.get(i).getMovementValue() != null) {
+						value = this.quotamovenDtos.get(i).getMovementValue().toString();
+					}
+					htmlTable += "<tr><th role=\"gridcell\" tabindex=\"0\"><span style=\"color:blue\">"
+							+ super.getdateString(this.quotamovenDtos.get(i).getMovementDate())
+							+ "</span><span></span></th><th role=\"gridcell\" tabindex=\"0\"><span style=\"font-weight:normal\">"
+							+ this.quotamovenDtos.get(i).getMovementConcept()
+							+ "</span><span></span></th><th role=\"gridcell\" tabindex=\"0\"><span >" + value
+							+ "</span><span ></span></th><th role=\"gridcell\" tabindex=\"0\"><span >"
+							+ "</span><span ></span></th></tr>";
+				}
+			}
+
+			htmlTable += "</table>";
+
+			String htmlContent = "<br></br><br></br><div align=\"justify\" style=\"font-weight:bold;width:80%;font-size:90%;border-spacing:2px;border-collapse:separate\">Nota: Si no eres el destinatario de este mensaje, por favor comunícate con nosotros con el fin de realizar la actualización correspondiente, al 4010000 en Bogotá, 4938300 en Medellín, 3503500 en Barranquilla, 8892020 en Cali, 6304000 en Bucaramanga o al 01800 912227 desde el resto del país.</div>";
+			String htmlFooter = "<br></br><br></br>********************* AVISO LEGAL **************************<br></br>";
+			htmlFooter += "Este mensaje es solamente para la persona a la que va dirigido. Puede contener informacion  confidencial  o  legalmente  protegida.  No  hay  renuncia  a la confidencialidad o privilegio por cualquier transmision mala/erronea. Si usted ha recibido este mensaje por error,  le rogamos que borre de su sistema inmediatamente el mensaje asi como todas sus copias, destruya todas las copias del mismo de su disco duro y notifique al remitente.  No debe,  directa o indirectamente, usar, revelar, distribuir, imprimir o copiar ninguna de las partes de este mensaje si no es usted el destinatario. Cualquier opinion expresada en este mensaje proviene del remitente, excepto cuando el mensaje establezca lo contrario y el remitente este autorizado para establecer que dichas opiniones provienen de  BBVA. Notese que el correo electronico via Internet no permite asegurar ni la confidencialidad de los mensajes que se transmiten ni la correcta recepcion de los mismos. En el caso de que el destinatario de este mensaje no consintiera la utilizacion del correo electronico via Internet, rogamos lo ponga en nuestro conocimiento de manera inmediata.";
+			htmlFooter += "<br></br><br></br>**************************  DISCLAIMER**********************<br></br>";
+			htmlFooter += "This message is intended exclusively for the named person. It may contain confidential, propietary or legally privileged information. No confidentiality or privilege is waived or lost by any mistransmission. If you receive this message in error, please immediately delete it and all copies of it from your system, destroy any hard copies of it and notify the sender. Your must not, directly or indirectly, use, disclose, distribute, print, or copy any part of this message if you are not the intended recipient. Any views expressed in this message are those of the individual sender, except where the message states otherwise and the sender is authorised to state them to be the views of BBVA. Please note that internet e-mail neither guarantees the confidentiality nor the proper receipt of the message sent.If the addressee of this message does not consent to the use of internet e-mail, please communicate it to us immediately.";
+			htmlFooter += "<br></br><br></br>************************************************************<br></br>";
+
+			content.setContent(htmlHeader + htmlTable + htmlContent + htmlFooter, "text/html");
+
+			multiParte.addBodyPart(content);
+
+			MimeMessage message = new MimeMessage(session);
+			message.setFrom(new InternetAddress(REMITENTE));
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress("luferupa@gmail.com"));
+			message.setSubject("Movimientos de Cupo Rotativo");
+			message.setContent(multiParte);
+
+			Transport t = session.getTransport("smtp");
+			t.connect();
+			// t.connect("nerlyzaa@gmail.com", "prueba");
+			t.sendMessage(message, message.getAllRecipients());
+			t.close();
+		} catch (Exception e) {
+			LOGGER.info("Error enviando mail " + e.getMessage());
 		}
 	}
 

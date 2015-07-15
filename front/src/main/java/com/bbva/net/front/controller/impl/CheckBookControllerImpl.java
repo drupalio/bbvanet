@@ -129,9 +129,8 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	private String rutaCheckExcel;
 
 	private String rutaCheckBookExcel;
-	
-	protected String RUTA_ICONO_BBVA = MessagesHelper.INSTANCE
-			.getString("ruta.iconobbva");
+
+	protected String RUTA_ICONO_BBVA = MessagesHelper.INSTANCE.getString("ruta.iconobbva");
 
 	@Override
 	public void init() {
@@ -482,8 +481,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			document.open();
 
 			try {
-				Image foto = Image
-						.getInstance("RUTA_ICONO_BBVA");
+				Image foto = Image.getInstance("RUTA_ICONO_BBVA");
 				foto.scaleToFit(100, 100);
 				document.add(foto);
 			} catch (Exception e) {
@@ -673,8 +671,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			document.open();
 
 			try {
-				Image foto = Image
-						.getInstance("RUTA_ICONO_BBVA");
+				Image foto = Image.getInstance("RUTA_ICONO_BBVA");
 				foto.scaleToFit(100, 100);
 				document.add(foto);
 			} catch (Exception e) {
@@ -889,8 +886,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			Sheet hoja = libro.createSheet("Chequeras de cuenta");
 
 			try {
-				URL url = new URL(
-						"RUTA_ICONO_BBVA");
+				URL url = new URL("RUTA_ICONO_BBVA");
 				InputStream is = url.openStream();
 				ByteArrayOutputStream img_bytes = new ByteArrayOutputStream();
 				int b;
@@ -1229,8 +1225,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			Sheet hoja = libro.createSheet("Chequeras de cuenta");
 
 			try {
-				URL url = new URL(
-						"RUTA_ICONO_BBVA");
+				URL url = new URL("RUTA_ICONO_BBVA");
 				InputStream is = url.openStream();
 				ByteArrayOutputStream img_bytes = new ByteArrayOutputStream();
 				int b;
@@ -1525,6 +1520,112 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 
 		} catch (FileNotFoundException e) {
 			LOGGER.info("Excepción no se encuentra el archivo" + e.getMessage());
+		}
+	}
+
+	@Override
+	public void printCheck() {
+		printFile("Checks");
+	}
+
+	@Override
+	public void printCheckBook() {
+		printFile("CheckBook");
+	}
+
+	public void printFile(String typeDoc) {
+
+		File pdfFile = null;
+
+		if (typeDoc.equals("Checks")) {
+			pdfFile = new File("Cheques" + getSelectedProduct().getProductNumber() + ".pdf");
+		}
+
+		if (typeDoc.equals("CheckBook")) {
+			pdfFile = new File("Chequeras" + getSelectedProduct().getProductNumber() + ".pdf");
+		}
+
+		LOGGER.info("printFile ruta de archivo " + pdfFile.getAbsolutePath());
+
+		if (pdfFile.exists()) {
+			if (pdfFile.delete()) {
+				LOGGER.info("borró el archivo " + pdfFile.getAbsolutePath());
+				if (typeDoc.equals("Checks")) {
+					exportDocCheckPdf();
+				}
+				if (typeDoc.equals("CheckBook")) {
+					exportDocCheckBookPdf();
+				}
+			} else
+				LOGGER.info("No lo borró");
+		} else {
+			LOGGER.info("crea el archivo " + pdfFile.getAbsolutePath());
+			if (typeDoc.equals("Checks")) {
+				exportDocCheckPdf();
+			}
+			if (typeDoc.equals("CheckBook")) {
+				exportDocCheckBookPdf();
+			}
+
+		}
+
+		String s = System.getProperty("os.name").toLowerCase();
+		if (s.contains("win")) {
+			createCommand("explorer", "%s", pdfFile.getAbsolutePath());
+		}
+
+		if (s.contains("mac")) {
+			createCommand("open", "%s", pdfFile.getAbsolutePath());
+		}
+
+		if (s.contains("linux") || s.contains("unix")) {
+			createCommand("kde-open", "%s", pdfFile.getAbsolutePath());
+			createCommand("gnome-open", "%s", pdfFile.getAbsolutePath());
+			createCommand("xdg-open", "%s", pdfFile.getAbsolutePath());
+		}
+
+	}
+
+	private boolean createCommand(String command, String args, String file) {
+
+		LOGGER.info("Probando comando exec:\n   cmd = " + command + "\n   args = " + args + "\n   %s = " + file);
+
+		List<String> parts = new ArrayList<String>();
+		parts.add(command);
+
+		if (args != null) {
+			for (String s : args.split(" ")) {
+				s = String.format(s, file);
+				parts.add(s.trim());
+			}
+		}
+
+		String[] sParts = parts.toArray(new String[parts.size()]);
+
+		try {
+			Process p = Runtime.getRuntime().exec(sParts);
+			LOGGER.info(" Proceso input " + p.toString());
+			if (p == null) return false;
+
+			LOGGER.info("Inicia la terminación de proceso");
+			try {
+				int retval = p.exitValue();
+				if (retval == 0) {
+					LOGGER.info("Proceso terminó inmediatamente.");
+					return false;
+				} else {
+					LOGGER.info("Proceso colapso");
+					return false;
+				}
+			} catch (IllegalThreadStateException itse) {
+				LOGGER.info("Ruta archivo*** " + file + "***Proceso esta corriendo mensaje " + itse.getMessage()
+						+ "---causa---" + itse.getCause());
+				return true;
+			}
+		} catch (IOException e) {
+			LOGGER.info("Error ejecutando el comando Mensaje " + e.getMessage() + " Ruta archivo*** " + file
+					+ "*** Causa" + e.getCause());
+			return false;
 		}
 	}
 
