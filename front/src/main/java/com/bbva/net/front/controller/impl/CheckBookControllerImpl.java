@@ -1264,8 +1264,15 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			text.setColor(HSSFColor.BLACK.index);
 
 			CellStyle cellStyleHeader = libro.createCellStyle();
+			CellStyle cellStyleHeader2 = libro.createCellStyle();
+
+			cellStyleHeader2.setFont(text);
+			cellStyleHeader2.setWrapText(true);
+			cellStyleHeader2.setBorderBottom((short)1);
+			cellStyleHeader2.setBorderTop((short)1);
+			cellStyleHeader2.setAlignment(CellStyle.ALIGN_CENTER);
+
 			cellStyleHeader.setFont(text);
-			cellStyleHeader.setBorderBottom((short)0);
 			cellStyleHeader.setWrapText(true);
 			cellStyleHeader.setBorderBottom((short)1);
 			cellStyleHeader.setBorderLeft((short)1);
@@ -1290,12 +1297,22 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 				avalCheck.setCellValue("CHEQUES DISPONIBLES");
 				cellSheet.add(avalCheck);
 
-				Cell dates = filaHeader.createCell(4);
-				dates.setCellStyle(cellStyleHeader);
-				dates.setCellValue("FECHA PETICIÓN - FECHA ENTREGA");
-				cellSheet.add(dates);
+				Cell dates1 = filaHeader.createCell(4);
+				dates1.setCellStyle(cellStyleHeader2);
+				dates1.setCellValue("FECHA PETICIÓN");
+				cellSheet.add(dates1);
 
-				Cell state = filaHeader.createCell(5);
+				Cell dates2 = filaHeader.createCell(5);
+				dates2.setCellStyle(cellStyleHeader2);
+				dates2.setCellValue(" - ");
+				cellSheet.add(dates2);
+
+				Cell dates3 = filaHeader.createCell(6);
+				dates3.setCellStyle(cellStyleHeader2);
+				dates3.setCellValue("FECHA ENTREGA");
+				cellSheet.add(dates3);
+
+				Cell state = filaHeader.createCell(7);
 				state.setCellStyle(cellStyleHeader);
 				state.setCellValue("ESTADO");
 				cellSheet.add(state);
@@ -1305,6 +1322,8 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 				hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 3, 3));
 				hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 4, 4));
 				hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 5, 5));
+				hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 6, 6));
+				hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 7, 7));
 
 			} else {
 
@@ -1346,7 +1365,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 
 				for (int f = 0; f < this.checkBook.size(); f++) {
 					Row fila = hoja.createRow(f + inicio);
-					for (int c = 1; c < 6; c++) {
+					for (int c = 1; c < 8; c++) {
 
 						Font book = libro.createFont();
 						book.setFontHeightInPoints((short)10);
@@ -1356,6 +1375,12 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 
 						Cell celda = fila.createCell(c);
 						CellStyle cellStyle = libro.createCellStyle();
+						CellStyle cellStyleDtae = libro.createCellStyle();
+
+						cellStyleDtae.setAlignment(CellStyle.ALIGN_CENTER);
+						cellStyleDtae.setBorderBottom((short)1);
+						cellStyleDtae.setBorderTop((short)1);
+						cellStyleDtae.setWrapText(true);
 
 						cellStyle.setAlignment(CellStyle.ALIGN_CENTER);
 						cellStyle.setBorderBottom((short)1);
@@ -1380,17 +1405,31 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 							cellSheet.add(celda);
 						}
 						if (c == 4) {
-							celda.setCellStyle(cellStyle);
-							if (this.checkBook.get(f).getRequestDate() != null
-									&& this.checkBook.get(f).getDeliveryDate() != null) {
-								celda.setCellValue(this.checkBook.get(f).getRequestDate().toString() + " - "
-										+ this.checkBook.get(f).getDeliveryDate().toString());
+							celda.setCellStyle(cellStyleDtae);
+							if (this.checkBook.get(f).getRequestDate() != null) {
+								celda.setCellValue(this.checkBook.get(f).getRequestDate().replace("/", "-"));
 							} else {
 								celda.setCellValue(" ");
 							}
 							cellSheet.add(celda);
 						}
+
 						if (c == 5) {
+							celda.setCellStyle(cellStyleDtae);
+							celda.setCellValue(" - ");
+							cellSheet.add(celda);
+						}
+
+						if (c == 6) {
+							celda.setCellStyle(cellStyleDtae);
+							if (this.checkBook.get(f).getDeliveryDate() != null) {
+								celda.setCellValue(this.checkBook.get(f).getDeliveryDate().replace("/", "-"));
+							} else {
+								celda.setCellValue(" ");
+							}
+							cellSheet.add(celda);
+						}
+						if (c == 7) {
 							celda.setCellStyle(cellStyle);
 							super.createCell(celda, this.checkBook.get(f).getActualState(), cellStyle);
 							cellSheet.add(celda);
@@ -1401,9 +1440,12 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 						hoja.addMergedRegion(new CellRangeAddress(f, f, 3, 3));
 						hoja.addMergedRegion(new CellRangeAddress(f, f, 4, 4));
 						hoja.addMergedRegion(new CellRangeAddress(f, f, 5, 5));
+						hoja.addMergedRegion(new CellRangeAddress(f, f, 6, 6));
+						hoja.addMergedRegion(new CellRangeAddress(f, f, 7, 7));
 					}
 				}
-				super.maxSize(cellSheet, hoja, 5);
+
+				super.maxSize(cellSheet, hoja, 7);
 
 				inicio = inicio + this.checkBook.size() + 3;
 
@@ -1441,7 +1483,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 
 			Row filaFooter = hoja.createRow(inicio);
 			filaFooter.createCell(1).setCellValue("Cordial saludo,");
-			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 5));
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 7));
 
 			Font bbvaAde = libro.createFont();
 			bbvaAde.setColor(HSSFColor.BLUE.index);
@@ -1455,7 +1497,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			Cell bbva = filaFooter.createCell(1);
 			bbva.setCellStyle(bbvaStyle);
 			bbva.setCellValue("BBVA Adelante");
-			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 5));
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 7));
 
 			inicio = inicio + 2;
 
@@ -1471,7 +1513,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			nota.setCellStyle(cellNotaStyle);
 			nota.setCellValue("Nota: Si no eres el destinatario de este mensaje, por favor comunícate con nosotros con el fin de realizar la actualización correspondiente, al 4010000 en Bogotá, 4938300 en Medellín, 3503500 en Barranquilla, 8892020 en Cali, 6304000 en Bucaramanga o al 01800 912227 desde el resto del país. ");
 			filaFooter.setHeight((short)1100);
-			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 5));
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 7));
 
 			inicio = inicio + 2;
 
@@ -1480,7 +1522,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 
 			filaFooter = hoja.createRow(inicio);
 			filaFooter.createCell(1).setCellValue("********************* AVISO LEGAL **************************");
-			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 5));
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 7));
 
 			inicio = inicio + 1;
 			filaFooter = hoja.createRow(inicio);
@@ -1488,13 +1530,13 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			message.setCellStyle(cellFooterStyle);
 			message.setCellValue("Este mensaje es solamente para la persona a la que va dirigido. Puede contener informacion  confidencial  o  legalmente  protegida.  No  hay  renuncia  a la confidencialidad o privilegio por cualquier transmision mala/erronea. Si usted ha recibido este mensaje por error,  le rogamos que borre de su sistema inmediatamente el mensaje asi como todas sus copias, destruya todas las copias del mismo de su disco duro y notifique al remitente.  No debe,  directa o indirectamente, usar, revelar, distribuir, imprimir o copiar ninguna de las partes de este mensaje si no es usted el destinatario. Cualquier opinion expresada en este mensaje proviene del remitente, excepto cuando el mensaje establezca lo contrario y el remitente este autorizado para establecer que dichas opiniones provienen de  BBVA. Notese que el correo electronico via Internet no permite asegurar ni la confidencialidad de los mensajes que se transmiten ni la correcta recepcion de los mismos. En el caso de que el destinatario de este mensaje no consintiera la utilizacion del correo electronico via Internet, rogamos lo ponga en nuestro conocimiento de manera inmediata.");
 			filaFooter.setHeight((short)3100);
-			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 5));
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 7));
 
 			inicio = inicio + 2;
 
 			filaFooter = hoja.createRow(inicio);
 			filaFooter.createCell(1).setCellValue("**************************  DISCLAIMER**********************");
-			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 5));
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 7));
 
 			inicio = inicio + 1;
 
@@ -1503,13 +1545,13 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			messEng.setCellStyle(cellFooterStyle);
 			messEng.setCellValue("This message is intended exclusively for the named person. It may contain confidential, propietary or legally privileged information. No confidentiality or privilege is waived or lost by any mistransmission. If you receive this message in error, please immediately delete it and all copies of it from your system, destroy any hard copies of it and notify the sender. Your must not, directly or indirectly, use, disclose, distribute, print, or copy any part of this message if you are not the intended recipient. Any views expressed in this message are those of the individual sender, except where the message states otherwise and the sender is authorised to state them to be the views of BBVA. Please note that internet e-mail neither guarantees the confidentiality nor the proper receipt of the message sent.If the addressee of this message does not consent to the use of internet e-mail, please communicate it to us immediately.");
 			filaFooter.setHeight((short)2600);
-			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 5));
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 7));
 
 			inicio = inicio + 1;
 
 			filaFooter = hoja.createRow(inicio);
 			filaFooter.createCell(1).setCellValue("************************************************************");
-			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 5));
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 7));
 
 			try {
 				libro.write(archivo);
