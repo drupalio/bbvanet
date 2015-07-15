@@ -129,6 +129,9 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	private String rutaCheckExcel;
 
 	private String rutaCheckBookExcel;
+	
+	protected String RUTA_ICONO_BBVA = MessagesHelper.INSTANCE
+			.getString("ruta.iconobbva");
 
 	@Override
 	public void init() {
@@ -480,7 +483,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 
 			try {
 				Image foto = Image
-						.getInstance("/de/kqco/online/co/web/j2ee/1.6/kqco_mult_web.ear/kqco_mult_web_front-01.war/assets/img/logo/logobbva.png");
+						.getInstance("RUTA_ICONO_BBVA");
 				foto.scaleToFit(100, 100);
 				document.add(foto);
 			} catch (Exception e) {
@@ -671,7 +674,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 
 			try {
 				Image foto = Image
-						.getInstance("/de/kqco/online/co/web/j2ee/1.6/kqco_mult_web.ear/kqco_mult_web_front-01.war/assets/img/logo/logobbva.png");
+						.getInstance("RUTA_ICONO_BBVA");
 				foto.scaleToFit(100, 100);
 				document.add(foto);
 			} catch (Exception e) {
@@ -887,7 +890,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 
 			try {
 				URL url = new URL(
-						"/de/kqco/online/co/web/j2ee/1.6/kqco_mult_web.ear/kqco_mult_web_front-01.war/assets/img/logo/logobbva.png");
+						"RUTA_ICONO_BBVA");
 				InputStream is = url.openStream();
 				ByteArrayOutputStream img_bytes = new ByteArrayOutputStream();
 				int b;
@@ -1227,7 +1230,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 
 			try {
 				URL url = new URL(
-						"/de/kqco/online/co/web/j2ee/1.6/kqco_mult_web.ear/kqco_mult_web_front-01.war/assets/img/logo/logobbva.png");
+						"RUTA_ICONO_BBVA");
 				InputStream is = url.openStream();
 				ByteArrayOutputStream img_bytes = new ByteArrayOutputStream();
 				int b;

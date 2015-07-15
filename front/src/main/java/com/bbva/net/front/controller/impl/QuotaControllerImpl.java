@@ -114,6 +114,9 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 	private String rutaPdfCupo;
 
 	private String rutaPdfMove;
+	
+	protected String RUTA_ICONO_BBVA = MessagesHelper.INSTANCE
+			.getString("ruta.iconobbva");
 
 	@Resource(name = "quotaDetailFacade")
 	private transient QuotaDetailFacade quotaDetailFacade;
@@ -344,7 +347,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 			Sheet hoja = libro.createSheet("Movimientos de cupo rotativo");
 			try {
 				URL url = new URL(
-						"/de/kqco/online/co/web/j2ee/1.6/kqco_mult_web.ear/kqco_mult_web_front-01.war/assets/img/logo/logobbva.png");
+						"RUTA_ICONO_BBVA");
 				InputStream is = url.openStream();
 				// InputStream inputStream = new FileInputStream(
 				// "https://www.bbva.com.co/BBVA-home-theme/images/BBVA/logo_bbva.png");
@@ -634,7 +637,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 
 			try {
 				Image foto = Image
-						.getInstance("/de/kqco/online/co/web/j2ee/1.6/kqco_mult_web.ear/kqco_mult_web_front-01.war/assets/img/logo/logobbva.png");
+						.getInstance("RUTA_ICONO_BBVA");
 				foto.scaleToFit(100, 100);
 				document.add(foto);
 			} catch (Exception e) {
@@ -792,7 +795,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 
 			try {
 				Image foto = Image
-						.getInstance("/de/kqco/online/co/web/j2ee/1.6/kqco_mult_web.ear/kqco_mult_web_front-01.war/assets/img/logo/logobbva.png");
+						.getInstance("RUTA_ICONO_BBVA");
 				foto.scaleToFit(100, 100);
 				document.add(foto);
 			} catch (Exception e) {
