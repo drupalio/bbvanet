@@ -1372,10 +1372,10 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		if (typeDoc.equals("DetailMovement")) {
 			pdfFile = new File("MovimientosDetail" + getSelectedProduct().getProductNumber() + ".pdf");
 		}
-		LOGGER.info("printFile ruta de archivo " + pdfFile.getPath());
+		LOGGER.info("printFile ruta de archivo " + pdfFile.getAbsolutePath());
 		if (pdfFile.exists()) {
 			if (pdfFile.delete()) {
-				LOGGER.info("borró el archivo " + pdfFile.getPath());
+				LOGGER.info("borró el archivo " + pdfFile.getAbsolutePath());
 				if (typeDoc.equals("Movements")) {
 					exportDocumentPdf();
 				}
@@ -1385,7 +1385,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			} else
 				LOGGER.info("No lo borró");
 		} else {
-			LOGGER.info("crea el archivo " + pdfFile.getPath());
+			LOGGER.info("crea el archivo " + pdfFile.getAbsolutePath());
 			if (typeDoc.equals("Movements")) {
 				exportDocumentPdf();
 			}
@@ -1397,17 +1397,17 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 		String s = System.getProperty("os.name").toLowerCase();
 		if (s.contains("win")) {
-			createCommand("explorer", "%s", pdfFile.getPath());
+			createCommand("explorer", "%s", pdfFile.getAbsolutePath());
 		}
 
 		if (s.contains("mac")) {
-			createCommand("open", "%s", pdfFile.getPath());
+			createCommand("open", "%s", pdfFile.getAbsolutePath());
 		}
 
 		if (s.contains("linux") || s.contains("unix")) {
-			createCommand("kde-open", "%s", pdfFile.getPath());
-			createCommand("gnome-open", "%s", pdfFile.getPath());
-			createCommand("xdg-open", "%s", pdfFile.getPath());
+			createCommand("kde-open", "%s", pdfFile.getAbsolutePath());
+			createCommand("gnome-open", "%s", pdfFile.getAbsolutePath());
+			createCommand("xdg-open", "%s", pdfFile.getAbsolutePath());
 		}
 
 	}
