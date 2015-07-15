@@ -21,6 +21,7 @@ import com.bbva.net.back.model.accounts.PostalAddresDto;
 import com.bbva.net.back.model.accounts.TermsAccountsDto;
 import com.bbva.net.front.controller.TermsController;
 import com.bbva.net.front.core.AbstractBbvaController;
+import com.bbva.net.front.helper.MessagesHelper;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -46,6 +47,9 @@ public class TermsControllerImpl extends AbstractBbvaController implements Terms
 	private String rutaArchivo;
 
 	private static final long serialVersionUID = -9161774389839616910L;
+	
+	protected String RUTA_ICONO_BBVA = MessagesHelper.INSTANCE
+			.getString("ruta.iconobbva");
 
 	private Document fileInput;
 
@@ -88,7 +92,7 @@ public class TermsControllerImpl extends AbstractBbvaController implements Terms
 			document.open();
 
 			try {
-				Image foto = Image.getInstance("/de/kqco/online/co/web/j2ee/1.6/kqco_mult_web.ear/kqco_mult_web_front-01.war/assets/img/logo/logobbva.png");
+				Image foto = Image.getInstance(RUTA_ICONO_BBVA);
 				foto.scaleToFit(100, 100);
 				document.add(foto);
 			} catch (Exception e) {
