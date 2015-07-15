@@ -280,7 +280,7 @@ $(window).load(function() {
 
 	/* cerrar el modal de mensajes Growl */
 	$('.ui-growl').find('div.ui-growl-icon-close').click(function() {
-		if (styleBody == 1) {
+		if (styleBody >= 1) {
 			$('#modal').remove();
 		}
 	});
