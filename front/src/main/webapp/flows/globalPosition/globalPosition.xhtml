@@ -25,8 +25,7 @@
 	</ui:define>
 	<ui:define name="contentLeft">
 		<!-- banner cuentas -->
-		<bbvaContainer:banner href=""
-			img_URL="https://www.bbva.com.co/documents/702694/2878314/01-BN-970x260.jpg/376b216f-950a-4d0f-9853-35d1db46d4b3?t=1433346845578" />
+		<bbvaContainer:banner img_URL="https://www.bbva.com.co/documents/702694/2878314/01-BN-970x260.jpg/376b216f-950a-4d0f-9853-35d1db46d4b3?t=1433346845578" />
 		<c:set var="currency" value="$" />
 		<bbvaContainer:productPanelAccountGraphic id="AccountGP" title="#{msg['title.accountsPersonal']}"
 			graphic="#{customerProducts.accounts.size()==0 &amp;&amp; customerProducts.adquirencia.size()==0 &amp;&amp; customerProductsHidden.accounts.size()==0 ? 'none' : 'block'}">
