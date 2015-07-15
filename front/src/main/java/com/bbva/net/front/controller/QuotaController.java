@@ -77,4 +77,19 @@ public interface QuotaController {
 	 * 
 	 */
 	void exportDocDetailPdf();
+
+	/**
+	 * 
+	 */
+	void printMovesQuota();
+
+	/**
+	 * 
+	 */
+	void printMoveDetailQuota();
+
+	/**
+	 * 
+	 */
+	void sendMail();
 }
