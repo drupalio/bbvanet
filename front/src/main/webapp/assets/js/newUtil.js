@@ -280,7 +280,7 @@ $(window).load(function() {
 
 	/* cerrar el modal de mensajes Growl */
 	$('.ui-growl').find('div.ui-growl-icon-close').click(function() {
-		if (styleBody == 1) {
+		if (styleBody >= 1) {
 			$('#modal').remove();
 		}
 	});
@@ -358,4 +358,16 @@ function error(errorCode) {
 		alert("Posicion no disponible")
 	else
 		alert("Ha ocurrido un error")
+}
+
+function imgError(image) {
+       var imgWidth=$(image).attr("width");
+       var imgHeight=$(image).attr("height");
+        if (typeof imgWidth !== 'undefined' && typeof imgHeight !== 'undefined') {
+            $(image).parents('.banner').css("cssText", "display: block !important;");
+            return true;
+        } else {
+        	$(image).parents('.banner').css("cssText", "display: none !important;");
+        	return false;
+        }   
 }

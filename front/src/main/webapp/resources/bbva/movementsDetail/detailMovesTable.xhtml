@@ -18,11 +18,11 @@
 			valuePdf="#{movementsCriteriaController.exportPdf}" render="#{renderComponents['TITLEMOVES']}"
 			valueCorreo="#{movementsCriteriaController.sendMail()}"
 			valuePrinter="#{movementsCriteriaController.printMoves()}" />
-		<bbvaTablesAcc:iconsButtons id="iconsChek" renderCorreo="false"
+		<bbvaTablesAcc:iconsButtons id="iconsChek" renderCorreo="false" style="float: right;"
 			valueExcel="#{checkBookController.exportCheckExcel}"
 			valuePdf="#{checkBookController.exportCheckPdf}"
 			valuePrinter="#{checkBookController.printFile()}" render="#{renderComponents['TITLECHECKS']}" />
-		<bbvaTablesAcc:iconsButtons id="iconsChecBook" renderCorreo="false"
+		<bbvaTablesAcc:iconsButtons id="iconsChecBook" renderCorreo="false" style="float: right;"
 			valueExcel="#{checkBookController.exportCheckBookExcel}"
 			valuePdf="#{checkBookController.exportCheckBookPdf}"
 			render="#{renderComponents['TITLECHECKBOOKS']}" valuePrinter="#{checkBookController.printFile()}" />

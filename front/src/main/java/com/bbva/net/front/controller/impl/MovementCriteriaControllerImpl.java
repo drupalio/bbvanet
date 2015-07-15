@@ -78,6 +78,7 @@ import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
+import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -127,14 +128,32 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	@Resource(name = "graphicLineDelegate")
 	private transient GraphicLineDelegate graphicLineDelegate;
 
-	private String RUTAEXCEL = "Movimientos.xls";
-
 	private LineConfigUI graphicLineMovements;
 
 	private MovementDetailDto movementDetail;
 
+	private MovementDto movementAction;
+
 	private List<MultiValueGroup> conceptMovements;
 
+	private String rutaMoveExcel;
+
+	private String rutaMovePdf;
+
+	private String rutaMoveDetailPdf;
+	
+	protected String RUTA_ICONO_BBVA = MessagesHelper.INSTANCE
+			.getString("ruta.iconobbva");
+
+	protected String IP_IRONPORT = MessagesHelper.INSTANCE
+			.getString("ruta.ipironport");
+	
+	protected String PUERTO_IRONPORT = MessagesHelper.INSTANCE
+			.getString("ruta.puertoironport");
+	
+	protected String REMITENTE = MessagesHelper.INSTANCE
+			.getString("ruta.remitente");
+	
 	@Override
 	public void init() {
 		super.init();
@@ -167,9 +186,10 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 	@Override
 	public void onMovementSelected(SelectEvent selectEvent) {
-		LOGGER.info("MovementsAccountController onMovementSelected");
+		this.movementAction = new MovementDto();
 		super.onMovementSelected(selectEvent);
-		movementDetail = new MovementDetailDto();
+		this.movementAction = super.getSelectedMovements();
+		this.movementDetail = new MovementDetailDto();
 
 		try {
 			LOGGER.info("MovementsAccountController onMovementSelected movementId:  "
@@ -236,7 +256,6 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			LOGGER.info("MovementsAccountController searchMovementByFilterDate");
 			this.dateRange = calculateDate(this.getSelectDate());
 			criteriaSearch();
-			// resetMapResults();
 
 		} else {
 			this.dateRange = null;
@@ -255,7 +274,6 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			this.movementsList = movementsByBalance;
 			// setShowMoreStatus();
 			getRenderComponents().put(RenderAttributes.MOVEMENTSTABLE.toString(), true);
-			// resetMapResults();
 		}
 
 		if (getRenderComponents().get(RenderAttributes.INCOMEOREXPENSESFILTER.toString())) {
@@ -281,7 +299,6 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 				// setShowMoreStatus();
 			}
 			RequestContext.getCurrentInstance().update(":detailAccounts:tableMovements:formMovesDetail:movAccount");
-			// resetMapResults();
 		}
 
 		if (getRenderComponents().get(RenderAttributes.MOVEMENTSFILTER.toString())) {
@@ -504,10 +521,13 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		} catch (Exception e) {
 			LOGGER.info("No encontró directorio actual " + e.getMessage());
 		}
-		String rutaArchivo = RUTAEXCEL;
-		int inicio = 9;
+		rutaMoveExcel = "movimientos" + getSelectedProduct().getProductNumber() + ".xls";
 
-		File archivoXLS = new File(rutaArchivo);
+		List<Cell> cellSheet = new ArrayList<Cell>();
+
+		int inicio = 10;
+
+		File archivoXLS = new File(rutaMoveExcel);
 		if (archivoXLS.exists()) archivoXLS.delete();
 
 		try {
@@ -522,7 +542,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			Sheet hoja = libro.createSheet("Movimientos de cuenta");
 			try {
 				URL url = new URL(
-						"/de/kqco/online/co/web/j2ee/1.6/kqco_mult_web.ear/kqco_mult_web_front-01.war/assets/img/logo/logobbva.png");
+						"RUTA_ICONO_BBVA");
 				InputStream is = url.openStream();
 				// InputStream inputStream = new FileInputStream(
 				// "https://www.bbva.com.co/BBVA-home-theme/images/BBVA/logo_bbva.png");
@@ -551,118 +571,244 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			Row filaHeader = hoja.createRow(inicio);
 			filaHeader.createCell(1).setCellValue("Estimado(a) cliente:");
 			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 2));
+
 			inicio = inicio + 4;
 
 			filaHeader = hoja.createRow(inicio);
-			Cell celdaHeader = filaHeader.createCell(1);
-			CellStyle cellStyleHeader = libro.createCellStyle();
+
 			Font text = libro.createFont();
 			text.setFontHeightInPoints((short)10);
 			text.setFontName("Arial");
 			text.setBold(true);
 			text.setColor(HSSFColor.BLACK.index);
+
+			CellStyle cellStyleHeader = libro.createCellStyle();
 			cellStyleHeader.setFont(text);
-			celdaHeader.setCellStyle(cellStyleHeader);
-			celdaHeader.setCellValue("FECHA");
+			cellStyleHeader.setBorderBottom((short)0);
+			cellStyleHeader.setWrapText(true);
+			cellStyleHeader.setBorderBottom((short)1);
+			cellStyleHeader.setBorderLeft((short)1);
+			cellStyleHeader.setBorderRight((short)1);
+			cellStyleHeader.setBorderTop((short)1);
+			cellStyleHeader.setAlignment(CellStyle.ALIGN_CENTER);
 
-			celdaHeader = filaHeader.createCell(3);
-			celdaHeader.setCellValue("CONCEPTO");
+			if (movementsList != null && (this.movementsList.size() != 0 || !this.movementsList.isEmpty())) {
 
-			celdaHeader = filaHeader.createCell(5);
-			celdaHeader.setCellValue("VALOR");
+				Cell dateMove = filaHeader.createCell(1);
+				dateMove.setCellType(Cell.CELL_TYPE_STRING);
+				dateMove.setCellStyle(cellStyleHeader);
+				dateMove.setCellValue("FECHA");
+				cellSheet.add(dateMove);
 
-			celdaHeader = filaHeader.createCell(7);
-			celdaHeader.setCellValue("SALDO");
+				Cell concept = filaHeader.createCell(2);
+				concept.setCellType(Cell.CELL_TYPE_STRING);
+				concept.setCellStyle(cellStyleHeader);
+				concept.setCellValue("CONCEPTO");
+				cellSheet.add(concept);
 
-			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 2));
-			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 3, 4));
-			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 5, 6));
-			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 7, 8));
-			inicio = inicio + 1;
-			for (int f = 0; f < this.movementsList.size(); f++) {
-				Row fila = hoja.createRow(f + inicio);
-				for (int c = 1; c < 9; c = c + 2) {
-					Cell celda = fila.createCell(c);
+				Cell value = filaHeader.createCell(3);
+				value.setCellType(Cell.CELL_TYPE_STRING);
+				value.setCellStyle(cellStyleHeader);
+				value.setCellValue("VALOR");
+				cellSheet.add(value);
 
-					if (c == 1) {
-						CellStyle cellStyle = libro.createCellStyle();
-						Font date = libro.createFont();
-						date.setFontHeightInPoints((short)10);
-						date.setFontName("Arial");
-						date.setBold(true);
-						date.setColor(HSSFColor.BLUE.index);
-						cellStyle.setFont(date);
-						celda.setCellStyle(cellStyle);
+				Cell saldValue = filaHeader.createCell(4);
+				saldValue.setCellType(Cell.CELL_TYPE_STRING);
+				saldValue.setCellStyle(cellStyleHeader);
+				saldValue.setCellValue("SALDO");
+				cellSheet.add(saldValue);
 
-						celda.setCellValue(super.getdateString(this.movementsList.get(f).getMovementDate()));
+				hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 1));
+				hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 2, 2));
+				hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 3, 3));
+				hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 4, 4));
 
-					}
-					if (c == 3) {
-						celda.setCellValue(this.movementsList.get(f).getMovementConcept());
+			} else {
 
-					}
-					if (c == 5) {
-						celda.setCellValue(this.movementsList.get(f).getMovementValue().toString());
+				Cell numberCheck = filaHeader.createCell(1);
+				numberCheck.setCellType(Cell.CELL_TYPE_STRING);
+				numberCheck.setCellStyle(cellStyleHeader);
+				numberCheck.setCellValue("FECHA");
+				hoja.autoSizeColumn(1);
 
-					}
-					if (c == 7) {
-						celda.setCellValue(this.movementsList.get(f).getTotalBalance().toString());
+				Cell dateRea = filaHeader.createCell(2);
+				dateRea.setCellType(Cell.CELL_TYPE_STRING);
+				dateRea.setCellStyle(cellStyleHeader);
+				dateRea.setCellValue("CONCEPTO");
+				hoja.autoSizeColumn(2);
 
-					}
-					hoja.addMergedRegion(new CellRangeAddress(f, f, 1, 2));
-					hoja.addMergedRegion(new CellRangeAddress(f, f, 3, 4));
-					hoja.addMergedRegion(new CellRangeAddress(f, f, 5, 6));
-					hoja.addMergedRegion(new CellRangeAddress(f, f, 7, 8));
-				}
+				Cell valueCheck = filaHeader.createCell(3);
+				valueCheck.setCellType(Cell.CELL_TYPE_STRING);
+				valueCheck.setCellStyle(cellStyleHeader);
+				valueCheck.setCellValue("VALOR");
+				hoja.autoSizeColumn(3);
+
+				Cell state = filaHeader.createCell(4);
+				state.setCellType(Cell.CELL_TYPE_STRING);
+				state.setCellStyle(cellStyleHeader);
+				state.setCellValue("SALDO");
+				hoja.autoSizeColumn(4);
+
+				hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 1));
+				hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 2, 2));
+				hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 3, 3));
+				hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 4, 4));
 			}
-			inicio = inicio + this.movementsList.size() + 2;
+
+			inicio = inicio + 1;
+
+			if (movementsList != null && (this.movementsList.size() != 0 || !this.movementsList.isEmpty())) {
+				for (int f = 0; f < this.movementsList.size(); f++) {
+					Row fila = hoja.createRow(f + inicio);
+					for (int c = 1; c < 5; c++) {
+
+						Font check = libro.createFont();
+						check.setFontHeightInPoints((short)10);
+						check.setFontName("Arial");
+						check.setBold(true);
+						check.setColor(HSSFColor.BLUE.index);
+
+						Cell celda = fila.createCell(c);
+						celda.setCellType(Cell.CELL_TYPE_STRING);
+						CellStyle cellStyle = libro.createCellStyle();
+
+						cellStyle.setAlignment(CellStyle.ALIGN_CENTER);
+						cellStyle.setBorderBottom((short)1);
+						cellStyle.setBorderLeft((short)1);
+						cellStyle.setBorderRight((short)1);
+						cellStyle.setBorderTop((short)1);
+						cellStyle.setWrapText(true);
+
+						if (c == 1) {
+							String dateData = super.getdateString(this.movementsList.get(f).getMovementDate());
+							cellStyle.setFont(check);
+							super.createCell(celda, dateData, cellStyle);
+							cellSheet.add(celda);
+						}
+						if (c == 2) {
+							super.createCell(celda, this.movementsList.get(f).getMovementConcept(), cellStyle);
+							cellSheet.add(celda);
+						}
+						if (c == 3) {
+							super.createCellMoney(celda, this.movementsList.get(f).getMovementValue(), cellStyle);
+							cellSheet.add(celda);
+						}
+						if (c == 4) {
+							super.createCellMoney(celda, this.movementsList.get(f).getTotalBalance(), cellStyle);
+							cellSheet.add(celda);
+						}
+						hoja.addMergedRegion(new CellRangeAddress(f, f, 1, 1));
+						hoja.addMergedRegion(new CellRangeAddress(f, f, 2, 2));
+						hoja.addMergedRegion(new CellRangeAddress(f, f, 3, 3));
+						hoja.addMergedRegion(new CellRangeAddress(f, f, 4, 4));
+					}
+				}
+
+				super.maxSize(cellSheet, hoja, 4);
+
+				inicio = inicio + this.movementsList.size() + 3;
+
+			} else if (movementsList != null && (this.movementsList.size() == 0 || this.movementsList.isEmpty())) {
+
+				Row filaOter = hoja.createRow(inicio);
+
+				Cell celda = filaOter.createCell(1);
+				Cell celda1 = filaOter.createCell(2);
+				Cell celda2 = filaOter.createCell(3);
+				Cell celda3 = filaOter.createCell(4);
+
+				celda.setCellType(Cell.CELL_TYPE_STRING);
+				CellStyle cellStyle = libro.createCellStyle();
+
+				cellStyle.setAlignment(CellStyle.ALIGN_CENTER);
+				cellStyle.setBorderBottom((short)1);
+				cellStyle.setBorderLeft((short)1);
+				cellStyle.setBorderRight((short)1);
+				cellStyle.setBorderTop((short)1);
+				cellStyle.setWrapText(true);
+
+				celda.setCellStyle(cellStyle);
+				celda1.setCellStyle(cellStyle);
+				celda2.setCellStyle(cellStyle);
+				celda3.setCellStyle(cellStyle);
+				celda.setCellValue("No hay registros");
+
+				hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 4));
+
+				inicio = inicio + this.movementsList.size() + 3;
+			}
+
 			Row filaFooter = hoja.createRow(inicio);
 			filaFooter.createCell(1).setCellValue("Cordial saludo,");
-			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 8));
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 4));
+
+			Font bbvaAde = libro.createFont();
+			bbvaAde.setColor(HSSFColor.BLUE.index);
+
+			CellStyle bbvaStyle = libro.createCellStyle();
+			bbvaStyle.setFont(bbvaAde);
+
 			inicio = inicio + 1;
-			filaFooter = hoja.createRow(inicio);
-			filaFooter.createCell(1).setCellValue("BBVA Adelante");
-			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 8));
-			inicio = inicio + 2;
 
 			filaFooter = hoja.createRow(inicio);
-			filaFooter
-					.createCell(1)
-					.setCellValue(
-							"Nota: Si no eres el destinatario de este mensaje, por favor comunícate con nosotros con el fin de realizar la actualización correspondiente, al 4010000 en Bogotá, 4938300 en Medellín, 3503500 en Barranquilla, 8892020 en Cali, 6304000 en Bucaramanga o al 01800 912227 desde el resto del país. ");
-
-			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 8));
+			Cell bbva = filaFooter.createCell(1);
+			bbva.setCellStyle(bbvaStyle);
+			bbva.setCellValue("BBVA Adelante");
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 4));
 
 			inicio = inicio + 2;
+
+			Font notaFont = libro.createFont();
+			notaFont.setBold(true);
+
+			CellStyle cellNotaStyle = libro.createCellStyle();
+			cellNotaStyle.setVerticalAlignment(CellStyle.VERTICAL_JUSTIFY);
+			cellNotaStyle.setFont(notaFont);
+
+			filaFooter = hoja.createRow(inicio);
+			Cell nota = filaFooter.createCell(1);
+			nota.setCellStyle(cellNotaStyle);
+			nota.setCellValue("Nota: Si no eres el destinatario de este mensaje, por favor comunícate con nosotros con el fin de realizar la actualización correspondiente, al 4010000 en Bogotá, 4938300 en Medellín, 3503500 en Barranquilla, 8892020 en Cali, 6304000 en Bucaramanga o al 01800 912227 desde el resto del país. ");
+			filaFooter.setHeight((short)2600);
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 4));
+
+			inicio = inicio + 2;
+
+			CellStyle cellFooterStyle = libro.createCellStyle();
+			cellFooterStyle.setVerticalAlignment(CellStyle.VERTICAL_JUSTIFY);
+
 			filaFooter = hoja.createRow(inicio);
 			filaFooter.createCell(1).setCellValue("********************* AVISO LEGAL **************************");
-			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 8));
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 4));
 
 			inicio = inicio + 1;
 			filaFooter = hoja.createRow(inicio);
-			filaFooter
-					.createCell(1)
-					.setCellValue(
-							"Este mensaje es solamente para la persona a la que va dirigido. Puede contener informacion  confidencial  o  legalmente  protegida.  No  hay  renuncia  a la confidencialidad o privilegio por cualquier transmision mala/erronea. Si usted ha recibido este mensaje por error,  le rogamos que borre de su sistema inmediatamente el mensaje asi como todas sus copias, destruya todas las copias del mismo de su disco duro y notifique al remitente.  No debe,  directa o indirectamente, usar, revelar, distribuir, imprimir o copiar ninguna de las partes de este mensaje si no es usted el destinatario. Cualquier opinion expresada en este mensaje proviene del remitente, excepto cuando el mensaje establezca lo contrario y el remitente este autorizado para establecer que dichas opiniones provienen de  BBVA. Notese que el correo electronico via Internet no permite asegurar ni la confidencialidad de los mensajes que se transmiten ni la correcta recepcion de los mismos. En el caso de que el destinatario de este mensaje no consintiera la utilizacion del correo electronico via Internet, rogamos lo ponga en nuestro conocimiento de manera inmediata.");
-			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 8));
+			Cell message = filaFooter.createCell(1);
+			message.setCellStyle(cellFooterStyle);
+			message.setCellValue("Este mensaje es solamente para la persona a la que va dirigido. Puede contener informacion  confidencial  o  legalmente  protegida.  No  hay  renuncia  a la confidencialidad o privilegio por cualquier transmision mala/erronea. Si usted ha recibido este mensaje por error,  le rogamos que borre de su sistema inmediatamente el mensaje asi como todas sus copias, destruya todas las copias del mismo de su disco duro y notifique al remitente.  No debe,  directa o indirectamente, usar, revelar, distribuir, imprimir o copiar ninguna de las partes de este mensaje si no es usted el destinatario. Cualquier opinion expresada en este mensaje proviene del remitente, excepto cuando el mensaje establezca lo contrario y el remitente este autorizado para establecer que dichas opiniones provienen de  BBVA. Notese que el correo electronico via Internet no permite asegurar ni la confidencialidad de los mensajes que se transmiten ni la correcta recepcion de los mismos. En el caso de que el destinatario de este mensaje no consintiera la utilizacion del correo electronico via Internet, rogamos lo ponga en nuestro conocimiento de manera inmediata.");
+			filaFooter.setHeight((short)8000);
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 4));
 
 			inicio = inicio + 2;
+
 			filaFooter = hoja.createRow(inicio);
 			filaFooter.createCell(1).setCellValue("**************************  DISCLAIMER**********************");
-			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 8));
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 4));
 
 			inicio = inicio + 1;
+
 			filaFooter = hoja.createRow(inicio);
-			filaFooter
-					.createCell(1)
-					.setCellValue(
-							"This message is intended exclusively for the named person. It may contain confidential, propietary or legally privileged information. No confidentiality or privilege is waived or lost by any mistransmission. If you receive this message in error, please immediately delete it and all copies of it from your system, destroy any hard copies of it and notify the sender. Your must not, directly or indirectly, use, disclose, distribute, print, or copy any part of this message if you are not the intended recipient. Any views expressed in this message are those of the individual sender, except where the message states otherwise and the sender is authorised to state them to be the views of BBVA. Please note that internet e-mail neither guarantees the confidentiality nor the proper receipt of the message sent.If the addressee of this message does not consent to the use of internet e-mail, please communicate it to us immediately.");
-			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 8));
+			Cell messEng = filaFooter.createCell(1);
+			messEng.setCellStyle(cellFooterStyle);
+			messEng.setCellValue("This message is intended exclusively for the named person. It may contain confidential, propietary or legally privileged information. No confidentiality or privilege is waived or lost by any mistransmission. If you receive this message in error, please immediately delete it and all copies of it from your system, destroy any hard copies of it and notify the sender. Your must not, directly or indirectly, use, disclose, distribute, print, or copy any part of this message if you are not the intended recipient. Any views expressed in this message are those of the individual sender, except where the message states otherwise and the sender is authorised to state them to be the views of BBVA. Please note that internet e-mail neither guarantees the confidentiality nor the proper receipt of the message sent.If the addressee of this message does not consent to the use of internet e-mail, please communicate it to us immediately.");
+			filaFooter.setHeight((short)7300);
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 4));
 
 			inicio = inicio + 1;
+
 			filaFooter = hoja.createRow(inicio);
 			filaFooter.createCell(1).setCellValue("************************************************************");
-			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 8));
+			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 4));
 
 			try {
 				libro.write(archivo);
@@ -680,15 +826,17 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	@Override
 	public void exportDocumentPdf() {
 
-		String rutaArchivo = "Movimientos" + getSelectedProduct().getProductNumber() + ".pdf";
 		LOGGER.info("iniciando exportar archivo pdf " + "Movimientos" + getSelectedProduct().getProductNumber()
 				+ ".pdf");
+
+		rutaMovePdf = "Movimientos" + getSelectedProduct().getProductNumber() + ".pdf";
+
 		try {
 
 			FileOutputStream file = null;
 
 			try {
-				file = new FileOutputStream(rutaArchivo);
+				file = new FileOutputStream(rutaMovePdf);
 			} catch (FileNotFoundException e) {
 				LOGGER.info("Excepción no se encuentra el archivo" + e.getMessage());
 			}
@@ -700,9 +848,8 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			document.open();
 
 			try {
-
 				Image foto = Image
-						.getInstance("/de/kqco/online/co/web/j2ee/1.6/kqco_mult_web.ear/kqco_mult_web_front-01.war/assets/img/logo/logobbva.png");
+						.getInstance("RUTA_ICONO_BBVA");
 				foto.scaleToFit(100, 100);
 				document.add(foto);
 			} catch (Exception e) {
@@ -713,6 +860,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 					FontFactory.getFont("arial", 12, BaseColor.BLACK));
 			initial.setAlignment(Element.ALIGN_LEFT);
 			initial.setSpacingBefore(20);
+
 			document.add(initial);
 
 			PdfPTable tabla = new PdfPTable(4);
@@ -727,28 +875,78 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 			PdfPCell dateTitle = new PdfPCell(new Phrase("FECHA", font));
 			dateTitle.setBackgroundColor(new BaseColor(229, 229, 229));
+			dateTitle.setHorizontalAlignment(Element.ALIGN_CENTER);
+			dateTitle.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			tabla.addCell(dateTitle);
 
 			PdfPCell concept = new PdfPCell(new Phrase("CONCEPTO", font));
 			concept.setBackgroundColor(new BaseColor(229, 229, 229));
+			concept.setHorizontalAlignment(Element.ALIGN_CENTER);
+			concept.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			tabla.addCell(concept);
 
 			PdfPCell value = new PdfPCell(new Phrase("VALOR", font));
 			value.setBackgroundColor(new BaseColor(229, 229, 229));
+			value.setHorizontalAlignment(Element.ALIGN_CENTER);
+			value.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			tabla.addCell(value);
 
 			PdfPCell sald = new PdfPCell(new Phrase("SALDO", font));
 			sald.setBackgroundColor(new BaseColor(229, 229, 229));
+			sald.setHorizontalAlignment(Element.ALIGN_CENTER);
+			sald.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			tabla.addCell(sald);
 
-			for (int i = 0; i < movementsList.size(); i++) {
-				String date = super.getdateString(movementsList.get(i).getMovementDate());
+			if (movementsList != null && movementsList.size() != 0) {
+				for (int i = 0; i < movementsList.size(); i++) {
 
-				tabla.addCell(new Phrase(date, fontBlue));
-				tabla.addCell(new Phrase(movementsList.get(i).getMovementConcept(), fontNormal));
-				tabla.addCell(new Phrase(movementsList.get(i).getMovementValue() + "", font));
-				tabla.addCell(new Phrase(movementsList.get(i).getTotalBalance() + "", font));
+					String date = super.getdateString(movementsList.get(i).getMovementDate());
+					PdfPCell dateData = new PdfPCell(new Phrase(date, fontBlue));
+					dateData.setHorizontalAlignment(Element.ALIGN_CENTER);
+					dateData.setVerticalAlignment(Element.ALIGN_MIDDLE);
+					tabla.addCell(dateData);
+
+					PdfPCell conceptData = new PdfPCell(new Phrase(movementsList.get(i).getMovementConcept(),
+							fontNormal));
+					conceptData.setHorizontalAlignment(Element.ALIGN_CENTER);
+					conceptData.setVerticalAlignment(Element.ALIGN_MIDDLE);
+					tabla.addCell(conceptData);
+
+					if (movementsList.get(i).getMovementValue() != null) {
+
+						PdfPCell valueData = new PdfPCell(new Phrase(
+								movementsList.get(i).getMovementValue().toString(), font));
+						valueData.setHorizontalAlignment(Element.ALIGN_CENTER);
+						valueData.setVerticalAlignment(Element.ALIGN_MIDDLE);
+						tabla.addCell(valueData);
+
+					} else {
+						tabla.addCell(" ");
+					}
+
+					if (movementsList.get(i).getTotalBalance() != null) {
+
+						PdfPCell balanceData = new PdfPCell(new Phrase(movementsList.get(i).getTotalBalance()
+								.toString(), font));
+						balanceData.setHorizontalAlignment(Element.ALIGN_CENTER);
+						balanceData.setVerticalAlignment(Element.ALIGN_MIDDLE);
+						tabla.addCell(balanceData);
+
+					} else {
+						tabla.addCell(" ");
+					}
+				}
+			} else if (movementsList == null || movementsList.size() == 0) {
+
+				PdfPCell nonee = new PdfPCell(new Phrase("No hay registros", font));
+				nonee.setHorizontalAlignment(Element.ALIGN_CENTER);
+				nonee.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				nonee.setBorder(Rectangle.BOX);
+				nonee.setColspan(4);
+				tabla.addCell(nonee);
+
 			}
+
 			document.add(tabla);
 
 			Paragraph att = new Paragraph("Cordial saludo, ", FontFactory.getFont("arial", 12, BaseColor.BLACK));
@@ -810,17 +1008,16 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	// Export Pdf
 	@Override
 	public void exportDocumentDetailPdf() {
+		LOGGER.info("iniciando exportar archivo pdf " + "DetailMove" + this.movementDetail.getId() + ".pdf");
 
-		String rutaArchivo = "DetailMove" + getSelectedProduct().getProductNumber() + ".pdf";
-
-		LOGGER.info("iniciando exportar archivo pdf " + "DetailMove" + getSelectedProduct().getProductNumber() + ".pdf");
+		rutaMoveDetailPdf = "DetailMove" + this.movementDetail.getId() + ".pdf";
 
 		try {
 
 			FileOutputStream file = null;
 
 			try {
-				file = new FileOutputStream(rutaArchivo);
+				file = new FileOutputStream(rutaMoveDetailPdf);
 			} catch (FileNotFoundException e) {
 				LOGGER.info("Excepción no se encuentra el archivo" + e.getMessage());
 			}
@@ -833,7 +1030,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 			try {
 				Image foto = Image
-						.getInstance("/de/kqco/online/co/web/j2ee/1.6/kqco_mult_web.ear/kqco_mult_web_front-01.war/assets/img/logo/logobbva.png");
+						.getInstance("RUTA_ICONO_BBVA");
 				foto.scaleToFit(100, 100);
 				document.add(foto);
 			} catch (Exception e) {
@@ -844,43 +1041,245 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 					FontFactory.getFont("arial", 12, BaseColor.BLACK));
 			initial.setAlignment(Element.ALIGN_LEFT);
 			initial.setSpacingBefore(20);
+
 			document.add(initial);
 
-			PdfPTable tabla = new PdfPTable(4);
 			com.itextpdf.text.Font font = new com.itextpdf.text.Font(FontFamily.HELVETICA, 10,
-					com.itextpdf.text.Font.BOLD, BaseColor.BLACK);
+					com.itextpdf.text.Font.BOLD, new BaseColor(102, 102, 102));
 			com.itextpdf.text.Font fontNormal = new com.itextpdf.text.Font(FontFamily.HELVETICA, 10,
-					com.itextpdf.text.Font.NORMAL, BaseColor.BLACK);
+					com.itextpdf.text.Font.NORMAL, new BaseColor(102, 102, 102));
 			com.itextpdf.text.Font fontBlue = new com.itextpdf.text.Font(FontFamily.HELVETICA, 10,
 					com.itextpdf.text.Font.BOLD, new BaseColor(0, 80, 152));
+
+			PdfPTable header = new PdfPTable(4);
+
+			header.setSpacingBefore(20);
+			header.setSpacingAfter(20);
+			header.setHorizontalAlignment(Element.ALIGN_LEFT);
+			header.getDefaultCell().setBorder(0);
+
+			PdfPCell datesP = new PdfPCell(new Phrase("Fecha", fontBlue));
+			datesP.setHorizontalAlignment(Element.ALIGN_LEFT);
+			datesP.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			datesP.setBorder(0);
+			header.addCell(datesP);
+
+			PdfPCell concep = new PdfPCell(new Phrase("Concepto", fontBlue));
+			concep.setHorizontalAlignment(Element.ALIGN_LEFT);
+			concep.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			concep.setBorder(0);
+			header.addCell(concep);
+
+			PdfPCell value = new PdfPCell(new Phrase("Valor", fontBlue));
+			value.setHorizontalAlignment(Element.ALIGN_LEFT);
+			value.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			value.setBorder(0);
+			header.addCell(value);
+
+			PdfPCell sald = new PdfPCell(new Phrase("Saldo", fontBlue));
+			sald.setHorizontalAlignment(Element.ALIGN_LEFT);
+			sald.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			sald.setBorder(0);
+			header.addCell(sald);
+
+			String date = super.getdateString(movementAction.getMovementDate());
+			PdfPCell dataDates = new PdfPCell(new Phrase(date, fontNormal));
+			dataDates.setHorizontalAlignment(Element.ALIGN_LEFT);
+			dataDates.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			dataDates.setBorder(0);
+			header.addCell(dataDates);
+
+			PdfPCell dataConcep = new PdfPCell(new Phrase(movementAction.getMovementConcept(), fontNormal));
+			dataConcep.setHorizontalAlignment(Element.ALIGN_LEFT);
+			dataConcep.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			dataConcep.setBorder(0);
+			header.addCell(dataConcep);
+
+			if (movementAction.getMovementValue() != null) {
+				PdfPCell datavalue = new PdfPCell(new Phrase(movementAction.getMovementValue().toString(), fontNormal));
+				datavalue.setHorizontalAlignment(Element.ALIGN_LEFT);
+				datavalue.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				datavalue.setBorder(0);
+				header.addCell(datavalue);
+			} else {
+				header.addCell(" ");
+			}
+
+			if (movementAction.getTotalBalance() != null) {
+				PdfPCell dataBalance = new PdfPCell(new Phrase(movementAction.getTotalBalance().toString(), fontNormal));
+				dataBalance.setHorizontalAlignment(Element.ALIGN_LEFT);
+				dataBalance.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				dataBalance.setBorder(0);
+				header.addCell(dataBalance);
+			} else {
+				header.addCell(" ");
+			}
+
+			document.add(header);
+
+			Paragraph title = new Paragraph("Información del movimiento", FontFactory.getFont("helvetica", 11,
+					new BaseColor(51, 51, 51)));
+			title.setSpacingBefore(20);
+
+			document.add(title);
+
+			PdfPTable tabla = new PdfPTable(2);
+
 			tabla.setSpacingBefore(20);
 			tabla.setSpacingAfter(20);
+			tabla.setHorizontalAlignment(Element.ALIGN_LEFT);
+			tabla.getDefaultCell().setBorder(0);
 
-			PdfPCell dateTitle = new PdfPCell(new Phrase("FECHA", font));
-			dateTitle.setBackgroundColor(new BaseColor(229, 229, 229));
-			tabla.addCell(dateTitle);
+			PdfPCell moveNumber = new PdfPCell(new Phrase("N° Movimiento", font));
+			moveNumber.setHorizontalAlignment(Element.ALIGN_LEFT);
+			moveNumber.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			moveNumber.setBorder(0);
+			tabla.addCell(moveNumber);
 
-			PdfPCell concept = new PdfPCell(new Phrase("CONCEPTO", font));
-			concept.setBackgroundColor(new BaseColor(229, 229, 229));
-			tabla.addCell(concept);
+			PdfPCell idMove = new PdfPCell(new Phrase(this.movementDetail.getId(), fontNormal));
+			idMove.setHorizontalAlignment(Element.ALIGN_LEFT);
+			idMove.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			idMove.setBorder(0);
+			tabla.addCell(idMove);
 
-			PdfPCell value = new PdfPCell(new Phrase("VALOR", font));
-			value.setBackgroundColor(new BaseColor(229, 229, 229));
-			tabla.addCell(value);
+			PdfPCell operDate = new PdfPCell(new Phrase("Fecha de operación", font));
+			operDate.setHorizontalAlignment(Element.ALIGN_LEFT);
+			operDate.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			operDate.setBorder(0);
+			tabla.addCell(operDate);
 
-			PdfPCell sald = new PdfPCell(new Phrase("SALDO", font));
-			sald.setBackgroundColor(new BaseColor(229, 229, 229));
-			tabla.addCell(sald);
-
-			for (int i = 0; i < movementsList.size(); i++) {
-
-				String date = super.getdateString(movementsList.get(i).getMovementDate());
-
-				tabla.addCell(new Phrase(date, fontBlue));
-				tabla.addCell(new Phrase(movementsList.get(i).getMovementConcept(), fontNormal));
-				tabla.addCell(new Phrase(movementsList.get(i).getMovementValue() + "", font));
-				tabla.addCell(new Phrase(movementsList.get(i).getTotalBalance() + "", font));
+			if (movementDetail.getOperationCode() != null) {
+				PdfPCell operDat = new PdfPCell(new Phrase(this.movementDetail.getOperationCode().replace("/", "-"),
+						fontNormal));
+				operDat.setHorizontalAlignment(Element.ALIGN_LEFT);
+				operDat.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				operDat.setBorder(0);
+				tabla.addCell(operDat);
+			} else {
+				tabla.addCell(" ");
 			}
+
+			PdfPCell dateValue = new PdfPCell(new Phrase("Fecha valor", font));
+			dateValue.setHorizontalAlignment(Element.ALIGN_LEFT);
+			dateValue.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			dateValue.setBorder(0);
+			tabla.addCell(dateValue);
+
+			String daVD = super.getdateString(this.movementDetail.getTransactionDate());
+			PdfPCell dateVData = new PdfPCell(new Phrase(daVD, fontNormal));
+			dateVData.setHorizontalAlignment(Element.ALIGN_LEFT);
+			dateVData.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			dateVData.setBorder(0);
+			tabla.addCell(dateVData);
+
+			PdfPCell hourValue = new PdfPCell(new Phrase("Hora operación", font));
+			hourValue.setHorizontalAlignment(Element.ALIGN_LEFT);
+			hourValue.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			hourValue.setBorder(0);
+			tabla.addCell(hourValue);
+
+			String horesdDta = super.getdateString(this.movementDetail.getOperationHour());
+			PdfPCell horeDta = new PdfPCell(new Phrase(horesdDta, fontNormal));
+			horeDta.setHorizontalAlignment(Element.ALIGN_LEFT);
+			horeDta.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			horeDta.setBorder(0);
+			tabla.addCell(horeDta);
+
+			PdfPCell valueDta = new PdfPCell(new Phrase("Valor", font));
+			valueDta.setHorizontalAlignment(Element.ALIGN_LEFT);
+			valueDta.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			valueDta.setBorder(0);
+			tabla.addCell(valueDta);
+
+			if (movementDetail.getOperationValue() != null) {
+				PdfPCell valeuDt = new PdfPCell(new Phrase(this.movementDetail.getOperationValue().toString(),
+						fontNormal));
+				valeuDt.setHorizontalAlignment(Element.ALIGN_LEFT);
+				valeuDt.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				valeuDt.setBorder(0);
+				tabla.addCell(valeuDt);
+			} else {
+				tabla.addCell(" ");
+			}
+
+			PdfPCell saAfter = new PdfPCell(new Phrase("Saldo después del movimiento", font));
+			saAfter.setHorizontalAlignment(Element.ALIGN_LEFT);
+			saAfter.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			saAfter.setBorder(0);
+			tabla.addCell(saAfter);
+
+			if (movementDetail.getValueslope() != null) {
+				PdfPCell saldaDat = new PdfPCell(new Phrase(this.movementDetail.getValueslope().toString(), fontNormal));
+				saldaDat.setHorizontalAlignment(Element.ALIGN_LEFT);
+				saldaDat.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				saldaDat.setBorder(0);
+				tabla.addCell(saldaDat);
+			} else {
+				tabla.addCell(" ");
+			}
+
+			PdfPCell codOpera = new PdfPCell(new Phrase("Código de operación", font));
+			codOpera.setHorizontalAlignment(Element.ALIGN_LEFT);
+			codOpera.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			codOpera.setBorder(0);
+			tabla.addCell(codOpera);
+
+			PdfPCell codDOpe = new PdfPCell(new Phrase(this.movementDetail.getOperationCode(), fontNormal));
+			codDOpe.setHorizontalAlignment(Element.ALIGN_LEFT);
+			codDOpe.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			codDOpe.setBorder(0);
+			tabla.addCell(codDOpe);
+
+			PdfPCell descripOper = new PdfPCell(new Phrase("Descripción de la operación", font));
+			descripOper.setHorizontalAlignment(Element.ALIGN_LEFT);
+			descripOper.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			descripOper.setBorder(0);
+			tabla.addCell(descripOper);
+
+			PdfPCell destDtaOpe = new PdfPCell(new Phrase(this.movementDetail.getOperationDescription(), fontNormal));
+			destDtaOpe.setHorizontalAlignment(Element.ALIGN_LEFT);
+			destDtaOpe.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			destDtaOpe.setBorder(0);
+			tabla.addCell(destDtaOpe);
+
+			PdfPCell place = new PdfPCell(new Phrase("Plaza", font));
+			place.setHorizontalAlignment(Element.ALIGN_LEFT);
+			place.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			place.setBorder(0);
+			tabla.addCell(place);
+
+			PdfPCell placeDta = new PdfPCell(new Phrase(this.movementDetail.getPlaza().getPostalAddress(), fontNormal));
+			placeDta.setHorizontalAlignment(Element.ALIGN_LEFT);
+			placeDta.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			placeDta.setBorder(0);
+			tabla.addCell(placeDta);
+
+			PdfPCell cenMove = new PdfPCell(new Phrase("Centro origen del movimiento", font));
+			cenMove.setHorizontalAlignment(Element.ALIGN_LEFT);
+			cenMove.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			cenMove.setBorder(0);
+			tabla.addCell(cenMove);
+
+			PdfPCell oriDtaCent = new PdfPCell(new Phrase(this.movementDetail.getOriginCenterMovement(), fontNormal));
+			oriDtaCent.setHorizontalAlignment(Element.ALIGN_LEFT);
+			oriDtaCent.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			oriDtaCent.setBorder(0);
+			tabla.addCell(oriDtaCent);
+
+			if (movementDetail.getState() != null) {
+				PdfPCell stateMove = new PdfPCell(new Phrase("Estado", font));
+				stateMove.setHorizontalAlignment(Element.ALIGN_LEFT);
+				stateMove.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				stateMove.setBorder(0);
+				tabla.addCell(stateMove);
+
+				PdfPCell StateCDat = new PdfPCell(new Phrase(this.movementDetail.getState(), fontNormal));
+				StateCDat.setHorizontalAlignment(Element.ALIGN_LEFT);
+				StateCDat.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				StateCDat.setBorder(0);
+				tabla.addCell(StateCDat);
+			}
+
 			document.add(tabla);
 
 			Paragraph att = new Paragraph("Cordial saludo, ", FontFactory.getFont("arial", 12, BaseColor.BLACK));
@@ -987,10 +1386,10 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		if (typeDoc.equals("DetailMovement")) {
 			pdfFile = new File("MovimientosDetail" + getSelectedProduct().getProductNumber() + ".pdf");
 		}
-		LOGGER.info("printFile ruta de archivo " + pdfFile.getPath());
+		LOGGER.info("printFile ruta de archivo " + pdfFile.getAbsolutePath());
 		if (pdfFile.exists()) {
 			if (pdfFile.delete()) {
-				LOGGER.info("borró el archivo " + pdfFile.getPath());
+				LOGGER.info("borró el archivo " + pdfFile.getAbsolutePath());
 				if (typeDoc.equals("Movements")) {
 					exportDocumentPdf();
 				}
@@ -1000,7 +1399,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			} else
 				LOGGER.info("No lo borró");
 		} else {
-			LOGGER.info("crea el archivo " + pdfFile.getPath());
+			LOGGER.info("crea el archivo " + pdfFile.getAbsolutePath());
 			if (typeDoc.equals("Movements")) {
 				exportDocumentPdf();
 			}
@@ -1012,17 +1411,17 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 		String s = System.getProperty("os.name").toLowerCase();
 		if (s.contains("win")) {
-			createCommand("explorer", "%s", pdfFile.getPath());
+			createCommand("explorer", "%s", pdfFile.getAbsolutePath());
 		}
 
 		if (s.contains("mac")) {
-			createCommand("open", "%s", pdfFile.getPath());
+			createCommand("open", "%s", pdfFile.getAbsolutePath());
 		}
 
 		if (s.contains("linux") || s.contains("unix")) {
-			createCommand("kde-open", "%s", pdfFile.getPath());
-			createCommand("gnome-open", "%s", pdfFile.getPath());
-			createCommand("xdg-open", "%s", pdfFile.getPath());
+			createCommand("kde-open", "%s", pdfFile.getAbsolutePath());
+			createCommand("gnome-open", "%s", pdfFile.getAbsolutePath());
+			createCommand("xdg-open", "%s", pdfFile.getAbsolutePath());
 		}
 
 	}
@@ -1077,9 +1476,9 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			Properties props = new Properties();
 			props.put("mail.smtp.auth", "false");
 			props.put("mail.smtp.starttls.enable", "true");
-			props.put("mail.smtp.user", "BBVA@bbvanet.com.co");
-			props.put("mail.smtp.host", "172.16.9.53");
-			props.put("mail.smtp.port", "24");
+			props.put("mail.smtp.user", REMITENTE);
+			props.put("mail.smtp.host", IP_IRONPORT);
+			props.put("mail.smtp.port", PUERTO_IRONPORT);
 			Session session = Session.getDefaultInstance(props, null);
 			BodyPart header = new MimeBodyPart();
 			String htmlText = "<img src=\"https://ci3.googleusercontent.com/proxy/riFpqgLCyTit6KJRJ18o9l7IUkTjZEPxeh0gj_-ghcRMq5l5tJu-OyAExex95MjbTbd4wCqTGQ-tkooIlpHeuP5CR_rV4XThdoA8dA=s0-d-e1-ft#https://www.bbva.com.co/documents/10180/84494/bbva.gif\">";
@@ -1416,8 +1815,8 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		exportDocumentExcel();
 		InputStream stream;
 		try {
-			stream = new BufferedInputStream(new FileInputStream(RUTAEXCEL));
-			exportExcel = new DefaultStreamedContent(stream, "application/xls", "Movimientos.xls");
+			stream = new BufferedInputStream(new FileInputStream(rutaMoveExcel));
+			exportExcel = new DefaultStreamedContent(stream, "application/xls", rutaMoveExcel);
 		} catch (FileNotFoundException e) {
 			LOGGER.info("Error al descargar el Excel " + e.getMessage());
 		}
@@ -1436,10 +1835,8 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		exportDocumentPdf();
 		InputStream stream;
 		try {
-			stream = new BufferedInputStream(new FileInputStream("Movimientos"
-					+ getSelectedProduct().getProductNumber() + ".pdf"));
-			exportPdf = new DefaultStreamedContent(stream, "application/pdf", "Movimientos"
-					+ getSelectedProduct().getProductNumber() + ".pdf");
+			stream = new BufferedInputStream(new FileInputStream(rutaMovePdf));
+			exportPdf = new DefaultStreamedContent(stream, "application/pdf", rutaMovePdf);
 		} catch (FileNotFoundException e) {
 			LOGGER.info("Error al descargar el pdf " + e.getMessage());
 		}
@@ -1460,10 +1857,8 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		exportDocumentDetailPdf();
 		InputStream stream;
 		try {
-			stream = new BufferedInputStream(new FileInputStream("DetailMove" + getSelectedProduct().getProductNumber()
-					+ ".pdf"));
-			exportDetailPdf = new DefaultStreamedContent(stream, "application/pdf", "DetailMove"
-					+ getSelectedProduct().getProductNumber() + ".pdf");
+			stream = new BufferedInputStream(new FileInputStream(rutaMoveDetailPdf));
+			exportDetailPdf = new DefaultStreamedContent(stream, "application/pdf", rutaMoveDetailPdf);
 		} catch (FileNotFoundException e) {
 			LOGGER.info("Error al descargar el pdf " + e.getMessage());
 		}
@@ -1515,6 +1910,20 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 	public void setStatusLabel(String statusLabel) {
 		this.statusLabel = statusLabel;
+	}
+
+	/**
+	 * @return the movementAction
+	 */
+	public MovementDto getMovementAction() {
+		return movementAction;
+	}
+
+	/**
+	 * @param movementAction the movementAction to set
+	 */
+	public void setMovementAction(MovementDto movementAction) {
+		this.movementAction = movementAction;
 	}
 
 	public List<MovementDto> getMovementsListGen() {

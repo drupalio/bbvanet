@@ -9,12 +9,13 @@
 	<composite:attribute name="render" />
 	<composite:attribute name="valueExcel" />
 	<composite:attribute name="valuePdf" />
-	<composite:attribute name="valueCorreo" method-signature="void action()"/>
-	<composite:attribute name="valuePrinter" method-signature="void action()"/>
+	<composite:attribute name="style" />
+	<composite:attribute name="valueCorreo" method-signature="void action()" />
+	<composite:attribute name="valuePrinter" method-signature="void action()" />
 </composite:interface>
 <composite:implementation>
 	<div class="utility-icons">
-		<p:outputPanel autoUpdate="true">
+		<p:outputPanel autoUpdate="true" style="#{cc.attrs.style}">
 			<h:form id="documentsExport" rendered="#{cc.attrs.render}">
 				<p:commandLink ajax="false" styleClass="icon-excel-file">
 					<p:fileDownload value="#{cc.attrs.valueExcel}" />

@@ -64,6 +64,7 @@ import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
+import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -113,6 +114,9 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 	private String rutaPdfCupo;
 
 	private String rutaPdfMove;
+	
+	protected String RUTA_ICONO_BBVA = MessagesHelper.INSTANCE
+			.getString("ruta.iconobbva");
 
 	@Resource(name = "quotaDetailFacade")
 	private transient QuotaDetailFacade quotaDetailFacade;
@@ -320,6 +324,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 	@Override
 	public void exportDocumentExcel() {
 		LOGGER.info("iniciando exportar archivo excel");
+
 		File miDir = new File(".");
 		try {
 			LOGGER.info("Directorio actual: " + miDir.getCanonicalPath());
@@ -328,6 +333,8 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 		}
 
 		rutaExcelCupo = "MovimientosCupo" + getSelectedProduct().getProductNumber() + ".xls";
+
+		List<Cell> cellSheet = new ArrayList<Cell>();
 
 		int inicio = 10;
 
@@ -345,7 +352,8 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 			FileOutputStream archivo = new FileOutputStream(archivoXLS);
 			Sheet hoja = libro.createSheet("Movimientos de cupo rotativo");
 			try {
-				URL url = new URL("/de/kqco/online/co/web/j2ee/1.6/kqco_mult_web.ear/kqco_mult_web_front-01.war/assets/img/logo/logobbva.png");
+				URL url = new URL(
+						"RUTA_ICONO_BBVA");
 				InputStream is = url.openStream();
 				// InputStream inputStream = new FileInputStream(
 				// "https://www.bbva.com.co/BBVA-home-theme/images/BBVA/logo_bbva.png");
@@ -374,6 +382,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 			Row filaHeader = hoja.createRow(inicio);
 			filaHeader.createCell(1).setCellValue("Estimado(a) cliente:");
 			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 2));
+
 			inicio = inicio + 4;
 
 			filaHeader = hoja.createRow(inicio);
@@ -394,28 +403,59 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 			cellStyleHeader.setBorderTop((short)1);
 			cellStyleHeader.setAlignment(CellStyle.ALIGN_CENTER);
 
-			Cell dateHeader = filaHeader.createCell(1);
-			dateHeader.setCellType(Cell.CELL_TYPE_STRING);
-			dateHeader.setCellStyle(cellStyleHeader);
-			dateHeader.setCellValue("FECHA");
+			if (quotamovenDtos != null && (this.quotamovenDtos.size() != 0 || !this.quotamovenDtos.isEmpty())) {
 
-			Cell concep = filaHeader.createCell(2);
-			concep.setCellType(Cell.CELL_TYPE_STRING);
-			concep.setCellStyle(cellStyleHeader);
-			concep.setCellValue("CONCEPTO");
+				Cell dateHeader = filaHeader.createCell(1);
+				dateHeader.setCellType(Cell.CELL_TYPE_STRING);
+				dateHeader.setCellStyle(cellStyleHeader);
+				dateHeader.setCellValue("FECHA");
+				cellSheet.add(dateHeader);
 
-			Cell pend = filaHeader.createCell(3);
-			pend.setCellType(Cell.CELL_TYPE_STRING);
-			pend.setCellStyle(cellStyleHeader);
-			pend.setCellValue("PENDIENTE");
+				Cell concep = filaHeader.createCell(2);
+				concep.setCellType(Cell.CELL_TYPE_STRING);
+				concep.setCellStyle(cellStyleHeader);
+				concep.setCellValue("CONCEPTO");
+				cellSheet.add(concep);
 
-			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 1));
-			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 2, 2));
-			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 3, 3));
+				Cell pend = filaHeader.createCell(3);
+				pend.setCellType(Cell.CELL_TYPE_STRING);
+				pend.setCellStyle(cellStyleHeader);
+				pend.setCellValue("PENDIENTE");
+				cellSheet.add(pend);
+
+				hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 1));
+				hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 2, 2));
+				hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 3, 3));
+
+			} else {
+
+				Cell dateHeader = filaHeader.createCell(1);
+				dateHeader.setCellType(Cell.CELL_TYPE_STRING);
+				dateHeader.setCellStyle(cellStyleHeader);
+				dateHeader.setCellValue("FECHA");
+				hoja.autoSizeColumn(1);
+
+				Cell concep = filaHeader.createCell(2);
+				concep.setCellType(Cell.CELL_TYPE_STRING);
+				concep.setCellStyle(cellStyleHeader);
+				concep.setCellValue("CONCEPTO");
+				hoja.autoSizeColumn(2);
+
+				Cell pend = filaHeader.createCell(3);
+				pend.setCellType(Cell.CELL_TYPE_STRING);
+				pend.setCellStyle(cellStyleHeader);
+				pend.setCellValue("PENDIENTE");
+				hoja.autoSizeColumn(3);
+
+				hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 1));
+				hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 2, 2));
+				hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 3, 3));
+
+			}
 
 			inicio = inicio + 1;
 
-			if (quotamovenDtos != null) {
+			if (quotamovenDtos != null && (this.quotamovenDtos.size() != 0 || !this.quotamovenDtos.isEmpty())) {
 				for (int f = 0; f < this.quotamovenDtos.size(); f++) {
 					Row fila = hoja.createRow(f + inicio);
 					for (int c = 1; c < 4; c++) {
@@ -438,24 +478,20 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 						cellStyle.setWrapText(true);
 
 						if (c == 1) {
-
 							cellStyle.setFont(fontad);
-							celda.setCellStyle(cellStyle);
-							celda.setCellValue(super.getdateString(this.quotamovenDtos.get(f).getMovementDate()));
+							String DateString = super.getdateString(this.quotamovenDtos.get(f).getMovementDate());
+							super.createCell(celda, DateString, cellStyle);
+							cellSheet.add(celda);
 						}
 
 						if (c == 2) {
-
-							celda.setCellStyle(cellStyle);
-							celda.setCellValue(this.quotamovenDtos.get(f).getMovementConcept());
-
+							super.createCell(celda, this.quotamovenDtos.get(f).getMovementConcept(), cellStyle);
+							cellSheet.add(celda);
 						}
 
 						if (c == 3) {
-
-							celda.setCellStyle(cellStyle);
-							celda.setCellValue(this.quotamovenDtos.get(f).getMovementValue().toString());
-
+							super.createCellMoney(celda, this.quotamovenDtos.get(f).getMovementValue(), cellStyle);
+							cellSheet.add(celda);
 						}
 
 						hoja.addMergedRegion(new CellRangeAddress(f, f, 1, 1));
@@ -463,7 +499,38 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 						hoja.addMergedRegion(new CellRangeAddress(f, f, 3, 3));
 					}
 				}
+
+				super.maxSize(cellSheet, hoja, 3);
+
 				inicio = inicio + this.quotamovenDtos.size() + 2;
+
+			} else if (quotamovenDtos != null && (this.quotamovenDtos.size() == 0 || this.quotamovenDtos.isEmpty())) {
+
+				Row filaOter = hoja.createRow(inicio);
+
+				Cell celda = filaOter.createCell(1);
+				Cell celda1 = filaOter.createCell(2);
+				Cell celda2 = filaOter.createCell(3);
+
+				celda.setCellType(Cell.CELL_TYPE_STRING);
+				CellStyle cellStyle = libro.createCellStyle();
+
+				cellStyle.setAlignment(CellStyle.ALIGN_CENTER);
+				cellStyle.setBorderBottom((short)1);
+				cellStyle.setBorderLeft((short)1);
+				cellStyle.setBorderRight((short)1);
+				cellStyle.setBorderTop((short)1);
+				cellStyle.setWrapText(true);
+
+				celda.setCellStyle(cellStyle);
+				celda1.setCellStyle(cellStyle);
+				celda2.setCellStyle(cellStyle);
+
+				celda.setCellValue("No hay registros");
+
+				hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 3));
+
+				inicio = inicio + this.quotamovenDtos.size() + 3;
 			}
 
 			Row filaFooter = hoja.createRow(inicio);
@@ -497,7 +564,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 			Cell nota = filaFooter.createCell(1);
 			nota.setCellStyle(cellNotaStyle);
 			nota.setCellValue("Nota: Si no eres el destinatario de este mensaje, por favor comunícate con nosotros con el fin de realizar la actualización correspondiente, al 4010000 en Bogotá, 4938300 en Medellín, 3503500 en Barranquilla, 8892020 en Cali, 6304000 en Bucaramanga o al 01800 912227 desde el resto del país. ");
-			filaFooter.setHeight((short)900);
+			filaFooter.setHeight((short)1100);
 			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 3));
 
 			inicio = inicio + 2;
@@ -514,7 +581,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 			Cell message = filaFooter.createCell(1);
 			message.setCellStyle(cellFooterStyle);
 			message.setCellValue("Este mensaje es solamente para la persona a la que va dirigido. Puede contener informacion  confidencial  o  legalmente  protegida.  No  hay  renuncia  a la confidencialidad o privilegio por cualquier transmision mala/erronea. Si usted ha recibido este mensaje por error,  le rogamos que borre de su sistema inmediatamente el mensaje asi como todas sus copias, destruya todas las copias del mismo de su disco duro y notifique al remitente.  No debe,  directa o indirectamente, usar, revelar, distribuir, imprimir o copiar ninguna de las partes de este mensaje si no es usted el destinatario. Cualquier opinion expresada en este mensaje proviene del remitente, excepto cuando el mensaje establezca lo contrario y el remitente este autorizado para establecer que dichas opiniones provienen de  BBVA. Notese que el correo electronico via Internet no permite asegurar ni la confidencialidad de los mensajes que se transmiten ni la correcta recepcion de los mismos. En el caso de que el destinatario de este mensaje no consintiera la utilizacion del correo electronico via Internet, rogamos lo ponga en nuestro conocimiento de manera inmediata.");
-			filaFooter.setHeight((short)2600);
+			filaFooter.setHeight((short)3500);
 			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 3));
 
 			inicio = inicio + 2;
@@ -529,7 +596,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 			Cell messEng = filaFooter.createCell(1);
 			messEng.setCellStyle(cellFooterStyle);
 			messEng.setCellValue("This message is intended exclusively for the named person. It may contain confidential, propietary or legally privileged information. No confidentiality or privilege is waived or lost by any mistransmission. If you receive this message in error, please immediately delete it and all copies of it from your system, destroy any hard copies of it and notify the sender. Your must not, directly or indirectly, use, disclose, distribute, print, or copy any part of this message if you are not the intended recipient. Any views expressed in this message are those of the individual sender, except where the message states otherwise and the sender is authorised to state them to be the views of BBVA. Please note that internet e-mail neither guarantees the confidentiality nor the proper receipt of the message sent.If the addressee of this message does not consent to the use of internet e-mail, please communicate it to us immediately.");
-			filaFooter.setHeight((short)2100);
+			filaFooter.setHeight((short)2900);
 			hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 3));
 
 			inicio = inicio + 1;
@@ -575,7 +642,8 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 			document.open();
 
 			try {
-				Image foto = Image.getInstance("/de/kqco/online/co/web/j2ee/1.6/kqco_mult_web.ear/kqco_mult_web_front-01.war/assets/img/logo/logobbva.png");
+				Image foto = Image
+						.getInstance("RUTA_ICONO_BBVA");
 				foto.scaleToFit(100, 100);
 				document.add(foto);
 			} catch (Exception e) {
@@ -616,23 +684,38 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 			value.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			tabla.addCell(value);
 
-			for (int i = 0; i < quotamovenDtos.size(); i++) {
-				String date = super.getdateString(quotamovenDtos.get(i).getMovementDate());
+			if (quotamovenDtos != null && quotamovenDtos.size() != 0) {
+				for (int i = 0; i < quotamovenDtos.size(); i++) {
+					String date = super.getdateString(quotamovenDtos.get(i).getMovementDate());
+					PdfPCell dateData = new PdfPCell(new Phrase(date, fontBlue));
+					dateData.setHorizontalAlignment(Element.ALIGN_CENTER);
+					dateData.setVerticalAlignment(Element.ALIGN_MIDDLE);
+					tabla.addCell(dateData);
 
-				PdfPCell dateData = new PdfPCell(new Phrase(date, fontBlue));
-				dateData.setHorizontalAlignment(Element.ALIGN_CENTER);
-				dateData.setVerticalAlignment(Element.ALIGN_MIDDLE);
-				tabla.addCell(dateData);
+					PdfPCell dataconcept = new PdfPCell(new Phrase(quotamovenDtos.get(i).getMovementConcept(),
+							fontNormal));
+					dataconcept.setHorizontalAlignment(Element.ALIGN_CENTER);
+					dataconcept.setVerticalAlignment(Element.ALIGN_MIDDLE);
+					tabla.addCell(dataconcept);
 
-				PdfPCell dataconcept = new PdfPCell(new Phrase(quotamovenDtos.get(i).getMovementConcept(), fontNormal));
-				dataconcept.setHorizontalAlignment(Element.ALIGN_CENTER);
-				dataconcept.setVerticalAlignment(Element.ALIGN_MIDDLE);
-				tabla.addCell(dataconcept);
+					if (quotamovenDtos.get(i).getMovementValue() != null) {
+						PdfPCell dataValue = new PdfPCell(new Phrase(quotamovenDtos.get(i).getMovementValue()
+								.toString(), font));
+						dataValue.setHorizontalAlignment(Element.ALIGN_CENTER);
+						dataValue.setVerticalAlignment(Element.ALIGN_MIDDLE);
+						tabla.addCell(dataValue);
+					} else {
+						tabla.addCell(" ");
+					}
+				}
+			} else if (quotamovenDtos == null || quotamovenDtos.size() == 0) {
 
-				PdfPCell dataValue = new PdfPCell(new Phrase(quotamovenDtos.get(i).getMovementValue() + "", font));
-				dataValue.setHorizontalAlignment(Element.ALIGN_CENTER);
-				dataValue.setVerticalAlignment(Element.ALIGN_MIDDLE);
-				tabla.addCell(dataValue);
+				PdfPCell nonee = new PdfPCell(new Phrase("No hay registros", font));
+				nonee.setHorizontalAlignment(Element.ALIGN_CENTER);
+				nonee.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				nonee.setBorder(Rectangle.BOX);
+				nonee.setColspan(3);
+				tabla.addCell(nonee);
 			}
 
 			document.add(tabla);
@@ -717,7 +800,8 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 			document.open();
 
 			try {
-				Image foto = Image.getInstance("/de/kqco/online/co/web/j2ee/1.6/kqco_mult_web.ear/kqco_mult_web_front-01.war/assets/img/logo/logobbva.png");
+				Image foto = Image
+						.getInstance("RUTA_ICONO_BBVA");
 				foto.scaleToFit(100, 100);
 				document.add(foto);
 			} catch (Exception e) {
@@ -763,7 +847,6 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 			header.addCell(pends);
 
 			String date = super.getdateString(quotaMove.getMovementDate());
-
 			PdfPCell dataDates = new PdfPCell(new Phrase(date, fontNormal));
 			dataDates.setHorizontalAlignment(Element.ALIGN_LEFT);
 			dataDates.setVerticalAlignment(Element.ALIGN_MIDDLE);
@@ -776,11 +859,15 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 			dataConcep.setBorder(0);
 			header.addCell(dataConcep);
 
-			PdfPCell dataPends = new PdfPCell(new Phrase(quotaMove.getMovementValue().toString(), fontNormal));
-			dataPends.setHorizontalAlignment(Element.ALIGN_LEFT);
-			dataPends.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			dataPends.setBorder(0);
-			header.addCell(dataPends);
+			if (quotaMove.getMovementValue() != null) {
+				PdfPCell dataPends = new PdfPCell(new Phrase(quotaMove.getMovementValue().toString(), fontNormal));
+				dataPends.setHorizontalAlignment(Element.ALIGN_LEFT);
+				dataPends.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				dataPends.setBorder(0);
+				header.addCell(dataPends);
+			} else {
+				header.addCell(" ");
+			}
 
 			document.add(header);
 
@@ -815,11 +902,15 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 			fool.setBorder(0);
 			tabla.addCell(fool);
 
-			PdfPCell dataFool = new PdfPCell(new Phrase(quotaMoveDetailDto.getValueslope().toString(), fontNormal));
-			dataFool.setHorizontalAlignment(Element.ALIGN_CENTER);
-			dataFool.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			dataFool.setBorder(0);
-			tabla.addCell(dataFool);
+			if (quotaMoveDetailDto.getValueslope() != null) {
+				PdfPCell dataFool = new PdfPCell(new Phrase(quotaMoveDetailDto.getValueslope().toString(), fontNormal));
+				dataFool.setHorizontalAlignment(Element.ALIGN_CENTER);
+				dataFool.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				dataFool.setBorder(0);
+				tabla.addCell(dataFool);
+			} else {
+				tabla.addCell(" ");
+			}
 
 			document.add(tabla);
 
