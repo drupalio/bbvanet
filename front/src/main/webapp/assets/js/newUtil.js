@@ -359,3 +359,15 @@ function error(errorCode) {
 	else
 		alert("Ha ocurrido un error")
 }
+
+function imgError(image) {
+       var imgWidth=$(image).attr("width");
+       var imgHeight=$(image).attr("height");
+        if (typeof imgWidth !== 'undefined' && typeof imgHeight !== 'undefined') {
+            $(image).parents('.banner').css("cssText", "display: block !important;");
+            return true;
+        } else {
+        	$(image).parents('.banner').css("cssText", "display: none !important;");
+        	return false;
+        }   
+}

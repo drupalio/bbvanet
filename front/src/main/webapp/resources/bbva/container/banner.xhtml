@@ -13,19 +13,17 @@
 	<composite:attribute name="href" type="String" />
 	<composite:attribute name="img_URL" type="String" />
 	<composite:attribute name="display" type="String" />
+	<composite:attribute name="id_img" type="String"></composite:attribute>
 </composite:interface>
 
 <composite:implementation>
 
-	<div
-		class="carousel slide slider-container col-xs-12 hidden-xs hidden-sm"
-		id="globalSlider" style="display:#{cc.attrs.display} !important;">
+	<div class="carousel slide slider-container col-xs-12 hidden-xs hidden-sm banner"
+		id="globalSlider" >
 		<div class="slider-content carousel-inner">
 			<a href="#{cc.attrs.href}"
 				style="letter-spacing: 0.03em; line-height: 1.4;" target="_blank">
-				<img alt=""
-				src="#{cc.attrs.img_URL}"
-				style="width: 590px;" />
+				<img id="#{cc.attrs.id_img}" src="#{cc.attrs.img_URL}" onerror="imgError(jQuery(this))"/>
 			</a>
 		</div>
 
