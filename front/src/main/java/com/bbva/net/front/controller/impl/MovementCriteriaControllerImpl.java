@@ -141,7 +141,19 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	private String rutaMovePdf;
 
 	private String rutaMoveDetailPdf;
+	
+	protected String RUTA_ICONO_BBVA = MessagesHelper.INSTANCE
+			.getString("ruta.iconobbva");
 
+	protected String IP_IRONPORT = MessagesHelper.INSTANCE
+			.getString("ruta.ipironport");
+	
+	protected String PUERTO_IRONPORT = MessagesHelper.INSTANCE
+			.getString("ruta.puertoironport");
+	
+	protected String REMITENTE = MessagesHelper.INSTANCE
+			.getString("ruta.remitente");
+	
 	@Override
 	public void init() {
 		super.init();
@@ -528,7 +540,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			Sheet hoja = libro.createSheet("Movimientos de cuenta");
 			try {
 				URL url = new URL(
-						"/de/kqco/online/co/web/j2ee/1.6/kqco_mult_web.ear/kqco_mult_web_front-01.war/assets/img/logo/logobbva.png");
+						"RUTA_ICONO_BBVA");
 				InputStream is = url.openStream();
 				// InputStream inputStream = new FileInputStream(
 				// "https://www.bbva.com.co/BBVA-home-theme/images/BBVA/logo_bbva.png");
@@ -835,7 +847,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 			try {
 				Image foto = Image
-						.getInstance("/de/kqco/online/co/web/j2ee/1.6/kqco_mult_web.ear/kqco_mult_web_front-01.war/assets/img/logo/logobbva.png");
+						.getInstance("RUTA_ICONO_BBVA");
 				foto.scaleToFit(100, 100);
 				document.add(foto);
 			} catch (Exception e) {
@@ -1016,7 +1028,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 			try {
 				Image foto = Image
-						.getInstance("/de/kqco/online/co/web/j2ee/1.6/kqco_mult_web.ear/kqco_mult_web_front-01.war/assets/img/logo/logobbva.png");
+						.getInstance("RUTA_ICONO_BBVA");
 				foto.scaleToFit(100, 100);
 				document.add(foto);
 			} catch (Exception e) {
@@ -1462,9 +1474,9 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			Properties props = new Properties();
 			props.put("mail.smtp.auth", "false");
 			props.put("mail.smtp.starttls.enable", "true");
-			props.put("mail.smtp.user", "BBVA@bbvanet.com.co");
-			props.put("mail.smtp.host", "172.16.9.53");
-			props.put("mail.smtp.port", "587");
+			props.put("mail.smtp.user", REMITENTE);
+			props.put("mail.smtp.host", IP_IRONPORT);
+			props.put("mail.smtp.port", PUERTO_IRONPORT);
 
 			Session session = Session.getDefaultInstance(props, null);
 			BodyPart header = new MimeBodyPart();
