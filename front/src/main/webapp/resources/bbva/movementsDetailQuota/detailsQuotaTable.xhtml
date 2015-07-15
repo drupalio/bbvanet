@@ -19,8 +19,10 @@
 				<p:commandLink styleClass="icon-pdf-file" ajax="false">
 					<p:fileDownload value="#{quotaController.exportPdf}" />
 				</p:commandLink>
-				<p:commandLink ajax="false" styleClass="icon-send-by-email" onclick="#" />
-				<p:commandLink ajax="false" styleClass="icon-printer" onclick="#" />
+				<p:commandLink ajax="false" styleClass="icon-send-by-email"
+					onclick="#{quotaController.sendMail()}" />
+				<p:commandLink ajax="false" styleClass="icon-printer"
+					onclick="#{quotaController.printMovesQuota()}" />
 			</h:form>
 		</div>
 	</article>

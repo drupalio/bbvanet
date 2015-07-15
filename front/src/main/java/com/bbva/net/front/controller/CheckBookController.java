@@ -87,4 +87,14 @@ public interface CheckBookController {
 	 */
 
 	void exportDocCheckExcel();
+
+	/**
+	 * 
+	 */
+	void printCheck();
+
+	/**
+	  * 
+	  */
+	void printCheckBook();
 }

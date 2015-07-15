@@ -15,17 +15,20 @@
 	<article class="detail-table-group">
 		<bbvaTablesAcc:iconsButtons id="iconsMoves" renderCorreo="true"
 			valueExcel="#{movementsCriteriaController.exportExcel}"
-			valuePdf="#{movementsCriteriaController.exportPdf}" render="#{renderComponents['TITLEMOVES']}"
+			valuePdf="#{movementsCriteriaController.exportPdf}"
 			valueCorreo="#{movementsCriteriaController.sendMail()}"
-			valuePrinter="#{movementsCriteriaController.printMoves()}" />
-		<bbvaTablesAcc:iconsButtons id="iconsChek" renderCorreo="false" style="float: right;"
+			valuePrinter="#{movementsCriteriaController.printMoves()}"
+			render="#{renderComponents['TITLEMOVES']}" />
+		<bbvaTablesAcc:iconsButtons id="iconsChek" renderCorreo="false"
 			valueExcel="#{checkBookController.exportCheckExcel}"
 			valuePdf="#{checkBookController.exportCheckPdf}"
-			valuePrinter="#{checkBookController.printFile()}" render="#{renderComponents['TITLECHECKS']}" />
-		<bbvaTablesAcc:iconsButtons id="iconsChecBook" renderCorreo="false" style="float: right;"
+			valuePrinter="#{checkBookController.printCheck()}" 
+			render="#{renderComponents['TITLECHECKS']}" />
+		<bbvaTablesAcc:iconsButtons id="iconsChecBook" renderCorreo="false"
 			valueExcel="#{checkBookController.exportCheckBookExcel}"
 			valuePdf="#{checkBookController.exportCheckBookPdf}"
-			render="#{renderComponents['TITLECHECKBOOKS']}" valuePrinter="#{checkBookController.printFile()}" />
+			valuePrinter="#{checkBookController.printCheckBook()}"
+			render="#{renderComponents['TITLECHECKBOOKS']}" />
 		<bbvaTablesAcc:accountMovementsTable id="tableMovements" listAccounts="#{cc.attrs.listAccounts}" />
 		<bbvaTablesAcc:checkAccountTable id="checkTable" listChecks="#{cc.attrs.listChecks}" />
 		<bbvaTablesAcc:checkBooksAccountTable id="checkBookTable"

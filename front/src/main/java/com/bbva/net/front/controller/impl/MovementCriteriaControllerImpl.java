@@ -141,19 +141,15 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	private String rutaMovePdf;
 
 	private String rutaMoveDetailPdf;
-	
-	protected String RUTA_ICONO_BBVA = MessagesHelper.INSTANCE
-			.getString("ruta.iconobbva");
 
-	protected String IP_IRONPORT = MessagesHelper.INSTANCE
-			.getString("ruta.ipironport");
-	
-	protected String PUERTO_IRONPORT = MessagesHelper.INSTANCE
-			.getString("ruta.puertoironport");
-	
-	protected String REMITENTE = MessagesHelper.INSTANCE
-			.getString("ruta.remitente");
-	
+	protected String RUTA_ICONO_BBVA = MessagesHelper.INSTANCE.getString("ruta.iconobbva");
+
+	protected String IP_IRONPORT = MessagesHelper.INSTANCE.getString("ruta.ipironport");
+
+	protected String PUERTO_IRONPORT = MessagesHelper.INSTANCE.getString("ruta.puertoironport");
+
+	protected String REMITENTE = MessagesHelper.INSTANCE.getString("ruta.remitente");
+
 	@Override
 	public void init() {
 		super.init();
@@ -541,8 +537,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			FileOutputStream archivo = new FileOutputStream(archivoXLS);
 			Sheet hoja = libro.createSheet("Movimientos de cuenta");
 			try {
-				URL url = new URL(
-						"RUTA_ICONO_BBVA");
+				URL url = new URL("RUTA_ICONO_BBVA");
 				InputStream is = url.openStream();
 				// InputStream inputStream = new FileInputStream(
 				// "https://www.bbva.com.co/BBVA-home-theme/images/BBVA/logo_bbva.png");
@@ -848,8 +843,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			document.open();
 
 			try {
-				Image foto = Image
-						.getInstance("RUTA_ICONO_BBVA");
+				Image foto = Image.getInstance("RUTA_ICONO_BBVA");
 				foto.scaleToFit(100, 100);
 				document.add(foto);
 			} catch (Exception e) {
@@ -1029,8 +1023,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			document.open();
 
 			try {
-				Image foto = Image
-						.getInstance("RUTA_ICONO_BBVA");
+				Image foto = Image.getInstance("RUTA_ICONO_BBVA");
 				foto.scaleToFit(100, 100);
 				document.add(foto);
 			} catch (Exception e) {
@@ -1338,53 +1331,23 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		}
 	}
 
-	/**
-	 * Method to evaluate if the list has more elements
-	 * 
-	 * @param movementsList
-	 */
-	public void setShowMoreStatus() {
-		if (this.movementsList.size() >= 10)
-			getRenderComponents().put(RenderAttributes.FOOTERTABLEMOVEMENT.name(), true);
-		else
-			getRenderComponents().put(RenderAttributes.FOOTERTABLEMOVEMENT.name(), false);
-	}
-
-	public void setFalseCheckComponents() {
-		getRenderComponents().put(RenderAttributes.TITLECHECKS.name(), false);
-		getRenderComponents().put(RenderAttributes.CHECKTABLE.toString(), false);
-		getRenderComponents().put(RenderAttributes.FOOTERTABLECHEKS.toString(), false);
-	}
-
-	public void setFalseCheckBookComponents() {
-		getRenderComponents().put(RenderAttributes.TITLECHECKBOOKS.name(), false);
-		getRenderComponents().put(RenderAttributes.CHECKBOOKTABLE.name(), false);
-		getRenderComponents().put(RenderAttributes.FOOTERTABLECHECKBOOK.name(), false);
-	}
-
-	public void resetMapResults() {
-		getRenderComponents().put(RenderAttributes.MOVEMENTSFILTER.toString(), false);
-		getRenderComponents().put(RenderAttributes.INCOMEOREXPENSESFILTER.toString(), false);
-		getRenderComponents().put(RenderAttributes.BALANCEFILTER.toString(), false);
-		getRenderComponents().put(RenderAttributes.FILTERDATE.toString(), false);
-	}
-
+	@Override
 	public void printMoves() {
 		printFile("Movements");
 	}
 
+	@Override
 	public void printMoveDetail() {
 		printFile("DetailMovement");
 	}
 
-	@Override
 	public void printFile(String typeDoc) {
 		File pdfFile = null;
 		if (typeDoc.equals("Movements")) {
 			pdfFile = new File("Movimientos" + getSelectedProduct().getProductNumber() + ".pdf");
 		}
 		if (typeDoc.equals("DetailMovement")) {
-			pdfFile = new File("MovimientosDetail" + getSelectedProduct().getProductNumber() + ".pdf");
+			pdfFile = new File("DetailMove" + this.movementDetail.getId() + ".pdf");
 		}
 		LOGGER.info("printFile ruta de archivo " + pdfFile.getAbsolutePath());
 		if (pdfFile.exists()) {
@@ -1492,14 +1455,24 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 			String htmlTable = "<table width=100% rules=\"all\" border=\"1\"><thead><tr role=\"row\" style=\"background-color: gainsboro;\"><th role=\"columnheader\" tabindex=\"0\"><span >FECHA</span><span></span></th><th role=\"columnheader\" tabindex=\"0\"><span >CONCEPTO</span><span></span></th><th role=\"columnheader\" tabindex=\"0\"><span >VALOR</span><span ></span></th><th role=\"columnheader\" tabindex=\"0\"><span >SALDO</span><span ></span></th></tr></thead>";
 			for (int i = 0; i < this.movementsList.size(); i++) {
+				String value = "";
+				String balance = "";
+
+				if (this.movementsList.get(i).getMovementValue() != null) {
+					value = this.movementsList.get(i).getMovementValue().toString();
+				}
+
+				if (this.movementsList.get(i).getTotalBalance() != null) {
+					balance = this.movementsList.get(i).getTotalBalance().toString();
+				}
+
 				htmlTable += "<tr><th role=\"gridcell\" tabindex=\"0\"><span style=\"color:blue\">"
 						+ super.getdateString(this.movementsList.get(i).getMovementDate())
 						+ "</span><span></span></th><th role=\"gridcell\" tabindex=\"0\"><span style=\"font-weight:normal\">"
 						+ this.movementsList.get(i).getMovementConcept()
-						+ "</span><span></span></th><th role=\"gridcell\" tabindex=\"0\"><span >"
-						+ this.movementsList.get(i).getMovementValue()
-						+ "</span><span ></span></th><th role=\"gridcell\" tabindex=\"0\"><span >"
-						+ this.movementsList.get(i).getTotalBalance() + "</span><span ></span></th></tr>";
+						+ "</span><span></span></th><th role=\"gridcell\" tabindex=\"0\"><span >" + value
+						+ "</span><span ></span></th><th role=\"gridcell\" tabindex=\"0\"><span >" + balance
+						+ "</span><span ></span></th></tr>";
 			}
 
 			htmlTable += "</table>";
@@ -1516,7 +1489,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			multiParte.addBodyPart(content);
 
 			MimeMessage message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("BBVA@bbvanet.com.co"));
+			message.setFrom(new InternetAddress(REMITENTE));
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress("luferupa@gmail.com"));
 			message.setSubject("Movimientos");
 			message.setContent(multiParte);
@@ -1529,6 +1502,37 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		} catch (Exception e) {
 			LOGGER.info("Error enviando mail " + e.getMessage());
 		}
+	}
+
+	/**
+	 * Method to evaluate if the list has more elements
+	 * 
+	 * @param movementsList
+	 */
+	public void setShowMoreStatus() {
+		if (this.movementsList.size() >= 10)
+			getRenderComponents().put(RenderAttributes.FOOTERTABLEMOVEMENT.name(), true);
+		else
+			getRenderComponents().put(RenderAttributes.FOOTERTABLEMOVEMENT.name(), false);
+	}
+
+	public void setFalseCheckComponents() {
+		getRenderComponents().put(RenderAttributes.TITLECHECKS.name(), false);
+		getRenderComponents().put(RenderAttributes.CHECKTABLE.toString(), false);
+		getRenderComponents().put(RenderAttributes.FOOTERTABLECHEKS.toString(), false);
+	}
+
+	public void setFalseCheckBookComponents() {
+		getRenderComponents().put(RenderAttributes.TITLECHECKBOOKS.name(), false);
+		getRenderComponents().put(RenderAttributes.CHECKBOOKTABLE.name(), false);
+		getRenderComponents().put(RenderAttributes.FOOTERTABLECHECKBOOK.name(), false);
+	}
+
+	public void resetMapResults() {
+		getRenderComponents().put(RenderAttributes.MOVEMENTSFILTER.toString(), false);
+		getRenderComponents().put(RenderAttributes.INCOMEOREXPENSESFILTER.toString(), false);
+		getRenderComponents().put(RenderAttributes.BALANCEFILTER.toString(), false);
+		getRenderComponents().put(RenderAttributes.FILTERDATE.toString(), false);
 	}
 
 	@Override

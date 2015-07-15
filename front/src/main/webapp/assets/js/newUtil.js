@@ -361,13 +361,15 @@ function error(errorCode) {
 }
 
 function imgError(image) {
-       var imgWidth=$(image).attr("width");
-       var imgHeight=$(image).attr("height");
-        if (typeof imgWidth !== 'undefined' && typeof imgHeight !== 'undefined') {
-            $(image).parents('.banner').css("cssText", "display: block !important;");
-            return true;
-        } else {
-        	$(image).parents('.banner').css("cssText", "display: none !important;");
-        	return false;
-        }   
+	$(document).ready(function() {
+		var imgWidth = $(image).attr("width");
+		var imgHeight = $(image).attr("height");
+		if (typeof imgWidth !== 'undefined' && typeof imgHeight !== 'undefined') {
+			$(image).parents('.banner').css("cssText", "display: block !important;");
+			return true;
+		} else {
+			$(image).parents('.banner').css("cssText", "display: none !important;");
+			return false;
+		}
+	});
 }
