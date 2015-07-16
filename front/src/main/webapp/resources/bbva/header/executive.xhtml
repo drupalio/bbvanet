@@ -9,7 +9,7 @@
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <composite:interface>
-
+	<composite:attribute name="display"></composite:attribute>
 
 </composite:interface>
 
@@ -19,7 +19,7 @@
 		role="navigation">
 
 		<div class="form-client-acces">
-			<div class="executive-contact">
+			<div class="executive-contact #{cc.attrs.display}" >
 				<composite:insertChildren></composite:insertChildren>
 			</div>
 		</div>
