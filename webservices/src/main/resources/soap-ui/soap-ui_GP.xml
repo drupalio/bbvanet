@@ -2627,7 +2627,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 */
 </con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
 	"name":"XAVI HERNANDEZ",
-	"segment":"N",
+	"segment":"",
 	"contactInfo":{
 		"phoneNumbers":[],
 		"emails":[{

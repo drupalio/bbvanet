@@ -22,7 +22,7 @@ public class CustomerMapperImpl extends ConfigurableMapper implements CustomerMa
 
 		// factory.getConverterFactory().registerConverter(new SimpleDateFormat("", Locale.ENGLISH));
 		factory.classMap(Customer.class, CustomerDto.class).field("name", "nombre").field("lastAccessDate", "date")
-				.field("contactInfo.emails", "emails").byDefault().register();
+				.field("contactInfo.emails", "emails").field("segment", "segment").byDefault().register();
 		super.configure(factory);
 	}
 }
