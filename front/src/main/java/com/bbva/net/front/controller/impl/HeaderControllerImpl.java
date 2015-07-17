@@ -8,6 +8,7 @@ import javax.faces.context.FacesContext;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.context.annotation.Scope;
+import org.springframework.faces.webflow.FlowFacesContext;
 import org.springframework.stereotype.Controller;
 
 import com.bbva.net.back.facade.HeaderFacade;
@@ -91,19 +92,26 @@ public class HeaderControllerImpl extends AbstractBbvaController implements Head
 		try {
 			FacesContext.getCurrentInstance().getExternalContext()
 					.redirect("https://www.bbvanet.com.co/bbvaco/kqpu_co_web/page/init");
+			LOGGER.info("Redireccionó a " + "https://www.bbvanet.com.co/bbvaco/kqpu_co_web/page/init");
 		} catch (IOException e) {
 			LOGGER.info("No pudo redidreccionar a https://www.bbvanet.com.co/bbvaco/kqpu_co_web/page/init");
 		}
 	}
 
 	public void onIdle() {
-		// FacesContext.getCurrentInstance().addMessage(null,
-		// new FacesMessage(FacesMessage.SEVERITY_WARN, "No interactua", "rayos"));
-	}
 
-	public void onActive() {
-		// FacesContext.getCurrentInstance().addMessage(null,
-		// new FacesMessage(FacesMessage.SEVERITY_WARN, "Interactuó", "very good"));
+		try {
+			getSession().removeAttribute("tsec");
+			getSession().removeAttribute(SessionParamenterType.AUTHENTICATION_STATE.name());
+			getSession().removeAttribute("userName");
+			getSession().removeAttribute("docTypeUser");
+			getSession().removeAttribute("docIdUser");
+			FacesContext context = FlowFacesContext.getCurrentInstance();
+			context.getExternalContext().redirect("/error/error.xhtml");
+		} catch (Exception d) {
+
+		}
+
 	}
 
 	public ExecutiveDto getEjecutivo() {

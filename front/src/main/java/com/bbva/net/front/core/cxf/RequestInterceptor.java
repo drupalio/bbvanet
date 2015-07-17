@@ -1,6 +1,7 @@
 package com.bbva.net.front.core.cxf;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +16,8 @@ import org.apache.cxf.phase.Phase;
 import org.springframework.faces.webflow.FlowFacesContext;
 
 import com.bbva.jee.arq.spring.core.log.I18nLogFactory;
+import com.bbva.net.front.controller.impl.LoginControllerImpl;
+import com.bbva.net.front.helper.MessagesHelper;
 import com.google.common.annotations.VisibleForTesting;
 
 /**
@@ -51,6 +54,23 @@ public class RequestInterceptor extends AbstractOutDatabindingInterceptor implem
 			LOGGER.info("Recogiendo TSEC de la Sesión y añadiendo a cabecera:" + tsec);
 			tsecHeader.add(tsec);
 			headers.put(TSecType.tsec.name(), tsecHeader);
+			Date dateLast = (Date)session.getAttribute("lastService");
+			Date dateActual = new Date();
+			if (dateLast != null) {
+				LOGGER.info("dateLast :" + dateLast.getHours() + " : " + dateLast.getMinutes());
+				LOGGER.info("dateActual :" + dateActual.getHours() + " : " + dateActual.getMinutes());
+				long dateIniMs = dateLast.getTime();
+				long dateFinalMs = dateActual.getTime();
+				long diference = dateFinalMs - dateIniMs;
+				double minutes = Math.floor(diference / (1000 * 60));
+				LOGGER.info("minutos" + minutes);
+				int minuteParam = Integer.parseInt(MessagesHelper.INSTANCE.getString("time.session")) * 1000 * 60;
+				if (minutes >= minuteParam) {
+					LoginControllerImpl login = new LoginControllerImpl();
+					login.login();
+				}
+				LOGGER.info("termina");
+			}
 		} catch (final Exception exception) {
 			LOGGER.info("ERROR REQUEST INTERCEPTOR: " + exception.getMessage());
 		}

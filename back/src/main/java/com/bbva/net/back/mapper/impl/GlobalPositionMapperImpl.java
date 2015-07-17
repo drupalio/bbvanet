@@ -168,7 +168,7 @@ public class GlobalPositionMapperImpl extends ConfigurableMapper implements Glob
 				.field("alias", "alias").field("operable", "operationOnline")
 				.field("balance.availableBalance", "cashAvailable").field("id", "productId")
 				.field("name", "productName").field("id", "productNumber").field("balance.total", "totalCash")
-				.field("financialState", "asset").field("type", "subTypeProd").field("visible", "visible").byDefault()
+				.field("financialState", "asset").field("type", "subTypeProd").field("visible", "visible").field("contactInfo.phoneNumbers","phoneNumbers").byDefault()
 				.register();
 
 	}

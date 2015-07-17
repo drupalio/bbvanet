@@ -1,5 +1,6 @@
 package com.bbva.net.front.controller.impl;
 
+import java.awt.print.PrinterJob;
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -26,6 +27,14 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
+import javax.print.Doc;
+import javax.print.DocFlavor;
+import javax.print.DocPrintJob;
+import javax.print.PrintService;
+import javax.print.PrintServiceLookup;
+import javax.print.SimpleDoc;
+import javax.print.attribute.HashPrintRequestAttributeSet;
+import javax.print.attribute.PrintRequestAttributeSet;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -171,10 +180,16 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		setBalanceRangePc(null);
 		// TODO oroductId
 		setProductTypePc(getSelectedProduct().getSubTypeProd());
-		LOGGER.info("MovementsAccountController getAllMovements productId:  " + getSelectedProduct().getProductId());
-		super.setMovementsFacade(movementsFacade);
-		next();
-		this.movementsList = getCurrentList();
+		if (getSelectedProduct() != null && getSelectedProduct().getProductId() != null
+				&& getSelectedProduct().isVisible() != null) {
+			if (getSelectedProduct().isVisible()) {
+				LOGGER.info("MovementsAccountController getAllMovements productId:  "
+						+ getSelectedProduct().getProductId());
+				super.setMovementsFacade(movementsFacade);
+				next();
+				this.movementsList = getCurrentList();
+			}
+		}
 		this.movementsListGen = this.movementsList;
 		this.graphicLineMovements = graphicLineDelegate.getMovementAccount(this.movementsList);
 		return this.movementsList;
@@ -1372,20 +1387,50 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 		}
 
-		String s = System.getProperty("os.name").toLowerCase();
-		if (s.contains("win")) {
-			createCommand("explorer", "%s", pdfFile.getAbsolutePath());
+		FileInputStream inputFile = null;
+		try {
+			inputFile = new FileInputStream(pdfFile.getPath());
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		if (inputFile == null) {
+			return;
 		}
 
-		if (s.contains("mac")) {
-			createCommand("open", "%s", pdfFile.getAbsolutePath());
-		}
+		DocFlavor docFormat = DocFlavor.INPUT_STREAM.AUTOSENSE;
+		Doc document = new SimpleDoc(inputFile, docFormat, null);
 
-		if (s.contains("linux") || s.contains("unix")) {
-			createCommand("kde-open", "%s", pdfFile.getAbsolutePath());
-			createCommand("gnome-open", "%s", pdfFile.getAbsolutePath());
-			createCommand("xdg-open", "%s", pdfFile.getAbsolutePath());
+		PrintRequestAttributeSet attributeSet = new HashPrintRequestAttributeSet();
+
+		PrintService defaultPrintService = PrintServiceLookup.lookupDefaultPrintService();
+
+		if (defaultPrintService != null) {
+			PrinterJob printerJob = PrinterJob.getPrinterJob();
+			if (printerJob.printDialog()) {
+				DocPrintJob docprintJob = defaultPrintService.createPrintJob();
+				try {
+					docprintJob.print(document, attributeSet);
+
+				} catch (Exception e) {
+					LOGGER.info("Erro al imprimir " + e.getMessage());
+				}
+			}
+
+		} else {
+			System.err.println("No existen impresoras instaladas");
 		}
+		try {
+			inputFile.close();
+		} catch (IOException e) {
+			LOGGER.info("Erro al cerrar el archivo de impresión " + e.getMessage());
+		}
+		/*
+		 * String s = System.getProperty("os.name").toLowerCase(); if (s.contains("win")) { createCommand("explorer", "%s",
+		 * pdfFile.getAbsolutePath()); } if (s.contains("mac")) { createCommand("open", "%s", pdfFile.getAbsolutePath()); }
+		 * if (s.contains("linux") || s.contains("unix")) { createCommand("kde-open", "%s", pdfFile.getAbsolutePath());
+		 * createCommand("gnome-open", "%s", pdfFile.getAbsolutePath()); createCommand("xdg-open", "%s",
+		 * pdfFile.getAbsolutePath()); }
+		 */
 
 	}
 

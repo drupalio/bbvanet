@@ -1,5 +1,7 @@
 package com.bbva.net.back.facade.impl;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -37,38 +39,65 @@ public class LoanFacadeImpl extends AbstractBbvaFacade implements LoanFacade {
 
 	@Override
 	public List<LeasingDto> getLeasingByUser(final GlobalProductsDto globalProducts) {
-		return productService.select(globalProducts, new VisibleProductPredicate()).getLeasings();
-
+		List<LeasingDto> leasing = new ArrayList<LeasingDto>();
+		if (globalProducts != null) {
+			leasing = productService.select(globalProducts, new VisibleProductPredicate()).getLeasings();
+		}
+		return leasing;
 	}
 
 	@Override
 	public List<RotatingAccountDto> getRotatingAccountByUser(final GlobalProductsDto globalProducts) {
-		return productService.select(globalProducts, new VisibleProductPredicate()).getRotatingAccounts();
+		List<RotatingAccountDto> rotating = new ArrayList<RotatingAccountDto>();
+		if (globalProducts != null) {
+			rotating = productService.select(globalProducts, new VisibleProductPredicate()).getRotatingAccounts();
+		}
+		return rotating;
 	}
 
 	@Override
 	public Map<String, BalanceDto> getLoanTotals(final GlobalProductsDto globalProducts) {
-		return productService.getLoanTotals(globalProducts);
+		Map<String, BalanceDto> balance = new HashMap<String, BalanceDto>();
+		if (globalProducts != null) {
+			balance = productService.getLoanTotals(globalProducts);
+		}
+		return balance;
 	}
 
 	@Override
 	public List<RotatingAccountDto> getRotatingAccountByUserHidden(final GlobalProductsDto globalProducts) {
-		return productService.select(globalProducts, new HiddenProductPredicate()).getRotatingAccounts();
+		List<RotatingAccountDto> rotatingHidden = new ArrayList<RotatingAccountDto>();
+		if (globalProducts != null) {
+			rotatingHidden = productService.select(globalProducts, new HiddenProductPredicate()).getRotatingAccounts();
+		}
+		return rotatingHidden;
 	}
 
 	@Override
 	public List<LoanDto> getLoansByUser(final GlobalProductsDto globalProducts) {
-		return productService.select(globalProducts, new VisibleProductPredicate()).getLoan();
+		List<LoanDto> loan = new ArrayList<LoanDto>();
+		if (globalProducts != null) {
+			loan = productService.select(globalProducts, new VisibleProductPredicate()).getLoan();
+		}
+		return loan;
 	}
 
 	@Override
 	public List<LeasingDto> getLeasingByUserHidden(final GlobalProductsDto globalProducts) {
-		return productService.select(globalProducts, new HiddenProductPredicate()).getLeasings();
+		List<LeasingDto> leasingHidden = new ArrayList<LeasingDto>();
+		if (globalProducts != null) {
+			leasingHidden = productService.select(globalProducts, new HiddenProductPredicate()).getLeasings();
+		}
+		return leasingHidden;
 	}
 
 	@Override
 	public List<LoanDto> getLoansByUserHidden(final GlobalProductsDto globalProducts) {
-		return productService.select(globalProducts, new HiddenProductPredicate()).getLoan();
+		List<LoanDto> loanHidden = new ArrayList<LoanDto>();
+		if (globalProducts != null) {
+			loanHidden = productService.select(globalProducts, new HiddenProductPredicate()).getLoan();
+		}
+		return loanHidden;
 	}
 
 	/*********************************** SETTERS BEANS **************************************/
