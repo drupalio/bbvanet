@@ -31,7 +31,6 @@ public class LoanControllerImpl extends AbstractBbvaController implements LoanCo
 	private GlobalProductsDto globalProductsDto;
 
 	public void init() {
-
 		this.globalProductsDto = this.loanFacade.getLoanProducts();
 		this.totalsProducts = this.loanFacade.getLoanTotals(globalProductsDto);
 	}

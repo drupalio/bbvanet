@@ -1,5 +1,6 @@
 package com.bbva.net.back.facade.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -27,15 +28,22 @@ public class AccountsFacadeImpl extends AbstractBbvaFacade implements AccountsFa
 
 	@Override
 	public List<AccountDto> getAccountsByUser() {
-
+		List<AccountDto> accounts = new ArrayList<AccountDto>();
 		final GlobalProductsDto globalProductsDTO = this.globalPositionFacade.getGlobalProductsByUser();
-		return productService.select(globalProductsDTO, new VisibleProductPredicate()).getAccounts();
+		if (globalProductsDTO != null) {
+			accounts = productService.select(globalProductsDTO, new VisibleProductPredicate()).getAccounts();
+		}
+		return accounts;
 	}
 
 	@Override
 	public List<AccountDto> getAccountsByUserHidden() {
+		List<AccountDto> accounts = new ArrayList<AccountDto>();
 		final GlobalProductsDto globalProductsDTO = this.globalPositionFacade.getGlobalProductsByUser();
-		return productService.select(globalProductsDTO, new HiddenProductPredicate()).getAccounts();
+		if (globalProductsDTO != null) {
+			accounts = productService.select(globalProductsDTO, new HiddenProductPredicate()).getAccounts();
+		}
+		return accounts;
 	}
 
 	public void setGlobalPositionFacade(GlobalPositionFacade globalPositionFacade) {

@@ -43,10 +43,6 @@ public class AccountsServiceImpl extends AbstractBbvaRestService implements Acco
 	public Check getCheck(String accountId, String checkId) {
 		try {
 			WebClient wc = getJsonWebClient(URL_BASE_ACCOUNTS + accountId + URL_CHECK + checkId);
-			if (accountId != null && checkId != null) {
-				wc.query("checkbookId", checkId);
-				wc.query("accountId", accountId);
-			}
 			return wc.get(Check.class);
 		} catch (Exception e) {
 			throw new RestClientException(

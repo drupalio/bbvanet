@@ -9,7 +9,8 @@
 	<composite:attribute name="disabledOpera" />
 </composite:interface>
 <composite:implementation>
-	<ul id="tabsOperations" class="nav nav-pills nav-operation-options" style="display: block;">
+	<ul id="tabsOperations" class="nav nav-pills nav-operation-options visibleTool"
+		style="display: block; overflow: visible !important;">
 		<bbvaDetAcc:itemTabMenu id="consultas" title="#{msg['text.consults']}" icon="iconFont-611"
 			classLi="tab-right consultas-btn hidden-md hidden-lg menuResponse" type="1" role="#tab-consultas"
 			disabled="#{cc.attrs.disabledConsult}" />
