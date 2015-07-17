@@ -1828,3 +1828,7 @@ body div.ui-growl .ui-state-highlight {
 		width: 80%;
 	}
 }
+
+.visibleTool {
+	overflow: visible !important;
+}
