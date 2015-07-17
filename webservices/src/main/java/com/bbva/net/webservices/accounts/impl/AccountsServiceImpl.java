@@ -46,7 +46,7 @@ public class AccountsServiceImpl extends AbstractBbvaRestService implements Acco
 			return wc.get(Check.class);
 		} catch (Exception e) {
 			throw new RestClientException(
-					"Servicio no disponible - No se han podido cargar la información del cheque seleccionado, para mayor información comunicate a nuestras líneas BBVA");
+					"NO EXISTEN DATOS A LISTAR");
 		}
 	}
 
@@ -62,7 +62,7 @@ public class AccountsServiceImpl extends AbstractBbvaRestService implements Acco
 			return (List<Checkbook>)wc.getCollection(Checkbook.class);
 		} catch (Exception e) {
 			throw new RestClientException(
-					"Servicio no disponible - No se han podido cargar la lista de chequeras, para mayor información comunicate a nuestras líneas BBVA");
+					"NO EXISTEN DATOS A LISTAR");
 		}
 	}
 
@@ -80,7 +80,7 @@ public class AccountsServiceImpl extends AbstractBbvaRestService implements Acco
 			return (List<Check>)wc.getCollection(Check.class);
 		} catch (Exception e) {
 			throw new RestClientException(
-					"Servicio no disponible - No se han podido cargar la lista de cheques, para mayor información comunicate a nuestras líneas BBVA");
+					"NO EXISTEN DATOS A LISTAR");
 		}
 	}
 
