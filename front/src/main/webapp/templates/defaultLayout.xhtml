@@ -28,7 +28,9 @@
 	</div>
 	<div id="content">
 		<div class="container">
-
+		    <p:idleMonitor timeout="#{msg['time.session']*1000*60}">
+		        <p:ajax event="idle" listener="#{headerController.onIdle}"/>
+		    </p:idleMonitor>
 		    
 			<p:growl showDetail="true" showSummary="true" sticky="true" autoUpdate="true" />
 			<p:dialog id="momentPlease" widgetVar="statusDialog" modal="true" draggable="false"
