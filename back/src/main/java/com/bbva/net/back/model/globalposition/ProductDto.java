@@ -1,11 +1,17 @@
 package com.bbva.net.back.model.globalposition;
 
+import java.util.List;
+
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
+
+
+
 
 import com.bbva.czic.dto.net.EnumProductType;
 import com.bbva.net.back.core.pattern.dto.Dto;
 import com.bbva.net.back.model.commons.Money;
+import com.bbva.net.back.model.header.PhoneNumbers;
 
 public class ProductDto implements Dto {
 
@@ -32,6 +38,8 @@ public class ProductDto implements Dto {
 	private String subTypeProd;
 
 	private EnumProductType typeProd;
+	
+	private List<PhoneNumbers> phoneNumbers;
 
 	public ProductDto() {
 	}
@@ -64,6 +72,24 @@ public class ProductDto implements Dto {
 		this.subTypeProd = subTypeProd;
 		this.typeProd = typeProd;
 	}
+	
+	public ProductDto(String productId, String productName, String productNumber, Boolean asset,
+			Boolean operationOnline, Boolean visible, String alias, Money totalCash, Money cashAvailable,
+			String subTypeProd, EnumProductType typeProd,List<PhoneNumbers> phoneNumbers) {
+		this.productId = productId;
+		this.productName = productName;
+		this.productNumber = productNumber;
+		this.asset = asset;
+		this.operationOnline = operationOnline;
+		this.visible = visible;
+		this.alias = alias;
+		this.totalCash = totalCash;
+		this.cashAvailable = cashAvailable;
+		this.subTypeProd = subTypeProd;
+		this.typeProd = typeProd;
+		this.phoneNumbers = phoneNumbers;
+	}
+
 
 	// Setters and getters
 
@@ -256,6 +282,15 @@ public class ProductDto implements Dto {
 	public String getSubTypeProd() {
 		return subTypeProd;
 	}
+	
+	public List<PhoneNumbers> getPhoneNumbers() {
+		return phoneNumbers;
+	}
+
+	public void setPhoneNumbers(List<PhoneNumbers> phoneNumbers) {
+		this.phoneNumbers = phoneNumbers;
+	}
+
 
 	/**
 	 * @param subTypeProd the subTypeProd to set
