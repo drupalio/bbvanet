@@ -171,10 +171,14 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		setBalanceRangePc(null);
 		// TODO oroductId
 		setProductTypePc(getSelectedProduct().getSubTypeProd());
-		LOGGER.info("MovementsAccountController getAllMovements productId:  " + getSelectedProduct().getProductId());
-		super.setMovementsFacade(movementsFacade);
-		next();
-		this.movementsList = getCurrentList();
+
+		if (getSelectedProduct().isVisible()) {
+			LOGGER.info("MovementsAccountController getAllMovements productId:  " + getSelectedProduct().getProductId());
+			super.setMovementsFacade(movementsFacade);
+			next();
+			this.movementsList = getCurrentList();
+		}
+
 		this.movementsListGen = this.movementsList;
 		this.graphicLineMovements = graphicLineDelegate.getMovementAccount(this.movementsList);
 		return this.movementsList;
