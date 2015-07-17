@@ -1,5 +1,6 @@
 package com.bbva.net.front.core.cxf;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -55,6 +56,7 @@ public class ResponseInterceptor extends AbstractInDatabindingInterceptor implem
 			final String tsec = headers.get(TSecType.tsec.name()).get(0);
 			LOGGER.info("Recogiendo TSEC y añadiendo a sesión:" + tsec);
 			session.setAttribute(TSecType.tsec.name(), tsec);
+			session.setAttribute("lastService", new Date());
 		} catch (final Exception exception) {
 
 			LOGGER.info("Excepcion con Status :" + status);
