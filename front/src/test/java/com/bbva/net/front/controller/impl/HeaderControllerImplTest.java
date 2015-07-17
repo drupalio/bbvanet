@@ -32,6 +32,7 @@ public class HeaderControllerImplTest extends AbstractBbvaControllerTest {
 	@Test
 	public void getCustomerOk() {
 		CustomerDto customer = new CustomerDto();
+		customer.setSegment("");
 		Mockito.when(headerFacade.getCustomer(StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY)).thenReturn(
 				customer);
 		headerController.setHeaderFacade(headerFacade);

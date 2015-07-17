@@ -33,6 +33,11 @@ public class CustomerDto implements Dto {
 	/**
 	 * 
 	 */
+	private String segment;
+
+	/**
+	 * 
+	 */
 	private List<EmailDto> emails;
 
 	/**
@@ -162,6 +167,20 @@ public class CustomerDto implements Dto {
 	 */
 	public void setPhoneNumbers(List<PhoneNumbers> phoneNumbers) {
 		this.phoneNumbers = phoneNumbers;
+	}
+
+	/**
+	 * @return
+	 */
+	public String getSegment() {
+		return segment;
+	}
+
+	/**
+	 * @param segment
+	 */
+	public void setSegment(String segment) {
+		this.segment = segment;
 	}
 
 }

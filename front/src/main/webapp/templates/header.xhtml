@@ -17,8 +17,8 @@
 			<bbvaHeader:headerRight />
 			<bbvaHeader:logo />
 			<bbvaMenu:menuButtonMobile />
-			<bbvaHeader:particulares />
-			<bbvaHeader:executive>
+			<bbvaHeader:particulares tipo="#{headerController.cliente.segment=='S' ? 'Banca Personal': headerController.cliente.segment=='P' ? 'Premium' : 'Particulares'}"/>
+			<bbvaHeader:executive display="#{headerController.cliente.segment=='N' || headerController.cliente.segment=='' || headerController.cliente.segment=='null'? 'nonee':''}">
 				<bbvaHeader:executiveHeader title="#{msg['text.executive']}:"
 					dat="#{headerController.ejecutivo.name}" />
 				<bbvaHeader:executiveBody>

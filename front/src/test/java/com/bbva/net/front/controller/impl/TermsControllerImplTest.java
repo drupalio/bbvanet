@@ -37,8 +37,8 @@ public class TermsControllerImplTest extends AbstractBbvaControllerTest {
 		// inicializar Dto
 		TermsAccountsDto termsAccountsDto = new TermsAccountsDto();
 		// Mockar el producto
-		Mockito.when(termsController.getSelectedProduct()).thenReturn(productDto);
-		Mockito.when(productDto.getProductId()).thenReturn(DEFAULT_ID);
+		// Mockito.when(termsController.getSelectedProduct()).thenReturn(productDto);
+		// Mockito.when(productDto.getProductId()).thenReturn(DEFAULT_ID);
 		// Mockear la respuesta
 		Mockito.when(this.termsController.getAllConditions()).thenReturn(termsAccountsDto);
 		// llamar al metodo getAllConditions

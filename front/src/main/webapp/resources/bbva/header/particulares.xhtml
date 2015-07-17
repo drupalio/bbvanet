@@ -10,13 +10,13 @@
 
 <composite:interface>
 </composite:interface>
-
+	<composite:attribute name="tipo"></composite:attribute>
 <composite:implementation>
 
 	<nav class="main-menu hidden-xs hidden-sm" role="navigation">
 		<div>
 			<ul>
-				<li><a href="#" class="active" title="Ir a 'Personas'">Particulares</a>
+				<li><a href="#" class="active" title="Ir a '#{cc.attrs.tipo}'">#{cc.attrs.tipo}</a>
 				</li>
 			</ul>
 		</div>

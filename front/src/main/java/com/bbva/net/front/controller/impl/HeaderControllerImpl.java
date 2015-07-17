@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.bbva.net.back.facade.HeaderFacade;
+import com.bbva.net.back.model.commons.DateRangeDto;
 import com.bbva.net.back.model.header.CustomerDto;
 import com.bbva.net.back.model.header.ExecutiveDto;
 import com.bbva.net.front.controller.HeaderController;
@@ -30,12 +31,15 @@ public class HeaderControllerImpl extends AbstractBbvaController implements Head
 
 	private CustomerDto cliente;
 
+	private DateRangeDto date = new DateRangeDto();
+
 	private static final long serialVersionUID = 5284952254890332374L;
 
 	@PostConstruct
 	public void init() {
 		this.cliente = this.getCustomer();
-		this.ejecutivo = this.getExecutive();
+		if (!this.cliente.getSegment().equals("N") || !this.cliente.getSegment().isEmpty())
+			this.ejecutivo = this.getExecutive();
 	}
 
 	@Override
@@ -83,6 +87,16 @@ public class HeaderControllerImpl extends AbstractBbvaController implements Head
 		}
 	}
 
+	public void onIdle() {
+		// FacesContext.getCurrentInstance().addMessage(null,
+		// new FacesMessage(FacesMessage.SEVERITY_WARN, "No interactua", "rayos"));
+	}
+
+	public void onActive() {
+		// FacesContext.getCurrentInstance().addMessage(null,
+		// new FacesMessage(FacesMessage.SEVERITY_WARN, "Interactuó", "very good"));
+	}
+
 	public ExecutiveDto getEjecutivo() {
 		return ejecutivo;
 	}
@@ -95,4 +109,13 @@ public class HeaderControllerImpl extends AbstractBbvaController implements Head
 	public void setHeaderFacade(HeaderFacade headerFacade) {
 		this.headerFacade = headerFacade;
 	}
+
+	public DateRangeDto getDate() {
+		return date;
+	}
+
+	public void setDate(DateRangeDto date) {
+		this.date = date;
+	}
+
 }

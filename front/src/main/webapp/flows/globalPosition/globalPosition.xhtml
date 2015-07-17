@@ -53,6 +53,21 @@
 			display="#{customerProducts.accounts.size()==0 &amp;&amp; customerProductsHidden.accounts.size()==0? 'none' : 'block'}"
 			img_URL="https://www.bbva.com.co/documents/702694/2878314/01-BN-970x260.jpg/376b216f-950a-4d0f-9853-35d1db46d4b3?t=1433346845578" />
 		<c:set var="currency" value="$" />
+		<bbvaContainer:productPanelLineGraphic title="#{msg['title.electronicDeposit']}"
+			graphic="#{customerProducts.electronicDeposits.size()==0 &amp;&amp; customerProductsHidden.electronicDeposits.size()==0? 'none' : 'block'}">
+			<div class="table-tabs">
+				<bbvaGP:depositHeadTable controller="#{globalPositionController}"
+					listDeposit="#{customerProducts.electronicDeposits}" />
+				<bbvaGP:depositTailTable controller="#{globalPositionController}"
+					listDeposit="#{customerProductsHidden.electronicDeposits}" />
+			</div>
+			<div class="row afterTable">
+				<bbvaGP:productFooter listProduct="#{customerProductsHidden.electronicDeposits}" />
+				<bbvaGP:totalBalance util="#{msg['text.accountant']}"
+					total="#{globalPositionController.totalsProducts['ED'].total}"
+					subtotal="#{globalPositionController.totalsProducts['ED'].available}" />
+			</div>
+		</bbvaContainer:productPanelLineGraphic>
 		<bbvaContainer:productCardGraphic id="cardPieGP" title="#{msg['title.cards']}"
 			header="#{msg['graphicCard.tittle']}"
 			graphic="#{customerProducts.creditCards.size()==0 &amp;&amp; customerProductsHidden.creditCards.size()==0? 'none' : 'block'}"
@@ -114,21 +129,6 @@
 				<bbvaGP:totalBalance total="#{globalPositionController.totalsProducts['LO'].total}" />
 			</div>
 		</bbvaContainer:productPanel>
-		<bbvaContainer:productPanelLineGraphic title="#{msg['title.electronicDeposit']}"
-			graphic="#{customerProducts.electronicDeposits.size()==0 &amp;&amp; customerProductsHidden.electronicDeposits.size()==0? 'none' : 'block'}">
-			<div class="table-tabs">
-				<bbvaGP:depositHeadTable controller="#{globalPositionController}"
-					listDeposit="#{customerProducts.electronicDeposits}" />
-				<bbvaGP:depositTailTable controller="#{globalPositionController}"
-					listDeposit="#{customerProductsHidden.electronicDeposits}" />
-			</div>
-			<div class="row afterTable">
-				<bbvaGP:productFooter listProduct="#{customerProductsHidden.electronicDeposits}" />
-				<bbvaGP:totalBalance util="#{msg['text.accountant']}"
-					total="#{globalPositionController.totalsProducts['ED'].total}"
-					subtotal="#{globalPositionController.totalsProducts['ED'].available}" />
-			</div>
-		</bbvaContainer:productPanelLineGraphic>
 		<!-- banner loan -->
 		<bbvaContainer:banner
 			display="#{globalPositionController.globalProductsDTO.loan.size() > '0' ? 'block' : 'none' }"
