@@ -7,14 +7,14 @@
 	<composite:attribute name="controller" />
 </composite:interface>
 <composite:implementation>
-	<header class="table-detail-header">
+	<header id="table-detail-quota-content" class="table-detail-header">
 		<div class="table-tab positionHead hidden-xs hidden-sm">
 			<div class="table-detail-border" style="padding-bottom: 2% !important;">
 				<p:commandLink styleClass="icon-pdf-file" ajax="false">
 					<p:fileDownload value="#{cc.attrs.controller.exportDetailPdf}" />
 				</p:commandLink>
 				<p:commandLink ajax="false" styleClass="icon-printer"
-					onclick="#{cc.attrs.controller.printMoveDetailQuota()}" />
+					onclick="imprimir('table-detail-quota-content');" />
 				<div class="table-detail-close">
 					<a onclick="clickMove()"> <span class="close-text" style="color: #003F8D !important;">#{msg['text.close']}</span>
 						<button class="close-icon" type="button" />

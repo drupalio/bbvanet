@@ -67,6 +67,52 @@
 							<bbvaDetailMotion:tableContent controller="#{movementsCriteriaController}" />
 						</p:rowExpansion>
 					</p:dataTable>
+
+					<!--tabla realizada para imprimir -->
+
+					<p:dataTable id="detalMovImprimir" widgetVar="detalMov"
+						styleClass="detail-table-body sortable nonee"
+						value="#{cc.attrs.listAccounts}" var="moves"
+						selectionMode="single" rowKey="#{moves.movementId}"
+						rendered="#{renderComponents['MOVEMENTSTABLE']}"
+						emptyMessage="#{msg['text.empty.table']}">
+						<p:ajax event="rowSelect" oncomplete="clickMove();"
+							listener="#{movementsCriteriaController.onMovementSelected}" />
+						<p:column style="z-index: -1 !important; display:none;">
+							<p:rowToggler rendered="true" />
+						</p:column>
+						<p:column headerText="#{msg['text.detailMove.date']}"
+							styleClass="styleColum desc w34" sortBy="#{moves.movementDate}">
+							<h:outputText styleClass="brand styleLeft"
+								value="#{moves.movementDate}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</p:column>
+						<p:column headerText="#{msg['text.detailMove.concep']}"
+							styleClass="styleColum desc w34"
+							sortBy="#{moves.movementConcept}">
+							<h:outputText style="font-weight: bold;" class="text styleLeft"
+								value="#{moves.movementConcept}" />
+							<h:outputText class="text styleLeft"
+								value="#{moves.movementDetailDto.operationDescription}" />
+						</p:column>
+						<p:column class="head"
+							headerText="#{msg['text.detailMove.value']}"
+							styleClass="styleColum desc w34" sortBy="#{moves.movementValue}">
+							<h:outputText class="currency styleCurrent"
+								value="#{moves.movementValue}" />
+						</p:column>
+						<p:column class="head" styleClass="styleColum desc w34"
+							sortBy="#{moves.totalBalance}"
+							headerText="#{msg['text.detailMove.balance']}" colspan="2">
+							<h:outputText class="currency styleCurrent"
+								value="#{moves.totalBalance}" />
+						</p:column>
+						<p:rowExpansion styleClass="detail-row">
+							<bbvaDetailMotion:tableContent
+								controller="#{movementsCriteriaController}" />
+						</p:rowExpansion>
+					</p:dataTable>
 				</div>
 				<footer class="detail-table-footer">
 					<p:commandButton id="moreMovs" value="#{msg['text.detailMove.footer']}"
