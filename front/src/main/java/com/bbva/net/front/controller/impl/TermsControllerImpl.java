@@ -1,6 +1,7 @@
 package com.bbva.net.front.controller.impl;
 
 import java.io.BufferedInputStream;
+import javax.naming.Context;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -29,6 +30,7 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.FontFactory;
+import javax.naming.InitialContext;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
@@ -93,6 +95,11 @@ public class TermsControllerImpl extends AbstractBbvaController implements Terms
 			document.open();
 
 			try {
+				Context ctx;
+				String myVar="";
+				ctx = new InitialContext();
+				myVar = (String) ctx.lookup( "jndi/Entorno" );
+				LOGGER.info("En java" + myVar);
 				Image foto = Image.getInstance(RUTA_ICONO_BBVA);
 				foto.scaleToFit(100, 100);
 				document.add(foto);
