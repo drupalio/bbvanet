@@ -54,6 +54,39 @@
 					</div>
 				</p:column>
 			</p:dataTable>
+			
+			<!--tabla realizada para imprimir -->
+			
+			<p:dataTable id="checksTableImprimir" widgetVar="checksTable" var="cheks"
+				styleClass="detail-table-body sortable checks nonee" value="#{cc.attrs.listChecks}"
+				emptyMessage="#{msg['text.empty.table']}" rowKey="#{cheks.id}"
+				rendered="#{checkBookController.renderComponents['CHECKTABLE']}" style="margin-top: -30px">
+				<p:column headerText="#{msg['text.table.num.check']}" style="width: 17%;"
+					styleClass="styleColum w13 desc" sortBy="#{cheks.id}">
+					<h:outputText styleClass="brand styleLeft" value="#{cheks.id}" />
+				</p:column>
+				<p:column headerText="#{msg['text.table.emi.date']}" styleClass="styleColum desc"
+					sortBy="#{cheks.issueDate}" style="width: 22%;">
+					<h:outputText class="text styleLeft" value="#{cheks.issueDate}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+				</p:column>
+				<p:column headerText="#{msg['text.detailMove.value']}" style="width: 30%;"
+					styleClass="styleColum desc" sortBy="#{cheks.value}" colspan="2">
+					<h:outputText class="currency styleCurrent styleLeft" value="#{cheks.value}" />
+				</p:column>
+				<p:column class="head" headerText="#{msg['text.table.status']}" styleClass="styleColum desc w10"
+					sortBy="#{cheks.status}">
+					<h:outputText class="text styleLeft" value="#{cheks.status}" />
+				</p:column>
+				<p:column class="head" headerText="#{msg['text.table.change.date']}"
+					styleClass="styleColum desc w10" sortBy="#{cheks.modifiedDate}">
+					<h:outputText class="text styleLeft" value="#{cheks.modifiedDate}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+				</p:column>
+			</p:dataTable>
+			
 		</div>
 		<footer class="detail-table-footer">
 			<p:commandButton id="moreCheks" value="#{msg['text.detailMove.footer']}"
