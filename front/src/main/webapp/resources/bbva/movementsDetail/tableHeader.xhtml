@@ -13,7 +13,7 @@
 				<p:commandLink styleClass="icon-pdf-file" ajax="false">
 					<p:fileDownload value="#{movementsCriteriaController.exportDetailPdf}" />
 				</p:commandLink>
-				<p:commandLink ajax="false" styleClass="icon-printer" />
+				<p:commandLink ajax="false" styleClass="icon-printer"  onclick="imprimir('detail-table-movement-complete');"/>
 				<div class="table-detail-close">
 					<a onclick="clickMove()"> <span class="close-text" style="color: #003F8D !important;">#{msg['text.close']}</span>
 						<button class="close-icon" type="button" />

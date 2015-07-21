@@ -63,6 +63,42 @@
 					</div>
 				</p:column>
 			</p:dataTable>
+			<!--tabla realizada para imprimir -->
+			<p:dataTable id="checkBooksTableImprimir" var="checkBookAux"
+				emptyMessage="#{msg['text.empty.table']}"
+				rows="#{checkBookController.rows}"
+				value="#{cc.attrs.listCheckBooks}" styleClass="nonee">
+				<p:column width="20%" headerText="#{msg['checkbooks.first.check']}"
+					sortBy="#{checkBookAux.firstCheck}">
+					<h:outputText value="#{checkBookAux.firstCheck}" />
+				</p:column>
+				<p:column width="20%" headerText="#{msg['checkbooks.last.check']}"
+					sortBy="#{checkBookAux.lastCheck}">
+					<h:outputText value="#{checkBookAux.lastCheck}" />
+				</p:column>
+				<p:column width="20%" headerText="#{msg['checkbooks.available.checks']}"
+					sortBy="#{checkBookAux.totalCheck}" colspan="2">
+					<h:outputText value="#{checkBookAux.totalCheck}" />
+					<h:outputText
+						value="#{msg['checkbooks.available.text']} #{checkBookAux.totalCheck}" />
+				</p:column>
+				<p:column width="20%"
+					headerText="#{msg['checkbooks.petition.date']} #{msg['checkbooks.delivery.date']}"
+					sortBy="#{checkBookAux.requestDate}">
+					<h:outputText value="#{checkBookAux.requestDate}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+					<h:outputText value="#{checkBookAux.deliveryDate}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+				</p:column>
+				<p:column width="20%" headerText="#{msg['text.table.statusBook']}"
+					sortBy="#{checkBookAux.actualState}">
+					<h:outputText styleClass="text styleLeft"
+						value="#{checkBookAux.actualState}" />
+				</p:column>
+
+			</p:dataTable>
 			<footer class="detail-table-footer">
 				<p:commandButton id="moreBook" value="#{msg['text.detailMove.footer']}"
 					rendered="#{checkBookController.renderComponents['FOOTERTABLECHECKBOOK']}"

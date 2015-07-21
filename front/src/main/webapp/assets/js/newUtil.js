@@ -373,3 +373,14 @@ function imgError(image) {
 		}
 	});
 }
+
+/* funcion que me genera la impresion de una segmento de pagina */
+
+function imprimir(muestra) {
+	var ficha = document.getElementById(muestra);
+	var ventimp = window.open(' ', 'popimpr');
+	ventimp.document.write(ficha.innerHTML);
+	ventimp.document.close();
+	ventimp.print();
+	ventimp.close();
+}

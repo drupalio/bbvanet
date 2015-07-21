@@ -53,8 +53,8 @@ public class ExtractFacadeImpl extends AbstractBbvaFacade implements ExtractFaca
 	 */
 	@Override
 	public List<ExtractDto> getExtractAvailable(final String productId) {
-
-		final List<Extracto> monthLi = this.productsService.listExtracts(productId, StringUtils.EMPTY);
+		String cta18 = productId.substring(0, 8) + productId.substring(10,20);
+		final List<Extracto> monthLi = this.productsService.listExtracts(cta18, StringUtils.EMPTY);
 		List<ExtractDto> listMapped = this.extractMapper.map(monthLi);
 		getMonthForInt(listMapped);
 		return monthList;
@@ -62,9 +62,9 @@ public class ExtractFacadeImpl extends AbstractBbvaFacade implements ExtractFaca
 
 	@Override
 	public List<ExtractDto> getDocumentExtract(final String productId, final ExtractDto $extract) {
-
+		String cta18 = productId.substring(0, 8) + productId.substring(10,20);
 		final String filter = $extract == null ? StringUtils.EMPTY : fiqlService.getFiqlQueryByExtract($extract);
-		final List<Extracto> monthList = this.productsService.listExtracts(productId, filter);
+		final List<Extracto> monthList = this.productsService.listExtracts(cta18, filter);
 		return this.extractMapper.map(monthList);
 
 	}
