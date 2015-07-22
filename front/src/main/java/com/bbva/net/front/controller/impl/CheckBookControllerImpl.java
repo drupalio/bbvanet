@@ -481,7 +481,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			document.open();
 
 			try {
-				Image foto = Image.getInstance("RUTA_ICONO_BBVA");
+				Image foto = Image.getInstance(RUTA_ICONO_BBVA);
 				foto.scaleToFit(100, 100);
 				document.add(foto);
 			} catch (Exception e) {
@@ -671,7 +671,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			document.open();
 
 			try {
-				Image foto = Image.getInstance("RUTA_ICONO_BBVA");
+				Image foto = Image.getInstance(RUTA_ICONO_BBVA);
 				foto.scaleToFit(100, 100);
 				document.add(foto);
 			} catch (Exception e) {
@@ -886,7 +886,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			Sheet hoja = libro.createSheet("Chequeras de cuenta");
 
 			try {
-				URL url = new URL("RUTA_ICONO_BBVA");
+				URL url = new URL(RUTA_ICONO_BBVA);
 				InputStream is = url.openStream();
 				ByteArrayOutputStream img_bytes = new ByteArrayOutputStream();
 				int b;
@@ -1225,7 +1225,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			Sheet hoja = libro.createSheet("Chequeras de cuenta");
 
 			try {
-				URL url = new URL("RUTA_ICONO_BBVA");
+				URL url = new URL(RUTA_ICONO_BBVA);
 				InputStream is = url.openStream();
 				ByteArrayOutputStream img_bytes = new ByteArrayOutputStream();
 				int b;

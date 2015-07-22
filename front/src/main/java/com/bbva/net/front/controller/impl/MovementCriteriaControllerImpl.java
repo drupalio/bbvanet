@@ -550,7 +550,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			FileOutputStream archivo = new FileOutputStream(archivoXLS);
 			Sheet hoja = libro.createSheet("Movimientos de cuenta");
 			try {
-				URL url = new URL("RUTA_ICONO_BBVA");
+				URL url = new URL(RUTA_ICONO_BBVA);
 				InputStream is = url.openStream();
 				// InputStream inputStream = new FileInputStream(
 				// "https://www.bbva.com.co/BBVA-home-theme/images/BBVA/logo_bbva.png");
@@ -856,7 +856,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			document.open();
 
 			try {
-				Image foto = Image.getInstance("RUTA_ICONO_BBVA");
+				Image foto = Image.getInstance(RUTA_ICONO_BBVA);
 				foto.scaleToFit(100, 100);
 				document.add(foto);
 			} catch (Exception e) {
@@ -1036,7 +1036,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			document.open();
 
 			try {
-				Image foto = Image.getInstance("RUTA_ICONO_BBVA");
+				Image foto = Image.getInstance(RUTA_ICONO_BBVA);
 				foto.scaleToFit(100, 100);
 				document.add(foto);
 			} catch (Exception e) {
@@ -1402,7 +1402,6 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 		PrintService defaultPrintService = PrintServiceLookup.lookupDefaultPrintService();
 
-		if (defaultPrintService != null) {
 			PrinterJob printerJob = PrinterJob.getPrinterJob();
 			if (printerJob.printDialog()) {
 				DocPrintJob docprintJob = defaultPrintService.createPrintJob();
@@ -1414,9 +1413,6 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 				}
 			}
 
-		} else {
-			System.err.println("No existen impresoras instaladas");
-		}
 		try {
 			inputFile.close();
 		} catch (IOException e) {

@@ -377,7 +377,6 @@ function imgError(image) {
 /* funcion que me genera la impresion de una segmento de pagina */
 
 function imprimir(muestra) {
-	alert("AW");
 	var ficha = document.getElementById(muestra);
 	var ventimp = window.open(' ', 'popimpr');
 	ventimp.document.write(ficha.innerHTML);

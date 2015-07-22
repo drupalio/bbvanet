@@ -70,49 +70,40 @@
 
 					<!--tabla realizada para imprimir -->
 
-					<p:dataTable id="detalMovImprimir" widgetVar="detalMov"
-						styleClass="detail-table-body sortable nonee"
-						value="#{cc.attrs.listAccounts}" var="moves"
-						selectionMode="single" rowKey="#{moves.movementId}"
-						rendered="#{renderComponents['MOVEMENTSTABLE']}"
+
+					<p:dataTable id="detalMovImprimir" 
+						styleClass="nonee"
+						value="#{cc.attrs.listAccounts}" var="movesAux"
 						emptyMessage="#{msg['text.empty.table']}">
-						<p:ajax event="rowSelect" oncomplete="clickMove();"
-							listener="#{movementsCriteriaController.onMovementSelected}" />
-						<p:column style="z-index: -1 !important; display:none;">
-							<p:rowToggler rendered="true" />
-						</p:column>
 						<p:column headerText="#{msg['text.detailMove.date']}"
-							styleClass="styleColum desc w34" sortBy="#{moves.movementDate}">
-							<h:outputText styleClass="brand styleLeft"
-								value="#{moves.movementDate}">
+							width="25%" sortBy="#{movesAux.movementDate}">
+							<h:outputText
+								value="#{movesAux.movementDate}">
 								<f:convertDateTime pattern="dd/MM/yyyy" />
 							</h:outputText>
 						</p:column>
 						<p:column headerText="#{msg['text.detailMove.concep']}"
-							styleClass="styleColum desc w34"
-							sortBy="#{moves.movementConcept}">
-							<h:outputText style="font-weight: bold;" class="text styleLeft"
-								value="#{moves.movementConcept}" />
-							<h:outputText class="text styleLeft"
-								value="#{moves.movementDetailDto.operationDescription}" />
+							width="25%"
+							sortBy="#{movesAux.movementConcept}">
+							<h:outputText 
+								value="#{movesAux.movementConcept}" />
+							<h:outputText 
+								value="#{movesAux.movementDetailDto.operationDescription}" />
 						</p:column>
-						<p:column class="head"
+						<p:column 
 							headerText="#{msg['text.detailMove.value']}"
-							styleClass="styleColum desc w34" sortBy="#{moves.movementValue}">
-							<h:outputText class="currency styleCurrent"
-								value="#{moves.movementValue}" />
+							width="25%" sortBy="#{movesAux.movementValue}">
+							<h:outputText 
+								value="#{movesAux.movementValue}" />
 						</p:column>
-						<p:column class="head" styleClass="styleColum desc w34"
-							sortBy="#{moves.totalBalance}"
+						<p:column width="25%"
+							sortBy="#{movesAux.totalBalance}"
 							headerText="#{msg['text.detailMove.balance']}" colspan="2">
-							<h:outputText class="currency styleCurrent"
-								value="#{moves.totalBalance}" />
+							<h:outputText
+								value="#{movesAux.totalBalance}" />
 						</p:column>
-						<p:rowExpansion styleClass="detail-row">
-							<bbvaDetailMotion:tableContent
-								controller="#{movementsCriteriaController}" />
-						</p:rowExpansion>
 					</p:dataTable>
+
 				</div>
 				<footer class="detail-table-footer">
 					<p:commandButton id="moreMovs" value="#{msg['text.detailMove.footer']}"

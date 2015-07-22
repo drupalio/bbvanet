@@ -64,40 +64,40 @@
 				</p:column>
 			</p:dataTable>
 			<!--tabla realizada para imprimir -->
-			<p:dataTable id="checkBooksTableImprimir" widgetVar="checkBooksTable" var="checkBook"
-				rowKey="#{checkBook.id}" emptyMessage="#{msg['text.empty.table']}"
-				rows="#{checkBookController.rows}" value="#{cc.attrs.listCheckBooks}"
-				rendered="#{checkBookController.renderComponents['CHECKBOOKTABLE']}"
-				styleClass="detail-table-body sortable checks nonee" style="margin-top: -60px">
-				<p:column headerText="#{msg['checkbooks.first.check']}" style="width: 16%;"
-					styleClass="styleColum desc" sortBy="#{checkBook.firstCheck}">
-					<h:outputText styleClass="brand normal" value="#{checkBook.firstCheck}" />
+			<p:dataTable id="checkBooksTableImprimir" var="checkBookAux"
+				emptyMessage="#{msg['text.empty.table']}"
+				rows="#{checkBookController.rows}"
+				value="#{cc.attrs.listCheckBooks}" styleClass="nonee">
+				<p:column width="20%" headerText="#{msg['checkbooks.first.check']}"
+					sortBy="#{checkBookAux.firstCheck}">
+					<h:outputText value="#{checkBookAux.firstCheck}" />
 				</p:column>
-				<p:column headerText="#{msg['checkbooks.last.check']}" style="width: 16%;"
-					styleClass="styleColum desc" sortBy="#{checkBook.lastCheck}">
-					<h:outputText styleClass="text normal" value="#{checkBook.lastCheck}" />
+				<p:column width="20%" headerText="#{msg['checkbooks.last.check']}"
+					sortBy="#{checkBookAux.lastCheck}">
+					<h:outputText value="#{checkBookAux.lastCheck}" />
 				</p:column>
-				<p:column headerText="#{msg['checkbooks.available.checks']}" styleClass="styleColum desc"
-					style="width: 30%;" sortBy="#{checkBook.totalCheck}" colspan="2">
-					<h:outputText styleClass="brand styleLeft colorBlack" value="#{checkBook.totalCheck}" />
-					<h:outputText styleClass="text styleLeft"
-						value="#{msg['checkbooks.available.text']} #{checkBook.totalCheck}" />
+				<p:column width="20%" headerText="#{msg['checkbooks.available.checks']}"
+					sortBy="#{checkBookAux.totalCheck}" colspan="2">
+					<h:outputText value="#{checkBookAux.totalCheck}" />
+					<h:outputText
+						value="#{msg['checkbooks.available.text']} #{checkBookAux.totalCheck}" />
 				</p:column>
-				<p:column class="head"
+				<p:column width="20%"
 					headerText="#{msg['checkbooks.petition.date']} #{msg['checkbooks.delivery.date']}"
-					styleClass="styleColum desc w13" sortBy="#{checkBook.requestDate}">
-					<h:outputText styleClass="text styleLeft" value="#{checkBook.requestDate}">
+					sortBy="#{checkBookAux.requestDate}">
+					<h:outputText value="#{checkBookAux.requestDate}">
 						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</h:outputText>
-					<h:outputText styleClass="text styleLeft" value="#{checkBook.deliveryDate}">
+					<h:outputText value="#{checkBookAux.deliveryDate}">
 						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</h:outputText>
 				</p:column>
-				<p:column headerText="#{msg['text.table.statusBook']}" style="width: 16%;"
-					styleClass="styleColum desc" sortBy="#{checkBook.actualState}">
-					<h:outputText styleClass="text styleLeft" value="#{checkBook.actualState}" />
+				<p:column width="20%" headerText="#{msg['text.table.statusBook']}"
+					sortBy="#{checkBookAux.actualState}">
+					<h:outputText styleClass="text styleLeft"
+						value="#{checkBookAux.actualState}" />
 				</p:column>
-				
+
 			</p:dataTable>
 			<footer class="detail-table-footer">
 				<p:commandButton id="moreBook" value="#{msg['text.detailMove.footer']}"
