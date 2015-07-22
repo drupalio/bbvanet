@@ -23,15 +23,19 @@
 </composite:interface>
 
 <composite:implementation>
-
+	
 	<div class="tab-group" style="display: #{globalPositionController.globalProductsDTO.creditCards.size() > '0' ? 'block' : 'none' }">
 		<div class="tab-head">
 			<span>#{cc.attrs.title}</span>
 			<div class="buttons-group">
 				<button data-tabletab="tab-lines"
 					class="btn btn-first lines-global active"></button>
-				<button id="charButton" data-tabletab="tab-bars"
+
+				
+		<p:commandLink actionListener="#{globalPositionController.cardsCustomer()}" update=":cardPieGP:cardForm">
+		<button id="charButton" data-tabletab="tab-bars"
 					class="btn char-global" style="display: #{cc.attrs.graphic}" />
+		</p:commandLink>
 				<button data-tabletab="tab-hide" class="btn btn-last arrow-global"></button>
 			</div>
 		</div>
@@ -54,7 +58,7 @@
 		
 		<div class="row afterTable"></div>
 	</div>
-
+	
 
 </composite:implementation>
 

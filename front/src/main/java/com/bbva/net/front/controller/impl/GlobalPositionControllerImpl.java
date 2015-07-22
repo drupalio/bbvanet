@@ -233,20 +233,6 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		// Calculate investmentFunds graphics panels
 		this.graphicPieInvestmentFunds = graphicPieDelegate.getAccountsfundsProducts(globalProductsDTO);
 
-		try {
-			// Calculate cards graphics panel
-			this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(null));
-		} catch (Exception e) {
-			FacesContext ctx = FacesContext.getCurrentInstance();
-			ctx.addMessage(
-					"graphicPieCards ",
-					new FacesMessage(
-							FacesMessage.SEVERITY_ERROR,
-							"Error",
-							"Servicio no disponible - No se han podido cargar algunos datos, para mayor información comunicate a nuestras líneas BBVA"));
-			this.graphicPieCards = new PieConfigUI();
-			// Verifica si en el mensaje de error existe la palabra tsec
-		}
 		// Calculate totals
 		this.totalsProducts = this.globalPositionFacade.getTotalsByProduct(globalProductsDTO);
 
@@ -508,6 +494,23 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
 				this.accountGraphicBarLineUI = new AccountBarLineUI();
 			}
+		}
+	}
+
+	public void cardsCustomer() {
+		try {
+			// Calculate cards graphics panel
+			this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(null));
+		} catch (Exception e) {
+			FacesContext ctx = FacesContext.getCurrentInstance();
+			ctx.addMessage(
+					"graphicPieCards ",
+					new FacesMessage(
+							FacesMessage.SEVERITY_ERROR,
+							"Error",
+							"Servicio no disponible - No se han podido cargar algunos datos, para mayor información comunicate a nuestras líneas BBVA"));
+			this.graphicPieCards = new PieConfigUI();
+			// Verifica si en el mensaje de error existe la palabra tsec
 		}
 	}
 

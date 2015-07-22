@@ -14,19 +14,19 @@
 	<composite:attribute name="list" type="java.util.List" />
 </composite:interface>
 <composite:implementation>
-	<bbvaWizardTab:wizardTab title="Eliminar operación favorita"
+	<bbvaWizardTab:wizardTab id="deleteOF" title="Eliminar operación favorita"
 		widgetVar="myWizardDelete" widgetVarDialog="confimDialogDelete"
 		textConfim="#{msg['msg.info.confimDeleteFav']}" icon="info-blue iconWizard"
 		controller="#{favoriteOperationsController.delete}" formWizard="Delete"
 		textOperations="#{msg['msg.info.keyOperations']}" 
-		textCheck="#{msg['title.opertationCheck']}" />
+		textCheck="#{msg['title.opertationCheck']}" textNoCheck="#{msg['title.operationNoCheck']}"/>
 		
-	<bbvaWizardTab:wizardTab title="Editar operación favorita"
+	<bbvaWizardTab:wizardTab id="modifyOF" title="Editar operación favorita"
 		widgetVar="myWizardEdit" widgetVarDialog="confimDialogEdit"
 		textConfim="#{msg['msg.info.confimEditFav']}" icon="info-blue iconWizard"
 		controller="#{favoriteOperationsController.modify}" formWizard="Edit"
 		textOperations="#{msg['msg.info.keyOperations']}" 
-		textCheck="#{msg['title.opertationCheck']}" />
+		textCheck="#{msg['title.opertationCheck']}" textNoCheck="#{msg['title.operationNoCheck']}"/>
 		
 	<section class="links dated favoritas editable" id="preferredOperations">
 		<bbvaOperationFav:operationsHeader title="#{msg['text.favoriteOperations']}"

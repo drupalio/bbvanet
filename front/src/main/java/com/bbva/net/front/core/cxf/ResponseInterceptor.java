@@ -65,7 +65,7 @@ public class ResponseInterceptor extends AbstractInDatabindingInterceptor implem
 				LOGGER.info("Se Redirecciona a la pagina publica con status:" + status);
 				try {
 					FacesContext context = FlowFacesContext.getCurrentInstance();
-					context.getExternalContext().redirect("/error/error.xhtml");
+					context.getExternalContext().redirect("/kqco_co_web/error/error.xhtml");
 					// RequestContext.getCurrentInstance().execute("PF('mistake').show();");
 				} catch (Exception d) {
 
