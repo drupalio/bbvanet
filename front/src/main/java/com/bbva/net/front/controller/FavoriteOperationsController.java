@@ -21,8 +21,19 @@ public interface FavoriteOperationsController {
 	 */
 	List<FavoriteOperationDto> getListFavoriteOperationsHidden();
 
+	/**
+	 * @param favoriteOperation
+	 */
+	void add(FavoriteOperationDto favoriteOperation);
+
+	/**
+	 * @param actionEvent
+	 */
 	void modify(ActionEvent actionEvent);
 
+	/**
+	 * @param actionEvent
+	 */
 	void delete(ActionEvent actionEvent);
 
 }

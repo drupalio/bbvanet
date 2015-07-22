@@ -107,7 +107,7 @@ public class HeaderControllerImpl extends AbstractBbvaController implements Head
 			getSession().removeAttribute("docTypeUser");
 			getSession().removeAttribute("docIdUser");
 			FacesContext context = FlowFacesContext.getCurrentInstance();
-			context.getExternalContext().redirect("/error/error.xhtml");
+			context.getExternalContext().redirect("/kqco_co_web/error/error.xhtml");
 		} catch (Exception d) {
 
 		}

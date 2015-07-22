@@ -23,6 +23,7 @@
 				<p:column width="0% !important;" style="z-index: -1 !important">
 					<p:rowToggler rendered="true" />
 				</p:column>
+				<p:ajax event="rowSelect" listener="#{favoriteOperationsController.onFavoriteSelected}" immediate="true" />
 				<p:column class="head" styleClass="operation" id="fav-colum"
 					style="font-size: 0.9em;border: 1px solid #D5E2EE !important">
 					<li><a id="alink" class="mini-triangled" href="#"> <span

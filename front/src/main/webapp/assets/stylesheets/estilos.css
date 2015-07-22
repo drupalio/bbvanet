@@ -1810,7 +1810,22 @@ body div.ui-growl .ui-state-highlight {
 .tooltip-inner {
 	bottom: 0px !important;
 }
-
+.operation-failed {
+	text-align: center;
+	margin-top: 32px;
+	margin-bottom: 25px;
+}
+/* line 5, ../../../assets/scss/partials/tabs/_queries.scss */
+.operation-failed .failed-icon {
+	text-align: left;
+	display: inline-block;
+	background-image: url("../img/tick_failed.png");
+	background-repeat: no-repeat;
+	padding-bottom: 10px;
+	padding-left: 63px;
+	background-size : 38px;
+	background-position : left center !important;
+}
 .mistake-operation {
 	background-image: url("../img/errorSymbol.png");
 	background-repeat: no-repeat;

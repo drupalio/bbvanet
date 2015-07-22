@@ -18,6 +18,8 @@
 	<composite:attribute name="widgetVar" />
 	<composite:attribute name="widgetVarDialog" />
 	<composite:attribute name="formWizard" />
+	<composite:attribute name="textNoCheck"/>
+	
 </composite:interface>
 <composite:implementation>
 	<p:dialog id="dialogW" position="center center"
@@ -58,14 +60,16 @@
 									value="#{cc.attrs.textOperations}" />
 								<div class="col-xs-12 col-md-12" style="padding: 7px !important;">
 									<div class="col-xs-6 col-md-6 input-control">
-										<p:inputText type="password" onkeyup="enableDisable(this)"
-											styleClass="form-control" maxlength="4" />
+										<p:inputText value="#{favoriteOperationsController.operPass}" type="password" onkeyup="enableDisable(this)" 
+											styleClass="form-control" maxlength="8" />
 									</div>
 									<div class="col-xs-6 col-md-5" style="padding: 0px !important;">
 										<p:commandButton styleClass="closeNextbtn operKey buttonDisabled"
 											value="Confirmar" actionListener="#{cc.attrs.controller}"
 											oncomplete="PF('#{cc.attrs.widgetVar}').loadStep('check', true)"
-											style="padding: 2px 8px !important;" />
+											style="padding: 2px 8px !important;">
+											<p:ajax event="click" process="@this" update=":rightBodyPanel:operationsPanel:modifyOF:item_Edit"></p:ajax>
+											</p:commandButton>
 									</div>
 								</div>
 							</div>
@@ -79,10 +83,19 @@
 					</p:panel>
 				</p:tab>
 				<p:tab id="check" titleStyle="display: none">
-					<p:panel styleClass="panelText" style="margin: 0px 30px;">
+<!-- 					Mensaje ok -->				
+					<p:panel id="checkOK" styleClass="panelText status #{favoriteOperationsController.status ? '':'nonee'}" style="margin: 0px 30px;">
 						<h:panelGroup class="col-xs-12">
 							<div class="operation-success">
 								<span class="success-icon fontBlueSmall">#{cc.attrs.textCheck}</span>
+							</div>
+						</h:panelGroup>
+					</p:panel>
+<!-- 					Mensaje de error -->
+					<p:panel id="checkNoOK" styleClass="panelText status #{favoriteOperationsController.status ? 'nonee':''}" style="margin: 0px 30px;">
+						<h:panelGroup class="col-xs-12">
+							<div class="operation-failed">
+								<span class="failed-icon fontBlueSmall">#{cc.attrs.textNoCheck}</span>
 							</div>
 						</h:panelGroup>
 					</p:panel>
