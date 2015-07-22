@@ -155,9 +155,9 @@
 			href=""
 			img_URL="https://www.bbva.com.co/documents/702694/2878314/BN-BBVA-Asset-Management_v3.jpg/30eb089e-d286-418d-b8b4-6d72d94d0459?t=1434127241314" />
 	</ui:define>
-	<ui:define name="contentRight">
+	<ui:define name="contentRight" >
 		<bbvaSituation:globalSituationPanel />
-		<bbvaOperationFav:operationsPanel list="#{favoriteOperationsController.favoriteOperations}" />
+		<bbvaOperationFav:operationsPanel id="operationsPanel" list="#{favoriteOperationsController.favoriteOperations}" />
 	</ui:define>
 </ui:composition>
 </html>

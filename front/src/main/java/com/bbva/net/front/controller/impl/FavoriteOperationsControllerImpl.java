@@ -10,6 +10,7 @@ import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
 
 import org.apache.commons.collections.ListUtils;
+import org.apache.commons.lang.StringUtils;
 import org.primefaces.event.SelectEvent;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -38,6 +39,12 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
 	private List<FavoriteOperationDto> favoriteOperations;
 
 	private FavoriteOperationDto selectOperation = new FavoriteOperationDto();
+
+	private OperationPasswordControllerImpl operationPass = new OperationPasswordControllerImpl();
+
+	private String operPass = StringUtils.EMPTY;
+
+	private boolean status = false;
 
 	/**
 	 * Facade favoriteOperations
@@ -112,9 +119,9 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
 	 * 
 	 */
 	public void onFavoriteSelected(final SelectEvent selectEvent) {
-		FavoriteOperationDto a = (FavoriteOperationDto)selectEvent.getObject();
+		selectOperation = (FavoriteOperationDto)selectEvent.getObject();
 		LOGGER.info("ON productSelected\n: " + ((FavoriteOperationDto)selectEvent.getObject()).getAmount());
-		System.out.print("Hola " + a.getContractId());
+		System.out.print("Hola " + selectOperation.getContractId());
 	}
 
 	/**
@@ -143,6 +150,40 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
 			this.favoriteOperations.get(i).setDestination(destino);
 		}
 
+	}
+
+	/**
+	 * 
+	 */
+	@Override
+	public void add(FavoriteOperationDto favoriteOperation) {
+		favoriteOperationsFacade.addOperation(favoriteOperation);
+	}
+
+	/**
+	 * 
+	 */
+	@Override
+	public void modify(ActionEvent actionEvent) {
+		status = operationPass.validateOperation(operPass);
+		if (status) {
+			LOGGER.info("Operacion modificada ..." + selectOperation.getAmount());
+			favoriteOperationsFacade.modifyFavoriteoperations(selectOperation);
+			operPass = StringUtils.EMPTY;
+		}
+	}
+
+	/**
+	 * 
+	 */
+	@Override
+	public void delete(ActionEvent actionEvent) {
+		status = operationPass.validateOperation(operPass);
+		if (status) {
+			LOGGER.info("Operacion a eliminar ..." + selectOperation.getAmount());
+			favoriteOperationsFacade.deleteFavoriteOperations(selectOperation.getIdOperation());
+			operPass = StringUtils.EMPTY;
+		}
 	}
 
 	/**
@@ -182,18 +223,28 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
 		this.selectOperation = selectOperation;
 	}
 
-	@Override
-	public void modify(ActionEvent actionEvent) {
-		LOGGER.info("Operacion modificada ..." + selectOperation.getAmount());
-		favoriteOperationsFacade.modifyFavoriteoperations(selectOperation);
-
+	public OperationPasswordControllerImpl getOperationPass() {
+		return operationPass;
 	}
 
-	@Override
-	public void delete(ActionEvent actionEvent) {
-		LOGGER.info("Operacion a eliminar ..." + selectOperation.getAmount());
-		favoriteOperationsFacade.deleteFavoriteOperations(selectOperation.getIdOperation());
+	public void setOperationPass(OperationPasswordControllerImpl operationPass) {
+		this.operationPass = operationPass;
+	}
 
+	public String getOperPass() {
+		return operPass;
+	}
+
+	public void setOperPass(String operPass) {
+		this.operPass = operPass;
+	}
+
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 
 }

@@ -46,8 +46,7 @@ public class AccountsServiceImpl extends AbstractBbvaRestService implements Acco
 			WebClient wc = getJsonWebClient(URL_BASE_ACCOUNTS + accountId + URL_CHECK + checkId);
 			return wc.get(Check.class);
 		} catch (Exception e) {
-			throw new RestClientException(
-					"NO EXISTEN DATOS A LISTAR");
+			throw new RestClientException("NO EXISTEN DATOS A LISTAR");
 		}
 	}
 
@@ -56,14 +55,9 @@ public class AccountsServiceImpl extends AbstractBbvaRestService implements Acco
 	public List<Checkbook> getCheckbook(String accountId, String checkbookId) {
 		try {
 			WebClient wc = getJsonWebClient(URL_BASE_ACCOUNTS + accountId + URL_CHECKBOOK + checkbookId);
-			if (accountId != null && checkbookId != null) {
-				wc.query("checkbookId", checkbookId);
-				wc.query("accountId", accountId);
-			}
 			return (List<Checkbook>)wc.getCollection(Checkbook.class);
 		} catch (Exception e) {
-			throw new RestClientException(
-					"NO EXISTEN DATOS A LISTAR");
+			throw new RestClientException("NO EXISTEN DATOS A LISTAR");
 		}
 	}
 
@@ -80,8 +74,7 @@ public class AccountsServiceImpl extends AbstractBbvaRestService implements Acco
 			}
 			return (List<Check>)wc.getCollection(Check.class);
 		} catch (Exception e) {
-			throw new RestClientException(
-					"NO EXISTEN DATOS A LISTAR");
+			throw new RestClientException("NO EXISTEN DATOS A LISTAR");
 		}
 	}
 
