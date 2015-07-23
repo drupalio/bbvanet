@@ -1,59 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:composite="http://java.sun.com/jsf/composite"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:pm="http://primefaces.org/mobile"
-	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-	xmlns:cc="http://jsflive.at/taglib"
-	xmlns:jsf="http://xmlns.jcp.org/jsf"
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:cc="http://jsflive.at/taglib" xmlns:jsf="http://xmlns.jcp.org/jsf"
 	xmlns:bbvaAccountGraphic="http://java.sun.com/jsf/composite/bbva/graphics/accounts"
 	xmlns:bbvaPieGraphic="http://java.sun.com/jsf/composite/bbva/graphics"
 	xmlns:bbvaGP="http://java.sun.com/jsf/composite/bbva/globalPosition">
-
 <composite:interface>
-    <composite:attribute name="id" type="String" />
-    <composite:attribute name="title" type="String" />
-    <composite:attribute name="graphic" type="String"/>
+	<composite:attribute name="id" type="String" />
+	<composite:attribute name="title" type="String" />
+	<composite:attribute name="graphic" type="String" />
 </composite:interface>
-
 <composite:implementation>
-
 	<!-- <div class="tab-group" style="display: none"> -->
 	<div class="tab-group" style="display: #{globalPositionController.globalProductsDTO.accounts.size() > '0' ? 'block' : 'none' }">
 		<div class="tab-head">
 			<span>#{cc.attrs.title}</span>
 			<div class="buttons-group">
-				<button data-tabletab="tab-lines"
-					class="btn btn-first lines-global active"></button>
-				<button id="charButton" data-tabletab="tab-bars"
-					class="btn char-global" style="display: #{cc.attrs.graphic}"/>
+				<button data-tabletab="tab-lines" class="btn btn-first lines-global active"></button>
+				<p:commandLink actionListener="#{globalPositionController.onComboInitialAccountGraphic()}"
+					update=":AccountGP:barGraphic" onclick="PF('statusDialog').show()" oncomplete="PF('statusDialog').hide()">
+					<button id="charButton" data-tabletab="tab-bars" class="btn char-global"
+						style="display: #{cc.attrs.graphic}" />
+				</p:commandLink>
 				<button data-tabletab="tab-hide" class="btn btn-last arrow-global"></button>
 			</div>
 		</div>
-
 		<div class="tab tab-lines no-border">
 			<composite:insertChildren />
 		</div>
-
 		<div class="tab tab-bars chart" style="overflow: visible !important;">
-		  <div class="tab-title">#{msg['graphicAccount.tittle']}</div>
-				<h:form id="barGraphic">
-					<bbvaAccountGraphic:barGraphic
-						barLineUIList="#{globalPositionController.accountGraphicBarLineUI}" />
-				</h:form>
-				<bbvaPieGraphic:footerFiltersAccount nameRight="#{msg['graphic.footer.accounts']}"
-					nameLeft="#{msg['graphic.footer.time']}"
-					listenerLeft="#{globalPositionController.onComboSelectedAccountGraphic}"
-					listenerRight="#{globalPositionController.onComboSelectedAccountGraphic}" />
+			<div class="tab-title">#{msg['graphicAccount.tittle']}</div>
+			<h:form id="barGraphic">
+				<bbvaAccountGraphic:barGraphic
+					barLineUIList="#{globalPositionController.accountGraphicBarLineUI}" />
+			</h:form>
+			<bbvaPieGraphic:footerFiltersAccount nameRight="#{msg['graphic.footer.accounts']}"
+				nameLeft="#{msg['graphic.footer.time']}"
+				listenerLeft="#{globalPositionController.onComboSelectedAccountGraphic}"
+				listenerRight="#{globalPositionController.onComboSelectedAccountGraphic}" />
 		</div>
-
 		<div class="row afterTable"></div>
 	</div>
-
-
 </composite:implementation>
-
 </html>

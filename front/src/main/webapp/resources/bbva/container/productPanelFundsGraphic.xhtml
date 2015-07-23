@@ -1,57 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:composite="http://java.sun.com/jsf/composite"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:pm="http://primefaces.org/mobile"
-	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:cc="http://jsflive.at/taglib"
 	xmlns:bbvaGP="http://java.sun.com/jsf/composite/bbva/globalPosition"
 	xmlns:jsf="http://xmlns.jcp.org/jsf"
-	xmlns:bbvaSituation="http://java.sun.com/jsf/composite/bbva/graphics/situation"
-	xmlns:bbvaPieGraphic="http://java.sun.com/jsf/composite/bbva/graphics/accounts">
-
+	xmlns:bbvaPieGraphic="http://java.sun.com/jsf/composite/bbva/graphics/funds">
 <composite:interface>
 	<composite:attribute name="id" type="String" />
 	<composite:attribute name="title" type="String" />
 	<composite:attribute name="header" type="String" />
-	<composite:attribute name="graphic" type="String"/>
-	<composite:attribute name="pieGraphic"
-		type="com.bbva.net.front.ui.pie.PieConfigUI" />
+	<composite:attribute name="graphic" type="String" />
 </composite:interface>
-
 <composite:implementation>
-
 	<div class="tab-group" style="display: #{globalPositionController.globalProductsDTO.funds.size() > '0' ? 'block' : 'none' }">
 		<div class="tab-head">
 			<span>#{cc.attrs.title}</span>
 			<div class="buttons-group">
-				<button data-tabletab="tab-lines"
-					class="btn btn-first lines-global active"></button>
-				<button id="charButton" data-tabletab="tab-bars"
-					class="btn char-global" style="display: #{cc.attrs.graphic}" />
+				<button data-tabletab="tab-lines" class="btn btn-first lines-global active"></button>
+				<p:commandLink actionListener="#{globalPositionController.fundsCustomer()}"
+					update=":fundsPieGP:fundsGraphic" onclick="PF('statusDialog').show()" oncomplete="PF('statusDialog').hide()">
+					<button id="charButton" data-tabletab="tab-bars" class="btn char-global"
+						style="display: #{cc.attrs.graphic}" />
+				</p:commandLink>
 				<button data-tabletab="tab-hide" class="btn btn-last arrow-global"></button>
 			</div>
 		</div>
-
 		<div class="tab tab-lines no-border">
 			<composite:insertChildren />
 		</div>
-
 		<div class="tab tab-bars chart">
 			<div class="tab-title">#{cc.attrs.header}</div>
-
-			<bbvaPieGraphic:fundsGraphic id="#{cc.attrs.id}"
-				pieConfigUI="#{cc.attrs.pieGraphic}" />
-
+			<h:form id="fundsGraphic">
+				<bbvaPieGraphic:fundsGraphic pieConfigUI="#{globalPositionController.graphicPieInvestmentFunds}" />
+			</h:form>
 		</div>
-
 		<div class="row afterTable"></div>
 	</div>
-
-
 </composite:implementation>
-
 </html>

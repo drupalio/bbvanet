@@ -48,4 +48,34 @@ public interface GlobalPositionController {
 
 	void onProductLoanSelected(SelectEvent selectEvent);
 
+	/**
+	 * 
+	 */
+	void fundsCustomer();
+
+	/**
+	 * 
+	 */
+	void cardsCustomer();
+
+	/**
+	 * 
+	 */
+	void onComboDepositAccountGraphic();
+
+	/**
+	 * 
+	 */
+	void onComboSelectedAccountGraphic();
+
+	/**
+	 * 
+	 */
+	void onComboInitialAccountGraphic();
+
+	/**
+	 * 
+	 */
+	void onComboSelectedCard();
+
 }

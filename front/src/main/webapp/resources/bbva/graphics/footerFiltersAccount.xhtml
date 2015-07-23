@@ -1,50 +1,35 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:composite="http://java.sun.com/jsf/composite"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:pm="http://primefaces.org/mobile"
-	xmlns:c="http://java.sun.com/jstl/core"
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile" xmlns:c="http://java.sun.com/jstl/core"
 	xmlns:bbvaInput="http://java.sun.com/jsf/composite/bbva/input">
-
-
 <composite:interface>
 	<composite:attribute name="nameLeft" type="String" />
 	<composite:attribute name="nameRight" type="String" />
-	<composite:attribute name="listenerLeft"
-		method-signature="void onComboSelectedAccount()" />
-	<composite:attribute name="listenerRight"
-		method-signature="void onComboSelectedAccount()" />
+	<composite:attribute name="listenerLeft" method-signature="void onComboSelectedAccount()" />
+	<composite:attribute name="listenerRight" method-signature="void onComboSelectedAccount()" />
 </composite:interface>
-
 <composite:implementation>
-
-
 	<div class="chart-options">
 		<div class="row">
 			<h:form id="footerBarGraphicPeriod" styleClass="nonee">
 				<div class="col-xs-12 col-sm-6 chart-selection input-control">
 					<label for="cuentas-personales-chart-tiempo">#{cc.attrs.nameLeft}</label>
 					<bbvaInput:comboSelectedPeriod listener="#{cc.attrs.listenerLeft}"
-						valueMenu="#{globalPositionController.periodAccountSelected}"
-						render=":AccountGP:barGraphic" />
+						valueMenu="#{globalPositionController.periodAccountSelected}" render=":AccountGP:barGraphic" />
 				</div>
 			</h:form>
 			<h:form id="footerBarGraphicProduct">
 				<div class="col-xs-12 col-sm-6 chart-selection input-control">
 					<label for="cuentas-personales-chart-cuentas">#{cc.attrs.nameRight}</label>
-					<bbvaInput:comboSelectedProduct width="60% !important"
-						id="#{msg['title.cards']}"
+					<bbvaInput:comboSelectedProduct width="60% !important" id="#{msg['title.cards']}"
 						totalProduct="#{msg['text.allAccounts']}"
 						list="#{globalPositionController.namesProducts['PC']}"
-						value="#{globalPositionController.accountSelected}"
-						listener="#{cc.attrs.listenerRight}"
+						value="#{globalPositionController.accountSelected}" listener="#{cc.attrs.listenerRight}"
 						render=":AccountGP:barGraphic" />
 				</div>
 			</h:form>
 		</div>
 	</div>
-
 </composite:implementation>
 </html>
