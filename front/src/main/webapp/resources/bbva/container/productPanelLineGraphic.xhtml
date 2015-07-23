@@ -1,54 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:composite="http://java.sun.com/jsf/composite"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:pm="http://primefaces.org/mobile"
-	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:cc="http://jsflive.at/taglib"
 	xmlns:bbvaGP="http://java.sun.com/jsf/composite/bbva/globalPosition"
 	xmlns:jsf="http://xmlns.jcp.org/jsf"
-	xmlns:bbvaDepostiGraphic="http://java.sun.com/jsf/composite/bbva/graphics/electronicDeposit">
-
+	xmlns:bbvaEDesposit="http://java.sun.com/jsf/composite/bbva/graphics/electronicDeposit">
 <composite:interface>
 	<composite:attribute name="id" type="String" />
 	<composite:attribute name="title" type="String" />
 	<composite:attribute name="header" type="String" />
-	<composite:attribute name="graphic" type="String"/>
-	<composite:attribute name="pieGraphic"
-		type="com.bbva.net.front.ui.pie.PieConfigUI" />
+	<composite:attribute name="graphic" type="String" />
+	<composite:attribute name="pieGraphic" type="com.bbva.net.front.ui.pie.PieConfigUI" />
 </composite:interface>
-
 <composite:implementation>
-
 	<div class="tab-group" style="display: #{globalPositionController.globalProductsDTO.electronicDeposits.size() > '0' ? 'block' : 'none' }">
 		<div class="tab-head">
 			<span>#{cc.attrs.title}</span>
 			<div class="buttons-group">
-				<button data-tabletab="tab-lines"
-					class="btn btn-first lines-global active"></button>
-				<button id="charButton" data-tabletab="tab-bars"
-					class="btn char-global" style="display: #{cc.attrs.graphic}" />
+				<button data-tabletab="tab-lines" class="btn btn-first lines-global active"></button>
+				<p:commandLink actionListener="#{globalPositionController.onComboDepositAccountGraphic()}"
+					update=":DepositGP:bodyPanelDeposit" onclick="PF('statusDialog').show()" oncomplete="PF('statusDialog').hide()">
+					<button id="charButton" data-tabletab="tab-bars" class="btn char-global"
+						style="display: #{cc.attrs.graphic}" />
+				</p:commandLink>
 				<button data-tabletab="tab-hide" class="btn btn-last arrow-global"></button>
 			</div>
 		</div>
-
 		<div class="tab tab-lines no-border">
 			<composite:insertChildren />
 		</div>
-
-		<div class="tab tab-bars chart">
-			
-			<bbvaDepostiGraphic:containerElectronicDeposit/>
-		
+		<div class="tab tab-bars chart" style="display: block;">
+			<div class="tab-title">#{msg['title.graphic.depositsInvestment']}</div>
+			<h:form id="bodyPanelDeposit">
+				<div class="row">
+					<bbvaEDesposit:electronicDepositGraphic graphicLine="#{globalPositionController.lineConfigUI}" />
+				</div>
+			</h:form>
+			<!-- <bbvaEDesposit:footerDepositElectronic/> -->
 		</div>
-
 		<div class="row afterTable"></div>
 	</div>
-
-
 </composite:implementation>
-
 </html>

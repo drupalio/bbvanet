@@ -3,8 +3,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
 	xmlns:pm="http://primefaces.org/mobile" xmlns:c="http://java.sun.com/jstl/core">
 <composite:interface>
-	<composite:attribute name="id" type="String" />
-	<composite:attribute name="pieConfigGUI" />
+	<composite:attribute name="pieConfigGUI" type="com.bbva.net.front.ui.pie.PieConfigUI"/>
 </composite:interface>
 <composite:implementation>
 	<h:form id="pieGe">
@@ -15,7 +14,7 @@
 					#{cc.attrs.pieConfigUI.headerCenter}</span>
 			</div>
 		</div>
-		<div class="chart-cheese" id="#{cc.attrs.id}" data-highcharts-chart="3">
+		<div class="chart-cheese" data-highcharts-chart="3">
 			<div id="chart2_4" class="c3"></div>
 		</div>
 	</h:form>
