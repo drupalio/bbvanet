@@ -25,7 +25,8 @@
 	</ui:define>
 	<ui:define name="contentLeft">
 		<!-- banner cuentas -->
-		<bbvaContainer:banner img_URL="https://www.bbva.com.co/documents/702694/2878314/01-BN-970x260.jpg/376b216f-950a-4d0f-9853-35d1db46d4b3?t=1433346845578" />
+		<bbvaContainer:banner
+			img_URL="https://www.bbva.com.co/documents/702694/2878314/01-BN-970x260.jpg/376b216f-950a-4d0f-9853-35d1db46d4b3?t=1433346845578" />
 		<c:set var="currency" value="$" />
 		<bbvaContainer:productPanelAccountGraphic id="AccountGP" title="#{msg['title.accountsPersonal']}"
 			graphic="#{customerProducts.accounts.size()==0 &amp;&amp; customerProducts.adquirencia.size()==0 &amp;&amp; customerProductsHidden.accounts.size()==0 ? 'none' : 'block'}">
@@ -51,9 +52,9 @@
 		<!-- banner cuentas -->
 		<bbvaContainer:banner href=""
 			display="#{customerProducts.accounts.size()==0 &amp;&amp; customerProductsHidden.accounts.size()==0? 'none' : 'block'}"
-			img_URL="https://www.bbva.com.co/documents/702694/2878314/01-BN-970x260.jpg/376b216f-950a-4d0f-9853-35d1db46d4b3?t=1433346845578" />
+			img_URL="https://www.bbva.com.co/fbin/mult/logo-pse_tcm1304-491949.png" />
 		<c:set var="currency" value="$" />
-		<bbvaContainer:productPanelLineGraphic title="#{msg['title.electronicDeposit']}"
+		<bbvaContainer:productPanelLineGraphic title="#{msg['title.electronicDeposit']}" id="DepositGP"
 			graphic="#{customerProducts.electronicDeposits.size()==0 &amp;&amp; customerProductsHidden.electronicDeposits.size()==0? 'none' : 'block'}">
 			<div class="table-tabs">
 				<bbvaGP:depositHeadTable controller="#{globalPositionController}"
@@ -134,10 +135,8 @@
 			display="#{globalPositionController.globalProductsDTO.loan.size() > '0' ? 'block' : 'none' }"
 			href=""
 			img_URL="https://www.bbva.com.co/documents/702694/2878314/BN-notoriedad.jpg/29cc630e-f3e2-4495-a531-9140e398b9e1?t=1433508489494" />
-		<bbvaContainer:productPanelFundsGraphic id="fundsPieGP" title="#{msg['title.investmentFunds']}"
-			header="#{msg['graphicFunds.tittle']}"
-			graphic="#{customerProducts.funds.size()==0 &amp;&amp; customerProductsHidden.funds.size()==0? 'none' : 'block'}"
-			pieGraphic="#{globalPositionController.graphicPieInvestmentFunds}">
+		<bbvaContainer:productPanelFundsGraphic id="fundsPieGP" title="#{msg['title.investmentFunds']}" header="#{msg['graphicFunds.tittle']}"
+			graphic="#{customerProducts.funds.size()==0 &amp;&amp; customerProductsHidden.funds.size()==0? 'none' : 'block'}">
 			<div class="table-tabs">
 				<bbvaGP:investmentFundHeadTable controller="#{globalPositionController}"
 					listFund="#{customerProducts.funds}" />
@@ -155,9 +154,10 @@
 			href=""
 			img_URL="https://www.bbva.com.co/documents/702694/2878314/BN-BBVA-Asset-Management_v3.jpg/30eb089e-d286-418d-b8b4-6d72d94d0459?t=1434127241314" />
 	</ui:define>
-	<ui:define name="contentRight" >
+	<ui:define name="contentRight">
 		<bbvaSituation:globalSituationPanel />
-		<bbvaOperationFav:operationsPanel id="operationsPanel" list="#{favoriteOperationsController.favoriteOperations}" />
+		<bbvaOperationFav:operationsPanel id="operationsPanel"
+			list="#{favoriteOperationsController.favoriteOperations}" />
 	</ui:define>
 </ui:composition>
 </html>
