@@ -12,6 +12,12 @@
 <composite:implementation>
 	<p:outputPanel id="outputPanel">
 		<h:form id="customSearch">
+		<p:remoteCommand name="reset" 
+			actionListener="#{renderViewMovementsUI.init()}"
+			update=":detailAccounts:tableMovements:formMovesDetail
+					:detailAccounts:checkTable:formCheks
+					:detailAccounts:checkBookTable:formCheckBooks
+					:tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab"></p:remoteCommand>
 			<bbvaSearch:personalizedSearchTabBody id="perTabBody"
 				title="#{msg['text.title.personalized.search']}">
 				<bbvaSearch:customSearchList id="customList" classList="date-filter customSearch"

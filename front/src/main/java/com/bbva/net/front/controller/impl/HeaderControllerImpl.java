@@ -1,5 +1,6 @@
 package com.bbva.net.front.controller.impl;
 
+import java.io.File;
 import java.io.IOException;
 
 import javax.annotation.PostConstruct;
@@ -32,15 +33,21 @@ public class HeaderControllerImpl extends AbstractBbvaController implements Head
 
 	private CustomerDto cliente;
 
+	private String fileDownload;
+
 	private DateRangeDto date = new DateRangeDto();
 
 	private static final long serialVersionUID = 5284952254890332374L;
 
 	@PostConstruct
 	public void init() {
-		this.cliente = this.getCustomer();
-		if (!this.cliente.getSegment().equals("N") || !this.cliente.getSegment().isEmpty())
-			this.ejecutivo = this.getExecutive();
+		try {
+			this.cliente = this.getCustomer();
+			if (!this.cliente.getSegment().equals("N") || !this.cliente.getSegment().isEmpty())
+				this.ejecutivo = this.getExecutive();
+		} catch (Exception e) {
+
+		}
 	}
 
 	@Override
@@ -112,6 +119,22 @@ public class HeaderControllerImpl extends AbstractBbvaController implements Head
 
 		}
 
+	}
+
+	public void deleteLastDownload() {
+		try {
+			File fileOut = new File(fileDownload);
+			if (fileOut.exists()) {
+				fileOut.delete();
+			}
+		} catch (Exception ex) {
+			LOGGER.info("Excepción no se encuentra el archivo para eliminar" + ex.getMessage());
+		}
+	}
+
+	@Override
+	public void setLastDownload(String file) {
+		this.fileDownload = file;
 	}
 
 	public ExecutiveDto getEjecutivo() {

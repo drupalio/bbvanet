@@ -57,32 +57,38 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
 	 */
 	@PostConstruct
 	public void init() {
-		// if (getSession().getAttribute("docIdUser") != null) {
-		// try {
-		// LOGGER.info("Metodo init de FavoriteOperationController con usuario de la sesión "
-		// + getSession().getAttribute("docIdUser").toString());
-		// favoriteOperations = favoriteOperationsFacade.getListFavoriteOperations(getSession().getAttribute(
-		// "docIdUser").toString());
-		// getNames();
-		// } catch (Exception e) {
-		// // FacesContext ctx = FacesContext.getCurrentInstance();
-		// // ctx.addMessage("Favorite Operation Session",
-		// // new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
-		// favoriteOperations = new ArrayList<FavoriteOperationDto>();
-		// }
-		// } else {
-		// try {
-		// LOGGER.info("Metodo init de FavoriteOperationController sin usuario de la sesión ");
-		// favoriteOperations = favoriteOperationsFacade.getListFavoriteOperations("123");
-		// getNames();
-		// } catch (Exception e) {
-		// // FacesContext ctx = FacesContext.getCurrentInstance();
-		// // ctx.addMessage("Favorite Operation user",
-		// // new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
-		// favoriteOperations = new ArrayList<FavoriteOperationDto>();
-		// }
-		// }
-		favoriteOperations = new ArrayList<FavoriteOperationDto>();
+		LOGGER.info("obtiene el usuario de sesion " + getSession().getAttribute("docIdUser"));
+		if (getSession().getAttribute("docIdUser") != null) {
+			try {
+				LOGGER.info("Metodo init de FavoriteOperationController con usuario de la sesión "
+						+ getSession().getAttribute("docIdUser").toString());
+				favoriteOperations = favoriteOperationsFacade.getListFavoriteOperations(getSession().getAttribute(
+						"docIdUser").toString());
+				getNames();
+			} catch (Exception e) {
+				// FacesContext ctx = FacesContext.getCurrentInstance();
+				// ctx.addMessage("Favorite Operation Session",
+				// new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+				LOGGER.info("Excepción en Metodo init de FavoriteOperationController con usuario de la sesión "
+						+ e.getMessage());
+				favoriteOperations = new ArrayList<FavoriteOperationDto>();
+			}
+		} else {
+			try {
+				LOGGER.info("Metodo init de FavoriteOperationController sin usuario de la sesión ");
+				favoriteOperations = favoriteOperationsFacade.getListFavoriteOperations("123");
+				getNames();
+			} catch (Exception e) {
+				// FacesContext ctx = FacesContext.getCurrentInstance();
+				// ctx.addMessage("Favorite Operation user",
+				// new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+
+				LOGGER.info("Excepción en Metodo init de FavoriteOperationController sin usuario de la sesión "
+						+ e.getMessage());
+				favoriteOperations = new ArrayList<FavoriteOperationDto>();
+			}
+		}
+
 	}
 
 	/**
@@ -141,15 +147,17 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
      */
 	public void getNames() {
 		LOGGER.info("Metodo getNames de favoriteOperations");
-		for (int i = 0; i < favoriteOperations.size(); i++) {
-			final String origen = MessagesHelper.INSTANCE.getFavOperationsPrefix(this.favoriteOperations.get(i)
-					.getOrigin());
-			final String destino = MessagesHelper.INSTANCE.getFavOperationsPrefix(this.favoriteOperations.get(i)
-					.getDestination());
-			this.favoriteOperations.get(i).setOrigin(origen);
-			this.favoriteOperations.get(i).setDestination(destino);
+		if (favoriteOperations != null) {
+			LOGGER.info("Metodo getNames de favoriteOperations no es null");
+			for (int i = 0; i < favoriteOperations.size(); i++) {
+				final String origen = MessagesHelper.INSTANCE.getFavOperationsPrefix(this.favoriteOperations.get(i)
+						.getOrigin());
+				final String destino = MessagesHelper.INSTANCE.getFavOperationsPrefix(this.favoriteOperations.get(i)
+						.getDestination());
+				this.favoriteOperations.get(i).setOrigin(origen);
+				this.favoriteOperations.get(i).setDestination(destino);
+			}
 		}
-
 	}
 
 	/**

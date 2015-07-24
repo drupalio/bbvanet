@@ -10,7 +10,7 @@
 	<header class="table-detail-header">
 		<div class="table-tab positionHeadMove hidden-xs hidden-sm">
 			<div class="table-detail-border" style="padding-bottom: 2% !important;">
-				<p:commandLink styleClass="icon-pdf-file" ajax="false">
+				<p:commandLink styleClass="icon-pdf-file" ajax="false" onclick="PrimeFaces.monitorDownload(start, deleteDownload )">
 					<p:fileDownload value="#{movementsCriteriaController.exportDetailPdf}" />
 				</p:commandLink>
 				<p:commandLink ajax="false" styleClass="icon-printer"  onclick="imprimir('detail-table-movement-complete');"/>

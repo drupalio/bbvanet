@@ -64,7 +64,7 @@ public interface CheckBookController {
 	/**
 	 * 
 	 */
-	void clean();
+	String clean();
 
 	/**
 	 * 

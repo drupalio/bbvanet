@@ -10,5 +10,7 @@ public interface HeaderController {
 	CustomerDto getCustomer();
 
 	void logOut();
+	
+	void setLastDownload(String file);
 
 }

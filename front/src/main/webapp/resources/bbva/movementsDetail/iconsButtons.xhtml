@@ -17,10 +17,10 @@
 	<p:outputPanel autoUpdate="true">
 		<div class="utility-icons #{cc.attrs.render == 'true' ? 'visiblee' : 'nonee'}">
 			<h:form id="documentsExport">
-				<p:commandLink ajax="false" styleClass="icon-excel-file">
+				<p:commandLink ajax="false" styleClass="icon-excel-file" onclick="PrimeFaces.monitorDownload(start, deleteDownload )">
 					<p:fileDownload value="#{cc.attrs.valueExcel}" />
 				</p:commandLink>
-				<p:commandLink styleClass="icon-pdf-file" ajax="false">
+				<p:commandLink styleClass="icon-pdf-file" ajax="false" onclick="PrimeFaces.monitorDownload(start, deleteDownload )">
 					<p:fileDownload value="#{cc.attrs.valuePdf}" />
 				</p:commandLink>
 				<p:commandLink ajax="false" styleClass="icon-send-by-email" rendered="#{cc.attrs.renderCorreo}"

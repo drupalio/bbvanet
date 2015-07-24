@@ -13,10 +13,10 @@
 	<article class="detail-table-group">
 		<div class="utility-icons">
 			<h:form id="documentsExport">
-				<p:commandLink ajax="false" styleClass="icon-excel-file">
+				<p:commandLink ajax="false" styleClass="icon-excel-file" onclick="PrimeFaces.monitorDownload(start, deleteDownload )">
 					<p:fileDownload value="#{quotaController.exportExcel}" />
 				</p:commandLink>
-				<p:commandLink styleClass="icon-pdf-file" ajax="false">
+				<p:commandLink styleClass="icon-pdf-file" ajax="false" onclick="PrimeFaces.monitorDownload(start, deleteDownload )">
 					<p:fileDownload value="#{quotaController.exportPdf}" />
 				</p:commandLink>
 				<p:commandLink ajax="false" styleClass="icon-send-by-email"

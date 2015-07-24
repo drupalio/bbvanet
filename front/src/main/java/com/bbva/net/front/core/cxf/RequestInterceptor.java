@@ -62,10 +62,13 @@ public class RequestInterceptor extends AbstractOutDatabindingInterceptor implem
 				long dateIniMs = dateLast.getTime();
 				long dateFinalMs = dateActual.getTime();
 				long diference = dateFinalMs - dateIniMs;
-				double minutes = Math.floor(diference / (1000 * 60));
-				LOGGER.info("minutos" + minutes);
-				int minuteParam = Integer.parseInt(MessagesHelper.INSTANCE.getString("time.session")) * 1000 * 60;
+				double minutes = Math.ceil(diference / (1000 * 60));
+				int minuteParam = Integer.parseInt(MessagesHelper.INSTANCE.getString("time.session"));
+				LOGGER.info("minutos" + minutes + " minuteParam "
+						+ Integer.parseInt(MessagesHelper.INSTANCE.getString("time.session")));
 				if (minutes >= minuteParam) {
+					LOGGER.info("Limte se excedió llama a granting ticket");
+					session.setAttribute("lastService", new Date());
 					LoginControllerImpl login = new LoginControllerImpl();
 					login.login();
 				}

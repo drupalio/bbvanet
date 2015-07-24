@@ -1,7 +1,9 @@
 package com.bbva.net.front.controller.impl;
 
 import java.io.BufferedInputStream;
+
 import javax.naming.Context;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -21,6 +23,7 @@ import com.bbva.net.back.facade.TermasAccountsFacade;
 import com.bbva.net.back.model.accounts.DetailConditionsDto;
 import com.bbva.net.back.model.accounts.PostalAddresDto;
 import com.bbva.net.back.model.accounts.TermsAccountsDto;
+import com.bbva.net.front.controller.HeaderController;
 import com.bbva.net.front.controller.TermsController;
 import com.bbva.net.front.core.AbstractBbvaController;
 import com.bbva.net.front.helper.MessagesHelper;
@@ -30,7 +33,9 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.FontFactory;
+
 import javax.naming.InitialContext;
+
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
@@ -42,6 +47,10 @@ public class TermsControllerImpl extends AbstractBbvaController implements Terms
 	/**
 	 * 
 	 */
+	
+	@Resource(name = "headerController")
+	private transient HeaderController headerController;
+	
 	@Resource(name = "TermsFacade")
 	private transient TermasAccountsFacade detallesCuenta;
 
@@ -77,6 +86,7 @@ public class TermsControllerImpl extends AbstractBbvaController implements Terms
 
 		rutaArchivo = "Conditions" + getSelectedProduct().getProductNumber() + ".pdf";
 
+		headerController.setLastDownload(rutaArchivo);
 		try {
 
 			FileOutputStream file = null;

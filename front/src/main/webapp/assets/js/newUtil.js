@@ -384,3 +384,7 @@ function imprimir(muestra) {
 	ventimp.print();
 	ventimp.close();
 }
+
+
+function start() {
+}
