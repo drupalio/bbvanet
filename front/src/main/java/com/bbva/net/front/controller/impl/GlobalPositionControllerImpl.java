@@ -180,7 +180,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	}
 
 	/**
-	 * 
+	 * init
 	 */
 	public void init() {
 
@@ -194,54 +194,15 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 			// ctx.addMessage("GlobalProductsDTO", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
 			this.globalProductsDTO = new GlobalProductsDto();
 		}
-		// Obtiene la lista de resumen de movimientos del serivico REST
-		try {
-			// this.globalResumeMovementsDTO = this.movementsResumeFacade.getMovementsResumeByCustomer(new DateRangeDto());
-			final EnumPeriodType periodType = EnumPeriodType.valueOf(EnumPeriodType.LAST_45_DAYS.getPeriodId());
-
-			final DateRangeDto dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
-			accountSelected = globalProductsDTO.getAccounts().get(0).getProductNumber();
-			this.accountGraphicBarLineUI = this.graphicBarLineDelegate
-					.getInOutBalanceAccount(this.movementsResumeFacade.getMovementsResumeByAccount(accountSelected,
-							dateRange, StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY));
-		} catch (Exception e) {
-			// FacesContext ctx = FacesContext.getCurrentInstance();
-			// ctx.addMessage("GlobalResumeMovementsDto ",
-			// new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
-			this.globalResumeMovementsDTO = new GlobalResumeMovementsDto();
-			this.globalResumeMovementsDTO.setMovementsResumeDto(new ArrayList<MovementsResumeDto>());
-		}
-		// Obtiene la lista de datos para pintar la grafica Deposito electrónico
-		if (globalProductsDTO.getElectronicDeposits().size() > 0) {
-			try {
-				this.globalMonthlyBalance = this.accountMonthBalanceFacade.getAccountMonthlyBalance(globalProductsDTO
-						.getElectronicDeposits().get(0).getProductNumber(), new DateRangeDto(), StringUtils.EMPTY,
-						StringUtils.EMPTY, StringUtils.EMPTY);
-				// Delegate construye UI grafica Depositos Electrónicos
-				this.lineConfigUI = this.graphicLineDelegate.getMonthlyBalance(globalMonthlyBalance);
-			} catch (Exception e) {
-				// FacesContext ctx = FacesContext.getCurrentInstance();
-				// ctx.addMessage("globalMonthlyBalance ",
-				// new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
-				this.globalMonthlyBalance = new GlobalMonthlyBalanceDto();
-				this.lineConfigUI = new LineConfigUI();
-			}
-		}
 
 		// Calculate situation graphics panels
 		this.situationGraphicPieUI = graphicPieDelegate.getSituationGlobalProducts(this.globalProductsDTO);
-
-		// Calculate investmentFunds graphics panels
-		this.graphicPieInvestmentFunds = graphicPieDelegate.getAccountsfundsProducts(globalProductsDTO);
 
 		// Calculate totals
 		this.totalsProducts = this.globalPositionFacade.getTotalsByProduct(globalProductsDTO);
 
 		// Calculate income, output and balance by Account Graphic
 		// this.accountGraphicBarLineUI = this.graphicBarLineDelegate.getInOutBalanceAccount(globalResumeMovementsDTO);
-		final EnumPeriodType periodType = EnumPeriodType.valueOf(EnumPeriodType.LAST_45_DAYS.getPeriodId());
-
-		final DateRangeDto dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
 
 		// Get names of products
 		this.namesProducts = globalPositionFacade.getNamesProducts(globalProductsDTO);
@@ -249,14 +210,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	}
 
 	/**
-	 * @return
-	 */
-	public GlobalPositionFacade getGlobalPositionFacade() {
-		return globalPositionFacade;
-	}
-
-	/**
-	 * 
+	 * Render
 	 */
 	@Override
 	public void preRender(final ComponentSystemEvent event) {
@@ -264,7 +218,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	}
 
 	/**
-	 * 
+	 * call all products visible
 	 */
 	@Override
 	public GlobalProductsDto getCustomerProducts() {
@@ -272,7 +226,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	}
 
 	/**
-	 * 
+	 * call all products hidden
 	 */
 	@Override
 	public GlobalProductsDto getCustomerProductsHidden() {
@@ -280,28 +234,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	}
 
 	/**
-	 * @param lineConfigUI
-	 */
-	public void setLineConfigUI(final LineConfigUI lineConfigUI) {
-		this.lineConfigUI = lineConfigUI;
-	}
-
-	/**
-	 * @param accountGraphicBarLineUI
-	 */
-	public void setAccountGraphicBarLineUI(final AccountBarLineUI accountGraphicBarLineUI) {
-		this.accountGraphicBarLineUI = accountGraphicBarLineUI;
-	}
-
-	/**
-	 * @param globalMonthlyBalance
-	 */
-	public void setGlobalMonthlyBalance(final GlobalMonthlyBalanceDto globalMonthlyBalance) {
-		this.globalMonthlyBalance = globalMonthlyBalance;
-	}
-
-	/**
-	 * 
+	 * Render graphic situation
 	 */
 	@Override
 	public void renderPieSituation() {
@@ -310,7 +243,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	}
 
 	/**
-	 * 
+	 * Render graphic situation
 	 */
 	@Override
 	public void renderPieAssets() {
@@ -319,7 +252,7 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	}
 
 	/**
-	 * 
+	 * Render graphic situation
 	 */
 	@Override
 	public void renderPieFinanciation() {
@@ -330,65 +263,9 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	/**
 	 * @return
 	 */
-	public String getActivePanel() {
-		return this.activePanel.name();
-	}
-
-	/**
-	 * @return
-	 */
-	public ActivePanelType getActivePanelEnum() {
-		return this.activePanel;
-	}
-
-	/**
-	 * @return
-	 */
-	public SituationPiesUI getSituationGraphicPieUI() {
-		return situationGraphicPieUI;
-	}
-
-	/**
-	 * @return
-	 */
-	public AccountBarLineUI getAccountGraphicBarLineUI() {
-		return accountGraphicBarLineUI;
-	}
-
-	/**
-	 * @return the selectedLike
-	 */
-	public String getSelectedLike() {
-		return selectedLike;
-	}
-
-	/**
-	 * @return
-	 */
 	@Override
 	public Map<String, BalanceDto> getTotalsProducts() {
 		return totalsProducts;
-	}
-
-	/**
-	 * @param selectedLike the selectedLike to set
-	 */
-	public void setSelectedLike(final String selectedLike) {
-		this.selectedLike = selectedLike;
-	}
-
-	/**
-	 * @return
-	 */
-	public PieConfigUI getGraphicPieCards() {
-		return graphicPieCards;
-	}
-
-	/**
-	 * @param graphicPieCards
-	 */
-	public void setGraphicPieCards(final PieConfigUI graphicPieCards) {
-		this.graphicPieCards = graphicPieCards;
 	}
 
 	/**
@@ -418,8 +295,9 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	}
 
 	/**
-	 * Filter combo of Graphic Cards
+	 * Capture the action of the combo filter in Graphic Cards
 	 */
+	@Override
 	public void onComboSelectedCard() {
 		EnumPeriodType periodType = null;
 		if (!this.periodCardSelected.isEmpty()) {
@@ -459,8 +337,33 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	}
 
 	/**
-	 * Captura la acción de los combo filtro en gráfica cuentas.
+	 * Initial Graphic Accounts
 	 */
+	@Override
+	public void onComboInitialAccountGraphic() {
+		// Obtiene la lista de resumen de movimientos del serivico REST
+		try {
+			// this.globalResumeMovementsDTO = this.movementsResumeFacade.getMovementsResumeByCustomer(new DateRangeDto());
+			final EnumPeriodType periodType = EnumPeriodType.valueOf(EnumPeriodType.LAST_45_DAYS.getPeriodId());
+
+			final DateRangeDto dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
+			accountSelected = globalProductsDTO.getAccounts().get(0).getProductNumber();
+			this.accountGraphicBarLineUI = this.graphicBarLineDelegate
+					.getInOutBalanceAccount(this.movementsResumeFacade.getMovementsResumeByAccount(accountSelected,
+							dateRange, StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY));
+		} catch (Exception e) {
+			// FacesContext ctx = FacesContext.getCurrentInstance();
+			// ctx.addMessage("GlobalResumeMovementsDto ",
+			// new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+			this.globalResumeMovementsDTO = new GlobalResumeMovementsDto();
+			this.globalResumeMovementsDTO.setMovementsResumeDto(new ArrayList<MovementsResumeDto>());
+		}
+	}
+
+	/**
+	 * Capture the action of the combo filter in Graphic accounts.
+	 */
+	@Override
 	public void onComboSelectedAccountGraphic() {
 		final EnumPeriodType periodType = StringUtils.isNotEmpty(periodAccountSelected) ? EnumPeriodType
 				.valueOf(Integer.parseInt(this.periodAccountSelected)) : EnumPeriodType
@@ -498,10 +401,58 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 		}
 	}
 
+	/**
+	 * Initial Graphic Deposit.
+	 */
+	@Override
+	public void onComboDepositAccountGraphic() {
+		// Obtiene la lista de datos para pintar la grafica Deposito electrónico
+		if (globalProductsDTO.getElectronicDeposits().size() > 0) {
+			try {
+				this.globalMonthlyBalance = this.accountMonthBalanceFacade.getAccountMonthlyBalance(globalProductsDTO
+						.getElectronicDeposits().get(0).getProductNumber(), new DateRangeDto(), StringUtils.EMPTY,
+						StringUtils.EMPTY, StringUtils.EMPTY);
+				// Delegate construye UI grafica Depositos Electrónicos
+				this.lineConfigUI = this.graphicLineDelegate.getMonthlyBalance(globalMonthlyBalance);
+			} catch (Exception e) {
+				// FacesContext ctx = FacesContext.getCurrentInstance();
+				// ctx.addMessage("globalMonthlyBalance ",
+				// new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+				this.globalMonthlyBalance = new GlobalMonthlyBalanceDto();
+				this.lineConfigUI = new LineConfigUI();
+			}
+		}
+	}
+
+	/**
+	 * Graphic cards
+	 */
+	@Override
 	public void cardsCustomer() {
 		try {
 			// Calculate cards graphics panel
 			this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(null));
+		} catch (Exception e) {
+			FacesContext ctx = FacesContext.getCurrentInstance();
+			ctx.addMessage(
+					"graphicPieCards ",
+					new FacesMessage(
+							FacesMessage.SEVERITY_ERROR,
+							"Error",
+							"Servicio no disponible - No se han podido cargar algunos datos, para mayor información comunicate a nuestras líneas BBVA"));
+			this.graphicPieCards = new PieConfigUI();
+			// Verifica si en el mensaje de error existe la palabra tsec
+		}
+	}
+
+	/**
+	 * Graphic funds
+	 */
+	@Override
+	public void fundsCustomer() {
+		try {
+			// Calculate investmentFunds graphics panels
+			this.graphicPieInvestmentFunds = graphicPieDelegate.getAccountsfundsProducts(globalProductsDTO);
 		} catch (Exception e) {
 			FacesContext ctx = FacesContext.getCurrentInstance();
 			ctx.addMessage(
@@ -543,6 +494,90 @@ public class GlobalPositionControllerImpl extends AbstractBbvaController impleme
 	}
 
 	/************************************* SETTER BEANS **************************************/
+
+	/**
+	 * @param selectedLike the selectedLike to set
+	 */
+	public void setSelectedLike(final String selectedLike) {
+		this.selectedLike = selectedLike;
+	}
+
+	/**
+	 * @return
+	 */
+	public PieConfigUI getGraphicPieCards() {
+		return graphicPieCards;
+	}
+
+	/**
+	 * @param graphicPieCards
+	 */
+	public void setGraphicPieCards(final PieConfigUI graphicPieCards) {
+		this.graphicPieCards = graphicPieCards;
+	}
+
+	/**
+	 * @return
+	 */
+	public GlobalPositionFacade getGlobalPositionFacade() {
+		return globalPositionFacade;
+	}
+
+	/**
+	 * @param lineConfigUI
+	 */
+	public void setLineConfigUI(final LineConfigUI lineConfigUI) {
+		this.lineConfigUI = lineConfigUI;
+	}
+
+	/**
+	 * @param accountGraphicBarLineUI
+	 */
+	public void setAccountGraphicBarLineUI(final AccountBarLineUI accountGraphicBarLineUI) {
+		this.accountGraphicBarLineUI = accountGraphicBarLineUI;
+	}
+
+	/**
+	 * @param globalMonthlyBalance
+	 */
+	public void setGlobalMonthlyBalance(final GlobalMonthlyBalanceDto globalMonthlyBalance) {
+		this.globalMonthlyBalance = globalMonthlyBalance;
+	}
+
+	/**
+	 * @return
+	 */
+	public String getActivePanel() {
+		return this.activePanel.name();
+	}
+
+	/**
+	 * @return
+	 */
+	public ActivePanelType getActivePanelEnum() {
+		return this.activePanel;
+	}
+
+	/**
+	 * @return
+	 */
+	public SituationPiesUI getSituationGraphicPieUI() {
+		return situationGraphicPieUI;
+	}
+
+	/**
+	 * @return
+	 */
+	public AccountBarLineUI getAccountGraphicBarLineUI() {
+		return accountGraphicBarLineUI;
+	}
+
+	/**
+	 * @return the selectedLike
+	 */
+	public String getSelectedLike() {
+		return selectedLike;
+	}
 
 	/**
 	 * @param globalPositionFacade
