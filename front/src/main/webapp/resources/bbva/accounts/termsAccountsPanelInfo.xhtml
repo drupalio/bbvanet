@@ -18,9 +18,11 @@
 					<div class="box">
 						<div class="utility-icons">
 							<h:form id="documentsCExport">
+								
 								<p:commandLink styleClass="icon-pdf-file" ajax="false"
-									oncomplete="#{termsController.deletePdf}">
-									<p:fileDownload value="#{termsController.exportPdf}" />
+									onclick="PrimeFaces.monitorDownload(start, deleteDownload )">
+									<p:fileDownload value="#{termsController.exportPdf}"/>
+									
 								</p:commandLink>
 								<p:commandLink ajax="false" styleClass="icon-printer"
 									onclick="imprimir('tab-condiciones');">

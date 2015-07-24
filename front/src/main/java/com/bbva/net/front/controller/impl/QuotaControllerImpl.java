@@ -62,6 +62,7 @@ import com.bbva.net.back.model.movements.MovementDetailDto;
 import com.bbva.net.back.model.movements.MovementDto;
 import com.bbva.net.back.model.quota.QuotaDetailDto;
 import com.bbva.net.back.service.impl.DateFilterServiceImpl;
+import com.bbva.net.front.controller.HeaderController;
 import com.bbva.net.front.controller.QuotaController;
 import com.bbva.net.front.helper.MessagesHelper;
 import com.itextpdf.text.BaseColor;
@@ -85,6 +86,9 @@ import com.itextpdf.text.pdf.PdfWriter;
 public class QuotaControllerImpl extends QuotaPaginatedController implements QuotaController {
 
 	private static final long serialVersionUID = 1L;
+	
+	@Resource(name = "headerController")
+	private transient HeaderController headerController;
 
 	private QuotaDetailDto quotaDetailDto;
 
@@ -343,7 +347,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 		}
 
 		rutaExcelCupo = "MovimientosCupo" + getSelectedProduct().getProductNumber() + ".xls";
-
+		headerController.setLastDownload(rutaExcelCupo);
 		List<Cell> cellSheet = new ArrayList<Cell>();
 
 		int inicio = 10;
@@ -633,7 +637,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 		LOGGER.info("iniciando exportar archivo pdf");
 
 		rutaPdfCupo = "MovimientosCupo" + getSelectedProduct().getProductNumber() + ".pdf";
-
+		headerController.setLastDownload(rutaPdfCupo);
 		try {
 
 			FileOutputStream file = null;
@@ -789,7 +793,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 		LOGGER.info("iniciando exportar archivo pdf");
 
 		rutaPdfMove = "MovDetalleCupo" + quotaMoveDetailDto.getId() + ".pdf";
-
+		headerController.setLastDownload(rutaPdfMove);
 		try {
 
 			FileOutputStream file = null;

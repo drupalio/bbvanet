@@ -21,6 +21,10 @@
 			PF('statusDialog').show()
 		};
 	</script>
+	<h:form>
+		<p:remoteCommand name="deleteDownload"
+			actionListener="#{headerController.deleteLastDownload()}" />
+	</h:form>
 	<div id="header">
 		<ui:insert name="header">
 			<ui:include src="header.xhtml" />

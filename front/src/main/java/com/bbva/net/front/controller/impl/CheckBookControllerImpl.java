@@ -56,6 +56,7 @@ import com.bbva.net.back.predicate.CheckBookStatusPredicate;
 import com.bbva.net.back.predicate.CheckStatusPredicate;
 import com.bbva.net.back.service.impl.DateFilterServiceImpl;
 import com.bbva.net.front.controller.CheckBookController;
+import com.bbva.net.front.controller.HeaderController;
 import com.bbva.net.front.helper.MessagesHelper;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
@@ -129,6 +130,9 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	private String rutaCheckExcel;
 
 	private String rutaCheckBookExcel;
+	
+	@Resource(name = "headerController")
+	private transient HeaderController headerController;
 
 	protected String RUTA_ICONO_BBVA = MessagesHelper.INSTANCE.getString("ruta.iconobbva");
 
@@ -463,7 +467,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 		LOGGER.info("iniciando exportar archivo pdf");
 
 		rutaCheckPdf = "Cheques" + getSelectedProduct().getProductNumber() + ".pdf";
-
+		headerController.setLastDownload(rutaCheckPdf);
 		try {
 
 			FileOutputStream file = null;
@@ -652,7 +656,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 		LOGGER.info("iniciando exportar archivo pdf");
 
 		rutaCheckBookPdf = "Chequeras" + getSelectedProduct().getProductNumber() + ".pdf";
-
+		headerController.setLastDownload(rutaCheckBookPdf);
 		try {
 
 			FileOutputStream file = null;
@@ -865,7 +869,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 		}
 
 		rutaCheckExcel = "Cheques" + getSelectedProduct().getProductNumber() + ".xls";
-
+		headerController.setLastDownload(rutaCheckExcel);
 		List<Cell> cellSheet = new ArrayList<Cell>();
 
 		int inicio = 10;
@@ -1205,7 +1209,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			LOGGER.info("No encontró directorio actual " + e.getMessage());
 		}
 		rutaCheckBookExcel = "Chequeras" + getSelectedProduct().getProductNumber() + ".xls";
-
+		headerController.setLastDownload(rutaCheckBookExcel);
 		List<Cell> cellSheet = new ArrayList<Cell>();
 
 		int inicio = 10;

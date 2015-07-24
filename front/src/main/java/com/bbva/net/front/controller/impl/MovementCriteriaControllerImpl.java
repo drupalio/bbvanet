@@ -74,6 +74,7 @@ import com.bbva.net.back.predicate.ConceptMovementPredicate;
 import com.bbva.net.back.predicate.ExpensesPredicate;
 import com.bbva.net.back.predicate.IncomesPredicate;
 import com.bbva.net.back.service.impl.DateFilterServiceImpl;
+import com.bbva.net.front.controller.HeaderController;
 import com.bbva.net.front.controller.MovementCriteriaController;
 import com.bbva.net.front.delegate.GraphicLineDelegate;
 import com.bbva.net.front.helper.MessagesHelper;
@@ -158,6 +159,9 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	protected String PUERTO_IRONPORT = MessagesHelper.INSTANCE.getString("ruta.puertoironport");
 
 	protected String REMITENTE = MessagesHelper.INSTANCE.getString("ruta.remitente");
+	
+	@Resource(name = "headerController")
+	private transient HeaderController headerController;
 
 	@Override
 	public void init() {
@@ -531,7 +535,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			LOGGER.info("No encontró directorio actual " + e.getMessage());
 		}
 		rutaMoveExcel = "movimientos" + getSelectedProduct().getProductNumber() + ".xls";
-
+		headerController.setLastDownload(rutaMoveExcel);
 		List<Cell> cellSheet = new ArrayList<Cell>();
 
 		int inicio = 10;
@@ -849,6 +853,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 				LOGGER.info("Excepción no se encuentra el archivo" + e.getMessage());
 			}
 
+			headerController.setLastDownload(rutaMovePdf);
 			Document document = new Document();
 
 			PdfWriter.getInstance(document, file).setInitialLeading(20);
@@ -1018,6 +1023,8 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		LOGGER.info("iniciando exportar archivo pdf " + "DetailMove" + this.movementDetail.getId() + ".pdf");
 
 		rutaMoveDetailPdf = "DetailMove" + this.movementDetail.getId() + ".pdf";
+		
+		headerController.setLastDownload(rutaMoveDetailPdf);
 
 		try {
 
