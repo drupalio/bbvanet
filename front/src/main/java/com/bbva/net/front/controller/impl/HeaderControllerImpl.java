@@ -32,7 +32,7 @@ public class HeaderControllerImpl extends AbstractBbvaController implements Head
 	private ExecutiveDto ejecutivo;
 
 	private CustomerDto cliente;
-	
+
 	private String fileDownload;
 
 	private DateRangeDto date = new DateRangeDto();
@@ -41,9 +41,13 @@ public class HeaderControllerImpl extends AbstractBbvaController implements Head
 
 	@PostConstruct
 	public void init() {
-		this.cliente = this.getCustomer();
-		if (!this.cliente.getSegment().equals("N") || !this.cliente.getSegment().isEmpty())
-			this.ejecutivo = this.getExecutive();
+		try {
+			this.cliente = this.getCustomer();
+			if (!this.cliente.getSegment().equals("N") || !this.cliente.getSegment().isEmpty())
+				this.ejecutivo = this.getExecutive();
+		} catch (Exception e) {
+
+		}
 	}
 
 	@Override
@@ -107,8 +111,8 @@ public class HeaderControllerImpl extends AbstractBbvaController implements Head
 		}
 
 	}
-	
-	public void deleteLastDownload(){
+
+	public void deleteLastDownload() {
 		try {
 			File fileOut = new File(fileDownload);
 			if (fileOut.exists()) {
@@ -118,7 +122,7 @@ public class HeaderControllerImpl extends AbstractBbvaController implements Head
 			LOGGER.info("Excepción no se encuentra el archivo para eliminar" + ex.getMessage());
 		}
 	}
-	
+
 	@Override
 	public void setLastDownload(String file) {
 		this.fileDownload = file;
