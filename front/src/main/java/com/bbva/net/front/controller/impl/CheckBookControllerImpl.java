@@ -130,7 +130,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	private String rutaCheckExcel;
 
 	private String rutaCheckBookExcel;
-	
+
 	@Resource(name = "headerController")
 	private transient HeaderController headerController;
 
@@ -169,7 +169,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	}
 
 	@Override
-	public void clean() {
+	public String clean() {
 		setSinceDatestr(new String());
 		setToDatestr(new String());
 		checkNumber = null;
@@ -181,6 +181,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 		selectDate = StringUtils.EMPTY;
 		dateRange = null;
 		titleState = null;
+		return "clean";
 	}
 
 	@SuppressWarnings("unchecked")
