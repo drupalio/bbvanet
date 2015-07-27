@@ -52,7 +52,7 @@ public class ApplicationControllerImpl extends AbstractBbvaController implements
 			final HttpSession session = (HttpSession)FacesContext.getCurrentInstance().getExternalContext()
 					.getSession(false);
 			flow = true;
-			session.setAttribute("operations", "true");
+			session.setAttribute("operationsAccount", "true");
 		}
 		if (!flow) {
 			this.sendAction("back");
