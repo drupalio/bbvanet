@@ -80,7 +80,7 @@ public class ExtractControllerImpl extends AbstractBbvaController implements Ext
 	public void init() {
 		try {
 			this.extractList = this.extractFacade.getExtractAvailable(super.getSelectedProduct().getProductNumber());
-
+			LOGGER.info("Se consumio extractos ok en init ExtractControllerImpl" );
 		} catch (Exception e) {
 			FacesContext ctx = FacesContext.getCurrentInstance();
 			ctx.addMessage(
@@ -91,6 +91,10 @@ public class ExtractControllerImpl extends AbstractBbvaController implements Ext
 							"Servicio no disponible - No se han podido cargar algunos datos, para mayor información comunicate a nuestras líneas BBVA"));
 			this.extractList = new ArrayList<ExtractDto>();
 		}
+		this.enableMonth = true;
+		LOGGER.info("llamar getExtractAvailablePeriod ExtractControllerImpl" );
+		getExtractAvailablePeriod();
+		LOGGER.info("sale getExtractAvailablePeriod ExtractControllerImpl" );
 	}
 
 	/**
@@ -143,6 +147,7 @@ public class ExtractControllerImpl extends AbstractBbvaController implements Ext
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<String> getExtractAvailablePeriod() {
+		LOGGER.info("entra getExtractAvailablePeriod ExtractControllerImpl" );
 		this.yearAvailable = (List<String>)CollectionUtils.collect(extractList, new BeanToPropertyValueTransformer(
 				"year"));
 		yearAvailable = new ArrayList<String>(new LinkedHashSet<String>(yearAvailable));
