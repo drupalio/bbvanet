@@ -50,8 +50,9 @@
 				
 			</dl>
 			<dl class="shared marginDetailQValue">
-<!-- 				<bbvaGrap:MapDetail latitud="#{cc.attrs.controller.movementDetail.plaza.latitude}" longitud="#{cc.attrs.controller.movementDetail.plaza.length}"></bbvaGrap:MapDetail> -->
-								<dd class="condiciones-list-element conditionsTitle" style="white-space:normal !important;height: 33px !important">#{msg['text.originCenterOfMontion']}</dd>
+				<bbvaGrap:MapDetail latitud="#{cc.attrs.controller.movementDetail.plaza.latitude}"
+					longitud="#{cc.attrs.controller.movementDetail.plaza.length}"></bbvaGrap:MapDetail>
+				<dd class="condiciones-list-element conditionsTitle" style="white-space:normal !important;height: 33px !important">#{msg['text.originCenterOfMontion']}</dd>
 				<dt class="condiciones-list-element conditionsData" style="white-space:normal !important;height: 33px !important">#{cc.attrs.controller.movementDetail.originCenterMovement}</dt>
 				<dd class="condiciones-list-element conditionsTitle #{cc.attrs.controller.movementDetail.state==null ? 'nonee':'' }" style="white-space:normal !important;height: 33px !important">#{msg['text.search.by.number.status']}</dd>
 				<dt class="condiciones-list-element conditionsData #{cc.attrs.controller.movementDetail.state==null ? 'nonee':'' }"  style="white-space:normal !important;height: 33px !important">#{cc.attrs.controller.movementDetail.state}</dt>

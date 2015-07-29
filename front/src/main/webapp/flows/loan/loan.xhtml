@@ -1,89 +1,69 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:bbvaAcc="http://java.sun.com/jsf/composite/bbva/accounts"
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:bbvaAcc="http://java.sun.com/jsf/composite/bbva/accounts"
 	xmlns:bbvaGP="http://java.sun.com/jsf/composite/bbva/globalPosition"
 	xmlns:bbvaAlert="http://java.sun.com/jsf/composite/bbva/alert"
 	xmlns:bbvaBody="http://java.sun.com/jsf/composite/bbva/body"
 	xmlns:bbvaContainer="http://java.sun.com/jsf/composite/bbva/container"
-	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-	xmlns:jsf="http://xmlns.jcp.org/jsf">
-
-
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough" xmlns:jsf="http://xmlns.jcp.org/jsf">
 <ui:composition template="../../templates/defaultLayout.xhtml">
-
 	<ui:define name="bodyTitle">
 		<bbvaBody:title title="Préstamos">
-			<bbvaBody:titleOptionProduct
-				optionButttonLeft="#{msg['title.myProducts']}"
+			<bbvaBody:titleOptionProduct optionButttonLeft="#{msg['title.myProducts']}"
 				optionButttonRight="#{msg['title.productCatalog']}" />
 		</bbvaBody:title>
 	</ui:define>
-
 	<ui:define name="contentLeft">
-		
-		<bbvaContainer:productPanel title="#{msg['title.rotaryQuota']}"
-		display =  "#{customerRotatingAccount.size() > '0' || customerRotatingAccountHidden.size() > '0'  ? 'block' : 'none'}" >
-			<div class="table-tabs">
-
-				<bbvaGP:rotatingQuotaHeadTable
-					listQuota="#{customerRotatingAccount}"
-					controller="#{loanController}" />
-				<bbvaGP:rotatingQuotaTailTable
-					listQuota="#{customerRotatingAccountHidden}"
-					controller="#{loanController}" />
-
+		<div class="col-xs-12 col-md-8">
+			<div class="tab-content">
+				<section class="row tab-pane active globalpanelIn" id="products"
+					style="padding: 0px !important;">
+				<div class="section-content col-xs-12 col-md-8" style="margin: 0px;">
+					<bbvaContainer:productPanel title="#{msg['title.rotaryQuota']}"
+						display="#{customerRotatingAccount.size() > '0' || customerRotatingAccountHidden.size() > '0'  ? 'block' : 'none'}">
+						<div class="table-tabs">
+							<bbvaGP:rotatingQuotaHeadTable listQuota="#{customerRotatingAccount}"
+								controller="#{loanController}" />
+							<bbvaGP:rotatingQuotaTailTable listQuota="#{customerRotatingAccountHidden}"
+								controller="#{loanController}" />
+						</div>
+						<div class="row afterTable">
+							<bbvaGP:productFooter listProduct="#{customerRotatingAccountHidden}" />
+							<bbvaGP:totalBalance total="#{loanController.totalsProducts['RQ'].total}" />
+						</div>
+					</bbvaContainer:productPanel>
+					<bbvaContainer:productPanel title="#{msg['title.Leasing']}"
+						display="#{customerLeasing.size() > '0' || customerLeasingHidden.size() > '0'  ? 'block' : 'none'}">
+						<div class="table-tabs">
+							<bbvaGP:leasingHeadTable listLeasing="#{customerLeasing}" controller="#{loanController}" />
+							<bbvaGP:leasingTailTable listLeasing="#{customerLeasingHidden}"
+								controller="#{loanController}" />
+						</div>
+						<div class="row afterTable">
+							<bbvaGP:productFooter listProduct="#{customerLeasingHidden}" />
+							<bbvaGP:totalBalance total="#{loanController.totalsProducts['LI'].total}" />
+						</div>
+					</bbvaContainer:productPanel>
+					<bbvaContainer:productPanel title="#{msg['title.loans']}"
+						display="#{customerLoan.size() > '0' || customerLoanHidden.size() > '0'  ? 'block' : 'none'}">
+						<div class="table-tabs">
+							<bbvaGP:loanHeadTable listLoan="#{customerLoan}" controller="#{loanController}" />
+							<bbvaGP:loanTailTable listLoan="#{customerLoanHidden}" controller="#{loanController}" />
+						</div>
+						<div class="row afterTable">
+							<bbvaGP:productFooter listProduct="#{customerLoanHidden}" />
+							<bbvaGP:totalBalance total="#{loanController.totalsProducts['LO'].total}" />
+						</div>
+					</bbvaContainer:productPanel>
+				</div>
+				</section>
+				<section class="tab-pane globalpanelIn" id="catalogo" style="padding:0px !important;" />
 			</div>
-			<div class="row afterTable">
-				<bbvaGP:productFooter listProduct="#{customerRotatingAccountHidden}" />
-				<bbvaGP:totalBalance
-					total="#{loanController.totalsProducts['RQ'].total}" />
-			</div>
-		</bbvaContainer:productPanel>
-
-		<bbvaContainer:productPanel title="#{msg['title.Leasing']}"
-		display =  "#{customerLeasing.size() > '0' || customerLeasingHidden.size() > '0'  ? 'block' : 'none'}" >
-			<div class="table-tabs">
-
-				<bbvaGP:leasingHeadTable listLeasing="#{customerLeasing}"
-					controller="#{loanController}" />
-				<bbvaGP:leasingTailTable listLeasing="#{customerLeasingHidden}"
-					controller="#{loanController}" />
-			</div>
-			<div class="row afterTable">
-				<bbvaGP:productFooter listProduct="#{customerLeasingHidden}" />
-				<bbvaGP:totalBalance
-					total="#{loanController.totalsProducts['LI'].total}" />
-			</div>
-		</bbvaContainer:productPanel>
-
-		<bbvaContainer:productPanel title="#{msg['title.loans']}"
-		display =  "#{customerLoan.size() > '0' || customerLoanHidden.size() > '0'  ? 'block' : 'none'}" >
-			<div class="table-tabs">
-				<bbvaGP:loanHeadTable listLoan="#{customerLoan}"
-					controller="#{loanController}" />
-				<bbvaGP:loanTailTable listLoan="#{customerLoanHidden}"
-					controller="#{loanController}" />
-			</div>
-			<div class="row afterTable">
-				<bbvaGP:productFooter listProduct="#{customerLoanHidden}" />
-				<bbvaGP:totalBalance
-					total="#{loanController.totalsProducts['LO'].total}" />
-			</div>
-		</bbvaContainer:productPanel>
-
+		</div>
 	</ui:define>
-
 	<ui:define name="contentRight">
-
-
 	</ui:define>
-
 </ui:composition>
-
 </html>

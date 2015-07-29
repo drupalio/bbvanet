@@ -16,22 +16,32 @@
 		</bbvaBody:title>
 	</ui:define>
 	<ui:define name="contentLeft">
-		<bbvaContainer:productCardGraphic title="#{msg['title.cards']}"
-			header="#{msg['graphicCard.tittle']}" id="cardPieGP"
-			pieGraphic="#{globalPositionController.graphicPieCards}">
-			<div class="table-tabs">
-				<bbvaGP:cardHeadTable controller="#{globalPositionController}"
-					listCards="#{customerProducts.creditCards}" />
-				<bbvaGP:cardTailTable controller="#{globalPositionController}"
-					listCards="#{customerProductsHidden.creditCards}" />
+		<div class="col-xs-12 col-md-8">
+			<div class="tab-content">
+				<section class="row tab-pane active globalpanelIn" id="products"
+					style="padding: 0px !important;">
+				<div class="section-content col-xs-12 col-md-8" style="margin: 0px;">
+					<bbvaContainer:productCardGraphic title="#{msg['title.cards']}"
+						header="#{msg['graphicCard.tittle']}" id="cardPieGP"
+						pieGraphic="#{globalPositionController.graphicPieCards}">
+						<div class="table-tabs">
+							<bbvaGP:cardHeadTable controller="#{globalPositionController}"
+								listCards="#{customerProducts.creditCards}" />
+							<bbvaGP:cardTailTable controller="#{globalPositionController}"
+								listCards="#{customerProductsHidden.creditCards}" />
+						</div>
+						<div class="row afterTable">
+							<bbvaGP:productFooter listProduct="#{customerProductsHidden.creditCards}" />
+							<bbvaGP:totalBalance util="#{msg['text.used']}"
+								total="#{globalPositionController.totalsProducts['TC'].total}"
+								subtotal="#{globalPositionController.getTotalUsedCards(globalPositionController.totalsProducts['TC'].total,globalPositionController.totalsProducts['TC'].available)}" />
+						</div>
+					</bbvaContainer:productCardGraphic>
+				</div>
+				</section>
+				<section class="tab-pane globalpanelIn" id="catalogo" style="padding:0px !important;" />
 			</div>
-			<div class="row afterTable">
-				<bbvaGP:productFooter listProduct="#{customerProductsHidden.creditCards}" />
-				<bbvaGP:totalBalance util="#{msg['text.used']}"
-					total="#{globalPositionController.totalsProducts['TC'].total}"
-					subtotal="#{globalPositionController.getTotalUsedCards(globalPositionController.totalsProducts['TC'].total,globalPositionController.totalsProducts['TC'].available)}" />
-			</div>
-		</bbvaContainer:productCardGraphic>
+		</div>
 	</ui:define>
 	<ui:define name="contentRight">
 	</ui:define>

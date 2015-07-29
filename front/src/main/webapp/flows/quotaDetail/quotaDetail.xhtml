@@ -17,11 +17,6 @@
 	xmlns:bbvaDetailMotionQuota="http://java.sun.com/jsf/composite/bbva/movementsDetailQuota">
 <ui:composition template="../../templates/defaultLayout.xhtml">
 	<ui:define name="bodyTitle">
-		<script type="text/javascript">
-            window.onload = function() {
-                openOperaMore();
-            };
-        </script>
 		<input id='operations' type='hidden' value='${sessionScope.operationsRotary}' />
 		<button id="opButton" style="display: none;" onclick="#{quotaController.resetData()}" />
 		<bbvaBody:title title="#{msg['title.loans']}">
@@ -30,82 +25,90 @@
 		</bbvaBody:title>
 	</ui:define>
 	<ui:define name="contentLeft">
-		<bbvaQuotaHeader:quotaContainer id="quotaDetail">
-			<bbvaQuotaHeader:moveDetailContainer>
-				<bbvaQuotaHeader:moveContainerHeader>
-					<bbvaQuotaHeader:moveDetailHeaderLeft alias="#{product.alias}" number="#{product.productId}"
-						type=" #{product.productName}" />
-					<bbvaGraphic:quotaDetailGraphic textUp="#{msg['text.outstandingBalance']}"
-						valueUp="#{quotaController.quotaDetailDto.outstandingBalance}"
-						textDown="#{msg['text.amountRequested']}"
-						valueDown="#{quotaController.quotaDetailDto.amountRequested}" valueGrphic="10" />
-					<bbvaQuotaHeader:moveDetailHeaderRight textUp="#{msg['text.outstandingBalance']}"
-						valueUp="#{quotaController.quotaDetailDto.outstandingBalance}"
-						textDown="#{msg['text.amountRequested']}"
-						valueDown="#{quotaController.quotaDetailDto.amountRequested}"
-						disabledOpera="#{product.getOperationOnline()}" disabledConsult="#{product.isVisible()}" />
-				</bbvaQuotaHeader:moveContainerHeader>
-				<bbvaQuotaHeader:quotaDetailHeaderBody>
-					<bbvaQuotaHeader:quotaDetailHeaderBodyContainer type="left">
-						<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem text="#{msg['text.numberShares']}"
-							value="#{quotaController.quotaDetailDto.numberOfShares}" />
-						<bbvaQuotaHeader:quotaDetailHeaderBodyContainerDate text="#{msg['text.dueDate']}">
-							<h:outputText styleClass="brand styleLeft"
-								value="#{quotaController.quotaDetailDto.dateMaturity}">
-								<f:convertDateTime pattern="dd/MM/yyyy" />
-							</h:outputText>
-						</bbvaQuotaHeader:quotaDetailHeaderBodyContainerDate>
-						<bbvaQuotaHeader:quotaDetailHeaderBodyContainerDate text="#{msg['text.datePayment']}">
-							<h:outputText styleClass="brand styleLeft"
-								value="#{quotaController.quotaDetailDto.datePayment}">
-								<f:convertDateTime pattern="dd/MM/yyyy" />
-							</h:outputText>
-						</bbvaQuotaHeader:quotaDetailHeaderBodyContainerDate>
-						<bbvaQuotaHeader:quotaDetailHeaderBodyContainerDate text="#{msg['text.datePreviousCut']}">
-							<h:outputText styleClass="brand styleLeft"
-								value="#{quotaController.quotaDetailDto.datePrevious}">
-								<f:convertDateTime pattern="dd/MM/yyyy" />
-							</h:outputText>
-						</bbvaQuotaHeader:quotaDetailHeaderBodyContainerDate>
-						<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem
-							text="#{msg['text.search.by.number.status']}" value="#{quotaController.quotaDetailDto.state}" />
-					</bbvaQuotaHeader:quotaDetailHeaderBodyContainer>
-					<bbvaQuotaHeader:quotaDetailHeaderBodyContainer type="right">
-						<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem text="#{msg['text.minimumPayment']}"
-							value="#{quotaController.quotaDetailDto.minimumPayment}" />
-						<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem text="#{msg['text.feeCollections']}"
-							value="#{quotaController.quotaDetailDto.feeCollection}" />
-						<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem
-							text="#{msg['text.account.balance.label']}"
-							value="#{quotaController.quotaDetailDto.availableBalance}" />
-						<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem
-							text="#{msg['text.totalBalancePreviousCut']}"
-							value="#{quotaController.quotaDetailDto.balancePrevious}" />
-					</bbvaQuotaHeader:quotaDetailHeaderBodyContainer>
-				</bbvaQuotaHeader:quotaDetailHeaderBody>
-			</bbvaQuotaHeader:moveDetailContainer>
-			<bbvaDetAcc:tabMenu id="tabMenu">
-				<bbvaDetAcc:menuMovements disabledOpera="#{product.getOperationOnline()}"
-					disabledConsult="#{product.isVisible()}" />
-				<div class="tab-content">
-					<!-- Tab Consultar -->
-					<bbvaSearch:tabCriteria id="tabCriteria">
-						<bbvaSearch:personalizedSearchDate id="personalizedSearchContainer" />
-					</bbvaSearch:tabCriteria>
-					<!-- Tab Condiciones -->
-					<bbvaAcc:accountContainer alias="#{product.alias}" number="#{product.productId}"
-						type="#{product.productName}" />
-					<!-- Tab Personalizar -->
-					<bbvaPersonalize:personalizeContainer id="tabQuota"/>
-					<!-- Tab operaciones -->
-					<bbvaOperation:operationsQuota />
+		<script type="text/javascript">
+            window.onload = function() {
+                openOperaMore();
+            };
+        </script>
+		<div class="col-xs-12 col-md-8">
+			<bbvaQuotaHeader:quotaContainer id="quotaDetail">
+				<bbvaQuotaHeader:moveDetailContainer>
+					<bbvaQuotaHeader:moveContainerHeader>
+						<bbvaQuotaHeader:moveDetailHeaderLeft alias="#{product.alias}" number="#{product.productId}"
+							type=" #{product.productName}" />
+						<bbvaGraphic:quotaDetailGraphic textUp="#{msg['text.outstandingBalance']}"
+							valueUp="#{quotaController.quotaDetailDto.outstandingBalance}"
+							textDown="#{msg['text.amountRequested']}"
+							valueDown="#{quotaController.quotaDetailDto.amountRequested}" valueGrphic="10" />
+						<bbvaQuotaHeader:moveDetailHeaderRight textUp="#{msg['text.outstandingBalance']}"
+							valueUp="#{quotaController.quotaDetailDto.outstandingBalance}"
+							textDown="#{msg['text.amountRequested']}"
+							valueDown="#{quotaController.quotaDetailDto.amountRequested}"
+							disabledOpera="#{product.getOperationOnline()}" disabledConsult="#{product.isVisible()}" />
+					</bbvaQuotaHeader:moveContainerHeader>
+					<bbvaQuotaHeader:quotaDetailHeaderBody>
+						<bbvaQuotaHeader:quotaDetailHeaderBodyContainer type="left">
+							<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem text="#{msg['text.numberShares']}"
+								value="#{quotaController.quotaDetailDto.numberOfShares}" />
+							<bbvaQuotaHeader:quotaDetailHeaderBodyContainerDate text="#{msg['text.dueDate']}">
+								<h:outputText styleClass="brand styleLeft"
+									value="#{quotaController.quotaDetailDto.dateMaturity}">
+									<f:convertDateTime pattern="dd/MM/yyyy" />
+								</h:outputText>
+							</bbvaQuotaHeader:quotaDetailHeaderBodyContainerDate>
+							<bbvaQuotaHeader:quotaDetailHeaderBodyContainerDate text="#{msg['text.datePayment']}">
+								<h:outputText styleClass="brand styleLeft"
+									value="#{quotaController.quotaDetailDto.datePayment}">
+									<f:convertDateTime pattern="dd/MM/yyyy" />
+								</h:outputText>
+							</bbvaQuotaHeader:quotaDetailHeaderBodyContainerDate>
+							<bbvaQuotaHeader:quotaDetailHeaderBodyContainerDate text="#{msg['text.datePreviousCut']}">
+								<h:outputText styleClass="brand styleLeft"
+									value="#{quotaController.quotaDetailDto.datePrevious}">
+									<f:convertDateTime pattern="dd/MM/yyyy" />
+								</h:outputText>
+							</bbvaQuotaHeader:quotaDetailHeaderBodyContainerDate>
+							<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem
+								text="#{msg['text.search.by.number.status']}"
+								value="#{quotaController.quotaDetailDto.state}" />
+						</bbvaQuotaHeader:quotaDetailHeaderBodyContainer>
+						<bbvaQuotaHeader:quotaDetailHeaderBodyContainer type="right">
+							<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem text="#{msg['text.minimumPayment']}"
+								value="#{quotaController.quotaDetailDto.minimumPayment}" />
+							<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem text="#{msg['text.feeCollections']}"
+								value="#{quotaController.quotaDetailDto.feeCollection}" />
+							<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem
+								text="#{msg['text.account.balance.label']}"
+								value="#{quotaController.quotaDetailDto.availableBalance}" />
+							<bbvaQuotaHeader:quotaDetailHeaderBodyContainerItem
+								text="#{msg['text.totalBalancePreviousCut']}"
+								value="#{quotaController.quotaDetailDto.balancePrevious}" />
+						</bbvaQuotaHeader:quotaDetailHeaderBodyContainer>
+					</bbvaQuotaHeader:quotaDetailHeaderBody>
+				</bbvaQuotaHeader:moveDetailContainer>
+				<bbvaDetAcc:tabMenu id="tabMenu">
+					<bbvaDetAcc:menuMovements disabledOpera="#{product.getOperationOnline()}"
+						disabledConsult="#{product.isVisible()}" />
+					<div class="tab-content">
+						<!-- Tab Consultar -->
+						<bbvaSearch:tabCriteria id="tabCriteria">
+							<bbvaSearch:personalizedSearchDate id="personalizedSearchContainer" />
+						</bbvaSearch:tabCriteria>
+						<!-- Tab Condiciones -->
+						<bbvaAcc:accountContainer alias="#{product.alias}" number="#{product.productId}"
+							type="#{product.productName}" />
+						<!-- Tab Personalizar -->
+						<bbvaPersonalize:personalizeContainer id="tabQuota" />
+						<!-- Tab operaciones -->
+						<bbvaOperation:operationsQuota />
+					</div>
+				</bbvaDetAcc:tabMenu>
+				<div class="table-tabs">
+					<bbvaDetailMotionQuota:detailsQuotaTable id="detailAccounts"
+						listAccounts="#{quotaController.quotamovenDtos}" controller="#{quotaController}" />
 				</div>
-			</bbvaDetAcc:tabMenu>
-			<div class="table-tabs">
-				<bbvaDetailMotionQuota:detailsQuotaTable id="detailAccounts"
-					listAccounts="#{quotaController.quotamovenDtos}" controller="#{quotaController}" />
-			</div>
-		</bbvaQuotaHeader:quotaContainer>
+			</bbvaQuotaHeader:quotaContainer>
+		</div>
 	</ui:define>
 	<ui:define name="contentRight">
 	</ui:define>
