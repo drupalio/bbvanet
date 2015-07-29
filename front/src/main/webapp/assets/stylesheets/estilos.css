@@ -1862,3 +1862,13 @@ body div.ui-growl .ui-state-highlight {
 .nav-tabs li {
 	margin-bottom: -2px !important;
 }
+
+.globalpanelIn {
+	float: left !important;
+}
+
+@media ( max-width : 302px) {
+	.tab .afterTable .show-trigger a {
+		padding: 9px 9px !important;
+	}
+}

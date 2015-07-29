@@ -8,12 +8,10 @@
 	xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jstl/core">
 <h:head>
 	<meta http-equiv="Cache-Control" content="no-store" />
-<!-- 	<f:view locale="es_CO"></f:view> -->
+	<!-- 	<f:view locale="es_CO"></f:view> -->
 	<title><ui:insert name="title">	BBVA :: Colombia :: Posición Global</ui:insert></title>
 	<bbvaScript:assetScripts />
 	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-
-
 </h:head>
 <h:body onload="initChart();">
 	<script type="text/javascript">
@@ -22,8 +20,7 @@
 		};
 	</script>
 	<h:form>
-		<p:remoteCommand name="deleteDownload"
-			actionListener="#{headerController.deleteLastDownload()}" />
+		<p:remoteCommand name="deleteDownload" actionListener="#{headerController.deleteLastDownload()}" />
 	</h:form>
 	<div id="header">
 		<ui:insert name="header">
@@ -32,10 +29,9 @@
 	</div>
 	<div id="content">
 		<div class="container">
-		    <p:idleMonitor timeout="#{msg['time.session']*1000*60}">
-		        <p:ajax event="idle" listener="#{headerController.onIdle}"/>
-		    </p:idleMonitor>
-		    
+			<p:idleMonitor timeout="#{msg['time.session']*1000*60}">
+				<p:ajax event="idle" listener="#{headerController.onIdle}" />
+			</p:idleMonitor>
 			<p:growl showDetail="true" showSummary="true" sticky="true" autoUpdate="true" />
 			<p:dialog id="momentPlease" widgetVar="statusDialog" modal="true" draggable="false"
 				styleClass="nonClose momentP" resizable="false" closable="false" closeOnEscape="false">
@@ -43,9 +39,7 @@
 			</p:dialog>
 			<section class="row global-content">
 				<ui:insert name="bodyTitle"></ui:insert>
-				<div class="section-content col-xs-12 col-md-8">
-					<ui:insert name="contentLeft"></ui:insert>
-				</div>
+				<ui:insert name="contentLeft"></ui:insert>
 				<bbvaContainer:rightBodyPanel id="rightBodyPanel">
 					<ui:insert name="contentRight"></ui:insert>
 				</bbvaContainer:rightBodyPanel>
