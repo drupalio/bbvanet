@@ -18,35 +18,46 @@
 		</bbvaBody:title>
 	</ui:define>
 	<ui:define name="contentLeft">
-		<c:set var="currency" value="$" />
-		<bbvaContainer:productPanelLineGraphic id="DepositGP" title="#{msg['title.electronicDeposit']}">
-			<div class="table-tabs">
-				<bbvaGP:depositHeadTable controller="#{globalPositionController}"
-					listDeposit="#{customerProducts.electronicDeposits}" />
-				<bbvaGP:depositTailTable controller="#{globalPositionController}"
-					listDeposit="#{customerProductsHidden.electronicDeposits}" />
+		<div class="col-xs-12 col-md-8">
+			<div class="tab-content">
+				<section class="row tab-pane active globalpanelIn" id="products"
+					style="padding: 0px !important;">
+				<div class="section-content col-xs-12 col-md-8" style="margin: 0px;">
+					<c:set var="currency" value="$" />
+					<bbvaContainer:productPanelLineGraphic id="DepositGP" title="#{msg['title.electronicDeposit']}"
+						styleCat="padding:0px !important;" style="margin: 0px;">
+						<div class="table-tabs">
+							<bbvaGP:depositHeadTable controller="#{globalPositionController}"
+								listDeposit="#{customerProducts.electronicDeposits}" />
+							<bbvaGP:depositTailTable controller="#{globalPositionController}"
+								listDeposit="#{customerProductsHidden.electronicDeposits}" />
+						</div>
+						<div class="row afterTable">
+							<bbvaGP:productFooter listProduct="#{customerProductsHidden.electronicDeposits}" />
+							<bbvaGP:totalBalance util="#{msg['text.accountant']}"
+								total="#{globalPositionController.totalsProducts['ED'].total}"
+								subtotal="#{globalPositionController.totalsProducts['ED'].available}" />
+						</div>
+					</bbvaContainer:productPanelLineGraphic>
+					<bbvaContainer:productPanelFundsGraphic id="fundsPieGP" title="#{msg['title.investmentFunds']}"
+						header="#{msg['graphicFunds.tittle']}" styleCat="padding:0px !important;" style="margin: 0px;"
+						pieGraphic="#{globalPositionController.graphicPieInvestmentFunds}">
+						<div class="table-tabs">
+							<bbvaGP:investmentFundHeadTable controller="#{globalPositionController}"
+								listFund="#{customerProducts.funds}" />
+							<bbvaGP:investmentFundTailTable controller="#{globalPositionController}"
+								listFund="#{customerProductsHidden.funds}" />
+						</div>
+						<div class="row afterTable">
+							<bbvaGP:productFooter listProduct="#{customerProductsHidden.funds}" />
+							<bbvaGP:totalBalance total="#{globalPositionController.totalsProducts['SI'].total}" />
+						</div>
+					</bbvaContainer:productPanelFundsGraphic>
+				</div>
+				</section>
+				<section class="tab-pane globalpanelIn" id="catalogo" style="padding:0px !important;" />
 			</div>
-			<div class="row afterTable">
-				<bbvaGP:productFooter listProduct="#{customerProductsHidden.electronicDeposits}" />
-				<bbvaGP:totalBalance util="#{msg['text.accountant']}"
-					total="#{globalPositionController.totalsProducts['ED'].total}"
-					subtotal="#{globalPositionController.totalsProducts['ED'].available}" />
-			</div>
-		</bbvaContainer:productPanelLineGraphic>
-		<bbvaContainer:productPanelFundsGraphic id="fundsPieGP" title="#{msg['title.investmentFunds']}"
-			header="#{msg['graphicFunds.tittle']}"
-			pieGraphic="#{globalPositionController.graphicPieInvestmentFunds}">
-			<div class="table-tabs">
-				<bbvaGP:investmentFundHeadTable controller="#{globalPositionController}"
-					listFund="#{customerProducts.funds}" />
-				<bbvaGP:investmentFundTailTable controller="#{globalPositionController}"
-					listFund="#{customerProductsHidden.funds}" />
-			</div>
-			<div class="row afterTable">
-				<bbvaGP:productFooter listProduct="#{customerProductsHidden.funds}" />
-				<bbvaGP:totalBalance total="#{globalPositionController.totalsProducts['SI'].total}" />
-			</div>
-		</bbvaContainer:productPanelFundsGraphic>
+		</div>
 	</ui:define>
 	<ui:define name="contentRight">
 	</ui:define>

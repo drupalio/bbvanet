@@ -50,10 +50,10 @@ public class AbstractBbvaDaoTest {
 	/**
 	 * @author Entelgy
 	 */
-	@Repository(value = "customDao")
-	private static class CustomDaoImpl extends AbstractBbvaDao<MultiValueGroup> implements CustomDao {
-
-	}
+//	@Repository(value = "customDao")
+//	private static class CustomDaoImpl extends AbstractBbvaDao<MultiValueGroup> implements CustomDao {
+//
+//	}
 
 	private static interface CustomDao {
 

@@ -1810,6 +1810,7 @@ body div.ui-growl .ui-state-highlight {
 .tooltip-inner {
 	bottom: 0px !important;
 }
+
 .operation-failed {
 	text-align: center;
 	margin-top: 32px;
@@ -1823,9 +1824,10 @@ body div.ui-growl .ui-state-highlight {
 	background-repeat: no-repeat;
 	padding-bottom: 10px;
 	padding-left: 63px;
-	background-size : 38px;
-	background-position : left center !important;
+	background-size: 38px;
+	background-position: left center !important;
 }
+
 .mistake-operation {
 	background-image: url("../img/errorSymbol.png");
 	background-repeat: no-repeat;
@@ -1843,6 +1845,30 @@ body div.ui-growl .ui-state-highlight {
 		width: 80%;
 	}
 }
+
 .visibleTool {
 	overflow: visible !important;
+}
+
+.headerBottom {
+	border-bottom: 1px solid #DBDCDF;
+	padding-bottom: 2px !important;
+}
+
+.nav-tabs li>a {
+	padding-bottom: 13px !important;
+}
+
+.nav-tabs li {
+	margin-bottom: -2px !important;
+}
+
+.globalpanelIn {
+	float: left !important;
+}
+
+@media ( max-width : 302px) {
+	.tab .afterTable .show-trigger a {
+		padding: 9px 9px !important;
+	}
 }
