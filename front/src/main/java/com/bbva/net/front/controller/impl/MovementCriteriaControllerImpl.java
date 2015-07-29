@@ -17,6 +17,7 @@ import java.util.Map;
 import java.util.Properties;
 
 import javax.annotation.Resource;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.mail.BodyPart;
@@ -58,6 +59,7 @@ import org.primefaces.event.SelectEvent;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
+import com.bbva.net.back.entity.MultiCoordinates;
 import com.bbva.net.back.entity.MultiValueGroup;
 import com.bbva.net.back.facade.MovementsAccountFacade;
 import com.bbva.net.back.facade.MultiValueGroupFacade;
@@ -70,6 +72,7 @@ import com.bbva.net.back.model.globalposition.ProductDto;
 import com.bbva.net.back.model.movements.MovementDetailDto;
 import com.bbva.net.back.model.movements.MovementDto;
 import com.bbva.net.back.predicate.BalanceRangeMovementPredicate;
+import com.bbva.net.back.predicate.CityOfficePredicate;
 import com.bbva.net.back.predicate.ConceptMovementPredicate;
 import com.bbva.net.back.predicate.ExpensesPredicate;
 import com.bbva.net.back.predicate.IncomesPredicate;
@@ -159,7 +162,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	protected String PUERTO_IRONPORT = MessagesHelper.INSTANCE.getString("ruta.puertoironport");
 
 	protected String REMITENTE = MessagesHelper.INSTANCE.getString("ruta.remitente");
-	
+
 	@Resource(name = "headerController")
 	private transient HeaderController headerController;
 
@@ -199,6 +202,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		return this.movementsList;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void onMovementSelected(SelectEvent selectEvent) {
 		this.movementAction = new MovementDto();
@@ -211,19 +215,19 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 					+ getSelectedMovements().getMovementId());
 			movementDetail = this.movementsFacade.getMovement(getSelectedProduct().getProductId(), getSelectedProduct()
 					.getTypeProd().value(), getSelectedMovements().getMovementId());
-			// List<MultiCoordinates> coordenadas = this.multiValueGroupFacade.getMultiCoordinate(movementDetail
-			// .getPlaza().getCode());
-			// if (coordenadas.size() >= 2) {
-			// coordenadas = (List<MultiCoordinates>)CollectionUtils.select(coordenadas, new CityOfficePredicate(
-			// movementDetail.getPlaza().getCity()));
-			// }
-			// movementDetail.getPlaza().setLatitude(coordenadas.get(0).getLatitude());
-			// movementDetail.getPlaza().setLength(coordenadas.get(0).getLength());
-			// LOGGER.info("latitud..." + coordenadas.get(0).getLatitude() + "..longitud.."
-			// + coordenadas.get(0).getLength() + "..");
+			List<MultiCoordinates> coordenadas = this.multiValueGroupFacade.getMultiCoordinate(movementDetail
+					.getPlaza().getCode());
+			if (coordenadas.size() >= 2) {
+				coordenadas = (List<MultiCoordinates>)CollectionUtils.select(coordenadas, new CityOfficePredicate(
+						movementDetail.getPlaza().getCity()));
+			}
+			movementDetail.getPlaza().setLatitude(coordenadas.get(0).getLatitude());
+			movementDetail.getPlaza().setLength(coordenadas.get(0).getLength());
+			LOGGER.info("latitud..." + coordenadas.get(0).getLatitude() + "..longitud.."
+					+ coordenadas.get(0).getLength() + "..");
 		} catch (Exception e) {
-			// FacesContext ctx = FacesContext.getCurrentInstance();
-			// ctx.addMessage("movementDetail", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+			FacesContext ctx = FacesContext.getCurrentInstance();
+			ctx.addMessage("movementDetail", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
 		}
 	}
 
@@ -1023,7 +1027,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		LOGGER.info("iniciando exportar archivo pdf " + "DetailMove" + this.movementDetail.getId() + ".pdf");
 
 		rutaMoveDetailPdf = "DetailMove" + this.movementDetail.getId() + ".pdf";
-		
+
 		headerController.setLastDownload(rutaMoveDetailPdf);
 
 		try {
@@ -1409,16 +1413,16 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 		PrintService defaultPrintService = PrintServiceLookup.lookupDefaultPrintService();
 
-			PrinterJob printerJob = PrinterJob.getPrinterJob();
-			if (printerJob.printDialog()) {
-				DocPrintJob docprintJob = defaultPrintService.createPrintJob();
-				try {
-					docprintJob.print(document, attributeSet);
+		PrinterJob printerJob = PrinterJob.getPrinterJob();
+		if (printerJob.printDialog()) {
+			DocPrintJob docprintJob = defaultPrintService.createPrintJob();
+			try {
+				docprintJob.print(document, attributeSet);
 
-				} catch (Exception e) {
-					LOGGER.info("Erro al imprimir " + e.getMessage());
-				}
+			} catch (Exception e) {
+				LOGGER.info("Erro al imprimir " + e.getMessage());
 			}
+		}
 
 		try {
 			inputFile.close();
