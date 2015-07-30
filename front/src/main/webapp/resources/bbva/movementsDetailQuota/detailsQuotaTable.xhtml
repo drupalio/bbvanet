@@ -13,10 +13,12 @@
 	<article class="detail-table-group">
 		<div class="utility-icons">
 			<h:form id="documentsExport">
-				<p:commandLink ajax="false" styleClass="icon-excel-file" onclick="PrimeFaces.monitorDownload(start, deleteDownload )">
+				<p:commandLink ajax="false" styleClass="icon-excel-file"
+					onclick="PrimeFaces.monitorDownload(start, deleteDownload )">
 					<p:fileDownload value="#{quotaController.exportExcel}" />
 				</p:commandLink>
-				<p:commandLink styleClass="icon-pdf-file" ajax="false" onclick="PrimeFaces.monitorDownload(start, deleteDownload )">
+				<p:commandLink styleClass="icon-pdf-file" ajax="false"
+					onclick="PrimeFaces.monitorDownload(start, deleteDownload )">
 					<p:fileDownload value="#{quotaController.exportPdf}" />
 				</p:commandLink>
 				<p:commandLink ajax="false" styleClass="icon-send-by-email"
@@ -35,8 +37,8 @@
 						styleClass="detail-table-body sortable" emptyMessage="#{msg['text.empty.table']}"
 						rowSelectMode="single" value="#{cc.attrs.listAccounts}" var="moves" selectionMode="single"
 						rowKey="#{moves.movementId}">
-						<p:ajax event="rowSelect" oncomplete="clickMove();"
-							listener="#{cc.attrs.controller.onRowToggle}" />
+						<p:ajax event="rowSelect" oncomplete="clickMove(); PF('statusDialog').hide();"
+							onstart="PF('statusDialog').show();" listener="#{cc.attrs.controller.onRowToggle}" />
 						<p:column width="0% !important;" style="z-index: -1 !important">
 							<p:rowToggler rendered="true" />
 						</p:column>
@@ -68,24 +70,21 @@
 						</p:rowExpansion>
 					</p:dataTable>
 				</div>
-				
-<!-- 				tabla para imprimir -->
-					<p:dataTable id="detailmovesACImprimir" 
-						styleClass="nonee" emptyMessage="#{msg['text.empty.table']}"
-					    value="#{cc.attrs.listAccounts}" var="movesAux">
-						<p:column width="33% !important" headerText="#{msg['text.detailMove.date']}" >
-							<h:outputText value="#{movesAux.movementDate}">
-								<f:convertDateTime pattern="dd/MM/yyyy" />
-							</h:outputText>
-						</p:column>
-						<p:column width="33% !important" headerText="#{msg['text.detailMove.concep']}" >
-							<h:outputText value="#{movesAux.movementConcept}" />
-						</p:column>
-						<p:column width="33% !important" headerText="#{msg['title.slope']}" 
-							colspan="2">
-							<h:outputText value="#{movesAux.movementValue}" />
-						</p:column>
-					</p:dataTable>
+				<!-- 				tabla para imprimir -->
+				<p:dataTable id="detailmovesACImprimir" styleClass="nonee"
+					emptyMessage="#{msg['text.empty.table']}" value="#{cc.attrs.listAccounts}" var="movesAux">
+					<p:column width="33% !important" headerText="#{msg['text.detailMove.date']}">
+						<h:outputText value="#{movesAux.movementDate}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+					</p:column>
+					<p:column width="33% !important" headerText="#{msg['text.detailMove.concep']}">
+						<h:outputText value="#{movesAux.movementConcept}" />
+					</p:column>
+					<p:column width="33% !important" headerText="#{msg['title.slope']}" colspan="2">
+						<h:outputText value="#{movesAux.movementValue}" />
+					</p:column>
+				</p:dataTable>
 				<footer class="detail-table-footer">
 					<p:commandButton id="moreQuota" value="#{msg['text.detailMove.footer']}"
 						rendered="#{quotaController.renderComponents['FOOTERTABLEQUOTA']}"
