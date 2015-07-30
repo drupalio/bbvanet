@@ -78,4 +78,9 @@ public interface GlobalPositionController {
 	 */
 	void onComboSelectedCard();
 
+	/**
+	 * @param selectEvent
+	 */
+	void onProductTurnsSelected(final SelectEvent selectEvent);
+
 }

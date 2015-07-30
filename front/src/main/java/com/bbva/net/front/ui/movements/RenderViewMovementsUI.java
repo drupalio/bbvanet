@@ -17,14 +17,20 @@ public class RenderViewMovementsUI implements Serializable {
 		// Tables check and movements
 		getRenderComponents().put(RenderAttributes.CHECKTABLE.name(), false);
 		getRenderComponents().put(RenderAttributes.MOVEMENTSTABLE.name(), true);
+		getRenderComponents().put(RenderAttributes.OUTSIDETABLE.name(), false);
+		getRenderComponents().put(RenderAttributes.RECIVEDTABLE.name(), false);
 
 		// Footers
 		getRenderComponents().put(RenderAttributes.FOOTERTABLEMOVEMENT.toString(), false);
 		getRenderComponents().put(RenderAttributes.FOOTERTABLECHEKS.toString(), false);
+		getRenderComponents().put(RenderAttributes.FOOTEROUTSIDE.toString(), false);
+		getRenderComponents().put(RenderAttributes.FOOTERRECIVED.toString(), false);
 
 		// Title movemens and checks
 		getRenderComponents().put(RenderAttributes.TITLEMOVES.name(), true);
 		getRenderComponents().put(RenderAttributes.TITLECHECKS.name(), false);
+		getRenderComponents().put(RenderAttributes.TITLEMOUTSIDE.name(), false);
+		getRenderComponents().put(RenderAttributes.TITLEMRECIVED.name(), false);
 
 		getRenderComponents().put(RenderAttributes.CALENDAR.toString(), true);
 		getRenderComponents().put(RenderAttributes.BUTTONDATE.toString(), true);

@@ -12,6 +12,7 @@ import com.bbva.jee.arq.spring.core.log.I18nLogFactory;
 import com.bbva.net.back.model.accounts.GlobalMonthlyBalanceDto;
 import com.bbva.net.back.model.accounts.MonthBalanceDto;
 import com.bbva.net.back.model.movements.MovementDto;
+import com.bbva.net.back.model.turnsClient.turnsClientDto;
 import com.bbva.net.front.core.AbstractBbvaController;
 import com.bbva.net.front.core.stereotype.Delegate;
 import com.bbva.net.front.delegate.GraphicLineDelegate;
@@ -78,6 +79,35 @@ public class GraphicLineDelegateImpl implements GraphicLineDelegate {
 				lineConfigUI.setLineItemUIList(lineItemUIList);
 			} catch (Exception ex) {
 				LOGGER.info("Error al cargar gráfica movimientos" + ex.getMessage());
+			}
+		}
+		if (lineItemUIList.size() > 0 && lineItemUIList != null)
+			lineConfigUI.setLineValues(getLinesValues(lineItemUIList));
+
+		return lineConfigUI;
+	}
+
+	@Override
+	public LineConfigUI getMovementDivisa(final List<turnsClientDto> globalResumeMovements) {
+
+		final LineConfigUI lineConfigUI = new LineConfigUI();
+
+		final List<LineItemUI> lineItemUIList = new ArrayList<LineItemUI>();
+		if (!CollectionUtils.isEmpty(globalResumeMovements)) {
+			int size = 8;
+			if (globalResumeMovements.size() < 8) {
+				size = globalResumeMovements.size();
+			}
+			try {
+				for (int i = 0; i < size; i++) {
+					final LineItemUI lineItemUI = new LineItemUI();
+					lineItemUI.setLabel("Serie 1: ");
+					lineItemUI.setValue(globalResumeMovements.get(i).getAmount());
+					lineItemUIList.add(lineItemUI);
+				}
+				lineConfigUI.setLineItemUIList(lineItemUIList);
+			} catch (Exception ex) {
+				LOGGER.info("Error al cargar gráfica movimientos de divisa" + ex.getMessage());
 			}
 		}
 		if (lineItemUIList.size() > 0 && lineItemUIList != null)

@@ -38,12 +38,12 @@
 
 		<bbvaMenu:menu>
 
-			<bbvaMenu:itemMenu href="./globalPosition" value="Posición global"
-				title="Ir a Posición global" icon="posicionglobal" style="border-bottom-left-radius: 5px;border-top-left-radius:5px;" liclass="active"
+			<bbvaMenu:itemMenu href="./globalPosition" value="Posición global" 
+				title="Ir a Posición global" icon="posicionglobal" style="width: 15% !important" liclass="active"
 				rendered="#{menuActive == 'PG'}"  onclick="PF('statusDialog').show()"/>
 
-			<bbvaMenu:itemMenu href="./globalPosition" value="Posición global"
-				title="Ir a Posición global" icon="posicionglobal" style="border-bottom-left-radius: 5px;border-top-left-radius:5px;"
+			<bbvaMenu:itemMenu href="./globalPosition" value="Posición global" 
+				title="Ir a Posición global" icon="posicionglobal" style="width: 15% !important"
 				liclass="width" rendered="#{menuActive != 'PG'}" onclick="PF('statusDialog').show()"/>
 
 			<bbvaMenu:itemMenu href="./accounts" value="Cuentas"
@@ -77,12 +77,12 @@
 				onclick="PF('statusDialog').show()"/>
 
 			<bbvaMenu:itemMenu href="./saveInvest" value="Ahorros e inversión"
-				title="Ir a ahorros e inversión" icon="investment-icon"
+				title="Ir a ahorros e inversión" icon="investment-icon" style="width: 16% !important"
 				liclass="more-width active" rendered="#{menuActive == 'SAVEINVEST'}" 
 				onclick="PF('statusDialog').show()"/>
 
 			<bbvaMenu:itemMenu href="./saveInvest" value="Ahorros e inversión"
-				title="Ir a ahorros e inversión" icon="investment-icon"
+				title="Ir a ahorros e inversión" icon="investment-icon" style="width: 16% !important"
 				liclass="more-width" rendered="#{menuActive != 'SAVEINVEST'}" 
 				onclick="PF('statusDialog').show()"/>
 			
@@ -93,6 +93,14 @@
 			<bbvaMenu:itemMenu href="" value="Seguros"
 				title="Ir a seguros" icon=" insurance-icon"
 				liclass="width" rendered="#{menuActive != 'SEGUROS'}" />
+				
+				<bbvaMenu:itemMenu href="./buySellDivisas" value="Divisas"
+                title="Ir a seguros" icon="account-icon"
+                liclass="width active" rendered="#{menuActive == 'DIVISAS'}"/>
+				
+				<bbvaMenu:itemMenu href="./buySellDivisas" value="Divisas"
+                title="Ir a seguros" icon="account-icon"
+                liclass="width" rendered="#{menuActive != 'DIVISAS'}" />
 
 			<bbvaMenu:itemSearch />
 

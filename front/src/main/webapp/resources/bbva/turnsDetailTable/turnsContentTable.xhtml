@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile" xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:bbvaDetailMotion="http://java.sun.com/jsf/composite/bbva/movementsDetail">
+<composite:interface>
+	<composite:attribute name="id" type="String" />
+	<composite:attribute name="listAccounts" type="java.util.List" />
+</composite:interface>
+<composite:implementation>
+	<h:form id="formDiviDetail">
+		<h3>
+			<h:outputLabel id="labelMovements" value="#{msg['text.last.movments']}"
+				rendered="#{renderComponents['TITLEMOVES']}" style="font-weight:normal" />
+			<h:outputLabel id="labelChecks" value="Giros hacia el exterior"
+				rendered="#{renderComponents['TITLEMOUTSIDE']}" />
+			<h:outputLabel id="labelCheckBooks" value="Giros recibidos desde el exterior"
+				rendered="#{renderComponents['TITLEMRECIVED']}" />
+		</h3>
+		<!-- Tabla de Divisas -->
+		<p:outputPanel id="movDivisa">
+			<article class="detail-table-group">
+				<div class="table-wrapper">
+					<p:dataTable id="detalMov" widgetVar="detalMov" styleClass="detail-table-body sortable"
+						value="#{cc.attrs.listAccounts}" var="moves" selectionMode="single"
+						rowKey="#{moves.operation}" rendered="#{renderComponents['MOVEMENTSTABLE']}"
+						emptyMessage="#{msg['text.empty.table']}">
+						<p:ajax event="rowSelect" oncomplete="clickMove();"
+							listener="#{turnsOperationController.onTurnDetail}" />
+						<p:column style="z-index: -1 !important; display:none;">
+							<p:rowToggler rendered="true" />
+						</p:column>
+						<p:column headerText="FECHA" styleClass="styleColum desc w34" sortBy="#{moves.dateOperation}">
+							<h:outputText styleClass="brand styleLeft" value="#{moves.dateOperation}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</p:column>
+						<p:column headerText="OPERACIÓN" styleClass="styleColum desc w34" sortBy="#{moves.operation}">
+							<h:outputText style="font-weight: bold;" class="text styleLeft" value="#{moves.operation}" />
+						</p:column>
+						<p:column class="head" headerText="MONTO" styleClass="styleColum desc w34"
+							sortBy="#{moves.amount}">
+							<h:outputText class="currency styleCurrent" value="#{moves.amount}" />
+						</p:column>
+						<p:column class="head" headerText="ESTADO" styleClass="styleColum desc w34"
+							sortBy="#{moves.stateOperation}">
+							<h:outputText class="text styleLeft" value="#{moves.stateOperation}" />
+						</p:column>
+						<p:column styleClass="smart-view">
+							<div class="left hidden-lg">
+								<h:outputText class="text styleLeft" value="#{moves.operation}" />
+								<h:outputText styleClass="brand styleLeft" value="#{moves.dateOperation}">
+									<f:convertDateTime pattern="dd/MM/yyyy" />
+								</h:outputText>
+							</div>
+							<div class="right hidden-lg" style="width: 35% !important;">
+								<h:outputText class="currency styleCurrent" value="#{moves.amount}" />
+								<h:outputText class="text styleLeft" value="#{moves.stateOperation}" />
+							</div>
+						</p:column>
+						<p:rowExpansion styleClass="detail-row">
+							<bbvaDetailMotion:tableContent controller="#{turnsOperationController}" />
+						</p:rowExpansion>
+					</p:dataTable>
+				</div>
+				<footer class="detail-table-footer">
+					<p:commandButton id="moreMovs" value="#{msg['text.detailMove.footer']}"
+						rendered="#{renderComponents['FOOTERTABLEMOVEMENT'] and renderComponents['MOVEMENTSTABLE']}"
+						styleClass="btn btn-more-results seeMore #{cc.attrs.listAccounts.size()==0 ? 'nonee' : ''}"
+						ajax="true">
+						<p:ajax onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+					</p:commandButton>
+				</footer>
+			</article>
+		</p:outputPanel>
+	</h:form>
+</composite:implementation>
+</html>

@@ -45,6 +45,13 @@
 					onsuccess="PF('statusDialog').hide()"
 					update=":quotaDetail:detailAccounts:detailAccounts:detailmovesAC" />
 			</button>
+			<button class="btn btn-default" type="button" jsf:rendered="#{cc.attrs.showTurns}"
+				jsf:actionListener="#{cc.attrs.actionListenerShow}">
+				<span class="document-view-icon" />#{msg['button.see.result']}
+				<p:ajax process="@form" onstart="PF('statusDialog').show()"
+					onsuccess="PF('statusDialog').hide()"
+					update=":quotaDetail:detailAccounts:detailAccounts:detailmovesAC" />
+			</button>
 		</div>
 	</li>
 </composite:implementation>

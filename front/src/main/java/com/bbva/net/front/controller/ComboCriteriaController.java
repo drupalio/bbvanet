@@ -25,4 +25,6 @@ public interface ComboCriteriaController {
 
 	List<MultiValueGroup> getQuieroLeasing();
 
+	List<String> getListQuieroDivisas();
+
 }

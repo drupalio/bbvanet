@@ -7,6 +7,8 @@
 <composite:interface>
 	<composite:attribute name="disabledConsult" />
 	<composite:attribute name="disabledOpera" />
+	<composite:attribute name="renderPersonalize" />
+	<composite:attribute name="renderCondiciones" />
 </composite:interface>
 <composite:implementation>
 	<ul id="tabsOperations" class="nav nav-pills nav-operation-options visibleTool"
@@ -21,14 +23,17 @@
 			classLi="tab-left operaciones-btn menuResponse" type="2" role="#tab-operaciones"
 			disabled="#{cc.attrs.disabledOpera}" />
 		<bbvaDetAcc:itemTabMenu title="#{msg['text.conditions']}" icon="iconFont-104" disabled="true"
-			role="#tab-condiciones" classLi="tab-right hidden-md hidden-lg menuResponse" type="2" />
+			role="#tab-condiciones" classLi="tab-right hidden-md hidden-lg menuResponse" type="2"
+			render="#{cc.attrs.renderCondiciones}" />
 		<bbvaDetAcc:itemTabMenu id="personalizarResponse" title="#{msg['text.personalized']}" type="2"
-			disabled="true" role="#tab-personalizar" icon="iconFont-217"
-			classLi="tab-right hidden-md hidden-lg menuResponse" />
+			disabled="true" role="#tab-personalizar" classLi="tab-right hidden-md hidden-lg menuResponse"
+			render="#{cc.attrs.renderPersonalize}" icon="iconFont-217" />
 		<bbvaDetAcc:itemTabMenu id="personalizar" title="#{msg['text.personalized']}" disabled="true"
-			role="#tab-personalizar" classLi="tab-right hidden-xs hidden-sm menuResponse" type="1" />
+			role="#tab-personalizar" classLi="tab-right hidden-xs hidden-sm menuResponse" type="1"
+			render="#{cc.attrs.renderPersonalize}" />
 		<bbvaDetAcc:itemTabMenu id="condiciones" title="#{msg['text.conditions']}" role="#tab-condiciones"
-			classLi="tab-right hidden-xs hidden-sm menuResponse" type="1" disabled="true" />
+			classLi="tab-right hidden-xs hidden-sm menuResponse" type="1" disabled="true"
+			render="#{cc.attrs.renderCondiciones}" />
 	</ul>
 </composite:implementation>
 </html>

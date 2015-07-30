@@ -27,10 +27,14 @@
 				<p:selectOneRadio id="customRadio_#{cc.attrs.identify}" layout="custom"
 					value="#{cc.attrs.value}" class="radioBT">
 					<f:selectItem itemLabel="#{msg['select.radio.today']}" itemValue="#{msg['select.radio.today']}" />
-					<f:selectItem itemLabel="#{msg['select.radio.last.two.weeks']}" itemValue="#{msg['select.radio.last.two.weeks']}" />
-					<f:selectItem itemLabel="#{msg['select.radio.last.week']}" itemValue="#{msg['select.radio.last.week']}" />
-					<f:selectItem itemLabel="#{msg['select.radio.last.month']}" itemValue="#{msg['select.radio.last.month']}" />
-					<f:selectItem itemLabel="#{msg['select.radio.concret.date']}" itemValue="#{msg['select.radio.concret.date']}" />
+					<f:selectItem itemLabel="#{msg['select.radio.last.two.weeks']}"
+						itemValue="#{msg['select.radio.last.two.weeks']}" />
+					<f:selectItem itemLabel="#{msg['select.radio.last.week']}"
+						itemValue="#{msg['select.radio.last.week']}" />
+					<f:selectItem itemLabel="#{msg['select.radio.last.month']}"
+						itemValue="#{msg['select.radio.last.month']}" />
+					<f:selectItem itemLabel="#{msg['select.radio.concret.date']}"
+						itemValue="#{msg['select.radio.concret.date']}" />
 					<f:ajax event="click" listener="#{cc.attrs.listenerDate.oneSelectDate}"
 						render="
                     :tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:itemSince_moveCalendar
@@ -46,27 +50,37 @@
                     :quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:dateButtonQuota" />
 				</p:selectOneRadio>
 				<div class="col-xs-6">
-					<p:radioButton id="customSearch-filter-today_#{cc.attrs.identify}" for="customRadio_#{cc.attrs.identify}" itemIndex="0" class="radioBT" />
-					<h:outputLabel styleClass="radioLabel" for="customSearch-filter-today_#{cc.attrs.identify}" value="#{msg['select.radio.today']}" />
+					<p:radioButton id="customSearch-filter-today_#{cc.attrs.identify}"
+						for="customRadio_#{cc.attrs.identify}" itemIndex="0" class="radioBT" />
+					<h:outputLabel styleClass="radioLabel" for="customSearch-filter-today_#{cc.attrs.identify}"
+						value="#{msg['select.radio.today']}" />
 				</div>
 				<div class="col-xs-6">
-					<p:radioButton id="customSearch-filter-two-week_#{cc.attrs.identify}" for="customRadio_#{cc.attrs.identify}" itemIndex="1" class="radioBT" />
-					<h:outputLabel styleClass="radioLabel" for="customSearch-filter-two-week_#{cc.attrs.identify}" value="#{msg['select.radio.last.two.weeks']}" />
+					<p:radioButton id="customSearch-filter-two-week_#{cc.attrs.identify}"
+						for="customRadio_#{cc.attrs.identify}" itemIndex="1" class="radioBT" />
+					<h:outputLabel styleClass="radioLabel" for="customSearch-filter-two-week_#{cc.attrs.identify}"
+						value="#{msg['select.radio.last.two.weeks']}" />
 				</div>
 				<div class="col-xs-6">
-					<p:radioButton id="customSearch-filter-week_#{cc.attrs.identify}" for="customRadio_#{cc.attrs.identify}" itemIndex="2" class="radioBT" />
-					<h:outputLabel styleClass="radioLabel" for="customSearch-filter-week_#{cc.attrs.identify}" value="#{msg['select.radio.last.week']}" />
+					<p:radioButton id="customSearch-filter-week_#{cc.attrs.identify}"
+						for="customRadio_#{cc.attrs.identify}" itemIndex="2" class="radioBT" />
+					<h:outputLabel styleClass="radioLabel" for="customSearch-filter-week_#{cc.attrs.identify}"
+						value="#{msg['select.radio.last.week']}" />
 				</div>
 				<div class="col-xs-6">
-					<p:radioButton id="customSearch-filter-month_#{cc.attrs.identify}" for="customRadio_#{cc.attrs.identify}" itemIndex="3" class="radioBT" />
-					<h:outputLabel styleClass="radioLabel" for="customSearch-filter-month_#{cc.attrs.identify}" value="#{msg['select.radio.last.month']}" />
+					<p:radioButton id="customSearch-filter-month_#{cc.attrs.identify}"
+						for="customRadio_#{cc.attrs.identify}" itemIndex="3" class="radioBT" />
+					<h:outputLabel styleClass="radioLabel" for="customSearch-filter-month_#{cc.attrs.identify}"
+						value="#{msg['select.radio.last.month']}" />
 				</div>
 			</div>
 		</div>
 		<div class="date-period radio-group">
 			<div class="form-horizontal date-specific">
-				<p:radioButton id="customSearch-filter-datePeriod_#{cc.attrs.identify}" for="customRadio_#{cc.attrs.identify}" itemIndex="4" class="radioBT" />
-				<h:outputLabel styleClass="radioLabel" for="customSearch-filter-datePeriod_#{cc.attrs.identify}" value="#{msg['select.radio.concret.date']}" />
+				<p:radioButton id="customSearch-filter-datePeriod_#{cc.attrs.identify}"
+					for="customRadio_#{cc.attrs.identify}" itemIndex="4" class="radioBT" />
+				<h:outputLabel styleClass="radioLabel" for="customSearch-filter-datePeriod_#{cc.attrs.identify}"
+					value="#{msg['select.radio.concret.date']}" />
 			</div>
 			<div>
 				<div class="col-xs-12 col-md-6">
@@ -137,6 +151,17 @@
 		    :quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:itemSince_quotaCalendar
 			:quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:itemTo_quotaCalendar
 			:quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:componentList" />
+		</button>
+		<button jsf:id="dateButtonTurn"
+			class="btn small hidden-xs hidden-sm #{cc.attrs.value=='' || (cc.attrs.value==msg['select.radio.concret.date'] &amp;&amp; (cc.attrs.valueDateSince==null || cc.attrs.valueDateTo==null)) ? 'buttonDisabled': 'none'}"
+			jsf:rendered="#{cc.attrs.showQuota}" jsf:actionListener="#{cc.attrs.actionListenerDate}">
+			#{msg['button.confirm']}
+			<p:ajax process="@form"
+				oncomplete="document.getElementById('quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:componentList').click();"
+				update="
+		    :quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:itemSince_turnsCalendar 
+            :quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:itemTo_turnsCalendar 
+            :quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:componentList" />
 		</button>
 	</div>
 </composite:implementation>

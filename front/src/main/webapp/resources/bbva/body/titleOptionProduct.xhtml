@@ -1,27 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:composite="http://java.sun.com/jsf/composite"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:pm="http://primefaces.org/mobile"
-	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:cc="http://jsflive.at/taglib">
-
 <composite:interface>
-	<composite:attribute name="id" type="String"/>
+	<composite:attribute name="id" type="String" />
 	<composite:attribute name="optionButttonLeft" type="String" />
 	<composite:attribute name="optionButttonRight" type="String" />
 </composite:interface>
-
 <composite:implementation>
-
-	<ul class="nav nav-tabs hidden-xs hidden-sm" role="tablist" style="margin: 0px 0px 0px;">
-		<li class="active"><a href="#products" role="tab"
-			data-toggle="tab">#{cc.attrs.optionButttonLeft}</a></li>
+	<ul class="nav nav-tabs responsetabs" role="tablist">
+		<li class="active rigthTabMov"><a href="#products" role="tab" data-toggle="tab">#{cc.attrs.optionButttonLeft}</a></li>
 		<li><a href="#catalogo" role="tab" data-toggle="tab">#{cc.attrs.optionButttonRight}</a></li>
 	</ul>
 </composite:implementation>
-
 </html>

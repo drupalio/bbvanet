@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:bbvaAcc="http://java.sun.com/jsf/composite/bbva/accounts"
+	xmlns:bbvaQuotaHeader="http://java.sun.com/jsf/composite/bbva/movementsHead"
+	xmlns:bbvaBody="http://java.sun.com/jsf/composite/bbva/body"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:bbvaOperation="http://java.sun.com/jsf/composite/bbva/operation"
+	xmlns:bbvaDetAcc="http://java.sun.com/jsf/composite/bbva/tab"
+	xmlns:bbvaDetailMotion="http://java.sun.com/jsf/composite/bbva/turnsDetailTable"
+	xmlns:bbvaSearch="http://java.sun.com/jsf/composite/bbva/filters"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:bbvaPersonalize="http://java.sun.com/jsf/composite/bbva/personalize">
+<ui:composition template="../../templates/defaultLayout.xhtml">
+	<ui:define name="bodyTitle">
+		<bbvaBody:title title="Compra y Venta de Divisas" style="padding-left: 5px;">
+			<bbvaBody:titleOptionProduct optionButttonLeft="#{msg['title.myProducts']}"
+				optionButttonRight="#{msg['title.productCatalog']}" />
+		</bbvaBody:title>
+	</ui:define>
+	<ui:define name="contentLeft">
+		<div class="col-xs-12 col-md-8">
+			<div class="tab-content">
+				<section class="row tab-pane active globalpanelIn" id="products"
+					style="padding: 0px !important;">
+				<div class="tab-group savingsAccount">
+					<bbvaQuotaHeader:moveContainerHeader>
+						<bbvaQuotaHeader:moveDetailHeaderLeft alias="#{product.alias}" number="#{product.productId}"
+							type=" #{product.productName}" />
+					</bbvaQuotaHeader:moveContainerHeader>
+					<bbvaDetAcc:tabMenu id="tabMenu" style="margin-top:6px !important;">
+						<bbvaDetAcc:menuMovements disabledOpera="true" disabledConsult="true"
+							renderPersonalize="display: none;" renderCondiciones="display: none;" />
+						<div class="tab-content">
+							<!-- Tab Consultar -->
+							<bbvaSearch:tabCriteria id="tableMovements" />
+							<!-- Tab operaciones -->
+							<bbvaOperation:operationsQuota />
+						</div>
+					</bbvaDetAcc:tabMenu>
+					<div class="table-tabs">
+						<bbvaDetailMotion:turnsTableContent id="detailAccounts" listAccounts="#{turns}"
+							controller="#{turnsOperationController}" />
+					</div>
+				</div>
+				</section>
+				<section class="tab-pane globalpanelIn" id="catalogo" />
+			</div>
+		</div>
+	</ui:define>
+	<ui:define name="contentRight">
+	</ui:define>
+</ui:composition>
+</html>

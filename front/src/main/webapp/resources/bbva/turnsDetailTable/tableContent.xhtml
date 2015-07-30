@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite" xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:bbvaDetailMotion="http://java.sun.com/jsf/composite/bbva/movementsDetail"
+	xmlns:bbvaDetailMotionQuota="http://java.sun.com/jsf/composite/bbva/turnsDetailTable"
+	xmlns:pm="http://primefaces.org/mobile">
+<composite:interface>
+	<composite:attribute name="controller" />
+</composite:interface>
+<composite:implementation>
+	<div class="td-detail position" id="rowExpansion">
+		<div class="detail-content" style="border: 5px solid #EAEAEA;">
+			<div class="table-detail-border">
+				<!-- aki va header -->
+				<bbvaDetailMotionQuota:tableHeader controller="#{cc.attrs.controller}" />
+				<!-- luego va botones container -->
+				<bbvaDetailMotion:buttonContainer button1="Lorem" button2="Lorem ipsum" button3="Lorem ipsum" />
+				<!-- luego cuerpo del contenido -->
+				<bbvaDetailMotionQuota:tableBody controller="#{cc.attrs.controller}" />
+				<!-- 				luego va footer notas -->
+				<!-- 				<bbvaDetailMotion:tableFooterNotes /> -->
+			</div>
+		</div>
+	</div>
+</composite:implementation>
+</html>

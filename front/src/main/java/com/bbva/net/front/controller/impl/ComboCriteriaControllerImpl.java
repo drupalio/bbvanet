@@ -1,5 +1,6 @@
 package com.bbva.net.front.controller.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -100,6 +101,16 @@ public class ComboCriteriaControllerImpl extends AbstractBbvaController implemen
 	@Override
 	public List<MultiValueGroup> getListQuieroCards() {
 		return this.multiValueGroupFacade.getMultiValueTypes(7);
+	}
+
+	/**
+	 * Método que obtiene los items del combo quiero de tarjetas
+	 */
+	@Override
+	public List<String> getListQuieroDivisas() {
+		List<String> founs = new ArrayList<String>();
+		founs.add("Ver giros");
+		return founs;
 	}
 
 	/**

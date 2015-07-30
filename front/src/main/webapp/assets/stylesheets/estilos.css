@@ -1867,8 +1867,33 @@ body div.ui-growl .ui-state-highlight {
 	float: left !important;
 }
 
+.submenu #submenu .logged-user .item-menu {
+	width: 12% !important;
+}
+
 @media ( max-width : 302px) {
 	.tab .afterTable .show-trigger a {
 		padding: 9px 9px !important;
+	}
+}
+
+@media ( max-width : 768px) {
+	.responseTitle {
+		width: 100% !important;
+	}
+	.responsetabs {
+		margin-left: 5% !important;
+	}
+}
+
+@media ( max-width : 375px) {
+	.rigthTabMov {
+		margin-left: 9px !important;
+	}
+}
+
+@media ( min-width : 7698px) {
+	.responsetabs {
+		margin: 0px;
 	}
 }
