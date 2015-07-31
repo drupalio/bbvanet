@@ -39,30 +39,30 @@
 						rowKey="#{moves.movementId}">
 						<p:ajax event="rowSelect" oncomplete="clickMove(); PF('statusDialog').hide();"
 							onstart="PF('statusDialog').show();" listener="#{cc.attrs.controller.onRowToggle}" />
-						<p:column width="0% !important;" style="z-index: -1 !important">
+						<p:column style="z-index: -1 !important; display:none;">
 							<p:rowToggler rendered="true" />
 						</p:column>
-						<p:column headerText="#{msg['text.detailMove.date']}" styleClass="styleColum sorted w18 desc">
-							<h:outputText styleClass="brand styleLeft" value="#{moves.movementDate}">
+						<p:column headerText="#{msg['text.detailMove.date']}" styleClass="styleColum sorted w24 desc">
+							<h:outputText styleClass="brand styleLeft height18" value="#{moves.movementDate}">
 								<f:convertDateTime pattern="dd/MM/yyyy" />
 							</h:outputText>
 						</p:column>
-						<p:column headerText="#{msg['text.detailMove.concep']}" styleClass="styleColum desc w34">
-							<h:outputText class="text styleLeft" value="#{moves.movementConcept}" />
+						<p:column headerText="#{msg['text.detailMove.concep']}" styleClass="styleColum desc w44">
+							<h:outputText class="text styleLeft height18" value="#{moves.movementConcept}" />
 						</p:column>
-						<p:column class="head" headerText="#{msg['title.slope']}" styleClass="styleColum desc w24"
+						<p:column class="head" headerText="#{msg['title.slope']}" styleClass="styleColum desc w44"
 							colspan="2">
-							<h:outputText class="currency styleCurrent" value="#{moves.movementValue}" />
+							<h:outputText class="currency styleCurrent height18" value="#{moves.movementValue}" />
 						</p:column>
 						<p:column styleClass="smart-view">
 							<div class="left hidden-lg">
-								<h:outputText class="text styleLeft" value="#{moves.movementConcept}" />
-								<h:outputText styleClass="brand styleLeft" value="#{moves.movementDate}">
+								<h:outputText class="text styleLeft height18" value="#{moves.movementConcept}" />
+								<h:outputText styleClass="brand styleLeft height18" value="#{moves.movementDate}">
 									<f:convertDateTime pattern="dd/MM/yyyy" />
 								</h:outputText>
 							</div>
 							<div class="right hidden-lg" style="width: 35% !important;">
-								<h:outputText class="currency styleCurrent" value="#{moves.movementValue}" />
+								<h:outputText class="currency styleCurrent height18" value="#{moves.movementValue}" />
 							</div>
 						</p:column>
 						<p:rowExpansion styleClass="detail-row">

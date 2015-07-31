@@ -21,50 +21,59 @@
 		</bbvaBody:title>
 	</ui:define>
 	<ui:define name="contentLeft">
+		<script type="text/javascript">
+            window.onload = function() {
+                openOperaMore();
+            };
+        </script>
 		<div class="col-xs-12 col-md-8">
-			<script type="text/javascript">
-			window.onload = function() {
-				openOperaMore();
-			};
-		</script>
-			<input id='operations' type='hidden' value='${sessionScope.operationsAccount}' />
-			<button id="opButton" style="display: none;" onclick="#{movementsCriteriaController.resetData()}" />
-			<div class="tab-group savingsAccount">
-				<bbvaHeader:moveDetailContainer>
-					<bbvaHeader:moveContainerHeader>
-						<bbvaHeader:moveDetailHeaderLeft alias="#{product.alias}" number="#{product.productId}"
-							type=" #{product.productName}" />
-						<bbvaGraphic:MovementsGraphic
-							lineConfigUI="#{movementsCriteriaController.graphicLineMovements}" />
-						<bbvaHeader:moveDetailHeaderRight textUp="#{msg['text.available']}"
-							valueUp="#{product.totalCash}" textDown="#{msg['text.tradeBalance']}"
-							valueDown="#{product.cashAvailable}" disabledOpera="#{product.getOperationOnline()}"
-							disabledConsult="#{product.isVisible()}" />
-					</bbvaHeader:moveContainerHeader>
-				</bbvaHeader:moveDetailContainer>
-				<bbvaDetAcc:tabMenu id="tabMenu">
-					<bbvaDetAcc:menuMovements disabledOpera="#{product.getOperationOnline()}"
-						disabledConsult="#{product.isVisible()}" />
-					<div class="tab-content">
-						<!-- Tab Consultar -->
-						<bbvaSearch:tabCriteria id="tabCriteria">
-							<bbvaSearch:personalizedSearchContainer id="personalizedSearchContainer" />
-						</bbvaSearch:tabCriteria>
-						<!-- Tab Condiciones -->
-						<bbvaAcc:accountContainer alias="#{product.alias}" number="#{product.productId}"
-							type="#{product.productName}" />
-						<!-- Tab Personalizar -->
-						<bbvaPersonalize:personalizeContainer id="tabPersonal" />
-						<!-- Tab operaciones -->
-						<bbvaOperation:operationsAccounts />
+			<div class="tab-content">
+				<section class="row tab-pane active globalpanelIn" id="products"
+					style="padding: 0px !important;">
+				<div class="section-content col-xs-12 col-md-8" style="margin: 0px;">
+					<input id='operations' type='hidden' value='${sessionScope.operationsAccount}' />
+					<button id="opButton" style="display: none;"
+						onclick="#{movementsCriteriaController.resetData()}" />
+					<div class="tab-group savingsAccount">
+						<bbvaHeader:moveDetailContainer>
+							<bbvaHeader:moveContainerHeader>
+								<bbvaHeader:moveDetailHeaderLeft alias="#{product.alias}" number="#{product.productId}"
+									type=" #{product.productName}" />
+								<bbvaGraphic:MovementsGraphic
+									lineConfigUI="#{movementsCriteriaController.graphicLineMovements}" />
+								<bbvaHeader:moveDetailHeaderRight textUp="#{msg['text.available']}"
+									valueUp="#{product.totalCash}" textDown="#{msg['text.tradeBalance']}"
+									valueDown="#{product.cashAvailable}" disabledOpera="#{product.getOperationOnline()}"
+									disabledConsult="#{product.isVisible()}" />
+							</bbvaHeader:moveContainerHeader>
+						</bbvaHeader:moveDetailContainer>
+						<bbvaDetAcc:tabMenu id="tabMenu">
+							<bbvaDetAcc:menuMovements disabledOpera="#{product.getOperationOnline()}"
+								disabledConsult="#{product.isVisible()}" />
+							<div class="tab-content">
+								<!-- Tab Consultar -->
+								<bbvaSearch:tabCriteria id="tabCriteria">
+									<bbvaSearch:personalizedSearchContainer id="personalizedSearchContainer" />
+								</bbvaSearch:tabCriteria>
+								<!-- Tab Condiciones -->
+								<bbvaAcc:accountContainer alias="#{product.alias}" number="#{product.productId}"
+									type="#{product.productName}" />
+								<!-- Tab Personalizar -->
+								<bbvaPersonalize:personalizeContainer id="tabPersonal" />
+								<!-- Tab operaciones -->
+								<bbvaOperation:operationsAccounts />
+							</div>
+						</bbvaDetAcc:tabMenu>
+						<div class="table-tabs">
+							<bbvaDetailMotion:detailMovesTable id="detailAccounts"
+								listAccounts="#{movementsCriteriaController.movementsList}"
+								listChecks="#{checkBookController.checkList}"
+								listCheckBooks="#{checkBookController.checkBook}" />
+						</div>
 					</div>
-				</bbvaDetAcc:tabMenu>
-				<div class="table-tabs">
-					<bbvaDetailMotion:detailMovesTable id="detailAccounts"
-						listAccounts="#{movementsCriteriaController.movementsList}"
-						listChecks="#{checkBookController.checkList}"
-						listCheckBooks="#{checkBookController.checkBook}" />
 				</div>
+				</section>
+				<section class="tab-pane globalpanelIn" id="catalogo" style="padding:0px !important;" />
 			</div>
 		</div>
 	</ui:define>
