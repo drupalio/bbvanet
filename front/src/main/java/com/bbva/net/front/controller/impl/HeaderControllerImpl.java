@@ -42,11 +42,16 @@ public class HeaderControllerImpl extends AbstractBbvaController implements Head
 	@PostConstruct
 	public void init() {
 		try {
+			LOGGER.info("Inicio de consulta en header facade ");
 			this.cliente = this.getCustomer();
-			if (!this.cliente.getSegment().equals("N") || !this.cliente.getSegment().isEmpty())
+			LOGGER.info("Segmento del cliente "+this.cliente.getSegment());
+			if(this.cliente.getSegment() == null){
+				this.cliente.setSegment("N");
+			}
+			if (!this.cliente.getSegment().equals("N") && !this.cliente.getSegment().isEmpty())
 				this.ejecutivo = this.getExecutive();
 		} catch (Exception e) {
-
+			LOGGER.info("Excecpxion controlada en HeaderControllerImpl "+e.toString());
 		}
 	}
 
