@@ -17,8 +17,6 @@
 	xmlns:bbvaDetailMotionQuota="http://java.sun.com/jsf/composite/bbva/movementsDetailQuota">
 <ui:composition template="../../templates/defaultLayout.xhtml">
 	<ui:define name="bodyTitle">
-		<input id='operations' type='hidden' value='${sessionScope.operationsRotary}' />
-		<button id="opButton" style="display: none;" onclick="#{quotaController.resetData()}" />
 		<bbvaBody:title title="#{msg['title.loans']}">
 			<bbvaBody:titleOptionProduct optionButttonLeft="#{msg['title.myProducts']}"
 				optionButttonRight="#{msg['title.productCatalog']}" />
@@ -31,6 +29,8 @@
             };
         </script>
 		<div class="col-xs-12 col-md-8">
+			<input id='operations' type='hidden' value='${sessionScope.operationsRotary}' />
+			<button id="opButton" style="display: none;" onclick="#{quotaController.resetData()}" />
 			<bbvaQuotaHeader:quotaContainer id="quotaDetail">
 				<bbvaQuotaHeader:moveDetailContainer>
 					<bbvaQuotaHeader:moveContainerHeader>
