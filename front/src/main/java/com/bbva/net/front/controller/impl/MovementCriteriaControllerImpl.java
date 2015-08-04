@@ -212,20 +212,28 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		this.movementDetail = new MovementDetailDto();
 
 		try {
-			LOGGER.info("MovementsAccountController onMovementSelected movementId:  "
+			LOGGER.info("Control MovementsAccountController onMovementSelected movementId:  "
 					+ getSelectedMovements().getMovementId());
+			LOGGER.info("Antes de llamar al servicio ...");
 			movementDetail = this.movementsFacade.getMovement(getSelectedProduct().getProductId(), getSelectedProduct()
 					.getTypeProd().value(), getSelectedMovements().getMovementId());
-			List<MultiCoordinates> coordenadas = this.multiValueGroupFacade.getMultiCoordinate(movementDetail
-					.getPlaza().getCode());
-			if (coordenadas.size() >= 2) {
-				coordenadas = (List<MultiCoordinates>)CollectionUtils.select(coordenadas, new CityOfficePredicate(
-						movementDetail.getPlaza().getCity()));
-			}
-			movementDetail.getPlaza().setLatitude(coordenadas.get(0).getLatitude());
-			movementDetail.getPlaza().setLength(coordenadas.get(0).getLength());
-			LOGGER.info("latitud..." + coordenadas.get(0).getLatitude() + "..longitud.."
-					+ coordenadas.get(0).getLength() + "..");
+			LOGGER.info("Despues de llamar al servicio ...");
+			LOGGER.info("antes de llamar a la BDD ...");
+//			List<MultiCoordinates> coordenadas = this.multiValueGroupFacade.getMultiCoordinate(movementDetail
+//					.getPlaza().getCode());
+//			LOGGER.info("Despues de llamar a la BDD ...");
+//			if (coordenadas.size() >= 2) {
+//				LOGGER.info("Entra al if de llamar a la BDD ...");
+//				coordenadas = (List<MultiCoordinates>)CollectionUtils.select(coordenadas, new CityOfficePredicate(
+//						movementDetail.getPlaza().getCity()));
+//			}
+//			LOGGER.info("Sale del if de llamar a la BDD ...");
+//			movementDetail.getPlaza().setLatitude(coordenadas.get(0).getLatitude());
+//			LOGGER.info("asigna latitude .." + coordenadas.get(0).getLatitude());
+//			movementDetail.getPlaza().setLength(coordenadas.get(0).getLength());
+//			LOGGER.info("asigna longitud .." + coordenadas.get(0).getLength());
+//			LOGGER.info("latitud..." + coordenadas.get(0).getLatitude() + "..longitud.."
+//					+ coordenadas.get(0).getLength() + "..");
 		} catch (Exception e) {
 			FacesContext ctx = FacesContext.getCurrentInstance();
 			ctx.addMessage("movementDetail", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
