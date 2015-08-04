@@ -20,6 +20,7 @@ import javax.annotation.Resource;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.faces.event.AjaxBehaviorEvent;
 import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.Session;
@@ -261,7 +262,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public void searchMovementByFilter(final ActionEvent event) {
+	public void searchMovementByFilter(final AjaxBehaviorEvent event) {
 		LOGGER.info("MovementsAccountController searchMovementByFilter");
 		setFalseCheckComponents();
 		setFalseCheckBookComponents();
@@ -400,7 +401,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	}
 
 	@Override
-	public void setBalanceRange(final ActionEvent event) {
+	public void setBalanceRange(final AjaxBehaviorEvent event) {
 		LOGGER.info("MovementsAccountController setBalanceRange");
 		getRenderComponents().put(RenderAttributes.BALANCEFILTER.toString(), true);
 		setSinceText(SINCE_TITLE + ": ");
@@ -408,7 +409,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	}
 
 	@Override
-	public void setIncomeExpensesFilter(final ActionEvent event) {
+	public void setIncomeExpensesFilter(final AjaxBehaviorEvent event) {
 		LOGGER.info("MovementsAccountController setIncomeExpensesFilter");
 		getRenderComponents().put(RenderAttributes.INCOMEOREXPENSESFILTER.toString(), true);
 		if (movementCriteria.getIncomesOrExpenses().equals("1"))
@@ -421,7 +422,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	}
 
 	@Override
-	public void setMovementConcept(final ActionEvent event) {
+	public void setMovementConcept(final AjaxBehaviorEvent event) {
 		LOGGER.info("MovementsAccountController setMovementConcept");
 		if (statusText.isEmpty()) {
 			statusLabel = StringUtils.EMPTY;
@@ -471,7 +472,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	}
 
 	@Override
-	public void setCustomDate(final ActionEvent event) {
+	public void setCustomDate(final AjaxBehaviorEvent event) {
 		LOGGER.info("MovementsAccountController setCustomDate");
 		getRenderComponents().put(RenderAttributes.FILTERDATE.toString(), true);
 		this.dateRange = new DateRangeDto();
@@ -494,7 +495,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	}
 
 	@Override
-	public void cleanFilters(ActionEvent event) {
+	public void cleanFilters(AjaxBehaviorEvent event) {
 		LOGGER.info("MovementsAccountController clean Filters");
 		this.paginationKey = 0;
 		setCurrentList(new ArrayList<MovementDto>());

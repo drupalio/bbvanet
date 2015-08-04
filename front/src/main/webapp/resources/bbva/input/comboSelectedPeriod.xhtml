@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<html xmlns="http://www.w3.org/1999/xhtml" 
-    xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:composite="http://java.sun.com/jsf/composite" 
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets" 
-	xmlns:p="http://primefaces.org/ui" 
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
 	xmlns:pm="http://primefaces.org/mobile">
 <composite:interface>
 	<composite:attribute name="width" type="String" />
@@ -14,13 +11,13 @@
 </composite:interface>
 <composite:implementation>
 	<div class="selectorCombo" style="display: inline-block; width: 187.517px !important;">
-		<h:selectOneMenu id="periodo" value="#{cc.attrs.valueMenu}" enabledClass="selectOption"
-			disabledClass="selectOptionDisabled" onchange="styles(this)" style="background-position: 95% !important;">
+		<p:selectOneMenu id="periodo" value="#{cc.attrs.valueMenu}" panelStyleClass="normalComboS">
 			<f:selectItems value="#{comboCriteriaController.multiValuePeriod}" var="multiValue"
 				itemLabel="#{msg[multiValue.value]}" itemValue="#{multiValue.id}" />
-			<f:ajax listener="#{cc.attrs.listener}" event="valueChange" execute="@this" render="#{cc.attrs.render}" />
-			
-		</h:selectOneMenu>
+			<p:ajax listener="#{cc.attrs.listener}" event="valueChange" process="@this"
+				update="#{cc.attrs.render}" onstart="PF('statusDialog').show();"
+				oncomplete="PF('statusDialog').hide();" />
+		</p:selectOneMenu>
 	</div>
 </composite:implementation>
 </html>

@@ -21,6 +21,7 @@ import javax.annotation.Resource;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
 
@@ -266,7 +267,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	}
 
 	@Override
-	public void setCustomDate(final ActionEvent event) {
+	public void setCustomDate(final AjaxBehaviorEvent event) {
 		LOGGER.info(" CheckBookControllerImpl setCustomDate ");
 		getRenderComponents().put(RenderAttributes.FILTERDATE.toString(), true);
 		this.dateRange = new DateRangeDto();
@@ -288,7 +289,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	}
 
 	@Override
-	public void setNumberCheckOrBook(final ActionEvent event) {
+	public void setNumberCheckOrBook(final AjaxBehaviorEvent event) {
 		LOGGER.info(" CheckBookControllerImpl setNumberCheckOrBook ");
 		radioActionState();
 		if (getRenderComponents().get(RenderAttributes.FILTERNUMBERCHECK.toString())) {
@@ -330,7 +331,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	}
 
 	@Override
-	public void showResults(final ActionEvent event) {
+	public void showResults(final AjaxBehaviorEvent event) {
 		LOGGER.info(" CheckBookControllerImpl showResults ");
 
 		setFalseMovementsComponents();

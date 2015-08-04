@@ -1,11 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:composite="http://java.sun.com/jsf/composite"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:bbvaAcc="http://java.sun.com/jsf/composite/bbva/accounts"
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:p="http://primefaces.org/ui" xmlns:bbvaAcc="http://java.sun.com/jsf/composite/bbva/accounts"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:bbvaAlert="http://java.sun.com/jsf/composite/bbva/alert"
 	xmlns:c="http://java.sun.com/jstl/core"
@@ -16,7 +13,7 @@
 	xmlns:bbvaCalendar="http://java.sun.com/jsf/composite/bbva/calendar"
 	xmlns:bbvaSearch="http://java.sun.com/jsf/composite/bbva/filters"
 	xmlns:bbvaButton="http://java.sun.com/jsf/composite/bbva/button"
-	xmlns:jsf="http://xmlns.jcp.org/jsf">
+	xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:bbvaInput="http://java.sun.com/jsf/composite/bbva/input">
 <composite:interface>
 	<composite:attribute name="title" type="String" />
 </composite:interface>
@@ -42,64 +39,56 @@
 						<p>#{msg['msg.info.extract.email1']}</p>
 						<p>#{msg['msg.info.extract.email2']}</p>
 					</div>
-					<div class="col-md-12" style="text-align: center;">
+					<div class="col-md-12" style="text-align: center; margin-top: 26px;">
 						<p:commandButton id="emailTExtract" value="#{msg['button.confirm']}"
-							styleClass="stable-button medium extractButton" >
-							<p:ajax listener="#{extractController.init()}" event="click" execute="@this" update=":tabMenu:tabCriteria:personalizedSearchContainer:downExtract:containerExtract:dateExtract:stateYear"></p:ajax>
+							styleClass="stable-button medium">
+							<p:ajax listener="#{extractController.init}" event="click" process="@this"
+								update=":tabMenu:tabCriteria:personalizedSearchContainer:downExtract:containerExtract:dateExtract:stateYear:item_stateYear
+								        :tabMenu:tabCriteria:personalizedSearchContainer:downExtract:containerExtract:dateExtract:stateMonth:item_stateMonth"
+								oncomplete="extractsEvent()" />
 						</p:commandButton>
 					</div>
 				</div>
 				<h:form id="dateExtract">
-				<div class="extractTwoPage renderExtract">
-					<h1>#{msg['title.downExtractMoun']}</h1>
-					<div class="first-part-download">
-						<small>#{msg['text.selectMenuC']}
-						<span data-original-title="#{msg['msg.info.extract']}" data-toggle="tooltip"
-							title="" class="icon-Info-BlueFilter"> </span>
-						</small>
-						<div id="parentCombo" class="row filteroptions">
-							<div class="col-md-3 selectorCombo">
-								<!-- COMBO AÑOS -->
-								<h:selectOneMenu id="stateYear"
-									value="#{extractController.selectedYear}" onchange="styles(this)"
-									enabledClass="selectOption" disabledClass="selectOptionDisabled"
-									style="background-position: 90% !important;">
-									<f:selectItem itemLabel="#{msg['text.year']}" itemDisabled="true" />
-									<f:selectItems value="#{extractController.yearAvailable}" />
-									<p:ajax process="@this" listener="#{extractController.actionState}"
-										update="stateMonth" />
-								</h:selectOneMenu>
-							</div>
-							<!-- COMBO MESES -->
-							<div class="col-md-3 selectorCombo">
-								<h:selectOneMenu id="stateMonth"
-									value="#{extractController.selectedMonth}" onchange="styles(this)"
-									disabled="#{extractController.enableMonth}"
-									disabledClass="selectOptionDisabled" enabledClass="selectOption"
-									style="background-position: 90% !important;">
-									<f:selectItem itemLabel="#{msg['text.mounth']}" itemDisabled="true" />
-									<f:selectItems value="#{extractController.monthAvailable}" />
-									<p:ajax update="@this" process="@this" />
-								</h:selectOneMenu>
-							</div>
-							<!-- BOTON DESCARGA -->
-							<div class="col-md-5">
-								<p:commandButton id="searchExtract" value="Descargar extracto"
-									styleClass="stable-button medium icon-left ext-message extractDow"
-									icon="icon pdf" ajax="false">
-									<p:fileDownload value="#{extractController.documentExtract()}" />
-								</p:commandButton>
+					<div class="extractTwoPage renderExtract">
+						<h1>#{msg['title.downExtractMoun']}</h1>
+						<div class="first-part-download">
+							<small>#{msg['text.selectMenuC']} <span
+								data-original-title="#{msg['msg.info.extract']}" data-toggle="tooltip" title=""
+								class="icon-Info-BlueFilter"> </span>
+							</small>
+							<div id="parentCombo" class="row filteroptions">
+								<div class="col-md-3">
+									<!-- COMBO AÑOS -->
+									<bbvaInput:comboSelectedAja id="stateYear" value="#{extractController.selectedYear}"
+										itemLabel="#{msg['text.year']}" list="#{extractController.yearAvailable}"
+										listener="#{extractController.actionState()}"
+										update=":tabMenu:tabCriteria:personalizedSearchContainer:downExtract:containerExtract:dateExtract:stateMonth:item_stateMonth" />
+								</div>
+								<div class="col-md-3 ">
+									<!-- COMBO MESES -->
+									<bbvaInput:comboSelectedAja id="stateMonth" value="#{extractController.selectedMonth}"
+										itemLabel="#{msg['text.mounth']}" list="#{extractController.monthAvailable}"
+										disabled="#{extractController.enableMonth}" update="@this" />
+								</div>
+								<!-- BOTON DESCARGA -->
+								<div class="col-md-5">
+									<p:commandButton id="searchExtract" value="Descargar extracto"
+										styleClass="stable-button medium icon-left ext-message extractDow" icon="icon pdf"
+										ajax="false">
+										<p:fileDownload value="#{extractController.documentExtract()}" />
+									</p:commandButton>
+								</div>
 							</div>
 						</div>
+						<!-- </form> -->
+						<!-- TEXTO INFERIOR -->
+						<div class="system-message info" style="margin-top: 20px !important;">
+							<span class="icon"></span>
+							<p>#{msg['msg.info.extract.part1']} "#{extractController.getEmail()}".</p>
+							<p>#{msg['msg.info.extract.part2']}</p>
+						</div>
 					</div>
-					<!-- </form> -->
-					<!-- TEXTO INFERIOR -->
-					<div class="system-message info" style="margin-top: 20px !important;">
-						<span class="icon"></span>
-						<p>#{msg['msg.info.extract.part1']} "#{extractController.getEmail()}".</p>
-						<p>#{msg['msg.info.extract.part2']}</p>
-					</div>
-				</div>
 				</h:form>
 			</div>
 		</div>
