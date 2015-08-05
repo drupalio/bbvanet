@@ -23,6 +23,7 @@ import javax.annotation.Resource;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.faces.event.AjaxBehaviorEvent;
 import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.Session;
@@ -86,7 +87,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 public class QuotaControllerImpl extends QuotaPaginatedController implements QuotaController {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Resource(name = "headerController")
 	private transient HeaderController headerController;
 
@@ -278,7 +279,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 	}
 
 	@Override
-	public void setCustomDate(final ActionEvent event) {
+	public void setCustomDate(final AjaxBehaviorEvent event) {
 		LOGGER.info("MovementsAccountController setCustomDate");
 		getRenderComponents().put(RenderAttributes.FILTERDATE.toString(), true);
 		this.dateRange = new DateRangeDto();
@@ -300,7 +301,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 	}
 
 	@Override
-	public void searchQuotaByFilter(final ActionEvent event) {
+	public void searchQuotaByFilter(final AjaxBehaviorEvent event) {
 		LOGGER.info("QuotaControllerImpl searchQuotaByFilter ");
 		if (renderComponents.get(RenderAttributes.FILTERDATE.toString())) {
 			calculateDate(this.getSelectDate());

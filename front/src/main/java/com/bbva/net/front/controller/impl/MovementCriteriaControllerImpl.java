@@ -20,6 +20,7 @@ import javax.annotation.Resource;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.faces.event.AjaxBehaviorEvent;
 import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.Session;
@@ -211,20 +212,28 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		this.movementDetail = new MovementDetailDto();
 
 		try {
-			LOGGER.info("MovementsAccountController onMovementSelected movementId:  "
+			LOGGER.info("Control MovementsAccountController onMovementSelected movementId:  "
 					+ getSelectedMovements().getMovementId());
+			LOGGER.info("Antes de llamar al servicio ...");
 			movementDetail = this.movementsFacade.getMovement(getSelectedProduct().getProductId(), getSelectedProduct()
 					.getTypeProd().value(), getSelectedMovements().getMovementId());
-			List<MultiCoordinates> coordenadas = this.multiValueGroupFacade.getMultiCoordinate(movementDetail
-					.getPlaza().getCode());
-			if (coordenadas.size() >= 2) {
-				coordenadas = (List<MultiCoordinates>)CollectionUtils.select(coordenadas, new CityOfficePredicate(
-						movementDetail.getPlaza().getCity()));
-			}
-			movementDetail.getPlaza().setLatitude(coordenadas.get(0).getLatitude());
-			movementDetail.getPlaza().setLength(coordenadas.get(0).getLength());
-			LOGGER.info("latitud..." + coordenadas.get(0).getLatitude() + "..longitud.."
-					+ coordenadas.get(0).getLength() + "..");
+			LOGGER.info("Despues de llamar al servicio ...");
+			LOGGER.info("antes de llamar a la BDD ...");
+//			List<MultiCoordinates> coordenadas = this.multiValueGroupFacade.getMultiCoordinate(movementDetail
+//					.getPlaza().getCode());
+//			LOGGER.info("Despues de llamar a la BDD ...");
+//			if (coordenadas.size() >= 2) {
+//				LOGGER.info("Entra al if de llamar a la BDD ...");
+//				coordenadas = (List<MultiCoordinates>)CollectionUtils.select(coordenadas, new CityOfficePredicate(
+//						movementDetail.getPlaza().getCity()));
+//			}
+//			LOGGER.info("Sale del if de llamar a la BDD ...");
+//			movementDetail.getPlaza().setLatitude(coordenadas.get(0).getLatitude());
+//			LOGGER.info("asigna latitude .." + coordenadas.get(0).getLatitude());
+//			movementDetail.getPlaza().setLength(coordenadas.get(0).getLength());
+//			LOGGER.info("asigna longitud .." + coordenadas.get(0).getLength());
+//			LOGGER.info("latitud..." + coordenadas.get(0).getLatitude() + "..longitud.."
+//					+ coordenadas.get(0).getLength() + "..");
 		} catch (Exception e) {
 			FacesContext ctx = FacesContext.getCurrentInstance();
 			ctx.addMessage("movementDetail", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
@@ -261,7 +270,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public void searchMovementByFilter(final ActionEvent event) {
+	public void searchMovementByFilter(final AjaxBehaviorEvent event) {
 		LOGGER.info("MovementsAccountController searchMovementByFilter");
 		setFalseCheckComponents();
 		setFalseCheckBookComponents();
@@ -400,7 +409,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	}
 
 	@Override
-	public void setBalanceRange(final ActionEvent event) {
+	public void setBalanceRange(final AjaxBehaviorEvent event) {
 		LOGGER.info("MovementsAccountController setBalanceRange");
 		getRenderComponents().put(RenderAttributes.BALANCEFILTER.toString(), true);
 		setSinceText(SINCE_TITLE + ": ");
@@ -408,7 +417,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	}
 
 	@Override
-	public void setIncomeExpensesFilter(final ActionEvent event) {
+	public void setIncomeExpensesFilter(final AjaxBehaviorEvent event) {
 		LOGGER.info("MovementsAccountController setIncomeExpensesFilter");
 		getRenderComponents().put(RenderAttributes.INCOMEOREXPENSESFILTER.toString(), true);
 		if (movementCriteria.getIncomesOrExpenses().equals("1"))
@@ -421,7 +430,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	}
 
 	@Override
-	public void setMovementConcept(final ActionEvent event) {
+	public void setMovementConcept(final AjaxBehaviorEvent event) {
 		LOGGER.info("MovementsAccountController setMovementConcept");
 		if (statusText.isEmpty()) {
 			statusLabel = StringUtils.EMPTY;
@@ -471,7 +480,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	}
 
 	@Override
-	public void setCustomDate(final ActionEvent event) {
+	public void setCustomDate(final AjaxBehaviorEvent event) {
 		LOGGER.info("MovementsAccountController setCustomDate");
 		getRenderComponents().put(RenderAttributes.FILTERDATE.toString(), true);
 		this.dateRange = new DateRangeDto();
@@ -494,7 +503,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	}
 
 	@Override
-	public void cleanFilters(ActionEvent event) {
+	public void cleanFilters(AjaxBehaviorEvent event) {
 		LOGGER.info("MovementsAccountController clean Filters");
 		this.paginationKey = 0;
 		setCurrentList(new ArrayList<MovementDto>());

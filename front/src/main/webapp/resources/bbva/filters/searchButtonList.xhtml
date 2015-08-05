@@ -8,43 +8,44 @@
 <composite:interface>
 	<composite:attribute name="show" type="boolean" />
 	<composite:attribute name="actionListenerShow"
-		method-signature="void actionlistener(javax.faces.event.ActionEvent)" />
+		method-signature="void actionlistener(javax.faces.event.AjaxBehaviorEvent)" />
 	<composite:attribute name="actionListenerRemove"
-		method-signature="void actionlistener(javax.faces.event.ActionEvent)" />
+		method-signature="void actionlistener(javax.faces.event.AjaxBehaviorEvent)" />
 </composite:interface>
 <composite:implementation>
 	<li class="filter-buttons">
 		<div>
-			<bbvaButton:iconButton id="removeFields" icon="trash-icon" type="submit"
-				value="#{msg['button.clean.filters']}" show="#{cc.attrs.show}"
-				classButton="btn btn-default hidden-xs hidden-sm"
-				actionListener="#{cc.attrs.actionListenerRemove}">
-			</bbvaButton:iconButton>
-			<button class="btn btn-default" jsf:rendered="#{cc.attrs.showMovements}"
-				jsf:actionListener="#{cc.attrs.actionListenerShow}">
-				<span class="document-view-icon" />#{msg['button.see.result']}
+			<p:commandButton id="removeFields" icon="trash-icon" value="#{msg['button.clean.filters']}"
+				rendered="#{cc.attrs.show}" styleClass="btn btn-default hidden-xs hidden-sm">
 				<p:ajax process="@form" onstart="PF('statusDialog').show()"
-					onsuccess="PF('statusDialog').hide()"
+					oncomplete="PF('statusDialog').hide()" listener="#{cc.attrs.actionListenerRemove}"
+					update=":tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:componentList
+                        :tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:balanceList:componentList
+                        :tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:incomeOrExpenseList:componentList
+                        :tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:movementList:componentList" />
+			</p:commandButton>
+			<p:commandButton styleClass="btn btn-default" rendered="#{cc.attrs.showMovements}"
+				icon="document-view-icon" value="#{msg['button.see.result']}">
+				<p:ajax process="@form" onstart="PF('statusDialog').show()"
+					oncomplete="PF('statusDialog').hide()" listener="#{cc.attrs.actionListenerShow}"
 					update=":detailAccounts:tableMovements:formMovesDetail
 								:detailAccounts:checkTable:formCheks
 								:detailAccounts:checkBookTable:formCheckBooks" />
-			</button>
-			<button class="btn btn-default" jsf:rendered="#{cc.attrs.showChecks}"
-				jsf:actionListener="#{cc.attrs.actionListenerShow}">
-				<span class="document-view-icon" />#{msg['button.see.result']}
+			</p:commandButton>
+			<p:commandButton styleClass="btn btn-default" rendered="#{cc.attrs.showChecks}"
+				value="#{msg['button.see.result']}" icon="document-view-icon">
 				<p:ajax process="@form" onstart="PF('statusDialog').show()"
-					onsuccess="PF('statusDialog').hide()"
+					oncomplete="PF('statusDialog').hide()" listener="#{cc.attrs.actionListenerShow}"
 					update=":detailAccounts:tableMovements:formMovesDetail
 								:detailAccounts:checkTable:formCheks
 								:detailAccounts:checkBookTable:formCheckBooks" />
-			</button>
-			<button class="btn btn-default" type="button" jsf:rendered="#{cc.attrs.showQuota}"
-				jsf:actionListener="#{cc.attrs.actionListenerShow}">
-				<span class="document-view-icon" />#{msg['button.see.result']}
+			</p:commandButton>
+			<p:commandButton styleClass="btn btn-default" type="button" rendered="#{cc.attrs.showQuota}"
+				icon="document-view-icon" value="#{msg['button.see.result']}">
 				<p:ajax process="@form" onstart="PF('statusDialog').show()"
-					onsuccess="PF('statusDialog').hide()"
+					oncomplete="PF('statusDialog').hide()" listener="#{cc.attrs.actionListenerShow}"
 					update=":quotaDetail:detailAccounts:detailAccounts:detailmovesAC" />
-			</button>
+			</p:commandButton>
 		</div>
 	</li>
 </composite:implementation>

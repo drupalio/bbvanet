@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.faces.event.ActionEvent;
+import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.model.SelectItem;
 
 import org.junit.Before;
@@ -45,6 +46,8 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
 
 	private SelectEvent eventSelect;
 
+	private AjaxBehaviorEvent ajaxAction;
+
 	@Before
 	public void init() {
 		// Inicializar controlador
@@ -57,6 +60,7 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
 		this.productDto = Mockito.mock(ProductDto.class);
 		this.eventSelect = Mockito.mock(SelectEvent.class);
 		this.eventAction = Mockito.mock(ActionEvent.class);
+		this.ajaxAction = Mockito.mock(AjaxBehaviorEvent.class);
 		Mockito.when(checkBookController.getSelectedProduct()).thenReturn(productDto);
 		Mockito.when(productDto.getProductId()).thenReturn(DEFAULT_ID);
 		Mockito.when(productDto.getSubTypeProd()).thenReturn("Account");
@@ -102,18 +106,18 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
 	public void checkCumstomDate() {
 		// nullos y concreteDate igual
 		this.checkBookController.setSelectDate("select.radio.concret.date");
-		this.checkBookController.setCustomDate(eventAction);
+		this.checkBookController.setCustomDate(ajaxAction);
 		// setSinceDate no nula, toDate nula y concreteDate igual
 		this.checkBookController.setSinceDatestr("");
 		this.checkBookController.getSinceDatestr();
 		this.checkBookController.setSinceDate(new Date());
 		this.checkBookController.setSelectDate("select.radio.concret.date");
-		this.checkBookController.setCustomDate(eventAction);
+		this.checkBookController.setCustomDate(ajaxAction);
 		// no nulos y concreteDate igual
 		this.checkBookController.setSelectDate("select.radio.concret.date");
 		this.checkBookController.setSinceDate(new Date());
 		this.checkBookController.setToDate(new Date());
-		this.checkBookController.setCustomDate(eventAction);
+		this.checkBookController.setCustomDate(ajaxAction);
 		// setToDate no nula, setSinceDate nulo y concreteDate igual
 		this.checkBookController.setSelectDate("null");
 		this.checkBookController.setToDatestr("");
@@ -121,7 +125,7 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
 		this.checkBookController.setToDate(new Date());
 		this.checkBookController.getTitleDateSince();
 		this.checkBookController.getTitleDateTo();
-		this.checkBookController.setCustomDate(eventAction);
+		this.checkBookController.setCustomDate(ajaxAction);
 	}
 
 	// @Test
@@ -129,11 +133,11 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
 		// set ActionState numero de cheque
 		this.checkBookController.setActionState("text.search.by.number.check");
 		this.checkBookController.getLeftTitle();
-		this.checkBookController.setNumberCheckOrBook(eventAction);
+		this.checkBookController.setNumberCheckOrBook(ajaxAction);
 		// set ActionState numero de talonario
 		this.checkBookController.setActionState("text.search.by.numberbook");
 		this.checkBookController.getRightTitle();
-		this.checkBookController.setNumberCheckOrBook(eventAction);
+		this.checkBookController.setNumberCheckOrBook(ajaxAction);
 	}
 
 	@Test
@@ -144,17 +148,17 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
 		renderComponents.put(RenderAttributes.FILTERNUMBERCHECK.toString(), false);
 		renderComponents.put(RenderAttributes.FILTERDATECHECK.toString(), false);
 		// null
-		this.checkBookController.showResults(eventAction);
+		this.checkBookController.showResults(ajaxAction);
 		// FILTERDATECHECK (true)
 		renderComponents.put(RenderAttributes.FILTERDATECHECK.toString(), true);
 		this.checkBookController.setSelectDate("Ayer");
-		this.checkBookController.showResults(eventAction);
+		this.checkBookController.showResults(ajaxAction);
 		// peridType = null
 		renderComponents.put(RenderAttributes.FILTERDATECHECK.toString(), true);
 		this.checkBookController.setSelectDate("H");
 		this.checkBookController.setDateRange(new DateRangeDto());
 		this.checkBookController.getDateRange();
-		this.checkBookController.showResults(eventAction);
+		this.checkBookController.showResults(ajaxAction);
 		// FILTERNUMBERCHECK (true) OK
 		renderComponents.put(RenderAttributes.FILTERNUMBERCHECK.toString(), true);
 		this.checkBookController.setCheck(new CheckDto());
@@ -162,18 +166,18 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
 		this.checkBookController.setCheckNumber("");
 		this.checkBookController.getCheckNumber();
 		Mockito.when(checkBookFacade.getCheckById(DEFAULT_ID, "")).thenReturn(new CheckDto());
-		this.checkBookController.showResults(eventAction);
+		this.checkBookController.showResults(ajaxAction);
 		// FILTERNUMBERCHECK (true) ClientException
 		renderComponents.put(RenderAttributes.FILTERNUMBERCHECK.toString(), true);
 		this.checkBookController.setCheckNumber("");
 		Mockito.when(checkBookFacade.getCheckById(DEFAULT_ID, "")).thenThrow(new RestClientException("OK"));
-		this.checkBookController.showResults(eventAction);
+		this.checkBookController.showResults(ajaxAction);
 		// FILTERSTATUS (true)
 		renderComponents.put(RenderAttributes.FILTERSTATUS.toString(), true);
 		this.checkBookController.setTitleState("A");
 		this.checkBookController.setCheckState("1");
 		this.checkBookController.getTitleState();
-		this.checkBookController.showResults(eventAction);
+		this.checkBookController.showResults(ajaxAction);
 		// FILTERCHECKBOOK (true) OK
 		renderComponents.put(RenderAttributes.FILTERCHECKBOOK.toString(), true);
 		renderComponents.put(RenderAttributes.FILTERDATECHECK.toString(), false);
@@ -181,14 +185,14 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
 		this.checkBookController.getCheckBookNumber();
 		Mockito.when(this.checkBookFacade.getCheckBookByAccountId(DEFAULT_ID, "1234")).thenReturn(
 				new ArrayList<CheckbookDto>());
-		this.checkBookController.showResults(eventAction);
+		this.checkBookController.showResults(ajaxAction);
 		// FILTERCHECKBOOK (true) ClientException
 		renderComponents.put(RenderAttributes.FILTERCHECKBOOK.toString(), true);
 		renderComponents.put(RenderAttributes.FILTERDATECHECK.toString(), false);
 		this.checkBookController.setCheckBookNumber("1234");
 		Mockito.when(this.checkBookFacade.getCheckBookByAccountId(DEFAULT_ID, "1234")).thenThrow(
 				new RestClientException("OK"));
-		this.checkBookController.showResults(eventAction);
+		this.checkBookController.showResults(ajaxAction);
 	}
 
 	@Test

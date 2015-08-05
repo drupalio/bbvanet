@@ -6,6 +6,7 @@ package com.bbva.net.front.controller;
 import java.util.List;
 
 import javax.faces.event.ActionEvent;
+import javax.faces.event.AjaxBehaviorEvent;
 
 import com.bbva.net.back.model.movements.MovementDto;
 
@@ -22,12 +23,12 @@ public interface QuotaController {
 	/**
 	 * Method to set partial customdate
 	 */
-	void setCustomDate(ActionEvent event);
+	void setCustomDate(AjaxBehaviorEvent event);
 
 	/**
 	 * Method to set partial customdate
 	 */
-	void searchQuotaByFilter(final ActionEvent event);
+	void searchQuotaByFilter(final AjaxBehaviorEvent event);
 
 	/**
 	 * Method to get all movements of quota

@@ -5,16 +5,15 @@
 	xmlns:composite="http://java.sun.com/jsf/composite" xmlns:p="http://primefaces.org/ui"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:bbvaSearch="http://java.sun.com/jsf/composite/bbva/filters"
-	xmlns:jsf="http://xmlns.jcp.org/jsf">
+	xmlns:bbvaInput="http://java.sun.com/jsf/composite/bbva/input" xmlns:jsf="http://xmlns.jcp.org/jsf">
 <composite:interface>
 	<composite:attribute name="title" type="String" />
 </composite:interface>
 <composite:implementation>
 	<p:outputPanel id="outputPanel">
 		<h:form id="customSearch">
-		<p:remoteCommand name="reset" 
-			actionListener="#{renderViewMovementsUI.init()}"
-			update=":detailAccounts:tableMovements:formMovesDetail
+			<p:remoteCommand name="reset" actionListener="#{renderViewMovementsUI.init()}"
+				update=":detailAccounts:tableMovements:formMovesDetail
 					:detailAccounts:checkTable:formCheks
 					:detailAccounts:checkBookTable:formCheckBooks
 					:tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab"></p:remoteCommand>
@@ -52,11 +51,11 @@
 						value="#{movementsCriteriaController.movementCriteria.incomesOrExpenses}" />
 				</bbvaSearch:customSearchList>
 				<bbvaSearch:customSearchList id="movementList" classList="movements-filter"
-					classSpan="arrow-left-smaller" classSpanFilter="filter"
-					title="#{msg['text.movement']}" filterMessage="#{movementsCriteriaController.movementCriteria.movement}"
+					classSpan="arrow-left-smaller" classSpanFilter="filter" title="#{msg['text.movement']}"
+					filterMessage="#{movementsCriteriaController.movementCriteria.movement}"
 					filterTitle2="#{movementsCriteriaController.statusText}"
 					filterMessage2="#{movementsCriteriaController.statusLabel}">
-					<bbvaSearch:movementsFilter id="conceptMove"/>
+					<bbvaSearch:movementsFilter id="conceptMove" />
 				</bbvaSearch:customSearchList>
 				<bbvaSearch:searchButtonList show="true" showChecks="false" showQuota="false"
 					showMovements="true" actionListenerRemove="#{movementsCriteriaController.cleanFilters}"
@@ -80,12 +79,19 @@
 						actionListenerDate="#{checkBookController.setCustomDate}"
 						listenerDate="#{checkBookController}" />
 				</bbvaSearch:customSearchList>
-				<bbvaSearch:checkBooksContainer id="checkContainer"
-					valueCheck="#{checkBookController.actionState}"
-					valueCheckNumber="#{checkBookController.checkNumber}"
-					valuecheckState="#{checkBookController.checkState}"
-					valueBookNumber="#{checkBookController.checkBookNumber}"
-					actionListenerCheck="#{checkBookController.rightTitle}" />
+				<bbvaSearch:customSearchList id="checkList" classList="date-filter customSearch"
+					classSpan="arrow-left-smaller" classSpanFilter="filter"
+					title="#{msg['text.number.check.books']}" filterTitle="#{checkBookController.leftTitle}"
+					filterTitle2="#{checkBookController.leftTitle2}"
+					filterMessage="#{checkBookController.rightTitle}"
+					filterMessage2="#{checkBookController.rightTitle2}">
+					<bbvaSearch:numberCheck id="numberCheck" identify="numberCheck"
+						valueCheck="#{checkBookController.actionState}"
+						valueCheckNumber="#{checkBookController.checkNumber}"
+						valuecheckState="#{checkBookController.checkState}"
+						valueBookNumber="#{checkBookController.checkBookNumber}"
+						actionListenerCheck="#{checkBookController.rightTitle}" />
+				</bbvaSearch:customSearchList>
 				<bbvaSearch:searchButtonList show="false" showQuota="false" showChecks="true"
 					showMovements="false" actionListenerShow="#{checkBookController.showResults}" />
 			</bbvaSearch:personalizedSearchTabBody>
