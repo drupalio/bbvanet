@@ -42,16 +42,18 @@
 						<p:column style="z-index: -1 !important; display:none;">
 							<p:rowToggler rendered="true" />
 						</p:column>
-						<p:column headerText="#{msg['text.detailMove.date']}" styleClass="styleColum sorted w24 desc">
+						<p:column headerText="#{msg['text.detailMove.date']}" styleClass="styleColum sorted w24 desc"
+							sortBy="#{moves.movementDate}">
 							<h:outputText styleClass="brand styleLeft height18" value="#{moves.movementDate}">
 								<f:convertDateTime pattern="dd/MM/yyyy" />
 							</h:outputText>
 						</p:column>
-						<p:column headerText="#{msg['text.detailMove.concep']}" styleClass="styleColum desc w44">
+						<p:column headerText="#{msg['text.detailMove.concep']}" styleClass="styleColum desc w44"
+							sortBy="#{moves.movementConcept}">
 							<h:outputText class="text styleLeft height18" value="#{moves.movementConcept}" />
 						</p:column>
 						<p:column class="head" headerText="#{msg['title.slope']}" styleClass="styleColum desc w44"
-							colspan="2">
+							colspan="2" sortBy="#{moves.movementValue}">
 							<h:outputText class="currency styleCurrent height18" value="#{moves.movementValue}" />
 						</p:column>
 						<p:column styleClass="smart-view">
