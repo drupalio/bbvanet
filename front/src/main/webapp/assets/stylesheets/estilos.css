@@ -1467,7 +1467,7 @@ body div.ui-growl .ui-state-highlight {
 @media ( max-width : 768px) {
 	.editDele {
 		position: relative;
-		left: 90%;
+		left: 80%;
 		margin-left: 3px !important;
 	}
 	.button-finishEdit {
