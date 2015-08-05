@@ -92,7 +92,7 @@
 								placeholder="__/__/____" id="itemSince_#{cc.attrs.identify}" mask="true"
 								converterMessage="Fecha inválida" value="#{cc.attrs.valueDateSince}" pattern="dd/MM/yyyy"
 								locale="#{msg['leng.locale']}" disabled="#{cc.attrs.disabledCalendar}"
-								showButtonPanel="true" showOtherMonths="true" onclick="dataCalendar()">
+								showButtonPanel="true" showOtherMonths="true" onclick="dataCalendar(jQuery(this))">
 								<p:ajax event="dateSelect" update="#{cc.attrs.confirmDate} itemSince_#{cc.attrs.identify}" />
 								<p:ajax event="change" update="#{cc.attrs.confirmDate} itemSince_#{cc.attrs.identify}" />
 							</p:calendar>
@@ -109,7 +109,8 @@
 								id="itemTo_#{cc.attrs.identify}" locale="#{msg['leng.locale']}" showOtherMonths="true"
 								value="#{cc.attrs.valueDateTo}" disabled="#{cc.attrs.disabledCalendar}" mask="true"
 								mindate="#{cc.attrs.valueDateSince}" maxdate="today" pattern="dd/MM/yyyy"
-								showButtonPanel="true" converterMessage="Fecha inválida" onclick="dataCalendar()">
+								showButtonPanel="true" converterMessage="Fecha inválida"
+								onclick="dataCalendar(jQuery(this))">
 								<p:ajax event="dateSelect" update="#{cc.attrs.confirmDate} itemTo_#{cc.attrs.identify}" />
 								<p:ajax event="change" update="#{cc.attrs.confirmDate} itemTo_#{cc.attrs.identify}" />
 							</p:calendar>
@@ -122,7 +123,8 @@
 			styleClass="btn small hidden-xs hidden-sm #{cc.attrs.value=='' || (cc.attrs.value==msg['select.radio.concret.date'] &amp;&amp; (cc.attrs.valueDateSince==null || cc.attrs.valueDateTo==null)) ? 'buttonDisabled': 'none'}"
 			rendered="#{cc.attrs.showMovements}" value="#{msg['button.confirm']}">
 			<p:ajax process="@form" listener="#{cc.attrs.actionListenerDate}"
-				oncomplete="document.getElementById('tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:componentList').click();"
+				onstart="PF('statusDialog').show();"
+				oncomplete="document.getElementById('tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:componentList').click(); PF('statusDialog').hide();"
 				update=":tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:itemSince_moveCalendar
 			            :tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:itemTo_moveCalendar
 			            :tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:componentList" />
@@ -131,7 +133,8 @@
 			styleClass="btn small hidden-xs hidden-sm #{cc.attrs.value=='' || (cc.attrs.value==msg['select.radio.concret.date'] &amp;&amp; (cc.attrs.valueDateSince==null || cc.attrs.valueDateTo==null)) ? 'buttonDisabled': 'none'}"
 			rendered="#{cc.attrs.showChecks}" value="#{msg['button.confirm']}">
 			<p:ajax process="@form" listener="#{cc.attrs.actionListenerDate}"
-				oncomplete="document.getElementById('tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:customCheckList:componentList').click();"
+				onstart="PF('statusDialog').show();"
+				oncomplete="document.getElementById('tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:customCheckList:componentList').click(); PF('statusDialog').hide();"
 				update=":tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:customCheckList:customDate:itemSince_checkCalendar
                         :tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:customCheckList:customDate:itemTo_checkCalendar
 		                :tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:customCheckList:componentList" />
@@ -140,7 +143,8 @@
 			styleClass="btn small hidden-xs hidden-sm #{cc.attrs.value=='' || (cc.attrs.value==msg['select.radio.concret.date'] &amp;&amp; (cc.attrs.valueDateSince==null || cc.attrs.valueDateTo==null)) ? 'buttonDisabled': 'none'}"
 			rendered="#{cc.attrs.showQuota}" value="#{msg['button.confirm']}">
 			<p:ajax process="@form" listener="#{cc.attrs.actionListenerDate}"
-				oncomplete="document.getElementById('quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:componentList').click();"
+				onstart="PF('statusDialog').show();"
+				oncomplete="document.getElementById('quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:componentList').click(); PF('statusDialog').hide();"
 				update=":quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:itemSince_quotaCalendar
 			            :quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:itemTo_quotaCalendar
 			            :quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:componentList" />

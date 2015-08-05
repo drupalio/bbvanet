@@ -2049,3 +2049,36 @@ body div.ui-growl .ui-state-highlight {
 .btn {
 	font: 12px/24px "BBVA Web Medium", arial, sans-serif !important;
 }
+
+@media ( min-width : 769px) {
+	.buttonLupa {
+		bottom: 30px;
+		float: right;
+	}
+}
+
+@media ( max-width : 768px) {
+	.buttonLupa {
+		bottom: 47px;
+		float: right;
+	}
+}
+
+.autoMovement .ui-autocomplete-input {
+	width: 100% !important;
+}
+
+.search-icon {
+	position: absolute !important;
+	top: 15.4px !important;
+	right: 6.48333px !important;
+	float: none !important;
+}
+
+.ui-autocomplete-item.ui-state-highlight {
+	background: #E1E1E1 none repeat scroll 0% 0% !important;
+}
+
+.consultas .panel-tab-body .filters>ul>li.movements-filter div {
+	padding-bottom: 0px !important;
+}

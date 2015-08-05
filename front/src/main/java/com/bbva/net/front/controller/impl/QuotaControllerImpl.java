@@ -201,7 +201,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 	}
 
 	@Override
-	public void cleanFilters(ActionEvent event) {
+	public void cleanFilters(AjaxBehaviorEvent event) {
 		LOGGER.info(" QuotaControllerImpl cleanFilters ActionEvent");
 		cleanFilters();
 	}

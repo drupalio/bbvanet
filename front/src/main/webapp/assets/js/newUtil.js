@@ -154,10 +154,15 @@ function removeTool(spanT) {
 	});
 }
 
-function dataCalendar() {
+function dataCalendar(picker) {
 	$(document).ready(function() {
 		var currentTo = $('.ui-datepicker-current');
 		var tableCalen = $('.ui-datepicker-calendar');
+
+		$('#ui-datepicker-div').css({
+			'top' : ($(picker).offset().top + 30) + 'px',
+		});
+
 		var heigthCa = $(tableCalen).height();
 		$(currentTo).css('margin-top', '-' + (heigthCa + 40) + 'px');
 	});
@@ -232,6 +237,7 @@ $(document).delegate('.ui-datepicker-next', 'click', function() {
 });
 
 $(document).ready(function() {
+
 	/* close de consultas */
 	$('.close-button').click(function() {
 		var parent = $(this).parents('.operation-tabs');

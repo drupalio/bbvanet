@@ -33,7 +33,8 @@
 		<p:commandButton id="balanceButton" value="#{msg['button.confirm']}"
 			styleClass="btn small hidden-xs hidden-sm #{movementsCriteriaController.movementCriteria.incomesOrExpenses==null ? 'buttonDisabled': 'none'}">
 			<p:ajax process="@form" listener="#{movementsCriteriaController.setIncomeExpensesFilter}"
-				oncomplete="document.getElementById('tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:incomeOrExpenseList:componentList').click();"
+				onstart="PF('statusDialog').show();"
+				oncomplete="document.getElementById('tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:incomeOrExpenseList:componentList').click(); PF('statusDialog').hide();"
 				update=":tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:incomeOrExpenseList:componentList" />
 		</p:commandButton>
 	</div>

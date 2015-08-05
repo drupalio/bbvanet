@@ -43,7 +43,7 @@ public interface QuotaController {
 	 * 
 	 * @param event
 	 */
-	void cleanFilters(ActionEvent event);
+	void cleanFilters(AjaxBehaviorEvent event);
 
 	/**
 	 * Method to reset filters of quota

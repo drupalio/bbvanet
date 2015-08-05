@@ -57,8 +57,9 @@
 					filterMessage2="#{movementsCriteriaController.statusLabel}">
 					<bbvaSearch:movementsFilter id="conceptMove" />
 				</bbvaSearch:customSearchList>
-				<bbvaSearch:searchButtonList show="true" showChecks="false" showQuota="false"
-					showMovements="true" actionListenerRemove="#{movementsCriteriaController.cleanFilters}"
+				<bbvaSearch:searchButtonList showQRemove="false" showRemove="true" showChecks="false"
+					showQuota="false" showMovements="true"
+					actionListenerRemove="#{movementsCriteriaController.cleanFilters}"
 					actionListenerShow="#{movementsCriteriaController.searchMovementByFilter}" />
 			</bbvaSearch:personalizedSearchTabBody>
 		</h:form>
@@ -92,8 +93,8 @@
 						valueBookNumber="#{checkBookController.checkBookNumber}"
 						actionListenerCheck="#{checkBookController.rightTitle}" />
 				</bbvaSearch:customSearchList>
-				<bbvaSearch:searchButtonList show="false" showQuota="false" showChecks="true"
-					showMovements="false" actionListenerShow="#{checkBookController.showResults}" />
+				<bbvaSearch:searchButtonList showQRemove="false" showRemove="false" showQuota="false"
+					showChecks="true" showMovements="false" actionListenerShow="#{checkBookController.showResults}" />
 			</bbvaSearch:personalizedSearchTabBody>
 		</h:form>
 		<h:form id="downExtract">

@@ -77,7 +77,7 @@ public class QuotaControllerImplTest extends AbstractBbvaControllerTest {
 		// init Controller producto y id nulo.
 		this.quotaControllerImpl.init();
 		// Clean Filters
-		this.quotaControllerImpl.cleanFilters(eventAction);
+		this.quotaControllerImpl.cleanFilters(ajaxAction);
 	}
 
 	@Test

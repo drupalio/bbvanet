@@ -21,8 +21,8 @@
 					itemValue="#{msg['text.search.by.number.check']}" />
 				<f:selectItem itemLabel="#{msg['text.search.by.numberbook']}"
 					itemValue="#{msg['text.search.by.numberbook']}" />
-				<f:ajax process="@form" listener="#{checkBookController.radioActionState}"
-					render="
+				<p:ajax process="@form" listener="#{checkBookController.radioActionState}"
+					update=" 
                     :tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:checkList:numberCheck:searchButton
 					:tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:checkList:numberCheck:inputNumberCheck
 					:tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:checkList:numberCheck:panelDivSta
@@ -41,7 +41,7 @@
 					<f:validateRegex pattern="[0-9]*" />
 				</h:inputText>
 			</div>
-			<div
+			<p:outputPanel id="panelDivSta"
 				class="col-xs-12 col-md-12 col-lg-12 #{checkBookController.renderComponents['RADIOSTATUS'] ? '' : 'nonee'}"
 				style="margin-bottom: 17px; padding: 0px; line-height: 25px !important;">
 				<div class="divAlign radioButtonT" />
@@ -52,7 +52,7 @@
 						itemLabel="#{msg['text.combo.select']}" list="#{comboCriteriaController.multiValueList}"
 						styleClass="widthTalo" disabled="#{checkBookController.renderComponents['STATUS']}" />
 				</div>
-			</div>
+			</p:outputPanel>
 			<div class="col-xs-12 col-md-12 col-lg-12"
 				style="margin-bottom: 17px; padding: 0px; line-height: 25px !important;">
 				<p:radioButton id="opt3" for="customRadio" itemIndex="1" styleClass="divAlign radioButtonT" />
@@ -70,8 +70,9 @@
 				disabled="#{checkBookController.renderComponents['BUTTONBOOK']}"
 				styleClass="btn small hidden-xs hidden-sm">
 				<p:ajax process="@form" listener="#{checkBookController.setNumberCheckOrBook}"
+					onstart="PF('statusDialog').show();"
 					update=":tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:checkList:componentList"
-					oncomplete="document.getElementById('tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:checkList:componentList').click();" />
+					oncomplete="document.getElementById('tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:checkList:componentList').click(); PF('statusDialog').hide();" />
 			</p:commandButton>
 		</p:outputPanel>
 	</div>

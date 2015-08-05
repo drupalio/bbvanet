@@ -6,7 +6,11 @@
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough" xmlns:jsf="http://xmlns.jcp.org/jsf"
 	xmlns:bbvaButton="http://java.sun.com/jsf/composite/bbva/button">
 <composite:interface>
-	<composite:attribute name="show" type="boolean" />
+	<composite:attribute name="showRemove" type="boolean" />
+	<composite:attribute name="showQRemove" type="boolean" />
+	<composite:attribute name="showQuota" type="boolean" />
+	<composite:attribute name="showMovements" type="boolean" />
+	<composite:attribute name="showChecks" type="boolean" />
 	<composite:attribute name="actionListenerShow"
 		method-signature="void actionlistener(javax.faces.event.AjaxBehaviorEvent)" />
 	<composite:attribute name="actionListenerRemove"
@@ -16,13 +20,19 @@
 	<li class="filter-buttons">
 		<div>
 			<p:commandButton id="removeFields" icon="trash-icon" value="#{msg['button.clean.filters']}"
-				rendered="#{cc.attrs.show}" styleClass="btn btn-default hidden-xs hidden-sm">
+				rendered="#{cc.attrs.showRemove}" styleClass="btn btn-default hidden-xs hidden-sm">
 				<p:ajax process="@form" onstart="PF('statusDialog').show()"
 					oncomplete="PF('statusDialog').hide()" listener="#{cc.attrs.actionListenerRemove}"
 					update=":tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:componentList
                         :tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:balanceList:componentList
                         :tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:incomeOrExpenseList:componentList
                         :tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:movementList:componentList" />
+			</p:commandButton>
+			<p:commandButton id="removeQFields" icon="trash-icon" value="#{msg['button.clean.filters']}"
+				rendered="#{cc.attrs.showQRemove}" styleClass="btn btn-default hidden-xs hidden-sm">
+				<p:ajax process="@form" onstart="PF('statusDialog').show()"
+					oncomplete="PF('statusDialog').hide()" listener="#{cc.attrs.actionListenerRemove}"
+					update=":quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:componentList" />
 			</p:commandButton>
 			<p:commandButton styleClass="btn btn-default" rendered="#{cc.attrs.showMovements}"
 				icon="document-view-icon" value="#{msg['button.see.result']}">

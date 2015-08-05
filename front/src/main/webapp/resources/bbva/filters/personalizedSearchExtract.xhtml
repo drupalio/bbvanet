@@ -75,7 +75,7 @@
 								<div class="col-md-5">
 									<p:commandButton id="searchExtract" value="Descargar extracto"
 										styleClass="stable-button medium icon-left ext-message extractDow" icon="icon pdf"
-										ajax="false">
+										ajax="false" onstart="PF('statusDialog').show();" oncomplete="PF('statusDialog').hide();">
 										<p:fileDownload value="#{extractController.documentExtract()}" />
 									</p:commandButton>
 								</div>

@@ -25,8 +25,8 @@
 					disabledCalendar="#{quotaController.renderComponents['CALENDAR']}"
 					actionListenerDate="#{quotaController.setCustomDate}" listenerDate="#{quotaController}" />
 			</bbvaSearch:customSearchList>
-			<bbvaSearch:searchButtonList show="true" showQuota="true" showMovements="false"
-				actionListenerRemove="#{quotaController.cleanFilters}"
+			<bbvaSearch:searchButtonList showQRemove="true" showRemove="false" showChecks="false"
+				showQuota="true" showMovements="false" actionListenerRemove="#{quotaController.cleanFilters}"
 				actionListenerShow="#{quotaController.searchQuotaByFilter}" />
 		</bbvaSearch:personalizedSearchTabBody>
 	</h:form>
