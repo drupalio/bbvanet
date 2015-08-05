@@ -1591,7 +1591,7 @@ body div.ui-growl .ui-state-highlight {
 @media ( max-width : 768px) {
 	.editDele {
 		position: relative;
-		left: 90%;
+		left: 80%;
 		margin-left: 3px !important;
 	}
 	.button-finishEdit {
@@ -1607,6 +1607,10 @@ body div.ui-growl .ui-state-highlight {
 .button-finishEdit {
 	background: #0079C1
 		-moz-linear-gradient(center top, #0079C1 0%, #00559D 100%) repeat
+		scroll 0% 0% !important;
+	background: -webkit-linear-gradient(top, #0079C1 0%, #00559D 100%)
+		repeat scroll 0% 0% !important;
+	background: -ms-linear-gradient(top, #0079C1 0%, #00559D 100%) repeat
 		scroll 0% 0% !important;
 	color: #FFF !important;
 	border: 1px solid #00559D !important;
