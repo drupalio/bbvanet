@@ -1608,6 +1608,10 @@ body div.ui-growl .ui-state-highlight {
 	background: #0079C1
 		-moz-linear-gradient(center top, #0079C1 0%, #00559D 100%) repeat
 		scroll 0% 0% !important;
+	background: -webkit-linear-gradient(top, #0079C1 0%, #00559D 100%)
+		repeat scroll 0% 0% !important;
+	background: -ms-linear-gradient(top, #0079C1 0%, #00559D 100%) repeat
+		scroll 0% 0% !important;
 	color: #FFF !important;
 	border: 1px solid #00559D !important;
 	font-weight: 400 !important;

@@ -70,6 +70,21 @@
 			<column name="ID">12</column>
 			<column name="TYPE_NAME">QUIEROLEASING</column>
 		</insert>
+		
+		<insert tableName="MULTIVALUETYPE">
+			<column name="ID">13</column>
+			<column name="TYPE_NAME">PAGOFACPSE</column>
+		</insert>
+		
+		<insert tableName="MULTIVALUETYPE">
+			<column name="ID">14</column>
+			<column name="TYPE_NAME">PAGOFAC</column>
+		</insert>
+		
+		<insert tableName="MULTIVALUETYPE">
+			<column name="ID">15</column>
+			<column name="TYPE_NAME">REMESAS</column>
+		</insert>
 
 		<!-- Table MULTVALUEGROUP -->
 		<createTable tableName="MULTIVALUEGROUP">
@@ -351,6 +366,77 @@
 			<column name="TYPE_ID">12</column>
 		</insert>
 		
+		<insert tableName="MULTIVALUEGROUP">
+			<column name="ID" autoIncrement="true" />
+			<column name="VALUE">mov.OK</column>
+			<column name="TYPE_ID">13</column>
+		</insert>
+		
+		<insert tableName="MULTIVALUEGROUP">
+			<column name="ID" autoIncrement="true" />
+			<column name="VALUE">mov.NK</column>
+			<column name="TYPE_ID">13</column>
+		</insert>
+		
+		<insert tableName="MULTIVALUEGROUP">
+			<column name="ID" autoIncrement="true" />
+			<column name="VALUE">mov.NP</column>
+			<column name="TYPE_ID">13</column>
+		</insert>
+		
+		<insert tableName="MULTIVALUEGROUP">
+			<column name="ID" autoIncrement="true" />
+			<column name="VALUE">mov.TA</column>
+			<column name="TYPE_ID">13</column>
+		</insert>
+		
+		<insert tableName="MULTIVALUEGROUP">
+			<column name="ID" autoIncrement="true" />
+			<column name="VALUE">mov.PF</column>
+			<column name="TYPE_ID">13</column>
+		</insert>
+		
+		<insert tableName="MULTIVALUEGROUP">
+			<column name="ID" autoIncrement="true" />
+			<column name="VALUE">mov.inactive</column>
+			<column name="TYPE_ID">14</column>
+		</insert>
+		
+		<insert tableName="MULTIVALUEGROUP">
+			<column name="ID" autoIncrement="true" />
+			<column name="VALUE">mov.active</column>
+			<column name="TYPE_ID">14</column>
+		</insert>
+		
+		<insert tableName="MULTIVALUEGROUP">
+			<column name="ID" autoIncrement="true" />
+			<column name="VALUE">mov.suspend</column>
+			<column name="TYPE_ID">14</column>
+		</insert>
+		
+		<insert tableName="MULTIVALUEGROUP">
+			<column name="ID" autoIncrement="true" />
+			<column name="VALUE">mov.cancel</column>
+			<column name="TYPE_ID">14</column>
+		</insert>
+		
+		<insert tableName="MULTIVALUEGROUP">
+			<column name="ID" autoIncrement="true" />
+			<column name="VALUE">mov.confirm</column>
+			<column name="TYPE_ID">15</column>
+		</insert>
+		
+		<insert tableName="MULTIVALUEGROUP">
+			<column name="ID" autoIncrement="true" />
+			<column name="VALUE">mov.returned</column>
+			<column name="TYPE_ID">15</column>
+		</insert>
+		
+		<insert tableName="MULTIVALUEGROUP">
+			<column name="ID" autoIncrement="true" />
+			<column name="VALUE">mov.pending</column>
+			<column name="TYPE_ID">15</column>
+		</insert>
 		
 				<!-- Tabla de coordenadas -->
 		<createTable tableName="COORDINATES">

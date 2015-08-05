@@ -17,15 +17,15 @@
 				<f:ajax event="click"
 					render=":tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:incomeOrExpenseList:incomeContainer:balanceButton" />
 			</p:selectOneRadio>
-			<div class="col-xs-4 col-md-4" style="text-align: left;">
+			<div class="col-xs-4 col-md-4" style="text-align: left;padding-left:0px">
 				<p:radioButton id="inflow" for="investCombo" itemIndex="0" class="investRadio" />
 				<h:outputLabel styleClass="radioLabel" for="inflow" value="#{msg['select.radio.in']}" />
 			</div>
-			<div class="col-xs-4 col-md-4" style="text-align: center;">
+			<div class="col-xs-4 col-md-4" style="text-align: left;">
 				<p:radioButton id="outflow" for="investCombo" itemIndex="1" class="investRadio" />
 				<h:outputLabel styleClass="radioLabel" for="outflow" value="#{msg['select.radio.out']}" />
 			</div>
-			<div class="col-xs-4 col-md-4" style="text-align: right;">
+			<div class="col-xs-4 col-md-4" style="text-align: left;padding-left:0px">
 				<p:radioButton id="bothflow" for="investCombo" itemIndex="2" class="investRadio" />
 				<h:outputLabel styleClass="radioLabel" for="bothflow" value="#{msg['select.radio.in.out']}" />
 			</div>
