@@ -17,7 +17,7 @@
 				<f:ajax event="click"
 					render=":tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:incomeOrExpenseList:incomeContainer:balanceButton" />
 			</p:selectOneRadio>
-			<div class="col-xs-4 col-md-4" style="text-align: left;padding-left:0px">
+			<div class="col-xs-4 col-md-4" style="text-align: left; padding-left: 0px">
 				<p:radioButton id="inflow" for="investCombo" itemIndex="0" class="investRadio" />
 				<h:outputLabel styleClass="radioLabel" for="inflow" value="#{msg['select.radio.in']}" />
 			</div>
@@ -25,7 +25,7 @@
 				<p:radioButton id="outflow" for="investCombo" itemIndex="1" class="investRadio" />
 				<h:outputLabel styleClass="radioLabel" for="outflow" value="#{msg['select.radio.out']}" />
 			</div>
-			<div class="col-xs-4 col-md-4" style="text-align: left;padding-left:0px">
+			<div class="col-xs-4 col-md-4" style="text-align: left; padding-left: 0px">
 				<p:radioButton id="bothflow" for="investCombo" itemIndex="2" class="investRadio" />
 				<h:outputLabel styleClass="radioLabel" for="bothflow" value="#{msg['select.radio.in.out']}" />
 			</div>
@@ -34,7 +34,7 @@
 			styleClass="btn small hidden-xs hidden-sm #{movementsCriteriaController.movementCriteria.incomesOrExpenses==null ? 'buttonDisabled': 'none'}">
 			<p:ajax process="@form" listener="#{movementsCriteriaController.setIncomeExpensesFilter}"
 				onstart="PF('statusDialog').show();"
-				oncomplete="document.getElementById('tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:incomeOrExpenseList:componentList').click(); PF('statusDialog').hide();"
+				oncomplete="styleCheckD(document.getElementById('tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:incomeOrExpenseList:componentList')); PF('statusDialog').hide();"
 				update=":tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:incomeOrExpenseList:componentList" />
 		</p:commandButton>
 	</div>

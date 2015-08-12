@@ -60,7 +60,7 @@
 				style="margin-right: 0px;">
 				<p:ajax process="@form" event="click" onstart="PF('statusDialog').show();"
 					listener="#{movementsCriteriaController.setMovementConcept}"
-					oncomplete="document.getElementById('tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:movementList:componentList').click(); PF('statusDialog').hide();"
+					oncomplete="styleCheckD(document.getElementById('tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:movementList:componentList')); PF('statusDialog').hide();"
 					update=":tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:movementList:componentList" />
 			</p:commandButton>
 		</div>

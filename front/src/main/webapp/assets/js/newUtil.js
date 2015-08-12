@@ -222,6 +222,18 @@ function styleOtte(combo) {
 	});
 }
 
+function styleCheckD(combo) {
+	$(document).ready(function() {
+		var parent = $(combo).parents('#globalContext');
+		$(combo).parent().next().slideToggle('fast', function() {
+			if (!($(this).is(':visible'))) {
+				$(this).prev().parent('li').removeClass('active');
+			}
+		});
+		$(parent).children('a.header').addClass('setFilter');
+	});
+}
+
 $(document).delegate('.ui-datepicker-prev', 'click', function() {
 	var currentTo = $('.ui-datepicker-current');
 	var tableCalen = $('.ui-datepicker-calendar');
@@ -234,6 +246,10 @@ $(document).delegate('.ui-datepicker-next', 'click', function() {
 	var tableCalen = $('.ui-datepicker-calendar');
 	var heigthCa = $(tableCalen).height();
 	$(currentTo).css('margin-top', '-' + (heigthCa + 40) + 'px');
+});
+
+$(document).delegate('#globalContext .setFilter', 'click', function() {
+	$(this).removeClass('setFilter');
 });
 
 $(document).ready(function() {

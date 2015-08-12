@@ -54,7 +54,8 @@
 					<h:outputLabel styleClass="radioLabel" for="customSearch-filter-today_#{cc.attrs.identify}"
 						value="#{msg['select.radio.today']}" />
 				</div>
-				<div class="col-xs-6" style="padding-left: 0px; padding-right: 0px; white-space: -moz-pre-spacey">
+				<div class="col-xs-6"
+					style="padding-left: 0px; padding-right: 0px; white-space: -moz-pre-spacey">
 					<p:radioButton id="customSearch-filter-two-week_#{cc.attrs.identify}"
 						for="customRadio_#{cc.attrs.identify}" itemIndex="1" class="radioBT" />
 					<h:outputLabel styleClass="radioLabel" for="customSearch-filter-two-week_#{cc.attrs.identify}"
@@ -119,32 +120,32 @@
 				</div>
 			</div>
 		</div>
-		<p:commandButton id="dateButtonMovements"
+		<p:commandButton id="dateButtonMovements" onclick="styleCheckD(jQuery(this))"
 			styleClass="btn small hidden-xs hidden-sm #{cc.attrs.value=='' || (cc.attrs.value==msg['select.radio.concret.date'] &amp;&amp; (cc.attrs.valueDateSince==null || cc.attrs.valueDateTo==null)) ? 'buttonDisabled': 'none'}"
 			rendered="#{cc.attrs.showMovements}" value="#{msg['button.confirm']}">
 			<p:ajax process="@form" listener="#{cc.attrs.actionListenerDate}"
 				onstart="PF('statusDialog').show();"
-				oncomplete="document.getElementById('tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:componentList').click(); PF('statusDialog').hide();"
+				oncomplete="styleCheckD(document.getElementById('tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:componentList')); PF('statusDialog').hide();"
 				update=":tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:itemSince_moveCalendar
 			            :tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:itemTo_moveCalendar
 			            :tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:componentList" />
 		</p:commandButton>
-		<p:commandButton id="dateButtonChecks"
+		<p:commandButton id="dateButtonChecks" onclick="styleCheckD(jQuery(this))"
 			styleClass="btn small hidden-xs hidden-sm #{cc.attrs.value=='' || (cc.attrs.value==msg['select.radio.concret.date'] &amp;&amp; (cc.attrs.valueDateSince==null || cc.attrs.valueDateTo==null)) ? 'buttonDisabled': 'none'}"
 			rendered="#{cc.attrs.showChecks}" value="#{msg['button.confirm']}">
 			<p:ajax process="@form" listener="#{cc.attrs.actionListenerDate}"
 				onstart="PF('statusDialog').show();"
-				oncomplete="document.getElementById('tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:customCheckList:componentList').click(); PF('statusDialog').hide();"
+				oncomplete="styleCheckD(document.getElementById('tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:customCheckList:componentList')); PF('statusDialog').hide();"
 				update=":tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:customCheckList:customDate:itemSince_checkCalendar
                         :tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:customCheckList:customDate:itemTo_checkCalendar
 		                :tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:customCheckList:componentList" />
 		</p:commandButton>
-		<p:commandButton id="dateButtonQuota"
+		<p:commandButton id="dateButtonQuota" onclick="styleCheckD(jQuery(this))"
 			styleClass="btn small hidden-xs hidden-sm #{cc.attrs.value=='' || (cc.attrs.value==msg['select.radio.concret.date'] &amp;&amp; (cc.attrs.valueDateSince==null || cc.attrs.valueDateTo==null)) ? 'buttonDisabled': 'none'}"
 			rendered="#{cc.attrs.showQuota}" value="#{msg['button.confirm']}">
 			<p:ajax process="@form" listener="#{cc.attrs.actionListenerDate}"
 				onstart="PF('statusDialog').show();"
-				oncomplete="document.getElementById('quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:componentList').click(); PF('statusDialog').hide();"
+				oncomplete="styleCheckD(document.getElementById('quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:componentList')); PF('statusDialog').hide();"
 				update=":quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:itemSince_quotaCalendar
 			            :quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:itemTo_quotaCalendar
 			            :quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:componentList" />

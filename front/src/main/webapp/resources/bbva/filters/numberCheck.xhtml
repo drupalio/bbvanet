@@ -72,7 +72,7 @@
 				<p:ajax process="@form" listener="#{checkBookController.setNumberCheckOrBook}"
 					onstart="PF('statusDialog').show();"
 					update=":tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:checkList:componentList"
-					oncomplete="document.getElementById('tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:checkList:componentList').click(); PF('statusDialog').hide();" />
+					oncomplete="styleCheckD(document.getElementById('tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:checkList:componentList')); PF('statusDialog').hide();" />
 			</p:commandButton>
 		</p:outputPanel>
 	</div>
