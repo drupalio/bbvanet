@@ -9,33 +9,30 @@
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <composite:interface>
-
+	<composite:attribute name="display"></composite:attribute>
 </composite:interface>
 
 <composite:implementation>
 
-	<div class="logged-footer visible-xs visible-sm">
+	<div class="logged-footer visible-xs visible-sm ">
 		<ul>
 			<li class="col-xs-6 executive dropup"><a href="#"
 				class="dropdown-toggle" data-toggle="dropdown"> <span
-					class="logged-footer-sprite executive-medium-icon"></span> <span
-					class="title-text">Su ejecutivo</span>
+					class="logged-footer-sprite executive-medium-icon #{cc.attrs.display}"></span> <span
+					class="title-text #{cc.attrs.display}">#{msg['text.executive']}</span>
 			</a>
 
-				<ul class="logged-submenu dropdown-menu" role="menu">
+				<ul class="logged-submenu dropdown-menu #{cc.attrs.display}" role="menu">
 					<li class="arrow-right-blue"><a
-						href="mailto:rafael.guitierrez@bbva.cl"> <span
-							class="logged-footer-sprite mail-medium-icon"></span>Envíar
-							e-mail
+						href="mailto:#{executive.mail}"> <span
+							class="logged-footer-sprite mail-medium-icon"></span>#{headerController.ejecutivo.mail}
 					</a></li>
 					<li class="arrow-right-blue"><a
-						href="https://www.google.es/maps/place/Bbva/@-33.4245607,-70.6119668,17z/data=!3m1!4b1!4m2!3m1!1s0x9662cf65c7687337:0xe8bd98d4bc5ad3fb">
-							<span class="logged-footer-sprite office-person-medium-icon"></span>Oficina
-							BBVA 450
+						href="https://www.google.es/maps/#{headerController.ejecutivo.coordenadas}">
+							<span class="logged-footer-sprite office-person-medium-icon"></span>#{headerController.ejecutivo.office.postalAddress}
 					</a></li>
-					<li class="arrow-right-blue"><a href="tel:000000000"> <span
-							class="logged-footer-sprite phone-medium-icon"></span> <strong>Tel.
-								000 000 000</strong>
+					<li class="arrow-right-blue"><a href="tel:#{executive.phone}"> <span
+							class="logged-footer-sprite phone-medium-icon"></span> <strong>Tel.#{headerController.ejecutivo.phone}</strong>
 					</a></li>
 				</ul></li>
 
