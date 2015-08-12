@@ -13,18 +13,26 @@
 	<article class="detail-table-group">
 		<div class="utility-icons">
 			<h:form id="documentsExport">
-				<p:commandLink ajax="false" styleClass="icon-excel-file"
-					onclick="PrimeFaces.monitorDownload(start, deleteDownload )">
-					<p:fileDownload value="#{quotaController.exportExcel}" />
-				</p:commandLink>
-				<p:commandLink styleClass="icon-pdf-file" ajax="false"
-					onclick="PrimeFaces.monitorDownload(start, deleteDownload )">
-					<p:fileDownload value="#{quotaController.exportPdf}" />
-				</p:commandLink>
-				<p:commandLink ajax="false" styleClass="icon-send-by-email"
-					actionListener="#{quotaController.sendMail()}" />
-				<p:commandLink ajax="false" styleClass="icon-printer"
-					onclick="imprimir('quotaDetail:detailAccounts:detailAccounts:detailmovesACImprimir')" />
+				<span data-original-title="#{msg['msg.info.movements.excel']}" data-toggle="tooltip" title=""> 
+					<p:commandLink ajax="false" styleClass="icon-excel-file"
+						onclick="PrimeFaces.monitorDownload(start, deleteDownload )">
+						<p:fileDownload value="#{quotaController.exportExcel}" />
+					</p:commandLink>
+				</span>
+				<span data-original-title="#{msg['msg.info.movements.pdf']}" data-toggle="tooltip" title=""> 
+					<p:commandLink styleClass="icon-pdf-file" ajax="false"
+						onclick="PrimeFaces.monitorDownload(start, deleteDownload )">
+						<p:fileDownload value="#{quotaController.exportPdf}" />
+					</p:commandLink>
+				</span>
+				<span data-original-title="#{msg['msg.info.movements.mail']}" data-toggle="tooltip" title=""> 
+					<p:commandLink ajax="false" styleClass="icon-send-by-email"
+						actionListener="#{quotaController.sendMail()}" />
+				</span>
+				<span data-original-title="#{msg['msg.info.movements.print']}" data-toggle="tooltip" title=""> 
+					<p:commandLink ajax="false" styleClass="icon-printer"
+						onclick="imprimir('quotaDetail:detailAccounts:detailAccounts:detailmovesACImprimir')" />
+				</span>
 			</h:form>
 		</div>
 	</article>

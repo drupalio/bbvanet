@@ -14,8 +14,7 @@
 	<composite:attribute name="valuePrinter"  />
 </composite:interface>
 <composite:implementation>
-	<p:outputPanel autoUpdate="true">
-		<div class="utility-icons #{cc.attrs.render == 'true' ? 'visiblee' : 'nonee'}">
+		<div class="utility-icons #{cc.attrs.render == 'true' ? '' : 'nonee'}">
 			<h:form id="documentsExport">
 				<span data-original-title="#{msg['msg.info.movements.excel']}" data-toggle="tooltip" title=""> 
 					<p:commandLink ajax="false" styleClass="icon-excel-file" onclick="PrimeFaces.monitorDownload(start, deleteDownload )">
@@ -36,6 +35,5 @@
 				</span>
 			</h:form>
 		</div>
-	</p:outputPanel>
 </composite:implementation>
 </html>

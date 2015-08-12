@@ -21,8 +21,9 @@
 					<div class="col-xs-12 col-md-12 balanceFrom refaling">
 						<p:inputText id="currencySince1" value="#{cc.attrs.valueSince}" type="text"
 							styleClass="form-control refalingInput" maxlength="12" name="inputNumberFrom"
-							autocomplete="off" converterMessage="Error de formato">
+							autocomplete="off" converterMessage="Digitar solo números" >
 							<f:validateLength maximum="12" minimum="1" />
+							<f:validateDoubleRange minimum="1"/>
 							<p:ajax event="keyup" update="out, balanceButton"
 								listener="#{movementsCriteriaController.balanceValidator}" />
 						</p:inputText>
@@ -37,8 +38,9 @@
 					<div class="col-xs-12 col-md-12 balanceTo refaling">
 						<p:inputText id="currencyTo" value="#{cc.attrs.valueTo}" type="text"
 							styleClass="form-control refalingInput" maxlength="12" pt:name="inputNumberTo"
-							autocomplete="off" converterMessage="Error de formato">
+							autocomplete="off" converterMessage="Digitar solo números" >
 							<f:validateLength maximum="12" minimum="1" />
+							<f:validateDoubleRange minimum="1"/>
 							<p:ajax event="keyup" update="out, balanceButton"
 								listener="#{movementsCriteriaController.balanceValidator}" />
 						</p:inputText>
