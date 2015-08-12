@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.faces.event.ActionEvent;
+import javax.faces.event.AjaxBehaviorEvent;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -42,6 +43,8 @@ public class QuotaControllerImplTest extends AbstractBbvaControllerTest {
 
 	private DateRangeDto date;
 
+	private AjaxBehaviorEvent ajaxAction;
+
 	private QuotaPaginatedController quotaPaginatedController;
 
 	@Before
@@ -53,6 +56,7 @@ public class QuotaControllerImplTest extends AbstractBbvaControllerTest {
 		// inicializar mockitos
 		this.eventSelect = Mockito.mock(SelectEvent.class);
 		this.eventAction = Mockito.mock(ActionEvent.class);
+		this.ajaxAction = Mockito.mock(AjaxBehaviorEvent.class);
 		this.quotaDetailFacade = Mockito.mock(QuotaDetailFacade.class);
 		this.productDto = Mockito.mock(ProductDto.class);
 		this.quotaPaginatedController = new QuotaPaginatedController();
@@ -73,7 +77,7 @@ public class QuotaControllerImplTest extends AbstractBbvaControllerTest {
 		// init Controller producto y id nulo.
 		this.quotaControllerImpl.init();
 		// Clean Filters
-		this.quotaControllerImpl.cleanFilters(eventAction);
+		this.quotaControllerImpl.cleanFilters(ajaxAction);
 	}
 
 	@Test
@@ -175,7 +179,7 @@ public class QuotaControllerImplTest extends AbstractBbvaControllerTest {
 		renderComponents.put(RenderAttributes.FILTERDATE.toString(), true);
 		this.quotaControllerImpl.setRenderComponents(renderComponents);
 		this.quotaControllerImpl.setSelectDate("Ayer");
-		this.quotaControllerImpl.searchQuotaByFilter(eventAction);
+		this.quotaControllerImpl.searchQuotaByFilter(ajaxAction);
 		// render FILTERDATE false
 		renderComponents.put(RenderAttributes.FILTERDATE.toString(), false);
 		this.quotaControllerImpl.setRenderComponents(renderComponents);
@@ -184,25 +188,25 @@ public class QuotaControllerImplTest extends AbstractBbvaControllerTest {
 		Whitebox.setInternalState(quotaMovements, "size", 15);
 		quotaMovements.set(14, new MovementDto("123456", null, null, null, null, null, null, null, "0126729876", null));
 		this.quotaControllerImpl.criteriaSearch();
-		this.quotaControllerImpl.searchQuotaByFilter(eventAction);
+		this.quotaControllerImpl.searchQuotaByFilter(ajaxAction);
 	}
 
 	@Test
 	public void coberSetCustomDate() {
 		// nullos y concreteDate dif
 		this.quotaControllerImpl.setSelectDate("null");
-		this.quotaControllerImpl.setCustomDate(eventAction);
+		this.quotaControllerImpl.setCustomDate(ajaxAction);
 		// setSinceDate no nula, toDate nula y concreteDate dif
 		this.quotaControllerImpl.setSinceDate(new Date());
-		this.quotaControllerImpl.setCustomDate(eventAction);
+		this.quotaControllerImpl.setCustomDate(ajaxAction);
 		// no nulos y concreteDate igual
 		this.quotaControllerImpl.setSelectDate("select.radio.concret.date");
 		this.quotaControllerImpl.setSinceDate(new Date());
 		this.quotaControllerImpl.setToDate(new Date());
-		this.quotaControllerImpl.setCustomDate(eventAction);
+		this.quotaControllerImpl.setCustomDate(ajaxAction);
 		// setToDate no nula, setSinceDate nulo y concreteDate dif
 		this.quotaControllerImpl.setToDate(new Date());
-		this.quotaControllerImpl.setCustomDate(eventAction);
+		this.quotaControllerImpl.setCustomDate(ajaxAction);
 	}
 
 	@Test

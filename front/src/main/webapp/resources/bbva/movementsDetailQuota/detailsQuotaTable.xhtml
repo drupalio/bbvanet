@@ -13,18 +13,26 @@
 	<article class="detail-table-group">
 		<div class="utility-icons">
 			<h:form id="documentsExport">
-				<p:commandLink ajax="false" styleClass="icon-excel-file"
-					onclick="PrimeFaces.monitorDownload(start, deleteDownload )">
-					<p:fileDownload value="#{quotaController.exportExcel}" />
-				</p:commandLink>
-				<p:commandLink styleClass="icon-pdf-file" ajax="false"
-					onclick="PrimeFaces.monitorDownload(start, deleteDownload )">
-					<p:fileDownload value="#{quotaController.exportPdf}" />
-				</p:commandLink>
-				<p:commandLink ajax="false" styleClass="icon-send-by-email"
-					actionListener="#{quotaController.sendMail()}" />
-				<p:commandLink ajax="false" styleClass="icon-printer"
-					onclick="imprimir('quotaDetail:detailAccounts:detailAccounts:detailmovesACImprimir')" />
+				<span data-original-title="#{msg['msg.info.movements.excel']}" data-toggle="tooltip" title=""> 
+					<p:commandLink ajax="false" styleClass="icon-excel-file"
+						onclick="PrimeFaces.monitorDownload(start, deleteDownload )">
+						<p:fileDownload value="#{quotaController.exportExcel}" />
+					</p:commandLink>
+				</span>
+				<span data-original-title="#{msg['msg.info.movements.pdf']}" data-toggle="tooltip" title=""> 
+					<p:commandLink styleClass="icon-pdf-file" ajax="false"
+						onclick="PrimeFaces.monitorDownload(start, deleteDownload )">
+						<p:fileDownload value="#{quotaController.exportPdf}" />
+					</p:commandLink>
+				</span>
+				<span data-original-title="#{msg['msg.info.movements.mail']}" data-toggle="tooltip" title=""> 
+					<p:commandLink ajax="false" styleClass="icon-send-by-email"
+						actionListener="#{quotaController.sendMail()}" />
+				</span>
+				<span data-original-title="#{msg['msg.info.movements.print']}" data-toggle="tooltip" title=""> 
+					<p:commandLink ajax="false" styleClass="icon-printer"
+						onclick="imprimir('quotaDetail:detailAccounts:detailAccounts:detailmovesACImprimir')" />
+				</span>
 			</h:form>
 		</div>
 	</article>
@@ -42,16 +50,18 @@
 						<p:column style="z-index: -1 !important; display:none;">
 							<p:rowToggler rendered="true" />
 						</p:column>
-						<p:column headerText="#{msg['text.detailMove.date']}" styleClass="styleColum sorted w24 desc">
+						<p:column headerText="#{msg['text.detailMove.date']}" styleClass="styleColum sorted w24 desc"
+							sortBy="#{moves.movementDate}">
 							<h:outputText styleClass="brand styleLeft height18" value="#{moves.movementDate}">
 								<f:convertDateTime pattern="dd/MM/yyyy" />
 							</h:outputText>
 						</p:column>
-						<p:column headerText="#{msg['text.detailMove.concep']}" styleClass="styleColum desc w44">
+						<p:column headerText="#{msg['text.detailMove.concep']}" styleClass="styleColum desc w44"
+							sortBy="#{moves.movementConcept}">
 							<h:outputText class="text styleLeft height18" value="#{moves.movementConcept}" />
 						</p:column>
 						<p:column class="head" headerText="#{msg['title.slope']}" styleClass="styleColum desc w44"
-							colspan="2">
+							colspan="2" sortBy="#{moves.movementValue}">
 							<h:outputText class="currency styleCurrent height18" value="#{moves.movementValue}" />
 						</p:column>
 						<p:column styleClass="smart-view">

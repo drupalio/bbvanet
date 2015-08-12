@@ -3,6 +3,7 @@ package com.bbva.net.front.controller;
 import java.util.List;
 
 import javax.faces.event.ActionEvent;
+import javax.faces.event.AjaxBehaviorEvent;
 
 import com.bbva.net.back.entity.MultiValueGroup;
 import com.bbva.net.back.model.checkbook.CheckDto;
@@ -25,7 +26,7 @@ public interface CheckBookController {
 	 * 
 	 * @param event
 	 */
-	void setNumberCheckOrBook(ActionEvent event);
+	void setNumberCheckOrBook(AjaxBehaviorEvent event);
 
 	/**
 	 * Method to get MultiValueGroup List, list to check status
@@ -37,12 +38,12 @@ public interface CheckBookController {
 	/**
 	 * Method to set partial customdate
 	 */
-	void setCustomDate(ActionEvent event);
+	void setCustomDate(AjaxBehaviorEvent event);
 
 	/**
 	 * Method to search checks or checksbooks
 	 */
-	void showResults(ActionEvent event);
+	void showResults(AjaxBehaviorEvent event);
 
 	/****
 	 * Method to

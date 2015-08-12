@@ -18,15 +18,17 @@
 					<div class="box">
 						<div class="utility-icons">
 							<h:form id="documentsCExport">
-								
-								<p:commandLink styleClass="icon-pdf-file" ajax="false"
-									onclick="PrimeFaces.monitorDownload(start, deleteDownload )">
-									<p:fileDownload value="#{termsController.exportPdf}"/>
-									
-								</p:commandLink>
-								<p:commandLink ajax="false" styleClass="icon-printer"
-									onclick="imprimir('tab-condiciones');">
-								</p:commandLink>
+								<span data-original-title="#{msg['msg.info.condition.pdf']}" data-toggle="tooltip" title=""> 
+									<p:commandLink styleClass="icon-pdf-file" ajax="false"
+										onclick="PrimeFaces.monitorDownload(start, deleteDownload )">
+										<p:fileDownload value="#{termsController.exportPdf}"/>									
+									</p:commandLink>
+								</span>
+								<span data-original-title="#{msg['msg.info.condition.print']}" data-toggle="tooltip" title=""> 
+									<p:commandLink ajax="false" styleClass="icon-printer"
+										onclick="imprimir('tab-condiciones');">
+									</p:commandLink>
+								</span>
 							</h:form>
 						</div>
 					</div>

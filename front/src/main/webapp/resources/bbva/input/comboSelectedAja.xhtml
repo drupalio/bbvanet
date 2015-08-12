@@ -6,18 +6,22 @@
 <composite:interface>
 	<composite:attribute name="id" />
 	<composite:attribute name="list" type="java.util.List" />
-	<composite:attribute name="itemLabel" />
+	<composite:attribute name="itemLabel" type="String" />
 	<composite:attribute name="value" />
 	<composite:attribute name="styleClass" />
 	<composite:attribute name="disabled" />
+	<composite:attribute name="listener"
+		method-signature="void actionlistener(javax.faces.event.AjaxBehaviorEvent)" />
+	<composite:attribute name="update" />
 </composite:interface>
 <composite:implementation>
-	<div class="selectorCombo" style="margin-top: 0px !important;">
+	<div class="selectorCombo">
 		<p:selectOneMenu id="item_#{cc.attrs.id}" value="#{cc.attrs.value}" panelStyleClass="normalComboS"
 			styleClass="#{cc.attrs.styleClass}" disabled="#{cc.attrs.disabled}">
 			<f:selectItem itemLabel="#{cc.attrs.itemLabel}" itemDisabled="true" />
-			<f:selectItems value="#{cc.attrs.list}" var="multiValue" itemLabel="#{msg[multiValue.value]}"
-				itemValue="#{multiValue.valueId}" />
+			<f:selectItems value="#{cc.attrs.list}" />
+			<p:ajax event="valueChange" process="@form" listener="#{cc.attrs.listener}"
+				update="#{cc.attrs.update}" />
 		</p:selectOneMenu>
 	</div>
 </composite:implementation>
