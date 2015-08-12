@@ -2086,3 +2086,15 @@ body div.ui-growl .ui-state-highlight {
 .consultas .panel-tab-body .filters>ul>li.movements-filter div {
 	padding-bottom: 0px !important;
 }
+
+.consultas .panel-tab-body .filters>ul>li a.header.setFilter .filter {
+	background: none !important;
+}
+
+.consultas .panel-tab-body .filters>ul>li a.header.setFilter .arrow-left-smaller .checkClose
+	{
+	background-image: url("../img/icon-smaller-tick.png");
+	background-repeat: no-repeat;
+	background-position: right center;
+	margin-left: 10px !important;
+}

@@ -55,7 +55,7 @@
 			styleClass="btn small hidden-xs hidden-sm #{(movementsCriteriaController.movementCriteria.balanceRange.balanceSince==null || movementsCriteriaController.movementCriteria.balanceRange.balanceTo==null) || movementsCriteriaController.movementCriteria.balanceRange.balanceSince > movementsCriteriaController.movementCriteria.balanceRange.balanceTo ? 'buttonDisabled': 'none'}">
 			<p:ajax process="@form" listener="#{movementsCriteriaController.setBalanceRange}"
 				onstart="PF('statusDialog').show();"
-				oncomplete="document.getElementById('tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:balanceList:componentList').click(); PF('statusDialog').hide();"
+				oncomplete="styleCheckD(document.getElementById('tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:balanceList:componentList')); PF('statusDialog').hide();"
 				update=":tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:balanceList:componentList" />
 		</p:commandButton>
 	</div>
