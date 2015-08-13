@@ -18,6 +18,7 @@ import com.bbva.net.back.model.header.CustomerDto;
 import com.bbva.net.back.model.header.ExecutiveDto;
 import com.bbva.net.front.controller.HeaderController;
 import com.bbva.net.front.core.AbstractBbvaController;
+import com.bbva.net.front.helper.MessagesHelper;
 
 @Controller(value = "headerController")
 @Scope(value = "globalSession")
@@ -103,10 +104,10 @@ public class HeaderControllerImpl extends AbstractBbvaController implements Head
 		LOGGER.info("Se cerro la sesion " + getSession());
 		try {
 			FacesContext.getCurrentInstance().getExternalContext()
-					.redirect("https://beta.bbvanet.com.co/bbvaco/kqpu_co_web/page/init");
-			LOGGER.info("Redireccionó a " + "https://beta.bbvanet.com.co/bbvaco/kqpu_co_web/page/init");
+					.redirect("https://" + MessagesHelper.INSTANCE.getString("ruta.publica"));
+			LOGGER.info("Redireccionó a " + "https://" + MessagesHelper.INSTANCE.getString("ruta.publica"));
 		} catch (IOException e) {
-			LOGGER.info("No pudo redidreccionar a https://beta.bbvanet.com.co/bbvaco/kqpu_co_web/page/init");
+			LOGGER.info("No pudo redidreccionar a " + "https://" + MessagesHelper.INSTANCE.getString("ruta.publica"));
 		}
 	}
 
