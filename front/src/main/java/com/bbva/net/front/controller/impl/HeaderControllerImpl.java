@@ -18,6 +18,7 @@ import com.bbva.net.back.model.header.CustomerDto;
 import com.bbva.net.back.model.header.ExecutiveDto;
 import com.bbva.net.front.controller.HeaderController;
 import com.bbva.net.front.core.AbstractBbvaController;
+import com.bbva.net.front.helper.MessagesHelper;
 
 @Controller(value = "headerController")
 @Scope(value = "globalSession")
@@ -44,14 +45,14 @@ public class HeaderControllerImpl extends AbstractBbvaController implements Head
 		try {
 			LOGGER.info("Inicio de consulta en header facade ");
 			this.cliente = this.getCustomer();
-			LOGGER.info("Segmento del cliente "+this.cliente.getSegment());
-			if(this.cliente.getSegment() == null){
+			LOGGER.info("Segmento del cliente " + this.cliente.getSegment());
+			if (this.cliente.getSegment() == null) {
 				this.cliente.setSegment("N");
 			}
 			if (!this.cliente.getSegment().equals("N") && !this.cliente.getSegment().isEmpty())
 				this.ejecutivo = this.getExecutive();
 		} catch (Exception e) {
-			LOGGER.info("Excecpxion controlada en HeaderControllerImpl "+e.toString());
+			LOGGER.info("Excecpxion controlada en HeaderControllerImpl " + e.toString());
 		}
 	}
 
@@ -94,10 +95,10 @@ public class HeaderControllerImpl extends AbstractBbvaController implements Head
 		LOGGER.info("Se cerro la sesion " + getSession());
 		try {
 			FacesContext.getCurrentInstance().getExternalContext()
-					.redirect("https://www.bbvanet.com.co/bbvaco/kqpu_co_web/page/init");
-			LOGGER.info("Redireccionó a " + "https://www.bbvanet.com.co/bbvaco/kqpu_co_web/page/init");
+					.redirect("https://" + MessagesHelper.INSTANCE.getString("ruta.publica"));
+			LOGGER.info("Redireccionó a " + "https://" + MessagesHelper.INSTANCE.getString("ruta.publica"));
 		} catch (IOException e) {
-			LOGGER.info("No pudo redidreccionar a https://www.bbvanet.com.co/bbvaco/kqpu_co_web/page/init");
+			LOGGER.info("No pudo redidreccionar a " + "https://" + MessagesHelper.INSTANCE.getString("ruta.publica"));
 		}
 	}
 
