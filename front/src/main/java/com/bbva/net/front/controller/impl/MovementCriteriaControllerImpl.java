@@ -207,7 +207,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		this.movementAction = new MovementDto();
 		super.onMovementSelected(selectEvent);
 		this.movementAction = super.getSelectedMovements();
-		this.movementDetail = new MovementDetailDto();
+		this.movementDetail = null;
 
 		try {
 			LOGGER.info("Control MovementsAccountController onMovementSelected movementId:  "
@@ -1029,10 +1029,13 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	// Export Pdf
 	@Override
 	public void exportDocumentDetailPdf() {
-		LOGGER.info("iniciando exportar archivo pdf " + "DetailMove" + this.movementDetail.getId() + ".pdf");
 
-		rutaMoveDetailPdf = "DetailMove" + this.movementDetail.getId() + ".pdf";
-
+		if (movementDetail != null) {
+			rutaMoveDetailPdf = "DetailMove" + this.movementDetail.getId() + ".pdf";
+			LOGGER.info("iniciando exportar archivo pdf " + "DetailMove" + this.movementDetail.getId() + ".pdf");
+		} else {
+			rutaMoveDetailPdf = "DetailMoveEmpty.pdf";
+		}
 		headerController.setLastDownload(rutaMoveDetailPdf);
 
 		try {
@@ -1116,205 +1119,211 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			dataConcep.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			dataConcep.setBorder(0);
 			header.addCell(dataConcep);
+			if (movementDetail != null) {
+				if (movementAction.getMovementValue() != null) {
+					PdfPCell datavalue = new PdfPCell(new Phrase(movementAction.getMovementValue().toString(),
+							fontNormal));
+					datavalue.setHorizontalAlignment(Element.ALIGN_LEFT);
+					datavalue.setVerticalAlignment(Element.ALIGN_MIDDLE);
+					datavalue.setBorder(0);
+					header.addCell(datavalue);
+				} else {
+					header.addCell(" ");
+				}
 
-			if (movementAction.getMovementValue() != null) {
-				PdfPCell datavalue = new PdfPCell(new Phrase(movementAction.getMovementValue().toString(), fontNormal));
-				datavalue.setHorizontalAlignment(Element.ALIGN_LEFT);
-				datavalue.setVerticalAlignment(Element.ALIGN_MIDDLE);
-				datavalue.setBorder(0);
-				header.addCell(datavalue);
-			} else {
-				header.addCell(" ");
-			}
+				if (movementAction.getTotalBalance() != null) {
+					PdfPCell dataBalance = new PdfPCell(new Phrase(movementAction.getTotalBalance().toString(),
+							fontNormal));
+					dataBalance.setHorizontalAlignment(Element.ALIGN_LEFT);
+					dataBalance.setVerticalAlignment(Element.ALIGN_MIDDLE);
+					dataBalance.setBorder(0);
+					header.addCell(dataBalance);
+				} else {
+					header.addCell(" ");
+				}
 
-			if (movementAction.getTotalBalance() != null) {
-				PdfPCell dataBalance = new PdfPCell(new Phrase(movementAction.getTotalBalance().toString(), fontNormal));
-				dataBalance.setHorizontalAlignment(Element.ALIGN_LEFT);
-				dataBalance.setVerticalAlignment(Element.ALIGN_MIDDLE);
-				dataBalance.setBorder(0);
-				header.addCell(dataBalance);
-			} else {
-				header.addCell(" ");
-			}
+				document.add(header);
 
-			document.add(header);
+				Paragraph title = new Paragraph("Información del movimiento", FontFactory.getFont("helvetica", 11,
+						new BaseColor(51, 51, 51)));
+				title.setSpacingBefore(20);
 
-			Paragraph title = new Paragraph("Información del movimiento", FontFactory.getFont("helvetica", 11,
-					new BaseColor(51, 51, 51)));
-			title.setSpacingBefore(20);
+				document.add(title);
 
-			document.add(title);
+				PdfPTable tabla = new PdfPTable(2);
 
-			PdfPTable tabla = new PdfPTable(2);
+				tabla.setSpacingBefore(20);
+				tabla.setSpacingAfter(20);
+				tabla.setHorizontalAlignment(Element.ALIGN_LEFT);
+				tabla.getDefaultCell().setBorder(0);
 
-			tabla.setSpacingBefore(20);
-			tabla.setSpacingAfter(20);
-			tabla.setHorizontalAlignment(Element.ALIGN_LEFT);
-			tabla.getDefaultCell().setBorder(0);
+				PdfPCell moveNumber = new PdfPCell(new Phrase("N° Movimiento", font));
+				moveNumber.setHorizontalAlignment(Element.ALIGN_LEFT);
+				moveNumber.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				moveNumber.setBorder(0);
+				tabla.addCell(moveNumber);
 
-			PdfPCell moveNumber = new PdfPCell(new Phrase("N° Movimiento", font));
-			moveNumber.setHorizontalAlignment(Element.ALIGN_LEFT);
-			moveNumber.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			moveNumber.setBorder(0);
-			tabla.addCell(moveNumber);
+				PdfPCell idMove = new PdfPCell(new Phrase(this.movementDetail.getId(), fontNormal));
+				idMove.setHorizontalAlignment(Element.ALIGN_LEFT);
+				idMove.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				idMove.setBorder(0);
+				tabla.addCell(idMove);
 
-			PdfPCell idMove = new PdfPCell(new Phrase(this.movementDetail.getId(), fontNormal));
-			idMove.setHorizontalAlignment(Element.ALIGN_LEFT);
-			idMove.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			idMove.setBorder(0);
-			tabla.addCell(idMove);
+				PdfPCell operDate = new PdfPCell(new Phrase("Fecha de operación", font));
+				operDate.setHorizontalAlignment(Element.ALIGN_LEFT);
+				operDate.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				operDate.setBorder(0);
+				tabla.addCell(operDate);
 
-			PdfPCell operDate = new PdfPCell(new Phrase("Fecha de operación", font));
-			operDate.setHorizontalAlignment(Element.ALIGN_LEFT);
-			operDate.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			operDate.setBorder(0);
-			tabla.addCell(operDate);
+				if (movementDetail.getOperationCode() != null) {
+					PdfPCell operDat = new PdfPCell(new Phrase(
+							this.movementDetail.getOperationCode().replace("/", "-"), fontNormal));
+					operDat.setHorizontalAlignment(Element.ALIGN_LEFT);
+					operDat.setVerticalAlignment(Element.ALIGN_MIDDLE);
+					operDat.setBorder(0);
+					tabla.addCell(operDat);
+				} else {
+					tabla.addCell(" ");
+				}
 
-			if (movementDetail.getOperationCode() != null) {
-				PdfPCell operDat = new PdfPCell(new Phrase(this.movementDetail.getOperationCode().replace("/", "-"),
+				PdfPCell dateValue = new PdfPCell(new Phrase("Fecha valor", font));
+				dateValue.setHorizontalAlignment(Element.ALIGN_LEFT);
+				dateValue.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				dateValue.setBorder(0);
+				tabla.addCell(dateValue);
+
+				String daVD = super.getdateString(this.movementDetail.getTransactionDate());
+				PdfPCell dateVData = new PdfPCell(new Phrase(daVD, fontNormal));
+				dateVData.setHorizontalAlignment(Element.ALIGN_LEFT);
+				dateVData.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				dateVData.setBorder(0);
+				tabla.addCell(dateVData);
+
+				PdfPCell hourValue = new PdfPCell(new Phrase("Hora operación", font));
+				hourValue.setHorizontalAlignment(Element.ALIGN_LEFT);
+				hourValue.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				hourValue.setBorder(0);
+				tabla.addCell(hourValue);
+
+				String horesdDta = super.getdateString(this.movementDetail.getOperationHour());
+				PdfPCell horeDta = new PdfPCell(new Phrase(horesdDta, fontNormal));
+				horeDta.setHorizontalAlignment(Element.ALIGN_LEFT);
+				horeDta.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				horeDta.setBorder(0);
+				tabla.addCell(horeDta);
+
+				PdfPCell valueDta = new PdfPCell(new Phrase("Valor", font));
+				valueDta.setHorizontalAlignment(Element.ALIGN_LEFT);
+				valueDta.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				valueDta.setBorder(0);
+				tabla.addCell(valueDta);
+
+				if (movementDetail.getOperationValue() != null) {
+					PdfPCell valeuDt = new PdfPCell(new Phrase(this.movementDetail.getOperationValue().toString(),
+							fontNormal));
+					valeuDt.setHorizontalAlignment(Element.ALIGN_LEFT);
+					valeuDt.setVerticalAlignment(Element.ALIGN_MIDDLE);
+					valeuDt.setBorder(0);
+					tabla.addCell(valeuDt);
+				} else {
+					tabla.addCell(" ");
+				}
+
+				PdfPCell saAfter = new PdfPCell(new Phrase("Saldo después del movimiento", font));
+				saAfter.setHorizontalAlignment(Element.ALIGN_LEFT);
+				saAfter.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				saAfter.setBorder(0);
+				tabla.addCell(saAfter);
+
+				if (movementDetail.getValueslope() != null) {
+					PdfPCell saldaDat = new PdfPCell(new Phrase(this.movementDetail.getValueslope().toString(),
+							fontNormal));
+					saldaDat.setHorizontalAlignment(Element.ALIGN_LEFT);
+					saldaDat.setVerticalAlignment(Element.ALIGN_MIDDLE);
+					saldaDat.setBorder(0);
+					tabla.addCell(saldaDat);
+				} else {
+					tabla.addCell(" ");
+				}
+
+				PdfPCell codOpera = new PdfPCell(new Phrase("Código de operación", font));
+				codOpera.setHorizontalAlignment(Element.ALIGN_LEFT);
+				codOpera.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				codOpera.setBorder(0);
+				tabla.addCell(codOpera);
+
+				PdfPCell codDOpe = new PdfPCell(new Phrase(this.movementDetail.getOperationCode(), fontNormal));
+				codDOpe.setHorizontalAlignment(Element.ALIGN_LEFT);
+				codDOpe.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				codDOpe.setBorder(0);
+				tabla.addCell(codDOpe);
+
+				PdfPCell descripOper = new PdfPCell(new Phrase("Descripción de la operación", font));
+				descripOper.setHorizontalAlignment(Element.ALIGN_LEFT);
+				descripOper.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				descripOper.setBorder(0);
+				tabla.addCell(descripOper);
+
+				PdfPCell destDtaOpe = new PdfPCell(
+						new Phrase(this.movementDetail.getOperationDescription(), fontNormal));
+				destDtaOpe.setHorizontalAlignment(Element.ALIGN_LEFT);
+				destDtaOpe.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				destDtaOpe.setBorder(0);
+				tabla.addCell(destDtaOpe);
+
+				PdfPCell place = new PdfPCell(new Phrase("Plaza", font));
+				place.setHorizontalAlignment(Element.ALIGN_LEFT);
+				place.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				place.setBorder(0);
+				tabla.addCell(place);
+
+				PdfPCell placeDta = new PdfPCell(new Phrase(this.movementDetail.getPlaza().getPostalAddress(),
 						fontNormal));
-				operDat.setHorizontalAlignment(Element.ALIGN_LEFT);
-				operDat.setVerticalAlignment(Element.ALIGN_MIDDLE);
-				operDat.setBorder(0);
-				tabla.addCell(operDat);
-			} else {
-				tabla.addCell(" ");
+				placeDta.setHorizontalAlignment(Element.ALIGN_LEFT);
+				placeDta.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				placeDta.setBorder(0);
+				tabla.addCell(placeDta);
+
+				PdfPCell cenMove = new PdfPCell(new Phrase("Centro origen del movimiento", font));
+				cenMove.setHorizontalAlignment(Element.ALIGN_LEFT);
+				cenMove.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				cenMove.setBorder(0);
+				tabla.addCell(cenMove);
+
+				PdfPCell oriDtaCent = new PdfPCell(
+						new Phrase(this.movementDetail.getOriginCenterMovement(), fontNormal));
+				oriDtaCent.setHorizontalAlignment(Element.ALIGN_LEFT);
+				oriDtaCent.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				oriDtaCent.setBorder(0);
+				tabla.addCell(oriDtaCent);
+
+				if (movementDetail.getState() != null) {
+					PdfPCell stateMove = new PdfPCell(new Phrase("Estado", font));
+					stateMove.setHorizontalAlignment(Element.ALIGN_LEFT);
+					stateMove.setVerticalAlignment(Element.ALIGN_MIDDLE);
+					stateMove.setBorder(0);
+					tabla.addCell(stateMove);
+
+					PdfPCell StateCDat = new PdfPCell(new Phrase(this.movementDetail.getState(), fontNormal));
+					StateCDat.setHorizontalAlignment(Element.ALIGN_LEFT);
+					StateCDat.setVerticalAlignment(Element.ALIGN_MIDDLE);
+					StateCDat.setBorder(0);
+					tabla.addCell(StateCDat);
+				}
+
+				document.add(tabla);
+
+				Paragraph att = new Paragraph("Cordial saludo, ", FontFactory.getFont("arial", 12, BaseColor.BLACK));
+				att.setAlignment(Element.ALIGN_JUSTIFIED);
+				att.setSpacingBefore(20);
+				document.add(att);
+
+				Paragraph bbva = new Paragraph("BBVA Adelante ", FontFactory.getFont("arial", 12, new BaseColor(0, 80,
+						152)));
+				bbva.setAlignment(Element.ALIGN_JUSTIFIED);
+				bbva.setSpacingAfter(20);
+				document.add(bbva);
 			}
-
-			PdfPCell dateValue = new PdfPCell(new Phrase("Fecha valor", font));
-			dateValue.setHorizontalAlignment(Element.ALIGN_LEFT);
-			dateValue.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			dateValue.setBorder(0);
-			tabla.addCell(dateValue);
-
-			String daVD = super.getdateString(this.movementDetail.getTransactionDate());
-			PdfPCell dateVData = new PdfPCell(new Phrase(daVD, fontNormal));
-			dateVData.setHorizontalAlignment(Element.ALIGN_LEFT);
-			dateVData.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			dateVData.setBorder(0);
-			tabla.addCell(dateVData);
-
-			PdfPCell hourValue = new PdfPCell(new Phrase("Hora operación", font));
-			hourValue.setHorizontalAlignment(Element.ALIGN_LEFT);
-			hourValue.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			hourValue.setBorder(0);
-			tabla.addCell(hourValue);
-
-			String horesdDta = super.getdateString(this.movementDetail.getOperationHour());
-			PdfPCell horeDta = new PdfPCell(new Phrase(horesdDta, fontNormal));
-			horeDta.setHorizontalAlignment(Element.ALIGN_LEFT);
-			horeDta.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			horeDta.setBorder(0);
-			tabla.addCell(horeDta);
-
-			PdfPCell valueDta = new PdfPCell(new Phrase("Valor", font));
-			valueDta.setHorizontalAlignment(Element.ALIGN_LEFT);
-			valueDta.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			valueDta.setBorder(0);
-			tabla.addCell(valueDta);
-
-			if (movementDetail.getOperationValue() != null) {
-				PdfPCell valeuDt = new PdfPCell(new Phrase(this.movementDetail.getOperationValue().toString(),
-						fontNormal));
-				valeuDt.setHorizontalAlignment(Element.ALIGN_LEFT);
-				valeuDt.setVerticalAlignment(Element.ALIGN_MIDDLE);
-				valeuDt.setBorder(0);
-				tabla.addCell(valeuDt);
-			} else {
-				tabla.addCell(" ");
-			}
-
-			PdfPCell saAfter = new PdfPCell(new Phrase("Saldo después del movimiento", font));
-			saAfter.setHorizontalAlignment(Element.ALIGN_LEFT);
-			saAfter.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			saAfter.setBorder(0);
-			tabla.addCell(saAfter);
-
-			if (movementDetail.getValueslope() != null) {
-				PdfPCell saldaDat = new PdfPCell(new Phrase(this.movementDetail.getValueslope().toString(), fontNormal));
-				saldaDat.setHorizontalAlignment(Element.ALIGN_LEFT);
-				saldaDat.setVerticalAlignment(Element.ALIGN_MIDDLE);
-				saldaDat.setBorder(0);
-				tabla.addCell(saldaDat);
-			} else {
-				tabla.addCell(" ");
-			}
-
-			PdfPCell codOpera = new PdfPCell(new Phrase("Código de operación", font));
-			codOpera.setHorizontalAlignment(Element.ALIGN_LEFT);
-			codOpera.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			codOpera.setBorder(0);
-			tabla.addCell(codOpera);
-
-			PdfPCell codDOpe = new PdfPCell(new Phrase(this.movementDetail.getOperationCode(), fontNormal));
-			codDOpe.setHorizontalAlignment(Element.ALIGN_LEFT);
-			codDOpe.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			codDOpe.setBorder(0);
-			tabla.addCell(codDOpe);
-
-			PdfPCell descripOper = new PdfPCell(new Phrase("Descripción de la operación", font));
-			descripOper.setHorizontalAlignment(Element.ALIGN_LEFT);
-			descripOper.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			descripOper.setBorder(0);
-			tabla.addCell(descripOper);
-
-			PdfPCell destDtaOpe = new PdfPCell(new Phrase(this.movementDetail.getOperationDescription(), fontNormal));
-			destDtaOpe.setHorizontalAlignment(Element.ALIGN_LEFT);
-			destDtaOpe.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			destDtaOpe.setBorder(0);
-			tabla.addCell(destDtaOpe);
-
-			PdfPCell place = new PdfPCell(new Phrase("Plaza", font));
-			place.setHorizontalAlignment(Element.ALIGN_LEFT);
-			place.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			place.setBorder(0);
-			tabla.addCell(place);
-
-			PdfPCell placeDta = new PdfPCell(new Phrase(this.movementDetail.getPlaza().getPostalAddress(), fontNormal));
-			placeDta.setHorizontalAlignment(Element.ALIGN_LEFT);
-			placeDta.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			placeDta.setBorder(0);
-			tabla.addCell(placeDta);
-
-			PdfPCell cenMove = new PdfPCell(new Phrase("Centro origen del movimiento", font));
-			cenMove.setHorizontalAlignment(Element.ALIGN_LEFT);
-			cenMove.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			cenMove.setBorder(0);
-			tabla.addCell(cenMove);
-
-			PdfPCell oriDtaCent = new PdfPCell(new Phrase(this.movementDetail.getOriginCenterMovement(), fontNormal));
-			oriDtaCent.setHorizontalAlignment(Element.ALIGN_LEFT);
-			oriDtaCent.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			oriDtaCent.setBorder(0);
-			tabla.addCell(oriDtaCent);
-
-			if (movementDetail.getState() != null) {
-				PdfPCell stateMove = new PdfPCell(new Phrase("Estado", font));
-				stateMove.setHorizontalAlignment(Element.ALIGN_LEFT);
-				stateMove.setVerticalAlignment(Element.ALIGN_MIDDLE);
-				stateMove.setBorder(0);
-				tabla.addCell(stateMove);
-
-				PdfPCell StateCDat = new PdfPCell(new Phrase(this.movementDetail.getState(), fontNormal));
-				StateCDat.setHorizontalAlignment(Element.ALIGN_LEFT);
-				StateCDat.setVerticalAlignment(Element.ALIGN_MIDDLE);
-				StateCDat.setBorder(0);
-				tabla.addCell(StateCDat);
-			}
-
-			document.add(tabla);
-
-			Paragraph att = new Paragraph("Cordial saludo, ", FontFactory.getFont("arial", 12, BaseColor.BLACK));
-			att.setAlignment(Element.ALIGN_JUSTIFIED);
-			att.setSpacingBefore(20);
-			document.add(att);
-
-			Paragraph bbva = new Paragraph("BBVA Adelante ",
-					FontFactory.getFont("arial", 12, new BaseColor(0, 80, 152)));
-			bbva.setAlignment(Element.ALIGN_JUSTIFIED);
-			bbva.setSpacingAfter(20);
-			document.add(bbva);
-
 			Paragraph note = new Paragraph(
 					"Nota: Si no eres el destinatario de este mensaje, por favor comunícate con nosotros con el fin de realizar la actualización correspondiente, al 4010000 en Bogotá, 4938300 en Medellín, 3503500 en Barranquilla, 8892020 en Cali, 6304000 en Bucaramanga o al 01800 912227 desde el resto del país. ",
 					FontFactory.getFont("arial", 9, com.itextpdf.text.Font.BOLD));

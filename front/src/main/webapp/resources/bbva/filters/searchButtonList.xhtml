@@ -33,7 +33,8 @@
 				rendered="#{cc.attrs.showQRemove}" styleClass="btn btn-default hidden-xs hidden-sm">
 				<p:ajax process="@form" onstart="PF('statusDialog').show()"
 					oncomplete="PF('statusDialog').hide()" listener="#{cc.attrs.actionListenerRemove}"
-					update=":quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:componentList" />
+					update=":quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:componentList
+					        :quotaDetail:detailAccounts:detailAccounts" />
 			</p:commandButton>
 			<p:commandButton styleClass="btn btn-default" rendered="#{cc.attrs.showMovements}"
 				icon="document-view-icon" value="#{msg['button.see.result']}">
