@@ -60,6 +60,7 @@ import org.primefaces.event.SelectEvent;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
+import com.bbva.net.back.entity.MultiCoordinates;
 import com.bbva.net.back.entity.MultiValueGroup;
 import com.bbva.net.back.facade.MovementsAccountFacade;
 import com.bbva.net.back.facade.MultiValueGroupFacade;
@@ -72,6 +73,7 @@ import com.bbva.net.back.model.globalposition.ProductDto;
 import com.bbva.net.back.model.movements.MovementDetailDto;
 import com.bbva.net.back.model.movements.MovementDto;
 import com.bbva.net.back.predicate.BalanceRangeMovementPredicate;
+import com.bbva.net.back.predicate.CityOfficePredicate;
 import com.bbva.net.back.predicate.ConceptMovementPredicate;
 import com.bbva.net.back.predicate.ExpensesPredicate;
 import com.bbva.net.back.predicate.IncomesPredicate;
@@ -217,21 +219,21 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 					.getTypeProd().value(), getSelectedMovements().getMovementId());
 			LOGGER.info("Despues de llamar al servicio ...");
 			LOGGER.info("antes de llamar a la BDD ...");
-			// List<MultiCoordinates> coordenadas = this.multiValueGroupFacade.getMultiCoordinate(movementDetail
-			// .getPlaza().getCode());
-			// LOGGER.info("Despues de llamar a la BDD ...");
-			// if (coordenadas.size() >= 2) {
-			// LOGGER.info("Entra al if de llamar a la BDD ...");
-			// coordenadas = (List<MultiCoordinates>)CollectionUtils.select(coordenadas, new CityOfficePredicate(
-			// movementDetail.getPlaza().getCity()));
-			// }
-			// LOGGER.info("Sale del if de llamar a la BDD ...");
-			// movementDetail.getPlaza().setLatitude(coordenadas.get(0).getLatitude());
-			// LOGGER.info("asigna latitude .." + coordenadas.get(0).getLatitude());
-			// movementDetail.getPlaza().setLength(coordenadas.get(0).getLength());
-			// LOGGER.info("asigna longitud .." + coordenadas.get(0).getLength());
-			// LOGGER.info("latitud..." + coordenadas.get(0).getLatitude() + "..longitud.."
-			// + coordenadas.get(0).getLength() + "..");
+			List<MultiCoordinates> coordenadas = this.multiValueGroupFacade.getMultiCoordinate(movementDetail
+					.getPlaza().getCode());
+			LOGGER.info("Despues de llamar a la BDD ...");
+			if (coordenadas.size() >= 2) {
+				LOGGER.info("Entra al if de llamar a la BDD ... te que se encontro 2 coordenadas mas");
+				coordenadas = (List<MultiCoordinates>)CollectionUtils.select(coordenadas, new CityOfficePredicate(
+						movementDetail.getPlaza().getCity()));
+			}
+			LOGGER.info("Sale del if de llamar a la BDD ...");
+			movementDetail.getPlaza().setLatitude(coordenadas.get(0).getLatitude());
+			LOGGER.info("asigna latitude .." + coordenadas.get(0).getLatitude());
+			movementDetail.getPlaza().setLength(coordenadas.get(0).getLength());
+			LOGGER.info("asigna longitud .." + coordenadas.get(0).getLength());
+			LOGGER.info("latitud..." + coordenadas.get(0).getLatitude() + "..longitud.."
+					+ coordenadas.get(0).getLength() + "..");
 		} catch (Exception e) {
 			FacesContext ctx = FacesContext.getCurrentInstance();
 			ctx.addMessage("movementDetail", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
