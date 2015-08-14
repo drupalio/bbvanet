@@ -32,7 +32,7 @@ public class ConceptMovementPredicate extends BbvaPredicate<MovementDto> {
 					estado = movementDto.getMovementDetailDto().getOperationDescription().toLowerCase()
 							.contains(concept.toLowerCase());
 
-				if (movementDto.getMovementConcept() != null)
+				if (movementDto.getMovementConcept() != null && estado == false)
 					estado = movementDto.getMovementConcept().toLowerCase().contains(concept.toLowerCase());
 
 			} else {
@@ -41,7 +41,7 @@ public class ConceptMovementPredicate extends BbvaPredicate<MovementDto> {
 							.contains(concept.toLowerCase())
 							&& movementDto.getStatus().contains(status);
 
-				if (movementDto.getMovementConcept() != null)
+				if (movementDto.getMovementConcept() != null && estado == false)
 					estado = movementDto.getMovementConcept().toLowerCase().contains(concept.toLowerCase())
 							&& movementDto.getStatus().contains(status);
 

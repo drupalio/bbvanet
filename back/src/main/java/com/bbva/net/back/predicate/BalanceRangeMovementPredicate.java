@@ -15,8 +15,10 @@ public class BalanceRangeMovementPredicate extends BbvaPredicate<MovementDto> {
 	@Override
 	protected boolean eval(MovementDto movementDto) {
 
-		return movementDto.getTotalBalance().getAmount().compareTo(balance.getBalanceTo()) == -1
-				&& movementDto.getTotalBalance().getAmount().compareTo(balance.getBalanceSince()) == 1;
+		return (movementDto.getTotalBalance().getAmount().compareTo(balance.getBalanceTo()) == -1 || movementDto
+				.getTotalBalance().getAmount().compareTo(balance.getBalanceTo()) == 0)
+				&& (movementDto.getTotalBalance().getAmount().compareTo(balance.getBalanceSince()) == 1 || movementDto
+						.getTotalBalance().getAmount().compareTo(balance.getBalanceSince()) == 0);
 	}
 
 }

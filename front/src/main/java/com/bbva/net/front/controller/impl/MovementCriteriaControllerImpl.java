@@ -60,7 +60,6 @@ import org.primefaces.event.SelectEvent;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
-import com.bbva.net.back.entity.MultiCoordinates;
 import com.bbva.net.back.entity.MultiValueGroup;
 import com.bbva.net.back.facade.MovementsAccountFacade;
 import com.bbva.net.back.facade.MultiValueGroupFacade;
@@ -73,7 +72,6 @@ import com.bbva.net.back.model.globalposition.ProductDto;
 import com.bbva.net.back.model.movements.MovementDetailDto;
 import com.bbva.net.back.model.movements.MovementDto;
 import com.bbva.net.back.predicate.BalanceRangeMovementPredicate;
-import com.bbva.net.back.predicate.CityOfficePredicate;
 import com.bbva.net.back.predicate.ConceptMovementPredicate;
 import com.bbva.net.back.predicate.ExpensesPredicate;
 import com.bbva.net.back.predicate.IncomesPredicate;
@@ -219,21 +217,21 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 					.getTypeProd().value(), getSelectedMovements().getMovementId());
 			LOGGER.info("Despues de llamar al servicio ...");
 			LOGGER.info("antes de llamar a la BDD ...");
-//			List<MultiCoordinates> coordenadas = this.multiValueGroupFacade.getMultiCoordinate(movementDetail
-//					.getPlaza().getCode());
-//			LOGGER.info("Despues de llamar a la BDD ...");
-//			if (coordenadas.size() >= 2) {
-//				LOGGER.info("Entra al if de llamar a la BDD ...");
-//				coordenadas = (List<MultiCoordinates>)CollectionUtils.select(coordenadas, new CityOfficePredicate(
-//						movementDetail.getPlaza().getCity()));
-//			}
-//			LOGGER.info("Sale del if de llamar a la BDD ...");
-//			movementDetail.getPlaza().setLatitude(coordenadas.get(0).getLatitude());
-//			LOGGER.info("asigna latitude .." + coordenadas.get(0).getLatitude());
-//			movementDetail.getPlaza().setLength(coordenadas.get(0).getLength());
-//			LOGGER.info("asigna longitud .." + coordenadas.get(0).getLength());
-//			LOGGER.info("latitud..." + coordenadas.get(0).getLatitude() + "..longitud.."
-//					+ coordenadas.get(0).getLength() + "..");
+			// List<MultiCoordinates> coordenadas = this.multiValueGroupFacade.getMultiCoordinate(movementDetail
+			// .getPlaza().getCode());
+			// LOGGER.info("Despues de llamar a la BDD ...");
+			// if (coordenadas.size() >= 2) {
+			// LOGGER.info("Entra al if de llamar a la BDD ...");
+			// coordenadas = (List<MultiCoordinates>)CollectionUtils.select(coordenadas, new CityOfficePredicate(
+			// movementDetail.getPlaza().getCity()));
+			// }
+			// LOGGER.info("Sale del if de llamar a la BDD ...");
+			// movementDetail.getPlaza().setLatitude(coordenadas.get(0).getLatitude());
+			// LOGGER.info("asigna latitude .." + coordenadas.get(0).getLatitude());
+			// movementDetail.getPlaza().setLength(coordenadas.get(0).getLength());
+			// LOGGER.info("asigna longitud .." + coordenadas.get(0).getLength());
+			// LOGGER.info("latitud..." + coordenadas.get(0).getLatitude() + "..longitud.."
+			// + coordenadas.get(0).getLength() + "..");
 		} catch (Exception e) {
 			FacesContext ctx = FacesContext.getCurrentInstance();
 			ctx.addMessage("movementDetail", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
@@ -276,13 +274,13 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		setFalseCheckBookComponents();
 		getRenderComponents().put(RenderAttributes.TITLEMOVES.name(), true);
 		getRenderComponents().put(RenderAttributes.MOVEMENTSTABLE.toString(), true);
-
+		this.movementsList = this.movementsListGen;
 		if (getRenderComponents().get(RenderAttributes.FILTERDATE.toString())) {
 			// Get movements by date
 			LOGGER.info("MovementsAccountController searchMovementByFilterDate");
 			this.dateRange = calculateDate(this.getSelectDate());
 			criteriaSearch();
-
+			this.movementsListGen = this.movementsList;
 		} else {
 			this.dateRange = null;
 			setDateRangePc(dateRange);
@@ -295,8 +293,8 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			this.balanceRange.setBalanceTo(movementCriteria.getBalanceRange().getBalanceTo());
 
 			// Get only movements by concept
-			final List<MovementDto> movementsByBalance = (List<MovementDto>)CollectionUtils.select(
-					this.movementsListGen, new BalanceRangeMovementPredicate(balanceRange));
+			final List<MovementDto> movementsByBalance = (List<MovementDto>)CollectionUtils.select(this.movementsList,
+					new BalanceRangeMovementPredicate(balanceRange));
 			this.movementsList = movementsByBalance;
 			// setShowMoreStatus();
 			getRenderComponents().put(RenderAttributes.MOVEMENTSTABLE.toString(), true);
@@ -310,8 +308,8 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			if (movementCriteria.getIncomesOrExpenses() != null && movementCriteria.getIncomesOrExpenses().equals("1")) {
 				// Income Movements
 				LOGGER.info("MovementsAccountController searchMovementByIncomeOrExpensesFilter incomeMovements");
-				final List<MovementDto> incomeMovements = (List<MovementDto>)CollectionUtils.select(
-						this.movementsListGen, new IncomesPredicate());
+				final List<MovementDto> incomeMovements = (List<MovementDto>)CollectionUtils.select(this.movementsList,
+						new IncomesPredicate());
 				this.movementsList = incomeMovements;
 				// setShowMoreStatus();
 			}
@@ -320,7 +318,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 				// Expense Movements
 				LOGGER.info("MovementsAccountController searchMovementByIncomeOrExpensesFilter expensesMovements");
 				final List<MovementDto> expensesMovements = (List<MovementDto>)CollectionUtils.select(
-						this.movementsListGen, new ExpensesPredicate());
+						this.movementsList, new ExpensesPredicate());
 				this.movementsList = expensesMovements;
 				// setShowMoreStatus();
 			}
@@ -328,18 +326,18 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		}
 
 		if (getRenderComponents().get(RenderAttributes.MOVEMENTSFILTER.toString())) {
-			LOGGER.info("MovementsAccountController searchMovementByMovementFilter");
+			LOGGER.info("MovementsAccountController searchMovementByMovementFilter" + movementCriteria.getMovement());
 			// Get only movements by concept
 			if (status.equals(MessagesHelper.INSTANCE.getString("mov.all"))) status = null;
-			final List<MovementDto> movementsByConcept = (List<MovementDto>)CollectionUtils.select(
-					this.movementsListGen, new ConceptMovementPredicate(movementCriteria.getMovement(), status));
+			final List<MovementDto> movementsByConcept = (List<MovementDto>)CollectionUtils.select(this.movementsList,
+					new ConceptMovementPredicate(movementCriteria.getMovement(), status));
 			this.movementsList = movementsByConcept;
 			// setShowMoreStatus();
 			getRenderComponents().put(RenderAttributes.MOVEMENTSTABLE.toString(), true);
 
 		}
 		getRenderComponents().put(RenderAttributes.FOOTERTABLEMOVEMENT.name(), false);
-		clean();
+		// clean();
 	}
 
 	public boolean selectFilterMove() {
@@ -505,11 +503,9 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	@Override
 	public void cleanFilters(AjaxBehaviorEvent event) {
 		LOGGER.info("MovementsAccountController clean Filters");
-		this.paginationKey = 0;
-		setCurrentList(new ArrayList<MovementDto>());
-		next();
-		this.movementsList = getCurrentList();
+		getAllMovements();
 		clean();
+
 	}
 
 	@Override
