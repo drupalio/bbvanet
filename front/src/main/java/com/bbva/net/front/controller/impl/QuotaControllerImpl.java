@@ -246,7 +246,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 
 	public void onRowToggle(final SelectEvent event) {
 		LOGGER.info("QuotaControllerImpl onRowToggle");
-		this.quotaMove = new MovementDto();
+		this.quotaMove = null;
 		super.onMovementSelected(event);
 		this.quotaMove = super.getSelectedMovements();
 		String identify = String.format("%06d", Integer.valueOf(quotaMove.getMovementId())) + ""
@@ -792,8 +792,11 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 	@Override
 	public void exportDocDetailPdf() {
 		LOGGER.info("iniciando exportar archivo pdf");
-
-		rutaPdfMove = "MovDetalleCupo" + quotaMoveDetailDto.getId() + ".pdf";
+		if (quotaDetailDto != null) {
+			rutaPdfMove = "MovDetalleCupo" + quotaMoveDetailDto.getId() + ".pdf";
+		} else {
+			rutaPdfMove = "MovDetalleCupoEmpty.pdf";
+		}
 		headerController.setLastDownload(rutaPdfMove);
 		try {
 
@@ -870,76 +873,78 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 			dataConcep.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			dataConcep.setBorder(0);
 			header.addCell(dataConcep);
+			if (quotaDetailDto != null) {
+				if (quotaMove.getMovementValue() != null) {
+					PdfPCell dataPends = new PdfPCell(new Phrase(quotaMove.getMovementValue().toString(), fontNormal));
+					dataPends.setHorizontalAlignment(Element.ALIGN_LEFT);
+					dataPends.setVerticalAlignment(Element.ALIGN_MIDDLE);
+					dataPends.setBorder(0);
+					header.addCell(dataPends);
+				} else {
+					header.addCell(" ");
+				}
 
-			if (quotaMove.getMovementValue() != null) {
-				PdfPCell dataPends = new PdfPCell(new Phrase(quotaMove.getMovementValue().toString(), fontNormal));
-				dataPends.setHorizontalAlignment(Element.ALIGN_LEFT);
-				dataPends.setVerticalAlignment(Element.ALIGN_MIDDLE);
-				dataPends.setBorder(0);
-				header.addCell(dataPends);
-			} else {
-				header.addCell(" ");
+				document.add(header);
+
+				Paragraph title = new Paragraph("Información del movimiento", FontFactory.getFont("helvetica", 11,
+						new BaseColor(51, 51, 51)));
+				title.setSpacingBefore(20);
+				document.add(title);
+
+				PdfPTable tabla = new PdfPTable(5);
+
+				tabla.setSpacingBefore(20);
+				tabla.setSpacingAfter(20);
+				tabla.setHorizontalAlignment(Element.ALIGN_LEFT);
+				tabla.getDefaultCell().setBorder(0);
+
+				PdfPCell quota = new PdfPCell(new Phrase("N° de cuota", font));
+				quota.setHorizontalAlignment(Element.ALIGN_CENTER);
+				quota.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				quota.setBorder(0);
+				tabla.addCell(quota);
+
+				if (this.quotaMoveDetailDto.getRemainingQuotas() != null) {
+					PdfPCell dataQuota = new PdfPCell(new Phrase(this.quotaMoveDetailDto.getRemainingQuotas(),
+							fontNormal));
+					dataQuota.setHorizontalAlignment(Element.ALIGN_CENTER);
+					dataQuota.setVerticalAlignment(Element.ALIGN_MIDDLE);
+					dataQuota.setBorder(0);
+					tabla.addCell(dataQuota);
+				} else {
+					tabla.addCell("");
+				}
+
+				if (quotaMoveDetailDto.getNumbersOfQuota() != null) {
+					PdfPCell data2Quota = new PdfPCell(new Phrase(" de " + quotaMoveDetailDto.getNumbersOfQuota(),
+							fontNormal));
+					data2Quota.setHorizontalAlignment(Element.ALIGN_CENTER);
+					data2Quota.setVerticalAlignment(Element.ALIGN_MIDDLE);
+					data2Quota.setBorder(0);
+					tabla.addCell(data2Quota);
+				} else {
+					tabla.addCell("");
+				}
+
+				PdfPCell fool = new PdfPCell(new Phrase("Pendiente", font));
+				fool.setHorizontalAlignment(Element.ALIGN_CENTER);
+				fool.setVerticalAlignment(Element.ALIGN_MIDDLE);
+				fool.setBorder(0);
+				tabla.addCell(fool);
+
+				if (quotaMoveDetailDto.getValueslope() != null) {
+					PdfPCell dataFool = new PdfPCell(new Phrase(quotaMoveDetailDto.getValueslope().toString(),
+							fontNormal));
+					dataFool.setHorizontalAlignment(Element.ALIGN_CENTER);
+					dataFool.setVerticalAlignment(Element.ALIGN_MIDDLE);
+					dataFool.setBorder(0);
+					tabla.addCell(dataFool);
+				} else {
+					tabla.addCell(" ");
+				}
+
+				document.add(tabla);
 			}
-
-			document.add(header);
-
-			Paragraph title = new Paragraph("Información del movimiento", FontFactory.getFont("helvetica", 11,
-					new BaseColor(51, 51, 51)));
-			title.setSpacingBefore(20);
-			document.add(title);
-
-			PdfPTable tabla = new PdfPTable(5);
-
-			tabla.setSpacingBefore(20);
-			tabla.setSpacingAfter(20);
-			tabla.setHorizontalAlignment(Element.ALIGN_LEFT);
-			tabla.getDefaultCell().setBorder(0);
-
-			PdfPCell quota = new PdfPCell(new Phrase("N° de cuota", font));
-			quota.setHorizontalAlignment(Element.ALIGN_CENTER);
-			quota.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			quota.setBorder(0);
-			tabla.addCell(quota);
-
-			if (this.quotaMoveDetailDto.getRemainingQuotas() != null) {
-				PdfPCell dataQuota = new PdfPCell(new Phrase(this.quotaMoveDetailDto.getRemainingQuotas(), fontNormal));
-				dataQuota.setHorizontalAlignment(Element.ALIGN_CENTER);
-				dataQuota.setVerticalAlignment(Element.ALIGN_MIDDLE);
-				dataQuota.setBorder(0);
-				tabla.addCell(dataQuota);
-			} else {
-				tabla.addCell("");
-			}
-
-			if (quotaMoveDetailDto.getNumbersOfQuota() != null) {
-				PdfPCell data2Quota = new PdfPCell(new Phrase(" de " + quotaMoveDetailDto.getNumbersOfQuota(),
-						fontNormal));
-				data2Quota.setHorizontalAlignment(Element.ALIGN_CENTER);
-				data2Quota.setVerticalAlignment(Element.ALIGN_MIDDLE);
-				data2Quota.setBorder(0);
-				tabla.addCell(data2Quota);
-			} else {
-				tabla.addCell("");
-			}
-
-			PdfPCell fool = new PdfPCell(new Phrase("Pendiente", font));
-			fool.setHorizontalAlignment(Element.ALIGN_CENTER);
-			fool.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			fool.setBorder(0);
-			tabla.addCell(fool);
-
-			if (quotaMoveDetailDto.getValueslope() != null) {
-				PdfPCell dataFool = new PdfPCell(new Phrase(quotaMoveDetailDto.getValueslope().toString(), fontNormal));
-				dataFool.setHorizontalAlignment(Element.ALIGN_CENTER);
-				dataFool.setVerticalAlignment(Element.ALIGN_MIDDLE);
-				dataFool.setBorder(0);
-				tabla.addCell(dataFool);
-			} else {
-				tabla.addCell(" ");
-			}
-
-			document.add(tabla);
-
 			Paragraph att = new Paragraph("Cordial saludo, ", FontFactory.getFont("arial", 12, BaseColor.BLACK));
 			att.setAlignment(Element.ALIGN_JUSTIFIED);
 			att.setSpacingBefore(20);
