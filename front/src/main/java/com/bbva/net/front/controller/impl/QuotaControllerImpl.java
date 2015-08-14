@@ -203,6 +203,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 	@Override
 	public void cleanFilters(AjaxBehaviorEvent event) {
 		LOGGER.info(" QuotaControllerImpl cleanFilters ActionEvent");
+		getAllQuotamovenDtos();
 		cleanFilters();
 	}
 

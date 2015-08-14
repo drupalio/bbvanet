@@ -11,7 +11,7 @@
 	<composite:attribute name="valueTo" />
 </composite:interface>
 <composite:implementation>
-	<div class="balance-filter-content">
+	<div id="moveBalances" class="balance-filter-content">
 		<div id="form-balance">
 			<div class="col-xs-12 col-md-6 ">
 				<div class="form-group">
@@ -20,12 +20,13 @@
 					</div>
 					<div class="col-xs-12 col-md-12 balanceFrom refaling">
 						<p:inputText id="currencySince1" value="#{cc.attrs.valueSince}" type="text"
-							styleClass="form-control refalingInput" maxlength="12" name="inputNumberFrom"
-							autocomplete="off" converterMessage="Digitar solo números" >
-							<f:validateLength maximum="12" minimum="1" />
-							<f:validateDoubleRange minimum="1"/>
-							<p:ajax event="keyup" update="out, balanceButton"
-								listener="#{movementsCriteriaController.balanceValidator}" />
+							styleClass="form-control refalingInput" maxlength="15" autocomplete="off"
+							converterMessage="Error de formato">
+							<f:validateLength maximum="15" minimum="1" />
+							<f:convertNumber pattern="##,##.00" type="currency" locale="en_US" />
+							<p:ajax event="keyup" listener="#{movementsCriteriaController.balanceValidator}"
+								update=":tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:balanceList:outputData:out  
+								        :tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:balanceList:outputData:balanceButton" />
 						</p:inputText>
 					</div>
 				</div>
@@ -37,12 +38,13 @@
 					</div>
 					<div class="col-xs-12 col-md-12 balanceTo refaling">
 						<p:inputText id="currencyTo" value="#{cc.attrs.valueTo}" type="text"
-							styleClass="form-control refalingInput" maxlength="12" pt:name="inputNumberTo"
-							autocomplete="off" converterMessage="Digitar solo números" >
-							<f:validateLength maximum="12" minimum="1" />
-							<f:validateDoubleRange minimum="1"/>
-							<p:ajax event="keyup" update="out, balanceButton"
-								listener="#{movementsCriteriaController.balanceValidator}" />
+							styleClass="form-control refalingInput" maxlength="15" autocomplete="off"
+							converterMessage="Error de formato">
+							<f:validateLength maximum="15" minimum="1" />
+							<f:convertNumber pattern="##,##.00" type="currency" locale="en_US" />
+							<p:ajax event="keyup" listener="#{movementsCriteriaController.balanceValidator}"
+								update=":tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:balanceList:outputData:out 
+								        :tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:balanceList:outputData:balanceButton" />
 						</p:inputText>
 					</div>
 				</div>
