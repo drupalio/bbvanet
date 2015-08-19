@@ -282,7 +282,6 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			LOGGER.info("MovementsAccountController searchMovementByFilterDate");
 			this.dateRange = calculateDate(this.getSelectDate());
 			criteriaSearch();
-			this.movementsListGen = this.movementsList;
 		} else {
 			this.dateRange = null;
 			setDateRangePc(dateRange);
@@ -327,8 +326,10 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			RequestContext.getCurrentInstance().update(":detailAccounts:tableMovements:formMovesDetail:movAccount");
 		}
 
-		if (getRenderComponents().get(RenderAttributes.MOVEMENTSFILTER.toString())) {
-			LOGGER.info("MovementsAccountController searchMovementByMovementFilter" + movementCriteria.getMovement());
+		if (getRenderComponents().get(RenderAttributes.MOVEMENTSFILTER.toString())
+				&& movementCriteria.getMovement() != null) {
+			LOGGER.info("MovementsAccountController searchMovementByMovementFilter" + movementCriteria.getMovement()
+					+ "--");
 			// Get only movements by concept
 			if (status.equals(MessagesHelper.INSTANCE.getString("mov.all"))) status = null;
 			final List<MovementDto> movementsByConcept = (List<MovementDto>)CollectionUtils.select(this.movementsList,
