@@ -1,7 +1,5 @@
 package com.bbva.net.front.controller.impl;
 
-import javax.ws.rs.ClientErrorException;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -53,13 +51,12 @@ public class LoginControllerImplTest extends AbstractBbvaControllerTest {
 				"julio123CC000001020715321", "91261343", "1020715321", "CC");
 	}
 
-	@SuppressWarnings("unchecked")
-	@Test(expected = ClientErrorException.class)
-	public void testLogin_ThrowExceptions() {
+	@Test
+	public void testLogin_No_Ok() {
 
 		Mockito.when(
 				this.loginFacade.login(Mockito.anyString(), Mockito.anyString(), Mockito.anyString(),
-						Mockito.anyString(), Mockito.anyString())).thenThrow(ClientErrorException.class);
+						Mockito.anyString(), Mockito.anyString())).thenReturn(new AuthenticationState());
 
 		// Invoke Check method
 		this.loginController.login();
