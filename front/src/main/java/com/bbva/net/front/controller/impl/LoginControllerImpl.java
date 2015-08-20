@@ -23,32 +23,47 @@ public class LoginControllerImpl extends AbstractBbvaController implements Login
 
 	@Override
 	public void login() {
+		try {
+			LOGGER.info("LOGIN BBVA NET .................");
+			// 1 Create Session;
+			final FacesContext facesContext = FlowFacesContext.getCurrentInstance();
+			facesContext.getExternalContext().getSession(true);
 
-		LOGGER.info("LOGIN BBVA NET .................");
-		// 1 Create Session;
-		final FacesContext facesContext = FlowFacesContext.getCurrentInstance();
-		facesContext.getExternalContext().getSession(true);
+			LOGGER.info("Leyendo de cabecera ... " + IV_TICKET_SERVICE);
+			// 2. Get iv_ticketService from header
+			final String ivTicketValue = getRequest().getHeader("iv_ticketService");
 
-		LOGGER.info("Leyendo de cabecera ... " + IV_TICKET_SERVICE);
-		// 2. Get iv_ticketService from header
-		final String ivTicketValue = getRequest().getHeader("iv_ticketService");
+			// 3. Set CurrentUser
+			final String user = getRequestParameter("usuario");
+			this.setDefaultUser(user);
 
-		// 3. Set CurrentUser
-		final String user = getRequestParameter("usuario");
-		this.setDefaultUser(user);
+			LOGGER.info("Login with User: " + user);
+			LOGGER.info("iv_ticketService: " + ivTicketValue);
 
-		LOGGER.info("Login with User: " + user);
-		LOGGER.info("iv_ticketService: " + ivTicketValue);
+			// 4. Invocar al GrantingTicket y almacenar AuthenticationState
+			final AuthenticationState authenticationState = this.loginFacade.login(ivTicketValue, user,
+					getRequestParameter("password2"), getRequestParameter("NumeroId"), getRequestParameter("TipoId"));
 
-		// 4. Invocar al GrantingTicket y almacenar AuthenticationState
-		final AuthenticationState authenticationState = this.loginFacade.login(ivTicketValue, user,
-				getRequestParameter("password2"), getRequestParameter("NumeroId"), getRequestParameter("TipoId"));
+			// 5. Put in Session
+			this.getSession().setAttribute(SessionParamenterType.AUTHENTICATION_STATE.name(), authenticationState);
+			this.getSession().setAttribute("userName", user.substring(0, 8));
+			this.getSession().setAttribute("docTypeUser", user.substring(8, 10));
+			this.getSession().setAttribute("docIdUser", user.substring(10, 25));
+		} catch (Exception e) {
+			LOGGER.info("Error al iniciar sesión " + e.getMessage());
+			try {
+				getSession().removeAttribute("tsec");
+				getSession().removeAttribute(SessionParamenterType.AUTHENTICATION_STATE.name());
+				getSession().removeAttribute("userName");
+				getSession().removeAttribute("docTypeUser");
+				getSession().removeAttribute("docIdUser");
+				FacesContext context = FlowFacesContext.getCurrentInstance();
+				context.getExternalContext().redirect("/kqco_co_web/errorService/errorService.xhtml");
+			} catch (Exception d) {
 
-		// 5. Put in Session
-		this.getSession().setAttribute(SessionParamenterType.AUTHENTICATION_STATE.name(), authenticationState);
-		this.getSession().setAttribute("userName", user.substring(0, 8));
-		this.getSession().setAttribute("docTypeUser", user.substring(8, 10));
-		this.getSession().setAttribute("docIdUser", user.substring(10, 25));
+			}
+
+		}
 	}
 
 	/**
