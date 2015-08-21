@@ -77,7 +77,7 @@ public class ComboCriteriaControllerImpl extends AbstractBbvaController implemen
 	 * Inicialización de Combos
 	 */
 	@PostConstruct
-	public String init() {
+	public void init() {
 		this.multiValuePeriod = this.getListMultiValuePeriod();
 		this.multiValueList = this.getListMultiValueChecks();
 		this.listMultiValuePeriod = this.multiValueGroupFacade.getMultiValueTypes(LIST_CHECK_STATUS);
@@ -89,7 +89,6 @@ public class ComboCriteriaControllerImpl extends AbstractBbvaController implemen
 		this.quieroDeposit = this.multiValueGroupFacade.getMultiValueTypes(10);
 		this.quieroFund = this.multiValueGroupFacade.getMultiValueTypes(11);
 		this.quieroLeasing = this.multiValueGroupFacade.getMultiValueTypes(12);
-		return "";
 	}
 
 	/**
