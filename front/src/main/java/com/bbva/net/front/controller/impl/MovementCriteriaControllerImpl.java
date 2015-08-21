@@ -532,6 +532,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 		dateRange = null;
 		statusText = StringUtils.EMPTY;
 		status = StringUtils.EMPTY;
+		statusLabel = StringUtils.EMPTY;
 
 	}
 
@@ -1568,6 +1569,9 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			t.close();
 		} catch (Exception e) {
 			LOGGER.info("Error enviando mail " + e.getMessage());
+			FacesContext ctx = FacesContext.getCurrentInstance();
+			ctx.addMessage("movementDetail", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error",
+					"No es posible enviar el correo electrónico, por favor intente más tarde"));
 		}
 	}
 
