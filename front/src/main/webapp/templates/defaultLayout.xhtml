@@ -18,6 +18,9 @@
 		document.ready = function() {
 			PF('statusDialog').show()
 		};
+	    $(function(){
+	        $('form').attr("autocomplete", "off");
+	    });
 	</script>
 	<h:form>
 		<p:remoteCommand name="deleteDownload" actionListener="#{headerController.deleteLastDownload()}" />
