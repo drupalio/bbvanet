@@ -135,8 +135,6 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	@Resource(name = "movementsAccountFacade")
 	private transient MovementsAccountFacade movementsFacade;
 
-	private transient ComboCriteriaControllerImpl comboCriteriaControllerImpl = new ComboCriteriaControllerImpl();
-
 	private List<MovementDto> movementsList, movementsListGen;
 
 	@Resource(name = "graphicLineDelegate")
