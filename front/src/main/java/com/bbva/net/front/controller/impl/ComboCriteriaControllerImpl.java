@@ -43,10 +43,30 @@ public class ComboCriteriaControllerImpl extends AbstractBbvaController implemen
 	 * 
 	 */
 	private transient List<MultiValueGroup> multiValueList;
+	
+	private transient List<MultiValueGroup> listMultiValuePeriod;
+	
+	private transient List<MultiValueGroup> listMultiValueChecks;
+	
+	private transient List<MultiValueGroup> listQuieroAccounts;
+	
+	private transient List<MultiValueGroup> listQuieroCards;
+	
+	private transient List<MultiValueGroup> listQuieroQuota;
+	
+	private transient List<MultiValueGroup> quieroLoan;
+	
+	private transient List<MultiValueGroup> quieroDeposit;
+	
+	private transient List<MultiValueGroup> quieroFund;
+	
+	private transient List<MultiValueGroup> quieroLeasing;
+	
 
 	/**
 	 * 
 	 */
+	
 	private static final long serialVersionUID = -8550174788177930813L;
 
 	/**
@@ -54,26 +74,25 @@ public class ComboCriteriaControllerImpl extends AbstractBbvaController implemen
 	 */
 	@Resource(name = "multiValueGroupFacade")
 	private transient MultiValueGroupFacade multiValueGroupFacade;
-
+	
 	/**
 	 * Inicialización de Combos
 	 */
 	@PostConstruct
-	public void init() {
-		try {
-			LOGGER.info("Ejecuta metodo base de datos multiValuePeriod");
-			this.multiValuePeriod = this.getListMultiValuePeriod();
-		} catch (Exception ex) {
-			LOGGER.info("Falla ejecución Metodo multiValuePeriod de ComboCriteriaController " + ex.getMessage());
-			this.multiValuePeriod = new ArrayList<MultiValueGroup>();
-		}
-		try {
-			LOGGER.info("Ejecuta metodo base de datos multiValueChecks");
-			this.multiValueList = this.getListMultiValueChecks();
-		} catch (Exception ex) {
-			LOGGER.info("Falla ejecución Metodo tMultiValueChecks de ComboCriteriaController " + ex.getMessage());
-			this.multiValueList = new ArrayList<MultiValueGroup>();
-		}
+
+	public String init() {
+		this.multiValuePeriod = this.getListMultiValuePeriod();
+		this.multiValueList = this.getListMultiValueChecks();
+		this.listMultiValuePeriod = this.multiValueGroupFacade.getMultiValueTypes(LIST_CHECK_STATUS);
+		this.listMultiValueChecks = this.multiValueGroupFacade.getMultiValueTypes(LIST_CHECKBOOK_STATUS);
+		this.listQuieroAccounts = this.multiValueGroupFacade.getMultiValueTypes(6);
+		this.listQuieroCards = this.multiValueGroupFacade.getMultiValueTypes(7);
+		this.listQuieroQuota = this.multiValueGroupFacade.getMultiValueTypes(8);
+		this.quieroLoan = this.multiValueGroupFacade.getMultiValueTypes(9);
+		this.quieroDeposit = this.multiValueGroupFacade.getMultiValueTypes(10);
+		this.quieroFund = this.multiValueGroupFacade.getMultiValueTypes(11);
+		this.quieroLeasing = this.multiValueGroupFacade.getMultiValueTypes(12);
+		return "";
 
 	}
 
@@ -82,7 +101,7 @@ public class ComboCriteriaControllerImpl extends AbstractBbvaController implemen
 	 */
 	@Override
 	public List<MultiValueGroup> getListMultiValuePeriod() {
-		return this.multiValueGroupFacade.getMultiValueTypes(LIST_CHECK_STATUS);
+		return this.listMultiValuePeriod;
 	}
 
 	/**
@@ -90,7 +109,7 @@ public class ComboCriteriaControllerImpl extends AbstractBbvaController implemen
 	 */
 	@Override
 	public List<MultiValueGroup> getListMultiValueChecks() {
-		return this.multiValueGroupFacade.getMultiValueTypes(LIST_CHECKBOOK_STATUS);
+		return this.listMultiValueChecks;
 	}
 
 	/**
@@ -100,11 +119,9 @@ public class ComboCriteriaControllerImpl extends AbstractBbvaController implemen
 	public List<MultiValueGroup> getListQuieroAccounts(ProductDto product) {
 		LOGGER.info("Prodcuto " + product.getAlias());
 		if (product.getOperationOnline()) {
-			return this.multiValueGroupFacade.getMultiValueTypes(6);
+			return this.listQuieroAccounts;
 		} else {
-			List<MultiValueGroup> lista = this.multiValueGroupFacade.getMultiValueTypes(6);
-			lista.remove(lista.size() - 1);
-			return lista;
+			return listQuieroAccounts.subList(0, listQuieroAccounts.size()-1);
 		}
 	}
 
@@ -113,7 +130,7 @@ public class ComboCriteriaControllerImpl extends AbstractBbvaController implemen
 	 */
 	@Override
 	public List<MultiValueGroup> getListQuieroCards() {
-		return this.multiValueGroupFacade.getMultiValueTypes(7);
+		return this.listQuieroCards;
 	}
 
 	/**
@@ -123,12 +140,11 @@ public class ComboCriteriaControllerImpl extends AbstractBbvaController implemen
 	public List<MultiValueGroup> getListQuieroQuota(ProductDto product) {
 		LOGGER.info("Prodcuto " + product.getAlias());
 		if (product.getOperationOnline()) {
-			return this.multiValueGroupFacade.getMultiValueTypes(8);
+			return this.listQuieroQuota;
 		} else {
-			List<MultiValueGroup> lista = this.multiValueGroupFacade.getMultiValueTypes(8);
-			lista.remove(lista.size() - 1);
-			return lista;
+			return listQuieroQuota.subList(0, listQuieroQuota.size()-1);
 		}
+
 	}
 
 	/**
@@ -136,7 +152,7 @@ public class ComboCriteriaControllerImpl extends AbstractBbvaController implemen
 	 */
 	@Override
 	public List<MultiValueGroup> getQuieroLoan() {
-		return this.multiValueGroupFacade.getMultiValueTypes(9);
+		return quieroLoan;
 	}
 
 	/**
@@ -144,7 +160,7 @@ public class ComboCriteriaControllerImpl extends AbstractBbvaController implemen
 	 */
 	@Override
 	public List<MultiValueGroup> getQuieroDeposit() {
-		return this.multiValueGroupFacade.getMultiValueTypes(10);
+		return quieroDeposit;
 	}
 
 	/**
@@ -152,7 +168,7 @@ public class ComboCriteriaControllerImpl extends AbstractBbvaController implemen
 	 */
 	@Override
 	public List<MultiValueGroup> getQuieroFund() {
-		return this.multiValueGroupFacade.getMultiValueTypes(11);
+		return quieroFund;
 	}
 
 	/**
@@ -160,7 +176,7 @@ public class ComboCriteriaControllerImpl extends AbstractBbvaController implemen
 	 */
 	@Override
 	public List<MultiValueGroup> getQuieroLeasing() {
-		return this.multiValueGroupFacade.getMultiValueTypes(12);
+		return quieroLeasing;
 	}
 
 	// ************* Getters Methods *************

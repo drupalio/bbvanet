@@ -20,8 +20,6 @@ public class ApplicationControllerImpl extends AbstractBbvaController implements
 
 	private ProductDto product;
 
-	private transient ComboCriteriaControllerImpl combos = new ComboCriteriaControllerImpl();
-
 	@Resource(name = "multiValueGroupFacade")
 	private transient MultiValueGroupFacade multiValueGroupFacade;
 
