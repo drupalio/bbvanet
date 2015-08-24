@@ -13,13 +13,21 @@
 
 <composite:implementation>
 
-	<li class="search increase hidden-xs" style="width: 6%">
-        <form class="navbar-form" role="search">
+	<li class="search increase hidden-xs"  style="width:8%">
+
+        <h:form styleClass="navbar-form" role="search" id="formSearch">
             <div class="form-group">
-                <input class="form-control" type="text"></input>
-                <span class="search-icon"></span>
+            
+                <p:inputText value="#{headerController.search}" type="text"
+					styleClass="form-control">
+					<p:ajax process="@form" event="keyup" update=":j_idt51:j_idt76:formSearch:itemSearch"/>				
+				</p:inputText>
+				<p:outputPanel id="itemSearch" styleClass="search-icon">
+						<a href="https://www.bbva.com.co/meta/buscador/buscador.jsp?q=#{headerController.getSearch()}" style="background: none;box-shadow:0px 0px 0px rgba(0, 0, 0, 0) inset" target="_blank">
+						</a>
+                </p:outputPanel>
             </div>
-        </form>
+        </h:form>
     </li>
 
 </composite:implementation>
