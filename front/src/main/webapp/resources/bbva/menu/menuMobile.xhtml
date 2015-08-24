@@ -23,11 +23,17 @@
 						<div>
 							<ul>
 								<li>
-									<form action="#" method="POST" class="form form-search"
-										role="form">
-										<input name="search" class="form-control" type="text" /> <span
-											class="search-icon"></span>
-									</form>
+									<h:form styleClass="form form-search" role="form" id="formSearch">
+							            
+						                <p:inputText value="#{headerController.search}" type="text"
+											styleClass="form-control">
+											<p:ajax process="@form" event="keyup" update=":j_idt85:formSearch:itemSearch"/>				
+										</p:inputText>
+										<p:outputPanel id="itemSearch" styleClass="search-icon">
+												<a href="https://www.bbva.com.co/meta/buscador/buscador.jsp?q=#{headerController.getSearch()}" style="background: none;box-shadow:0px 0px 0px rgba(0, 0, 0, 0) inset" target="_blank">
+												</a>
+						                </p:outputPanel>
+							        </h:form>
 								</li>
 							</ul>
 						</div>
