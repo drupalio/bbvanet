@@ -34,15 +34,9 @@ orquidea.init = function() {
 	orquidea.panel.balance.textChange();
 
 	orquidea.validate.radios();
-	
-	orquidea.checkquiero.balance.customSearch();
-	orquidea.checkquiero.incomeAndExpenses.customSearch();
-	orquidea.checkquiero.movements.customSearch();
 
 	orquidea.changeactions.prymaryBtn();
 	orquidea.changeactions.disableaction();
-	orquidea.changeactions.click();
-	orquidea.changeactions.windowonrow();
 };
 
 $(window).on('load', function() {
