@@ -15,6 +15,11 @@ function enableDisableButton(inputId) {
 function enableDisable(inputId) {
 	var valueInput = $(inputId).val().length;
 	if (valueInput >= 5) {
+		var message = $(inputId).parent().find('.messageAlert');
+		$(message).remove();
+		$(inputId).parent().removeAttr("style");
+		$(inputId).css("cssText", "width: 80% !important;");
+		$('.operKey').css('visibility', 'visible');
 		$('.operKey').removeClass('buttonDisabled');
 		return;
 	} else {
@@ -29,7 +34,7 @@ function checkFilled() {
 		$('button.verifySucess').css('visibility', 'hidden');
 		$('#divClass').css("cssText", "width: 100% !important;");
 		$('input.verifySucess').css("cssText", "width: 63% !important;");
-		$('input.verifySucess').after('<div class="pass-valid" style="width: 20px !important; float: right; height: 32px; padding: 0px; margin-right: 38px;"></div>');
+		$('input.verifySucess').after('<div class="pass-valid messageAlert" style="width: 20px !important; float: right; height: 32px; padding: 0px; margin-right: 38px;"></div>');
 	});
 }
 
@@ -39,7 +44,7 @@ function mistakeFilled() {
 		$('button.verifySucess').css('visibility', 'hidden');
 		$('#divClass').css("cssText", "width: 100% !important;");
 		$('input.verifySucess').css("cssText", "width: 63% !important;");
-		$('input.verifySucess').after('<div class="mistake-operation" style="width: 20px !important; float: right; height: 32px; padding: 0px; margin-right: 38px;"></div>');
+		$('input.verifySucess').after('<div class="mistake-operation messageAlert" style="width: 20px !important; float: right; height: 32px; padding: 0px; margin-right: 38px;"></div>');
 	});
 }
 
