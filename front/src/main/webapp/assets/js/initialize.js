@@ -34,8 +34,7 @@ orquidea.init = function() {
 	orquidea.panel.balance.textChange();
 
 	orquidea.validate.radios();
-
-	orquidea.checkquiero.date.filter();
+	
 	orquidea.checkquiero.balance.customSearch();
 	orquidea.checkquiero.incomeAndExpenses.customSearch();
 	orquidea.checkquiero.movements.customSearch();

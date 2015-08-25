@@ -6,23 +6,30 @@ orquidea.resized.menu = function() {
 	var inicialSizeButton = null;
 	var button = $(".access-menu .form-client-access");
 	var searchPhone = $('.access-menu .increase');
+	var contentButton = $(".form-client-access-trigger");
+	var parentNav = $(".fixed-menu");
 
 	$(".search input").focusin(function() {
+		parentNav.addClass("search-focused");
 		if ($('.mobile-menu').is(':visible')) {
 			if (initialSizeSearch == null) {
 				initialSizeSearch = searchPhone.width();
 				inicialSizeButton = button.width();
 			}
 
-			;
 			var sizeSearch = searchPhone.position().left - button.position().left - 5;
 
 			searchPhone.animate({
 				width : sizeSearch
-			})
+			});
 			button.animate({
-				width : 45,
-			})
+				width : 60,
+				height : 40,
+			});
+			contentButton.animate({
+				width : 43,
+				height : 40,
+			});
 			button.find('a').css({
 				color : 'transparent',
 				'padding-left' : 13
@@ -30,12 +37,16 @@ orquidea.resized.menu = function() {
 		} else {
 			var screenwidth;
 			if ($('.logged-user').is(':visible')) {
-				screenwidth = $(".container-header").width() - 383;
+				screenwidth = $(".container-header").width() - 370;
 			} else {
-				screenwidth = $(".container-header").width() - 300;
+				screenwidth = $(".container-header").width() - 230;
 			}
 			var mediaelement = screenwidth / 5;
 			var nodecimal = mediaelement.toFixed();
+
+			$(".item-menu[class!='moreTab-width'] a").css({
+				'letter-spacing' : -0.5
+			});
 
 			$("#submenu").find('li').each(function(key, element) {
 				if ($(element).attr('class') === 'item-menu') {
@@ -44,26 +55,32 @@ orquidea.resized.menu = function() {
 				}
 
 				$(".increase").stop().animate({
-					width : '190px'
+					width : '170px'
 				});
-				/*
-				 * ¡¡$(".posicion-global a").stop().animate({ padding: '9px
-				 * 12px' });
-				 */
+
 				if ($('.logged-user').is(':visible')) {
-					$(".item-menu").stop().animate({
+
+					$(".item-menu[class!='moreTab-width']").stop().animate({
 						width : nodecimal,
-					});
-				} else {
-					$(".item-menu").stop().animate({
-						width : nodecimal,
-					})
-					$(".item-menu a").stop().animate({
-						padding : '15px 10px'
 					});
 
+				} else {
+					$(".item-menu[class!='moreTab-width']").stop().animate({
+						width : nodecimal,
+					});
+
+					if ((".item-menu").hasClass('moreTab-width')) {
+
+						$(".item-menu a").stop().animate({
+							padding : '3px 0'
+						});
+
+					} else {
+						$(".item-menu a").stop().animate({
+							padding : '3px 0'
+						});
+					}
 				}
-				$(".icon-hide").stop().hide();
 			});
 		}
 	});
@@ -90,11 +107,7 @@ orquidea.resized.menu = function() {
 		} else {
 			var elementnormalwidth;
 			if ($('.logged-user').is(':visible')) {
-				elementnormalwidth = $(".container-header").width() - 225;
-				/*
-				 * $(".posicion-global a").stop().animate({ padding: '6px 12px'
-				 * });
-				 */
+				elementnormalwidth = $(".container-header").width() - 300;
 			} else {
 				elementnormalwidth = $(".container-header").width() - 146;
 			}
@@ -102,19 +115,27 @@ orquidea.resized.menu = function() {
 			var nodecimalNormal = mediaNormal.toFixed();
 
 			$(".increase").stop().animate({
-				width : "8%"
+				width : "7%"
 			}, function() {
 				$(".increase").removeAttr('style');
+				parentNav.removeClass("search-focused");
 			});
 
-			$(".item-menu").stop().animate({
-				width : nodecimalNormal
+			$(".item-menu a").css({
+				'letter-spacing' : 0
+			});
+			$(".moreTab-width a").css({
+				'letter-spacing' : -0.7
+			});
+
+			$(".item-menu[class!='moreTab-width']").stop().animate({
+
+				width : nodecimalNormal,
+
 			}, function() {
 				if ($('.logged-user').is(':visible')) {
-					$(".icon-hide").stop().show();
 					$(".item-menu").removeAttr('style');
 				} else {
-					$(".icon-hide").stop().show();
 					$(".item-menu").removeAttr('style');
 					$(".item-menu").removeAttr('style');
 					$(".item-menu").find('a').removeAttr('style');
