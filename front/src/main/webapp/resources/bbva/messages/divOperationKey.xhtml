@@ -20,15 +20,17 @@
 			<div class="row validate-key">
 				<label class="col-xs-12 col-md-5"><span class="iconFont-218"></span>#{msg['text.operationKey']}</label>
 				<div class="col-xs-12 col-md-7 input-group">
-					<div class="col-xs-9 col-md-8 input-control" id="#{cc.attrs.idInputDiv}" >
+					<div class="col-xs-9 col-md-8 input-control" id="#{cc.attrs.idInputDiv}">
 						<p:inputText id="#{cc.attrs.idInput}" styleClass="form-control verifySucess" type="password"
-							value="#{cc.attrs.value}" onkeyup="enableDisable(this)" maxlength="8" style="width: 80% !important" >
-							<p:ajax event="click" update="@form"/>
-							</p:inputText>
+							value="#{cc.attrs.value}" onkeyup="enableDisable(this)" maxlength="8"
+							style="width: 80% !important">
+							<p:ajax event="keyup" update="@(.bagVerify)" />
+						</p:inputText>
 					</div>
-					<div class="col-xs-3 col-md-4 btn-control">
+					<div class="col-xs-3 col-md-4 btn-control bagVerify">
 						<p:commandButton id="item_#{cc.attrs.idComfirm}" value="#{msg['text.comfirm']}"
 							style="padding: 3px 1px;" actionListener="#{cc.attrs.actionListener}"
+							onstart="PF('statusDialog').show();" oncomplete="PF('statusDialog').hide();"
 							styleClass="operKey btn btn-default btn-confirm buttonDisabled verifySucess" />
 					</div>
 				</div>

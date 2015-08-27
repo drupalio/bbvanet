@@ -2056,7 +2056,7 @@ body div.ui-growl .ui-state-highlight {
 
 @media ( min-width : 769px) {
 	.buttonLupa {
-		bottom: 30px;
+		bottom: 41px;
 		float: right;
 	}
 }
@@ -2096,4 +2096,14 @@ body div.ui-growl .ui-state-highlight {
 	background-repeat: no-repeat;
 	background-position: right center;
 	margin-left: 10px !important;
+}
+
+@media ( min-width : 768px) {
+	.moreTab-width {
+		width: 16% !important;
+	}
+	.moreTab-width a {
+		letter-spacing: -0.7px !important;
+		padding: 12px 2px !important;
+	}
 }

@@ -37,6 +37,8 @@ public class HeaderControllerImpl extends AbstractBbvaController implements Head
 	private String fileDownload;
 
 	private DateRangeDto date = new DateRangeDto();
+	
+	private String search= StringUtils.EMPTY;
 
 	private static final long serialVersionUID = 5284952254890332374L;
 
@@ -164,4 +166,13 @@ public class HeaderControllerImpl extends AbstractBbvaController implements Head
 		this.date = date;
 	}
 
+	public String getSearch() {
+		return search;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
+	}
+
+	
 }

@@ -1,4 +1,5 @@
 package com.bbva.net.front.controller.impl;
+
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -41,30 +42,29 @@ public class ComboCriteriaControllerImpl extends AbstractBbvaController implemen
 	 * 
 	 */
 	private transient List<MultiValueGroup> multiValueList;
-	
+
 	private transient List<MultiValueGroup> listMultiValuePeriod;
-	
+
 	private transient List<MultiValueGroup> listMultiValueChecks;
-	
+
 	private transient List<MultiValueGroup> listQuieroAccounts;
-	
+
 	private transient List<MultiValueGroup> listQuieroCards;
-	
+
 	private transient List<MultiValueGroup> listQuieroQuota;
-	
+
 	private transient List<MultiValueGroup> quieroLoan;
-	
+
 	private transient List<MultiValueGroup> quieroDeposit;
-	
+
 	private transient List<MultiValueGroup> quieroFund;
-	
+
 	private transient List<MultiValueGroup> quieroLeasing;
-	
 
 	/**
 	 * 
 	 */
-	
+
 	private static final long serialVersionUID = -8550174788177930813L;
 
 	/**
@@ -72,14 +72,13 @@ public class ComboCriteriaControllerImpl extends AbstractBbvaController implemen
 	 */
 	@Resource(name = "multiValueGroupFacade")
 	private transient MultiValueGroupFacade multiValueGroupFacade;
-	
+
 	/**
 	 * Inicialización de Combos
 	 */
 	@PostConstruct
 	public void init() {
-		this.multiValuePeriod = this.getListMultiValuePeriod();
-		this.multiValueList = this.getListMultiValueChecks();
+
 		this.listMultiValuePeriod = this.multiValueGroupFacade.getMultiValueTypes(LIST_CHECK_STATUS);
 		this.listMultiValueChecks = this.multiValueGroupFacade.getMultiValueTypes(LIST_CHECKBOOK_STATUS);
 		this.listQuieroAccounts = this.multiValueGroupFacade.getMultiValueTypes(6);
@@ -89,6 +88,8 @@ public class ComboCriteriaControllerImpl extends AbstractBbvaController implemen
 		this.quieroDeposit = this.multiValueGroupFacade.getMultiValueTypes(10);
 		this.quieroFund = this.multiValueGroupFacade.getMultiValueTypes(11);
 		this.quieroLeasing = this.multiValueGroupFacade.getMultiValueTypes(12);
+		this.multiValuePeriod = this.getListMultiValuePeriod();
+		this.multiValueList = this.getListMultiValueChecks();
 	}
 
 	/**
@@ -116,7 +117,7 @@ public class ComboCriteriaControllerImpl extends AbstractBbvaController implemen
 		if (product.getOperationOnline()) {
 			return this.listQuieroAccounts;
 		} else {
-			return listQuieroAccounts.subList(0, listQuieroAccounts.size()-1);
+			return listQuieroAccounts.subList(0, listQuieroAccounts.size() - 1);
 		}
 	}
 
@@ -137,7 +138,7 @@ public class ComboCriteriaControllerImpl extends AbstractBbvaController implemen
 		if (product.getOperationOnline()) {
 			return this.listQuieroQuota;
 		} else {
-			return listQuieroQuota.subList(0, listQuieroQuota.size()-1);
+			return listQuieroQuota.subList(0, listQuieroQuota.size() - 1);
 		}
 
 	}
