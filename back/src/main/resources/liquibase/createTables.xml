@@ -259,6 +259,12 @@
 		
 		<insert tableName="MULTIVALUEGROUP">
 			<column name="ID" autoIncrement="true" />
+			<column name="VALUE">quiero.debtPayment</column>
+			<column name="TYPE_ID">7</column>
+		</insert>
+		
+		<insert tableName="MULTIVALUEGROUP">
+			<column name="ID" autoIncrement="true" />
 			<column name="VALUE">quiero.seeMoreOptions</column>
 			<column name="TYPE_ID">7</column>
 		</insert>		
