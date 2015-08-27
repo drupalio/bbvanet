@@ -23,9 +23,10 @@ import com.bbva.net.front.core.AbstractBbvaController;
 @Scope(value = "globalSession")
 public class ComboCriteriaControllerImpl extends AbstractBbvaController implements ComboCriteriaController {
 
-	/**
-	 * 
+	/*
+	 * GP12834 Cheques y chequeras - Entelgy - inicio
 	 */
+
 	private static final Integer LIST_CHECK_STATUS = 3;
 
 	/**
@@ -36,12 +37,16 @@ public class ComboCriteriaControllerImpl extends AbstractBbvaController implemen
 	/**
 	 * 
 	 */
-	private transient List<MultiValueGroup> multiValuePeriod;
+	private transient List<MultiValueGroup> multiValueList;
+
+	/*
+	 * GP12834 Cheques y chequeras - Entelgy - fin
+	 */
 
 	/**
 	 * 
 	 */
-	private transient List<MultiValueGroup> multiValueList;
+	private transient List<MultiValueGroup> multiValuePeriod;
 
 	private transient List<MultiValueGroup> listMultiValuePeriod;
 
@@ -79,8 +84,17 @@ public class ComboCriteriaControllerImpl extends AbstractBbvaController implemen
 	@PostConstruct
 	public void init() {
 
+		/*
+		 * GP12834 Cheques y chequeras - Entelgy - inicio
+		 */
 		this.listMultiValuePeriod = this.multiValueGroupFacade.getMultiValueTypes(LIST_CHECK_STATUS);
 		this.listMultiValueChecks = this.multiValueGroupFacade.getMultiValueTypes(LIST_CHECKBOOK_STATUS);
+		this.multiValueList = this.getListMultiValueChecks();
+
+		/*
+		 * GP12834 Cheques y chequeras - Entelgy - fin
+		 */
+
 		this.listQuieroAccounts = this.multiValueGroupFacade.getMultiValueTypes(6);
 		this.listQuieroCards = this.multiValueGroupFacade.getMultiValueTypes(7);
 		this.listQuieroQuota = this.multiValueGroupFacade.getMultiValueTypes(8);
@@ -89,7 +103,6 @@ public class ComboCriteriaControllerImpl extends AbstractBbvaController implemen
 		this.quieroFund = this.multiValueGroupFacade.getMultiValueTypes(11);
 		this.quieroLeasing = this.multiValueGroupFacade.getMultiValueTypes(12);
 		this.multiValuePeriod = this.getListMultiValuePeriod();
-		this.multiValueList = this.getListMultiValueChecks();
 	}
 
 	/**
@@ -100,13 +113,17 @@ public class ComboCriteriaControllerImpl extends AbstractBbvaController implemen
 		return this.listMultiValuePeriod;
 	}
 
-	/**
-	 * Método que obtiene los items del combo en cheques
+	/*
+	 * GP12834 Cheques y chequeras - Entelgy - inicio // Método que obtiene los items del combo en cheques
 	 */
 	@Override
 	public List<MultiValueGroup> getListMultiValueChecks() {
 		return this.listMultiValueChecks;
 	}
+
+	/*
+	 * GP12834 Cheques y chequeras - Entelgy - fin
+	 */
 
 	/**
 	 * Método que obtiene los items del combo quiero de cuentas
@@ -191,12 +208,16 @@ public class ComboCriteriaControllerImpl extends AbstractBbvaController implemen
 		return multiValuePeriod;
 	}
 
-	/**
-	 * @return
+	/*
+	 * GP12834 Cheques y chequeras - Entelgy - inicio
 	 */
 
 	public List<MultiValueGroup> getMultiValueList() {
 		return multiValueList;
 	}
+
+	/*
+	 * GP12834 Cheques y chequeras - Entelgy - fin
+	 */
 
 }
