@@ -21,6 +21,10 @@ import com.bbva.czic.dto.net.MonthlyBalances;
 @Path("/V01")
 public interface AccountsService {
 
+	/*
+	 * GP12834 Cheques y chequeras - Entelgy - inicio
+	 */
+
 	@GET
 	@Produces("application/json")
 	@Path("/{accountId}/checkbooks/{checkbookId}")
@@ -42,6 +46,10 @@ public interface AccountsService {
 	List<Check> listCheck(@PathParam("id") String id, @QueryParam("$filter") @DefaultValue("null") String $filter,
 			@QueryParam("paginationKey") @DefaultValue("null") Integer paginationKey,
 			@QueryParam("pageSize") @DefaultValue("null") Integer pageSize);
+
+	/*
+	 * GP12834 Cheques y chequeras - Entelgy - fin
+	 */
 
 	@GET
 	@Produces("application/json")

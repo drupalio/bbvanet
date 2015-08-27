@@ -36,6 +36,7 @@
 					update=":quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:componentList
 					        :quotaDetail:detailAccounts:detailAccounts" />
 			</p:commandButton>
+			<!-- GP12834 Cheques y chequeras - Entelgy - inicio  -->
 			<p:commandButton styleClass="btn btn-default" rendered="#{cc.attrs.showMovements}"
 				icon="document-view-icon" value="#{msg['button.see.result']}">
 				<p:ajax process="@form" onstart="PF('statusDialog').show()"
@@ -52,6 +53,7 @@
 								:detailAccounts:checkTable:formCheks
 								:detailAccounts:checkBookTable:formCheckBooks" />
 			</p:commandButton>
+			<!-- GP12834 Cheques y chequeras - Entelgy - fin  -->
 			<p:commandButton styleClass="btn btn-default" type="button" rendered="#{cc.attrs.showQuota}"
 				icon="document-view-icon" value="#{msg['button.see.result']}">
 				<p:ajax process="@form" onstart="PF('statusDialog').show()"

@@ -22,6 +22,10 @@ public class AccountsServiceImpl extends AbstractBbvaRestService implements Acco
 	@Value("${fiql.filter.parameter}")
 	private String FILTER;
 
+	/*
+	 * GP12834 Cheques y chequeras - Entelgy - inicio
+	 */
+
 	@Value("${rest.checkBooks.url}")
 	private String URL_CHECKBOOK;
 
@@ -77,6 +81,10 @@ public class AccountsServiceImpl extends AbstractBbvaRestService implements Acco
 			throw new RestClientException("NO EXISTEN DATOS A LISTAR");
 		}
 	}
+
+	/*
+	 * GP12834 Cheques y chequeras - Entelgy - fin
+	 */
 
 	@SuppressWarnings("unchecked")
 	@Override
