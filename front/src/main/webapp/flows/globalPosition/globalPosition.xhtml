@@ -157,8 +157,10 @@
 	</ui:define>
 	<ui:define name="contentRight">
 		<bbvaSituation:globalSituationPanel />
+		<!-- GP13137 Operaciones favoritas - Entelgy - Inicio-->
 		<bbvaOperationFav:operationsPanel id="operationsPanel"
 			list="#{favoriteOperationsController.favoriteOperations}" />
+		<!-- GP13137 Operaciones favoritas - Entelgy - Fin-->
 	</ui:define>
 </ui:composition>
 </html>
