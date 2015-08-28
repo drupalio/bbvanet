@@ -9,7 +9,15 @@ public interface ComboCriteriaController {
 
 	List<MultiValueGroup> getListMultiValuePeriod();
 
+	/*
+	 * GP12834 Cheques y chequeras - Entelgy - inicio
+	 */
+
 	List<MultiValueGroup> getListMultiValueChecks();
+
+	/*
+	 * GP12834 Cheques y chequeras - Entelgy - fin
+	 */
 
 	List<MultiValueGroup> getListQuieroAccounts(ProductDto product);
 

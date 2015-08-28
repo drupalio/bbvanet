@@ -5,16 +5,20 @@
     http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
 
 	<var name="movementsCriteriaController" class="com.bbva.net.front.controller.impl.MovementCriteriaControllerImpl" />
+	<!-- GP12834 Cheques y chequeras - Entelgy - inicio -->
 	<var name="checkBookController" class="com.bbva.net.front.controller.impl.CheckBookControllerImpl" />
+	<!-- GP12834 Cheques y chequeras - Entelgy - fin -->
 	<var name="personalizeProductAccountController" class="com.bbva.net.front.controller.impl.PersonalizeProductControllerImpl" />
 	<var name="renderViewMovementsUI" class="com.bbva.net.front.ui.movements.RenderViewMovementsUI" />
 	<var name="termsController" class="com.bbva.net.front.controller.impl.TermsControllerImpl" />
 	<var name="extractController" class="com.bbva.net.front.controller.impl.ExtractControllerImpl" />
 
 	<on-start>
+		<!-- GP12834 Cheques y chequeras - Entelgy - inicio -->
 		<evaluate expression="checkBookController.init()" />
 		<evaluate expression="checkBookController.initCheckBookList()" />
 		<evaluate expression="personalizeProductAccountController.init()" />
+		<!-- GP12834 Cheques y chequeras - Entelgy - fin -->
 		<evaluate expression="movementsCriteriaController.init()" />
 		<evaluate expression="movementsCriteriaController.getSelectedProduct()"
 			result="flowScope.product" />
