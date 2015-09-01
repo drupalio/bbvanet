@@ -34,7 +34,7 @@ public class LoginControllerImpl extends AbstractBbvaController implements Login
 			final String ivTicketValue = getRequest().getHeader("iv_ticketService");
 
 			// 3. Set CurrentUser
-			final String user = getRequestParameter("usuario");
+			final String user = getRequest().getHeader("iv-user");
 			this.setDefaultUser(user);
 
 			LOGGER.info("Login with User: " + user);
