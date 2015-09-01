@@ -63,6 +63,7 @@
 					actionListenerShow="#{movementsCriteriaController.searchMovementByFilter}" />
 			</bbvaSearch:personalizedSearchTabBody>
 		</h:form>
+		<!-- GP12834 Cheques y chequeras - Entelgy - inicio  -->
 		<h:form id="formCheckBook">
 			<bbvaSearch:personalizedSearchTabBody id="checkSearchTab"
 				title="#{msg['text.title.search.book']}">
@@ -97,6 +98,7 @@
 					showChecks="true" showMovements="false" actionListenerShow="#{checkBookController.showResults}" />
 			</bbvaSearch:personalizedSearchTabBody>
 		</h:form>
+		<!-- GP12834 Cheques y chequeras - Entelgy - fin  -->
 		<h:form id="downExtract">
 			<bbvaSearch:personalizedSearchExtract id="containerExtract" />
 		</h:form>

@@ -19,20 +19,24 @@
 			valueCorreo="#{movementsCriteriaController.sendMail()}"
 			valuePrinter="detailAccounts:tableMovements:formMovesDetail:detalMovImprimir"
 			render="#{renderComponents['TITLEMOVES']}" />
+		<!-- GP12834 Cheques y chequeras - Entelgy - inicio  -->
 		<bbvaTablesAcc:iconsButtons id="iconsChek" renderCorreo="false"
 			valueExcel="#{checkBookController.exportCheckExcel}"
 			valuePdf="#{checkBookController.exportCheckPdf}"
-			valuePrinter="detailAccounts:checkTable:formCheks:checksTableImprimir" 
+			valuePrinter="detailAccounts:checkTable:formCheks:checksTableImprimir"
 			render="#{renderComponents['TITLECHECKS']}" />
 		<bbvaTablesAcc:iconsButtons id="iconsChecBook" renderCorreo="false"
 			valueExcel="#{checkBookController.exportCheckBookExcel}"
 			valuePdf="#{checkBookController.exportCheckBookPdf}"
 			valuePrinter="detailAccounts:checkBookTable:formCheckBooks:checkBooksTableImprimir"
 			render="#{renderComponents['TITLECHECKBOOKS']}" />
+		<!-- GP12834 Cheques y chequeras - Entelgy - fin  -->
 		<bbvaTablesAcc:accountMovementsTable id="tableMovements" listAccounts="#{cc.attrs.listAccounts}" />
+		<!-- GP12834 Cheques y chequeras - Entelgy - inicio  -->
 		<bbvaTablesAcc:checkAccountTable id="checkTable" listChecks="#{cc.attrs.listChecks}" />
 		<bbvaTablesAcc:checkBooksAccountTable id="checkBookTable"
 			listCheckBooks="#{cc.attrs.listCheckBooks}" />
+		<!-- GP12834 Cheques y chequeras - Entelgy - fin  -->
 	</article>
 </composite:implementation>
 </html>
