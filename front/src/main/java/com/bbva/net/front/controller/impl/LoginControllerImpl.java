@@ -42,7 +42,7 @@ public class LoginControllerImpl extends AbstractBbvaController implements Login
 
 			// 4. Invocar al GrantingTicket y almacenar AuthenticationState
 			final AuthenticationState authenticationState = this.loginFacade.login(ivTicketValue, user,
-					getRequestParameter("password2"), getRequestParameter("NumeroId"), getRequestParameter("TipoId"));
+					getRequestParameter("pass"), getRequestParameter("numero"), getRequestParameter("tipo"));
 
 			// 5. Put in Session
 			this.getSession().setAttribute(SessionParamenterType.AUTHENTICATION_STATE.name(), authenticationState);

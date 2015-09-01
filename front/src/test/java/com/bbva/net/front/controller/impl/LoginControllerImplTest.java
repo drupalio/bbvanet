@@ -29,13 +29,13 @@ public class LoginControllerImplTest extends AbstractBbvaControllerTest {
 	public void testLogin_OK() {
 
 		// Configure Mocks
-		Mockito.when(request.getParameter("usuario")).thenReturn("julio123CC000001020715321");
+		Mockito.when(request.getHeader("iv-user")).thenReturn("julio123CC000001020715321");
 		Mockito.when(request.getHeader("iv_ticketService")).thenReturn(
 				"cqwAIvi92lzshpPQR9RYK2RFo9axRY697/TtCA4N/bnM6d5znws5S1T3rYwHVRU3YnYvpZZXF4s=");
 
-		Mockito.when(request.getParameter("password2")).thenReturn("91261343");
-		Mockito.when(request.getParameter("NumeroId")).thenReturn("1020715321");
-		Mockito.when(request.getParameter("TipoId")).thenReturn("CC");
+		Mockito.when(request.getParameter("pass")).thenReturn("91261343");
+		Mockito.when(request.getParameter("numero")).thenReturn("1020715321");
+		Mockito.when(request.getParameter("tipo")).thenReturn("CC");
 
 		Mockito.when(
 				this.loginFacade.login("cqwAIvi92lzshpPQR9RYK2RFo9axRY697/TtCA4N/bnM6d5znws5S1T3rYwHVRU3YnYvpZZXF4s=",
