@@ -82,7 +82,7 @@
 				</div>
 				<div class="row afterTable">
 					<bbvaGP:productFooter listProduct="#{customerProductsHidden.creditCards}" />
-					<bbvaGP:totalBalance util="#{msg['text.used']}"
+					<bbvaGP:totalBalance util="#{msg['text.used']}" displayIcon="icon-Info-BlueFilter"
 						total="#{globalPositionController.totalsProducts['TC'].total}"
 						subtotal="#{globalPositionController.getTotalUsedCards(globalPositionController.totalsProducts['TC'].total,globalPositionController.totalsProducts['TC'].available)}" />
 				</div>

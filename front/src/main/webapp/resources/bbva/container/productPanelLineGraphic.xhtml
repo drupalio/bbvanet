@@ -6,7 +6,8 @@
 	xmlns:cc="http://jsflive.at/taglib"
 	xmlns:bbvaGP="http://java.sun.com/jsf/composite/bbva/globalPosition"
 	xmlns:jsf="http://xmlns.jcp.org/jsf"
-	xmlns:bbvaEDesposit="http://java.sun.com/jsf/composite/bbva/graphics/electronicDeposit">
+	xmlns:bbvaEDesposit="http://java.sun.com/jsf/composite/bbva/graphics/electronicDeposit"
+	xmlns:bbvaDesposit="http://java.sun.com/jsf/composite/bbva/graphics">
 <composite:interface>
 	<composite:attribute name="id" type="String" />
 	<composite:attribute name="title" type="String" />
@@ -38,7 +39,7 @@
 					<bbvaEDesposit:electronicDepositGraphic graphicLine="#{globalPositionController.lineConfigUI}" />
 				</div>
 			</h:form>
-			<!-- <bbvaEDesposit:footerDepositElectronic/> -->
+			<bbvaDesposit:footerDepositElectronic nameLeft="Déposito"/>
 		</div>
 		<div class="row afterTable"></div>
 	</div>
