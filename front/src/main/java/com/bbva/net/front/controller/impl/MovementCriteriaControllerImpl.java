@@ -216,9 +216,18 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			movementDetail = this.movementsFacade.getMovement(getSelectedProduct().getProductId(), getSelectedProduct()
 					.getTypeProd().value(), getSelectedMovements().getMovementId());
 			LOGGER.info("Despues de llamar al servicio ...");
-			LOGGER.info("antes de llamar a la BDD ...");
-			List<MultiCoordinates> coordenadas = this.multiValueGroupFacade.getMultiCoordinate(movementDetail
-					.getPlaza().getCode());
+
+			List<MultiCoordinates> coordenadas = new ArrayList<MultiCoordinates>();
+			if (movementDetail.getPlaza().getCode() != null && !movementDetail.getPlaza().getCode().isEmpty()) {
+				coordenadas = this.multiValueGroupFacade.getMultiCoordinate(movementDetail.getPlaza().getCode());
+				LOGGER.info("coordenadas por codigo" + coordenadas.get(0).getLatitude() + " "
+						+ coordenadas.get(0).getLength());
+			} else {
+				coordenadas = this.multiValueGroupFacade.getMultiCoordinate(movementDetail.getPlaza()
+						.getPostalAddress().substring(0, 4));
+				LOGGER.info("coordenadas por postalAddres" + coordenadas.get(0).getLatitude() + " "
+						+ coordenadas.get(0).getLength());
+			}
 			LOGGER.info("Despues de llamar a la BDD ...");
 			if (coordenadas.size() >= 2) {
 				LOGGER.info("Entra al if de llamar a la BDD ... te que se encontro 2 coordenadas mas");

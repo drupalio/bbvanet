@@ -36,19 +36,33 @@ public class LoginControllerImpl extends AbstractBbvaController implements Login
 			// 3. Set CurrentUser
 			final String user = getRequest().getHeader("iv-user");
 			this.setDefaultUser(user);
-
 			LOGGER.info("Login with User: " + user);
 			LOGGER.info("iv_ticketService: " + ivTicketValue);
 
-			// 4. Invocar al GrantingTicket y almacenar AuthenticationState
-			final AuthenticationState authenticationState = this.loginFacade.login(ivTicketValue, user,
-					getRequestParameter("pass"), getRequestParameter("numero"), getRequestParameter("tipo"));
+			// 4. Set status User
+			final String statusUSer = getRequest().getHeader("iv_TX_CESTADO");
+			LOGGER.info("iv_TX_CESTADO: " + statusUSer);
 
-			// 5. Put in Session
-			this.getSession().setAttribute(SessionParamenterType.AUTHENTICATION_STATE.name(), authenticationState);
-			this.getSession().setAttribute("userName", user.substring(0, 8));
-			this.getSession().setAttribute("docTypeUser", user.substring(8, 10));
-			this.getSession().setAttribute("docIdUser", user.substring(10, 25));
+			if (statusUSer.equals("es SINTJC")) {
+				LOGGER.info("Sin tarjeta de coordenadas ");
+				try {
+					// FacesContext context = FlowFacesContext.getCurrentInstance();
+					// context.getExternalContext().redirect("/kqco_co_web/errorService/errorService.xhtml");
+				} catch (Exception d) {
+
+				}
+			} else {
+				LOGGER.info("Con tarjeta de coordenadas");
+				// 4. Invocar al GrantingTicket y almacenar AuthenticationState
+				final AuthenticationState authenticationState = this.loginFacade.login(ivTicketValue, user,
+						getRequestParameter("pass"), getRequestParameter("numero"), getRequestParameter("tipo"));
+				// 5. Put in Session
+				this.getSession().setAttribute(SessionParamenterType.AUTHENTICATION_STATE.name(), authenticationState);
+				this.getSession().setAttribute("userName", user.substring(0, 8));
+				this.getSession().setAttribute("docTypeUser", user.substring(8, 10));
+				this.getSession().setAttribute("docIdUser", user.substring(10, 25));
+			}
+
 		} catch (Exception e) {
 			LOGGER.info("Error al iniciar sesión " + e.getMessage());
 			try {
