@@ -219,14 +219,18 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 			List<MultiCoordinates> coordenadas = new ArrayList<MultiCoordinates>();
 			if (movementDetail.getPlaza().getCode() != null && !movementDetail.getPlaza().getCode().isEmpty()) {
+				LOGGER.info("Antes del obtener el codigo ..." + movementDetail.getPlaza().getCode());
 				coordenadas = this.multiValueGroupFacade.getMultiCoordinate(movementDetail.getPlaza().getCode());
+				LOGGER.info("coordenadas por codigo size " + coordenadas.size());
 				LOGGER.info("coordenadas por codigo" + coordenadas.get(0).getLatitude() + " "
 						+ coordenadas.get(0).getLength());
 			} else {
+				LOGGER.info("plaza " + movementDetail.getPlaza().getPostalAddress().substring(0, 4));
 				coordenadas = this.multiValueGroupFacade.getMultiCoordinate(movementDetail.getPlaza()
 						.getPostalAddress().substring(0, 4));
 				LOGGER.info("coordenadas por postalAddres" + coordenadas.get(0).getLatitude() + " "
 						+ coordenadas.get(0).getLength());
+
 			}
 			LOGGER.info("Despues de llamar a la BDD ...");
 			if (coordenadas.size() >= 2) {

@@ -32,7 +32,7 @@ public class LoginControllerImplTest extends AbstractBbvaControllerTest {
 		Mockito.when(request.getHeader("iv-user")).thenReturn("julio123CC000001020715321");
 		Mockito.when(request.getHeader("iv_ticketService")).thenReturn(
 				"cqwAIvi92lzshpPQR9RYK2RFo9axRY697/TtCA4N/bnM6d5znws5S1T3rYwHVRU3YnYvpZZXF4s=");
-
+		Mockito.when(request.getHeader("iv_TX_CESTADO")).thenReturn("asdas");
 		Mockito.when(request.getParameter("pass")).thenReturn("91261343");
 		Mockito.when(request.getParameter("numero")).thenReturn("1020715321");
 		Mockito.when(request.getParameter("tipo")).thenReturn("CC");
