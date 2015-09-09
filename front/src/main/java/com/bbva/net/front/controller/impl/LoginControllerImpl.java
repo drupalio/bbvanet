@@ -40,7 +40,8 @@ public class LoginControllerImpl extends AbstractBbvaController implements Login
 			LOGGER.info("iv_ticketService: " + ivTicketValue);
 
 			// 4. Set status User
-			final String statusUSer = getRequest().getHeader("iv_TX_CESTADO");
+			String statusUSer = getRequest().getHeader("iv_TX_CESTADO");
+			if (statusUSer != null || statusUSer.isEmpty()) statusUSer = "";
 			LOGGER.info("iv_TX_CESTADO: " + statusUSer);
 
 			if (statusUSer.equals("es SINTJC")) {
