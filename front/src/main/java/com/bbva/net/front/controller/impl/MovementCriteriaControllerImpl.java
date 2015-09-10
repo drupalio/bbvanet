@@ -247,7 +247,8 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 					+ coordenadas.get(0).getLength() + "..");
 		} catch (Exception e) {
 			FacesContext ctx = FacesContext.getCurrentInstance();
-			ctx.addMessage("movementDetail", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+			ctx.addMessage("movementDetail", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error",
+					"No es posible ubicar la oficina en el mapa"));
 		}
 	}
 
@@ -874,7 +875,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 			try {
 				file = new FileOutputStream(rutaMovePdf);
 			} catch (FileNotFoundException e) {
-				LOGGER.info("Excepción no se encuentra el archivo" + e.getMessage());
+				LOGGER.info("Excepción no se encuentra el archivo " + RUTA_ICONO_BBVA + "------" + e.getMessage());
 			}
 
 			headerController.setLastDownload(rutaMovePdf);

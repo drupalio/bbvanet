@@ -16,6 +16,7 @@
 	<composite:attribute name="alias" type="String" />
 	<composite:attribute name="number" type="String" />
 	<composite:attribute name="type" type="String" />
+	<composite:attribute name="accountAssociated" type="String" />
 </composite:interface>
 
 
@@ -26,6 +27,7 @@
 			<strong class="info-numero">#{cc.attrs.number}</strong>
 		</p>
 		<p>#{cc.attrs.type}</p>
+		<p>#{msg['text.accountAssociated']}: #{cc.attrs.accountAssociated}</p>
 	</div>
 
 </composite:implementation>

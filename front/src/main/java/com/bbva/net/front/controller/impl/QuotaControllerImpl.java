@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.math.BigDecimal;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
@@ -57,6 +58,7 @@ import com.bbva.net.back.facade.QuotaDetailFacade;
 import com.bbva.net.back.model.citeriaMovements.MovementCriteriaDto;
 import com.bbva.net.back.model.comboFilter.EnumPeriodType;
 import com.bbva.net.back.model.commons.DateRangeDto;
+import com.bbva.net.back.model.commons.Money;
 import com.bbva.net.back.model.enums.RenderAttributes;
 import com.bbva.net.back.model.globalposition.ProductDto;
 import com.bbva.net.back.model.movements.MovementDetailDto;
@@ -128,6 +130,10 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 	private String rutaPdfCupo;
 
 	private String rutaPdfMove;
+
+	private Money outstandingBal = new Money("0");
+
+	private BigDecimal valGraphic = new BigDecimal(0);
 
 	protected String RUTA_ICONO_BBVA = MessagesHelper.INSTANCE.getString("ruta.iconobbva");
 
@@ -1356,6 +1362,37 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 	 */
 	public void setExportDetailPdf(StreamedContent exportPdf) {
 		this.exportDetailPdf = exportPdf;
+	}
+
+	/**
+	 * @return value outstanding balance
+	 */
+	public Money getOutstandingBal() {
+		BigDecimal outstandingBalance = quotaDetailDto.getOutstandingBalance().getAmount();
+		if (outstandingBalance.compareTo(new BigDecimal("0")) == -1) {
+			outstandingBalance = outstandingBalance.negate();
+		}
+		outstandingBal.setAmount(quotaDetailDto.getAmountRequested().getAmount().subtract(outstandingBalance));
+
+		valGraphic = outstandingBal.getAmount().multiply(new BigDecimal(100));
+		valGraphic = valGraphic.divide(quotaDetailDto.getAmountRequested().getAmount());
+
+		return outstandingBal;
+	}
+
+	/**
+	 * @param outstandingBal
+	 */
+	public void setOutstandingBal(Money outstandingBal) {
+		this.outstandingBal = outstandingBal;
+	}
+
+	public BigDecimal getValGraphic() {
+		return valGraphic;
+	}
+
+	public void setValGraphic(BigDecimal valGraphic) {
+		this.valGraphic = valGraphic;
 	}
 
 }
