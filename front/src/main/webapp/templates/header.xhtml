@@ -30,37 +30,37 @@
 		</bbvaHeader:executive>
 	</div>
 	<bbvaMenu:menu>
-		<bbvaMenu:itemMenu href="./globalPosition" value="Posición global" liclass="moreTab-width active"
+		<bbvaMenu:itemMenu href="#{request.contextPath}/page/globalPosition" value="Posición global" liclass="moreTab-width active"
 			style="border-bottom-left-radius: 5px;border-top-left-radius:5px;" icon="posicionglobal"
 			rendered="#{menuActive == 'PG'}" onclick="PF('statusDialog').show()" title="Ir a Posición global" />
 			
-		<bbvaMenu:itemMenu href="./globalPosition" value="Posición global" title="Ir a Posición global"
+		<bbvaMenu:itemMenu href="#{request.contextPath}/page/globalPosition" value="Posición global" title="Ir a Posición global"
 			icon="posicionglobal" style="border-bottom-left-radius: 5px;border-top-left-radius:5px;"
 			liclass="moreTab-width" rendered="#{menuActive != 'PG'}" onclick="PF('statusDialog').show()" />
 			
-		<bbvaMenu:itemMenu href="./accounts" value="Cuentas" title="Ir a Cuentas" icon="account-icon"
+		<bbvaMenu:itemMenu href="#{request.contextPath}/page/accounts" value="Cuentas" title="Ir a Cuentas" icon="account-icon"
 			liclass="active" rendered="#{menuActive == 'ACCOUNTS'}" onclick="PF('statusDialog').show()" />
 			
-		<bbvaMenu:itemMenu href="./accounts" value="Cuentas" title="Ir a Cuentas" icon="account-icon"
+		<bbvaMenu:itemMenu href="#{request.contextPath}/page/accounts" value="Cuentas" title="Ir a Cuentas" icon="account-icon"
 			rendered="#{menuActive != 'ACCOUNTS'}" onclick="PF('statusDialog').show()" />
 			
-		<bbvaMenu:itemMenu href="./cards" value="Tarjetas" title="Ir a Tarjetas" icon="card-icon"
+		<bbvaMenu:itemMenu href="#{request.contextPath}/page/cards" value="Tarjetas" title="Ir a Tarjetas" icon="card-icon"
 			rendered="#{menuActive != 'CARDS'}" onclick="PF('statusDialog').show()" />
 			
-		<bbvaMenu:itemMenu href="./cards" value="Tarjetas" title="Ir a Tarjetas" icon="card-icon"
+		<bbvaMenu:itemMenu href="#{request.contextPath}/page/cards" value="Tarjetas" title="Ir a Tarjetas" icon="card-icon"
 			liclass="active" rendered="#{menuActive == 'CARDS'}" onclick="PF('statusDialog').show()" />
 			
-		<bbvaMenu:itemMenu href="./loan" value="Préstamos" title="Ir a Préstamos" icon="credit-icon"
+		<bbvaMenu:itemMenu href="#{request.contextPath}/page/loan" value="Préstamos" title="Ir a Préstamos" icon="credit-icon"
 			liclass="active" rendered="#{menuActive == 'LOANS'}" onclick="PF('statusDialog').show()" />
 			
-		<bbvaMenu:itemMenu href="./loan" value="Préstamos" title="Ir a Préstamos" icon="credit-icon"
+		<bbvaMenu:itemMenu href="#{request.contextPath}/page/loan" value="Préstamos" title="Ir a Préstamos" icon="credit-icon"
 			rendered="#{menuActive != 'LOANS'}" onclick="PF('statusDialog').show()" />
 			
-		<bbvaMenu:itemMenu href="./saveInvest" value="Ahorros e inversión"
+		<bbvaMenu:itemMenu href="#{request.contextPath}/page/saveInvest" value="Ahorros e inversión"
 			title="Ir a ahorros e inversión" icon="investment-icon" liclass="moreTab-width active"
 			rendered="#{menuActive == 'SAVEINVEST'}" onclick="PF('statusDialog').show()" />
 			
-		<bbvaMenu:itemMenu href="./saveInvest" value="Ahorros e inversión"
+		<bbvaMenu:itemMenu href="#{request.contextPath}/page/saveInvest" value="Ahorros e inversión"
 			title="Ir a ahorros e inversión" icon="investment-icon" liclass="moreTab-width"
 			rendered="#{menuActive != 'SAVEINVEST'}" onclick="PF('statusDialog').show()" />
 			
