@@ -239,6 +239,19 @@ function styleCheckD(combo) {
 	});
 }
 
+function addTool(spanT) {
+	$(document).ready(function() {
+		var div = "<div class='tooltip-arrow " + $(spanT).children('span').attr('data-class-toggle') + "'></div><div class='tooltip-inner'>" + $(spanT).children('span').attr('data-title') + "</div>";
+		$(spanT).parent().prepend("<div style='display: block;" + $(spanT).children('span').attr('data-style-toggle') + "' id='" + $(spanT).children('span').attr('id') + "tooltip' class='tooltip fade top in' role='tooltip'>" + div + " </div>");
+	});
+}
+
+function removeTool(spanT) {
+	$(document).ready(function() {
+		$(spanT).prev().remove();
+	});
+}
+
 $(document).delegate('.ui-datepicker-prev', 'click', function() {
 	var currentTo = $('.ui-datepicker-current');
 	var tableCalen = $('.ui-datepicker-calendar');
