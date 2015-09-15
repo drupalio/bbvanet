@@ -181,7 +181,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	public List<MovementDto> getAllMovements() {
 		LOGGER.info("MovementsAccountController getAllMovements");
 		this.movementsList = new ArrayList<MovementDto>();
-		dateRange = calculateDate(MessagesHelper.INSTANCE.getString("select.radio.last.month"));
+		dateRange = calculateDate(MessagesHelper.INSTANCE.getString("select.radio.45.days"));
 		setDateRangePc(dateRange);
 		setBalanceRangePc(null);
 		// TODO oroductId
