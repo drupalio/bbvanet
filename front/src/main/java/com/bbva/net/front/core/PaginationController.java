@@ -34,7 +34,7 @@ public abstract class PaginationController<T extends Serializable> extends Abstr
 
 	protected abstract List<T> getNextPage(int paginantionKey, int psize);
 
-	protected abstract Integer getNextPaginantionKey(List<T> lastPage);
+	protected abstract Integer getNextPaginantionKey(List<T> lastPage, Integer paginationKey);
 
 	public void init() {
 		LOGGER.info("Inicializando la lista de movimientos y la paginación ");
@@ -49,7 +49,7 @@ public abstract class PaginationController<T extends Serializable> extends Abstr
 			hasMorePages = false;
 		}
 		currentList.addAll(currentPage);
-		paginationKey = getNextPaginantionKey(currentPage);
+		paginationKey = getNextPaginantionKey(currentPage, this.paginationKey);
 	}
 
 	// Setters and getters

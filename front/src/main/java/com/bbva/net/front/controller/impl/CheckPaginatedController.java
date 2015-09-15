@@ -51,7 +51,7 @@ public class CheckPaginatedController extends PaginationController<CheckDto> {
 	}
 
 	@Override
-	protected Integer getNextPaginantionKey(List<CheckDto> lastPage) {
+	protected Integer getNextPaginantionKey(List<CheckDto> lastPage, Integer paginationKey) {
 		return getPaginationKey() + 1;
 	}
 
