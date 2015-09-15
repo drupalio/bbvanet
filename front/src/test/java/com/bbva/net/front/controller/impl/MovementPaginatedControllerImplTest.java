@@ -94,12 +94,12 @@ public class MovementPaginatedControllerImplTest extends AbstractBbvaControllerT
 
 	@Test
 	public void checkGetNextPaginantionKey() {
-		Integer result = this.movementPaginatedController.getNextPaginantionKey(movementList);
+		Integer result = this.movementPaginatedController.getNextPaginantionKey(movementList, 0);
 		Assert.assertNotNull(result);
 		Whitebox.setInternalState(movementList, "elementData", new Object[15]);
 		Whitebox.setInternalState(movementList, "size", 15);
 		movementList.set(14, new MovementDto("123456", null, null, null, null, null, null, null, null, null));
-		result = this.movementPaginatedController.getNextPaginantionKey(movementList);
+		result = this.movementPaginatedController.getNextPaginantionKey(movementList, 0);
 		Assert.assertNotNull(result);
 	}
 

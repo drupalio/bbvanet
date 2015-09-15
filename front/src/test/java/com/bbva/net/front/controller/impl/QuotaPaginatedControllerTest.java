@@ -85,6 +85,7 @@ public class QuotaPaginatedControllerTest extends AbstractBbvaControllerTest {
 
 	@Test
 	public void checkgetNextPaginantionKey() {
+		this.quotaPaginatedController.init();
 		String result = this.quotaPaginatedController.getNextPaginantionKey(quotaList);
 		Assert.assertNotNull(result);
 		Whitebox.setInternalState(quotaList, "elementData", new Object[15]);
