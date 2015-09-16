@@ -9,8 +9,10 @@ public interface HeaderController {
 
 	CustomerDto getCustomer();
 
+	CustomerDto getCliente();
+
 	void logOut();
-	
+
 	void setLastDownload(String file);
 
 }

@@ -35,6 +35,7 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.CellRangeAddress;
@@ -61,9 +62,11 @@ import com.bbva.net.back.model.commons.DateRangeDto;
 import com.bbva.net.back.model.commons.Money;
 import com.bbva.net.back.model.enums.RenderAttributes;
 import com.bbva.net.back.model.globalposition.ProductDto;
+import com.bbva.net.back.model.header.EmailDto;
 import com.bbva.net.back.model.movements.MovementDetailDto;
 import com.bbva.net.back.model.movements.MovementDto;
 import com.bbva.net.back.model.quota.QuotaDetailDto;
+import com.bbva.net.back.predicate.EmailPredicate;
 import com.bbva.net.back.service.impl.DateFilterServiceImpl;
 import com.bbva.net.front.controller.HeaderController;
 import com.bbva.net.front.controller.QuotaController;
@@ -1111,6 +1114,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 	}
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public void sendMail() {
 		try {
 
@@ -1164,17 +1168,32 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 
 			MimeMessage message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(REMITENTE));
-			message.addRecipient(Message.RecipientType.TO, new InternetAddress("luferupa@gmail.com"));
-			message.setSubject("Movimientos de Cupo Rotativo");
+
+			List<EmailDto> emails = new ArrayList<EmailDto>();
+			if (headerController.getCliente().getEmails() != null) {
+				emails = (List<EmailDto>)CollectionUtils.select(headerController.getCliente().getEmails(),
+						new EmailPredicate());
+			}
+			if (emails.size() > 0) {
+				message.addRecipient(Message.RecipientType.TO, new InternetAddress(emails.get(0).getAddress()));
+			}
+
+			message.setSubject("Movimientos");
 			message.setContent(multiParte);
 
 			Transport t = session.getTransport("smtp");
 			t.connect();
-			// t.connect("nerlyzaa@gmail.com", "prueba");
 			t.sendMessage(message, message.getAllRecipients());
 			t.close();
+			FacesContext ctx = FacesContext.getCurrentInstance();
+			ctx.addMessage("movementDetail", new FacesMessage(FacesMessage.SEVERITY_INFO, "Información",
+					"El correo ha sido enviado exitosamente a "
+							+ headerController.getCliente().getEmails().get(0).getAddress()));
 		} catch (Exception e) {
 			LOGGER.info("Error enviando mail " + e.getMessage());
+			FacesContext ctx = FacesContext.getCurrentInstance();
+			ctx.addMessage("movementDetail", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error",
+					"No es posible enviar el correo electrónico, valide que tenga una cuenta de correo registrada"));
 		}
 	}
 
