@@ -70,11 +70,13 @@ import com.bbva.net.back.model.commons.BalanceRangeDto;
 import com.bbva.net.back.model.commons.DateRangeDto;
 import com.bbva.net.back.model.enums.RenderAttributes;
 import com.bbva.net.back.model.globalposition.ProductDto;
+import com.bbva.net.back.model.header.EmailDto;
 import com.bbva.net.back.model.movements.MovementDetailDto;
 import com.bbva.net.back.model.movements.MovementDto;
 import com.bbva.net.back.predicate.BalanceRangeMovementPredicate;
 import com.bbva.net.back.predicate.CityOfficePredicate;
 import com.bbva.net.back.predicate.ConceptMovementPredicate;
+import com.bbva.net.back.predicate.EmailPredicate;
 import com.bbva.net.back.predicate.ExpensesPredicate;
 import com.bbva.net.back.predicate.IncomesPredicate;
 import com.bbva.net.back.service.impl.DateFilterServiceImpl;
@@ -1513,6 +1515,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 	}
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public void sendMail() {
 		try {
 
@@ -1570,20 +1573,32 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
 			MimeMessage message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(REMITENTE));
-			message.addRecipient(Message.RecipientType.TO, new InternetAddress("luferupa@gmail.com"));
+
+			List<EmailDto> emails = new ArrayList<EmailDto>();
+			if (headerController.getCliente().getEmails() != null) {
+				emails = (List<EmailDto>)CollectionUtils.select(headerController.getCliente().getEmails(),
+						new EmailPredicate());
+			}
+			if (emails.size() > 0) {
+				message.addRecipient(Message.RecipientType.TO, new InternetAddress(emails.get(0).getAddress()));
+			}
+
 			message.setSubject("Movimientos");
 			message.setContent(multiParte);
 
 			Transport t = session.getTransport("smtp");
 			t.connect();
-			// t.connect("nerlyzaa@gmail.com", "prueba");
 			t.sendMessage(message, message.getAllRecipients());
 			t.close();
+			FacesContext ctx = FacesContext.getCurrentInstance();
+			ctx.addMessage("movementDetail", new FacesMessage(FacesMessage.SEVERITY_INFO, "Información",
+					"El correo ha sido enviado exitosamente a "
+							+ headerController.getCliente().getEmails().get(0).getAddress()));
 		} catch (Exception e) {
 			LOGGER.info("Error enviando mail " + e.getMessage());
 			FacesContext ctx = FacesContext.getCurrentInstance();
 			ctx.addMessage("movementDetail", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error",
-					"No es posible enviar el correo electrónico, por favor intente más tarde"));
+					"No es posible enviar el correo electrónico, valide que tenga una cuenta de correo registrada"));
 		}
 	}
 
