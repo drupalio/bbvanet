@@ -418,7 +418,21 @@ $(window).load(function() {
 		if (styleBody >= 1) {
 			$('#modal').remove();
 		}
+	});	
+	
+	$('.ui-growl-image-info').parents('.ui-growl-item').css("cssText", "background-color: #fff !important;");
+	
+	$('.ui-growl-image-info').css({
+		'background-image' : "url('../assets/img/icons_ico/tick-big.png')",
+		'background-position' : '4px 10px',
+		'width' : '53px',
+		'height' : '49px'
 	});
+	
+	$('.ui-growl-image-info').parents('.ui-growl-item').find('.ui-growl-message').css('color', '#000');
+	
+	$('.ui-growl-item-container').css("cssText", "display: block !important;");
+
 
 	$('#tabsOperations li').each(function(event) {
 		var sdas = $(this).attr('data-origin-value');
