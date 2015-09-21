@@ -24,7 +24,6 @@ import javax.faces.event.AjaxBehaviorEvent;
 import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.Session;
-import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
@@ -1584,21 +1583,14 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 				message.addRecipient(Message.RecipientType.TO, new InternetAddress(emails.get(0).getAddress()));
 			}
 
-			message.setSubject("Movimientos");
-			message.setContent(multiParte);
-
-			Transport t = session.getTransport("smtp");
-			t.connect();
-			t.sendMessage(message, message.getAllRecipients());
-			t.close();
 			FacesContext ctx = FacesContext.getCurrentInstance();
-			ctx.addMessage("movementDetail", new FacesMessage(FacesMessage.SEVERITY_INFO, "Información",
+			ctx.addMessage("movementDetail", new FacesMessage(FacesMessage.SEVERITY_INFO, "",
 					"El correo ha sido enviado exitosamente a "
 							+ headerController.getCliente().getEmails().get(0).getAddress()));
 		} catch (Exception e) {
 			LOGGER.info("Error enviando mail " + e.getMessage());
 			FacesContext ctx = FacesContext.getCurrentInstance();
-			ctx.addMessage("movementDetail", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error",
+			ctx.addMessage("movementDetail", new FacesMessage(FacesMessage.SEVERITY_ERROR, "",
 					"No es posible enviar el correo electrónico, valide que tenga una cuenta de correo registrada"));
 		}
 	}

@@ -978,6 +978,7 @@ body div.ui-growl {
 	border: 1px solid #DBDCDC !important;
 	background-color: #F4F7F5 !important;
 	padding: 8px !important;
+	display: none !important;
 }
 
 /*ui-state-highlight mensaje*/
