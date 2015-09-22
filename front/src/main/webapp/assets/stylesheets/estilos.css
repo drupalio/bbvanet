@@ -2107,3 +2107,7 @@ body div.ui-growl .ui-state-highlight {
 		padding: 12px 2px !important;
 	}
 }
+
+.consultas .panel-tab-body .filters>ul>li a.setFilter span .filter {
+	padding: 0px 1px 0px 10px !important;
+}
