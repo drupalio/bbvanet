@@ -1186,13 +1186,13 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 			t.sendMessage(message, message.getAllRecipients());
 			t.close();
 			FacesContext ctx = FacesContext.getCurrentInstance();
-			ctx.addMessage("movementDetail", new FacesMessage(FacesMessage.SEVERITY_INFO, "Información",
+			ctx.addMessage("movementDetail", new FacesMessage(FacesMessage.SEVERITY_INFO, "",
 					"El correo ha sido enviado exitosamente a "
 							+ headerController.getCliente().getEmails().get(0).getAddress()));
 		} catch (Exception e) {
 			LOGGER.info("Error enviando mail " + e.getMessage());
 			FacesContext ctx = FacesContext.getCurrentInstance();
-			ctx.addMessage("movementDetail", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error",
+			ctx.addMessage("movementDetail", new FacesMessage(FacesMessage.SEVERITY_ERROR, "",
 					"No es posible enviar el correo electrónico, valide que tenga una cuenta de correo registrada"));
 		}
 	}
