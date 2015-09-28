@@ -5,9 +5,6 @@ import java.util.List;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-
-
-
 import com.bbva.czic.dto.net.EnumProductType;
 import com.bbva.net.back.core.pattern.dto.Dto;
 import com.bbva.net.back.model.commons.Money;
@@ -15,306 +12,339 @@ import com.bbva.net.back.model.header.PhoneNumbers;
 
 public class ProductDto implements Dto {
 
-	private final static long serialVersionUID = 1L;
+    private final static long serialVersionUID = 1L;
 
-	private String productId;
+    private String productId;
 
-	private String productName;
+    private String productName;
 
-	private String productNumber;
+    private String productNumber;
 
-	private Boolean asset;
+    private Boolean asset;
 
-	private Boolean operationOnline;
+    private Boolean operationOnline;
 
-	private Boolean visible;
+    private Boolean visible;
 
-	private String alias;
+    private String alias;
 
-	private Money totalCash;
+    private Money totalCash;
 
-	private Money cashAvailable;
+    private Money cashAvailable;
 
-	private String subTypeProd;
+    private Money tradeCash;
 
-	private EnumProductType typeProd;
-	
-	private List<PhoneNumbers> phoneNumbers;
+    private String subTypeProd;
 
-	public ProductDto() {
-	}
+    private EnumProductType typeProd;
 
-	/**
-	 * @param productId
-	 * @param productName
-	 * @param productNumber
-	 * @param asset
-	 * @param operationOnline
-	 * @param visible
-	 * @param alias
-	 * @param totalCash
-	 * @param cashAvailable
-	 * @param subTypeProd
-	 * @param typeProd
-	 */
-	public ProductDto(String productId, String productName, String productNumber, Boolean asset,
-			Boolean operationOnline, Boolean visible, String alias, Money totalCash, Money cashAvailable,
-			String subTypeProd, EnumProductType typeProd) {
-		this.productId = productId;
-		this.productName = productName;
-		this.productNumber = productNumber;
-		this.asset = asset;
-		this.operationOnline = operationOnline;
-		this.visible = visible;
-		this.alias = alias;
-		this.totalCash = totalCash;
-		this.cashAvailable = cashAvailable;
-		this.subTypeProd = subTypeProd;
-		this.typeProd = typeProd;
-	}
-	
-	public ProductDto(String productId, String productName, String productNumber, Boolean asset,
-			Boolean operationOnline, Boolean visible, String alias, Money totalCash, Money cashAvailable,
-			String subTypeProd, EnumProductType typeProd,List<PhoneNumbers> phoneNumbers) {
-		this.productId = productId;
-		this.productName = productName;
-		this.productNumber = productNumber;
-		this.asset = asset;
-		this.operationOnline = operationOnline;
-		this.visible = visible;
-		this.alias = alias;
-		this.totalCash = totalCash;
-		this.cashAvailable = cashAvailable;
-		this.subTypeProd = subTypeProd;
-		this.typeProd = typeProd;
-		this.phoneNumbers = phoneNumbers;
-	}
+    private String contract;
 
+    private List<PhoneNumbers> phoneNumbers;
 
-	// Setters and getters
+    public ProductDto() {
+    }
 
-	/**
-	 * @return the productId
-	 */
-	public String getProductId() {
-		return productId;
-	}
+    /**
+     * @param productId
+     * @param productName
+     * @param productNumber
+     * @param asset
+     * @param operationOnline
+     * @param visible
+     * @param alias
+     * @param totalCash
+     * @param cashAvailable
+     * @param subTypeProd
+     * @param typeProd
+     */
+    public ProductDto(String productId, String productName, String productNumber, Boolean asset,
+            Boolean operationOnline, Boolean visible, String alias, Money totalCash, Money cashAvailable,
+            Money tradeCash, String contract, String subTypeProd, EnumProductType typeProd) {
+        this.productId = productId;
+        this.productName = productName;
+        this.productNumber = productNumber;
+        this.asset = asset;
+        this.operationOnline = operationOnline;
+        this.visible = visible;
+        this.alias = alias;
+        this.totalCash = totalCash;
+        this.tradeCash = tradeCash;
+        this.cashAvailable = cashAvailable;
+        this.subTypeProd = subTypeProd;
+        this.contract = contract;
+        this.typeProd = typeProd;
+    }
 
-	/**
-	 * @param productId the productId to set
-	 */
-	public void setProductId(String productId) {
-		this.productId = productId;
-	}
+    public ProductDto(String productId, String productName, String productNumber, Boolean asset,
+            Boolean operationOnline, Boolean visible, String alias, Money totalCash, Money cashAvailable,
+            String subTypeProd, EnumProductType typeProd, List<PhoneNumbers> phoneNumbers) {
+        this.productId = productId;
+        this.productName = productName;
+        this.productNumber = productNumber;
+        this.asset = asset;
+        this.operationOnline = operationOnline;
+        this.visible = visible;
+        this.alias = alias;
+        this.totalCash = totalCash;
+        this.cashAvailable = cashAvailable;
+        this.subTypeProd = subTypeProd;
+        this.typeProd = typeProd;
+        this.phoneNumbers = phoneNumbers;
+    }
 
-	/**
-	 * @return
-	 */
-	public boolean isSetProductId() {
-		return (this.productId != null);
-	}
+    // Setters and getters
 
-	/**
-	 * @return the productName
-	 */
-	public String getProductName() {
-		return productName;
-	}
+    /**
+     * @return the productId
+     */
+    public String getProductId() {
+        return productId;
+    }
 
-	/**
-	 * @param productName the productName to set
-	 */
-	public void setProductName(String productName) {
-		this.productName = productName;
-	}
+    /**
+     * @param productId the productId to set
+     */
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
 
-	/**
-	 * @return
-	 */
-	public boolean isSetProductName() {
-		return (this.productName != null);
-	}
+    /**
+     * @return
+     */
+    public boolean isSetProductId() {
+        return (this.productId != null);
+    }
 
-	/**
-	 * @return the productNumber
-	 */
-	public String getProductNumber() {
-		return productNumber;
-	}
+    /**
+     * @return the productName
+     */
+    public String getProductName() {
+        return productName;
+    }
 
-	/**
-	 * @param productNumber the productNumber to set
-	 */
-	public void setProductNumber(String productNumber) {
-		this.productNumber = productNumber;
-	}
+    /**
+     * @param productName the productName to set
+     */
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
 
-	/**
-	 * @return
-	 */
-	public boolean isSetProductNumber() {
-		return (this.productNumber != null);
-	}
+    /**
+     * @return
+     */
+    public boolean isSetProductName() {
+        return (this.productName != null);
+    }
 
-	/**
-	 * @return the asset
-	 */
-	public Boolean isAsset() {
-		return asset;
-	}
+    /**
+     * @return the productNumber
+     */
+    public String getProductNumber() {
+        return productNumber;
+    }
 
-	/**
-	 * @param asset the asset to set
-	 */
-	public void setAsset(Boolean asset) {
-		this.asset = asset;
-	}
+    /**
+     * @param productNumber the productNumber to set
+     */
+    public void setProductNumber(String productNumber) {
+        this.productNumber = productNumber;
+    }
 
-	/**
-	 * @return
-	 */
-	public Boolean isSetAsset() {
-		return true;
-	}
+    /**
+     * @return
+     */
+    public boolean isSetProductNumber() {
+        return (this.productNumber != null);
+    }
 
-	/**
-	 * @return the visible
-	 */
-	public Boolean isVisible() {
-		return visible;
-	}
+    /**
+     * @return the asset
+     */
+    public Boolean isAsset() {
+        return asset;
+    }
 
-	/**
-	 * @param visible the visible to set
-	 */
-	public void setVisible(Boolean visible) {
-		this.visible = visible;
-	}
+    /**
+     * @param asset the asset to set
+     */
+    public void setAsset(Boolean asset) {
+        this.asset = asset;
+    }
 
-	/**
-	 * @return the alias
-	 */
-	public String getAlias() {
-		return alias;
-	}
+    /**
+     * @return
+     */
+    public Boolean isSetAsset() {
+        return true;
+    }
 
-	/**
-	 * @param alias the alias to set
-	 */
-	public void setAlias(String alias) {
-		this.alias = alias;
-	}
+    /**
+     * @return the visible
+     */
+    public Boolean isVisible() {
+        return visible;
+    }
 
-	/**
-	 * @return
-	 */
-	public boolean isSetAlias() {
-		return (this.alias != null);
-	}
+    /**
+     * @param visible the visible to set
+     */
+    public void setVisible(Boolean visible) {
+        this.visible = visible;
+    }
 
-	/**
-	 * @return the totalCash
-	 */
-	public Money getTotalCash() {
-		return totalCash;
-	}
+    /**
+     * @return the alias
+     */
+    public String getAlias() {
+        return alias;
+    }
 
-	/**
-	 * @param totalCash the totalCash to set
-	 */
-	public void setTotalCash(Money totalCash) {
-		this.totalCash = totalCash;
-	}
+    /**
+     * @param alias the alias to set
+     */
+    public void setAlias(String alias) {
+        this.alias = alias;
+    }
 
-	/**
-	 * @return
-	 */
-	public boolean isSetTotalCash() {
-		return (this.totalCash != null);
-	}
+    /**
+     * @return
+     */
+    public boolean isSetAlias() {
+        return (this.alias != null);
+    }
 
-	/**
-	 * @return the cashAvailable
-	 */
-	public Money getCashAvailable() {
-		return cashAvailable;
-	}
+    /**
+     * @return the totalCash
+     */
+    public Money getTotalCash() {
+        return totalCash;
+    }
 
-	/**
-	 * @param cashAvailable the cashAvailable to set
-	 */
-	public void setCashAvailable(Money cashAvailable) {
-		this.cashAvailable = cashAvailable;
-	}
+    /**
+     * @param totalCash the totalCash to set
+     */
+    public void setTotalCash(Money totalCash) {
+        this.totalCash = totalCash;
+    }
 
-	/**
-	 * @return
-	 */
-	public boolean isSetCashAvailable() {
-		return (this.cashAvailable != null);
-	}
+    /**
+     * @return
+     */
+    public boolean isSetTotalCash() {
+        return (this.totalCash != null);
+    }
 
-	/**
-	 * @return the operationOnline
-	 */
-	public Boolean getOperationOnline() {
-		return operationOnline;
-	}
+    /**
+     * @return the cashAvailable
+     */
+    public Money getCashAvailable() {
+        return cashAvailable;
+    }
 
-	/**
-	 * @param operationOnline the operationOnline to set
-	 */
-	public void setOperationOnline(Boolean operationOnline) {
-		this.operationOnline = operationOnline;
-	}
+    /**
+     * @param cashAvailable the cashAvailable to set
+     */
+    public void setCashAvailable(Money cashAvailable) {
+        this.cashAvailable = cashAvailable;
+    }
 
-	public EnumProductType getTypeProd() {
-		return typeProd;
-	}
+    /**
+     * @return
+     */
+    public boolean isSetCashAvailable() {
+        return (this.cashAvailable != null);
+    }
 
-	public void setTypeProd(EnumProductType typeProd) {
-		this.typeProd = typeProd;
-	}
+    /**
+     * @return the tradeCash
+     */
+    public Money getTradeCash() {
+        return tradeCash;
+    }
 
-	/**
-	 * @return the subTypeProd
-	 */
-	public String getSubTypeProd() {
-		return subTypeProd;
-	}
-	
-	public List<PhoneNumbers> getPhoneNumbers() {
-		return phoneNumbers;
-	}
+    /**
+     * @param tradeCash the tradeCash to set
+     */
+    public void setTradeCash(Money tradeCash) {
+        this.tradeCash = tradeCash;
+    }
 
-	public void setPhoneNumbers(List<PhoneNumbers> phoneNumbers) {
-		this.phoneNumbers = phoneNumbers;
-	}
+    /**
+     * @return the operationOnline
+     */
+    public Boolean getOperationOnline() {
+        return operationOnline;
+    }
 
+    /**
+     * @param operationOnline the operationOnline to set
+     */
+    public void setOperationOnline(Boolean operationOnline) {
+        this.operationOnline = operationOnline;
+    }
 
-	/**
-	 * @param subTypeProd the subTypeProd to set
-	 */
-	public void setSubTypeProd(String subTypeProd) {
-		this.subTypeProd = subTypeProd;
-	}
+    public EnumProductType getTypeProd() {
+        return typeProd;
+    }
 
-	@Override
-	public String toString() {
-		return new ToStringBuilder(this).append("productId", getProductId())
-				.append("productNumber", getProductNumber()).toString();
-	}
+    public void setTypeProd(EnumProductType typeProd) {
+        this.typeProd = typeProd;
+    }
 
-	@Override
-	public int hashCode() {
-		return new HashCodeBuilder().append(getProductId()).append(getProductNumber()).toHashCode();
-	}
+    /**
+     * @return the subTypeProd
+     */
+    public String getSubTypeProd() {
+        return subTypeProd;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		return (obj != null) && (obj instanceof ProductDto)
-				&& (this.getProductId() != null && ((ProductDto)obj).getProductId() != null)
-				&& this.getProductId().equals(((ProductDto)obj).getProductId());
-	}
+    /**
+     * @return the contract
+     */
+    public String getContract() {
+        return contract;
+    }
 
+    /**
+     * @param contract the contract to set
+     */
+    public void setContract(String contract) {
+        this.contract = contract;
+    }
+
+    public List<PhoneNumbers> getPhoneNumbers() {
+        return phoneNumbers;
+    }
+
+    public void setPhoneNumbers(List<PhoneNumbers> phoneNumbers) {
+        this.phoneNumbers = phoneNumbers;
+    }
+
+    /**
+     * @param subTypeProd the subTypeProd to set
+     */
+    public void setSubTypeProd(String subTypeProd) {
+        this.subTypeProd = subTypeProd;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this).append("productId", getProductId())
+                .append("productNumber", getProductNumber()).toString();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder().append(getProductId()).append(getProductNumber()).toHashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+
+        return (obj != null) && (obj instanceof ProductDto)
+                && (this.getProductId() != null && ((ProductDto)obj).getProductId() != null)
+                && this.getProductId().equals(((ProductDto)obj).getProductId());
+
+    }
 }

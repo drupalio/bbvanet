@@ -2003,7 +2003,7 @@ body div.ui-growl .ui-state-highlight {
 }
 
 .height18 {
-	height: 18px !important;
+	height: auto !important;
 }
 
 .small .ui-button-text {
