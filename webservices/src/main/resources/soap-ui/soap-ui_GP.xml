@@ -212,6 +212,10 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
         "availableBalance": {
             "currency": "COP",
             "amount": 1788.13
+        },
+        "tradeBalance": {
+            "currency": "COP",
+            "amount": 50.13
         }
     },
     "contactInfo": {
@@ -268,6 +272,10 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
         "availableBalance": {
             "currency": "COP",
             "amount": 1713.31
+        },
+        "tradeBalance": {
+            "currency": "COP",
+            "amount": 100.13
         }
     },
     "contactInfo": {
@@ -716,6 +724,10 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
         "availableBalance": {
             "currency": "COP",
             "amount": 2088.18
+        },
+        "tradeBalance": {
+            "currency": "COP",
+            "amount": 100.13
         }
     },
     "contactInfo": {
@@ -1427,7 +1439,7 @@ if( requestMock.contains("filter") )
         "amount":900000.0,
         "currency":"$"
         }
-}]</con:responseContent><con:header><con:name>tsec</con:name><con:value>cvxnvbzxcvcxvmcxbmbnm32b4nm32bnm</con:value></con:header></con:response><con:response name="Filter_response" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
+}]</con:responseContent><con:header><con:name>tsec</con:name><con:value>cvxnvbzxcvcxvmcxbmbnm32b4nm32bnm</con:value></con:header></con:response><con:response name="Filter_response" httpResponseStatus="500" mediaType="application/json"><con:settings/><con:responseContent>[{
     "category":"OCIO",
     "amount":{
         "amount":900000.0,
@@ -2697,7 +2709,1646 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
  if(pathInfo.startsWith( mockRunner.getMockService().getPath()))
 
 </con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
-    "id": "5432",
+    "id": "1",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-07-15",
+    "value": {
+        "amount": 439944006,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 439944006,
+        "currency": "COP"
+    },
+
+    "numExt": "167"
+},
+{
+    "id": "822244",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-03-28",
+    "value": {
+        "amount": 1620620982,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1620620982,
+        "currency": "COP"
+    },
+
+    "numExt": "345"
+},
+{
+    "id": "164199",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-12-19",
+    "value": {
+        "amount": 685235109,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 685235109,
+        "currency": "COP"
+    },
+
+    "numExt": "8675"
+},
+{
+    "id": "164377",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-05-08",
+    "value": {
+        "amount": 1566671178,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1566671178,
+        "currency": "COP"
+    },
+
+    "numExt": "8964"
+},
+{
+    "id": "158361",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-01-27",
+    "value": {
+        "amount": 1309582292,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1309582292,
+        "currency": "COP"
+    },
+
+    "numExt": "3245"
+},
+{
+    "id": "335112",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-05-08",
+    "value": {
+        "amount": 1670298888,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1670298888,
+        "currency": "COP"
+    },
+
+    "numExt": "1234"
+},
+{
+    "id": "169878",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-06-18",
+    "value": {
+        "amount": 1697322433,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1697322433,
+        "currency": "COP"
+    },
+
+    "numExt": "0987"
+},
+{
+    "id": "800973",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-05-20",
+    "value": {
+        "amount": 206829003,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 206829003,
+        "currency": "COP"
+    },
+
+    "numExt": "23"
+},
+{
+    "id": "176239",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-05-09",
+    "value": {
+        "amount": 1211699540,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1211699540,
+        "currency": "COP"
+    },
+
+    "numExt": "2"
+},
+{
+    "id": "45",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-07-10",
+    "value": {
+        "amount": 2075976648,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 2075976648,
+        "currency": "COP"
+    },
+
+    "numExt": "9876"
+},{
+    "id": "2",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-07-15",
+    "value": {
+        "amount": 439944006,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 439944006,
+        "currency": "COP"
+    },
+
+    "numExt": "167"
+},
+{
+    "id": "822244",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-03-28",
+    "value": {
+        "amount": 1620620982,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1620620982,
+        "currency": "COP"
+    },
+
+    "numExt": "345"
+},
+{
+    "id": "164199",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-12-19",
+    "value": {
+        "amount": 685235109,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 685235109,
+        "currency": "COP"
+    },
+
+    "numExt": "8675"
+},
+{
+    "id": "164377",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-05-08",
+    "value": {
+        "amount": 1566671178,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1566671178,
+        "currency": "COP"
+    },
+
+    "numExt": "8964"
+},
+{
+    "id": "158361",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-01-27",
+    "value": {
+        "amount": 1309582292,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1309582292,
+        "currency": "COP"
+    },
+
+    "numExt": "3245"
+},
+{
+    "id": "335112",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-05-08",
+    "value": {
+        "amount": 1670298888,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1670298888,
+        "currency": "COP"
+    },
+
+    "numExt": "1234"
+},
+{
+    "id": "169878",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-06-18",
+    "value": {
+        "amount": 1697322433,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1697322433,
+        "currency": "COP"
+    },
+
+    "numExt": "0987"
+},
+{
+    "id": "800973",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-05-20",
+    "value": {
+        "amount": 206829003,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 206829003,
+        "currency": "COP"
+    },
+
+    "numExt": "23"
+},
+{
+    "id": "176239",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-05-09",
+    "value": {
+        "amount": 1211699540,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1211699540,
+        "currency": "COP"
+    },
+
+    "numExt": "2"
+},
+{
+    "id": "45",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-07-10",
+    "value": {
+        "amount": 2075976648,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 2075976648,
+        "currency": "COP"
+    },
+
+    "numExt": "9876"
+},{
+    "id": "3",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-07-15",
+    "value": {
+        "amount": 439944006,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 439944006,
+        "currency": "COP"
+    },
+
+    "numExt": "167"
+},
+{
+    "id": "822244",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-03-28",
+    "value": {
+        "amount": 1620620982,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1620620982,
+        "currency": "COP"
+    },
+
+    "numExt": "345"
+},
+{
+    "id": "164199",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-12-19",
+    "value": {
+        "amount": 685235109,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 685235109,
+        "currency": "COP"
+    },
+
+    "numExt": "8675"
+},
+{
+    "id": "164377",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-05-08",
+    "value": {
+        "amount": 1566671178,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1566671178,
+        "currency": "COP"
+    },
+
+    "numExt": "8964"
+},
+{
+    "id": "158361",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-01-27",
+    "value": {
+        "amount": 1309582292,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1309582292,
+        "currency": "COP"
+    },
+
+    "numExt": "3245"
+},
+{
+    "id": "335112",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-05-08",
+    "value": {
+        "amount": 1670298888,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1670298888,
+        "currency": "COP"
+    },
+
+    "numExt": "1234"
+},
+{
+    "id": "169878",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-06-18",
+    "value": {
+        "amount": 1697322433,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1697322433,
+        "currency": "COP"
+    },
+
+    "numExt": "0987"
+},
+{
+    "id": "800973",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-05-20",
+    "value": {
+        "amount": 206829003,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 206829003,
+        "currency": "COP"
+    },
+
+    "numExt": "23"
+},
+{
+    "id": "176239",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-05-09",
+    "value": {
+        "amount": 1211699540,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1211699540,
+        "currency": "COP"
+    },
+
+    "numExt": "2"
+},
+{
+    "id": "45",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-07-10",
+    "value": {
+        "amount": 2075976648,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 2075976648,
+        "currency": "COP"
+    },
+
+    "numExt": "9876"
+},{
+    "id": "4",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-07-15",
+    "value": {
+        "amount": 439944006,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 439944006,
+        "currency": "COP"
+    },
+
+    "numExt": "167"
+},
+{
+    "id": "822244",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-03-28",
+    "value": {
+        "amount": 1620620982,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1620620982,
+        "currency": "COP"
+    },
+
+    "numExt": "345"
+},
+{
+    "id": "164199",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-12-19",
+    "value": {
+        "amount": 685235109,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 685235109,
+        "currency": "COP"
+    },
+
+    "numExt": "8675"
+},
+{
+    "id": "164377",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-05-08",
+    "value": {
+        "amount": 1566671178,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1566671178,
+        "currency": "COP"
+    },
+
+    "numExt": "8964"
+},
+{
+    "id": "158361",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-01-27",
+    "value": {
+        "amount": 1309582292,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1309582292,
+        "currency": "COP"
+    },
+
+    "numExt": "3245"
+},
+{
+    "id": "335112",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-05-08",
+    "value": {
+        "amount": 1670298888,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1670298888,
+        "currency": "COP"
+    },
+
+    "numExt": "1234"
+},
+{
+    "id": "169878",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-06-18",
+    "value": {
+        "amount": 1697322433,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1697322433,
+        "currency": "COP"
+    },
+
+    "numExt": "0987"
+},
+{
+    "id": "800973",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-05-20",
+    "value": {
+        "amount": 206829003,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 206829003,
+        "currency": "COP"
+    },
+
+    "numExt": "23"
+},
+{
+    "id": "176239",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-05-09",
+    "value": {
+        "amount": 1211699540,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1211699540,
+        "currency": "COP"
+    },
+
+    "numExt": "2"
+},
+{
+    "id": "45",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-07-10",
+    "value": {
+        "amount": 2075976648,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 2075976648,
+        "currency": "COP"
+    },
+
+    "numExt": "9876"
+},{
+    "id": "5",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-07-15",
+    "value": {
+        "amount": 439944006,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 439944006,
+        "currency": "COP"
+    },
+
+    "numExt": "167"
+},
+{
+    "id": "822244",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-03-28",
+    "value": {
+        "amount": 1620620982,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1620620982,
+        "currency": "COP"
+    },
+
+    "numExt": "345"
+},
+{
+    "id": "164199",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-12-19",
+    "value": {
+        "amount": 685235109,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 685235109,
+        "currency": "COP"
+    },
+
+    "numExt": "8675"
+},
+{
+    "id": "164377",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-05-08",
+    "value": {
+        "amount": 1566671178,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1566671178,
+        "currency": "COP"
+    },
+
+    "numExt": "8964"
+},
+{
+    "id": "158361",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-01-27",
+    "value": {
+        "amount": 1309582292,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1309582292,
+        "currency": "COP"
+    },
+
+    "numExt": "3245"
+},
+{
+    "id": "335112",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-05-08",
+    "value": {
+        "amount": 1670298888,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1670298888,
+        "currency": "COP"
+    },
+
+    "numExt": "1234"
+},
+{
+    "id": "169878",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-06-18",
+    "value": {
+        "amount": 1697322433,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1697322433,
+        "currency": "COP"
+    },
+
+    "numExt": "0987"
+},
+{
+    "id": "800973",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-05-20",
+    "value": {
+        "amount": 206829003,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 206829003,
+        "currency": "COP"
+    },
+
+    "numExt": "23"
+},
+{
+    "id": "176239",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-05-09",
+    "value": {
+        "amount": 1211699540,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1211699540,
+        "currency": "COP"
+    },
+
+    "numExt": "2"
+},
+{
+    "id": "45",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-07-10",
+    "value": {
+        "amount": 2075976648,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 2075976648,
+        "currency": "COP"
+    },
+
+    "numExt": "9876"
+},{
+    "id": "6",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-07-15",
+    "value": {
+        "amount": 439944006,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 439944006,
+        "currency": "COP"
+    },
+
+    "numExt": "167"
+},
+{
+    "id": "822244",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-03-28",
+    "value": {
+        "amount": 1620620982,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1620620982,
+        "currency": "COP"
+    },
+
+    "numExt": "345"
+},
+{
+    "id": "164199",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-12-19",
+    "value": {
+        "amount": 685235109,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 685235109,
+        "currency": "COP"
+    },
+
+    "numExt": "8675"
+},
+{
+    "id": "164377",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-05-08",
+    "value": {
+        "amount": 1566671178,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1566671178,
+        "currency": "COP"
+    },
+
+    "numExt": "8964"
+},
+{
+    "id": "158361",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-01-27",
+    "value": {
+        "amount": 1309582292,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1309582292,
+        "currency": "COP"
+    },
+
+    "numExt": "3245"
+},
+{
+    "id": "335112",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-05-08",
+    "value": {
+        "amount": 1670298888,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1670298888,
+        "currency": "COP"
+    },
+
+    "numExt": "1234"
+},
+{
+    "id": "169878",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-06-18",
+    "value": {
+        "amount": 1697322433,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1697322433,
+        "currency": "COP"
+    },
+
+    "numExt": "0987"
+},
+{
+    "id": "800973",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-05-20",
+    "value": {
+        "amount": 206829003,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 206829003,
+        "currency": "COP"
+    },
+
+    "numExt": "23"
+},
+{
+    "id": "176239",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-05-09",
+    "value": {
+        "amount": 1211699540,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1211699540,
+        "currency": "COP"
+    },
+
+    "numExt": "2"
+},
+{
+    "id": "45",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-07-10",
+    "value": {
+        "amount": 2075976648,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 2075976648,
+        "currency": "COP"
+    },
+
+    "numExt": "9876"
+},{
+    "id": "7",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-07-15",
+    "value": {
+        "amount": 439944006,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 439944006,
+        "currency": "COP"
+    },
+
+    "numExt": "167"
+},
+{
+    "id": "822244",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-03-28",
+    "value": {
+        "amount": 1620620982,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1620620982,
+        "currency": "COP"
+    },
+
+    "numExt": "345"
+},
+{
+    "id": "164199",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-12-19",
+    "value": {
+        "amount": 685235109,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 685235109,
+        "currency": "COP"
+    },
+
+    "numExt": "8675"
+},
+{
+    "id": "164377",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-05-08",
+    "value": {
+        "amount": 1566671178,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1566671178,
+        "currency": "COP"
+    },
+
+    "numExt": "8964"
+},
+{
+    "id": "158361",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-01-27",
+    "value": {
+        "amount": 1309582292,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1309582292,
+        "currency": "COP"
+    },
+
+    "numExt": "3245"
+},
+{
+    "id": "335112",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-05-08",
+    "value": {
+        "amount": 1670298888,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1670298888,
+        "currency": "COP"
+    },
+
+    "numExt": "1234"
+},
+{
+    "id": "169878",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-06-18",
+    "value": {
+        "amount": 1697322433,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1697322433,
+        "currency": "COP"
+    },
+
+    "numExt": "0987"
+},
+{
+    "id": "800973",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-05-20",
+    "value": {
+        "amount": 206829003,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 206829003,
+        "currency": "COP"
+    },
+
+    "numExt": "23"
+},
+{
+    "id": "176239",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-05-09",
+    "value": {
+        "amount": 1211699540,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1211699540,
+        "currency": "COP"
+    },
+
+    "numExt": "2"
+},
+{
+    "id": "45",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-07-10",
+    "value": {
+        "amount": 2075976648,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 2075976648,
+        "currency": "COP"
+    },
+
+    "numExt": "9876"
+},{
+    "id": "8",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-07-15",
+    "value": {
+        "amount": 439944006,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 439944006,
+        "currency": "COP"
+    },
+
+    "numExt": "167"
+},
+{
+    "id": "822244",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-03-28",
+    "value": {
+        "amount": 1620620982,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1620620982,
+        "currency": "COP"
+    },
+
+    "numExt": "345"
+},
+{
+    "id": "164199",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-12-19",
+    "value": {
+        "amount": 685235109,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 685235109,
+        "currency": "COP"
+    },
+
+    "numExt": "8675"
+},
+{
+    "id": "164377",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-05-08",
+    "value": {
+        "amount": 1566671178,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1566671178,
+        "currency": "COP"
+    },
+
+    "numExt": "8964"
+},
+{
+    "id": "158361",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-01-27",
+    "value": {
+        "amount": 1309582292,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1309582292,
+        "currency": "COP"
+    },
+
+    "numExt": "3245"
+},
+{
+    "id": "335112",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-05-08",
+    "value": {
+        "amount": 1670298888,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1670298888,
+        "currency": "COP"
+    },
+
+    "numExt": "1234"
+},
+{
+    "id": "169878",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-06-18",
+    "value": {
+        "amount": 1697322433,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1697322433,
+        "currency": "COP"
+    },
+
+    "numExt": "0987"
+},
+{
+    "id": "800973",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-05-20",
+    "value": {
+        "amount": 206829003,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 206829003,
+        "currency": "COP"
+    },
+
+    "numExt": "23"
+},
+{
+    "id": "176239",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-05-09",
+    "value": {
+        "amount": 1211699540,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1211699540,
+        "currency": "COP"
+    },
+
+    "numExt": "2"
+},
+{
+    "id": "45",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-07-10",
+    "value": {
+        "amount": 2075976648,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 2075976648,
+        "currency": "COP"
+    },
+
+    "numExt": "9876"
+},{
+    "id": "9",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-07-15",
+    "value": {
+        "amount": 439944006,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 439944006,
+        "currency": "COP"
+    },
+
+    "numExt": "167"
+},
+{
+    "id": "822244",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-03-28",
+    "value": {
+        "amount": 1620620982,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1620620982,
+        "currency": "COP"
+    },
+
+    "numExt": "345"
+},
+{
+    "id": "164199",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-12-19",
+    "value": {
+        "amount": 685235109,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 685235109,
+        "currency": "COP"
+    },
+
+    "numExt": "8675"
+},
+{
+    "id": "164377",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-05-08",
+    "value": {
+        "amount": 1566671178,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1566671178,
+        "currency": "COP"
+    },
+
+    "numExt": "8964"
+},
+{
+    "id": "158361",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-01-27",
+    "value": {
+        "amount": 1309582292,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1309582292,
+        "currency": "COP"
+    },
+
+    "numExt": "3245"
+},
+{
+    "id": "335112",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-05-08",
+    "value": {
+        "amount": 1670298888,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1670298888,
+        "currency": "COP"
+    },
+
+    "numExt": "1234"
+},
+{
+    "id": "169878",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-06-18",
+    "value": {
+        "amount": 1697322433,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1697322433,
+        "currency": "COP"
+    },
+
+    "numExt": "0987"
+},
+{
+    "id": "800973",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-05-20",
+    "value": {
+        "amount": 206829003,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 206829003,
+        "currency": "COP"
+    },
+
+    "numExt": "23"
+},
+{
+    "id": "176239",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-05-09",
+    "value": {
+        "amount": 1211699540,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1211699540,
+        "currency": "COP"
+    },
+
+    "numExt": "2"
+},
+{
+    "id": "45",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-07-10",
+    "value": {
+        "amount": 2075976648,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 2075976648,
+        "currency": "COP"
+    },
+
+    "numExt": "9876"
+},{
+    "id": "10",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-07-15",
+    "value": {
+        "amount": 439944006,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 439944006,
+        "currency": "COP"
+    },
+
+    "numExt": "167"
+},
+{
+    "id": "822244",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-03-28",
+    "value": {
+        "amount": 1620620982,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1620620982,
+        "currency": "COP"
+    },
+
+    "numExt": "345"
+},
+{
+    "id": "164199",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-12-19",
+    "value": {
+        "amount": 685235109,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 685235109,
+        "currency": "COP"
+    },
+
+    "numExt": "8675"
+},
+{
+    "id": "164377",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-05-08",
+    "value": {
+        "amount": 1566671178,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1566671178,
+        "currency": "COP"
+    },
+
+    "numExt": "8964"
+},
+{
+    "id": "158361",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-01-27",
+    "value": {
+        "amount": 1309582292,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1309582292,
+        "currency": "COP"
+    },
+
+    "numExt": "3245"
+},
+{
+    "id": "335112",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-05-08",
+    "value": {
+        "amount": 1670298888,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1670298888,
+        "currency": "COP"
+    },
+
+    "numExt": "1234"
+},
+{
+    "id": "169878",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-06-18",
+    "value": {
+        "amount": 1697322433,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1697322433,
+        "currency": "COP"
+    },
+
+    "numExt": "0987"
+},
+{
+    "id": "800973",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-05-20",
+    "value": {
+        "amount": 206829003,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 206829003,
+        "currency": "COP"
+    },
+
+    "numExt": "23"
+},
+{
+    "id": "176239",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-05-09",
+    "value": {
+        "amount": 1211699540,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1211699540,
+        "currency": "COP"
+    },
+
+    "numExt": "2"
+},
+{
+    "id": "45",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-07-10",
+    "value": {
+        "amount": 2075976648,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 2075976648,
+        "currency": "COP"
+    },
+
+    "numExt": "9876"
+},{
+    "id": "11",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-07-15",
+    "value": {
+        "amount": 439944006,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 439944006,
+        "currency": "COP"
+    },
+
+    "numExt": "167"
+},
+{
+    "id": "822244",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-03-28",
+    "value": {
+        "amount": 1620620982,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1620620982,
+        "currency": "COP"
+    },
+
+    "numExt": "345"
+},
+{
+    "id": "164199",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-12-19",
+    "value": {
+        "amount": 685235109,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 685235109,
+        "currency": "COP"
+    },
+
+    "numExt": "8675"
+},
+{
+    "id": "164377",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-05-08",
+    "value": {
+        "amount": 1566671178,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1566671178,
+        "currency": "COP"
+    },
+
+    "numExt": "8964"
+},
+{
+    "id": "158361",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-01-27",
+    "value": {
+        "amount": 1309582292,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1309582292,
+        "currency": "COP"
+    },
+
+    "numExt": "3245"
+},
+{
+    "id": "335112",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-05-08",
+    "value": {
+        "amount": 1670298888,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1670298888,
+        "currency": "COP"
+    },
+
+    "numExt": "1234"
+},
+{
+    "id": "169878",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-06-18",
+    "value": {
+        "amount": 1697322433,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1697322433,
+        "currency": "COP"
+    },
+
+    "numExt": "0987"
+},
+{
+    "id": "800973",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-05-20",
+    "value": {
+        "amount": 206829003,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 206829003,
+        "currency": "COP"
+    },
+
+    "numExt": "23"
+},
+{
+    "id": "176239",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-05-09",
+    "value": {
+        "amount": 1211699540,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 1211699540,
+        "currency": "COP"
+    },
+
+    "numExt": "2"
+},
+{
+    "id": "45",
+    "concept": "Pago cupo rotativo",
+    "transactionDate": "2014-07-10",
+    "value": {
+        "amount": 2075976648,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 2075976648,
+        "currency": "COP"
+    },
+
+    "numExt": "9876"
+},{
+    "id": "12",
     "concept": "Pago cupo rotativo",
     "transactionDate": "2014-07-15",
     "value": {

@@ -3,8 +3,6 @@
  **/
 package com.bbva.net.webservices.agileOperations;
 
-import java.util.List;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -18,34 +16,35 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
 import com.bbva.zic.agileoperations.v01.AgileOperation;
+import com.bbva.zic.agileoperations.v01.ListAgileOperationsOut;
 
 @Path("/V01")
 public interface AgileOperationsService {
 
-	@GET
-	@Produces("application/json")
-	List<AgileOperation> getAgileOperations(@QueryParam("$filter") String $filter);
+    @GET
+    @Produces("application/json")
+    ListAgileOperationsOut getAgileOperations(@QueryParam("$filter") String $filter);
 
-	@POST
-	@Consumes("application/json")
-	@Produces("application/json")
-	boolean addAgileOperation(AgileOperation agileoperation);
+    @POST
+    @Consumes("application/json")
+    @Produces("application/json")
+    boolean addAgileOperation(AgileOperation agileoperation);
 
-	@GET
-	@Produces("application/json")
-	@Path("/validated")
-	boolean validateAgileOperation(@QueryParam("$filter") String $filter);
+    @GET
+    @Produces("application/json")
+    @Path("/validated")
+    boolean validateAgileOperation(@QueryParam("$filter") String $filter);
 
-	@DELETE
-	@Produces("application/json")
-	@Path("/{agileOperationId}")
-	String deleteAgileOperation(@PathParam("agileOperationId") String agileOperationId,
-			@HeaderParam("attributesdeletelist") String attributesdeletelist);
+    @DELETE
+    @Produces("application/json")
+    @Path("/{agileOperationId}")
+    String deleteAgileOperation(@PathParam("agileOperationId") String agileOperationId,
+            @HeaderParam("attributesdeletelist") String attributesdeletelist);
 
-	@PUT
-	@Consumes("application/json")
-	@Produces("application/json")
-	@Path("/{agileOperationId}")
-	Response modifyAgileOperation(@PathParam("agileOperationId") String agileOperationId, AgileOperation agileoperation);
+    @PUT
+    @Consumes("application/json")
+    @Produces("application/json")
+    @Path("/{agileOperationId}")
+    Response modifyAgileOperation(@PathParam("agileOperationId") String agileOperationId, AgileOperation agileoperation);
 
 }
