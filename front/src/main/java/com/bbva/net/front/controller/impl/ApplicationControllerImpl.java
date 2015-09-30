@@ -34,7 +34,8 @@ public class ApplicationControllerImpl extends AbstractBbvaController implements
     @Override
     public void onLikeAccount(final ValueChangeEvent valueChangeEvent) {
         boolean flow = false;
-        LOGGER.info("onLikeAccount " + valueChangeEvent + " ");
+        LOGGER.info("onLikeAccount " + valueChangeEvent + " "
+                + MessagesHelper.INSTANCE.getString("quiero.viewBalancesMovements"));
         if (valueChangeEvent.getNewValue().equals(MessagesHelper.INSTANCE.getString("quiero.viewBalancesMovements"))) {
             super.setSelectedProduct((ProductDto)valueChangeEvent.getOldValue());
             super.getSelectedProduct();
@@ -62,10 +63,9 @@ public class ApplicationControllerImpl extends AbstractBbvaController implements
 
     @Override
     public void onLikeQuota(ValueChangeEvent valueChangeEvent) {
-        LOGGER.info("onLikeAccount " + valueChangeEvent + " "
+        LOGGER.info("onLikeQuota " + valueChangeEvent + " "
                 + MessagesHelper.INSTANCE.getString("quiero.viewMovements"));
-        if (valueChangeEvent.getNewValue().equals(
-                MessagesHelper.INSTANCE.getString(multiValueGroupFacade.getMultiValueTypes(8).get(0).getValue()))) {
+        if (valueChangeEvent.getNewValue().equals(MessagesHelper.INSTANCE.getString("quiero.viewMovements"))) {
             super.setSelectedProduct((ProductDto)valueChangeEvent.getOldValue());
             super.getSelectedProduct();
             this.sendAction("quotaSelected");
