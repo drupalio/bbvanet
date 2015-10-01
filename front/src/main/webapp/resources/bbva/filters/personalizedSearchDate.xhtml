@@ -1,8 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:composite="http://java.sun.com/jsf/composite" xmlns:p="http://primefaces.org/ui"
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:bbvaSearch="http://java.sun.com/jsf/composite/bbva/filters"
 	xmlns:jsf="http://xmlns.jcp.org/jsf">
@@ -13,21 +16,26 @@
 	<h:form id="customSearch">
 		<bbvaSearch:personalizedSearchTabBody id="perTabBody"
 			title="#{msg['text.title.personalized.search']}">
-			<bbvaSearch:customSearchList id="customList" classList="date-filter customSearch"
-				classSpan="arrow-left-smaller" classSpanFilter="filter" title="#{msg['text.date']}"
-				filterTitle="#{quotaController.sinceText}" filterTitle2="#{quotaController.toText}"
-				filterMessage="#{quotaController.sinceDatestr}" filterMessage2="#{quotaController.toDatestr}">
-				<bbvaSearch:customSearchFilter id="customDate" showQuota="true" showMovements="false"
-					showChecks="false" identify="quotaCalendar" value="#{quotaController.selectDate}"
+			<bbvaSearch:customSearchList id="customList"
+				classList="date-filter customSearch" classSpan="arrow-left-smaller"
+				classSpanFilter="filter" title="#{msg['text.date']}"
+				filterTitle="#{quotaController.sinceText}"
+				filterTitle2="#{quotaController.toText}"
+				filterMessage="#{quotaController.sinceDatestr}"
+				filterMessage2="#{quotaController.toDatestr}">
+				<bbvaSearch:customSearchFilter id="customDate" showQuota="true"
+					showMovements="false" showChecks="false" identify="quotaCalendar"
+					value="#{quotaController.selectDate}"
 					confirmDate=":quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:dateButtonQuota"
-					valueDateSince="#{quotaController.sinceDate}" valueDateTo="#{quotaController.toDate}"
+					valueDateSince="#{quotaController.sinceDate}"
+					valueDateTo="#{quotaController.toDate}"
 					disabledButton="#{quotaController.renderComponents['BUTTONDATE']}"
 					disabledCalendar="#{quotaController.renderComponents['CALENDAR']}"
-					actionListenerDate="#{quotaController.setCustomDate}" listenerDate="#{quotaController}" />
+					listenerDate="#{quotaController}" />
 			</bbvaSearch:customSearchList>
-			<bbvaSearch:searchButtonList showQRemove="true" showRemove="false" showChecks="false"
-				showQuota="true" showMovements="false" actionListenerRemove="#{quotaController.cleanFilters}"
-				actionListenerShow="#{quotaController.searchQuotaByFilter}" />
+			<bbvaSearch:searchButtonList showQRemove="true" showRemove="false"
+				showChecks="false" showQuota="true" showMovements="false"
+				controller="#{quotaController}" />
 		</bbvaSearch:personalizedSearchTabBody>
 	</h:form>
 </composite:implementation>

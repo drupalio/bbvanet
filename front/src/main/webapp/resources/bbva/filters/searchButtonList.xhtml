@@ -15,10 +15,8 @@
 	<composite:attribute name="showQuota" type="boolean" />
 	<composite:attribute name="showMovements" type="boolean" />
 	<composite:attribute name="showChecks" type="boolean" />
-	<composite:attribute name="actionListenerShow"
-		method-signature="void listener(javax.faces.event.AjaxBehaviorEvent)" />
-	<composite:attribute name="listenerRemove"
-		method-signature="void listener(javax.faces.event.AjaxBehaviorEvent)" />
+	<composite:attribute name="controller"
+		type="com.bbva.net.front.core.AbstractBbvaController" />
 </composite:interface>
 <composite:implementation>
 	<li class="filter-buttons">
@@ -29,7 +27,7 @@
 				styleClass="btn btn-default hidden-xs hidden-sm">
 				<p:ajax process="@form" onstart="PF('statusDialog').show()"
 					oncomplete="PF('statusDialog').hide()"
-					listener="#{cc.attrs.actionListenerRemove}"
+					listener="#{cc.attrs.controller.cleanFilters}"
 					update=":tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:componentList
                         :tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:balanceList:componentList
                         :tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:incomeOrExpenseList:componentList
@@ -42,7 +40,7 @@
 				styleClass="btn btn-default hidden-xs hidden-sm">
 				<p:ajax process="@form" onstart="PF('statusDialog').show()"
 					oncomplete="PF('statusDialog').hide()"
-					listener="#{cc.attrs.actionListenerRemove}"
+					listener="#{cc.attrs.controller.cleanFilters}"
 					update=":quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:componentList
 					        :quotaDetail:detailAccounts:detailAccounts" />
 			</p:commandButton>
@@ -52,7 +50,7 @@
 				value="#{msg['button.see.result']}">
 				<p:ajax process="@form" onstart="PF('statusDialog').show()"
 					oncomplete="PF('statusDialog').hide()"
-					listener="#{cc.attrs.actionListenerShow}"
+					listener="#{cc.attrs.controller.searchMovementByFilter}"
 					update=":detailAccounts:tableMovements:formMovesDetail
 								:detailAccounts:checkTable:formCheks
 								:detailAccounts:checkBookTable:formCheckBooks" />
@@ -62,7 +60,7 @@
 				value="#{msg['button.see.result']}" icon="document-view-icon">
 				<p:ajax process="@form" onstart="PF('statusDialog').show()"
 					oncomplete="PF('statusDialog').hide()"
-					listener="#{cc.attrs.actionListenerShow}"
+					listener="#{cc.attrs.controller.showResults}"
 					update=":detailAccounts:tableMovements:formMovesDetail
 								:detailAccounts:checkTable:formCheks
 								:detailAccounts:checkBookTable:formCheckBooks" />
@@ -73,7 +71,7 @@
 				value="#{msg['button.see.result']}">
 				<p:ajax process="@form" onstart="PF('statusDialog').show()"
 					oncomplete="PF('statusDialog').hide()"
-					listener="#{cc.attrs.actionListenerShow}"
+					listener="#{cc.attrs.controller.searchQuotaByFilter}"
 					update=":quotaDetail:detailAccounts:detailAccounts:detailmovesAC" />
 			</p:commandButton>
 		</div>
