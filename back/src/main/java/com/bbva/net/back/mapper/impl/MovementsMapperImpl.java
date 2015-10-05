@@ -25,25 +25,16 @@ public class MovementsMapperImpl extends ConfigurableMapper implements Movements
 
         // Map Movement DTO
         factory.classMap(Movement.class, MovementDto.class).field("id", "movementId")
-        .field("id", "movementDetailDto.id").field("concept", "movementConcept")
-        .field("concept", "movementDetailDto.concept").field("transactionDate", "movementDate")
-        .field("transactionDate", "movementDetailDto.transactionDate").field("operationDate", "operationDate")
-        .field("operationDate", "movementDetailDto.operationDate")
-        .field("operation.code", "movementDetailDto.operationCode")
-        .field("operation.description", "movementDetailDto.operationDescription")
-        .field("office.name", "movementDetailDto.originCenterMovement")
-        .field("office.location.city.name", "movementDetailDto.plaza").field("status", "status")
-        .field("value", "movementValue").field("value", "movementDetailDto.operationValue")
-        .field("balance", "movementDetailDto.valueslope").field("balance", "totalBalance").byDefault()
-        .register();
+        .field("concept", "movementConcept").field("transactionDate", "movementDate")
+        .field("operationDate", "operationDate").field("balance", "totalBalance")
+        .field("status", "status").field("value", "movementValue").byDefault().register();
 
         factory.classMap(Movement.class, MovementDetailDto.class).field("id", "id").field("concept", "concept")
         .field("transactionDate", "transactionDate").field("operationDate", "operationDate")
         .field("transactionDate", "operationHour").field("operation.code", "operationCode")
         .field("operation.description", "operationDescription").field("office.name", "originCenterMovement")
-        .field("office", "plaza").field("office.location.city.name", "plaza.city")
-        .field("value", "operationValue").field("balance", "valueslope").field("status", "state").byDefault()
-        .register();
+        .field("status", "state").field("office", "plaza").field("office.location.city.name", "plaza.city")
+        .field("value", "operationValue").field("balance", "valueslope").byDefault().register();
     }
 
     @Override
