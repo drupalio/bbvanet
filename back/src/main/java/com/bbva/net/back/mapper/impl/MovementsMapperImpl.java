@@ -27,7 +27,9 @@ public class MovementsMapperImpl extends ConfigurableMapper implements Movements
         factory.classMap(Movement.class, MovementDto.class).field("id", "movementId")
         .field("concept", "movementConcept").field("transactionDate", "movementDate")
         .field("operationDate", "operationDate").field("balance", "totalBalance")
-        .field("status", "status").field("value", "movementValue").byDefault().register();
+        .field("concept", "movementDetailDto.concept").field("value", "movementValue")
+        .field("operation.description", "movementDetailDto.operationDescription")
+        .field("status", "status").byDefault().register();
 
         factory.classMap(Movement.class, MovementDetailDto.class).field("id", "id").field("concept", "concept")
         .field("transactionDate", "transactionDate").field("operationDate", "operationDate")
