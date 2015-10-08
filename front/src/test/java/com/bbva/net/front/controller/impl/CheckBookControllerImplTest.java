@@ -27,27 +27,27 @@ import com.bbva.net.back.model.globalposition.ProductDto;
 import com.bbva.net.front.test.utils.AbstractBbvaControllerTest;
 
 public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
-    
+
     private static final String DEFAULT_ID = "0013044300020000949";
-    
+
     private CheckBookControllerImpl checkBookController;
-    
+
     private CheckPaginatedController checkPaginator;
-    
+
     private CheckBookFacade checkBookFacade;
-    
+
     private MultiValueGroupFacade multiValueGroupFacade;
-    
+
     private Map<String, Boolean> renderComponents;
-    
+
     private ProductDto productDto;
-    
+
     private ActionEvent eventAction;
-    
+
     private SelectEvent eventSelect;
-    
+
     private AjaxBehaviorEvent ajaxAction;
-    
+
     @Before
     public void init() {
         // Inicializar controlador
@@ -73,7 +73,7 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
         // init
         this.checkBookController.init();
     }
-    
+
     @Test
     public void initCheckbook() {
         List<CheckbookDto> check = new ArrayList<CheckbookDto>();
@@ -91,7 +91,7 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
         Mockito.when(checkBookFacade.getCheckBooksById(DEFAULT_ID)).thenThrow(new RestClientException("OK"));
         this.checkBookController.initCheckBookList();
     }
-    
+
     @Test
     public void checkOnselectDate() {
         // onselectDate concreteDate igual
@@ -101,7 +101,7 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
         this.checkBookController.setSelectDate("null");
         this.checkBookController.oneSelectDate();
     }
-    
+
     @Test
     public void checkCumstomDate() {
         // nullos y concreteDate igual
@@ -127,7 +127,7 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
         this.checkBookController.getTitleDateTo();
         this.checkBookController.setCustomDate(ajaxAction);
     }
-    
+
     // @Test
     public void checkActionState() {
         // set ActionState numero de cheque
@@ -139,7 +139,7 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
         this.checkBookController.getRightTitle();
         this.checkBookController.setNumberCheckOrBook(ajaxAction);
     }
-    
+
     @Test
     public void checkShowResults() {
         // put render
@@ -194,7 +194,7 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
                 new RestClientException("OK"));
         this.checkBookController.showResults(ajaxAction);
     }
-    
+
     @Test
     public void checkNextPages() {
         List<CheckbookDto> checkBook = new ArrayList<CheckbookDto>();
@@ -202,10 +202,7 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
         // nextPage
         this.checkBookController.nextPage(eventAction);
         this.checkBookController.setCheckBook(checkBook);
-        this.checkBookController.nextPageCheckBook(eventAction);
         // size 15
-        Whitebox.setInternalState(checkBook, "size", 15);
-        this.checkBookController.hasMoreElementsCheckBook(checkBook);
         Whitebox.setInternalState(check, "size", 15);
         this.checkBookController.hasMoreElementsCheck(check);
         this.checkBookController.setCheckBook(checkBook);
@@ -213,7 +210,7 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
         this.checkBookController.setCheckList(check);
         this.checkBookController.getCheckList();
     }
-    
+
     @Test
     public void checkListValueCheck() {
         this.checkBookController.getListMultiValueChecks();
