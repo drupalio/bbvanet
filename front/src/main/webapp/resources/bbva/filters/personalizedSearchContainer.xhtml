@@ -21,7 +21,7 @@
 				update=":detailAccounts:tableMovements:formMovesDetail
 					:detailAccounts:checkTable:formCheks
 					:detailAccounts:checkBookTable:formCheckBooks
-					:tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab"></p:remoteCommand>
+					:tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab"/>
 			<bbvaSearch:personalizedSearchTabBody id="perTabBody"
 				title="#{msg['text.title.personalized.search']}">
 				<bbvaSearch:customSearchList id="customList"
@@ -38,7 +38,7 @@
 						confirmDate=":tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:dateButtonMovements"
 						valueDateSince="#{movementsCriteriaController.sinceDate}"
 						valueDateTo="#{movementsCriteriaController.toDate}"
-						disabledCalendar="#{movementsCriteriaController.renderComponents['CALENDAR']}"
+						disabledCalendar="#{renderComponents['CALENDAR']}"
 						listenerDate="#{movementsCriteriaController}" />
 				</bbvaSearch:customSearchList>
 				<bbvaSearch:customSearchList id="balanceList"
@@ -89,7 +89,7 @@
 						confirmDate=":tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:customCheckList:customDate:dateButtonChecks"
 						valueDateSince="#{checkBookController.sinceDate}"
 						valueDateTo="#{checkBookController.toDate}"
-						disabledCalendar="#{checkBookController.renderComponents['CALENDARCHECK']}"
+						disabledCalendar="#{renderComponents['CALENDARCHECK']}"
 						actionListenerDate="#{checkBookController.setCustomDate}"
 						listenerDate="#{checkBookController}" />
 				</bbvaSearch:customSearchList>

@@ -97,10 +97,11 @@
 				</p:dataTable>
 				<footer class="detail-table-footer">
 					<p:commandButton id="moreQuota" value="#{msg['text.detailMove.footer']}"
-						rendered="#{quotaController.renderComponents['FOOTERTABLEQUOTA']}"
-						styleClass="btn btn-more-results" actionListener="#{quotaController.nextPage}" ajax="true"
-						update=":quotaDetail:detailAccounts:detailAccounts:detailmovesAC">
-						<p:ajax onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+						rendered="#{renderComponents['FOOTERTABLEQUOTA']}"
+						styleClass="btn btn-more-results #{cc.attrs.listAccounts.size()==0 ? 'nonee' : ''}"
+						actionListener="#{quotaController.nextPage}" ajax="true"
+						update=":quotaDetail:detailAccounts:detailAccounts:quotaDetails">
+						<p:ajax onstart="PF('statusDialog').show()" oncomplete="PF('statusDialog').hide()" />
 					</p:commandButton>
 				</footer>
 			</article>

@@ -7,6 +7,7 @@
 	<var name="quotaController" class="com.bbva.net.front.controller.impl.QuotaControllerImpl"/>
 	<var name="termsController" class="com.bbva.net.front.controller.impl.TermsControllerImpl"/>
 	<var name="personalizeProductAccountController" class="com.bbva.net.front.controller.impl.PersonalizeProductControllerImpl"/>
+	<var name="renderViewMovementsUI" class="com.bbva.net.front.ui.movements.RenderViewMovementsUI" />
 	
 	<on-start>
 		<evaluate expression="quotaController.init()"/>
@@ -20,7 +21,13 @@
 		<on-entry>
 			<set name="flowScope.menuActive" value="'LOANS'" />
 			<evaluate expression="new java.lang.String()"/>
+			<evaluate expression="renderViewMovementsUI.init()" />
 		</on-entry>
+		<on-render>
+			<evaluate expression="renderViewMovementsUI.getRenderComponents()"
+				result="viewScope.renderComponents" />
+			<evaluate expression="quotaController.setShowMoreStatus()" />
+		</on-render>
 	</view-state>
 	
 </flow>
