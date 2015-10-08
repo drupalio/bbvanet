@@ -33,8 +33,8 @@
 							styleClass="styleColum desc" sortBy="#{cheks.value}" colspan="2">
 							<h:outputText class="currency styleCurrent styleLeft" value="#{cheks.value}" />
 						</p:column>
-						<p:column class="head" headerText="#{msg['text.table.status']}"
-							styleClass="styleColum desc w10" sortBy="#{cheks.status}">
+						<p:column class="head" headerText="#{msg['text.table.status']}" styleClass="styleColum desc w10"
+							 sortBy="#{cheks.status}">
 							<h:outputText class="text styleLeft" value="#{cheks.status}" />
 						</p:column>
 						<p:column class="head" headerText="#{msg['text.table.change.date']}"
@@ -59,10 +59,12 @@
 
 					<!--tabla realizada para imprimir -->
 
-					<p:dataTable id="checksTableImprimir" var="cheksAux" styleClass="nonee"
-						value="#{cc.attrs.listChecks}" emptyMessage="#{msg['text.empty.table']}"
+					<p:dataTable id="checksTableImprimir" var="cheksAux" 
+						styleClass="nonee" value="#{cc.attrs.listChecks}"
+						emptyMessage="#{msg['text.empty.table']}"
 						rendered="#{checkBookController.renderComponents['CHECKTABLE']}">
-						<p:column width="20%" headerText="#{msg['text.table.num.check']}" sortBy="#{cheksAux.id}">
+						<p:column width="20%" headerText="#{msg['text.table.num.check']}" 
+							sortBy="#{cheksAux.id}">
 							<h:outputText value="#{cheksAux.id}" />
 						</p:column>
 						<p:column width="20%" headerText="#{msg['text.table.emi.date']}"
@@ -71,8 +73,8 @@
 								<f:convertDateTime pattern="dd/MM/yyyy" />
 							</h:outputText>
 						</p:column>
-						<p:column width="20%" headerText="#{msg['text.detailMove.value']}" sortBy="#{cheksAux.value}"
-							colspan="2">
+						<p:column width="20%" headerText="#{msg['text.detailMove.value']}" 
+							sortBy="#{cheksAux.value}" colspan="2">
 							<h:outputText value="#{cheksAux.value}" />
 						</p:column>
 						<p:column width="20%" class="head" headerText="#{msg['text.table.status']}"

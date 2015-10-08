@@ -217,25 +217,28 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
     
     public void setShowMoreStatus() {
         LOGGER.info("QuotaControllerImpl setShowMoreStatus ");
-        if (this.quotamovenDtos.size() >= 10 && super.isHasMorePages()) {
+        if (this.quotamovenDtos.size() >= 10 && super.isHasMorePages()) 
             getRenderComponents().put(RenderAttributes.FOOTERTABLEQUOTA.toString(), true);
-        } else {
+         else 
             getRenderComponents().put(RenderAttributes.FOOTERTABLEQUOTA.toString(), false);
-        }
     }
-    
+	
     @Override
     public List<MovementDto> getAllQuotamovenDtos() {
         LOGGER.info("QuotaControllerImpl getAllQuotamovenDtos ");
         this.quotamovenDtos = new ArrayList<MovementDto>();
         calculateDate(MessagesHelper.INSTANCE.getString("select.radio.45.days"));
         setDateRangePControl(this.dateRange);
+		try {
         if (getSelectedProduct().isVisible()) {
             super.setQuotaDetailFacade(quotaDetailFacade);
             next();
             this.quotamovenDtos = getCurrentList();
             LOGGER.info("Datos de los movimientos llenos ");
         }
+		} catch (final Exception e) {
+			setCurrentList(this.quotamovenDtos);
+		}
         return quotamovenDtos;
     }
     
@@ -354,10 +357,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
         int inicio = 10;
         
         File archivoXLS = new File(rutaExcelCupo);
-        if (archivoXLS.exists()) {
-            archivoXLS.delete();
-        }
-        
+        if (archivoXLS.exists()) archivoXLS.delete();
         try {
             archivoXLS.createNewFile();
         } catch (IOException e) {
@@ -375,9 +375,8 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
                 // "https://www.bbva.com.co/BBVA-home-theme/images/BBVA/logo_bbva.png");
                 ByteArrayOutputStream img_bytes = new ByteArrayOutputStream();
                 int b;
-                while ((b = is.read()) != -1) {
+                while ((b = is.read()) != -1) 
                     img_bytes.write(b);
-                }
                 is.close();
                 
                 int pictureIdx = libro.addPicture(img_bytes.toByteArray(), Workbook.PICTURE_TYPE_PNG);
@@ -1033,9 +1032,8 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
                 if (typeDoc.equals("DetailMoveQuota")) {
                     exportDocDetailPdf();
                 }
-            } else {
+            } else 
                 LOGGER.info("No lo borró");
-            }
         } else {
             LOGGER.info("crea el archivo " + pdfFile.getAbsolutePath());
             if (typeDoc.equals("MovementsQuota")) {
@@ -1083,9 +1081,8 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
         try {
             Process p = Runtime.getRuntime().exec(sParts);
             LOGGER.info(" Proceso input " + p.toString());
-            if (p == null) {
-                return false;
-            }
+            
+			if (p == null) return false; 
             
             LOGGER.info("Inicia la terminación de proceso");
             try {

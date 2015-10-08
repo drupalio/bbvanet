@@ -341,9 +341,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
             LOGGER.info("MovementsAccountController searchMovementByMovementFilter" + movementCriteria.getMovement()
                     + "--");
             // Get only movements by concept
-            if (status.equals(MessagesHelper.INSTANCE.getString("mov.all"))) {
-                status = null;
-            }
+            if (status.equals(MessagesHelper.INSTANCE.getString("mov.all")))  status = null;
             final List<MovementDto> movementsByConcept = (List<MovementDto>)CollectionUtils.select(this.movementsList,
                     new ConceptMovementPredicate(movementCriteria.getMovement(), status));
             this.movementsList = movementsByConcept;
@@ -430,16 +428,14 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
     public void setIncomeExpensesFilter(final AjaxBehaviorEvent event) {
         LOGGER.info("MovementsAccountController setIncomeExpensesFilter");
         getRenderComponents().put(RenderAttributes.INCOMEOREXPENSESFILTER.toString(), true);
-        if (movementCriteria.getIncomesOrExpenses().equals("1")) {
+        if (movementCriteria.getIncomesOrExpenses().equals("1")) 
             setTitleInOrExp(MessagesHelper.INSTANCE.getString("select.radio.in"));
-        } else if (movementCriteria.getIncomesOrExpenses().equals("2")) {
+         else if (movementCriteria.getIncomesOrExpenses().equals("2"))
             setTitleInOrExp(MessagesHelper.INSTANCE.getString("select.radio.out"));
-        } else {
+         else
             setTitleInOrExp(MessagesHelper.INSTANCE.getString("select.radio.in.out"));
-        }
-        System.out.println(movementCriteria.getIncomesOrExpenses());
-    }
-    
+	}
+
     @Override
     public void setMovementConcept(final AjaxBehaviorEvent event) {
         LOGGER.info("MovementsAccountController setMovementConcept");
@@ -565,10 +561,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
         int inicio = 10;
         
         File archivoXLS = new File(rutaMoveExcel);
-        if (archivoXLS.exists()) {
-            archivoXLS.delete();
-        }
-        
+        if (archivoXLS.exists()) archivoXLS.delete();        
         try {
             archivoXLS.createNewFile();
         } catch (IOException e) {
@@ -586,9 +579,9 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
                 // "https://www.bbva.com.co/BBVA-home-theme/images/BBVA/logo_bbva.png");
                 ByteArrayOutputStream img_bytes = new ByteArrayOutputStream();
                 int b;
-                while ((b = is.read()) != -1) {
+                while ((b = is.read()) != -1)
                     img_bytes.write(b);
-                }
+
                 is.close();
                 
                 int pictureIdx = libro.addPicture(img_bytes.toByteArray(), Workbook.PICTURE_TYPE_PNG);
@@ -1415,9 +1408,9 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
                 if (typeDoc.equals("DetailMovement")) {
                     exportDocumentDetailPdf();
                 }
-            } else {
+            } else 
                 LOGGER.info("No lo borró");
-            }
+        
         } else {
             LOGGER.info("crea el archivo " + pdfFile.getAbsolutePath());
             if (typeDoc.equals("Movements")) {
@@ -1491,10 +1484,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
         try {
             Process p = Runtime.getRuntime().exec(sParts);
             LOGGER.info(" Proceso input " + p.toString());
-            if (p == null) {
-                return false;
-            }
-            
+            if (p == null)  return false;
             LOGGER.info("Inicia la terminación de proceso");
             try {
                 int retval = p.exitValue();
@@ -1613,12 +1603,11 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
      * @param movementsList
      */
     public void setShowMoreStatus() {
-        if (this.movementsList.size() >= 10 && super.isHasMorePages() && !isFilter()) {
+        if (this.movementsList.size() >= 10 && super.isHasMorePages() && !isFilter()) 
             getRenderComponents().put(RenderAttributes.FOOTERTABLEMOVEMENT.name(), true);
-        } else {
+        else 
             getRenderComponents().put(RenderAttributes.FOOTERTABLEMOVEMENT.name(), false);
         }
-    }
     
     public void setFalseCheckComponents() {
         getRenderComponents().put(RenderAttributes.TITLECHECKS.name(), false);

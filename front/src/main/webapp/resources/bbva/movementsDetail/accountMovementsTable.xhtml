@@ -26,7 +26,8 @@
 						value="#{cc.attrs.listAccounts}" var="moves" selectionMode="single"
 						rowKey="#{moves.movementId}" rendered="#{renderComponents['MOVEMENTSTABLE']}"
 						emptyMessage="#{msg['text.empty.table']}">
-						<p:ajax event="rowSelect" oncomplete="clickMove(); PF('statusDialog').hide();"
+						<p:ajax event="rowSelect" 
+							oncomplete="clickMove(); PF('statusDialog').hide();"
 							onstart="PF('statusDialog').show();"
 							listener="#{movementsCriteriaController.onMovementSelected}" />
 						<p:column style="z-index: -1 !important; display:none;">

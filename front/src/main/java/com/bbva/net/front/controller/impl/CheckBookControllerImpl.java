@@ -871,9 +871,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
         int inicio = 10;
 
         File archivoXLS = new File(rutaCheckExcel);
-        if (archivoXLS.exists()) {
-            archivoXLS.delete();
-        }
+        if (archivoXLS.exists()) archivoXLS.delete();
 
         try {
             archivoXLS.createNewFile();
@@ -892,9 +890,8 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
                 InputStream is = url.openStream();
                 ByteArrayOutputStream img_bytes = new ByteArrayOutputStream();
                 int b;
-                while ((b = is.read()) != -1) {
+                while ((b = is.read()) != -1) 
                     img_bytes.write(b);
-                }
                 is.close();
 
                 int pictureIdx = libro.addPicture(img_bytes.toByteArray(), Workbook.PICTURE_TYPE_PNG);
@@ -1214,9 +1211,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
         int inicio = 10;
 
         File archivoXLS = new File(rutaCheckBookExcel);
-        if (archivoXLS.exists()) {
-            archivoXLS.delete();
-        }
+        if (archivoXLS.exists()) archivoXLS.delete();
 
         try {
             archivoXLS.createNewFile();
@@ -1234,9 +1229,8 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
                 InputStream is = url.openStream();
                 ByteArrayOutputStream img_bytes = new ByteArrayOutputStream();
                 int b;
-                while ((b = is.read()) != -1) {
+                while ((b = is.read()) != -1) 
                     img_bytes.write(b);
-                }
                 is.close();
 
                 int pictureIdx = libro.addPicture(img_bytes.toByteArray(), Workbook.PICTURE_TYPE_PNG);
@@ -1604,9 +1598,8 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
                 if (typeDoc.equals("CheckBook")) {
                     exportDocCheckBookPdf();
                 }
-            } else {
+            } else 
                 LOGGER.info("No lo borró");
-            }
         } else {
             LOGGER.info("crea el archivo " + pdfFile.getAbsolutePath());
             if (typeDoc.equals("Checks")) {
@@ -1654,9 +1647,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
         try {
             Process p = Runtime.getRuntime().exec(sParts);
             LOGGER.info(" Proceso input " + p.toString());
-            if (p == null) {
-                return false;
-            }
+			if (p == null) return false;
 
             LOGGER.info("Inicia la terminación de proceso");
             try {
@@ -1686,11 +1677,11 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
     }
     
     public void hasMoreElementsCheck(List<CheckDto> cheksList) {
-        if (cheksList.size() >= 9 && super.isHasMorePages()) {
+        if (cheksList.size() >= 9 && super.isHasMorePages()) 
             getRenderComponents().put(RenderAttributes.FOOTERTABLECHEKS.toString(), true);
-        } else {
+         else 
             getRenderComponents().put(RenderAttributes.FOOTERTABLECHEKS.toString(), false);
-        }
+			
     }
 
     public void hasMoreElementsCheckBook(List<CheckbookDto> cheksBooks) {
