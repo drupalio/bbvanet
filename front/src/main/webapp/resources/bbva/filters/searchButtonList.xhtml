@@ -1,13 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:composite="http://java.sun.com/jsf/composite"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-	xmlns:jsf="http://xmlns.jcp.org/jsf"
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:composite="http://java.sun.com/jsf/composite" xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough" xmlns:jsf="http://xmlns.jcp.org/jsf"
 	xmlns:bbvaButton="http://java.sun.com/jsf/composite/bbva/button">
 <composite:interface>
 	<composite:attribute name="showRemove" type="boolean" />
@@ -15,64 +11,67 @@
 	<composite:attribute name="showQuota" type="boolean" />
 	<composite:attribute name="showMovements" type="boolean" />
 	<composite:attribute name="showChecks" type="boolean" />
-	<composite:attribute name="controller"
-		type="com.bbva.net.front.core.AbstractBbvaController" />
+	<composite:attribute name="controller" type="com.bbva.net.front.core.AbstractBbvaController" />
 </composite:interface>
 <composite:implementation>
 	<li class="filter-buttons">
 		<div>
-			<p:commandButton id="removeFields" icon="trash-icon"
-				value="#{msg['button.clean.filters']}"
-				rendered="#{cc.attrs.showRemove}"
+			<p:commandButton id="removeFields" icon="trash-icon" value="#{msg['button.clean.filters']}"
+				rendered="#{cc.attrs.showRemove}" actionListener="#{renderViewMovementsUI.init()}"
 				styleClass="btn btn-default hidden-xs hidden-sm">
 				<p:ajax process="@form" onstart="PF('statusDialog').show()"
-					oncomplete="PF('statusDialog').hide()"
-					listener="#{cc.attrs.controller.cleanFilters}"
-					update=":tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:componentList
-                        :tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:balanceList:componentList
-                        :tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:incomeOrExpenseList:componentList
-                        :tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:movementList:componentList
-                        :detailAccounts:tableMovements:formMovesDetail" />
+					oncomplete="PF('statusDialog').hide()" listener="#{cc.attrs.controller.cleanFilters}"
+					update=":detailAccounts:tableMovements:formMovesDetail
+					:detailAccounts:checkTable:formCheks
+					:detailAccounts:checkBookTable:formCheckBooks
+					:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:componentList
+                    :tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:balanceList:componentList
+                    :tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:movementList:componentList
+                    :tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:incomeOrExpenseList:componentList
+                    :tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:balanceList:outputData:currencySince1
+                    :tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:balanceList:outputData:currencyTo
+                    :tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:balanceList:outputData:out
+                    :tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:balanceList:outputData:balanceButton
+                    :tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:movementList:conceptMove:conceptM
+                    :tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:movementList:conceptMove:confirMovementsFilter
+                    :tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:incomeOrExpenseList:incomeContainer:panelFilterSald
+                    :tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:incomeOrExpenseList:incomeContainer:balanceButton
+					:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:panelFilterDate						
+					:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:dateButtonMovements" />
 			</p:commandButton>
-			<p:commandButton id="removeQFields" icon="trash-icon"
-				value="#{msg['button.clean.filters']}"
-				rendered="#{cc.attrs.showQRemove}"
+			<p:commandButton id="removeQFields" icon="trash-icon" value="#{msg['button.clean.filters']}"
+				rendered="#{cc.attrs.showQRemove}" actionListener="#{renderViewMovementsUI.init()}"
 				styleClass="btn btn-default hidden-xs hidden-sm">
 				<p:ajax process="@form" onstart="PF('statusDialog').show()"
-					oncomplete="PF('statusDialog').hide()"
-					listener="#{cc.attrs.controller.cleanFilters}"
-					update=":quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:componentList
-					        :quotaDetail:detailAccounts:detailAccounts" />
+					oncomplete="PF('statusDialog').hide()" listener="#{cc.attrs.controller.cleanFilters}"
+					update=":quotaDetail:detailAccounts:detailAccounts
+					:quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:componentList
+					:quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:dateButtonQuota
+					:quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:panelFilterDate" />
+			</p:commandButton>
+			<p:commandButton styleClass="btn btn-default" rendered="#{cc.attrs.showMovements}"
+				icon="document-view-icon" value="#{msg['button.see.result']}">
+				<p:ajax process="@form" onstart="PF('statusDialog').show()"
+					oncomplete="PF('statusDialog').hide()" listener="#{cc.attrs.controller.searchMovementByFilter}"
+					update=":detailAccounts:tableMovements:formMovesDetail
+					:detailAccounts:checkTable:formCheks
+					:detailAccounts:checkBookTable:formCheckBooks" />
 			</p:commandButton>
 			<!-- GP12834 Cheques y chequeras - Entelgy - inicio  -->
-			<p:commandButton styleClass="btn btn-default"
-				rendered="#{cc.attrs.showMovements}" icon="document-view-icon"
-				value="#{msg['button.see.result']}">
-				<p:ajax process="@form" onstart="PF('statusDialog').show()"
-					oncomplete="PF('statusDialog').hide()"
-					listener="#{cc.attrs.controller.searchMovementByFilter}"
-					update=":detailAccounts:tableMovements:formMovesDetail
-								:detailAccounts:checkTable:formCheks
-								:detailAccounts:checkBookTable:formCheckBooks" />
-			</p:commandButton>
-			<p:commandButton styleClass="btn btn-default"
-				rendered="#{cc.attrs.showChecks}"
+			<p:commandButton styleClass="btn btn-default" rendered="#{cc.attrs.showChecks}"
 				value="#{msg['button.see.result']}" icon="document-view-icon">
 				<p:ajax process="@form" onstart="PF('statusDialog').show()"
-					oncomplete="PF('statusDialog').hide()"
-					listener="#{cc.attrs.controller.showResults}"
+					oncomplete="PF('statusDialog').hide()" listener="#{cc.attrs.controller.showResults}"
 					update=":detailAccounts:tableMovements:formMovesDetail
-								:detailAccounts:checkTable:formCheks
-								:detailAccounts:checkBookTable:formCheckBooks" />
+					:detailAccounts:checkTable:formCheks
+					:detailAccounts:checkBookTable:formCheckBooks" />
 			</p:commandButton>
 			<!-- GP12834 Cheques y chequeras - Entelgy - fin  -->
-			<p:commandButton styleClass="btn btn-default" type="button"
-				rendered="#{cc.attrs.showQuota}" icon="document-view-icon"
-				value="#{msg['button.see.result']}">
+			<p:commandButton styleClass="btn btn-default" type="button" rendered="#{cc.attrs.showQuota}"
+				icon="document-view-icon" value="#{msg['button.see.result']}">
 				<p:ajax process="@form" onstart="PF('statusDialog').show()"
-					oncomplete="PF('statusDialog').hide()"
-					listener="#{cc.attrs.controller.searchQuotaByFilter}"
-					update=":quotaDetail:detailAccounts:detailAccounts:detailmovesAC" />
+					oncomplete="PF('statusDialog').hide()" listener="#{cc.attrs.controller.searchQuotaByFilter}"
+					update=":quotaDetail:detailAccounts:detailAccounts" />
 			</p:commandButton>
 		</div>
 	</li>

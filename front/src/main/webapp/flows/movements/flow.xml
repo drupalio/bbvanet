@@ -17,8 +17,8 @@
 		<!-- GP12834 Cheques y chequeras - Entelgy - inicio -->
 		<evaluate expression="checkBookController.init()" />
 		<evaluate expression="checkBookController.initCheckBookList()" />
-		<evaluate expression="personalizeProductAccountController.init()" />
 		<!-- GP12834 Cheques y chequeras - Entelgy - fin -->
+		<evaluate expression="personalizeProductAccountController.init()" />
 		<evaluate expression="movementsCriteriaController.init()" />
 		<evaluate expression="movementsCriteriaController.getSelectedProduct()"
 			result="flowScope.product" />
@@ -39,11 +39,6 @@
 				result="viewScope.renderComponents" />
 			<evaluate expression="movementsCriteriaController.setShowMoreStatus()" />
 		</on-render>
-
-		<transition to="detailMovement" on="movementSelected"></transition>
-	</view-state>
-
-	<view-state id="detailMovement" view="externalRedirect:movements">
 	</view-state>
 
 </flow>

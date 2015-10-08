@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.bbva.net.front.controller;
 
@@ -14,83 +14,77 @@ import com.bbva.net.back.model.movements.MovementDto;
  * @author User
  */
 public interface QuotaController {
-
-	/***
-	 * Method to select the date type is called when you click on the date oneRadio menu component
-	 */
-	void oneSelectDate();
-
-	/**
-	 * Method to set partial customdate
-	 */
-	void setCustomDate(AjaxBehaviorEvent event);
-
-	/**
-	 * Method to set partial customdate
-	 */
-	void searchQuotaByFilter(final AjaxBehaviorEvent event);
-
-	/**
-	 * Method to get all movements of quota
-	 * 
-	 * @return
-	 */
-
-	List<MovementDto> getAllQuotamovenDtos();
-
-	/**
-	 * Method to reset to "render" of quota with click
-	 * 
-	 * @param event
-	 */
-	void cleanFilters(AjaxBehaviorEvent event);
-
-	/**
-	 * Method to reset filters of quota
-	 */
-
-	void cleanFilters();
-
-	/**
-	 * Method nextPage movements
-	 * 
-	 * @param event
-	 */
-
-	void nextPage(ActionEvent event);
-
-	/**
-	 * 
-	 */
-	void criteriaSearch();
-
-	/**
-	 * 
-	 */
-	void exportDocumentPdf();
-
-	/**
-	 * 
-	 */
-	void exportDocumentExcel();
-
-	/**
-	 * 
-	 */
-	void exportDocDetailPdf();
-
-	/**
-	 * 
-	 */
-	void printMovesQuota();
-
-	/**
-	 * 
-	 */
-	void printMoveDetailQuota();
-
-	/**
-	 * 
-	 */
-	void sendMail();
+    
+    /***
+     * Method to select the date type is called when you click on the date oneRadio menu component
+     */
+    void oneSelectDate();
+    
+    /**
+     * Method to set partial customdate
+     */
+    void setCustomDate(AjaxBehaviorEvent event);
+    
+    /**
+     * Method to set partial customdate
+     */
+    void searchQuotaByFilter(final AjaxBehaviorEvent event);
+    
+    /**
+     * Method to get all movements of quota
+     * 
+     * @return
+     */
+    
+    List<MovementDto> getAllQuotamovenDtos();
+    
+    /**
+     * Method to reset to "render" of quota with click
+     * 
+     * @param event
+     */
+    void cleanFilters(AjaxBehaviorEvent event);
+    
+    /**
+     * Method nextPage movements
+     * 
+     * @param event
+     */
+    
+    void nextPage(ActionEvent event);
+    
+    /**
+     *
+     */
+    void criteriaSearch();
+    
+    /**
+     *
+     */
+    void exportDocumentPdf();
+    
+    /**
+     *
+     */
+    void exportDocumentExcel();
+    
+    /**
+     *
+     */
+    void exportDocDetailPdf();
+    
+    /**
+     *
+     */
+    void printMovesQuota();
+    
+    /**
+     *
+     */
+    void printMoveDetailQuota();
+    
+    /**
+     *
+     */
+    void sendMail();
 }

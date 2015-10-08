@@ -148,6 +148,8 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
     
     private MovementDto movementAction;
     
+    private Boolean filter;
+
     private List<MultiValueGroup> conceptMovements;
     
     private String rutaMoveExcel;
@@ -183,6 +185,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
     public List<MovementDto> getAllMovements() {
         LOGGER.info("MovementsAccountController getAllMovements");
         this.movementsList = new ArrayList<MovementDto>();
+        setFilter(false);
         dateRange = calculateDate(MessagesHelper.INSTANCE.getString("select.radio.45.days"));
         setDateRangePc(dateRange);
         setBalanceRangePc(null);
@@ -260,7 +263,6 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
         super.setMovementsFacade(movementsFacade);
         search();
         this.movementsList = getCurrentList();
-        setShowMoreStatus();
         RequestContext.getCurrentInstance().update("detailAccounts:tableMovements:formMovesDetail:movAccount");
     }
     
@@ -282,6 +284,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
         LOGGER.info("MovementsAccountController searchMovementByFilter");
         setFalseCheckComponents();
         setFalseCheckBookComponents();
+        setFilter(false);
         getRenderComponents().put(RenderAttributes.TITLEMOVES.name(), true);
         getRenderComponents().put(RenderAttributes.MOVEMENTSTABLE.toString(), true);
         this.movementsList = this.movementsListGen;
@@ -305,8 +308,8 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
             final List<MovementDto> movementsByBalance = (List<MovementDto>)CollectionUtils.select(this.movementsList,
                     new BalanceRangeMovementPredicate(balanceRange));
             this.movementsList = movementsByBalance;
-            // setShowMoreStatus();
             getRenderComponents().put(RenderAttributes.MOVEMENTSTABLE.toString(), true);
+            getRenderComponents().put(RenderAttributes.FOOTERTABLEMOVEMENT.name(), false);
         }
         
         if (getRenderComponents().get(RenderAttributes.INCOMEOREXPENSESFILTER.toString())) {
@@ -320,7 +323,6 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
                 final List<MovementDto> incomeMovements = (List<MovementDto>)CollectionUtils.select(this.movementsList,
                         new IncomesPredicate());
                 this.movementsList = incomeMovements;
-                // setShowMoreStatus();
             }
             
             if (movementCriteria.getIncomesOrExpenses() != null && movementCriteria.getIncomesOrExpenses().equals("2")) {
@@ -329,9 +331,9 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
                 final List<MovementDto> expensesMovements = (List<MovementDto>)CollectionUtils.select(
                         this.movementsList, new ExpensesPredicate());
                 this.movementsList = expensesMovements;
-                // setShowMoreStatus();
             }
-            RequestContext.getCurrentInstance().update(":detailAccounts:tableMovements:formMovesDetail:movAccount");
+            getRenderComponents().put(RenderAttributes.MOVEMENTSTABLE.toString(), true);
+            getRenderComponents().put(RenderAttributes.FOOTERTABLEMOVEMENT.name(), false);
         }
         
         if (getRenderComponents().get(RenderAttributes.MOVEMENTSFILTER.toString())
@@ -345,12 +347,9 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
             final List<MovementDto> movementsByConcept = (List<MovementDto>)CollectionUtils.select(this.movementsList,
                     new ConceptMovementPredicate(movementCriteria.getMovement(), status));
             this.movementsList = movementsByConcept;
-            // setShowMoreStatus();
             getRenderComponents().put(RenderAttributes.MOVEMENTSTABLE.toString(), true);
-            
+            getRenderComponents().put(RenderAttributes.FOOTERTABLEMOVEMENT.name(), false);
         }
-        getRenderComponents().put(RenderAttributes.FOOTERTABLEMOVEMENT.name(), false);
-        // clean();
     }
     
     public boolean selectFilterMove() {
@@ -526,7 +525,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
     public void clean() {
         
         movementCriteria = new MovementCriteriaDto();
-        balanceRange = new BalanceRangeDto();
+        balanceRange = new BalanceRangeDto(null, null);
         movementCriteria.setBalanceRange(balanceRange);
         movementCriteria.setDateRange(null);
         setSinceText(new String());
@@ -544,7 +543,8 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
         statusText = StringUtils.EMPTY;
         status = StringUtils.EMPTY;
         statusLabel = StringUtils.EMPTY;
-        
+        setSelectDate(null);
+        getRenderComponents().put(RenderAttributes.CALENDAR.toString(), true);
     }
     
     // Export Excel
@@ -1613,7 +1613,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
      * @param movementsList
      */
     public void setShowMoreStatus() {
-        if (this.movementsList.size() >= 10) {
+        if (this.movementsList.size() >= 10 && super.isHasMorePages() && !isFilter()) {
             getRenderComponents().put(RenderAttributes.FOOTERTABLEMOVEMENT.name(), true);
         } else {
             getRenderComponents().put(RenderAttributes.FOOTERTABLEMOVEMENT.name(), false);
@@ -2042,4 +2042,17 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
         this.movementsListGen = movementsListGen;
     }
     
+    /**
+     * @return the filter
+     */
+    public Boolean isFilter() {
+        return filter;
+    }
+
+    /**
+     * @param filter the filter to set
+     */
+    public void setFilter(Boolean filter) {
+        this.filter = filter;
+    }
 }

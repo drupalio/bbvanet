@@ -96,10 +96,10 @@
 				<footer class="detail-table-footer">
 					<p:commandButton id="moreMovs" value="#{msg['text.detailMove.footer']}"
 						rendered="#{renderComponents['FOOTERTABLEMOVEMENT'] and renderComponents['MOVEMENTSTABLE']}"
-						styleClass="btn btn-more-results seeMore #{cc.attrs.listAccounts.size()==0 ? 'nonee' : ''}"
+						styleClass="btn btn-more-results #{cc.attrs.listAccounts.size()==0 ? 'nonee' : ''}"
 						actionListener="#{movementsCriteriaController.nextPage}" ajax="true"
 						update=":detailAccounts:tableMovements:formMovesDetail:movAccount">
-						<p:ajax onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+						<p:ajax onstart="PF('statusDialog').show()" oncomplete="PF('statusDialog').hide()" />
 					</p:commandButton>
 				</footer>
 			</article>
