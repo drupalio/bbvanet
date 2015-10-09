@@ -11,15 +11,15 @@ import com.bbva.net.front.core.AbstractBbvaController;
 import com.bbva.saz.co.grantingticket.v01.AuthenticationState;
 
 public class LoginControllerImpl extends AbstractBbvaController implements LoginController {
-    
+
     private static final long serialVersionUID = 1L;
-    
+
     @Resource(name = "loginFacade")
     private LoginFacade loginFacade;
-    
+
     @Value("${granting.ivTicketId}")
     private String IV_TICKET_SERVICE;
-    
+
     @Override
     public void login() {
         try {
@@ -27,36 +27,36 @@ public class LoginControllerImpl extends AbstractBbvaController implements Login
             // 1 Create Session;
             final FacesContext facesContext = FacesContext.getCurrentInstance();
             facesContext.getExternalContext().getSession(true);
-            
+
             LOGGER.info("Leyendo de cabecera ... " + IV_TICKET_SERVICE);
             // 2. Get iv_ticketService from header
             final String ivTicketValue = getRequest().getHeader("iv_ticketService");
-            
+
             // 3. Set CurrentUser
             final String user = getRequest().getHeader("iv-user");
-            
+
             // 4. Get cod-client
             final String codClient = getRequest().getHeader("codigo_cliente");
-            
+
             this.setDefaultUser(user);
             LOGGER.info("Login with User: " + user);
             LOGGER.info("iv_ticketService: " + ivTicketValue);
             LOGGER.info("Login with codClient: " + codClient);
-            
+
             // 4. Set status User
             String statusUSer = getRequest().getHeader("iv_TX_CESTADO");
             if (statusUSer == null) {
                 statusUSer = "";
             }
             LOGGER.info("iv_TX_CESTADO: " + statusUSer);
-            
-            if (statusUSer.equals("es SINTJC")) {
+
+            if (statusUSer.equals("SINTJC")) {
                 LOGGER.info("Sin tarjeta de coordenadas ");
                 try {
                     // FacesContext context = FlowFacesContext.getCurrentInstance();
                     // context.getExternalContext().redirect("/kqco_co_web/errorService/errorService.xhtml");
                 } catch (Exception d) {
-                    
+
                 }
             } else {
                 LOGGER.info("Con tarjeta de coordenadas");
@@ -70,7 +70,7 @@ public class LoginControllerImpl extends AbstractBbvaController implements Login
                 this.getSession().setAttribute("docIdUser", user.substring(10, 25));
                 this.getSession().setAttribute("codClient", codClient);
             }
-            
+
         } catch (Exception e) {
             LOGGER.info("Error al iniciar sesión " + e.getMessage());
             try {
@@ -83,17 +83,17 @@ public class LoginControllerImpl extends AbstractBbvaController implements Login
                 FacesContext context = FacesContext.getCurrentInstance();
                 context.getExternalContext().redirect("/kqco_co_web/errorService/errorService.xhtml");
             } catch (Exception d) {
-                
+
             }
-            
+
         }
     }
-    
+
     /**
      * @param loginFacade
      */
     public void setLoginFacade(LoginFacade loginFacade) {
         this.loginFacade = loginFacade;
     }
-    
+
 }
