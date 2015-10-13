@@ -20,8 +20,8 @@
 </composite:interface>
 <composite:implementation>
 	<li class="filter-buttons">
-		<div>
-			<!-- Entelgy / SPRING 3 / 08092015 / INICIO -->		
+		<div> 
+			<!-- Entelgy / SPRING 3 / 08092015 / INICIO -->
 			<p:commandButton id="removeFields" icon="trash-icon"
 				value="#{msg['button.clean.filters']}"
 				rendered="#{cc.attrs.showRemove}"
@@ -45,8 +45,8 @@
                     :tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:movementList:conceptMove:confirMovementsFilter
                     :tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:incomeOrExpenseList:incomeContainer:panelFilterSald
                     :tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:incomeOrExpenseList:incomeContainer:balanceButton
-					:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:panelFilterDate						
-					:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:dateButtonMovements" />
+                    :tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:dateButtonMovements
+					:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:panelFilterDate" />
 			</p:commandButton>
 			<p:commandButton id="removeQFields" icon="trash-icon"
 				value="#{msg['button.clean.filters']}"
@@ -91,8 +91,7 @@
 					listener="#{cc.attrs.controller.searchQuotaByFilter}"
 					update=":quotaDetail:detailAccounts:detailAccounts" />
 			</p:commandButton>
-		</div>
-		<!-- Entelgy / SPRING 3 / 08092015 / FIN -->		
+		</div> <!-- Entelgy / SPRING 3 / 08092015 / FIN -->
 	</li>
 </composite:implementation>
 </html>

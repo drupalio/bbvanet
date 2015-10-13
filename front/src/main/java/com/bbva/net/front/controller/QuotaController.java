@@ -10,10 +10,11 @@ import javax.faces.event.AjaxBehaviorEvent;
 
 import com.bbva.net.back.model.movements.MovementDto;
 
-// <!-- Entelgy / SPRING 3 / 08092015 / INICIO -->
+
 /**
- * @author Entelgy
+ * @author User
  */
+ // <!-- Entelgy / SPRING 3 / 08092015 / INICIO -->
 public interface QuotaController {
 
     /***
