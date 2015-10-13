@@ -7,7 +7,9 @@
 	<var name="quotaController" class="com.bbva.net.front.controller.impl.QuotaControllerImpl"/>
 	<var name="termsController" class="com.bbva.net.front.controller.impl.TermsControllerImpl"/>
 	<var name="personalizeProductAccountController" class="com.bbva.net.front.controller.impl.PersonalizeProductControllerImpl"/>
+	<!-- Entelgy / SPRING 3 / 08092015 / INICIO -->
 	<var name="renderViewMovementsUI" class="com.bbva.net.front.ui.movements.RenderViewMovementsUI" />
+	<!-- Entelgy / SPRING 3 / 08092015 / FIN -->
 	
 	<on-start>
 		<evaluate expression="quotaController.init()"/>	
@@ -17,6 +19,7 @@
 		<evaluate expression="quotaController.getSelectedProduct()" result="flowScope.product"/>
 	</on-start>
 	
+	<!-- Entelgy / SPRING 3 / 08092015 / INICIO -->	
 	<view-state id="quotaDetail">
 		<on-entry>
 			<set name="flowScope.menuActive" value="'LOANS'" />
@@ -29,5 +32,5 @@
 			<evaluate expression="quotaController.setShowMoreStatus()" />
 		</on-render>
 	</view-state>
-	
+	<!-- Entelgy / SPRING 3 / 08092015 / FIN -->
 </flow>

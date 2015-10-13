@@ -12,6 +12,7 @@
 <composite:implementation>
 	<h:form id="formCheks">
 		<!-- Tabla de Cheques -->
+		<!-- Entelgy / GP-12834 / 08092015 / INICIO -->
 		<p:outputPanel id="checkMov">
 			<article class="detail-table-group">
 				<div class="table-wrapper">
@@ -58,7 +59,6 @@
 					</p:dataTable>
 
 					<!--tabla realizada para imprimir -->
-
 					<p:dataTable id="checksTableImprimir" var="cheksAux" 
 						styleClass="nonee" value="#{cc.attrs.listChecks}"
 						emptyMessage="#{msg['text.empty.table']}"
@@ -101,6 +101,7 @@
 				</footer>
 			</article>
 		</p:outputPanel>
+		<!-- Entelgy / GP-12834 / 08092015 / INICIO -->
 	</h:form>
 </composite:implementation>
 </html>

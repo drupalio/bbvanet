@@ -148,7 +148,9 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
     
     private MovementDto movementAction;
     
+    //<!-- Entelgy / SPRING 3 / 08092015 / INICIO -->
     private Boolean filter;
+    //<!-- Entelgy / SPRING 3 / 08092015 / FIN -->
 
     private List<MultiValueGroup> conceptMovements;
     
@@ -251,6 +253,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
         }
     }
     
+    //<!-- Entelgy / SPRING 3 / 08092015 / INICIO -->
     public void criteriaSearch() {
         LOGGER.info("MovementsAccountController criteriaSearch");
         if (getRenderComponents().get(RenderAttributes.FILTERDATE.toString())) {
@@ -265,6 +268,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
         this.movementsList = getCurrentList();
         RequestContext.getCurrentInstance().update("detailAccounts:tableMovements:formMovesDetail:movAccount");
     }
+    //<!-- Entelgy / SPRING 3 / 08092015 / FIN -->
     
     public void nextPage(ActionEvent event) {
         LOGGER.info("MovementsAccountController nextPage");
@@ -278,6 +282,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
         this.movementsListGen = this.movementsList;
     }
     
+    //<!-- Entelgy / SPRING 3 / 08092015 / INICIO -->
     @SuppressWarnings("unchecked")
     @Override
     public void searchMovementByFilter(final AjaxBehaviorEvent event) {
@@ -349,6 +354,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
             getRenderComponents().put(RenderAttributes.FOOTERTABLEMOVEMENT.name(), false);
         }
     }
+    //<!-- Entelgy / SPRING 3 / 08092015 / FIN -->
     
     public boolean selectFilterMove() {
         Boolean estado = false;
@@ -424,6 +430,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
         setToText(TO_TITLE + ": ");
     }
     
+    //<!-- Entelgy / SPRING 3 / 08092015 / INICIO -->
     @Override
     public void setIncomeExpensesFilter(final AjaxBehaviorEvent event) {
         LOGGER.info("MovementsAccountController setIncomeExpensesFilter");
@@ -435,6 +442,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
          else
             setTitleInOrExp(MessagesHelper.INSTANCE.getString("select.radio.in.out"));
 	}
+    //<!-- Entelgy / SPRING 3 / 08092015 / FIN -->
 
     @Override
     public void setMovementConcept(final AjaxBehaviorEvent event) {
@@ -517,6 +525,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
         
     }
     
+    //<!-- Entelgy / SPRING 3 / 08092015 / INICIO -->
     @Override
     public void clean() {
         
@@ -542,6 +551,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
         setSelectDate(null);
         getRenderComponents().put(RenderAttributes.CALENDAR.toString(), true);
     }
+  //<!-- Entelgy / SPRING 3 / 08092015 / FIN -->
     
     // Export Excel
     @SuppressWarnings("deprecation")
@@ -2031,6 +2041,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
         this.movementsListGen = movementsListGen;
     }
     
+    //<!-- Entelgy / SPRING 3 / 08092015 / INICIO -->
     /**
      * @return the filter
      */
@@ -2044,4 +2055,5 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
     public void setFilter(Boolean filter) {
         this.filter = filter;
     }
+  //<!-- Entelgy / SPRING 3 / 08092015 / FIN -->
 }

@@ -26,6 +26,7 @@
 <composite:implementation>
 	<div id="dateFilterContent_#{cc.attrs.identify}"
 		class="date-filter-content">
+		<!-- Entelgy / SPRING 3 / 08092015 / INICIO -->
 		<h:panelGroup id="panelFilterDate">
 			<div
 				style="border-bottom: 1px solid #DBDCDC; padding-bottom: 20px !important;"
@@ -152,6 +153,7 @@
 				</div>
 			</div>
 		</h:panelGroup>
+		<!-- Entelgy / SPRING 3 / 08092015 / FIN -->
 		<p:commandButton id="dateButtonMovements"
 			onclick="styleCheckD(jQuery(this))"
 			styleClass="btn small hidden-xs hidden-sm #{cc.attrs.value=='' || (cc.attrs.value==msg['select.radio.concret.date'] &amp;&amp; (cc.attrs.valueDateSince==null || cc.attrs.valueDateTo==null)) ? 'buttonDisabled': 'none'}"

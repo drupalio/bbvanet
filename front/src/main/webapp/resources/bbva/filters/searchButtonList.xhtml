@@ -21,6 +21,7 @@
 <composite:implementation>
 	<li class="filter-buttons">
 		<div>
+			<!-- Entelgy / SPRING 3 / 08092015 / INICIO -->		
 			<p:commandButton id="removeFields" icon="trash-icon"
 				value="#{msg['button.clean.filters']}"
 				rendered="#{cc.attrs.showRemove}"
@@ -70,7 +71,7 @@
 					:detailAccounts:checkTable:formCheks
 					:detailAccounts:checkBookTable:formCheckBooks" />
 			</p:commandButton>
-			<!-- GP12834 Cheques y chequeras - Entelgy - inicio  -->
+			<!-- Entelgy / GP-12834 / 08072015 / INICIO -->
 			<p:commandButton styleClass="btn btn-default"
 				rendered="#{cc.attrs.showChecks}"
 				value="#{msg['button.see.result']}" icon="document-view-icon">
@@ -81,7 +82,7 @@
 					:detailAccounts:checkTable:formCheks
 					:detailAccounts:checkBookTable:formCheckBooks" />
 			</p:commandButton>
-			<!-- GP12834 Cheques y chequeras - Entelgy - fin  -->
+			<!-- Entelgy / GP-12834 / 08072015 / FIN -->
 			<p:commandButton styleClass="btn btn-default" type="button"
 				rendered="#{cc.attrs.showQuota}" icon="document-view-icon"
 				value="#{msg['button.see.result']}">
@@ -91,6 +92,7 @@
 					update=":quotaDetail:detailAccounts:detailAccounts" />
 			</p:commandButton>
 		</div>
+		<!-- Entelgy / SPRING 3 / 08092015 / FIN -->		
 	</li>
 </composite:implementation>
 </html>

@@ -50,9 +50,11 @@
 				</div>
 			</div>
 		</div>
+		<!-- Entelgy / SPRING 3 / 08092015 / INICIO -->
 		<small> <p:outputLabel id="out" value="#{movementsCriteriaController.messageBalance}"
 				style="color: #777777;" />
 		</small>
+		<!-- Entelgy / SPRING 3 / 08092015 / FIN -->
 		<p:commandButton id="balanceButton" value="#{msg['button.confirm']}"
 			styleClass="btn small hidden-xs hidden-sm #{(movementsCriteriaController.movementCriteria.balanceRange.balanceSince==null || movementsCriteriaController.movementCriteria.balanceRange.balanceTo==null) || movementsCriteriaController.movementCriteria.balanceRange.balanceSince > movementsCriteriaController.movementCriteria.balanceRange.balanceTo ? 'buttonDisabled': 'none'}">
 			<p:ajax process="@form" listener="#{movementsCriteriaController.setBalanceRange}"

@@ -3,21 +3,22 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/webflow 
     http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
-
+    
+<!-- Entelgy / SPRING 3 / 08092015 / INICIO -->
 	<var name="movementsCriteriaController" class="com.bbva.net.front.controller.impl.MovementCriteriaControllerImpl" />
-	<!-- GP12834 Cheques y chequeras - Entelgy - inicio -->
+	<!-- Entelgy / GP-12834 / 08072015 / INICIO -->
 	<var name="checkBookController" class="com.bbva.net.front.controller.impl.CheckBookControllerImpl" />
-	<!-- GP12834 Cheques y chequeras - Entelgy - fin -->
+	<!-- Entelgy / GP-12834 / 08072015 / FIN -->
 	<var name="personalizeProductAccountController" class="com.bbva.net.front.controller.impl.PersonalizeProductControllerImpl" />
 	<var name="renderViewMovementsUI" class="com.bbva.net.front.ui.movements.RenderViewMovementsUI" />
 	<var name="termsController" class="com.bbva.net.front.controller.impl.TermsControllerImpl" />
 	<var name="extractController" class="com.bbva.net.front.controller.impl.ExtractControllerImpl" />
 
 	<on-start>
-		<!-- GP12834 Cheques y chequeras - Entelgy - inicio -->
+		<!-- Entelgy / GP-12834 / 08072015 / INICIO -->
 		<evaluate expression="checkBookController.init()" />
 		<evaluate expression="checkBookController.initCheckBookList()" />
-		<!-- GP12834 Cheques y chequeras - Entelgy - fin -->
+		<!-- Entelgy / GP-12834 / 08072015 / FIN -->
 		<evaluate expression="personalizeProductAccountController.init()" />
 		<evaluate expression="movementsCriteriaController.init()" />
 		<evaluate expression="movementsCriteriaController.getSelectedProduct()"
@@ -40,5 +41,5 @@
 			<evaluate expression="movementsCriteriaController.setShowMoreStatus()" />
 		</on-render>
 	</view-state>
-
+<!-- Entelgy / SPRING 3 / 08092015 / FIN -->
 </flow>

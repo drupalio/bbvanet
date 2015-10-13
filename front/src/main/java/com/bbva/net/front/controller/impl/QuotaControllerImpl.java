@@ -146,6 +146,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
     @Resource(name = "quotaDetailFacade")
     private transient QuotaDetailFacade quotaDetailFacade;
     
+    //<!-- Entelgy / SPRING 3 / 08092015 / INICIO -->
     @Override
     public void init() {
         LOGGER.info("QuotaControllerImpl Super Initialize");
@@ -173,6 +174,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
             this.productDto = new ProductDto();
         }
     }
+    //<!-- Entelgy / SPRING 3 / 08092015 / FIN -->
     
     public void resetData() {
         final HttpSession session = (HttpSession)FacesContext.getCurrentInstance().getExternalContext()
@@ -185,6 +187,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
         return super.getSelectedProduct();
     }
     
+    //<!-- Entelgy / SPRING 3 / 08092015 / INICIO -->
     public void cleanFilters() {
         LOGGER.info(" QuotaControllerImpl cleanFilters");
         this.movementCriteria = new MovementCriteriaDto();
@@ -198,6 +201,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
         setSelectDate(null);
         getRenderComponents().put(RenderAttributes.CALENDAR.toString(), true);
     }
+    //<!-- Entelgy / SPRING 3 / 08092015 / FIN -->
     
     @Override
     public void cleanFilters(AjaxBehaviorEvent event) {
@@ -215,6 +219,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
         }
     }
     
+    //<!-- Entelgy / SPRING 3 / 08092015 / INICIO -->
     public void setShowMoreStatus() {
         LOGGER.info("QuotaControllerImpl setShowMoreStatus ");
         if (this.quotamovenDtos.size() >= 10 && super.isHasMorePages()) 
@@ -222,7 +227,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
          else 
             getRenderComponents().put(RenderAttributes.FOOTERTABLEQUOTA.toString(), false);
     }
-	
+
     @Override
     public List<MovementDto> getAllQuotamovenDtos() {
         LOGGER.info("QuotaControllerImpl getAllQuotamovenDtos ");
@@ -241,6 +246,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 		}
         return quotamovenDtos;
     }
+    //<!-- Entelgy / SPRING 3 / 08092015 / FIN -->
     
     @Override
     public void setSelectedProduct(final ProductDto selectedProduct) {
@@ -264,6 +270,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
         }
     }
     
+    //<!-- Entelgy / SPRING 3 / 08092015 / INICIO -->
     @Override
     public void oneSelectDate() {
         LOGGER.info("Method oneSelectDate");
@@ -282,6 +289,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
                     + " Boton: " + getRenderComponents().get(RenderAttributes.BUTTONDATE.toString()));
         }
     }
+    //<!-- Entelgy / SPRING 3 / 08092015 / FIN -->
     
     @Override
     public void setCustomDate(final AjaxBehaviorEvent event) {
@@ -305,6 +313,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
         }
     }
     
+    //<!-- Entelgy / SPRING 3 / 08092015 / INICIO -->
     @Override
     public void searchQuotaByFilter(final AjaxBehaviorEvent event) {
         LOGGER.info("QuotaControllerImpl searchQuotaByFilter ");
@@ -315,6 +324,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
                     + dateRange.getDateTo());
         }
     }
+    //<!-- Entelgy / SPRING 3 / 08092015 / FIN -->
     
     @Override
     public void nextPage(final ActionEvent event) {
@@ -324,6 +334,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
         this.quotamovenDtos = getCurrentList();
     }
     
+    //<!-- Entelgy / SPRING 3 / 08092015 / INICIO -->
     @Override
     public void criteriaSearch() {
         LOGGER.info("QuotaControllerImpl criteriaSearch ");
@@ -337,6 +348,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
         search();
         this.quotamovenDtos = getCurrentList();
     }
+    //<!-- Entelgy / SPRING 3 / 08092015 / FIN -->
     
     @SuppressWarnings("deprecation")
     @Override
@@ -1215,6 +1227,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
         this.productDto = productDto;
     }
     
+    //<!-- Entelgy / SPRING 3 / 08092015 / INICIO -->
     /**
      * @return the renderComponents
      */
@@ -1222,6 +1235,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
     public Map<String, Boolean> getRenderComponents() {
         return (Map<String, Boolean>)getViewVarView("renderComponents");
     }
+    //<!-- Entelgy / SPRING 3 / 08092015 / FIN -->
     
     public List<MovementDto> getQuotamovenDtos() {
         return quotamovenDtos;

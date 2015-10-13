@@ -95,6 +95,7 @@
 					</p:dataTable>
 				</div>
 				<footer class="detail-table-footer">
+					<!-- Entelgy / SPRING 3 / 08092015 / INICIO -->
 					<p:commandButton id="moreMovs" value="#{msg['text.detailMove.footer']}"
 						rendered="#{renderComponents['FOOTERTABLEMOVEMENT'] and renderComponents['MOVEMENTSTABLE']}"
 						styleClass="btn btn-more-results #{cc.attrs.listAccounts.size()==0 ? 'nonee' : ''}"
@@ -102,6 +103,7 @@
 						update=":detailAccounts:tableMovements:formMovesDetail:movAccount">
 						<p:ajax onstart="PF('statusDialog').show()" oncomplete="PF('statusDialog').hide()" />
 					</p:commandButton>
+					<!-- Entelgy / SPRING 3 / 08092015 / FIN -->
 				</footer>
 			</article>
 		</p:outputPanel>

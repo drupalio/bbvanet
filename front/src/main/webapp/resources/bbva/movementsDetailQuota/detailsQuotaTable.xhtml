@@ -96,6 +96,7 @@
 					</p:column>
 				</p:dataTable>
 				<footer class="detail-table-footer">
+					<!-- Entelgy / SPRING 3 / 08092015 / INICIO -->
 					<p:commandButton id="moreQuota" value="#{msg['text.detailMove.footer']}"
 						rendered="#{renderComponents['FOOTERTABLEQUOTA']}"
 						styleClass="btn btn-more-results #{cc.attrs.listAccounts.size()==0 ? 'nonee' : ''}"
@@ -103,6 +104,7 @@
 						update=":quotaDetail:detailAccounts:detailAccounts:quotaDetails">
 						<p:ajax onstart="PF('statusDialog').show()" oncomplete="PF('statusDialog').hide()" />
 					</p:commandButton>
+					<!-- Entelgy / SPRING 3 / 08092015 / FIN -->
 				</footer>
 			</article>
 		</p:outputPanel>
