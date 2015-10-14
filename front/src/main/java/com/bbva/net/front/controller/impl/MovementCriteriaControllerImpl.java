@@ -147,8 +147,10 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
     private MovementDetailDto movementDetail;
     
     private MovementDto movementAction;
-
+    
+    // <!-- Entelgy / SPRING 3 / 08092015 / INICIO -->
     private Boolean filter;
+    // <!-- Entelgy / SPRING 3 / 08092015 / FIN -->
     
     private List<MultiValueGroup> conceptMovements;
     
@@ -252,6 +254,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
         }
     }
     
+    // <!-- Entelgy / SPRING 3 / 08092015 / INICIO -->
     public void criteriaSearch() {
         LOGGER.info("MovementsAccountController criteriaSearch");
         if (getRenderComponents().get(RenderAttributes.FILTERDATE.toString())) {
@@ -267,6 +270,8 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
         RequestContext.getCurrentInstance().update("detailAccounts:tableMovements:formMovesDetail:movAccount");
     }
     
+    // <!-- Entelgy / SPRING 3 / 08092015 / FIN -->
+    
     public void nextPage(ActionEvent event) {
         LOGGER.info("MovementsAccountController nextPage");
         getRenderComponents().put(RenderAttributes.TITLEMOVES.name(), true);
@@ -279,6 +284,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
         this.movementsListGen = this.movementsList;
     }
     
+    // <!-- Entelgy / SPRING 3 / 08092015 / INICIO -->
     @SuppressWarnings("unchecked")
     @Override
     public void searchMovementByFilter(final AjaxBehaviorEvent event) {
@@ -345,6 +351,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
             if (status.equals(MessagesHelper.INSTANCE.getString("mov.all"))) {
                 status = null;
             }
+            
             final List<MovementDto> movementsByConcept = (List<MovementDto>)CollectionUtils.select(this.movementsList,
                     new ConceptMovementPredicate(movementCriteria.getMovement(), status));
             this.movementsList = movementsByConcept;
@@ -352,6 +359,8 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
             getRenderComponents().put(RenderAttributes.FOOTERTABLEMOVEMENT.name(), false);
         }
     }
+    
+    // <!-- Entelgy / SPRING 3 / 08092015 / FIN -->
     
     public boolean selectFilterMove() {
         Boolean estado = false;
@@ -427,6 +436,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
         setToText(TO_TITLE + ": ");
     }
     
+    // <!-- Entelgy / SPRING 3 / 08092015 / INICIO -->
     @Override
     public void setIncomeExpensesFilter(final AjaxBehaviorEvent event) {
         LOGGER.info("MovementsAccountController setIncomeExpensesFilter");
@@ -438,8 +448,9 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
         } else {
             setTitleInOrExp(MessagesHelper.INSTANCE.getString("select.radio.in.out"));
         }
-        System.out.println(movementCriteria.getIncomesOrExpenses());
     }
+    
+    // <!-- Entelgy / SPRING 3 / 08092015 / FIN -->
     
     @Override
     public void setMovementConcept(final AjaxBehaviorEvent event) {
@@ -522,6 +533,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
         
     }
     
+    // <!-- Entelgy / SPRING 3 / 08092015 / INICIO -->
     @Override
     public void clean() {
         
@@ -544,9 +556,11 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
         statusText = StringUtils.EMPTY;
         status = StringUtils.EMPTY;
         statusLabel = StringUtils.EMPTY;
-        setSelectDate(null);
+        setSelectDate(new String());
         getRenderComponents().put(RenderAttributes.CALENDAR.toString(), true);
     }
+    
+    // <!-- Entelgy / SPRING 3 / 08092015 / FIN -->
     
     // Export Excel
     @SuppressWarnings("deprecation")
@@ -569,7 +583,6 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
         if (archivoXLS.exists()) {
             archivoXLS.delete();
         }
-        
         try {
             archivoXLS.createNewFile();
         } catch (IOException e) {
@@ -590,6 +603,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
                 while ((b = is.read()) != -1) {
                     img_bytes.write(b);
                 }
+                
                 is.close();
                 
                 int pictureIdx = libro.addPicture(img_bytes.toByteArray(), Workbook.PICTURE_TYPE_PNG);
@@ -1419,6 +1433,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
             } else {
                 LOGGER.info("No lo borró");
             }
+            
         } else {
             LOGGER.info("crea el archivo " + pdfFile.getAbsolutePath());
             if (typeDoc.equals("Movements")) {
@@ -1492,6 +1507,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
         try {
             Process p = Runtime.getRuntime().exec(sParts);
             LOGGER.info(" Proceso input " + p.toString());
+            
             if (p == null) {
                 return false;
             }
@@ -2042,7 +2058,8 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
     public void setMovementsListGen(List<MovementDto> movementsListGen) {
         this.movementsListGen = movementsListGen;
     }
-
+    
+    // <!-- Entelgy / SPRING 3 / 08092015 / INICIO -->
     /**
      * @return the filter
      */
@@ -2056,4 +2073,5 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
     public void setFilter(Boolean filter) {
         this.filter = filter;
     }
+    // <!-- Entelgy / SPRING 3 / 08092015 / FIN -->
 }

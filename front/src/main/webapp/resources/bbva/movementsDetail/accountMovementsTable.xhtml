@@ -26,8 +26,8 @@
 						value="#{cc.attrs.listAccounts}" var="moves" selectionMode="single"
 						rowKey="#{moves.movementId}" rendered="#{renderComponents['MOVEMENTSTABLE']}"
 						emptyMessage="#{msg['text.empty.table']}">
-						<p:ajax event="rowSelect"
-							 oncomplete="clickMove(); PF('statusDialog').hide();"
+						<p:ajax event="rowSelect" 
+							oncomplete="clickMove(); PF('statusDialog').hide();"
 							onstart="PF('statusDialog').show();"
 							listener="#{movementsCriteriaController.onMovementSelected}" />
 						<p:column style="z-index: -1 !important; display:none;">
@@ -95,6 +95,7 @@
 					</p:dataTable>
 				</div>
 				<footer class="detail-table-footer">
+					<!-- Entelgy / SPRING 3 / 08092015 / INICIO -->
 					<p:commandButton id="moreMovs" value="#{msg['text.detailMove.footer']}"
 						rendered="#{renderComponents['FOOTERTABLEMOVEMENT'] and renderComponents['MOVEMENTSTABLE']}"
 						styleClass="btn btn-more-results #{cc.attrs.listAccounts.size()==0 ? 'nonee' : ''}"
@@ -102,6 +103,7 @@
 						update=":detailAccounts:tableMovements:formMovesDetail:movAccount">
 						<p:ajax onstart="PF('statusDialog').show()" oncomplete="PF('statusDialog').hide()" />
 					</p:commandButton>
+					<!-- Entelgy / SPRING 3 / 08092015 / FIN -->
 				</footer>
 			</article>
 		</p:outputPanel>

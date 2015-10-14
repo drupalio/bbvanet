@@ -7,6 +7,7 @@ import javax.faces.event.AjaxBehaviorEvent;
 
 import com.bbva.net.back.entity.MultiValueGroup;
 
+// <!-- Entelgy / GP-12834 / 08092015 / INICIO --> 
 public interface CheckBookController {
     
     /***
@@ -90,3 +91,4 @@ public interface CheckBookController {
      */
     void printCheckBook();
 }
+// <!-- Entelgy / GP-12834 / 08092015 / FIN -->

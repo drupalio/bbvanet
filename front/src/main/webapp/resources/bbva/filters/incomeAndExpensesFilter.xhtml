@@ -9,6 +9,7 @@
 </composite:interface>
 <composite:implementation>
 	<div class="incomeAndExpenses-filter-content radio-group">
+		<!-- Entelgy / SPRING 3 / 08092015 / INICIO -->
 		<h:panelGroup id="panelFilterSald">
 			<div class="row form-horizontal">
 				<p:selectOneRadio id="investCombo" value="#{cc.attrs.value}" class="investRadio" layout="custom">
@@ -32,6 +33,7 @@
 				</div>
 			</div>
 		</h:panelGroup>
+		<!-- Entelgy / SPRING 3 / 08092015 / FIN -->
 		<p:commandButton id="balanceButton" value="#{msg['button.confirm']}"
 			styleClass="btn small hidden-xs hidden-sm #{movementsCriteriaController.movementCriteria.incomesOrExpenses==null ? 'buttonDisabled': 'none'}">
 			<p:ajax process="@form" listener="#{movementsCriteriaController.setIncomeExpensesFilter}"

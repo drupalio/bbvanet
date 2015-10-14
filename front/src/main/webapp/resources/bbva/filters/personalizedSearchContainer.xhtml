@@ -13,8 +13,8 @@
 <composite:interface>
 	<composite:attribute name="title" type="String" />
 </composite:interface>
-<composite:implementation>
-	<p:outputPanel id="outputPanel">
+<composite:implementation> 
+	<p:outputPanel id="outputPanel"> 
 		<h:form id="customSearch">
 			<p:remoteCommand name="reset"
 				actionListener="#{renderViewMovementsUI.init()}"
@@ -22,6 +22,7 @@
 					:detailAccounts:checkTable:formCheks
 					:detailAccounts:checkBookTable:formCheckBooks
 					:tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab"/>
+			<!-- Entelgy / SPRING 3 / 08092015 / INICIO -->		
 			<bbvaSearch:personalizedSearchTabBody id="perTabBody"
 				title="#{msg['text.title.personalized.search']}">
 				<bbvaSearch:customSearchList id="customList"
@@ -72,7 +73,7 @@
 					controller="#{movementsCriteriaController}" />
 			</bbvaSearch:personalizedSearchTabBody>
 		</h:form>
-		<!-- GP12834 Cheques y chequeras - Entelgy - inicio  -->
+		<!-- Entelgy / GP-12834 / 08072015 / INICIO -->
 		<h:form id="formCheckBook">
 			<bbvaSearch:personalizedSearchTabBody id="checkSearchTab"
 				title="#{msg['text.title.search.book']}">
@@ -111,7 +112,8 @@
 					controller="#{checkBookController}" />
 			</bbvaSearch:personalizedSearchTabBody>
 		</h:form>
-		<!-- GP12834 Cheques y chequeras - Entelgy - fin  -->
+		<!-- Entelgy / GP-12834 / 08072015 / FIN -->
+		<!-- Entelgy / SPRING 3 / 08092015 / FIN -->
 		<h:form id="downExtract">
 			<bbvaSearch:personalizedSearchExtract id="containerExtract" />
 		</h:form>

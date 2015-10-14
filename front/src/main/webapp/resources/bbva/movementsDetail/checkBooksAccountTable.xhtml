@@ -13,6 +13,7 @@
 <composite:implementation>
 	<h:form id="formCheckBooks">
 		<!-- Tabla de Chequeras -->
+		<!-- Entelgy / GP-12834 / 08092015 / INICIO -->
 		<p:outputPanel id="checkBookMov">
 			<article class="detail-table-group">
 				<div class="table-wrapper">
@@ -67,8 +68,8 @@
 					</p:dataTable>
 					<!--tabla realizada para imprimir -->
 					<p:dataTable id="checkBooksTableImprimir" var="checkBookAux"
-						emptyMessage="#{msg['text.empty.table']}" value="#{cc.attrs.listCheckBooks}"
-						styleClass="nonee">
+						emptyMessage="#{msg['text.empty.table']}"
+						value="#{cc.attrs.listCheckBooks}" styleClass="nonee">
 						<p:column width="20%" headerText="#{msg['checkbooks.first.check']}"
 							sortBy="#{checkBookAux.firstCheck}">
 							<h:outputText value="#{checkBookAux.firstCheck}" />
@@ -80,7 +81,8 @@
 						<p:column width="20%" headerText="#{msg['checkbooks.available.checks']}"
 							sortBy="#{checkBookAux.totalCheck}" colspan="2">
 							<h:outputText value="#{checkBookAux.totalCheck}" />
-							<h:outputText value="#{msg['checkbooks.available.text']} #{checkBookAux.totalCheck}" />
+							<h:outputText
+								 value="#{msg['checkbooks.available.text']} #{checkBookAux.totalCheck}" />
 						</p:column>
 						<p:column width="20%"
 							headerText="#{msg['checkbooks.petition.date']} #{msg['checkbooks.delivery.date']}"
@@ -94,7 +96,8 @@
 						</p:column>
 						<p:column width="20%" headerText="#{msg['text.table.statusBook']}"
 							sortBy="#{checkBookAux.actualState}">
-							<h:outputText styleClass="text styleLeft" value="#{checkBookAux.actualState}" />
+							<h:outputText styleClass="text styleLeft" 
+								value="#{checkBookAux.actualState}" />
 						</p:column>
 
 					</p:dataTable>
@@ -105,11 +108,12 @@
 						styleClass="btn btn-more-results #{cc.attrs.listCheckBooks.size()==0 ? 'nonee' : ''}"
 						actionListener="#{checkBookController.nextPageCheckBook}" ajax="true"
 						update=":detailAccounts:checkBookTable:formCheckBooks:checkBookMov">
-						<p:ajax onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+						<p:ajax onstart="PF('statusDialog').show()" oncomplete="PF('statusDialog').hide()" />
 					</p:commandButton>
 				</footer>
 			</article>
 		</p:outputPanel>
+		<!-- Entelgy / GP-12834 / 08092015 / FIN -->
 	</h:form>
 </composite:implementation>
 </html>

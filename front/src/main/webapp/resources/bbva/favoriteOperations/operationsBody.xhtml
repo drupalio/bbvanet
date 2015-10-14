@@ -15,6 +15,7 @@
 	<composite:attribute name="empty_Message" type="String"/>
 </composite:interface>
 <composite:implementation>
+	<!-- Entelgy / GP13137 / 14092015 / INICIO -->
 	<article id="artFav-Options" class="#{cc.attrs.sclass}">
 		<ul>
 			<p:dataTable id="#{cc.attrs.id_form}" widgetVar="#{cc.attrs.id_wid}"
@@ -26,14 +27,14 @@
 				<p:ajax event="rowSelect" listener="#{favoriteOperationsController.onFavoriteSelected}" immediate="true" />
 				<p:column class="head" styleClass="operation" id="fav-colum"
 					style="font-size: 0.9em;border: 1px solid #D5E2EE !important">
-					<li><a id="alink" class="mini-triangled" href="#"> <span
+					<li class="panelFavorit"><a id="alink" class="mini-triangled" href="#" style="position: relative;"> <span
 							class="dateText">#{msg['text.favoriteOperations.lastTime']}
 								#{favoriteOperationsController.getDate(iOperations.transactionDate)}</span> <span
 							style="color: #0065b7; margin-top: 2px !important">#{msg['text.favoriteOperations.tranfer']}
 								#{iOperations.amount} </span> <span class="dateText-foot"
 							style="margin-top: 1px !important">#{iOperations.origin} -
 								#{iOperations.destination}</span> <h:panelGroup
-								styleClass="buttons buttons-addfavo editDele nonee">
+								styleClass="buttons buttons-addfavo editDele contentFavorite nonee">
 								<p:commandButton id="buttonEditF"
 									styleClass="btn primary iconed table-button button-edit editFavoritosRow"
 									icon="icon-16 blue n04-editar">
@@ -60,5 +61,6 @@
 			</p:dataTable>
 		</ul>
 	</article>
+	<!-- Entelgy / GP13137 / 14092015 / FIN -->
 </composite:implementation>
 </html>

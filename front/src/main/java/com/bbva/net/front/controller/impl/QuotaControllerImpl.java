@@ -131,9 +131,9 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
 
     private String rutaPdfMove;
 
-    private Money outstandingBal = new Money("0");
+    private Money outstandingBal;
 
-    private BigDecimal valGraphic = new BigDecimal(0);
+    private BigDecimal valGraphic;
 
     protected String RUTA_ICONO_BBVA = MessagesHelper.INSTANCE.getString("ruta.iconobbva");
 
@@ -146,6 +146,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
     @Resource(name = "quotaDetailFacade")
     private transient QuotaDetailFacade quotaDetailFacade;
 
+    // <!-- Entelgy / SPRING 3 / 13092015 / INICIO -->
     @Override
     public void init() {
         LOGGER.info("QuotaControllerImpl Super Initialize");
@@ -157,6 +158,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
         this.productDto = new ProductDto();
         this.dateRange = new DateRangeDto();
         this.movementCriteria = new MovementCriteriaDto();
+        this.valGraphic = new BigDecimal(0);
         // obtener el producto
         this.productDto = super.getSelectedProduct();
         if (productDto != null && productDto.getProductId() != null) {
@@ -174,6 +176,8 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
         }
     }
 
+    // <!-- Entelgy / SPRING 3 / 13092015 / FIN -->
+
     public void resetData() {
         final HttpSession session = (HttpSession)FacesContext.getCurrentInstance().getExternalContext()
                 .getSession(false);
@@ -185,6 +189,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
         return super.getSelectedProduct();
     }
 
+    // <!-- Entelgy / SPRING 3 / 08092015 / INICIO -->
     public void cleanFilters() {
         LOGGER.info(" QuotaControllerImpl cleanFilters");
         this.movementCriteria = new MovementCriteriaDto();
@@ -195,9 +200,11 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
         setToDatestr(new String());
         setSinceDate(null);
         setToDate(null);
-        setSelectDate(null);
+        setSelectDate(new String());
         getRenderComponents().put(RenderAttributes.CALENDAR.toString(), true);
     }
+
+    // <!-- Entelgy / SPRING 3 / 08092015 / FIN -->
 
     @Override
     public void cleanFilters(AjaxBehaviorEvent event) {
@@ -215,6 +222,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
         }
     }
 
+    // <!-- Entelgy / SPRING 3 / 08092015 / INICIO -->
     public void setShowMoreStatus() {
         LOGGER.info("QuotaControllerImpl setShowMoreStatus ");
         if (this.quotamovenDtos.size() >= 10 && super.isHasMorePages()) {
@@ -230,14 +238,20 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
         this.quotamovenDtos = new ArrayList<MovementDto>();
         calculateDate(MessagesHelper.INSTANCE.getString("select.radio.45.days"));
         setDateRangePControl(this.dateRange);
-        if (getSelectedProduct().isVisible()) {
-            super.setQuotaDetailFacade(quotaDetailFacade);
-            next();
-            this.quotamovenDtos = getCurrentList();
-            LOGGER.info("Datos de los movimientos llenos ");
+        try {
+            if (getSelectedProduct().isVisible()) {
+                super.setQuotaDetailFacade(quotaDetailFacade);
+                next();
+                this.quotamovenDtos = getCurrentList();
+                LOGGER.info("Datos de los movimientos llenos ");
+            }
+        } catch (final Exception e) {
+            setCurrentList(this.quotamovenDtos);
         }
         return quotamovenDtos;
     }
+
+    // <!-- Entelgy / SPRING 3 / 08092015 / FIN -->
 
     @Override
     public void setSelectedProduct(final ProductDto selectedProduct) {
@@ -261,6 +275,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
         }
     }
 
+    // <!-- Entelgy / SPRING 3 / 08092015 / INICIO -->
     @Override
     public void oneSelectDate() {
         LOGGER.info("Method oneSelectDate");
@@ -279,6 +294,8 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
                     + " Boton: " + getRenderComponents().get(RenderAttributes.BUTTONDATE.toString()));
         }
     }
+
+    // <!-- Entelgy / SPRING 3 / 08092015 / FIN -->
 
     @Override
     public void setCustomDate(final AjaxBehaviorEvent event) {
@@ -302,6 +319,8 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
         }
     }
 
+    // <!-- Entelgy / SPRING 3 / 08092015 / INICIO -->
+
     @Override
     public void searchQuotaByFilter(final AjaxBehaviorEvent event) {
         LOGGER.info("QuotaControllerImpl searchQuotaByFilter ");
@@ -313,6 +332,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
         }
     }
 
+    // <!-- Entelgy / SPRING 3 / 08092015 / FIN -->
     @Override
     public void nextPage(final ActionEvent event) {
         LOGGER.info("QuotaControllerImpl nextPage ");
@@ -321,6 +341,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
         this.quotamovenDtos = getCurrentList();
     }
 
+    // <!-- Entelgy / SPRING 3 / 08092015 / INICIO -->
     @Override
     public void criteriaSearch() {
         LOGGER.info("QuotaControllerImpl criteriaSearch ");
@@ -335,6 +356,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
         this.quotamovenDtos = getCurrentList();
     }
 
+    // <!-- Entelgy / SPRING 3 / 08092015 / FIN -->
     @SuppressWarnings("deprecation")
     @Override
     public void exportDocumentExcel() {
@@ -354,6 +376,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
         int inicio = 10;
 
         File archivoXLS = new File(rutaExcelCupo);
+
         if (archivoXLS.exists()) {
             archivoXLS.delete();
         }
@@ -378,6 +401,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
                 while ((b = is.read()) != -1) {
                     img_bytes.write(b);
                 }
+
                 is.close();
 
                 int pictureIdx = libro.addPicture(img_bytes.toByteArray(), Workbook.PICTURE_TYPE_PNG);
@@ -1036,6 +1060,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
             } else {
                 LOGGER.info("No lo borró");
             }
+
         } else {
             LOGGER.info("crea el archivo " + pdfFile.getAbsolutePath());
             if (typeDoc.equals("MovementsQuota")) {
@@ -1083,6 +1108,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
         try {
             Process p = Runtime.getRuntime().exec(sParts);
             LOGGER.info(" Proceso input " + p.toString());
+
             if (p == null) {
                 return false;
             }
@@ -1218,6 +1244,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
         this.productDto = productDto;
     }
 
+    // <!-- Entelgy / SPRING 3 / 08092015 / INICIO -->
     /**
      * @return the renderComponents
      */
@@ -1225,6 +1252,8 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
     public Map<String, Boolean> getRenderComponents() {
         return (Map<String, Boolean>)getViewVarView("renderComponents");
     }
+
+    // <!-- Entelgy / SPRING 3 / 08092015 / FIN -->
 
     public List<MovementDto> getQuotamovenDtos() {
         return quotamovenDtos;
@@ -1375,21 +1404,28 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
         this.exportDetailPdf = exportPdf;
     }
 
+    // <!-- Entelgy / SPRING 3 / 13092015 / INICIO -->
     /**
      * @return value outstanding balance
      */
     public Money getOutstandingBal() {
-        BigDecimal outstandingBalance = quotaDetailDto.getOutstandingBalance().getAmount();
-        if (outstandingBalance.compareTo(new BigDecimal("0")) == -1) {
-            outstandingBalance = outstandingBalance.negate();
+        this.outstandingBal = new Money(new BigDecimal(0));
+        if (quotaDetailDto.getAmountRequested() != null && quotaDetailDto.getOutstandingBalance() != null
+                && quotaDetailDto.getAmountRequested().getAmount() != null
+                && quotaDetailDto.getOutstandingBalance().getAmount() != null) {
+            BigDecimal outstandingBalance = quotaDetailDto.getOutstandingBalance().getAmount();
+            if (outstandingBalance.compareTo(new BigDecimal("0")) == -1) {
+                outstandingBalance = outstandingBalance.negate();
+            }
+            outstandingBal.setAmount(quotaDetailDto.getAmountRequested().getAmount().subtract(outstandingBalance));
+
+            valGraphic = outstandingBal.getAmount().multiply(new BigDecimal(100));
+            valGraphic = valGraphic.divide(quotaDetailDto.getAmountRequested().getAmount());
         }
-        outstandingBal.setAmount(quotaDetailDto.getAmountRequested().getAmount().subtract(outstandingBalance));
-
-        valGraphic = outstandingBal.getAmount().multiply(new BigDecimal(100));
-        valGraphic = valGraphic.divide(quotaDetailDto.getAmountRequested().getAmount());
-
         return outstandingBal;
     }
+
+    // <!-- Entelgy / SPRING 3 / 13092015 / FIN -->
 
     /**
      * @param outstandingBal
