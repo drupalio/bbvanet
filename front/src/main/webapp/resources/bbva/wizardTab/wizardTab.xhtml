@@ -14,14 +14,15 @@
 	<composite:attribute name="icon" />
 	<composite:attribute name="textOperations" />
 	<composite:attribute name="textCheck" />
-	<composite:attribute name="controller" method-signature="void actionlistener(javax.faces.event.ActionEvent)"/>
+	<composite:attribute name="controller" method-signature="void actionlistener(javax.faces.event.ActionEvent)" />
 	<composite:attribute name="widgetVar" />
 	<composite:attribute name="widgetVarDialog" />
 	<composite:attribute name="formWizard" />
-	<composite:attribute name="textNoCheck"/>
-	
+	<composite:attribute name="textNoCheck" />
+
 </composite:interface>
 <composite:implementation>
+	<!-- Entelgy / GP13137 / 14092015 / INICIO -->
 	<p:dialog id="dialogW" position="center center"
 		widgetVar="#{cc.attrs.widgetVarDialog}" modal="true" resizable="false"
 		styleClass="mistakeMessage fontBlue" header="#{cc.attrs.title}"
@@ -34,9 +35,9 @@
 					<p:panel styleClass="panelText infoConta">
 						<div class="error-icon-container" style="border: 0px !important;">
 							<span class="#{cc.attrs.icon}" />
-						</div>
+						</div>	
 						<div class="error-text-container" style="text-align: center !important;">
-							<p>#{cc.attrs.textConfim}</p>
+								<p>#{cc.attrs.textConfim}</p>
 						</div>
 					</p:panel>
 					<p:panel styleClass="panelButtons">
@@ -58,18 +59,20 @@
 								<p:outputLabel styleClass="col-xs-12 col-md-12 fontLabelT"
 									style="text-align: left !important; padding: 18px !important;"
 									value="#{cc.attrs.textOperations}" />
-								<div class="col-xs-12 col-md-12" style="padding: 7px !important;">
+								<div class="col-xs-12 col-md-12"
+									style="padding: 7px !important;">
 									<div class="col-xs-6 col-md-6 input-control">
-										<p:inputText value="#{favoriteOperationsController.operPass}" type="password" onkeyup="enableDisable(this)" 
+										<p:inputText value="#{favoriteOperationsController.operPass}"
+											type="password" onkeyup="enableDisable(this)"
 											styleClass="form-control" maxlength="8" />
 									</div>
 									<div class="col-xs-6 col-md-5" style="padding: 0px !important;">
-										<p:commandButton styleClass="closeNextbtn operKey buttonDisabled"
+										<p:commandButton
+											styleClass="closeNextbtn operKey buttonDisabled"
 											value="Confirmar" actionListener="#{cc.attrs.controller}"
+											update="@form"
 											oncomplete="PF('#{cc.attrs.widgetVar}').loadStep('check', true)"
-											style="padding: 2px 8px !important;">
-											<p:ajax event="click" process="@this" update=":rightBodyPanel:operationsPanel:modifyOF:item_Edit"></p:ajax>
-											</p:commandButton>
+											style="padding: 2px 8px !important;" />
 									</div>
 								</div>
 							</div>
@@ -83,7 +86,7 @@
 					</p:panel>
 				</p:tab>
 				<p:tab id="check" titleStyle="display: none">
-<!-- 					Mensaje ok -->				
+					<!-- 					Mensaje ok -->
 					<p:panel id="checkOK" styleClass="panelText status #{favoriteOperationsController.status ? '':'nonee'}" style="margin: 0px 30px;">
 						<h:panelGroup class="col-xs-12">
 							<div class="operation-success">
@@ -91,8 +94,8 @@
 							</div>
 						</h:panelGroup>
 					</p:panel>
-<!-- 					Mensaje de error -->
-					<p:panel id="checkNoOK" styleClass="panelText status #{favoriteOperationsController.status ? 'nonee':''}" style="margin: 0px 30px;">
+					<!-- 					Mensaje de error -->
+					<p:panel id="checkNoOK" styleClass="panelText status #{favoriteOperationsController.status ? 'nonee':''}" style="margin: 0px 30px;">	
 						<h:panelGroup class="col-xs-12">
 							<div class="operation-failed">
 								<span class="failed-icon fontBlueSmall">#{cc.attrs.textNoCheck}</span>
@@ -109,5 +112,6 @@
 			</p:wizard>
 		</h:form>
 	</p:dialog>
+	<!-- Entelgy / GP13137 / 14092015 / FIN -->
 </composite:implementation>
 </html>

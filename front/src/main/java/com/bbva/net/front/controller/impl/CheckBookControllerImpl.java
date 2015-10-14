@@ -408,8 +408,9 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
             try {
                 LOGGER.info(" CheckBookControllerImpl showResults filterByNumberCheck checkBookNumber: "
                         + getCheckBookNumber());
-                this.initialCheckBook = checkBookFacade.getCheckBookByAccountId(getSelectedProduct()
-                        .getProductId(), getCheckBookNumber());
+                this.initialCheckBook = getListCheckBookById(checkBookFacade.getCheckBookByAccountId(
+                        getSelectedProduct()
+                        .getProductId(), getCheckBookNumber()));
                 hasMoreElementsCheckBook(this.initialCheckBook);
             } catch (Exception e) {
                 FacesContext ctx = FacesContext.getCurrentInstance();

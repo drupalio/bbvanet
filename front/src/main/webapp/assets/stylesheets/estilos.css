@@ -978,7 +978,6 @@ body div.ui-growl {
 	border: 1px solid #DBDCDC !important;
 	background-color: #F4F7F5 !important;
 	padding: 8px !important;
-	display: none !important;
 }
 
 /*ui-state-highlight mensaje*/
@@ -1528,9 +1527,11 @@ body div.ui-growl .ui-state-highlight {
 		50% 50% repeat-x !important;
 }
 
+/* <!-- Entelgy / GP13137 / 14092015 / INICIO --> */
 /*none image Background*/
 .backImaNo {
 	background-image: none !important;
+	padding: 19px 60px 14px 18px !important;
 }
 
 /*Letra pequeña*/
@@ -1544,6 +1545,18 @@ body div.ui-growl .ui-state-highlight {
 }
 
 /*Favoritos*/
+.contentFavorite {
+	height: auto;
+	position: absolute !important;
+	right: 0px;
+	top: 25px !important;
+	width: auto;
+}
+
+.panelFavorit {
+	padding-right: 11px !important;
+}
+
 /*Boton de editar*/
 .n04-editar {
 	background: #FFF url("../img/sprite-blue-x16.png") no-repeat -463px
@@ -1559,8 +1572,6 @@ body div.ui-growl .ui-state-highlight {
 	background: #FFF !important;
 	padding: 2px 8px !important;
 	border: 1px solid #00559D !important;
-	margin: 0px !important;
-	margin: -67px 0px 0px 9px !important;
 }
 
 /*Formulario de editar favoritos*/
@@ -1575,10 +1586,6 @@ body div.ui-growl .ui-state-highlight {
 }
 /*Span de boton de editar y eliminar*/
 @media ( min-width : 769px) {
-	.editDele {
-		position: relative;
-		left: 80%;
-	}
 	.button-finishEdit {
 		margin-left: 10% !important;
 		padding: 0px 8px !important;
@@ -1591,8 +1598,6 @@ body div.ui-growl .ui-state-highlight {
 
 @media ( max-width : 768px) {
 	.editDele {
-		position: relative;
-		left: 80%;
 		margin-left: 3px !important;
 	}
 	.button-finishEdit {
@@ -1617,6 +1622,8 @@ body div.ui-growl .ui-state-highlight {
 	border: 1px solid #00559D !important;
 	font-weight: 400 !important;
 }
+
+/* <!-- Entelgy / GP13137 / 14092015 / FIN --> */
 
 .panelText {
 	overflow-x: auto !important;

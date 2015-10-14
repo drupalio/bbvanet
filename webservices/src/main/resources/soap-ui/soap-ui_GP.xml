@@ -4696,7 +4696,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 }
 
 */
-</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
+</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{ "agileOperations" : [{
     "contractId":"37812111",
     "id":"9302",
     "origin":{
@@ -4779,7 +4779,7 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
     "name":"BANCOMER",
     "transactionDate":"2012-08-15 10:40:47:613000",
     "transactionReference":"987384744"
-}]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/products/V01/00130443000200009416/conditions" method="GET" resourcePath="/czic/products/V01/00130443000200009416/conditions"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+}]}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/products/V01/00130443000200009416/conditions" method="GET" resourcePath="/czic/products/V01/00130443000200009416/conditions"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Examples showing how to match based on path, query param and header
 // Match based on path
 def requestPath = mockRequest.getPath()
