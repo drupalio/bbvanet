@@ -18,8 +18,8 @@ import com.bbva.zic.agileoperations.v01.ListAgileOperationsOut;
  */
 @RestService(value = "agileOperationsService")
 public class AgileOperationsServiceImpl extends AbstractBbvaRestService
-implements AgileOperationsService {
-
+        implements AgileOperationsService {
+    
     /**
      * get favorite operations
      */
@@ -35,7 +35,7 @@ implements AgileOperationsService {
                     "Servicio no disponible - No se han podido cargar la información de favoritos, para mayor información comunicate a nuestras líneas BBVA");
         }
     }
-
+    
     /**
      *
      */
@@ -50,7 +50,7 @@ implements AgileOperationsService {
                     "Servicio no disponible - No se han podido agregar la operacion");
         }
     }
-
+    
     /**
      *
      */
@@ -68,7 +68,8 @@ implements AgileOperationsService {
                     "Servicio no disponible - No se han podido Validar la operacion");
         }
     }
-
+    
+    // <!-- Entelgy / GP13137 / 16092015 / INICIO -->
     /**
      *
      */
@@ -76,24 +77,37 @@ implements AgileOperationsService {
     public String deleteAgileOperation(final String agileOperationId, final String attributesdeletelist) {
         try {
             final WebClient webc = getJsonWebClient(URL_BASE_OPERATIONS + "/" + agileOperationId);
-            return webc.delete().toString();
+            String transactionReference = webc.delete().toString();
+            if (webc.getResponse().getStatus() == 200) {
+                LOGGER.info("Servicio deleteAgileOperation eliminó el favorito");
+                return transactionReference;
+            }
         } catch (Exception e) {
             throw new RestClientException(
                     "Servicio no disponible - No se han podido cargar la información de favoritos, para mayor información comunicate a nuestras líneas BBVA");
         }
+        return StringUtils.EMPTY;
     }
-
+    
     /**
      *
      */
     @Override
-    public Response modifyAgileOperation(final String agileOperationId, final AgileOperation agileoperation) {
+    public boolean modifyAgileOperation(final String agileOperationId, final AgileOperation agileoperation) {
         try {
             final WebClient webc = getJsonWebClient(URL_BASE_OPERATIONS + "/" + agileOperationId);
-            return webc.put(agileoperation);
+            webc.put(agileoperation);
+            if (webc.getResponse().getStatus() == 200) {
+                LOGGER.info("Servicio modifyAgileOperation actualizó el favorito");
+                return true;
+            } else {
+                LOGGER.info("Servicio modifyAgileOperation no actualizó el favorito");
+                return false;
+            }
         } catch (Exception e) {
             throw new RestClientException(
                     "Servicio no disponible - No se han podido cargar la información de favoritos, para mayor información comunicate a nuestras líneas BBVA");
         }
     }
+    // <!-- Entelgy / GP13137 / 16092015 / FIN -->
 }
