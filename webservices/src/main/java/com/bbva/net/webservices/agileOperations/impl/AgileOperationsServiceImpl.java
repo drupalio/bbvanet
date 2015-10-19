@@ -18,8 +18,8 @@ import com.bbva.zic.agileoperations.v01.ListAgileOperationsOut;
  */
 @RestService(value = "agileOperationsService")
 public class AgileOperationsServiceImpl extends AbstractBbvaRestService
-        implements AgileOperationsService {
-    
+implements AgileOperationsService {
+
     /**
      * get favorite operations
      */
@@ -35,7 +35,7 @@ public class AgileOperationsServiceImpl extends AbstractBbvaRestService
                     "Servicio no disponible - No se han podido cargar la información de favoritos, para mayor información comunicate a nuestras líneas BBVA");
         }
     }
-    
+
     /**
      *
      */
@@ -50,7 +50,7 @@ public class AgileOperationsServiceImpl extends AbstractBbvaRestService
                     "Servicio no disponible - No se han podido agregar la operacion");
         }
     }
-    
+
     /**
      *
      */
@@ -68,27 +68,29 @@ public class AgileOperationsServiceImpl extends AbstractBbvaRestService
                     "Servicio no disponible - No se han podido Validar la operacion");
         }
     }
-    
-    // <!-- Entelgy / GP13137 / 16092015 / INICIO -->
+
+    // <!-- Entelgy / GP13137 / 16102015 / INICIO -->
     /**
      *
      */
     @Override
-    public String deleteAgileOperation(final String agileOperationId, final String attributesdeletelist) {
+    public boolean deleteAgileOperation(final String agileOperationId, final String attributesdeletelist) {
         try {
             final WebClient webc = getJsonWebClient(URL_BASE_OPERATIONS + "/" + agileOperationId);
-            String transactionReference = webc.delete().toString();
+            webc.delete();
             if (webc.getResponse().getStatus() == 200) {
                 LOGGER.info("Servicio deleteAgileOperation eliminó el favorito");
-                return transactionReference;
+                return true;
+            } else {
+                LOGGER.info("Servicio deleteAgileOperation no eliminó el favorito");
+                return false;
             }
         } catch (Exception e) {
             throw new RestClientException(
                     "Servicio no disponible - No se han podido cargar la información de favoritos, para mayor información comunicate a nuestras líneas BBVA");
         }
-        return StringUtils.EMPTY;
     }
-    
+
     /**
      *
      */
@@ -109,5 +111,5 @@ public class AgileOperationsServiceImpl extends AbstractBbvaRestService
                     "Servicio no disponible - No se han podido cargar la información de favoritos, para mayor información comunicate a nuestras líneas BBVA");
         }
     }
-    // <!-- Entelgy / GP13137 / 16092015 / FIN -->
+    // <!-- Entelgy / GP13137 / 16102015 / FIN -->
 }

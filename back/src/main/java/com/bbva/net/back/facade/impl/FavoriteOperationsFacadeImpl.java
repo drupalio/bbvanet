@@ -51,9 +51,9 @@ public class FavoriteOperationsFacadeImpl extends AbstractBbvaFacade implements 
         return favoriteOperations;
     }
 
-    // <!-- Entelgy / GP13137 / 16092015 / INICIO -->
+    // <!-- Entelgy / GP13137 / 16102015 / INICIO -->
     @Override
-    public String deleteFavoriteOperations(String operationId) {
+    public boolean deleteFavoriteOperations(String operationId) {
         LOGGER.info("Inicia Método deleteFavoriteOperations de FavoriteOperationsFacade");
         return agileOperationsService.deleteAgileOperation(operationId, null);
     }
@@ -62,14 +62,11 @@ public class FavoriteOperationsFacadeImpl extends AbstractBbvaFacade implements 
     public boolean modifyFavoriteoperations(FavoriteOperationDto favoriteOperation) {
         LOGGER.info("Inicia Método modifyFavoriteoperations de FavoriteOperationsFacade");
         AgileOperation agileOperation = favoriteOperationsMapper.map(favoriteOperation);
-
-        boolean response = this.agileOperationsService.modifyAgileOperation(favoriteOperation.getIdOperation(),
+        return this.agileOperationsService.modifyAgileOperation(favoriteOperation.getIdOperation(),
                 agileOperation);
-        
-        return response;
     }
 
-    // <!-- Entelgy / GP13137 / 16092015 / FIN -->
+    // <!-- Entelgy / GP13137 / 16102015 / FIN -->
 
     public void setFiqlService(FiqlService fiqlService) {
         this.fiqlService = fiqlService;

@@ -31,6 +31,7 @@ public class GlobalPositionServiceImpl extends AbstractBbvaRestService implement
 			throw new RestClientException(
 					"Servicio no disponible - No se ha podido cargar la información de los productos, para mayor información comunicate a nuestras líneas BBVA");
 		}
+
 	}
 
 	@Override

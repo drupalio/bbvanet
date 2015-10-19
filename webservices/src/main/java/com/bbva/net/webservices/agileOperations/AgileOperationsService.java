@@ -34,11 +34,11 @@ public interface AgileOperationsService {
     @Path("/validated")
     boolean validateAgileOperation(@QueryParam("$filter") String $filter);
 
-    // <!-- Entelgy / GP13137 / 16092015 / INICIO -->
+    // <!-- Entelgy / GP13137 / 16102015 / INICIO -->
     @DELETE
     @Produces("application/json")
     @Path("/{agileOperationId}")
-    String deleteAgileOperation(@PathParam("agileOperationId") String agileOperationId,
+    boolean deleteAgileOperation(@PathParam("agileOperationId") String agileOperationId,
             @HeaderParam("attributesdeletelist") String attributesdeletelist);
 
     @PUT
@@ -46,5 +46,5 @@ public interface AgileOperationsService {
     @Produces("application/json")
     @Path("/{agileOperationId}")
     boolean modifyAgileOperation(@PathParam("agileOperationId") String agileOperationId, AgileOperation agileoperation);
-    // <!-- Entelgy / GP13137 / 16092015 / FIN -->
+    // <!-- Entelgy / GP13137 / 16102015 / FIN -->
 }
