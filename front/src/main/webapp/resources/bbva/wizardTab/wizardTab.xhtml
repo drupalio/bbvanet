@@ -14,20 +14,21 @@
 	<composite:attribute name="icon" />
 	<composite:attribute name="textOperations" />
 	<composite:attribute name="textCheck" />
-	<composite:attribute name="controller" method-signature="void actionlistener(javax.faces.event.ActionEvent)" />
+	<composite:attribute name="controller" method-signature="void actionlistener(javax.faces.event.ActionEvent)"/>
 	<composite:attribute name="widgetVar" />
 	<composite:attribute name="widgetVarDialog" />
 	<composite:attribute name="formWizard" />
-	<composite:attribute name="textNoCheck" />
-
+	<composite:attribute name="textNoCheck"/>
+	
 </composite:interface>
 <composite:implementation>
-	<!-- Entelgy / GP13137 / 14092015 / INICIO -->
+	<!-- Entelgy / GP13137 / 16102015 / INICIO -->
 	<p:dialog id="dialogW" position="center center"
 		widgetVar="#{cc.attrs.widgetVarDialog}" modal="true" resizable="false"
 		styleClass="mistakeMessage fontBlue" header="#{cc.attrs.title}"
 		closeOnEscape="false">
-		<p:ajax event="close" resetValues="true" update="item_#{cc.attrs.formWizard}" />
+		<p:ajax event="close" resetValues="true" update="item_#{cc.attrs.formWizard}" onstart="PF('#{cc.attrs.widgetVarDialog}').hide();"
+			oncomplete="PF('#{cc.attrs.widgetVar}').loadStep('confim', true)"/>
 		<h:form id="item_#{cc.attrs.formWizard}">
 			<p:wizard id="contentW" styleClass="wizardR" showNavBar="false"
 				widgetVar="#{cc.attrs.widgetVar}">
@@ -35,9 +36,9 @@
 					<p:panel styleClass="panelText infoConta">
 						<div class="error-icon-container" style="border: 0px !important;">
 							<span class="#{cc.attrs.icon}" />
-						</div>	
+						</div>
 						<div class="error-text-container" style="text-align: center !important;">
-								<p>#{cc.attrs.textConfim}</p>
+							<p>#{cc.attrs.textConfim}</p>
 						</div>
 					</p:panel>
 					<p:panel styleClass="panelButtons">
@@ -112,6 +113,6 @@
 			</p:wizard>
 		</h:form>
 	</p:dialog>
-	<!-- Entelgy / GP13137 / 14092015 / FIN -->
+	<!-- Entelgy / GP13137 / 16102015 / FIN -->
 </composite:implementation>
 </html>

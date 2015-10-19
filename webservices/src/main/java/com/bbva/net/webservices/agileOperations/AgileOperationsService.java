@@ -13,7 +13,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.Response;
 
 import com.bbva.zic.agileoperations.v01.AgileOperation;
 import com.bbva.zic.agileoperations.v01.ListAgileOperationsOut;
@@ -35,16 +34,17 @@ public interface AgileOperationsService {
     @Path("/validated")
     boolean validateAgileOperation(@QueryParam("$filter") String $filter);
 
+    // <!-- Entelgy / GP13137 / 16102015 / INICIO -->
     @DELETE
     @Produces("application/json")
     @Path("/{agileOperationId}")
-    String deleteAgileOperation(@PathParam("agileOperationId") String agileOperationId,
+    boolean deleteAgileOperation(@PathParam("agileOperationId") String agileOperationId,
             @HeaderParam("attributesdeletelist") String attributesdeletelist);
 
     @PUT
     @Consumes("application/json")
     @Produces("application/json")
     @Path("/{agileOperationId}")
-    Response modifyAgileOperation(@PathParam("agileOperationId") String agileOperationId, AgileOperation agileoperation);
-
+    boolean modifyAgileOperation(@PathParam("agileOperationId") String agileOperationId, AgileOperation agileoperation);
+    // <!-- Entelgy / GP13137 / 16102015 / FIN -->
 }

@@ -176,15 +176,16 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
         favoriteOperationsFacade.addOperation(favoriteOperation);
     }
     
+    // <!-- Entelgy / GP13137 / 16102015 / INICIO -->
     /**
      *
      */
     @Override
     public void modify(ActionEvent actionEvent) {
-        status = operationPass.validateOperation(operPass);
+        this.status = operationPass.validateOperation(operPass);
         if (status) {
             LOGGER.info("Operacion modificada ..." + selectOperation.getAmount());
-            favoriteOperationsFacade.modifyFavoriteoperations(selectOperation);
+            this.status = favoriteOperationsFacade.modifyFavoriteoperations(selectOperation);
             operPass = StringUtils.EMPTY;
         }
     }
@@ -194,13 +195,15 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
      */
     @Override
     public void delete(ActionEvent actionEvent) {
-        status = operationPass.validateOperation(operPass);
+        this.status = operationPass.validateOperation(operPass);
         if (status) {
             LOGGER.info("Operacion a eliminar ..." + selectOperation.getAmount());
-            favoriteOperationsFacade.deleteFavoriteOperations(selectOperation.getIdOperation());
+            this.status = favoriteOperationsFacade.deleteFavoriteOperations(selectOperation.getIdOperation());
             operPass = StringUtils.EMPTY;
         }
     }
+    
+    // <!-- Entelgy / GP13137 / 16102015 / FIN -->
     
     /**
      * @return favoriteOperations

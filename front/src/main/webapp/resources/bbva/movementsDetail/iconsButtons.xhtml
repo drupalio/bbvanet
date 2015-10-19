@@ -19,8 +19,8 @@
 			<h:form id="documentsExport">
 				<div style="display: inline-block; position: relative;">
 					<p:commandLink ajax="false" styleClass="icon-excel-file" onmouseover="addTool(jQuery(this))"
-						onmouseout="removeTool(jQuery(this))"
-						onclick="PrimeFaces.monitorDownload(start, deleteDownload )">
+						onmouseout="removeTool(jQuery(this))" onstart="PF('statusDialog').show();" 
+						oncomplete="PF('statusDialog').hide();" onclick="PrimeFaces.monitorDownload(start, deleteDownload )">
 						<p:fileDownload value="#{cc.attrs.valueExcel}" />
 						<span data-title="#{msg['msg.info.movements.excel']}" class="required" title=""
 							data-style-toggle="top: -70px; right: -85px; width: 200px;" />
@@ -28,8 +28,8 @@
 				</div>
 				<div style="display: inline-block; position: relative;">
 					<p:commandLink styleClass="icon-pdf-file" ajax="false" onmouseover="addTool(jQuery(this))"
-						onmouseout="removeTool(jQuery(this))"
-						onclick="PrimeFaces.monitorDownload(start, deleteDownload )">
+						onmouseout="removeTool(jQuery(this))" onstart="PF('statusDialog').show();" 
+						oncomplete="PF('statusDialog').hide();" onclick="PrimeFaces.monitorDownload(start, deleteDownload )">
 						<p:fileDownload value="#{cc.attrs.valuePdf}" />
 						<span data-title="#{msg['msg.info.movements.pdf']}" class="required" title=""
 							data-style-toggle="top: -70px; right: -82px; width: 200px;" />
@@ -38,7 +38,7 @@
 				<div style="display: inline-block; position: relative;">
 					<p:commandLink ajax="false" styleClass="icon-send-by-email" rendered="#{cc.attrs.renderCorreo}"
 						actionListener="#{cc.attrs.valueCorreo}" onmouseover="addTool(jQuery(this))"
-						onmouseout="removeTool(jQuery(this))">
+						onmouseout="removeTool(jQuery(this))" onstart="PF('statusDialog').show();">
 						<span data-title="#{msg['msg.info.movements.mail']}" class="required" title=""
 							data-style-toggle="top: -70px; left: -89px; width: 200px;" />
 					</p:commandLink>
@@ -46,7 +46,8 @@
 				<div style="display: inline-block; position: relative;">
 					<p:commandLink ajax="false" styleClass="icon-printer"
 						onclick="imprimir('#{cc.attrs.valuePrinter}');" onmouseover="addTool(jQuery(this))"
-						onmouseout="removeTool(jQuery(this))">
+						onmouseout="removeTool(jQuery(this))" onstart="PF('statusDialog').show();" 
+						oncomplete="PF('statusDialog').hide();">
 						<span data-title="#{msg['msg.info.movements.print']}" class="required" title=""
 							data-style-toggle="top: -70px; left: -83px; width: 200px;" />
 					</p:commandLink>

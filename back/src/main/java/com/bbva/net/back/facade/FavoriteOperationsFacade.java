@@ -9,26 +9,27 @@ import com.bbva.net.back.model.favoriteOperations.FavoriteOperationDto;
  */
 public interface FavoriteOperationsFacade {
 
-	/**
-	 * @param contractId
-	 * @return List favorite operations by contractId
-	 */
-	
-	boolean validateOperation(String user);
-	
-	boolean addOperation(FavoriteOperationDto operacionFavorita);
+    /**
+     * @param contractId
+     * @return List favorite operations by contractId
+     */
 
-	List<FavoriteOperationDto> getListFavoriteOperations(String user);
+    boolean validateOperation(String user);
 
-	/**
-	 * @param id
-	 * @return
-	 */
-	String deleteFavoriteOperations(String operationId);
+    boolean addOperation(FavoriteOperationDto operacionFavorita);
 
-	/**
-	 * @param favoriteOperation
-	 */
-	void modifyFavoriteoperations(FavoriteOperationDto favoriteOperation);
+    List<FavoriteOperationDto> getListFavoriteOperations(String user);
 
+    // <!-- Entelgy / GP13137 / 16102015 / INICIO -->
+    /**
+     * @param id
+     * @return
+     */
+    boolean deleteFavoriteOperations(String operationId);
+
+    /**
+     * @param favoriteOperation
+     */
+    boolean modifyFavoriteoperations(FavoriteOperationDto favoriteOperation);
+    // <!-- Entelgy / GP13137 / 16102015 / FIN -->
 }

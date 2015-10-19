@@ -69,14 +69,22 @@ implements AgileOperationsService {
         }
     }
 
+    // <!-- Entelgy / GP13137 / 16102015 / INICIO -->
     /**
      *
      */
     @Override
-    public String deleteAgileOperation(final String agileOperationId, final String attributesdeletelist) {
+    public boolean deleteAgileOperation(final String agileOperationId, final String attributesdeletelist) {
         try {
             final WebClient webc = getJsonWebClient(URL_BASE_OPERATIONS + "/" + agileOperationId);
-            return webc.delete().toString();
+            webc.delete();
+            if (webc.getResponse().getStatus() == 200) {
+                LOGGER.info("Servicio deleteAgileOperation eliminó el favorito");
+                return true;
+            } else {
+                LOGGER.info("Servicio deleteAgileOperation no eliminó el favorito");
+                return false;
+            }
         } catch (Exception e) {
             throw new RestClientException(
                     "Servicio no disponible - No se han podido cargar la información de favoritos, para mayor información comunicate a nuestras líneas BBVA");
@@ -87,13 +95,21 @@ implements AgileOperationsService {
      *
      */
     @Override
-    public Response modifyAgileOperation(final String agileOperationId, final AgileOperation agileoperation) {
+    public boolean modifyAgileOperation(final String agileOperationId, final AgileOperation agileoperation) {
         try {
             final WebClient webc = getJsonWebClient(URL_BASE_OPERATIONS + "/" + agileOperationId);
-            return webc.put(agileoperation);
+            webc.put(agileoperation);
+            if (webc.getResponse().getStatus() == 200) {
+                LOGGER.info("Servicio modifyAgileOperation actualizó el favorito");
+                return true;
+            } else {
+                LOGGER.info("Servicio modifyAgileOperation no actualizó el favorito");
+                return false;
+            }
         } catch (Exception e) {
             throw new RestClientException(
                     "Servicio no disponible - No se han podido cargar la información de favoritos, para mayor información comunicate a nuestras líneas BBVA");
         }
     }
+    // <!-- Entelgy / GP13137 / 16102015 / FIN -->
 }
