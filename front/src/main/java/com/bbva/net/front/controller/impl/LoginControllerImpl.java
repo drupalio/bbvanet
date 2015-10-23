@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Value;
 import com.bbva.net.back.facade.LoginFacade;
 import com.bbva.net.front.controller.LoginController;
 import com.bbva.net.front.core.AbstractBbvaController;
-import com.bbva.saz.co.grantingticket.v01.AuthenticationState;
 
 public class LoginControllerImpl extends AbstractBbvaController implements LoginController {
 
@@ -61,10 +60,10 @@ public class LoginControllerImpl extends AbstractBbvaController implements Login
             } else {
                 LOGGER.info("Con tarjeta de coordenadas");
                 // 4. Invocar al GrantingTicket y almacenar AuthenticationState
-                final AuthenticationState authenticationState = this.loginFacade.login(ivTicketValue, user,
-                        getRequestParameter("pass"), getRequestParameter("numero"), getRequestParameter("tipo"));
+                // final AuthenticationState authenticationState = this.loginFacade.login(ivTicketValue, user,
+                // getRequestParameter("pass"), getRequestParameter("numero"), getRequestParameter("tipo"));
                 // 5. Put in Session
-                this.getSession().setAttribute(SessionParamenterType.AUTHENTICATION_STATE.name(), authenticationState);
+                // this.getSession().setAttribute(SessionParamenterType.AUTHENTICATION_STATE.name(), authenticationState);
                 this.getSession().setAttribute("userName", user.substring(0, 8));
                 this.getSession().setAttribute("docTypeUser", user.substring(8, 10));
                 this.getSession().setAttribute("docIdUser", user.substring(10, 25));

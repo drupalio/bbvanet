@@ -8,10 +8,10 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>
- * Clase Java para clabe complex type.
+ * Java class for clabe complex type.
  * <p>
- * El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
- * 
+ * The following schema fragment specifies the expected content contained within this class.
+ *
  * <pre>
  * &lt;complexType name="clabe">
  *   &lt;complexContent>
@@ -28,89 +28,97 @@ import javax.xml.bind.annotation.XmlType;
  * </pre>
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "clabe", propOrder = { "bankCode", "regionCode", "accountNumber", "controlDigit" })
+@XmlType(name = "clabe", propOrder = {
+        "bankCode",
+        "regionCode",
+        "accountNumber",
+        "controlDigit"
+})
 public class Clabe implements Serializable {
-
-	private static final long serialVersionUID = -1875083002523455907L;
-
-	protected String bankCode;
-
-	protected String regionCode;
-
-	protected String accountNumber;
-
-	protected String controlDigit;
-
-	/**
-	 * Obtiene el valor de la propiedad bankCode.
-	 * 
-	 * @return possible object is {@link String }
-	 */
-	public String getBankCode() {
-		return bankCode;
-	}
-
-	/**
-	 * Define el valor de la propiedad bankCode.
-	 * 
-	 * @param value allowed object is {@link String }
-	 */
-	public void setBankCode(String value) {
-		this.bankCode = value;
-	}
-
-	/**
-	 * Obtiene el valor de la propiedad regionCode.
-	 * 
-	 * @return possible object is {@link String }
-	 */
-	public String getRegionCode() {
-		return regionCode;
-	}
-
-	/**
-	 * Define el valor de la propiedad regionCode.
-	 * 
-	 * @param value allowed object is {@link String }
-	 */
-	public void setRegionCode(String value) {
-		this.regionCode = value;
-	}
-
-	/**
-	 * Obtiene el valor de la propiedad accountNumber.
-	 * 
-	 * @return possible object is {@link String }
-	 */
-	public String getAccountNumber() {
-		return accountNumber;
-	}
-
-	/**
-	 * Define el valor de la propiedad accountNumber.
-	 * 
-	 * @param value allowed object is {@link String }
-	 */
-	public void setAccountNumber(String value) {
-		this.accountNumber = value;
-	}
-
-	/**
-	 * Obtiene el valor de la propiedad controlDigit.
-	 * 
-	 * @return possible object is {@link String }
-	 */
-	public String getControlDigit() {
-		return controlDigit;
-	}
-
-	/**
-	 * Define el valor de la propiedad controlDigit.
-	 * 
-	 * @param value allowed object is {@link String }
-	 */
-	public void setControlDigit(String value) {
-		this.controlDigit = value;
-	}
-
+    
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
+    
+    protected String bankCode;
+    
+    protected String regionCode;
+    
+    protected String accountNumber;
+    
+    protected String controlDigit;
+    
+    /**
+     * Gets the value of the bankCode property.
+     *
+     * @return possible object is {@link String }
+     */
+    public String getBankCode() {
+        return bankCode;
+    }
+    
+    /**
+     * Sets the value of the bankCode property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    public void setBankCode(String value) {
+        this.bankCode = value;
+    }
+    
+    /**
+     * Gets the value of the regionCode property.
+     *
+     * @return possible object is {@link String }
+     */
+    public String getRegionCode() {
+        return regionCode;
+    }
+    
+    /**
+     * Sets the value of the regionCode property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    public void setRegionCode(String value) {
+        this.regionCode = value;
+    }
+    
+    /**
+     * Gets the value of the accountNumber property.
+     *
+     * @return possible object is {@link String }
+     */
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+    
+    /**
+     * Sets the value of the accountNumber property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    public void setAccountNumber(String value) {
+        this.accountNumber = value;
+    }
+    
+    /**
+     * Gets the value of the controlDigit property.
+     *
+     * @return possible object is {@link String }
+     */
+    public String getControlDigit() {
+        return controlDigit;
+    }
+    
+    /**
+     * Sets the value of the controlDigit property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    public void setControlDigit(String value) {
+        this.controlDigit = value;
+    }
+    
 }

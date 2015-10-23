@@ -19,32 +19,32 @@ import com.bbva.zic.agileoperations.v01.ListAgileOperationsOut;
 
 @Path("/V01")
 public interface AgileOperationsService {
-
+    
+    // <!-- Entelgy / GP13137 / 21102015 / INICIO -->
     @GET
     @Produces("application/json")
-    ListAgileOperationsOut getAgileOperations(@QueryParam("$filter") String $filter);
-
+    ListAgileOperationsOut listAgileOperations(@QueryParam("$filter") String $filter);
+    
     @POST
     @Consumes("application/json")
     @Produces("application/json")
     boolean addAgileOperation(AgileOperation agileoperation);
-
+    
     @GET
     @Produces("application/json")
     @Path("/validated")
     boolean validateAgileOperation(@QueryParam("$filter") String $filter);
-
-    // <!-- Entelgy / GP13137 / 16102015 / INICIO -->
+    
     @DELETE
     @Produces("application/json")
     @Path("/{agileOperationId}")
-    boolean deleteAgileOperation(@PathParam("agileOperationId") String agileOperationId,
+    String deleteAgileOperation(@PathParam("agileOperationId") String agileOperationId,
             @HeaderParam("attributesdeletelist") String attributesdeletelist);
-
+    
     @PUT
     @Consumes("application/json")
     @Produces("application/json")
     @Path("/{agileOperationId}")
     boolean modifyAgileOperation(@PathParam("agileOperationId") String agileOperationId, AgileOperation agileoperation);
-    // <!-- Entelgy / GP13137 / 16102015 / FIN -->
+    // <!-- Entelgy / GP13137 / 21102015 / FIN -->
 }

@@ -11,10 +11,10 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>
- * Clase Java para listAgileOperationsOut complex type.
+ * Java class for listAgileOperationsOut complex type.
  * <p>
- * El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
- * 
+ * The following schema fragment specifies the expected content contained within this class.
+ *
  * <pre>
  * &lt;complexType name="listAgileOperationsOut">
  *   &lt;complexContent>
@@ -28,34 +28,39 @@ import javax.xml.bind.annotation.XmlType;
  * </pre>
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "listAgileOperationsOut", propOrder = { "agileOperations" })
+@XmlType(name = "listAgileOperationsOut", propOrder = {
+        "agileOperations"
+})
 public class ListAgileOperationsOut implements Serializable {
-
-	private static final long serialVersionUID = 8981658502255661942L;
-
-	@XmlElement(namespace = "", nillable = true)
-	protected List<AgileOperation> agileOperations;
-
-	/**
-	 * Gets the value of the agileOperations property.
-	 * <p>
-	 * This accessor method returns a reference to the live list, not a snapshot. Therefore any modification you make to the
-	 * returned list will be present inside the JAXB object. This is why there is not a <CODE>set</CODE> method for the
-	 * agileOperations property.
-	 * <p>
-	 * For example, to add a new item, do as follows:
-	 * 
-	 * <pre>
-	 * getAgileOperations().add(newItem);
-	 * </pre>
-	 * <p>
-	 * Objects of the following type(s) are allowed in the list {@link AgileOperation }
-	 */
-	public List<AgileOperation> getAgileOperations() {
-		if (agileOperations == null) {
-			agileOperations = new ArrayList<AgileOperation>();
-		}
-		return this.agileOperations;
-	}
-
+    
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
+    
+    @XmlElement(nillable = true)
+    protected List<AgileOperation> agileOperations;
+    
+    /**
+     * Gets the value of the agileOperations property.
+     * <p>
+     * This accessor method returns a reference to the live list, not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object. This is why there is not a <CODE>set</CODE> method for the
+     * agileOperations property.
+     * <p>
+     * For example, to add a new item, do as follows:
+     * 
+     * <pre>
+     * getAgileOperations().add(newItem);
+     * </pre>
+     * <p>
+     * Objects of the following type(s) are allowed in the list {@link AgileOperation }
+     */
+    public List<AgileOperation> getAgileOperations() {
+        if ( agileOperations == null ) {
+            agileOperations = new ArrayList<AgileOperation>();
+        }
+        return this.agileOperations;
+    }
+    
 }

@@ -8,10 +8,10 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>
- * Clase Java para creditNumber complex type.
+ * Java class for creditNumber complex type.
  * <p>
- * El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
- * 
+ * The following schema fragment specifies the expected content contained within this class.
+ *
  * <pre>
  * &lt;complexType name="creditNumber">
  *   &lt;complexContent>
@@ -25,29 +25,34 @@ import javax.xml.bind.annotation.XmlType;
  * </pre>
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "creditNumber", propOrder = { "number" })
+@XmlType(name = "creditNumber", propOrder = {
+        "number"
+})
 public class CreditNumber implements Serializable {
-
-	private static final long serialVersionUID = 4088259796749289714L;
-
-	protected String number;
-
-	/**
-	 * Obtiene el valor de la propiedad number.
-	 * 
-	 * @return possible object is {@link String }
-	 */
-	public String getNumber() {
-		return number;
-	}
-
-	/**
-	 * Define el valor de la propiedad number.
-	 * 
-	 * @param value allowed object is {@link String }
-	 */
-	public void setNumber(String value) {
-		this.number = value;
-	}
-
+    
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
+    
+    protected String number;
+    
+    /**
+     * Gets the value of the number property.
+     *
+     * @return possible object is {@link String }
+     */
+    public String getNumber() {
+        return number;
+    }
+    
+    /**
+     * Sets the value of the number property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    public void setNumber(String value) {
+        this.number = value;
+    }
+    
 }

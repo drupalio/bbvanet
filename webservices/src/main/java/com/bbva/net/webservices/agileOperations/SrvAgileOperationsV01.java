@@ -22,7 +22,7 @@ public interface SrvAgileOperationsV01 {
 
     @GET
     @Produces("application/json")
-    ListAgileOperationsOut getAgileOperations(@QueryParam("$filter") String $filter);
+    ListAgileOperationsOut listAgileOperations(@QueryParam("$filter") String $filter);
 
     @POST
     @Consumes("application/json")
