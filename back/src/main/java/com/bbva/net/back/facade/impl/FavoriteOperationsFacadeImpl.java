@@ -18,27 +18,28 @@ import com.bbva.zic.agileoperations.v01.AgileOperation;
  */
 @Facade(value = "favoriteOperationsFacade")
 public class FavoriteOperationsFacadeImpl extends AbstractBbvaFacade implements FavoriteOperationsFacade {
-
+    
     /**
      *
      */
     private static final long serialVersionUID = 4324772858898315010L;
-
+    
     /**
      * Service AgileOperationsService
      */
     @Resource(name = "agileOperationsService")
     private AgileOperationsService agileOperationsService;
-
+    
     /**
      * call mapper FavoriteOperationsMapper
      */
     @Resource(name = "favoriteOperationsMapper")
     private FavoriteOperationsMapper favoriteOperationsMapper;
-
+    
     @Resource(name = "fiqlService")
     private FiqlService fiqlService;
-
+    
+    // <!-- Entelgy / GP13137 / 22102015 / INICIO -->
     /**
      * list all FavoriteOperations
      */
@@ -46,18 +47,18 @@ public class FavoriteOperationsFacadeImpl extends AbstractBbvaFacade implements 
     public List<FavoriteOperationDto> getListFavoriteOperations(String user) {
         LOGGER.info("Inicia Método getListFavoriteOperations de FavoriteOperationsFacade");
         final String filter = fiqlService.getFiqlQuerybyCustomer(user);
-        final List<AgileOperation> response = agileOperationsService.getAgileOperations(filter).getAgileOperations();
+        final List<AgileOperation> response = agileOperationsService.listAgileOperations(filter).getAgileOperations();
         List<FavoriteOperationDto> favoriteOperations = favoriteOperationsMapper.map(response);
         return favoriteOperations;
     }
 
-    // <!-- Entelgy / GP13137 / 16102015 / INICIO -->
     @Override
-    public boolean deleteFavoriteOperations(String operationId) {
+    public String deleteFavoriteOperations(String operationId, String user) {
         LOGGER.info("Inicia Método deleteFavoriteOperations de FavoriteOperationsFacade");
-        return agileOperationsService.deleteAgileOperation(operationId, null);
+        final String contactID = fiqlService.getFiqlQuerybyCustomer(user);
+        return agileOperationsService.deleteAgileOperation(operationId, contactID);
     }
-
+    
     @Override
     public boolean modifyFavoriteoperations(FavoriteOperationDto favoriteOperation) {
         LOGGER.info("Inicia Método modifyFavoriteoperations de FavoriteOperationsFacade");
@@ -66,33 +67,32 @@ public class FavoriteOperationsFacadeImpl extends AbstractBbvaFacade implements 
                 agileOperation);
     }
 
-    // <!-- Entelgy / GP13137 / 16102015 / FIN -->
-
+    // <!-- Entelgy / GP13137 / 22102015 / FIN -->
+    
     public void setFiqlService(FiqlService fiqlService) {
         this.fiqlService = fiqlService;
-
+        
     }
-
+    
     public void setAgileOperationsService(AgileOperationsService agileOperationsService) {
         this.agileOperationsService = agileOperationsService;
     }
-
+    
     public void setFavoriteOperationsMapper(FavoriteOperationsMapper favoriteOperationsMapper) {
         this.favoriteOperationsMapper = favoriteOperationsMapper;
     }
-
+    
     @Override
     public boolean validateOperation(String user) {
         LOGGER.info("Inicia Método validateOperation de FavoriteOperationsFacade");
         String fiql = fiqlService.getFiqlQuerybyCustomer(user);
         return agileOperationsService.validateAgileOperation(fiql);
     }
-
+    
     @Override
     public boolean addOperation(FavoriteOperationDto operacionFavorita) {
         LOGGER.info("Inicia Método addOperation de FavoriteOperationsFacade");
         AgileOperation agileOperation = favoriteOperationsMapper.map(operacionFavorita);
         return agileOperationsService.addAgileOperation(agileOperation);
     }
-
 }

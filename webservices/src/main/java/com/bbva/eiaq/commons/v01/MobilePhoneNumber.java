@@ -8,10 +8,10 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>
- * Clase Java para mobilePhoneNumber complex type.
+ * Java class for mobilePhoneNumber complex type.
  * <p>
- * El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
- * 
+ * The following schema fragment specifies the expected content contained within this class.
+ *
  * <pre>
  * &lt;complexType name="mobilePhoneNumber">
  *   &lt;complexContent>
@@ -25,29 +25,34 @@ import javax.xml.bind.annotation.XmlType;
  * </pre>
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "mobilePhoneNumber", propOrder = { "number" })
+@XmlType(name = "mobilePhoneNumber", propOrder = {
+        "number"
+})
 public class MobilePhoneNumber implements Serializable {
-
-	private static final long serialVersionUID = -1167964155900581170L;
-
-	protected String number;
-
-	/**
-	 * Obtiene el valor de la propiedad number.
-	 * 
-	 * @return possible object is {@link String }
-	 */
-	public String getNumber() {
-		return number;
-	}
-
-	/**
-	 * Define el valor de la propiedad number.
-	 * 
-	 * @param value allowed object is {@link String }
-	 */
-	public void setNumber(String value) {
-		this.number = value;
-	}
-
+    
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
+    
+    protected String number;
+    
+    /**
+     * Gets the value of the number property.
+     *
+     * @return possible object is {@link String }
+     */
+    public String getNumber() {
+        return number;
+    }
+    
+    /**
+     * Sets the value of the number property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    public void setNumber(String value) {
+        this.number = value;
+    }
+    
 }

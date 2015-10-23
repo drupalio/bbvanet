@@ -11,29 +11,29 @@ import com.bbva.net.back.model.favoriteOperations.FavoriteOperationDto;
  */
 public interface FavoriteOperationsController {
 
-	/**
-	 * @return
-	 */
-	List<FavoriteOperationDto> getListFavoriteOperations();
+    /**
+     * @return
+     */
+    List<FavoriteOperationDto> getListFavoriteOperations();
 
-	/**
-	 * @return
-	 */
-	List<FavoriteOperationDto> getListFavoriteOperationsHidden();
+    /**
+     * @return
+     */
+    List<FavoriteOperationDto> getListFavoriteOperationsHidden();
 
-	/**
-	 * @param favoriteOperation
-	 */
-	void add(FavoriteOperationDto favoriteOperation);
+    /**
+     * @param favoriteOperation
+     */
+    void add(FavoriteOperationDto favoriteOperation);
 
-	/**
-	 * @param actionEvent
-	 */
-	void modify(ActionEvent actionEvent);
+    /**
+     * @param actionEvent
+     */
+    void modify(ActionEvent actionEvent);
 
-	/**
-	 * @param actionEvent
-	 */
-	void delete(ActionEvent actionEvent);
+    /**
+     * @param actionEvent
+     */
+    void delete(ActionEvent actionEvent);
 
 }

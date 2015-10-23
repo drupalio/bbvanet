@@ -17,86 +17,54 @@ import javax.xml.namespace.QName;
  */
 @XmlRegistry
 public class ObjectFactory implements Serializable {
-
-	private static final long serialVersionUID = -6409483683148443856L;
-
-	private final static QName _AgileOperation_QNAME = new QName("http://bbva.com/zic/agileOperations/V01",
-			"agileOperation");
-
-	private final static QName _Destination_QNAME = new QName("http://bbva.com/zic/agileOperations/V01", "destination");
-
-	private final static QName _ListAgileOperationsOut_QNAME = new QName("http://bbva.com/zic/agileOperations/V01",
-			"listAgileOperationsOut");
-
-	private final static QName _Origin_QNAME = new QName("http://bbva.com/zic/agileOperations/V01", "origin");
-
-	/**
-	 * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package:
-	 * com.bbva.zic.agileoperations.v01
-	 */
-	public ObjectFactory() {
-	}
-
-	/**
-	 * Create an instance of {@link AgileOperation }
-	 */
-	public AgileOperation createAgileOperation() {
-		return new AgileOperation();
-	}
-
-	/**
-	 * Create an instance of {@link AdaptedIOriginAdapter }
-	 */
-	public AdaptedIOriginAdapter createAdaptedIOriginAdapter() {
-		return new AdaptedIOriginAdapter();
-	}
-
-	/**
-	 * Create an instance of {@link ListAgileOperationsOut }
-	 */
-	public ListAgileOperationsOut createListAgileOperationsOut() {
-		return new ListAgileOperationsOut();
-	}
-
-	/**
-	 * Create an instance of {@link AdaptedIDestinationAdapter }
-	 */
-	public AdaptedIDestinationAdapter createAdaptedIDestinationAdapter() {
-		return new AdaptedIDestinationAdapter();
-	}
-
-	/**
-	 * Create an instance of {@link JAXBElement }{@code <}{@link AgileOperation }{@code >}
-	 */
-	@XmlElementDecl(namespace = "http://bbva.com/zic/agileOperations/V01", name = "agileOperation")
-	public JAXBElement<AgileOperation> createAgileOperation(AgileOperation value) {
-		return new JAXBElement<AgileOperation>(_AgileOperation_QNAME, AgileOperation.class, null, value);
-	}
-
-	/**
-	 * Create an instance of {@link JAXBElement }{@code <}{@link AdaptedIDestinationAdapter }{@code >}
-	 */
-	@XmlElementDecl(namespace = "http://bbva.com/zic/agileOperations/V01", name = "destination")
-	public JAXBElement<AdaptedIDestinationAdapter> createDestination(AdaptedIDestinationAdapter value) {
-		return new JAXBElement<AdaptedIDestinationAdapter>(_Destination_QNAME, AdaptedIDestinationAdapter.class, null,
-				value);
-	}
-
-	/**
-	 * Create an instance of {@link JAXBElement }{@code <}{@link ListAgileOperationsOut }{@code >}
-	 */
-	@XmlElementDecl(namespace = "http://bbva.com/zic/agileOperations/V01", name = "listAgileOperationsOut")
-	public JAXBElement<ListAgileOperationsOut> createListAgileOperationsOut(ListAgileOperationsOut value) {
-		return new JAXBElement<ListAgileOperationsOut>(_ListAgileOperationsOut_QNAME, ListAgileOperationsOut.class,
-				null, value);
-	}
-
-	/**
-	 * Create an instance of {@link JAXBElement }{@code <}{@link AdaptedIOriginAdapter }{@code >}
-	 */
-	@XmlElementDecl(namespace = "http://bbva.com/zic/agileOperations/V01", name = "origin")
-	public JAXBElement<AdaptedIOriginAdapter> createOrigin(AdaptedIOriginAdapter value) {
-		return new JAXBElement<AdaptedIOriginAdapter>(_Origin_QNAME, AdaptedIOriginAdapter.class, null, value);
-	}
-
+    
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
+    
+    private final static QName _AgileOperation_QNAME = new QName("http://bbva.com/zic/agileOperations/V01",
+            "agileOperation");
+    
+    private final static QName _ListAgileOperationsOut_QNAME = new QName("http://bbva.com/zic/agileOperations/V01",
+            "listAgileOperationsOut");
+    
+    /**
+     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package:
+     * com.bbva.zic.agileoperations.v01
+     */
+    public ObjectFactory() {
+    }
+    
+    /**
+     * Create an instance of {@link AgileOperation }
+     */
+    public AgileOperation createAgileOperation() {
+        return new AgileOperation();
+    }
+    
+    /**
+     * Create an instance of {@link ListAgileOperationsOut }
+     */
+    public ListAgileOperationsOut createListAgileOperationsOut() {
+        return new ListAgileOperationsOut();
+    }
+    
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AgileOperation }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://bbva.com/zic/agileOperations/V01", name = "agileOperation")
+    public JAXBElement<AgileOperation> createAgileOperation(AgileOperation value) {
+        return new JAXBElement<AgileOperation>(_AgileOperation_QNAME, AgileOperation.class, null, value);
+    }
+    
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListAgileOperationsOut }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://bbva.com/zic/agileOperations/V01", name = "listAgileOperationsOut")
+    public JAXBElement<ListAgileOperationsOut> createListAgileOperationsOut(ListAgileOperationsOut value) {
+        return new JAXBElement<ListAgileOperationsOut>(_ListAgileOperationsOut_QNAME, ListAgileOperationsOut.class,
+                null, value);
+    }
+    
 }

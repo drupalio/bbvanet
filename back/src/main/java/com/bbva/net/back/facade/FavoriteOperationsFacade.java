@@ -9,6 +9,7 @@ import com.bbva.net.back.model.favoriteOperations.FavoriteOperationDto;
  */
 public interface FavoriteOperationsFacade {
 
+    // <!-- Entelgy / GP13137 / 21102015 / INICIO -->
     /**
      * @param contractId
      * @return List favorite operations by contractId
@@ -20,16 +21,15 @@ public interface FavoriteOperationsFacade {
 
     List<FavoriteOperationDto> getListFavoriteOperations(String user);
 
-    // <!-- Entelgy / GP13137 / 16102015 / INICIO -->
     /**
      * @param id
      * @return
      */
-    boolean deleteFavoriteOperations(String operationId);
+    String deleteFavoriteOperations(String operationId, String user);
 
     /**
      * @param favoriteOperation
      */
     boolean modifyFavoriteoperations(FavoriteOperationDto favoriteOperation);
-    // <!-- Entelgy / GP13137 / 16102015 / FIN -->
+    // <!-- Entelgy / GP13137 / 21102015 / FIN -->
 }

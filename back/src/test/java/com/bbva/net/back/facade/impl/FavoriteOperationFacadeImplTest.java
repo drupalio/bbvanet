@@ -54,7 +54,7 @@ public class FavoriteOperationFacadeImplTest {
     public void getListFavoriteOperations() {
         Mockito.when(fiqlService.getFiqlQuerybyCustomer("")).thenReturn("");
         ListAgileOperationsOut response = new ListAgileOperationsOut();
-        Mockito.when(agileOperationsService.getAgileOperations("")).thenReturn(response);
+        Mockito.when(agileOperationsService.listAgileOperations("")).thenReturn(response);
         List<FavoriteOperationDto> favOperation = new ArrayList<FavoriteOperationDto>();
         Mockito.when(favoriteOperationsMapper.map(response.getAgileOperations())).thenReturn(favOperation);
         Assert.assertNotNull(favoriteFacade.getListFavoriteOperations(""));
@@ -81,8 +81,8 @@ public class FavoriteOperationFacadeImplTest {
     
     @Test
     public void deleteFavoriteOperations() {
-        Mockito.when(agileOperationsService.deleteAgileOperation("", null)).thenReturn(true);
-        Assert.assertNotNull(favoriteFacade.deleteFavoriteOperations(""));
+        Mockito.when(agileOperationsService.deleteAgileOperation("", null)).thenReturn("");
+        Assert.assertNotNull(favoriteFacade.deleteFavoriteOperations("", ""));
     }
     
     @Test

@@ -1624,11 +1624,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 </con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
     "debt": {
         "total": {
-            "amount": 500,
+            "amount": 69999991.00,
             "currency": "$"
         },
         "availableBalance": {
-            "amount": 300,
+            "amount": 7000000.00,
             "currency": "$"
         }
     },
@@ -1740,6 +1740,21 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 
 */
 </con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
+    "income": {
+        "amount": 60,
+        "currency": "COP"
+    },
+    "outcome": {
+        "amount": -25,
+        "currency": "COP"
+    },
+    "balance": {
+        "amount": 35,
+        "currency": "COP"
+    },
+    "month": "DECEMBER"
+},
+{
     "income": {
         "amount": 5,
         "currency": "COP"
@@ -4696,27 +4711,30 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 }
 
 */
-</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{ "agileOperations" : [{
-    "contractId":"37812111",
-    "id":"9302",
-    "origin":{
-        "ccc":{
-            "bankCode":"0074",
-            "branchCode":"5047",
-            "controlDigit":"00",
-            "accountNumber":"0176972847"
-        }
-    },
-    "destination":{
-        "creditNumber":{
-            "number":"044669179387"
-        }
-    },
-    "amount":"100000.00 COP",
-    "name":"BANCOMER",
-    "transactionDate":"2015-02-05 10:40:47:613000",
-    "transactionReference":"987384744"
-},
+</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
+	"agileOperations": [{
+		"id": "1",
+		"contractId":"37812111",
+		"origin": {
+			"ccc": {
+				"bankCode":"0074",
+				"branchCode":"5047",
+				"controlDigit":"00",
+				"accountNumber":"0176972847"
+			}
+		},
+		"destination": {
+			"cardNumber": {
+				"number": "044669179387"
+			}
+		},
+		"amount": {
+			"currency": "MXN",
+			"amount": 7926.15
+		},
+		"name": "BANCOMER",
+		"transactionDate":"2015-02-05 10:40:47:613000"
+	},
 {
     "contractId":"37812111",
     "id":"9302",
@@ -4733,10 +4751,12 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
             "number":"044669179387"
         }
     },
-    "amount":"36757000.00 COP",
+	"amount": {
+		"currency": "COP",
+		"amount": 36757000.00
+	},
     "name":"BANCOMER",
-    "transactionDate":"2013-11-23 10:40:47:613000",
-    "transactionReference":"987384744"
+    "transactionDate":"2013-11-23 10:40:47:613000"
 },
 {
     "contractId":"37812111",
@@ -4754,10 +4774,12 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
             "number":"044669179387"
         }
     },
-    "amount":"336000.00 COP",
+	"amount": {
+		"currency": "COP",
+		"amount": 336000.00
+	},
     "name":"BANCOMER",
-    "transactionDate":"2014-12-04 10:40:47:613000",
-    "transactionReference":"987384744"
+    "transactionDate":"2014-12-04 10:40:47:613000"
 },
 {
     "contractId":"37812111",
@@ -4775,11 +4797,14 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
             "number":"044669179387"
         }
     },
-    "amount":"368000.00 COP",
+	"amount": {
+		"currency": "COP",
+		"amount": 368000.00
+	},
     "name":"BANCOMER",
-    "transactionDate":"2012-08-15 10:40:47:613000",
-    "transactionReference":"987384744"
-}]}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/products/V01/00130443000200009416/conditions" method="GET" resourcePath="/czic/products/V01/00130443000200009416/conditions"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+    "transactionDate":"2012-08-15 10:40:47:613000"
+}]
+}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/products/V01/00130443000200009416/conditions" method="GET" resourcePath="/czic/products/V01/00130443000200009416/conditions"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Examples showing how to match based on path, query param and header
 // Match based on path
 def requestPath = mockRequest.getPath()
@@ -5316,4 +5341,87 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 	"requestDate": "24/09/2014",
 	"deliveryDate": "05/08/2014",
 	"actualState": "O"
-}]</con:responseContent></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
+}]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/zic/agileOperations/V01/" method="DELETE" resourcePath="/zic/agileOperations/V01/"><con:settings/><con:defaultResponse xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
+	"transactionReference": "342342352"
+}
+</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/zic/agileOperations/V01/" method="PUT" resourcePath="/zic/agileOperations/V01/"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+// Examples showing how to match based on path, query param and header
+// Match based on path
+def requestPath = mockRequest.getPath()
+log.info "Path: "+ requestPath
+
+if( requestPath.contains("json") )
+{
+    // return the name of the response you want to dispatch
+    return "JSON Response"
+}
+
+
+// Match based on query parameter
+def queryString = mockRequest.getRequest().getQueryString()
+log.info "QueryString: " + queryString
+
+if( queryString.contains("stockholm") )
+{
+    // return the name of the response you want to dispatch
+    return "Response Stockholm"
+}
+else if( queryString.contains("london") )
+{
+    // return the name of the response you want to dispatch
+    return "Response London"
+}
+
+
+// Match based on header
+def acceptEncodingHeadeList = mockRequest.getRequestHeaders().get("Accept-Encoding")
+log.info "AcceptEncodig Header List: " + acceptEncodingHeadeList
+
+if( acceptEncodingHeadeList.contains("gzip,deflate") )
+{
+    // return the name of the response you want to dispatch
+    return "GZiped Response"
+}
+
+*/
+</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200"><con:settings/><con:responseContent/></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

@@ -4,9 +4,9 @@ import com.bbva.net.core.test.AbstractBbvaDTOTest;
 
 public class AgileOperationTest extends AbstractBbvaDTOTest<AgileOperation> {
 
-	@Override
-	protected AgileOperation getInstance() {
-		return new AgileOperation();
-	}
+    @Override
+    protected AgileOperation getInstance() {
+        return new AgileOperation();
+    }
 
 }
