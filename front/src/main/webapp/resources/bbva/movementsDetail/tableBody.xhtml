@@ -15,51 +15,82 @@
 				onclick="clickMove()" />
 			<h3 style="font-size: 18px;" class="align">#{msg['text.moventInformation']}</h3>
 		</div>
+		<!-- Entelgy / SPRING 3 / 26102015 / INICIO -->
 		<div class="definitions textSize" style="width: 100%;">
 			<dl class="shared">
-				<dd class="condiciones-list-element conditionsTitle" style="white-space:normal !important;height: 33px !important" >#{msg['text.moveNumber']}</dd>
-				<dt class="condiciones-list-element conditionsData" style="white-space:normal !important;height: 33px !important" >#{cc.attrs.controller.movementDetail.id}</dt>
-				<dd class="condiciones-list-element conditionsTitle" style="white-space:normal !important;height: 33px !important">#{msg['text.operationDate']}</dd>
-				<dt class="condiciones-list-element conditionsData" style="white-space:normal !important;height: 33px !important">
-					<h:outputText value="#{cc.attrs.controller.movementDetail.operationDate}">
-						<f:convertDateTime pattern="dd/MM/yyyy" />
-					</h:outputText>
-				</dt>
-				<dd class="condiciones-list-element conditionsTitle" style="white-space:normal !important;height: 33px !important">#{msg['text.valueDate']}</dd>
-				<dt class="condiciones-list-element conditionsData" style="white-space:normal !important;height: 33px !important">
-					<h:outputText value="#{cc.attrs.controller.movementDetail.transactionDate}">
-						<f:convertDateTime pattern="dd/MM/yyyy" />
-					</h:outputText>
-				</dt>
-				<dd class="condiciones-list-element conditionsTitle" style="white-space:normal !important;height: 33px !important">#{msg['text.operationHour']}</dd>
-				<dt class="condiciones-list-element conditionsData" style="white-space:normal !important;height: 33px !important">
-					<h:outputText value="#{cc.attrs.controller.movementDetail.operationHour}">
+				<h:panelGroup styleClass="condiciones-list-element detalleSpan">
+					<dd class="conditionsTitle dataContMove">#{msg['text.moveNumber']}</dd>
+					<dt class="conditionsData dataContMove">#{cc.attrs.controller.movementDetail.id}</dt>
+				</h:panelGroup>
+				<h:panelGroup styleClass="condiciones-list-element detalleSpan">
+					<dd class="conditionsTitle dataContMove">#{msg['text.operationDate']}</dd>
+					<dt class="conditionsData dataContMove">
+						<h:outputText
+							value="#{cc.attrs.controller.movementDetail.operationDate}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+					</dt>
+				</h:panelGroup>
+				<h:panelGroup styleClass="condiciones-list-element detalleSpan">
+					<dd class="conditionsTitle dataContMove">#{msg['text.valueDate']}</dd>
+					<dt class="conditionsData dataContMove">
+						<h:outputText
+							value="#{cc.attrs.controller.movementDetail.transactionDate}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+					</dt>
+				</h:panelGroup>
+				<h:panelGroup styleClass="condiciones-list-element detalleSpan">
+					<dd class="conditionsTitle dataContMove">#{msg['text.operationHour']}</dd>
+					<dt class="conditionsData dataContMove">
+						<h:outputText
+							value="#{cc.attrs.controller.movementDetail.operationHour}">
 							<f:convertDateTime pattern="h:mm a" />
 						</h:outputText>
-				</dt>
-				<dd class="condiciones-list-element conditionsTitle" style="white-space:normal !important;height: 33px !important">#{msg['text.valueMin']}</dd>
-				<dt class="condiciones-list-element conditionsData" style="white-space:normal !important;height: 33px !important">#{cc.attrs.controller.movementDetail.operationValue}</dt>
-				<dd class="condiciones-list-element conditionsTitle" style="white-space:normal !important;height: 33px !important">#{msg['text.moveAfterSald']}</dd>
-				<dt class="condiciones-list-element conditionsData" style="white-space:normal !important;height: 33px !important">#{cc.attrs.controller.movementDetail.valueslope}</dt>
-				<dd class="condiciones-list-element conditionsTitle" style="white-space:normal !important;height: 33px !important">#{msg['text.operationCode']}</dd>
-				<dt class="condiciones-list-element conditionsData" style="white-space:normal !important;height: 33px !important">#{cc.attrs.controller.movementDetail.operationCode}</dt>
-				<dd class="condiciones-list-element conditionsTitle" style="white-space:normal !important;height: 33px !important">#{msg['text.operationDescription']}</dd>
-				<dt class="condiciones-list-element conditionsData" style="white-space:normal !important;height: 33px !important">#{cc.attrs.controller.movementDetail.operationDescription}</dt>
-				<dd class="condiciones-list-element conditionsTitle" style="white-space:normal !important;height: 33px !important">#{msg['text.plaza']}</dd>
-				<dt class="condiciones-list-element conditionsData"  style="white-space:normal !important;height: 33px !important">#{cc.attrs.controller.movementDetail.plaza.name}</dt>
+					</dt>
+				</h:panelGroup>
+				<h:panelGroup styleClass="condiciones-list-element detalleSpan">
+					<dd class="conditionsTitle dataContMove">#{msg['text.valueMin']}</dd>
+					<dt class="conditionsData dataContMove">#{cc.attrs.controller.movementDetail.operationValue}</dt>
+				</h:panelGroup>
+				<h:panelGroup styleClass="condiciones-list-element detalleSpan">
+					<dd class="conditionsTitle dataContMove">#{msg['text.moveAfterSald']}</dd>
+					<dt class="conditionsData dataContMove">#{cc.attrs.controller.movementDetail.valueslope}</dt>
+				</h:panelGroup>
+				<h:panelGroup styleClass="condiciones-list-element detalleSpan">
+					<dd class="conditionsTitle dataContMove">#{msg['text.operationCode']}</dd>
+					<dt class="conditionsData dataContMove">#{cc.attrs.controller.movementDetail.operationCode}</dt>
+				</h:panelGroup>
+				<h:panelGroup styleClass="condiciones-list-element detalleSpan">
+					<dd class="conditionsTitle dataContMove">#{msg['text.operationDescription']}</dd>
+					<dt class="conditionsData dataContMove">#{cc.attrs.controller.movementDetail.operationDescription}</dt>
+				</h:panelGroup>
+				<h:panelGroup styleClass="condiciones-list-element detalleSpan">
+					<dd class="conditionsTitle dataContMove">#{msg['text.plaza']}</dd>
+					<dt class="conditionsData dataContMove">#{cc.attrs.controller.movementDetail.plaza.city}
+						#{cc.attrs.controller.movementDetail.plaza.name}</dt>
+				</h:panelGroup>
 
-				
 			</dl>
 			<dl class="shared marginDetailQValue">
-				<bbvaGrap:MapDetail latitud="#{cc.attrs.controller.movementDetail.plaza.latitude}"
-					longitud="#{cc.attrs.controller.movementDetail.plaza.length}"></bbvaGrap:MapDetail>
-				<dd class="condiciones-list-element conditionsTitle" style="white-space:normal !important;height: 33px !important">#{msg['text.originCenterOfMontion']}</dd>
-				<dt class="condiciones-list-element conditionsData" style="white-space:normal !important;height: 33px !important">#{cc.attrs.controller.movementDetail.originCenterMovement}</dt>
-				<dd class="condiciones-list-element conditionsTitle #{cc.attrs.controller.movementDetail.state==null ? 'nonee':'' }" style="white-space:normal !important;height: 33px !important">#{msg['text.search.by.number.status']}</dd>
-				<dt class="condiciones-list-element conditionsData #{cc.attrs.controller.movementDetail.state==null ? 'nonee':'' }"  style="white-space:normal !important;height: 33px !important">#{cc.attrs.controller.movementDetail.state}</dt>
-			</dl>	
-
+				<bbvaGrap:MapDetail
+					latitud="#{cc.attrs.controller.movementDetail.plaza.latitude}"
+					longitud="#{cc.attrs.controller.movementDetail.plaza.length}" />
+				<h:panelGroup styleClass="condiciones-list-element detalleSpan">
+					<dd class="conditionsTitle dataContMove">#{msg['text.originCenterOfMontion']}</dd>
+					<dt class="conditionsData dataContMove">#{cc.attrs.controller.movementDetail.plaza.code}
+						#{cc.attrs.controller.movementDetail.originCenterMovement}</dt>
+				</h:panelGroup>
+				<h:panelGroup style="border-bottom: none !important"
+					styleClass="condiciones-list-element detalleSpan #{cc.attrs.controller.movementDetail.state==null ? 'nonee':'' }">
+					<dd style="border-bottom: 1px solid #DCDCDC !important;"
+						class="conditionsTitle #{cc.attrs.controller.movementDetail.state==null ? 'nonee':'' } dataContMove">#{msg['text.search.by.number.status']}</dd>
+					<dt style="border-bottom: 1px solid #DCDCDC !important;"
+						class="conditionsData #{cc.attrs.controller.movementDetail.state==null ? 'nonee':'' } dataContMove">#{cc.attrs.controller.movementDetail.state}</dt>
+				</h:panelGroup>
+			</dl>
 		</div>
 	</div>
+	<!-- Entelgy / SPRING 3 / 26102015 / FIN -->
 </composite:implementation>
 </html>

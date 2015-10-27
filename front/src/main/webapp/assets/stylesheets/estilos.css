@@ -1624,7 +1624,6 @@ body div.ui-growl .ui-state-highlight {
 }
 
 /* <!-- Entelgy / GP13137 / 14092015 / FIN --> */
-
 .panelText {
 	overflow-x: auto !important;
 	border: 0px !important;
@@ -2119,3 +2118,35 @@ body div.ui-growl .ui-state-highlight {
 .consultas .panel-tab-body .filters>ul>li a.setFilter span .filter {
 	padding: 0px 1px 0px 10px !important;
 }
+
+/* <!-- Entelgy / SPRING 3 / 23102015 / INICIO --> */
+#errorServ_container {
+	max-height: 191px;
+	overflow: hidden;
+}
+
+.absQuotaGraphic {
+	position: absolute !important;
+	bottom: 0px !important;
+	width: 100%;
+}
+
+.absQuotaConteGrap {
+	bottom: 18px;
+	left: 4px;
+}
+
+.detalleSpan {
+	height: auto !important;
+	min-height: 33px !important;
+	border-bottom: 1px solid #DCDCDC !important;
+	display: inline-block !important;
+	width: 100%;
+}
+
+.dataContMove {
+	white-space: normal !important;
+	border-bottom: none !important;
+	height: auto !important;
+}
+/* <!-- Entelgy / SPRING 3 / 23102015 / FIN -->*/

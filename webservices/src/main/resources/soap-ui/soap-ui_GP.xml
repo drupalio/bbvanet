@@ -1624,11 +1624,11 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 </con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
     "debt": {
         "total": {
-            "amount": 69999991.00,
+            "amount": 9000000.00,
             "currency": "$"
         },
         "availableBalance": {
-            "amount": 7000000.00,
+            "amount": 234040.00,
             "currency": "$"
         }
     },
@@ -4714,7 +4714,6 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 </con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
 	"agileOperations": [{
 		"id": "1",
-		"contractId":"37812111",
 		"origin": {
 			"ccc": {
 				"bankCode":"0074",
@@ -4736,7 +4735,6 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 		"transactionDate":"2015-02-05 10:40:47:613000"
 	},
 {
-    "contractId":"37812111",
     "id":"9302",
     "origin":{
         "clabe":{
@@ -4782,7 +4780,6 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
     "transactionDate":"2014-12-04 10:40:47:613000"
 },
 {
-    "contractId":"37812111",
     "id":"9302",
     "origin":{
         "ccc":{
@@ -5086,40 +5083,39 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 
 */
 </con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
-	"id":"00130073000298827489",
-	"concept":"00106907  00106907  C0026T002S",
-	"transactionDate":"2015-06-12T00:00:00.000-0500",
-	"operationDate":"2015-06-12T00    :00:00.000-0500",
-	"operation":{
-		"code":"AH",
-		"description":"ABONO  DOMICILIACION NO    MINAS"
+	"id": "000001156",
+	"concept": "REEMBOLSO ONLINE DE CCA",
+	"transactionDate": "2015-10-23T17:58:00.000-0500",
+	"operationDate": "2015-10-23T00:00:00.000-0500",
+	"operation": {
+		"code": "35",
+		"description": "ABONO REEMBOLSO  FONDOS  INVER"
 	},
-	"office":{
-		"code":"0180",
-		"name":"+000012113583690",
-		"location":{
-			"city":{
-				"name":"BOGOTA (    CUNDINAMARCA)"
+	"office": {
+		"code": "0073",
+		"name": "0073 AVENIDA CHILE",
+		"location": {
+			"city": {
+				"name": "CUNDINAMARCA"
 			},
-			"state":{
-				"name":"BOGOTA (CUNDINAMARCA)"
+			"state": {
+				"name": "BOGOTA (CUNDINAMARCA)"
 			}
-		},
-		"postalAddress":"0073     AVENIDA CHILE"
+		}
 	},
-	"value":{
-		"currency":"COP",
-		"amount":771000.00
+	"value": {
+		"amount": 4000000.00,
+		"currency": "COP"
 	},
-	"balance":{
-		"currency":"COP",
-		"amount":120364836.90
+	"balance": {
+		"amount": 9198404106296.68,
+		"currency": "COP"
 	},
-	"originValue":{
-		"currency":"COP",
-		"amount":121135836.90
+	"originValue": {
+		"amount": 9198408106296.68,
+		"currency": "COP"
 	},
-	"status":"En proceso"
+	"status" : "Activo"
 }</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/czic/accounts/V01/" method="GET" resourcePath="/czic/accounts/V01/"><con:settings/><con:defaultResponse xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Examples showing how to match based on path, query param and header
 // Match based on path

@@ -9568,6 +9568,13 @@
 		</insert>
 		<insert tableName="COORDINATES">
 			<column name="ID" autoIncrement="true" />
+			<column name="OFFICE">1215</column>
+			<column name="LATITUDE">4.596155</column>
+			<column name="LONGITUDE">-74.076528</column>
+			<column name="CITY">CUNDINAMARCA</column>
+		</insert>
+		<insert tableName="COORDINATES">
+			<column name="ID" autoIncrement="true" />
 			<column name="OFFICE">1231</column>
 			<column name="LATITUDE">7.086736</column>
 			<column name="LONGITUDE">-70.757534</column>
