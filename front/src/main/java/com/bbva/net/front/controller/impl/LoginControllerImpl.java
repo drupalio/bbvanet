@@ -1,6 +1,7 @@
 package com.bbva.net.front.controller.impl;
 
 import javax.annotation.Resource;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -53,10 +54,15 @@ public class LoginControllerImpl extends AbstractBbvaController implements Login
             if ( statusUSer.equals("SINTJC") ) {
                 LOGGER.info("Sin tarjeta de coordenadas ");
                 try {
-                    // FacesContext context = FlowFacesContext.getCurrentInstance();
-                    // context.getExternalContext().redirect("/kqco_co_web/errorService/errorService.xhtml");
+                    FacesContext ctx = FacesContext.getCurrentInstance();
+                    ctx.addMessage(
+                            "login",
+                            new FacesMessage(
+                                    FacesMessage.SEVERITY_ERROR,
+                                    "Ha vencido su plazo para ingresar sin tarjeta Net Segura",
+                                    "Por favor acérquese a cualquiera de nuestras sucursales y solicitela. Una vez hecho esto usted podrá ingresar al portal transaccional. Para mayor información, comuniquese a nuestras Líneas BBVA"));
                 } catch (Exception d) {
-                    
+
                 }
             } else {
                 LOGGER.info("Con tarjeta de coordenadas");

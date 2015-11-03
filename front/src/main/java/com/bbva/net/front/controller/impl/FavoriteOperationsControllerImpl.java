@@ -28,36 +28,42 @@ import com.bbva.net.front.helper.MessagesHelper;
 @Controller(value = "favoriteOperationsController")
 @Scope(value = "globalSession")
 public class FavoriteOperationsControllerImpl extends AbstractBbvaController implements FavoriteOperationsController {
-    
+
     /**
      *
      */
     private static final long serialVersionUID = -9133966635827463062L;
-    
+
     /**
      *
      */
     private List<FavoriteOperationDto> favoriteOperations;
-    
+
     private FavoriteOperationDto selectOperation = new FavoriteOperationDto();
-    
+
     // <!-- Entelgy / GP13137 / 14092015 / INICIO -->
-    
+
     @Resource(name = "operationController")
     private transient OperationPasswordController operationPass;
-    
+
     // <!-- Entelgy / GP13137 / 14092015 / FIN -->
-    
+
     private String operPass = StringUtils.EMPTY;
-    
+
     private boolean status = false;
-    
+
     /**
      * Facade favoriteOperations
      */
     @Resource(name = "favoriteOperationsFacade")
     private transient FavoriteOperationsFacade favoriteOperationsFacade;
-    
+
+    // <!-- Entelgy / GP13137 / 30102015 / INICIO -->
+
+    private String nameOperation;
+
+    // <!-- Entelgy / GP13137 / 30102015 / FIN -->
+
     /**
      * init if FavoriteOperationsController
      */
@@ -72,9 +78,6 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
                         "codClient").toString());
                 getNames();
             } catch (Exception e) {
-                // FacesContext ctx = FacesContext.getCurrentInstance();
-                // ctx.addMessage("Favorite Operation Session",
-                // new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
                 LOGGER.info("Excepción en Metodo init de FavoriteOperationController con usuario de la sesión "
                         + e.getMessage());
                 favoriteOperations = new ArrayList<FavoriteOperationDto>();
@@ -85,18 +88,14 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
                 favoriteOperations = favoriteOperationsFacade.getListFavoriteOperations("123");
                 getNames();
             } catch (Exception e) {
-                // FacesContext ctx = FacesContext.getCurrentInstance();
-                // ctx.addMessage("Favorite Operation user",
-                // new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
-                
                 LOGGER.info("Excepción en Metodo init de FavoriteOperationController sin usuario de la sesión "
                         + e.getMessage());
                 favoriteOperations = new ArrayList<FavoriteOperationDto>();
             }
         }
-        
+
     }
-    
+
     /**
      * Muestra
      *
@@ -104,14 +103,14 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
      */
     @Override
     public List<FavoriteOperationDto> getListFavoriteOperations() {
-        
+
         if ( favoriteOperations.size() <= 3 ) {
             return favoriteOperations;
         } else {
             return favoriteOperations.subList(0, 3);
         }
     }
-    
+
     /**
      * Favorite operations hidden
      *
@@ -120,23 +119,23 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
     @SuppressWarnings("unchecked")
     @Override
     public List<FavoriteOperationDto> getListFavoriteOperationsHidden() {
-        
+
         if ( favoriteOperations.size() <= 3 ) {
             return ListUtils.EMPTY_LIST;
         } else {
             return favoriteOperations.subList(3, favoriteOperations.size());
         }
     }
-    
+
     /**
      *
      */
     public void onFavoriteSelected(final SelectEvent selectEvent) {
         selectOperation = (FavoriteOperationDto)selectEvent.getObject();
         LOGGER.info("ON productSelected\n: " + ((FavoriteOperationDto)selectEvent.getObject()).getAmount());
-        System.out.print("Hola " + selectOperation.getContractId());
+        System.out.print("favorito seleccionado" + selectOperation.getContractId());
     }
-    
+
     /**
      * @param transactionDate
      * @return
@@ -150,7 +149,7 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
         }
         return "";
     }
-    
+
     // <!-- Entelgy / GP13137 / 26102015 / INICIO -->
     /**
      *
@@ -174,9 +173,9 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
             }
         }
     }
-    
+
     // <!-- Entelgy / GP13137 / 26102015 / FIN -->
-    
+
     /**
      *
      */
@@ -184,113 +183,135 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
     public void add(FavoriteOperationDto favoriteOperation) {
         favoriteOperationsFacade.addOperation(favoriteOperation);
     }
-    
-    // <!-- Entelgy / GP13137 / 22102015 / INICIO -->
+
+    // <!-- Entelgy / GP13137 / 03112015 / INICIO -->
     /**
      *
      */
     @Override
     public void modify(ActionEvent actionEvent) {
         LOGGER.info("Operacion modificada ..." + selectOperation.getAmount());
-        // this.status = operationPass.validateOperation(operPass);
-        if ( true ) {
+        this.status = operationPass.validateOperation(operPass);
+        if ( status ) {
             try {
                 this.status = favoriteOperationsFacade.modifyFavoriteoperations(selectOperation);
+                init();
             } catch (Exception e) {
                 LOGGER.info("Fallo la Operacion modificada ..." + selectOperation.getAmount() + e.getMessage());
                 this.status = false;
             }
             operPass = StringUtils.EMPTY;
-            selectOperation = new FavoriteOperationDto();
         }
     }
-    
+
     /**
      *
      */
     @Override
     public void delete(ActionEvent actionEvent) {
         LOGGER.info("Operacion a eliminar ..." + selectOperation.getAmount());
-        // this.status = operationPass.validateOperation(operPass);
-        if ( true ) {
+        this.status = operationPass.validateOperation(operPass);
+        if ( status ) {
             try {
                 String transactionReference = favoriteOperationsFacade.deleteFavoriteOperations(
                         selectOperation.getIdOperation(), getSession().getAttribute("codClient").toString());
                 this.status = false;
                 if ( !transactionReference.equals("F") ) {
                     this.status = true;
+                    init();
                 }
             } catch (Exception e) {
                 LOGGER.info("Fallo la Operacion eliminar ..." + selectOperation.getAmount() + e.getMessage());
                 this.status = false;
             }
+            operPass = StringUtils.EMPTY;
         }
     }
-    
-    // <!-- Entelgy / GP13137 / 22102015 / FIN -->
-    
+
+    // <!-- Entelgy / GP13137 / 03112015 / FIN -->
+
     /**
      * @return favoriteOperations
      */
     public List<FavoriteOperationDto> getFavoriteOperations() {
         return favoriteOperations;
     }
-    
+
     /**
      * @param favoriteOperations
      */
     public void setFavoriteOperations(final List<FavoriteOperationDto> favoriteOperations) {
         this.favoriteOperations = favoriteOperations;
     }
-    
+
     /**
      * @return favoriteOperationsFacade
      */
     public FavoriteOperationsFacade getFavoriteOperationsFacade() {
         return favoriteOperationsFacade;
     }
-    
+
     /**
      * @param favoriteOperationsFacade
      */
     public void setFavoriteOperationsFacade(final FavoriteOperationsFacade favoriteOperationsFacade) {
         this.favoriteOperationsFacade = favoriteOperationsFacade;
     }
-    
+
     public FavoriteOperationDto getSelectOperation() {
         return selectOperation;
     }
-    
+
+    // <!-- Entelgy / GP13137 / 30102015 / INICIO -->
     public void setSelectOperation(FavoriteOperationDto selectOperation) {
         LOGGER.info("Operacion seleccionada ..." + selectOperation.getAmount());
+        this.operPass = StringUtils.EMPTY;
         this.selectOperation = selectOperation;
+        this.nameOperation = selectOperation.getName();
     }
-    
+
+    // <!-- Entelgy / GP13137 / 30102015 / FIN -->
+
     // <!-- Entelgy / GP13137 / 14092015 / INICIO -->
     public OperationPasswordController getOperationPass() {
         return operationPass;
     }
-    
+
     public void setOperationPass(OperationPasswordController operationPass) {
         this.operationPass = operationPass;
     }
-    
+
     // <!-- Entelgy / GP13137 / 14092015 / FIN -->
-    
+
     public String getOperPass() {
         return operPass;
     }
-    
+
     public void setOperPass(String operPass) {
         this.operPass = operPass;
     }
-    
+
     public boolean isStatus() {
         return status;
     }
-    
+
     public void setStatus(boolean status) {
         this.status = status;
     }
-    
+
+    // <!-- Entelgy / GP13137 / 30102015 / INICIO -->
+    /**
+     * @return the nameOperation
+     */
+    public String getNameOperation() {
+        return nameOperation;
+    }
+
+    /**
+     * @param nameOperation the nameOperation to set
+     */
+    public void setNameOperation(String nameOperation) {
+        this.nameOperation = nameOperation;
+    }
+    // <!-- Entelgy / GP13137 / 30102015 / FIN -->
 }

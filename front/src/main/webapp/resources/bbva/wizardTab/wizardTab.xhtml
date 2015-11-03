@@ -22,7 +22,7 @@
 	
 </composite:interface>
 <composite:implementation>
-	<!-- Entelgy / GP13137 / 16102015 / INICIO -->
+	<!-- Entelgy / GP13137 / 03112015 / INICIO -->
 	<p:dialog id="dialogW" position="center center"
 		widgetVar="#{cc.attrs.widgetVarDialog}" modal="true" resizable="false"
 		styleClass="mistakeMessage fontBlue" header="#{cc.attrs.title}"
@@ -71,9 +71,8 @@
 										<p:commandButton
 											styleClass="closeNextbtn operKey buttonDisabled"
 											value="Confirmar" actionListener="#{cc.attrs.controller}"
-											update="@form"
-											oncomplete="PF('#{cc.attrs.widgetVar}').loadStep('check', true)"
-											style="padding: 2px 8px !important;" />
+											update="@form #{cc.attrs.update}" style="padding: 2px 8px !important;"
+											oncomplete="PF('#{cc.attrs.widgetVar}').loadStep('check', true); $('#buttonEditfAV').click();"/>
 									</div>
 								</div>
 							</div>
@@ -113,6 +112,6 @@
 			</p:wizard>
 		</h:form>
 	</p:dialog>
-	<!-- Entelgy / GP13137 / 16102015 / FIN -->
+	<!-- Entelgy / GP13137 / 03112015 / FIN -->
 </composite:implementation>
 </html>
