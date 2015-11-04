@@ -960,6 +960,7 @@ body div.ui-growl {
 	position: fixed !important;
 	top: 250px !important;
 	right: 40% !important;
+	max-height: 191px !important;
 }
 
 .ui-growl-item {

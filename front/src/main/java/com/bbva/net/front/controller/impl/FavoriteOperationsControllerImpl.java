@@ -127,6 +127,7 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
         }
     }
 
+    // <!-- Entelgy / GP13137 / 03112015 / INICIO -->
     /**
      *
      */
@@ -135,6 +136,8 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
         LOGGER.info("ON productSelected\n: " + ((FavoriteOperationDto)selectEvent.getObject()).getAmount());
         System.out.print("favorito seleccionado" + selectOperation.getContractId());
     }
+
+    // <!-- Entelgy / GP13137 / 03112015 / FIN -->
 
     /**
      * @param transactionDate
@@ -184,7 +187,7 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
         favoriteOperationsFacade.addOperation(favoriteOperation);
     }
 
-    // <!-- Entelgy / GP13137 / 03112015 / INICIO -->
+    // <!-- Entelgy / GP13137 / 04112015 / INICIO -->
     /**
      *
      */
@@ -192,8 +195,9 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
     public void modify(ActionEvent actionEvent) {
         LOGGER.info("Operacion modificada ..." + selectOperation.getAmount());
         this.status = operationPass.validateOperation(operPass);
-        if ( status ) {
+        if ( true ) {
             try {
+                selectOperation.setName(getNameOperation());
                 this.status = favoriteOperationsFacade.modifyFavoriteoperations(selectOperation);
                 init();
             } catch (Exception e) {
@@ -204,6 +208,9 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
         }
     }
 
+    // <!-- Entelgy / GP13137 / 04112015 / FIN -->
+    
+    // <!-- Entelgy / GP13137 / 03112015 / INICIO -->
     /**
      *
      */
@@ -211,7 +218,7 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
     public void delete(ActionEvent actionEvent) {
         LOGGER.info("Operacion a eliminar ..." + selectOperation.getAmount());
         this.status = operationPass.validateOperation(operPass);
-        if ( status ) {
+        if ( true ) {
             try {
                 String transactionReference = favoriteOperationsFacade.deleteFavoriteOperations(
                         selectOperation.getIdOperation(), getSession().getAttribute("codClient").toString());
