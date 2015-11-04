@@ -195,7 +195,7 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
     public void modify(ActionEvent actionEvent) {
         LOGGER.info("Operacion modificada ..." + selectOperation.getAmount());
         this.status = operationPass.validateOperation(operPass);
-        if ( true ) {
+        if ( status ) {
             try {
                 selectOperation.setName(getNameOperation());
                 this.status = favoriteOperationsFacade.modifyFavoriteoperations(selectOperation);
@@ -218,7 +218,7 @@ public class FavoriteOperationsControllerImpl extends AbstractBbvaController imp
     public void delete(ActionEvent actionEvent) {
         LOGGER.info("Operacion a eliminar ..." + selectOperation.getAmount());
         this.status = operationPass.validateOperation(operPass);
-        if ( true ) {
+        if ( status ) {
             try {
                 String transactionReference = favoriteOperationsFacade.deleteFavoriteOperations(
                         selectOperation.getIdOperation(), getSession().getAttribute("codClient").toString());
