@@ -960,7 +960,6 @@ body div.ui-growl {
 	position: fixed !important;
 	top: 250px !important;
 	right: 40% !important;
-	max-height: 191px !important;
 }
 
 .ui-growl-item {
@@ -971,6 +970,7 @@ body div.ui-growl {
 	padding: 30px 30px 30px 16px !important;
 	outline: 1px solid #DBDCDF;
 	-moz-outline-radius: 6px;
+	max-height: 177px !important;
 }
 
 /*container mensaje*/
@@ -979,6 +979,7 @@ body div.ui-growl {
 	border: 1px solid #DBDCDC !important;
 	background-color: #F4F7F5 !important;
 	padding: 8px !important;
+	max-height: 191px !important;
 }
 
 /*ui-state-highlight mensaje*/
@@ -1625,6 +1626,7 @@ body div.ui-growl .ui-state-highlight {
 }
 
 /* <!-- Entelgy / GP13137 / 14092015 / FIN --> */
+
 .panelText {
 	overflow-x: auto !important;
 	border: 0px !important;
@@ -2151,3 +2153,12 @@ body div.ui-growl .ui-state-highlight {
 	height: auto !important;
 }
 /* <!-- Entelgy / SPRING 3 / 23102015 / FIN -->*/
+
+/* <!-- Entelgy / SPRING 1 / 05112015 / FIN -->*/
+.ui-growl-image-info {
+	background-image: url('../img/icons_ico/tick-big.png');
+	background-position: 4px 10px;
+	width: 53px;
+	height: 49px;
+}
+/* <!-- Entelgy / SPRING 1 / 05112015 / FIN -->*/

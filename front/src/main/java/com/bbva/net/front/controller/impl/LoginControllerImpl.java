@@ -53,17 +53,15 @@ public class LoginControllerImpl extends AbstractBbvaController implements Login
             
             if ( statusUSer.equals("SINTJC") ) {
                 LOGGER.info("Sin tarjeta de coordenadas ");
-                try {
-                    FacesContext ctx = FacesContext.getCurrentInstance();
-                    ctx.addMessage(
-                            "login",
-                            new FacesMessage(
-                                    FacesMessage.SEVERITY_ERROR,
-                                    "Ha vencido su plazo para ingresar sin tarjeta Net Segura",
-                                    "Por favor acérquese a cualquiera de nuestras sucursales y solicitela. Una vez hecho esto usted podrá ingresar al portal transaccional. Para mayor información, comuniquese a nuestras Líneas BBVA"));
-                } catch (Exception d) {
-
-                }
+                // <!-- Entelgy / SPRING 1 / 05112015 / INICIO -->
+                FacesContext ctx = FacesContext.getCurrentInstance();
+                ctx.addMessage(
+                        "login",
+                        new FacesMessage(
+                                FacesMessage.SEVERITY_ERROR,
+                                "Ha vencido su plazo para ingresar sin tarjeta Net Segura",
+                                "Por favor acérquese a cualquiera de nuestras sucursales y solicitela. Una vez hecho esto usted podrá ingresar al portal transaccional. Para mayor información, comuniquese a nuestras Líneas BBVA"));
+                // <!-- Entelgy / SPRING 1 / 05112015 / INICIO -->
             } else {
                 LOGGER.info("Con tarjeta de coordenadas");
                 // 4. Invocar al GrantingTicket y almacenar AuthenticationState

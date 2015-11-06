@@ -260,7 +260,7 @@ $(document).delegate('#globalContext .setFilter', 'click', function() {
 });
 
 $(document).ready(function() {
-
+	
 	/* close de consultas */
 	$('.close-button').click(function() {
 		var parent = $(this).parents('.operation-tabs');
@@ -391,37 +391,20 @@ $(window).load(function() {
 	PF('statusDialog').hide()
 });
 
+//Entelgy / Spring 1 / 05112015 / INICIO
 $(window).load(function() {
-	/* Message Container */
-	var styleBody = $('.ui-growl-item-container').length;
 
+	var styleBody = $('.ui-growl-item-container').length;
+	
 	/* abrir el modal de mensajes Growl */
 	if (styleBody >= 1) {
 		var heightB = $(document).height();
 		var overlay = "<div id='modal' class='ui-widget-overlay' style='height:" + heightB + "px !important; z-index: 1000;'> </div>";
 		$('body').append(overlay);
 	}
-
-	/* cerrar el modal de mensajes Growl */
-	$('.ui-growl').find('div.ui-growl-icon-close').click(function() {
-		if (styleBody >= 1) {
-			$('#modal').remove();
-		}
-	});	
 	
 	$('.ui-growl-image-info').parents('.ui-growl-item').css("cssText", "background-color: #fff !important;");
-	
-	$('.ui-growl-image-info').css({
-		'background-image' : "url('../assets/img/icons_ico/tick-big.png')",
-		'background-position' : '4px 10px',
-		'width' : '53px',
-		'height' : '49px'
-	});
-	
 	$('.ui-growl-image-info').parents('.ui-growl-item').find('.ui-growl-message').css('color', '#000');
-	
-	$('.ui-growl-item-container').css("cssText", "display: block !important;");
-
 
 	$('#tabsOperations li').each(function(event) {
 		var sdas = $(this).attr('data-origin-value');
@@ -436,7 +419,17 @@ $(window).load(function() {
 			});
 		}
 	});
+	
+	/*Close modal*/
+	$('.ui-growl').find('div.ui-growl-icon-close').click(function() {
+		/* Message Container */
+		var contaGrow = $('.ui-growl-item-container').length;
+		if (contaGrow === 1) {
+			$('#modal').remove();
+		}
+	});	
 });
+//Entelgy / Spring 1 / 05112015 / FIN
 
 function localize() {
 	/* Si se puede obtener la localización */
