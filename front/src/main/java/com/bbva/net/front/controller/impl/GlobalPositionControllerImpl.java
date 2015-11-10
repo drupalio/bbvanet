@@ -42,688 +42,700 @@ import com.bbva.net.front.ui.pie.PieConfigUI;
 
 public class GlobalPositionControllerImpl extends AbstractBbvaController implements GlobalPositionController {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 5726824668267606699L;
-
-	/**
-	 * 
-	 */
-	private String selectedLike;
-
-	/**
-	 * 
-	 */
-	@Resource(name = "globalPositionFacade")
-	private transient GlobalPositionFacade globalPositionFacade;
-
-	/**
-	 * 
-	 */
-	@Resource(name = "cardsFacade")
-	private transient CardsFacade cardsFacade;
-
-	/**
-	 * 
-	 */
-	@Resource(name = "accountMovementsFacade")
-	private transient AccountMovementsResumeFacade movementsResumeFacade;
-
-	/**
-	 * 
-	 */
-	@Resource(name = "monthBalanceFacade")
-	private transient MonthBalanceFacade accountMonthBalanceFacade;
-
-	/**
-	 * 
-	 */
-	@Resource(name = "graphicPieDelegate")
-	private transient GraphicPieDelegate graphicPieDelegate;
-
-	/**
-	 * 
-	 */
-	@Resource(name = "graphicBarLineDelegate")
-	private transient GraphicBarLineDelegate graphicBarLineDelegate;
-
-	/**
-	 * 
-	 */
-	@Resource(name = "graphicLineDelegate")
-	private transient GraphicLineDelegate graphicLineDelegate;
-
-	/**
-	 * 
-	 */
-	private GlobalProductsDto globalProductsDTO;
-
-	/**
-	 * 
-	 */
-	private SituationPiesUI situationGraphicPieUI;
-
-	/**
-	 * 
-	 */
-	private PieConfigUI graphicPieInvestmentFunds;
-
-	/**
-	 * 
-	 */
-
-	private GlobalResumeMovementsDto globalResumeMovementsDTO;
-
-	/**
-	 * 
-	 */
-	private AccountBarLineUI accountGraphicBarLineUI;
-
-	/**
-	 * 
-	 */
-	private PieConfigUI graphicPieCards;
-
-	/**
-	 * 
-	 */
-	private GlobalMonthlyBalanceDto globalMonthlyBalance;
-
-	/**
-	 * 
-	 */
-	private LineConfigUI lineConfigUI;
-
-	/**
-	 * 
-	 */
-	private ActivePanelType activePanel = ActivePanelType.SITUATION;
-
-	/**
-	 * 
-	 */
-	private Map<String, BalanceDto> totalsProducts;
-
-	/**
-	 * 
-	 */
-	private Map<String, List<String>> namesProducts;
-
-	/**
-	 * periodo seleccionado en grafica de cuentas
-	 */
-	private String periodAccountSelected = StringUtils.EMPTY;
-
-	/**
-	 * producto seleccionado en grafica de cuentas
-	 */
-	private String accountSelected = StringUtils.EMPTY;
-
-	/**
-	 * periodo selecionado en grafica de tarjetas
-	 */
-	private String periodCardSelected = StringUtils.EMPTY;
-
-	/**
-	 * producto seleccionado en grafica de tarjetas
-	 */
-	private String cardSelected = StringUtils.EMPTY;
-
-	/**
-	 * @author Entelgy
-	 */
-	public enum ActivePanelType {
-
-		SITUATION, ASSET, FINANCIATION
-	}
-
-	/**
-	 * init
-	 */
-	public void init() {
-
-		LOGGER.info("STARTING BBVA GLOBAL POSITION .................");
-
-		try {
-			// Get GlobalProductsDTO by currentUser (visibles and hidden)
-			this.globalProductsDTO = this.globalPositionFacade.getGlobalProductsByUser();
-		} catch (Exception e) {
-			// FacesContext ctx = FacesContext.getCurrentInstance();
-			// ctx.addMessage("GlobalProductsDTO", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
-			this.globalProductsDTO = new GlobalProductsDto();
-		}
-
-		// Calculate situation graphics panels
-		this.situationGraphicPieUI = graphicPieDelegate.getSituationGlobalProducts(this.globalProductsDTO);
-
-		// Calculate totals
-		this.totalsProducts = this.globalPositionFacade.getTotalsByProduct(globalProductsDTO);
-
-		// Calculate income, output and balance by Account Graphic
-		// this.accountGraphicBarLineUI = this.graphicBarLineDelegate.getInOutBalanceAccount(globalResumeMovementsDTO);
-
-		// Get names of products
-		this.namesProducts = globalPositionFacade.getNamesProducts(globalProductsDTO);
-
-	}
-
-	/**
-	 * Render
-	 */
-	@Override
-	public void preRender(final ComponentSystemEvent event) {
-
-	}
-
-	/**
-	 * call all products visible
-	 */
-	@Override
-	public GlobalProductsDto getCustomerProducts() {
-		return this.globalPositionFacade.getGlobalProductsVisibles(globalProductsDTO);
-	}
-
-	/**
-	 * call all products hidden
-	 */
-	@Override
-	public GlobalProductsDto getCustomerProductsHidden() {
-		return this.globalPositionFacade.getGlobalProductsHidden(globalProductsDTO);
-	}
-
-	/**
-	 * Render graphic situation
-	 */
-	@Override
-	public void renderPieSituation() {
-		this.activePanel = ActivePanelType.SITUATION;
-		initChart();
-	}
-
-	/**
-	 * Render graphic situation
-	 */
-	@Override
-	public void renderPieAssets() {
-		this.activePanel = ActivePanelType.ASSET;
-		initChart();
-	}
-
-	/**
-	 * Render graphic situation
-	 */
-	@Override
-	public void renderPieFinanciation() {
-		this.activePanel = ActivePanelType.FINANCIATION;
-		initChart();
-	}
-
-	/**
-	 * @return
-	 */
-	@Override
-	public Map<String, BalanceDto> getTotalsProducts() {
-		return totalsProducts;
-	}
-
-	/**
-	 * 
-	 */
-	public void initChart() {
-		executeScript("initChart();");
-	}
-
-	/**
-	 * 
-	 */
-	@Override
-	public void onProductSelected(final SelectEvent selectEvent) {
-		super.onProductSelected(selectEvent);
-		this.sendAction("accountSelected");
-
-	}
-
-	/**
-	 * 
-	 */
-	@Override
-	public void onProductLoanSelected(final SelectEvent selectEvent) {
-		super.onProductSelected(selectEvent);
-		this.sendAction("quotaSelected");
-	}
-
-	/**
-	 * Capture the action of the combo filter in Graphic Cards
-	 */
-	@Override
-	public void onComboSelectedCard() {
-		EnumPeriodType periodType = null;
-		if (!this.periodCardSelected.isEmpty()) {
-			periodType = EnumPeriodType.valueOf(Integer.parseInt(this.periodCardSelected));
-			LOGGER.info("Graphic cards Controller periodSelected: " + periodCardSelected);
-		} else {
-			periodType = EnumPeriodType.valueOf(EnumPeriodType.LAST_45_DAYS.getPeriodId());
-			LOGGER.info("Graphic cards Controller periodSelected: " + periodCardSelected);
-		}
-		final DateRangeDto dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
-
-		if (MessagesHelper.INSTANCE.getString("text.allCards").equals(cardSelected) || cardSelected.isEmpty()) {
-			this.cardSelected = MessagesHelper.INSTANCE.getString("text.allCards");
-			try {
-				LOGGER.info("Graphic cards Controller carSelected: " + cardSelected + "  dateRange:"
-						+ dateRange.toString());
-				this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(dateRange));
-			} catch (Exception e) {
-				FacesContext ctx = FacesContext.getCurrentInstance();
-				ctx.addMessage("graphicPieCards",
-						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
-				this.graphicPieCards = new PieConfigUI();
-			}
-		} else {
-			try {
-				LOGGER.info("Graphic cards Controller carSelected: " + cardSelected + "  dateRange:"
-						+ dateRange.toString());
-				this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesFilter(
-						cardSelected, dateRange));
-			} catch (Exception e) {
-				FacesContext ctx = FacesContext.getCurrentInstance();
-				ctx.addMessage("graphicPieCards",
-						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
-				this.graphicPieCards = new PieConfigUI();
-			}
-		}
-	}
-
-	/**
-	 * Initial Graphic Accounts
-	 */
-	@Override
-	public void onComboInitialAccountGraphic() {
-		// Obtiene la lista de resumen de movimientos del serivico REST
-		try {
-			// this.globalResumeMovementsDTO = this.movementsResumeFacade.getMovementsResumeByCustomer(new DateRangeDto());
-			final EnumPeriodType periodType = EnumPeriodType.valueOf(EnumPeriodType.LAST_45_DAYS.getPeriodId());
-
-			final DateRangeDto dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
-			accountSelected = globalProductsDTO.getAccounts().get(0).getProductNumber();
-			this.accountGraphicBarLineUI = this.graphicBarLineDelegate
-					.getInOutBalanceAccount(this.movementsResumeFacade.getMovementsResumeByAccount(accountSelected,
-							dateRange, StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY));
-		} catch (Exception e) {
-			// FacesContext ctx = FacesContext.getCurrentInstance();
-			// ctx.addMessage("GlobalResumeMovementsDto ",
-			// new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
-			this.globalResumeMovementsDTO = new GlobalResumeMovementsDto();
-			this.globalResumeMovementsDTO.setMovementsResumeDto(new ArrayList<MovementsResumeDto>());
-		}
-	}
-
-	/**
-	 * Capture the action of the combo filter in Graphic accounts.
-	 */
-	@Override
-	public void onComboSelectedAccountGraphic() {
-		final EnumPeriodType periodType = StringUtils.isNotEmpty(periodAccountSelected) ? EnumPeriodType
-				.valueOf(Integer.parseInt(this.periodAccountSelected)) : EnumPeriodType
-				.valueOf(EnumPeriodType.LAST_45_DAYS.getPeriodId());
-
-		final DateRangeDto dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
-
-		// Consume Servicio Accounts
-		if (!StringUtils.isEmpty(accountSelected)
-				&& !MessagesHelper.INSTANCE.getString("text.allAccounts").equals(accountSelected)) {
-			try {
-				this.accountGraphicBarLineUI = this.graphicBarLineDelegate
-						.getInOutBalanceAccount(this.movementsResumeFacade.getMovementsResumeByAccount(accountSelected,
-								dateRange, StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY));
-			} catch (Exception e) {
-				FacesContext ctx = FacesContext.getCurrentInstance();
-				ctx.addMessage("globalResumeMovementsDTO ",
-						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
-				this.accountGraphicBarLineUI = new AccountBarLineUI();
-			}
-		}
-		// Cosume Servicio Customer
-		if (!StringUtils.isEmpty(periodAccountSelected)
-				&& (MessagesHelper.INSTANCE.getString("text.allAccounts").equals(accountSelected))
-				|| accountSelected.isEmpty()) {
-			try {
-				this.accountGraphicBarLineUI = this.graphicBarLineDelegate
-						.getInOutBalanceAccount(this.movementsResumeFacade.getMovementsResumeByCustomer(dateRange));
-			} catch (Exception e) {
-				FacesContext ctx = FacesContext.getCurrentInstance();
-				ctx.addMessage("accountGraphicBarLineUI ",
-						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
-				this.accountGraphicBarLineUI = new AccountBarLineUI();
-			}
-		}
-	}
-
-	/**
-	 * Initial Graphic Deposit.
-	 */
-	@Override
-	public void onComboDepositAccountGraphic() {
-		// Obtiene la lista de datos para pintar la grafica Deposito electrónico
-		if (globalProductsDTO.getElectronicDeposits().size() > 0) {
-			try {
-				this.globalMonthlyBalance = this.accountMonthBalanceFacade.getAccountMonthlyBalance(globalProductsDTO
-						.getElectronicDeposits().get(0).getProductNumber(), new DateRangeDto(), StringUtils.EMPTY,
-						StringUtils.EMPTY, StringUtils.EMPTY);
-				// Delegate construye UI grafica Depositos Electrónicos
-				this.lineConfigUI = this.graphicLineDelegate.getMonthlyBalance(globalMonthlyBalance);
-			} catch (Exception e) {
-				// FacesContext ctx = FacesContext.getCurrentInstance();
-				// ctx.addMessage("globalMonthlyBalance ",
-				// new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
-				this.globalMonthlyBalance = new GlobalMonthlyBalanceDto();
-				this.lineConfigUI = new LineConfigUI();
-			}
-		}
-	}
-
-	/**
-	 * Graphic cards
-	 */
-	@Override
-	public void cardsCustomer() {
-		try {
-			// Calculate cards graphics panel
-			this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(null));
-		} catch (Exception e) {
-			FacesContext ctx = FacesContext.getCurrentInstance();
-			ctx.addMessage(
-					"graphicPieCards ",
-					new FacesMessage(
-							FacesMessage.SEVERITY_ERROR,
-							"Error",
-							"Servicio no disponible - No se han podido cargar algunos datos, para mayor información comunicate a nuestras líneas BBVA"));
-			this.graphicPieCards = new PieConfigUI();
-			// Verifica si en el mensaje de error existe la palabra tsec
-		}
-	}
-
-	/**
-	 * Graphic funds
-	 */
-	@Override
-	public void fundsCustomer() {
-		try {
-			// Calculate investmentFunds graphics panels
-			this.graphicPieInvestmentFunds = graphicPieDelegate.getAccountsfundsProducts(globalProductsDTO);
-		} catch (Exception e) {
-			FacesContext ctx = FacesContext.getCurrentInstance();
-			ctx.addMessage(
-					"graphicPieCards ",
-					new FacesMessage(
-							FacesMessage.SEVERITY_ERROR,
-							"Error",
-							"Servicio no disponible - No se han podido cargar algunos datos, para mayor información comunicate a nuestras líneas BBVA"));
-			this.graphicPieCards = new PieConfigUI();
-			// Verifica si en el mensaje de error existe la palabra tsec
-		}
-	}
-
-	/**
-	 * Enmascara el número de tarjeta
-	 * 
-	 * @param number
-	 * @return
-	 */
-	public String maskCardsNumber(final String number) {
-		final StringBuilder mask = new StringBuilder("");
-		for (int i = 0; i < number.length() - 4; i++) {
-			if (i % 4 == 0) mask.append(" ");
-			mask.append("*");
-		}
-		return mask + " " + number.substring(number.length() - 4, number.length());
-	}
-
-	/**
-	 * Calcula el total utilizado
-	 * 
-	 * @param total
-	 * @param available
-	 * @return
-	 */
-	public Money getTotalUsedCards(final Money total, final Money available) {
-
-		return new Money(total.getAmount().subtract(available.getAmount()));
-	}
-
-	/************************************* SETTER BEANS **************************************/
-
-	/**
-	 * @param selectedLike the selectedLike to set
-	 */
-	public void setSelectedLike(final String selectedLike) {
-		this.selectedLike = selectedLike;
-	}
-
-	/**
-	 * @return
-	 */
-	public PieConfigUI getGraphicPieCards() {
-		return graphicPieCards;
-	}
-
-	/**
-	 * @param graphicPieCards
-	 */
-	public void setGraphicPieCards(final PieConfigUI graphicPieCards) {
-		this.graphicPieCards = graphicPieCards;
-	}
-
-	/**
-	 * @return
-	 */
-	public GlobalPositionFacade getGlobalPositionFacade() {
-		return globalPositionFacade;
-	}
-
-	/**
-	 * @param lineConfigUI
-	 */
-	public void setLineConfigUI(final LineConfigUI lineConfigUI) {
-		this.lineConfigUI = lineConfigUI;
-	}
-
-	/**
-	 * @param accountGraphicBarLineUI
-	 */
-	public void setAccountGraphicBarLineUI(final AccountBarLineUI accountGraphicBarLineUI) {
-		this.accountGraphicBarLineUI = accountGraphicBarLineUI;
-	}
-
-	/**
-	 * @param globalMonthlyBalance
-	 */
-	public void setGlobalMonthlyBalance(final GlobalMonthlyBalanceDto globalMonthlyBalance) {
-		this.globalMonthlyBalance = globalMonthlyBalance;
-	}
-
-	/**
-	 * @return
-	 */
-	public String getActivePanel() {
-		return this.activePanel.name();
-	}
-
-	/**
-	 * @return
-	 */
-	public ActivePanelType getActivePanelEnum() {
-		return this.activePanel;
-	}
-
-	/**
-	 * @return
-	 */
-	public SituationPiesUI getSituationGraphicPieUI() {
-		return situationGraphicPieUI;
-	}
-
-	/**
-	 * @return
-	 */
-	public AccountBarLineUI getAccountGraphicBarLineUI() {
-		return accountGraphicBarLineUI;
-	}
-
-	/**
-	 * @return the selectedLike
-	 */
-	public String getSelectedLike() {
-		return selectedLike;
-	}
-
-	/**
-	 * @param globalPositionFacade
-	 */
-	public void setGlobalPositionFacade(final GlobalPositionFacade globalPositionFacade) {
-		this.globalPositionFacade = globalPositionFacade;
-	}
-
-	/**
-	 * @param graphicPieDelegate
-	 */
-	public void setGraphicPieDelegate(final GraphicPieDelegate graphicPieDelegate) {
-		this.graphicPieDelegate = graphicPieDelegate;
-	}
-
-	/**
-	 * @param graphicBarLineDelegate
-	 */
-	public void setGraphicBarLineDelegate(final GraphicBarLineDelegate graphicBarLineDelegate) {
-		this.graphicBarLineDelegate = graphicBarLineDelegate;
-	}
-
-	/**
-	 * @param graphicLineDelegate
-	 */
-	public void setGraphicLineDelegate(final GraphicLineDelegate graphicLineDelegate) {
-		this.graphicLineDelegate = graphicLineDelegate;
-	}
-
-	/**
-	 * @return
-	 */
-	public PieConfigUI getGraphicPieInvestmentFunds() {
-		return graphicPieInvestmentFunds;
-	}
-
-	/**
-	 * @param graphicPieInvestmentFunds
-	 */
-	public void setGraphicPieInvestmentFunds(final PieConfigUI graphicPieInvestmentFunds) {
-		this.graphicPieInvestmentFunds = graphicPieInvestmentFunds;
-
-	}
-
-	/**
-	 * @param movementsResumeFacade
-	 */
-	public void setMovementsResumeFacade(final AccountMovementsResumeFacade movementsResumeFacade) {
-		this.movementsResumeFacade = movementsResumeFacade;
-	}
-
-	/**
-	 * @return
-	 */
-	public Map<String, List<String>> getNamesProducts() {
-		return namesProducts;
-	}
-
-	/**
-	 * @param cardsFacade
-	 */
-	public void setCardsFacade(final CardsFacade cardsFacade) {
-		this.cardsFacade = cardsFacade;
-	}
-
-	/**
-	 * @return
-	 */
-	public String getPeriodCardSelected() {
-		return periodCardSelected;
-	}
-
-	/**
-	 * @param periodCardSelected
-	 */
-	public void setPeriodCardSelected(final String periodCardSelected) {
-		this.periodCardSelected = periodCardSelected;
-	}
-
-	/**
-	 * @return
-	 */
-	public String getPeriodAccountSelected() {
-		return periodAccountSelected;
-	}
-
-	/**
-	 * @param periodAccountSelected
-	 */
-	public void setPeriodAccountSelected(final String periodAccountSelected) {
-		this.periodAccountSelected = periodAccountSelected;
-	}
-
-	/**
-	 * @return
-	 */
-	public String getCardSelected() {
-		return cardSelected;
-	}
-
-	/**
-	 * @param cardSelected
-	 */
-	public void setCardSelected(final String cardSelected) {
-		this.cardSelected = cardSelected;
-	}
-
-	/**
-	 * @return
-	 */
-	public String getAccountSelected() {
-		return accountSelected;
-	}
-
-	/**
-	 * @param accountSelected
-	 */
-	public void setAccountSelected(final String accountSelected) {
-		this.accountSelected = accountSelected;
-	}
-
-	/**
-	 * @param accountMonthBalanceFacade
-	 */
-	public void setAccountMonthBalanceFacade(final MonthBalanceFacade accountMonthBalanceFacade) {
-		this.accountMonthBalanceFacade = accountMonthBalanceFacade;
-	}
-
-	/**
-	 * @return globalMonthlyBalance
-	 */
-	public GlobalMonthlyBalanceDto getGlobalMonthlyBalance() {
-		return globalMonthlyBalance;
-	}
-
-	/**
-	 * @return lineConfigUI
-	 */
-	public LineConfigUI getLineConfigUI() {
-		return lineConfigUI;
-	}
-
-	/**
-	 * @return globalProductsDTO
-	 */
-	public GlobalProductsDto getGlobalProductsDTO() {
-		return globalProductsDTO;
-	}
+    /**
+     *
+     */
+    private static final long serialVersionUID = 5726824668267606699L;
+
+    /**
+     *
+     */
+    private String selectedLike;
+
+    /**
+     *
+     */
+    @Resource(name = "globalPositionFacade")
+    private transient GlobalPositionFacade globalPositionFacade;
+
+    /**
+     *
+     */
+    @Resource(name = "cardsFacade")
+    private transient CardsFacade cardsFacade;
+
+    /**
+     *
+     */
+    @Resource(name = "accountMovementsFacade")
+    private transient AccountMovementsResumeFacade movementsResumeFacade;
+
+    /**
+     *
+     */
+    @Resource(name = "monthBalanceFacade")
+    private transient MonthBalanceFacade accountMonthBalanceFacade;
+
+    /**
+     *
+     */
+    @Resource(name = "graphicPieDelegate")
+    private transient GraphicPieDelegate graphicPieDelegate;
+
+    /**
+     *
+     */
+    @Resource(name = "graphicBarLineDelegate")
+    private transient GraphicBarLineDelegate graphicBarLineDelegate;
+
+    /**
+     *
+     */
+    @Resource(name = "graphicLineDelegate")
+    private transient GraphicLineDelegate graphicLineDelegate;
+
+    /**
+     *
+     */
+    private GlobalProductsDto globalProductsDTO;
+
+    /**
+     *
+     */
+    private SituationPiesUI situationGraphicPieUI;
+
+    /**
+     *
+     */
+    private PieConfigUI graphicPieInvestmentFunds;
+
+    /**
+     *
+     */
+
+    private GlobalResumeMovementsDto globalResumeMovementsDTO;
+
+    /**
+     *
+     */
+    private AccountBarLineUI accountGraphicBarLineUI;
+
+    /**
+     *
+     */
+    private PieConfigUI graphicPieCards;
+
+    /**
+     *
+     */
+    private GlobalMonthlyBalanceDto globalMonthlyBalance;
+
+    /**
+     *
+     */
+    private LineConfigUI lineConfigUI;
+
+    /**
+     *
+     */
+    private ActivePanelType activePanel = ActivePanelType.SITUATION;
+
+    /**
+     *
+     */
+    private Map<String, BalanceDto> totalsProducts;
+
+    /**
+     *
+     */
+    private Map<String, List<String>> namesProducts;
+
+    /**
+     * periodo seleccionado en grafica de cuentas
+     */
+    private String periodAccountSelected = StringUtils.EMPTY;
+
+    /**
+     * producto seleccionado en grafica de cuentas
+     */
+    private String accountSelected = StringUtils.EMPTY;
+
+    /**
+     * periodo selecionado en grafica de tarjetas
+     */
+    private String periodCardSelected = StringUtils.EMPTY;
+
+    /**
+     * producto seleccionado en grafica de tarjetas
+     */
+    private String cardSelected = StringUtils.EMPTY;
+
+    /**
+     * @author Entelgy
+     */
+    public enum ActivePanelType {
+
+        SITUATION, ASSET, FINANCIATION
+    }
+
+    /**
+     * init
+     */
+    public void init() {
+
+        LOGGER.info("STARTING BBVA GLOBAL POSITION .................");
+
+        try {
+            // Get GlobalProductsDTO by currentUser (visibles and hidden)
+            this.globalProductsDTO = this.globalPositionFacade.getGlobalProductsByUser();
+        } catch (Exception e) {
+            // FacesContext ctx = FacesContext.getCurrentInstance();
+            // ctx.addMessage("GlobalProductsDTO", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+            this.globalProductsDTO = new GlobalProductsDto();
+        }
+
+        // Calculate situation graphics panels
+        this.situationGraphicPieUI = graphicPieDelegate.getSituationGlobalProducts(this.globalProductsDTO);
+
+        // Calculate totals
+        this.totalsProducts = this.globalPositionFacade.getTotalsByProduct(globalProductsDTO);
+
+        // Calculate income, output and balance by Account Graphic
+        // this.accountGraphicBarLineUI = this.graphicBarLineDelegate.getInOutBalanceAccount(globalResumeMovementsDTO);
+
+        // Get names of products
+        this.namesProducts = globalPositionFacade.getNamesProducts(globalProductsDTO);
+
+    }
+
+    /**
+     * Render
+     */
+    @Override
+    public void preRender(final ComponentSystemEvent event) {
+
+    }
+
+    /**
+     * call all products visible
+     */
+    @Override
+    public GlobalProductsDto getCustomerProducts() {
+        return this.globalPositionFacade.getGlobalProductsVisibles(globalProductsDTO);
+    }
+
+    /**
+     * call all products hidden
+     */
+    @Override
+    public GlobalProductsDto getCustomerProductsHidden() {
+        return this.globalPositionFacade.getGlobalProductsHidden(globalProductsDTO);
+    }
+
+    /**
+     * Render graphic situation
+     */
+    @Override
+    public void renderPieSituation() {
+        this.activePanel = ActivePanelType.SITUATION;
+        initChart();
+    }
+
+    /**
+     * Render graphic situation
+     */
+    @Override
+    public void renderPieAssets() {
+        this.activePanel = ActivePanelType.ASSET;
+        initChart();
+    }
+
+    /**
+     * Render graphic situation
+     */
+    @Override
+    public void renderPieFinanciation() {
+        this.activePanel = ActivePanelType.FINANCIATION;
+        initChart();
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public Map<String, BalanceDto> getTotalsProducts() {
+        return totalsProducts;
+    }
+
+    /**
+     *
+     */
+    public void initChart() {
+        executeScript("initChart();");
+    }
+
+    /**
+     *
+     */
+    @Override
+    public void onProductSelected(final SelectEvent selectEvent) {
+        super.onProductSelected(selectEvent);
+        this.sendAction("accountSelected");
+
+    }
+
+    /**
+     *
+     */
+    @Override
+    public void onProductLoanSelected(final SelectEvent selectEvent) {
+        super.onProductSelected(selectEvent);
+        this.sendAction("quotaSelected");
+    }
+
+    /**
+     * Capture the action of the combo filter in Graphic Cards
+     */
+    @Override
+    public void onComboSelectedCard() {
+        EnumPeriodType periodType = null;
+        if ( !this.periodCardSelected.isEmpty() ) {
+            periodType = EnumPeriodType.valueOf(Integer.parseInt(this.periodCardSelected));
+            LOGGER.info("Graphic cards Controller periodSelected: " + periodCardSelected);
+        } else {
+            periodType = EnumPeriodType.valueOf(EnumPeriodType.LAST_45_DAYS.getPeriodId());
+            LOGGER.info("Graphic cards Controller periodSelected: " + periodCardSelected);
+        }
+        final DateRangeDto dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
+
+        if ( MessagesHelper.INSTANCE.getString("text.allCards").equals(cardSelected) || cardSelected.isEmpty() ) {
+            this.cardSelected = MessagesHelper.INSTANCE.getString("text.allCards");
+            try {
+                LOGGER.info("Graphic cards Controller carSelected: " + cardSelected + "  dateRange:"
+                        + dateRange.toString());
+                this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(dateRange));
+            } catch (Exception e) {
+                FacesContext ctx = FacesContext.getCurrentInstance();
+                ctx.addMessage("graphicPieCards",
+                        new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+                this.graphicPieCards = new PieConfigUI();
+            }
+        } else {
+            try {
+                LOGGER.info("Graphic cards Controller carSelected: " + cardSelected + "  dateRange:"
+                        + dateRange.toString());
+                this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesFilter(
+                        cardSelected, dateRange));
+            } catch (Exception e) {
+                FacesContext ctx = FacesContext.getCurrentInstance();
+                ctx.addMessage("graphicPieCards",
+                        new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+                this.graphicPieCards = new PieConfigUI();
+            }
+        }
+    }
+
+    // <!-- Entelgy / SPRINT 2 / 06112015 / INICIO -->
+
+    /**
+     * Initial Graphic Accounts
+     */
+    @Override
+    public void onComboInitialAccountGraphic() {
+        // Obtiene la lista de resumen de movimientos del serivico REST
+        try {
+            // this.globalResumeMovementsDTO = this.movementsResumeFacade.getMovementsResumeByCustomer(new DateRangeDto());
+            final EnumPeriodType periodType = EnumPeriodType.valueOf(EnumPeriodType.LAST_SIX_MONTH.getPeriodId());
+            final DateRangeDto dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
+
+            accountSelected = globalProductsDTO.getAccounts().get(0).getProductNumber();
+            this.accountGraphicBarLineUI = this.graphicBarLineDelegate
+                    .getInOutBalanceAccount(this.movementsResumeFacade.getMovementsResumeByAccount(accountSelected,
+                            dateRange, StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY));
+
+        } catch (Exception e) {
+            FacesContext ctx = FacesContext.getCurrentInstance();
+            ctx.addMessage("GlobalResumeMovementsDto ",
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+            this.globalResumeMovementsDTO = new GlobalResumeMovementsDto();
+            this.globalResumeMovementsDTO.setMovementsResumeDto(new ArrayList<MovementsResumeDto>());
+        }
+    }
+
+    /**
+     * Capture the action of the combo filter in Graphic accounts.
+     */
+    @Override
+    public void onComboSelectedAccountGraphic() {
+        final EnumPeriodType periodType = StringUtils.isNotEmpty(periodAccountSelected) ? EnumPeriodType
+                .valueOf(Integer.parseInt(this.periodAccountSelected)) : EnumPeriodType
+                .valueOf(EnumPeriodType.LAST_SIX_MONTH.getPeriodId());
+
+                final DateRangeDto dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
+
+                // Consume Servicio Accounts
+                if ( !StringUtils.isEmpty(accountSelected)
+                        && !MessagesHelper.INSTANCE.getString("text.allAccounts").equals(accountSelected) ) {
+                    try {
+                        this.accountGraphicBarLineUI = this.graphicBarLineDelegate
+                                .getInOutBalanceAccount(this.movementsResumeFacade.getMovementsResumeByAccount(accountSelected,
+                                        dateRange, StringUtils.EMPTY, StringUtils.EMPTY, StringUtils.EMPTY));
+                    } catch (Exception e) {
+                        FacesContext ctx = FacesContext.getCurrentInstance();
+                        ctx.addMessage("globalResumeMovementsDTO ",
+                                new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+                        this.accountGraphicBarLineUI = new AccountBarLineUI();
+                    }
+                }
+                // Cosume Servicio Customer
+                if ( !StringUtils.isEmpty(periodAccountSelected)
+                        && (MessagesHelper.INSTANCE.getString("text.allAccounts").equals(accountSelected))
+                        || accountSelected.isEmpty() ) {
+                    try {
+                        this.accountGraphicBarLineUI = this.graphicBarLineDelegate
+                                .getInOutBalanceAccount(this.movementsResumeFacade.getMovementsResumeByCustomer(dateRange));
+                    } catch (Exception e) {
+                        FacesContext ctx = FacesContext.getCurrentInstance();
+                        ctx.addMessage("accountGraphicBarLineUI ",
+                                new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+                        this.accountGraphicBarLineUI = new AccountBarLineUI();
+                    }
+                }
+    }
+
+    // <!-- Entelgy / SPRINT 2 / 06112015 / FIN -->
+
+    /**
+     * Initial Graphic Deposit.
+     */
+    @Override
+    public void onComboDepositAccountGraphic() {
+        // Obtiene la lista de datos para pintar la grafica Deposito electrónico
+        if ( globalProductsDTO.getElectronicDeposits().size() > 0 ) {
+            try {
+                this.globalMonthlyBalance = this.accountMonthBalanceFacade.getAccountMonthlyBalance(globalProductsDTO
+                        .getElectronicDeposits().get(0).getProductNumber(), new DateRangeDto(), StringUtils.EMPTY,
+                        StringUtils.EMPTY, StringUtils.EMPTY);
+                // Delegate construye UI grafica Depositos Electrónicos
+                this.lineConfigUI = this.graphicLineDelegate.getMonthlyBalance(globalMonthlyBalance);
+            } catch (Exception e) {
+                // FacesContext ctx = FacesContext.getCurrentInstance();
+                // ctx.addMessage("globalMonthlyBalance ",
+                // new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+                this.globalMonthlyBalance = new GlobalMonthlyBalanceDto();
+                this.lineConfigUI = new LineConfigUI();
+            }
+        }
+    }
+
+    // <!-- Entelgy / SPRINT 2 / 06112015 / INICIO -->
+    /**
+     * Graphic cards
+     */
+    @Override
+    public void cardsCustomer() {
+        try {
+            final EnumPeriodType periodType = EnumPeriodType.valueOf(EnumPeriodType.LAST_45_DAYS.getPeriodId());
+            final DateRangeDto dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
+
+            // Calculate cards graphics panel
+            this.graphicPieCards = graphicPieDelegate.getCardGraphic(cardsFacade.getCardsChargesByUser(dateRange));
+
+        } catch (Exception e) {
+            FacesContext ctx = FacesContext.getCurrentInstance();
+            ctx.addMessage(
+                    "graphicPieCards ",
+                    new FacesMessage(
+                            FacesMessage.SEVERITY_ERROR, "Error",
+                            "Servicio no disponible - No se han podido cargar la gáfica de tarjetas, para mayor información comunicate a nuestras líneas BBVA"));
+            this.graphicPieCards = new PieConfigUI();
+        }
+    }
+
+    // <!-- Entelgy / SPRINT 2 / 06112015 / FIN -->
+
+    /**
+     * Graphic funds
+     */
+    @Override
+    public void fundsCustomer() {
+        try {
+            // Calculate investmentFunds graphics panels
+            this.graphicPieInvestmentFunds = graphicPieDelegate.getAccountsfundsProducts(globalProductsDTO);
+        } catch (Exception e) {
+            FacesContext ctx = FacesContext.getCurrentInstance();
+            ctx.addMessage(
+                    "graphicPieCards ",
+                    new FacesMessage(
+                            FacesMessage.SEVERITY_ERROR,
+                            "Error",
+                            "Servicio no disponible - No se han podido cargar algunos datos, para mayor información comunicate a nuestras líneas BBVA"));
+            this.graphicPieCards = new PieConfigUI();
+            // Verifica si en el mensaje de error existe la palabra tsec
+        }
+    }
+
+    /**
+     * Enmascara el número de tarjeta
+     *
+     * @param number
+     * @return
+     */
+    public String maskCardsNumber(final String number) {
+        final StringBuilder mask = new StringBuilder("");
+        for (int i = 0; i < number.length() - 4; i++) {
+            if ( i % 4 == 0 ) {
+                mask.append(" ");
+            }
+            mask.append("*");
+        }
+        return mask + " " + number.substring(number.length() - 4, number.length());
+    }
+
+    /**
+     * Calcula el total utilizado
+     *
+     * @param total
+     * @param available
+     * @return
+     */
+    public Money getTotalUsedCards(final Money total, final Money available) {
+
+        return new Money(total.getAmount().subtract(available.getAmount()));
+    }
+
+    /************************************* SETTER BEANS **************************************/
+
+    /**
+     * @param selectedLike the selectedLike to set
+     */
+    public void setSelectedLike(final String selectedLike) {
+        this.selectedLike = selectedLike;
+    }
+
+    /**
+     * @return
+     */
+    public PieConfigUI getGraphicPieCards() {
+        return graphicPieCards;
+    }
+
+    /**
+     * @param graphicPieCards
+     */
+    public void setGraphicPieCards(final PieConfigUI graphicPieCards) {
+        this.graphicPieCards = graphicPieCards;
+    }
+
+    /**
+     * @return
+     */
+    public GlobalPositionFacade getGlobalPositionFacade() {
+        return globalPositionFacade;
+    }
+
+    /**
+     * @param lineConfigUI
+     */
+    public void setLineConfigUI(final LineConfigUI lineConfigUI) {
+        this.lineConfigUI = lineConfigUI;
+    }
+
+    /**
+     * @param accountGraphicBarLineUI
+     */
+    public void setAccountGraphicBarLineUI(final AccountBarLineUI accountGraphicBarLineUI) {
+        this.accountGraphicBarLineUI = accountGraphicBarLineUI;
+    }
+
+    /**
+     * @param globalMonthlyBalance
+     */
+    public void setGlobalMonthlyBalance(final GlobalMonthlyBalanceDto globalMonthlyBalance) {
+        this.globalMonthlyBalance = globalMonthlyBalance;
+    }
+
+    /**
+     * @return
+     */
+    public String getActivePanel() {
+        return this.activePanel.name();
+    }
+
+    /**
+     * @return
+     */
+    public ActivePanelType getActivePanelEnum() {
+        return this.activePanel;
+    }
+
+    /**
+     * @return
+     */
+    public SituationPiesUI getSituationGraphicPieUI() {
+        return situationGraphicPieUI;
+    }
+
+    /**
+     * @return
+     */
+    public AccountBarLineUI getAccountGraphicBarLineUI() {
+        return accountGraphicBarLineUI;
+    }
+
+    /**
+     * @return the selectedLike
+     */
+    public String getSelectedLike() {
+        return selectedLike;
+    }
+
+    /**
+     * @param globalPositionFacade
+     */
+    public void setGlobalPositionFacade(final GlobalPositionFacade globalPositionFacade) {
+        this.globalPositionFacade = globalPositionFacade;
+    }
+
+    /**
+     * @param graphicPieDelegate
+     */
+    public void setGraphicPieDelegate(final GraphicPieDelegate graphicPieDelegate) {
+        this.graphicPieDelegate = graphicPieDelegate;
+    }
+
+    /**
+     * @param graphicBarLineDelegate
+     */
+    public void setGraphicBarLineDelegate(final GraphicBarLineDelegate graphicBarLineDelegate) {
+        this.graphicBarLineDelegate = graphicBarLineDelegate;
+    }
+
+    /**
+     * @param graphicLineDelegate
+     */
+    public void setGraphicLineDelegate(final GraphicLineDelegate graphicLineDelegate) {
+        this.graphicLineDelegate = graphicLineDelegate;
+    }
+
+    /**
+     * @return
+     */
+    public PieConfigUI getGraphicPieInvestmentFunds() {
+        return graphicPieInvestmentFunds;
+    }
+
+    /**
+     * @param graphicPieInvestmentFunds
+     */
+    public void setGraphicPieInvestmentFunds(final PieConfigUI graphicPieInvestmentFunds) {
+        this.graphicPieInvestmentFunds = graphicPieInvestmentFunds;
+
+    }
+
+    /**
+     * @param movementsResumeFacade
+     */
+    public void setMovementsResumeFacade(final AccountMovementsResumeFacade movementsResumeFacade) {
+        this.movementsResumeFacade = movementsResumeFacade;
+    }
+
+    /**
+     * @return
+     */
+    public Map<String, List<String>> getNamesProducts() {
+        return namesProducts;
+    }
+
+    /**
+     * @param cardsFacade
+     */
+    public void setCardsFacade(final CardsFacade cardsFacade) {
+        this.cardsFacade = cardsFacade;
+    }
+
+    /**
+     * @return
+     */
+    public String getPeriodCardSelected() {
+        return periodCardSelected;
+    }
+
+    /**
+     * @param periodCardSelected
+     */
+    public void setPeriodCardSelected(final String periodCardSelected) {
+        this.periodCardSelected = periodCardSelected;
+    }
+
+    /**
+     * @return
+     */
+    public String getPeriodAccountSelected() {
+        return periodAccountSelected;
+    }
+
+    /**
+     * @param periodAccountSelected
+     */
+    public void setPeriodAccountSelected(final String periodAccountSelected) {
+        this.periodAccountSelected = periodAccountSelected;
+    }
+
+    /**
+     * @return
+     */
+    public String getCardSelected() {
+        return cardSelected;
+    }
+
+    /**
+     * @param cardSelected
+     */
+    public void setCardSelected(final String cardSelected) {
+        this.cardSelected = cardSelected;
+    }
+
+    /**
+     * @return
+     */
+    public String getAccountSelected() {
+        return accountSelected;
+    }
+
+    /**
+     * @param accountSelected
+     */
+    public void setAccountSelected(final String accountSelected) {
+        this.accountSelected = accountSelected;
+    }
+
+    /**
+     * @param accountMonthBalanceFacade
+     */
+    public void setAccountMonthBalanceFacade(final MonthBalanceFacade accountMonthBalanceFacade) {
+        this.accountMonthBalanceFacade = accountMonthBalanceFacade;
+    }
+
+    /**
+     * @return globalMonthlyBalance
+     */
+    public GlobalMonthlyBalanceDto getGlobalMonthlyBalance() {
+        return globalMonthlyBalance;
+    }
+
+    /**
+     * @return lineConfigUI
+     */
+    public LineConfigUI getLineConfigUI() {
+        return lineConfigUI;
+    }
+
+    /**
+     * @return globalProductsDTO
+     */
+    public GlobalProductsDto getGlobalProductsDTO() {
+        return globalProductsDTO;
+    }
 
 }

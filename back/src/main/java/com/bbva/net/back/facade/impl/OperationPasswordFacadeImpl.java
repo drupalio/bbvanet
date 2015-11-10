@@ -25,21 +25,22 @@ public class OperationPasswordFacadeImpl extends AbstractBbvaFacade implements O
 
 	@Value("${ldap.numberarrmpts}")
 	private String NUMBERATTMPTS;
-
+	
 	@Autowired
 	private ServicioModuloOperacionesImpl servicioModuloOperaciones;
 
+	// <!-- Entelgy / SPRINT 3 / 06112015 / INICIO -->
 	@Override
 	public boolean validateOperation(String user, String operationPass) {
 		LOGGER.info("Se Valida clave de operaciones en OperationPasswordFacadeImpl, Se prepara para llamar al metodo checkoperpwdUserAPI de ClienteOperaciones con datos User: "
 				+ user + " ClaveOperaciones: xxxxxxxx Pais " + PAIS + " Banco " + BANCO + " intentos: " + NUMBERATTMPTS);
 		try {
-			servicioModuloOperaciones.checkoperpwdUserAPI(user, operationPass, PAIS, BANCO,
-					Integer.parseInt(NUMBERATTMPTS));
+			servicioModuloOperaciones.checkoperpwdUserAPI(user, operationPass,
+					PAIS, BANCO, Integer.parseInt(NUMBERATTMPTS));
 			return true;
 		} catch (ArqSpringOperacionesExcepcion e) {
 			return false;
 		}
 	}
-
+	// <!-- Entelgy / SPRINT 3 / 06112015 / FIN -->
 }
