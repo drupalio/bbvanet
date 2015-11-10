@@ -13,26 +13,38 @@
 	<article class="detail-table-group">
 		<div class="utility-icons"> 
 			<h:form id="documentsExport">
-				<span data-original-title="#{msg['msg.info.movements.excel']}" data-toggle="tooltip" title=""> 
-					<p:commandLink ajax="false" styleClass="icon-excel-file"
-						onclick="PrimeFaces.monitorDownload(start, deleteDownload )">
-						<p:fileDownload value="#{quotaController.exportExcel}" />
-					</p:commandLink>
-				</span>
-				<span data-original-title="#{msg['msg.info.movements.pdf']}" data-toggle="tooltip" title=""> 
-					<p:commandLink styleClass="icon-pdf-file" ajax="false"
-						onclick="PrimeFaces.monitorDownload(start, deleteDownload )">
-						<p:fileDownload value="#{quotaController.exportPdf}" />
-					</p:commandLink>
-				</span>
-				<span data-original-title="#{msg['msg.info.movements.mail']}" data-toggle="tooltip" title=""> 
-					<p:commandLink ajax="false" styleClass="icon-send-by-email"
-						actionListener="#{quotaController.sendMail()}" />
-				</span>
-				<span data-original-title="#{msg['msg.info.movements.print']}" data-toggle="tooltip" title=""> 
-					<p:commandLink ajax="false" styleClass="icon-printer"
-						onclick="imprimir('quotaDetail:detailAccounts:detailAccounts:detailmovesACImprimir')" />
-				</span>
+				<div style="display: inline-block; position: relative;">
+					<span data-original-title="#{msg['msg.info.movements.excel']}" data-style-toggle="top: -70px; right: -85px; width: 200px;"
+						onmouseover="addTool(jQuery(this))" onmouseout="removeTool(jQuery(this))"> 
+						<p:commandLink ajax="false" styleClass="icon-excel-file"
+							onclick="PrimeFaces.monitorDownload(start, deleteDownload )">
+							<p:fileDownload value="#{quotaController.exportExcel}" />
+						</p:commandLink>
+					</span>
+				</div>
+				<div style="display: inline-block; position: relative;">
+					<span data-original-title="#{msg['msg.info.movements.pdf']}" data-style-toggle="top: -70px; right: -82px; width: 200px;" 
+						onmouseover="addTool(jQuery(this))" onmouseout="removeTool(jQuery(this))"> 
+						<p:commandLink styleClass="icon-pdf-file" ajax="false"
+							onclick="PrimeFaces.monitorDownload(start, deleteDownload )">
+							<p:fileDownload value="#{quotaController.exportPdf}" />
+						</p:commandLink>
+					</span>
+				</div>
+				<div style="display: inline-block; position: relative;">
+					<span data-original-title="#{msg['msg.info.movements.mail']}" data-style-toggle="top: -70px; left: -89px; width: 200px;" 
+						onmouseover="addTool(jQuery(this))" onmouseout="removeTool(jQuery(this))"> 
+						<p:commandLink ajax="false" styleClass="icon-send-by-email"
+							actionListener="#{quotaController.sendMail()}" />
+					</span>
+				</div>
+				<div style="display: inline-block; position: relative;">
+					<span data-original-title="#{msg['msg.info.movements.print']}" data-style-toggle="top: -70px; left: -83px; width: 200px;" 
+						onmouseover="addTool(jQuery(this))" onmouseout="removeTool(jQuery(this))"> 
+						<p:commandLink ajax="false" styleClass="icon-printer"
+							onclick="imprimir('quotaDetail:detailAccounts:detailAccounts:detailmovesACImprimir')" />
+					</span>
+				</div>
 			</h:form>
 		</div>
 	</article>
