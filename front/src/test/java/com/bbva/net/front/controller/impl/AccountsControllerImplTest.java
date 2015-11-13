@@ -10,61 +10,47 @@ import org.mockito.Mockito;
 import org.springframework.web.client.RestClientException;
 
 import com.bbva.net.back.facade.AccountsFacade;
+import com.bbva.net.back.facade.GlobalPositionFacade;
 import com.bbva.net.back.model.globalposition.AccountDto;
+import com.bbva.net.back.model.globalposition.GlobalProductsDto;
 
 /**
  * @author Entelgy
  */
 public class AccountsControllerImplTest {
 
-	private static final String DEFAULT_USER = "12345678";
+    private AccountsControllerImpl accountsController;
 
-	private AccountsControllerImpl accountsController;
+    private AccountsFacade accountsFacade;
 
-	private AccountsFacade accountsFacade;
+    private GlobalPositionFacade globalPositionFacade;
 
-	@Before
-	public void init() {
+    @Before
+    public void init() {
 
-		this.accountsController = new AccountsControllerImpl();
+        this.accountsController = new AccountsControllerImpl();
 
-		accountsFacade = Mockito.mock(AccountsFacade.class);
-		accountsController.setAccountsFacade(accountsFacade);
+        globalPositionFacade = Mockito.mock(GlobalPositionFacade.class);
+        this.accountsController.setGlobalPositionFacade(globalPositionFacade);
 
-	}
+        accountsFacade = Mockito.mock(AccountsFacade.class);
+        this.accountsController.setAccountsFacade(accountsFacade);
 
-	/**
-	 * @throws RestClientException
-	 */
-	@Test
-	public void checkGetCustomerAccounts_OK() {
+        this.accountsController.init();
+    }
 
-		// prepara el test
-		List<AccountDto> h = new ArrayList<AccountDto>();
-		Mockito.when(accountsFacade.getAccountsByUser()).thenReturn(h);
+    /**
+     * @throws RestClientException
+     */
+    @Test
+    public void checkGetCustomerAccounts_OK() {
+        // prepara el test
+        List<AccountDto> h = new ArrayList<AccountDto>();
+        Mockito.when(accountsFacade.getAccountsByUser(new GlobalProductsDto())).thenReturn(h);
+        // invoca metodo a probar
+        final List<AccountDto> customerAccounts = this.accountsController.getCustomerAccounts();
+        // Comprobar resultados
+        Assert.assertNotNull(customerAccounts);
 
-		// invoca metodo a probar
-		final List<AccountDto> customerAccounts = this.accountsController.getCustomerAccounts();
-
-		// Comprobar resultados
-		Assert.assertNotNull(customerAccounts);
-		Mockito.verify(this.accountsFacade, Mockito.atLeastOnce()).getAccountsByUser();
-
-	}
-
-	/**
-	 * @throws RestClientException
-	 */
-	@Test(expected = RestClientException.class)
-	public void checkGetCustomerAccounts_NO_OK() {
-
-		// Creación del mock
-		Mockito.when(accountsFacade.getAccountsByUser()).thenThrow(new RestClientException(""));
-
-		// Invocación al método
-		final List<AccountDto> customerAccounts = this.accountsController.getCustomerAccounts();
-		Assert.assertNull(customerAccounts);
-
-	}
-
+    }
 }

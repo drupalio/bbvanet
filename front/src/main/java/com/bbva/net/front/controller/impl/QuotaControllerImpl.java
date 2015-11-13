@@ -1445,4 +1445,11 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
         this.valGraphic = valGraphic;
     }
 
+    public HeaderController getHeaderController() {
+        return headerController;
+    }
+
+    public void setHeaderController(HeaderController headerController) {
+        this.headerController = headerController;
+    }
 }

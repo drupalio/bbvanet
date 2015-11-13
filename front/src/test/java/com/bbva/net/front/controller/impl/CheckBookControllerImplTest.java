@@ -22,8 +22,10 @@ import com.bbva.net.back.facade.MultiValueGroupFacade;
 import com.bbva.net.back.model.checkbook.CheckDto;
 import com.bbva.net.back.model.checkbook.CheckbookDto;
 import com.bbva.net.back.model.commons.DateRangeDto;
+import com.bbva.net.back.model.commons.Money;
 import com.bbva.net.back.model.enums.RenderAttributes;
 import com.bbva.net.back.model.globalposition.ProductDto;
+import com.bbva.net.front.controller.HeaderController;
 import com.bbva.net.front.test.utils.AbstractBbvaControllerTest;
 
 public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
@@ -35,6 +37,8 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
     private CheckPaginatedController checkPaginator;
 
     private CheckBookFacade checkBookFacade;
+
+    private HeaderController headerController;
 
     private MultiValueGroupFacade multiValueGroupFacade;
 
@@ -55,6 +59,7 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
         this.checkPaginator = new CheckPaginatedController();
         // Mockitos
         this.checkBookFacade = Mockito.mock(CheckBookFacade.class);
+        this.headerController = Mockito.mock(HeaderController.class);
         this.multiValueGroupFacade = Mockito.mock(MultiValueGroupFacade.class);
         this.renderComponents = new HashMap<String, Boolean>();
         this.productDto = Mockito.mock(ProductDto.class);
@@ -67,9 +72,11 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
         Mockito.when(this.checkBookController.getRenderComponents()).thenReturn(renderComponents);
         // setar Facade
         this.checkPaginator.setCheckBookFacade(checkBookFacade);
+        this.checkBookController.setHeaderController(headerController);
         this.checkBookController.setMultiValueGroupFacade(multiValueGroupFacade);
         this.checkBookController.setCheckBookFacade(checkBookFacade);
         this.checkBookController.getMultiValueGroupFacade();
+        this.checkBookController.cleanFilters(eventAction);
         // init
         this.checkBookController.init();
     }
@@ -95,7 +102,7 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
     @Test
     public void checkOnselectDate() {
         // onselectDate concreteDate igual
-        this.checkBookController.setSelectDate("select.radio.concret.date");
+        this.checkBookController.setSelectDate("Fecha concreta");
         this.checkBookController.oneSelectDate();
         // onselectDate concreteDate diferente
         this.checkBookController.setSelectDate("null");
@@ -105,16 +112,16 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
     @Test
     public void checkCumstomDate() {
         // nullos y concreteDate igual
-        this.checkBookController.setSelectDate("select.radio.concret.date");
+        this.checkBookController.setSelectDate("Fecha concreta");
         this.checkBookController.setCustomDate(ajaxAction);
         // setSinceDate no nula, toDate nula y concreteDate igual
         this.checkBookController.setSinceDatestr("");
         this.checkBookController.getSinceDatestr();
         this.checkBookController.setSinceDate(new Date());
-        this.checkBookController.setSelectDate("select.radio.concret.date");
+        this.checkBookController.setSelectDate("Fecha concreta");
         this.checkBookController.setCustomDate(ajaxAction);
         // no nulos y concreteDate igual
-        this.checkBookController.setSelectDate("select.radio.concret.date");
+        this.checkBookController.setSelectDate("Fecha concreta");
         this.checkBookController.setSinceDate(new Date());
         this.checkBookController.setToDate(new Date());
         this.checkBookController.setCustomDate(ajaxAction);
@@ -128,16 +135,31 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
         this.checkBookController.setCustomDate(ajaxAction);
     }
 
-    // @Test
+    @Test
     public void checkActionState() {
+        renderComponents.put(RenderAttributes.FILTERNUMBERCHECK.toString(), true);
         // set ActionState numero de cheque
-        this.checkBookController.setActionState("text.search.by.number.check");
+        this.checkBookController.setActionState("Búsqueda por Nº de cheque");
         this.checkBookController.getLeftTitle();
         this.checkBookController.setNumberCheckOrBook(ajaxAction);
         // set ActionState numero de talonario
-        this.checkBookController.setActionState("text.search.by.numberbook");
+        this.checkBookController.setActionState("Búsqueda de talonario");
         this.checkBookController.getRightTitle();
         this.checkBookController.setNumberCheckOrBook(ajaxAction);
+        // none
+        this.checkBookController.setActionState("Búsqueda por Nº de cheque");
+        this.checkBookController.getRightTitle();
+        this.checkBookController.setNumberCheckOrBook(ajaxAction);
+    }
+
+    @Test
+    public void nextPageCheckBook() {
+        List<CheckbookDto> check = new ArrayList<CheckbookDto>();
+        this.checkBookController.setInitialCheckBook(check);
+        this.checkBookController.setCheckBook(check);
+        Whitebox.setInternalState(check, "elementData", new Object[15]);
+        Whitebox.setInternalState(check, "size", 15);
+        this.checkBookController.nextPageCheckBook(eventAction);
     }
 
     @Test
@@ -159,7 +181,7 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
         this.checkBookController.setDateRange(new DateRangeDto());
         this.checkBookController.getDateRange();
         this.checkBookController.showResults(ajaxAction);
-        // FILTERNUMBERCHECK (true) OK
+        // FILTERNUMBERCHECK (true) OK empty
         renderComponents.put(RenderAttributes.FILTERNUMBERCHECK.toString(), true);
         this.checkBookController.setCheck(new CheckDto());
         this.checkBookController.getCheck();
@@ -167,16 +189,66 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
         this.checkBookController.getCheckNumber();
         Mockito.when(checkBookFacade.getCheckById(DEFAULT_ID, "")).thenReturn(new CheckDto());
         this.checkBookController.showResults(ajaxAction);
+        // FILTERNUMBERCHECK (true) OK null
+        renderComponents.put(RenderAttributes.FILTERNUMBERCHECK.toString(), true);
+        this.checkBookController.setCheck(new CheckDto());
+        this.checkBookController.getCheck();
+        this.checkBookController.setCheckNumber(null);
+        this.checkBookController.getCheckNumber();
+        Mockito.when(checkBookFacade.getCheckById(DEFAULT_ID, null)).thenReturn(new CheckDto());
+        this.checkBookController.showResults(ajaxAction);
+        // FILTERNUMBERCHECK (true) OK
+        renderComponents.put(RenderAttributes.FILTERNUMBERCHECK.toString(), true);
+        this.checkBookController.setCheck(new CheckDto());
+        this.checkBookController.getCheck();
+        this.checkBookController.setCheckNumber("123");
+        this.checkBookController.getCheckNumber();
+        Mockito.when(checkBookFacade.getCheckById(DEFAULT_ID, "123")).thenReturn(new CheckDto());
+        this.checkBookController.showResults(ajaxAction);
+        // FILTERNUMBERCHECK (true) OK status
+        renderComponents.put(RenderAttributes.FILTERNUMBERCHECK.toString(), true);
+        this.checkBookController.setCheck(new CheckDto());
+        this.checkBookController.getCheck();
+        this.checkBookController.setCheckNumber("123");
+        this.checkBookController.getCheckNumber();
+        this.checkBookController.setTitleState("123");
+        this.checkBookController.getTitleState();
+        Mockito.when(checkBookFacade.getCheckById(DEFAULT_ID, "123")).thenReturn(new CheckDto("", "123", new Money(), new Date(), "123"));
+        this.checkBookController.showResults(ajaxAction);
+        // FILTERNUMBERCHECK (true) OK status if not
+        renderComponents.put(RenderAttributes.FILTERNUMBERCHECK.toString(), true);
+        this.checkBookController.setCheck(new CheckDto());
+        this.checkBookController.getCheck();
+        this.checkBookController.setCheckNumber("123");
+        this.checkBookController.getCheckNumber();
+        this.checkBookController.setTitleState("123");
+        this.checkBookController.getTitleState();
+        Mockito.when(checkBookFacade.getCheckById(DEFAULT_ID, "123")).thenReturn(new CheckDto("", null, new Money(), new Date(), "123"));
+        this.checkBookController.showResults(ajaxAction);
+        // FILTERNUMBERCHECK (true) OK status not valid
+        renderComponents.put(RenderAttributes.FILTERNUMBERCHECK.toString(), true);
+        this.checkBookController.setCheck(new CheckDto());
+        this.checkBookController.getCheck();
+        this.checkBookController.setCheckNumber("123");
+        this.checkBookController.getCheckNumber();
+        this.checkBookController.setTitleState("Ninguno");
+        this.checkBookController.getTitleState();
+        Mockito.when(checkBookFacade.getCheckById(DEFAULT_ID, "123")).thenReturn(new CheckDto("", "123", new Money(), new Date(), "123"));
+        this.checkBookController.showResults(ajaxAction);
+        // FILTERNUMBERCHECK (true) OK status null
+        renderComponents.put(RenderAttributes.FILTERNUMBERCHECK.toString(), true);
+        this.checkBookController.setCheck(new CheckDto());
+        this.checkBookController.getCheck();
+        this.checkBookController.setCheckNumber(null);
+        this.checkBookController.getCheckNumber();
+        this.checkBookController.setTitleState("123");
+        this.checkBookController.getTitleState();
+        Mockito.when(checkBookFacade.getCheckById(DEFAULT_ID, null)).thenReturn(new CheckDto());
+        this.checkBookController.showResults(ajaxAction);
         // FILTERNUMBERCHECK (true) ClientException
         renderComponents.put(RenderAttributes.FILTERNUMBERCHECK.toString(), true);
-        this.checkBookController.setCheckNumber("");
-        Mockito.when(checkBookFacade.getCheckById(DEFAULT_ID, "")).thenThrow(new RestClientException("OK"));
-        this.checkBookController.showResults(ajaxAction);
-        // FILTERSTATUS (true)
-        renderComponents.put(RenderAttributes.FILTERSTATUS.toString(), true);
-        this.checkBookController.setTitleState("A");
-        this.checkBookController.setCheckState("1");
-        this.checkBookController.getTitleState();
+        this.checkBookController.setCheckNumber("45345");
+        Mockito.when(checkBookFacade.getCheckById(DEFAULT_ID, "45345")).thenThrow(new RestClientException("OK"));
         this.checkBookController.showResults(ajaxAction);
         // FILTERCHECKBOOK (true) OK
         renderComponents.put(RenderAttributes.FILTERCHECKBOOK.toString(), true);
@@ -215,4 +287,18 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
     public void checkListValueCheck() {
         this.checkBookController.getListMultiValueChecks();
     }
+
+    @Test
+    public void exportDoc() {
+        // this.checkBookController.exportDocCheckPdf();
+        // this.checkBookController.exportDocCheckBookPdf();
+        // this.checkBookController.exportDocCheckExcel();
+        // this.checkBookController.exportDocCheckBookExcel();
+    }
+    
+    // @Test
+    // public void printCheck() {
+    // this.checkBookController.printCheck();
+    // this.checkBookController.printCheckBook();
+    // }
 }

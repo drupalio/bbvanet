@@ -15,34 +15,34 @@ import com.bbva.net.front.helper.MessagesHelper;
 
 @Controller(value = "applicationController")
 public class ApplicationControllerImpl extends AbstractBbvaController implements ApplicationController {
-
+    
     private static final long serialVersionUID = -7098769540244437001L;
-
+    
     private ProductDto product;
-
+    
     @Resource(name = "multiValueGroupFacade")
     private transient MultiValueGroupFacade multiValueGroupFacade;
-
+    
     public ProductDto getProduct() {
         return product;
     }
-
+    
     public void setProduct(ProductDto product) {
         this.product = product;
     }
-
+    
     @Override
     public void onLikeAccount(final ValueChangeEvent valueChangeEvent) {
         boolean flow = false;
         LOGGER.info("onLikeAccount " + valueChangeEvent + " "
                 + MessagesHelper.INSTANCE.getString("quiero.viewBalancesMovements"));
-        if (valueChangeEvent.getNewValue().equals(MessagesHelper.INSTANCE.getString("quiero.viewBalancesMovements"))) {
+        if ( valueChangeEvent.getNewValue().equals(MessagesHelper.INSTANCE.getString("quiero.viewBalancesMovements")) ) {
             super.setSelectedProduct((ProductDto)valueChangeEvent.getOldValue());
             super.getSelectedProduct();
             flow = true;
             this.sendAction("accountSelected");
         }
-        if (valueChangeEvent.getNewValue().equals(MessagesHelper.INSTANCE.getString("quiero.seeMoreOptions"))) {
+        if ( valueChangeEvent.getNewValue().equals(MessagesHelper.INSTANCE.getString("quiero.seeMoreOptions")) ) {
             super.setSelectedProduct((ProductDto)valueChangeEvent.getOldValue());
             super.getSelectedProduct();
             this.sendAction("accountSelected");
@@ -51,26 +51,26 @@ public class ApplicationControllerImpl extends AbstractBbvaController implements
             flow = true;
             session.setAttribute("operationsAccount", "true");
         }
-        if (!flow) {
+        if ( !flow ) {
             this.sendAction("back");
         }
-
+        
     }
-
+    
     public void onLike(ValueChangeEvent valueChangeEvent) {
         this.sendAction("back");
     }
-
+    
     @Override
     public void onLikeQuota(ValueChangeEvent valueChangeEvent) {
         LOGGER.info("onLikeQuota " + valueChangeEvent + " "
                 + MessagesHelper.INSTANCE.getString("quiero.viewMovements"));
-        if (valueChangeEvent.getNewValue().equals(MessagesHelper.INSTANCE.getString("quiero.viewMovements"))) {
+        if ( valueChangeEvent.getNewValue().equals(MessagesHelper.INSTANCE.getString("quiero.viewMovements")) ) {
             super.setSelectedProduct((ProductDto)valueChangeEvent.getOldValue());
             super.getSelectedProduct();
             this.sendAction("quotaSelected");
         }
-        if (valueChangeEvent.getNewValue().equals(MessagesHelper.INSTANCE.getString("quiero.seeMoreOptions"))) {
+        if ( valueChangeEvent.getNewValue().equals(MessagesHelper.INSTANCE.getString("quiero.seeMoreOptions")) ) {
             super.setSelectedProduct((ProductDto)valueChangeEvent.getOldValue());
             super.getSelectedProduct();
             this.sendAction("quotaSelected");
@@ -78,5 +78,13 @@ public class ApplicationControllerImpl extends AbstractBbvaController implements
                     .getSession(false);
             session.setAttribute("operationsRotary", "true");
         }
+    }
+    
+    public MultiValueGroupFacade getMultiValueGroupFacade() {
+        return multiValueGroupFacade;
+    }
+    
+    public void setMultiValueGroupFacade(MultiValueGroupFacade multiValueGroupFacade) {
+        this.multiValueGroupFacade = multiValueGroupFacade;
     }
 }

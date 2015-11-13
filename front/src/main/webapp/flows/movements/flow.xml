@@ -21,12 +21,9 @@
 		<!-- Entelgy / GP-12834 / 08072015 / FIN -->
 		<evaluate expression="personalizeProductAccountController.init()" />
 		<evaluate expression="movementsCriteriaController.init()" />
-		<evaluate expression="movementsCriteriaController.getSelectedProduct()"
-			result="flowScope.product" />
-		<evaluate expression="movementsCriteriaController.getAllMovements()"
-			result="flowScope.movements" />
-		<evaluate expression="termsController.getAllConditions()"
-			result="flowScope.allConditions" />
+		<evaluate expression="movementsCriteriaController.getSelectedProduct()" result="flowScope.product" />
+		<evaluate expression="movementsCriteriaController.getAllMovements()" result="flowScope.movements" />
+		<evaluate expression="termsController.getAllConditions()" result="flowScope.allConditions" />
 	</on-start>
 
 	<view-state id="movements">

@@ -24,24 +24,24 @@
 				<div class="section-content col-xs-12 col-md-8" style="margin: 0px;">
 					<bbvaContainer:productPanelAccountGraphic id="AccountGP"
 						title="#{msg['title.accountsPersonal']}"
-						graphic="#{customerProducts.accounts.size()==0 &amp;&amp; customerProducts.adquirencia.size()==0 &amp;&amp; customerProductsHidden.accounts.size()==0 ? 'none' : 'block'}">
+						graphic="#{customerAccounts.size()== '0' &amp;&amp; customerAccountsAqui.size()== '0' &amp;&amp; customerAccountsHidden.size()== '0' ? 'none' : 'block'}">
 						<div class="table-tabs">
-							<bbvaGP:accountSearch id="accountSearchTable" listAccounts="#{customerProducts.accounts}"
-								listAccountsAdquirencia="#{customerProducts.adquirencia}"
-								listAccountsMore="#{customerProductsHidden.accounts}" />
-							<bbvaGP:accountHeadTable listAccounts="#{customerProducts.accounts}"
-								controller="#{globalPositionController}" />
-							<bbvaGP:accountAdquirenciaTable controller="#{globalPositionController}"
-								listAccounts="#{customerProducts.adquirencia}"
-								display="#{customerProducts.adquirencia.size() > '0' ? 'block' : 'none'}" />
-							<bbvaGP:accountTailTable controller="#{globalPositionController}"
-								listAccounts="#{customerProductsHidden.accounts}" />
+							<bbvaGP:accountSearch id="accountSearchTable" listAccounts="#{customerAccounts}"
+								listAccountsAdquirencia="#{customerAccountsAqui}"
+								listAccountsMore="#{customerAccountsHidden}" />
+							<bbvaGP:accountHeadTable listAccounts="#{customerAccounts}"
+								controller="#{accountsController}" />
+							<bbvaGP:accountAdquirenciaTable controller="#{accountsController}"
+								listAccounts="#{customerAccountsAqui}"
+								display="#{customerAccountsAqui.size() > '0' ? 'block' : 'none'}" />
+							<bbvaGP:accountTailTable controller="#{accountsController}"
+								listAccounts="#{customerAccountsHidden}" />
 						</div>
 						<div class="row afterTable">
-							<bbvaGP:productFooter listProduct="#{customerProductsHidden.accounts}" />
+							<bbvaGP:productFooter listProduct="#{customerAccountsHidden}" />
 							<bbvaGP:totalBalance util="#{msg['text.accountant']}"
-								total="#{globalPositionController.totalsProducts['PC'].total}"
-								subtotal="#{globalPositionController.totalsProducts['PC'].available}" />
+								total="#{accountsController.totalsProducts['PC'].total}"
+								subtotal="#{accountsController.totalsProducts['PC'].available}" />
 						</div>
 					</bbvaContainer:productPanelAccountGraphic>
 					<bbvaContainer:banner href=""

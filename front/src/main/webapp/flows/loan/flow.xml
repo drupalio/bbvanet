@@ -4,11 +4,9 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/webflow 
     http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
 
-	<var name="globalPositionController" class="com.bbva.net.front.controller.impl.GlobalPositionControllerImpl" />
 	<var name="loanController" class="com.bbva.net.front.controller.impl.LoanControllerImpl" />
 
 	<on-start>
-		<evaluate expression="globalPositionController.init()"/>
 		<evaluate expression="loanController.init()"/>		
 		<evaluate expression="loanController.getCustomerRotatingAccount()" result="flowScope.customerRotatingAccount" />
 		<evaluate expression="loanController.getCustomerRotatingAccountHidden()" result="flowScope.customerRotatingAccountHidden" />

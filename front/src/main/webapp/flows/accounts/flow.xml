@@ -4,22 +4,14 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/webflow 
     http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
 
-	<var name="accountsController"
-		class="com.bbva.net.front.controller.impl.AccountsControllerImpl" />
-	<var name="globalPositionController"
-		class="com.bbva.net.front.controller.impl.GlobalPositionControllerImpl" />
-
+	<var name="globalPositionController" class="com.bbva.net.front.controller.impl.GlobalPositionControllerImpl" />
+	<var name="accountsController" class="com.bbva.net.front.controller.impl.AccountsControllerImpl" />
 
 	<on-start>
-		<evaluate expression="globalPositionController.init()" />
-		<evaluate expression="globalPositionController.getCustomerProducts()"
-			result="flowScope.customerProducts" />
-		<evaluate expression="globalPositionController.getCustomerProductsHidden()"
-			result="flowScope.customerProductsHidden" />
-		<evaluate expression="accountsController.getCustomerAccounts()"
-			result="flowScope.customerAccounts" />
-		<evaluate expression="accountsController.getCustomerAccountsHidden()"
-			result="flowScope.customerAccountsHidden" />
+		<evaluate expression="accountsController.init()" />
+		<evaluate expression="accountsController.getCustomerAccounts()" result="flowScope.customerAccounts" />
+		<evaluate expression="accountsController.getCustomerAccountsHidden()" result="flowScope.customerAccountsHidden" />
+		<evaluate expression="accountsController.getCustomerAccountsAdqui()" result="flowScope.customerAccountsAqui" />
 	</on-start>
 
 	<view-state id="accounts">

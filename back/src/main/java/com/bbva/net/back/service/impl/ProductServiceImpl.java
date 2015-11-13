@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.bbva.net.back.service.impl;
 
@@ -38,182 +38,197 @@ import com.bbva.net.core.utils.CollectionBbvaUtils;
 @Service(value = "productService")
 public class ProductServiceImpl implements ProductService {
 
-	@Override
-	public <T extends ProductDto> Money getTotal(final List<T> products) {
-		return new Money(CollectionBbvaUtils.calculateTotal(products, "totalCash.amount"));
-	}
+    @Override
+    public <T extends ProductDto> Money getTotal(final List<T> products) {
+        return new Money(CollectionBbvaUtils.calculateTotal(products, "totalCash.amount"));
+    }
 
-	@Override
-	public <T extends ProductDto> Money getTotalAvailable(final List<T> products) {
-		return new Money(CollectionBbvaUtils.calculateTotal(products, "cashAvailable.amount"));
-	}
+    @Override
+    public <T extends ProductDto> Money getTotalAvailable(final List<T> products) {
+        return new Money(CollectionBbvaUtils.calculateTotal(products, "cashAvailable.amount"));
+    }
 
-	@Override
-	public <T extends ProductDto> List<String> getNameProduct(final List<T> products) {
-		return new ArrayList<String>(CollectionBbvaUtils.getListFieldsByEL(products, "productNumber"));
-	}
+    @Override
+    public <T extends ProductDto> List<String> getNameProduct(final List<T> products) {
+        return new ArrayList<String>(CollectionBbvaUtils.getListFieldsByEL(products, "productNumber"));
+    }
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public Money getTotalAssets(final List<ProductDto> products) {
+    @SuppressWarnings("unchecked")
+    @Override
+    public Money getTotalAssets(final List<ProductDto> products) {
 
-		// Get only asset productos
-		final List<ProductDto> assetsProduct = (List<ProductDto>)CollectionUtils
-				.select(products, new AssetPredicated());
+        // Get only asset productos
+        final List<ProductDto> assetsProduct = (List<ProductDto>)CollectionUtils
+                .select(products, new AssetPredicated());
 
-		// Calculate total cash from asset products
-		return getTotal(assetsProduct);
+        // Calculate total cash from asset products
+        return getTotal(assetsProduct);
 
-	}
+    }
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public Money getTotalFinanciacion(final List<ProductDto> products) {
+    @SuppressWarnings("unchecked")
+    @Override
+    public Money getTotalFinanciacion(final List<ProductDto> products) {
 
-		// Get only asset productos
-		final List<ProductDto> assetsProduct = (List<ProductDto>)CollectionUtils.select(products,
-				PredicateUtils.notPredicate(new AssetPredicated()));
+        // Get only asset productos
+        final List<ProductDto> assetsProduct = (List<ProductDto>)CollectionUtils.select(products,
+                PredicateUtils.notPredicate(new AssetPredicated()));
 
-		// Calculate total cash from asset products
-		return getTotal(assetsProduct);
+        // Calculate total cash from asset products
+        return getTotal(assetsProduct);
 
-	}
+    }
 
-	@Override
-	public Map<String, BalanceDto> getTotals(final GlobalProductsDto globalProducts) {
+    @Override
+    public Map<String, BalanceDto> getTotals(final GlobalProductsDto globalProducts) {
 
-		final Map<String, BalanceDto> totals = new HashMap<String, BalanceDto>();
+        final Map<String, BalanceDto> totals = new HashMap<String, BalanceDto>();
 
-		totals.put(EnumProductType.PC.name(), new BalanceDto(getTotalAvailable(globalProducts.getAccounts()),
-				getTotal(globalProducts.getAccounts())));
+        totals.put(EnumProductType.PC.name(), new BalanceDto(getTotalAvailable(globalProducts.getAccounts()),
+                getTotal(globalProducts.getAccounts())));
 
-		totals.put(EnumProductType.AQ.name(), new BalanceDto(getTotalAvailable(globalProducts.getAdquirencia()),
-				getTotal(globalProducts.getAdquirencia())));
+        totals.put(EnumProductType.AQ.name(), new BalanceDto(getTotalAvailable(globalProducts.getAdquirencia()),
+                getTotal(globalProducts.getAdquirencia())));
 
-		totals.put(EnumProductType.TC.name(), new BalanceDto(getTotalAvailable(globalProducts.getCreditCards()),
-				getTotal(globalProducts.getCreditCards())));
+        totals.put(EnumProductType.TC.name(), new BalanceDto(getTotalAvailable(globalProducts.getCreditCards()),
+                getTotal(globalProducts.getCreditCards())));
 
-		totals.put(EnumProductType.RQ.name(), new BalanceDto(getTotalAvailable(globalProducts.getRotatingAccounts()),
-				getTotal(globalProducts.getRotatingAccounts())));
+        totals.put(EnumProductType.RQ.name(), new BalanceDto(getTotalAvailable(globalProducts.getRotatingAccounts()),
+                getTotal(globalProducts.getRotatingAccounts())));
 
-		totals.put(EnumProductType.LI.name(), new BalanceDto(getTotalAvailable(globalProducts.getLeasings()),
-				getTotal(globalProducts.getLeasings())));
+        totals.put(EnumProductType.LI.name(), new BalanceDto(getTotalAvailable(globalProducts.getLeasings()),
+                getTotal(globalProducts.getLeasings())));
 
-		totals.put(EnumProductType.LO.name(), new BalanceDto(getTotalAvailable(globalProducts.getLoan()),
-				getTotal(globalProducts.getLoan())));
+        totals.put(EnumProductType.LO.name(), new BalanceDto(getTotalAvailable(globalProducts.getLoan()),
+                getTotal(globalProducts.getLoan())));
 
-		totals.put(EnumProductType.SI.name(), new BalanceDto(getTotalAvailable(globalProducts.getFunds()),
-				getTotal(globalProducts.getFunds())));
+        totals.put(EnumProductType.SI.name(), new BalanceDto(getTotalAvailable(globalProducts.getFunds()),
+                getTotal(globalProducts.getFunds())));
 
-		totals.put(EnumProductType.ED.name(), new BalanceDto(getTotalAvailable(globalProducts.getElectronicDeposits()),
-				getTotal(globalProducts.getElectronicDeposits())));
+        totals.put(EnumProductType.ED.name(), new BalanceDto(getTotalAvailable(globalProducts.getElectronicDeposits()),
+                getTotal(globalProducts.getElectronicDeposits())));
 
-		return totals;
+        return totals;
 
-	}
+    }
 
-	@Override
-	public Map<String, BalanceDto> getLoanTotals(final GlobalProductsDto globalProducts) {
+    @Override
+    public Map<String, BalanceDto> getTotalsAccounts(final GlobalProductsDto globalProducts) {
 
-		final Map<String, BalanceDto> totals = new HashMap<String, BalanceDto>();
+        final Map<String, BalanceDto> totals = new HashMap<String, BalanceDto>();
 
-		totals.put(EnumProductType.RQ.name(), new BalanceDto(getTotalAvailable(globalProducts.getRotatingAccounts()),
-				getTotal(globalProducts.getRotatingAccounts())));
+        totals.put(EnumProductType.PC.name(), new BalanceDto(getTotalAvailable(globalProducts.getAccounts()),
+                getTotal(globalProducts.getAccounts())));
 
-		totals.put(EnumProductType.LI.name(), new BalanceDto(getTotalAvailable(globalProducts.getLeasings()),
-				getTotal(globalProducts.getLeasings())));
+        totals.put(EnumProductType.AQ.name(), new BalanceDto(getTotalAvailable(globalProducts.getAdquirencia()),
+                getTotal(globalProducts.getAdquirencia())));
 
-		totals.put(EnumProductType.LO.name(), new BalanceDto(getTotalAvailable(globalProducts.getLoan()),
-				getTotal(globalProducts.getLoan())));
+        return totals;
 
-		return totals;
+    }
 
-	}
+    @Override
+    public Map<String, BalanceDto> getLoanTotals(final GlobalProductsDto globalProducts) {
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public Money getTotalProductsByType(final List<ProductDto> products, final EnumProductType productType) {
+        final Map<String, BalanceDto> totals = new HashMap<String, BalanceDto>();
 
-		final List<ProductDto> productsByType = (List<ProductDto>)CollectionUtils.select(products,
-				new ProductTypePredicate(productType));
+        totals.put(EnumProductType.RQ.name(), new BalanceDto(getTotalAvailable(globalProducts.getRotatingAccounts()),
+                getTotal(globalProducts.getRotatingAccounts())));
 
-		return getTotal(productsByType);
-	}
+        totals.put(EnumProductType.LI.name(), new BalanceDto(getTotalAvailable(globalProducts.getLeasings()),
+                getTotal(globalProducts.getLeasings())));
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public Money getTotalProductsBySubType(final List<ProductDto> products, final String subProductType) {
+        totals.put(EnumProductType.LO.name(), new BalanceDto(getTotalAvailable(globalProducts.getLoan()),
+                getTotal(globalProducts.getLoan())));
 
-		final List<ProductDto> productsByType = (List<ProductDto>)CollectionUtils.select(products,
-				new ProductSubTypePredicate(subProductType));
+        return totals;
 
-		return getTotal(productsByType);
-	}
+    }
 
-	/**
-	 * 
-	 */
-	@Override
-	public List<ProductDto> getProducts(final GlobalProductsDto globalProduct) {
+    @SuppressWarnings("unchecked")
+    @Override
+    public Money getTotalProductsByType(final List<ProductDto> products, final EnumProductType productType) {
 
-		final List<ProductDto> products = new ArrayList<ProductDto>();
+        final List<ProductDto> productsByType = (List<ProductDto>)CollectionUtils.select(products,
+                new ProductTypePredicate(productType));
 
-		products.addAll(globalProduct.getAccounts());
-		products.addAll(globalProduct.getAdquirencia());
-		products.addAll(globalProduct.getCreditCards());
-		products.addAll(globalProduct.getElectronicDeposits());
-		products.addAll(globalProduct.getFunds());
-		products.addAll(globalProduct.getLeasings());
-		products.addAll(globalProduct.getLoan());
-		products.addAll(globalProduct.getRotatingAccounts());
+        return getTotal(productsByType);
+    }
 
-		return products;
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public Money getTotalProductsBySubType(final List<ProductDto> products, final String subProductType) {
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public GlobalProductsDto select(final GlobalProductsDto globalProducts, final BbvaPredicate<ProductDto> predicate) {
+        final List<ProductDto> productsByType = (List<ProductDto>)CollectionUtils.select(products,
+                new ProductSubTypePredicate(subProductType));
 
-		final GlobalProductsDto result = new GlobalProductsDto();
+        return getTotal(productsByType);
+    }
 
-		result.setAccounts((List<AccountDto>)CollectionUtils.select(globalProducts.getAccounts(), predicate));
-		result.setAdquirencia((List<AdquirenceAccountDto>)CollectionUtils.select(globalProducts.getAdquirencia(),
-				predicate));
-		result.setCreditCards((List<CreditCardDto>)CollectionUtils.select(globalProducts.getCreditCards(), predicate));
-		result.setElectronicDeposits((List<DepositDto>)CollectionUtils.select(globalProducts.getElectronicDeposits(),
-				predicate));
-		result.setFunds((List<FundDto>)CollectionUtils.select(globalProducts.getFunds(), predicate));
-		result.setLeasings((List<LeasingDto>)CollectionUtils.select(globalProducts.getLeasings(), predicate));
-		result.setLoan((List<LoanDto>)CollectionUtils.select(globalProducts.getLoan(), predicate));
-		result.setRotatingAccounts((List<RotatingAccountDto>)CollectionUtils.select(
-				globalProducts.getRotatingAccounts(), predicate));
+    /**
+     *
+     */
+    @Override
+    public List<ProductDto> getProducts(final GlobalProductsDto globalProduct) {
 
-		return result;
+        final List<ProductDto> products = new ArrayList<ProductDto>();
 
-	}
+        products.addAll(globalProduct.getAccounts());
+        products.addAll(globalProduct.getAdquirencia());
+        products.addAll(globalProduct.getCreditCards());
+        products.addAll(globalProduct.getElectronicDeposits());
+        products.addAll(globalProduct.getFunds());
+        products.addAll(globalProduct.getLeasings());
+        products.addAll(globalProduct.getLoan());
+        products.addAll(globalProduct.getRotatingAccounts());
 
-	@Override
-	public Map<String, List<String>> getProductsName(GlobalProductsDto globalProducts) {
+        return products;
+    }
 
-		final Map<String, List<String>> totals = new HashMap<String, List<String>>();
+    @SuppressWarnings("unchecked")
+    @Override
+    public GlobalProductsDto select(final GlobalProductsDto globalProducts, final BbvaPredicate<ProductDto> predicate) {
 
-		totals.put(EnumProductType.PC.name(), getNameProduct(globalProducts.getAccounts()));
+        final GlobalProductsDto result = new GlobalProductsDto();
 
-		totals.put(EnumProductType.AQ.name(), getNameProduct(globalProducts.getAdquirencia()));
+        result.setAccounts((List<AccountDto>)CollectionUtils.select(globalProducts.getAccounts(), predicate));
+        result.setAdquirencia((List<AdquirenceAccountDto>)CollectionUtils.select(globalProducts.getAdquirencia(),
+                predicate));
+        result.setCreditCards((List<CreditCardDto>)CollectionUtils.select(globalProducts.getCreditCards(), predicate));
+        result.setElectronicDeposits((List<DepositDto>)CollectionUtils.select(globalProducts.getElectronicDeposits(),
+                predicate));
+        result.setFunds((List<FundDto>)CollectionUtils.select(globalProducts.getFunds(), predicate));
+        result.setLeasings((List<LeasingDto>)CollectionUtils.select(globalProducts.getLeasings(), predicate));
+        result.setLoan((List<LoanDto>)CollectionUtils.select(globalProducts.getLoan(), predicate));
+        result.setRotatingAccounts((List<RotatingAccountDto>)CollectionUtils.select(
+                globalProducts.getRotatingAccounts(), predicate));
 
-		totals.put(EnumProductType.TC.name(), getNameProduct(globalProducts.getCreditCards()));
+        return result;
 
-		totals.put(EnumProductType.RQ.name(), getNameProduct(globalProducts.getRotatingAccounts()));
+    }
 
-		totals.put(EnumProductType.LI.name(), getNameProduct(globalProducts.getLeasings()));
+    @Override
+    public Map<String, List<String>> getProductsName(GlobalProductsDto globalProducts) {
 
-		totals.put(EnumProductType.LO.name(), getNameProduct(globalProducts.getLoan()));
+        final Map<String, List<String>> totals = new HashMap<String, List<String>>();
 
-		totals.put(EnumProductType.SI.name(), getNameProduct(globalProducts.getFunds()));
+        totals.put(EnumProductType.PC.name(), getNameProduct(globalProducts.getAccounts()));
 
-		totals.put(EnumProductType.ED.name(), getNameProduct(globalProducts.getElectronicDeposits()));
+        totals.put(EnumProductType.AQ.name(), getNameProduct(globalProducts.getAdquirencia()));
 
-		return totals;
-	}
+        totals.put(EnumProductType.TC.name(), getNameProduct(globalProducts.getCreditCards()));
+
+        totals.put(EnumProductType.RQ.name(), getNameProduct(globalProducts.getRotatingAccounts()));
+
+        totals.put(EnumProductType.LI.name(), getNameProduct(globalProducts.getLeasings()));
+
+        totals.put(EnumProductType.LO.name(), getNameProduct(globalProducts.getLoan()));
+
+        totals.put(EnumProductType.SI.name(), getNameProduct(globalProducts.getFunds()));
+
+        totals.put(EnumProductType.ED.name(), getNameProduct(globalProducts.getElectronicDeposits()));
+
+        return totals;
+    }
 
 }
