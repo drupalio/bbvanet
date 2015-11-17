@@ -30,6 +30,50 @@ public class FavoriteOperationDto implements Dto {
 
     private String name;
 
+    private String numberOCard;
+
+    private String bankCodeOccc;
+
+    private String branchCodeOccc;
+
+    private String controlOccc;
+
+    private String accountNumberOccc;
+
+    private String bankCodeOCa;
+
+    private String regionCodeOCa;
+
+    private String accountNumberOCa;
+
+    private String controlDigitOCa;
+
+    private String numberOMo;
+
+    private String numberOCre;
+
+    private String numberDCard;
+
+    private String bankCodeDccc;
+
+    private String branchCodeDccc;
+
+    private String controlDigitDccc;
+
+    private String accountNumberDccc;
+
+    private String bankCodeDCa;
+
+    private String regionCodeDCa;
+
+    private String accountNumberDCa;
+
+    private String controlDigitDCa;
+
+    private String numberDMo;
+
+    private String numberDCre;
+
     // RESPONSE
     private String transactionReference;
 
@@ -193,6 +237,181 @@ public class FavoriteOperationDto implements Dto {
     public void setTransactionReference(String transactionReference) {
         this.transactionReference = transactionReference;
     }
-    
+
+    public String getNumberOCard() {
+        return numberOCard;
+    }
+
+    public void setNumberOCard(String numberOCard) {
+        this.numberOCard = numberOCard;
+    }
+
+    public String getBankCodeOccc() {
+        return bankCodeOccc;
+    }
+
+    public void setBankCodeOccc(String bankCodeOccc) {
+        this.bankCodeOccc = bankCodeOccc;
+    }
+
+    public String getBranchCodeOccc() {
+        return branchCodeOccc;
+    }
+
+    public void setBranchCodeOccc(String branchCodeOccc) {
+        this.branchCodeOccc = branchCodeOccc;
+    }
+
+    public String getControlOccc() {
+        return controlOccc;
+    }
+
+    public void setControlOccc(String controlOccc) {
+        this.controlOccc = controlOccc;
+    }
+
+    public String getAccountNumberOccc() {
+        return accountNumberOccc;
+    }
+
+    public void setAccountNumberOccc(String accountNumberOccc) {
+        this.accountNumberOccc = accountNumberOccc;
+    }
+
+    public String getBankCodeOCa() {
+        return bankCodeOCa;
+    }
+
+    public void setBankCodeOCa(String bankCodeOCa) {
+        this.bankCodeOCa = bankCodeOCa;
+    }
+
+    public String getRegionCodeOCa() {
+        return regionCodeOCa;
+    }
+
+    public void setRegionCodeOCa(String regionCodeOCa) {
+        this.regionCodeOCa = regionCodeOCa;
+    }
+
+    public String getAccountNumberOCa() {
+        return accountNumberOCa;
+    }
+
+    public void setAccountNumberOCa(String accountNumberOCa) {
+        this.accountNumberOCa = accountNumberOCa;
+    }
+
+    public String getControlDigitOCa() {
+        return controlDigitOCa;
+    }
+
+    public void setControlDigitOCa(String controlDigitOCa) {
+        this.controlDigitOCa = controlDigitOCa;
+    }
+
+    public String getNumberOMo() {
+        return numberOMo;
+    }
+
+    public void setNumberOMo(String numberOMo) {
+        this.numberOMo = numberOMo;
+    }
+
+    public String getNumberOCre() {
+        return numberOCre;
+    }
+
+    public void setNumberOCre(String numberOCre) {
+        this.numberOCre = numberOCre;
+    }
+
+    public String getNumberDCard() {
+        return numberDCard;
+    }
+
+    public void setNumberDCard(String numberDCard) {
+        this.numberDCard = numberDCard;
+    }
+
+    public String getBankCodeDccc() {
+        return bankCodeDccc;
+    }
+
+    public void setBankCodeDccc(String bankCodeDccc) {
+        this.bankCodeDccc = bankCodeDccc;
+    }
+
+    public String getBranchCodeDccc() {
+        return branchCodeDccc;
+    }
+
+    public void setBranchCodeDccc(String branchCodeDccc) {
+        this.branchCodeDccc = branchCodeDccc;
+    }
+
+    public String getControlDigitDccc() {
+        return controlDigitDccc;
+    }
+
+    public void setControlDigitDccc(String controlDigitDccc) {
+        this.controlDigitDccc = controlDigitDccc;
+    }
+
+    public String getAccountNumberDccc() {
+        return accountNumberDccc;
+    }
+
+    public void setAccountNumberDccc(String accountNumberDccc) {
+        this.accountNumberDccc = accountNumberDccc;
+    }
+
+    public String getBankCodeDCa() {
+        return bankCodeDCa;
+    }
+
+    public void setBankCodeDCa(String bankCodeDCa) {
+        this.bankCodeDCa = bankCodeDCa;
+    }
+
+    public String getRegionCodeDCa() {
+        return regionCodeDCa;
+    }
+
+    public void setRegionCodeDCa(String regionCodeDCa) {
+        this.regionCodeDCa = regionCodeDCa;
+    }
+
+    public String getAccountNumberDCa() {
+        return accountNumberDCa;
+    }
+
+    public void setAccountNumberDCa(String accountNumberDCa) {
+        this.accountNumberDCa = accountNumberDCa;
+    }
+
+    public String getControlDigitDCa() {
+        return controlDigitDCa;
+    }
+
+    public void setControlDigitDCa(String controlDigitDCa) {
+        this.controlDigitDCa = controlDigitDCa;
+    }
+
+    public String getNumberDMo() {
+        return numberDMo;
+    }
+
+    public void setNumberDMo(String numberDMo) {
+        this.numberDMo = numberDMo;
+    }
+
+    public String getNumberDCre() {
+        return numberDCre;
+    }
+
+    public void setNumberDCre(String numberDCre) {
+        this.numberDCre = numberDCre;
+    }
     // <!-- Entelgy / GP13137 / 17112015 / FIN -->
 }

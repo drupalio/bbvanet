@@ -21,7 +21,7 @@ import com.bbva.zic.agileoperations.v01.AgileOperation;
  */
 @Mapper(value = "favoriteOperationsMapper")
 public class FavoriteOperationsMapperImpl extends ConfigurableMapper implements FavoriteOperationsMapper {
-    
+
     // <!-- Entelgy / GP13137 / 17112015 / INICIO -->
     /**
      *
@@ -34,28 +34,39 @@ public class FavoriteOperationsMapperImpl extends ConfigurableMapper implements 
         
         // Map AgileOperation to FavoriteOperationDto
         factory.classMap(AgileOperation.class, FavoriteOperationDto.class).field("contractId", "contractId")
-                .field("amount", "amount").field("id", "idOperation").field("name", "name")
-                .field("transactionDate", "transactionDate").field("transactionReference", "transactionReference")
-                .byDefault().register();
+        .field("amount", "amount").field("id", "idOperation").field("name", "name")
+        .field("transactionDate", "transactionDate").field("transactionReference", "transactionReference")
+        .field("origin.cardNumber.number", "numberOCard").field("origin.ccc.bankCode", "bankCodeOccc")
+        .field("origin.ccc.branchCode", "branchCodeOccc").field("origin.ccc.controlDigit", "controlOccc")
+        .field("origin.ccc.accountNumber", "accountNumberOccc").field("origin.clabe.bankCode", "bankCodeOCa")
+        .field("origin.clabe.regionCode", "regionCodeOCa").field("origin.clabe.accountNumber", "accountNumberOCa")
+        .field("origin.clabe.controlDigit", "controlDigitOCa").field("origin.mobilePhoneNumber.number", "numberOMo")
+        .field("origin.creditNumber.number", "numberOCre").field("destination.cardNumber.number", "numberDCard")
+        .field("destination.ccc.bankCode", "bankCodeDccc").field("destination.ccc.branchCode", "branchCodeDccc")
+        .field("destination.ccc.controlDigit", "controlDigitDccc").field("destination.ccc.accountNumber", "accountNumberDccc")
+        .field("destination.clabe.bankCode", "bankCodeDCa").field("destination.clabe.regionCode", "regionCodeDCa")
+        .field("destination.clabe.accountNumber", "accountNumberDCa").field("destination.clabe.controlDigit", "controlDigitDCa")
+        .field("destination.mobilePhoneNumber.number", "numberDMo").field("destination.creditNumber.number", "numberDCre")
+        .byDefault().register();
     }
-    
+
     @Override
     public AgileOperation map(FavoriteOperationDto favOperation) {
         AgileOperation agileOperation = map(favOperation, AgileOperation.class);
         return agileOperation;
     }
-    
+
     /**
      * Mapper of Favorite Operations
      */
     @Override
     public List<FavoriteOperationDto> map(final List<AgileOperation> favOperations) {
         final List<FavoriteOperationDto> favOperationsDto = new ArrayList<FavoriteOperationDto>();
-        
+
         new VisitorCommand<AgileOperation>(favOperations) {
-            
+
             FavoriteOperationDto fav;
-            
+
             @Override
             public void execute(final AgileOperation operation) {
                 fav = new FavoriteOperationDto();
@@ -67,7 +78,7 @@ public class FavoriteOperationsMapperImpl extends ConfigurableMapper implements 
         };
         return favOperationsDto;
     }
-    
+
     /**
      * Asigna tipo de origen
      *
@@ -93,7 +104,7 @@ public class FavoriteOperationsMapperImpl extends ConfigurableMapper implements 
         }
         return tipoOrigen;
     }
-    
+
     /**
      * Asigna tipo de destino
      *
