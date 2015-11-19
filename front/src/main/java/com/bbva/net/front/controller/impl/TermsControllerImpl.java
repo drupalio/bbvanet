@@ -381,6 +381,8 @@ public class TermsControllerImpl extends AbstractBbvaController implements Terms
         this.exportPdf = exportPdf;
     }
     
+    // <!-- Entelgy / SPRING 3 / 17112015 / INICIO -->
+    
     public HeaderController getHeaderController() {
         return headerController;
     }
@@ -388,5 +390,6 @@ public class TermsControllerImpl extends AbstractBbvaController implements Terms
     public void setHeaderController(HeaderController headerController) {
         this.headerController = headerController;
     }
-    
+
+    // <!-- Entelgy / SPRING 3 / 17112015 / FIN -->
 }

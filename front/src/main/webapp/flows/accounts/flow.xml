@@ -4,15 +4,18 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/webflow 
     http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
 
+	<!-- Entelgy / SPRING 3 / 17112015 / INICIO -->
+	
 	<var name="globalPositionController" class="com.bbva.net.front.controller.impl.GlobalPositionControllerImpl" />
 	<var name="accountsController" class="com.bbva.net.front.controller.impl.AccountsControllerImpl" />
 
 	<on-start>
-		<evaluate expression="accountsController.init()" />
 		<evaluate expression="accountsController.getCustomerAccounts()" result="flowScope.customerAccounts" />
 		<evaluate expression="accountsController.getCustomerAccountsHidden()" result="flowScope.customerAccountsHidden" />
 		<evaluate expression="accountsController.getCustomerAccountsAdqui()" result="flowScope.customerAccountsAqui" />
 	</on-start>
+	
+	<!-- Entelgy / SPRING 3 / 17112015 / FIN -->
 
 	<view-state id="accounts">
 

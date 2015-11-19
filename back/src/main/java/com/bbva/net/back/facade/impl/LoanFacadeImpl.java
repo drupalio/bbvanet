@@ -24,6 +24,8 @@ public class LoanFacadeImpl extends AbstractBbvaFacade implements LoanFacade {
 
     private static final long serialVersionUID = -6967081195758241814L;
 
+    // <!-- Entelgy / SPRING 3 / 17112015 / INICIO -->
+    
     @Resource(name = "productService")
     private ProductService productService;
 
@@ -95,5 +97,5 @@ public class LoanFacadeImpl extends AbstractBbvaFacade implements LoanFacade {
     public void setProductService(ProductService productService) {
         this.productService = productService;
     }
-
+    // <!-- Entelgy / SPRING 3 / 17112015 / FIN -->
 }

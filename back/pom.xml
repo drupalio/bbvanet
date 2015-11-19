@@ -21,11 +21,19 @@
 	<repositories />
 	<pluginRepositories />
 	<dependencies>
+		<!-- Entelgy / SPRING 3 / 17112015 / INICIO -->
 		<dependency>
 			<groupId>com.bbva.jee.arq.mo</groupId>
 			<artifactId>mo</artifactId>
 			<version>3.0</version>
 		</dependency>
+
+		<dependency>
+			<groupId>commons-configuration</groupId>
+			<artifactId>commons-configuration</artifactId>
+			<version>1.7</version>
+		</dependency>
+		<!-- Entelgy / SPRING 3 / 17112015 / FIN -->
 
 		<dependency>
 			<groupId>com.bbva.net.webservices</groupId>
@@ -173,12 +181,6 @@
 			<groupId>com.oracle</groupId>
 			<artifactId>ojdbc14</artifactId>
 			<version>10.2.0.2</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>commons-configuration</groupId>
-			<artifactId>commons-configuration</artifactId>
-			<version>1.7</version>
 		</dependency>
 	</dependencies>
 

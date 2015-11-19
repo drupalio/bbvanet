@@ -21,11 +21,19 @@
 	<pluginRepositories />
 
 	<dependencies>
+		<!-- Entelgy / SPRING 3 / 17112015 / INICIO -->
 		<dependency>
 			<groupId>com.bbva.jee.arq.spring.core</groupId>
 			<artifactId>arq-spring-core</artifactId>
 			<version>2.3.5</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjtools</artifactId>
+			<version>1.6.2</version>
+		</dependency>
+		<!-- Entelgy / SPRING 3 / 17112015 / FIN -->
 
 		<dependency>
 			<groupId>junit</groupId>
@@ -286,12 +294,6 @@
 			<groupId>ma.glasnost.orika</groupId>
 			<artifactId>orika-core</artifactId>
 			<version>1.4.5</version><!-- latest version -->
-		</dependency>
-
-		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjtools</artifactId>
-			<version>1.6.2</version>
 		</dependency>
 	</dependencies>
 

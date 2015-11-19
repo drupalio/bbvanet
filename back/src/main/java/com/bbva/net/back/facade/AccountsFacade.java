@@ -38,5 +38,6 @@ public interface AccountsFacade {
      * @return
      */
     List<AdquirenceAccountDto> getAccountsByUserAqui(final GlobalProductsDto globalProductsDTO);
+
     // <!-- Entelgy / SPRING 3 / 17112015 / FIN -->
 }

@@ -14,6 +14,7 @@
 	<composite:attribute name="valuePrinter" />
 </composite:interface>
 <composite:implementation>
+	<!-- Entelgy / SPRING 3 / 17112015 / INICIO -->
 	<p:outputPanel autoUpdate="true">
 		<div class="utility-icons #{cc.attrs.render == 'true' ? 'visible' : 'nonee'}">
 			<h:form id="documentsExport">
@@ -52,5 +53,6 @@
 			</h:form>
 		</div>
 	</p:outputPanel>
+	<!-- Entelgy / SPRING 3 / 17112015 / FIN -->
 </composite:implementation>
 </html>

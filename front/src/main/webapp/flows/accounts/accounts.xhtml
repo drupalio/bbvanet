@@ -1,14 +1,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui" xmlns:c="http://java.sun.com/jstl/core"
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jstl/core"
 	xmlns:bbvaGP="http://java.sun.com/jsf/composite/bbva/globalPosition"
 	xmlns:bbvaAlert="http://java.sun.com/jsf/composite/bbva/alert"
 	xmlns:bbvaBody="http://java.sun.com/jsf/composite/bbva/body"
 	xmlns:bbvaContainer="http://java.sun.com/jsf/composite/bbva/container"
 	xmlns:bbvaOperationFav="http://java.sun.com/jsf/composite/bbva/favoriteOperations"
-	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough" xmlns:jsf="http://xmlns.jcp.org/jsf">
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
 <ui:composition template="../../templates/defaultLayout.xhtml">
 	<ui:define name="bodyTitle">
 		<bbvaBody:title title="#{msg['title.accountsPersonal']}">
@@ -22,16 +26,19 @@
 				<section class="row tab-pane active globalpanelIn" id="products"
 					style="padding: 0px !important;">
 				<div class="section-content col-xs-12 col-md-8" style="margin: 0px;">
+					<!-- Entelgy / SPRING 3 / 17112015 / INICIO -->
 					<bbvaContainer:productPanelAccountGraphic id="AccountGP"
 						title="#{msg['title.accountsPersonal']}"
 						graphic="#{customerAccounts.size()== '0' &amp;&amp; customerAccountsAqui.size()== '0' &amp;&amp; customerAccountsHidden.size()== '0' ? 'none' : 'block'}">
 						<div class="table-tabs">
-							<bbvaGP:accountSearch id="accountSearchTable" listAccounts="#{customerAccounts}"
+							<bbvaGP:accountSearch id="accountSearchTable"
+								listAccounts="#{customerAccounts}"
 								listAccountsAdquirencia="#{customerAccountsAqui}"
 								listAccountsMore="#{customerAccountsHidden}" />
 							<bbvaGP:accountHeadTable listAccounts="#{customerAccounts}"
 								controller="#{accountsController}" />
-							<bbvaGP:accountAdquirenciaTable controller="#{accountsController}"
+							<bbvaGP:accountAdquirenciaTable
+								controller="#{accountsController}"
 								listAccounts="#{customerAccountsAqui}"
 								display="#{customerAccountsAqui.size() > '0' ? 'block' : 'none'}" />
 							<bbvaGP:accountTailTable controller="#{accountsController}"
@@ -44,18 +51,20 @@
 								subtotal="#{accountsController.totalsProducts['PC'].available}" />
 						</div>
 					</bbvaContainer:productPanelAccountGraphic>
+					<!-- Entelgy / SPRING 3 / 17112015 / FIN -->
 					<bbvaContainer:banner href=""
 						img_URL="https://www.bbva.com.co/documents/702694/2878314/01-BN-970x260.jpg/376b216f-950a-4d0f-9853-35d1db46d4b3?t=1433346845578" />
 				</div>
 				</section>
-				<section class="tab-pane globalpanelIn" id="catalogo" style="padding:0px !important;" />
+				<section class="tab-pane globalpanelIn" id="catalogo"
+					style="padding:0px !important;" />
 			</div>
 		</div>
 	</ui:define>
 	<ui:define name="contentRight">
-	<!-- GP13137 Operaciones favoritas - Entelgy - inicio-->
+		<!-- GP13137 Operaciones favoritas - Entelgy - inicio-->
 		<bbvaOperationFav:operationsPanel id="fav-panel" list="#{operations}" />
-	<!-- GP13137 Operaciones favoritas - Entelgy - inicio-->
+		<!-- GP13137 Operaciones favoritas - Entelgy - inicio-->
 	</ui:define>
 </ui:composition>
 </html>

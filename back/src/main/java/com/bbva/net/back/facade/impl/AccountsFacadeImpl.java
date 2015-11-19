@@ -23,6 +23,8 @@ public class AccountsFacadeImpl extends AbstractBbvaFacade implements AccountsFa
     
     private static final long serialVersionUID = -7965898288210045100L;
     
+    // <!-- Entelgy / SPRING 3 / 17112015 / INICIO -->
+    
     @Resource(name = "productService")
     private ProductService productService;
     
@@ -59,4 +61,6 @@ public class AccountsFacadeImpl extends AbstractBbvaFacade implements AccountsFa
     public void setProductService(ProductService productService) {
         this.productService = productService;
     }
+    
+    // <!-- Entelgy / SPRING 3 / 17112015 / FIN -->
 }
