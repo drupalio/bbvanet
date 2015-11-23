@@ -28,7 +28,7 @@
 			<artifactId>kqco_mult_web_back</artifactId>
 			<version>01</version>
 		</dependency>
-
+		<!-- Entelgy / SPRING 3 / 17112015 / Arreglo espacios -->
 		<dependency>
 			<groupId>javax.mail</groupId>
 			<artifactId>mail</artifactId>

@@ -20,6 +20,7 @@ import com.bbva.net.front.core.AbstractBbvaController;
 /**
  * @author Entelgy
  */
+
 public class LoanControllerImpl extends AbstractBbvaController implements LoanController {
     
     private static final long serialVersionUID = 5726824668267606699L;

@@ -1,13 +1,14 @@
 package com.bbva.net.back.facade;
 
 import java.util.Map;
+import java.util.List;
+
 import com.bbva.net.back.model.globalposition.AdquirenceAccountDto;
 import com.bbva.net.back.model.globalposition.BalanceDto;
-import com.bbva.net.back.model.globalposition.GlobalProductsDto;
-// <!-- Entelgy / SPRING 3 / 17112015 / FIN -->
-
-import java.util.List;
 import com.bbva.net.back.model.globalposition.AccountDto;
+import com.bbva.net.back.model.globalposition.GlobalProductsDto;
+
+
 
 /**
  * @author Entelgy

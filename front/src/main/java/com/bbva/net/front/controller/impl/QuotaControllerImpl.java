@@ -1446,6 +1446,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
     }
 
     // <!-- Entelgy / SPRING 3 / 17112015 / INICIO -->
+	
     public HeaderController getHeaderController() {
         return headerController;
     }
@@ -1453,5 +1454,6 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
     public void setHeaderController(HeaderController headerController) {
         this.headerController = headerController;
     }
+	
     // <!-- Entelgy / SPRING 3 / 17112015 / FIN -->
 }

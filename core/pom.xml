@@ -21,13 +21,13 @@
 	<pluginRepositories />
 
 	<dependencies>
-		<!-- Entelgy / SPRING 3 / 17112015 / INICIO -->
 		<dependency>
 			<groupId>com.bbva.jee.arq.spring.core</groupId>
 			<artifactId>arq-spring-core</artifactId>
 			<version>2.3.5</version>
 		</dependency>
-
+		
+		<!-- Entelgy / SPRING 3 / 17112015 / INICIO -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjtools</artifactId>

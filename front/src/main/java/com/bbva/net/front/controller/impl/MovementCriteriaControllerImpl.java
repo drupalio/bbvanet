@@ -2076,6 +2076,8 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
     
     // <!-- Entelgy / SPRING 3 / 08092015 / FIN -->
     
+	// <!-- Entelgy / SPRING 3 / 17112015 / INICIO -->
+	
     public HeaderController getHeaderController() {
         return headerController;
     }
@@ -2083,4 +2085,6 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
     public void setHeaderController(HeaderController headerController) {
         this.headerController = headerController;
     }
+	
+	// <!-- Entelgy / SPRING 3 / 17112015 / FIN -->
 }

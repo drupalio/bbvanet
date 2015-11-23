@@ -323,6 +323,8 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
         this.operationKey = operationKey;
     }
 
+	// <!-- Entelgy / SPRING 3 / 17112015 / INICIO -->
+	
     public OperationPasswordController getOperationPass() {
         return operationPass;
     }
@@ -330,4 +332,6 @@ public class PersonalizeProductControllerImpl extends AbstractBbvaController imp
     public void setOperationPass(OperationPasswordController operationPass) {
         this.operationPass = operationPass;
     }
+	
+	// <!-- Entelgy / SPRING 3 / 17112015 / FIN -->
 }

@@ -30,11 +30,11 @@ public class OperationPasswordControllerImpl extends AbstractBbvaController impl
         return operationPassword.validateOperation(user, operationPass);
     }
 
-    public OperationPasswordFacade getOperationPassword() {
-        return operationPassword;
-    }
-
+	// <!-- Entelgy / SPRING 3 / 17112015 / INICIO -->
+	
     public void setOperationPassword(OperationPasswordFacade operationPassword) {
         this.operationPassword = operationPassword;
     }
+	
+	// <!-- Entelgy / SPRING 3 / 17112015 / FIN -->
 }

@@ -28,8 +28,8 @@ public class AbstractBbvaDaoTest {
 	public void setUp() {
 
 		Assert.assertNotNull(customDao);
-		Assert.assertNotNull(customDao.getSession());
-		this.sessionFactory = customDao.getSession().getSessionFactory();
+		Assert.assertNotNull(customDao.sessionGet());
+		this.sessionFactory = customDao.sessionGet().getSessionFactory();
 	}
 
 	@Test
@@ -53,6 +53,9 @@ public class AbstractBbvaDaoTest {
 	@Repository(value = "customDao")
 	private static class CustomDaoImpl extends AbstractBbvaDao<MultiValueGroup> implements CustomDao {
 
+		public Session sessionGet() {
+			return super.getSession();	
+		}
 	}
 
 	private static interface CustomDao {
@@ -61,8 +64,6 @@ public class AbstractBbvaDaoTest {
 
 		void setSessionFactory(SessionFactory sessionFactory);
 
-		Session getSession();
-
+		Session sessionGet();
 	}
-
 }

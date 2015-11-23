@@ -2189,6 +2189,8 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
     
     // <!-- Entelgy / GP-12834 / 08092015 / FIN -->
     
+	// <!-- Entelgy / GP-12834 / 17112015 / INICIO -->
+	
     public HeaderController getHeaderController() {
         return headerController;
     }
@@ -2196,4 +2198,6 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
     public void setHeaderController(HeaderController headerController) {
         this.headerController = headerController;
     }
+	
+	// <!-- Entelgy / GP-12834 / 17112015 / FIN -->
 }
