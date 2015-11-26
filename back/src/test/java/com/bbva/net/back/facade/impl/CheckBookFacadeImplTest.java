@@ -18,67 +18,67 @@ import com.bbva.net.webservices.accounts.AccountsService;
 
 public class CheckBookFacadeImplTest {
 
-	private static final String DEFAULT_ID = "00130443000200009410";
+    private static final String DEFAULT_ID = "00130443000200009410";
 
-	private CheckBookFacadeImpl checkBookFacade;
+    private CheckBookFacadeImpl checkBookFacade;
 
-	private AccountsService accountService;
+    private AccountsService accountService;
 
-	private CheckBookMapper checkBookMapper;
+    private CheckBookMapper checkBookMapper;
 
-	private FiqlService fiqlService;
+    private FiqlService fiqlService;
 
-	@Before
-	public void init() {
-		this.checkBookFacade = new CheckBookFacadeImpl();
+    @Before
+    public void init() {
+        this.checkBookFacade = new CheckBookFacadeImpl();
 
-		// Mockitos
-		this.accountService = Mockito.mock(AccountsService.class);
-		this.checkBookMapper = Mockito.mock(CheckBookMapper.class);
-		this.fiqlService = Mockito.mock(FiqlService.class);
-		// set
-		this.checkBookFacade.setAccountService(accountService);
-		this.checkBookFacade.setCheckBookMapper(checkBookMapper);
-		this.checkBookFacade.setFiqlService(fiqlService);
+        // Mockitos
+        this.accountService = Mockito.mock(AccountsService.class);
+        this.checkBookMapper = Mockito.mock(CheckBookMapper.class);
+        this.fiqlService = Mockito.mock(FiqlService.class);
+        // set
+        this.checkBookFacade.setAccountService(accountService);
+        this.checkBookFacade.setCheckBookMapper(checkBookMapper);
+        this.checkBookFacade.setFiqlService(fiqlService);
 
-	}
+    }
 
-	@Test
-	public void checkGetCheckById() {
-		Check check = new Check();
-		Mockito.when(this.accountService.getCheck(DEFAULT_ID, "1234566")).thenReturn(check);
-		this.checkBookFacade.getCheckById(DEFAULT_ID, "1234566");
-	}
+    @Test
+    public void checkGetCheckById() {
+        Check check = new Check();
+        Mockito.when(this.accountService.getCheck(DEFAULT_ID, "1234566")).thenReturn(check);
+        this.checkBookFacade.getCheckById(DEFAULT_ID, "1234566");
+    }
 
-	@Test
-	public void getCheckByStatusOrDate() {
-		List<Check> lstCheck = new ArrayList<Check>();
-		String filter = "date";
-		DateRangeDto date = new DateRangeDto();
-		date.setDateSince(new Date());
-		date.setDateTo(new Date());
-		Mockito.when(this.fiqlService.getFiqlQueryByStatus("1", "")).thenReturn(DEFAULT_ID);
-		Mockito.when(this.fiqlService.getFiqlQueryByDateRange(date, "", "")).thenReturn(filter);
-		Mockito.when(this.accountService.listCheck(DEFAULT_ID, filter, 0, 10)).thenReturn(lstCheck);
-		this.checkBookFacade.getCheckByStatusOrDate(DEFAULT_ID, date, "2", 0, 10);
-		date = null;
-		this.checkBookFacade.getCheckByStatusOrDate(DEFAULT_ID, date, "2", 0, 10);
+    @Test
+    public void getCheckByStatusOrDate() {
+        List<Check> lstCheck = new ArrayList<Check>();
+        String filter = "date";
+        DateRangeDto date = new DateRangeDto();
+        date.setDateSince(new Date());
+        date.setDateTo(new Date());
+        Mockito.when(this.fiqlService.getFiqlQueryByStatus("1", "")).thenReturn(DEFAULT_ID);
+        Mockito.when(this.fiqlService.getFiqlQueryByDateRange(date, "", "")).thenReturn(filter);
+        Mockito.when(this.accountService.listCheck(DEFAULT_ID, filter, 0, 10)).thenReturn(lstCheck);
+        this.checkBookFacade.getCheckByStatusOrDate(DEFAULT_ID, date, "2", 0, 10);
+        date = null;
+        this.checkBookFacade.getCheckByStatusOrDate(DEFAULT_ID, date, "2", 0, 10);
 
-	}
+    }
 
-	@Test
-	public void getCheckBookByAccountId() {
-		List<Checkbook> lstCheBook = new ArrayList<Checkbook>();
-		Mockito.when(this.accountService.getCheckbook(DEFAULT_ID, "1234566")).thenReturn(lstCheBook);
-		this.checkBookFacade.getCheckBookByAccountId(DEFAULT_ID, "1234566");
-	}
+    @Test
+    public void getCheckBookByAccountId() {
+        Checkbook cheBook = new Checkbook();
+        Mockito.when(this.accountService.getCheckbook(DEFAULT_ID, "1234566")).thenReturn(cheBook);
+        this.checkBookFacade.getCheckBookByAccountId(DEFAULT_ID, "1234566");
+    }
 
-	@Test
-	public void getCheckBooksById() {
-		Account account = Mockito.mock(Account.class);
-		List<Checkbook> lstCheBook = new ArrayList<Checkbook>();
-		Mockito.when(this.accountService.getAccount(DEFAULT_ID)).thenReturn(account);
-		Mockito.when(account.getCheckbooks()).thenReturn(lstCheBook);
-		this.checkBookFacade.getCheckBooksById(DEFAULT_ID);
-	}
+    @Test
+    public void getCheckBooksById() {
+        Account account = Mockito.mock(Account.class);
+        List<Checkbook> lstCheBook = new ArrayList<Checkbook>();
+        Mockito.when(this.accountService.getAccount(DEFAULT_ID)).thenReturn(account);
+        Mockito.when(account.getCheckbooks()).thenReturn(lstCheBook);
+        this.checkBookFacade.getCheckBooksById(DEFAULT_ID);
+    }
 }

@@ -1,9 +1,10 @@
 /**
- * 
+ *
  */
 package com.bbva.net.back.model.checkbook;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -16,182 +17,194 @@ import com.bbva.net.back.core.pattern.dto.Dto;
  */
 public class CheckbookDto implements Dto {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private String actualState;
+    private String actualState;
 
-	private String deliveryDate;
+    // <!-- Entelgy / GP-12834 / 25112015 / INICIO -->
 
-	private String requestDate;
+    private Date deliveryDate;
 
-	private String totalCheck;
+    private Date requestDate;
 
-	private String lastCheck;
+    // <!-- Entelgy / GP-12834 / 25112015 / FIN -->
 
-	private String firstCheck;
+    private String totalCheck;
 
-	private String id;
+    private String lastCheck;
 
-	private List<CheckDto> checks;
+    private String firstCheck;
 
-	public CheckbookDto() {
-		checks = new ArrayList<CheckDto>();
-	}
+    private String id;
 
-	/**
-	 * @param actualState
-	 * @param deliveryDate
-	 * @param requestDate
-	 * @param totalCheck
-	 * @param lastCheck
-	 * @param firstCheck
-	 * @param id
-	 * @param checks
-	 */
-	public CheckbookDto(String actualState, String deliveryDate, String requestDate, String totalCheck,
-			String lastCheck, String firstCheck, String id, List<CheckDto> checks) {
-		this.actualState = actualState;
-		this.deliveryDate = deliveryDate;
-		this.requestDate = requestDate;
-		this.totalCheck = totalCheck;
-		this.lastCheck = lastCheck;
-		this.firstCheck = firstCheck;
-		this.id = id;
-		this.checks = checks;
-	}
+    private List<CheckDto> checks;
 
-	@Override
-	public int hashCode() {
-		return new HashCodeBuilder().append(getActualState()).append(getDeliveryDate()).append(getRequestDate())
-				.append(getTotalCheck()).append(getLastCheck()).append(getFirstCheck()).append(getId()).toHashCode();
-	}
+    public CheckbookDto() {
+        checks = new ArrayList<CheckDto>();
+    }
+    
+    // <!-- Entelgy / GP-12834 / 25112015 / INICIO -->
 
-	@Override
-	public boolean equals(Object obj) {
-		return (obj != null) && (obj instanceof CheckbookDto)
-				&& (this.getId() != null && ((CheckbookDto)obj).getId() != null)
-				&& this.getId().equals(((CheckbookDto)obj).getId());
-	}
+    /**
+     * @param actualState
+     * @param deliveryDate
+     * @param requestDate
+     * @param totalCheck
+     * @param lastCheck
+     * @param firstCheck
+     * @param id
+     * @param checks
+     */
+    public CheckbookDto(String actualState, Date deliveryDate, Date requestDate, String totalCheck,
+            String lastCheck, String firstCheck, String id, List<CheckDto> checks) {
+        this.actualState = actualState;
+        this.deliveryDate = deliveryDate;
+        this.requestDate = requestDate;
+        this.totalCheck = totalCheck;
+        this.lastCheck = lastCheck;
+        this.firstCheck = firstCheck;
+        this.id = id;
+        this.checks = checks;
+    }
 
-	@Override
-	public String toString() {
-		return new ToStringBuilder(this).append("actualState", getActualState())
-				.append("deliveryDate", getDeliveryDate()).append("requestDate", getRequestDate())
-				.append("totalCheck", getTotalCheck()).append("lastCheck", getLastCheck())
-				.append("firstCheck", getFirstCheck()).append("id", getId()).toString();
-	}
+    // <!-- Entelgy / GP-12834 / 25112015 / FIN -->
 
-	// Setters and getters
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder().append(getActualState()).append(getDeliveryDate()).append(getRequestDate())
+                .append(getTotalCheck()).append(getLastCheck()).append(getFirstCheck()).append(getId()).toHashCode();
+    }
 
-	/**
-	 * @return the actualState
-	 */
-	public String getActualState() {
-		return actualState;
-	}
+    @Override
+    public boolean equals(Object obj) {
+        return (obj != null) && (obj instanceof CheckbookDto)
+                && (this.getId() != null && ((CheckbookDto)obj).getId() != null)
+                && this.getId().equals(((CheckbookDto)obj).getId());
+    }
 
-	/**
-	 * @param actualState the actualState to set
-	 */
-	public void setActualState(String actualState) {
-		this.actualState = actualState;
-	}
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this).append("actualState", getActualState())
+                .append("deliveryDate", getDeliveryDate()).append("requestDate", getRequestDate())
+                .append("totalCheck", getTotalCheck()).append("lastCheck", getLastCheck())
+                .append("firstCheck", getFirstCheck()).append("id", getId()).toString();
+    }
 
-	/**
-	 * @return the deliveryDate
-	 */
-	public String getDeliveryDate() {
-		return deliveryDate;
-	}
+    // Setters and getters
 
-	/**
-	 * @param deliveryDate the deliveryDate to set
-	 */
-	public void setDeliveryDate(String deliveryDate) {
-		this.deliveryDate = deliveryDate;
-	}
+    /**
+     * @return the actualState
+     */
+    public String getActualState() {
+        return actualState;
+    }
 
-	/**
-	 * @return the requestDate
-	 */
-	public String getRequestDate() {
-		return requestDate;
-	}
+    /**
+     * @param actualState the actualState to set
+     */
+    public void setActualState(String actualState) {
+        this.actualState = actualState;
+    }
 
-	/**
-	 * @param requestDate the requestDate to set
-	 */
-	public void setRequestDate(String requestDate) {
-		this.requestDate = requestDate;
-	}
+    // <!-- Entelgy / GP-12834 / 25112015 / INICIO -->
 
-	/**
-	 * @return the totalCheck
-	 */
-	public String getTotalCheck() {
-		return totalCheck;
-	}
+    /**
+     * @return the deliveryDate
+     */
+    public Date getDeliveryDate() {
+        return deliveryDate;
+    }
 
-	/**
-	 * @param totalCheck the totalCheck to set
-	 */
-	public void setTotalCheck(String totalCheck) {
-		this.totalCheck = totalCheck;
-	}
+    /**
+     * @param deliveryDate the deliveryDate to set
+     */
+    public void setDeliveryDate(Date deliveryDate) {
+        this.deliveryDate = deliveryDate;
+    }
 
-	/**
-	 * @return the lastCheck
-	 */
-	public String getLastCheck() {
-		return lastCheck;
-	}
+    /**
+     * @return the requestDate
+     */
+    public Date getRequestDate() {
+        return requestDate;
+    }
 
-	/**
-	 * @param lastCheck the lastCheckl to set
-	 */
-	public void setLastCheck(String lastCheck) {
-		this.lastCheck = lastCheck;
-	}
+    /**
+     * @param requestDate the requestDate to set
+     */
+    public void setRequestDate(Date requestDate) {
+        this.requestDate = requestDate;
+    }
+    
+    // <!-- Entelgy / GP-12834 / 25112015 / FIN -->
 
-	/**
-	 * @return the firstCheck
-	 */
-	public String getFirstCheck() {
-		return firstCheck;
-	}
+    /**
+     * @return the totalCheck
+     */
+    public String getTotalCheck() {
+        return totalCheck;
+    }
 
-	/**
-	 * @param firstCheck the firstCheck to set
-	 */
-	public void setFirstCheck(String firstCheck) {
-		this.firstCheck = firstCheck;
-	}
+    /**
+     * @param totalCheck the totalCheck to set
+     */
+    public void setTotalCheck(String totalCheck) {
+        this.totalCheck = totalCheck;
+    }
 
-	/**
-	 * @return the id
-	 */
-	public String getId() {
-		return id;
-	}
+    /**
+     * @return the lastCheck
+     */
+    public String getLastCheck() {
+        return lastCheck;
+    }
 
-	/**
-	 * @return the checks
-	 */
-	public List<CheckDto> getChecks() {
-		return checks;
-	}
+    /**
+     * @param lastCheck the lastCheckl to set
+     */
+    public void setLastCheck(String lastCheck) {
+        this.lastCheck = lastCheck;
+    }
 
-	/**
-	 * @param checks the checks to set
-	 */
-	public void setChecks(List<CheckDto> checks) {
-		this.checks = checks;
-	}
+    /**
+     * @return the firstCheck
+     */
+    public String getFirstCheck() {
+        return firstCheck;
+    }
 
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(String id) {
-		this.id = id;
-	}
+    /**
+     * @param firstCheck the firstCheck to set
+     */
+    public void setFirstCheck(String firstCheck) {
+        this.firstCheck = firstCheck;
+    }
+
+    /**
+     * @return the id
+     */
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * @return the checks
+     */
+    public List<CheckDto> getChecks() {
+        return checks;
+    }
+
+    /**
+     * @param checks the checks to set
+     */
+    public void setChecks(List<CheckDto> checks) {
+        this.checks = checks;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
 }

@@ -87,9 +87,7 @@ public class ComboCriteriaControllerImpl extends AbstractBbvaController implemen
      */
     @PostConstruct
     public void init() {
-        
-        // <!-- Entelgy / SPRING 3 / 27102015 / INICIO -->
-        try {
+
             /*
              * GP12834 Cheques y chequeras - Entelgy - inicio
              */
@@ -109,13 +107,6 @@ public class ComboCriteriaControllerImpl extends AbstractBbvaController implemen
             this.quieroFund = this.multiValueGroupFacade.getMultiValueTypes(11);
             this.quieroLeasing = this.multiValueGroupFacade.getMultiValueTypes(12);
             this.multiValuePeriod = this.getListMultiValuePeriod();
-            
-        } catch (Exception e) {
-            FacesContext ctx = FacesContext.getCurrentInstance();
-            ctx.addMessage("bdatos", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error",
-                    "No es posible cargar la información de la base de datos"));
-        }
-        // <!-- Entelgy / SPRING 3 / 27102015 / FIN -->
     }
     
     /**

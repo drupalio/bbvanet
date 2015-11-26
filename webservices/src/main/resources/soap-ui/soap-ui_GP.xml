@@ -5284,60 +5284,15 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 }
 
 */
-</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
+</con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
 	"id": "1",
 	"firstCheck": "0000000001",
 	"lastCheck": "0000000010",
 	"totalCheck": 2,
-	"requestDate": "24/09/2014",
-	"deliveryDate": "05/08/2014",
+	"requestDate": "2014-12-12T00:00:00.0-0500",
+	"deliveryDate": "2014-12-12T00:00:00.0-0500",
 	"actualState": "1"
-},
-{
-	"id": "5",
-	"firstCheck": "0000000002",
-	"lastCheck": "0000000009",
-	"totalCheck": 0,
-	"requestDate": "24/09/2014",
-	"deliveryDate": "05/08/2014",
-	"actualState": "B"
-},
-{
-	"id": "4",
-	"firstCheck": "0000000003",
-	"lastCheck": "0000000008",
-	"totalCheck": 4,
-	"requestDate": "24/09/2014",
-	"deliveryDate": "05/08/2014",
-	"actualState": "A"
-},
-{
-	"id": "9",
-	"firstCheck": "0000000004",
-	"lastCheck": "0000000007",
-	"totalCheck": 2,
-	"requestDate": "24/09/2014",
-	"deliveryDate": "05/08/2014",
-	"actualState": "I"
-},
-{
-	"id": "7",
-	"firstCheck": "0000000005",
-	"lastCheck": "0000000006",
-	"totalCheck": 1,
-	"requestDate": "24/09/2014",
-	"deliveryDate": "05/08/2014",
-	"actualState": "2"
-},
-{
-	"id": "6",
-	"firstCheck": "0000000006",
-	"lastCheck": "0000000005",
-	"totalCheck": 7,
-	"requestDate": "24/09/2014",
-	"deliveryDate": "05/08/2014",
-	"actualState": "O"
-}]</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/zic/agileOperations/V01/" method="DELETE" resourcePath="/zic/agileOperations/V01/"><con:settings/><con:defaultResponse xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
+}</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/zic/agileOperations/V01/" method="DELETE" resourcePath="/zic/agileOperations/V01/"><con:settings/><con:defaultResponse xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*
 // Examples showing how to match based on path, query param and header
 // Match based on path
 def requestPath = mockRequest.getPath()

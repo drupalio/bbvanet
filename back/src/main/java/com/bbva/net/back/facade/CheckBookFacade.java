@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.bbva.net.back.facade;
 
@@ -13,39 +13,43 @@ import com.bbva.net.back.model.commons.DateRangeDto;
  * @author User
  */
 public interface CheckBookFacade {
+    
+    /**
+     * Method to get a check giving id Check
+     *
+     * @param checkId
+     * @param accountId
+     * @return Check
+     */
+    CheckDto getCheckById(final String accountId, final String checkId);
+    
+    /**
+     * Method to get a list of checks giving id Check and status
+     *
+     * @param idCheck
+     * @return List<Check>
+     */
+    List<CheckDto> getCheckByStatusOrDate(String accountId, DateRangeDto dateRange, String status,
+            Integer paginationKey, Integer pageSize);
 
-	/**
-	 * Method to get a check giving id Check
-	 * 
-	 * @param checkId
-	 * @param accountId
-	 * @return Check
-	 */
-	CheckDto getCheckById(final String accountId, final String checkId);
+    // <!-- Entelgy / GP-12834 / 25112015 / INICIO -->
 
-	/**
-	 * Method to get a list of checks giving id Check and status
-	 * 
-	 * @param idCheck
-	 * @return List<Check>
-	 */
-	List<CheckDto> getCheckByStatusOrDate(String accountId, DateRangeDto dateRange, String status,
-			Integer paginationKey, Integer pageSize);
+    /**
+     * Method to search a checkBook by criteria
+     *
+     * @param accountId
+     * @param checkBookId
+     * @return CheckBookDto
+     */
+    CheckbookDto getCheckBookByAccountId(String accountId, String checkBookId);
 
-	/**
-	 * Method to search a checkBook by criteria
-	 * 
-	 * @param accountId
-	 * @param checkBookId
-	 * @return CheckBookDto
-	 */
-	List<CheckbookDto> getCheckBookByAccountId(String accountId, String checkBookId);
-
-	/**
-	 * Method to search a checkBook by accountId
-	 * 
-	 * @param accountId
-	 * @return List CheckBookDto
-	 */
-	List<CheckbookDto> getCheckBooksById(String accountId);
+    // <!-- Entelgy / GP-12834 / 25112015 / FIN -->
+    
+    /**
+     * Method to search a checkBook by accountId
+     *
+     * @param accountId
+     * @return List CheckBookDto
+     */
+    List<CheckbookDto> getCheckBooksById(String accountId);
 }

@@ -10,60 +10,43 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
-
 import com.bbva.czic.dto.net.Account;
 import com.bbva.czic.dto.net.Check;
 
 @Path("/V01")
 public interface SrvAccountsV01 {
-
-	/*
-	 * GP12834 Cheques y chequeras - Entelgy - inicio
-	 */
-
-	@GET
-	@Produces("application/json")
-	@Path("/{accountId}/checkbooks/{checkbookId}")
-	Response getCheckbook(@PathParam("checkbookId") String checkbookId, @PathParam("accountId") String accountId);
-
-	@GET
-	@Produces("application/json")
-	@Path("/{accountId}/checks/{checkId}")
-	Check getCheck(@PathParam("accountId") String accountId, @PathParam("checkId") String checkId);
-
-	/*
-	 * GP12834 Cheques y chequeras - Entelgy - fin
-	 */
-
-	@GET
-	@Produces("application/json")
-	@Path("/{accountId}/monthlyBalances")
-	Response getAccountMonthlyBalance(@PathParam("accountId") String accountId,
-			@QueryParam("$filter") @DefaultValue("null") String $filter);
-
-	/*
-	 * GP12834 Cheques y chequeras - Entelgy - inicio
-	 */
-
-	@GET
-	@Produces("application/json")
-	@Path("/{id}")
-	Account getAccount(@PathParam("id") String id);
-
-	@GET
-	@Produces("application/json")
-	@Path("/{id}/listChecks")
-	Response listCheck(@PathParam("id") String id, @QueryParam("$filter") String $filter,
-			@QueryParam("paginationKey") Integer paginationKey, @QueryParam("pageSize") Integer pageSize);
-
-	/*
-	 * GP12834 Cheques y chequeras - Entelgy - fin
-	 */
-
-	@GET
-	@Produces("application/json")
-	@Path("/{id}/movementsResumes")
-	Response getAccMovementResume(@PathParam("id") String id,
-			@QueryParam("$filter") @DefaultValue("null") String $filter);
-
+    
+    // Generación del wadl Entelgy / GP-12834 / 25112015 .
+    
+    @GET
+    @Produces("application/json")
+    @Path("/{accountId}/checkbooks/{checkbookId}")
+    Response getCheckbook(@PathParam("checkbookId") String checkbookId, @PathParam("accountId") String accountId);
+    
+    @GET
+    @Produces("application/json")
+    @Path("/{accountId}/checks/{checkId}")
+    Check getCheck(@PathParam("accountId") String accountId, @PathParam("checkId") String checkId);
+    
+    @GET
+    @Produces("application/json")
+    @Path("/{accountId}/monthlyBalances")
+    Response getAccountMonthlyBalance(@PathParam("accountId") String accountId, @QueryParam("$filter") @DefaultValue("null") String $filter);
+    
+    @GET
+    @Produces("application/json")
+    @Path("/{id}")
+    Account getAccount(@PathParam("id") String id);
+    
+    @GET
+    @Produces("application/json")
+    @Path("/{id}/listChecks")
+    Response listCheck(@PathParam("id") String id, @QueryParam("$filter") String $filter, @QueryParam("paginationKey") Integer paginationKey,
+            @QueryParam("pageSize") Integer pageSize);
+    
+    @GET
+    @Produces("application/json")
+    @Path("/{id}/movementsResumes")
+    Response getAccMovementResume(@PathParam("id") String id, @QueryParam("$filter") @DefaultValue("null") String $filter);
+    
 }
