@@ -4,7 +4,9 @@
 package com.bbva.net.back.model.checkbook;
 
 import java.util.ArrayList;
+// <!-- Entelgy / GP-12834 / 25112015 / INICIO -->
 import java.util.Date;
+// <!-- Entelgy / GP-12834 / 25112015 / FIN -->
 import java.util.List;
 
 import org.apache.commons.lang.builder.HashCodeBuilder;
