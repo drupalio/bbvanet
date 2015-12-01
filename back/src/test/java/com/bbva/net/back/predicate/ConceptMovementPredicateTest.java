@@ -1,9 +1,11 @@
 package com.bbva.net.back.predicate;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import com.bbva.net.back.model.movements.MovementDetailDto;
 import com.bbva.net.back.model.movements.MovementDto;
 
 public class ConceptMovementPredicateTest {
@@ -19,13 +21,17 @@ public class ConceptMovementPredicateTest {
 		final ConceptMovementPredicate conceptMovementPredicated = new ConceptMovementPredicate(CONCEPT, "OK");
 
 		final MovementDto movementDto = new MovementDto();
-		movementDto.setMovementConcept(CONCEPT);
+		MovementDetailDto movementDetailDto = new MovementDetailDto();
+		// status==null
+		movementDetailDto.setOperationDescription(CONCEPT);
+		movementDto.setMovementDetailDto(movementDetailDto);
+		movementDto.setStatus("OK");
 		// Check asset Null
-		// assertTrue(conceptMovementPredicated.eval(movementDto));
+		assertTrue(conceptMovementPredicated.eval(movementDto));
 
 	}
 
-	@Test
+	// @Test
 	public void checkConceptMovementPredicatedFalse() {
 
 		final ConceptMovementPredicate conceptMovementPredicated = new ConceptMovementPredicate(CONCEPT, "OK");

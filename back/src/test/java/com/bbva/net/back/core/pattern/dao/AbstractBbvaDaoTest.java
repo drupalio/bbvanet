@@ -28,8 +28,8 @@ public class AbstractBbvaDaoTest {
 	public void setUp() {
 
 		Assert.assertNotNull(customDao);
-		Assert.assertNotNull(customDao.sessionGet());
-		this.sessionFactory = customDao.sessionGet().getSessionFactory();
+		Assert.assertNotNull(customDao.getSession());
+		this.sessionFactory = customDao.getSession().getSessionFactory();
 	}
 
 	@Test
@@ -50,13 +50,10 @@ public class AbstractBbvaDaoTest {
 	/**
 	 * @author Entelgy
 	 */
-	@Repository(value = "customDao")
-	private static class CustomDaoImpl extends AbstractBbvaDao<MultiValueGroup> implements CustomDao {
-
-		public Session sessionGet() {
-			return super.getSession();	
-		}
-	}
+//	@Repository(value = "customDao")
+//	private static class CustomDaoImpl extends AbstractBbvaDao<MultiValueGroup> implements CustomDao {
+//
+//	}
 
 	private static interface CustomDao {
 
@@ -64,6 +61,8 @@ public class AbstractBbvaDaoTest {
 
 		void setSessionFactory(SessionFactory sessionFactory);
 
-		Session sessionGet();
+		Session getSession();
+
 	}
+
 }
