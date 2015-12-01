@@ -83,10 +83,12 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
     
     private static final String SEARCH_BY_NUMBER_CHECK = MessagesHelper.INSTANCE
             .getString("text.search.by.number.check"), SEARCH_CHECK = MessagesHelper.INSTANCE
-            .getString("text.search.by.numberbook"), CONCRETE_DATE = MessagesHelper.INSTANCE
-            .getString("select.radio.concret.date"), SINCE_TITLE = MessagesHelper.INSTANCE.getString("text.since"),
+                    .getString("text.search.by.numberbook"),
+            CONCRETE_DATE = MessagesHelper.INSTANCE
+                    .getString("select.radio.concret.date"),
+            SINCE_TITLE = MessagesHelper.INSTANCE.getString("text.since"),
             TO_TITLE = MessagesHelper.INSTANCE.getString("text.to");
-    
+            
     private static final Integer LIST_CHECK_STATUS = 2;
     
     private String selectDate;
@@ -95,7 +97,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
     
     private String actionState, checkState, checkNumber, checkBookNumber, titleDateSince, titleDateTo, sinceDatestr,
             toDatestr, leftTitle, rightTitle, leftTitle2, rightTitle2, titleState;
-    
+            
     private List<CheckbookDto> checkBook;
     
     private List<CheckDto> checkList;
@@ -111,7 +113,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
     // <!-- Entelgy / GP-12834 / 25112015 / INICIO -->
     
     private CheckbookDto initialCheckBook;
-
+    
     // <!-- Entelgy / GP-12834 / 25112015 / FIN -->
     
     @Resource(name = "checkBookFacade")
@@ -202,11 +204,11 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
         hasMoreElementsCheck(this.checkList);
         setFalseMovementsComponents();
     }
-
+    
     // <!-- Entelgy / GP-12834 / 08092015 / FIN -->
     
     // <!-- Entelgy / GP-12834 / 25112015 / INICIO -->
-
+    
     @Override
     public void nextPageCheckBook(ActionEvent event) {
         getRenderComponents().put(RenderAttributes.TITLECHECKBOOKS.toString(), true);
@@ -258,7 +260,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
                     + getRenderComponents().get(RenderAttributes.NUMBERBOOK.toString()));
             LOGGER.info("getRenderComponents(). BUTTONBOOK"
                     + getRenderComponents().get(RenderAttributes.BUTTONBOOK.toString()));
-            
+                    
         } else if ( getActionState().equals(SEARCH_BY_NUMBER_CHECK) ) {
             LOGGER.info(" CheckBookControllerImpl actionState entro a SEARCH_BY_NUMBER_CHECK " + SEARCH_BY_NUMBER_CHECK);
             
@@ -414,8 +416,8 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
             // <!-- Entelgy / GP-12834 / 25112015 / INICIO -->
             try {
                 LOGGER.info(" CheckBookControllerImpl showResults filterByNumberCheck checkBookNumber: " + getCheckBookNumber());
-                this.initialCheckBook = checkBookFacade.getCheckBookByAccountId(getSelectedProduct().getProductId(), "0000000000"
-                        + getCheckBookNumber());
+                String temp = (StringUtils.leftPad(getCheckBookNumber(), 20, "0"));
+                this.initialCheckBook = checkBookFacade.getCheckBookByAccountId(getSelectedProduct().getProductId(), temp);
                 this.checkBook.add(initialCheckBook);
                 this.checkBook = getListCheckBookById(checkBook);
             } catch (Exception e) {
@@ -891,7 +893,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
         if ( archivoXLS.exists() ) {
             archivoXLS.delete();
         }
-
+        
         try {
             archivoXLS.createNewFile();
         } catch (IOException e) {
@@ -1160,7 +1162,8 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
             filaFooter = hoja.createRow(inicio);
             Cell nota = filaFooter.createCell(1);
             nota.setCellStyle(cellNotaStyle);
-            nota.setCellValue("Nota: Si no eres el destinatario de este mensaje, por favor comunícate con nosotros con el fin de realizar la actualización correspondiente, al 4010000 en Bogotá, 4938300 en Medellín, 3503500 en Barranquilla, 8892020 en Cali, 6304000 en Bucaramanga o al 01800 912227 desde el resto del país. ");
+            nota.setCellValue(
+                    "Nota: Si no eres el destinatario de este mensaje, por favor comunícate con nosotros con el fin de realizar la actualización correspondiente, al 4010000 en Bogotá, 4938300 en Medellín, 3503500 en Barranquilla, 8892020 en Cali, 6304000 en Bucaramanga o al 01800 912227 desde el resto del país. ");
             filaFooter.setHeight((short)1100);
             hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 5));
             
@@ -1177,7 +1180,8 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
             filaFooter = hoja.createRow(inicio);
             Cell message = filaFooter.createCell(1);
             message.setCellStyle(cellFooterStyle);
-            message.setCellValue("Este mensaje es solamente para la persona a la que va dirigido. Puede contener informacion  confidencial  o  legalmente  protegida.  No  hay  renuncia  a la confidencialidad o privilegio por cualquier transmision mala/erronea. Si usted ha recibido este mensaje por error,  le rogamos que borre de su sistema inmediatamente el mensaje asi como todas sus copias, destruya todas las copias del mismo de su disco duro y notifique al remitente.  No debe,  directa o indirectamente, usar, revelar, distribuir, imprimir o copiar ninguna de las partes de este mensaje si no es usted el destinatario. Cualquier opinion expresada en este mensaje proviene del remitente, excepto cuando el mensaje establezca lo contrario y el remitente este autorizado para establecer que dichas opiniones provienen de  BBVA. Notese que el correo electronico via Internet no permite asegurar ni la confidencialidad de los mensajes que se transmiten ni la correcta recepcion de los mismos. En el caso de que el destinatario de este mensaje no consintiera la utilizacion del correo electronico via Internet, rogamos lo ponga en nuestro conocimiento de manera inmediata.");
+            message.setCellValue(
+                    "Este mensaje es solamente para la persona a la que va dirigido. Puede contener informacion  confidencial  o  legalmente  protegida.  No  hay  renuncia  a la confidencialidad o privilegio por cualquier transmision mala/erronea. Si usted ha recibido este mensaje por error,  le rogamos que borre de su sistema inmediatamente el mensaje asi como todas sus copias, destruya todas las copias del mismo de su disco duro y notifique al remitente.  No debe,  directa o indirectamente, usar, revelar, distribuir, imprimir o copiar ninguna de las partes de este mensaje si no es usted el destinatario. Cualquier opinion expresada en este mensaje proviene del remitente, excepto cuando el mensaje establezca lo contrario y el remitente este autorizado para establecer que dichas opiniones provienen de  BBVA. Notese que el correo electronico via Internet no permite asegurar ni la confidencialidad de los mensajes que se transmiten ni la correcta recepcion de los mismos. En el caso de que el destinatario de este mensaje no consintiera la utilizacion del correo electronico via Internet, rogamos lo ponga en nuestro conocimiento de manera inmediata.");
             filaFooter.setHeight((short)3500);
             hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 5));
             
@@ -1192,7 +1196,8 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
             filaFooter = hoja.createRow(inicio);
             Cell messEng = filaFooter.createCell(1);
             messEng.setCellStyle(cellFooterStyle);
-            messEng.setCellValue("This message is intended exclusively for the named person. It may contain confidential, propietary or legally privileged information. No confidentiality or privilege is waived or lost by any mistransmission. If you receive this message in error, please immediately delete it and all copies of it from your system, destroy any hard copies of it and notify the sender. Your must not, directly or indirectly, use, disclose, distribute, print, or copy any part of this message if you are not the intended recipient. Any views expressed in this message are those of the individual sender, except where the message states otherwise and the sender is authorised to state them to be the views of BBVA. Please note that internet e-mail neither guarantees the confidentiality nor the proper receipt of the message sent.If the addressee of this message does not consent to the use of internet e-mail, please communicate it to us immediately.");
+            messEng.setCellValue(
+                    "This message is intended exclusively for the named person. It may contain confidential, propietary or legally privileged information. No confidentiality or privilege is waived or lost by any mistransmission. If you receive this message in error, please immediately delete it and all copies of it from your system, destroy any hard copies of it and notify the sender. Your must not, directly or indirectly, use, disclose, distribute, print, or copy any part of this message if you are not the intended recipient. Any views expressed in this message are those of the individual sender, except where the message states otherwise and the sender is authorised to state them to be the views of BBVA. Please note that internet e-mail neither guarantees the confidentiality nor the proper receipt of the message sent.If the addressee of this message does not consent to the use of internet e-mail, please communicate it to us immediately.");
             filaFooter.setHeight((short)2900);
             hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 5));
             
@@ -1255,7 +1260,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
                 while ((b = is.read()) != -1) {
                     img_bytes.write(b);
                 }
-
+                
                 is.close();
                 
                 int pictureIdx = libro.addPicture(img_bytes.toByteArray(), Workbook.PICTURE_TYPE_PNG);
@@ -1540,7 +1545,8 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
             filaFooter = hoja.createRow(inicio);
             Cell nota = filaFooter.createCell(1);
             nota.setCellStyle(cellNotaStyle);
-            nota.setCellValue("Nota: Si no eres el destinatario de este mensaje, por favor comunícate con nosotros con el fin de realizar la actualización correspondiente, al 4010000 en Bogotá, 4938300 en Medellín, 3503500 en Barranquilla, 8892020 en Cali, 6304000 en Bucaramanga o al 01800 912227 desde el resto del país. ");
+            nota.setCellValue(
+                    "Nota: Si no eres el destinatario de este mensaje, por favor comunícate con nosotros con el fin de realizar la actualización correspondiente, al 4010000 en Bogotá, 4938300 en Medellín, 3503500 en Barranquilla, 8892020 en Cali, 6304000 en Bucaramanga o al 01800 912227 desde el resto del país. ");
             filaFooter.setHeight((short)1100);
             hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 7));
             
@@ -1557,7 +1563,8 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
             filaFooter = hoja.createRow(inicio);
             Cell message = filaFooter.createCell(1);
             message.setCellStyle(cellFooterStyle);
-            message.setCellValue("Este mensaje es solamente para la persona a la que va dirigido. Puede contener informacion  confidencial  o  legalmente  protegida.  No  hay  renuncia  a la confidencialidad o privilegio por cualquier transmision mala/erronea. Si usted ha recibido este mensaje por error,  le rogamos que borre de su sistema inmediatamente el mensaje asi como todas sus copias, destruya todas las copias del mismo de su disco duro y notifique al remitente.  No debe,  directa o indirectamente, usar, revelar, distribuir, imprimir o copiar ninguna de las partes de este mensaje si no es usted el destinatario. Cualquier opinion expresada en este mensaje proviene del remitente, excepto cuando el mensaje establezca lo contrario y el remitente este autorizado para establecer que dichas opiniones provienen de  BBVA. Notese que el correo electronico via Internet no permite asegurar ni la confidencialidad de los mensajes que se transmiten ni la correcta recepcion de los mismos. En el caso de que el destinatario de este mensaje no consintiera la utilizacion del correo electronico via Internet, rogamos lo ponga en nuestro conocimiento de manera inmediata.");
+            message.setCellValue(
+                    "Este mensaje es solamente para la persona a la que va dirigido. Puede contener informacion  confidencial  o  legalmente  protegida.  No  hay  renuncia  a la confidencialidad o privilegio por cualquier transmision mala/erronea. Si usted ha recibido este mensaje por error,  le rogamos que borre de su sistema inmediatamente el mensaje asi como todas sus copias, destruya todas las copias del mismo de su disco duro y notifique al remitente.  No debe,  directa o indirectamente, usar, revelar, distribuir, imprimir o copiar ninguna de las partes de este mensaje si no es usted el destinatario. Cualquier opinion expresada en este mensaje proviene del remitente, excepto cuando el mensaje establezca lo contrario y el remitente este autorizado para establecer que dichas opiniones provienen de  BBVA. Notese que el correo electronico via Internet no permite asegurar ni la confidencialidad de los mensajes que se transmiten ni la correcta recepcion de los mismos. En el caso de que el destinatario de este mensaje no consintiera la utilizacion del correo electronico via Internet, rogamos lo ponga en nuestro conocimiento de manera inmediata.");
             filaFooter.setHeight((short)3100);
             hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 7));
             
@@ -1572,7 +1579,8 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
             filaFooter = hoja.createRow(inicio);
             Cell messEng = filaFooter.createCell(1);
             messEng.setCellStyle(cellFooterStyle);
-            messEng.setCellValue("This message is intended exclusively for the named person. It may contain confidential, propietary or legally privileged information. No confidentiality or privilege is waived or lost by any mistransmission. If you receive this message in error, please immediately delete it and all copies of it from your system, destroy any hard copies of it and notify the sender. Your must not, directly or indirectly, use, disclose, distribute, print, or copy any part of this message if you are not the intended recipient. Any views expressed in this message are those of the individual sender, except where the message states otherwise and the sender is authorised to state them to be the views of BBVA. Please note that internet e-mail neither guarantees the confidentiality nor the proper receipt of the message sent.If the addressee of this message does not consent to the use of internet e-mail, please communicate it to us immediately.");
+            messEng.setCellValue(
+                    "This message is intended exclusively for the named person. It may contain confidential, propietary or legally privileged information. No confidentiality or privilege is waived or lost by any mistransmission. If you receive this message in error, please immediately delete it and all copies of it from your system, destroy any hard copies of it and notify the sender. Your must not, directly or indirectly, use, disclose, distribute, print, or copy any part of this message if you are not the intended recipient. Any views expressed in this message are those of the individual sender, except where the message states otherwise and the sender is authorised to state them to be the views of BBVA. Please note that internet e-mail neither guarantees the confidentiality nor the proper receipt of the message sent.If the addressee of this message does not consent to the use of internet e-mail, please communicate it to us immediately.");
             filaFooter.setHeight((short)2600);
             hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 7));
             
@@ -1678,11 +1686,11 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
         try {
             Process p = Runtime.getRuntime().exec(sParts);
             LOGGER.info(" Proceso input " + p.toString());
-
+            
             if ( p == null ) {
                 return false;
             }
-
+            
             LOGGER.info("Inicia la terminación de proceso");
             try {
                 int retval = p.exitValue();
@@ -1709,9 +1717,9 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
         String data = valueChangeEvent.getNewValue().toString();
         System.out.println(data);
     }
-
+    
     // <!-- Entelgy / GP-12834 / 08092015 / INICIO -->
-	
+    
     public void hasMoreElementsCheck(List<CheckDto> cheksList) {
         if ( cheksList.size() >= 9 && super.isHasMorePages() ) {
             getRenderComponents().put(RenderAttributes.FOOTERTABLECHEKS.toString(), true);
@@ -1730,9 +1738,9 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
             getRenderComponents().put(RenderAttributes.FOOTERTABLECHECKBOOK.toString(), false);
         }
     }
-
+    
     // <!-- Entelgy / GP-12834 / 08092015 / FIN -->
-
+    
     public void setFalseMovementsComponents() {
         getRenderComponents().put(RenderAttributes.TITLEMOVES.name(), false);
         getRenderComponents().put(RenderAttributes.MOVEMENTSTABLE.name(), false);
@@ -2183,7 +2191,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
     public void setExportCheckBookExcel(StreamedContent exportExcel) {
         this.exportCheckBookExcel = exportExcel;
     }
-
+    
     // <!-- Entelgy / GP-12834 / 25112015 / INICIO -->
     /**
      * @return the initialCheckBook
@@ -2191,14 +2199,14 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
     public CheckbookDto getInitialCheckBook() {
         return initialCheckBook;
     }
-
+    
     /**
      * @param initialCheckBook the initialCheckBook to set
      */
     public void setInitialCheckBook(CheckbookDto initialCheckBook) {
         this.initialCheckBook = initialCheckBook;
     }
-
+    
     // <!-- Entelgy / GP-12834 / 25112015 / FIN -->
     
     // <!-- Entelgy / GP-12834 / 17112015 / INICIO -->
@@ -2206,7 +2214,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
     public HeaderController getHeaderController() {
         return headerController;
     }
-
+    
     public void setHeaderController(HeaderController headerController) {
         this.headerController = headerController;
     }
