@@ -6,19 +6,15 @@
     
 <!-- Entelgy / SPRING 3 / 08092015 / INICIO -->
 	<var name="movementsCriteriaController" class="com.bbva.net.front.controller.impl.MovementCriteriaControllerImpl" />
-	<!-- Entelgy / GP-12834 / 08072015 / INICIO -->
+	<!-- Entelgy / GP-12834 / 04122015 / INICIO -->
 	<var name="checkBookController" class="com.bbva.net.front.controller.impl.CheckBookControllerImpl" />
-	<!-- Entelgy / GP-12834 / 08072015 / FIN -->
+	<!-- Entelgy / GP-12834 / 04122015 / FIN -->
 	<var name="personalizeProductAccountController" class="com.bbva.net.front.controller.impl.PersonalizeProductControllerImpl" />
 	<var name="renderViewMovementsUI" class="com.bbva.net.front.ui.movements.RenderViewMovementsUI" />
 	<var name="termsController" class="com.bbva.net.front.controller.impl.TermsControllerImpl" />
 	<var name="extractController" class="com.bbva.net.front.controller.impl.ExtractControllerImpl" />
 
 	<on-start>
-		<!-- Entelgy / GP-12834 / 08072015 / INICIO -->
-		<evaluate expression="checkBookController.init()" />
-		<evaluate expression="checkBookController.initCheckBookList()" />
-		<!-- Entelgy / GP-12834 / 08072015 / FIN -->
 		<evaluate expression="personalizeProductAccountController.init()" />
 		<evaluate expression="movementsCriteriaController.init()" />
 		<evaluate expression="movementsCriteriaController.getSelectedProduct()" result="flowScope.product" />
