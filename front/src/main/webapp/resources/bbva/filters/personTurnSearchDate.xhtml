@@ -2,7 +2,8 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:composite="http://java.sun.com/jsf/composite"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
@@ -23,9 +24,8 @@
 				filterMessage="#{turnsOperationController.sinceDatestr}"
 				filterMessage2="#{turnsOperationController.toDatestr}">
 				<bbvaSearch:customSearchFilter id="customDate" showQuota="true"
-					showMovements="false" showChecks="false" identify="quotaCalendar"
+					showMovements="false" showChecks="false" identify="turnsCalendar"
 					value="#{turnsOperationController.selectDate}"
-					
 					valueDateSince="#{turnsOperationController.sinceDate}"
 					valueDateTo="#{turnsOperationController.toDate}"
 					disabledButton="#{turnsOperationController.renderComponents['BUTTONDATE']}"
@@ -34,7 +34,8 @@
 					listenerDate="#{turnsOperationController}" />
 			</bbvaSearch:customSearchList>
 			<bbvaSearch:searchButtonList show="true" showQuota="true"
-				showMovements="false" actionListenerRemove="#{turnsOperationController.cleanFilters}"
+				showMovements="false"
+				actionListenerRemove="#{turnsOperationController.cleanFilters}"
 				actionListenerShow="#{turnsOperationController.searchQuotaByFilter}" />
 		</bbvaSearch:personalizedSearchTabBody>
 	</h:form>

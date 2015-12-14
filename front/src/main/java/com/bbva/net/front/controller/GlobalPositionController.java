@@ -12,75 +12,69 @@ import com.bbva.net.back.model.globalposition.GlobalProductsDto;
  */
 public interface GlobalPositionController {
 
-	/**
-	 * @return
-	 */
-	GlobalProductsDto getCustomerProducts();
+    /**
+     * @return
+     */
+    GlobalProductsDto getCustomerProducts();
 
-	/**
-	 * @return
-	 */
-	GlobalProductsDto getCustomerProductsHidden();
+    /**
+     * @return
+     */
+    GlobalProductsDto getCustomerProductsHidden();
 
-	/**
-	 * 
-	 */
-	void renderPieSituation();
+    /**
+     *
+     */
+    void renderPieSituation();
 
-	/**
-	 * 
-	 */
-	void renderPieAssets();
+    /**
+     *
+     */
+    void renderPieAssets();
 
-	/**
-	 * 
-	 */
-	void renderPieFinanciation();
+    /**
+     *
+     */
+    void renderPieFinanciation();
 
-	/**
-	 * @return
-	 */
-	Map<String, BalanceDto> getTotalsProducts();
+    /**
+     * @return
+     */
+    Map<String, BalanceDto> getTotalsProducts();
 
-	/**
-	 * @param selectEvent
-	 */
+    /**
+     * @param selectEvent
+     */
 
-	void onProductLoanSelected(SelectEvent selectEvent);
+    void onProductLoanSelected(SelectEvent selectEvent);
 
-	/**
-	 * 
-	 */
-	void fundsCustomer();
+    /**
+     *
+     */
+    void fundsCustomer();
 
-	/**
-	 * 
-	 */
-	void cardsCustomer();
+    /**
+     *
+     */
+    void cardsCustomer();
 
-	/**
-	 * 
-	 */
-	void onComboDepositAccountGraphic();
+    /**
+     *
+     */
+    void onComboDepositAccountGraphic();
 
-	/**
-	 * 
-	 */
-	void onComboSelectedAccountGraphic();
+    /**
+     *
+     */
+    void onComboSelectedAccountGraphic();
 
-	/**
-	 * 
-	 */
-	void onComboInitialAccountGraphic();
+    /**
+     *
+     */
+    void onComboInitialAccountGraphic();
 
-	/**
-	 * 
-	 */
-	void onComboSelectedCard();
-
-	/**
-	 * @param selectEvent
-	 */
-	void onProductTurnsSelected(final SelectEvent selectEvent);
-
+    /**
+     *
+     */
+    void onComboSelectedCard();
 }

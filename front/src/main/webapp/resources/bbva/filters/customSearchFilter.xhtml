@@ -47,7 +47,11 @@
 					
                     :quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:itemSince_quotaCalendar
                     :quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:itemTo_quotaCalendar
-                    :quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:dateButtonQuota" />
+                    :quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:dateButtonQuota
+                    
+                    :tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:itemSince_turnsCalendar
+                    :tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:itemTo_turnsCalendar
+                    :tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:dateButtonTurn" />
 				</p:selectOneRadio>
 				<div class="col-xs-6">
 					<p:radioButton id="customSearch-filter-today_#{cc.attrs.identify}"
@@ -157,11 +161,11 @@
 			jsf:rendered="#{cc.attrs.showQuota}" jsf:actionListener="#{cc.attrs.actionListenerDate}">
 			#{msg['button.confirm']}
 			<p:ajax process="@form"
-				oncomplete="document.getElementById('quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:componentList').click();"
+				oncomplete="document.getElementById(':tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:componentList').click();"
 				update="
-		    :quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:itemSince_turnsCalendar 
-            :quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:itemTo_turnsCalendar 
-            :quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:componentList" />
+		    :tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:itemSince_turnsCalendar 
+            :tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:itemTo_turnsCalendar 
+            :tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:componentList" />
 		</button>
 	</div>
 </composite:implementation>

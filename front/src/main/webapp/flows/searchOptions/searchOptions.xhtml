@@ -40,8 +40,8 @@
 								type=" #{product.productName}" />
 							<bbvaGraphic:MovementsGraphic lineConfigUI="#{turnsOperationController.graphicLineMovements}" />
 							<bbvaDiviHeader:moveDetailHeaderRight textUp="#{msg['text.available']}"
-								valueUp="#{product.totalCash}" textDown="#{msg['text.tradeBalance']}"
-								valueDown="#{product.cashAvailable}" disabledOpera="#{product.getOperationOnline()}"
+								valueUp="#{product.totalCash}" valueDown="#{product.cashAvailable}" 
+								disabledOpera="#{product.getOperationOnline()}"
 								disabledConsult="#{product.isVisible()}" />
 						</bbvaDiviHeader:moveContainerHeader>
 					</bbvaDiviHeader:moveDetailContainer>
@@ -63,7 +63,7 @@
 						</div>
 					</bbvaDetAcc:tabMenu>
 					<div class="table-tabs">
-						<bbvaDetailMotion:detailMovesTable id="detailAccounts" listAccounts="#{turns}"
+						<bbvaDetailMotion:detailMovesDivisasTable id="detailsDivisas" listAccounts="#{turns}"
 							listOutside="#{turnsOperationController.turnsClientOutside}"
 							listRecived="#{turnsOperationController.turnsClientRecived}"
 							controller="#{turnsOperationController}" />
