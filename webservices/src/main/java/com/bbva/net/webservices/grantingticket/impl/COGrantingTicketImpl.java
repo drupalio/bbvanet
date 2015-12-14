@@ -20,6 +20,7 @@ public class COGrantingTicketImpl extends AbstractBbvaRestService implements Srv
 
 	@Override
 	public AuthenticationState createTicket(ConsumerContext consumercontext) {
+
 		try {
 			LOGGER.info("Invocando GRANTING TICKET .......................");
 			LOGGER.info("URL: " + URL_GRANTING);

@@ -14,12 +14,13 @@
 	<composite:attribute name="list" type="java.util.List" />
 </composite:interface>
 <composite:implementation>
+	<!-- Entelgy / GP13137 / 03112015 / INICIO -->	
 	<bbvaWizardTab:wizardTab id="deleteOF" title="Eliminar operación favorita"
-		widgetVar="myWizardDelete" widgetVarDialog="confimDialogDelete"
+		widgetVar="myWizardDelete" widgetVarDialog="confimDialogDelete" textOperations="#{msg['msg.info.keyOperations']}" 
 		textConfim="#{msg['msg.info.confimDeleteFav']}" icon="info-blue iconWizard"
 		controller="#{favoriteOperationsController.delete}" formWizard="Delete"
-		textOperations="#{msg['msg.info.keyOperations']}" 
-		textCheck="#{msg['title.opertationCheck']}" textNoCheck="#{msg['title.operationNoCheck']}"/>
+		textCheck="#{msg['title.opertationCheck']}" textNoCheck="#{msg['title.operationNoCheck']}"
+		update=":rightBodyPanel:operationsPanel:favorito:visibleFavoritte:favorRefr :rightBodyPanel:operationsPanel:favorito:hiddeFavoritte:favorRefr"/>
 		
 	<bbvaWizardTab:wizardTab id="modifyOF" title="Editar operación favorita"
 		widgetVar="myWizardEdit" widgetVarDialog="confimDialogEdit"
@@ -32,10 +33,10 @@
 		<bbvaOperationFav:operationsHeader title="#{msg['text.favoriteOperations']}"
 			msgInfo="#{msg['msg.info.favoriteOperations']}" />
 		<h:form id="favorito">
-			<bbvaOperationFav:operationsBody
+			<bbvaOperationFav:operationsBody id="visibleFavoritte"
 				list="#{favoriteOperationsController.getListFavoriteOperations()}"
-				sclass="operation" id_form="favorite" id_wid="fav"  empty_Message="#{msg['msg.empty.Favorites']}"/>
-			<bbvaOperationFav:operationsBody
+				sclass="operation" id_form="favorite" id_wid="fav" empty_Message="#{msg['msg.empty.Favorites']}"/>
+			<bbvaOperationFav:operationsBody id="hiddeFavoritte"
 				list="#{favoriteOperationsController.getListFavoriteOperationsHidden()}"
 				sclass="operation hiddenElement" id_form="favoriteH" id_wid="favh" />
 		</h:form>
@@ -44,5 +45,6 @@
 			<button type="button" class="btn small seeMore" style="color: #FFF !important">#{msg['button.see.More']}</button>
 		</footer>
 	</section>
+	<!-- Entelgy / GP13137 / 03112015 / FIN -->
 </composite:implementation>
 </html>

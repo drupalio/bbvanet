@@ -82,7 +82,7 @@
 				</div>
 				<div class="row afterTable">
 					<bbvaGP:productFooter listProduct="#{customerProductsHidden.creditCards}" />
-					<bbvaGP:totalBalance util="#{msg['text.used']}"
+					<bbvaGP:totalBalance util="#{msg['text.used']}" displayIcon="icon-Info-BlueFilter"
 						total="#{globalPositionController.totalsProducts['TC'].total}"
 						subtotal="#{globalPositionController.getTotalUsedCards(globalPositionController.totalsProducts['TC'].total,globalPositionController.totalsProducts['TC'].available)}" />
 				</div>
@@ -157,8 +157,10 @@
 	</ui:define>
 	<ui:define name="contentRight">
 		<bbvaSituation:globalSituationPanel />
+		<!-- GP13137 Operaciones favoritas - Entelgy - Inicio-->
 		<bbvaOperationFav:operationsPanel id="operationsPanel"
 			list="#{favoriteOperationsController.favoriteOperations}" />
+		<!-- GP13137 Operaciones favoritas - Entelgy - Fin-->
 	</ui:define>
 </ui:composition>
 </html>

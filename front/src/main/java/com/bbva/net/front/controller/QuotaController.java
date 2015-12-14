@@ -6,12 +6,15 @@ package com.bbva.net.front.controller;
 import java.util.List;
 
 import javax.faces.event.ActionEvent;
+import javax.faces.event.AjaxBehaviorEvent;
 
 import com.bbva.net.back.model.movements.MovementDto;
+
 
 /**
  * @author User
  */
+ // <!-- Entelgy / SPRING 3 / 08092015 / INICIO -->
 public interface QuotaController {
 
 	/***
@@ -22,12 +25,12 @@ public interface QuotaController {
 	/**
 	 * Method to set partial customdate
 	 */
-	void setCustomDate(ActionEvent event);
+	void setCustomDate(AjaxBehaviorEvent event);
 
 	/**
 	 * Method to set partial customdate
 	 */
-	void searchQuotaByFilter(final ActionEvent event);
+	void searchQuotaByFilter(final AjaxBehaviorEvent event);
 
 	/**
 	 * Method to get all movements of quota
@@ -42,17 +45,11 @@ public interface QuotaController {
 	 * 
 	 * @param event
 	 */
-	void cleanFilters(ActionEvent event);
+	void cleanFilters(AjaxBehaviorEvent event);
 
-	/**
-	 * Method to reset filters of quota
-	 */
-
-	void cleanFilters();
-
-	/**
-	 * Method nextPage movements
-	 * 
+    /**
+     * Method nextPage movements
+     *
 	 * @param event
 	 */
 
@@ -93,3 +90,4 @@ public interface QuotaController {
 	 */
 	void sendMail();
 }
+// <!-- Entelgy / SPRING 3 / 08092015 / FIN -->

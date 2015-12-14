@@ -36,113 +36,120 @@ import com.bbva.net.back.model.comboFilter.EnumCheckStatus;
  */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({ FacesContext.class, RequestContext.class, RequestContextHolder.class, ResourceBundle.class,
-		EnumProductType.class, EnumCheckStatus.class })
+    EnumProductType.class, EnumCheckStatus.class })
 public abstract class AbstractBbvaControllerTest {
 
-	@Mock
-	protected FacesContext facesContext;
+    @Mock
+    protected FacesContext facesContext;
 
-	@Mock
-	protected ExternalContext externalContext;
+    @Mock
+    protected ExternalContext externalContext;
 
-	@Mock
-	protected Flash flash;
+    @Mock
+    protected Flash flash;
 
-	@Mock
-	protected HttpServletRequest request;
+    @Mock
+    protected HttpServletRequest request;
 
-	@Mock
-	protected HttpServletResponse response;
+    @Mock
+    protected HttpServletResponse response;
 
-	@Mock
-	protected HttpSession httpSession;
+    @Mock
+    protected HttpSession httpSession;
 
-	@Mock
-	protected Application application;
+    @Mock
+    protected Application application;
 
-	@Mock
-	protected RequestContextHolder requestContextHolder;
+    @Mock
+    protected RequestContextHolder requestContextHolder;
 
-	@Mock
-	protected RequestControlContext webFlowRequestContext;
+    @Mock
+    protected RequestControlContext webFlowRequestContext;
 
-	@Mock
-	protected RequestContext requestContext;
+    @Mock
+    protected RequestContext requestContext;
 
-	@Mock
-	protected MutableAttributeMap<Object> scope;
+    @Mock
+    protected MutableAttributeMap<Object> scope;
 
-	@Mock
-	protected EnumProductType enumProductType;
+    @Mock
+    protected EnumProductType enumProductType;
 
-	@Mock
-	protected EnumCheckStatus enumCheckStatus;
+    @Mock
+    protected EnumCheckStatus enumCheckStatus;
 
-	protected ResourceBundle resourceBundle;
+    protected ResourceBundle resourceBundle;
 
-	@Before
-	public void setUp() {
+    @Before
+    public void setUp() {
 
-		MockitoAnnotations.initMocks(this);
-		this.resourceBundle = new CustomResource();
-		initFacesContext();
+        MockitoAnnotations.initMocks(this);
+        this.resourceBundle = new CustomResource();
+        initFacesContext();
 
-	}
+    }
 
-	/**
-	 * Initialize: FacesContext, ExternalContext and Application
-	 */
-	protected void initFacesContext() {
+    /**
+     * Initialize: FacesContext, ExternalContext and Application
+     */
+    protected void initFacesContext() {
 
-		// creating an unknown enum value
-		enumProductType = PowerMockito.mock(EnumProductType.class);
-		Whitebox.setInternalState(enumProductType, "name", "Account");
-		when(enumProductType.value()).thenReturn("Account");
+        // creating an unknown enum value
+        enumProductType = PowerMockito.mock(EnumProductType.class);
+        Whitebox.setInternalState(enumProductType, "name", "Account");
+        when(enumProductType.value()).thenReturn("Account");
 
-		enumCheckStatus = PowerMockito.mock(EnumCheckStatus.class);
-		Whitebox.setInternalState(enumCheckStatus, "name", "Account");
-		when(enumCheckStatus.getValue()).thenReturn("check");
+        enumCheckStatus = PowerMockito.mock(EnumCheckStatus.class);
+        Whitebox.setInternalState(enumCheckStatus, "name", "Account");
+        when(enumCheckStatus.getValue()).thenReturn("check");
 
-		// Using PowerMockito to mock the statics
-		PowerMockito.mockStatic(FacesContext.class);
-		PowerMockito.mockStatic(RequestContextHolder.class);
-		PowerMockito.mockStatic(RequestContext.class);
+        // Using PowerMockito to mock the statics
+        PowerMockito.mockStatic(FacesContext.class);
+        PowerMockito.mockStatic(RequestContextHolder.class);
+        PowerMockito.mockStatic(RequestContext.class);
 
-		when(FacesContext.getCurrentInstance()).thenReturn(facesContext);
-		when(facesContext.getExternalContext()).thenReturn(externalContext);
-		when(externalContext.getFlash()).thenReturn(flash);
-		when(externalContext.getRequest()).thenReturn(request);
-		when(externalContext.getResponse()).thenReturn(response);
-		when(externalContext.getSession(false)).thenReturn(httpSession);
-		when(facesContext.getApplication()).thenReturn(application);
-		when(application.getResourceBundle(facesContext, "msg")).thenReturn(resourceBundle);
-		when(application.getResourceBundle(facesContext, "i18")).thenReturn(resourceBundle);
-		when(RequestContext.getCurrentInstance()).thenReturn(requestContext);
+        when(FacesContext.getCurrentInstance()).thenReturn(facesContext);
+        when(facesContext.getExternalContext()).thenReturn(externalContext);
+        when(externalContext.getFlash()).thenReturn(flash);
+        when(externalContext.getRequest()).thenReturn(request);
+        when(externalContext.getResponse()).thenReturn(response);
+        when(externalContext.getSession(false)).thenReturn(httpSession);
+        when(facesContext.getApplication()).thenReturn(application);
+        when(application.getResourceBundle(facesContext, "msg")).thenReturn(resourceBundle);
+        when(application.getResourceBundle(facesContext, "i18")).thenReturn(resourceBundle);
+        when(RequestContext.getCurrentInstance()).thenReturn(requestContext);
 
-		final Map<Object, Object> attributes = new HashMap<Object, Object>();
-		attributes.put(RequestContext.class.getName(), requestContext);
+        final Map<Object, Object> attributes = new HashMap<Object, Object>();
+        attributes.put(RequestContext.class.getName(), requestContext);
 
-		when(facesContext.getAttributes()).thenReturn(attributes);
-		when(RequestContextHolder.getRequestContext()).thenReturn(webFlowRequestContext);
-		when(webFlowRequestContext.getViewScope()).thenReturn(scope);
-		when(webFlowRequestContext.getFlowScope()).thenReturn(scope);
-		when(webFlowRequestContext.getFlashScope()).thenReturn(scope);
-	}
+        when(facesContext.getAttributes()).thenReturn(attributes);
+        when(RequestContextHolder.getRequestContext()).thenReturn(webFlowRequestContext);
+        when(webFlowRequestContext.getViewScope()).thenReturn(scope);
+        when(webFlowRequestContext.getFlowScope()).thenReturn(scope);
+        when(webFlowRequestContext.getFlashScope()).thenReturn(scope);
+    }
 
-	/**
-	 * @author Entelgy
-	 */
-	private static class CustomResource extends ResourceBundle {
+    /**
+     * @author Entelgy
+     */
+    private static class CustomResource extends ResourceBundle {
 
-		@Override
-		protected Object handleGetObject(String key) {
-			return key;
-		}
+        @Override
+        protected Object handleGetObject(String key) {
+            ResourceBundle obj = ResourceBundle.getBundle("i18n");
+            ResourceBundle obj2 = ResourceBundle.getBundle("messages");
+            if ( obj.containsKey(key) ) {
+                return obj.getString(key);
+            } else if ( obj2.containsKey(key) ) {
+                return obj2.getString(key);
+            }
+            return key;
+        }
 
-		@Override
-		public Enumeration<String> getKeys() {
-			return null;
-		}
+        @Override
+        public Enumeration<String> getKeys() {
+            return null;
+        }
 
-	}
+    }
 }

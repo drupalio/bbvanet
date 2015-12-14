@@ -13,8 +13,8 @@
 	<composite:attribute name="graphic" type="String" />
 </composite:interface>
 <composite:implementation>
-	<!-- <div class="tab-group" style="display: none"> -->
-	<div class="tab-group" style="display: #{globalPositionController.globalProductsDTO.accounts.size() > '0' ? 'block' : 'none' }">
+	<!-- Entelgy / SPRING 3 / 17112015 / INICIO -->	
+	<div class="tab-group" style="display: #{cc.attrs.graphic}">
 		<div class="tab-head">
 			<span>#{cc.attrs.title}</span>
 			<div class="buttons-group">
@@ -43,5 +43,6 @@
 		</div>
 		<div class="row afterTable"></div>
 	</div>
+	<!-- Entelgy / SPRING 3 / 17112015 / FIN -->
 </composite:implementation>
 </html>

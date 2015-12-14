@@ -13,7 +13,7 @@ import com.bbva.jee.arq.spring.core.servicing.utils.Money;
  * Java class for Balance complex type.
  * <p>
  * The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="Balance">
  *   &lt;complexContent>
@@ -31,49 +31,69 @@ import com.bbva.jee.arq.spring.core.servicing.utils.Money;
 @XmlType(name = "Balance", propOrder = { "total", "availableBalance" })
 public class Balance implements Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	protected Money total;
+    protected Money total;
 
-	protected Money availableBalance;
+    protected Money availableBalance;
 
-	/**
-	 * Gets the value of the total property.
-	 * 
-	 * @return possible object is {@link Money }
-	 */
-	public Money getTotal() {
-		return total;
-	}
+    protected Money tradeBalance;
 
-	/**
-	 * Sets the value of the total property.
-	 * 
-	 * @param value allowed object is {@link Money }
-	 */
-	public void setTotal(Money value) {
-		this.total = value;
-	}
+    /**
+     * Gets the value of the total property.
+     *
+     * @return possible object is {@link Money }
+     */
+    public Money getTotal() {
+        return total;
+    }
 
-	/**
-	 * Gets the value of the availableBalance property.
-	 * 
-	 * @return possible object is {@link Money }
-	 */
-	public Money getAvailableBalance() {
-		return availableBalance;
-	}
+    /**
+     * Sets the value of the total property.
+     *
+     * @param value allowed object is {@link Money }
+     */
+    public void setTotal(Money value) {
+        this.total = value;
+    }
 
-	/**
-	 * Sets the value of the availableBalance property.
-	 * 
-	 * @param value allowed object is {@link Money }
-	 */
-	public void setAvailableBalance(Money value) {
-		this.availableBalance = value;
-	}
+    /**
+     * Gets the value of the availableBalance property.
+     *
+     * @return possible object is {@link Money }
+     */
+    public Money getAvailableBalance() {
+        return availableBalance;
+    }
+
+    /**
+     * Sets the value of the availableBalance property.
+     *
+     * @param value allowed object is {@link Money }
+     */
+    public void setAvailableBalance(Money value) {
+        this.availableBalance = value;
+    }
+
+    /**
+     * Gets the value of the availableBalance property.
+     *
+     * @return the tradeBalance
+     */
+    public Money getTradeBalance() {
+        return tradeBalance;
+    }
+
+    /**
+     * Sets the value of the availableBalance property.
+     *
+     * @param tradeBalance the tradeBalance to set
+     */
+    public void setTradeBalance(Money tradeBalance) {
+        this.tradeBalance = tradeBalance;
+    }
 
 }

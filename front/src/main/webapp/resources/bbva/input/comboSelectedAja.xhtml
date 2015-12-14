@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile" xmlns:c="http://java.sun.com/jstl/core">
+<composite:interface>
+	<composite:attribute name="id" />
+	<composite:attribute name="list" type="java.util.List" />
+	<composite:attribute name="itemLabel" type="String" />
+	<composite:attribute name="value" />
+	<composite:attribute name="styleClass" />
+	<composite:attribute name="disabled" />
+	<composite:attribute name="listener"
+		method-signature="void actionlistener(javax.faces.event.AjaxBehaviorEvent)" />
+	<composite:attribute name="update" />
+</composite:interface>
+<composite:implementation>
+	<div class="selectorCombo">
+		<p:selectOneMenu id="item_#{cc.attrs.id}" value="#{cc.attrs.value}" panelStyleClass="normalComboS"
+			styleClass="#{cc.attrs.styleClass}" disabled="#{cc.attrs.disabled}">
+			<f:selectItem itemLabel="#{cc.attrs.itemLabel}" itemDisabled="true" />
+			<f:selectItems value="#{cc.attrs.list}" />
+			<p:ajax event="valueChange" process="@form" listener="#{cc.attrs.listener}"
+				update="#{cc.attrs.update}" />
+		</p:selectOneMenu>
+	</div>
+</composite:implementation>
+</html>

@@ -28,6 +28,18 @@
 			<artifactId>kqco_mult_web_back</artifactId>
 			<version>01</version>
 		</dependency>
+		<!-- Entelgy / SPRING 3 / 17112015 / Arreglo espacios -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.7</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava-testlib</artifactId>
+			<version>18.0</version>
+		</dependency>
 
 		<dependency>
 			<groupId>junit</groupId>
@@ -506,8 +518,8 @@
 					</executions>
 					<dependencies>
 						<dependency>
-							<groupId>org.aspectj</groupId>
 							<artifactId>aspectjrt</artifactId>
+							<groupId>org.aspectj</groupId>
 							<version>${aspectj.version}</version>
 						</dependency>
 						<dependency>

@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.bbva.net.front.controller.impl;
 
@@ -21,6 +21,7 @@ import javax.annotation.Resource;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
 
@@ -73,7 +74,7 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
 /**
- * @author User
+ * @author Entelgy
  */
 
 public class CheckBookControllerImpl extends CheckPaginatedController implements CheckBookController {
@@ -107,7 +108,11 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 
 	private List<SelectItem> checkBooks;
 
-	private int rows;
+	// <!-- Entelgy / GP-12834 / 25112015 / INICIO -->
+
+	private CheckbookDto initialCheckBook;
+
+	// <!-- Entelgy / GP-12834 / 25112015 / FIN -->
 
 	@Resource(name = "checkBookFacade")
 	private transient CheckBookFacade checkBookFacade;
@@ -140,6 +145,11 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	public void init() {
 		super.init();
 		LOGGER.info("Initialize CheckBookControllerImpl");
+		// <!-- Entelgy / GP-12834 / 04122015 / INICIO -->
+		if (getSelectedProduct().getSubTypeProd().equals("CC")) {
+			initCheckBookList();
+		}
+		// <!-- Entelgy / GP-12834 / 04122015 / FIN -->
 	}
 
 	public void initCheckBookList() {
@@ -168,8 +178,9 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 		clean();
 	}
 
-	@Override
-	public String clean() {
+	// <!-- Entelgy / GP-12834 / 08092015 / INICIO -->
+
+	public void clean() {
 		setSinceDatestr(new String());
 		setToDatestr(new String());
 		checkNumber = null;
@@ -181,10 +192,10 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 		selectDate = StringUtils.EMPTY;
 		dateRange = null;
 		titleState = null;
-		return "clean";
 	}
 
 	@SuppressWarnings("unchecked")
+	@Override
 	public void nextPage(ActionEvent event) {
 		getRenderComponents().put(RenderAttributes.TITLECHECKS.name(), true);
 		getRenderComponents().put(RenderAttributes.CHECKTABLE.toString(), true);
@@ -193,13 +204,23 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 		final List<CheckDto> cheksByStatus = (List<CheckDto>)CollectionUtils.select(getCurrentList(),
 				new CheckStatusPredicate());
 		this.checkList = cheksByStatus;
+		hasMoreElementsCheck(this.checkList);
 		setFalseMovementsComponents();
 	}
 
+	// <!-- Entelgy / GP-12834 / 08092015 / FIN -->
+
+	// <!-- Entelgy / GP-12834 / 25112015 / INICIO -->
+
+	@Override
 	public void nextPageCheckBook(ActionEvent event) {
-		setRows(getCheckBook().size());
+		getRenderComponents().put(RenderAttributes.TITLECHECKBOOKS.toString(), true);
+		getRenderComponents().put(RenderAttributes.CHECKBOOKTABLE.toString(), true);
 		getRenderComponents().put(RenderAttributes.FOOTERTABLECHECKBOOK.toString(), false);
+		// this.checkBook.addAll(initialCheckBook.subList(5, initialCheckBook.size()));
 	}
+
+	// <!-- Entelgy / GP-12834 / 25112015 / FIN -->
 
 	@Override
 	public void oneSelectDate() {
@@ -266,7 +287,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	}
 
 	@Override
-	public void setCustomDate(final ActionEvent event) {
+	public void setCustomDate(final AjaxBehaviorEvent event) {
 		LOGGER.info(" CheckBookControllerImpl setCustomDate ");
 		getRenderComponents().put(RenderAttributes.FILTERDATE.toString(), true);
 		this.dateRange = new DateRangeDto();
@@ -288,7 +309,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	}
 
 	@Override
-	public void setNumberCheckOrBook(final ActionEvent event) {
+	public void setNumberCheckOrBook(final AjaxBehaviorEvent event) {
 		LOGGER.info(" CheckBookControllerImpl setNumberCheckOrBook ");
 		radioActionState();
 		if (getRenderComponents().get(RenderAttributes.FILTERNUMBERCHECK.toString())) {
@@ -329,12 +350,14 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 		}
 	}
 
+	// <!-- Entelgy / GP-12834 / 08092015 / INICIO -->
 	@Override
-	public void showResults(final ActionEvent event) {
+	public void showResults(final AjaxBehaviorEvent event) {
 		LOGGER.info(" CheckBookControllerImpl showResults ");
 
 		setFalseMovementsComponents();
 		this.checkList = new ArrayList<CheckDto>();
+		this.checkBook = new ArrayList<CheckbookDto>();
 
 		if (getRenderComponents().get(RenderAttributes.FILTERNUMBERCHECK.toString())) {
 			LOGGER.info("CheckBookControllerImpl showResults FILTERNUMBERCHECK, FILTERSTATUS render");
@@ -346,9 +369,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			if (getCheckNumber() != null && !getCheckNumber().isEmpty()) {
 				try {
 					LOGGER.info(" CheckBookControllerImpl showResults filterByCheckBook checkId: " + getCheckNumber());
-
 					this.check = checkBookFacade.getCheckById(getSelectedProduct().getProductId(), getCheckNumber());
-
 				} catch (Exception e) {
 					FacesContext ctx = FacesContext.getCurrentInstance();
 					ctx.addMessage("check", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
@@ -357,7 +378,6 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 
 				if (getTitleState() != null && !getTitleState().equals("Ninguno")) {
 					LOGGER.info(" CheckBookControllerImpl showResults filterByCheckBook, filterByStatus ");
-
 					List<CheckDto> select = new ArrayList<CheckDto>();
 					select.add(check);
 					select = getListCheckById(select);
@@ -366,27 +386,24 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 							checkList.add(value);
 						}
 					}
-
 					hasMoreElementsCheck(this.checkList);
-
 				} else {
 					LOGGER.info(" CheckBookControllerImpl showResults filterByCheckBook ");
 
 					this.checkList.add(check);
 					this.checkList = getListCheckById(checkList);
-
 					hasMoreElementsCheck(this.checkList);
 				}
 
 			} else if (getTitleState() != null && !getTitleState().equals("Ninguno")) {
 				LOGGER.info(" CheckBookControllerImpl showResults filterByStatus ");
-
 				this.dateRange = null;
 				criteriaSearch();
-
 			} else {
 				LOGGER.info(" CheckBookControllerImpl showResults sin filtro cheques");
-
+				EnumPeriodType periodType = EnumPeriodType.valueOfLabel(MessagesHelper.INSTANCE
+						.getString("select.radio.45.days"));
+				dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
 				criteriaSearch();
 			}
 			resetMapResults();
@@ -399,22 +416,22 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			getRenderComponents().put(RenderAttributes.CHECKBOOKTABLE.toString(), true);
 
 			LOGGER.info(" CheckBookControllerImpl showResults filterByNumberCheck ");
-
+			// <!-- Entelgy / GP-12834 / 25112015 / INICIO -->
 			try {
 				LOGGER.info(" CheckBookControllerImpl showResults filterByNumberCheck checkBookNumber: "
 						+ getCheckBookNumber());
-				final List<CheckbookDto> initial = checkBookFacade.getCheckBookByAccountId(getSelectedProduct()
-						.getProductId(), getCheckBookNumber());
-				setRows(5);
-				this.checkBook = getListCheckBookById(initial);
-				hasMoreElementsCheckBook(getCheckBook());
+				String temp = (StringUtils.leftPad(getCheckBookNumber(), 20, "0"));
+				this.initialCheckBook = checkBookFacade.getCheckBookByAccountId(getSelectedProduct().getProductId(),
+						temp);
+				this.checkBook.add(initialCheckBook);
+				this.checkBook = getListCheckBookById(checkBook);
 			} catch (Exception e) {
 				FacesContext ctx = FacesContext.getCurrentInstance();
 				ctx.addMessage("CheckBookById", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
 				this.checkBook = new ArrayList<CheckbookDto>();
 			}
 			resetMapResults();
-
+			// <!-- Entelgy / GP-12834 / 25112015 / FIN -->
 		} else if (getRenderComponents().get(RenderAttributes.FILTERDATECHECK.toString())) {
 			LOGGER.info("CheckBookControllerImpl showResults FILTERDATECHECK render");
 
@@ -429,10 +446,10 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 			}
 			this.titleState = null;
 			criteriaSearch();
-		} else {
-			LOGGER.info("sin filtros");
 		}
 	}
+
+	// <!-- Entelgy / GP-12834 / 08092015 / FIN -->
 
 	@SuppressWarnings("unchecked")
 	public List<CheckbookDto> getListCheckBookById(List<CheckbookDto> initial) {
@@ -757,8 +774,10 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 					tabla.addCell(totalCheck);
 
 					if (checkBook.get(i).getRequestDate() != null) {
-						PdfPCell dateReq = new PdfPCell(new Phrase(checkBook.get(i).getRequestDate().replace("/", "-"),
-								fontNormal));
+						// <!-- Entelgy / GP-12834 / 25112015 / INICIO -->
+						PdfPCell dateReq = new PdfPCell(new Phrase(getdateString(checkBook.get(i).getRequestDate())
+								.replace("/", "-"), fontNormal));
+						// <!-- Entelgy / GP-12834 / 25112015 / FIN -->
 						dateReq.setBorder(Rectangle.BOTTOM);
 						dateReq.setHorizontalAlignment(Element.ALIGN_CENTER);
 						dateReq.setVerticalAlignment(Element.ALIGN_MIDDLE);
@@ -773,8 +792,10 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 					tabla.addCell(lineDiv);
 
 					if (checkBook.get(i).getDeliveryDate() != null) {
-						PdfPCell dateDeli = new PdfPCell(new Phrase(checkBook.get(i).getDeliveryDate()
+						// <!-- Entelgy / GP-12834 / 25112015 / INICIO -->
+						PdfPCell dateDeli = new PdfPCell(new Phrase(getdateString(checkBook.get(i).getDeliveryDate())
 								.replace("/", "-"), fontNormal));
+						// <!-- Entelgy / GP-12834 / 25112015 / FIN -->
 						dateDeli.setBorder(Rectangle.BOTTOM);
 						dateDeli.setHorizontalAlignment(Element.ALIGN_CENTER);
 						dateDeli.setVerticalAlignment(Element.ALIGN_MIDDLE);
@@ -876,7 +897,9 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 		int inicio = 10;
 
 		File archivoXLS = new File(rutaCheckExcel);
-		if (archivoXLS.exists()) archivoXLS.delete();
+		if (archivoXLS.exists()) {
+			archivoXLS.delete();
+		}
 
 		try {
 			archivoXLS.createNewFile();
@@ -895,8 +918,10 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 				InputStream is = url.openStream();
 				ByteArrayOutputStream img_bytes = new ByteArrayOutputStream();
 				int b;
-				while ((b = is.read()) != -1)
+				while ((b = is.read()) != -1) {
 					img_bytes.write(b);
+				}
+
 				is.close();
 
 				int pictureIdx = libro.addPicture(img_bytes.toByteArray(), Workbook.PICTURE_TYPE_PNG);
@@ -1216,7 +1241,9 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 		int inicio = 10;
 
 		File archivoXLS = new File(rutaCheckBookExcel);
-		if (archivoXLS.exists()) archivoXLS.delete();
+		if (archivoXLS.exists()) {
+			archivoXLS.delete();
+		}
 
 		try {
 			archivoXLS.createNewFile();
@@ -1234,8 +1261,10 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 				InputStream is = url.openStream();
 				ByteArrayOutputStream img_bytes = new ByteArrayOutputStream();
 				int b;
-				while ((b = is.read()) != -1)
+				while ((b = is.read()) != -1) {
 					img_bytes.write(b);
+				}
+
 				is.close();
 
 				int pictureIdx = libro.addPicture(img_bytes.toByteArray(), Workbook.PICTURE_TYPE_PNG);
@@ -1412,7 +1441,10 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 						if (c == 4) {
 							celda.setCellStyle(cellStyleDtae);
 							if (this.checkBook.get(f).getRequestDate() != null) {
-								celda.setCellValue(this.checkBook.get(f).getRequestDate().replace("/", "-"));
+								// <!-- Entelgy / GP-12834 / 25112015 / INICIO -->
+								celda.setCellValue(getdateString(this.checkBook.get(f).getRequestDate()).replace("/",
+										"-"));
+								// <!-- Entelgy / GP-12834 / 25112015 / FIN -->
 							} else {
 								celda.setCellValue(" ");
 							}
@@ -1428,7 +1460,10 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 						if (c == 6) {
 							celda.setCellStyle(cellStyleDtae);
 							if (this.checkBook.get(f).getDeliveryDate() != null) {
-								celda.setCellValue(this.checkBook.get(f).getDeliveryDate().replace("/", "-"));
+								// <!-- Entelgy / GP-12834 / 25112015 / INICIO -->
+								celda.setCellValue(getdateString(this.checkBook.get(f).getDeliveryDate()).replace("/",
+										"-"));
+								// <!-- Entelgy / GP-12834 / 25112015 / FIN -->
 							} else {
 								celda.setCellValue(" ");
 							}
@@ -1603,8 +1638,10 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 				if (typeDoc.equals("CheckBook")) {
 					exportDocCheckBookPdf();
 				}
-			} else
+			} else {
 				LOGGER.info("No lo borró");
+			}
+
 		} else {
 			LOGGER.info("crea el archivo " + pdfFile.getAbsolutePath());
 			if (typeDoc.equals("Checks")) {
@@ -1652,7 +1689,10 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 		try {
 			Process p = Runtime.getRuntime().exec(sParts);
 			LOGGER.info(" Proceso input " + p.toString());
-			if (p == null) return false;
+
+			if (p == null) {
+				return false;
+			}
 
 			LOGGER.info("Inicia la terminación de proceso");
 			try {
@@ -1681,21 +1721,28 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 		System.out.println(data);
 	}
 
-	@Override
+	// <!-- Entelgy / GP-12834 / 08092015 / INICIO -->
+
 	public void hasMoreElementsCheck(List<CheckDto> cheksList) {
-		if (cheksList.size() >= 9)
+		if (cheksList.size() >= 9 && super.isHasMorePages()) {
 			getRenderComponents().put(RenderAttributes.FOOTERTABLECHEKS.toString(), true);
-		else
+		} else {
 			getRenderComponents().put(RenderAttributes.FOOTERTABLECHEKS.toString(), false);
+		}
+
 	}
 
-	@Override
-	public void hasMoreElementsCheckBook(List<CheckbookDto> cheksBookList) {
-		if (cheksBookList.size() >= 6)
+	public void hasMoreElementsCheckBook(List<CheckbookDto> cheksBooks) {
+		if (cheksBooks.size() >= 5) {
+			this.checkBook.addAll(cheksBooks.subList(0, 5));
 			getRenderComponents().put(RenderAttributes.FOOTERTABLECHECKBOOK.toString(), true);
-		else
+		} else {
+			this.checkBook.addAll(cheksBooks);
 			getRenderComponents().put(RenderAttributes.FOOTERTABLECHECKBOOK.toString(), false);
+		}
 	}
+
+	// <!-- Entelgy / GP-12834 / 08092015 / FIN -->
 
 	public void setFalseMovementsComponents() {
 		getRenderComponents().put(RenderAttributes.TITLEMOVES.name(), false);
@@ -2043,20 +2090,6 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	}
 
 	/**
-	 * @return the rows
-	 */
-	public int getRows() {
-		return rows;
-	}
-
-	/**
-	 * @param rows the rows to set
-	 */
-	public void setRows(int rows) {
-		this.rows = rows;
-	}
-
-	/**
 	 * @return the leftTitle2
 	 */
 	public String getLeftTitle2() {
@@ -2161,4 +2194,33 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	public void setExportCheckBookExcel(StreamedContent exportExcel) {
 		this.exportCheckBookExcel = exportExcel;
 	}
+
+	// <!-- Entelgy / GP-12834 / 25112015 / INICIO -->
+	/**
+	 * @return the initialCheckBook
+	 */
+	public CheckbookDto getInitialCheckBook() {
+		return initialCheckBook;
+	}
+
+	/**
+	 * @param initialCheckBook the initialCheckBook to set
+	 */
+	public void setInitialCheckBook(CheckbookDto initialCheckBook) {
+		this.initialCheckBook = initialCheckBook;
+	}
+
+	// <!-- Entelgy / GP-12834 / 25112015 / FIN -->
+
+	// <!-- Entelgy / GP-12834 / 17112015 / INICIO -->
+
+	public HeaderController getHeaderController() {
+		return headerController;
+	}
+
+	public void setHeaderController(HeaderController headerController) {
+		this.headerController = headerController;
+	}
+
+	// <!-- Entelgy / GP-12834 / 17112015 / FIN -->
 }

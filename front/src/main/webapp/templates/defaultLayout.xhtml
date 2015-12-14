@@ -18,6 +18,9 @@
 		document.ready = function() {
 			PF('statusDialog').show()
 		};
+	    $(function(){
+	        $('form').attr("autocomplete", "off");
+	    });
 	</script>
 	<h:form>
 		<p:remoteCommand name="deleteDownload" actionListener="#{headerController.deleteLastDownload()}" />
@@ -32,7 +35,9 @@
 			<p:idleMonitor timeout="#{msg['time.session']*1000*60}">
 				<p:ajax event="idle" listener="#{headerController.onIdle}" />
 			</p:idleMonitor>
-			<p:growl showDetail="true" showSummary="true" sticky="true" autoUpdate="true" />
+			<!-- Entelgy / SPRING 3 / 26102015 / INICIO -->
+			<p:growl id="errorServ" showDetail="true" showSummary="true" sticky="true" autoUpdate="true" />
+			<!-- Entelgy / SPRING 3 / 26102015 / FIN -->
 			<p:dialog id="momentPlease" widgetVar="statusDialog" modal="true" draggable="false"
 				styleClass="nonClose momentP" resizable="false" closable="false" closeOnEscape="false">
 				<img src="../assets/img/loader.gif" />

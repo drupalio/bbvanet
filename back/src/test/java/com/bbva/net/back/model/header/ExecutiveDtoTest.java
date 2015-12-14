@@ -18,18 +18,18 @@ public class ExecutiveDtoTest extends AbstractBbvaDTOTest<ExecutiveDto> {
 	@Override
 	@Test
 	public void checkEqualsMethod() {
-		OfficeDto office = new OfficeDto("Oficina", "cll 119 A32 -a 27");
+		OfficeDto office = new OfficeDto("1234", "Oficina", "cll 119 A32 -a 27", "Bogota");
 		this.executive = new ExecutiveDto("Pepito", office, "6803126", "pepito@bbva.com.co", "latitud");
 		ExecutiveDto executive = new ExecutiveDto("Pepito", office, "6803126", "pepito@bbva.com.co", "latitud");
 
 		Assert.assertFalse(this.executive.equals(null));
 
-		// Assert.assertTrue(this.executive.equals(executive));
+		Assert.assertTrue(this.executive.equals(executive));
 
 		executive.setName("Beto");
 		Assert.assertFalse(this.executive.equals(executive));
 
-		OfficeDto offices = new OfficeDto("Oficina", "cll 119 A32 -a 27");
+		OfficeDto offices = new OfficeDto("1234", "Oficina", "cll 119 A32 -a 27", "Bogota");
 		executive.setOffice(offices);
 		Assert.assertFalse(this.executive.equals(executive));
 

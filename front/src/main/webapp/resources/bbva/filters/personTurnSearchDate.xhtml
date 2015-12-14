@@ -23,15 +23,15 @@
 				filterTitle2="#{turnsOperationController.toText}"
 				filterMessage="#{turnsOperationController.sinceDatestr}"
 				filterMessage2="#{turnsOperationController.toDatestr}">
-				<bbvaSearch:customSearchFilter id="customDate" showQuota="true"
-					showMovements="false" showChecks="false" identify="turnsCalendar"
+				<bbvaSearch:customSearchFilter id="customDate" showQuota="false"
+					showMovements="false" showChecks="false" showTurns="true"
+					identify="turnsCalendar" listenerDate="#{turnsOperationController}"
 					value="#{turnsOperationController.selectDate}"
 					valueDateSince="#{turnsOperationController.sinceDate}"
 					valueDateTo="#{turnsOperationController.toDate}"
 					disabledButton="#{turnsOperationController.renderComponents['BUTTONDATE']}"
 					disabledCalendar="#{turnsOperationController.renderComponents['CALENDAR']}"
-					actionListenerDate="#{turnsOperationController.setCustomDate}"
-					listenerDate="#{turnsOperationController}" />
+					actionListenerDate="#{turnsOperationController.setCustomDate}" />
 			</bbvaSearch:customSearchList>
 			<bbvaSearch:searchButtonList show="true" showQuota="true"
 				showMovements="false"

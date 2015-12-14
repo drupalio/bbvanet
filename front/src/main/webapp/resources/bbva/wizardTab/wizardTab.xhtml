@@ -22,11 +22,13 @@
 	
 </composite:interface>
 <composite:implementation>
+	<!-- Entelgy / GP13137 / 03112015 / INICIO -->
 	<p:dialog id="dialogW" position="center center"
 		widgetVar="#{cc.attrs.widgetVarDialog}" modal="true" resizable="false"
 		styleClass="mistakeMessage fontBlue" header="#{cc.attrs.title}"
 		closeOnEscape="false">
-		<p:ajax event="close" resetValues="true" update="item_#{cc.attrs.formWizard}" />
+		<p:ajax event="close" resetValues="true" update="item_#{cc.attrs.formWizard}" onstart="PF('#{cc.attrs.widgetVarDialog}').hide();"
+			oncomplete="PF('#{cc.attrs.widgetVar}').loadStep('confim', true)"/>
 		<h:form id="item_#{cc.attrs.formWizard}">
 			<p:wizard id="contentW" styleClass="wizardR" showNavBar="false"
 				widgetVar="#{cc.attrs.widgetVar}">
@@ -58,18 +60,19 @@
 								<p:outputLabel styleClass="col-xs-12 col-md-12 fontLabelT"
 									style="text-align: left !important; padding: 18px !important;"
 									value="#{cc.attrs.textOperations}" />
-								<div class="col-xs-12 col-md-12" style="padding: 7px !important;">
+								<div class="col-xs-12 col-md-12"
+									style="padding: 7px !important;">
 									<div class="col-xs-6 col-md-6 input-control">
-										<p:inputText value="#{favoriteOperationsController.operPass}" type="password" onkeyup="enableDisable(this)" 
+										<p:inputText value="#{favoriteOperationsController.operPass}"
+											type="password" onkeyup="enableDisable(this)"
 											styleClass="form-control" maxlength="8" />
 									</div>
 									<div class="col-xs-6 col-md-5" style="padding: 0px !important;">
-										<p:commandButton styleClass="closeNextbtn operKey buttonDisabled"
+										<p:commandButton
+											styleClass="closeNextbtn operKey buttonDisabled"
 											value="Confirmar" actionListener="#{cc.attrs.controller}"
-											oncomplete="PF('#{cc.attrs.widgetVar}').loadStep('check', true)"
-											style="padding: 2px 8px !important;">
-											<p:ajax event="click" process="@this" update=":rightBodyPanel:operationsPanel:modifyOF:item_Edit"></p:ajax>
-											</p:commandButton>
+											update="@form #{cc.attrs.update}" style="padding: 2px 8px !important;"
+											oncomplete="PF('#{cc.attrs.widgetVar}').loadStep('check', true); $('#buttonEditfAV').click();"/>
 									</div>
 								</div>
 							</div>
@@ -83,7 +86,7 @@
 					</p:panel>
 				</p:tab>
 				<p:tab id="check" titleStyle="display: none">
-<!-- 					Mensaje ok -->				
+					<!-- 					Mensaje ok -->
 					<p:panel id="checkOK" styleClass="panelText status #{favoriteOperationsController.status ? '':'nonee'}" style="margin: 0px 30px;">
 						<h:panelGroup class="col-xs-12">
 							<div class="operation-success">
@@ -91,8 +94,8 @@
 							</div>
 						</h:panelGroup>
 					</p:panel>
-<!-- 					Mensaje de error -->
-					<p:panel id="checkNoOK" styleClass="panelText status #{favoriteOperationsController.status ? 'nonee':''}" style="margin: 0px 30px;">
+					<!-- 					Mensaje de error -->
+					<p:panel id="checkNoOK" styleClass="panelText status #{favoriteOperationsController.status ? 'nonee':''}" style="margin: 0px 30px;">	
 						<h:panelGroup class="col-xs-12">
 							<div class="operation-failed">
 								<span class="failed-icon fontBlueSmall">#{cc.attrs.textNoCheck}</span>
@@ -109,5 +112,6 @@
 			</p:wizard>
 		</h:form>
 	</p:dialog>
+	<!-- Entelgy / GP13137 / 03112015 / FIN -->
 </composite:implementation>
 </html>

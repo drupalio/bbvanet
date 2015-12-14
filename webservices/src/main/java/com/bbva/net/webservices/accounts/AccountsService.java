@@ -21,11 +21,15 @@ import com.bbva.czic.dto.net.MonthlyBalances;
 @Path("/V01")
 public interface AccountsService {
 
-	@GET
-	@Produces("application/json")
-	@Path("/{accountId}/checkbooks/{checkbookId}")
-	List<Checkbook> getCheckbook(@PathParam("checkbookId") String checkbookId, @PathParam("accountId") String accountId);
-
+	/*
+	 * GP12834 Cheques y chequeras - Entelgy - inicio
+	 */
+    // <!-- Entelgy / GP-12834 / 25112015 / INICIO -->
+    @GET
+    @Produces("application/json")
+    @Path("/{accountId}/checkbooks/{checkbookId}")
+    Checkbook getCheckbook(@PathParam("checkbookId") String checkbookId, @PathParam("accountId") String accountId);
+    
 	@GET
 	@Produces("application/json")
 	@Path("/{accountId}/checks/{checkId}")
@@ -39,18 +43,24 @@ public interface AccountsService {
 	@GET
 	@Produces("application/json")
 	@Path("/{id}/listChecks")
-	List<Check> listCheck(@PathParam("id") String id, @QueryParam("$filter") @DefaultValue("null") String $filter,
-			@QueryParam("paginationKey") @DefaultValue("null") Integer paginationKey,
-			@QueryParam("pageSize") @DefaultValue("null") Integer pageSize);
+    List<Check> listCheck(@PathParam("id") String id, @QueryParam("$filter") String $filter, 
+			@QueryParam("paginationKey") Integer paginationKey,
+            @QueryParam("pageSize") Integer pageSize);
+
+	/*
+	 * GP12834 Cheques y chequeras - Entelgy - fin
+	 */
 
 	@GET
 	@Produces("application/json")
-	@Path("/{id}/monthlyBalances")
-	List<MonthlyBalances> getAccountMonthlyBalance(@PathParam("id") String id,
+    @Path("/{accountId}/monthlyBalances")
+    List<MonthlyBalances> getAccountMonthlyBalance(@PathParam("accountId") String accountId,
 			@QueryParam("$filter") @DefaultValue("null") String $filter,
 			@QueryParam("$fields") @DefaultValue("null") String $fields,
 			@QueryParam("$expands") @DefaultValue("null") String $expands,
 			@QueryParam("$sort") @DefaultValue("null") String $sort);
+
+    // <!-- Entelgy / GP-12834 / 25112015 / FIN -->
 
 	@GET
 	@Produces("application/json")

@@ -11,12 +11,14 @@
 	<composite:attribute name="msgInfo" type="String" />
 </composite:interface>
 <composite:implementation>
+	<!-- Entelgy / GP13137 / 03112015 / INICIO -->
 	<header id="headerFavo">
 		<span class="icon-star"></span>
 		<h1>#{cc.attrs.title}</h1>
 		<span data-original-title="#{cc.attrs.msgInfo}" data-toggle="tooltip" title=""
-			class="icon-info-blue"> </span> <span class="edit-gray"
+			class="icon-info-blue"> </span> <span id="buttonEditfAV" class="edit-gray"
 			onclick="buttonVisi(this)"></span>
 	</header>
+	<!-- Entelgy / GP13137 / 03112015 / FIN -->	
 </composite:implementation>
 </html>

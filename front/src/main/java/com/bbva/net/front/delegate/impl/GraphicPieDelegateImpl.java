@@ -105,7 +105,7 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 	public PieConfigUI getAssetPieConfig(final List<ProductDto> products) {
 
 		final PieConfigUI assetPie = new PieConfigUI();
-		final DecimalFormat myFormatter = new DecimalFormat(ResourceBundle.getBundle("i18n_es").getString(
+		final DecimalFormat myFormatter = new DecimalFormat(ResourceBundle.getBundle("i18n").getString(
 				"number.format.decimals"));
 		final String totalAssets = myFormatter.format(productService.getTotalAssets(products).getAmount());
 
@@ -142,7 +142,7 @@ public class GraphicPieDelegateImpl implements GraphicPieDelegate {
 	public PieConfigUI getFinanciationPieConfig(final List<ProductDto> products) {
 
 		final PieConfigUI financiationPie = new PieConfigUI();
-		final DecimalFormat myFormatter = new DecimalFormat(ResourceBundle.getBundle("i18n_es").getString(
+		final DecimalFormat myFormatter = new DecimalFormat(ResourceBundle.getBundle("i18n").getString(
 				"number.format.decimals"));
 		final String totalFinancing = myFormatter.format(productService.getTotalFinanciacion(products).getAmount());
 		financiationPie.setHeaderCenter(" COP ");

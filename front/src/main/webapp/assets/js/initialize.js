@@ -2,16 +2,18 @@
 
 var orquidea = orquidea || {};
 
-orquidea.bootstrap = function () {
-	$('select').selectpicker({dropupAuto: false});
+orquidea.bootstrap = function() {
+	$('select').selectpicker({
+		dropupAuto : false
+	});
 	$('*[data-toggle=tooltip]').tooltip();
 
 	$('.carousel').carousel({
-        interval: 5000
-    });
+		interval : 5000
+	});
 };
 
-orquidea.init = function () {
+orquidea.init = function() {
 	orquidea.bootstrap();
 
 	orquidea.visibility.dropdown.mobile();
@@ -24,118 +26,97 @@ orquidea.init = function () {
 	orquidea.visibility.tab.dropdown();
 	orquidea.visibility.tab.dropdown.content();
 	orquidea.visibility.ticket();
-    orquidea.visibility.formtab();
-    orquidea.visibility.options.selected();
-
-	orquidea.validate.login();
-	orquidea.validate.netsecure();
-	orquidea.validate.token();
-
-	orquidea.wizzard.recoverykey();
-	orquidea.wizzard.recoveryuser();
-	orquidea.wizzard.registerclient();
+	orquidea.visibility.formtab();
+	orquidea.visibility.options.selected();
 
 	orquidea.resized.menu();
 
 	orquidea.panel.balance.textChange();
 
-    orquidea.validate.radios();
+	orquidea.validate.radios();
 
-    orquidea.checkquiero.date.filter();
-    orquidea.checkquiero.balance.customSearch();
-    orquidea.checkquiero.incomeAndExpenses.customSearch();
-    orquidea.checkquiero.movements.customSearch();
-
-    orquidea.changeactions.prymaryBtn();
-    orquidea.changeactions.disableaction();
-    orquidea.changeactions.click();
-    orquidea.changeactions.windowonrow();
+	orquidea.changeactions.prymaryBtn();
+	orquidea.changeactions.disableaction();
 };
 
-$(window).on('load', function () {
-    orquidea.init();
+$(window).on('load', function() {
+	orquidea.init();
 
-    // reset check books
-    $('#search-num-input').attr('disabled', true);
-    $('#talon-picker').prop('disabled',true);
-    $('#talon-picker').selectpicker('refresh');
-    $('#talon-picker').val(1);
-    $('.bootstrap-select .filter-option').text('Seleccionar');
+	// reset check books
+	$('#search-num-input').attr('disabled', true);
+	$('#talon-picker').prop('disabled', true);
+	$('#talon-picker').selectpicker('refresh');
+	$('#talon-picker').val(1);
+	$('.bootstrap-select .filter-option').text('Seleccionar');
 
-    $('#search-num').on('click',function() {
-    	$('*[data-id="select-search-book"]').prop('disabled', true);
-    	$('#select-search-num').prop('disabled', false);
-    	$('*[data-id="cheque-num-input"]').prop('disabled', false);
-    });
+	$('#search-num').on('click', function() {
+		$('*[data-id="select-search-book"]').prop('disabled', true);
+		$('#select-search-num').prop('disabled', false);
+		$('*[data-id="cheque-num-input"]').prop('disabled', false);
+	});
 
-    $('#search-book').on('click',function() {
-    	$('#select-search-num').prop('disabled', true);
-    	$('*[data-id="cheque-num-input"]').prop('disabled', true);
-    	$('*[data-id="select-search-book"]').prop('disabled', false);
-    });
+	$('#search-book').on('click', function() {
+		$('#select-search-num').prop('disabled', true);
+		$('*[data-id="cheque-num-input"]').prop('disabled', true);
+		$('*[data-id="select-search-book"]').prop('disabled', false);
+	});
 
-
-	$('.button-edit').on('click', function(){
+	$('.button-edit').on('click', function() {
 		var valor = $('.text-input-email').text();
 		$('#input-value').val(valor);
 		$('.show-email').addClass('hidden');
-    	$('#btn-update').addClass('hidden');
+		$('#btn-update').addClass('hidden');
 		$('#btn-add').prop('disabled', false);
 		return false;
 	});
 
-	$('.button-delete').on('click', function(){
+	$('.button-delete').on('click', function() {
 		$('.show-email').addClass('hidden');
-    	$('#btn-update').addClass('hidden');
+		$('#btn-update').addClass('hidden');
 		$('#btn-add').prop('disabled', true);
 		return false;
 	});
 
-    $('#btn-add').on('click', function(){
-            var form = $("#email-register");
-            form.validate();
-            var isValid = form.valid();
+	$('#btn-add').on('click', function() {
+		var form = $("#email-register");
+		form.validate();
+		var isValid = form.valid();
 
-            if (isValid) {
-            	var valor = $('#input-value').val();
-            	$('.text-input-email').empty().append(valor);
-            	$('#input-value').val('');
-            	$(this).prop('disabled', true);
-            	$('.show-email').removeClass('hidden');
-            	$('#btn-update').removeClass('hidden');
-            	return false;
-            } 
-    });
+		if (isValid) {
+			var valor = $('#input-value').val();
+			$('.text-input-email').empty().append(valor);
+			$('#input-value').val('');
+			$(this).prop('disabled', true);
+			$('.show-email').removeClass('hidden');
+			$('#btn-update').removeClass('hidden');
+			return false;
+		}
+	});
 
-    $('#edit').on('click', function(){
- //If there is no validation error
-                $('.show-email').removeClass('hidden');
-            $('#btn-add').prop('disabled', false);
+	$('#edit').on('click', function() {
+		// If there is no validation error
+		$('.show-email').removeClass('hidden');
+		$('#btn-add').prop('disabled', false);
 
+		return false;
 
-        return false;
-
-
-
-
-    });
+	});
 });
 
-$.validator.addMethod("mail",function(value,element,message) {
-        return this.optional(element) || /^[A-Za-z0-9._%+-]+@([A-Za-z0-9-]+\.)+([A-Za-z0-9]{2,4})$/.test(value);
-    },  "Dirección de correo inválida");
+$.validator.addMethod("mail", function(value, element, message) {
+	return this.optional(element) || /^[A-Za-z0-9._%+-]+@([A-Za-z0-9-]+\.)+([A-Za-z0-9]{2,4})$/.test(value);
+}, "Dirección de correo inválida");
 $('#email-register').validate({
-    rules:{
-        emailCustomize: {
-                    required: true,
-                    /*true: function(element){
-                        var email = /^[a-zA-Z0-9\._-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,4}$/;
-                        var value = $(element).val();
-                        var ret = email.test(value);
-                        return ret;
-                    }*/
-                    //email: true
-                    mail:true
-                }
-    }
+	rules : {
+		emailCustomize : {
+			required : true,
+			/*
+			 * true: function(element){ var email =
+			 * /^[a-zA-Z0-9\._-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,4}$/; var value =
+			 * $(element).val(); var ret = email.test(value); return ret; }
+			 */
+			// email: true
+			mail : true
+		}
+	}
 });

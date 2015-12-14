@@ -26,93 +26,84 @@
 						value="#{cc.attrs.listAccounts}" var="moves" selectionMode="single"
 						rowKey="#{moves.movementId}" rendered="#{renderComponents['MOVEMENTSTABLE']}"
 						emptyMessage="#{msg['text.empty.table']}">
-						<p:ajax event="rowSelect" oncomplete="clickMove();"
+						<p:ajax event="rowSelect" 
+							oncomplete="clickMove(); PF('statusDialog').hide();"
+							onstart="PF('statusDialog').show();"
 							listener="#{movementsCriteriaController.onMovementSelected}" />
 						<p:column style="z-index: -1 !important; display:none;">
 							<p:rowToggler rendered="true" />
 						</p:column>
 						<p:column headerText="#{msg['text.detailMove.date']}" styleClass="styleColum desc w34"
 							sortBy="#{moves.movementDate}">
-							<h:outputText styleClass="brand styleLeft" value="#{moves.movementDate}">
+							<h:outputText styleClass="brand styleLeft height18" value="#{moves.movementDate}">
 								<f:convertDateTime pattern="dd/MM/yyyy" />
 							</h:outputText>
 						</p:column>
 						<p:column headerText="#{msg['text.detailMove.concep']}" styleClass="styleColum desc w34"
 							sortBy="#{moves.movementConcept}">
-							<h:outputText style="font-weight: bold;" class="text styleLeft"
+							<h:outputText style="font-weight: bold;" class="text styleLeft height18"
 								value="#{moves.movementConcept}" />
-							<h:outputText class="text styleLeft" value="#{moves.movementDetailDto.operationDescription}" />
+							<h:outputText class="text styleLeft height18"
+								value="#{moves.movementDetailDto.operationDescription}" />
 						</p:column>
 						<p:column class="head" headerText="#{msg['text.detailMove.value']}"
 							styleClass="styleColum desc w34" sortBy="#{moves.movementValue}">
-							<h:outputText class="currency styleCurrent" value="#{moves.movementValue}" />
+							<h:outputText class="currency styleCurrent height18" value="#{moves.movementValue}" />
 						</p:column>
 						<p:column class="head" styleClass="styleColum desc w34" sortBy="#{moves.totalBalance}"
 							headerText="#{msg['text.detailMove.balance']}" colspan="2">
-							<h:outputText class="currency styleCurrent" value="#{moves.totalBalance}" />
+							<h:outputText class="currency styleCurrent height18" value="#{moves.totalBalance}" />
 						</p:column>
-						<p:column styleClass="smart-view">
-							<div class="left hidden-lg">
+						<p:column styleClass="smart-view" style="padding-left: 2px !important;">
+							<div class="left hidden-lg" style="width: 50% ! important;">
 								<h:outputText class="text styleLeft" value="#{moves.movementConcept}" />
-								<h:outputText styleClass="brand styleLeft" value="#{moves.operationDate}">
+								<h:outputText styleClass="brand styleLeft height18" value="#{moves.operationDate}">
 									<f:convertDateTime pattern="dd/MM/yyyy" />
 								</h:outputText>
 							</div>
-							<div class="right hidden-lg" style="width: 35% !important;">
-								<h:outputText class="currency styleCurrent" value="#{moves.movementValue}" />
-								<h:outputText class="currency styleCurrent" value="#{moves.totalBalance}" />
+							<div class="right hidden-lg" style="width: 50% ! important; float: left ! important;">
+								<h:outputText class="currency styleCurrent height18" value="#{moves.movementValue}" />
+								<h:outputText class="currency styleCurrent height18" value="#{moves.totalBalance}" />
 							</div>
 						</p:column>
 						<p:rowExpansion styleClass="detail-row">
 							<bbvaDetailMotion:tableContent controller="#{movementsCriteriaController}" />
 						</p:rowExpansion>
 					</p:dataTable>
-
 					<!--tabla realizada para imprimir -->
-
-
-					<p:dataTable id="detalMovImprimir" 
-						styleClass="nonee"
-						value="#{cc.attrs.listAccounts}" var="movesAux"
-						emptyMessage="#{msg['text.empty.table']}">
-						<p:column headerText="#{msg['text.detailMove.date']}"
-							width="25%" sortBy="#{movesAux.movementDate}">
-							<h:outputText
-								value="#{movesAux.movementDate}">
+					<p:dataTable id="detalMovImprimir" styleClass="nonee" value="#{cc.attrs.listAccounts}"
+						var="movesAux" emptyMessage="#{msg['text.empty.table']}">
+						<p:column headerText="#{msg['text.detailMove.date']}" width="25%"
+							sortBy="#{movesAux.movementDate}">
+							<h:outputText value="#{movesAux.movementDate}">
 								<f:convertDateTime pattern="dd/MM/yyyy" />
 							</h:outputText>
 						</p:column>
-						<p:column headerText="#{msg['text.detailMove.concep']}"
-							width="25%"
+						<p:column headerText="#{msg['text.detailMove.concep']}" width="25%"
 							sortBy="#{movesAux.movementConcept}">
-							<h:outputText 
-								value="#{movesAux.movementConcept}" />
-							<h:outputText 
-								value="#{movesAux.movementDetailDto.operationDescription}" />
+							<h:outputText value="#{movesAux.movementConcept}" />
+							<h:outputText value="#{movesAux.movementDetailDto.operationDescription}" />
 						</p:column>
-						<p:column 
-							headerText="#{msg['text.detailMove.value']}"
-							width="25%" sortBy="#{movesAux.movementValue}">
-							<h:outputText 
-								value="#{movesAux.movementValue}" />
+						<p:column headerText="#{msg['text.detailMove.value']}" width="25%"
+							sortBy="#{movesAux.movementValue}">
+							<h:outputText value="#{movesAux.movementValue}" />
 						</p:column>
-						<p:column width="25%"
-							sortBy="#{movesAux.totalBalance}"
+						<p:column width="25%" sortBy="#{movesAux.totalBalance}"
 							headerText="#{msg['text.detailMove.balance']}" colspan="2">
-							<h:outputText
-								value="#{movesAux.totalBalance}" />
+							<h:outputText value="#{movesAux.totalBalance}" />
 						</p:column>
 					</p:dataTable>
-
 				</div>
 				<footer class="detail-table-footer">
+					<!-- Entelgy / SPRING 3 / 08092015 / INICIO -->
 					<p:commandButton id="moreMovs" value="#{msg['text.detailMove.footer']}"
 						rendered="#{renderComponents['FOOTERTABLEMOVEMENT'] and renderComponents['MOVEMENTSTABLE']}"
-						styleClass="btn btn-more-results seeMore #{cc.attrs.listAccounts.size()==0 ? 'nonee' : ''}"
+						styleClass="btn btn-more-results #{cc.attrs.listAccounts.size()==0 ? 'nonee' : ''}"
 						actionListener="#{movementsCriteriaController.nextPage}" ajax="true"
 						update=":detailAccounts:tableMovements:formMovesDetail:movAccount">
-						<p:ajax onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+						<p:ajax onstart="PF('statusDialog').show()" oncomplete="PF('statusDialog').hide()" />
 					</p:commandButton>
+					<!-- Entelgy / SPRING 3 / 08092015 / FIN -->
 				</footer>
 			</article>
 		</p:outputPanel>

@@ -13,7 +13,7 @@
 		<footer class="body-footer">
 			<div class="container">
 				<bbva:footerMenu />
-				<bbva:footerLogged />
+				<bbva:footerLogged display="#{headerController.cliente.segment=='N' || headerController.cliente.segment=='' || headerController.cliente.segment=='null'? 'nonee':''}"/>
 			</div>
 			<bbva:footerBottom /> 
 		</footer>

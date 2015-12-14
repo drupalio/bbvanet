@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.bbva.net.back.facade.impl;
 
@@ -27,70 +27,74 @@ import com.bbva.net.webservices.accounts.AccountsService;
 
 @Facade(value = "checkBookFacade")
 public class CheckBookFacadeImpl extends AbstractBbvaFacade implements CheckBookFacade {
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Resource(name = "accountsService")
+    private AccountsService accountService;
+    
+    @Resource(name = "checkBookMapper")
+    private CheckBookMapper checkBookMapper;
+    
+    @Resource(name = "fiqlService")
+    private FiqlService fiqlService;
+    
+    @Value("${fiql.checkbook.date}")
+    private String DATE;
+    
+    @Value("${fiql.accountMovement.status}")
+    private String STATUS;
+    
+    @Override
+    public CheckDto getCheckById(final String accountId, final String checkId) {
+        final Check check = this.accountService.getCheck(accountId, checkId);
+        return checkBookMapper.mapCheck(check);
+    }
+    
+    @Override
+    public List<CheckDto> getCheckByStatusOrDate(String accountId, DateRangeDto dateRange, String status,
+            Integer paginationKey, Integer pageSize) {
+        String filter = dateRange == null ? fiqlService.getFiqlQueryByStatus(status, STATUS) : fiqlService
+                .getFiqlQueryByDateRange(dateRange, DATE, DATE);
+        final List<Check> response = this.accountService.listCheck(accountId, filter, paginationKey, pageSize);
+        return checkBookMapper.mapCheckList(response);
+    }
+    
+    // <!-- Entelgy / GP-12834 / 25112015 / INICIO -->
 
-	private static final long serialVersionUID = 1L;
+    @Override
+    public CheckbookDto getCheckBookByAccountId(String accountId, String checkBookId) {
+        final Checkbook response = this.accountService.getCheckbook(accountId, checkBookId);
+        return checkBookMapper.mapCheckBookDto(response);
+    }
 
-	@Resource(name = "accountsService")
-	private AccountsService accountService;
-
-	@Resource(name = "checkBookMapper")
-	private CheckBookMapper checkBookMapper;
-
-	@Resource(name = "fiqlService")
-	private FiqlService fiqlService;
-
-	@Value("${fiql.checkbook.date}")
-	private String DATE;
-
-	@Value("${fiql.accountMovement.status}")
-	private String STATUS;
-
-	@Override
-	public CheckDto getCheckById(final String accountId, final String checkId) {
-		final Check check = this.accountService.getCheck(accountId, checkId);
-		return checkBookMapper.mapCheck(check);
-	}
-
-	@Override
-	public List<CheckDto> getCheckByStatusOrDate(String accountId, DateRangeDto dateRange, String status,
-			Integer paginationKey, Integer pageSize) {
-		String filter = dateRange == null ? fiqlService.getFiqlQueryByStatus(status, STATUS) : fiqlService
-				.getFiqlQueryByDateRange(dateRange, DATE, DATE);
-		final List<Check> response = this.accountService.listCheck(accountId, filter, paginationKey, pageSize);
-		return checkBookMapper.mapCheckList(response);
-	}
-
-	@Override
-	public List<CheckbookDto> getCheckBookByAccountId(String accountId, String checkBookId) {
-		final List<Checkbook> response = this.accountService.getCheckbook(accountId, checkBookId);
-		return checkBookMapper.mapCheckBookList(response);
-	}
-
-	@Override
-	// TODO cambiar x accountId
-	public List<CheckbookDto> getCheckBooksById(String accountId) {
-		final List<Checkbook> response = this.accountService.getAccount(accountId).getCheckbooks();
-		return checkBookMapper.mapCheckBookList(response);
-	}
-
-	/**
-	 * @param accountService the accountService to set
-	 */
-	public void setAccountService(AccountsService accountService) {
-		this.accountService = accountService;
-	}
-
-	/**
-	 * @param checkBookMapper the checkBookMapper to set
-	 */
-	public void setCheckBookMapper(CheckBookMapper checkBookMapper) {
-		this.checkBookMapper = checkBookMapper;
-	}
-
-	/**
-	 * @param fiqlService the fiqlService to set
-	 */
-	public void setFiqlService(FiqlService fiqlService) {
-		this.fiqlService = fiqlService;
-	}
+    // <!-- Entelgy / GP-12834 / 25112015 / FIN -->
+    
+    @Override
+    // TODO cambiar x accountId
+    public List<CheckbookDto> getCheckBooksById(String accountId) {
+        final List<Checkbook> response = this.accountService.getAccount(accountId).getCheckbooks();
+        return checkBookMapper.mapCheckBookList(response);
+    }
+    
+    /**
+     * @param accountService the accountService to set
+     */
+    public void setAccountService(AccountsService accountService) {
+        this.accountService = accountService;
+    }
+    
+    /**
+     * @param checkBookMapper the checkBookMapper to set
+     */
+    public void setCheckBookMapper(CheckBookMapper checkBookMapper) {
+        this.checkBookMapper = checkBookMapper;
+    }
+    
+    /**
+     * @param fiqlService the fiqlService to set
+     */
+    public void setFiqlService(FiqlService fiqlService) {
+        this.fiqlService = fiqlService;
+    }
 }

@@ -10,8 +10,7 @@ import com.bbva.net.back.core.stereotype.Facade;
 import com.bbva.net.back.facade.OperationPasswordFacade;
 
 @Facade(value = "operationPasswordFacade")
-public class OperationPasswordFacadeImpl extends AbstractBbvaFacade implements
-		OperationPasswordFacade {
+public class OperationPasswordFacadeImpl extends AbstractBbvaFacade implements OperationPasswordFacade {
 
 	/**
 	 * 
@@ -30,18 +29,11 @@ public class OperationPasswordFacadeImpl extends AbstractBbvaFacade implements
 	@Autowired
 	private ServicioModuloOperacionesImpl servicioModuloOperaciones;
 
+	// <!-- Entelgy / SPRINT 3 / 06112015 / INICIO -->
 	@Override
 	public boolean validateOperation(String user, String operationPass) {
 		LOGGER.info("Se Valida clave de operaciones en OperationPasswordFacadeImpl, Se prepara para llamar al metodo checkoperpwdUserAPI de ClienteOperaciones con datos User: "
-				+ user
-				+ " ClaveOperaciones: "
-				+ operationPass
-				+ " Pais "
-				+ PAIS
-				+ " Banco "
-				+ BANCO
-				+ " intentos: "
-				+ NUMBERATTMPTS);
+				+ user + " ClaveOperaciones: xxxxxxxx Pais " + PAIS + " Banco " + BANCO + " intentos: " + NUMBERATTMPTS);
 		try {
 			servicioModuloOperaciones.checkoperpwdUserAPI(user, operationPass,
 					PAIS, BANCO, Integer.parseInt(NUMBERATTMPTS));
@@ -50,5 +42,5 @@ public class OperationPasswordFacadeImpl extends AbstractBbvaFacade implements
 			return false;
 		}
 	}
-
+	// <!-- Entelgy / SPRINT 3 / 06112015 / FIN -->
 }

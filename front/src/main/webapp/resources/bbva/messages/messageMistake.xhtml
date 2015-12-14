@@ -24,14 +24,14 @@
 				</div>
 				<div class="error-text-container"
 					style="text-align: center !important;">
-					<span class="ui-growl-title">#{msg['text.sessionFinished']}</span>
+					<span class="ui-growl-title">#{cc.attrs.title}</span>
 					<p>#{msg['text.pageInit']}</p>
 				</div>
 			</div>
 			<p:button value="#{msg['button.acept']}"
 				style="margin-bottom: 5px !important;"
 				styleClass="stable-button medium"
-				href="https://www.bbvanet.com.co/bbvaco/kqpu_co_web/page/init" />
+				href="https://#{msg['ruta.publica']}" />
 		</div>
 	</bbvaMessage:mistakeContent>
 

@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.bbva.net.back.mapper;
 
@@ -14,23 +14,32 @@ import com.bbva.net.back.model.checkbook.CheckbookDto;
  * @author User
  */
 public interface CheckBookMapper {
+    
+    /**
+     * @param CheckbookDto
+     * @return List<CheckbookDto>
+     */
+    List<CheckbookDto> mapCheckBookList(final List<Checkbook> checkbook);
+    
+    /**
+     * @param Check
+     * @return List CheckDto
+     */
+    List<CheckDto> mapCheckList(final List<Check> check);
+    
+    /**
+     * @param Check
+     * @return List CheckDto
+     */
+    CheckDto mapCheck(final Check check);
+    
+    // <!-- Entelgy / GP-12834 / 25112015 / INICIO -->
+    /**
+     * @param checkBook
+     * @return
+     */
+    CheckbookDto mapCheckBookDto(Checkbook checkBook);
 
-	/**
-	 * @param CheckbookDto
-	 * @return List<CheckbookDto>
-	 */
-	List<CheckbookDto> mapCheckBookList(final List<Checkbook> checkbook);
-
-	/**
-	 * @param Check
-	 * @return List CheckDto
-	 */
-	List<CheckDto> mapCheckList(final List<Check> check);
-
-	/**
-	 * @param Check
-	 * @return List CheckDto
-	 */
-	CheckDto mapCheck(final Check check);
-
+    // <!-- Entelgy / GP-12834 / 25112015 / FIN -->
+    
 }

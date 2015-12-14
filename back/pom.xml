@@ -21,9 +21,20 @@
 	<repositories />
 	<pluginRepositories />
 	<dependencies>
-		<!-- General dependencies for standard applications <dependency> <groupId>com.bbva.jee.arq.spring.core</groupId> 
-			<artifactId>arq-spring-core</artifactId> <version>${arq-spring-core.version}</version> 
-			</dependency> -->
+		<!-- Entelgy / SPRING 3 / 17112015 / INICIO -->
+		<dependency>
+			<groupId>com.bbva.jee.arq.mo</groupId>
+			<artifactId>mo</artifactId>
+			<version>3.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-configuration</groupId>
+			<artifactId>commons-configuration</artifactId>
+			<version>1.7</version>
+		</dependency>
+		<!-- Entelgy / SPRING 3 / 17112015 / FIN -->
+
 		<dependency>
 			<groupId>com.bbva.net.webservices</groupId>
 			<artifactId>kqco_mult_web_webservices</artifactId>
@@ -159,6 +170,7 @@
 			<version>5.1.6</version>
 			<scope>provided</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
@@ -170,7 +182,6 @@
 			<artifactId>ojdbc14</artifactId>
 			<version>10.2.0.2</version>
 		</dependency>
-
 	</dependencies>
 
 	<build>

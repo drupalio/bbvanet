@@ -12,90 +12,96 @@
 <composite:implementation>
 	<h:form id="formCheks">
 		<!-- Tabla de Cheques -->
-		<div class="table-wrapper">
-			<p:dataTable id="checksTable" widgetVar="checksTable" var="cheks"
-				styleClass="detail-table-body sortable checks" value="#{cc.attrs.listChecks}"
-				emptyMessage="#{msg['text.empty.table']}" rowKey="#{cheks.id}"
-				rendered="#{checkBookController.renderComponents['CHECKTABLE']}" style="margin-top: -30px">
-				<p:column headerText="#{msg['text.table.num.check']}" style="width: 17%;"
-					styleClass="styleColum w13 desc" sortBy="#{cheks.id}">
-					<h:outputText styleClass="brand styleLeft" value="#{cheks.id}" />
-				</p:column>
-				<p:column headerText="#{msg['text.table.emi.date']}" styleClass="styleColum desc"
-					sortBy="#{cheks.issueDate}" style="width: 22%;">
-					<h:outputText class="text styleLeft" value="#{cheks.issueDate}">
-						<f:convertDateTime pattern="dd/MM/yyyy" />
-					</h:outputText>
-				</p:column>
-				<p:column headerText="#{msg['text.detailMove.value']}" style="width: 30%;"
-					styleClass="styleColum desc" sortBy="#{cheks.value}" colspan="2">
-					<h:outputText class="currency styleCurrent styleLeft" value="#{cheks.value}" />
-				</p:column>
-				<p:column class="head" headerText="#{msg['text.table.status']}" styleClass="styleColum desc w10"
-					sortBy="#{cheks.status}">
-					<h:outputText class="text styleLeft" value="#{cheks.status}" />
-				</p:column>
-				<p:column class="head" headerText="#{msg['text.table.change.date']}"
-					styleClass="styleColum desc w10" sortBy="#{cheks.modifiedDate}">
-					<h:outputText class="text styleLeft" value="#{cheks.modifiedDate}">
-						<f:convertDateTime pattern="dd/MM/yyyy" />
-					</h:outputText>
-				</p:column>
-				<p:column styleClass="smart-view">
-					<div class="left hidden-lg">
-						<h:outputText styleClass="text styleLeft" value="#{cheks.id}" />
-						<h:outputText class="brand styleLeft" value="#{cheks.issueDate}">
-							<f:convertDateTime pattern="dd/MM/yyyy" />
-						</h:outputText>
-					</div>
-					<div class="right hidden-lg" style="width: 35% !important;">
-						<h:outputText class="currency styleCurrent" value="#{cheks.value}" />
-						<h:outputText class="text styleRigth" value="#{cheks.status}" />
-					</div>
-				</p:column>
-			</p:dataTable>
-			
-			<!--tabla realizada para imprimir -->
-			
-			<p:dataTable id="checksTableImprimir"  var="cheksAux"
-				styleClass="nonee" value="#{cc.attrs.listChecks}"
-				emptyMessage="#{msg['text.empty.table']}" 
-				rendered="#{checkBookController.renderComponents['CHECKTABLE']}">
-				<p:column width="20%" headerText="#{msg['text.table.num.check']}" 
-					 sortBy="#{cheksAux.id}">
-					<h:outputText  value="#{cheksAux.id}" />
-				</p:column>
-				<p:column width="20%" headerText="#{msg['text.table.emi.date']}" 
-					sortBy="#{cheksAux.issueDate}" >
-					<h:outputText value="#{cheksAux.issueDate}">
-						<f:convertDateTime pattern="dd/MM/yyyy" />
-					</h:outputText>
-				</p:column>
-				<p:column width="20%" headerText="#{msg['text.detailMove.value']}" 
-					 sortBy="#{cheksAux.value}" colspan="2">
-					<h:outputText value="#{cheksAux.value}" />
-				</p:column>
-				<p:column width="20%" class="head" headerText="#{msg['text.table.status']}"
-					sortBy="#{cheksAux.status}">
-					<h:outputText value="#{cheksAux.status}" />
-				</p:column>
-				<p:column width="20%" class="head" headerText="#{msg['text.table.change.date']}"
-					styleClass="styleColum desc w10" sortBy="#{cheksAux.modifiedDate}">
-					<h:outputText class="text styleLeft" value="#{cheksAux.modifiedDate}">
-						<f:convertDateTime pattern="dd/MM/yyyy" />
-					</h:outputText>
-				</p:column>
-			</p:dataTable>
-			
-		</div>
-		<footer class="detail-table-footer">
-			<p:commandButton id="moreCheks" value="#{msg['text.detailMove.footer']}"
-				rendered="#{checkBookController.renderComponents['FOOTERTABLECHEKS']}"
-				styleClass="btn btn-more-results" actionListener="#{checkBookController.nextPage}" ajax="true"
-				update=":detailAccounts:checkTable:formCheks:checksTable">
-				<p:ajax onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
-			</p:commandButton>
-		</footer>
+		<!-- Entelgy / GP-12834 / 08092015 / INICIO -->
+		<p:outputPanel id="checkMov">
+			<article class="detail-table-group">
+				<div class="table-wrapper">
+					<p:dataTable id="checksTable" widgetVar="checksTable" var="cheks"
+						styleClass="detail-table-body sortable" value="#{cc.attrs.listChecks}"
+						emptyMessage="#{msg['text.empty.table']}" rowKey="#{cheks.id}"
+						rendered="#{checkBookController.renderComponents['CHECKTABLE']}" style="margin-top: -30px">
+						<p:column headerText="#{msg['text.table.num.check']}" style="width: 17%;"
+							styleClass="styleColum w13 desc" sortBy="#{cheks.id}">
+							<h:outputText styleClass="brand styleLeft" value="#{cheks.id}" />
+						</p:column>
+						<p:column headerText="#{msg['text.table.emi.date']}" styleClass="styleColum desc"
+							sortBy="#{cheks.issueDate}" style="width: 22%;">
+							<h:outputText class="text styleLeft" value="#{cheks.issueDate}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</p:column>
+						<p:column headerText="#{msg['text.detailMove.value']}" style="width: 30%;"
+							styleClass="styleColum desc" sortBy="#{cheks.value}" colspan="2">
+							<h:outputText class="currency styleCurrent styleLeft" value="#{cheks.value}" />
+						</p:column>
+						<p:column class="head" headerText="#{msg['text.table.status']}" styleClass="styleColum desc w10"
+							 sortBy="#{cheks.status}">
+							<h:outputText class="text styleLeft" value="#{cheks.status}" />
+						</p:column>
+						<p:column class="head" headerText="#{msg['text.table.change.date']}"
+							styleClass="styleColum desc w10" sortBy="#{cheks.modifiedDate}">
+							<h:outputText class="text styleLeft" value="#{cheks.modifiedDate}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="smart-view">
+							<div class="left hidden-lg">
+								<h:outputText styleClass="text styleLeft" value="#{cheks.id}" />
+								<h:outputText class="brand styleLeft" value="#{cheks.issueDate}">
+									<f:convertDateTime pattern="dd/MM/yyyy" />
+								</h:outputText>
+							</div>
+							<div class="right hidden-lg" style="width: 35% !important;">
+								<h:outputText class="currency styleCurrent" value="#{cheks.value}" />
+								<h:outputText class="text styleRigth" value="#{cheks.status}" />
+							</div>
+						</p:column>
+					</p:dataTable>
+
+					<!--tabla realizada para imprimir -->
+					<p:dataTable id="checksTableImprimir" var="cheksAux" 
+						styleClass="nonee" value="#{cc.attrs.listChecks}"
+						emptyMessage="#{msg['text.empty.table']}"
+						rendered="#{checkBookController.renderComponents['CHECKTABLE']}">
+						<p:column width="20%" headerText="#{msg['text.table.num.check']}" 
+							sortBy="#{cheksAux.id}">
+							<h:outputText value="#{cheksAux.id}" />
+						</p:column>
+						<p:column width="20%" headerText="#{msg['text.table.emi.date']}"
+							sortBy="#{cheksAux.issueDate}">
+							<h:outputText value="#{cheksAux.issueDate}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</p:column>
+						<p:column width="20%" headerText="#{msg['text.detailMove.value']}" 
+							sortBy="#{cheksAux.value}" colspan="2">
+							<h:outputText value="#{cheksAux.value}" />
+						</p:column>
+						<p:column width="20%" class="head" headerText="#{msg['text.table.status']}"
+							sortBy="#{cheksAux.status}">
+							<h:outputText value="#{cheksAux.status}" />
+						</p:column>
+						<p:column width="20%" class="head" headerText="#{msg['text.table.change.date']}"
+							styleClass="styleColum desc w10" sortBy="#{cheksAux.modifiedDate}">
+							<h:outputText class="text styleLeft" value="#{cheksAux.modifiedDate}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</p:column>
+					</p:dataTable>
+
+				</div>
+				<footer class="detail-table-footer">
+					<p:commandButton id="moreCheks" value="#{msg['text.detailMove.footer']}"
+						rendered="#{renderComponents['FOOTERTABLECHEKS'] and renderComponents['CHECKTABLE']}"
+						styleClass="btn btn-more-results #{cc.attrs.listChecks.size()==0 ? 'nonee' : ''}"
+						actionListener="#{checkBookController.nextPage}" ajax="true"
+						update=":detailAccounts:checkTable:formCheks:checkMov">
+						<p:ajax onstart="PF('statusDialog').show()" oncomplete="PF('statusDialog').hide()" />
+					</p:commandButton>
+				</footer>
+			</article>
+		</p:outputPanel>
+		<!-- Entelgy / GP-12834 / 08092015 / INICIO -->
 	</h:form>
 </composite:implementation>
 </html>

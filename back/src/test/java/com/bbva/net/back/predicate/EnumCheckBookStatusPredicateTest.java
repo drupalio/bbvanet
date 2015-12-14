@@ -65,5 +65,9 @@ public class EnumCheckBookStatusPredicateTest {
 		this.checkBookDto.setActualState("");
 		assertFalse(this.checkBookStatusPredicated.eval(this.checkBookDto));
 
+		// StatusNull
+		this.checkBookDto.setActualState(null);
+		assertTrue(this.checkBookStatusPredicated.eval(this.checkBookDto));
+
 	}
 }

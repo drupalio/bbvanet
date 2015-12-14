@@ -29,7 +29,7 @@ public class PaginationControllerTest extends AbstractBbvaControllerTest {
 			private static final long serialVersionUID = 812884175518015059L;
 
 			@Override
-			protected Integer getNextPaginantionKey(List<Long> lastPage) {
+			protected Integer getNextPaginantionKey(List<Long> lastPage, Integer paginationKey) {
 				return Integer.valueOf(Integer.MIN_VALUE);
 			}
 

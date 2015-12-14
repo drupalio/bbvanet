@@ -2,7 +2,7 @@ package com.bbva.net.front.controller;
 
 import java.util.List;
 
-import javax.faces.event.ActionEvent;
+import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.event.ComponentSystemEvent;
 
 import com.bbva.net.back.model.movements.MovementDto;
@@ -17,7 +17,7 @@ public interface MovementCriteriaController {
 	 * 
 	 * @param event
 	 */
-	void searchMovementByFilter(ActionEvent event);
+	void searchMovementByFilter(AjaxBehaviorEvent event);
 
 	/***
 	 * Method to select the date type is called when you click on the date oneRadio menu component
@@ -29,14 +29,14 @@ public interface MovementCriteriaController {
 	 * 
 	 * @param event
 	 */
-	void setBalanceRange(ActionEvent event);
+	void setBalanceRange(AjaxBehaviorEvent event);
 
 	/**
 	 * Method to set starting values of the income or expenses filter
 	 * 
 	 * @param event
 	 */
-	void setIncomeExpensesFilter(ActionEvent event);
+	void setIncomeExpensesFilter(AjaxBehaviorEvent event);
 
 	/**
 	 * Method to buil a message for balanceFilter
@@ -58,7 +58,7 @@ public interface MovementCriteriaController {
 	 * 
 	 * @param event
 	 */
-	void setCustomDate(ActionEvent event);
+	void setCustomDate(AjaxBehaviorEvent event);
 
 	List<MovementDto> getAllMovements();
 
@@ -67,14 +67,14 @@ public interface MovementCriteriaController {
 	 * 
 	 * @param event
 	 */
-	void cleanFilters(ActionEvent event);
+	void cleanFilters(AjaxBehaviorEvent event);
 
 	/***
 	 * Method to set a movement conecept
 	 * 
 	 * @param event
 	 */
-	void setMovementConcept(ActionEvent event);
+	void setMovementConcept(AjaxBehaviorEvent event);
 
 	/**
 	 * 

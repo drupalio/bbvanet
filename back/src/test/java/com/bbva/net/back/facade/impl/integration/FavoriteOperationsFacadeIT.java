@@ -15,13 +15,13 @@ import com.bbva.net.back.facade.FavoriteOperationsFacade;
 @ContextConfiguration(locations = "classpath:spring-test-context.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
 public class FavoriteOperationsFacadeIT {
-
-	@Resource(name = "favoriteOperationsFacade")
-	private FavoriteOperationsFacade favoriteOperationsFacade;
-
-	@Test
-	public void checkGetOperationsOK() {
-		Assert.assertNotNull(this.favoriteOperationsFacade.getListFavoriteOperations("123"));
-	}
-
+    
+    @Resource(name = "favoriteOperationsFacade")
+    private FavoriteOperationsFacade favoriteOperationsFacade;
+    
+    @Test
+    public void checkGetOperationsOK() {
+        Assert.assertNotNull(this.favoriteOperationsFacade.getListFavoriteOperations("123"));
+    }
+    
 }

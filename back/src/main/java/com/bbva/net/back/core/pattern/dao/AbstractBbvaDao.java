@@ -31,7 +31,7 @@ public abstract class AbstractBbvaDao<T extends Serializable> implements CrudDao
 	}
 
 	@Transactional
-	public Session getSession() {
+	protected Session getSession() {
 		return this.sessionFactory.getCurrentSession();
 	}
 

@@ -73,7 +73,7 @@ public class CheckPaginatedControllerTest extends AbstractBbvaControllerTest {
 
 	@Test
 	public void checkgetNextPaginantionKey() {
-		Integer result = this.checkPaginatedController.getNextPaginantionKey(checkList);
+		Integer result = this.checkPaginatedController.getNextPaginantionKey(checkList, 0);
 		Assert.assertNotNull(result);
 	}
 

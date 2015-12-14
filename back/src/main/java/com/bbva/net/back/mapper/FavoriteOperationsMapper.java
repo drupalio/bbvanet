@@ -7,16 +7,16 @@ import com.bbva.zic.agileoperations.v01.AgileOperation;
 
 public interface FavoriteOperationsMapper {
 
-	/**
-	 * @param CardCharges
-	 * @return
-	 */
-	List<FavoriteOperationDto> map(List<AgileOperation> favOperations);
+    /**
+     * @param CardCharges
+     * @return
+     */
+    List<FavoriteOperationDto> map(List<AgileOperation> favOperations);
 
-	/**
-	 * @param favOperation
-	 * @return
-	 */
-	AgileOperation map(FavoriteOperationDto favOperation);
+    /**
+     * @param favOperation
+     * @return
+     */
+    AgileOperation map(FavoriteOperationDto favOperation);
 
 }

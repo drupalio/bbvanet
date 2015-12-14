@@ -1,45 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:bbva="http://java.sun.com/jsf/composite/bbva"
 	xmlns:bbvaScript="http://java.sun.com/jsf/composite/bbva/script"
-	xmlns:bbvaContainer="http://java.sun.com/jsf/composite/bbva/container"
-	xmlns:p="http://primefaces.org/ui"
 	xmlns:bbvaMessage="http://java.sun.com/jsf/composite/bbva/messages"
-	xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jstl/core">
-
-
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<meta http-equiv="Cache-Control" content="no-store" />
 	<f:view locale="es_CO"></f:view>
 	<title><ui:insert name="title"> BBVA :: Colombia :: Posición Global</ui:insert></title>
 	<bbvaScript:assetScripts />
 </h:head>
-<h:body onload="initChart();">
-		<bbvaMessage:messageError/>
-
-	<div id="header">
-		<ui:insert name="header">
-			<ui:include src="../templates/header.xhtml" />
-		</ui:insert>
-	</div>
+<h:body id="modal" class="bodyError">
+	<div id="header"></div>
 	<div id="content">
 		<div class="container">
-			<section class="row global-content">
-				<ui:insert name="bodyTitle"></ui:insert>
-				<div class="section-content col-xs-12 col-md-8">
-					<ui:insert name="contentLeft"></ui:insert>
-				</div>
-				<bbvaContainer:rightBodyPanel>
-					<ui:insert name="contentRight"></ui:insert>
-				</bbvaContainer:rightBodyPanel>
-			</section>
+			<bbvaMessage:messageMistake title="#{msg['text.errorService']}"/>
 		</div>
 	</div>
-	<ui:insert name="footer">
-		<ui:include src="../templates/footer.xhtml" />
-	</ui:insert>
 </h:body>
 </html>
 

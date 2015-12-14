@@ -1,30 +1,38 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:composite="http://java.sun.com/jsf/composite" xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
-	xmlns:pm="http://primefaces.org/mobile" xmlns:c="http://java.sun.com/jstl/core"
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:c="http://java.sun.com/jstl/core"
 	xmlns:bbvaInput="http://java.sun.com/jsf/composite/bbva/input">
 <composite:interface>
 	<composite:attribute name="nameLeft" type="String" />
 	<composite:attribute name="nameRight" type="String" />
-	<composite:attribute name="listenerLeft" method-signature="void onComboSelectedCard()" />
-	<composite:attribute name="listenerRight" method-signature="void onComboSelectedCard()" />
+	<composite:attribute name="listenerLeft"
+		method-signature="void onComboSelectedCard()" />
+	<composite:attribute name="listenerRight"
+		method-signature="void onComboSelectedCard()" />
 </composite:interface>
 <composite:implementation>
 	<div class="chart-options">
 		<div class="row">
-			<h:form styleClass="nonee">
+			<h:form>
 				<div class="col-xs-12 col-sm-6 chart-selection input-control">
 					<label for="cuentas-personales-chart-tiempo">#{cc.attrs.nameLeft}</label>
 					<bbvaInput:comboSelectedPeriod listener="#{cc.attrs.listenerLeft}"
-						valueMenu="#{globalPositionController.periodCardSelected}" render=":cardPieGP:cardForm" />
+						valueMenu="#{globalPositionController.periodCardSelected}"
+						render=":cardPieGP:cardForm" />
 				</div>
-			</h:form>
-			<h:form>
 				<div class="col-xs-12 col-sm-6 chart-selection input-control">
 					<label for="cuentas-personales-chart-cuentas">#{cc.attrs.nameRight}</label>
-					<bbvaInput:comboSelectedProduct totalProduct="#{msg['text.allCards']}"
-						list="#{globalPositionController.namesProducts['TC']}" listener="#{cc.attrs.listenerRight}"
-						value="#{globalPositionController.cardSelected}" render=":cardPieGP:cardForm" />
+					<bbvaInput:comboSelectedProduct
+						totalProduct="#{msg['text.allCards']}"
+						list="#{globalPositionController.namesProducts['TC']}"
+						listener="#{cc.attrs.listenerRight}"
+						value="#{globalPositionController.cardSelected}"
+						render=":cardPieGP:cardForm" optionDisabled="false" />
 				</div>
 			</h:form>
 		</div>
