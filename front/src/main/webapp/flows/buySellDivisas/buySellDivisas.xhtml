@@ -27,12 +27,13 @@
 				<section class="row tab-pane active globalpanelIn" id="products"
 					style="padding: 0px !important;">
 				<div class="section-content col-xs-12 col-md-8" style="margin: 0px;">
-					<bbvaContainer:productPanel id="DivisasGP" title="Compra y venta de divisas">
+					<bbvaContainer:productPanel id="DivisasGP"
+						title="Compra y venta de divisas">
 						<div class="table-tabs">
-							<bbvaGP:accountHeadTable controller="#{turnsOperationController}"
-								listAccounts="#{customerProducts}" />
-							<bbvaGP:accountTailTable controller="#{turnsOperationController}"
-								listAccounts="#{customerProductsHidden}" />
+							<bbvaGP:divisasHeadTable controller="#{turnsOperationController}"
+								listAccounts="#{customerAccounts}" />
+							<bbvaGP:divisasTailTable controller="#{turnsOperationController}"
+								listAccounts="#{customerAccountsHidden}" />
 						</div>
 						<div class="row afterTable">
 							<bbvaGP:productFooter

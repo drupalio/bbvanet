@@ -70,7 +70,9 @@
 				<p:ajax process="@form" onstart="PF('statusDialog').show()"
 					oncomplete="PF('statusDialog').hide()"
 					listener="#{cc.attrs.controller.cleanFilters}"
-					update=":detailAccounts:detailAccounts
+					update=":detailsDivisas:tableDivisas:formDiviDetail:movDivisa
+					:detailsDivisas:tableOut:formOutsideDetail:movDivisaOut
+					:detailsDivisas:tableReci:formRecivedDetail:movDivisaRev
 					:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:componentList
 					:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:dateButtonTurn
 					:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:panelFilterDate" />
@@ -107,13 +109,13 @@
 			</p:commandButton>
 			<p:commandButton styleClass="btn btn-default" type="button"
 				rendered="#{cc.attrs.showTurns}" icon="document-view-icon"
-				value="#{msg['button.see.result']}"
+				value="#{msg['button.see.result']}">
 				<p:ajax process="@form" onstart="PF('statusDialog').show()"
 					onsuccess="PF('statusDialog').hide()"
 					listener="#{cc.attrs.controller.searchTurnsByFilter}"
-					update=":detailsDivisas:movDivisa
-					:detailsDivisas:movDivisaOut
-					:detailsDivisas:movDivisaRev" />
+					update=":detailsDivisas:tableDivisas:formDiviDetail:movDivisa
+					:detailsDivisas:tableOut:formOutsideDetail:movDivisaOut
+					:detailsDivisas:tableReci:formRecivedDetail:movDivisaRev" />
 			</p:commandButton>
 		</div> <!-- Entelgy / SPRING 3 / 08092015 / FIN -->
 	</li>

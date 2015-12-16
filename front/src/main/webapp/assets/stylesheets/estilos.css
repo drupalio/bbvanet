@@ -1626,7 +1626,6 @@ body div.ui-growl .ui-state-highlight {
 }
 
 /* <!-- Entelgy / GP13137 / 14092015 / FIN --> */
-
 .panelText {
 	overflow-x: auto !important;
 	border: 0px !important;
@@ -2162,3 +2161,29 @@ body div.ui-growl .ui-state-highlight {
 	height: 49px;
 }
 /* <!-- Entelgy / SPRING 1 / 05112015 / FIN -->*/
+@media ( max-width : 768px) {
+	.responseTitle {
+		width: 100% !important;
+	}
+	.responsetabs {
+		margin-left: 5% !important;
+	}
+}
+
+@media ( max-width : 375px) {
+	.rigthTabMov {
+		margin-left: 9px !important;
+	}
+}
+
+@media ( min-width : 7698px) {
+	.responsetabs {
+		margin: 0px;
+	}
+}
+
+@media ( min-width : 375px) {
+	.borderTurns {
+		border-right: 1px solid #CCC;
+	}
+}

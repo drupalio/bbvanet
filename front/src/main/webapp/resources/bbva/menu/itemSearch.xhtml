@@ -10,7 +10,7 @@
 			id="formSearch">
 			<div class="form-group">
 				<p:inputText value="#{headerController.search}" type="text" styleClass="form-control">
-					<p:ajax process="@form" event="keyup" update=":j_idt51:j_idt76:formSearch:itemSearch" />
+					<p:ajax process="@form" event="keyup" update=":menuContent:searchContent:formSearch:itemSearch" />
 				</p:inputText>
 				<p:outputPanel id="itemSearch" styleClass="search-icon">
 					<a href="https://www.bbva.com.co/meta/buscador/buscador.jsp?q=#{headerController.getSearch()}"

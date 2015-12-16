@@ -1,6 +1,5 @@
 package com.bbva.net.front.controller.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -68,6 +67,8 @@ public class ComboCriteriaControllerImpl extends AbstractBbvaController implemen
     
     private transient List<MultiValueGroup> quieroLeasing;
     
+    private transient List<MultiValueGroup> listQuieroDivisas;
+    
     /**
      *
      */
@@ -81,7 +82,7 @@ public class ComboCriteriaControllerImpl extends AbstractBbvaController implemen
     private transient MultiValueGroupFacade multiValueGroupFacade;
     
     /**
-     * Inicialización de Combos
+     * 18 Inicialización de Combos
      */
     @PostConstruct
     public void init() {
@@ -97,6 +98,7 @@ public class ComboCriteriaControllerImpl extends AbstractBbvaController implemen
          * GP12834 Cheques y chequeras - Entelgy - fin
          */
         
+        this.listQuieroDivisas = this.multiValueGroupFacade.getMultiValueTypes(18);
         this.listQuieroAccounts = this.multiValueGroupFacade.getMultiValueTypes(6);
         this.listQuieroCards = this.multiValueGroupFacade.getMultiValueTypes(7);
         this.listQuieroQuota = this.multiValueGroupFacade.getMultiValueTypes(8);
@@ -204,10 +206,8 @@ public class ComboCriteriaControllerImpl extends AbstractBbvaController implemen
      * @return
      */
     @Override
-    public List<String> getListQuieroDivisas() {
-        List<String> founs = new ArrayList<String>();
-        founs.add("Ver giros");
-        return founs;
+    public List<MultiValueGroup> getListQuieroDivisas() {
+        return listQuieroDivisas;
     }
     
     // ************* Getters Methods *************

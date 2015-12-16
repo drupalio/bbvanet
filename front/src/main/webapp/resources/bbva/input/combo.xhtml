@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite" 
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<composite:interface>
+	<composite:attribute name="id" />
+	<composite:attribute name="list" type="java.util.List" />
+	<composite:attribute name="value" />
+	<composite:attribute name="label" />
+	<composite:attribute name="styleIn" />
+	<composite:attribute name="styleClassIn" />
+	<composite:attribute name="styleClassOut" />
+</composite:interface>
+<composite:implementation>
+	<div class="form-group" style="display: inline-block; width: 100%;" >
+		<p:outputLabel id="out_#{cc.attrs.id}" for="item_#{cc.attrs.id}" value="#{cc.attrs.label}"
+				styleClass="#{cc.attrs.styleClassOut} control-label left fontLabel" />
+		<p:outputPanel style="position: relative; float: left;" styleClass="#{cc.attrs.styleClassIn}">
+			<div style="display: inline-block; width: 100% !important;" class="selectorCombo">
+				<p:selectOneMenu id="item_#{cc.attrs.id}" value="#{cc.attrs.value}" required="true"
+					styleClass="#{component.valid?'mySelect':'mySelect  select-picker-error'}"
+					requiredMessage="#{msg['mssg.requeridValue']}">
+					<f:selectItem></f:selectItem>
+					<f:selectItems value="#{cc.attrs.list}" var="multiValue" itemValue="#{msg[multiValue.id]}"
+						itemLabel="#{msg[multiValue.value]}" />
+					<p:ajax event="change" oncomplete="styles(jQuery(this))" update="@this" />
+				</p:selectOneMenu>
+			</div>
+		</p:outputPanel>
+	</div>	
+</composite:implementation>
+</html>

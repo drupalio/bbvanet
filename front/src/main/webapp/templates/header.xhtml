@@ -33,7 +33,7 @@
 			</bbvaHeader:executiveBody>
 		</bbvaHeader:executive>
 	</div>
-	<bbvaMenu:menu>
+	<bbvaMenu:menu id="menuContent">
 		<bbvaMenu:itemMenu href="./globalPosition" value="Posición global"
 			liclass="moreTab-width active"
 			style="border-bottom-left-radius: 5px;border-top-left-radius:5px;"
@@ -102,8 +102,8 @@
 		<bbvaMenu:itemMenu href="./buySellDivisas" value="Divisas"
 			title="Ir a seguros" icon="account-icon" liclass="width"
 			rendered="#{menuActive != 'DIVISAS'}" />
-		<bbvaMenu:itemSearch />
+		<bbvaMenu:itemSearch id="searchContent" />
 	</bbvaMenu:menu>
-	<bbvaMenu:menuMobile />
+	<bbvaMenu:menuMobile id="menuMoContent"/>
 </div>
 </html>

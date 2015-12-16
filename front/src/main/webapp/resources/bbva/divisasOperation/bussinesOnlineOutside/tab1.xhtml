@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:bbvaInput="http://java.sun.com/jsf/composite/bbva/input"
+	xmlns:bbvaProgressBar="http://java.sun.com/jsf/composite/bbva/progressBar"
+	xmlns:bbvaProgressDivi="http://java.sun.com/jsf/composite/bbva/progressBar/divisas">
+<composite:interface>
+</composite:interface>
+<composite:implementation>
+	<h:form>
+		<bbvaProgressBar:progressContent id="progressBar" sizeProgress="0px">
+			<bbvaProgressDivi:progressDivisasBusiness pointOne="uno"
+				pointTwo="dos" pointThree="tres" pointFour="cuatro"
+				pointOneState="active" sizeProgress="0px" />
+		</bbvaProgressBar:progressContent>
+		<div class="col-xs-12 col-sm-12 col-md-12">
+			<div class="col-xs-12 col-sm-6 col-md-6">
+				<bbvaInput:inputOutput id="descriptionOper" styleClassOut="col-xs-12 col-sm-12 col-md-5"
+					styleClassIn="col-xs-12 col-sm-12 col-md-7" label="Descripción de la operación" />
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-6">
+				<bbvaInput:combo id="monedaOper" styleClassOut="col-xs-12 col-sm-12 col-md-4" 
+					label="Moneda" styleClassIn="col-xs-12 col-sm-12 col-md-7" value="" />
+				<bbvaInput:inputOutput id="montoOper" styleClassOut="col-xs-12 col-sm-12 col-md-4"
+					styleClassIn="col-xs-12 col-sm-12 col-md-7" label="Monto" value="" />
+			</div>
+		</div>
+		<div class="col-xs-12 col-sm-12 col-md-12">
+			<div class="col-xs-12 col-sm-6 col-md-6">
+				<bbvaInput:inputOutput id="tasaOnlineIn" styleClassOut="col-xs-12 col-sm-12 col-md-5"
+					styleClassIn="col-xs-12 col-sm-12 col-md-7" label="Tasa en línea" />	
+				<bbvaInput:inputOutput id="tasaDivisaUSD" styleClassOut="col-xs-12 col-sm-12 col-md-5"
+					styleClassIn="col-xs-12 col-sm-12 col-md-7" label="Tasa en divisa USD" />
+				<bbvaInput:inputOutput id="tasaUSDpeso" styleClassOut="col-xs-12 col-sm-12 col-md-5"
+					styleClassIn="col-xs-12 col-sm-12 col-md-7" label="Tasa USD peso" />	
+				<bbvaInput:inputOutput id="tasaDivisaPeso" styleClassOut="col-xs-12 col-sm-12 col-md-5"
+					styleClassIn="col-xs-12 col-sm-12 col-md-7" label="Tasa divisa peso" />				
+				<bbvaInput:inputOutput id="equivalentePesos" styleClassOut="col-xs-12 col-sm-12 col-md-5"
+					styleClassIn="col-xs-12 col-sm-12 col-md-7" label="Equivalente en pesos" />				
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-6">
+				<span></span>
+			</div>
+			<p:commandButton onclick="PF('bussinesOnlineOut').next();" />
+			<p:commandButton onclick="PF('bussinesOnlineOut').loadStep('Tab1', true);" />
+		</div>
+	</h:form>
+</composite:implementation>
+</html>

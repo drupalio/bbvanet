@@ -8,6 +8,7 @@
 	xmlns:pm="http://primefaces.org/mobile"
 	xmlns:jsf="http://xmlns.jcp.org/jsf"
 	xmlns:bbvaTablesAcc="http://java.sun.com/jsf/composite/bbva/movementsDetail"
+	xmlns:bbvaTablesTurn="http://java.sun.com/jsf/composite/bbva/turnsDetailTable"
 	xmlns:c="http://java.sun.com/jstl/core">
 <composite:interface>
 	<composite:attribute name="id" type="String" />
@@ -18,18 +19,15 @@
 <composite:implementation>
 	<article class="detail-table-group">
 		<bbvaTablesAcc:iconsButtons id="iconsMovesInitial" renderCorreo="true"
-			valueExcel="" valuePdf="" valueCorreo="" valuePrinter=""
-			render="#{renderComponents['TITLEDIVISAINI']}" />
+			render="#{renderComponents['TITLEDIVISAINI']}" style="margin-bottom: 2%;"/>
 		<bbvaTablesAcc:iconsButtons id="iconsOutside" renderCorreo="false"
-			valueExcel="" valuePdf="" valuePrinter=""
-			render="#{renderComponents['TITLEMOUTSIDE']}" />
+			render="#{renderComponents['TITLEMOUTSIDE']}" style="margin-bottom: 2%;"/>
 		<bbvaTablesAcc:iconsButtons id="iconsInside" renderCorreo="false"
-			valueExcel="" valuePdf="" valuePrinter=""
-			render="#{renderComponents['TITLEMRECIVED']}" />
+			render="#{renderComponents['TITLEMRECIVED']}" style="margin-bottom: 2%;"/>
 		<!-- Tables -->
-		<bbvaTablesAcc:turnsContentTable id="tableDivisas" listAccounts="#{cc.attrs.listAccounts}" />
-		<bbvaTablesAcc:turnsOutsideTable id="tableOut" listAccounts="#{cc.attrs.listOutside}" />
-		<bbvaTablesAcc:turnsRecivedTable id="tableReci" listAccounts="#{cc.attrs.listRecived}" />
+		<bbvaTablesTurn:turnsContentTable id="tableDivisas" listAccounts="#{cc.attrs.listAccounts}" />
+		<bbvaTablesTurn:turnsOutsideTable id="tableOut" listAccounts="#{cc.attrs.listOutside}" />
+		<bbvaTablesTurn:turnsRecivedTable id="tableReci" listAccounts="#{cc.attrs.listRecived}" />
 	</article>
 </composite:implementation>
 </html>

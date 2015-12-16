@@ -28,49 +28,48 @@ import com.bbva.net.front.helper.MessagesHelper;
 import com.bbva.net.front.ui.line.LineConfigUI;
 
 public class TurnsOperationControllerImpl extends AbstractBbvaController implements TurnsOperationController {
-    
+
     /**
      *
      */
     private static final long serialVersionUID = 1L;
-    
+
     private turnsClientDetailDto turnsDetail;
-    
+
     private List<turnsClientDto> turnsGeneral;
-    
+
     private List<turnsClientDto> turnsClientOutside;
-    
+
     private List<turnsClientDto> turnsClientRecived;
-    
+
     private LineConfigUI graphicLineMovements;
-    
+
     private Map<String, Boolean> renderComponents;
-    
+
     private DateRangeDto dateRange;
-    
+
     private Date sinceDate = null, toDate = null;
-    
+
     private static final String CONCRETE_DATE = MessagesHelper.INSTANCE.getString("select.radio.concret.date");
-    
+
     private static final String SINCE_TITLE = MessagesHelper.INSTANCE.getString("text.since");
-    
+
     private static final String TO_TITLE = MessagesHelper.INSTANCE.getString("text.to");
-    
+
     private String sinceText, toText, sinceDatestr, toDatestr, selectDate = StringUtils.EMPTY;
-    
+
     @Resource(name = "graphicLineDelegate")
     private transient GraphicLineDelegate graphicLineDelegate;
-    
+
     @Override
     public ProductDto getSelectedProduct() {
         return super.getSelectedProduct();
     }
-    
+
     @Override
     public List<turnsClientDto> getAllMovementsInitial() {
         LOGGER.info("TurnsOperationController getAllMovementsInitial");
         this.turnsGeneral = new ArrayList<turnsClientDto>();
-        appendDivisaIni();
         if ( getSelectedProduct() != null && getSelectedProduct().getProductId() != null
                 && getSelectedProduct().isVisible() != null ) {
             if ( getSelectedProduct().isVisible() ) {
@@ -85,7 +84,7 @@ public class TurnsOperationControllerImpl extends AbstractBbvaController impleme
         this.graphicLineMovements = graphicLineDelegate.getMovementDivisa(this.turnsGeneral);
         return this.turnsGeneral;
     }
-    
+
     @Override
     public List<turnsClientDto> allTurnsClientOutside() {
         this.turnsClientOutside = new ArrayList<turnsClientDto>();
@@ -95,7 +94,7 @@ public class TurnsOperationControllerImpl extends AbstractBbvaController impleme
         this.turnsClientOutside.add(turns);
         return turnsClientOutside;
     }
-    
+
     @Override
     public List<turnsClientDto> allTurnsClientRecived() {
         this.turnsClientRecived = new ArrayList<turnsClientDto>();
@@ -105,13 +104,13 @@ public class TurnsOperationControllerImpl extends AbstractBbvaController impleme
         this.turnsClientRecived.add(turns);
         return turnsClientRecived;
     }
-    
+
     @Override
     public void onTurnDetail(SelectEvent selectEvent) {
         turnsDetail = new turnsClientDetailDto("", "", new Date(), new Date(), "", "", "", new Money(new BigDecimal(
                 2000)), "", "", "", "", "", "", "", "", "");
     }
-    
+
     @Override
     public void oneSelectDate() {
         LOGGER.info("Method oneSelectDate");
@@ -128,7 +127,7 @@ public class TurnsOperationControllerImpl extends AbstractBbvaController impleme
                     + " Boton: " + renderComponents.get(RenderAttributes.BUTTONDATE.toString()));
         }
     }
-    
+
     @Override
     public void setCustomDate(final ActionEvent event) {
         LOGGER.info("MovementsAccountController setCustomDate");
@@ -150,7 +149,7 @@ public class TurnsOperationControllerImpl extends AbstractBbvaController impleme
             setToDate(null);
         }
     }
-    
+
     @Override
     public void searchTurnsByFilter(final ActionEvent event) {
         LOGGER.info("QuotaControllerImpl searchQuotaByFilter ");
@@ -160,10 +159,10 @@ public class TurnsOperationControllerImpl extends AbstractBbvaController impleme
                     + dateRange.getDateTo());
         }
     }
-    
+
     public DateRangeDto calculateDate(String date) {
         LOGGER.info("MovementsAccountController calculateDate ");
-        
+
         EnumPeriodType periodType = EnumPeriodType.valueOfLabel(date);
         if ( !(periodType == (null)) ) {
             this.dateRange = new DateRangeDto();
@@ -171,53 +170,44 @@ public class TurnsOperationControllerImpl extends AbstractBbvaController impleme
         }
         return dateRange;
     }
-    
+
     public void appendOudSide() {
         // Inside
         getRenderComponents().put(RenderAttributes.TITLEMRECIVED.name(), false);
         getRenderComponents().put(RenderAttributes.RECIVEDTABLE.name(), false);
-        getRenderComponents().put(RenderAttributes.FOOTERRECIVED.name(), false);
         // Outside
         getRenderComponents().put(RenderAttributes.TITLEMOUTSIDE.name(), true);
         getRenderComponents().put(RenderAttributes.OUTSIDETABLE.name(), true);
-        getRenderComponents().put(RenderAttributes.FOOTEROUTSIDE.name(), true);
         // Initial
         getRenderComponents().put(RenderAttributes.TITLEDIVISAINI.name(), false);
         getRenderComponents().put(RenderAttributes.DIVISAINITABLE.name(), false);
-        getRenderComponents().put(RenderAttributes.FOOTERDIVISAINI.name(), false);
-        
+
     }
-    
+
     public void appendInSide() {
         // Inside
         getRenderComponents().put(RenderAttributes.TITLEMRECIVED.name(), true);
         getRenderComponents().put(RenderAttributes.RECIVEDTABLE.name(), true);
-        getRenderComponents().put(RenderAttributes.FOOTERRECIVED.name(), true);
         // Outside
         getRenderComponents().put(RenderAttributes.TITLEMOUTSIDE.name(), false);
         getRenderComponents().put(RenderAttributes.OUTSIDETABLE.name(), false);
-        getRenderComponents().put(RenderAttributes.FOOTEROUTSIDE.name(), false);
         // Initial
         getRenderComponents().put(RenderAttributes.TITLEDIVISAINI.name(), false);
         getRenderComponents().put(RenderAttributes.DIVISAINITABLE.name(), false);
-        getRenderComponents().put(RenderAttributes.FOOTERDIVISAINI.name(), false);
     }
-    
+
     public void appendDivisaIni() {
         // Inside
         getRenderComponents().put(RenderAttributes.TITLEMRECIVED.name(), false);
         getRenderComponents().put(RenderAttributes.RECIVEDTABLE.name(), false);
-        getRenderComponents().put(RenderAttributes.FOOTERRECIVED.name(), false);
         // Outside
         getRenderComponents().put(RenderAttributes.TITLEMOUTSIDE.name(), false);
         getRenderComponents().put(RenderAttributes.OUTSIDETABLE.name(), false);
-        getRenderComponents().put(RenderAttributes.FOOTEROUTSIDE.name(), false);
         // Initial
         getRenderComponents().put(RenderAttributes.TITLEDIVISAINI.name(), true);
         getRenderComponents().put(RenderAttributes.DIVISAINITABLE.name(), true);
-        getRenderComponents().put(RenderAttributes.FOOTERDIVISAINI.name(), true);
     }
-    
+
     /**
      *
      */
@@ -225,235 +215,235 @@ public class TurnsOperationControllerImpl extends AbstractBbvaController impleme
     public void onProductTurnsSelected(final SelectEvent selectEvent) {
         super.onProductSelected(selectEvent);
         this.sendAction("turnSelect");
-        
+
     }
-    
+
     // Setters and getters
-    
+
     /**
      * @return the turnsDetail
      */
     public turnsClientDetailDto getTurnsDetail() {
         return turnsDetail;
     }
-    
+
     /**
      * @param turnsDetail the turnsDetail to set
      */
     public void setTurnsDetail(turnsClientDetailDto turnsDetail) {
         this.turnsDetail = turnsDetail;
     }
-    
+
     /**
      * @return the turnsClientOutside
      */
     public List<turnsClientDto> getTurnsClientOutside() {
         return turnsClientOutside;
     }
-    
+
     /**
      * @param turnsClientOutside the turnsClientOutside to set
      */
     public void setTurnsClientOutside(List<turnsClientDto> turnsClientOutside) {
         this.turnsClientOutside = turnsClientOutside;
     }
-    
+
     /**
      * @return the turnsClientRecived
      */
     public List<turnsClientDto> getTurnsClientRecived() {
         return turnsClientRecived;
     }
-    
+
     /**
      * @param turnsClientRecived the turnsClientRecived to set
      */
     public void setTurnsClientRecived(List<turnsClientDto> turnsClientRecived) {
         this.turnsClientRecived = turnsClientRecived;
     }
-    
+
     /**
      * @return the graphicLineMovements
      */
     public LineConfigUI getGraphicLineMovements() {
         return graphicLineMovements;
     }
-    
+
     /**
      * @param graphicLineMovements the graphicLineMovements to set
      */
     public void setGraphicLineMovements(LineConfigUI graphicLineMovements) {
         this.graphicLineMovements = graphicLineMovements;
     }
-    
+
     /**
      * @return the turnsGeneral
      */
     public List<turnsClientDto> getTurnsGeneral() {
         return turnsGeneral;
     }
-    
+
     /**
      * @param turnsGeneral the turnsGeneral to set
      */
     public void setTurnsGeneral(List<turnsClientDto> turnsGeneral) {
         this.turnsGeneral = turnsGeneral;
     }
-    
+
     /**
      * @return the graphicLineDelegate
      */
     public GraphicLineDelegate getGraphicLineDelegate() {
         return graphicLineDelegate;
     }
-    
+
     /**
      * @param graphicLineDelegate the graphicLineDelegate to set
      */
     public void setGraphicLineDelegate(GraphicLineDelegate graphicLineDelegate) {
         this.graphicLineDelegate = graphicLineDelegate;
     }
-    
+
     /**
      * @return the renderComponents
      */
     public Map<String, Boolean> getRenderComponents() {
         return renderComponents;
     }
-    
+
     /**
      * @param renderComponents the renderComponents to set
      */
     public void setRenderComponents(Map<String, Boolean> renderComponents) {
         this.renderComponents = renderComponents;
     }
-    
+
     /**
      * @return the sinceText
      */
     public String getSinceText() {
         return sinceText;
     }
-    
+
     /**
      * @param sinceText the sinceText to set
      */
     public void setSinceText(String sinceText) {
         this.sinceText = sinceText;
     }
-    
+
     /**
      * @return the toText
      */
     public String getToText() {
         return toText;
     }
-    
+
     /**
      * @param toText the toText to set
      */
     public void setToText(String toText) {
         this.toText = toText;
     }
-    
+
     /**
      * @return the sinceDatestr
      */
     public String getSinceDatestr() {
         return sinceDatestr;
     }
-    
+
     /**
      * @param sinceDatestr the sinceDatestr to set
      */
     public void setSinceDatestr(String sinceDatestr) {
         this.sinceDatestr = sinceDatestr;
     }
-    
+
     /**
      * @return the toDatestr
      */
     public String getToDatestr() {
         return toDatestr;
     }
-    
+
     /**
      * @param toDatestr the toDatestr to set
      */
     public void setToDatestr(String toDatestr) {
         this.toDatestr = toDatestr;
     }
-    
+
     /**
      * @return the selectDate
      */
     public String getSelectDate() {
         return selectDate;
     }
-    
+
     /**
      * @param selectDate the selectDate to set
      */
     public void setSelectDate(String selectDate) {
         this.selectDate = selectDate;
     }
-    
+
     /**
      * @return the concreteDate
      */
     public static String getConcreteDate() {
         return CONCRETE_DATE;
     }
-    
+
     /**
      * @return the sinceTitle
      */
     public static String getSinceTitle() {
         return SINCE_TITLE;
     }
-    
+
     /**
      * @return the toTitle
      */
     public static String getToTitle() {
         return TO_TITLE;
     }
-    
+
     /**
      * @return the dateRange
      */
     public DateRangeDto getDateRange() {
         return dateRange;
     }
-    
+
     /**
      * @param dateRange the dateRange to set
      */
     public void setDateRange(DateRangeDto dateRange) {
         this.dateRange = dateRange;
     }
-    
+
     /**
      * @return the sinceDate
      */
     public Date getSinceDate() {
         return sinceDate;
     }
-    
+
     /**
      * @param sinceDate the sinceDate to set
      */
     public void setSinceDate(Date sinceDate) {
         this.sinceDate = sinceDate;
     }
-    
+
     /**
      * @return the toDate
      */
     public Date getToDate() {
         return toDate;
     }
-    
+
     /**
      * @param toDate the toDate to set
      */

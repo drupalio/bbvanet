@@ -33,8 +33,9 @@
 					disabledCalendar="#{turnsOperationController.renderComponents['CALENDAR']}"
 					actionListenerDate="#{turnsOperationController.setCustomDate}" />
 			</bbvaSearch:customSearchList>
-			<bbvaSearch:searchButtonList show="true" showQuota="true"
-				showMovements="false"
+			<bbvaSearch:searchButtonList showRemove="false" showQRemove="false"
+				showTRemove="true" showMovements="false" showChecks="false"
+				showQuota="false" showTurns="true"
 				actionListenerRemove="#{turnsOperationController.cleanFilters}"
 				actionListenerShow="#{turnsOperationController.searchQuotaByFilter}" />
 		</bbvaSearch:personalizedSearchTabBody>

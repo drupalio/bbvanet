@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<composite:interface>
+	<composite:attribute name="id" />
+	<composite:attribute name="value" />
+	<composite:attribute name="label" />
+	<composite:attribute name="required" default="true" />
+	<composite:attribute name="maxlength" type="java.lang.Integer" required="false" />
+	<composite:attribute name="minlength" type="java.lang.Integer" required="false" />
+	<composite:attribute name="requiredMessage" required="false" default="#{msg['mssg.requeridValue']}" />
+	<composite:attribute name="validatorMessage" required="false" default="#{msg['mssg.validateDefault']}" />
+	<composite:attribute name="converterMessage" required="false" default="#{msg['mssg.validateDefault']}" />
+	<composite:attribute name="placeHolder" />
+	<composite:attribute name="styleIn" />
+	<composite:attribute name="styleClassIn" />
+	<composite:attribute name="styleClassOut" />
+</composite:interface>
+<composite:implementation>
+	<div class="form-group">
+		<p:outputLabel id="out_#{cc.attrs.id}" for="item_#{cc.attrs.id}" value="#{cc.attrs.label}"
+			styleClass="#{cc.attrs.styleClassOut} control-label left fontLabel" />
+		<div class="#{cc.attrs.styleClassIn} fontInput">
+			<div class="input-control" style="margin: 1px !important;">
+				<p:inputText id="item_#{cc.attrs.id}" type="text" style="#{cc.attrs.styleIn}"
+					styleClass="#{component.valid?'form-control':'form-control has-error'}"
+					placeholder="#{cc.attrs.placeHolder}" required="#{cc.attrs.required}"
+					onmouseover="tooltipFocus(jQuery(this))" value="#{cc.attrs.value}"
+					maxlength="#{cc.attrs.maxlength}" onclick="checkFilled(this)"
+					onmouseout="tooltipRemove(jQuery(this))" autocomplete="off"
+					requiredMessage="#{cc.attrs.requiredMessage}"
+					validatorMessage="#{cc.attrs.validatorMessage}"
+					converterMessage="#{cc.attrs.converterMessage}">
+					<f:validateLength maximum="#{cc.attrs.maxlength}" for="item_#{cc.attrs.id}" minimum="#{cc.attrs.minlength}" />
+				</p:inputText>
+			</div>
+		</div>
+	</div>
+</composite:implementation>
+</html>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:bbvaProgressBar="http://java.sun.com/jsf/composite/bbva/progressBar">
+<composite:interface>
+	<composite:attribute name="pointOneState" type="java.lang.String" />
+	<composite:attribute name="pointOne" type="java.lang.String" />
+	<composite:attribute name="pointTwoState" type="java.lang.String" />
+	<composite:attribute name="pointTwo" type="java.lang.String" />
+	<composite:attribute name="pointThreeState" type="java.lang.String" />
+	<composite:attribute name="pointThree" type="java.lang.String" />
+</composite:interface>
+<composite:implementation>
+	<div class="point-background first-step #{cc.attrs.pointOneState}">
+		<div class="text">#{cc.attrs.pointOne}</div>
+		<div class="point"></div>
+	</div>
+	<div class="point-background #{cc.attrs.pointTwoState}" style="left: 50%;">
+		<div class="text">#{cc.attrs.pointTwo}</div>
+		<div class="point"></div>
+	</div>
+	<div class="point-background last-step #{cc.attrs.pointThreeState}">
+		<div class="text" style="right: 67px;">#{cc.attrs.pointThree}</div>
+		<div class="point"></div>
+	</div>
+</composite:implementation>
+</html>
