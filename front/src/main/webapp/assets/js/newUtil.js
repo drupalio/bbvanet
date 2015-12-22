@@ -518,3 +518,17 @@ function imprimir(muestra) {
 
 function start() {
 }
+//<!-- Entelgy / SPRINT 1 / 17122015 / INICIO -->
+/* Función para controlar la redirección del backButton*/
+function backButton(window, location, url) {
+	history.replaceState( null, document.title, location.pathname);
+	history.pushState(null, document.title, location.pathname);
+
+	window.addEventListener("popstate", function() {
+		history.replaceState(null, document.title, location.pathname);
+		setTimeout(function(){
+		  location.replace(url);
+		},0);
+	}, false);
+}
+//<!-- Entelgy / SPRINT 1 / 17122015 / FIN -->
