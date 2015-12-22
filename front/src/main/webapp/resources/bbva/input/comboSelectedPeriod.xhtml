@@ -16,7 +16,7 @@
 				itemLabel="#{msg[multiValue.value]}" itemValue="#{multiValue.id}" />
 			<p:ajax listener="#{cc.attrs.listener}" event="valueChange" process="@this"
 				update="#{cc.attrs.render}" onstart="PF('statusDialog').show();"
-				oncomplete="PF('statusDialog').hide();" />
+				oncomplete="PF('statusDialog').hide();" async="false" />
 		</p:selectOneMenu>
 	</div>
 </composite:implementation>

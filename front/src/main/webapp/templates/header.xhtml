@@ -95,13 +95,14 @@
 			icon=" insurance-icon" liclass="width"
 			rendered="#{menuActive != 'SEGUROS'}" />
 
-		<bbvaMenu:itemMenu href="./buySellDivisas" value="Divisas"
-			title="Ir a seguros" icon="account-icon" liclass="width active"
+		<bbvaMenu:itemMenu href="./searchOptions" value="Compra-Venta Divisas"
+			title="Ir a compra y venta de divisas" icon="account-icon" liclass="width active"
 			rendered="#{menuActive == 'DIVISAS'}" />
 
-		<bbvaMenu:itemMenu href="./buySellDivisas" value="Divisas"
-			title="Ir a seguros" icon="account-icon" liclass="width"
+		<bbvaMenu:itemMenu href="./searchOptions" value="Compra-Venta Divisas"
+			title="Ir a compra y venta de divisas" icon="account-icon" liclass="width"
 			rendered="#{menuActive != 'DIVISAS'}" />
+			
 		<bbvaMenu:itemSearch id="searchContent" />
 	</bbvaMenu:menu>
 	<bbvaMenu:menuMobile id="menuMoContent"/>

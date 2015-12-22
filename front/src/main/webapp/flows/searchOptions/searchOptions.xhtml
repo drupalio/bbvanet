@@ -34,17 +34,6 @@
 				<button id="opButton" style="display: none;"
 					onclick="#{movementsCriteriaController.resetData()}" />
 				<div class="tab-group savingsAccount">
-					<bbvaDiviHeader:moveDetailContainer>
-						<bbvaDiviHeader:moveContainerHeader>
-							<bbvaDiviHeader:moveDetailHeaderLeft alias="#{product.alias}" number="#{product.productId}"
-								type=" #{product.productName}" />
-							<bbvaGraphic:MovementsGraphic lineConfigUI="#{turnsOperationController.graphicLineMovements}" />
-							<bbvaDiviHeader:moveDetailHeaderRight textUp="#{msg['text.available']}"
-								valueUp="#{product.totalCash}" valueDown="#{product.cashAvailable}" 
-								disabledOpera="#{product.getOperationOnline()}"
-								disabledConsult="#{product.isVisible()}" />
-						</bbvaDiviHeader:moveContainerHeader>
-					</bbvaDiviHeader:moveDetailContainer>
 					<bbvaDetAcc:tabMenu id="tabMenu">
 						<bbvaDetAcc:menuMovements disabledOpera="#{product.getOperationOnline()}"
 							disabledConsult="#{product.isVisible()}" />
@@ -54,12 +43,11 @@
 								<bbvaSearch:personTurnSearchDate id="personalizedSearchContainer" />
 							</bbvaSearch:tabCriteria>
 							<!-- Tab Condiciones -->
-							<bbvaAcc:accountContainer alias="#{product.alias}" number="#{product.productId}"
-								type="#{product.productName}" />
+							<bbvaAcc:accountContainer />
 							<!-- Tab Personalizar -->
 							<bbvaPersonalize:personalizeContainer id="tabPersonal" />
 							<!-- Tab operaciones -->
-							<bbvaOperation:operationsAccounts id="tabOperations"/>
+							<bbvaOperation:operationsDivisas id="tabOperations"/>
 						</div>
 					</bbvaDetAcc:tabMenu>
 					<div class="table-tabs">

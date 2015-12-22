@@ -14,7 +14,6 @@
 </composite:interface>
 
 <composite:implementation>
-
 	<div class="mobile-menu-container">
 		<nav style="" class="mobile-menu hidden-md hidden-lg logged collapse">
 			<div class="log-menu header-buttons">
@@ -108,11 +107,11 @@
 						spanclass="icon-menu-insurance-blue-light"
 						rendered="#{menuActive != 'SEGUROS'}" />
 
-					<bbvaMenu:itemMenu href="./buySellDivisas" value="Divisas"
+					<bbvaMenu:itemMenu href="./searchOptions" value="Compra-Venta Divisas"
 						title="Ir a seguros" icon="account-icon" liclass="width active"
 						rendered="#{menuActive == 'DIVISAS'}" />
 
-					<bbvaMenu:itemMenu href="./buySellDivisas" value="Divisas"
+					<bbvaMenu:itemMenu href="./searchOptions" value="Compra-Venta Divisas"
 						title="Ir a seguros" icon="account-icon" liclass="width"
 						rendered="#{menuActive != 'DIVISAS'}" />
 

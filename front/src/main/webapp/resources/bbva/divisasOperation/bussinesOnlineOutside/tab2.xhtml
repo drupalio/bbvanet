@@ -9,12 +9,27 @@
 <composite:interface>
 </composite:interface>
 <composite:implementation>
-	<h:form>
-		<bbvaProgressBar:progressContent id="progressBar" sizeProgress="0px">
-			<bbvaProgressDivi:progressDivisasBusiness pointOne="uno"
-				pointTwo="dos" pointThree="tres" pointFour="cuatro"
-				pointTwoState="active" sizeProgress="0px" />
-		</bbvaProgressBar:progressContent>
-	</h:form>
+	<div class="panel-tab-body content-operaciones" id="operations">
+		<h:panelGroup class="panel-tab-head">
+			<p:commandButton style="z-index: 99" resetValues="true" value="Quiero"
+				styleClass="btn arrow-left quiero-return hidden-xs hidden-sm"
+				onclick="PF('operationDivi').loadStep('Tab0', true)" />		
+			<button type="button" class="close-icon hidden-xs hidden-sm close-button" />
+			<h1 class="hidden-xs hidden-sm">Quiero ver</h1>
+		</h:panelGroup>
+		<div class="container">
+			<h3 class="visible-xs">Operaciones</h3>
+			<div class="row">
+				<h:form>
+					<bbvaProgressBar:progressContent id="progressBar"
+						sizeProgress="0px">
+						<bbvaProgressDivi:progressDivisasBusiness pointOne="uno"
+							pointTwo="dos" pointThree="tres" pointFour="cuatro"
+							pointTwoState="active" sizeProgress="0px" />
+					</bbvaProgressBar:progressContent>
+				</h:form>
+			</div>
+		</div>
+	</div>			
 </composite:implementation>
 </html>

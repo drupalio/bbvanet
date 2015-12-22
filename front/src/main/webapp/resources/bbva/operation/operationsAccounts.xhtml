@@ -2,52 +2,28 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:composite="http://java.sun.com/jsf/composite"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:pm="http://primefaces.org/mobile"
-	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-	xmlns:c="http://java.sun.com/jsp/jstl/core"
-	xmlns:cc="http://jsflive.at/taglib"
-	xmlns:bbvaGP="http://java.sun.com/jsf/composite/bbva/globalPosition"
 	xmlns:bbvaOperation="http://java.sun.com/jsf/composite/bbva/operation">
 <composite:interface>
 </composite:interface>
 <composite:implementation>
-	<div id="tab-operaciones" class="tab-mobile tab-pane operaciones" style="margin-bottom: 30px;">
-		<h:form id="item_operationD">
-			<p:wizard id="operFlow" widgetVar="operFlow" showNavBar="false">
-				<div class="col-xs-12 col-sm-12">
-					<p:tab id="Tab1" titleStyleClass="nonee">
-						<bbvaOperation:operationsContainer>
-							<div class="col-xs-12 col-sm-6">
-								<ul>
-									<li><a class="show-operation" href="#"> <strong>Realizar
-												transferencia</strong>
-									</a></li>
-								</ul>
-							</div>
-							<div class="container">
-								<h3 class="visible-xs">Operaciones</h3>
-								<div class="row">
-									<div class="col-xs-12 col-sm-6">
-										<ul>
-											<li><p:commandLink styleClass="show-operation" href="#"
-													onclick="PF('operFlow').loadStep('Tab2', true)">
-													<strong>Compra y venta de divisas</strong>
-												</p:commandLink></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</bbvaOperation:operationsContainer>
-					</p:tab>
+	<div id="tab-operaciones" class="tab-mobile tab-pane operaciones"
+		style="margin-bottom: 30px;">
+		<bbvaOperation:operationsContainer>
+			<div class="col-xs-12 col-sm-6">
+				<ul>
+					<li><a class="show-operation" href="#"> <strong>Realizar
+								transferencia</strong>
+					</a></li>
+				</ul>
+			</div>
+			<div class="container">
+				<h3 class="visible-xs">Operaciones</h3>
+				<div class="row">
+					<div class="col-xs-12 col-sm-6"></div>
 				</div>
-				<p:tab id="Tab2" titleStyleClass="nonee">
-					<bbvaOperation:operationDivisas id="operationsDivisas" />
-				</p:tab>
-			</p:wizard>
-		</h:form>
+			</div>
+		</bbvaOperation:operationsContainer>
 	</div>
 </composite:implementation>
 </html>
