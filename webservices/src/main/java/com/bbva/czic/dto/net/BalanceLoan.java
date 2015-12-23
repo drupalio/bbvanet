@@ -1,4 +1,4 @@
-
+//Clase generada por el wadl Loan 23/12/2015 Entelgy
 package com.bbva.czic.dto.net;
 
 import java.io.Serializable;
@@ -6,22 +6,21 @@ import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
-import com.bbva.jee.arq.spring.core.servicing.utils.Money;
 
 
 /**
- * <p>Java class for Balance complex type.
+ * <p>Java class for BalanceLoan complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="Balance">
+ * &lt;complexType name="BalanceLoan">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="total" type="{urn:com:bbva:jee:arq:spring:core:servicing:utils}money" minOccurs="0"/>
- *         &lt;element name="availableBalance" type="{urn:com:bbva:jee:arq:spring:core:servicing:utils}money" minOccurs="0"/>
- *         &lt;element name="tradeBalance" type="{urn:com:bbva:jee:arq:spring:core:servicing:utils}money" minOccurs="0"/>
+ *         &lt;element name="total" type="{urn:com:bbva:czic:dto:net}money" minOccurs="0"/>
+ *         &lt;element name="availableBalance" type="{urn:com:bbva:czic:dto:net}money" minOccurs="0"/>
+ *         &lt;element name="tradeBalance" type="{urn:com:bbva:czic:dto:net}money" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -31,15 +30,15 @@ import com.bbva.jee.arq.spring.core.servicing.utils.Money;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Balance", propOrder = {
+@XmlType(name = "BalanceLoan", propOrder = {
     "total",
     "availableBalance",
     "tradeBalance"
 })
-public class Balance implements Serializable{
-    
-    private static final long serialVersionUID = 1L;
+public class BalanceLoan implements Serializable{
 
+    private static final long serialVersionUID = 1L;
+	
     protected Money total;
     protected Money availableBalance;
     protected Money tradeBalance;

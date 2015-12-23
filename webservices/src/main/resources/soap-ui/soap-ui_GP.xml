@@ -1622,48 +1622,43 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 
 */
 </con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>{
-    "debt": {
-        "total": {
-            "amount": 9000000.00,
-            "currency": "$"
-        },
-        "availableBalance": {
-            "amount": 234040.00,
-            "currency": "$"
-        }
-    },
-    "payment": {
-        "dueDate": "2015-19-01",
-        "paymentDate": "2015-14-01",
-        "shortDate": "2015-01-01",
-        "fees": {
-            "amount": 200,
-            "currency": "$"
-        },
-        "minimumPayment": {
-            "amount": 0,
-            "currency": "$"
-        },
-        "numbersOfQuota": 5
-    },
-    "status": "Normal",
-    "id": "9500-01-40-2606-9499",
-    "type": "SI",
-    "name": "Rotary",
-    "alias": "xxxx",
-    "financialState": "A",
-    "visible": true,
-    "operable": false,
-    "balance": {
-        "total": {
-            "amount": 500,
-            "currency": "$"
-        },
-        "availableBalance": {
-            "amount": 200,
-            "currency": "$"
-        }
-    },
+	"id": "00130443000200009410",
+	"type": "QS",
+	"name": "C ROT AL 60M C30",
+	"movement": [],
+	"debt": {
+		"total": {
+			"amount": 15000000.00,
+			"currency": "COP"
+		},
+		"availableBalance": {
+			"amount": 3000.00,
+			"currency": "COP"
+		}
+	},
+	"payment": {
+		"dueDate": "2050-12-31",
+		"fees": {
+			"amount": 0.00,
+			"currency": "COP"
+		},
+		"minimumPayment": {
+			"amount": 0.00,
+			"currency": "COP"
+		},
+		"numbersOfQuota": 0
+	},
+	"status": "Activa",
+	"balanceloan": {
+		"total": {
+			"amount": 0.00,
+			"currency": "COP"
+		},
+		"availableBalance": {
+			"amount": 14997000.00,
+			"currency": "COP"
+		}
+	},
     "contactInfo": {
         
     },
@@ -1901,12 +1896,12 @@ if( acceptEncodingHeadeList.contains("gzip,deflate") )
 </con:dispatchPath><con:response name="Response 1" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:responseContent>[{
     "id": "19641131451",
     "issueDate": "26/07/2014",
+    "modifiedDate": "10/09/2014",
     "value": {
         "amount": 17464634881,
         "currency": "COP"
     },
-    "status": "8",
-    "modifiedDate": "10/09/2014"
+    "status": "8"
 },
 {
     "id": "3521413981",

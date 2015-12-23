@@ -547,193 +547,193 @@ function backButton(window, location, url) {
 //Entelgy / Spring 2 / 22122015 / INICIO
 
 /**
- * Fix for selectOneMenu when key is pressed along with CTRL
- */
+* Fix for selectOneMenu when key is pressed along with CTRL
+*/
 PrimeFaces.widget.SelectOneMenu = PrimeFaces.widget.SelectOneMenu.extend({
 
-    bindKeyEvents: function() {
-        var $this = this;
-        this.focusInput.on('keydown.ui-selectonemenu', function(e) {
-            var keyCode = $.ui.keyCode, key = e.which; 
-            switch(key) {
-                case keyCode.UP:
-                case keyCode.LEFT:
-                    $this.highlightPrev(e);
-                break;
+  bindKeyEvents: function() {
+      var $this = this;
+      this.focusInput.on('keydown.ui-selectonemenu', function(e) {
+          var keyCode = $.ui.keyCode, key = e.which; 
+          switch(key) {
+              case keyCode.UP:
+              case keyCode.LEFT:
+                  $this.highlightPrev(e);
+              break;
 
-                case keyCode.DOWN:
-                case keyCode.RIGHT:
-                    $this.highlightNext(e);
-                break;
+              case keyCode.DOWN:
+              case keyCode.RIGHT:
+                  $this.highlightNext(e);
+              break;
 
-                case keyCode.ENTER:
-                case keyCode.NUMPAD_ENTER:
-                    $this.handleEnterKey(e);
-                break;
+              case keyCode.ENTER:
+              case keyCode.NUMPAD_ENTER:
+                  $this.handleEnterKey(e);
+              break;
 
-                case keyCode.TAB:
-                    $this.handleTabKey();
-                break;
+              case keyCode.TAB:
+                  $this.handleTabKey();
+              break;
 
-                case keyCode.ESCAPE:
-                    $this.handleEscapeKey(e);
-                    break;
-                case 8:
+              case keyCode.ESCAPE:
+                  $this.handleEscapeKey(e);
+                  break;
+              case 8:
 					$this.handleEscapeKey(e);
-                 break;
-                case 16:
+               break;
+              case 16:
 					$this.handleEscapeKey(e);
-                 break; 
-                case 17:
-                 break;
-                case 18:
+               break; 
+              case 17:
+               break;
+              case 18:
 					$this.handleEscapeKey(e);
-                 break;
-                case 19:
+               break;
+              case 19:
 					$this.handleEscapeKey(e);
-                 break; 
-                case 33:
+               break; 
+              case 33:
 					$this.handleEscapeKey(e);
-                 break;
-                case 34:
+               break;
+              case 34:
 					$this.handleEscapeKey(e);
-                 break;
-                case 35:
+               break;
+              case 35:
 					$this.handleEscapeKey(e);
-                 break;
-                case 36:
+               break;
+              case 36:
 					$this.handleEscapeKey(e);
-                 break;
-                case 44:
+               break;
+              case 44:
 					$this.handleEscapeKey(e);
-                 break;
-                case 45:
+               break;
+              case 45:
 					$this.handleEscapeKey(e);
-                 break;
-                case 46:
+               break;
+              case 46:
 					$this.handleEscapeKey(e);
-                 break;
-                case 91:
+               break;
+              case 91:
 					$this.handleEscapeKey(e);
-                 break;
-                case 93:
+               break;
+              case 93:
 					$this.handleEscapeKey(e);
-                 break;
-                case 112:
+               break;
+              case 112:
 					$this.handleEscapeKey(e);
-                 break;
-                case 113:
+               break;
+              case 113:
 					$this.handleEscapeKey(e);
-                 break;
-                case 114:
+               break;
+              case 114:
 					$this.handleEscapeKey(e);
-                 break;
-                case 116:
+               break;
+              case 116:
 					$this.handleEscapeKey(e);
-                 break;
-                case 117:
+               break;
+              case 117:
 					$this.handleEscapeKey(e);
-                 break;
-                case 118:
+               break;
+              case 118:
 					$this.handleEscapeKey(e);
-                 break;
-                case 119:
+               break;
+              case 119:
 					$this.handleEscapeKey(e);
-                 break;
-                case 120:
+               break;
+              case 120:
 					$this.handleEscapeKey(e);
-                 break;
-                case 121:
+               break;
+              case 121:
 					$this.handleEscapeKey(e);
-                 break;
-                case 122:
+               break;
+              case 122:
 					$this.handleEscapeKey(e);
-                 break;
-                case 123:
+               break;
+              case 123:
 					$this.handleEscapeKey(e);
-                 break;
-                case 145:
+               break;
+              case 145:
 					$this.handleEscapeKey(e);
-                 break;
-                case 181:
+               break;
+              case 181:
 					$this.handleEscapeKey(e);
-                 break;
-                case 182:
+               break;
+              case 182:
 					$this.handleEscapeKey(e);
-                 break;
-                case 183:
+               break;
+              case 183:
 					$this.handleEscapeKey(e);
-                 break;
-            }   
-        })
-        .on('keyup.ui-selectonemenu', function(e) {
-            var keyCode = $.ui.keyCode, key = e.which;
-            alert(key)
-            switch(key) {
-                case keyCode.UP:
-                case keyCode.LEFT:
-                case keyCode.DOWN:
-                case keyCode.RIGHT:
-                case keyCode.ENTER:
-                case keyCode.NUMPAD_ENTER:
-                case keyCode.TAB:
-                case keyCode.ESCAPE:
-                case 8:
-                case 16:
-                case 17:
-                case 18:
-                case 19:
-                case 33:
-                case 34:
-                case 35:
-                case 36:
-                case 44:
-                case 45:
-                case 46:
-                case 91:
-                case 93:
-                case 112:
-                case 113:
-                case 114:
-                case 116:
-                case 117:
-                case 118:
-                case 119:
-                case 120:
-                case 121:
-                case 122:
-                case 123:	
-                case 145:
-                case 181:
-                case 182:
-                case 183:
-             break;
-                default:
-                    var text = $(this).val(),
-                    matchedOptions = null;
+               break;
+          }   
+      })
+      .on('keyup.ui-selectonemenu', function(e) {
+          var keyCode = $.ui.keyCode, key = e.which;
+          alert(key)
+          switch(key) {
+              case keyCode.UP:
+              case keyCode.LEFT:
+              case keyCode.DOWN:
+              case keyCode.RIGHT:
+              case keyCode.ENTER:
+              case keyCode.NUMPAD_ENTER:
+              case keyCode.TAB:
+              case keyCode.ESCAPE:
+              case 8:
+              case 16:
+              case 17:
+              case 18:
+              case 19:
+              case 33:
+              case 34:
+              case 35:
+              case 36:
+              case 44:
+              case 45:
+              case 46:
+              case 91:
+              case 93:
+              case 112:
+              case 113:
+              case 114:
+              case 116:
+              case 117:
+              case 118:
+              case 119:
+              case 120:
+              case 121:
+              case 122:
+              case 123:	
+              case 145:
+              case 181:
+              case 182:
+              case 183:
+           break;
+              default:
+                  var text = $(this).val(),
+                  matchedOptions = null;
 
-                    clearTimeout($this.searchTimer);
+                  clearTimeout($this.searchTimer);
 
-                    matchedOptions = $this.options.filter(function() {
-                        return $(this).text().toLowerCase().indexOf(text.toLowerCase()) === 0;
-                    });
+                  matchedOptions = $this.options.filter(function() {
+                      return $(this).text().toLowerCase().indexOf(text.toLowerCase()) === 0;
+                  });
 
-                    if(matchedOptions.length) {
-                        var highlightItem = $this.items.eq(matchedOptions.index());
-                        if($this.panel.is(':hidden')) {
-                            $this.selectItem(highlightItem);
-                        }
-                        else {
-                            $this.highlightItem(highlightItem);
-                            PrimeFaces.scrollInView($this.itemsWrapper, highlightItem);
-                        }
-                    }
-                    $this.searchTimer = setTimeout(function(){
-                        $this.focusInput.val('');
-                    }, 1000);
-                break;
-            }
-        });
-    }
+                  if(matchedOptions.length) {
+                      var highlightItem = $this.items.eq(matchedOptions.index());
+                      if($this.panel.is(':hidden')) {
+                          $this.selectItem(highlightItem);
+                      }
+                      else {
+                          $this.highlightItem(highlightItem);
+                          PrimeFaces.scrollInView($this.itemsWrapper, highlightItem);
+                      }
+                  }
+                  $this.searchTimer = setTimeout(function(){
+                      $this.focusInput.val('');
+                  }, 1000);
+              break;
+          }
+      });
+  }
 });
 //Entelgy / Spring 2 / 22122015 / FIN
