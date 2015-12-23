@@ -31,12 +31,10 @@
 				<section class="row tab-pane active globalpanelIn" id="products"
 					style="padding: 0px !important;"> <input id='operations' type='hidden'
 					value='${sessionScope.operationsAccount}' />
-				<button id="opButton" style="display: none;"
-					onclick="#{movementsCriteriaController.resetData()}" />
+				<button id="opButton" style="display: none;" onclick="#{movementsCriteriaController.resetData()}" />
 				<div class="tab-group savingsAccount">
 					<bbvaDetAcc:tabMenu id="tabMenu">
-						<bbvaDetAcc:menuMovements disabledOpera="#{product.getOperationOnline()}"
-							disabledConsult="#{product.isVisible()}" />
+						<bbvaDetAcc:menuMovements disabledOpera="true" disabledConsult="true" />
 						<div class="tab-content">
 							<!-- Tab Consultar -->
 							<bbvaSearch:tabCriteria id="tabCriteria">

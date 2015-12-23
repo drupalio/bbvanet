@@ -8,47 +8,31 @@
 <composite:interface>
 </composite:interface>
 <composite:implementation>
-	<div class="panel-tab-head">
-		<button type="button"
-			class="close-icon hidden-xs hidden-sm  close-button"></button>
-		<h1 class="hidden-xs hidden-sm">Quiero ver</h1>
-	</div>
-	<div class="panel-tab-body content-operaciones" id="operations">
-		<div class="container">
-			<h3 class="visible-xs">Operaciones</h3>
-			<div class="row">
-				<h:form id="item_operationD">
-					<p:wizard id="operationDivi" widgetVar="operationDivi"
-						showNavBar="false">
-						<p:tab id="Tab0" titleStyle="display: none;">
-							<bbvaDivisaOp:operationsOptionDivi id="optionsContentDivisas" />
-						</p:tab>
-						<!-- Giros hacia el exterior -->
-						<p:tab id="Tab1" titleStyle="display: none;">
-							<bbvaOperation:businessOnlineOutSideContent
-								id="businessOnlineOutside" />
-						</p:tab>
-						<p:tab id="Tab2" titleStyle="display: none;">
-							<bbvaOperation:businessTableOutSideContent
-								id="businessTableOutside" />
-						</p:tab>
-						<p:tab id="Tab3" titleStyle="display: none;">
-							<bbvaOperation:registryAccountsOutContent
-								id="registryAccountsOperation" />
-						</p:tab>
-						<!-- Giros recibidos desde el exterior -->
-						<p:tab id="Tab4" titleStyle="display: none;">
-							<bbvaOperation:businessOnlineReciveContent
-								id="businessOnlineReceived" />
-						</p:tab>
-						<p:tab id="Tab5" titleStyle="display: none;">
-							<bbvaOperation:businessTableReciveContent
-								id="businessTableReceived" />
-						</p:tab>
-					</p:wizard>
-				</h:form>
-			</div>
-		</div>
+	<div id="tab-operaciones" class="tab-mobile tab-pane operaciones" style="margin-bottom: 30px;">
+		<h:form id="item_operationD">
+			<p:wizard id="operationDivi" widgetVar="operationDivi" showNavBar="false">
+				<p:tab id="Tab0" titleStyle="display: none;">
+					<bbvaDivisaOp:operationsOptionDivi id="optionsContentDivisas" />
+				</p:tab>
+				<!-- Giros hacia el exterior -->
+				<p:tab id="Tab1" titleStyle="display: none;">
+					<bbvaOperation:businessOnlineOutSideContent id="businessOnlineOutside" />
+				</p:tab>
+				<p:tab id="Tab2" titleStyle="display: none;">
+					<bbvaOperation:businessTableOutSideContent id="businessTableOutside" />
+				</p:tab>
+				<p:tab id="Tab3" titleStyle="display: none;">
+					<bbvaOperation:registryAccountsOutContent id="registryAccountsOperation" />
+				</p:tab>
+				<!-- Giros recibidos desde el exterior -->
+				<p:tab id="Tab4" titleStyle="display: none;">
+					<bbvaOperation:businessOnlineReciveContent id="businessOnlineReceived" />
+				</p:tab>
+				<p:tab id="Tab5" titleStyle="display: none;">
+					<bbvaOperation:businessTableReciveContent id="businessTableReceived" />
+				</p:tab>
+			</p:wizard>
+		</h:form>
 	</div>
 </composite:implementation>
 </html>
