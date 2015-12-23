@@ -2161,6 +2161,8 @@ body div.ui-growl .ui-state-highlight {
 	height: 49px;
 }
 /* <!-- Entelgy / SPRING 1 / 05112015 / FIN -->*/
+
+/* <!-- Entelgy / Divisas / 23122015 / INICIO -->*/
 @media ( max-width : 768px) {
 	.responseTitle {
 		width: 100% !important;
@@ -2187,3 +2189,20 @@ body div.ui-growl .ui-state-highlight {
 		border-right: 1px solid #CCC;
 	}
 }
+
+/* menú */
+
+.itemNormal{
+	width: 12% !important;
+}
+
+.itemPosicionGlobal{
+	width: 14% !important;
+}
+
+li.itemPosicionGlobal.active > a{
+	border-bottom-left-radius: 5px !important;
+	border-top-left-radius: 5px !important;
+}
+
+/* <!-- Entelgy / Divisas / 23122015 / FIN -->*/
