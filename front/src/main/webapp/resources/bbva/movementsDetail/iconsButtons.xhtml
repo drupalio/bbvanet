@@ -16,7 +16,7 @@
 <composite:implementation>
 	<!-- Entelgy / SPRING 3 / 17112015 / INICIO -->
 	<p:outputPanel autoUpdate="true">
-		<div class="utility-icons #{cc.attrs.render == 'true' ? 'visible' : 'nonee'}">
+		<div class="utility-icons #{cc.attrs.render == 'true' ? 'visible' : 'nonee'}" style="#{cc.attrs.style}">
 			<h:form id="documentsExport">
 				<div style="display: inline-block; position: relative;">
 					<span data-original-title="#{msg['msg.info.movements.excel']}" data-style-toggle="top: -70px; right: -85px; width: 200px;"

@@ -13,6 +13,7 @@
 <composite:interface>
 	<composite:attribute name="value" />
 	<composite:attribute name="showQuota" />
+	<composite:attribute name="showTurns" />
 	<composite:attribute name="showMovements" />
 	<composite:attribute name="showChekcs" />
 	<composite:attribute name="valueDateSince" />
@@ -28,9 +29,8 @@
 		class="date-filter-content">
 		<!-- Entelgy / SPRING 3 / 08092015 / INICIO -->
 		<h:panelGroup id="panelFilterDate">
-			<div
-				style="border-bottom: 1px solid #DBDCDC; padding-bottom: 20px !important;"
-				class="form-horizontal">
+			<div class="form-horizontal"
+				style="border-bottom: 1px solid #DBDCDC; padding-bottom: 20px !important;">
 				<div class="row">
 					<p:selectOneRadio id="customRadio_#{cc.attrs.identify}"
 						layout="custom" value="#{cc.attrs.value}" class="radioBT">
@@ -47,18 +47,24 @@
 						<f:ajax event="click"
 							listener="#{cc.attrs.listenerDate.oneSelectDate}"
 							render=" :tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:itemSince_moveCalendar
-                    :tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:itemTo_moveCalendar								
-					:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:dateButtonMovements 		
+                    	:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:itemTo_moveCalendar								
+						:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:dateButtonMovements 		
 												
-                    :tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:customCheckList:customDate:itemSince_checkCalendar
-                    :tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:customCheckList:customDate:itemTo_checkCalendar
-                    :tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:customCheckList:customDate:dateButtonChecks
+                    	:tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:customCheckList:customDate:itemSince_checkCalendar
+                   	 	:tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:customCheckList:customDate:itemTo_checkCalendar
+                    	:tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:customCheckList:customDate:dateButtonChecks
 					
-                    :quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:itemSince_quotaCalendar
-                    :quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:itemTo_quotaCalendar
-                    :quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:dateButtonQuota" />
+                    	:quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:itemSince_quotaCalendar
+                    	:quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:itemTo_quotaCalendar
+                    	:quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:dateButtonQuota
+					
+						:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:itemSince_turnsCalendar
+                    	:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:itemTo_turnsCalendar
+                    	:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:dateButtonTurn" />
 					</p:selectOneRadio>
-		   			 <div class="col-xs-6" style="padding-left: 0px; padding-right: 0px;">
+
+					<div class="col-xs-6"
+						style="padding-left: 0px; padding-right: 0px;">
 						<p:radioButton id="customSearch-filter-today_#{cc.attrs.identify}"
 							for="customRadio_#{cc.attrs.identify}" itemIndex="0"
 							class="radioBT" />
@@ -76,7 +82,8 @@
 							for="customSearch-filter-two-week_#{cc.attrs.identify}"
 							value="#{msg['select.radio.last.two.weeks']}" />
 					</div>
-					<div class="col-xs-6" style="padding-left: 0px; padding-right: 0px;">
+					<div class="col-xs-6"
+						style="padding-left: 0px; padding-right: 0px;">
 						<p:radioButton id="customSearch-filter-week_#{cc.attrs.identify}"
 							for="customRadio_#{cc.attrs.identify}" itemIndex="2"
 							class="radioBT" />
@@ -84,7 +91,8 @@
 							for="customSearch-filter-week_#{cc.attrs.identify}"
 							value="#{msg['select.radio.last.week']}" />
 					</div>
-					<div class="col-xs-6" style="padding-left: 0px; padding-right: 0px;">
+					<div class="col-xs-6"
+						style="padding-left: 0px; padding-right: 0px;">
 						<p:radioButton id="customSearch-filter-month_#{cc.attrs.identify}"
 							for="customRadio_#{cc.attrs.identify}" itemIndex="3"
 							class="radioBT" />
@@ -191,6 +199,17 @@
 				update=":quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:itemSince_quotaCalendar
 			            :quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:itemTo_quotaCalendar
 			            :quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:componentList" />
+		</p:commandButton>
+		<p:commandButton id="dateButtonTurn"
+			onclick="styleCheckD(jQuery(this))"
+			styleClass="btn small hidden-xs hidden-sm #{cc.attrs.value=='' || (cc.attrs.value==msg['select.radio.concret.date'] &amp;&amp; (cc.attrs.valueDateSince==null || cc.attrs.valueDateTo==null)) ? 'buttonDisabled': 'none'}"
+			rendered="#{cc.attrs.showTurns}" value="#{msg['button.confirm']}">
+			<p:ajax process="@form"
+				listener="#{cc.attrs.listenerDate.setCustomDate}"
+				oncomplete="document.getElementById(':tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:componentList').click();"
+				update=":tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:itemSince_turnsCalendar 
+           				:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:itemTo_turnsCalendar 
+            			:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:componentList" />
 		</p:commandButton>
 	</div>
 </composite:implementation>

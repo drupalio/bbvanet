@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:bbvaInput="http://java.sun.com/jsf/composite/bbva/input"
+	xmlns:bbvaProgressBar="http://java.sun.com/jsf/composite/bbva/progressBar"
+	xmlns:bbvaProgressDivi="http://java.sun.com/jsf/composite/bbva/progressBar/divisas">
+<composite:interface>
+</composite:interface>
+<composite:implementation>
+	<h:form>
+		<bbvaProgressBar:progressContent id="progressBar" sizeProgress="0px">
+			<bbvaProgressDivi:progressDivisasRegistry pointOne="uno"
+				pointTwo="dos" pointThree="tres" pointFour="cuatro"
+				pointThreeState="active" sizeProgress="0px" />
+		</bbvaProgressBar:progressContent>
+	</h:form>
+</composite:implementation>
+</html>

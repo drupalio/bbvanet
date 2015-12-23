@@ -14,16 +14,18 @@
 	<composite:attribute name="role" type="String" />
 	<composite:attribute name="id" type="String" />
 	<composite:attribute name="disabled" />
+	<composite:attribute name="render" />
 </composite:interface>
 <composite:implementation>
-	<li id="item_#{cc.attrs.id}" data-origin-value="#{cc.attrs.disabled}" class="#{cc.attrs.classLi}"
+	<li id="item_#{cc.attrs.id}" data-origin-value="#{cc.attrs.disabled}" class="#{cc.attrs.classLi}" style="#{cc.attrs.render}"
 		data-original-title="#{msg['msg.info.buttonDesa']} #{cc.attrs.title} #{msg['msg.info.buttonDeso']}">
-		<a class="tab-head" role-tab="#{cc.attrs.role}" onclick="javascript:reset();">#{cc.attrs.title} <c:if
-				test="#{cc.attrs.type>=1}">
-				<span class="#{cc.attrs.icon} font-white hidden-md hidden-lg" ></span>
+		<a class="tab-head" role-tab="#{cc.attrs.role}" onclick="javascript:reset();">#{cc.attrs.title}
+			<c:if test="#{cc.attrs.type>=1}">
+				<span class="#{cc.attrs.icon} font-white hidden-md hidden-lg"></span>
 			</c:if> <c:if test="#{cc.attrs.type==2}">
 				<span class="#{cc.attrs.icon} c08-consultarextracto hidden-xs hidden-sm"></span>
 			</c:if>
-	</a></li>
+	</a>
+	</li>
 </composite:implementation>
 </html>

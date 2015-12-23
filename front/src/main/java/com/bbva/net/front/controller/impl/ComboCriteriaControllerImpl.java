@@ -4,9 +4,6 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -70,6 +67,8 @@ public class ComboCriteriaControllerImpl extends AbstractBbvaController implemen
     
     private transient List<MultiValueGroup> quieroLeasing;
     
+    private transient List<MultiValueGroup> listQuieroDivisas;
+    
     /**
      *
      */
@@ -83,30 +82,31 @@ public class ComboCriteriaControllerImpl extends AbstractBbvaController implemen
     private transient MultiValueGroupFacade multiValueGroupFacade;
     
     /**
-     * Inicialización de Combos
+     * 18 Inicialización de Combos
      */
     @PostConstruct
     public void init() {
-
-            /*
-             * GP12834 Cheques y chequeras - Entelgy - inicio
-             */
-            this.listMultiValuePeriod = this.multiValueGroupFacade.getMultiValueTypes(LIST_CHECK_STATUS);
-            this.listMultiValueChecks = this.multiValueGroupFacade.getMultiValueTypes(LIST_CHECKBOOK_STATUS);
-            this.multiValueList = this.getListMultiValueChecks();
-            
-            /*
-             * GP12834 Cheques y chequeras - Entelgy - fin
-             */
-            
-            this.listQuieroAccounts = this.multiValueGroupFacade.getMultiValueTypes(6);
-            this.listQuieroCards = this.multiValueGroupFacade.getMultiValueTypes(7);
-            this.listQuieroQuota = this.multiValueGroupFacade.getMultiValueTypes(8);
-            this.quieroLoan = this.multiValueGroupFacade.getMultiValueTypes(9);
-            this.quieroDeposit = this.multiValueGroupFacade.getMultiValueTypes(10);
-            this.quieroFund = this.multiValueGroupFacade.getMultiValueTypes(11);
-            this.quieroLeasing = this.multiValueGroupFacade.getMultiValueTypes(12);
-            this.multiValuePeriod = this.getListMultiValuePeriod();
+        
+        /*
+         * GP12834 Cheques y chequeras - Entelgy - inicio
+         */
+        this.listMultiValuePeriod = this.multiValueGroupFacade.getMultiValueTypes(LIST_CHECK_STATUS);
+        this.listMultiValueChecks = this.multiValueGroupFacade.getMultiValueTypes(LIST_CHECKBOOK_STATUS);
+        this.multiValueList = this.getListMultiValueChecks();
+        
+        /*
+         * GP12834 Cheques y chequeras - Entelgy - fin
+         */
+        
+        this.listQuieroDivisas = this.multiValueGroupFacade.getMultiValueTypes(18);
+        this.listQuieroAccounts = this.multiValueGroupFacade.getMultiValueTypes(6);
+        this.listQuieroCards = this.multiValueGroupFacade.getMultiValueTypes(7);
+        this.listQuieroQuota = this.multiValueGroupFacade.getMultiValueTypes(8);
+        this.quieroLoan = this.multiValueGroupFacade.getMultiValueTypes(9);
+        this.quieroDeposit = this.multiValueGroupFacade.getMultiValueTypes(10);
+        this.quieroFund = this.multiValueGroupFacade.getMultiValueTypes(11);
+        this.quieroLeasing = this.multiValueGroupFacade.getMultiValueTypes(12);
+        this.multiValuePeriod = this.getListMultiValuePeriod();
     }
     
     /**
@@ -200,6 +200,16 @@ public class ComboCriteriaControllerImpl extends AbstractBbvaController implemen
         return quieroLeasing;
     }
     
+    /**
+     * Método que obtiene los items del combo quiero de divisas
+     *
+     * @return
+     */
+    @Override
+    public List<MultiValueGroup> getListQuieroDivisas() {
+        return listQuieroDivisas;
+    }
+    
     // ************* Getters Methods *************
     
     /**
@@ -227,5 +237,4 @@ public class ComboCriteriaControllerImpl extends AbstractBbvaController implemen
     /*
      * GP12834 Cheques y chequeras - Entelgy - fin
      */
-    
 }

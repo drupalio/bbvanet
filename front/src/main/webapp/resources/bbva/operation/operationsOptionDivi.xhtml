@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:p="http://primefaces.org/ui">
+<composite:interface>
+</composite:interface>
+<composite:implementation>
+	<h:panelGroup class="panel-tab-head" style="margin-bottom: 4px !important;">
+		<button type="button"
+			class="close-icon hidden-xs hidden-sm  close-button" />
+		<h1 class="hidden-xs hidden-sm">Quiero ver</h1>
+		<div class="col-xs-12 col-sm-12"
+			style="margin-top: 15px; text-align: center;">
+			<div class="col-xs-12 col-sm-6 borderTurns">
+				<span style="font-weight: bold; color: #0065B7;" class="hidden-xs">
+					Giros hacia el exterior</span>
+			</div>
+			<div class="col-xs-12 col-sm-6">
+				<span style="font-weight: bold; color: #0065B7;" class="hidden-xs">
+					Giros recibidos desde el exterior</span>
+			</div>
+		</div>
+	</h:panelGroup>
+	<div class="panel-tab-body content-operaciones" id="operations">
+		<div class="container">
+			<h3 class="visible-xs">Operaciones</h3>
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 borderTurns">
+					<span style="font-weight: bold; color: #0065B7;" class="visible-xs">
+						Giros hacia el exterior</span>
+					<ul>
+						<li><p:commandLink styleClass="show-operation" href="#"
+								onclick="PF('operationDivi').loadStep('Tab1', true)">
+								<strong>Negociación en línea</strong>
+							</p:commandLink></li>
+					</ul>
+					<ul>
+						<li><p:commandLink styleClass="show-operation" href="#"
+								onclick="PF('operationDivi').loadStep('Tab2', true)">
+								<strong>Negociado con Mesa de Dinero</strong>
+							</p:commandLink></li>
+					</ul>
+					<ul>
+						<li><p:commandLink styleClass="show-operation" href="#"
+								onclick="PF('operationDivi').loadStep('Tab3', true)">
+								<strong>Inscribir cuentas para giros al exterior</strong>
+							</p:commandLink></li>
+					</ul>
+				</div>
+				<div class="col-xs-12 col-sm-6">
+					<span style="font-weight: bold; color: #0065B7;" class="visible-xs">
+						Giros recibidos desde el exterior</span>
+					<ul>
+						<li><p:commandLink styleClass="show-operation" href="#"
+								onclick="PF('operationDivi').loadStep('Tab4', true)">
+								<strong>Negociación en línea</strong>
+							</p:commandLink></li>
+					</ul>
+					<ul>
+						<li><p:commandLink styleClass="show-operation" href="#"
+								onclick="PF('operationDivi').loadStep('Tab5', true)">
+								<strong>Negociado con Mesa de Dinero</strong>
+							</p:commandLink></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</composite:implementation>
+</html>

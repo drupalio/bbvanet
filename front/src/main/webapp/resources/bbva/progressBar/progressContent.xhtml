@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+<composite:interface>
+	<composite:attribute name="sizeProgress" type="java.lang.String" />
+</composite:interface>
+<composite:implementation>
+	<div class="col-xs-12 col-sm-12 col-md-12" style="padding: 0px;  margin-top: -1%;">
+		<div class="progressbar-load hidden-xs hidden-sm"
+			style="margin-bottom: 5%;">
+			<div class="progress-bar-container" style="border-radius: 5px;">
+				<composite:insertChildren></composite:insertChildren>
+				<div class="progress">
+					<div style="width: #{cc.attrs.sizeProgress}" class="progress-bar"
+						role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" />
+				</div>
+			</div>
+		</div>
+	</div>
+</composite:implementation>
+</html>

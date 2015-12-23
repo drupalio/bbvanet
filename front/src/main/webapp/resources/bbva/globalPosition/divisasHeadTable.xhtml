@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:bbvaInput="http://java.sun.com/jsf/composite/bbva/input"
+	xmlns:c="http://java.sun.com/jstl/core">
+<composite:interface>
+	<composite:attribute name="id" />
+	<composite:attribute name="listAccounts" type="java.util.List" />
+	<composite:attribute name="listValueLikes" />
+	<composite:attribute name="controller" type="com.bbva.net.front.core.AbstractBbvaController" />
+</composite:interface>
+<composite:implementation>
+	<h:form id="#{cc.attrs.id}">
+		<p:dataTable id="tableAccounts" widgetVar="tableAccounts" var="iproduct" rowIndexVar="findex"
+			selectionMode="single" rowKey="#{iproduct.productId}" value="#{cc.attrs.listAccounts}">
+			<p:ajax event="rowSelect" listener="#{cc.attrs.controller.onProductTurnsSelected}" immediate="true"
+				onstart="PF('statusDialog').show()" />
+			<p:ajax event="rowUnselect" />
+			<p:column headerText="#{msg['text.acco.name']}" styleClass="head col-xs-6 col-md-8 columStyleVisible">
+				<h:outputText styleClass="title-label tableAlias" escape="false" value="#{iproduct.alias}" />
+				<h:outputText styleClass="tableNumberC" escape="false" value="&lt;br /&gt; #{iproduct.productId}" />
+				<h:outputText styleClass="sublabel tableName" escape="false" value="&lt;br /&gt; #{iproduct.productName}" />
+				<!-- Combo quiero -->
+				<bbvaInput:selectOneMenuLikes
+					valueList="#{comboCriteriaController.getListQuieroDivisas()}"
+					listener="#{applicationController.onLike}" />
+			</p:column>
+		</p:dataTable>
+	</h:form>
+</composite:implementation>
+</html>

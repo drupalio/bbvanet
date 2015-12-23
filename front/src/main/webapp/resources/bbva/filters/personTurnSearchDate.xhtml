@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:bbvaSearch="http://java.sun.com/jsf/composite/bbva/filters"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
+<composite:interface>
+	<composite:attribute name="title" type="String" />
+</composite:interface>
+<composite:implementation>
+	<h:form id="customSearch">
+		<bbvaSearch:personalizedSearchTabBody id="perTabBody"
+			title="#{msg['text.title.personalized.search']}">
+			<bbvaSearch:customSearchList id="customList"
+				classList="date-filter customSearch" classSpan="arrow-left-smaller"
+				classSpanFilter="filter" title="#{msg['text.date']}"
+				filterTitle="#{turnsOperationController.sinceText}"
+				filterTitle2="#{turnsOperationController.toText}"
+				filterMessage="#{turnsOperationController.sinceDatestr}"
+				filterMessage2="#{turnsOperationController.toDatestr}">
+				<bbvaSearch:customSearchFilter id="customDate" showQuota="false"
+					showMovements="false" showChecks="false" showTurns="true"
+					identify="turnsCalendar" listenerDate="#{turnsOperationController}"
+					value="#{turnsOperationController.selectDate}"
+					valueDateSince="#{turnsOperationController.sinceDate}"
+					valueDateTo="#{turnsOperationController.toDate}"
+					disabledButton="#{turnsOperationController.renderComponents['BUTTONDATE']}"
+					disabledCalendar="#{turnsOperationController.renderComponents['CALENDAR']}"
+					actionListenerDate="#{turnsOperationController.setCustomDate}" />
+			</bbvaSearch:customSearchList>
+			<bbvaSearch:searchButtonList showRemove="false" showQRemove="false"
+				showTRemove="true" showMovements="false" showChecks="false"
+				showQuota="false" showTurns="true"
+				actionListenerRemove="#{turnsOperationController.cleanFilters}"
+				actionListenerShow="#{turnsOperationController.searchQuotaByFilter}" />
+		</bbvaSearch:personalizedSearchTabBody>
+	</h:form>
+</composite:implementation>
+</html>

@@ -14,8 +14,8 @@
 	<composite:attribute name="onclick" />
 </composite:interface>
 <composite:implementation>
-	<li class="item item-menu #{cc.attrs.liclass}" onclick="#{cc.attrs.onclick}"><a
-		href="#{cc.attrs.href}" title="#{cc.attrs.title}" style=""> <span
+	<li class="item item-menu #{cc.attrs.liclass}" onclick="#{cc.attrs.onclick}" style="#{cc.attrs.style}"><a
+		href="#{cc.attrs.href}" title="#{cc.attrs.title}"> <span
 			class="nav-icon icon-hide #{cc.attrs.spanclass} #{cc.attrs.icon}"></span> #{cc.attrs.value}
 	</a></li>
 </composite:implementation>

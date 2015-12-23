@@ -9,10 +9,11 @@
 	<composite:attribute name="title" type="String" />
 	<composite:attribute name="optionButttonLeft" type="String" />
 	<composite:attribute name="optionButttonRight" type="String" />
+	<composite:attribute name="style" />
 </composite:interface>
 <composite:implementation>
 	<header class="col-xs-12 section-title headerBottom">
-		<h1 class="title-aux">#{cc.attrs.title}</h1>
+		<h1 class="title-aux responseTitle" style="margin-top: 20px; #{cc.attrs.style}">#{cc.attrs.title}</h1>
 		<composite:insertChildren />
 	</header>
 </composite:implementation>

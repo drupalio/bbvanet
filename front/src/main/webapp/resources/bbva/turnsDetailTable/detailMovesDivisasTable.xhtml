@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:bbvaTablesAcc="http://java.sun.com/jsf/composite/bbva/movementsDetail"
+	xmlns:bbvaTablesTurn="http://java.sun.com/jsf/composite/bbva/turnsDetailTable"
+	xmlns:c="http://java.sun.com/jstl/core">
+<composite:interface>
+	<composite:attribute name="id" type="String" />
+	<composite:attribute name="listAccounts" type="java.util.List" />
+	<composite:attribute name="listChecks" type="java.util.List" />
+	<composite:attribute name="listCheckBooks" type="java.util.List" />
+</composite:interface>
+<composite:implementation>
+	<article class="detail-table-group">
+		<bbvaTablesAcc:iconsButtons id="iconsMovesInitial" renderCorreo="true"
+			render="#{renderComponents['TITLEDIVISAINI']}" style="margin-bottom: 2%;"/>
+		<bbvaTablesAcc:iconsButtons id="iconsOutside" renderCorreo="false"
+			render="#{renderComponents['TITLEMOUTSIDE']}" style="margin-bottom: 2%;"/>
+		<bbvaTablesAcc:iconsButtons id="iconsInside" renderCorreo="false"
+			render="#{renderComponents['TITLEMRECIVED']}" style="margin-bottom: 2%;"/>
+		<!-- Tables -->
+		<bbvaTablesTurn:turnsContentTable id="tableDivisas" listAccounts="#{cc.attrs.listAccounts}" />
+		<bbvaTablesTurn:turnsOutsideTable id="tableOut" listAccounts="#{cc.attrs.listOutside}" />
+		<bbvaTablesTurn:turnsRecivedTable id="tableReci" listAccounts="#{cc.attrs.listRecived}" />
+	</article>
+</composite:implementation>
+</html>

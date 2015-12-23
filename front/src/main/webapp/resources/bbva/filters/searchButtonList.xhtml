@@ -12,15 +12,16 @@
 <composite:interface>
 	<composite:attribute name="showRemove" type="boolean" />
 	<composite:attribute name="showQRemove" type="boolean" />
-	<composite:attribute name="showQuota" type="boolean" />
+	<composite:attribute name="showTRemove" type="boolean" />
 	<composite:attribute name="showMovements" type="boolean" />
 	<composite:attribute name="showChecks" type="boolean" />
-	<composite:attribute name="controller"
-		type="com.bbva.net.front.core.AbstractBbvaController" />
+	<composite:attribute name="showQuota" type="boolean" />
+	<composite:attribute name="showTurns" type="boolean" />
+	<composite:attribute name="controller" type="com.bbva.net.front.core.AbstractBbvaController" />
 </composite:interface>
 <composite:implementation>
 	<li class="filter-buttons">
-		<div> 
+		<div>
 			<!-- Entelgy / SPRING 3 / 08092015 / INICIO -->
 			<p:commandButton id="removeFields" icon="trash-icon"
 				value="#{msg['button.clean.filters']}"
@@ -61,6 +62,21 @@
 					:quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:dateButtonQuota
 					:quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:panelFilterDate" />
 			</p:commandButton>
+			<p:commandButton id="removeTFields" icon="trash-icon"
+				value="#{msg['button.clean.filters']}"
+				rendered="#{cc.attrs.showTRemove}"
+				actionListener="#{renderViewMovementsUI.init()}"
+				styleClass="btn btn-default hidden-xs hidden-sm">
+				<p:ajax process="@form" onstart="PF('statusDialog').show()"
+					oncomplete="PF('statusDialog').hide()"
+					listener="#{cc.attrs.controller.cleanFilters}"
+					update=":detailsDivisas:tableDivisas:formDiviDetail:movDivisa
+					:detailsDivisas:tableOut:formOutsideDetail:movDivisaOut
+					:detailsDivisas:tableReci:formRecivedDetail:movDivisaRev
+					:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:componentList
+					:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:dateButtonTurn
+					:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:panelFilterDate" />
+			</p:commandButton>
 			<p:commandButton styleClass="btn btn-default"
 				rendered="#{cc.attrs.showMovements}" icon="document-view-icon"
 				value="#{msg['button.see.result']}">
@@ -90,6 +106,16 @@
 					oncomplete="PF('statusDialog').hide()"
 					listener="#{cc.attrs.controller.searchQuotaByFilter}"
 					update=":quotaDetail:detailAccounts:detailAccounts" />
+			</p:commandButton>
+			<p:commandButton styleClass="btn btn-default" type="button"
+				rendered="#{cc.attrs.showTurns}" icon="document-view-icon"
+				value="#{msg['button.see.result']}">
+				<p:ajax process="@form" onstart="PF('statusDialog').show()"
+					onsuccess="PF('statusDialog').hide()"
+					listener="#{cc.attrs.controller.searchTurnsByFilter}"
+					update=":detailsDivisas:tableDivisas:formDiviDetail:movDivisa
+					:detailsDivisas:tableOut:formOutsideDetail:movDivisaOut
+					:detailsDivisas:tableReci:formRecivedDetail:movDivisaRev" />
 			</p:commandButton>
 		</div> <!-- Entelgy / SPRING 3 / 08092015 / FIN -->
 	</li>

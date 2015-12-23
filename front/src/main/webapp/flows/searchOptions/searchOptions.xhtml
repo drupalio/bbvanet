@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:bbvaAcc="http://java.sun.com/jsf/composite/bbva/accounts"
+	xmlns:bbvaDiviHeader="http://java.sun.com/jsf/composite/bbva/movementsHead"
+	xmlns:bbvaBody="http://java.sun.com/jsf/composite/bbva/body"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:bbvaGraphic="http://java.sun.com/jsf/composite/bbva/graphics/accounts"
+	xmlns:bbvaOperation="http://java.sun.com/jsf/composite/bbva/operation"
+	xmlns:bbvaDetAcc="http://java.sun.com/jsf/composite/bbva/tab"
+	xmlns:bbvaDetailMotion="http://java.sun.com/jsf/composite/bbva/turnsDetailTable"
+	xmlns:bbvaSearch="http://java.sun.com/jsf/composite/bbva/filters"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:bbvaPersonalize="http://java.sun.com/jsf/composite/bbva/personalize">
+<ui:composition template="../../templates/defaultLayout.xhtml">
+	<ui:define name="bodyTitle">
+		<bbvaBody:title title="Compra y Venta de Divisas" style="padding-left: 5px;">
+			<bbvaBody:titleOptionProduct optionButttonLeft="#{msg['title.myProducts']}"
+				optionButttonRight="#{msg['title.productCatalog']}" />
+		</bbvaBody:title>
+	</ui:define>
+	<ui:define name="contentLeft">
+		<script type="text/javascript">
+            window.onload = function() {
+                openOperaMore();
+            };
+        </script>
+		<div class="col-xs-12 col-md-8">
+			<div class="tab-content">
+				<section class="row tab-pane active globalpanelIn" id="products"
+					style="padding: 0px !important;"> <input id='operations' type='hidden'
+					value='${sessionScope.operationsAccount}' />
+				<button id="opButton" style="display: none;" onclick="#{movementsCriteriaController.resetData()}" />
+				<div class="tab-group savingsAccount">
+					<bbvaDetAcc:tabMenu id="tabMenu">
+						<bbvaDetAcc:menuMovements disabledOpera="true" disabledConsult="true" />
+						<div class="tab-content">
+							<!-- Tab Consultar -->
+							<bbvaSearch:tabCriteria id="tabCriteria">
+								<bbvaSearch:personTurnSearchDate id="personalizedSearchContainer" />
+							</bbvaSearch:tabCriteria>
+							<!-- Tab Condiciones -->
+							<bbvaAcc:accountContainer />
+							<!-- Tab Personalizar -->
+							<bbvaPersonalize:personalizeContainer id="tabPersonal" />
+							<!-- Tab operaciones -->
+							<bbvaOperation:operationsDivisas id="tabOperations"/>
+						</div>
+					</bbvaDetAcc:tabMenu>
+					<div class="table-tabs">
+						<bbvaDetailMotion:detailMovesDivisasTable id="detailsDivisas" listAccounts="#{turns}"
+							listOutside="#{turnsOperationController.turnsClientOutside}"
+							listRecived="#{turnsOperationController.turnsClientRecived}"
+							controller="#{turnsOperationController}" />
+					</div>
+				</div>
+				</section>
+				<section class="tab-pane globalpanelIn" id="catalogo" />
+			</div>
+		</div>
+	</ui:define>
+	<ui:define name="contentRight">
+	</ui:define>
+</ui:composition>
+</html>
