@@ -658,7 +658,6 @@ PrimeFaces.widget.SelectOneMenu = PrimeFaces.widget.SelectOneMenu.extend({
       })
       .on('keyup.ui-selectonemenu', function(e) {
           var keyCode = $.ui.keyCode, key = e.which;
-          alert(key)
           switch(key) {
               case keyCode.UP:
               case keyCode.LEFT:
