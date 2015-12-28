@@ -11,7 +11,8 @@
 <composite:implementation>
 	<h:form id="formOutsideDetail">
 		<!-- Tabla de Divisas -->
-		<p:outputPanel id="movDivisaOut">
+		<p:outputPanel id="movDivisaOut" autoUpdate="true"
+			styleClass="#{renderComponents['OUTSIDETABLE'] ? '' : 'nonee'}">
 			<article class="detail-table-group">
 				<div class="table-wrapper">
 					<p:dataTable id="detalMov" widgetVar="detalMov" styleClass="detail-table-body sortable"

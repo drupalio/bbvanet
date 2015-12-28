@@ -13,13 +13,13 @@
 <composite:interface>
 	<composite:attribute name="value" />
 	<composite:attribute name="showQuota" />
-	<composite:attribute name="showTurns" />
+	<composite:attribute name="showTurnsO" />
+	<composite:attribute name="showTurnsR" />
 	<composite:attribute name="showMovements" />
 	<composite:attribute name="showChekcs" />
 	<composite:attribute name="valueDateSince" />
 	<composite:attribute name="valueDateTo" />
-	<composite:attribute name="listenerDate"
-		type="com.bbva.net.front.core.AbstractBbvaController" />
+	<composite:attribute name="listenerDate" type="com.bbva.net.front.core.AbstractBbvaController" />
 	<composite:attribute name="disabledCalendar" />
 	<composite:attribute name="identify" />
 	<composite:attribute name="confirmDate" />
@@ -58,9 +58,13 @@
                     	:quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:itemTo_quotaCalendar
                     	:quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:dateButtonQuota
 					
-						:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:itemSince_turnsCalendar
-                    	:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:itemTo_turnsCalendar
-                    	:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:dateButtonTurn" />
+						:tabMenu:tabCriteria:personalizedSearchContainer:turnOutside:perTabBody:customList:customDate:itemSince_turnsOCalendar
+                    	:tabMenu:tabCriteria:personalizedSearchContainer:turnOutside:perTabBody:customList:customDate:itemTo_turnsOCalendar
+                    	:tabMenu:tabCriteria:personalizedSearchContainer:turnOutside:perTabBody:customList:customDate:dateButtonTurnO
+                    	
+                    	:tabMenu:tabCriteria:personalizedSearchContainer:tunsRecived:perTabBody:customList:customDate:itemSince_turnsRCalendar
+                    	:tabMenu:tabCriteria:personalizedSearchContainer:tunsRecived:perTabBody:customList:customDate:itemTo_turnsRCalendar
+                    	:tabMenu:tabCriteria:personalizedSearchContainer:tunsRecived:perTabBody:customList:customDate:dateButtonTurnR"  />
 					</p:selectOneRadio>
 
 					<div class="col-xs-6"
@@ -200,16 +204,29 @@
 			            :quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:itemTo_quotaCalendar
 			            :quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:componentList" />
 		</p:commandButton>
-		<p:commandButton id="dateButtonTurn"
+		<p:commandButton id="dateButtonTurnO"
 			onclick="styleCheckD(jQuery(this))"
 			styleClass="btn small hidden-xs hidden-sm #{cc.attrs.value=='' || (cc.attrs.value==msg['select.radio.concret.date'] &amp;&amp; (cc.attrs.valueDateSince==null || cc.attrs.valueDateTo==null)) ? 'buttonDisabled': 'none'}"
-			rendered="#{cc.attrs.showTurns}" value="#{msg['button.confirm']}">
+			rendered="#{cc.attrs.showTurnsO}" value="#{msg['button.confirm']}">
 			<p:ajax process="@form"
 				listener="#{cc.attrs.listenerDate.setCustomDate}"
-				oncomplete="document.getElementById(':tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:componentList').click();"
-				update=":tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:itemSince_turnsCalendar 
-           				:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:itemTo_turnsCalendar 
-            			:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:componentList" />
+				onstart="PF('statusDialog').show();"
+				oncomplete="styleCheckD(document.getElementById('tabMenu:tabCriteria:personalizedSearchContainer:turnOutside:perTabBody:customList:componentList')); PF('statusDialog').hide();"
+				update=":tabMenu:tabCriteria:personalizedSearchContainer:turnOutside:perTabBody:customList:customDate:itemSince_turnsOCalendar 
+           				:tabMenu:tabCriteria:personalizedSearchContainer:turnOutside:perTabBody:customList:customDate:itemTo_turnsOCalendar 
+            			:tabMenu:tabCriteria:personalizedSearchContainer:turnOutside:perTabBody:customList:componentList" />
+		</p:commandButton>
+		<p:commandButton id="dateButtonTurnR"
+			onclick="styleCheckD(jQuery(this))"
+			styleClass="btn small hidden-xs hidden-sm #{cc.attrs.value=='' || (cc.attrs.value==msg['select.radio.concret.date'] &amp;&amp; (cc.attrs.valueDateSince==null || cc.attrs.valueDateTo==null)) ? 'buttonDisabled': 'none'}"
+			rendered="#{cc.attrs.showTurnsR}" value="#{msg['button.confirm']}">
+			<p:ajax process="@form"
+				listener="#{cc.attrs.listenerDate.setCustomDate}"
+				onstart="PF('statusDialog').show();"
+				oncomplete="styleCheckD(document.getElementById('tabMenu:tabCriteria:personalizedSearchContainer:tunsRecived:perTabBody:customList:componentList')); PF('statusDialog').hide();"
+				update=":tabMenu:tabCriteria:personalizedSearchContainer:tunsRecived:perTabBody:customList:customDate:itemSince_turnsRCalendar 
+           				:tabMenu:tabCriteria:personalizedSearchContainer:tunsRecived:perTabBody:customList:customDate:itemTo_turnsRCalendar 
+            			:tabMenu:tabCriteria:personalizedSearchContainer:tunsRecived:perTabBody:customList:componentList" />
 		</p:commandButton>
 	</div>
 </composite:implementation>

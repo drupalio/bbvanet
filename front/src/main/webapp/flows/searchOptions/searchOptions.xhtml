@@ -38,7 +38,7 @@
 						<div class="tab-content">
 							<!-- Tab Consultar -->
 							<bbvaSearch:tabCriteria id="tabCriteria">
-								<bbvaSearch:personTurnSearchDate id="personalizedSearchContainer" />
+								<bbvaSearch:personTurnSearchContainer id="personalizedSearchContainer" />
 							</bbvaSearch:tabCriteria>
 							<!-- Tab Condiciones -->
 							<bbvaAcc:accountContainer />
@@ -49,9 +49,9 @@
 						</div>
 					</bbvaDetAcc:tabMenu>
 					<div class="table-tabs">
-						<bbvaDetailMotion:detailMovesDivisasTable id="detailsDivisas" listAccounts="#{turns}"
-							listOutside="#{turnsOperationController.turnsClientOutside}"
-							listRecived="#{turnsOperationController.turnsClientRecived}"
+						<bbvaDetailMotion:detailMovesDivisasTable id="detailsDivisas" 
+							listOutside="#{turnsOutwardsController.turnsClientOutside}"
+							listRecived="#{turnsReceivedController.turnsClientRecived}"
 							controller="#{turnsOperationController}" />
 					</div>
 				</div>

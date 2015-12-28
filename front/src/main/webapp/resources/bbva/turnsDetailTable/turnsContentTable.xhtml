@@ -10,29 +10,42 @@
 	xmlns:bbvaDetailMotion="http://java.sun.com/jsf/composite/bbva/movementsDetail">
 <composite:interface>
 	<composite:attribute name="id" type="String" />
-	<composite:attribute name="listAccounts" type="java.util.List" />
+	<composite:attribute name="listTurnO" type="java.util.List" />
+	<composite:attribute name="listTurnR" type="java.util.List" />
 </composite:interface>
 <composite:implementation>
-	<h:form id="formDiviDetail">
-		<!-- Tabla de Divisas -->
-		<p:outputPanel id="movDivisa">
+	<p:outputPanel id="movDivisaLabels" autoUpdate="true">
+		<h3>
+			<h:outputLabel id="labelTurns" value="#{msg['text.last.movments']}"
+				rendered="#{renderComponents['TITLEDIVISAINI']}" />
+			<h:outputLabel id="labelTurnOut" value="Giros hacia el exterior"
+				rendered="#{renderComponents['TITLEMOUTSIDE']}" />
+			<h:outputLabel id="labelTurnRev"
+				value="Giros recibidos desde el exterior"
+				rendered="#{renderComponents['TITLEMRECIVED']}" />
+		</h3>
+	</p:outputPanel>
+	<h:form id="divisasInit">
+		<p:outputPanel id="movDivisaOut" autoUpdate="true"
+			styleClass="#{renderComponents['DIVISAINITABLE'] ? '' : 'nonee'}">
 			<article class="detail-table-group">
 				<div class="table-wrapper">
-					<p:dataTable id="detalMov" widgetVar="detalMov"
-						styleClass="detail-table-body sortable"
-						value="#{cc.attrs.listAccounts}" var="moves"
-						selectionMode="single" rowKey="#{moves.operation}"
-						rendered="#{renderComponents['DIVISAINITABLE']}"
-						emptyMessage="#{msg['text.empty.table']}">
+					<p:dataTable id="turnsOut" widgetVar="turnsOut" selectionMode="single"
+						styleClass="withHeader detail-table-body sortable" value="#{cc.attrs.listTurnO}"
+						var="moves" rowKey="#{moves.operation}" emptyMessage="#{msg['text.empty.table']}"
+						rendered="#{renderComponents['DIVISAINITABLE']}">
+						
 						<p:ajax event="rowSelect" oncomplete="clickMove();"
 							listener="#{turnsOperationController.onTurnDetail}" />
+
+						<f:facet name="header">Giros hacia el exterior</f:facet>
+
 						<p:column style="z-index: -1 !important; display:none;">
 							<p:rowToggler rendered="true" />
 						</p:column>
 						<p:column headerText="FECHA" styleClass="styleColum desc w34"
 							sortBy="#{moves.dateOperation}">
-							<h:outputText styleClass="brand styleLeft"
-								value="#{moves.dateOperation}">
+							<h:outputText styleClass="brand styleLeft" value="#{moves.dateOperation}">
 								<f:convertDateTime pattern="dd/MM/yyyy" />
 							</h:outputText>
 						</p:column>
@@ -43,43 +56,98 @@
 						</p:column>
 						<p:column class="head" headerText="MONTO"
 							styleClass="styleColum desc w34" sortBy="#{moves.amount}">
-							<h:outputText class="currency styleCurrent"
-								value="#{moves.amount}" />
+							<h:outputText class="currency styleCurrent" value="#{moves.amount}" />
 						</p:column>
 						<p:column class="head" headerText="ESTADO"
 							styleClass="styleColum desc w34" sortBy="#{moves.stateOperation}">
-							<h:outputText class="text styleLeft"
-								value="#{moves.stateOperation}" />
+							<h:outputText class="text styleLeft" value="#{moves.stateOperation}" />
 						</p:column>
 						<p:column styleClass="smart-view">
 							<div class="left hidden-lg">
 								<h:outputText class="text styleLeft" value="#{moves.operation}" />
-								<h:outputText styleClass="brand styleLeft"
-									value="#{moves.dateOperation}">
+								<h:outputText styleClass="brand styleLeft" value="#{moves.dateOperation}">
 									<f:convertDateTime pattern="dd/MM/yyyy" />
 								</h:outputText>
 							</div>
 							<div class="right hidden-lg" style="width: 35% !important;">
-								<h:outputText class="currency styleCurrent"
-									value="#{moves.amount}" />
-								<h:outputText class="text styleLeft"
-									value="#{moves.stateOperation}" />
+								<h:outputText class="currency styleCurrent" value="#{moves.amount}" />
+								<h:outputText class="text styleLeft" value="#{moves.stateOperation}" />
 							</div>
 						</p:column>
 						<p:rowExpansion styleClass="detail-row">
-							<bbvaDetailMotion:tableContent
-								controller="#{turnsOperationController}" />
+							<bbvaDetailMotion:tableContent controller="#{turnsOperationController}" />
 						</p:rowExpansion>
 					</p:dataTable>
 				</div>
 				<footer class="detail-table-footer">
-					<p:commandButton id="moreMovs"
+					<p:commandButton id="moreTurnO"
 						value="#{msg['text.detailMove.footer']}"
-						rendered="#{renderComponents['FOOTERDIVISAINI'] and renderComponents['DIVISAINITABLE']}"
-						styleClass="btn btn-more-results seeMore #{cc.attrs.listAccounts.size()==0 ? 'nonee' : ''}"
+						rendered="#{renderComponents['FOOTEROUTSIDE'] and renderComponents['DIVISAINITABLE']}"
+						styleClass="btn btn-more-results seeMore #{cc.attrs.listTurnO.size() == 0  ? 'nonee' : ''}"
 						ajax="true">
-						<p:ajax onstart="PF('statusDialog').show()"
-							onsuccess="PF('statusDialog').hide()" />
+						<p:ajax onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+					</p:commandButton>
+				</footer>
+			</article>
+		</p:outputPanel>
+		<p:outputPanel id="movDivisaRec" autoUpdate="true"
+			styleClass="#{renderComponents['DIVISAINITABLE'] ? '' : 'nonee'}">
+			<article class="detail-table-group">
+				<div class="table-wrapper">
+					<p:dataTable id="turnsRev" widgetVar="turnsRev" rowKey="#{moves.operation}"
+						styleClass="withHeader detail-table-body sortable"  var="moves"
+						value="#{cc.attrs.listTurnR}" selectionMode="single"
+						rendered="#{renderComponents['DIVISAINITABLE']}"
+						emptyMessage="#{msg['text.empty.table']}">
+						
+						<p:ajax event="rowSelect" oncomplete="clickMove();"
+							listener="#{turnsOperationController.onTurnDetail}" />
+
+						<f:facet name="header">Giros recibidos desde el exterior</f:facet>
+
+						<p:column style="z-index: -1 !important; display:none;">
+							<p:rowToggler rendered="true" />
+						</p:column>
+						<p:column headerText="FECHA" styleClass="styleColum desc w34"
+							sortBy="#{moves.dateOperation}">
+							<h:outputText styleClass="brand styleLeft" value="#{moves.dateOperation}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</p:column>
+						<p:column headerText="OPERACIÓN" styleClass="styleColum desc w34"
+							sortBy="#{moves.operation}">
+							<h:outputText style="font-weight: bold;" class="text styleLeft" value="#{moves.operation}" />
+						</p:column>
+						<p:column class="head" headerText="MONTO"
+							styleClass="styleColum desc w34" sortBy="#{moves.amount}">
+							<h:outputText class="currency styleCurrent" value="#{moves.amount}" />
+						</p:column>
+						<p:column class="head" headerText="ESTADO"
+							styleClass="styleColum desc w34" sortBy="#{moves.stateOperation}">
+							<h:outputText class="text styleLeft" value="#{moves.stateOperation}" />
+						</p:column>
+						<p:column styleClass="smart-view">
+							<div class="left hidden-lg">
+								<h:outputText class="text styleLeft" value="#{moves.operation}" />
+								<h:outputText styleClass="brand styleLeft" value="#{moves.dateOperation}">
+									<f:convertDateTime pattern="dd/MM/yyyy" />
+								</h:outputText>
+							</div>
+							<div class="right hidden-lg" style="width: 35% !important;">
+								<h:outputText class="currency styleCurrent" value="#{moves.amount}" />
+								<h:outputText class="text styleLeft" value="#{moves.stateOperation}" />
+							</div>
+						</p:column>
+						<p:rowExpansion styleClass="detail-row">
+							<bbvaDetailMotion:tableContent controller="#{turnsOperationController}" />
+						</p:rowExpansion>
+					</p:dataTable>
+				</div>
+				<footer class="detail-table-footer">
+					<p:commandButton id="moreTurnsR" value="#{msg['text.detailMove.footer']}" ajax="true"
+						rendered="#{renderComponents['FOOTERRECIVED'] and renderComponents['DIVISAINITABLE']}"
+						styleClass="btn btn-more-results seeMore #{cc.attrs.listTurnR.size() == 0 ? 'nonee' : ''}">
+						<p:ajax onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
 					</p:commandButton>
 				</footer>
 			</article>

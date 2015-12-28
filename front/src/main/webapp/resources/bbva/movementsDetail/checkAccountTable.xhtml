@@ -19,7 +19,7 @@
 					<p:dataTable id="checksTable" widgetVar="checksTable" var="cheks"
 						styleClass="detail-table-body sortable" value="#{cc.attrs.listChecks}"
 						emptyMessage="#{msg['text.empty.table']}" rowKey="#{cheks.id}"
-						rendered="#{checkBookController.renderComponents['CHECKTABLE']}" style="margin-top: -30px">
+						rendered="#{renderComponents['CHECKTABLE']}" style="margin-top: -30px">
 						<p:column headerText="#{msg['text.table.num.check']}" style="width: 17%;"
 							styleClass="styleColum w13 desc" sortBy="#{cheks.id}">
 							<h:outputText styleClass="brand styleLeft" value="#{cheks.id}" />

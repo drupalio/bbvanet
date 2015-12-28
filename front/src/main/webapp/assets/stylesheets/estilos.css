@@ -2191,18 +2191,24 @@ body div.ui-growl .ui-state-highlight {
 }
 
 /* menú */
-
-.itemNormal{
+.itemNormal {
 	width: 12% !important;
 }
 
-.itemPosicionGlobal{
+.itemPosicionGlobal {
 	width: 14% !important;
 }
 
-li.itemPosicionGlobal.active > a{
+li.itemPosicionGlobal.active>a {
 	border-bottom-left-radius: 5px !important;
 	border-top-left-radius: 5px !important;
+}
+
+.withHeader .ui-datatable-header {
+	background-color: #F8F8F5 !important;
+	border: 1px solid #DCDCDC !important;
+	border-radius: 0px !important;
+	color: #0078D2 !important;
 }
 
 /* <!-- Entelgy / Divisas / 23122015 / FIN -->*/

@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:bbvaSearch="http://java.sun.com/jsf/composite/bbva/filters"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
+<composite:interface>
+	<composite:attribute name="title" type="String" />
+</composite:interface>
+<composite:implementation>
+	<p:outputPanel id="outputPanel">
+		<h:form id="turnOutside">
+			<p:remoteCommand name="reset"
+				actionListener="#{renderViewMovementsUI.init()}"
+				update=":detailsDivisas:tableDivisas:divisasInit:movDivisaOut
+					:detailsDivisas:tableDivisas:divisasInit:movDivisaRec
+					:detailsDivisas:tableOut:formOutsideDetail:movDivisaOut
+					:detailsDivisas:tableReci:formRecivedDetail:movDivisaRec
+					:tabMenu:tabCriteria:personalizedSearchContainer:turnOutside:perTabBody
+					:tabMenu:tabCriteria:personalizedSearchContainer:tunsRecived:perTabBody" />
+			<bbvaSearch:personalizedSearchTabBody id="perTabBody"
+				title="Consultar Giros hacia el exterior">
+				<bbvaSearch:customSearchList id="customList"
+					classList="date-filter customSearch" classSpan="arrow-left-smaller"
+					classSpanFilter="filter" title="#{msg['text.date']}"
+					filterTitle="#{turnsOutwardsController.sinceText}"
+					filterTitle2="#{turnsOutwardsController.toText}"
+					filterMessage="#{turnsOutwardsController.sinceDatestr}"
+					filterMessage2="#{turnsOutwardsController.toDatestr}">
+					<bbvaSearch:customSearchFilter id="customDate" showQuota="false"
+						showMovements="false" showChecks="false" showTurnsO="true"
+						showTurnsR="false" identify="turnsOCalendar"
+						listenerDate="#{turnsOutwardsController}"
+						value="#{turnsOutwardsController.selectDate}"
+						valueDateSince="#{turnsOutwardsController.sinceDate}"
+						valueDateTo="#{turnsOutwardsController.toDate}"
+						disabledCalendar="#{turnsOutwardsController.renderComponents['CALENDAROUT']}"
+						confirmDate=":tabMenu:tabCriteria:personalizedSearchContainer:turnOutside:perTabBody:customList:customDate:dateButtonTurnO" />
+				</bbvaSearch:customSearchList>
+				<bbvaSearch:searchButtonList showRemove="false" showQRemove="false"
+					showMovements="false" showChecks="false" showQuota="false"
+					showTORemove="true" showRERemove="false" showTurnsTo="true"
+					showTurnsRe="false" controller="#{turnsOutwardsController}" />
+			</bbvaSearch:personalizedSearchTabBody>
+		</h:form>
+		<h:form id="tunsRecived">
+			<bbvaSearch:personalizedSearchTabBody id="perTabBody"
+				title="Consultar Giros recibidos desde el exterior">
+				<bbvaSearch:customSearchList id="customList"
+					classList="date-filter customSearch" classSpan="arrow-left-smaller"
+					classSpanFilter="filter" title="#{msg['text.date']}"
+					filterTitle="#{turnsReceivedController.sinceText}"
+					filterTitle2="#{turnsReceivedController.toText}"
+					filterMessage="#{turnsReceivedController.sinceDatestr}"
+					filterMessage2="#{turnsReceivedController.toDatestr}">
+					<bbvaSearch:customSearchFilter id="customDate" showQuota="false"
+						showMovements="false" showChecks="false" showTurnsO="false"
+						showTurnsR="true" identify="turnsRCalendar"
+						listenerDate="#{turnsReceivedController}"
+						value="#{turnsReceivedController.selectDate}"
+						valueDateSince="#{turnsReceivedController.sinceDate}"
+						valueDateTo="#{turnsReceivedController.toDate}"
+						disabledCalendar="#{turnsReceivedController.renderComponents['CALENDAR']}"
+						confirmDate=":tabMenu:tabCriteria:personalizedSearchContainer:tunsRecived:perTabBody:customList:customDate:dateButtonTurnR" />
+				</bbvaSearch:customSearchList>
+				<bbvaSearch:searchButtonList showRemove="false" showQRemove="false"
+					showTORemove="false" showRERemove="true" showMovements="false"
+					showChecks="false" showQuota="false" showTurns="true"
+					showTurnsTo="false" showTurnsRe="true"
+					controller="#{turnsReceivedController}" />
+			</bbvaSearch:personalizedSearchTabBody>
+		</h:form>
+	</p:outputPanel>
+	<h:form id="quotationMoney">
+		<bbvaSearch:personalizedSearchTabBody id="perTabBody"
+			title="Cotizador de monedas en línea">
+			<bbvaSearch:quotationMoney id="money" />
+		</bbvaSearch:personalizedSearchTabBody>
+	</h:form>
+</composite:implementation>
+</html>

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.faces.event.ActionEvent;
+import javax.faces.event.AjaxBehaviorEvent;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.tools.ant.util.DateUtils;
@@ -21,13 +21,13 @@ import com.bbva.net.back.model.globalposition.ProductDto;
 import com.bbva.net.back.model.turnsClient.turnsClientDetailDto;
 import com.bbva.net.back.model.turnsClient.turnsClientDto;
 import com.bbva.net.back.service.impl.DateFilterServiceImpl;
-import com.bbva.net.front.controller.TurnsOperationController;
+import com.bbva.net.front.controller.TurnsOutwardsController;
 import com.bbva.net.front.core.AbstractBbvaController;
 import com.bbva.net.front.delegate.GraphicLineDelegate;
 import com.bbva.net.front.helper.MessagesHelper;
 import com.bbva.net.front.ui.line.LineConfigUI;
 
-public class TurnsOperationControllerImpl extends AbstractBbvaController implements TurnsOperationController {
+public class TurnsOutwardsControllerImpl extends AbstractBbvaController implements TurnsOutwardsController {
 
     /**
      *
@@ -43,8 +43,6 @@ public class TurnsOperationControllerImpl extends AbstractBbvaController impleme
     private List<turnsClientDto> turnsClientRecived;
 
     private LineConfigUI graphicLineMovements;
-
-    private Map<String, Boolean> renderComponents;
 
     private DateRangeDto dateRange;
 
@@ -62,47 +60,12 @@ public class TurnsOperationControllerImpl extends AbstractBbvaController impleme
     private transient GraphicLineDelegate graphicLineDelegate;
 
     @Override
-    public ProductDto getSelectedProduct() {
-        return super.getSelectedProduct();
-    }
-
-    @Override
-    public List<turnsClientDto> getAllMovementsInitial() {
-        LOGGER.info("TurnsOperationController getAllMovementsInitial");
-        this.turnsGeneral = new ArrayList<turnsClientDto>();
-        if ( getSelectedProduct() != null && getSelectedProduct().getProductId() != null
-                && getSelectedProduct().isVisible() != null ) {
-            if ( getSelectedProduct().isVisible() ) {
-                turnsClientDto turn = new turnsClientDto();
-                turn.setAmount(new Money(new BigDecimal(10000000)));
-                turn.setOperation("Compra carro");
-                turn.setDateOperation(new Date());
-                turn.setStateOperation("Proceso");
-                this.turnsGeneral.add(turn);
-            }
-        }
-        this.graphicLineMovements = graphicLineDelegate.getMovementDivisa(this.turnsGeneral);
-        return this.turnsGeneral;
-    }
-
-    @Override
     public List<turnsClientDto> allTurnsClientOutside() {
         this.turnsClientOutside = new ArrayList<turnsClientDto>();
-        appendOudSide();
-        turnsClientDto turns = new turnsClientDto(new Date(), "1234841", "Compra carro", "NL", "023", new Money(
-                new BigDecimal(10000000)), "2.136.423", "Realizado", "Olga Lucia Calderon");
+        turnsClientDto turns = new turnsClientDto("T00283", new Date(), "STD", "EUR", new Money(
+                new BigDecimal(76.00)), "3,655.0000", "Liberado/Efectuado", "Olga Lucia Calderon", "");
         this.turnsClientOutside.add(turns);
         return turnsClientOutside;
-    }
-
-    @Override
-    public List<turnsClientDto> allTurnsClientRecived() {
-        this.turnsClientRecived = new ArrayList<turnsClientDto>();
-        appendInSide();
-        turnsClientDto turns = new turnsClientDto(new Date(), "", "", "", "", new Money(new BigDecimal(5000)), "", "",
-                "");
-        this.turnsClientRecived.add(turns);
-        return turnsClientRecived;
     }
 
     @Override
@@ -114,23 +77,17 @@ public class TurnsOperationControllerImpl extends AbstractBbvaController impleme
     @Override
     public void oneSelectDate() {
         LOGGER.info("Method oneSelectDate");
-        renderComponents.put(RenderAttributes.FILTERDATE.toString(), true);
+        getRenderComponents().put(RenderAttributes.FILTERDATE.toString(), true);
         if ( getSelectDate().equals(CONCRETE_DATE) ) {
-            renderComponents.put(RenderAttributes.CALENDAR.toString(), false);
-            renderComponents.put(RenderAttributes.BUTTONDATE.toString(), false);
-            LOGGER.info("Fecha Concreta: " + " Calendar: " + renderComponents.get(RenderAttributes.CALENDAR.toString())
-                    + " Boton: " + renderComponents.get(RenderAttributes.BUTTONDATE.toString()));
+            getRenderComponents().put(RenderAttributes.CALENDAROUT.toString(), false);
         } else {
-            renderComponents.put(RenderAttributes.CALENDAR.toString(), true);
-            renderComponents.put(RenderAttributes.BUTTONDATE.toString(), false);
-            LOGGER.info("Radio Button: " + " Calendar: " + renderComponents.get(RenderAttributes.CALENDAR.toString())
-                    + " Boton: " + renderComponents.get(RenderAttributes.BUTTONDATE.toString()));
+            getRenderComponents().put(RenderAttributes.CALENDAROUT.toString(), true);
         }
     }
 
     @Override
-    public void setCustomDate(final ActionEvent event) {
-        LOGGER.info("MovementsAccountController setCustomDate");
+    public void setCustomDate(final AjaxBehaviorEvent event) {
+        LOGGER.info("TurnsOutwardsControllerImpl setCustomDate");
         getRenderComponents().put(RenderAttributes.FILTERDATE.toString(), true);
         this.dateRange = new DateRangeDto();
         this.dateRange.setDateSince(getSinceDate());
@@ -151,9 +108,10 @@ public class TurnsOperationControllerImpl extends AbstractBbvaController impleme
     }
 
     @Override
-    public void searchTurnsByFilter(final ActionEvent event) {
-        LOGGER.info("QuotaControllerImpl searchQuotaByFilter ");
-        if ( renderComponents.get(RenderAttributes.FILTERDATE.toString()) ) {
+    public void searchTurnsByFilter(final AjaxBehaviorEvent event) {
+        LOGGER.info("TurnsOutwardsControllerImpl searchQuotaByFilter ");
+        appendOudSide();
+        if ( getRenderComponents().get(RenderAttributes.FILTERDATE.toString()) ) {
             calculateDate(this.getSelectDate());
             LOGGER.info("Mostrando resultados de filtros " + "Date Since: " + dateRange.getDateSince() + "Date To: "
                     + dateRange.getDateTo());
@@ -161,7 +119,7 @@ public class TurnsOperationControllerImpl extends AbstractBbvaController impleme
     }
 
     public DateRangeDto calculateDate(String date) {
-        LOGGER.info("MovementsAccountController calculateDate ");
+        LOGGER.info("TurnsOutwardsControllerImpl calculateDate ");
 
         EnumPeriodType periodType = EnumPeriodType.valueOfLabel(date);
         if ( !(periodType == (null)) ) {
@@ -171,41 +129,43 @@ public class TurnsOperationControllerImpl extends AbstractBbvaController impleme
         return dateRange;
     }
 
+    @Override
+    public void cleanFilters(AjaxBehaviorEvent event) {
+        LOGGER.info("MovementsAccountController clean Filters");
+        allTurnsClientOutside();
+        clean();
+
+    }
+
+    public void clean() {
+        setSinceText(new String());
+        setToText(new String());
+        setSinceDatestr(new String());
+        setToDatestr(new String());
+        sinceDate = null;
+        toDate = null;
+        selectDate = StringUtils.EMPTY;
+        dateRange = null;
+        setSelectDate(new String());
+        getRenderComponents().put(RenderAttributes.CALENDAROUT.toString(), true);
+    }
+
     public void appendOudSide() {
+        // Init
+        getRenderComponents().put(RenderAttributes.TITLEDIVISAINI.name(), false);
+        getRenderComponents().put(RenderAttributes.DIVISAINITABLE.name(), false);
         // Inside
         getRenderComponents().put(RenderAttributes.TITLEMRECIVED.name(), false);
         getRenderComponents().put(RenderAttributes.RECIVEDTABLE.name(), false);
+        getRenderComponents().put(RenderAttributes.FOOTERRECIVED.name(), false);
         // Outside
         getRenderComponents().put(RenderAttributes.TITLEMOUTSIDE.name(), true);
         getRenderComponents().put(RenderAttributes.OUTSIDETABLE.name(), true);
-        // Initial
-        getRenderComponents().put(RenderAttributes.TITLEDIVISAINI.name(), false);
-        getRenderComponents().put(RenderAttributes.DIVISAINITABLE.name(), false);
-
     }
 
-    public void appendInSide() {
-        // Inside
-        getRenderComponents().put(RenderAttributes.TITLEMRECIVED.name(), true);
-        getRenderComponents().put(RenderAttributes.RECIVEDTABLE.name(), true);
-        // Outside
-        getRenderComponents().put(RenderAttributes.TITLEMOUTSIDE.name(), false);
-        getRenderComponents().put(RenderAttributes.OUTSIDETABLE.name(), false);
-        // Initial
-        getRenderComponents().put(RenderAttributes.TITLEDIVISAINI.name(), false);
-        getRenderComponents().put(RenderAttributes.DIVISAINITABLE.name(), false);
-    }
-
-    public void appendDivisaIni() {
-        // Inside
-        getRenderComponents().put(RenderAttributes.TITLEMRECIVED.name(), false);
-        getRenderComponents().put(RenderAttributes.RECIVEDTABLE.name(), false);
-        // Outside
-        getRenderComponents().put(RenderAttributes.TITLEMOUTSIDE.name(), false);
-        getRenderComponents().put(RenderAttributes.OUTSIDETABLE.name(), false);
-        // Initial
-        getRenderComponents().put(RenderAttributes.TITLEDIVISAINI.name(), true);
-        getRenderComponents().put(RenderAttributes.DIVISAINITABLE.name(), true);
+    @Override
+    public ProductDto getSelectedProduct() {
+        return super.getSelectedProduct();
     }
 
     /**
@@ -302,20 +262,6 @@ public class TurnsOperationControllerImpl extends AbstractBbvaController impleme
      */
     public void setGraphicLineDelegate(GraphicLineDelegate graphicLineDelegate) {
         this.graphicLineDelegate = graphicLineDelegate;
-    }
-
-    /**
-     * @return the renderComponents
-     */
-    public Map<String, Boolean> getRenderComponents() {
-        return renderComponents;
-    }
-
-    /**
-     * @param renderComponents the renderComponents to set
-     */
-    public void setRenderComponents(Map<String, Boolean> renderComponents) {
-        this.renderComponents = renderComponents;
     }
 
     /**
@@ -449,5 +395,13 @@ public class TurnsOperationControllerImpl extends AbstractBbvaController impleme
      */
     public void setToDate(Date toDate) {
         this.toDate = toDate;
+    }
+
+    /**
+     * @return the renderComponents
+     */
+    @SuppressWarnings("unchecked")
+    public Map<String, Boolean> getRenderComponents() {
+        return (Map<String, Boolean>)getViewVarView("renderComponents");
     }
 }

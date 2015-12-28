@@ -35,7 +35,7 @@
 					<bbvaSearch:customSearchFilter id="customDate" showQuota="false"
 						showMovements="true" showChecks="false" showTurns="false"
 						value="#{movementsCriteriaController.selectDate}"
-						identify="moveCalendar"
+						showTurnsO="false" showTurnsR="false" identify="moveCalendar"
 						listenerDate="#{movementsCriteriaController}"
 						disabledCalendar="#{renderComponents['CALENDAR']}"
 						confirmDate=":tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:dateButtonMovements"
@@ -70,7 +70,8 @@
 				</bbvaSearch:customSearchList>
 				<bbvaSearch:searchButtonList showRemove="true" showQRemove="false"
 					showTRemove="false" showMovements="true" showChecks="false"
-					showQuota="false" showTurns="false"
+					showQuota="false" showTORemove="false" showRERemove="false"
+					showTurnsTo="false" showTurnsRe="false"
 					controller="#{movementsCriteriaController}" />
 			</bbvaSearch:personalizedSearchTabBody>
 		</h:form>
@@ -86,14 +87,14 @@
 					filterMessage="#{checkBookController.sinceDatestr}"
 					filterMessage2="#{checkBookController.toDatestr}">
 					<bbvaSearch:customSearchFilter id="customDate" showQuota="false"
-						showMovements="false" showChecks="true" showTurns="false"
-						value="#{checkBookController.selectDate}" identify="checkCalendar"
+						showMovements="false" showChecks="true" showTurnsO="false"
+						showTurnsR="false" value="#{checkBookController.selectDate}"
+						identify="checkCalendar" listenerDate="#{checkBookController}"
+						valueDateTo="#{checkBookController.toDate}"
 						confirmDate=":tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:customCheckList:customDate:dateButtonChecks"
 						valueDateSince="#{checkBookController.sinceDate}"
-						valueDateTo="#{checkBookController.toDate}"
 						disabledCalendar="#{renderComponents['CALENDARCHECK']}"
-						actionListenerDate="#{checkBookController.setCustomDate}"
-						listenerDate="#{checkBookController}" />
+						actionListenerDate="#{checkBookController.setCustomDate}" />
 				</bbvaSearch:customSearchList>
 				<bbvaSearch:customSearchList id="checkList"
 					classList="date-filter customSearch" classSpan="arrow-left-smaller"
@@ -109,9 +110,9 @@
 						valueBookNumber="#{checkBookController.checkBookNumber}" />
 				</bbvaSearch:customSearchList>
 				<bbvaSearch:searchButtonList showRemove="false" showQRemove="false"
-					showTRemove="false" showMovements="false" showChecks="true"
-					showQuota="false" showTurns="false"
-					controller="#{checkBookController}" />
+					showMovements="false" showChecks="true" showQuota="false"
+					showTORemove="false" showRERemove="false" showTurnsTo="false"
+					showTurnsRe="false" controller="#{checkBookController}" />
 			</bbvaSearch:personalizedSearchTabBody>
 		</h:form>
 		<!-- Entelgy / GP-12834 / 08072015 / FIN -->

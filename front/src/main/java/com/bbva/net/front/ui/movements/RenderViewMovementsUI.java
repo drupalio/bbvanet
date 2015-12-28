@@ -20,24 +20,25 @@ public class RenderViewMovementsUI implements Serializable {
         getRenderComponents().put(RenderAttributes.OUTSIDETABLE.name(), false);
         getRenderComponents().put(RenderAttributes.RECIVEDTABLE.name(), false);
         getRenderComponents().put(RenderAttributes.DIVISAINITABLE.name(), true);
-
+        
         // Footers
         getRenderComponents().put(RenderAttributes.FOOTERTABLEMOVEMENT.toString(), false);
         getRenderComponents().put(RenderAttributes.FOOTERTABLECHEKS.toString(), false);
         getRenderComponents().put(RenderAttributes.FOOTEROUTSIDE.toString(), false);
         getRenderComponents().put(RenderAttributes.FOOTERRECIVED.toString(), false);
-        getRenderComponents().put(RenderAttributes.FOOTERDIVISAINI.name(), false);
         
         // Title movemens and checks
         getRenderComponents().put(RenderAttributes.TITLEMOVES.name(), true);
         getRenderComponents().put(RenderAttributes.TITLECHECKS.name(), false);
         getRenderComponents().put(RenderAttributes.TITLEMOUTSIDE.name(), false);
-        getRenderComponents().put(RenderAttributes.TITLEDIVISAINI.name(), true);
         getRenderComponents().put(RenderAttributes.TITLEMRECIVED.name(), false);
+        getRenderComponents().put(RenderAttributes.TITLEDIVISAINI.name(), true);
         
         getRenderComponents().put(RenderAttributes.CALENDAR.toString(), true);
         getRenderComponents().put(RenderAttributes.BUTTONDATE.toString(), true);
         getRenderComponents().put(RenderAttributes.BUTTONBALANCE.toString(), true);
+        getRenderComponents().put(RenderAttributes.CALENDAROUT.toString(), true);
+        
         // Filtros
         getRenderComponents().put(RenderAttributes.FILTERDATE.toString(), false);
         getRenderComponents().put(RenderAttributes.BALANCEFILTER.toString(), false);

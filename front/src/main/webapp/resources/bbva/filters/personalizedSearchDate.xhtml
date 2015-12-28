@@ -25,8 +25,9 @@
 				filterMessage="#{quotaController.sinceDatestr}"
 				filterMessage2="#{quotaController.toDatestr}">
 				<bbvaSearch:customSearchFilter id="customDate" showQuota="true"
-					showMovements="false" showChecks="false" showTurns="false"
-					identify="quotaCalendar" value="#{quotaController.selectDate}"
+					showMovements="false" showChecks="false" showTurnsO="false"
+					showTurnsR="false" identify="quotaCalendar"
+					value="#{quotaController.selectDate}"
 					confirmDate=":quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:dateButtonQuota"
 					valueDateSince="#{quotaController.sinceDate}"
 					valueDateTo="#{quotaController.toDate}"
@@ -35,7 +36,9 @@
 			</bbvaSearch:customSearchList>
 			<bbvaSearch:searchButtonList showRemove="false" showQRemove="true"
 				showTRemove="false" showMovements="false" showChecks="false"
-				showQuota="true" showTurns="false" controller="#{quotaController}" />
+				showQuota="true" showTORemove="false" showRERemove="false"
+				showTurnsTo="false" showTurnsRe="false"
+				controller="#{quotaController}" />
 		</bbvaSearch:personalizedSearchTabBody>
 		<!-- Entelgy / SPRING 3 / 08092015 / FIN -->
 	</h:form>

@@ -12,12 +12,15 @@
 <composite:interface>
 	<composite:attribute name="showRemove" type="boolean" />
 	<composite:attribute name="showQRemove" type="boolean" />
-	<composite:attribute name="showTRemove" type="boolean" />
+	<composite:attribute name="showTORemove" type="boolean" />
+	<composite:attribute name="showRERemove" type="boolean" />
 	<composite:attribute name="showMovements" type="boolean" />
 	<composite:attribute name="showChecks" type="boolean" />
 	<composite:attribute name="showQuota" type="boolean" />
-	<composite:attribute name="showTurns" type="boolean" />
-	<composite:attribute name="controller" type="com.bbva.net.front.core.AbstractBbvaController" />
+	<composite:attribute name="showTurnsTo" type="boolean" />
+	<composite:attribute name="showTurnsRe" type="boolean" />
+	<composite:attribute name="controller"
+		type="com.bbva.net.front.core.AbstractBbvaController" />
 </composite:interface>
 <composite:implementation>
 	<li class="filter-buttons">
@@ -62,20 +65,35 @@
 					:quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:dateButtonQuota
 					:quotaDetail:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:panelFilterDate" />
 			</p:commandButton>
-			<p:commandButton id="removeTFields" icon="trash-icon"
+			<p:commandButton id="removeTOFields" icon="trash-icon"
 				value="#{msg['button.clean.filters']}"
-				rendered="#{cc.attrs.showTRemove}"
+				rendered="#{cc.attrs.showTORemove}"
 				actionListener="#{renderViewMovementsUI.init()}"
 				styleClass="btn btn-default hidden-xs hidden-sm">
 				<p:ajax process="@form" onstart="PF('statusDialog').show()"
 					oncomplete="PF('statusDialog').hide()"
 					listener="#{cc.attrs.controller.cleanFilters}"
-					update=":detailsDivisas:tableDivisas:formDiviDetail:movDivisa
-					:detailsDivisas:tableOut:formOutsideDetail:movDivisaOut
-					:detailsDivisas:tableReci:formRecivedDetail:movDivisaRev
-					:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:componentList
-					:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:dateButtonTurn
-					:tabMenu:tabCriteria:personalizedSearchContainer:customSearch:perTabBody:customList:customDate:panelFilterDate" />
+					update=":detailsDivisas:tableDivisas:divisasInit
+					:detailsDivisas:tableOut:formOutsideDetail
+					:detailsDivisas:tableReci:formRecivedDetail
+					:tabMenu:tabCriteria:personalizedSearchContainer:turnOutside:perTabBody:customList:componentList
+					:tabMenu:tabCriteria:personalizedSearchContainer:turnOutside:perTabBody:customList:customDate:dateButtonTurnO
+					:tabMenu:tabCriteria:personalizedSearchContainer:turnOutside:perTabBody:customList:customDate:panelFilterDate" />
+			</p:commandButton>
+			<p:commandButton id="removeREFields" icon="trash-icon"
+				value="#{msg['button.clean.filters']}"
+				rendered="#{cc.attrs.showRERemove}"
+				actionListener="#{renderViewMovementsUI.init()}"
+				styleClass="btn btn-default hidden-xs hidden-sm">
+				<p:ajax process="@form" onstart="PF('statusDialog').show()"
+					oncomplete="PF('statusDialog').hide()"
+					listener="#{cc.attrs.controller.cleanFilters}"
+					update=":detailsDivisas:tableDivisas:divisasInit
+					:detailsDivisas:tableOut:formOutsideDetail
+					:detailsDivisas:tableReci:formRecivedDetail
+					:tabMenu:tabCriteria:personalizedSearchContainer:tunsRecived:perTabBody:customList:componentList
+					:tabMenu:tabCriteria:personalizedSearchContainer:tunsRecived:perTabBody:customList:customDate:dateButtonTurnR
+					:tabMenu:tabCriteria:personalizedSearchContainer:tunsRecived:perTabBody:customList:customDate:panelFilterDate" />
 			</p:commandButton>
 			<p:commandButton styleClass="btn btn-default"
 				rendered="#{cc.attrs.showMovements}" icon="document-view-icon"
@@ -108,14 +126,24 @@
 					update=":quotaDetail:detailAccounts:detailAccounts" />
 			</p:commandButton>
 			<p:commandButton styleClass="btn btn-default" type="button"
-				rendered="#{cc.attrs.showTurns}" icon="document-view-icon"
+				rendered="#{cc.attrs.showTurnsRe}" icon="document-view-icon"
 				value="#{msg['button.see.result']}">
 				<p:ajax process="@form" onstart="PF('statusDialog').show()"
 					onsuccess="PF('statusDialog').hide()"
 					listener="#{cc.attrs.controller.searchTurnsByFilter}"
-					update=":detailsDivisas:tableDivisas:formDiviDetail:movDivisa
-					:detailsDivisas:tableOut:formOutsideDetail:movDivisaOut
-					:detailsDivisas:tableReci:formRecivedDetail:movDivisaRev" />
+					update=":detailsDivisas:tableDivisas:divisasInit
+					:detailsDivisas:tableOut:formOutsideDetail
+					:detailsDivisas:tableReci:formRecivedDetail" />
+			</p:commandButton>
+			<p:commandButton styleClass="btn btn-default" type="button"
+				rendered="#{cc.attrs.showTurnsTo}" icon="document-view-icon"
+				value="#{msg['button.see.result']}">
+				<p:ajax process="@form" onstart="PF('statusDialog').show()"
+					onsuccess="PF('statusDialog').hide()"
+					listener="#{cc.attrs.controller.searchTurnsByFilter}"
+					update=":detailsDivisas:tableDivisas:divisasInit
+					:detailsDivisas:tableOut:formOutsideDetail
+					:detailsDivisas:tableReci:formRecivedDetail" />
 			</p:commandButton>
 		</div> <!-- Entelgy / SPRING 3 / 08092015 / FIN -->
 	</li>
