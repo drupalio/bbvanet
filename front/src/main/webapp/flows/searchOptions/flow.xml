@@ -4,6 +4,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/webflow 
     http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
 
+	<var name="quotationMoneyController" class="com.bbva.net.front.controller.impl.QuotationMoneyControllerImpl" />
 	<var name="turnsOutwardsController" class="com.bbva.net.front.controller.impl.TurnsOutwardsControllerImpl" />
 	<var name="turnsReceivedController" class="com.bbva.net.front.controller.impl.TurnsReceivedControllerImpl" />
 	<var name="personalizeProductAccountController" class="com.bbva.net.front.controller.impl.PersonalizeProductControllerImpl" />
@@ -17,7 +18,7 @@
 	<view-state id="searchOptions">
 		<on-entry>
 			<set name="flowScope.menuActive" value="'DIVISAS'" />
-			<evaluate expression="new java.lang.String()" />
+			<evaluate expression="new java.lang.String()"/>
 			<evaluate expression="renderViewMovementsUI.init()" />
 		</on-entry>
 		<on-render>

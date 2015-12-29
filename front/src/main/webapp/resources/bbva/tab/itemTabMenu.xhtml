@@ -15,11 +15,12 @@
 	<composite:attribute name="id" type="String" />
 	<composite:attribute name="disabled" />
 	<composite:attribute name="render" />
+	<composite:attribute name="onclick"/>
 </composite:interface>
 <composite:implementation>
 	<li id="item_#{cc.attrs.id}" data-origin-value="#{cc.attrs.disabled}" class="#{cc.attrs.classLi}" style="#{cc.attrs.render}"
 		data-original-title="#{msg['msg.info.buttonDesa']} #{cc.attrs.title} #{msg['msg.info.buttonDeso']}">
-		<a class="tab-head" role-tab="#{cc.attrs.role}" onclick="javascript:reset();">#{cc.attrs.title}
+		<a class="tab-head" role-tab="#{cc.attrs.role}" onclick="javascript:reset(); #{cc.attrs.onclick}" >#{cc.attrs.title}
 			<c:if test="#{cc.attrs.type>=1}">
 				<span class="#{cc.attrs.icon} font-white hidden-md hidden-lg"></span>
 			</c:if> <c:if test="#{cc.attrs.type==2}">

@@ -1,0 +1,135 @@
+@CHARSET "ISO-8859-1";
+
+/* Inicio estilos pantalla "Pago de facturas - Seleccion de categoria - subcategoria - convenios*/
+
+	.containers, table.widthTable { width: 100% }
+	.containers label { padding: 25px !important; }
+	.containers td { border: solid 1px #cccccc; padding-left: 18px !important; }
+	button.buttonText { font-size: 12px !important; }	
+	button.ui-button-text-only.ui-button-text { margin-left: 1px; padding: 0.3em 1.4em !important; font-size: 12px !important; }
+	button.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only.btn.btn-default.buttonText.btnNext { border-right: medium none !important }
+	button.ui-button.ui-widget.ui-state-hover.ui-corner-all.ui-button-text-only.btn.btn-default.buttonText.btnNext { border-right: medium none !important }
+	div.divDefaults { width: 95%; margin: 0px auto; }
+	div#container {font: inherit; border: solid 1px #FFFFFF; padding: 3%; } 
+	td.colors, .colors { color: #1572BD; }
+	.black { color: #000000 !important; font-size: 28px; vertical-align: middle; }
+	td#description { width: 28%; }
+	input[type="text"].selectorAgent { width: 95%; }
+	table.Category { border: solid 1px #ffffff !important; }
+	td.categoryInformationPadding { padding: 8px !important; }
+	td.categoryInformation { width: 32%; }
+	.selectors { width: 95% !important;  color: #000000 !important; font: inherit; }
+	.selectorFees { color: #000000 !important; font: inherit; width: 26% !important; }
+	div.containerFilter {  background-color: #f0f2ef; border: 1px solid #cccccc; margin: 0 auto; }
+	.paddingLabelName { padding: 10px; color: #1572BD; }
+	div#filterText, .filterText { margin: 0px auto; width: 100%; }
+	.btnFilterData { background-color: #ffffff; background-image: url("../../assets/img/icons_ico/search-icon-medium.png"); background-repeat: no-repeat; border: medium none !important; height: 24px !important; }
+	div#txtName { padding-left: 35px; padding-bottom: 5px; padding-top: 5px; border-top: solid 1px #cccccc; background-color: #f0f2ef; }
+	div#txtMessage { width: 100%; }
+	div.ui-message.ui-message-error.ui-widget.ui-corner-all { font: inherit !important; }
+	.containerScroll { width: 100% !important; height: 500px !important; border: solid 1px #CCCCCC !important; margin: 0px auto !important; overflow-y: scroll !important; color: #1572BD; }
+	div#buttonStyle { background-image: url("../../assets/img/sprite-buttons-arrow.png"); background-position: 111% -32.3px; background-repeat: no-repeat; margin: 0 auto; text-align: right; width: 97%; }
+	.inherit { width: inherit; }
+	input.btn.btn-default.buttonText.btnNext[type="submit"] { background: #0079c1 -moz-linear-gradient(center top , #0079c1 0%, #00559d 100%) repeat scroll 0 0; color: #FFFFFF !important; border-style: none; margin-left: 0.1% !important; }
+	input.btn.btn-default.buttonText.btnNext[type="submit"]:hover { background: #0079c1 -moz-linear-gradient(center top , #0069b1 0%, #00559d 100%) repeat scroll 0 0; color: #FFFFFF !important; border-style: none; }
+	input.btn.btn-default.buttonText.btnNext[type="submit"]:disabled { opacity: 1 !important; }
+	button.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only.btnFilterData { border-top: 1px solid #ffffff !important; left: 88.5%; margin-top: 4px; position: absolute; }
+	button.ui-state-default { text-align: center !important; box-shadow: 0 0 0 #FFFFFF inset !important; }
+	button.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only.btn.btn-default.buttonText.btnNext { border-style: none !important; box-shadow: none !important; margin-right: 1.5% !important; opacity: 1 !important; padding: 2px !important; }
+	div.ui-selectonemenu-trigger.ui-state-default.ui-corner-right { width: 30px; background: -moz-linear-gradient(top, #ffffff 40%, #e1e1e1 200%); background: -o-linear-gradient(top, #ffffff 40%, #e1e1e1 200%); background: -webkit-linear-gradient(top, #ffffff 40%, #e1e1e1 200%); background: linear-gradient(to bottom, #ffffff 40%, #e1e1e1 200%); border-color: #d5e2ee; font-size: 0.95em; color: #0093e2; }
+	span.ui-icon.ui-icon-triangle-1-s.ui-c { background-image: url("../../assets/img/icons/arrows/arrow-down-small.png") !important; background-position: 7px 8px !important; background-repeat: no-repeat; width: 100% !important; height: 100% !important; }
+	label.ui-selectonemenu-label.ui-inputfield.ui-corner-all{ background: -moz-linear-gradient(top, #ffffff 40%, #e1e1e1 200%); background: -o-linear-gradient(top, #ffffff 40%, #e1e1e1 200%); background: -webkit-linear-gradient(top, #ffffff 40%, #e1e1e1 200%); background: linear-gradient(to bottom, #ffffff 40%, #e1e1e1 200%); border-color: #d5e2ee; box-shadow: 0 0 0 !important; color: #1572bd; font-family: inherit !important; font-size: 0.89em !important; padding-left: 3%; }
+	ul.ui-selectonemenu-items.ui-selectonemenu-list.ui-widget-content.ui-widget.ui-corner-all.ui-helper-reset{ font: inherit; font-size: 0.9em; }
+	li.ui-selectonemenu-item.ui-selectonemenu-list-item.ui-corner-all { border-bottom: 1px solid #DDE3EA; border-radius: 0 !important; color: #003f8c; font-weight: bold; font-size: 0.89em; margin: 2%; }
+	li.ui-selectonemenu-item.ui-selectonemenu-list-item.ui-corner-all.ui-state-hover { background: #F4F7F5 !important; }
+	li.ui-selectonemenu-item.ui-selectonemenu-list-item.ui-corner-all.ui-state-highlight { background: #FFFFFF !important; font-size: 0.89em; margin: 1.5%; }
+	.ui-selectonemenu-panel .ui-selectonemenu-list { padding: 0px !important; }
+	div.ui-selectonemenu.ui-widget.ui-state-default.ui-corner-all.selectors.ui-state-hover { background: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, #eaf1f7), color-stop(100%, #ffffff)) !important; background: -webkit-linear-gradient(bottom, #eaf1f7 0%, #ffffff 100%) !important; background: -moz-linear-gradient(bottom, #eaf1f7 0%, #ffffff 100%) !important; background: -o-linear-gradient(bottom, #eaf1f7 0%, #ffffff 100%) !important; background: linear-gradient(bottom, #eaf1f7 0%, #ffffff 100%) !important; border-color: #B6CEEA; -webkit-box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.15); box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.15); color: #003f8c; }
+	div.ui-selectonemenu-trigger.ui-state-default.ui-corner-right.ui-state-hover { background-image: none !important; }
+	div.ui-selectonemenu.ui-widget.ui-state-default.ui-corner-all.selectors.ui-state-focus{ border: solid 1px #B6CEEA; }
+	div.ui-selectonemenu-panel.ui-widget-content.ui-corner-all.ui-helper-hidden.ui-shadow { border-radius: 0 !important; max-width: 17.5%; width: 20%; box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.15); }
+	.selectors > div.ui-selectonemenu-panel.ui-widget-content.ui-corner-all.ui-helper-hidden.ui-shadow { border-radius: 0 !important; max-width: 17.5%; width: 7%; box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.15); }
+	table.agreementsRegisters { font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; font-weight: normal !important; margin: 0 auto; width: 100%; }
+	table.agreementsRegisters > tbody > tr { border: 1px solid #dbdcdf; }
+	table.agreementsRegisters > tbody > tr > td { padding: 3% !important; }
+	table.agreementsRegisters > tbody > tr > td > label { padding-left: 10%; padding-top: 1.1%; width: inherit; word-wrap: break-word; }
+	table.agreementsRegisters > tbody > tr > td > button { margin-right: 26%; }
+	table.agreementsRegisters > tbody > tr:hover button { background-color: #e0f6fc !important; padding-top: 0; }
+	div.ui-radiobutton.ui-widget.radioContainer { padding-right: 30px; font-family: inherit !important; }
+	div.ui-radiobutton-box.ui-widget.ui-corner-all.ui-state-default { background-image: url("../../assets/img/default/input-radio.png"); background-repeat: no-repeat !important; cursor: pointer !important; background-position: -2px -1px; }
+	div.ui-radiobutton-box.ui-widget.ui-corner-all.ui-state-hover { background-image: url("../../assets/img/default/input-radio-hover.png"); background-position: -2px -1px; }
+	div.ui-radiobutton-box.ui-widget.ui-corner-all.ui-state-active { background-image: url("../../assets/img/default/input-radio-hover-checked.png"); background-position: -2px -1px; }
+	span.ui-radiobutton-icon.ui-icon.ui-icon-blank { background-image: url("../../assets/img/default/input-radio-hover-checked.png"); }
+	span.ui-radiobutton-icon.ui-icon.ui-icon-bullet { background-image: url("../../assets/img/default/input-radio.png"); background-repeat: no-repeat !important; cursor: pointer !important; }
+	a.ui-commandlink.ui-widget.btnViewAgreementDetail { box-shadow: none !important; }
+	a.ui-commandlink.ui-widget.btnViewAgreementDetail { background-color: #ffffff; background-image: url("../../assets/img/icons_ico/search-icon-small.png"); background-position: 32px center; background-repeat: no-repeat; border: medium none !important; height: 24px !important; padding-right: 72px !important; }
+	div.ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-shadow.nonClose.ui-draggable.ui-overlay-visible.dlgDetail { font: inherit !important; }
+	.wordBreak { word-wrap: break-word; }
+	tr.noBackground { background: #FFFFFF !important; }
+	hr.ui-separator.ui-corner-all.ui-state-default.separators { border: 1px solid #e6e6e6; }
+	div.ui-selectonemenu-panel.ui-widget-content.ui-corner-all.ui-helper-hidden.ui-shadow{ border-radius: 0 !important; box-shadow: none !important; border: medium none;}
+	div.ui-selectonemenu-items-wrapper { border: 1px solid #a6c9e2; width: inherit; background: #FFFFFF; height: auto !important; }
+	label.ui-selectonemenu-label.ui-inputfield.ui-corner-all { width: 100% !important; }
+	
+/* Inicio estilos pantalla "Seleccion de referencias / Valor a pagar" */
+
+	table.containerTables { width: 100%; }
+	td.widthLabelReference { width: 22%; }
+	td.inputReferences { width: 100%; text-align: right; }
+	input[type="text"].widthInputText { width: 96%; }	
+	td.colors.widthLabelObservations { vertical-align: top; width: 28%; }
+	input.ui-inputfield, .ui-inputfield, .ui-widget-content .ui-inputfield, .ui-widget-header .ui-inputfield { box-shadow: none !important; font: inherit; color: #000000; border-color: #dbdcdf; }
+	div#containerButtons { width: 90%; overflow: hidden; margin: 0 auto; }
+	div.buttonPrevious { width: 50%; float: left; background-image: url('../../assets/img/sprite-buttons-arrow.png'); background-repeat: no-repeat; background-position: 0px -1px; }
+	div.buttonNext { width: 50%; float: right; text-align: right; background-image: url('../../assets/img/sprite-buttons-arrow.png'); background-repeat: no-repeat; background-position: 126% -32px; }
+	button.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only.btn.btn-default.buttonText.btnNext.previous { margin-left: 2.1% !important; }	
+	button.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only.btn.btn-default.buttonText.btnNext.next { margin-right: 2.1% !important; }
+	div#collapseImg { width: 90%; margin: 0 auto; }
+	a.ui-dialog-titlebar-icon.ui-dialog-titlebar-close.ui-corner-all.billImg { float: right; }
+	label.fontNormal { font-weight: normal; }
+	textarea.ui-widget.ui-corner-all.ui-inputfield.widthTextArea.ui-inputtextarea.ui-state-default.ui-inputtextarea-resizable { height: 130px; width: 96%; }
+	
+/* Inicio estilos pantalla "Comprobante pago de facturas */
+
+	div.system-message.info-generic {background-color: #F3F3F3; border: medium none; }
+	span.iconPayment { position: absolute; left: 11px; top: 100px !important; font-size: 30px; }	
+	
+	
+/* Estilos propios calendarios "Pagatiempo" */
+
+	div.ui-chkbox.ui-widget.criteriaSelected { margin-right: 12px; margin-top: 4px; }
+	div.ui-chkbox-box.ui-widget.ui-corner-all.ui-state-default { background-image: url("../../assets/img/default/input-check.png") !important; background-repeat: no-repeat; border: 1px solid #d5e2ee; }
+	div.ui-chkbox-box.ui-widget.ui-corner-all.ui-state-default.ui-state-hover { background-image: url("../../assets/img/default/input-check-hover.png") !important; background-repeat: no-repeat; background-position: 16px 18px !important; }
+	div.ui-chkbox-box.ui-widget.ui-corner-all.ui-state-default.ui-state-active { background-image: url("../../assets/img/default/input-check-checked.png") !important; background-position: 16px 18px !important; background-repeat: no-repeat; }
+	span.ui-chkbox-icon.ui-icon.ui-c.ui-icon-check { background-image: url("../../assets/img/default/input-check-checked.png") !important; background-position: 16px 18px !important; background-repeat: no-repeat; }
+	input.ui-inputfield.ui-widget.ui-state-default.ui-corner-all.hasDatepicker { background-image: url("../../assets/img/icons/calendar-blue-small.png"); background-position: right 7px top 6px !important; background-repeat: no-repeat !important; margin-left: 0; width: 90%; }
+	div.datepicker.datepicker-dropdown.dropdown-menu { height: auto !important; }
+	
+/* Estilos propios "pills" PagAtiempo */
+
+	.arrow-down{ background: url(../../assets/img/16xSprite-buttons.png) no-repeat; background-position: 7px -25px; min-width: 30px; min-height: 30px; }
+	.contentBorders { border-bottom: 1px solid #CED2D3; border-left: 1px solid #CED2D3; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; border-right: 1px solid #CED2D3; display: block !important; width: 100.2% !important; padding: 15px; position: relative; right: 1px; }
+	.headerBorders{ border-left: 1px solid #CED2D3; border-right: 1px solid #CED2D3; border-top: 1px solid #CED2D3; border-top-left-radius: 5px; border-top-right-radius: 5px; }
+	.invisible { display: none; }
+	.arrow{ height: 10px; position: relative; top: 6px; border-bottom: 1px solid #FFFFFF; }
+	div.tabContainer { width: 100%; }
+	div#containerPills { width: 66%; text-align: center !important; margin: 0 auto; }
+	li.pills { width: 300px !important; }
+	
+	
+/* Estilos propios tablas de selección de productos PagAtiempo */
+
+	th.ui-state-default.ui-selection-column.selectColumn { width:40px; text-align:center; background: rgba(0, 0, 0, 0) none repeat scroll 0 0; }
+	div.ui-chkbox-box.ui-widget.ui-corner-all.ui-state-default { background: #ffffff none repeat scroll 0 0 !important; }
+
+/* Estilos seleccion productos PagAtiempo */
+
+	div.productsList { font: inherit; font-weight: bold; overflow: hidden; background-color: #e8e8e8; padding: 6px; }
+	a.ui-commandlink.ui-widget.dropProduct { margin-left: 10px; }
+	a.ui-commandlink.ui-widget.dropProduct, span.labelProduct { color: #000000; font-family: inherit; vertical-align: middle !important; }
+	div.productDetail { border: 1px solid #000000; display: table; float: left; margin: 10px; padding: 10px; background-color: #ffffff; }
+	div.positioningLeft { width: 15% ; float: left; padding: 6px; }
+	div.positioningRight { width: 85%; float: right; overflow: hidden; }
+	span.selection { font: inherit; font-weight: bold; }
+	div.notify-email{ width: 100%; text-align: center; margin-left: 20px; }
+	div.ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-shadow.nonClose.dlgDetail.ui-draggable.ui-overlay-visible.termsConditions > div.ui-dialog-content.ui-widget-content { height: 528.4px; overflow-y: scroll !important; text-align: justify; }

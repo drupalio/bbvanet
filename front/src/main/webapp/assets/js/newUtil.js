@@ -736,3 +736,29 @@ PrimeFaces.widget.SelectOneMenu = PrimeFaces.widget.SelectOneMenu.extend({
   }
 });
 //Entelgy / Spring 2 / 22122015 / FIN
+
+//Entelgy / Divisas / INICIO
+
+function countRefresh(){
+	var tiempoTotal = 10;
+	var countdownfrom=tiempoTotal;
+	var currentsecond=tiempoTotal + 1;
+		function countredirect(){
+			if (currentsecond!=1){
+				currentsecond-=1;
+				document.getElementById('lb_time').innerHTML = currentsecond;
+			}
+			else{
+				currentsecond=tiempoTotal;
+				document.getElementById('lb_time').innerHTML = currentsecond;
+			}
+			setTimeout("countredirect()",1000);
+		}
+		countredirect();
+}
+	
+// Entelgy / Divisas /FIN
+
+
+
+

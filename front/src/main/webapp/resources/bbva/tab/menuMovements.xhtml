@@ -9,16 +9,17 @@
 	<composite:attribute name="disabledOpera" />
 	<composite:attribute name="renderPersonalize" />
 	<composite:attribute name="renderCondiciones" />
+	<composite:attribute name="onclickConsult"/>
 </composite:interface>
 <composite:implementation>
 	<ul id="tabsOperations" class="nav nav-pills nav-operation-options visibleTool"
 		style="display: block; overflow: visible !important;">
 		<bbvaDetAcc:itemTabMenu id="consultas" title="#{msg['text.consults']}" icon="iconFont-611"
 			classLi="tab-right consultas-btn hidden-md hidden-lg menuResponse" type="1" role="#tab-consultas"
-			disabled="#{cc.attrs.disabledConsult}" />
+			disabled="#{cc.attrs.disabledConsult}" onclick="#{cc.attrs.onclickConsult}"/>
 		<bbvaDetAcc:itemTabMenu id="consultasResponse" title="#{msg['text.consults']}" type="2"
 			icon="icon-24 c08-consultarextracto" classLi="tab-left hidden-xs hidden-sm menuResponse"
-			role="#tab-consultas" disabled="#{cc.attrs.disabledConsult}" />
+			role="#tab-consultas" disabled="#{cc.attrs.disabledConsult}" onclick="#{cc.attrs.onclickConsult}"/>
 		<bbvaDetAcc:itemTabMenu id="operations" title="#{msg['text.operations']}" icon="iconFont-015"
 			classLi="tab-left operaciones-btn menuResponse" type="2" role="#tab-operaciones"
 			disabled="#{cc.attrs.disabledOpera}" />

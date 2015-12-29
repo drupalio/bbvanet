@@ -2012,6 +2012,7 @@ body div.ui-growl .ui-state-highlight {
 
 .height18 {
 	height: auto !important;
+	word-wrap: break-word;
 }
 
 .small .ui-button-text {
@@ -2209,6 +2210,43 @@ li.itemPosicionGlobal.active>a {
 	border: 1px solid #DCDCDC !important;
 	border-radius: 0px !important;
 	color: #0078D2 !important;
+}
+
+.table-tabs table tbody tr td.borderSpace0 {
+	padding: 20px 0px 20px 10px !important;
+}
+
+.table-tabs table thead th.borderSpace0 {
+	padding: 10px 5px !important;
+}
+
+.detail-table-body .w25 {
+	width: 25%;
+}
+
+.detail-table-body .w20 {
+	width: 20%;
+}
+
+.detail-table-body .w35 {
+	width: 35%;
+}
+
+.detail-table-body .w36 {
+	width: 36%;
+}
+
+.detail-table-body .w28 {
+	width: 28%;
+}
+
+.ui-datatable th.borderSpace0 .ui-sortable-column-icon {
+	display: none !important;
+	margin: 0px !important;
+}
+
+.compPadding0{
+	padding: 0px !important;
 }
 
 /* <!-- Entelgy / Divisas / 23122015 / FIN -->*/

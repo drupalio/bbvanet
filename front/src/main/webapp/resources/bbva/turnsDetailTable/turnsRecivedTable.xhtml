@@ -23,32 +23,53 @@
 						<p:column style="z-index: -1 !important; display:none;">
 							<p:rowToggler rendered="true" />
 						</p:column>
-						<p:column headerText="FECHA" styleClass="styleColum desc w34" sortBy="#{moves.dateOperation}">
-							<h:outputText styleClass="brand styleLeft" value="#{moves.dateOperation}">
+						<p:column headerText="N° OPERACIÓN" styleClass="styleColum desc w35 borderSpace0"
+							sortBy="#{moves.operation}">
+							<h:outputText style="font-weight: bold;" class="brand styleLeft height18"
+								value="#{moves.operation}" />
+						</p:column>
+						<p:column headerText="FECHA" styleClass="styleColum desc w25 borderSpace0"
+							sortBy="#{moves.dateOperation}">
+							<h:outputText styleClass="text styleLeft height18" value="#{moves.dateOperation}">
 								<f:convertDateTime pattern="dd/MM/yyyy" />
 							</h:outputText>
 						</p:column>
-						<p:column headerText="OPERACIÓN" styleClass="styleColum desc w34" sortBy="#{moves.operation}">
-							<h:outputText style="font-weight: bold;" class="text styleLeft" value="#{moves.operation}" />
+						<p:column headerText="AVANCE" styleClass="styleColum desc w25 borderSpace0"
+							sortBy="#{moves.advance}">
+							<h:outputText styleClass="text styleLeft height18" value="#{moves.advance}"/>
+						</p:column>		
+						<p:column headerText="DIVISA" styleClass="styleColum desc w20 borderSpace0"
+							sortBy="#{moves.divisa}">
+							<h:outputText styleClass="text styleLeft height18" value="#{moves.divisa}"/>
+						</p:column>					
+						<p:column class="head" headerText="MONTO"
+							styleClass="styleColum desc w36 borderSpace0" sortBy="#{moves.amount}">
+							<h:outputText class="currency styleCurrent height18" value="#{moves.amount}"
+								style="font-size: 12px !important;" />
 						</p:column>
-						<p:column class="head" headerText="MONTO" styleClass="styleColum desc w34"
-							sortBy="#{moves.amount}">
-							<h:outputText class="currency styleCurrent" value="#{moves.amount}" />
+						<p:column headerText="TASA" styleClass="styleColum desc w28 borderSpace0"
+							sortBy="#{moves.valuation}">
+							<h:outputText styleClass="currency styleCurrent height18" value="#{moves.valuation}"
+								style="font-size: 12px !important;"/>
+						</p:column>	
+						<p:column class="head" headerText="ESTADO"
+							styleClass="styleColum desc w25 borderSpace0" sortBy="#{moves.stateOperation}">
+							<h:outputText class="text styleLeft height18" value="#{moves.stateOperation}" />
 						</p:column>
-						<p:column class="head" headerText="ESTADO" styleClass="styleColum desc w34"
-							sortBy="#{moves.stateOperation}">
-							<h:outputText class="text styleLeft" value="#{moves.stateOperation}" />
+						<p:column class="head" headerText="ORDENANTE"
+							styleClass="styleColum desc w35 borderSpace0" sortBy="#{moves.ordenante}">
+							<h:outputText class="text styleLeft height18" value="#{moves.ordenante}" />
 						</p:column>
 						<p:column styleClass="smart-view">
 							<div class="left hidden-lg">
-								<h:outputText class="text styleLeft" value="#{moves.operation}" />
-								<h:outputText styleClass="brand styleLeft" value="#{moves.dateOperation}">
+								<h:outputText class="text styleLeft height18" value="#{moves.operation}" />
+								<h:outputText styleClass="brand styleLeft height18" value="#{moves.dateOperation}">
 									<f:convertDateTime pattern="dd/MM/yyyy" />
 								</h:outputText>
 							</div>
 							<div class="right hidden-lg" style="width: 35% !important;">
-								<h:outputText class="currency styleCurrent" value="#{moves.amount}" />
-								<h:outputText class="text styleLeft" value="#{moves.stateOperation}" />
+								<h:outputText class="currency styleCurrent height18" value="#{moves.amount}" />
+								<h:outputText class="text styleLeft height18" value="#{moves.stateOperation}" />
 							</div>
 						</p:column>
 						<p:rowExpansion styleClass="detail-row">

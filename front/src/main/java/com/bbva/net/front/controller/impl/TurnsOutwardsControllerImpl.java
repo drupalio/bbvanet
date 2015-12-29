@@ -62,9 +62,12 @@ public class TurnsOutwardsControllerImpl extends AbstractBbvaController implemen
     @Override
     public List<turnsClientDto> allTurnsClientOutside() {
         this.turnsClientOutside = new ArrayList<turnsClientDto>();
-        turnsClientDto turns = new turnsClientDto("T00283", new Date(), "STD", "EUR", new Money(
-                new BigDecimal(76.00)), "3,655.0000", "Liberado/Efectuado", "Olga Lucia Calderon", "");
+        turnsClientDto turns = new turnsClientDto("T00283", new Date(05102015), "STD", "EUR", new Money(
+                new BigDecimal(7600000)), "23,655.0000", "Liberado / Efectuado", "IN", "");
+        turnsClientDto turns2 = new turnsClientDto("T002370", new Date(14092015), "STD1", "USD", new Money(
+                new BigDecimal(100456123)), "21,965.0000", "Proceso", "1898", "");
         this.turnsClientOutside.add(turns);
+        this.turnsClientOutside.add(turns2);
         return turnsClientOutside;
     }
 

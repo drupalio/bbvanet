@@ -34,7 +34,8 @@
 				<button id="opButton" style="display: none;" onclick="#{movementsCriteriaController.resetData()}" />
 				<div class="tab-group savingsAccount">
 					<bbvaDetAcc:tabMenu id="tabMenu">
-						<bbvaDetAcc:menuMovements disabledOpera="true" disabledConsult="true" />
+						<bbvaDetAcc:menuMovements disabledOpera="true" disabledConsult="true" 
+							onclickConsult="countRefresh()" />
 						<div class="tab-content">
 							<!-- Tab Consultar -->
 							<bbvaSearch:tabCriteria id="tabCriteria">

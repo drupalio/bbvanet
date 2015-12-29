@@ -1,0 +1,171 @@
+.chat-bubble {
+    background-color:#ffffff;
+    font-size:85%;
+    padding:1px 5px;
+    position:relative;
+    left:10px;
+    top:-5px;
+    text-align:left;
+    width:100px;
+    -moz-border-radius:2px;
+    -webkit-border-radius:2px;
+    -moz-box-shadow:0 0 5px #888888;
+    -webkit-box-shadow:0 0 5px #888888;
+}
+
+.chat-bubble-arrow-border {
+    border-color: #E6E5E5 transparent transparent transparent;
+    border-style: solid;
+    border-width: 10px;
+    height:0;
+    width:0;
+    position:absolute;
+    bottom:-22px;
+    left:15px;
+}
+
+.chat-bubble-arrow {
+    border-color: #FFFFFF transparent transparent transparent;
+    border-style: solid;
+    border-width: 10px;
+    height:0;
+    width:0;
+    position:absolute;
+    bottom:-8px;
+    left:-10px;
+}
+
+/*Novatec - Inicio - SP12 - 19102015 - se incluyen estilos para servicio Directory*/
+.style-label{
+    font-size: 18px;
+    font-weight: normal;
+    color: #0078d2;
+    font-family: "BBVA Web Light", Arial, sans-serif;
+    padding-left: 15px;
+    padding-top: 10px;
+}
+
+.style-acordion-title{
+    font-weight: normal !important;
+    color: black !important;
+}
+
+.style-button-directory{
+    font-weight: normal !important;
+    color: white !important;
+    background: #2e6e9e !important;
+}
+
+.style-text-direcyory{
+    width: 79%;
+    float: right;
+}
+
+.style-text-direcyory-space{
+    width: 79%;
+    float: right;
+    margin: 10px 0px;
+}
+
+.style-label-directory{
+    float: left;
+}
+
+.style-label-directory-space{
+    float: left;
+    margin-top: 15px;
+}
+
+.style-text-justify{
+    text-align: justify;
+}
+
+.tablaLista{
+    font-weight: normal;
+}
+
+/*tabla expandRow*/
+.tablaLista .ui-icon-circle-triangle-e {
+    background-image: url(../img/link-bg-triangled-down.png) !important;
+    background-position: 0px 0px;
+}
+
+.tablaLista .ui-icon-circle-triangle-s {
+    background-image: url(../img/link-bg-triangled.png) !important;
+    background-position: 0px 0px;
+}
+
+/* tabla scrollable */
+.tablaLista .ui-datatable-scrollable-header{
+    border: 0px !important;
+    border-top-left-radius: 0px !important;
+}
+
+.tablaLista .ui-datatable-scrollable-footer{
+    border: 0px !important;
+    border-top-left-radius: 0px !important;
+}
+
+/* footer tabla mostrar mas */
+.tablaLista .ui-datatable-footer{
+    padding:0px !important;
+    border: 0px !important;
+}
+
+.tablaLista .ui-datatable-footer .mostrarMas{
+    background-color: #f3f5f7;
+    border-color: #e5e5e5;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    height: 30px !important;
+}
+
+.tablaLista .ui-datatable-footer .mostrarMas a{
+    color: rgb(0, 120, 210) !important;
+    position: relative;
+    display:block;
+}
+
+.tablaLista .mostrarMas .flechaAbajo {
+    background-image: url(../img/link-bg-triangled-down.png);
+    position: relative;
+    float: right;
+    top: -18px;
+    right: 7px !important;
+    width: 14px !important;
+    height: 10px !important;
+}
+
+.tablaLista .ui-datatable-scrollable-body{
+    border-right: solid #cccccc 1px;
+}
+/*Novatec - fin - SP12 - 19102015 - se incluyen estilos para servicio Directory*/
+
+/*Novatec - Inicio - SP12 - 25112015 - se incluyen estilos para servicio Customer*/
+.styleOptionButtons .ui-radiobutton-icon{
+    margin-left: -1px !important;
+}
+
+.styleOptionButtons .ui-icon {
+    background-image: url("/kqco_co_web/page/javax.faces.resource/images/ui-icons_469bdd_256x240.png?ln=primefaces-redmond");
+}
+
+.styleOptionButtons label {
+    margin-top: 0px !important;
+    margin-left: 0px !important;
+    font-weight: normal;
+}
+
+.styleComboBox input {
+    width: 100%;
+}
+
+.styleCheckBox .ui-icon {
+    background-image: url("/kqco_co_web/page/javax.faces.resource/images/ui-icons_6da8d5_256x240.png?ln=primefaces-redmond");
+}
+
+.styleCheckBox .ui-icon-check {
+    margin: -0.1ex;
+}
+/*Novatec - fin - SP12 - 25112015 - se incluyen estilos para servicio Customer*/

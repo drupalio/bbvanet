@@ -18,25 +18,24 @@
 	<composite:attribute name="styleIn" />
 	<composite:attribute name="styleClassIn" />
 	<composite:attribute name="styleClassOut" />
+	<composite:attribute name="styleClassForm" />
 </composite:interface>
 <composite:implementation>
-	<div class="form-group">
+	<div class="form-group #{cc.attrs.styleClassForm}">
 		<p:outputLabel id="out_#{cc.attrs.id}" for="item_#{cc.attrs.id}" value="#{cc.attrs.label}"
 			styleClass="#{cc.attrs.styleClassOut} control-label left fontLabel" />
-		<div class="#{cc.attrs.styleClassIn} fontInput">
-			<div class="input-control" style="margin: 1px !important;">
-				<p:inputText id="item_#{cc.attrs.id}" type="text" style="#{cc.attrs.styleIn}"
-					styleClass="#{component.valid?'form-control':'form-control has-error'}"
-					placeholder="#{cc.attrs.placeHolder}" required="#{cc.attrs.required}"
-					onmouseover="tooltipFocus(jQuery(this))" value="#{cc.attrs.value}"
-					maxlength="#{cc.attrs.maxlength}" onclick="checkFilled(this)"
-					onmouseout="tooltipRemove(jQuery(this))" autocomplete="off"
-					requiredMessage="#{cc.attrs.requiredMessage}"
-					validatorMessage="#{cc.attrs.validatorMessage}"
-					converterMessage="#{cc.attrs.converterMessage}">
-					<f:validateLength maximum="#{cc.attrs.maxlength}" for="item_#{cc.attrs.id}" minimum="#{cc.attrs.minlength}" />
-				</p:inputText>
-			</div>
+		<div class="input-control #{cc.attrs.styleClassIn} compPadding0">
+			<p:inputText id="item_#{cc.attrs.id}" type="text" style="width: 100%;"
+				styleClass="#{component.valid?'form-control':'form-control has-error'}"
+				placeholder="#{cc.attrs.placeHolder}" required="#{cc.attrs.required}"
+				onmouseover="tooltipFocus(jQuery(this))" value="#{cc.attrs.value}"
+				maxlength="#{cc.attrs.maxlength}" onclick="checkFilled(this)"
+				onmouseout="tooltipRemove(jQuery(this))" autocomplete="off"
+				requiredMessage="#{cc.attrs.requiredMessage}"
+				validatorMessage="#{cc.attrs.validatorMessage}"
+				converterMessage="#{cc.attrs.converterMessage}">
+				<f:validateLength maximum="#{cc.attrs.maxlength}" for="item_#{cc.attrs.id}" minimum="#{cc.attrs.minlength}" />
+			</p:inputText>
 		</div>
 	</div>
 </composite:implementation>

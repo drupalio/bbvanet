@@ -10,32 +10,67 @@
 	<div id="turnsQuotation" class="panel-tab-body"
 		style="display: inline-block;">
 		<div class="col-xs-12 col-sm-12 col-md-12">
-			<h:outputLabel class="col-xs-12 col-sm-12 col-md-12 tableName"
-				style="margin-bottom: 5%; font-weight: normal !important;"
-				value="A
-				través de este servicio usted podrá realizar una cotización en línea
-				operaciones de giro al exterior en otras modedas, por favor digite
-				la información de su transacción &lt;br /&gt; &lt;br /&gt; Recuerde
-				que la negociación en línea varia cada 5 segundos la tasa y es
-				susceptible a movimientos de mercado, si desea realizar la operación
+			<h:outputLabel class="col-xs-12 col-sm-10 col-md-10 tableName"
+				style="margin-bottom: 5%; font-weight: normal !important; text-align: justify;"
+				value="Hola, a través de este servicio usted podrá realizar una cotización 
+				en línea o iniciar una operación de giro al exterior en otras modedas, 
+				por favor digite la información de su transacción &lt;br /&gt; &lt;br /&gt; 
+				Recuerde que la negociación en línea varia cada 5 segundos la tasa y
+				es susceptible a movimientos de mercado, si desea realizar la operación 
 				presione Realizar operación en línea"
 				escape="false" />
 
-			<div class="col-xs-12 col-sm-9 col-md-9">
-				<bbvaInput:combo id="monedaOper"
-					styleClassOut="col-xs-12 col-sm-12 col-md-4" label="Moneda"
-					styleClassIn="col-xs-12 col-sm-12 col-md-7" value="" />
-				<bbvaInput:inputOutput id="montoOper"
-					styleClassOut="col-xs-12 col-sm-12 col-md-4"
-					styleClassIn="col-xs-12 col-sm-12 col-md-7" label="Monto" value="" />
-				<bbvaInput:inputOutput id="tasaOnlineIn"
-					styleClassOut="col-xs-12 col-sm-12 col-md-4"
-					styleClassIn="col-xs-12 col-sm-12 col-md-7" label="Tasa en línea" />
+			<div class="col-xs-2 col-sm-2 col-md-2" style="text-align: center;">
+				<h:form name="form">
+					<img alt="" src="../assets/img/timer_icon.png" style="width: 70%;" />
+					<label id="lb_time" />
+				</h:form>
 			</div>
-			<div class="col-xs-12 col-sm-12 col-md-3" style="text-align: center;">
-				<img alt="" src="../assets/img/timer_icon.png"
-					style="margin-top: 30%; width: 70%;" />
-			</div>
+
+			<bbvaInput:combo id="monedaOper"
+				list="#{quotationMoneyController.quotationDto.moneyList}"
+				value="#{quotationMoneyController.quotationDto.money}"
+				label="Moneda" styleClassForm="col-xs-12 col-sm-5 col-md-5"
+				styleClassOut="col-xs-12 col-sm-4 col-md-4"
+				styleClassIn="col-xs-12 col-sm-8 col-md-8" />
+
+			<bbvaInput:inputOutput id="montoOper" label="Monto" value=""
+				styleClassForm="col-xs-12 col-sm-7 col-md-7"
+				styleClassOut="col-xs-12 col-sm-3 col-md-3"
+				styleClassIn="col-xs-12 col-sm-9 col-md-9" />
+
+			<bbvaInput:combo id="numeAccount" label="Número de cuenta"
+				styleClassForm="col-xs-12 col-sm-12 col-md-12"
+				styleClassOut="col-xs-12 col-sm-4 col-md-4"
+				styleClassIn="col-xs-12 col-sm-8 col-md-8" />
+
+			<bbvaInput:combo id="typeOperation" label="Tipo Operación"
+				styleClassForm="col-xs-12 col-sm-12 col-md-12"
+				styleClassOut="col-xs-12 col-sm-4 col-md-4"
+				styleClassIn="col-xs-12 col-sm-8 col-md-8" />
+
+			<p:separator style="display: inline-block;" />
+
+			<bbvaInput:inputOutput id="tasaDivisaUSD" label="Tasa Divisa USD"
+				styleClassForm="col-xs-12 col-sm-6 col-md-6"
+				styleClassOut="col-xs-12 col-sm-4 col-md-4"
+				styleClassIn="col-xs-12 col-sm-12 col-md-7" />
+
+			<bbvaInput:inputOutput id="tasaUSDPeso" label="Tasa USD Peso"
+				styleClassForm="col-xs-12 col-sm-6 col-md-6"
+				styleClassOut="col-xs-12 col-sm-4 col-md-4"
+				styleClassIn="col-xs-12 col-sm-12 col-md-7" />
+
+			<bbvaInput:inputOutput id="tasaDivisaPeso" label="Tasa Divisa Peso"
+				styleClassForm="col-xs-12 col-sm-6 col-md-6"
+				styleClassOut="col-xs-12 col-sm-4 col-md-4"
+				styleClassIn="col-xs-12 col-sm-12 col-md-7" />
+
+			<bbvaInput:inputOutput id="equivalentPeso"
+				label="Equivalente en Pesos"
+				styleClassForm="col-xs-12 col-sm-6 col-md-6"
+				styleClassOut="col-xs-12 col-sm-4 col-md-4"
+				styleClassIn="col-xs-12 col-sm-12 col-md-7" />
 
 			<div style="text-align: center; margin-top: 26px;" class="col-md-12">
 				<p:commandButton styleClass="btn btn-default"

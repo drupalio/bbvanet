@@ -1,0 +1,159 @@
+/**
+* Novatec - 28102015 -  General - se crean estilos para tablas en general
+*/
+/* Estilo para datatables */
+.tablaBBVA{
+    font-size: 11px;
+/*// novatec - SP11 - 2015-11-05 - ini - alertas y notificaciones*/
+    display: inline;
+/*// novatec - SP11 - 2015-11-05 - fin - alertas y notificaciones*/
+}
+
+.tablaBBVA strong{
+    font-size: 12px;
+}
+
+/* encabezados de tabla*/
+.tablaBBVA thead > tr > th{
+    background: #f8f8f5 !important;
+    border-color: #e5e5e5 !important;
+    border-style: solid !important;
+    color: black !important;
+    font-size: 13px;
+    height: 32px;
+}
+
+.tablaBBVA .ui-datatable .ui-widget-header {
+    border: 0px !important;
+}
+
+.tablaBBVA thead > tr > th .ui-column-title{
+    margin-left:5px;
+}
+
+/* tabla scrollable */
+.tablaBBVA .ui-datatable-scrollable-header{
+    border: 0px !important;
+    border-top-left-radius: 0px !important;
+    border-top-right-radius: 0px !important;
+}
+
+/* mensaje cuando no hay registros*/
+.tablaBBVA .ui-datatable-empty-message{
+    font-size: 16px;
+    text-align: center;
+    border-color: #e5e5e5 !important;
+}
+
+/* footer tabla mostrar mas */
+.tablaBBVA  .ui-datatable-footer{
+    padding:0px !important;
+    border: 0px !important;
+}
+
+.tablaBBVA .ui-datatable-footer .mostrarMas{
+    background-color: #f3f5f7;
+    border-color: #e5e5e5;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    height: 30px !important;
+}
+
+.tablaBBVA .ui-datatable-footer .mostrarMas a{
+    color: rgb(0, 120, 210) !important;
+    position: relative;
+    top: 6px;
+    display:block;
+}
+
+.tablaBBVA .mostrarMas .flechaAbajo {
+    background-image: url(../img/link-bg-triangled-down.png);
+    position: relative;
+    float: right;
+    top: -4px;
+    right: 7px !important;
+    width: 14px !important;
+    height: 10px !important;
+}
+/* // novatec - SP11 - 2015-11-05 - ini - alertas y notificaciones */
+/* set de iconos azules*/
+.blue-icons-24{
+    /* Posiciones de iconos de 74 en 74 */
+    background: url(../img/sprite-blue-x24.png) no-repeat;
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    margin: 3px !important;
+}
+
+.icon-mail-new{
+    background-position: -592px -296px;
+}
+
+.icon-mail-read{
+    background-position: -592px -370px;
+}
+
+.icon-pencil{
+    background-position: -592px -1184px;
+}
+
+.btn-blanco{
+    background-color: white !important;
+    color: rgb(0, 120, 210) !important;
+}
+.onlyForPrinter{
+    display:none;
+}
+@media print{
+    .onlyForPrinter{
+        display:block;
+    }
+    .noPrint{
+        display: none;
+    }
+}
+/* // novatec - SP11 - 2015-11-05 - fin - alertas y notificaciones */
+
+/* novatec - SP11 - personalizacion - ini - 30112015 - estilos para acordeones de prime */
+/* Estilo para acordeones BBVA */
+.acordionBBVA .ui-accordion-header{
+    width: 100% !important;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    border: 1px solid #d5e2ee;
+    margin-bottom: 10px;
+}
+
+.acordionBBVA > h3.ui-accordion-header{
+    color: rgb(0, 101, 183) !important;
+    font-size: 0.9em;
+    font-weight: bold !important;
+    background-image: linear-gradient(to top, rgb(255, 255, 255) 0%, rgb(245, 247, 248) 100%);
+    padding-left: 1em;
+}
+
+.acordionBBVA.ui-accordion .ui-accordion-header > span.ui-icon{
+    position: relative;
+    float: right !important;
+    left: initial;
+    margin-top: initial;
+}
+
+.acordionBBVA.ui-accordion .ui-accordion-content{
+    top: -13px;
+    border: 1px solid #d5e2ee;
+}
+/* novatec - SP11 - personalizacion - fin - 30112015 - estilos para acordeones de prime */
+
+/* novatec - General - inicio - ajuste ancho boton dropdown menu y ubicacion de flecha */
+.BBVASelect .ui-selectonemenu-trigger {
+    width: 25px !important;
+}
+
+.BBVASelect.ui-selectonemenu .ui-selectonemenu-trigger .ui-icon {
+    margin-top: 8px !important;
+}
+/* novatec - General - fin - ajuste ancho boton dropdown menu y ubicacion de flecha */
