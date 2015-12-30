@@ -743,18 +743,16 @@ function countRefresh(){
 	var tiempoTotal = 10;
 	var countdownfrom=tiempoTotal;
 	var currentsecond=tiempoTotal + 1;
-		function countredirect(){
-			if (currentsecond!=1){
-				currentsecond-=1;
-				document.getElementById('lb_time').innerHTML = currentsecond;
-			}
-			else{
-				currentsecond=tiempoTotal;
-				document.getElementById('lb_time').innerHTML = currentsecond;
-			}
-			setTimeout("countredirect()",1000);
+		if (currentsecond!=1){
+			currentsecond-=1;
+			document.getElementById('lb_time').innerHTML = currentsecond;
 		}
-		countredirect();
+		else{
+			currentsecond=tiempoTotal;
+			document.getElementById('lb_time').innerHTML = currentsecond;
+		}
+		setTimeout("countredirect()",1000);
+	countredirect();
 }
 	
 // Entelgy / Divisas /FIN

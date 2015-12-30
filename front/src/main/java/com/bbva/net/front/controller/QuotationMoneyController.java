@@ -1,13 +1,8 @@
-/**
- * TODO
- */
 package com.bbva.net.front.controller;
 
-
 /**
- * @author Alejandra.Gutierrez
- *
+ * @author Entelgy
  */
-public class QuotationMoneyController {
+public interface QuotationMoneyController {
 
 }
