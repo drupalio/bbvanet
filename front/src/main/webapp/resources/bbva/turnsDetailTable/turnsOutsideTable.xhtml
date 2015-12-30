@@ -3,7 +3,7 @@
 	xmlns:composite="http://java.sun.com/jsf/composite" xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
 	xmlns:pm="http://primefaces.org/mobile" xmlns:jsf="http://xmlns.jcp.org/jsf"
-	xmlns:bbvaDetailMotion="http://java.sun.com/jsf/composite/bbva/movementsDetail">
+	xmlns:bbvaDetailMotion="http://java.sun.com/jsf/composite/bbva/turnsDetailTable">
 <composite:interface>
 	<composite:attribute name="id" type="String" />
 	<composite:attribute name="listAccounts" type="java.util.List" />
@@ -11,7 +11,7 @@
 <composite:implementation>
 	<h:form id="formOutsideDetail">
 		<!-- Tabla de Divisas -->
-		<p:outputPanel id="movDivisaOut" autoUpdate="true"
+		<p:outputPanel id="movDivisaOut" 
 			styleClass="#{renderComponents['OUTSIDETABLE'] ? '' : 'nonee'}">
 			<article class="detail-table-group">
 				<div class="table-wrapper">
@@ -29,7 +29,7 @@
 							<h:outputText style="font-weight: bold;" class="brand styleLeft height18"
 								value="#{moves.operation}" />
 						</p:column>
-						<p:column headerText="FECHA" styleClass="styleColum desc w25 borderSpace0"
+						<p:column headerText="FECHA" styleClass="styleColum desc w28 borderSpace0"
 							sortBy="#{moves.dateOperation}">
 							<h:outputText styleClass="text styleLeft height18" value="#{moves.dateOperation}">
 								<f:convertDateTime pattern="dd/MM/yyyy" />
@@ -44,11 +44,11 @@
 							<h:outputText styleClass="text styleLeft height18" value="#{moves.divisa}"/>
 						</p:column>					
 						<p:column class="head" headerText="MONTO" sortBy="#{moves.amount}"
-							styleClass="styleColum desc w36 borderSpace0" >
+							styleClass="styleColum desc w39 borderSpace0" >
 							<h:outputText class="currency styleCurrent height18" value="#{moves.amount}" 
 								style="font-size: 12px !important;"/>
 						</p:column>
-						<p:column headerText="TASA" styleClass="styleColum desc w28 borderSpace0"
+						<p:column headerText="TASA" styleClass="styleColum desc w30 borderSpace0"
 							sortBy="#{moves.valuation}">
 							<h:outputText styleClass="currency styleCurrent height18" value="#{moves.valuation}" 
 								style="font-size: 12px !important;"/>
