@@ -11,17 +11,153 @@
 		<div class="table-detail-close array">
 			<button class="close-icon hidden-lg hidden-md" style="margin-right: 5% !important;" type="button"
 				onclick="clickMove()" />
-			<h3 style="font-size: 18px;" class="align">#{msg['text.moventInformation']}</h3>
+			<h3 style="font-size: 18px;" class="align">Datos básicos</h3>
 		</div>
 		<div class="definitions textSize" style="width: 100%;">
+		<!-- Primera fila -->
 			<dl class="shared">
-				<dd class="border-desktop">Número de operación</dd>
-				<dt class="border-desktop">#{cc.attrs.controller.turnsDetail.operationNumber}</dt>
+				<h:panelGroup styleClass="condiciones-list-element">
+					<dd class="conditionsTitle dataContMove">Fecha de transacción</dd>
+					<dt class="conditionsData dataContMove">02/12/2015</dt>
+				</h:panelGroup>
+				<h:panelGroup styleClass="condiciones-list-element">
+					<dd class="conditionsTitle dataContMove">Número de operación</dd>
+					<dt class="conditionsData dataContMove">H001252</dt>
+				</h:panelGroup>
+				<h:panelGroup styleClass="condiciones-list-element">
+					<dd class="conditionsTitle dataContMove">Nombre del cliente</dd>
+					<dt class="conditionsData dataContMove">Pepito Perez</dt>
+				</h:panelGroup>
 			</dl>
 			<dl class="shared marginDetailQValue">
-				<dd class="border-desktop border-mobile">Tasa de la divisa</dd>
-				<dt class="border-desktop border-mobile">#{cc.attrs.controller.turnsDetail.divisaValuation}</dt>
+				<h:panelGroup styleClass="condiciones-list-element">
+					<dd class="conditionsTitle dataContMove">Hora</dd>
+					<dt class="conditionsData dataContMove">02:33 p.m</dt>
+				</h:panelGroup>
+				<h:panelGroup styleClass="condiciones-list-element">
+					<dd class="conditionsTitle dataContMove">Referencia BBVA</dd>
+					<dt class="conditionsData dataContMove">STD1</dt>
+				</h:panelGroup>
+				<h:panelGroup styleClass="condiciones-list-element">
+					<dd class="conditionsTitle dataContMove">Descripción de la transferencia</dd>
+					<dt class="conditionsData dataContMove">02:33 p.m</dt>
+				</h:panelGroup>
 			</dl>
+			<h3 style="font-size: 18px;" class="align"></h3>
+			<!-- Segunda fila  -->
+			<dl class="shared">
+				<h:panelGroup styleClass="condiciones-list-element">
+					<dd class="conditionsTitle dataContMove">Ordenante</dd>
+					<dt class="conditionsData dataContMove">796001880</dt>
+				</h:panelGroup>
+				<h:panelGroup styleClass="condiciones-list-element">
+					<dd class="conditionsTitle dataContMove">País</dd>
+					<dt class="conditionsData dataContMove">02/12/2015</dt>
+				</h:panelGroup>
+				<h:panelGroup styleClass="condiciones-list-element">
+					<dd class="conditionsTitle dataContMove">Nombre Cliente</dd>
+					<dt class="conditionsData dataContMove">02/12/2015</dt>
+				</h:panelGroup>
+			</dl>
+			<dl class="shared marginDetailQValue">
+				<h:panelGroup styleClass="condiciones-list-element">
+					<dd class="conditionsTitle dataContMove">Beneficiario</dd>
+					<dt class="conditionsData dataContMove">02:33 p.m</dt>
+				</h:panelGroup>
+				<h:panelGroup styleClass="condiciones-list-element">
+					<dd class="conditionsTitle dataContMove">País</dd>
+					<dt class="conditionsData dataContMove">02:33 p.m</dt>
+				</h:panelGroup>
+				<h:panelGroup styleClass="condiciones-list-element">
+					<dd class="conditionsTitle dataContMove">Switf/ABA</dd>
+					<dt class="conditionsData dataContMove">02:33 p.m</dt>
+				</h:panelGroup>
+			</dl>
+			<h3 style="font-size: 18px;" class="align"></h3>
+			<!-- Tercera fila  -->
+			<dl class="shared">
+				<h:panelGroup styleClass="condiciones-list-element">
+					<dd class="conditionsTitle dataContMove">Banco Beneficiario</dd>
+					<dt class="conditionsData dataContMove">796001880</dt>
+				</h:panelGroup>
+				<h:panelGroup styleClass="condiciones-list-element">
+					<dd class="conditionsTitle dataContMove">País</dd>
+					<dt class="conditionsData dataContMove">02/12/2015</dt>
+				</h:panelGroup>
+				<h:panelGroup styleClass="condiciones-list-element">
+					<dd class="conditionsTitle dataContMove">Swift/ABA</dd>
+					<dt class="conditionsData dataContMove">02/12/2015</dt>
+				</h:panelGroup>
+			</dl>
+			<dl class="shared marginDetailQValue">
+				<h:panelGroup styleClass="condiciones-list-element">
+					<dd class="conditionsTitle dataContMove">Banco Intermediario</dd>
+					<dt class="conditionsData dataContMove">02:33 p.m</dt>
+				</h:panelGroup>
+				<h:panelGroup styleClass="condiciones-list-element">
+					<dd class="conditionsTitle dataContMove">País</dd>
+					<dt class="conditionsData dataContMove">02:33 p.m</dt>
+				</h:panelGroup>
+				<h:panelGroup styleClass="condiciones-list-element">
+					<dd class="conditionsTitle dataContMove">Switf/ABA</dd>
+					<dt class="conditionsData dataContMove">02:33 p.m</dt>
+				</h:panelGroup>
+			</dl>
+			<h3 style="font-size: 18px;" class="align"></h3>
+			<!-- Cuarta fila  -->
+			<dl class="shared">
+				<h:panelGroup styleClass="condiciones-list-element">
+					<dd class="conditionsTitle dataContMove">Moneda</dd>
+					<dt class="conditionsData dataContMove">796001880</dt>
+				</h:panelGroup>
+				<h:panelGroup styleClass="condiciones-list-element">
+					<dd class="conditionsTitle dataContMove">Tipo de negociación</dd>
+					<dt class="conditionsData dataContMove">02/12/2015</dt>
+				</h:panelGroup>
+				<h:panelGroup styleClass="condiciones-list-element">
+					<dd class="conditionsTitle dataContMove">Tasa Divisa</dd>
+					<dt class="conditionsData dataContMove">02/12/2015</dt>
+				</h:panelGroup>
+				<h:panelGroup styleClass="condiciones-list-element">
+					<dd class="conditionsTitle dataContMove">Tasa divisaCOP</dd>
+					<dt class="conditionsData dataContMove">02:33 p.m</dt>
+				</h:panelGroup>
+				<h:panelGroup styleClass="condiciones-list-element">
+					<dd class="conditionsTitle dataContMove">Formulario Cambiario</dd>
+					<dt class="conditionsData dataContMove">02:33 p.m</dt>
+				</h:panelGroup>
+				<h:panelGroup styleClass="condiciones-list-element">
+					<dd class="conditionsTitle dataContMove">Cuenta a debitar</dd>
+					<dt class="conditionsData dataContMove">02:33 p.m</dt>
+				</h:panelGroup>
+			</dl>
+			<dl class="shared marginDetailQValue">
+				<h:panelGroup styleClass="condiciones-list-element">
+					<dd class="conditionsTitle dataContMove">Monto en letras</dd>
+					<dt class="conditionsData dataContMove">02:33 p.m</dt>
+				</h:panelGroup>
+				<h:panelGroup styleClass="condiciones-list-element">
+					<dd class="conditionsTitle dataContMove">Monto</dd>
+					<dt class="conditionsData dataContMove">02:33 p.m</dt>
+				</h:panelGroup>
+				<h:panelGroup styleClass="condiciones-list-element">
+					<dd class="conditionsTitle dataContMove">Número de avance</dd>
+					<dt class="conditionsData dataContMove">02:33 p.m</dt>
+				</h:panelGroup>
+				<h:panelGroup styleClass="condiciones-list-element">
+					<dd class="conditionsTitle dataContMove">Tasa USD/COP</dd>
+					<dt class="conditionsData dataContMove">02:33 p.m</dt>
+				</h:panelGroup>
+				<h:panelGroup styleClass="condiciones-list-element">
+					<dd class="conditionsTitle dataContMove">Equivalente en pesos</dd>
+					<dt class="conditionsData dataContMove">02:33 p.m</dt>
+				</h:panelGroup>
+				<h:panelGroup styleClass="condiciones-list-element">
+					<dd class="conditionsTitle dataContMove">Numeral cambiario</dd>
+					<dt class="conditionsData dataContMove">02:33 p.m</dt>
+				</h:panelGroup>
+			</dl>
+			<h3 style="font-size: 18px;" class="align"></h3>
 		</div>
 	</div>
 </composite:implementation>

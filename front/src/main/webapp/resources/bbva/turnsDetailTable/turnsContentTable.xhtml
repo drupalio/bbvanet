@@ -7,14 +7,15 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pm="http://primefaces.org/mobile"
 	xmlns:jsf="http://xmlns.jcp.org/jsf"
-	xmlns:bbvaDetailMotion="http://java.sun.com/jsf/composite/bbva/movementsDetail">
+	xmlns:bbvaDetailMotion="http://java.sun.com/jsf/composite/bbva/turnsDetailTable">
 <composite:interface>
 	<composite:attribute name="id" type="String" />
 	<composite:attribute name="listTurnO" type="java.util.List" />
 	<composite:attribute name="listTurnR" type="java.util.List" />
 </composite:interface>
 <composite:implementation>
-	<p:outputPanel id="movDivisaLabels" autoUpdate="true">
+	<!-- <p:outputPanel id="movDivisaLabels" autoUpdate="true"> -->
+	<h:form id="divisasInit">
 		<h3>
 			<h:outputLabel id="labelTurns" value="#{msg['text.last.movments']}"
 				rendered="#{renderComponents['TITLEDIVISAINI']}" />
@@ -24,8 +25,8 @@
 				value="Giros Desde el Exterior"
 				rendered="#{renderComponents['TITLEMRECIVED']}" />
 		</h3>
-	</p:outputPanel>
-	<h:form id="divisasInit">
+	<!-- </p:outputPanel> -->
+	
 		<p:outputPanel id="movDivisaOut" autoUpdate="true"
 			styleClass="#{renderComponents['DIVISAINITABLE'] ? '' : 'nonee'}">
 			<article class="detail-table-group">
@@ -35,7 +36,7 @@
 						var="moves" rowKey="#{moves.operation}" emptyMessage="#{msg['text.empty.table']}"
 						rendered="#{renderComponents['DIVISAINITABLE']}">
 						<p:ajax event="rowSelect" oncomplete="clickMove();"
-							listener="#{turnsOperationController.onTurnDetail}" />
+							listener="#{turnsOutwardsController.onTurnDetail}" />
 						<f:facet name="header">Giros Hacia el Exterior</f:facet>
 						<p:column style="z-index: -1 !important; display:none;">
 							<p:rowToggler rendered="true" />
@@ -115,7 +116,7 @@
 						rendered="#{renderComponents['DIVISAINITABLE']}"
 						emptyMessage="#{msg['text.empty.table']}">
 						<p:ajax event="rowSelect" oncomplete="clickMove();"
-							listener="#{turnsOperationController.onTurnDetail}" />
+							listener="#{turnsReceivedController.onTurnDetail}" />
 						<f:facet name="header">Giros Desde el Exterior</f:facet>
 						<p:column style="z-index: -1 !important; display:none;">
 							<p:rowToggler rendered="true" />

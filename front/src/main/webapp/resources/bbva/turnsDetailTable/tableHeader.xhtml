@@ -8,8 +8,14 @@
 </composite:interface>
 <composite:implementation>
 	<header id="table-detail-quota-content" class="table-detail-header">
-		<div class="table-tab positionHead hidden-xs hidden-sm">
-			<div class="table-detail-border" style="padding-bottom: 2% !important;">
+		<div class="table-tab positionHeadMove hidden-xs hidden-sm">
+			<div class="table-detail-border" style="padding-bottom: 2% !important;padding-top: 5px !important;">
+				<p:commandLink styleClass="icon-pdf-file" ajax="false"
+					onclick="PrimeFaces.monitorDownload(start, deleteDownload )">
+					<p:fileDownload value="#{movementsCriteriaController.exportDetailPdf}" />
+				</p:commandLink>
+				<p:commandLink ajax="false" styleClass="icon-printer"
+					onclick="imprimir('detail-table-movement-complete');" />
 				<div class="table-detail-close">
 					<a onclick="clickMove()"> <span class="close-text" style="color: #003F8D !important;">#{msg['text.close']}</span>
 						<button class="close-icon" type="button" />
@@ -20,15 +26,11 @@
 		<table class="detail" style="border-bottom: 1px solid #C4D7E5 !important;">
 			<tbody>
 				<tr class="textSize visible" onclick="clickMove()">
-					<td style="width: 23% !important">2000</td>
-					<td><span style="float: left !important; display: table-cell !important;" class="text"></span></td>
-					<td style="padding-right: 10px !important;"></td>
-				</tr>
-				<tr class="textSize" onclick="clickMove()">
-					<td class="smart-view" colspan="3" style="width: 98% !important;">
-						<div class="left textSize" style="width: 46% !important;"></div>
-						<div class="right textSize" style="width: 48% !important; padding-right: 20px !important;">
-						</div>
+					<td style="width: 25% !important;"><h:outputText styleClass="brand styleLeft"
+							value="Estado">
+						</h:outputText></td>
+					<td style="text-align: left !important;" class="text">
+					<h:outputText value="En proceso"></h:outputText>
 					</td>
 				</tr>
 			</tbody>
