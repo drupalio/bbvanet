@@ -19,8 +19,6 @@ public class QuotationMoneyDto implements Dto {
 
     private String money;
 
-    private List<String> moneyList;
-
     private String amount;
 
     private String numberAccount;
@@ -34,7 +32,11 @@ public class QuotationMoneyDto implements Dto {
     private String divisaTasPesUSD;
 
     private String equivalentPeso;
-
+    
+    public QuotationMoneyDto() {
+    
+    }
+    
     /**
      * @param money
      * @param moneyList
@@ -50,7 +52,6 @@ public class QuotationMoneyDto implements Dto {
             String divisaTasPes, String divisaTasPesUSD, String equivalentPeso) {
         super();
         this.money = money;
-        this.moneyList = moneyList;
         this.amount = amount;
         this.numberAccount = numberAccount;
         this.typeOperation = typeOperation;
@@ -64,7 +65,7 @@ public class QuotationMoneyDto implements Dto {
     public int hashCode() {
         return new HashCodeBuilder().append(getAmount()).append(getDivisaTasPes()).append(getDivisaTasPesUSD())
                 .append(getDivisaTasUSD()).append(getEquivalentPeso()).append(getMoney())
-                .append(getNumberAccount()).append(getMoneyList()).append(getTypeOperation()).toHashCode();
+                .append(getNumberAccount()).append(getTypeOperation()).toHashCode();
     }
 
     @Override
@@ -78,7 +79,6 @@ public class QuotationMoneyDto implements Dto {
                 && (this.getEquivalentPeso() != null && ((QuotationMoneyDto)obj).getEquivalentPeso() != null)
                 && (this.getMoney() != null && ((QuotationMoneyDto)obj).getMoney() != null)
                 && (this.getNumberAccount() != null && ((QuotationMoneyDto)obj).getNumberAccount() != null)
-                && (this.getMoneyList() != null && ((QuotationMoneyDto)obj).getMoneyList() != null)
                 && (this.getTypeOperation() != null && ((QuotationMoneyDto)obj).getTypeOperation() != null);
 
     }
@@ -105,20 +105,6 @@ public class QuotationMoneyDto implements Dto {
      */
     public void setMoney(String money) {
         this.money = money;
-    }
-
-    /**
-     * @return the moneyList
-     */
-    public List<String> getMoneyList() {
-        return moneyList;
-    }
-
-    /**
-     * @param moneyList the moneyList to set
-     */
-    public void setMoneyList(List<String> moneyList) {
-        this.moneyList = moneyList;
     }
 
     /**

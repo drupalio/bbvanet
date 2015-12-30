@@ -7,8 +7,7 @@
 <composite:interface>
 </composite:interface>
 <composite:implementation>
-	<div id="turnsQuotation" class="panel-tab-body"
-		style="display: inline-block;">
+	<div id="turnsQuotation" class="panel-tab-body" style="display: inline-block;">
 		<div class="col-xs-12 col-sm-12 col-md-12">
 			<h:outputLabel class="col-xs-12 col-sm-10 col-md-10 tableName"
 				style="margin-bottom: 5%; font-weight: normal !important; text-align: justify;"
@@ -19,57 +18,73 @@
 				es susceptible a movimientos de mercado, si desea realizar la operación 
 				presione Realizar operación en línea"
 				escape="false" />
-
-			<div class="col-xs-2 col-sm-2 col-md-2" style="text-align: center;">
+			
+			<div class="col-xs-2 col-sm-2 col-md-2" style="text-align: center; float: right;">
 				<h:form name="form">
 					<img alt="" src="../assets/img/timer_icon.png" style="width: 70%;" />
 					<label id="lb_time" />
 				</h:form>
-			</div>
+			</div>			
+			
+			<bbvaInput:combo id="typeOperation" label="Tipo Operación:"
+				value="#{quotationMoneyController.quotationDto.typeOperation}"
+				list="#{quotationMoneyController.typeOperList}"
+				styleClassForm="col-xs-12 col-sm-5 col-md-5"
+				styleClassOut="col-xs-12 col-sm-6 col-md-6"
+				styleClassIn="col-xs-12 col-sm-6 col-md-6" />
+			
+			<bbvaInput:combo id="numeAccount" label="Número de cuenta:"
+				value="#{quotationMoneyController.quotationDto.numberAccount}"
+				list="#{quotationMoneyController.accountsList}"
+				styleClassForm="col-xs-12 col-sm-7 col-md-7"
+				styleClassOut="col-xs-12 col-sm-4 col-md-4"
+				styleClassIn="col-xs-12 col-sm-7 col-md-7" />				
 
 			<bbvaInput:combo id="monedaOper"
-				list="#{quotationMoneyController.quotationDto.moneyList}"
+				list="#{quotationMoneyController.moneyList}"
 				value="#{quotationMoneyController.quotationDto.money}"
-				label="Moneda" styleClassForm="col-xs-12 col-sm-5 col-md-5"
-				styleClassOut="col-xs-12 col-sm-4 col-md-4"
-				styleClassIn="col-xs-12 col-sm-8 col-md-8" />
+				label="Moneda:" styleClassForm="col-xs-12 col-sm-5 col-md-5"
+				styleClassOut="col-xs-12 col-sm-6 col-md-6"
+				styleClassIn="col-xs-12 col-sm-6 col-md-6" />
 
-			<bbvaInput:inputOutput id="montoOper" label="Monto" value=""
+			<bbvaInput:inputOutput id="montoOper" label="Monto:" 
+				value="#{quotationMoneyController.quotationDto.amount}"
 				styleClassForm="col-xs-12 col-sm-7 col-md-7"
-				styleClassOut="col-xs-12 col-sm-3 col-md-3" />
+				styleClassOut="col-xs-12 col-sm-4 col-md-4" />
 
-			<bbvaInput:combo id="numeAccount" label="Número de cuenta"
-				styleClassForm="col-xs-12 col-sm-12 col-md-12"
-				styleClassOut="col-xs-12 col-sm-4 col-md-4"
-				styleClassIn="col-xs-12 col-sm-8 col-md-8" />
+			<p:separator style="width: 100%; display: inline-block; border: 1px solid #F4F7F5 !important;"/>
 
-			<bbvaInput:combo id="typeOperation" label="Tipo Operación"
-				styleClassForm="col-xs-12 col-sm-12 col-md-12"
-				styleClassOut="col-xs-12 col-sm-4 col-md-4"
-				styleClassIn="col-xs-12 col-sm-8 col-md-8" />
-
-			<p:separator style="display: inline-block;" />
-
-			<bbvaInput:inputOutput id="tasaDivisaUSD" label="Tasa Divisa USD"
+			<bbvaInput:inputOutput id="tasaDivisaUSD" label="Tasa Divisa USD:"
+				value="#{quotationMoneyController.quotationDto.divisaTasUSD}"
 				styleClassForm="col-xs-12 col-sm-6 col-md-6"
 				styleClassOut="col-xs-12 col-sm-4 col-md-4" />
 
-			<bbvaInput:inputOutput id="tasaUSDPeso" label="Tasa USD Peso"
+			<bbvaInput:inputOutput id="tasaUSDPeso" label="Tasa USD Peso:"
+				value="#{quotationMoneyController.quotationDto.divisaTasPesUSD}"
 				styleClassForm="col-xs-12 col-sm-6 col-md-6"
 				styleClassOut="col-xs-12 col-sm-4 col-md-4" />
 
-			<bbvaInput:inputOutput id="tasaDivisaPeso" label="Tasa Divisa Peso"
+			<bbvaInput:inputOutput id="tasaDivisaPeso" label="Tasa Divisa Peso:"
+				value="#{quotationMoneyController.quotationDto.divisaTasPes}"
 				styleClassForm="col-xs-12 col-sm-6 col-md-6"
 				styleClassOut="col-xs-12 col-sm-4 col-md-4" />
 
-			<bbvaInput:inputOutput id="equivalentPeso"
-				label="Equivalente en Pesos"
+			<bbvaInput:inputOutput id="equivalentPeso" label="Equivalente en Pesos:"
+				value="#{quotationMoneyController.quotationDto.equivalentPeso}"
 				styleClassForm="col-xs-12 col-sm-6 col-md-6"
-				styleClassOut="col-xs-12 col-sm-4 col-md-4" />
+				styleClassOut="col-xs-12 col-sm-4 col-md-4" />			
 
-			<div style="text-align: center; margin-top: 26px;" class="col-md-12">
-				<p:commandButton styleClass="btn btn-default"
-					value="Realizar Operación en línea" />
+			<div class="col-md-12" style="text-align: center; margin-top: 26px;">
+				<div style="display: inline-block;">
+					<p:commandButton styleClass="btn btn-default" value="Realizar Operación en línea" >
+						<span data-original-title="Horario de negociación en línea: &lt;br /&gt; Días Hábiles  
+							&lt;br /&gt; Inicio: 08:00 AM &lt;br /&gt; Fin: 05:00 PM  &lt;br /&gt; &lt;br /&gt;  
+							Horario para cumplimiento de la operación: &lt;br /&gt; Días Hábiles &lt;br /&gt; 
+							Inicio: 08:00 AM &lt;br /&gt; Fin: 05:00 PM" data-style-toggle="right: 94px; bottom: 38px;"
+							class="icon-Info-BlueFilter" onmouseover="addTool(jQuery(this))"
+							onmouseout="removeTool(jQuery(this))" style="float: right;"/>
+					</p:commandButton>
+				</div>
 			</div>
 		</div>
 	</div>

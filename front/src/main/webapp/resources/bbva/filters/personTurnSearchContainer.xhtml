@@ -8,6 +8,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:bbvaSearch="http://java.sun.com/jsf/composite/bbva/filters"
+	xmlns:bbvaInput="http://java.sun.com/jsf/composite/bbva/input"
 	xmlns:jsf="http://xmlns.jcp.org/jsf">
 <composite:interface>
 	<composite:attribute name="title" type="String" />
@@ -77,10 +78,14 @@
 		</h:form>
 	</p:outputPanel>
 	<h:form id="quotationMoney">
-		<bbvaSearch:personalizedSearchTabBody id="perTabBody"
-			title="Cotizador de monedas en línea">
+		<bbvaSearch:personalizedSearchTooltipBody id="perTabBody"
+			title="Cotizador de monedas en línea" valueTool="Horario de negociación en línea: &lt;br /&gt; Días  
+				Hábiles &lt;br /&gt; Inicio: 08:00 AM &lt;br /&gt; Fin: 05:00 PM  &lt;br /&gt; &lt;br /&gt;  
+				Horario para cumplimiento de la operación: &lt;br /&gt; Días Hábiles &lt;br /&gt; 
+				Inicio: 08:00 AM &lt;br /&gt; Fin: 05:00 PM" styleTool="top: 276px; left: 190px;"
+				classIcon="icon-Info-BlueFilter">
 			<bbvaSearch:quotationMoney id="money" />
-		</bbvaSearch:personalizedSearchTabBody>
+		</bbvaSearch:personalizedSearchTooltipBody>
 	</h:form>
 </composite:implementation>
 </html>
