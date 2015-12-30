@@ -73,9 +73,6 @@ public class TurnsReceivedControllerImpl extends AbstractBbvaController implemen
 
 	@Override
 	public void onTurnDetail(SelectEvent selectEvent) {
-		getRenderComponents().put(RenderAttributes.TITLEDIVISAINI.toString(), false);
-		getRenderComponents().put(RenderAttributes.TITLEMOUTSIDE.toString(), false);
-		getRenderComponents().put(RenderAttributes.TITLEMRECIVED.toString(), true);
 		turnsDetail = new turnsClientDetailDto("", "", new Date(), new Date(), "", "", "", new Money(new BigDecimal(
 				2000)), "", "", "", "", "", "", "", "", "");
 	}

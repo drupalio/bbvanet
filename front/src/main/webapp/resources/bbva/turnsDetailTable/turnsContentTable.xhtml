@@ -14,8 +14,7 @@
 	<composite:attribute name="listTurnR" type="java.util.List" />
 </composite:interface>
 <composite:implementation>
-	<!-- <p:outputPanel id="movDivisaLabels" autoUpdate="true"> -->
-	<h:form id="divisasInit">
+	<p:outputPanel id="movDivisaLabels" autoUpdate="true">
 		<h3>
 			<h:outputLabel id="labelTurns" value="#{msg['text.last.movments']}"
 				rendered="#{renderComponents['TITLEDIVISAINI']}" />
@@ -25,9 +24,9 @@
 				value="Giros Desde el Exterior"
 				rendered="#{renderComponents['TITLEMRECIVED']}" />
 		</h3>
-	<!-- </p:outputPanel> -->
-	
-		<p:outputPanel id="movDivisaOut" autoUpdate="true"
+	</p:outputPanel>
+	<h:form id="divisasInit">
+		<p:outputPanel id="movDivisaOut"
 			styleClass="#{renderComponents['DIVISAINITABLE'] ? '' : 'nonee'}">
 			<article class="detail-table-group">
 				<div class="table-wrapper">
@@ -46,7 +45,7 @@
 							<h:outputText style="font-weight: bold;" class="brand styleLeft height18"
 								value="#{moves.operation}" />
 						</p:column>
-						<p:column headerText="FECHA" styleClass="styleColum desc w25 borderSpace0"
+						<p:column headerText="FECHA" styleClass="styleColum desc w28 borderSpace0"
 							sortBy="#{moves.dateOperation}">
 							<h:outputText styleClass="text styleLeft height18" value="#{moves.dateOperation}">
 								<f:convertDateTime pattern="dd/MM/yyyy" />
@@ -61,11 +60,11 @@
 							<h:outputText styleClass="text styleLeft height18" value="#{moves.divisa}"/>
 						</p:column>					
 						<p:column class="head" headerText="MONTO" sortBy="#{moves.amount}"
-							styleClass="styleColum desc w36 borderSpace0" >
+							styleClass="styleColum desc w39 borderSpace0" >
 							<h:outputText class="currency styleCurrent height18" value="#{moves.amount}" 
 								style="font-size: 12px !important;"/>
 						</p:column>
-						<p:column headerText="TASA" styleClass="styleColum desc w28 borderSpace0"
+						<p:column headerText="TASA" styleClass="styleColum desc w30 borderSpace0"
 							sortBy="#{moves.valuation}">
 							<h:outputText styleClass="currency styleCurrent height18" value="#{moves.valuation}" 
 								style="font-size: 12px !important;"/>
@@ -126,7 +125,7 @@
 							<h:outputText style="font-weight: bold;" class="brand styleLeft height18"
 								value="#{moves.operation}" />
 						</p:column>
-						<p:column headerText="FECHA" styleClass="styleColum desc w25 borderSpace0"
+						<p:column headerText="FECHA" styleClass="styleColum desc w28 borderSpace0"
 							sortBy="#{moves.dateOperation}">
 							<h:outputText styleClass="text styleLeft height18" value="#{moves.dateOperation}">
 								<f:convertDateTime pattern="dd/MM/yyyy" />
@@ -141,11 +140,11 @@
 							<h:outputText styleClass="text styleLeft height18" value="#{moves.divisa}"/>
 						</p:column>					
 						<p:column class="head" headerText="MONTO"
-							styleClass="styleColum desc w36 borderSpace0" sortBy="#{moves.amount}">
+							styleClass="styleColum desc w39 borderSpace0" sortBy="#{moves.amount}">
 							<h:outputText class="currency styleCurrent height18" value="#{moves.amount}"
 								style="font-size: 12px !important;" />
 						</p:column>
-						<p:column headerText="TASA" styleClass="styleColum desc w28 borderSpace0"
+						<p:column headerText="TASA" styleClass="styleColum desc w30 borderSpace0"
 							sortBy="#{moves.valuation}">
 							<h:outputText styleClass="currency styleCurrent height18" value="#{moves.valuation}"
 								style="font-size: 12px !important;"/>

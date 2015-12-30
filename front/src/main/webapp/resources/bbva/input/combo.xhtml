@@ -16,20 +16,21 @@
 	<composite:attribute name="styleClassForm" />
 </composite:interface>
 <composite:implementation>
-	<div class="#{cc.attrs.styleClassForm}" style="margin-bottom: 17px; line-height: 21px !important;" >
+	<div class="#{cc.attrs.styleClassForm}" style="margin-bottom: 17px; line-height: 21px !important; 
+		padding-right: 0px !important;">
 		<p:outputLabel id="out_#{cc.attrs.id}" for="item_#{cc.attrs.id}" value="#{cc.attrs.label}"
-				styleClass="#{cc.attrs.styleClassOut} control-label left fontLabel" />
-		<p:outputPanel style="position: relative; float: left;" styleClass="#{cc.attrs.styleClassIn} compPadding0">
-			<div style="width: 100% !important; margin-top: 0px !important;" class="selectorCombo">
+				styleClass="#{cc.attrs.styleClassOut} control-label left fontLabel divAlign" />
+		<div class="#{cc.attrs.styleClassIn} compPadding0">
+			<div class="selectorCombo" style="width:100%; margin-top: 0px !important;">
 				<p:selectOneMenu id="item_#{cc.attrs.id}" value="#{cc.attrs.value}" required="true"
 					styleClass="#{component.valid?'mySelect':'mySelect  select-picker-error'}"
 					requiredMessage="#{msg['mssg.requeridValue']}"  panelStyleClass="normalComboS">
 					<f:selectItem itemLabel="#{cc.attrs.itemLabel}" itemDisabled="true" />
-					<f:selectItems value="#{cc.attrs.list}" var="multiValue" itemValue="multiValue"
-						itemLabel="multiValue" />
+					<f:selectItems value="#{cc.attrs.list}" var="multiValue" itemValue="#{multiValue}"
+						itemLabel="#{multiValue}" />
 				</p:selectOneMenu>
 			</div>
-		</p:outputPanel>
+		</div>
 	</div>	
 </composite:implementation>
 </html>

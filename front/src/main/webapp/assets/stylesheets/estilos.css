@@ -2240,6 +2240,14 @@ li.itemPosicionGlobal.active>a {
 	width: 28%;
 }
 
+.detail-table-body .w30 {
+	width: 30%;
+}
+
+.detail-table-body .w39 {
+	width: 39%;
+}
+
 .ui-datatable th.borderSpace0 .ui-sortable-column-icon {
 	display: none !important;
 	margin: 0px !important;

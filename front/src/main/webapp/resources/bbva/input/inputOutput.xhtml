@@ -20,7 +20,8 @@
 	<composite:attribute name="styleClassForm" />
 </composite:interface>
 <composite:implementation>
-	<div class="#{cc.attrs.styleClassForm}">
+	<div class="#{cc.attrs.styleClassForm}" style="margin-bottom: 17px; line-height: 21px !important;
+		padding-right: 0px !important;">
 		<p:outputLabel id="out_#{cc.attrs.id}" for="item_#{cc.attrs.id}" value="#{cc.attrs.label}" 
 			styleClass="#{cc.attrs.styleClassOut} control-label left fontLabel divAlign" />
 		<p:inputText id="item_#{cc.attrs.id}" type="text" value="#{cc.attrs.value}"

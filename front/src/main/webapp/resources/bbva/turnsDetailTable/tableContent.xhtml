@@ -3,24 +3,19 @@
 	xmlns:composite="http://java.sun.com/jsf/composite" xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
 	xmlns:jsf="http://xmlns.jcp.org/jsf"
-	xmlns:bbvaDetailMotion="http://java.sun.com/jsf/composite/bbva/movementsDetail"
-	xmlns:bbvaDetailMotionQuota="http://java.sun.com/jsf/composite/bbva/turnsDetailTable"
+	xmlns:bbvaDetailMotion="http://java.sun.com/jsf/composite/bbva/turnsDetailTable"
 	xmlns:pm="http://primefaces.org/mobile">
 <composite:interface>
 	<composite:attribute name="controller" />
 </composite:interface>
 <composite:implementation>
-	<div class="td-detail position" id="rowExpansion">
+	<div class="td-detail positionMove" id="rowExpansion" style="margin-top: -96px !important;">
 		<div class="detail-content" style="border: 5px solid #EAEAEA;">
 			<div class="table-detail-border">
 				<!-- aki va header -->
-				<bbvaDetailMotionQuota:tableHeader controller="#{cc.attrs.controller}" />
-				<!-- luego va botones container -->
-				<!--<bbvaDetailMotion:buttonContainer button1="Lorem" button2="Lorem ipsum" button3="Lorem ipsum" />-->
+				<bbvaDetailMotion:tableHeader controller="#{cc.attrs.controller}" />
 				<!-- luego cuerpo del contenido -->
-				<bbvaDetailMotionQuota:tableBody controller="#{cc.attrs.controller}" />
-				<!-- 				luego va footer notas -->
-				<!-- 				<bbvaDetailMotion:tableFooterNotes /> -->
+				<bbvaDetailMotion:tableBody controller="#{cc.attrs.controller}" />
 			</div>
 		</div>
 	</div>

@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:h="http://java.sun.com/jsf/html" 
+	xmlns:composite="http://java.sun.com/jsf/composite" xmlns:p="http://primefaces.org/ui"
+	xmlns:bbvaInput="http://java.sun.com/jsf/composite/bbva/input"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
+<composite:interface>
+	<composite:attribute name="title" type="String" />
+	<composite:attribute name="valueTool" type="String" />
+	<composite:attribute name="classIcon" type="String" />
+	<composite:attribute name="styleTool" type="String" />
+</composite:interface>
+<composite:implementation>
+	<div class="panel-tab-body">
+		<p:outputPanel class="filters custom-search">
+			<h1 class="hidden-xs hidden-sm">
+				<span style="padding-left: 28px !important;">#{cc.attrs.title}
+					<span data-original-title="#{cc.attrs.valueTool}" data-style-toggle="#{cc.attrs.styleTool}"
+					class="#{cc.attrs.classIcon}" onmouseover="addTool(jQuery(this))"
+					onmouseout="removeTool(jQuery(this))"/>
+				</span>
+			</h1>
+			<h1 class="hidden-md hidden-lg">
+				<span class="iconFont-611 font-white hidden-md hidden-lg"></span> <span>#{msg['text.consult']}</span>
+			</h1>
+			<ul class="accordion">
+				<composite:insertChildren></composite:insertChildren>
+			</ul>
+		</p:outputPanel>
+	</div>
+</composite:implementation>
+</html>
