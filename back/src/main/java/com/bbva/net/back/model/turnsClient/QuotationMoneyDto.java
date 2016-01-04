@@ -1,7 +1,6 @@
 package com.bbva.net.back.model.turnsClient;
 
-import java.util.List;
-
+import java.math.BigDecimal;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
@@ -17,13 +16,13 @@ public class QuotationMoneyDto implements Dto {
      */
     private static final long serialVersionUID = 1L;
 
-    private String money;
+    private DivisaDto money;
 
-    private String amount;
+    private BigDecimal amount;
 
     private String numberAccount;
 
-    private String typeOperation;
+    private String typeBussiness;
 
     private String divisaTasUSD;
 
@@ -32,11 +31,11 @@ public class QuotationMoneyDto implements Dto {
     private String divisaTasPesUSD;
 
     private String equivalentPeso;
-    
+
     public QuotationMoneyDto() {
-    
+
     }
-    
+
     /**
      * @param money
      * @param moneyList
@@ -48,13 +47,12 @@ public class QuotationMoneyDto implements Dto {
      * @param divisaTasPesUSD
      * @param equivalentPeso
      */
-    public QuotationMoneyDto(String money, List<String> moneyList, String amount, String numberAccount, String typeOperation, String divisaTasUSD,
+    public QuotationMoneyDto(DivisaDto money, BigDecimal amount, String numberAccount, String typeBussiness, String divisaTasUSD,
             String divisaTasPes, String divisaTasPesUSD, String equivalentPeso) {
-        super();
         this.money = money;
         this.amount = amount;
         this.numberAccount = numberAccount;
-        this.typeOperation = typeOperation;
+        this.typeBussiness = typeBussiness;
         this.divisaTasUSD = divisaTasUSD;
         this.divisaTasPes = divisaTasPes;
         this.divisaTasPesUSD = divisaTasPesUSD;
@@ -65,7 +63,7 @@ public class QuotationMoneyDto implements Dto {
     public int hashCode() {
         return new HashCodeBuilder().append(getAmount()).append(getDivisaTasPes()).append(getDivisaTasPesUSD())
                 .append(getDivisaTasUSD()).append(getEquivalentPeso()).append(getMoney())
-                .append(getNumberAccount()).append(getTypeOperation()).toHashCode();
+                .append(getNumberAccount()).append(getTypeBussiness()).toHashCode();
     }
 
     @Override
@@ -79,7 +77,7 @@ public class QuotationMoneyDto implements Dto {
                 && (this.getEquivalentPeso() != null && ((QuotationMoneyDto)obj).getEquivalentPeso() != null)
                 && (this.getMoney() != null && ((QuotationMoneyDto)obj).getMoney() != null)
                 && (this.getNumberAccount() != null && ((QuotationMoneyDto)obj).getNumberAccount() != null)
-                && (this.getTypeOperation() != null && ((QuotationMoneyDto)obj).getTypeOperation() != null);
+                && (this.getTypeBussiness() != null && ((QuotationMoneyDto)obj).getTypeBussiness() != null);
 
     }
 
@@ -88,7 +86,7 @@ public class QuotationMoneyDto implements Dto {
         return new ToStringBuilder(this).append("Amount", getAmount()).append("divisaTasaPeso", getDivisaTasPes())
                 .append("divisaTasaPesoUSD", getDivisaTasPesUSD()).append("divisaTasaUSD", getDivisaTasUSD())
                 .append("equivalenteEnPesos", getEquivalentPeso()).append("monedaSeleccionado", getMoney())
-                .append("numeroCuenta", getNumberAccount()).append("tipodeOperacion", getTypeOperation()).toString();
+                .append("numeroCuenta", getNumberAccount()).append("tipodeOperacion", getTypeBussiness()).toString();
     }
 
     // Setters and getters
@@ -96,28 +94,28 @@ public class QuotationMoneyDto implements Dto {
     /**
      * @return the money
      */
-    public String getMoney() {
+    public DivisaDto getMoney() {
         return money;
     }
 
     /**
      * @param money the money to set
      */
-    public void setMoney(String money) {
+    public void setMoney(DivisaDto money) {
         this.money = money;
     }
 
     /**
      * @return the amount
      */
-    public String getAmount() {
+    public BigDecimal getAmount() {
         return amount;
     }
 
     /**
      * @param amount the amount to set
      */
-    public void setAmount(String amount) {
+    public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 
@@ -133,20 +131,6 @@ public class QuotationMoneyDto implements Dto {
      */
     public void setNumberAccount(String numberAccount) {
         this.numberAccount = numberAccount;
-    }
-
-    /**
-     * @return the typeOperation
-     */
-    public String getTypeOperation() {
-        return typeOperation;
-    }
-
-    /**
-     * @param typeOperation the typeOperation to set
-     */
-    public void setTypeOperation(String typeOperation) {
-        this.typeOperation = typeOperation;
     }
 
     /**
@@ -203,5 +187,19 @@ public class QuotationMoneyDto implements Dto {
      */
     public void setEquivalentPeso(String equivalentPeso) {
         this.equivalentPeso = equivalentPeso;
+    }
+
+    /**
+     * @return the typeBussiness
+     */
+    public String getTypeBussiness() {
+        return typeBussiness;
+    }
+
+    /**
+     * @param typeBussiness the typeBussiness to set
+     */
+    public void setTypeBussiness(String typeBussiness) {
+        this.typeBussiness = typeBussiness;
     }
 }

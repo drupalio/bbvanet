@@ -22,72 +22,64 @@
 			<h3 class="visible-xs">Operaciones</h3>
 			<div class="row">
 				<h:form>
-					<bbvaProgressBar:progressContent id="progressBar"
-						sizeProgress="0px">
+					<bbvaProgressBar:progressContent id="progressBar" sizeProgress="0px">
 						<bbvaProgressDivi:progressDivisasBusiness pointOne="uno"
 							pointTwo="dos" pointThree="tres" pointFour="cuatro"
 							pointOneState="active" sizeProgress="0px" />
 					</bbvaProgressBar:progressContent>
 					<div class="col-xs-12 col-sm-12 col-md-12">
-						<span class="col-xs-12 col-sm-12 col-md-12 tableName"
-							style="margin-bottom: 5%; font-weight: normal !important;">
-							A través de este Servicio usted podrá realizar en línea
-							operaciones de giro al exterior en otras modedas, por favor
-							digite la información de su transacción</span>
+						<h:outputLabel class="col-xs-12 col-sm-12 col-md-12 tableName"
+							style="margin-bottom: 5%; font-weight: normal !important; text-align: justify;"
+							value="A través de este Servicio usted podrá realizar en línea operaciones de giro 
+							al exterior en otras modedas, por favor digite la información  de su transacción" 
+							escape="false"/>
+							
+						<bbvaInput:combo id="typeOperation" label="Tipo Operación:"
+							styleClassForm="col-xs-12 col-sm-5 col-md-5"
+							styleClassOut="col-xs-12 col-sm-6 col-md-6"
+							styleClassIn="col-xs-12 col-sm-6 col-md-6" />
+			
+						<bbvaInput:combo id="numeAccount" label="Número de cuenta:"
+							styleClassForm="col-xs-12 col-sm-7 col-md-7"
+							styleClassOut="col-xs-12 col-sm-4 col-md-4"
+							styleClassIn="col-xs-12 col-sm-7 col-md-7" />				
+
+						<bbvaInput:combo id="monedaOper"
+							label="Moneda:" styleClassForm="col-xs-12 col-sm-5 col-md-5"
+							styleClassOut="col-xs-12 col-sm-6 col-md-6"
+							styleClassIn="col-xs-12 col-sm-6 col-md-6" />
+
+						<bbvaInput:inputOutput id="montoOper" label="Monto:" 
+							styleClassForm="col-xs-12 col-sm-7 col-md-7"
+							styleClassOut="col-xs-12 col-sm-4 col-md-4" />
+							
+						<p:separator style="width: 100%; display: inline-block; border: 1px solid #F4F7F5 !important;"/>	
+							
 						<div class="col-xs-12 col-sm-6 col-md-6">
-							<bbvaInput:inputOutput id="descriptionOper"
-								styleClassOut="col-xs-12 col-sm-12 col-md-5"
-								styleClassIn="col-xs-12 col-sm-12 col-md-7"
-								label="Descripción de la operación" />
+							<bbvaInput:inputOutput id="tasaDivisaUSD" label="Tasa Divisa USD:"
+								styleClassForm="col-xs-12 col-sm-12 col-md-12"
+								styleClassOut="col-xs-12 col-sm-4 col-md-4" />
+
+							<bbvaInput:inputOutput id="tasaUSDPeso" label="Tasa USD Peso:"
+								styleClassForm="col-xs-12 col-sm-12 col-md-12"
+								styleClassOut="col-xs-12 col-sm-4 col-md-4" />
+
+							<bbvaInput:inputOutput id="tasaDivisaPeso" label="Tasa Divisa Peso:"
+								styleClassForm="col-xs-12 col-sm-12 col-md-12"
+								styleClassOut="col-xs-12 col-sm-4 col-md-4" />
+
+							<bbvaInput:inputOutput id="equivalentPeso" label="Equivalente en Pesos:"
+								styleClassForm="col-xs-12 col-sm-12 col-md-12"
+								styleClassOut="col-xs-12 col-sm-4 col-md-4" />
 						</div>
+						
 						<div class="col-xs-12 col-sm-6 col-md-6">
-							<bbvaInput:combo id="monedaOper"
-								styleClassOut="col-xs-12 col-sm-12 col-md-4" label="Moneda"
-								styleClassIn="col-xs-12 col-sm-12 col-md-7" value="" />
-							<bbvaInput:inputOutput id="montoOper"
-								styleClassOut="col-xs-12 col-sm-12 col-md-4"
-								styleClassIn="col-xs-12 col-sm-12 col-md-7" label="Monto"
-								value="" />
-						</div>
-					</div>
-					<div class="col-xs-12 col-sm-12 col-md-12">
-						<div class="col-xs-12 col-sm-6 col-md-6">
-							<bbvaInput:inputOutput id="tasaOnlineIn"
-								styleClassOut="col-xs-12 col-sm-12 col-md-5"
-								styleClassIn="col-xs-12 col-sm-12 col-md-7"
-								label="Tasa en línea" />
-							<bbvaInput:inputOutput id="tasaDivisaUSD"
-								styleClassOut="col-xs-12 col-sm-12 col-md-5"
-								styleClassIn="col-xs-12 col-sm-12 col-md-7"
-								label="Tasa en divisa USD" />
-							<bbvaInput:inputOutput id="tasaUSDpeso"
-								styleClassOut="col-xs-12 col-sm-12 col-md-5"
-								styleClassIn="col-xs-12 col-sm-12 col-md-7"
-								label="Tasa USD peso" />
-							<bbvaInput:inputOutput id="tasaDivisaPeso"
-								styleClassOut="col-xs-12 col-sm-12 col-md-5"
-								styleClassIn="col-xs-12 col-sm-12 col-md-7"
-								label="Tasa divisa peso" />
-							<bbvaInput:inputOutput id="equivalentePesos"
-								styleClassOut="col-xs-12 col-sm-12 col-md-5"
-								styleClassIn="col-xs-12 col-sm-12 col-md-7"
-								label="Equivalente en pesos" />
-						</div>
-						<div class="col-xs-12 col-sm-6 col-md-6">
-							<p class="col-xs-12 col-sm-6 col-md-6 tableName"
-								style="font-weight: normal !important; padding-left: 0px; margin-bottom: 5%;">
-								Horario de negociación en línea Días Habiles inicio: 8:00am Fin:
-								2:30pm</p>
-							<p class="col-xs-12 col-sm-6 col-md-6 tableName"
-								style="font-weight: normal !important; padding-right: 0px; margin-bottom: 5%;">
-								Horario para cumplimiento de la operación Días Habiles inicio:
-								8:00am Fin: 3:30pm</p>
-							<p class="tableName" style="font-weight: normal !important;">
-								Recuerda que una vez Aceptada la trasacción no se puede anular
-								por favor no aceptar si no se encuentra seguro de la operación</p>
-							<p class="tableName" style="font-weight: normal !important;">Esta
-								Transacción podrá estar sujeta al cobro de comisiones, en caso
-								de ser excento no se cobrara</p>
+							<h:outputLabel class="col-xs-12 col-sm-12 col-md-12 tableName"
+							style="margin-bottom: 5%; font-weight: normal !important;" 
+							value="Horario de negociación en línea: &lt;br /&gt; Días Hábiles  
+							&lt;br /&gt; Inicio: 08:00 AM &lt;br /&gt; Fin: 05:00 PM  &lt;br /&gt; &lt;br /&gt;  
+							Horario para cumplimiento de la operación: &lt;br /&gt; Días Hábiles &lt;br /&gt; 
+							Inicio: 08:00 AM &lt;br /&gt; Fin: 05:00 PM" escape="false"/>
 						</div>
 					</div>
 				</h:form>

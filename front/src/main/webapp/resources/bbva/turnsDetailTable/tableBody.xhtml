@@ -26,7 +26,7 @@
 				</h:panelGroup>
 				<h:panelGroup styleClass="condiciones-list-element">
 					<dd class="conditionsTitle dataContMove">Nombre del cliente</dd>
-					<dt class="conditionsData dataContMove">#{cc.attrs.controller.turnsDetail.ordered.name}</dt>
+					<dt class="conditionsData dataContMove">#{cc.attrs.controller.turnsDetail.ordenant.name}</dt>
 				</h:panelGroup>
 			</dl>
 			<dl class="shared marginDetailQValue">
@@ -48,15 +48,15 @@
 			<dl class="shared">
 				<h:panelGroup styleClass="condiciones-list-element">
 					<dd class="conditionsTitle dataContMove">Ordenante</dd>
-					<dt class="conditionsData dataContMove">#{cc.attrs.controller.turnsDetail.ordered.account}</dt>
+					<dt class="conditionsData dataContMove">#{cc.attrs.controller.turnsDetail.ordenant.bank.account}</dt>
 				</h:panelGroup>
 				<h:panelGroup styleClass="condiciones-list-element">
 					<dd class="conditionsTitle dataContMove">País</dd>
-					<dt class="conditionsData dataContMove">#{cc.attrs.controller.turnsDetail.ordered.contry}</dt>
+					<dt class="conditionsData dataContMove">#{cc.attrs.controller.turnsDetail.ordenant.cityDto.nameConutry}</dt>
 				</h:panelGroup>
 				<h:panelGroup styleClass="condiciones-list-element">
 					<dd class="conditionsTitle dataContMove">Ciudad</dd>
-					<dt class="conditionsData dataContMove">#{cc.attrs.controller.turnsDetail.ordered.city}</dt>
+					<dt class="conditionsData dataContMove">#{cc.attrs.controller.turnsDetail.ordenant.cityDto.nameCity}</dt>
 				</h:panelGroup>
 			</dl>
 			<dl class="shared marginDetailQValue">
@@ -66,11 +66,11 @@
 				</h:panelGroup>
 				<h:panelGroup styleClass="condiciones-list-element">
 					<dd class="conditionsTitle dataContMove">País</dd>
-					<dt class="conditionsData dataContMove">#{cc.attrs.controller.turnsDetail.beneficiary.contry}</dt>
+					<dt class="conditionsData dataContMove">#{cc.attrs.controller.turnsDetail.beneficiary.cityDto.nameConutry}</dt>
 				</h:panelGroup>
 				<h:panelGroup styleClass="condiciones-list-element">
 					<dd class="conditionsTitle dataContMove">Ciudad</dd>
-					<dt class="conditionsData dataContMove">#{cc.attrs.controller.turnsDetail.beneficiary.city}</dt>
+					<dt class="conditionsData dataContMove">#{cc.attrs.controller.turnsDetail.beneficiary.cityDto.nameCity}</dt>
 				</h:panelGroup>
 			</dl>
 			<h3 style="font-size: 18px;" class="align"></h3>
@@ -78,29 +78,29 @@
 			<dl class="shared">
 				<h:panelGroup styleClass="condiciones-list-element">
 					<dd class="conditionsTitle dataContMove">Banco Beneficiario</dd>
-					<dt class="conditionsData dataContMove">#{cc.attrs.controller.turnsDetail.baneficiaryBank.name}</dt>
+					<dt class="conditionsData dataContMove">#{cc.attrs.controller.turnsDetail.beneficiary.bank.name}</dt>
 				</h:panelGroup>
 				<h:panelGroup styleClass="condiciones-list-element">
 					<dd class="conditionsTitle dataContMove">País</dd>
-					<dt class="conditionsData dataContMove">#{cc.attrs.controller.turnsDetail.baneficiaryBank.country}</dt>
+					<dt class="conditionsData dataContMove">#{cc.attrs.controller.turnsDetail.beneficiary.bank.cityDto.nameConutry}</dt>
 				</h:panelGroup>
 				<h:panelGroup styleClass="condiciones-list-element">
 					<dd class="conditionsTitle dataContMove">Swift/ABA</dd>
-					<dt class="conditionsData dataContMove">#{cc.attrs.controller.turnsDetail.baneficiaryBank.swiftAbaBe}</dt>
+					<dt class="conditionsData dataContMove">#{cc.attrs.controller.turnsDetail.beneficiary.bank.cityDto.code}</dt>
 				</h:panelGroup>
 			</dl>
 			<dl class="shared marginDetailQValue">
 				<h:panelGroup styleClass="condiciones-list-element">
 					<dd class="conditionsTitle dataContMove">Banco Intermediario</dd>
-					<dt class="conditionsData dataContMove">#{cc.attrs.controller.turnsDetail.intermediaryBank.name}</dt>
+					<dt class="conditionsData dataContMove">#{cc.attrs.controller.turnsDetail.bankIntermediary.name}</dt>
 				</h:panelGroup>
 				<h:panelGroup styleClass="condiciones-list-element">
 					<dd class="conditionsTitle dataContMove">País</dd>
-					<dt class="conditionsData dataContMove">#{cc.attrs.controller.turnsDetail.intermediaryBank.country}</dt>
+					<dt class="conditionsData dataContMove">#{cc.attrs.controller.turnsDetail.bankIntermediary.cityDto.nameConutry}</dt>
 				</h:panelGroup>
 				<h:panelGroup styleClass="condiciones-list-element">
 					<dd class="conditionsTitle dataContMove">Switf/ABA</dd>
-					<dt class="conditionsData dataContMove">#{cc.attrs.controller.turnsDetail.intermediaryBank.swiftAbaBe}</dt>
+					<dt class="conditionsData dataContMove">#{cc.attrs.controller.turnsDetail.bankIntermediary.code}</dt>
 				</h:panelGroup>
 			</dl>
 			<h3 style="font-size: 18px;" class="align"></h3>
@@ -108,27 +108,27 @@
 			<dl class="shared">
 				<h:panelGroup styleClass="condiciones-list-element">
 					<dd class="conditionsTitle dataContMove">Moneda</dd>
-					<dt class="conditionsData dataContMove">#{cc.attrs.controller.turnsDetail.moneyType}</dt>
+					<dt class="conditionsData dataContMove">#{cc.attrs.controller.turnsDetail.rates.money.nameMoney}</dt>
 				</h:panelGroup>
 				<h:panelGroup styleClass="condiciones-list-element">
 					<dd class="conditionsTitle dataContMove">Tipo de negociación</dd>
-					<dt class="conditionsData dataContMove">#{cc.attrs.controller.turnsDetail.typeBussiness}</dt>
+					<dt class="conditionsData dataContMove">#{cc.attrs.controller.turnsDetail.rates.typeBussiness}</dt>
 				</h:panelGroup>
 				<h:panelGroup styleClass="condiciones-list-element">
 					<dd class="conditionsTitle dataContMove">Cuenta a debitar</dd>
-					<dt class="conditionsData dataContMove">#{cc.attrs.controller.turnsDetail.accountNumberDebit}</dt>
+					<dt class="conditionsData dataContMove">#{cc.attrs.controller.turnsDetail.rates.numberAccount}</dt>
 				</h:panelGroup>
 				<h:panelGroup styleClass="condiciones-list-element">
 					<dd class="conditionsTitle dataContMove">Tasa Divisa</dd>
-					<dt class="conditionsData dataContMove">#{cc.attrs.controller.turnsDetail.divisaValuation}</dt>
+					<dt class="conditionsData dataContMove">#{cc.attrs.controller.turnsDetail.rates.divisaTasUSD}</dt>
 				</h:panelGroup>
 				<h:panelGroup styleClass="condiciones-list-element">
 					<dd class="conditionsTitle dataContMove">Tasa Divisa/Peso</dd>
-					<dt class="conditionsData dataContMove">#{cc.attrs.controller.turnsDetail.divisaValuationPeso}</dt>
+					<dt class="conditionsData dataContMove">#{cc.attrs.controller.turnsDetail.rates.divisaTasPes}</dt>
 				</h:panelGroup>
 				<h:panelGroup styleClass="condiciones-list-element">
 					<dd class="conditionsTitle dataContMove">Formulario Cambiario</dd>
-					<dt class="conditionsData dataContMove">#{cc.attrs.controller.turnsDetail.formChangeNum}</dt>
+					<dt class="conditionsData dataContMove">#{cc.attrs.controller.turnsDetail.formCurrency.identNumeralCambiario}</dt>
 				</h:panelGroup>
 			</dl>
 			<dl class="shared marginDetailQValue">
@@ -138,7 +138,7 @@
 				</h:panelGroup>
 				<h:panelGroup styleClass="condiciones-list-element">
 					<dd class="conditionsTitle dataContMove">Monto</dd>
-					<dt class="conditionsData dataContMove">#{cc.attrs.controller.turnsDetail.amount}</dt>
+					<dt class="conditionsData dataContMove">#{cc.attrs.controller.turnsDetail.rates.amount}</dt>
 				</h:panelGroup>
 				<h:panelGroup styleClass="condiciones-list-element">
 					<dd class="conditionsTitle dataContMove">Número de avance</dd>
@@ -146,15 +146,15 @@
 				</h:panelGroup>
 				<h:panelGroup styleClass="condiciones-list-element">
 					<dd class="conditionsTitle dataContMove">Tasa USD/Peso</dd>
-					<dt class="conditionsData dataContMove">#{cc.attrs.controller.turnsDetail.divisaValuUSDPeso}</dt>
+					<dt class="conditionsData dataContMove">#{cc.attrs.controller.turnsDetail.rates.divisaTasPesUSD}</dt>
 				</h:panelGroup>
 				<h:panelGroup styleClass="condiciones-list-element">
 					<dd class="conditionsTitle dataContMove">Equivalente en pesos</dd>
-					<dt class="conditionsData dataContMove">#{cc.attrs.controller.turnsDetail.equivalentValue}</dt>
+					<dt class="conditionsData dataContMove">#{cc.attrs.controller.turnsDetail.rates.equivalentPeso}</dt>
 				</h:panelGroup>
 				<h:panelGroup styleClass="condiciones-list-element">
 					<dd class="conditionsTitle dataContMove">Numeral cambiario</dd>
-					<dt class="conditionsData dataContMove">#{cc.attrs.controller.turnsDetail.numberCambiario}</dt>
+					<dt class="conditionsData dataContMove">#{cc.attrs.controller.turnsDetail.formCurrency.numeralCambiario}</dt>
 				</h:panelGroup>
 			</dl>
 			<h3 style="font-size: 18px;" class="align"></h3>

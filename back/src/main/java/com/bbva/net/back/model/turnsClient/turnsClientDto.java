@@ -1,12 +1,12 @@
 package com.bbva.net.back.model.turnsClient;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 import com.bbva.net.back.core.pattern.dto.Dto;
-import com.bbva.net.back.model.commons.Money;
 
 public class turnsClientDto implements Dto {
     
@@ -25,7 +25,7 @@ public class turnsClientDto implements Dto {
     
     private String divisa;
     
-    private Money amount;
+    private BigDecimal amount;
     
     private String valuation;
     
@@ -50,7 +50,7 @@ public class turnsClientDto implements Dto {
      * @param stateOperation
      * @param beneficiary
      */
-    public turnsClientDto(String operation, Date dateOperation, String advance, String divisa, Money amount, String valuation,
+    public turnsClientDto(String operation, Date dateOperation, String advance, String divisa, BigDecimal amount, String valuation,
             String stateOperation, String beneficiary, String ordenante) {
         this.dateOperation = dateOperation;
         this.advance = advance;
@@ -140,14 +140,14 @@ public class turnsClientDto implements Dto {
     /**
      * @return the amount
      */
-    public Money getAmount() {
+    public BigDecimal getAmount() {
         return amount;
     }
     
     /**
      * @param amount the amount to set
      */
-    public void setAmount(Money amount) {
+    public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
     
