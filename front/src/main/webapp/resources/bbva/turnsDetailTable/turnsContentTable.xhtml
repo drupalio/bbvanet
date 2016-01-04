@@ -26,16 +26,15 @@
 		</h3>
 	</p:outputPanel>
 	<h:form id="divisasInit">
-		<p:outputPanel id="movDivisaOut"
-			styleClass="#{renderComponents['DIVISAINITABLE'] ? '' : 'nonee'}">
+		<p:outputPanel id="movDivisaOut" styleClass="#{renderComponents['DIVISAINITABLE'] ? '' : 'nonee'}">
 			<article class="detail-table-group">
 				<div class="table-wrapper">
 					<p:dataTable id="turnsOut" widgetVar="turnsOut" selectionMode="single"
 						styleClass="withHeader detail-table-body sortable" value="#{cc.attrs.listTurnO}"
 						var="moves" rowKey="#{moves.operation}" emptyMessage="#{msg['text.empty.table']}"
 						rendered="#{renderComponents['DIVISAINITABLE']}">
-						<p:ajax event="rowSelect" oncomplete="clickMove();"
-							listener="#{turnsOutwardsController.onTurnDetail}" />
+						<p:ajax event="rowSelect" oncomplete="clickMove('detailsDivisas:tableDivisas:divisasInit:turnsOut'); PF('statusDialog').hide();" 
+							onstart=" PF('statusDialog').show();" listener="#{turnsOutwardsController.onTurnDetail}" />
 						<f:facet name="header">Giros Hacia el Exterior</f:facet>
 						<p:column style="z-index: -1 !important; display:none;">
 							<p:rowToggler rendered="true" />
@@ -90,7 +89,8 @@
 							</div>
 						</p:column>
 						<p:rowExpansion styleClass="detail-row">
-							<bbvaDetailMotion:tableContent controller="#{turnsOperationController}" />
+							<bbvaDetailMotion:tableContent controller="#{turnsOutwardsController}" 
+								source="detailsDivisas:tableDivisas:divisasInit:turnsOut"/>
 						</p:rowExpansion>
 					</p:dataTable>
 				</div>
@@ -98,15 +98,13 @@
 					<p:commandButton id="moreTurnO"
 						value="#{msg['text.detailMove.footer']}"
 						rendered="#{renderComponents['FOOTEROUTSIDE'] and renderComponents['DIVISAINITABLE']}"
-						styleClass="btn btn-more-results seeMore #{cc.attrs.listTurnO.size() == 0  ? 'nonee' : ''}"
-						ajax="true">
+						styleClass="btn btn-more-results seeMore #{cc.attrs.listTurnO.size() == 0  ? 'nonee' : ''}" ajax="true">
 						<p:ajax onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
 					</p:commandButton>
 				</footer>
 			</article>
 		</p:outputPanel>
-		<p:outputPanel id="movDivisaRec" autoUpdate="true"
-			styleClass="#{renderComponents['DIVISAINITABLE'] ? '' : 'nonee'}">
+		<p:outputPanel id="movDivisaRec" styleClass="#{renderComponents['DIVISAINITABLE'] ? '' : 'nonee'}">
 			<article class="detail-table-group">
 				<div class="table-wrapper">
 					<p:dataTable id="turnsRev" widgetVar="turnsRev" rowKey="#{moves.operation}"
@@ -114,8 +112,8 @@
 						value="#{cc.attrs.listTurnR}" selectionMode="single"
 						rendered="#{renderComponents['DIVISAINITABLE']}"
 						emptyMessage="#{msg['text.empty.table']}">
-						<p:ajax event="rowSelect" oncomplete="clickMove();"
-							listener="#{turnsReceivedController.onTurnDetail}" />
+						<p:ajax event="rowSelect" listener="#{turnsReceivedController.onTurnDetail}" onstart=" PF('statusDialog').show();"
+							oncomplete="clickMove('detailsDivisas:tableDivisas:divisasInit:turnsRev'); PF('statusDialog').hide();" />
 						<f:facet name="header">Giros Desde el Exterior</f:facet>
 						<p:column style="z-index: -1 !important; display:none;">
 							<p:rowToggler rendered="true" />
@@ -170,7 +168,8 @@
 							</div>
 						</p:column>
 						<p:rowExpansion styleClass="detail-row">
-							<bbvaDetailMotion:tableContent controller="#{turnsOperationController}" />
+							<bbvaDetailMotion:tableContent controller="#{turnsReceivedController}" 
+								source="detailsDivisas:tableDivisas:divisasInit:turnsRev"/>
 						</p:rowExpansion>
 					</p:dataTable>
 				</div>

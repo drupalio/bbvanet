@@ -7,13 +7,14 @@
 	xmlns:pm="http://primefaces.org/mobile">
 <composite:interface>
 	<composite:attribute name="controller" />
+	<composite:attribute name="source" />
 </composite:interface>
 <composite:implementation>
 	<div class="td-detail positionMove" id="rowExpansion" style="margin-top: -96px !important;">
 		<div class="detail-content" style="border: 5px solid #EAEAEA;">
 			<div class="table-detail-border">
 				<!-- aki va header -->
-				<bbvaDetailMotion:tableHeader controller="#{cc.attrs.controller}" />
+				<bbvaDetailMotion:tableHeader controller="#{cc.attrs.controller}" source="#{cc.attrs.source}"/>
 				<!-- luego cuerpo del contenido -->
 				<bbvaDetailMotion:tableBody controller="#{cc.attrs.controller}" />
 			</div>

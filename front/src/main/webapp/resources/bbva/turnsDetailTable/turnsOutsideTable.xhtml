@@ -11,8 +11,7 @@
 <composite:implementation>
 	<h:form id="formOutsideDetail">
 		<!-- Tabla de Divisas -->
-		<p:outputPanel id="movDivisaOut" 
-			styleClass="#{renderComponents['OUTSIDETABLE'] ? '' : 'nonee'}">
+		<p:outputPanel id="movDivisaOut" styleClass="#{renderComponents['OUTSIDETABLE'] ? '' : 'nonee'}">
 			<article class="detail-table-group">
 				<div class="table-wrapper">
 					<p:dataTable id="detalMov" widgetVar="detalMov" styleClass="detail-table-body sortable"
@@ -20,7 +19,7 @@
 						rowKey="#{moves.operation}" rendered="#{renderComponents['OUTSIDETABLE']}"
 						emptyMessage="#{msg['text.empty.table']}">
 						<p:ajax event="rowSelect" oncomplete="clickMove();"
-							listener="#{turnsOperationController.onTurnDetail}" />
+							listener="#{turnsOutwardsController.onTurnDetail}" />
 						<p:column style="z-index: -1 !important; display:none;">
 							<p:rowToggler rendered="true" />
 						</p:column>
@@ -74,7 +73,7 @@
 							</div>
 						</p:column>
 						<p:rowExpansion styleClass="detail-row">
-							<bbvaDetailMotion:tableContent controller="#{turnsOperationController}" />
+							<bbvaDetailMotion:tableContent controller="#{turnsOutwardsController}" />
 						</p:rowExpansion>
 					</p:dataTable>
 				</div>

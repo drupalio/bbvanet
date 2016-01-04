@@ -48,29 +48,55 @@ function mistakeFilled() {
 	});
 }
 
+/* <!-- Entelgy / Divisas / 01012016 -->*/
 // Para abrir y cerrar los detalles de movimientos.
-function clickMove() {
+function clickMove(row) {
 	$(document).ready(function() {
 		var index;
 		var next;
-		$('.ui-datatable-data').children().each(function() {
-			var selected = $(this).attr('aria-selected');
-			if (selected === 'true') {
-				index = $(this).attr('data-ri');
-				next = $(this).next('.ui-expanded-row-content').length;
-				return false;
-			}
-		});
+		
+		if(row != undefined) {
+			var dataTable = $('#' + row.replace(/:/g, '\\:')).find('.ui-datatable-data');
+			$(dataTable).children().each(function() {
+				var selected = $(this).attr('aria-selected');
+				if (selected === 'true') {
+					index = $(this).attr('data-ri');
+					next = $(this).next('.ui-expanded-row-content').length;
+					return false;
+				}
+			});
 
-		var i = $('.ui-row-toggler.ui-icon-circle-triangle-s').length;
-		if (i == 1) {
-			$('.ui-expanded-row').find('.ui-row-toggler').click();
-		}
-		if (next == 0) {
-			$('.ui-datatable-data').find('.ui-row-toggler').eq(index).click();
+			var i = $('.ui-row-toggler.ui-icon-circle-triangle-s').length;
+			if (i == 1) {
+				$('.ui-expanded-row').find('.ui-row-toggler').click();
+			}
+			
+			if (next == 0) {
+				$(dataTable).find('.ui-row-toggler').eq(index).click();
+			}
+			
+		}else{
+			$('.ui-datatable-data').children().each(function() {
+				var selected = $(this).attr('aria-selected');
+				if (selected === 'true') {
+					index = $(this).attr('data-ri');
+					next = $(this).next('.ui-expanded-row-content').length;
+					return false;
+				}
+			});
+
+			var i = $('.ui-row-toggler.ui-icon-circle-triangle-s').length;
+			if (i == 1) {
+				$('.ui-expanded-row').find('.ui-row-toggler').click();
+			}
+			
+			if (next == 0) {
+				$('.ui-datatable-data').find('.ui-row-toggler').eq(index).click();
+			}
 		}
 	});
 }
+/* <!-- Entelgy / Divisas / 01012016 -->*/
 
 /* Poner estilo de tabs de consultas */
 function headerTabS(button) {

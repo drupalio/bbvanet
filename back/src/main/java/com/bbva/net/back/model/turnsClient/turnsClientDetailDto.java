@@ -10,382 +10,455 @@ import com.bbva.net.back.model.commons.Money;
 
 public class turnsClientDetailDto implements Dto {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	private String accountNumber;
+    private Date operationDate;
 
-	private String operationNumber;
+    private String operationNumber;
 
-	private Date valueDate;
+    private BasicPersonDto ordered;
 
-	private Date operationHour;
+    private Date operationHour;
 
-	private String amountLetter;
+    private String referenceOper;
 
-	private String moneyType;
+    private String transferDescription;
 
-	private String advanceNumber;
+    private BasicPersonDto beneficiary;
 
-	private Money divisaValuation;
+    private BasicBankDto baneficiaryBank;
 
-	private String valuationUSDValue;
+    private BasicBankDto intermediaryBank;
 
-	private String equivalentValue;
+    private String moneyType;
 
-	private String formChangeNum;
+    private String typeBussiness;
 
-	private String transferDescription;
+    private String accountNumberDebit;
 
-	private String ordered;
+    private Money divisaValuation;
 
-	private String beneficiaryBank;
+    private Money divisaValuationPeso;
 
-	private String country;
+    private String formChangeNum;
 
-	private String swift;
+    private String amountLetter;
 
-	private String aba;
+    private Money amount;
 
-	/**
-	 * 
-	 */
-	public turnsClientDetailDto() {
-	}
+    private String advanceNumber;
 
-	/**
-	 * @param accountNumber
-	 * @param operationNumber
-	 * @param operationDate
-	 * @param valueDate
-	 * @param operationHour
-	 * @param amount
-	 * @param amountLetter
-	 * @param moneyType
-	 * @param advanceNumber
-	 * @param negotiationType
-	 * @param divisaValuation
-	 * @param valuationUSDValue
-	 * @param equivalentValue
-	 * @param formChangeNum
-	 * @param transferDescription
-	 * @param ordered
-	 * @param beneficiary
-	 * @param beneficiaryBank
-	 * @param country
-	 * @param swift
-	 * @param aBA
-	 */
-	public turnsClientDetailDto(String accountNumber, String operationNumber, Date valueDate, Date operationHour,
-			String amountLetter, String moneyType, String advanceNumber, Money divisaValuation,
-			String valuationUSDValue, String equivalentValue, String formChangeNum, String transferDescription,
-			String ordered, String beneficiaryBank, String country, String swift, String aBA) {
-		this.accountNumber = accountNumber;
-		this.operationNumber = operationNumber;
-		this.valueDate = valueDate;
-		this.operationHour = operationHour;
-		this.amountLetter = amountLetter;
-		this.moneyType = moneyType;
-		this.advanceNumber = advanceNumber;
-		this.divisaValuation = divisaValuation;
-		this.valuationUSDValue = valuationUSDValue;
-		this.equivalentValue = equivalentValue;
-		this.formChangeNum = formChangeNum;
-		this.transferDescription = transferDescription;
-		this.ordered = ordered;
-		this.beneficiaryBank = beneficiaryBank;
-		this.country = country;
-		this.swift = swift;
-		this.aba = aBA;
-	}
+    private Money divisaValuUSDPeso;
 
-	@Override
-	public int hashCode() {
-		return new HashCodeBuilder().append(getAba()).append(getAccountNumber()).append(getAdvanceNumber())
-				.append(getAmountLetter()).append(getBeneficiaryBank()).append(getCountry())
-				.append(getDivisaValuation()).append(getEquivalentValue()).append(getFormChangeNum())
-				.append(getMoneyType()).append(getOperationHour()).append(getOperationNumber()).append(getOrdered())
-				.append(getSwift()).append(getTransferDescription()).append(getValuationUSDValue())
-				.append(getValueDate()).toHashCode();
-	}
+    private Money equivalentValue;
 
-	@Override
-	public boolean equals(Object obj) {
-		return (obj != null)
-				&& (obj instanceof turnsClientDetailDto)
-				&& (this.getAba() != null && ((turnsClientDetailDto)obj).getAba() != null)
-				&& (this.getAccountNumber() != null && ((turnsClientDetailDto)obj).getAccountNumber() != null)
-				&& (this.getAdvanceNumber() != null && ((turnsClientDetailDto)obj).getAdvanceNumber() != null)
-				&& (this.getAmountLetter() != null && ((turnsClientDetailDto)obj).getAmountLetter() != null)
-				&& (this.getBeneficiaryBank() != null && ((turnsClientDetailDto)obj).getBeneficiaryBank() != null)
-				&& (this.getCountry() != null && ((turnsClientDetailDto)obj).getCountry() != null)
-				&& (this.getDivisaValuation() != null && ((turnsClientDetailDto)obj).getDivisaValuation() != null)
-				&& (this.getEquivalentValue() != null && ((turnsClientDetailDto)obj).getEquivalentValue() != null)
-				&& (this.getFormChangeNum() != null && ((turnsClientDetailDto)obj).getFormChangeNum() != null)
-				&& (this.getMoneyType() != null && ((turnsClientDetailDto)obj).getMoneyType() != null)
-				&& (this.getOperationHour() != null && ((turnsClientDetailDto)obj).getOperationHour() != null)
-				&& (this.getOperationNumber() != null && ((turnsClientDetailDto)obj).getOperationNumber() != null)
-				&& (this.getOrdered() != null && ((turnsClientDetailDto)obj).getOrdered() != null)
-				&& (this.getSwift() != null && ((turnsClientDetailDto)obj).getSwift() != null)
-				&& (this.getTransferDescription() != null && ((turnsClientDetailDto)obj).getTransferDescription() != null)
-				&& (this.getMoneyType() != null && ((turnsClientDetailDto)obj).getMoneyType() != null)
-				&& (this.getValueDate() != null && ((turnsClientDetailDto)obj).getValueDate() != null)
-				&& (this.getValuationUSDValue() != null && ((turnsClientDetailDto)obj).getValuationUSDValue() != null);
+    private String numberCambiario;
 
-	}
+    /**
+     *
+     */
+    public turnsClientDetailDto() {
+    }
 
-	@Override
-	public String toString() {
-		return new ToStringBuilder(this).append("ABA", getAba()).append("accountNumber", getAccountNumber())
-				.append("advanceNumber", getAdvanceNumber()).append("amountLetter", getAmountLetter())
-				.append("beneficiaryBank", getBeneficiaryBank()).append("country", getCountry())
-				.append("divisaValuation", getDivisaValuation()).append("equivalentValue", getEquivalentValue())
-				.append("formChangeNum", getFormChangeNum()).append("moneyType", getMoneyType())
-				.append("operationNumber", getOperationNumber()).append("operationHour", getOperationHour())
-				.append("ordered", getOrdered()).append("swift", getSwift())
-				.append("transferDesp", getTransferDescription()).append("valuationUSD", getValuationUSDValue())
-				.append("valuationDate", getValueDate()).toString();
-	}
+    /**
+     * @param operationDate
+     * @param operationNumber
+     * @param ordered
+     * @param operationHour
+     * @param referenceOper
+     * @param transferDescription
+     * @param beneficiary
+     * @param baneficiaryBank
+     * @param intermediaryBank
+     * @param moneyType
+     * @param typeBussiness
+     * @param accountNumberDebit
+     * @param divisaValuation
+     * @param divisaValuationPeso
+     * @param formChangeNum
+     * @param amountLetter
+     * @param amount
+     * @param advanceNumber
+     * @param divisaValuUSDPeso
+     * @param equivalentValue
+     * @param numberCambiario
+     */
+    public turnsClientDetailDto(Date operationDate, String operationNumber, BasicPersonDto ordered, Date operationHour, String referenceOper,
+            String transferDescription, BasicPersonDto beneficiary, BasicBankDto baneficiaryBank, BasicBankDto intermediaryBank, String moneyType,
+            String typeBussiness, String accountNumberDebit, Money divisaValuation, Money divisaValuationPeso, String formChangeNum,
+            String amountLetter, Money amount, String advanceNumber, Money divisaValuUSDPeso, Money equivalentValue, String numberCambiario) {
+        this.operationDate = operationDate;
+        this.operationNumber = operationNumber;
+        this.ordered = ordered;
+        this.operationHour = operationHour;
+        this.referenceOper = referenceOper;
+        this.transferDescription = transferDescription;
+        this.beneficiary = beneficiary;
+        this.baneficiaryBank = baneficiaryBank;
+        this.intermediaryBank = intermediaryBank;
+        this.moneyType = moneyType;
+        this.typeBussiness = typeBussiness;
+        this.accountNumberDebit = accountNumberDebit;
+        this.divisaValuation = divisaValuation;
+        this.divisaValuationPeso = divisaValuationPeso;
+        this.formChangeNum = formChangeNum;
+        this.amountLetter = amountLetter;
+        this.amount = amount;
+        this.advanceNumber = advanceNumber;
+        this.divisaValuUSDPeso = divisaValuUSDPeso;
+        this.equivalentValue = equivalentValue;
+        this.numberCambiario = numberCambiario;
+    }
 
-	// Setters and getters
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder().append(getAdvanceNumber()).append(getAmountLetter()).append(getDivisaValuation())
+                .append(getEquivalentValue()).append(getFormChangeNum()).append(getMoneyType()).append(getReferenceOper())
+                .append(getOperationHour()).append(getOperationNumber()).append(getOrdered()).append(getTypeBussiness())
+                .append(getTransferDescription()).append(getBaneficiaryBank()).append(getAmount()).append(getAccountNumberDebit())
+                .append(getBeneficiary()).append(getDivisaValuationPeso()).append(getDivisaValuUSDPeso())
+                .append(getIntermediaryBank()).append(getNumberCambiario()).append(getOperationDate()).toHashCode();
+    }
 
-	/**
-	 * @return the accountNumber
-	 */
-	public String getAccountNumber() {
-		return accountNumber;
-	}
+    @Override
+    public boolean equals(Object obj) {
+        return (obj != null)
+                && (obj instanceof turnsClientDetailDto)
+                && (this.getAdvanceNumber() != null && ((turnsClientDetailDto)obj).getAdvanceNumber() != null)
+                && (this.getAmountLetter() != null && ((turnsClientDetailDto)obj).getAmountLetter() != null)
+                && (this.getDivisaValuation() != null && ((turnsClientDetailDto)obj).getDivisaValuation() != null)
+                && (this.getEquivalentValue() != null && ((turnsClientDetailDto)obj).getEquivalentValue() != null)
+                && (this.getFormChangeNum() != null && ((turnsClientDetailDto)obj).getFormChangeNum() != null)
+                && (this.getMoneyType() != null && ((turnsClientDetailDto)obj).getMoneyType() != null)
+                && (this.getOperationHour() != null && ((turnsClientDetailDto)obj).getOperationHour() != null)
+                && (this.getOperationNumber() != null && ((turnsClientDetailDto)obj).getOperationNumber() != null)
+                && (this.getOrdered() != null && ((turnsClientDetailDto)obj).getOrdered() != null)
+                && (this.getTransferDescription() != null && ((turnsClientDetailDto)obj).getTransferDescription() != null)
+                && (this.getAccountNumberDebit() != null && ((turnsClientDetailDto)obj).getAccountNumberDebit() != null)
+                && (this.getAmount() != null && ((turnsClientDetailDto)obj).getAmount() != null)
+                && (this.getBaneficiaryBank() != null && ((turnsClientDetailDto)obj).getBaneficiaryBank() != null)
+                && (this.getBeneficiary() != null && ((turnsClientDetailDto)obj).getBeneficiary() != null)
+                && (this.getTypeBussiness() != null && ((turnsClientDetailDto)obj).getTypeBussiness() != null)
+                && (this.getOperationDate() != null && ((turnsClientDetailDto)obj).getOperationDate() != null)
+                && (this.getIntermediaryBank() != null && ((turnsClientDetailDto)obj).getIntermediaryBank() != null)
+                && (this.getNumberCambiario() != null && ((turnsClientDetailDto)obj).getNumberCambiario() != null)
+                && (this.getDivisaValuUSDPeso() != null && ((turnsClientDetailDto)obj).getDivisaValuUSDPeso() != null)
+                && (this.getDivisaValuationPeso() != null && ((turnsClientDetailDto)obj).getDivisaValuationPeso() != null)
+                && (this.getReferenceOper() != null && ((turnsClientDetailDto)obj).getReferenceOper() != null);
 
-	/**
-	 * @param accountNumber the accountNumber to set
-	 */
-	public void setAccountNumber(String accountNumber) {
-		this.accountNumber = accountNumber;
-	}
+    }
 
-	/**
-	 * @return the operationNumber
-	 */
-	public String getOperationNumber() {
-		return operationNumber;
-	}
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this).append("advance", getAdvanceNumber()).append("amouts", getAmountLetter())
+                .append("divisaTasa", getDivisaValuation()).append("equvalentValue", getEquivalentValue())
+                .append("formulario cambiario", getFormChangeNum()).append("moneda", getMoneyType())
+                .append("hora", getOperationHour()).append("number", getOperationNumber())
+                .append("ordenate", getOrdered()).append("description", getTransferDescription())
+                .append("account debit", getAccountNumberDebit()).append("amount", getAmount())
+                .append("banco beneficiario", getBaneficiaryBank()).append("beneficiario", getBeneficiary())
+                .append("tipo negocio", getTypeBussiness()).append("banco intermediario", getIntermediaryBank())
+                .append("fecha operacion", getOperationDate()).append("referencia", getReferenceOper())
+                .append("divisa Peso", getDivisaValuationPeso()).append("divisa Peso", getDivisaValuUSDPeso())
+                .append("numero cambiario", getNumberCambiario()).toString();
+    }
 
-	/**
-	 * @param operationNumber the operationNumber to set
-	 */
-	public void setOperationNumber(String operationNumber) {
-		this.operationNumber = operationNumber;
-	}
+    // Setters and getters
 
-	/**
-	 * @return the valueDate
-	 */
-	public Date getValueDate() {
-		return valueDate;
-	}
+    /**
+     * @return the operationDate
+     */
+    public Date getOperationDate() {
+        return operationDate;
+    }
 
-	/**
-	 * @param valueDate the valueDate to set
-	 */
-	public void setValueDate(Date valueDate) {
-		this.valueDate = valueDate;
-	}
+    /**
+     * @param operationDate the operationDate to set
+     */
+    public void setOperationDate(Date operationDate) {
+        this.operationDate = operationDate;
+    }
 
-	/**
-	 * @return the operationHour
-	 */
-	public Date getOperationHour() {
-		return operationHour;
-	}
+    /**
+     * @return the operationNumber
+     */
+    public String getOperationNumber() {
+        return operationNumber;
+    }
 
-	/**
-	 * @param operationHour the operationHour to set
-	 */
-	public void setOperationHour(Date operationHour) {
-		this.operationHour = operationHour;
-	}
+    /**
+     * @param operationNumber the operationNumber to set
+     */
+    public void setOperationNumber(String operationNumber) {
+        this.operationNumber = operationNumber;
+    }
 
-	/**
-	 * @return the amountLetter
-	 */
-	public String getAmountLetter() {
-		return amountLetter;
-	}
+    /**
+     * @return the ordered
+     */
+    public BasicPersonDto getOrdered() {
+        return ordered;
+    }
 
-	/**
-	 * @param amountLetter the amountLetter to set
-	 */
-	public void setAmountLetter(String amountLetter) {
-		this.amountLetter = amountLetter;
-	}
+    /**
+     * @param ordered the ordered to set
+     */
+    public void setOrdered(BasicPersonDto ordered) {
+        this.ordered = ordered;
+    }
 
-	/**
-	 * @return the moneyType
-	 */
-	public String getMoneyType() {
-		return moneyType;
-	}
+    /**
+     * @return the operationHour
+     */
+    public Date getOperationHour() {
+        return operationHour;
+    }
 
-	/**
-	 * @param moneyType the moneyType to set
-	 */
-	public void setMoneyType(String moneyType) {
-		this.moneyType = moneyType;
-	}
+    /**
+     * @param operationHour the operationHour to set
+     */
+    public void setOperationHour(Date operationHour) {
+        this.operationHour = operationHour;
+    }
 
-	/**
-	 * @return the advanceNumber
-	 */
-	public String getAdvanceNumber() {
-		return advanceNumber;
-	}
+    /**
+     * @return the referenceOper
+     */
+    public String getReferenceOper() {
+        return referenceOper;
+    }
 
-	/**
-	 * @param advanceNumber the advanceNumber to set
-	 */
-	public void setAdvanceNumber(String advanceNumber) {
-		this.advanceNumber = advanceNumber;
-	}
+    /**
+     * @param referenceOper the referenceOper to set
+     */
+    public void setReferenceOper(String referenceOper) {
+        this.referenceOper = referenceOper;
+    }
 
-	/**
-	 * @return the divisaValuation
-	 */
-	public Money getDivisaValuation() {
-		return divisaValuation;
-	}
+    /**
+     * @return the transferDescription
+     */
+    public String getTransferDescription() {
+        return transferDescription;
+    }
 
-	/**
-	 * @param divisaValuation the divisaValuation to set
-	 */
-	public void setDivisaValuation(Money divisaValuation) {
-		this.divisaValuation = divisaValuation;
-	}
+    /**
+     * @param transferDescription the transferDescription to set
+     */
+    public void setTransferDescription(String transferDescription) {
+        this.transferDescription = transferDescription;
+    }
 
-	/**
-	 * @return the valuationUSDValue
-	 */
-	public String getValuationUSDValue() {
-		return valuationUSDValue;
-	}
+    /**
+     * @return the beneficiary
+     */
+    public BasicPersonDto getBeneficiary() {
+        return beneficiary;
+    }
 
-	/**
-	 * @param valuationUSDValue the valuationUSDValue to set
-	 */
-	public void setValuationUSDValue(String valuationUSDValue) {
-		this.valuationUSDValue = valuationUSDValue;
-	}
+    /**
+     * @param beneficiary the beneficiary to set
+     */
+    public void setBeneficiary(BasicPersonDto beneficiary) {
+        this.beneficiary = beneficiary;
+    }
 
-	/**
-	 * @return the equivalentValue
-	 */
-	public String getEquivalentValue() {
-		return equivalentValue;
-	}
+    /**
+     * @return the baneficiaryBank
+     */
+    public BasicBankDto getBaneficiaryBank() {
+        return baneficiaryBank;
+    }
 
-	/**
-	 * @param equivalentValue the equivalentValue to set
-	 */
-	public void setEquivalentValue(String equivalentValue) {
-		this.equivalentValue = equivalentValue;
-	}
+    /**
+     * @param baneficiaryBank the baneficiaryBank to set
+     */
+    public void setBaneficiaryBank(BasicBankDto baneficiaryBank) {
+        this.baneficiaryBank = baneficiaryBank;
+    }
 
-	/**
-	 * @return the formChangeNum
-	 */
-	public String getFormChangeNum() {
-		return formChangeNum;
-	}
+    /**
+     * @return the intermediaryBank
+     */
+    public BasicBankDto getIntermediaryBank() {
+        return intermediaryBank;
+    }
 
-	/**
-	 * @param formChangeNum the formChangeNum to set
-	 */
-	public void setFormChangeNum(String formChangeNum) {
-		this.formChangeNum = formChangeNum;
-	}
+    /**
+     * @param intermediaryBank the intermediaryBank to set
+     */
+    public void setIntermediaryBank(BasicBankDto intermediaryBank) {
+        this.intermediaryBank = intermediaryBank;
+    }
 
-	/**
-	 * @return the transferDescription
-	 */
-	public String getTransferDescription() {
-		return transferDescription;
-	}
+    /**
+     * @return the moneyType
+     */
+    public String getMoneyType() {
+        return moneyType;
+    }
 
-	/**
-	 * @param transferDescription the transferDescription to set
-	 */
-	public void setTransferDescription(String transferDescription) {
-		this.transferDescription = transferDescription;
-	}
+    /**
+     * @param moneyType the moneyType to set
+     */
+    public void setMoneyType(String moneyType) {
+        this.moneyType = moneyType;
+    }
 
-	/**
-	 * @return the ordered
-	 */
-	public String getOrdered() {
-		return ordered;
-	}
+    /**
+     * @return the typeBussiness
+     */
+    public String getTypeBussiness() {
+        return typeBussiness;
+    }
 
-	/**
-	 * @param ordered the ordered to set
-	 */
-	public void setOrdered(String ordered) {
-		this.ordered = ordered;
-	}
+    /**
+     * @param typeBussiness the typeBussiness to set
+     */
+    public void setTypeBussiness(String typeBussiness) {
+        this.typeBussiness = typeBussiness;
+    }
 
-	/**
-	 * @return the beneficiaryBank
-	 */
-	public String getBeneficiaryBank() {
-		return beneficiaryBank;
-	}
+    /**
+     * @return the accountNumberDebit
+     */
+    public String getAccountNumberDebit() {
+        return accountNumberDebit;
+    }
 
-	/**
-	 * @param beneficiaryBank the beneficiaryBank to set
-	 */
-	public void setBeneficiaryBank(String beneficiaryBank) {
-		this.beneficiaryBank = beneficiaryBank;
-	}
+    /**
+     * @param accountNumberDebit the accountNumberDebit to set
+     */
+    public void setAccountNumberDebit(String accountNumberDebit) {
+        this.accountNumberDebit = accountNumberDebit;
+    }
 
-	/**
-	 * @return the country
-	 */
-	public String getCountry() {
-		return country;
-	}
+    /**
+     * @return the divisaValuation
+     */
+    public Money getDivisaValuation() {
+        return divisaValuation;
+    }
 
-	/**
-	 * @param country the country to set
-	 */
-	public void setCountry(String country) {
-		this.country = country;
-	}
+    /**
+     * @param divisaValuation the divisaValuation to set
+     */
+    public void setDivisaValuation(Money divisaValuation) {
+        this.divisaValuation = divisaValuation;
+    }
 
-	/**
-	 * @return the swift
-	 */
-	public String getSwift() {
-		return swift;
-	}
+    /**
+     * @return the divisaValuationPeso
+     */
+    public Money getDivisaValuationPeso() {
+        return divisaValuationPeso;
+    }
 
-	/**
-	 * @param swift the swift to set
-	 */
-	public void setSwift(String swift) {
-		this.swift = swift;
-	}
+    /**
+     * @param divisaValuationPeso the divisaValuationPeso to set
+     */
+    public void setDivisaValuationPeso(Money divisaValuationPeso) {
+        this.divisaValuationPeso = divisaValuationPeso;
+    }
 
-	/**
-	 * @return the aBA
-	 */
-	public String getAba() {
-		return aba;
-	}
+    /**
+     * @return the formChangeNum
+     */
+    public String getFormChangeNum() {
+        return formChangeNum;
+    }
 
-	/**
-	 * @param aBA the aBA to set
-	 */
-	public void setAba(String aba) {
-		this.aba = aba;
-	}
+    /**
+     * @param formChangeNum the formChangeNum to set
+     */
+    public void setFormChangeNum(String formChangeNum) {
+        this.formChangeNum = formChangeNum;
+    }
+
+    /**
+     * @return the amountLetter
+     */
+    public String getAmountLetter() {
+        return amountLetter;
+    }
+
+    /**
+     * @param amountLetter the amountLetter to set
+     */
+    public void setAmountLetter(String amountLetter) {
+        this.amountLetter = amountLetter;
+    }
+
+    /**
+     * @return the amount
+     */
+    public Money getAmount() {
+        return amount;
+    }
+
+    /**
+     * @param amount the amount to set
+     */
+    public void setAmount(Money amount) {
+        this.amount = amount;
+    }
+
+    /**
+     * @return the advanceNumber
+     */
+    public String getAdvanceNumber() {
+        return advanceNumber;
+    }
+
+    /**
+     * @param advanceNumber the advanceNumber to set
+     */
+    public void setAdvanceNumber(String advanceNumber) {
+        this.advanceNumber = advanceNumber;
+    }
+
+    /**
+     * @return the divisaValuUSDPeso
+     */
+    public Money getDivisaValuUSDPeso() {
+        return divisaValuUSDPeso;
+    }
+
+    /**
+     * @param divisaValuUSDPeso the divisaValuUSDPeso to set
+     */
+    public void setDivisaValuUSDPeso(Money divisaValuUSDPeso) {
+        this.divisaValuUSDPeso = divisaValuUSDPeso;
+    }
+
+    /**
+     * @return the equivalentValue
+     */
+    public Money getEquivalentValue() {
+        return equivalentValue;
+    }
+
+    /**
+     * @param equivalentValue the equivalentValue to set
+     */
+    public void setEquivalentValue(Money equivalentValue) {
+        this.equivalentValue = equivalentValue;
+    }
+
+    /**
+     * @return the numberCambiario
+     */
+    public String getNumberCambiario() {
+        return numberCambiario;
+    }
+
+    /**
+     * @param numberCambiario the numberCambiario to set
+     */
+    public void setNumberCambiario(String numberCambiario) {
+        this.numberCambiario = numberCambiario;
+    }
 }

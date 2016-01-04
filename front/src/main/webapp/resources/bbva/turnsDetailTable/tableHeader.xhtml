@@ -5,6 +5,7 @@
 	xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:pm="http://primefaces.org/mobile">
 <composite:interface>
 	<composite:attribute name="controller" />
+	<composite:attribute name="source" />
 </composite:interface>
 <composite:implementation>
 	<header id="table-detail-quota-content" class="table-detail-header">
@@ -17,7 +18,8 @@
 				<p:commandLink ajax="false" styleClass="icon-printer"
 					onclick="imprimir('detail-table-movement-complete');" />
 				<div class="table-detail-close">
-					<a onclick="clickMove()"> <span class="close-text" style="color: #003F8D !important;">#{msg['text.close']}</span>
+					<a onclick="clickMove('#{cc.attrs.source}')"> 
+						<span class="close-text" style="color: #003F8D !important;">#{msg['text.close']}</span>
 						<button class="close-icon" type="button" />
 					</a>
 				</div>
@@ -25,7 +27,7 @@
 		</div>
 		<table class="detail" style="border-bottom: 1px solid #C4D7E5 !important;">
 			<tbody>
-				<tr class="textSize visible" onclick="clickMove()">
+				<tr class="textSize visible" onclick="clickMove('#{cc.attrs.source}')">
 					<td style="width: 25% !important;"><h:outputText styleClass="brand styleLeft"
 							value="Estado">
 						</h:outputText></td>

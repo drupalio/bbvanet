@@ -7,45 +7,47 @@ import javax.faces.event.AjaxBehaviorEvent;
 import org.primefaces.event.SelectEvent;
 
 import com.bbva.net.back.model.globalposition.ProductDto;
+import com.bbva.net.back.model.turnsClient.turnsClientDetailDto;
 import com.bbva.net.back.model.turnsClient.turnsClientDto;
 
 public interface TurnsReceivedController {
-    
+
     /**
      * @return
      */
     ProductDto getSelectedProduct();
-    
+
     /**
      * @return
      */
     List<turnsClientDto> allTurnsClientRecived();
-    
+
     /**
      * @param selectEvent
+     * @return
      */
-    void onTurnDetail(SelectEvent selectEvent);
-    
+    turnsClientDetailDto onTurnDetail(SelectEvent selectEvent);
+
     /**
      *
      */
     void oneSelectDate();
-    
+
     /**
      * @param event
      */
     void setCustomDate(final AjaxBehaviorEvent event);
-    
+
     /**
      * @param event
      */
     void searchTurnsByFilter(final AjaxBehaviorEvent event);
-    
+
     /**
      * @param selectEvent
      */
     void onProductTurnsSelected(SelectEvent selectEvent);
-    
+
     /**
      * @param event
      */
