@@ -18,71 +18,78 @@
 				es susceptible a movimientos de mercado, si desea realizar la operación 
 				presione Realizar operación en línea"
 				escape="false" />
-			
-			<div class="col-xs-2 col-sm-2 col-md-2" style="text-align: center; float: right;">
+
+			<div class="col-xs-2 col-sm-2 col-md-2"
+				style="text-align: center; float: right;">
 				<h:form name="form">
 					<img alt="" src="../assets/img/timer_icon.png" style="width: 70%;" />
 					<label id="lb_time" />
 				</h:form>
-			</div>			
-			
+			</div>
+
 			<bbvaInput:combo id="typeOperation" label="Tipo Operación:"
-				value="#{quotationMoneyController.quotationDto.typeBussiness}"
+				value="#{quotationMoneyController.clientTurn.rates.typeBussiness}"
 				list="#{quotationMoneyController.typeOperList}"
 				styleClassForm="col-xs-12 col-sm-5 col-md-5"
 				styleClassOut="col-xs-12 col-sm-6 col-md-6"
 				styleClassIn="col-xs-12 col-sm-6 col-md-6" />
-			
+
 			<bbvaInput:combo id="numeAccount" label="Número de cuenta:"
-				value="#{quotationMoneyController.quotationDto.numberAccount}"
+				itemValue="#{multiValue}" item="#{multiValue}"
+				value="#{quotationMoneyController.clientTurn.rates.numberAccount}"
 				list="#{quotationMoneyController.accountsList}"
 				styleClassForm="col-xs-12 col-sm-7 col-md-7"
 				styleClassOut="col-xs-12 col-sm-4 col-md-4"
-				styleClassIn="col-xs-12 col-sm-7 col-md-7" />				
+				styleClassIn="col-xs-12 col-sm-7 col-md-7" />
 
-			<bbvaInput:combo id="monedaOper"
-				list="#{quotationMoneyController.moneyList}"
-				value="#{quotationMoneyController.quotationDto.money}"
+			<bbvaInput:combo id="monedaOper" list="#{quotationMoneyController.moneyList}"
+				itemValue="#{multiValue.identMoney}" item="#{multiValue.nameMoney}"
+				value="#{quotationMoneyController.clientTurn.rates.money.identMoney}"
 				label="Moneda:" styleClassForm="col-xs-12 col-sm-5 col-md-5"
 				styleClassOut="col-xs-12 col-sm-6 col-md-6"
 				styleClassIn="col-xs-12 col-sm-6 col-md-6" />
 
-			<bbvaInput:inputOutput id="montoOper" label="Monto:" 
-				value="#{quotationMoneyController.quotationDto.amount}"
+			<bbvaInput:inputOutput id="montoOper" label="Monto:"
+				value="#{quotationMoneyController.clientTurn.rates.amount}"
 				styleClassForm="col-xs-12 col-sm-7 col-md-7"
 				styleClassOut="col-xs-12 col-sm-4 col-md-4" />
 
-			<p:separator style="width: 100%; display: inline-block; border: 1px solid #F4F7F5 !important;"/>
+			<p:separator
+				style="width: 100%; display: inline-block; border: 1px solid #F4F7F5 !important;" />
 
 			<bbvaInput:inputOutput id="tasaDivisaUSD" label="Tasa Divisa USD:"
-				value="#{quotationMoneyController.quotationDto.divisaTasUSD}"
-				styleClassForm="col-xs-12 col-sm-6 col-md-6"
-				styleClassOut="col-xs-12 col-sm-4 col-md-4" />
+				value="#{quotationMoneyController.clientTurn.rates.divisaTasUSD}"
+				styleClassForm="col-xs-12 col-sm-6 col-md-6" disabled="true"
+				styleClassOut="col-xs-12 col-sm-4 col-md-4" required="false" />
 
 			<bbvaInput:inputOutput id="tasaUSDPeso" label="Tasa USD Peso:"
-				value="#{quotationMoneyController.quotationDto.divisaTasPesUSD}"
-				styleClassForm="col-xs-12 col-sm-6 col-md-6"
-				styleClassOut="col-xs-12 col-sm-4 col-md-4" />
+				value="#{quotationMoneyController.clientTurn.rates.divisaTasPesUSD}"
+				styleClassForm="col-xs-12 col-sm-6 col-md-6" disabled="true"
+				styleClassOut="col-xs-12 col-sm-4 col-md-4" required="false" />
 
 			<bbvaInput:inputOutput id="tasaDivisaPeso" label="Tasa Divisa Peso:"
-				value="#{quotationMoneyController.quotationDto.divisaTasPes}"
-				styleClassForm="col-xs-12 col-sm-6 col-md-6"
-				styleClassOut="col-xs-12 col-sm-4 col-md-4" />
+				value="#{quotationMoneyController.clientTurn.rates.divisaTasPes}"
+				styleClassForm="col-xs-12 col-sm-6 col-md-6" disabled="true"
+				styleClassOut="col-xs-12 col-sm-4 col-md-4" required="false" />
 
 			<bbvaInput:inputOutput id="equivalentPeso" label="Equivalente en Pesos:"
-				value="#{quotationMoneyController.quotationDto.equivalentPeso}"
-				styleClassForm="col-xs-12 col-sm-6 col-md-6"
-				styleClassOut="col-xs-12 col-sm-4 col-md-4" />			
+				value="#{quotationMoneyController.clientTurn.rates.equivalentPeso}"
+				styleClassForm="col-xs-12 col-sm-6 col-md-6" disabled="true"
+				styleClassOut="col-xs-12 col-sm-4 col-md-4" required="false" />
 
 			<div class="col-md-12" style="text-align: center; margin-top: 26px;">
 				<div style="display: inline-block;">
-					<p:commandButton styleClass="btn btn-default" value="Realizar Operación en línea" >
-						<span data-original-title="Horario de negociación en línea: &lt;br /&gt; Días Hábiles  
+					<p:commandButton styleClass="btn btn-default"
+						value="Realizar Operación en línea" ajax="true"
+						actionListener="#{quotationMoneyController.onSelectPassInfo}">
+						<span
+							data-original-title="Horario de negociación en línea: &lt;br /&gt; Días Hábiles  
 							&lt;br /&gt; Inicio: 08:00 AM &lt;br /&gt; Fin: 05:00 PM  &lt;br /&gt; &lt;br /&gt;  
 							Horario para cumplimiento de la operación: &lt;br /&gt; Días Hábiles &lt;br /&gt; 
-							Inicio: 08:00 AM &lt;br /&gt; Fin: 05:00 PM" data-style-toggle="right: 94px; bottom: 38px;"
+							Inicio: 08:00 AM &lt;br /&gt; Fin: 05:00 PM"
+							data-style-toggle="right: 94px; bottom: 38px;"
 							class="icon-Info-BlueFilter" onmouseover="addTool(jQuery(this))"
-							onmouseout="removeTool(jQuery(this))" style="float: right;"/>
+							onmouseout="removeTool(jQuery(this))" style="float: right;" />
 					</p:commandButton>
 				</div>
 			</div>

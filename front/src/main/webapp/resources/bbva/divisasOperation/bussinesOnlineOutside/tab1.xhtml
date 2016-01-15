@@ -13,73 +13,87 @@
 		<p:commandButton style="z-index: 99" resetValues="true" value="Quiero"
 			styleClass="btn arrow-left quiero-return hidden-xs hidden-sm"
 			onclick="PF('operationDivi').loadStep('Tab0', true)" />
-		<button type="button"
-			class="close-icon hidden-xs hidden-sm close-button" />
+		<button type="button" class="close-icon hidden-xs hidden-sm close-button" />
 	</h:panelGroup>
 	<div class="panel-tab-body content-operaciones" id="operations"
-		style="padding: 0px;">
+		style="padding: 0px; margin-top: 20px;">
 		<div class="container">
 			<h3 class="visible-xs">Operaciones</h3>
 			<div class="row">
 				<h:form>
 					<bbvaProgressBar:progressContent id="progressBar" sizeProgress="0px">
-						<bbvaProgressDivi:progressDivisasBusiness pointOne="uno"
-							pointTwo="dos" pointThree="tres" pointFour="cuatro"
-							pointOneState="active" sizeProgress="0px" />
+						<bbvaProgressDivi:progressDivisasBusiness pointOne="uno" pointTwo="dos"
+							pointThree="tres" pointFour="cuatro" pointOneState="active"
+							sizeProgress="0px" />
 					</bbvaProgressBar:progressContent>
 					<div class="col-xs-12 col-sm-12 col-md-12">
 						<h:outputLabel class="col-xs-12 col-sm-12 col-md-12 tableName"
 							style="margin-bottom: 5%; font-weight: normal !important; text-align: justify;"
 							value="A través de este Servicio usted podrá realizar en línea operaciones de giro 
-							al exterior en otras modedas, por favor digite la información  de su transacción" 
-							escape="false"/>
-							
-						<bbvaInput:combo id="typeOperation" label="Tipo Operación:"
-							styleClassForm="col-xs-12 col-sm-5 col-md-5"
-							styleClassOut="col-xs-12 col-sm-6 col-md-6"
-							styleClassIn="col-xs-12 col-sm-6 col-md-6" />
-			
+							al exterior en otras modedas, por favor digite la información  de su transacción"
+							escape="false" />
+
 						<bbvaInput:combo id="numeAccount" label="Número de cuenta:"
+							list="#{turnsGeneralController.accountsList}"
+							value="#{turnsOutwardsController.divisa.rates.numberAccount}"
+							itemValue="#{multiValue}" item="#{multiValue}"
 							styleClassForm="col-xs-12 col-sm-7 col-md-7"
 							styleClassOut="col-xs-12 col-sm-4 col-md-4"
-							styleClassIn="col-xs-12 col-sm-7 col-md-7" />				
+							styleClassIn="col-xs-12 col-sm-7 col-md-7" />
 
-						<bbvaInput:combo id="monedaOper"
-							label="Moneda:" styleClassForm="col-xs-12 col-sm-5 col-md-5"
-							styleClassOut="col-xs-12 col-sm-6 col-md-6"
-							styleClassIn="col-xs-12 col-sm-6 col-md-6" />
-
-						<bbvaInput:inputOutput id="montoOper" label="Monto:" 
+						<bbvaInput:inputOutput id="montoOper" label="Monto:"
+							value="#{turnsOutwardsController.divisa.rates.amount}"
 							styleClassForm="col-xs-12 col-sm-7 col-md-7"
 							styleClassOut="col-xs-12 col-sm-4 col-md-4" />
-							
-						<p:separator style="width: 100%; display: inline-block; border: 1px solid #F4F7F5 !important;"/>	
-							
+
+						<bbvaInput:combo id="monedaOper" label="Moneda:"
+							list="#{turnsGeneralController.moneyList}"
+							value="#{turnsOutwardsController.divisa.rates.money.identMoney}"
+							itemValue="#{multiValue.identMoney}" item="#{multiValue.nameMoney}"
+							styleClassForm="col-xs-12 col-sm-5 col-md-5"
+							styleClassOut="col-xs-12 col-sm-5 col-md-5"
+							styleClassIn="col-xs-12 col-sm-5 col-md-5" />
+
+						<bbvaInput:inputOutput id="descripOperation"
+							label="Descripción de la operación:"
+							value="#{turnsOutwardsController.divisa.transferDescription}"
+							styleClassForm="col-xs-12 col-sm-12 col-md-12"
+							styleClassOut="col-xs-12 col-sm-4 col-md-4"
+							styleClassIn="col-xs-12 col-sm-6 col-md-6" />
+
+						<p:separator
+							style="width: 100%; display: inline-block; border: 1px solid #F4F7F5 !important;" />
+
 						<div class="col-xs-12 col-sm-6 col-md-6">
 							<bbvaInput:inputOutput id="tasaDivisaUSD" label="Tasa Divisa USD:"
-								styleClassForm="col-xs-12 col-sm-12 col-md-12"
+								value="#{turnsOutwardsController.divisa.rates.divisaTasUSD}"
+								styleClassForm="col-xs-12 col-sm-12 col-md-12" disabled="true"
 								styleClassOut="col-xs-12 col-sm-4 col-md-4" />
 
 							<bbvaInput:inputOutput id="tasaUSDPeso" label="Tasa USD Peso:"
-								styleClassForm="col-xs-12 col-sm-12 col-md-12"
+								value="#{turnsOutwardsController.divisa.rates.divisaTasPesUSD}"
+								styleClassForm="col-xs-12 col-sm-12 col-md-12" disabled="true"
 								styleClassOut="col-xs-12 col-sm-4 col-md-4" />
 
 							<bbvaInput:inputOutput id="tasaDivisaPeso" label="Tasa Divisa Peso:"
-								styleClassForm="col-xs-12 col-sm-12 col-md-12"
+								value="#{turnsOutwardsController.divisa.rates.divisaTasPes}"
+								styleClassForm="col-xs-12 col-sm-12 col-md-12" disabled="true"
 								styleClassOut="col-xs-12 col-sm-4 col-md-4" />
 
 							<bbvaInput:inputOutput id="equivalentPeso" label="Equivalente en Pesos:"
-								styleClassForm="col-xs-12 col-sm-12 col-md-12"
+								value="#{turnsOutwardsController.divisa.rates.equivalentPeso}"
+								styleClassForm="col-xs-12 col-sm-12 col-md-12" disabled="true"
 								styleClassOut="col-xs-12 col-sm-4 col-md-4" />
 						</div>
-						
+
 						<div class="col-xs-12 col-sm-6 col-md-6">
 							<h:outputLabel class="col-xs-12 col-sm-12 col-md-12 tableName"
-							style="margin-bottom: 5%; font-weight: normal !important;" 
-							value="Horario de negociación en línea: &lt;br /&gt; Días Hábiles  
+								style="margin-bottom: 5%; font-weight: normal !important;"
+								value="Horario de negociación en línea: &lt;br /&gt; Días Hábiles  
 							&lt;br /&gt; Inicio: 08:00 AM &lt;br /&gt; Fin: 05:00 PM  &lt;br /&gt; &lt;br /&gt;  
 							Horario para cumplimiento de la operación: &lt;br /&gt; Días Hábiles &lt;br /&gt; 
-							Inicio: 08:00 AM &lt;br /&gt; Fin: 05:00 PM" escape="false"/>
+							Inicio: 08:00 AM &lt;br /&gt; Fin: 05:00 PM"
+								escape="false" />
 						</div>
 					</div>
 				</h:form>
@@ -87,7 +101,7 @@
 		</div>
 	</div>
 	<p:commandButton id="nextButton"
-		styleClass="btn btn-form next nextButton tool"
+		styleClass="btn btn-form next nextButton tool tabNext pull-right"
 		value="#{msg['button.next']}" update="@form" />
 </composite:implementation>
 </html>

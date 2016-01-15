@@ -1,29 +1,26 @@
 package com.bbva.net.front.controller.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.faces.event.ActionEvent;
 import javax.faces.event.AjaxBehaviorEvent;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.tools.ant.util.DateUtils;
 import org.primefaces.event.SelectEvent;
 
-import com.bbva.net.back.facade.TurnsReceivedFacade;
-import com.bbva.net.back.model.comboFilter.EnumPeriodType;
+import com.bbva.net.back.facade.TurnsGeneralFacade;
 import com.bbva.net.back.model.commons.DateRangeDto;
 import com.bbva.net.back.model.enums.RenderAttributes;
-import com.bbva.net.back.model.globalposition.ProductDto;
 import com.bbva.net.back.model.turnsClient.turnsClientDetailDto;
-import com.bbva.net.back.model.turnsClient.turnsClientDto;
-import com.bbva.net.back.service.impl.DateFilterServiceImpl;
 import com.bbva.net.front.controller.TurnsReceivedController;
-import com.bbva.net.front.core.AbstractBbvaController;
 import com.bbva.net.front.helper.MessagesHelper;
 
-public class TurnsReceivedControllerImpl extends AbstractBbvaController implements TurnsReceivedController {
+public class TurnsReceivedControllerImpl extends TurnsGeneralControllerImpl implements TurnsReceivedController {
 
     /**
      *
@@ -32,9 +29,11 @@ public class TurnsReceivedControllerImpl extends AbstractBbvaController implemen
 
     private turnsClientDetailDto turnsDetail;
 
-    private List<turnsClientDto> turnsClientRecived;
+    private List<turnsClientDetailDto> turnsClientRecived;
 
     private DateRangeDto dateRange;
+
+    private turnsClientDetailDto divisa;
 
     private Date sinceDate = null, toDate = null;
 
@@ -46,20 +45,40 @@ public class TurnsReceivedControllerImpl extends AbstractBbvaController implemen
 
     private String sinceText, toText, sinceDatestr, toDatestr, selectDate = StringUtils.EMPTY;
 
-    @Resource(name = "turnsReceivedFacade")
-    private transient TurnsReceivedFacade turnsReceivedFacade;
+    @Resource(name = "turnsGeneralFacade")
+    private transient TurnsGeneralFacade turnsGeneralFacade;
 
     @Override
-    public List<turnsClientDto> allTurnsClientRecived() {
-        DateRangeDto dateSelect = calculateDate(MessagesHelper.INSTANCE.getString("select.radio.3.month"));
-        this.turnsClientRecived = this.turnsReceivedFacade.getTurns("13002819283018316545", dateSelect, 0, 10);
+    public void init() {
+        super.getinstance();
+        this.turnsClientRecived = new ArrayList<turnsClientDetailDto>();
+        this.divisa = new turnsClientDetailDto();
+    }
+
+    @Override
+    public List<turnsClientDetailDto> allTurnsClientRecived() {
+        DateRangeDto initial = calculateDate(MessagesHelper.INSTANCE.getString("select.radio.3.month"));
+        // String clientId = getSession().getAttribute("codClient").toString();
+        this.turnsClientRecived = this.turnsGeneralFacade.getTurns("12344", initial, "Hacia", 0, 10, "1123");
         return turnsClientRecived;
     }
 
     @Override
     public turnsClientDetailDto onTurnDetail(SelectEvent selectEvent) {
-        this.turnsDetail = this.turnsReceivedFacade.onTurnDetail("13002819283018316545", "00192892909");
+        this.turnsDetail = this.turnsGeneralFacade.onTurnDetail("13002819283018316545", "00192892909");
         return turnsDetail;
+    }
+
+    @Override
+    public void nextPage(ActionEvent event) {
+        appendInSide();
+        super.setTurnsGeneralFacade(turnsGeneralFacade);
+        super.setAdvanceNumber("45");
+        super.setClientId("1123");
+        super.setType("Desde");
+        super.setDateRange(getDateRange());
+        next();
+        this.turnsClientRecived = getCurrentList();
     }
 
     @Override
@@ -106,17 +125,6 @@ public class TurnsReceivedControllerImpl extends AbstractBbvaController implemen
         }
     }
 
-    public DateRangeDto calculateDate(String date) {
-        LOGGER.info("TurnsOutwardsControllerImpl calculateDate ");
-
-        EnumPeriodType periodType = EnumPeriodType.valueOfLabel(date);
-        if ( !(periodType == (null)) ) {
-            this.dateRange = new DateRangeDto();
-            this.dateRange = new DateFilterServiceImpl().getPeriodFilter(periodType);
-        }
-        return dateRange;
-    }
-
     @Override
     public void cleanFilters(AjaxBehaviorEvent event) {
         LOGGER.info("MovementsAccountController clean Filters");
@@ -151,21 +159,6 @@ public class TurnsReceivedControllerImpl extends AbstractBbvaController implemen
         getRenderComponents().put(RenderAttributes.FOOTEROUTSIDE.name(), false);
     }
 
-    /**
-     *
-     */
-    @Override
-    public void onProductTurnsSelected(final SelectEvent selectEvent) {
-        super.onProductSelected(selectEvent);
-        this.sendAction("turnSelect");
-
-    }
-
-    @Override
-    public ProductDto getSelectedProduct() {
-        return super.getSelectedProduct();
-    }
-
     // Setters and getters
 
     /**
@@ -185,14 +178,14 @@ public class TurnsReceivedControllerImpl extends AbstractBbvaController implemen
     /**
      * @return the turnsClientRecived
      */
-    public List<turnsClientDto> getTurnsClientRecived() {
+    public List<turnsClientDetailDto> getTurnsClientRecived() {
         return turnsClientRecived;
     }
 
     /**
      * @param turnsClientRecived the turnsClientRecived to set
      */
-    public void setTurnsClientRecived(List<turnsClientDto> turnsClientRecived) {
+    public void setTurnsClientRecived(List<turnsClientDetailDto> turnsClientRecived) {
         this.turnsClientRecived = turnsClientRecived;
     }
 
@@ -290,6 +283,7 @@ public class TurnsReceivedControllerImpl extends AbstractBbvaController implemen
     /**
      * @return the dateRange
      */
+    @Override
     public DateRangeDto getDateRange() {
         return dateRange;
     }
@@ -297,6 +291,7 @@ public class TurnsReceivedControllerImpl extends AbstractBbvaController implemen
     /**
      * @param dateRange the dateRange to set
      */
+    @Override
     public void setDateRange(DateRangeDto dateRange) {
         this.dateRange = dateRange;
     }
@@ -335,5 +330,19 @@ public class TurnsReceivedControllerImpl extends AbstractBbvaController implemen
     @SuppressWarnings("unchecked")
     public Map<String, Boolean> getRenderComponents() {
         return (Map<String, Boolean>)getViewVarView("renderComponents");
+    }
+
+    /**
+     * @return the divisa
+     */
+    public turnsClientDetailDto getDivisa() {
+        return divisa;
+    }
+
+    /**
+     * @param divisa the divisa to set
+     */
+    public void setDivisa(turnsClientDetailDto divisa) {
+        this.divisa = divisa;
     }
 }

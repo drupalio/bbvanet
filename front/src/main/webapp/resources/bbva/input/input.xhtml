@@ -3,8 +3,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:composite="http://java.sun.com/jsf/composite"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
 	xmlns:pm="http://primefaces.org/mobile">
 
 <composite:interface>
@@ -31,11 +30,10 @@
 		}
 	</script>
 
-	
+
 	<p:inputText id="#{cc.attrs.id}" type="#{cc.attrs.type}"
 		value="#{cc.attrs.value}" maxlength="#{cc.attrs.maxlength}"
-		required="#{cc.attrs.required}" 
-		requiredMessage="#{cc.attrs.requiredMessage}"
+		required="#{cc.attrs.required}" requiredMessage="#{cc.attrs.requiredMessage}"
 		validatorMessage="#{cc.attrs.validatorMessage}"
 		title="#{component.valid?'':'Alerta! Este campo es obligatorio.'}"
 		onclick="checkFilled(this)"

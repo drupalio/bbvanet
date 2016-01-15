@@ -4,22 +4,23 @@ import java.util.List;
 
 import com.bbva.net.back.model.commons.DateRangeDto;
 import com.bbva.net.back.model.turnsClient.turnsClientDetailDto;
-import com.bbva.net.back.model.turnsClient.turnsClientDto;
 
 /**
  * @author Entelgy
  */
-public interface TurnsReceivedFacade {
+public interface TurnsGeneralFacade {
 
     /**
-     * @param productId
-     * @param productType
+     * @param advanceNumber
      * @param dateRange
+     * @param type
      * @param paginationKey
      * @param pageSize
+     * @param clientId
      * @return
      */
-    List<turnsClientDto> getTurns(String productId, DateRangeDto dateRange, Integer paginationKey, Integer pageSize);
+    List<turnsClientDetailDto> getTurns(String advanceNumber, DateRangeDto dateRange, String type, Integer paginationKey, Integer pageSize,
+            String clientId);
 
     /**
      * @param productId
@@ -27,5 +28,4 @@ public interface TurnsReceivedFacade {
      * @return
      */
     turnsClientDetailDto onTurnDetail(String productId, String movementId);
-
 }

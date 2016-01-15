@@ -38,6 +38,8 @@ public class turnsClientDetailDto implements Dto {
 
     private QuotationMoneyDto rates;
 
+    private String stateOperation;
+
     /**
      *
      */
@@ -60,7 +62,7 @@ public class turnsClientDetailDto implements Dto {
      */
     public turnsClientDetailDto(Date operationDate, String operationNumber, Date operationHour, String referenceOper, String transferDescription,
             String amountLetter, String advanceNumber, ContactDto beneficiary, ContactDto ordenant, BankDto bankIntermediary,
-            FormCurrencyDto formCurrency, QuotationMoneyDto rates) {
+            FormCurrencyDto formCurrency, QuotationMoneyDto rates, String stateOperation) {
         this.operationDate = operationDate;
         this.operationNumber = operationNumber;
         this.operationHour = operationHour;
@@ -73,6 +75,7 @@ public class turnsClientDetailDto implements Dto {
         this.bankIntermediary = bankIntermediary;
         this.formCurrency = formCurrency;
         this.rates = rates;
+        this.stateOperation = stateOperation;
     }
 
     @Override
@@ -80,7 +83,7 @@ public class turnsClientDetailDto implements Dto {
         return new HashCodeBuilder().append(getOperationDate()).append(getOperationNumber()).append(getOperationHour())
                 .append(getReferenceOper()).append(getTransferDescription()).append(getAmountLetter()).append(getAdvanceNumber())
                 .append(getBeneficiary()).append(getOrdenant()).append(getBankIntermediary()).append(getFormCurrency())
-                .append(getRates()).toHashCode();
+                .append(getRates()).append(getStateOperation()).toHashCode();
     }
 
     @Override
@@ -98,17 +101,19 @@ public class turnsClientDetailDto implements Dto {
                 && (this.getOrdenant() != null && ((turnsClientDetailDto)obj).getOrdenant() != null)
                 && (this.getBankIntermediary() != null && ((turnsClientDetailDto)obj).getBankIntermediary() != null)
                 && (this.getFormCurrency() != null && ((turnsClientDetailDto)obj).getFormCurrency() != null)
-                && (this.getRates() != null && ((turnsClientDetailDto)obj).getRates() != null);
+                && (this.getRates() != null && ((turnsClientDetailDto)obj).getRates() != null)
+                && (this.getStateOperation() != null && ((turnsClientDetailDto)obj).getStateOperation() != null);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this).append("fecha operacion", getOperationDate()).append("cod operacion", getOperationNumber())
-                .append("hora operacion", getOperationHour()).append("referencia", getReferenceOper())
-                .append("descripcion", getTransferDescription()).append("valor letras", getAmountLetter())
-                .append("avance", getAdvanceNumber()).append("beneficiario", getBeneficiary())
-                .append("ordenate", getOrdenant()).append("banco intermediario", getBankIntermediary())
-                .append("formulario cambiario", getFormCurrency()).append("tasas", getRates()).toString();
+                .append("tasas", getStateOperation()).append("referencia", getReferenceOper())
+                .append("hora operacion", getOperationHour()).append("valor letras", getAmountLetter())
+                .append("descripcion", getTransferDescription()).append("beneficiario", getBeneficiary())
+                .append("avance", getAdvanceNumber()).append("banco intermediario", getBankIntermediary())
+                .append("ordenate", getOrdenant()).append("formulario cambiario", getFormCurrency())
+                .append("tasas", getRates()).toString();
     }
 
     // Setters and getters
@@ -279,5 +284,19 @@ public class turnsClientDetailDto implements Dto {
      */
     public void setRates(QuotationMoneyDto rates) {
         this.rates = rates;
+    }
+
+    /**
+     * @return the stateOperation
+     */
+    public String getStateOperation() {
+        return stateOperation;
+    }
+
+    /**
+     * @param stateOperation the stateOperation to set
+     */
+    public void setStateOperation(String stateOperation) {
+        this.stateOperation = stateOperation;
     }
 }

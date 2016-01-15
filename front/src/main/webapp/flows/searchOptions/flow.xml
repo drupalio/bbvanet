@@ -6,14 +6,15 @@
 
 	<var name="quotationMoneyController" class="com.bbva.net.front.controller.impl.QuotationMoneyControllerImpl" />
 	<var name="turnsOutwardsController" class="com.bbva.net.front.controller.impl.TurnsOutwardsControllerImpl" />
+	<var name="turnsGeneralController" class="com.bbva.net.front.controller.impl.TurnsGeneralControllerImpl" />
 	<var name="turnsReceivedController" class="com.bbva.net.front.controller.impl.TurnsReceivedControllerImpl" />
 	<var name="personalizeProductAccountController" class="com.bbva.net.front.controller.impl.PersonalizeProductControllerImpl" />
 	<var name="renderViewMovementsUI" class="com.bbva.net.front.ui.movements.RenderViewMovementsUI" />
 	
 	<on-start>
-		<evaluate expression="turnsOutwardsController.allTurnsClientOutside()" result="flowScope.turnsOut" />
-		<evaluate expression="turnsReceivedController.allTurnsClientRecived()" result="flowScope.turnsRev" />
-		<evaluate expression="quotationMoneyController.init()"/>
+		<evaluate expression="turnsGeneralController.init()"/>
+		<evaluate expression="turnsOutwardsController.allTurnsClientOutside()"  />
+		<evaluate expression="turnsReceivedController.allTurnsClientRecived()" />
 	</on-start>
 
 	<view-state id="searchOptions">

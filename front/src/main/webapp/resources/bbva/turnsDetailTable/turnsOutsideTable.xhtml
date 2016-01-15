@@ -16,7 +16,7 @@
 				<div class="table-wrapper">
 					<p:dataTable id="detalMov" widgetVar="detalMov" styleClass="detail-table-body sortable"
 						value="#{cc.attrs.listAccounts}" var="moves" selectionMode="single"
-						rowKey="#{moves.operation}" rendered="#{renderComponents['OUTSIDETABLE']}"
+						rowKey="#{moves.operationNumber}" rendered="#{renderComponents['OUTSIDETABLE']}"
 						emptyMessage="#{msg['text.empty.table']}">
 						<p:ajax event="rowSelect" oncomplete="clickMove();"
 							listener="#{turnsOutwardsController.onTurnDetail}" />
@@ -24,32 +24,32 @@
 							<p:rowToggler rendered="true" />
 						</p:column>
 						<p:column headerText="N° OPERACIÓN" styleClass="styleColum desc w35 borderSpace0"
-							sortBy="#{moves.operation}">
+							sortBy="#{moves.operationNumber}">
 							<h:outputText style="font-weight: bold;" class="brand styleLeft height18"
-								value="#{moves.operation}" />
+								value="#{moves.operationNumber}" />
 						</p:column>
 						<p:column headerText="FECHA" styleClass="styleColum desc w28 borderSpace0"
-							sortBy="#{moves.dateOperation}">
-							<h:outputText styleClass="text styleLeft height18" value="#{moves.dateOperation}">
+							sortBy="#{moves.operationDate}">
+							<h:outputText styleClass="text styleLeft height18" value="#{moves.operationDate}">
 								<f:convertDateTime pattern="dd/MM/yyyy" />
 							</h:outputText>
 						</p:column>
 						<p:column headerText="AVANCE" styleClass="styleColum desc w25 borderSpace0"
-							sortBy="#{moves.advance}">
-							<h:outputText styleClass="text styleLeft height18" value="#{moves.advance}"/>
+							sortBy="#{moves.advanceNumber}">
+							<h:outputText styleClass="text styleLeft height18" value="#{moves.advanceNumber}"/>
 						</p:column>		
 						<p:column headerText="DIVISA" styleClass="styleColum desc w20 borderSpace0"
-							sortBy="#{moves.divisa}">
-							<h:outputText styleClass="text styleLeft height18" value="#{moves.divisa}"/>
+							sortBy="#{moves.rates.money.nameMoney}">
+							<h:outputText styleClass="text styleLeft height18" value="#{moves.rates.money.nameMoney}"/>
 						</p:column>					
-						<p:column class="head" headerText="MONTO" sortBy="#{moves.amount}"
+						<p:column class="head" headerText="MONTO" sortBy="#{moves.rates.amount}"
 							styleClass="styleColum desc w39 borderSpace0" >
-							<h:outputText class="currency styleCurrent height18" value="#{moves.amount}" 
+							<h:outputText class="currency styleCurrent height18" value="#{moves.rates.amount}" 
 								style="font-size: 12px !important;"/>
 						</p:column>
 						<p:column headerText="TASA" styleClass="styleColum desc w30 borderSpace0"
-							sortBy="#{moves.valuation}">
-							<h:outputText styleClass="currency styleCurrent height18" value="#{moves.valuation}" 
+							sortBy="#{moves.rates.divisaTasUSD}">
+							<h:outputText styleClass="currency styleCurrent height18" value="#{moves.rates.divisaTasUSD}" 
 								style="font-size: 12px !important;"/>
 						</p:column>	
 						<p:column class="head" headerText="ESTADO" sortBy="#{moves.stateOperation}"
@@ -57,18 +57,18 @@
 							<h:outputText class="text styleLeft height18" value="#{moves.stateOperation}" />
 						</p:column>
 						<p:column class="head" headerText="BENEFICIARIO"
-							styleClass="styleColum desc w35 borderSpace0" sortBy="#{moves.beneficiary}">
-							<h:outputText class="text styleLeft height18" value="#{moves.beneficiary}" />
+							styleClass="styleColum desc w35 borderSpace0" sortBy="#{moves.beneficiary.name}">
+							<h:outputText class="text styleLeft height18" value="#{moves.beneficiary.name}" />
 						</p:column>
 						<p:column styleClass="smart-view">
 							<div class="left hidden-lg">
-								<h:outputText class="text styleLeft height18" value="#{moves.operation}" />
-								<h:outputText styleClass="brand styleLeft height18" value="#{moves.dateOperation}">
+								<h:outputText class="text styleLeft height18" value="#{moves.operationNumber}" />
+								<h:outputText styleClass="brand styleLeft height18" value="#{moves.operationDate}">
 									<f:convertDateTime pattern="dd/MM/yyyy" />
 								</h:outputText>
 							</div>
 							<div class="right hidden-lg" style="width: 35% !important;">
-								<h:outputText class="currency styleCurrent height18" value="#{moves.amount}" />
+								<h:outputText class="currency styleCurrent height18" value="#{moves.rates.amount}" />
 								<h:outputText class="text styleLeft height18" value="#{moves.stateOperation}" />
 							</div>
 						</p:column>
@@ -79,9 +79,9 @@
 				</div>
 				<footer class="detail-table-footer">
 					<p:commandButton id="moreMovs" value="#{msg['text.detailMove.footer']}"
+						actionListener="#{turnsOutwardsController.nextPage}" ajax="true"
 						rendered="#{renderComponents['FOOTEROUTSIDE'] and renderComponents['OUTSIDETABLE']}"
-						styleClass="btn btn-more-results seeMore #{cc.attrs.listAccounts.size()==0 ? 'nonee' : ''}"
-						ajax="true">
+						styleClass="btn btn-more-results seeMore #{cc.attrs.listAccounts.size()==0 ? 'nonee' : ''}">
 						<p:ajax onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
 					</p:commandButton>
 				</footer>

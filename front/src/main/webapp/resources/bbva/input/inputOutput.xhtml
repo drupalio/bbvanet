@@ -1,37 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:composite="http://java.sun.com/jsf/composite"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
 <composite:interface>
 	<composite:attribute name="id" />
 	<composite:attribute name="value" />
 	<composite:attribute name="label" />
 	<composite:attribute name="required" default="true" />
-	<composite:attribute name="maxlength" type="java.lang.Integer" default="50"/>
+	<composite:attribute name="maxlength" type="java.lang.Integer" default="50" />
 	<composite:attribute name="minlength" type="java.lang.Integer" />
-	<composite:attribute name="requiredMessage" required="false" default="#{msg['mssg.requeridValue']}" />
-	<composite:attribute name="validatorMessage" required="false" default="#{msg['mssg.validateDefault']}" />
-	<composite:attribute name="converterMessage" required="false" default="#{msg['mssg.validateDefault']}" />
+	<composite:attribute name="requiredMessage" default="#{msg['mssg.requeridValue']}" />
+	<composite:attribute name="validatorMessage" default="#{msg['mssg.validateDefault']}" />
+	<composite:attribute name="converterMessage" default="#{msg['mssg.validateDefault']}" />
 	<composite:attribute name="placeHolder" />
+	<composite:attribute name="disabled" default="false"/>
 	<composite:attribute name="styleClassIn" />
 	<composite:attribute name="styleClassOut" />
 	<composite:attribute name="styleClassForm" />
 </composite:interface>
 <composite:implementation>
-	<div class="#{cc.attrs.styleClassForm}" style="margin-bottom: 17px; line-height: 21px !important;
-		padding-right: 0px !important;">
-		<p:outputLabel id="out_#{cc.attrs.id}" for="item_#{cc.attrs.id}" value="#{cc.attrs.label}" 
+	<div class="#{cc.attrs.styleClassForm}"
+		style="margin-bottom: 17px; line-height: 21px !important; padding-right: 0px !important;">
+		<p:outputLabel id="out_#{cc.attrs.id}" for="item_#{cc.attrs.id}"
+			value="#{cc.attrs.label}"
 			styleClass="#{cc.attrs.styleClassOut} control-label left fontLabel divAlign" />
 		<p:inputText id="item_#{cc.attrs.id}" type="text" value="#{cc.attrs.value}"
-			required="#{cc.attrs.required}" autocomplete="off" maxlength="#{cc.attrs.maxlength}" 
+			required="#{cc.attrs.required}" autocomplete="off"
+			maxlength="#{cc.attrs.maxlength}" disabled="#{cc.attrs.disabled}"
 			styleClass="#{component.valid?'form-control widthTalo':'form-control widthTalo has-error'} #{cc.attrs.styleClassIn}"
 			placeholder="#{cc.attrs.placeHolder}" onclick="checkFilled(this)"
 			requiredMessage="#{cc.attrs.requiredMessage}"
 			validatorMessage="#{cc.attrs.validatorMessage}"
 			converterMessage="#{cc.attrs.converterMessage}">
-			<f:validateLength maximum="#{cc.attrs.maxlength}" for="item_#{cc.attrs.id}" minimum="#{cc.attrs.minlength}" />
+			<f:validateLength maximum="#{cc.attrs.maxlength}" for="item_#{cc.attrs.id}"
+				minimum="#{cc.attrs.minlength}" />
 		</p:inputText>
 	</div>
 </composite:implementation>

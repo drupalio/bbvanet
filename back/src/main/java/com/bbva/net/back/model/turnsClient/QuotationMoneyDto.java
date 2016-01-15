@@ -1,10 +1,10 @@
 package com.bbva.net.back.model.turnsClient;
 
-import java.math.BigDecimal;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 import com.bbva.net.back.core.pattern.dto.Dto;
+import com.bbva.net.back.model.commons.Money;
 
 /**
  * @author Entelgy
@@ -18,7 +18,7 @@ public class QuotationMoneyDto implements Dto {
 
     private DivisaDto money;
 
-    private BigDecimal amount;
+    private Money amount;
 
     private String numberAccount;
 
@@ -47,7 +47,7 @@ public class QuotationMoneyDto implements Dto {
      * @param divisaTasPesUSD
      * @param equivalentPeso
      */
-    public QuotationMoneyDto(DivisaDto money, BigDecimal amount, String numberAccount, String typeBussiness, String divisaTasUSD,
+    public QuotationMoneyDto(DivisaDto money, Money amount, String numberAccount, String typeBussiness, String divisaTasUSD,
             String divisaTasPes, String divisaTasPesUSD, String equivalentPeso) {
         this.money = money;
         this.amount = amount;
@@ -108,14 +108,14 @@ public class QuotationMoneyDto implements Dto {
     /**
      * @return the amount
      */
-    public BigDecimal getAmount() {
+    public Money getAmount() {
         return amount;
     }
 
     /**
      * @param amount the amount to set
      */
-    public void setAmount(BigDecimal amount) {
+    public void setAmount(Money amount) {
         this.amount = amount;
     }
 
