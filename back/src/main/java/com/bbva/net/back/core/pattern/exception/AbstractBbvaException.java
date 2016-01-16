@@ -13,7 +13,7 @@ public abstract class AbstractBbvaException extends Exception {
 
 	private static final long serialVersionUID = -228455175513061709L;
 
-	private static final String HEADER = "Bussiness Exception ";
+	private static final String HEADER = "Business Exception ";
 
 	private static final String PHRASE_END = ".";
 

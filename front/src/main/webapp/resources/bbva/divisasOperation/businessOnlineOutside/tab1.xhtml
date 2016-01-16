@@ -100,8 +100,8 @@
 			</div>
 		</div>
 	</div>
-	<p:commandButton id="nextButton"
-		styleClass="btn btn-form next nextButton tool tabNext pull-right"
+	<p:commandButton id="nextButton" oncomplete="PF('businessOnlineOut').loadStep('Tab3', true)"
+		styleClass="btn btn-form next nextButton tool tabNext pull-right" 
 		value="#{msg['button.next']}" update="@form" />
 </composite:implementation>
 </html>

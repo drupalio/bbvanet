@@ -3,12 +3,12 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:composite="http://java.sun.com/jsf/composite"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:bbvaOperation="http://java.sun.com/jsf/composite/bbva/divisasOperation/bussinesOnlineOutside">
+	xmlns:bbvaOperation="http://java.sun.com/jsf/composite/bbva/divisasOperation/businessOnlineOutside">
 <composite:interface>
 </composite:interface>
 <composite:implementation>
-	<h:form id="form_bussinesOnlineOut">
-		<p:wizard id="bussinesOnlineOut" widgetVar="bussinesOnlineOut" showNavBar="false">
+	<h:form id="form_businessOnlineOut">
+		<p:wizard id="businessOnlineOut" widgetVar="businessOnlineOut" showNavBar="false" flowListener="#{turnsOutwardsController.stepSave}">
 			<p:tab id="Tab1" titleStyle="display: none;">
 				<bbvaOperation:tab1 id="nombres0" />
 			</p:tab>

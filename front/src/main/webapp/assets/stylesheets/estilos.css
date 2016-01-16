@@ -2256,7 +2256,46 @@ li.itemPosicionGlobal.active>a {
 .compPadding0 {
 	padding: 0px !important;
 }
+/* <!-- Entelgy / Divisas / 23122015 / FIN -->*/
+/*Check Button style*/
+/*Check buttom default*/
+.ui-chkbox-icon {
+	margin-right: 1px !important;
+	margin-left: 0px !important;
+	margin-top: -2px !important;
+}
 
+/*Check buttom default*/
+.checkButtonT .ui-state-default, .checkBT .ui-state-default,
+	.investRadio .ui-state-default {
+	background: #FFF;
+}
+
+/*Check buttom hover y active*/
+.checkButtonT .ui-state-active, .checkBT .ui-state-active, .investRadio .ui-state-active,
+	.radioButtonT .ui-state-hover, .checkBT .ui-state-hover, .investRadio .ui-state-hover
+	{
+	background: #FAFCFD;
+	box-shadow: 0px 1px 1px 0px #888888;
+	border: 1px solid #C5DBEC;
+}
+
+/*Check buttom icon active*/
+.checkButtonT .ui-state-active .ui-icon, .checkBT .ui-state-active .ui-icon,
+	.investRadio .ui-state-active .ui-icon {
+	background:
+		url("/kqco_co_web/page/javax.faces.resource/images/ui-icons_4eb305_256x240.png?ln=primefaces-le-frog")
+		repeat scroll -49px -110px/200px auto transparent !important;
+}
+
+/*Check buttom icon hover*/
+.checkButtonT .ui-state-hover .ui-icon, .checkBT .ui-state-hover .ui-icon,
+	.investRadio .ui-state-hover .ui-icon {
+	background:
+		url("/kqco_co_web/page/javax.faces.resource/images/ui-icons_bbbbbb_256x240.png?ln=primefaces-black-tie")
+		repeat scroll -49px -110px/200px auto transparent !important;
+	opacity: 0.65;
+}
 .tabNext {
 	margin-top: 3% !important;
 	background: #0079C1

@@ -6,10 +6,11 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.faces.event.ActionEvent;
+
 import com.bbva.net.back.facade.QuotationMoneyFacade;
 import com.bbva.net.back.model.turnsClient.DivisaDto;
 import com.bbva.net.back.model.turnsClient.QuotationMoneyDto;
-import com.bbva.net.back.model.turnsClient.turnsClientDetailDto;
+import com.bbva.net.back.model.turnsClient.TurnsClientDetailDto;
 import com.bbva.net.front.controller.QuotationMoneyController;
 import com.bbva.net.front.core.AbstractBbvaController;
 
@@ -18,107 +19,107 @@ import com.bbva.net.front.core.AbstractBbvaController;
  */
 public class QuotationMoneyControllerImpl extends AbstractBbvaController implements QuotationMoneyController {
 
-    /**
+	/**
      *
      */
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    @Resource(name = "quotationMoneyFacade")
-    private transient QuotationMoneyFacade quotationMoneyFacade;
+	@Resource(name = "quotationMoneyFacade")
+	private transient QuotationMoneyFacade quotationMoneyFacade;
 
-    private turnsClientDetailDto clientTurn;
+	private TurnsClientDetailDto clientTurn;
 
-    private List<DivisaDto> moneyList;
+	private List<DivisaDto> moneyList;
 
-    private List<String> accountsList;
+	private List<String> accountsList;
 
-    private List<String> typeOperList;
+	private List<String> typeOperList;
 
-    @PostConstruct
-    public void init() {
-        this.moneyList = new ArrayList<DivisaDto>();
-        this.accountsList = new ArrayList<String>();
-        this.typeOperList = new ArrayList<String>();
-        this.clientTurn = new turnsClientDetailDto();
-        QuotationMoneyDto rates = new QuotationMoneyDto();
-        this.clientTurn.setRates(rates);
-        DivisaDto divisa = new DivisaDto();
-        rates.setMoney(divisa);
-        this.typeOperList.add("Giros Hacia");
-        this.typeOperList.add("Giros Desde");
-        this.accountsList = quotationMoneyFacade.getAccountsList();
-        this.moneyList = quotationMoneyFacade.getListTypesMoney();
-    }
+	@PostConstruct
+	public void init() {
+		this.moneyList = new ArrayList<DivisaDto>();
+		this.accountsList = new ArrayList<String>();
+		this.typeOperList = new ArrayList<String>();
+		this.clientTurn = new TurnsClientDetailDto();
+		QuotationMoneyDto rates = new QuotationMoneyDto();
+		this.clientTurn.setRates(rates);
+		DivisaDto divisa = new DivisaDto();
+		rates.setMoney(divisa);
+		this.typeOperList.add("Giros Hacia");
+		this.typeOperList.add("Giros Desde");
+		this.accountsList = quotationMoneyFacade.getAccountsList();
+		this.moneyList = quotationMoneyFacade.getListTypesMoney();
+	}
 
-    @Override
-    public void onSelectPassInfo(ActionEvent event) {
-        this.clientTurn = new turnsClientDetailDto();
-        // super.onTurnsDetail(actionEvent);
-        this.clientTurn = super.getTurnDetail();
-    }
+	@Override
+	public void onSelectPassInfo(ActionEvent event) {
+		this.clientTurn = new TurnsClientDetailDto();
+		// super.onTurnsDetail(actionEvent);
+		this.clientTurn = super.getTurnDetail();
+	}
 
-    // setters and getters
+	// setters and getters
 
-    /**
-     * @param accountsList the accountsList to set
-     */
-    public void setAccountsList(List<String> accountsList) {
-        this.accountsList = accountsList;
-    }
+	/**
+	 * @param accountsList the accountsList to set
+	 */
+	public void setAccountsList(List<String> accountsList) {
+		this.accountsList = accountsList;
+	}
 
-    /**
-     * @param quotationMoneyFacade the quotationMoneyFacade to set
-     */
-    public void setQuotationMoneyFacade(QuotationMoneyFacade quotationMoneyFacade) {
-        this.quotationMoneyFacade = quotationMoneyFacade;
-    }
+	/**
+	 * @param quotationMoneyFacade the quotationMoneyFacade to set
+	 */
+	public void setQuotationMoneyFacade(QuotationMoneyFacade quotationMoneyFacade) {
+		this.quotationMoneyFacade = quotationMoneyFacade;
+	}
 
-    /**
-     * @return the typeOperList
-     */
-    public List<String> getTypeOperList() {
-        return typeOperList;
-    }
+	/**
+	 * @return the typeOperList
+	 */
+	public List<String> getTypeOperList() {
+		return typeOperList;
+	}
 
-    /**
-     * @param typeOperList the typeOperList to set
-     */
-    public void setTypeOperList(List<String> typeOperList) {
-        this.typeOperList = typeOperList;
-    }
+	/**
+	 * @param typeOperList the typeOperList to set
+	 */
+	public void setTypeOperList(List<String> typeOperList) {
+		this.typeOperList = typeOperList;
+	}
 
-    /**
-     * @return the moneyList
-     */
-    public List<DivisaDto> getMoneyList() {
-        return moneyList;
-    }
+	/**
+	 * @return the moneyList
+	 */
+	public List<DivisaDto> getMoneyList() {
+		return moneyList;
+	}
 
-    /**
-     * @param moneyList the moneyList to set
-     */
-    public void setMoneyList(List<DivisaDto> moneyList) {
-        this.moneyList = moneyList;
-    }
+	/**
+	 * @param moneyList the moneyList to set
+	 */
+	public void setMoneyList(List<DivisaDto> moneyList) {
+		this.moneyList = moneyList;
+	}
 
-    /**
-     * @return the accountsList
-     */
-    public List<String> getAccountsList() {
-        return accountsList;
-    }
+	/**
+	 * @return the accountsList
+	 */
+	public List<String> getAccountsList() {
+		return accountsList;
+	}
 
-    /**
-     * @return the clientTurn
-     */
-    public turnsClientDetailDto getClientTurn() {
-        return clientTurn;
-    }
+	/**
+	 * @return the clientTurn
+	 */
+	public TurnsClientDetailDto getClientTurn() {
+		return clientTurn;
+	}
 
-    /**
-     * @param clientTurn the clientTurn to set
-     */
-    public void setClientTurn(turnsClientDetailDto clientTurn) {
-        this.clientTurn = clientTurn;
-    }
+	/**
+	 * @param clientTurn the clientTurn to set
+	 */
+	public void setClientTurn(TurnsClientDetailDto clientTurn) {
+		this.clientTurn = clientTurn;
+	}
 }

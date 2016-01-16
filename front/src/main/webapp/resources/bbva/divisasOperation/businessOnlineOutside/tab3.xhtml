@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:bbvaInput="http://java.sun.com/jsf/composite/bbva/input"
+	xmlns:bbvaProgressBar="http://java.sun.com/jsf/composite/bbva/progressBar"
+	xmlns:bbvaProgressDivi="http://java.sun.com/jsf/composite/bbva/progressBar/divisas"
+	xmlns:bbvaSearch="http://java.sun.com/jsf/composite/bbva/filters">
+<composite:interface>
+</composite:interface>
+<composite:implementation>
+	<h:panelGroup class="panel-tab-head">
+		<p:commandButton style="z-index: 99" resetValues="true" value="Quiero"
+			styleClass="btn arrow-left quiero-return hidden-xs hidden-sm"
+			onclick="PF('operationDivi').loadStep('Tab0', true)" />
+		<button type="button"
+			class="close-icon hidden-xs hidden-sm close-button" />
+	</h:panelGroup>
+	<div class="panel-tab-body content-operaciones" id="operations">
+		<div class="container">
+			<h3 class="visible-xs">Operaciones</h3>
+			<div class="row">
+				<h:form>
+					<bbvaProgressBar:progressContent id="progressBar"
+						sizeProgress="0px">
+						<bbvaProgressDivi:progressDivisasBusiness pointOne="uno"
+							pointTwo="dos" pointThree="tres" pointFour="cuatro"
+							pointThreeState="active" sizeProgress="0px" />
+					</bbvaProgressBar:progressContent>
+					<div class="col-xs-12 col-sm-12 col-md-12">
+						<span class="col-xs-12 col-sm-12 col-md-12 tableName"
+							style="margin-bottom: 5%; font-weight: normal !important;">
+							Por favor adjunte los documentos que soporten el giro que esta
+							realizando</span>
+
+						<div class="col-xs-12 col-sm-12 col-md-12">
+							<bbvaInput:combo styleClassOut="col-xs-12 col-sm-12 col-md-4"
+								label="Formulario utilizado en la transacción"
+								styleClassIn="col-xs-12 col-sm-12 col-md-7" value="" />
+						</div>
+						<div class="col-xs-12 col-sm-12 col-md-12">
+							<bbvaInput:combo id="formNumOper"
+								styleClassOut="col-xs-12 col-sm-12 col-md-4"
+								label="Seleccione el Numeral Cambiario de la Transacción"
+								styleClassIn="col-xs-12 col-sm-12 col-md-7" value="" />
+						</div>
+						<div class="col-xs-12 col-sm-12 col-md-12">
+							<bbvaInput:inputOutput id="montoOper"
+								styleClassOut="col-xs-12 col-sm-12 col-md-4"
+								styleClassIn="col-xs-12 col-sm-12 col-md-7"
+								label="Descripción numeral Cambiario" value="" />
+						</div>
+						<hr
+							style="height: 1px ! important; border: 0px none ! important; background-color: rgb(173, 171, 171) ! important; display: inline-block; width: 100%;" />
+						<span class="col-xs-12 col-sm-12 col-md-12 tableName"
+							style="margin-bottom: 5%; font-weight: normal !important;">
+							Para realizar esta operación bajo ese motivo debe adjuntar los
+							siguientes documentos</span>
+						<div class="col-xs-12 col-sm-12 col-md-12"
+							style="margin-bottom: 17px; line-height: 21px !important; padding-right: 0px !important;">
+							<p:outputLabel id="out_check" value="Check list documentación:"
+								styleClass="col-xs-12 col-sm-12 col-md-4 control-label left fontLabel divAlign" />
+							<div class="col-xs-12 col-sm-12 col-md-7"
+								style="margin-bottom: 17px; line-height: 21px !important; padding-right: 0px !important;">
+								<div class="col-xs-12 col-sm-12 col-md-12"
+									style="margin-bottom: 17px; line-height: 21px !important; padding-right: 0px !important;">
+									<p:selectBooleanCheckbox id="out_check1"
+										styleClass="col-xs-12 col-sm-12 col-md-1 checkBT"
+										value="#{selectBooleanView.value1}" />
+									<p:outputLabel id="out_check11" for="out_check1"
+										value="Declaración de cambio - Formulario No."
+										styleClass="col-xs-12 col-sm-12 col-md-10 control-label left fontLabel divAlign"
+										style="padding-top: 0px;" />
+								</div>
+								<div class="col-xs-12 col-sm-12 col-md-12"
+									style="margin-bottom: 17px; line-height: 21px !important; padding-right: 0px !important;">
+									<p:selectBooleanCheckbox id="out_check2"
+										styleClass="col-xs-12 col-sm-12 col-md-1 checkBT"
+										value="#{selectBooleanView.value1}" />
+									<p:outputLabel id="out_check22"
+										value="Fotocopia de la factura proforma"
+										styleClass="col-xs-12 col-sm-12 col-md-10 control-label left fontLabel divAlign"
+										style="padding-top: 0px;" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</h:form>
+
+			</div>
+		</div>
+	</div>
+	<p:commandButton id="nextButton" oncomplete="PF('businessOnlineOut').loadStep('Tab4', true)"
+		styleClass="btn btn-form next nextButton tool tabNext pull-right" 
+		value="#{msg['button.next']}" update="@form" />
+</composite:implementation>
+</html>
