@@ -5,14 +5,15 @@ import com.bbva.net.back.model.header.ExecutiveDto;
 
 public interface HeaderController {
 
-	ExecutiveDto getExecutive();
+    ExecutiveDto getExecutive();
 
-	CustomerDto getCustomer();
+    CustomerDto getCustomer();
 
-	CustomerDto getCliente();
+    CustomerDto getCliente();
 
-	void logOut();
+    void logOut();
 
-	void setLastDownload(String file);
+    void setLastDownload(String file);
 
+    void deleteLastDownload();
 }

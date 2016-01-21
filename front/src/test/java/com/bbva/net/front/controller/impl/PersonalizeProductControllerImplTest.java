@@ -48,12 +48,16 @@ public class PersonalizeProductControllerImplTest extends AbstractBbvaController
         this.personalizeController.offMessageOpenKey(null);
         this.personalizeController.getMenSuccessful();
         this.personalizeController.getMenOperationKey();
+
         this.operationPass = Mockito.mock(OperationPasswordController.class);
         this.personalizeFacade = Mockito.mock(PersonalizeProductFacade.class);
+
         this.updateAliasFacade = Mockito.mock(UpdateAliasFacade.class);
+        this.personalizeController.setUpdateAliasFacade(updateAliasFacade);
+
         this.personalizeController.setOperationPass(this.operationPass);
         this.personalizeController.setPersonalizeProductAccountFacade(personalizeFacade);
-        this.personalizeController.setUpdateAliasFacade(updateAliasFacade);
+
         this.productDto = Mockito.mock(ProductDto.class);
         this.update = Mockito.mock(UpdateAccountDto.class);
         this.product = new ProductDto();
@@ -75,13 +79,23 @@ public class PersonalizeProductControllerImplTest extends AbstractBbvaController
         // Producto no nulo, OperationOnline nulo y Visible no nulo
         Mockito.when(productDto.getOperationOnline()).thenReturn(null);
         this.personalizeController.init();
+
+        // set y get
+        this.personalizeController.operationkey();
+        this.personalizeController.getOperationKey();
+        this.personalizeController.setOperationKey("12312");
+        this.personalizeController.getOperationPass();
     }
 
     @Test
     public void checkOperKey() {
-        // null
+        // null false
+        Mockito.when(operationPass.validateOperation(null)).thenReturn(true);
+        this.personalizeController.operKey(eventAction);
+        // null true
         Mockito.when(operationPass.validateOperation(null)).thenReturn(false);
         this.personalizeController.operKey(eventAction);
+        // setr product
         this.product.setProductId("0013044300020000949");
         this.product.setOperationOnline(true);
         this.product.setVisible(true);
@@ -109,27 +123,26 @@ public class PersonalizeProductControllerImplTest extends AbstractBbvaController
         Mockito.when(this.personalizeFacade.updateProductVisibility(DEFAULT_ID, product)).thenThrow(
                 new RestClientException("OK"));
         this.personalizeController.operKey(eventAction);
-
     }
 
     @Test
     public void checkUpdateAlias() {
-        this.product.setSubTypeProd("Account");
-        this.personalizeController.setProductDto(product);
-        this.personalizeController.setUpdateAccountIn(update);
-        this.personalizeController.getUpdateAccountIn();
-        this.personalizeController.setUpdateAccountOut(update);
+        Mockito.when(productDto.getProductNumber()).thenReturn("12345");
+        this.personalizeController.setProductDto(productDto);
+        this.personalizeController.setAlias("Alias");
+        UpdateAccountDto acc = new UpdateAccountDto();
+        this.personalizeController.setUpdateAccountIn(acc);
+        this.personalizeController.setUpdateAccountOut(acc);
         this.personalizeController.getUpdateAccountOut();
-        // folio nulo
-        Mockito.when(this.updateAliasFacade.updateSubject("12345656", update)).thenReturn(update);
-        this.personalizeController.updateAlias();
-        // folio no nulo
-        Mockito.when(this.update.getFolio()).thenReturn("123456789");
-        this.personalizeController.updateAlias();
-        // Mockito.verify(this.updateAliasFacade, Mockito.atLeastOnce()).updateSubject("12345656", update);
-
-        // ClientException
-        Mockito.when(this.updateAliasFacade.updateSubject("12345656", update)).thenThrow(new RestClientException("OK"));
-        this.personalizeController.updateAlias();
+        // folio not null
+        Mockito.when(updateAliasFacade.updateSubject("22222222", this.personalizeController.getUpdateAccountIn())).thenReturn(acc);
+        acc.setFolio("Folio");
+        personalizeController.updateAlias();
+        // folio null
+        Mockito.when(updateAliasFacade.updateSubject("22222222", this.personalizeController.getUpdateAccountIn())).thenReturn(new UpdateAccountDto());
+        personalizeController.updateAlias();
+        // Throw
+        Mockito.when(updateAliasFacade.updateSubject("22222222", this.personalizeController.getUpdateAccountIn())).thenThrow(Exception.class);
+        personalizeController.updateAlias();
     }
 }

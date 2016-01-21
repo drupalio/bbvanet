@@ -15,133 +15,156 @@ import org.springframework.web.client.RestClientException;
 import com.bbva.net.back.facade.ExtractFacade;
 import com.bbva.net.back.model.extract.ExtractDto;
 import com.bbva.net.back.model.globalposition.ProductDto;
+import com.bbva.net.back.model.header.CustomerDto;
+import com.bbva.net.back.model.header.EmailDto;
+import com.bbva.net.front.controller.HeaderController;
 import com.bbva.net.front.test.utils.AbstractBbvaControllerTest;
 
 public class ExtractControllerImplTest extends AbstractBbvaControllerTest {
 
-	private ExtractControllerImpl extractController;
+    private ExtractControllerImpl extractController;
 
-	private static final String DEFAULT_PRODUCT = "00112345678909954345";
+    private static final String DEFAULT_PRODUCT = "00112345678909954345";
 
-	@Resource(name = "extractFacade")
-	private transient ExtractFacade extractFacade;
+    @Resource(name = "extractFacade")
+    private transient ExtractFacade extractFacade;
 
-	private List<ExtractDto> extractList;
+    private List<ExtractDto> extractList;
 
-	private List<String> yearAvailable;
+    private List<String> yearAvailable;
 
-	private ProductDto productDto;
+    private ProductDto productDto;
 
-	private ExtractDto extractDto;
+    private ExtractDto extractDto;
 
-	private List<String> monthAvailable;
+    private List<String> monthAvailable;
 
-	@Before
-	public void init() {
-		// Inicialización
-		this.extractController = new ExtractControllerImpl();
-		// Lista de mes
-		this.monthAvailable = new ArrayList<String>();
-		monthAvailable.add("03");
-		// Lista de años
-		this.yearAvailable = new ArrayList<String>();
-		yearAvailable.add("2015");
-		// ExtractList
-		this.extractList = new ArrayList<ExtractDto>();
-		this.extractDto = new ExtractDto("12345", "03", "2015", "EE", null);
-		extractList.add(extractDto);
-		// Producto
-		this.productDto = new ProductDto();
-		productDto.setProductNumber(DEFAULT_PRODUCT);
-		// Mockitos y set
-		this.extractFacade = Mockito.mock(ExtractFacade.class);
-		this.extractController.setExtractFacade(extractFacade);
+    private HeaderController headerController;
 
-		this.extractController.setSelectedProduct(productDto);
-		Mockito.when(extractController.getSelectedProduct()).thenReturn(productDto);
+    @Before
+    public void init() {
+        // Inicialización
+        this.extractController = new ExtractControllerImpl();
+        // Lista de mes
+        this.monthAvailable = new ArrayList<String>();
+        monthAvailable.add("03");
+        // Lista de años
+        this.yearAvailable = new ArrayList<String>();
+        yearAvailable.add("2015");
+        // ExtractList
+        this.extractList = new ArrayList<ExtractDto>();
+        this.extractDto = new ExtractDto("12345", "03", "2015", "EE", null);
+        extractList.add(extractDto);
+        this.headerController = Mockito.mock(HeaderController.class);
+        this.extractController.setHeaderController(headerController);
+        // Producto
+        this.productDto = new ProductDto();
+        productDto.setProductNumber(DEFAULT_PRODUCT);
+        // Mockitos y set
+        this.extractFacade = Mockito.mock(ExtractFacade.class);
+        this.extractController.setExtractFacade(extractFacade);
 
-		// OK
-		Mockito.when(extractFacade.getExtractAvailable(DEFAULT_PRODUCT)).thenReturn(extractList);
-		this.extractController.init();
-	}
+        this.extractController.setSelectedProduct(productDto);
+        Mockito.when(extractController.getSelectedProduct()).thenReturn(productDto);
 
-	@Test
-	public void wormExtract() {
-		// ClientException
-		Mockito.when(extractFacade.getExtractAvailable(DEFAULT_PRODUCT)).thenThrow(new RestClientException("OK"));
-		this.extractController.init();
-	}
+        // OK
+        Mockito.when(extractFacade.getExtractAvailable(DEFAULT_PRODUCT)).thenReturn(extractList);
+        this.extractController.init();
+    }
 
-	@Test
-	public void checkDocumentExtract() {
-		// OK
-		Mockito.when(extractFacade.getDocumentExtract(DEFAULT_PRODUCT, extractDto)).thenReturn(extractList);
-		// Year null and Month null, URL NULL
-		StreamedContent file = this.extractController.documentExtract();
-		Assert.assertNull(file);
-		// setSelectedYear y setSelectedMonth
-		this.extractController.setSelectedYear("2015");
-		this.extractController.setSelectedMonth("03");
-		// Year not null and Month not null, URL NULL
-		file = this.extractController.documentExtract();
-		Assert.assertNull(file);
-		// URL CHECK
-		this.extractDto.setUrl("http://www.primefaces.org/docs/guide/primefaces_user_guide_5_0.pdf");
-		file = extractController.documentExtract();
-		//Assert.assertNotNull(file);
-		// Year not null, URL NULL
-		this.extractController.setSelectedMonth(null);
-		file = this.extractController.documentExtract();
-		Assert.assertNull(file);
-		// Month not null, URL NULL
-		this.extractController.setSelectedYear(null);
-		this.extractController.setSelectedMonth("03");
-		file = this.extractController.documentExtract();
-		Assert.assertNull(file);
-		// extractList
-		Assert.assertNotNull(extractList);
-		Assert.assertEquals(extractDto, extractFacade.getDocumentExtract(DEFAULT_PRODUCT, extractDto).get(0));
-		Mockito.when(extractFacade.getDocumentExtract(DEFAULT_PRODUCT, extractDto)).thenReturn(null);
-		// Verify
-		Mockito.verify(extractFacade, Mockito.atLeastOnce()).getDocumentExtract(DEFAULT_PRODUCT, extractDto);
+    @Test
+    public void wormExtract() {
+        // ClientException
+        Mockito.when(extractFacade.getExtractAvailable(DEFAULT_PRODUCT)).thenThrow(new RestClientException("OK"));
+        this.extractController.init();
+    }
 
-		// ClientException
-		this.extractController.setSelectedYear("2015");
-		Mockito.when(extractFacade.getDocumentExtract(DEFAULT_PRODUCT, extractDto)).thenThrow(
-				new RestClientException("OK"));
-		file = extractController.documentExtract();
-		Assert.assertNull(file);
-	}
+    @Test
+    public void checkDocumentExtract() {
+        // OK
+        Mockito.when(extractFacade.getDocumentExtract(DEFAULT_PRODUCT, extractDto)).thenReturn(extractList);
+        // Year null and Month null, URL NULL
+        StreamedContent file = this.extractController.documentExtract();
+        Assert.assertNull(file);
+        // setSelectedYear y setSelectedMonth
+        this.extractController.setSelectedYear("2015");
+        this.extractController.setSelectedMonth("03");
+        // Year not null and Month not null, URL NULL
+        file = this.extractController.documentExtract();
+        Assert.assertNull(file);
+        // URL CHECK
+        this.extractDto.setUrl("http://www.primefaces.org/docs/guide/primefaces_user_guide_5_0.pdf");
+        file = extractController.documentExtract();
+        // Assert.assertNotNull(file);
+        // Year not null, URL NULL
+        this.extractController.setSelectedMonth(null);
+        file = this.extractController.documentExtract();
+        Assert.assertNull(file);
+        // Month not null, URL NULL
+        this.extractController.setSelectedYear(null);
+        this.extractController.setSelectedMonth("03");
+        file = this.extractController.documentExtract();
+        Assert.assertNull(file);
+        // extractList
+        Assert.assertNotNull(extractList);
+        Assert.assertEquals(extractDto, extractFacade.getDocumentExtract(DEFAULT_PRODUCT, extractDto).get(0));
+        Mockito.when(extractFacade.getDocumentExtract(DEFAULT_PRODUCT, extractDto)).thenReturn(null);
+        // Verify
+        Mockito.verify(extractFacade, Mockito.atLeastOnce()).getDocumentExtract(DEFAULT_PRODUCT, extractDto);
 
-	@Test
-	public void checkActionState() {
-		this.extractController.setSelectedMonth("03");
-		this.extractController.setSelectedYear("2015");
-		this.extractController.setEnableMonth(false);
-		this.extractController.actionState();
-		Assert.assertEquals(monthAvailable.get(0), this.extractController.getMonthAvailable().get(0));
-		Assert.assertFalse(this.extractController.isEnableMonth());
-	}
+        // ClientException
+        this.extractController.setSelectedYear("2015");
+        Mockito.when(extractFacade.getDocumentExtract(DEFAULT_PRODUCT, extractDto)).thenThrow(
+                new RestClientException("OK"));
+        file = extractController.documentExtract();
+        Assert.assertNull(file);
+    }
 
-	@Test
-	public void getSelectedMonth() {
-		this.extractController.setSelectedMonth("03");
-		Assert.assertEquals(monthAvailable.get(0), this.extractController.getSelectedMonth());
-	}
+    @Test
+    public void checkActionState() {
+        this.extractController.setSelectedMonth("03");
+        this.extractController.setSelectedYear("2015");
+        this.extractController.setEnableMonth(false);
+        this.extractController.actionState();
+        Assert.assertEquals(monthAvailable.get(0), this.extractController.getMonthAvailable().get(0));
+        Assert.assertFalse(this.extractController.isEnableMonth());
+    }
 
-	@Test
-	public void checkGetSelectedYear() {
-		this.extractController.setSelectedYear("2015");
-		Assert.assertEquals(yearAvailable.get(0), this.extractController.getSelectedYear());
-	}
+    @Test
+    public void getSelectedMonth() {
+        this.extractController.setSelectedMonth("03");
+        Assert.assertEquals(monthAvailable.get(0), this.extractController.getSelectedMonth());
+    }
 
-	@Test
-	public void checkGetExtractList() {
-		Assert.assertEquals(extractList, this.extractController.getExtractList());
-	}
+    @Test
+    public void checkGetSelectedYear() {
+        this.extractController.setSelectedYear("2015");
+        Assert.assertEquals(yearAvailable.get(0), this.extractController.getSelectedYear());
+    }
 
-	@Test
-	public void checkGetYearAvailable() {
-		Assert.assertEquals(yearAvailable, this.extractController.getYearAvailable());
-	}
+    @Test
+    public void checkGetExtractList() {
+        Assert.assertEquals(extractList, this.extractController.getExtractList());
+    }
+
+    @Test
+    public void checkGetYearAvailable() {
+        Assert.assertEquals(yearAvailable, this.extractController.getYearAvailable());
+    }
+
+    @Test
+    public void okgetEmail() {
+        List<EmailDto> emails = new ArrayList<EmailDto>();
+        CustomerDto client = new CustomerDto();
+        Mockito.when(this.headerController.getCliente()).thenReturn(client);
+        // null
+        this.extractController.getEmail();
+        // not null
+        client.setEmails(emails);
+        EmailDto email = new EmailDto();
+        email.setAddress("1234@hotmail.com");
+        email.setPrimary(true);
+        emails.add(email);
+        this.extractController.getEmail();
+    }
 }

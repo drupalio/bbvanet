@@ -36,7 +36,7 @@ import com.bbva.net.back.model.comboFilter.EnumCheckStatus;
  */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({ FacesContext.class, RequestContext.class, RequestContextHolder.class, ResourceBundle.class,
-    EnumProductType.class, EnumCheckStatus.class })
+        EnumProductType.class, EnumCheckStatus.class })
 public abstract class AbstractBbvaControllerTest {
 
     @Mock
@@ -151,5 +151,14 @@ public abstract class AbstractBbvaControllerTest {
             return null;
         }
 
+    }
+
+    /**
+     * @param script
+     */
+    protected void executeScript(final String script) {
+        if ( RequestContext.getCurrentInstance() != null ) {
+            RequestContext.getCurrentInstance().execute(script);
+        }
     }
 }

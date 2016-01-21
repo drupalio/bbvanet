@@ -29,29 +29,29 @@ import com.bbva.net.front.controller.HeaderController;
 import com.bbva.net.front.test.utils.AbstractBbvaControllerTest;
 
 public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
-    
+
     private static final String DEFAULT_ID = "0013044300020000949";
-    
+
     private CheckBookControllerImpl checkBookController;
-    
+
     private CheckPaginatedController checkPaginator;
-    
+
     private CheckBookFacade checkBookFacade;
-    
+
     private HeaderController headerController;
-    
+
     private MultiValueGroupFacade multiValueGroupFacade;
-    
+
     private Map<String, Boolean> renderComponents;
-    
+
     private ProductDto productDto;
-    
+
     private ActionEvent eventAction;
-    
+
     private SelectEvent eventSelect;
-    
+
     private AjaxBehaviorEvent ajaxAction;
-    
+
     @Before
     public void init() {
         // Inicializar controlador
@@ -80,7 +80,7 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
         // init
         this.checkBookController.init();
     }
-    
+
     @Test
     public void initCheckbook() {
         List<CheckbookDto> check = new ArrayList<CheckbookDto>();
@@ -98,7 +98,7 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
         Mockito.when(checkBookFacade.getCheckBooksById(DEFAULT_ID)).thenThrow(new RestClientException("OK"));
         this.checkBookController.initCheckBookList();
     }
-    
+
     @Test
     public void checkOnselectDate() {
         // onselectDate concreteDate igual
@@ -108,7 +108,7 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
         this.checkBookController.setSelectDate("null");
         this.checkBookController.oneSelectDate();
     }
-    
+
     @Test
     public void checkCumstomDate() {
         // nullos y concreteDate igual
@@ -134,7 +134,7 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
         this.checkBookController.getTitleDateTo();
         this.checkBookController.setCustomDate(ajaxAction);
     }
-    
+
     @Test
     public void checkActionState() {
         renderComponents.put(RenderAttributes.FILTERNUMBERCHECK.toString(), true);
@@ -151,7 +151,7 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
         this.checkBookController.getRightTitle();
         this.checkBookController.setNumberCheckOrBook(ajaxAction);
     }
-    
+
     @Test
     public void nextPageCheckBook() {
         List<CheckbookDto> check = new ArrayList<CheckbookDto>();
@@ -161,7 +161,7 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
         Whitebox.setInternalState(check, "size", 15);
         this.checkBookController.nextPageCheckBook(eventAction);
     }
-    
+
     @Test
     public void checkShowResults() {
         // put render
@@ -265,7 +265,7 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
                 new RestClientException("OK"));
         this.checkBookController.showResults(ajaxAction);
     }
-    
+
     @Test
     public void checkNextPages() {
         List<CheckbookDto> checkBook = new ArrayList<CheckbookDto>();
@@ -281,12 +281,12 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
         this.checkBookController.setCheckList(check);
         this.checkBookController.getCheckList();
     }
-    
+
     @Test
     public void checkListValueCheck() {
         this.checkBookController.getListMultiValueChecks();
     }
-    
+
     @Test
     public void exportDoc() {
         // this.checkBookController.exportDocCheckPdf();
@@ -294,10 +294,10 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
         // this.checkBookController.exportDocCheckExcel();
         // this.checkBookController.exportDocCheckBookExcel();
     }
-
-    // @Test
-    // public void printCheck() {
-    // this.checkBookController.printCheck();
-    // this.checkBookController.printCheckBook();
-    // }
+    
+    @Test
+    public void printCheck() {
+        // this.checkBookController.printCheck();
+        // this.checkBookController.printCheckBook();
+    }
 }

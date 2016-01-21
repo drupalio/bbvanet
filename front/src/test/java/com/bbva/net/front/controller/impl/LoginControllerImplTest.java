@@ -41,9 +41,14 @@ public class LoginControllerImplTest extends AbstractBbvaControllerTest {
 
         Mockito.when(
                 this.loginFacade.login("cqwAIvi92lzshpPQR9RYK2RFo9axRY697/TtCA4N/bnM6d5znws5S1T3rYwHVRU3YnYvpZZXF4s=",
-                        "julio123CC000001020715321", "91261343", "1020715321", "CC")).thenReturn(
-                                new AuthenticationState());
+                        "julio123CC000001020715321", "91261343", "1020715321", "CC"))
+                .thenReturn(
+                        new AuthenticationState());
 
+        // Invoke Check method
+        this.loginController.login();
+
+        Mockito.when(request.getHeader("iv_TX_CESTADO")).thenReturn("SINTJC");
         // Invoke Check method
         this.loginController.login();
 
@@ -58,7 +63,8 @@ public class LoginControllerImplTest extends AbstractBbvaControllerTest {
 
         Mockito.when(
                 this.loginFacade.login(Matchers.anyString(), Matchers.anyString(), Matchers.anyString(),
-                        Matchers.anyString(), Matchers.anyString())).thenReturn(new AuthenticationState());
+                        Matchers.anyString(), Matchers.anyString()))
+                .thenReturn(new AuthenticationState());
 
         // Invoke Check method
         this.loginController.login();
