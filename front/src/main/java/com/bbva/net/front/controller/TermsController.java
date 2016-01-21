@@ -4,9 +4,7 @@ import com.bbva.net.back.model.accounts.TermsAccountsDto;
 
 public interface TermsController {
 
-	TermsAccountsDto getAllConditions();
+    TermsAccountsDto getAllConditions();
 
-	void exportDocumentPdf();
-
-	void deletePdf();
+    void exportDocumentPdf();
 }

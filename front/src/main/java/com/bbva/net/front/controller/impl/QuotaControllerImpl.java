@@ -232,7 +232,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
             getRenderComponents().put(RenderAttributes.FOOTERTABLEQUOTA.toString(), false);
         }
     }
-    
+
     // <!-- Entelgy / SPRING 3 / 08092015 / FIN -->
 
     // <!-- Entelgy / SPRING 3 / 26102015 / INICIO -->
@@ -254,7 +254,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
         }
         return quotamovenDtos;
     }
-    
+
     // <!-- Entelgy / SPRING 3 / 26102015 / FIN -->
 
     @Override
@@ -404,7 +404,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
                 while ((b = is.read()) != -1) {
                     img_bytes.write(b);
                 }
-                
+
                 is.close();
 
                 int pictureIdx = libro.addPicture(img_bytes.toByteArray(), Workbook.PICTURE_TYPE_PNG);
@@ -607,7 +607,8 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
             filaFooter = hoja.createRow(inicio);
             Cell nota = filaFooter.createCell(1);
             nota.setCellStyle(cellNotaStyle);
-            nota.setCellValue("Nota: Si no eres el destinatario de este mensaje, por favor comunícate con nosotros con el fin de realizar la actualización correspondiente, al 4010000 en Bogotá, 4938300 en Medellín, 3503500 en Barranquilla, 8892020 en Cali, 6304000 en Bucaramanga o al 01800 912227 desde el resto del país. ");
+            nota.setCellValue(
+                    "Nota: Si no eres el destinatario de este mensaje, por favor comunícate con nosotros con el fin de realizar la actualización correspondiente, al 4010000 en Bogotá, 4938300 en Medellín, 3503500 en Barranquilla, 8892020 en Cali, 6304000 en Bucaramanga o al 01800 912227 desde el resto del país. ");
             filaFooter.setHeight((short)1100);
             hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 3));
 
@@ -624,7 +625,8 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
             filaFooter = hoja.createRow(inicio);
             Cell message = filaFooter.createCell(1);
             message.setCellStyle(cellFooterStyle);
-            message.setCellValue("Este mensaje es solamente para la persona a la que va dirigido. Puede contener informacion  confidencial  o  legalmente  protegida.  No  hay  renuncia  a la confidencialidad o privilegio por cualquier transmision mala/erronea. Si usted ha recibido este mensaje por error,  le rogamos que borre de su sistema inmediatamente el mensaje asi como todas sus copias, destruya todas las copias del mismo de su disco duro y notifique al remitente.  No debe,  directa o indirectamente, usar, revelar, distribuir, imprimir o copiar ninguna de las partes de este mensaje si no es usted el destinatario. Cualquier opinion expresada en este mensaje proviene del remitente, excepto cuando el mensaje establezca lo contrario y el remitente este autorizado para establecer que dichas opiniones provienen de  BBVA. Notese que el correo electronico via Internet no permite asegurar ni la confidencialidad de los mensajes que se transmiten ni la correcta recepcion de los mismos. En el caso de que el destinatario de este mensaje no consintiera la utilizacion del correo electronico via Internet, rogamos lo ponga en nuestro conocimiento de manera inmediata.");
+            message.setCellValue(
+                    "Este mensaje es solamente para la persona a la que va dirigido. Puede contener informacion  confidencial  o  legalmente  protegida.  No  hay  renuncia  a la confidencialidad o privilegio por cualquier transmision mala/erronea. Si usted ha recibido este mensaje por error,  le rogamos que borre de su sistema inmediatamente el mensaje asi como todas sus copias, destruya todas las copias del mismo de su disco duro y notifique al remitente.  No debe,  directa o indirectamente, usar, revelar, distribuir, imprimir o copiar ninguna de las partes de este mensaje si no es usted el destinatario. Cualquier opinion expresada en este mensaje proviene del remitente, excepto cuando el mensaje establezca lo contrario y el remitente este autorizado para establecer que dichas opiniones provienen de  BBVA. Notese que el correo electronico via Internet no permite asegurar ni la confidencialidad de los mensajes que se transmiten ni la correcta recepcion de los mismos. En el caso de que el destinatario de este mensaje no consintiera la utilizacion del correo electronico via Internet, rogamos lo ponga en nuestro conocimiento de manera inmediata.");
             filaFooter.setHeight((short)3500);
             hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 3));
 
@@ -639,7 +641,8 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
             filaFooter = hoja.createRow(inicio);
             Cell messEng = filaFooter.createCell(1);
             messEng.setCellStyle(cellFooterStyle);
-            messEng.setCellValue("This message is intended exclusively for the named person. It may contain confidential, propietary or legally privileged information. No confidentiality or privilege is waived or lost by any mistransmission. If you receive this message in error, please immediately delete it and all copies of it from your system, destroy any hard copies of it and notify the sender. Your must not, directly or indirectly, use, disclose, distribute, print, or copy any part of this message if you are not the intended recipient. Any views expressed in this message are those of the individual sender, except where the message states otherwise and the sender is authorised to state them to be the views of BBVA. Please note that internet e-mail neither guarantees the confidentiality nor the proper receipt of the message sent.If the addressee of this message does not consent to the use of internet e-mail, please communicate it to us immediately.");
+            messEng.setCellValue(
+                    "This message is intended exclusively for the named person. It may contain confidential, propietary or legally privileged information. No confidentiality or privilege is waived or lost by any mistransmission. If you receive this message in error, please immediately delete it and all copies of it from your system, destroy any hard copies of it and notify the sender. Your must not, directly or indirectly, use, disclose, distribute, print, or copy any part of this message if you are not the intended recipient. Any views expressed in this message are those of the individual sender, except where the message states otherwise and the sender is authorised to state them to be the views of BBVA. Please note that internet e-mail neither guarantees the confidentiality nor the proper receipt of the message sent.If the addressee of this message does not consent to the use of internet e-mail, please communicate it to us immediately.");
             filaFooter.setHeight((short)2900);
             hoja.addMergedRegion(new CellRangeAddress(inicio, inicio, 1, 3));
 
@@ -1033,112 +1036,6 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
     }
 
     @Override
-    public void printMovesQuota() {
-        printFile("MovementsQuota");
-    }
-
-    @Override
-    public void printMoveDetailQuota() {
-        printFile("DetailMoveQuota");
-    }
-
-    public void printFile(String typeDoc) {
-        File pdfFile = null;
-        if ( typeDoc.equals("MovementsQuota") ) {
-            pdfFile = new File("MovDetalleCupo" + quotaMoveDetailDto.getId() + ".pdf");
-        }
-        if ( typeDoc.equals("DetailMoveQuota") ) {
-            pdfFile = new File("MovimientosDetail" + getSelectedProduct().getProductNumber() + ".pdf");
-        }
-        LOGGER.info("printFile ruta de archivo " + pdfFile.getAbsolutePath());
-        if ( pdfFile.exists() ) {
-            if ( pdfFile.delete() ) {
-                LOGGER.info("borró el archivo " + pdfFile.getAbsolutePath());
-                if ( typeDoc.equals("MovementsQuota") ) {
-                    exportDocumentPdf();
-                }
-                if ( typeDoc.equals("DetailMoveQuota") ) {
-                    exportDocDetailPdf();
-                }
-            } else {
-                LOGGER.info("No lo borró");
-            }
-
-        } else {
-            LOGGER.info("crea el archivo " + pdfFile.getAbsolutePath());
-            if ( typeDoc.equals("MovementsQuota") ) {
-                exportDocumentPdf();
-            }
-            if ( typeDoc.equals("DetailMoveQuota") ) {
-                exportDocDetailPdf();
-            }
-
-        }
-
-        String s = System.getProperty("os.name").toLowerCase();
-        if ( s.contains("win") ) {
-            createCommand("explorer", "%s", pdfFile.getAbsolutePath());
-        }
-
-        if ( s.contains("mac") ) {
-            createCommand("open", "%s", pdfFile.getAbsolutePath());
-        }
-
-        if ( s.contains("linux") || s.contains("unix") ) {
-            createCommand("kde-open", "%s", pdfFile.getAbsolutePath());
-            createCommand("gnome-open", "%s", pdfFile.getAbsolutePath());
-            createCommand("xdg-open", "%s", pdfFile.getAbsolutePath());
-        }
-
-    }
-
-    private boolean createCommand(String command, String args, String file) {
-
-        LOGGER.info("Probando comando exec:\n   cmd = " + command + "\n   args = " + args + "\n   %s = " + file);
-
-        List<String> parts = new ArrayList<String>();
-        parts.add(command);
-
-        if ( args != null ) {
-            for (String s : args.split(" ")) {
-                s = String.format(s, file);
-                parts.add(s.trim());
-            }
-        }
-
-        String[] sParts = parts.toArray(new String[parts.size()]);
-
-        try {
-            Process p = Runtime.getRuntime().exec(sParts);
-            LOGGER.info(" Proceso input " + p.toString());
-            
-            if ( p == null ) {
-                return false;
-            }
-
-            LOGGER.info("Inicia la terminación de proceso");
-            try {
-                int retval = p.exitValue();
-                if ( retval == 0 ) {
-                    LOGGER.info("Proceso terminó inmediatamente.");
-                    return false;
-                } else {
-                    LOGGER.info("Proceso colapso");
-                    return false;
-                }
-            } catch (IllegalThreadStateException itse) {
-                LOGGER.info("Ruta archivo*** " + file + "***Proceso esta corriendo mensaje " + itse.getMessage()
-                        + "---causa---" + itse.getCause());
-                return true;
-            }
-        } catch (IOException e) {
-            LOGGER.info("Error ejecutando el comando Mensaje " + e.getMessage() + " Ruta archivo*** " + file
-                    + "*** Causa" + e.getCause());
-            return false;
-        }
-    }
-
-    @Override
     @SuppressWarnings("unchecked")
     public void sendMail() {
         try {
@@ -1446,7 +1343,7 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
     }
 
     // <!-- Entelgy / SPRING 3 / 17112015 / INICIO -->
-	
+
     public HeaderController getHeaderController() {
         return headerController;
     }
@@ -1454,6 +1351,6 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
     public void setHeaderController(HeaderController headerController) {
         this.headerController = headerController;
     }
-	
+
     // <!-- Entelgy / SPRING 3 / 17112015 / FIN -->
 }
