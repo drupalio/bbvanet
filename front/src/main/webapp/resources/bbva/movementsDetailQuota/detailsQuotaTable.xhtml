@@ -74,10 +74,12 @@
 							sortBy="#{moves.movementConcept}">
 							<h:outputText class="text styleLeft height18" value="#{moves.movementConcept}" />
 						</p:column>
-						<p:column class="head" headerText="#{msg['title.slope']}" styleClass="styleColum desc w44"
+						<!-- Entelgy / SPRING 3 / 15012016 / INICIO -->
+						<p:column class="head" headerText="#{msg['text.valueMin']}" styleClass="styleColum desc w44"
 							colspan="2" sortBy="#{moves.movementValue}">
 							<h:outputText class="currency styleCurrent height18" value="#{moves.movementValue}" />
 						</p:column>
+						<!-- Entelgy / SPRING 3 / 15012016 / FIN -->
 						<p:column styleClass="smart-view">
 							<div class="left hidden-lg">
 								<h:outputText class="text styleLeft height18" value="#{moves.movementConcept}" />
@@ -105,9 +107,11 @@
 					<p:column width="33% !important" headerText="#{msg['text.detailMove.concep']}">
 						<h:outputText value="#{movesAux.movementConcept}" />
 					</p:column>
-					<p:column width="33% !important" headerText="#{msg['title.slope']}" colspan="2">
+					<!-- Entelgy / SPRING 3 / 15012016 / INICIO -->
+					<p:column width="33% !important" headerText="#{msg['text.valueMin']}" colspan="2">
 						<h:outputText value="#{movesAux.movementValue}" />
 					</p:column>
+					<!-- Entelgy / SPRING 3 / 15012016 / FIN -->
 				</p:dataTable>
 				<footer class="detail-table-footer">
 					<!-- Entelgy / SPRING 3 / 08092015 / INICIO -->
