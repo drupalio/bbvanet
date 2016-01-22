@@ -22,56 +22,60 @@ import com.bbva.net.back.facade.MultiValueGroupFacade;
 import com.bbva.net.back.model.citeriaMovements.MovementCriteriaDto;
 import com.bbva.net.back.model.commons.BalanceRangeDto;
 import com.bbva.net.back.model.commons.DateRangeDto;
+import com.bbva.net.back.model.commons.Money;
 import com.bbva.net.back.model.enums.RenderAttributes;
 import com.bbva.net.back.model.globalposition.ProductDto;
+import com.bbva.net.back.model.header.CustomerDto;
+import com.bbva.net.back.model.header.EmailDto;
 import com.bbva.net.back.model.movements.MovementDetailDto;
 import com.bbva.net.back.model.movements.MovementDto;
+import com.bbva.net.back.model.office.OfficeDto;
 import com.bbva.net.front.controller.HeaderController;
 import com.bbva.net.front.delegate.GraphicLineDelegate;
 import com.bbva.net.front.test.utils.AbstractBbvaControllerTest;
 import com.bbva.net.front.ui.line.LineConfigUI;
 
 public class MovementCriteriaControllerImplTest extends AbstractBbvaControllerTest {
-    
+
     private static final String DEFAULT_ID = "0013044300020000949";
-    
+
     private static final String DEFAULT_ID_MOV = "554654";
-    
+
     private MovementCriteriaControllerImpl movementCriteriaController;
-    
+
     private Map<String, Boolean> renderComponents;
-    
+
     private HeaderController headerController;
-    
+
     private MultiValueGroupFacade multiValueGroupFacade;
-    
+
     private MovementsAccountFacade movementsFacade;
-    
+
     private GraphicLineDelegate graphicLineDelegate;
-    
+
     private LineConfigUI lineConfigUI;
-    
+
     private MovementCriteriaDto movementCriteriaDto;
-    
+
     private ProductDto productDto;
-    
+
     private List<MovementDto> lista;
-    
+
     private DateRangeDto date;
-    
+
     private ActionEvent eventAction;
-    
+
     private AjaxBehaviorEvent ajaxAction;
-    
+
     private SelectEvent eventSelect;
-    
+
     @Before
     public void init() {
         // Mockitos
         this.movementCriteriaController = new MovementCriteriaControllerImpl();
         this.renderComponents = new HashMap<String, Boolean>();
         this.movementCriteriaDto = new MovementCriteriaDto();
-        this.headerController = Mockito.mock(HeaderController.class);
+        this.headerController = new HeaderControllerImpl();
         this.multiValueGroupFacade = Mockito.mock(MultiValueGroupFacade.class);
         this.movementsFacade = Mockito.mock(MovementsAccountFacade.class);
         this.graphicLineDelegate = Mockito.mock(GraphicLineDelegate.class);
@@ -100,7 +104,7 @@ public class MovementCriteriaControllerImplTest extends AbstractBbvaControllerTe
         this.movementCriteriaController.setGraphicLineMovements(lineConfigUI);
         this.movementCriteriaController.setMovementsFacade(movementsFacade);
     }
-    
+
     @Test
     public void checkIncomeExpress() {
         // Mockear el render
@@ -120,7 +124,7 @@ public class MovementCriteriaControllerImplTest extends AbstractBbvaControllerTe
         this.movementCriteriaController.getMovementCriteria();
         this.movementCriteriaController.getTitleInOrExp();
     }
-    
+
     @Test
     public void checkMovementConcept() {
         // Mockear el render
@@ -128,7 +132,7 @@ public class MovementCriteriaControllerImplTest extends AbstractBbvaControllerTe
         // Llamar al metodo setMovementConcept
         this.movementCriteriaController.setMovementConcept(ajaxAction);
     }
-    
+
     @Test
     public void checkBalanceValidator() {
         // Mockear el render
@@ -161,7 +165,7 @@ public class MovementCriteriaControllerImplTest extends AbstractBbvaControllerTe
         this.movementCriteriaController.setMessageBalance(new StringBuilder());
         this.movementCriteriaController.getMessageBalance();
     }
-    
+
     @Test
     public void checkCustomDate() {
         // Mockear el render
@@ -190,17 +194,17 @@ public class MovementCriteriaControllerImplTest extends AbstractBbvaControllerTe
         this.movementCriteriaController.getTitleDateSince();
         this.movementCriteriaController.getTitleDateTo();
     }
-    
+
     @Test
     public void builMessage() {
         BalanceRangeDto balanceRange = new BalanceRangeDto();
         balanceRange.setBalanceSince(new BigDecimal(2000));
         this.movementCriteriaDto.setBalanceRange(balanceRange);
         this.movementCriteriaController.setMovementCriteria(movementCriteriaDto);
-        
+
         this.movementCriteriaController.buildMessage();
     }
-    
+
     @Test
     public void checkOnMovement() {
         // inicializar mockitos de los Dtos
@@ -218,13 +222,13 @@ public class MovementCriteriaControllerImplTest extends AbstractBbvaControllerTe
         // Llamar el metodo SetMovement
         this.movementCriteriaController.onMovementSelected(eventSelect);
     }
-    
+
     @Test
     public void onMovementWorm() {
         // Llamar el metodo SetMovement
         this.movementCriteriaController.onMovementSelected(eventSelect);
     }
-    
+
     @Test
     public void checkMethod() {
         // Mockear el render y el producto
@@ -244,7 +248,7 @@ public class MovementCriteriaControllerImplTest extends AbstractBbvaControllerTe
         // Criteria Search paginator
         // this.movementCriteriaController.criteriaSearch();
     }
-    
+
     @Test
     public void checkGetAllMovements() {
         ProductDto product = new ProductDto();
@@ -259,14 +263,14 @@ public class MovementCriteriaControllerImplTest extends AbstractBbvaControllerTe
         this.movementCriteriaController.getAllMovements();
         this.movementCriteriaController.getGraphicLineMovements();
     }
-    
+
     @Test
     public void checkCalcuteDate() {
         Assert.assertNotNull(this.movementCriteriaController.calculateDate("Últimos 3 meses"));
         this.movementCriteriaController.setDateRange(null);
         Assert.assertNull(this.movementCriteriaController.calculateDate("Últimos 8 meses"));
     }
-    
+
     @Test
     public void searchMovementByFilter() {
         // put render
@@ -309,7 +313,7 @@ public class MovementCriteriaControllerImplTest extends AbstractBbvaControllerTe
         renderComponents.put(RenderAttributes.FILTERDATE.toString(), true);
         this.movementCriteriaController.searchMovementByFilter(ajaxAction);
     }
-    
+
     @Test
     public void checkNextPage() {
         // Mockear el render
@@ -321,14 +325,111 @@ public class MovementCriteriaControllerImplTest extends AbstractBbvaControllerTe
         this.movementCriteriaController.setMovementsList(lista);
         this.movementCriteriaController.setShowMoreStatus();
     }
-    
+
     @Test
-    public void exportDocumentDetailPdf() {
-        MovementDto move = new MovementDto();
-        move.setMovementDate(new Date());
-        this.movementCriteriaController.setMovementAction(move);
-        // this.movementCriteriaController.exportDocumentDetailPdf();
-        // this.movementCriteriaController.exportDocumentPdf();
-        // this.movementCriteriaController.exportDocumentExcel();
+    public void ExportPDFMoves() {
+        BigDecimal big = new BigDecimal(2000);
+        Money money = new Money(big);
+        // <!-- PDF Lleno -->
+        this.movementCriteriaController.exportDocumentPdf();
+        this.headerController.deleteLastDownload();
+
+        // <!-- PDF icon-->
+        this.movementCriteriaController.RUTA_ICONO_BBVA = "../webapp/assets/img/0-por-ciento.png";
+        this.movementCriteriaController.exportDocumentPdf();
+        this.headerController.deleteLastDownload();
+
+        List<MovementDto> movementsList = new ArrayList<MovementDto>();
+        MovementDto move = new MovementDto("", new Date(), new Date(), "", money, money, "", "", "", new MovementDetailDto());
+        movementsList.add(move);
+        this.movementCriteriaController.setMovementsList(movementsList);
+        this.movementCriteriaController.exportDocumentPdf();
+        this.headerController.deleteLastDownload();
+    }
+
+    @Test
+    public void ExportPDFMovesDetail() {
+        BigDecimal big = new BigDecimal(2000);
+        Money money = new Money(big);
+        MovementDetailDto movq = new MovementDetailDto();
+        MovementDto movIni = new MovementDto();
+        movq.setId("3423423");
+
+        // null
+        this.movementCriteriaController.setMovementAction(movIni);
+        this.movementCriteriaController.exportDocumentDetailPdf();
+        this.headerController.deleteLastDownload();
+
+        // <!-- Excel vacio -->
+        this.movementCriteriaController.setMovementDetail(movq);
+        movq.setPlaza(new OfficeDto("", ""));
+        this.movementCriteriaController.RUTA_ICONO_BBVA = "../webapp/assets/img/0-por-ciento.png";
+        this.movementCriteriaController.exportDocumentDetailPdf();
+        this.headerController.deleteLastDownload();
+
+        // <!-- Excel Lleno -->
+        movIni = new MovementDto("23132", new Date(), new Date(), "Transfer", money, money, "", "3423", "45345", new MovementDetailDto());
+        movq = new MovementDetailDto(new Date(), "", "", "", "", new OfficeDto("", ""), "", money, money, money, "", new Date(), new Date(), "", "",
+                "", "1", "0");
+        this.movementCriteriaController.setMovementAction(movIni);
+        this.movementCriteriaController.setMovementDetail(movq);
+        this.movementCriteriaController.exportDocumentDetailPdf();
+        this.headerController.deleteLastDownload();
+    }
+
+    @Test
+    public void ExportExcelMoves() {
+        BigDecimal big = new BigDecimal(2000);
+        Money money = new Money(big);
+        // <!-- Excel Lleno -->
+        this.movementCriteriaController.exportDocumentPdf();
+        this.headerController.deleteLastDownload();
+
+        // <!-- Excel icon-->
+        this.movementCriteriaController.RUTA_ICONO_BBVA = "../webapp/assets/img/0-por-ciento.png";
+        this.movementCriteriaController.exportDocumentPdf();
+        this.headerController.deleteLastDownload();
+
+        List<MovementDto> movementsList = new ArrayList<MovementDto>();
+        MovementDto move = new MovementDto("", new Date(), new Date(), "", money, money, "", "", "", new MovementDetailDto());
+        movementsList.add(move);
+        this.movementCriteriaController.setMovementsList(movementsList);
+        this.movementCriteriaController.exportDocumentPdf();
+        this.headerController.deleteLastDownload();
+    }
+
+    @Test
+    public void Mail() {
+        BigDecimal big = new BigDecimal(2000);
+        Money money = new Money(big);
+        CustomerDto cust = new CustomerDto();
+        HeaderController header = Mockito.mock(HeaderController.class);
+        this.movementCriteriaController.setHeaderController(header);
+        // Mail null
+        this.movementCriteriaController.sendMail();
+        // vaciio
+        List<MovementDto> movementsList = new ArrayList<MovementDto>();
+        Mockito.when(header.getCliente()).thenReturn(cust);
+        this.movementCriteriaController.setMovementsList(movementsList);
+        this.movementCriteriaController.sendMail();
+        // lleno pero sin emails
+        MovementDto movemnet = new MovementDto("123", new Date(), new Date(), "Transferencia", money, money, "", "123", "4456",
+                new MovementDetailDto());
+        MovementDto movemnet2 = new MovementDto("123", null, null, "Transferencia", null, money, "", "123", "4456",
+                new MovementDetailDto());
+        movementsList.add(movemnet);
+        movementsList.add(movemnet2);
+        List<EmailDto> emalis = new ArrayList<EmailDto>();
+        cust.setEmails(emalis);
+        this.movementCriteriaController.sendMail();
+        // size > 0 email
+        EmailDto email = new EmailDto();
+        email.setAddress("testBBva@hotmail.com");
+        email.setPrimary(true);
+        emalis.add(email);
+        this.movementCriteriaController.sendMail();
+        // Throw
+        this.movementCriteriaController.PUERTO_IRONPORT = "50";
+        this.movementCriteriaController.sendMail();
     }
 }

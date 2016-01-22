@@ -1,5 +1,6 @@
 package com.bbva.net.front.controller.impl;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -59,7 +60,7 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
         this.checkPaginator = new CheckPaginatedController();
         // Mockitos
         this.checkBookFacade = Mockito.mock(CheckBookFacade.class);
-        this.headerController = Mockito.mock(HeaderController.class);
+        this.headerController = new HeaderControllerImpl();
         this.multiValueGroupFacade = Mockito.mock(MultiValueGroupFacade.class);
         this.renderComponents = new HashMap<String, Boolean>();
         this.productDto = Mockito.mock(ProductDto.class);
@@ -77,7 +78,10 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
         this.checkBookController.setCheckBookFacade(checkBookFacade);
         this.checkBookController.getMultiValueGroupFacade();
         this.checkBookController.cleanFilters(eventAction);
-        // init
+        // init no CC
+        this.checkBookController.init();
+        // init CC
+        Mockito.when(productDto.getSubTypeProd()).thenReturn("CC");
         this.checkBookController.init();
     }
 
@@ -288,16 +292,82 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
     }
 
     @Test
-    public void exportDoc() {
-        // this.checkBookController.exportDocCheckPdf();
-        // this.checkBookController.exportDocCheckBookPdf();
-        // this.checkBookController.exportDocCheckExcel();
-        // this.checkBookController.exportDocCheckBookExcel();
+    public void ExportPDFMovesCheckBook() {
+        // <!-- PDF Lleno -->
+        this.checkBookController.exportDocCheckBookPdf();
+        this.headerController.deleteLastDownload();
+
+        // <!-- PDF icon-->
+        this.checkBookController.RUTA_ICONO_BBVA = "../webapp/assets/img/0-por-ciento.png";
+        this.checkBookController.exportDocCheckBookPdf();
+        this.headerController.deleteLastDownload();
+
+        List<CheckbookDto> checkBookList = new ArrayList<CheckbookDto>();
+        CheckbookDto checkBook = new CheckbookDto("", new Date(), new Date(), "", "", "", "3423", new ArrayList<CheckDto>());
+        checkBookList.add(checkBook);
+        this.checkBookController.setCheckBook(checkBookList);
+        this.checkBookController.exportDocCheckBookPdf();
+        this.headerController.deleteLastDownload();
     }
-    
+
     @Test
-    public void printCheck() {
-        // this.checkBookController.printCheck();
-        // this.checkBookController.printCheckBook();
+    public void ExportPDFMovesCheck() {
+        BigDecimal big = new BigDecimal(2000);
+        Money money = new Money(big);
+        // <!-- PDF Lleno -->
+        this.checkBookController.exportDocCheckPdf();
+        this.headerController.deleteLastDownload();
+
+        // <!-- PDF icon-->
+        this.checkBookController.RUTA_ICONO_BBVA = "../webapp/assets/img/0-por-ciento.png";
+        this.checkBookController.exportDocCheckPdf();
+        this.headerController.deleteLastDownload();
+
+        List<CheckDto> checkList = new ArrayList<CheckDto>();
+        CheckDto check = new CheckDto("", "", money, new Date(), "2342342");
+        checkList.add(check);
+        this.checkBookController.setCheckList(checkList);
+        this.checkBookController.exportDocCheckPdf();
+        this.headerController.deleteLastDownload();
+    }
+
+    @Test
+    public void ExportExcelMovesCheckBook() {
+        // <!-- Excel Lleno -->
+        this.checkBookController.exportDocCheckBookExcel();
+        this.headerController.deleteLastDownload();
+
+        // <!-- Excel icon-->
+        this.checkBookController.RUTA_ICONO_BBVA = "../webapp/assets/img/0-por-ciento.png";
+        this.checkBookController.exportDocCheckBookExcel();
+        this.headerController.deleteLastDownload();
+
+        List<CheckbookDto> checkBookList = new ArrayList<CheckbookDto>();
+        CheckbookDto checkBook = new CheckbookDto("", new Date(), new Date(), "", "", "", "3423", new ArrayList<CheckDto>());
+        checkBookList.add(checkBook);
+        this.checkBookController.setCheckBook(checkBookList);
+        this.checkBookController.exportDocCheckBookExcel();
+        this.headerController.deleteLastDownload();
+    }
+
+    @Test
+    public void ExportExcelMovesCheck() {
+        BigDecimal big = new BigDecimal(2000);
+        Money money = new Money(big);
+        // <!-- Excel Lleno -->
+        this.checkBookController.exportDocCheckExcel();
+        this.headerController.deleteLastDownload();
+
+        // <!-- Excel icon-->
+        this.checkBookController.RUTA_ICONO_BBVA = "../webapp/assets/img/0-por-ciento.png";
+        this.checkBookController.exportDocCheckExcel();
+        this.headerController.deleteLastDownload();
+
+        List<CheckDto> checkList = new ArrayList<CheckDto>();
+        CheckDto check = new CheckDto("", "", money, new Date(), "2342342");
+        checkList.add(check);
+        this.checkBookController.setCheckList(checkList);
+        this.checkBookController.exportDocCheckExcel();
+        this.headerController.deleteLastDownload();
     }
 }

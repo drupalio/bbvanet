@@ -293,10 +293,6 @@ public class TermsControllerImpl extends AbstractBbvaController implements Terms
 
     // <!-- Entelgy / SPRING 3 / 17112015 / INICIO -->
 
-    public HeaderController getHeaderController() {
-        return headerController;
-    }
-
     public void setHeaderController(HeaderController headerController) {
         this.headerController = headerController;
     }

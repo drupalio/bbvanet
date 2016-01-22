@@ -1310,9 +1310,8 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
      */
     public Money getOutstandingBal() {
         this.outstandingBal = new Money(new BigDecimal(0));
-        if ( quotaDetailDto.getAmountRequested() != null && quotaDetailDto.getOutstandingBalance() != null
-                && quotaDetailDto.getAmountRequested().getAmount() != null
-                && quotaDetailDto.getOutstandingBalance().getAmount() != null ) {
+        if ( quotaDetailDto.getAmountRequested() != null && quotaDetailDto.getAmountRequested().getAmount() != null
+                && quotaDetailDto.getOutstandingBalance() != null && quotaDetailDto.getOutstandingBalance().getAmount() != null ) {
             BigDecimal outstandingBalance = quotaDetailDto.getOutstandingBalance().getAmount();
             if ( outstandingBalance.compareTo(new BigDecimal("0")) == -1 ) {
                 outstandingBalance = outstandingBalance.negate();
@@ -1343,10 +1342,6 @@ public class QuotaControllerImpl extends QuotaPaginatedController implements Quo
     }
 
     // <!-- Entelgy / SPRING 3 / 17112015 / INICIO -->
-
-    public HeaderController getHeaderController() {
-        return headerController;
-    }
 
     public void setHeaderController(HeaderController headerController) {
         this.headerController = headerController;

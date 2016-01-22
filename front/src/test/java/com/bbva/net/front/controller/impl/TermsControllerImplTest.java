@@ -18,17 +18,21 @@ import com.bbva.net.front.controller.HeaderController;
 import com.bbva.net.front.test.utils.AbstractBbvaControllerTest;
 
 public class TermsControllerImplTest extends AbstractBbvaControllerTest {
-    
+
     private static final String DEFAULT_ID = "0013044300020000949";
-    
+
     private TermsControllerImpl termsController;
-    
+
     private TermasAccountsFacade detallesCuenta;
-    
+
     private HeaderController headerController;
-    
+
+    private List<InvolvedDto> holders;
+
+    private TermsAccountsDto termsAccountsDto;
+
     private ProductDto productDto;
-    
+
     @Before
     public void init() {
         // inicializar controlador
@@ -40,9 +44,9 @@ public class TermsControllerImplTest extends AbstractBbvaControllerTest {
         // Setear el facade
         this.termsController.setHeaderController(headerController);
         this.termsController.setDetallesCuenta(detallesCuenta);
-        
-        TermsAccountsDto termsAccountsDto = new TermsAccountsDto();
-        List<InvolvedDto> holders = new ArrayList<InvolvedDto>();
+
+        termsAccountsDto = new TermsAccountsDto();
+        holders = new ArrayList<InvolvedDto>();
         holders.add(new InvolvedDto("Test"));
         termsAccountsDto.setHolders(holders);
         Mockito.when(termsController.getSelectedProduct()).thenReturn(productDto);
@@ -56,8 +60,10 @@ public class TermsControllerImplTest extends AbstractBbvaControllerTest {
         termsAccountsDto = this.termsController.getAllConditions();
         // mirar que la respuesta no venga vacia
         Assert.assertNotNull(termsAccountsDto);
+        // get
+        this.termsController.getRutaArchivo();
     }
-    
+
     @Test
     public void wormGetConditions() {
         // Mockar el producto
@@ -67,15 +73,22 @@ public class TermsControllerImplTest extends AbstractBbvaControllerTest {
         Mockito.when(this.detallesCuenta.getAllConditions(DEFAULT_ID)).thenThrow(new RestClientException("OK"));
         this.termsController.getAllConditions();
     }
-    
+
     @Test
-    public void exportDocumentPdf() {
-        // // llenos
-        // this.termsController.getExportPdf();
-        // super.executeScript("PrimeFaces.monitorDownload(start, deleteDownload )");
-        // // null
-        // this.termsController.getExportPdf();
-        // super.executeScript("PrimeFaces.monitorDownload(start, deleteDownload )");
+    public void ExportPDFMoves() {
+        // <!-- Excel Lleno -->
+        this.termsController.exportDocumentPdf();
+        this.headerController.deleteLastDownload();
+
+        // <!-- Excel icon-->
+        this.termsController.RUTA_ICONO_BBVA = "../webapp/assets/img/0-por-ciento.png";
+        this.termsController.exportDocumentPdf();
+        this.headerController.deleteLastDownload();
+
+        // nulll
+        this.holders = null;
+        this.termsAccountsDto.setHolders(holders);
+        this.termsController.exportDocumentPdf();
+        this.headerController.deleteLastDownload();
     }
-    
 }
