@@ -239,6 +239,19 @@
                     </execution>
                 </executions>
             </plugin>
+            <!-- Enero 27 -2016 plugin para sonar inicio-->
+            <plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>cobertura-maven-plugin</artifactId>
+					<version>2.6</version>
+					<configuration>
+					<formats>
+						<format>html</format>
+						<format>xml</format>
+					</formats>
+				</configuration>
+			</plugin>
+			<!-- Enero 27 -2016 plugin para sonar fin-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
