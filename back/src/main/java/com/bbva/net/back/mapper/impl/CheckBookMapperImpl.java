@@ -57,6 +57,9 @@ public class CheckBookMapperImpl extends ConfigurableMapper implements CheckBook
     @Override
     public CheckbookDto mapCheckBookDto(Checkbook checkBook) {
         final CheckbookDto checkbookDto = map(checkBook, CheckbookDto.class);
+        // <!-- Entelgy /  Cheques y chequeras / 26022016 / INICIO -->
+        checkbookDto.setId(checkbookDto.getFirstCheck());
+        // <!-- Entelgy /  Cheques y chequeras / 26022016 / FIN -->
         return checkbookDto;
     }
     
