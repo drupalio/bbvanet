@@ -28,7 +28,7 @@ public class COGrantingTicketImpl extends AbstractBbvaRestService implements Srv
 			final Gson gson = new Gson();
 			String json = gson.toJson(consumercontext);
 			LOGGER.info("JSON: " + json);
-			return wc.post(consumercontext, AuthenticationState.class);
+			return wc.post(json, AuthenticationState.class);
 		} catch (Exception e) {
 			throw new RestClientException(
 					"Servicio no disponible - No se ha podido crear el Ticket, para mayor información comunicate a nuestras líneas BBVA");
