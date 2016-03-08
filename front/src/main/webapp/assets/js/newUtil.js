@@ -238,6 +238,15 @@ function styleCheckD(combo) {
 		$(parent).children('a.header').addClass('setFilter');
 	});
 }
+//Entelgy / chueques y chequeras / 08032016 / INICIO
+function styleCheckOutD(combo) {
+	$(document).ready(function() {
+		var parent = $(combo).parents('#globalContext');
+		$(parent).children('a.header').removeClass('setFilter');
+	});
+}
+
+//Entelgy / chueques y chequeras / 08032016 / FIN
 
 //Entelgy / Spring 3 / 03112015 Eliminación repetidos.
 

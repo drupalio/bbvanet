@@ -171,13 +171,17 @@
 			onclick="styleCheckD(jQuery(this))"
 			styleClass="btn small hidden-xs hidden-sm #{cc.attrs.value=='' || (cc.attrs.value==msg['select.radio.concret.date'] &amp;&amp; (cc.attrs.valueDateSince==null || cc.attrs.valueDateTo==null)) ? 'buttonDisabled': 'none'}"
 			rendered="#{cc.attrs.showChecks}" value="#{msg['button.confirm']}">
+			<!-- Entelgy / cheques y chequeras / 08032016 / INICIO -->
 			<p:ajax process="@form"
 				listener="#{cc.attrs.listenerDate.setCustomDate}"
 				onstart="PF('statusDialog').show();"
-				oncomplete="styleCheckD(document.getElementById('tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:customCheckList:componentList')); PF('statusDialog').hide();"
+				oncomplete="styleCheckOutD(document.getElementById('tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:checkList:componentList'));
+							styleCheckD(document.getElementById('tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:customCheckList:componentList')); PF('statusDialog').hide();"
 				update=":tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:customCheckList:customDate:itemSince_checkCalendar
                         :tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:customCheckList:customDate:itemTo_checkCalendar
-		                :tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:customCheckList:componentList" />
+		                :tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:customCheckList:componentList
+		                :tabMenu:tabCriteria:personalizedSearchContainer:formCheckBook:checkSearchTab:checkList:componentList" />
+			<!-- Entelgy / cheques y chequeras / 08032016 / FIN -->
 		</p:commandButton>
 
 		<p:commandButton id="dateButtonQuota"

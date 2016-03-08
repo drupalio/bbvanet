@@ -295,6 +295,12 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
         this.dateRange = new DateRangeDto();
         this.dateRange.setDateSince(getSinceDate());
         this.dateRange.setDateTo(getToDate());
+		// <!-- Entelgy / Cheques y chequeras / 08032016 / INICIO -->
+        leftTitle2 = "";
+        rightTitle2 = "";
+        leftTitle = "";
+        rightTitle = "";
+		// <!-- Entelgy / Cheques y chequeras / 08032016 / FIN -->
         if ( !(getSinceDate() == (null)) && !(getToDate() == (null)) && getSelectDate().equals(CONCRETE_DATE) ) {
             titleDateSince = SINCE_TITLE + ":";
             titleDateTo = TO_TITLE + ":";
@@ -314,6 +320,12 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
     public void setNumberCheckOrBook(final AjaxBehaviorEvent event) {
         LOGGER.info(" CheckBookControllerImpl setNumberCheckOrBook ");
         radioActionState();
+		// <!-- Entelgy / Cheques y chequeras / 08032016 / INICIO -->
+        titleDateSince = "";
+        titleDateTo = "";
+        sinceDatestr = "";
+        toDatestr = "";
+		// <!-- Entelgy / Cheques y chequeras / 08032016 / FIN -->
         if ( getRenderComponents().get(RenderAttributes.FILTERNUMBERCHECK.toString()) ) {
 
             if ( getCheckState() != null && !getCheckState().isEmpty() ) {
