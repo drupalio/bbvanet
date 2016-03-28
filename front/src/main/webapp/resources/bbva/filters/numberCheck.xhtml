@@ -37,7 +37,9 @@
 					validatorMessage="Formato Invalido" value="#{cc.attrs.valueCheckNumber}"
 					disabled="#{checkBookController.renderComponents['NUMBERCHECK']}">
 					<f:validateRegex pattern="[0-9]*" />
+					<!-- Entelgy / GP-12834 / 28032016 / INICIO -->
 					<p:ajax event="blur" update="inputNumberCheck"/>
+					<!-- Entelgy / GP-12834 / 28032016 / FIN -->
 				</h:inputText>
 			</div>
 			<p:outputPanel id="panelDivSta"

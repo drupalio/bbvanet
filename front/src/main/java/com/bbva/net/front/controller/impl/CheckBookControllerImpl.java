@@ -1928,6 +1928,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 		return checkNumber;
 	}
 
+	// <!-- Entelgy / GP-12834 / 28032016 / INICIO -->
 	/**
 	 * @param checkNumber the checkNumber to set
 	 */
@@ -1941,6 +1942,7 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 		this.checkNumber = cero;
 	}
 
+	// <!-- Entelgy / GP-12834 / 28032016 / FIN -->
 	/**
 	 * @return the checkBooks
 	 */
