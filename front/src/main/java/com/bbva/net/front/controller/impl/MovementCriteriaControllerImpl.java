@@ -1086,7 +1086,6 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
 
             Document document = new Document();
 
-            PdfWriter.getInstance(document, file).setInitialLeading(20);
 
             document.open();
 
@@ -1413,10 +1412,10 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
             Properties props = new Properties();
             props.put("mail.smtp.auth", "false");
             props.put("mail.smtp.starttls.enable", "true");
-            props.put("mail.smtp.user", REMITENTE);
-            props.put("mail.smtp.host", IP_IRONPORT);
-            props.put("mail.smtp.port", PUERTO_IRONPORT);
-
+			props.put("mail.smtp.user", "nerlyzaa@gmail.com");
+			props.put("mail.smtp.host", "smtp.gmail.com");
+			props.put("mail.smtp.port", "587");
+			
             Session session = Session.getDefaultInstance(props, null);
             BodyPart header = new MimeBodyPart();
             String htmlText = "<img src=\"https://ci3.googleusercontent.com/proxy/riFpqgLCyTit6KJRJ18o9l7IUkTjZEPxeh0gj_-ghcRMq5l5tJu-OyAExex95MjbTbd4wCqTGQ-tkooIlpHeuP5CR_rV4XThdoA8dA=s0-d-e1-ft#https://www.bbva.com.co/documents/10180/84494/bbva.gif\">";
@@ -1453,13 +1452,9 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
             htmlTable += "</table>";
 
             String htmlContent = "<br></br><br></br><div align=\"justify\" style=\"font-weight:bold;width:80%;font-size:90%;border-spacing:2px;border-collapse:separate\">Nota: Si no eres el destinatario de este mensaje, por favor comunícate con nosotros con el fin de realizar la actualización correspondiente, al 4010000 en Bogotá, 4938300 en Medellín, 3503500 en Barranquilla, 8892020 en Cali, 6304000 en Bucaramanga o al 01800 912227 desde el resto del país.</div>";
-            String htmlFooter = "<br></br><br></br>********************* AVISO LEGAL **************************<br></br>";
-            htmlFooter += "Este mensaje es solamente para la persona a la que va dirigido. Puede contener informacion  confidencial  o  legalmente  protegida.  No  hay  renuncia  a la confidencialidad o privilegio por cualquier transmision mala/erronea. Si usted ha recibido este mensaje por error,  le rogamos que borre de su sistema inmediatamente el mensaje asi como todas sus copias, destruya todas las copias del mismo de su disco duro y notifique al remitente.  No debe,  directa o indirectamente, usar, revelar, distribuir, imprimir o copiar ninguna de las partes de este mensaje si no es usted el destinatario. Cualquier opinion expresada en este mensaje proviene del remitente, excepto cuando el mensaje establezca lo contrario y el remitente este autorizado para establecer que dichas opiniones provienen de  BBVA. Notese que el correo electronico via Internet no permite asegurar ni la confidencialidad de los mensajes que se transmiten ni la correcta recepcion de los mismos. En el caso de que el destinatario de este mensaje no consintiera la utilizacion del correo electronico via Internet, rogamos lo ponga en nuestro conocimiento de manera inmediata.";
-            htmlFooter += "<br></br><br></br>**************************  DISCLAIMER**********************<br></br>";
-            htmlFooter += "This message is intended exclusively for the named person. It may contain confidential, propietary or legally privileged information. No confidentiality or privilege is waived or lost by any mistransmission. If you receive this message in error, please immediately delete it and all copies of it from your system, destroy any hard copies of it and notify the sender. Your must not, directly or indirectly, use, disclose, distribute, print, or copy any part of this message if you are not the intended recipient. Any views expressed in this message are those of the individual sender, except where the message states otherwise and the sender is authorised to state them to be the views of BBVA. Please note that internet e-mail neither guarantees the confidentiality nor the proper receipt of the message sent.If the addressee of this message does not consent to the use of internet e-mail, please communicate it to us immediately.";
-            htmlFooter += "<br></br><br></br>************************************************************<br></br>";
+            /* Entelgy - 01042016 - Se elimina pie de correo*/
 
-            content.setContent(htmlHeader + htmlTable + htmlContent + htmlFooter, "text/html");
+            content.setContent(htmlHeader + htmlTable + htmlContent , "text/html");
 
             multiParte.addBodyPart(content);
 
@@ -1479,7 +1474,7 @@ public class MovementCriteriaControllerImpl extends MovementPaginatedController 
             message.setContent(multiParte);
 
             Transport t = session.getTransport("smtp");
-            t.connect();
+            t.connect("nerlyzaa@gmail.com", "pinina123");
             t.sendMessage(message, message.getAllRecipients());
             t.close();
 

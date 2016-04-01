@@ -1934,12 +1934,13 @@ public class CheckBookControllerImpl extends CheckPaginatedController implements
 	 */
 	public void setCheckNumber(String checkNumber) {
 		String cero = "000000000";
-		if (checkNumber != null) {
-
+		if(checkNumber.isEmpty()){
+			this.checkNumber = checkNumber;
+		}else if (checkNumber != null) {
 			cero = cero.substring(0, cero.length() - checkNumber.length());
 			cero = cero.concat(checkNumber);
-		}
-		this.checkNumber = cero;
+			this.checkNumber = cero;
+		}		
 	}
 
 	// <!-- Entelgy / GP-12834 / 28032016 / FIN -->
