@@ -197,7 +197,7 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
         renderComponents.put(RenderAttributes.FILTERNUMBERCHECK.toString(), true);
         this.checkBookController.setCheck(new CheckDto());
         this.checkBookController.getCheck();
-        this.checkBookController.setCheckNumber(null);
+        this.checkBookController.setCheckNumber("");
         this.checkBookController.getCheckNumber();
         Mockito.when(checkBookFacade.getCheckById(DEFAULT_ID, null)).thenReturn(new CheckDto());
         this.checkBookController.showResults(ajaxAction);
@@ -243,7 +243,7 @@ public class CheckBookControllerImplTest extends AbstractBbvaControllerTest {
         renderComponents.put(RenderAttributes.FILTERNUMBERCHECK.toString(), true);
         this.checkBookController.setCheck(new CheckDto());
         this.checkBookController.getCheck();
-        this.checkBookController.setCheckNumber(null);
+        this.checkBookController.setCheckNumber("");
         this.checkBookController.getCheckNumber();
         this.checkBookController.setTitleState("123");
         this.checkBookController.getTitleState();
